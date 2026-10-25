@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { ModelLibrary } from '../../src/client/instanced-models';
 import { LANDMARK_DEFINITIONS, LANDMARKS } from '../helpers/content';
+import { FONTS } from '../helpers/fonts';
 
 describe('landmark model library', () => {
   it('prepares shared identity and furniture models without any network or loader', async () => {
-    const library = new ModelLibrary(undefined, LANDMARK_DEFINITIONS);
+    const library = new ModelLibrary(undefined, LANDMARK_DEFINITIONS, false, {}, FONTS);
     try {
       for (const ref of [
         ...Object.keys(LANDMARKS.signDesigns).map((s) => `builtin:sign.${s}`),

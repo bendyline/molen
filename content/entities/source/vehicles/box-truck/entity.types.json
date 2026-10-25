@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.box_truck": {
-      "doc": "Delivery box truck. Mountable and ambient road vehicle.",
+      "doc": "Bendy Box Truck. Delivery box truck. Mountable and ambient road vehicle.",
       "components": {
         "transform": {
           "pos": [
@@ -31,7 +31,9 @@
           "kind": "molen.entities.vehicle.box_truck",
           "color": "#6687a7",
           "spec": {
-            "label": "Delivery box truck",
+            "label": "Bendy Box Truck",
+            "bodyStyle": "box-truck",
+            "genericLabel": "Box truck",
             "width": 2.576,
             "length": 6.8999999999999995,
             "height": 3.45,
@@ -76,7 +78,32 @@
               "wheel-front-left",
               "wheel-front-right"
             ],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "close-detail",
+                "steering-wheel",
+                "cabin"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
           }
         },
         "vehicleInput": {

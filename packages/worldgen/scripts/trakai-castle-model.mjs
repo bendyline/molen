@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u9/u99/n0280_trakai_island_castle/';
+const root = '../../../content/worldgen/source/places/u9/u99/trakai_island_castle/';
 const frame = JSON.parse(readFileSync(new URL(`${root}map-frame.json`, import.meta.url)));
 const references = JSON.parse(
   readFileSync(new URL(`${root}reference-metadata.json`, import.meta.url)),
@@ -640,7 +640,7 @@ export const buildTrakaiSkyline = (o) =>
     0,
   );
 export const trakaiStudy = {
-  id: 'N0280',
+  id: 'trakai_island_castle',
   key: 'trakai_island_castle',
   title: 'Trakai Island Castle',
   category: 'castle',

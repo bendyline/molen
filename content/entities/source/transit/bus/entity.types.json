@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.transit.bus": {
-      "doc": "12 m low-floor city bus that drives with ambient traffic.",
+      "doc": "Bendy Bus. Player-drivable city bus with cockpit/chase views, passenger seat and ambient traffic role.",
       "components": {
         "transform": {
           "pos": [
@@ -21,7 +21,11 @@
         },
         "renderable": {
           "kind": "gltf",
-          "ref": "molen.entities.transit.bus"
+          "ref": "molen.entities.transit.bus",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
         },
         "ambientRole": {
           "role": "bus",
@@ -52,8 +56,135 @@
             "#2e7d4f",
             "#f2b705"
           ]
+        },
+        "vehicle": {
+          "kind": "molen.entities.transit.bus",
+          "color": "#5686a1",
+          "spec": {
+            "label": "Bendy Bus",
+            "bodyStyle": "bus",
+            "genericLabel": "City bus",
+            "width": 2.55,
+            "length": 12,
+            "height": 3.44,
+            "centerOfMass": [
+              0,
+              1.4,
+              0
+            ],
+            "wheelbase": 5.9,
+            "wheelTrack": 2.15,
+            "wheelRadius": 0.5,
+            "mass": 12000,
+            "engineForce": 23000,
+            "maxSpeed": 23,
+            "reverseSpeed": 5,
+            "brakeDeceleration": 5,
+            "maxSteer": 0.5,
+            "grip": 7,
+            "driverEye": [
+              0.55,
+              1.95,
+              4.7
+            ],
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.13,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.3,
+            "drive": "rear",
+            "rollStiffness": 0.035,
+            "pitchStiffness": 0.025
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "close-detail",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.55,
+                1.95,
+                4.7
+              ]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [
+                -0.7,
+                1.5,
+                3
+              ]
+            }
+          ],
+          "entries": [
+            [
+              -1.35,
+              0,
+              4.7
+            ]
+          ],
+          "exits": [
+            [
+              -2,
+              0,
+              4.7
+            ]
+          ],
+          "reach": 3
         }
-      }
+      },
+      "assets": [
+        "molen.entities.transit.bus"
+      ]
     }
   }
 }

@@ -1,0 +1,19 @@
+# Banqueting House
+
+Whole surviving Banqueting House, Whitehall: full8point native building contour including set-back north James Wyatt stair annex; two principal storeys over rusticated basement, seven bays on both long faces, shallow advanced middle3bays, Ionic lower order/Composite upper order, alternating lower window pediments, upper cornice hoods, garland frieze and balustraded parapet, concealed low roof and intrinsic1688weathervane. Northern annex entrance/roundel/bands. Exclude separate RUSI, Ministry of Defence, Horse Guards, old southern low gateway in historical images, lost Whitehall Palace, general street/grounds/interiors/temporary flags and people. Pale grey-white Portland stone; genuine recessed sash windows/reveals/grids, projected orders/entablatures/alternating segmental and triangular lower pediments, center3bay emphasis, corner double pilasters, open balustrade and wrought-iron vane. Whole slight-tapered mainhall plus inset northannex. Fine decorative masks/garlands and exact levels/hidden detail estimates; do not impose old gate or lost palace.
+
+![Molen preview](preview.png)
+
+Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.json](qa.json) and the [completion ledger](../../../../qualla-structures/batches/qualla-002.PROGRESS.md).
+
+- [Banqueting House](https://qualla.com/banqueting-house/)
+
+Named native way140470549/Q642039/listed1357353/all8vertices retained; full footprint includes northern set-back stair annex. Adjacent RUSI31117836 shares south boundary but is independent and excluded; roof547280182 is across Whitehall near Horse Guards, excluded. Fixed Qualla anchor[-.1259,51.5046], heading-1.4016227089117175 from west wall4to2 before terrain/geometry. Local+XalonglonghalltowardsSSE,+Ztoweststreet. Native main façade~37.25m and width~21m are coarse map controls, not a measured architectural survey. Northern annex4.74m alongaxis/setback5.29m follows whole outline. Main height/bay subdivision/roof pitch/ornament and unseen annex faces estimated independently of terrain.
+
+Surviving exterior after Soane refacing/northernWyattannex:7bay facades/2orders/center3bay emphasis/alternating lower pediments/uppercornices/garlandfrieze/openbalustrade/concealedroof/weathervane. Fine Ionic/Composite capital/frieze masks stylized, exact facade relief/window census of hidden annex/heights estimated. No interiors/execution scaffold or lostWhitehallPalace.
+
+One accepted published1831ThomasHosmerShepherd engraving individually inspected/exactnativeSHA1; PD-Art(PD-old-100) namedcreator. Current primaryoperator/listing text supports conservedexterior/Portlandcolor/annex; no protected currentphoto/plan used. Campbell/Britannica screening images not adopted due incomplete publishedattribution/basis, no metadata/policy edits.
+
+Independent256m129-square2m all16641samples/one originalTerrariumtile/PNG frozen before geometry unchanged. Provider datum4.1413m/sourcepixel2.9736478786520997m/absolute.346..6.0841m notsurveyaccuracy. No fitting/flattening/reacquisition; ordinarygeographicpreview/replacementdisabled; host contactunverified.
+
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=banqueting_house`. Add `--check` to verify exact regeneration. 16494 triangles; 6 materials; no embedded photographs.

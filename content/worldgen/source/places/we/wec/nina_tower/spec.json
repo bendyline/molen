@@ -1,0 +1,661 @@
+{
+  "planId": "nina_tower",
+  "id": "nina_tower",
+  "assetId": "molen.worldgen.structure.nina_tower",
+  "title": "Nina Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q520839",
+  "referenceCoordinate": {
+    "latitude": 22.368611111,
+    "longitude": 114.113055555
+  },
+  "visualBrief": "Tall northwest glazed tower, crescent-shaped southeast hotel tower, open asymmetric sail crowns, silver refuge bands, curved enclosed skybridge and curved main podium with separate low western bus-terminal wing.",
+  "size": [
+    195.56558227539062,
+    320.395263671875,
+    116.39642715454102
+  ],
+  "actualBounds": {
+    "min": [
+      -126.5242691040039,
+      0,
+      -20.638858795166016
+    ],
+    "max": [
+      69.04131317138672,
+      320.395263671875,
+      95.757568359375
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X ENE along tall north facade",
+    "front": "-Z NNW with independent tall northwest / hotel southeast layout",
+    "origin": "Mapped tall footprint area centroid at approximate pavement"
+  },
+  "sourceFacts": {
+    "tallTowerArchitecturalHeightMeters": 320.4,
+    "tallTowerHighestOccupiedMeters": 301.1,
+    "registryAboveGroundFloors": 80,
+    "shortTowerRoundedRegistryHeightMeters": 170,
+    "planningPodiumStoreys": 8,
+    "planningTowerStoreys": [
+      72,
+      36
+    ],
+    "hotelSkybridgeLabel": "41F",
+    "registryObservatoryMeters": 151.7,
+    "skybridgeTrussDepthMeters": 3,
+    "originalMasterHash": "sha256:36eb2cc4d9919a88a6e80eed001f27f46022351f87e0a2947892075b3c88a656",
+    "originalMasterRecipe": "packages/worldgen/scripts/nina-tower-model.mjs#ninaTowerStudy.encodeAssembly"
+  },
+  "reconstruction": {
+    "towerCentersXZ": "Mapped independent rings",
+    "tallEnvelopeMeters": [
+      42.6,
+      44
+    ],
+    "shortEnvelopeMeters": [
+      42.4,
+      33.6
+    ],
+    "podiumTopMeters": 42,
+    "basis": "Published hotel diagram and 2018 planning plan/section, checked against the Sika exterior photograph. Roof curves, bay widths, refuge levels, small details, podium envelope and tower spacing are working reconstructions, not surveyed dimensions.",
+    "assembly": {
+      "uniqueParts": 16,
+      "instances": 11956
+    },
+    "shortFootprint": "Mapped concave crescent ring, not original rounded rectangle"
+  },
+  "referencePages": [
+    "https://www.skyscrapercenter.com/building/nina-tower/421",
+    "https://www.skyscrapercenter.com/complex/249",
+    "https://www.ninahotelgroup.com/media/iy4ffnai/240315-tww-fact-sheet-en.pdf",
+    "https://www.tpb.gov.hk/en/papers/TPB/TWK/A_TW_497_RV/A_TW_497_RV_Annex%20b.pdf",
+    "https://www.sika.com/dms/getdocument.get/dfedde96-0ea7-4344-97d8-59e1ff66e9a1/glo-sika-concrete-highrise-buildings-references.pdf"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "signed medium-fi primary north-up site plan and separate mapped tower rings",
+    "anchor": [
+      114.11296373294658,
+      22.36876190672438
+    ],
+    "heading": 0.252050826619587,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=114.1112,22.3673,114.1145,22.3703",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/64890124",
+      "way/112284860",
+      "way/112284790",
+      "way/492365420",
+      "way/1214804831",
+      "way/1214804830"
+    ],
+    "wikidataId": "Q520839",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:34fa1d2e94b5cbb3062bc63749d97f06d2c0a58a3724f065598fa944b0a2b36d",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "orientationConfidence": "exact-QID parcel / named-addressed towers corroborated by primary north plan",
+    "notes": "Fresh exact Q520839 parcel way 64890124 at 8 Yeung Uk Road identifies the complex; named/addressed 80-floor tall way 112284860 and hotel way 112284790 (hotel Q115967045) identify the individual towers inside it. The inspected north-up Planning Department 2018 A-2 site plan independently signs tall tower northwest and curved hotel southeast, Yeung Uk northeast and Tai Ho northwest. New origin is the tall footprint area centroid, not the old unverified catalog coordinate. Heading follows north edge tall vertices 22 to 19: native +X ENE about 75.56 degrees, -Z NNW about 345.56 degrees. Reviewed geometry uses each raw local ring, including the crescent hotel and main podium, plus a separate low western bus-terminal wing. Original south-west hotel offset and schematic podium are preserved only in the old recipe. Public northwest frontage follows mapped Tai Ho-side wall, supported by planning A-3 point-2 photograph; door count/offset and slender canopy are approximate. Skybridge joins tall southeast edge to short northwest inner curve at working 151.7 m deck; curvature, exact attachments, sail roof radii, roof high sides and pavement datum are photograph/diagram reconstructions, not surveys. Nina Mall 2 across Tai Ho is excluded. OSM 318 m tall/42 m podium differ from registry 320.4 m and original working podium 32.8 m; reviewed podium uses eight rows to mapped 42 m, with explicitly reconstructed height allocation and no ground-datum survey.",
+    "evidence": "Fresh exact Q520839 parcel way 64890124 at 8 Yeung Uk Road identifies the complex; named/addressed 80-floor tall way 112284860 and hotel way 112284790 (hotel Q115967045) identify the individual towers inside it. The inspected north-up Planning Department 2018 A-2 site plan independently signs tall tower northwest and curved hotel southeast, Yeung Uk northeast and Tai Ho northwest. New origin is the tall footprint area centroid, not the old unverified catalog coordinate. Heading follows north edge tall vertices 22 to 19: native +X ENE about 75.56 degrees, -Z NNW about 345.56 degrees. Reviewed geometry uses each raw local ring, including the crescent hotel and main podium, plus a separate low western bus-terminal wing. Original south-west hotel offset and schematic podium are preserved only in the old recipe. Public northwest frontage follows mapped Tai Ho-side wall, supported by planning A-3 point-2 photograph; door count/offset and slender canopy are approximate. Skybridge joins tall southeast edge to short northwest inner curve at working 151.7 m deck; curvature, exact attachments, sail roof radii, roof high sides and pavement datum are photograph/diagram reconstructions, not surveys. Nina Mall 2 across Tai Ho is excluded. OSM 318 m tall/42 m podium differ from registry 320.4 m and original working podium 32.8 m; reviewed podium uses eight rows to mapped 42 m, with explicitly reconstructed height allocation and no ground-datum survey.",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic reconstruction from linked primary references. No downloaded mesh, traced photographic texture or source publication is embedded.",
+  "sourceLicense": "Original reconstruction under repository license; publications are linked, not redistributed. Catalog coordinate: Wikidata CC0.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Preserved original ninaTowerStudy.encodeAssembly reconstitutes 3554848 bytes /128948 expanded triangles (16 parts/11956 placements), including its prior provisional southwest hotel placement. Reviewed source and four browser levels correct the actual mapped tall northwest, curved crescent hotel southeast, connected curved bridge and separately lower western podium. Polygon caps use concave triangulation rather than a center fan; the hotel inner curve and courtyard cut-ins are retained. Tall occupied/top 301.1/320.4 m and shorter occupied/top 153/170 m are working geometric datums; mapped 318 m, registry heights, planning 72/36 tower plus 8 podium storeys, 80 registry above-ground floors and hotel 87F/41F labels are separate records. Eight podium rows extend to mapped 42 m, replacing provisional 32.8 m; row heights/refuge allocations, entrance four leaves, canopy, generic enclosed interiors, sail curves/high sides/columns/equipment and bridge 151.7 m deck/3 m trusses are reconstructed, not measured. Facades keep flat glass panels, silver horizontal transoms, vertical fins and multi-row refuge bands. Close subdivides long edges at about 3 m; street retains floor rows with coarser bays; district groups four tower floors and two podium groups; skyline uses only silhouette/refuge bands. Far levels omit transparent doors and bridge glazing while retaining the curved bridge volume and both open sail crowns. Three shared graphs (stainless, concrete, granite) plus opaque/52-percent clear glass and recess tint form six near groups with one BLEND group and zero embedded images. Full mall fitout/signage, exact roof equipment, underground floors, road footbridges and Nina Mall 2 are excluded. Source photographs and plans are linked references only. Physical laptop/phone and dense-city timings remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "facade-bays",
+      "position": [
+        27,
+        78,
+        3
+      ],
+      "lookAt": [
+        21,
+        78,
+        3
+      ]
+    },
+    {
+      "name": "rounded-corner",
+      "position": [
+        34,
+        79,
+        -34
+      ],
+      "lookAt": [
+        18,
+        78,
+        -19
+      ]
+    },
+    {
+      "name": "refuge-louvres",
+      "position": [
+        31,
+        118,
+        13
+      ],
+      "lookAt": [
+        21,
+        118,
+        13
+      ]
+    },
+    {
+      "name": "curved-skybridge",
+      "position": [
+        -38,
+        157,
+        4
+      ],
+      "lookAt": [
+        -24,
+        152,
+        26
+      ]
+    },
+    {
+      "name": "tall-sail-roof",
+      "position": [
+        -70,
+        335,
+        65
+      ],
+      "lookAt": [
+        0,
+        308,
+        0
+      ]
+    },
+    {
+      "name": "short-sail-roof",
+      "position": [
+        -75,
+        191,
+        96
+      ],
+      "lookAt": [
+        -22.5,
+        161,
+        44
+      ]
+    },
+    {
+      "name": "podium-frontage",
+      "position": [
+        -50,
+        5,
+        -42
+      ],
+      "lookAt": [
+        -43,
+        2,
+        -26
+      ]
+    },
+    {
+      "name": "site-plan",
+      "position": [
+        -18,
+        395,
+        17
+      ],
+      "lookAt": [
+        -18,
+        0,
+        18
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -650,
+        340,
+        710
+      ],
+      "lookAt": [
+        -15,
+        150,
+        15
+      ]
+    },
+    {
+      "name": "whole-reviewed-nina",
+      "position": [
+        -420,
+        258,
+        510
+      ],
+      "lookAt": [
+        -10,
+        146,
+        25
+      ]
+    },
+    {
+      "name": "crescent-hotel-reviewed",
+      "position": [
+        118,
+        103,
+        41
+      ],
+      "lookAt": [
+        53,
+        92,
+        44
+      ]
+    },
+    {
+      "name": "signed-curved-skybridge",
+      "position": [
+        20,
+        161,
+        64
+      ],
+      "lookAt": [
+        29,
+        151.7,
+        24
+      ]
+    },
+    {
+      "name": "signed-northwest-entrance",
+      "position": [
+        -46,
+        5,
+        -12
+      ],
+      "lookAt": [
+        -28,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "mapped-site-plan",
+      "position": [
+        -29,
+        405,
+        34
+      ],
+      "lookAt": [
+        -29,
+        0,
+        34
+      ]
+    },
+    {
+      "name": "hotel-open-crown",
+      "position": [
+        95,
+        190,
+        108
+      ],
+      "lookAt": [
+        49,
+        160,
+        44
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/nina-runtime-model.mjs",
+    "export": "buildNinaCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/nina-runtime-model.mjs",
+    "export": "buildNinaReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildNinaDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          },
+          "recess": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildNinaStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          },
+          "recess": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildNinaCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          },
+          "recess": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-nina-skyline",
+      "position": [
+        -420,
+        258,
+        510
+      ],
+      "lookAt": [
+        -10,
+        146,
+        25
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-nina-district",
+      "position": [
+        -420,
+        258,
+        510
+      ],
+      "lookAt": [
+        -10,
+        146,
+        25
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-nina-street",
+      "position": [
+        -420,
+        258,
+        510
+      ],
+      "lookAt": [
+        -10,
+        146,
+        25
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-nina-closeup",
+      "position": [
+        -420,
+        258,
+        510
+      ],
+      "lookAt": [
+        -10,
+        146,
+        25
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "crescent-hotel-reviewed",
+      "position": [
+        118,
+        103,
+        41
+      ],
+      "lookAt": [
+        53,
+        92,
+        44
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "signed-curved-skybridge",
+      "position": [
+        20,
+        161,
+        64
+      ],
+      "lookAt": [
+        29,
+        151.7,
+        24
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "signed-northwest-entrance",
+      "position": [
+        -46,
+        5,
+        -12
+      ],
+      "lookAt": [
+        -28,
+        2,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "hotel-open-crown",
+      "position": [
+        95,
+        190,
+        108
+      ],
+      "lookAt": [
+        49,
+        160,
+        44
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 44980,
+    "vertices": 133068,
+    "materials": 6,
+    "bytes": 5333716,
+    "sha256": "sha256:600b682dd9294c9f3de721e4e95fcabc963b6fab0741d745bacd56b9f56bef38"
+  }
+}

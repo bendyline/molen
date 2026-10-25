@@ -15,9 +15,9 @@ models' geographic readiness.
 
 | Candidate | Negative-X approach gap | Positive-X approach gap | Observation |
 | --- | ---: | ---: | --- |
-| N0011 Mes | 12.72 m | 1.32 m | Western approach floats; the sampled western bank has a large depression absent from independent GLO-30. |
-| N0012 Kazarma | 4.41 m | 2.29 m | Deck does not meet either bank; the narrow stream and bridge ground contact are unresolved by this source. |
-| N0014 Haghtanak | 22.29 m | 22.96 m | Both approaches float and the source smooths the gorge. Translating to a bank alone would bury the lower arches. |
+| mes_bridge Mes | 12.72 m | 1.32 m | Western approach floats; the sampled western bank has a large depression absent from independent GLO-30. |
+| kazarma_mycenaean_bridge Kazarma | 4.41 m | 2.29 m | Deck does not meet either bank; the narrow stream and bridge ground contact are unresolved by this source. |
+| haghtanak_bridge Haghtanak | 22.29 m | 22.96 m | Both approaches float and the source smooths the gorge. Translating to a bank alone would bury the lower arches. |
 
 Gaps are downward ray intersections between the imported model's top centerline surface and
 the triangulated terrain, 0.5 m inside the authored ends. Mes follows its bent mapped centerline.
@@ -68,9 +68,9 @@ smoothed ground. No model has been translated or deformed to hide a source-data 
 
 | Candidate | Negative-X approach gap | Positive-X approach gap | Remaining mismatch |
 | --- | ---: | ---: | --- |
-| N0011 Mes, GLO-30 | 0.54 m | -0.53 m | Subsidiary arches and supports partly buried by smoothed valley geometry. |
-| N0012 Kazarma, GLO-30 | 2.82 m | 2.47 m | Narrow gully absent; the two road ends remain raised above terrain. |
-| N0014 Haghtanak, GLO-90 | 25.05 m | 21.05 m | Coarse gorge and bank profile cannot support the authored crossing. |
+| mes_bridge Mes, GLO-30 | 0.54 m | -0.53 m | Subsidiary arches and supports partly buried by smoothed valley geometry. |
+| kazarma_mycenaean_bridge Kazarma, GLO-30 | 2.82 m | 2.47 m | Narrow gully absent; the two road ends remain raised above terrain. |
+| haghtanak_bridge Haghtanak, GLO-90 | 25.05 m | 21.05 m | Coarse gorge and bank profile cannot support the authored crossing. |
 
 The side camera is raised when needed to stay two metres above terrain at its own position.
 Reports preserve both its requested and actual pose. That camera adjustment does not change
@@ -108,7 +108,7 @@ node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-se
 ```
 
 Use `--offline` on the first command to require existing PNGs in `.artifacts/bridge-terrain`.
-Both commands accept `--ids=N0011,N0012,N0014`. The capture runner uses the tooling Playwright
+Both commands accept `--ids=mes_bridge,kazarma_mycenaean_bridge,haghtanak_bridge`. The capture runner uses the tooling Playwright
 browser; set `PLAYWRIGHT_BROWSERS_PATH` if that browser was installed in a repository cache.
 Source fields, reports and captures remain excluded from the distributed Earth pack.
 
@@ -119,18 +119,18 @@ production placement captures and a hash-bound image review. The terrain grid is
 Water values represent modeled water surfaces, not bathymetry. Heights use NGF-IGN69;
 hosts using another vertical datum must convert their elevations explicitly.
 
-- **N0026 Pont Aval:** the 26.34 m reference agrees with the independent terrain water
+- **pont_aval Pont Aval:** the 26.34 m reference agrees with the independent terrain water
   surface. The motorway approaches remain elevated above the ground. An additional
-  `N0026-roads-fit-report.json` renders the independently mapped carriageways through the
+  `pont_aval-roads-fit-report.json` renders the independently mapped carriageways through the
   production procedural road renderer. Its covered segments are clipped only after the
   landmark loads; the remaining approaches meet the two authored endpoint elevations.
   BD TOPO road elevations corroborate that context with 2.5 m stated vertical accuracy.
-- **N0028 Tolbiac:** the 27.40 m model origin places the road ends at approximately
+- **pont_de_tolbiac Tolbiac:** the 27.40 m model origin places the road ends at approximately
   35.45/35.56 m, matching independent upper-road samples around 35.4/35.6 m. The terrain
   rays retain 0.62/0.41 m residuals at the interpolated quay edges. The represented water
   reference is 0.45 m above the preserved terrain water surface; that difference is
   disclosed and was not removed by fitting the terrain.
-- **N0019 Archevêché:** all eight current terrain/road frames were inspected. The 26.96 m
+- **pont_de_l_archeveche Archevêché:** all eight current terrain/road frames were inspected. The 26.96 m
   origin puts the northern road end at approximately 34.60 m, matching the 34.58–34.60 m
   upper-bank samples. The southern connection retains a roughly 0.4 m local residual.
   The older northern ray hits the smoothed quay face below the road plateau; its 2.62 m
@@ -138,9 +138,9 @@ hosts using another vertical datum must convert their elevations explicitly.
   approaches while preserving the lower quay road. Submerged footings are reconstructed.
 
 ```sh
-node examples/world-explorer/scripts/build-ign-bridge-evidence.mjs --ids=N0019,N0026,N0028 --offline
-node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=ign --ids=N0026,N0028
-node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=ign --ids=N0026 --with-roads
+node examples/world-explorer/scripts/build-ign-bridge-evidence.mjs --ids=pont_de_l_archeveche,pont_aval,pont_de_tolbiac --offline
+node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=ign --ids=pont_aval,pont_de_tolbiac
+node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=ign --ids=pont_aval --with-roads
 ```
 
 Omit `--offline` to fetch missing official responses. Request/response hashes, datum,
@@ -151,7 +151,7 @@ their source 3D ordinates remain independent comparison evidence.
 ## Japan: bank references and explicit missing river data
 
 `gsi/` preserves current GSI DEM1A laser elevation PNG samples and the exact OSM
-carriageway/sidewalk plans for **N0021 Sanjō Ōhashi**. The western road plateau is
+carriageway/sidewalk plans for **sanjo_ohashi_bridge Sanjō Ōhashi**. The western road plateau is
 41.714 m; aligning native endpoint Y=4.55 m gives an approximately 37.16 m model
 origin. The independent eastern plateau is 41.733 m. Current production images
 show both approach joins and the separate nine-span landmark.
@@ -173,17 +173,17 @@ repair a coarse global DEM.
 
 ```sh
 node examples/world-explorer/scripts/build-gsi-bridge-evidence.mjs
-node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=gsi --ids=N0021
-node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=gsi --ids=N0021 --with-roads
+node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=gsi --ids=sanjo_ohashi_bridge
+node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=gsi --ids=sanjo_ohashi_bridge --with-roads
 ```
 
-The builder reads the four hashed GSI PNG tiles recorded in `N0021.json` from the
+The builder reads the four hashed GSI PNG tiles recorded in `sanjo_ohashi_bridge.json` from the
 research cache. Their public source URLs and decoding references are preserved there.
 
 ## Poland: distinguish the road deck from ground underneath
 
 `gugik/` preserves independent national ground (NMT) and surface (NMPT) evidence for
-**N0029 Poniatowski Bridge**, requested explicitly in **PL-EVRF2007-NH**. The ground
+**poniatowski_bridge Poniatowski Bridge**, requested explicitly in **PL-EVRF2007-NH**. The ground
 field is rendered; the surface field is only a separate measurement reference, so
 it cannot create a duplicate bridge inside the terrain. The current 2 m review
 grid covers 1,020 m around the bridge. A second surface strip retains approximately
@@ -216,8 +216,8 @@ The exact model polygon already removes covered bridge-tagged road fragments.
 
 ```sh
 node examples/world-explorer/scripts/build-gugik-bridge-evidence.mjs
-node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=gugik --ids=N0029
-node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=gugik --ids=N0029 --with-roads
+node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=gugik --ids=poniatowski_bridge
+node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=gugik --ids=poniatowski_bridge --with-roads
 ```
 
 The builder reads three hashed ASCII responses from `.artifacts/bridge-terrain/poland`;

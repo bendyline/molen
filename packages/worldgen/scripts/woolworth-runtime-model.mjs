@@ -18,7 +18,7 @@ import {
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0157_woolworth_building',
+const key = 'woolworth_building',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'), 'utf8')),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'), 'utf8')),
   parts = partsEvidence(key),

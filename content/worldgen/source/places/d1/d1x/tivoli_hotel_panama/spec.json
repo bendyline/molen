@@ -1,0 +1,339 @@
+{
+  "planId": "tivoli_hotel_panama",
+  "id": "tivoli_hotel_panama",
+  "assetId": "molen.worldgen.structure.tivoli_hotel_panama",
+  "title": "Tivoli Hotel, Panama (1923)",
+  "category": "hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.544326,
+    "latitude": 8.9625567
+  },
+  "size": [
+    92.9000015258789,
+    25.749999225139618,
+    66.4000015258789
+  ],
+  "actualBounds": {
+    "min": [
+      -54.20000076293945,
+      -0.44999998807907104,
+      -42.70000076293945
+    ],
+    "max": [
+      38.70000076293945,
+      25.299999237060547,
+      23.700000762939453
+    ]
+  },
+  "visualBrief": "Dated1923whole main TivoliHotel: broad white timber/plaster frame with repeated dark screened verandah/window bays above a raised masonry base, two projecting front crosswings/open forecourt, central higher front/cupola, connected1911rear wing and visible low attached side block. Separate overhanging hipped roofs, small white roof vents, eight-post cupola/hipped cap and intrinsic1913-era entrance porch/porte-cochere/steps. Full plan/metric scale/bearing are photographic estimates at the former-site story coordinate. Historical-only1923-06-16appearance; no default current-world hotel.",
+  "nativeAxes": {
+    "x": "approximate east",
+    "y": "up",
+    "z": "approximate south/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1923-06-16",
+    "validFrom": "1923-06-16",
+    "validUntil": "1923-06-17"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tivoli_Hotel_on_June_16,_1923_-_Panama_Canal_Zone_-_Ancon_-_NARA_-_68147530_(cropped).jpg",
+    "https://commons.wikimedia.org/wiki/File:FMIB_38707_Tivoli_Hotel,_Ancon.jpeg"
+  ],
+  "stories": [
+    {
+      "id": "tivoli-hotel-panama-wp",
+      "url": "https://qualla.com/tivoli-hotel-panama/"
+    }
+  ],
+  "referenceInputHash": "f68b85deb5b9f610d33d59cfa5f856103cae0e19ab06d52f8e87958e3a0784fb",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-tivoli-hotel-panama.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-tivoli-hotel-panama.mjs",
+    "level": "skyline",
+    "export": "tivoliSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "tivoliDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "tivoliStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Former hotel identity/location comes from the exact Qualla story coordinate and dated1923NARAhotel aerial. Current native campus1118666247/TupperLaboratory247297016and TivoliBLDG1112176494are different later structures, not a surviving hotel footprint. No historical measured plan was supplied; the complete hotel envelope/bearing/scale below are explicit photographic estimates, retained separately from current native context. Fixed open former forecourt approach defines approximate datum before terrain acquisition; modern relief is not a1923survey.",
+    "anchor": [
+      -79.544326,
+      8.9625567
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.544326,
+        8.962305172871003
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed open front approach within the photograph-estimated former forecourt, chosen before terrain acquisition. Modern source relief is context only, not a1923grade survey or hotel foundation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "authored-1923-hotel-envelope",
+      "way/247297016",
+      "way/1112176494",
+      "way/1118666247"
+    ],
+    "source": "https://qualla.com/tivoli-hotel-panama/",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e3c44a889a11ba8c8edaacd5c9bdaaac2a1af1506d0ad9178ca53ebae26ca7d4",
+    "notes": "Historical-only1923-06-16placement, default-current-world excluded. No claim that the hotel survives, or that current native roofs/roads are its1923plan. Main widths, bearing, rear/side section and exact ground attachment are photo-based medium-fi estimates; unmodified current terrain is retained."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Former hotel identity/location comes from the exact Qualla story coordinate and dated1923NARAhotel aerial. Current native campus1118666247/TupperLaboratory247297016and TivoliBLDG1112176494are different later structures, not a surviving hotel footprint. No historical measured plan was supplied; the complete hotel envelope/bearing/scale below are explicit photographic estimates, retained separately from current native context.",
+    "Historical-only1923-06-16appearance from the exact Qualla-published dated NARAaerial. A one-day explicit appearance interval is used rather than inferring unobserved years. The former hotel no longer stands; default current-world placement is excluded. Modern TupperLaboratory/TivoliBLDG/Smithsoniancampus are not adopted as its footprint or modeled as the hotel.",
+    "The complete estimated92mwide/65mdeephotel envelope includes front crosswings, main crossbar, central front/cupola,1911rear addition and visible low attached side block. Dimensions, bearing, eaves13.6/15.6m, cupola24.2m, hidden window rhythms and small engineering sections are photographic medium-fi estimates; no historical measured survey exists in the local evidence. Current source context provides location only.",
+    "Exact3663x2929NARA/USmilitary1923aerial governs represented appearance. Earlier781x641ErnestHallen/FMIBfront view guides persistent white frame/dark screened verandah/cupola character; its older covered stair is excluded after the documented1913porte-cocherereplacement. The later porch footprint/section remains bounded, not claimed as a measured design.",
+    "Dark screened bays are closed visual surfaces with white timber framing over opaque body, not traversable room interiors. Thin frame grid, roof vent sections/finish, neutral warm-white/grey palette and less-visible elevations are original approximations; monochrome prints do not establish exact paint color. No photographic texture, furnishings, detached camp buildings, road/driveway/garden, people or vehicles.",
+    "Fixed open front approach selected before terrain sampling controls approximate groundY0. Hotel plinth/porch footings extend.45m beneath it. Exact1923hill grade/foundation/steps and contact with modern host terrain remain unverified; current relief is preserved without a whole-estate platform or terrain flattening. Fine screened window grids, posts, basal vents and roof fixtures simplify with distance."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front-crosswings-screened-verandahs-and-cupola",
+      "position": [
+        10,
+        18,
+        69
+      ],
+      "lookAt": [
+        0,
+        10,
+        3
+      ]
+    },
+    {
+      "name": "white-frames-raised-base-and-entry",
+      "position": [
+        40,
+        9,
+        44
+      ],
+      "lookAt": [
+        23,
+        7,
+        15
+      ]
+    },
+    {
+      "name": "rear-1911-wing-and-independent-hipped-roofs",
+      "position": [
+        -72,
+        46,
+        -71
+      ],
+      "lookAt": [
+        -3,
+        13,
+        -14
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 29046,
+    "vertices": 87138,
+    "materials": 6,
+    "bytes": 3489240,
+    "sha256": "sha256:39794511822204e9c19b909897f605ded6a8f390e90400cc0bfa7e2e2e87955c"
+  }
+}

@@ -7,9 +7,7 @@ import { annulus, face, transform, triangle } from './heritage-tower-detail-mesh
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const map = JSON.parse(
-  readFileSync(structureSourcePath('n0613_watts_towers', 'map-frame.json'), 'utf8'),
-);
+const map = JSON.parse(readFileSync(structureSourcePath('watts_towers', 'map-frame.json'), 'utf8'));
 const tau = Math.PI * 2,
   stucco = [0.56, 0.565, 0.52],
   cream = [0.78, 0.76, 0.65],
@@ -934,8 +932,8 @@ function build(out) {
   spire(out, -17.9, -10.8, 0, 4.1, 1);
 }
 export const wattsTowers = {
-  id: 'n0613_watts_towers',
-  planId: 'N0613',
+  id: 'watts_towers',
+  planId: 'watts_towers',
   title: 'Watts Towers',
   wikidata: 'Q445256',
   authoringFile: 'watts-towers-model.mjs',
@@ -990,7 +988,7 @@ export const wattsTowers = {
     source: map.source,
     mapGeometrySource: 'map-frame.json',
     mapGeometryHash: hashEvidenceText(
-      readFileSync(structureSourcePath('n0613_watts_towers', 'map-frame.json')),
+      readFileSync(structureSourcePath('watts_towers', 'map-frame.json')),
     ),
     status: 'preview-proposal',
     evidence: map.basis,

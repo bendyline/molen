@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u8/u84/n0362_black_church/',
+  '../../../content/worldgen/source/places/u8/u84/black_church/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -868,7 +868,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const blackChurchStudy = {
-  id: 'N0362',
+  id: 'black_church',
   key: 'black_church',
   title: 'Black Church',
   category: 'cathedral',

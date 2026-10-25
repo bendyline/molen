@@ -11,7 +11,7 @@ import { loadDefaultAtlas } from './helpers/pack';
 
 const catalog = JSON.parse(
   await readFile(
-    resolve(import.meta.dirname, '../../../content/earth/structures/placements.json'),
+    resolve(import.meta.dirname, '../../../content/earth/structures/placements/authoring.json'),
     'utf8',
   ),
 ) as StructureCatalogDoc;

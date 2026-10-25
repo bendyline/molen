@@ -15,6 +15,8 @@ export type {
 } from './client/renderers';
 export { createWorldgenSemanticRenderers } from './client/renderers';
 export type { StructureTerrainSampler } from './client/structure-elevation';
+export type { StructureStream, StructureStreamOptions } from './client/structure-stream';
+export { createStructureStream } from './client/structure-stream';
 export type {
   WorkerLike,
   WorldgenGenerateRequest,

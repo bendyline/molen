@@ -465,7 +465,7 @@ export function buildVelodrome(out) {
   exterior(out);
 }
 export const velodromeStudy = {
-  id: 'N0693',
+  id: 'stade_velodrome',
   key: 'stade_velodrome',
   wikidataId: 'Q202150',
   title: 'Stade Vélodrome',

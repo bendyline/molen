@@ -12,7 +12,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/sx/sxk/n0638_maiden_s_tower'),
+const source = resolve('../../content/worldgen/source/places/sx/sxk/maidens_tower'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -75,7 +75,7 @@ it('preserves the exact historical source master and uses real fort controls wit
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
     surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')();
-  const study = lighthouseExpansionStudies.find((s) => s.id === 'N0638'),
+  const study = lighthouseExpansionStudies.find((s) => s.id === 'maidens_tower'),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, {
       defaultLocalName: 'lantern-glass-and-dark-recess',
@@ -87,7 +87,7 @@ it('preserves the exact historical source master and uses real fort controls wit
   smoothMeshNormals(m, ['trim', 'foundation'], 32);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(p.anchor).toEqual([29.004089875, 41.021059]);

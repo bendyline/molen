@@ -1,0 +1,390 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "plaster_lime",
+      "slot": "wall"
+    },
+    "trim": {
+      "graph": "stone_limestone",
+      "slot": "trim"
+    },
+    "floor": {
+      "graph": "stone_limestone",
+      "slot": "trim"
+    },
+    "stone": {
+      "graph": "stone_ashlar",
+      "slot": "wall"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim"
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "gold": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      4.686640440639019,
+      12.683489314227602,
+      14.900852370927204
+    ],
+    "lookAt": [
+      0,
+      4.683489314227603,
+      0
+    ],
+    "fov": 50
+  },
+  "qaCameras": [
+    {
+      "name": "pointed-garden-windows-and-open-entry",
+      "position": [
+        4.686640440639019,
+        3.183489314227603,
+        14.900852370927204
+      ],
+      "lookAt": [
+        0.8411811844136896,
+        2.683489314227603,
+        0.5407533772325257
+      ],
+      "fov": 58
+    },
+    {
+      "name": "cushion-roof-and-paneled-cornice",
+      "position": [
+        -12.737838861997101,
+        9.683489314227602,
+        1.3219157029842599
+      ],
+      "lookAt": [
+        0,
+        4.683489314227603,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "short-minaret-pierced-balcony-and-rounded-cap",
+      "position": [
+        4.626538203509216,
+        8.683489314227602,
+        11.295802063221085
+      ],
+      "lookAt": [
+        5.272303898572825,
+        8.183489314227602,
+        0.36463030456442524
+      ],
+      "fov": 50
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        4.686640440639019,
+        12.683489314227602,
+        14.900852370927204
+      ],
+      "lookAt": [
+        0,
+        4.683489314227603,
+        0
+      ],
+      "fov": 50,
+      "name": "sofamosque-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        4.686640440639019,
+        12.683489314227602,
+        14.900852370927204
+      ],
+      "lookAt": [
+        0,
+        4.683489314227603,
+        0
+      ],
+      "fov": 50,
+      "name": "sofamosque-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        4.686640440639019,
+        12.683489314227602,
+        14.900852370927204
+      ],
+      "lookAt": [
+        0,
+        4.683489314227603,
+        0
+      ],
+      "fov": 50,
+      "name": "sofamosque-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        4.686640440639019,
+        12.683489314227602,
+        14.900852370927204
+      ],
+      "lookAt": [
+        0,
+        4.683489314227603,
+        0
+      ],
+      "fov": 50,
+      "name": "sofamosque-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.6,
+    "groundY": 0.6834893142276027,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-sofamosque-model.mjs",
+    "export": "buildTopkapiSofaMosqueSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiSofaMosqueDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "stone": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiSofaMosqueStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "stone": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiSofaMosqueCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "stone": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "draft-proposal",
+    "anchor": [
+      28.985601514577866,
+      41.01338454849554
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": false,
+    "groundContactBasis": "Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,7] is outside all573 native building records. Upper floor0.12m above highest boundary, protective basement down to lowest boundary; only occupied hall ground is cut and sealed by floor. Original stair/garden ground remains. No bespoke terrain or precinct flattening; exact historical thresholds/accessibility unverified. Native draft render inspected: retained original slope exposes up to about2m of protective base and requires14entry treads, unlike the near-ground entry in the photographs. Native visual fit is rejected; keep public placement inactive draft and member unfinished. Source/shared-material/LOD review can complete independently of this unresolved fit.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      28.985508102254325,
+      41.013320135952725,
+      28.985708292638527,
+      41.01344896103835
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.985556450092155,
+        41.01333165328151
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,7] is outside all573 native building records. Upper floor0.12m above highest boundary, protective basement down to lowest boundary; only occupied hall ground is cut and sealed by floor. Original stair/garden ground remains. No bespoke terrain or precinct flattening; exact historical thresholds/accessibility unverified."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.646338428837254,
+          -0.11265094726987002
+        ],
+        [
+          2.8162450969649195,
+          5.970371466609876
+        ],
+        [
+          6.6463384288372245,
+          0.11264608753448568
+        ],
+        [
+          -2.816245096964934,
+          -5.970371466609876
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.646338428837254,
+            -0.11265094726987002
+          ],
+          [
+            2.8162450969649195,
+            5.970371466609876
+          ],
+          [
+            6.6463384288372245,
+            0.11264608753448568
+          ],
+          [
+            -2.816245096964934,
+            -5.970371466609876
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Independent Q127418589, OSM way261824325 v24/native35184633913157, corroborated by the Sofa Mosque Commons category. Exact four-corner parent retained. Internal+X southeast follows the long hall toward its entrance; internal+Z southwest faces the photographed four-window garden wall. Minaret is at the far entrance corner, inside the parent footprint."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -6.446948275972137,
+          -0.10927145529978954
+        ],
+        [
+          2.7317577440559715,
+          5.791260286163563
+        ],
+        [
+          6.446948275972107,
+          0.10926666846043576
+        ],
+        [
+          -2.7317577440559866,
+          -5.791260359059596
+        ]
+      ],
+      "basis": "Only occupied hall floor; original stair/garden ground retained."
+    },
+    "notes": "Independent Q127418589, OSM way261824325 v24/native35184633913157, corroborated by the Sofa Mosque Commons category. Exact four-corner parent retained. Internal+X southeast follows the long hall toward its entrance; internal+Z southwest faces the photographed four-window garden wall. Minaret is at the far entrance corner, inside the parent footprint. Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,7] is outside all573 native building records. Upper floor0.12m above highest boundary, protective basement down to lowest boundary; only occupied hall ground is cut and sealed by floor. Original stair/garden ground remains. No bespoke terrain or precinct flattening; exact historical thresholds/accessibility unverified."
+  }
+}

@@ -1,0 +1,545 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "relief": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "stucco",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "trim",
+      "graph": "tile_ceramic",
+      "roughness": 0.83,
+      "metallic": 0
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -17.730431782655426,
+      23.130538072672678,
+      -55.441603131611686
+    ],
+    "lookAt": [
+      -2.6724273110233048,
+      13.43053807267268,
+      -0.7492224800775424
+    ],
+    "fov": 44
+  },
+  "qaCameras": [
+    {
+      "name": "pointed-porch-closed-grille-and-ground-contact",
+      "position": [
+        -16.731561083206852,
+        8.13053807267268,
+        -24.651957837685632
+      ],
+      "lookAt": [
+        -7.652748522434638,
+        4.13053807267268,
+        -4.095324784426045
+      ],
+      "fov": 46
+    },
+    {
+      "name": "thirty-two-brick-flutes-and-blind-repair-niche",
+      "position": [
+        -14.513770295344994,
+        14.13053807267268,
+        -24.36664393813802
+      ],
+      "lookAt": [
+        -2.6724273110233048,
+        12.13053807267268,
+        -0.7492224800775424
+      ],
+      "fov": 46
+    },
+    {
+      "name": "conical-cap-pointed-frieze-and-sparse-turquoise",
+      "position": [
+        -10.609984273605075,
+        26.130538072672678,
+        -30.17701868478457
+      ],
+      "lookAt": [
+        -2.6724273110233048,
+        21.630538072672678,
+        -0.7492224800775424
+      ],
+      "fov": 46
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -17.730431782655426,
+        23.130538072672678,
+        -55.441603131611686
+      ],
+      "lookAt": [
+        -2.6724273110233048,
+        13.43053807267268,
+        -0.7492224800775424
+      ],
+      "fov": 44,
+      "name": "aladdin-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -17.730431782655426,
+        23.130538072672678,
+        -55.441603131611686
+      ],
+      "lookAt": [
+        -2.6724273110233048,
+        13.43053807267268,
+        -0.7492224800775424
+      ],
+      "fov": 44,
+      "name": "aladdin-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -17.730431782655426,
+        23.130538072672678,
+        -55.441603131611686
+      ],
+      "lookAt": [
+        -2.6724273110233048,
+        13.43053807267268,
+        -0.7492224800775424
+      ],
+      "fov": 44,
+      "name": "aladdin-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -17.730431782655426,
+        23.130538072672678,
+        -55.441603131611686
+      ],
+      "lookAt": [
+        -2.6724273110233048,
+        13.43053807267268,
+        -0.7492224800775424
+      ],
+      "fov": 44,
+      "name": "aladdin-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/aladdin-model.mjs",
+    "export": "buildAladdinSkyline",
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAladdinDistrict",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAladdinStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAladdinCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      51.645694444,
+      35.324972222
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original6m standard Mapzen grid, native paths/roads/water and all independent neighboring buildings. The broad named memorial parent and circular part are two representations of the same landmark; replace both generic shells. The model remains bounded to the tower and porch, leaving the rest of the named site as original ground rather than inventing a2m precinct slab. Small level footing sits just above the highest occupied rim, with buried sides below the lowest. No ground/water cutout or square flattening. The cropped ground photos and coarse DEM do not establish actual plaza/foundation engineering or a surveyed entrance azimuth.",
+    "replaceFootprint": false,
+    "bounds": [
+      51.645309083199,
+      35.32479255894317,
+      51.645914650171996,
+      35.32524171658524
+    ],
+    "terrainReference": {
+      "anchor": [
+        51.645694444,
+        35.324972222
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original6m standard Mapzen grid, native paths/roads/water and all independent neighboring buildings. The broad named memorial parent and circular part are two representations of the same landmark; replace both generic shells. The model remains bounded to the tower and porch, leaving the rest of the named site as original ground rather than inventing a2m precinct slab. Small level footing sits just above the highest occupied rim, with buried sides below the lowest. No ground/water cutout or square flattening. The cropped ground photos and coarse DEM do not establish actual plaza/foundation engineering or a surveyed entrance azimuth."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -26.449293717012978,
+          -2.357680880981906
+        ],
+        [
+          -20.60268044784629,
+          -15.025330765917854
+        ],
+        [
+          -20.563523815716284,
+          -15.001836824822927
+        ],
+        [
+          -20.552680447846292,
+          -15.025330765917854
+        ],
+        [
+          -19.371673052627386,
+          -14.316727480430377
+        ],
+        [
+          -17.679373813262945,
+          -17.217806819473683
+        ],
+        [
+          -17.643373812428365,
+          -17.193806862858054
+        ],
+        [
+          -17.629373813262948,
+          -17.217806819473683
+        ],
+        [
+          -15.471509219796712,
+          -15.779233057668469
+        ],
+        [
+          -12.076369430311535,
+          -20.871932392632445
+        ],
+        [
+          -12.042849882922635,
+          -20.847211763952476
+        ],
+        [
+          -12.026369430311535,
+          -20.871932392632445
+        ],
+        [
+          7.462341466910761,
+          -6.499029920178832
+        ],
+        [
+          7.442637023179605,
+          -6.463561925374835
+        ],
+        [
+          7.462341466910761,
+          -6.449029920178831
+        ],
+        [
+          1.3721193115287933,
+          4.513368750367804
+        ],
+        [
+          -9.833889454374026,
+          8.167504606169784
+        ],
+        [
+          -9.850900799517477,
+          8.15674742856407
+        ],
+        [
+          -9.883889454374026,
+          8.167504606169784
+        ],
+        [
+          -26.449293717012978,
+          -2.307680880981906
+        ],
+        [
+          -26.431430307451635,
+          -2.3463848977616193
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -26.449293717012978,
+            -2.357680880981906
+          ],
+          [
+            -20.60268044784629,
+            -15.025330765917854
+          ],
+          [
+            -20.563523815716284,
+            -15.001836824822927
+          ],
+          [
+            -20.552680447846292,
+            -15.025330765917854
+          ],
+          [
+            -19.371673052627386,
+            -14.316727480430377
+          ],
+          [
+            -17.679373813262945,
+            -17.217806819473683
+          ],
+          [
+            -17.643373812428365,
+            -17.193806862858054
+          ],
+          [
+            -17.629373813262948,
+            -17.217806819473683
+          ],
+          [
+            -15.471509219796712,
+            -15.779233057668469
+          ],
+          [
+            -12.076369430311535,
+            -20.871932392632445
+          ],
+          [
+            -12.042849882922635,
+            -20.847211763952476
+          ],
+          [
+            -12.026369430311535,
+            -20.871932392632445
+          ],
+          [
+            7.462341466910761,
+            -6.499029920178832
+          ],
+          [
+            7.442637023179605,
+            -6.463561925374835
+          ],
+          [
+            7.462341466910761,
+            -6.449029920178831
+          ],
+          [
+            1.3721193115287933,
+            4.513368750367804
+          ],
+          [
+            -9.833889454374026,
+            8.167504606169784
+          ],
+          [
+            -9.850900799517477,
+            8.15674742856407
+          ],
+          [
+            -9.883889454374026,
+            8.167504606169784
+          ],
+          [
+            -26.449293717012978,
+            -2.307680880981906
+          ],
+          [
+            -26.431430307451635,
+            -2.3463848977616193
+          ]
+        ]
+      ],
+      "basis": "Retain original6m standard Mapzen grid, native paths/roads/water and all independent neighboring buildings. The broad named memorial parent and circular part are two representations of the same landmark; replace both generic shells. The model remains bounded to the tower and porch, leaving the rest of the named site as original ground rather than inventing a2m precinct slab. Small level footing sits just above the highest occupied rim, with buried sides below the lowest. No ground/water cutout or square flattening. The cropped ground photos and coarse DEM do not establish actual plaza/foundation engineering or a surveyed entrance azimuth."
+    },
+    "notes": "Retained Q5808483/reference anchor51.645694444,35.324972222 is corroborated by native named memorial35184724139699 (Tower Alaeddin/برج علاالدوله) and its sole circular building part35184767745580. The memorial point belongs to the broader boundary, not the tower center. The16-point circle fixes center[-2.6724273110233048,-0.7492224800775424]m and mean radius5.728664827432449m. It is a generalized circular envelope, not measured flute peaks; Commons metadata reports12.14m external diameter, used as nominal peak diameter, with valleys chosen around the mapped mean radius. No exact native Wikidata tag is asserted. Global heading0/native east-south axes; approximate northwest porch phase-2.55rad follows the broad site extension/pictures, with45degree/3m uncertainty. A circle alone does not establish directed facade orientation. Retain original6m standard Mapzen grid, native paths/roads/water and all independent neighboring buildings. The broad named memorial parent and circular part are two representations of the same landmark; replace both generic shells. The model remains bounded to the tower and porch, leaving the rest of the named site as original ground rather than inventing a2m precinct slab. Small level footing sits just above the highest occupied rim, with buried sides below the lowest. No ground/water cutout or square flattening. The cropped ground photos and coarse DEM do not establish actual plaza/foundation engineering or a surveyed entrance azimuth."
+  }
+}

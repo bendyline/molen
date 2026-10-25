@@ -352,7 +352,7 @@ export function buildRodsher(out) {
 }
 export const rodsherStudies = [
   lighthouseStudy({
-    id: 'N0672',
+    id: 'rodsher',
     key: 'rodsher',
     title: 'Rodsher Lighthouse',
     wikidataId: 'Q3366505',

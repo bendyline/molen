@@ -1,0 +1,658 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.pashupatinath_temple",
+  "reviewedOn": "2026-10-18",
+  "inputHash": "sha256:40f79180b536fdacb2ad71bb783621a01aefd723ffca02fbb895411ff8610bfa",
+  "sourceHash": "sha256:63039ff0395c506b075a992e4e61617275afd0bd62a96066ef8099315da353b5",
+  "runtimeHash": "sha256:a5bd0aab6b990f929b7ff969a93e4994f631e3503fb5329a5c720750f9a1eec8",
+  "captureReportHash": "sha256:da8fe91820561b117524f2a8156bc1f72336aaff402708f45b676cd672ef2e0a",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/gold-roof-tiers.png",
+      "shots/lower-door-and-timber.png",
+      "shots/roof-struts-and-eaves.png",
+      "shots/upper-storey-and-pinnacle.png",
+      "shots/rear-doors-and-platform.png",
+      "shots/mapped-roof-plan.png"
+    ],
+    "notes": "Inspected all 11 portable views. Two broad gold hipped roofs with upturned corners, a dark timber lower shrine, upper timber storey, four silver-covered door faces and a tall gold pinnacle identify the principal pagoda. The first upper-roof draft was too steep; its crest was lowered to a picture-guided17.5m while the final nominal23.07m tip was retained. Both mapped roof outlines and the upper-storey skew remain specific to this shrine. Fine carved figures, door relief, inscriptions and interior rooms are omitted."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/gold-roof-tiers.png",
+      "shots/shared/lower-door-and-timber.png",
+      "shots/shared/roof-struts-and-eaves.png",
+      "shots/shared/upper-storey-and-pinnacle.png",
+      "shots/shared/rear-doors-and-platform.png",
+      "shots/shared/mapped-roof-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 11 shared-material views. Four common256-square timber, standing-seam metal, beadblasted stainless and limestone-grain graphs use metric UVs and linear tints. The common metal graph is tinted gold rather than introducing a unique gold texture. Four near draws and one skyline draw; no embedded images or unique atlas. Each graph loads once and eviction frees geometry. The shared flat stage exposes variable foundation depth and is not evidence of geographic contact.",
+    "captureReportHash": "sha256:72fe40c80effe34510367dcdc8251c6a3988c34827b4610525ad1dfa01d02562"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/gold-roof-tiers.png",
+      "medium-fi/lower-door-and-timber.png",
+      "medium-fi/roof-struts-and-eaves.png",
+      "medium-fi/upper-storey-and-pinnacle.png",
+      "medium-fi/rear-doors-and-platform.png",
+      "medium-fi/mapped-roof-plan.png",
+      "medium-fi/whole-shrine-skyline.png",
+      "medium-fi/whole-shrine-district.png",
+      "medium-fi/whole-shrine-street.png",
+      "medium-fi/whole-shrine-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 27 medium-fi views: the three ranges beside procedural buildings at noon and late afternoon, Economy and High, untextured silhouette, six architectural details, four whole-shrine LOD views and all transitions. Skyline248 triangles retains both roof tiers, square platform and tall pinnacle; district834 adds door surrounds and sparse struts; street2236 adds selected timber/metal bands and finial tiers; closeup2724 refines struts and finial beads. Initial geometry114764bytes plus four shared graphs. Separate attribute streams avoid duplicate GPU uploads. Physical-device and dense-city measurements remain pending.",
+    "captureReportHash": "sha256:f5ac5955c413470041fb06c7dd0d787438adee6ed0d05f849da95ada0ee9c710"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:cba9f4a6ecf5ad6f84e266a25e1af7e8621dce14bf632a3f2517979f98e43b97",
+    "mapFrameHash": "sha256:41515fc3b602c106bb4284982dfed01b320bcf515d1a65c449086c15b0d006d8",
+    "notes": "The actual named principal-shrine platform and four independently mapped body/roof/finial records retain raw east/south positions. The shrine grid is37.6656 degrees south of east; all four door faces remain symmetric. The small platform top clears standard terrain samples within its mapped footprint, with50cm foundation depth beneath corner samples. No ground or water excavation is requested. Full-site loading replaces five records and preserves1612 independent buildings in the960m tile exactly. Three native water features retain57903.0123 square metres. Failure keeps all1617 native buildings; eviction preserves both surfaces and frees model geometry. A synthetic16m partial tile retains original terrain beneath and around clipped model pieces. Its empty semantic context proves clipping/lifecycle only; temporary cut faces are not permanent temple geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted for the specific principal Pashupatinath pagoda exterior and approximate normal-map/DEM fit. The two roof footprints and upper-storey plan are mapped controls; nominal heights and the23.07m tip combine normal-map tags with ordinary picture/article guidance. Upper roof pitch, individual struts, timber bands, silver door panels, finial beads and foundation thresholds are visualization estimates. The broader precinct, eastern gate, separate pavilions, river shrines and ghats remain independent context; they are not merged into the principal shrine model. No claim is made for exact carvings, deity figures, navigable interiors or surveyed archaeological thresholds. No bespoke survey or archival reconstruction research was used."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:63039ff0395c506b075a992e4e61617275afd0bd62a96066ef8099315da353b5"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:a5bd0aab6b990f929b7ff969a93e4994f631e3503fb5329a5c720750f9a1eec8"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:2c5888ec5e9b1f594082b6cb11e0b43ac86ac9d4558e001f21adc686171bc2f9"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:601a6850260f4e24dd553b1d3b942f539addfbe250274aeb12fa85b390dc55b8"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:aadc4ded8f22eef77b1f60c75ff9c5eeedd64e49b577d491c97f22b819ae71c0"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:a3445586838d28106ed2897a492a9d6563f252e68f66f4c5f69b1aeff3258a28"
+      }
+    ],
+    "reports": [
+      {
+        "phase": "final",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1617,
+          "independentBuildings": 1612,
+          "remainingBuildings": 1612,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_stainless_beadblasted": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.pashupatinath_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.927432651375739,
+            "max": 46.09616734862425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 57903.012278912705,
+          "remainingWaterArea": 57903.012278912705,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:c9be121e2fc5ccf8de3916b4d4d0cc5856783d6685d326b5c500b07a641c3b87",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-gold-roof-tiers.png",
+            "hash": "sha256:f2008e1a443028bd4feb8f608f6cd80493041c5e6e24d103278d5c29f0bd2dba",
+            "camera": "gold-roof-tiers"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-lower-door-and-timber.png",
+            "hash": "sha256:49d3d5c4221e01e47e6e208af86381ebb45cf2ab7d6b658cd60b9028f8ac0c6b",
+            "camera": "lower-door-and-timber"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-roof-struts-and-eaves.png",
+            "hash": "sha256:7c492fba07b7944878d017f98832777c1824dd365e825eba570a14dd3f178733",
+            "camera": "roof-struts-and-eaves"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-upper-storey-and-pinnacle.png",
+            "hash": "sha256:540e2de3ce2f832ed7e5236673940082140305f1a1a1eb53d9ca0f6f50f5792d",
+            "camera": "upper-storey-and-pinnacle"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-rear-doors-and-platform.png",
+            "hash": "sha256:fb3b5b989b26e6dff43cfb104636a5b7c8afe80ebdd97871defb6caa629c0052",
+            "camera": "rear-doors-and-platform"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-roof-plan.png",
+            "hash": "sha256:4b1f90d6c9c4f192091031091b32f6ce73e9c6c9effeaa68286e1d18aed829ac",
+            "camera": "mapped-roof-plan"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1617,
+          "independentBuildings": 1612,
+          "remainingBuildings": 1612,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_stainless_beadblasted": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.pashupatinath_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.927432651375739,
+            "max": 46.09616734862425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 57903.012278912705,
+          "remainingWaterArea": 57903.012278912705,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:4a1293ed6ebb21a84e30266a86bec269356f5f801de44dc6705e15d4927ebc8c",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-street-gold-roof-tiers.png",
+            "hash": "sha256:cd6e5e05d6fda0ac17fb9b468a6eb41f63b276000d750efa4b8ac07206e0bfec",
+            "camera": "gold-roof-tiers"
+          },
+          {
+            "path": "shots/site-integration/final-street-rear-doors-and-platform.png",
+            "hash": "sha256:d74e255f1ef688ef65f23778e8dfd1aec03f60a8f7982b1a1db6d5295ea8d284",
+            "camera": "rear-doors-and-platform"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1617,
+          "independentBuildings": 1612,
+          "remainingBuildings": 1612,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_stainless_beadblasted": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.pashupatinath_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.927432651375739,
+            "max": 46.09616734862425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 57903.012278912705,
+          "remainingWaterArea": 57903.012278912705,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:31b53f4710c47348492528ca96eb375ff13b1247d6eb082c7f854832ba7ba8fc",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-district-gold-roof-tiers.png",
+            "hash": "sha256:b6cbccdb32832b88c63f4f954f8df5637b8da1d43d12eda415832a07e6cedb62",
+            "camera": "gold-roof-tiers"
+          },
+          {
+            "path": "shots/site-integration/final-district-rear-doors-and-platform.png",
+            "hash": "sha256:18d62a37b9004954ea0e9ab4c56be6be0b967a1f45516b84a3597509f65c7d05",
+            "camera": "rear-doors-and-platform"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1617,
+          "independentBuildings": 1612,
+          "remainingBuildings": 1612,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.pashupatinath_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.927432651375739,
+            "max": 46.09616734862425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 57903.012278912705,
+          "remainingWaterArea": 57903.012278912705,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:94d2358c4e0736aa3770ed68a27a2ebb921893da50d7cd8d40d444235159b5db",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-gold-roof-tiers.png",
+            "hash": "sha256:ae412a6b9a24eefd1715646bb8d5f915e05048ffcae89ee645722d3a5736de85",
+            "camera": "gold-roof-tiers"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-rear-doors-and-platform.png",
+            "hash": "sha256:a7b82f53138fade0506679a0ea8cb7cd75920cc54e615e3e861eb5e68364579d",
+            "camera": "rear-doors-and-platform"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 1617,
+          "independentBuildings": 1612,
+          "remainingBuildings": 1617,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185285259147,
+              "area": 373.86204616910135
+            },
+            {
+              "id": 35185404647652,
+              "area": 338.47075437824543
+            },
+            {
+              "id": 35185404648806,
+              "area": 171.82072169677127
+            },
+            {
+              "id": 35185404648807,
+              "area": 71.97045276280392
+            },
+            {
+              "id": 35185405217296,
+              "area": 2.131163921765733
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.pashupatinath_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.927432651375739,
+            "max": 46.09616734862425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 57903.012278912705,
+          "remainingWaterArea": 57903.012278912705,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:a022c3ff31caa179cdf9b70b08a20cb1d5bbcb5dca1de38510fd4f7a7292b97b",
+            "camera": "whole-site"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_stainless_beadblasted": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.pashupatinath_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.927432651375739,
+            "max": 46.09616734862425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 57903.012278912705,
+          "remainingWaterArea": 57903.012278912705,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:13118df3e63bbf6309952cf4db35dc65697cbe46a289cec2ac6f909033da6a41",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-gold-roof-tiers.png",
+            "hash": "sha256:8209a360dbbf5b4530c7a0f6bea451533bc1ee9bd09154ee5bec5323d7a5ba4d",
+            "camera": "gold-roof-tiers"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-rear-doors-and-platform.png",
+            "hash": "sha256:94eacc5cc3682429de8e635062c30c1e0f56791267a53ed22e2bc42c1cdac240",
+            "camera": "rear-doors-and-platform"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.pashupatinath_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.927432651375739,
+            "max": 46.09616734862425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 57903.012278912705,
+          "remainingWaterArea": 57903.012278912705,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-skyline-whole-site.png",
+            "hash": "sha256:0fbe9589846c86dd2ef9d06362b445bb3dfe585bec6670e2cdcb0c15e8cf0bfc",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-skyline-gold-roof-tiers.png",
+            "hash": "sha256:aeae4bdcaff784c6ed39914f542fb36ac2c76f23130b71adddaf068a51b06296",
+            "camera": "gold-roof-tiers"
+          },
+          {
+            "path": "shots/site-integration/partial-skyline-rear-doors-and-platform.png",
+            "hash": "sha256:15de6a4b8dfc5f1003101577a4d8e6a06f7e4a66ad38e89ea6e1f62da44e615e",
+            "camera": "rear-doors-and-platform"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.pashupatinath_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.927432651375739,
+            "max": 46.09616734862425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 57903.012278912705,
+          "remainingWaterArea": 57903.012278912705,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-failure-whole-site.png",
+            "hash": "sha256:0910810d1f080c851479e82f0d8f04e9a03948ca2f8a0e3143bda17f8c83e86c",
+            "camera": "whole-site"
+          }
+        ]
+      }
+    ],
+    "floorCoverage": {
+      "checks": 4,
+      "samples": 568,
+      "missing": 0
+    },
+    "partialResidency": {
+      "status": "original-ground-preserved",
+      "notes": "No ground excavation; synthetic16m residency retains original terrain under clipped shrine pieces. Temporary cut faces are not permanent geometry."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/tu/tuu/pashupatinath_temple/models/source.glb\",\"hash\":\"sha256:63039ff0395c506b075a992e4e61617275afd0bd62a96066ef8099315da353b5\",\"bytes\":342356,\"triangles\":2828,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/tu/tuu/pashupatinath_temple/model.glb\",\"hash\":\"sha256:a5bd0aab6b990f929b7ff969a93e4994f631e3503fb5329a5c720750f9a1eec8\",\"bytes\":341928,\"triangles\":2828,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/tu/tuu/pashupatinath_temple/model.skyline.glb\",\"hash\":\"sha256:2c5888ec5e9b1f594082b6cb11e0b43ac86ac9d4558e001f21adc686171bc2f9\",\"bytes\":28044,\"triangles\":248,\"materials\":1,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/tu/tuu/pashupatinath_temple/model.district.glb\",\"hash\":\"sha256:601a6850260f4e24dd553b1d3b942f539addfbe250274aeb12fa85b390dc55b8\",\"bytes\":86720,\"triangles\":834,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/tu/tuu/pashupatinath_temple/model.street.glb\",\"hash\":\"sha256:aadc4ded8f22eef77b1f60c75ff9c5eeedd64e49b577d491c97f22b819ae71c0\",\"bytes\":219788,\"triangles\":2236,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/tu/tuu/pashupatinath_temple/model.closeup.glb\",\"hash\":\"sha256:a3445586838d28106ed2897a492a9d6563f252e68f66f4c5f69b1aeff3258a28\",\"bytes\":269700,\"triangles\":2724,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "96-roof-door-and-eave-probes",
+        "passed": true,
+        "notes": "All six files retain the pinnacle, both roof tiers, four door faces, eave undersides and square platform."
+      },
+      {
+        "check": "568-compound-floor-samples",
+        "passed": true,
+        "notes": "Complete occupied floor coverage in all four browser levels."
+      },
+      {
+        "check": "23-raw-map-vertices",
+        "passed": true,
+        "notes": "Every mapped control outline retains its raw east/south coordinates."
+      },
+      {
+        "check": "selected-source-runtime-placement-scene",
+        "passed": true,
+        "notes": "Selected generator/import/placement checks, strict medium-fi audit, scene validate and sim30 passed."
+      }
+    ]
+  },
+  "limitations": [
+    "The specific principal Pashupatinath pagoda exterior: square stone platform, four silver-covered doors in a dark timber lower shrine, two independently mapped gold hipped roofs, the upper timber storey and a tall central gold pinnacle. Courtyard buildings, separate pavilions, river ghats and eastern stone shrines remain independent native context; the broader precinct is not one temple footprint.",
+    "Standard PMTiles building35185285259147 is also the named Pashupatinath Temple POI. Its four-point platform and four independently mapped roof/body/finial parts identify the principal shrine. Preserve raw east/south coordinates and the square grid axis at37.66 degrees south of east. Four door faces are treated symmetrically; the separate eastern precinct gate is not confused with the main shrine.",
+    "Normal map parts give lower roof9–11.5m, upper storey14.5m and upper roof14.5–19m. The ordinary article architecture paragraph gives nominal23.07m base-to-pinnacle height. The upper roof tag includes the lower pinnacle base: use a picture-guided17.5m roof crest and the23.07m final tip. Preserve the photographed broad roof pitches and relative widths; exact carved timber, door relief and pinnacle ornaments are simplified estimates. The small mapped central part has inconsistent13–16m tags and is used only as a horizontal center control.",
+    "Retain the unchanged161-square/6m standard Mapzen-USGS grid and1312.132m reference datum. Set the small platform top just above the maximum standard DEM sample inside the actual mapped footprint. Local foundation feet extend50cm below their terrain samples. Steps remain inside the platform. No ground or water excavation is requested; detailed archaeological floor levels are not surveyed.",
+    "This model represents the principal pagoda, not every independent temple in the broader precinct. Exact carvings, deity figures, door reliefs, inscriptions and interior rooms are omitted. Pinnacle details and foundation thresholds are visualization estimates.",
+    "Accepted for the specific principal Pashupatinath pagoda exterior and approximate normal-map/DEM fit. The two roof footprints and upper-storey plan are mapped controls; nominal heights and the23.07m tip combine normal-map tags with ordinary picture/article guidance. Upper roof pitch, individual struts, timber bands, silver door panels, finial beads and foundation thresholds are visualization estimates. The broader precinct, eastern gate, separate pavilions, river shrines and ghats remain independent context; they are not merged into the principal shrine model. No claim is made for exact carvings, deity figures, navigable interiors or surveyed archaeological thresholds. No bespoke survey or archival reconstruction research was used."
+  ]
+}

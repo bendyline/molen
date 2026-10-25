@@ -1,0 +1,476 @@
+{
+  "planId": "old_parliament_house_canberra",
+  "id": "old_parliament_house_canberra",
+  "assetId": "molen.worldgen.structure.old_parliament_house_canberra",
+  "title": "Old Parliament House (Canberra)",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 149.129722,
+    "latitude": -35.302222
+  },
+  "size": [
+    146.6014404296875,
+    20.199999809265137,
+    116.75074005126953
+  ],
+  "actualBounds": {
+    "min": [
+      -74.86272430419922,
+      -6,
+      -71.80907440185547
+    ],
+    "max": [
+      71.73871612548828,
+      14.199999809265137,
+      44.94166564941406
+    ]
+  },
+  "visualBrief": "Stripped classical parliamentary building with stepped white low ranges, tall paired chamber roof masses, central hall, four open courtyards, eighteen recessed white double-hung southeast-corner sash windows, other retained framed windows, round-arched north openings, balcony rails and central open entrance canopy with broad steps.",
+  "nativeAxes": {
+    "x": "northwest along the principal frontage",
+    "y": "up",
+    "z": "northeast toward King George Terrace"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Old_Parliament_House,_Canberra_001.JPG",
+    "https://commons.wikimedia.org/wiki/File:Old_Parliament_House,_Canberra_002.JPG"
+  ],
+  "stories": [
+    {
+      "id": "old-parliament-house-canberra-wp",
+      "url": "https://qualla.com/old-parliament-house-canberra/"
+    }
+  ],
+  "referenceInputHash": "sha256:80798832e9a02d8c2dcd3fb385a32464832e1cc4df8d0721992504d20150b89e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-old-parliament-house-canberra.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-old-parliament-house-canberra.mjs",
+    "level": "skyline",
+    "export": "oldParliamentSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "cornerWall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "cornerReveal": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "cornerSill": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "cornerSash": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.2
+      },
+      "cornerGlass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "oldParliamentDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "cornerWall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cornerReveal": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cornerSill": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cornerSash": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.2
+          },
+          "cornerGlass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "oldParliamentStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "cornerWall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cornerReveal": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cornerSill": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cornerSash": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.2
+          },
+          "cornerGlass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview",
+    "anchor": [
+      149.129722,
+      -35.302222
+    ],
+    "heading": 2.508,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        149.13002886584928,
+        -35.30189323583087
+      ],
+      "modelHeight": 0,
+      "basis": "North entrance approach outside the broad steps, independent ground reference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776558134446",
+      "buildings/35184886298718",
+      "buildings/35184886298724",
+      "buildings/35184886298714",
+      "buildings/35184886298720",
+      "buildings/35184885882687",
+      "buildings/35184886298713",
+      "buildings/35184886298712",
+      "buildings/35184885882688",
+      "buildings/35184886122971",
+      "buildings/35184886122970",
+      "buildings/35184885978783",
+      "buildings/35184885978784",
+      "buildings/35184886298717",
+      "buildings/35184886122969",
+      "buildings/35184886298723",
+      "buildings/35184886298719",
+      "buildings/35184886298722",
+      "buildings/35184886298721",
+      "buildings/35184886298716",
+      "buildings/35184885882686",
+      "buildings/35184885882685",
+      "buildings/35184886298725",
+      "buildings/52776565592504",
+      "buildings/52776565595024",
+      "buildings/35184885852651",
+      "buildings/35184885882684",
+      "buildings/35184885852654",
+      "buildings/35184885882680",
+      "buildings/35184885852653",
+      "buildings/35184885882682",
+      "buildings/35184885882683",
+      "buildings/35184885882681",
+      "buildings/35184885852650"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:aaeb5decb319ccea64781acf461754bebdb58529d050a1f08fa667e601f272f4",
+    "notes": "Stripped classical white parliamentary building with stepped parapets, tall rectangular and round-arched north openings, balcony rails, central low portico and steps. Mapped parts provide plan and approximate8–14m height hierarchy; roof shape, floor levels, finer rear details and decorative shields are photographic estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Current southeast-corner construction uses exact native6480x4320Dhx1own-photo CC0originals001/002and native detail after Qualla-first68candidate/metadata scan. Eighteen real sash pockets on two corner pavilion faces with white closed staggered sash/glass/sills; unsupported central vertical bars and duplicated corner rails removed. Earlier attribution/private/aerial controls excluded. Full fixed main building/low wings/portico/four courtyards/roof retained pending broader fidelity review. Mapped8–14m parts, dimensions, profiles, closed sash positions/material type and present condition remain estimates, not survey certification.",
+    "Preserves four mapped open courtyards and original main building/own entrance scope. Detached garden buildings, lawn installations, temporary exhibition banners, trees and interiors excluded. Shield relief is simplified and readable heraldic lettering omitted. New painted-sash material finish is an estimate from the visible white finish. Original three lower geometry streams and all other outside attributes exact; conservative LODerror estimates.8/.4/.3m account for new recess/profile changes without measured geometric-error certification.",
+    "Independent official ACT2020 LiDAR-derived2m contours replace rejected Terrarium after initial geometry;original fields and identities retained. Source heights are unchanged. Provider smoothing and contour interpolation can miss steps/local breaks;this is not a1m raster or floor survey.",
+    "Bounded source-relative geographic preview with generic-footprint replacement disabled. Other host terrain needs contact review. No photographic pixels redistributed;no measured survey or physical-device performance claim."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -1,
+        62,
+        203
+      ],
+      "lookAt": [
+        -1,
+        4,
+        20
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -25,
+        12,
+        75
+      ],
+      "lookAt": [
+        -1,
+        4.5,
+        33
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        135,
+        110,
+        -175
+      ],
+      "lookAt": [
+        0,
+        5,
+        -22
+      ]
+    },
+    {
+      "name": "corner-front-sash",
+      "position": [
+        -66,
+        6.6,
+        39.5
+      ],
+      "lookAt": [
+        -68.66,
+        6.04,
+        35.08
+      ]
+    },
+    {
+      "name": "corner-side-sash",
+      "position": [
+        -79.4,
+        4,
+        27
+      ],
+      "lookAt": [
+        -74.51,
+        3.5,
+        25.69
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 54054,
+    "vertices": 162162,
+    "materials": 6,
+    "bytes": 6490168,
+    "sha256": "sha256:bed974ec3c185c6c91747a5fd23aea13bf1db9b83da5c57628d886186950ea51"
+  }
+}

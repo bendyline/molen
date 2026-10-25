@@ -25,7 +25,7 @@ it('preserves every original face and adds the missing panelled soffit', () => {
     build(out);
     return faces;
   };
-  const original = capture(skylineExpansion.find((s) => s.id === 'N0147').build),
+  const original = capture(skylineExpansion.find((s) => s.id === 'grande_arche').build),
     current = capture(buildGrandeArcheCurrent);
   expect(current.slice(0, original.length)).toEqual(original);
   expect(current.length).toBeGreaterThan(original.length);
@@ -71,7 +71,7 @@ it('keeps the upper opening empty and both piers and top beam solid at every aut
 
 it('reproduces the current source and four strict-budget derivatives without altering the master', async () => {
   const path = await runtimeLodFixture(
-    resolve('../../content/worldgen/assets/places/u0/u09/n0147_grande_arche/asset.json'),
+    resolve('../../content/worldgen/assets/places/u0/u09/grande_arche/asset.json'),
   );
   const asset = JSON.parse(await readFile(path)),
     master = await readFile(resolve(path, '../model.glb'));

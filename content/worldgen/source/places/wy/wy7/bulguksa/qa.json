@@ -1,0 +1,707 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.bulguksa",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:26a9055b99d15cfd484e88bc9325e5a9fb8d3cbea072a4fcd4e967592f6b0a9e",
+  "sourceHash": "sha256:b3bc204ba4bb6aaa597947fe8b7675c5da0bdab0113c71b33b537f82f3228b0c",
+  "runtimeHash": "sha256:48d39ff8a8080fffa3e5d51ced9ee9ff4668f014a29f492590e96cd1c9757a2e",
+  "captureReportHash": "sha256:03c94fb4a2a189113fdc84e4907531e8139cbe6e8b8f6aab9d5d566a4f5843bc",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/daeungjeon-roof-and-timber.png",
+      "shots/paired-courtyard-pagodas.png",
+      "shots/main-stone-vault.png",
+      "shots/western-court-and-stairs.png",
+      "shots/higher-terrace-halls.png",
+      "shots/mapped-compound-plan.png"
+    ],
+    "notes": "Inspected all11 portable views. Sixteen individually mapped halls,27 roof ribbons, the paired courts, higher Birojeon/Gwaneumjeon/Nahanjeon terraces, two entrance stone bridges and three distinct pagodas form the specific Bulguksa exterior. Curved hip-and-gable roofs, red timber posts, muted green bracket bands and yellow wall fields are geometry. The main entrance has a real open barrel vault; the western entrance has lintel-and-pier supports. Dabotap retains four open pillars and four stairs, while Seokgatap has three solid decreasing storeys. The small sarira stupa is separately placed. The wider religious park and independent surrounding buildings are outside this model. Fine dancheong painting and sculpture are simplified. Portable fallback lighting is lighter than the textured Earth view; terrain and foundations were inspected separately in the actual-site renderer."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/daeungjeon-roof-and-timber.png",
+      "shots/shared/paired-courtyard-pagodas.png",
+      "shots/shared/main-stone-vault.png",
+      "shots/shared/western-court-and-stairs.png",
+      "shots/shared/higher-terrace-halls.png",
+      "shots/shared/mapped-compound-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all11 shared-material views. Six surface roles merge to five materials and reuse four common256-square wood, slate, granite and lime-plaster graphs with metric UVs and linear tints. The red timber and green trim share the wood graph; stonework and paved courts share granite. No embedded image, copied photo or unique atlas is shipped. Each graph loads once and eviction frees model geometry. The geographic flat review stage exposes deliberately buried retaining faces; it is not a geographic contact test. Full-site terrain contact was reviewed on the unchanged retained DEM separately.",
+    "captureReportHash": "sha256:4623311027ef80fefeb3aa8bbc73165926edcf3263216c14d41531cec18bacc1"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/daeungjeon-roof-and-timber.png",
+      "medium-fi/paired-courtyard-pagodas.png",
+      "medium-fi/main-stone-vault.png",
+      "medium-fi/western-court-and-stairs.png",
+      "medium-fi/higher-terrace-halls.png",
+      "medium-fi/mapped-compound-plan.png",
+      "medium-fi/whole-compound-skyline.png",
+      "medium-fi/whole-compound-district.png",
+      "medium-fi/whole-compound-street.png",
+      "medium-fi/whole-compound-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all27 medium-fi views: street, block and skyline with procedural neighbors at noon/late afternoon in Economy/High, an untextured silhouette, six architectural details, four complete-compound levels and all transitions. Levels973/3531/14563/33463 meet their budgets. Skyline retains both courts, the hall roof hierarchy, entrance stairs and distinct pagodas; district adds open gallery bays, grouped panels and hip-and-gable roofs; street adds bracket bands and railings; closeup adds selected timber lattice and finial rings. Skyline+district initial geometry is434068bytes, plus four shared material graphs. There are five near draws and one skyline draw. Separate attribute streams avoid duplicate GPU uploads. Changes in posts, roof curvature and finials are visible across upgrades. Synthetic context is a style check; physical-device and dense-city measurements remain pending.",
+    "captureReportHash": "sha256:891cd7fa2a1de2736c8804c058c32c79f8e1e74aee22137509f1a94acfeee46d"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:4656900b946a47a519eec5e8384428dcf9ef7597385a86cf45adcdcc08d85959",
+    "mapFrameHash": "sha256:fb38bf66aea775e942cd790dc25f75ff7e812651a66a37d398df19485a89373b",
+    "notes": "Reviewed approximate full-site fit on the unchanged 161-square/6m standard DEM. Sixteen mapped halls retain raw east/south coordinates; the main hall east axis is9.67 degrees north of east and the stairs face the southern approach. Individual court levels step up the hillside. Twenty-seven occupied floor pockets merge to ten level meshes, each with a complete opaque top and continuous retaining foundation. Entrance bridge walks have inward cut-bank joins to the coarse DEM. First-render foundation gaps were corrected; the open stone vault remains real geometry. These buried joins and court/threshold levels are visualization estimates, not surveyed basement walls. Only bounded occupied floors open ground; sixteen individual guarded roof envelopes replace authored buildings. All115 independent source-map records were checked outside these envelopes. Full-site loading replaces16 authored roofs and preserves42 independent tile buildings exactly. Three native water features retain19263.106301357795 square metres. Failure keeps all58 native tile buildings and terrain; eviction restores surfaces and frees geometry. Synthetic64m residency clips the architecture, including part of the entrance bridge, and retains the existing temporary-boundary contact limitation. Partial architectural completeness/contact is not approved. Only the portable source preview seats terrain under authored floors; production uses the unmodified retained grid."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted for the specific medium-fi principal Bulguksa exterior and approximate full-site standard-map/DEM fit. Six ordinary references, including one visitor-style layout diagram, guide identity; pinned PMTiles roof/point controls determine horizontal placement. All16 actual roof controls and102 vertices remain intact. The main hall east axis is9.67 degrees north of east. Gallery ribbons are rectified within approximately55cm of their map envelope to suppress sub-metre jitter. Pagoda nominal heights10.4m/8.2m/2.1m follow ordinary reference descriptions, with approximate body/finial allocation. Heights, court thresholds, stair dimensions, curved roof sections, bays, brackets and stone profiles are visualization estimates. Twenty-seven floor pockets merge to ten meshes; six bounded openings affect only occupied ground. First-render foundation gaps were corrected with continuous retaining faces and inward entrance cut-bank joins, preserving the open vault. The original161-square/6m DEM is unchanged; only the portable source preview has occupied-floor seating. Partial loading clips the temple and bridge at temporary tile edges, so partial architectural completeness/contact remains pending. Exact carved details, inscriptions, deity figures, navigable interiors and the wider religious park are outside scope. No bespoke survey or archival research was used."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:b3bc204ba4bb6aaa597947fe8b7675c5da0bdab0113c71b33b537f82f3228b0c"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:48d39ff8a8080fffa3e5d51ced9ee9ff4668f014a29f492590e96cd1c9757a2e"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:db8d3f7dbdef9fab04b9effba7fe1d5ede3edd2d1d9bca39a9ae5e49f90b7980"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:4ba63a8d0a956788eb73d81041bb52a972d63c90b2ab04f0732c9906392adf6d"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:caae1d69c2ebb1962a3f64893657f376ba1698d3e07156dd79766570cd1cf262"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:8969a09bc0a86c11b0fdb630a3e91b8af430e7bf7df21c95a040d575958ab02b"
+      }
+    ],
+    "reports": [
+      {
+        "phase": "final",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 58,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bulguksa"
+          ],
+          "rawTerrainRange": {
+            "min": -64.84805666027037,
+            "max": 94.56084333972962
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 19263.106301357795,
+          "remainingWaterArea": 19263.106301357795,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:a3be4673ae368445589c11d52e2c00d3caaec9611b896797cde54a1eeb74364f",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-daeungjeon-roof-and-timber.png",
+            "hash": "sha256:3d41c6f49e5f0588c689a0dd01cb4b34d68a66fda173b648b1611e78648758b2",
+            "camera": "daeungjeon-roof-and-timber"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-paired-courtyard-pagodas.png",
+            "hash": "sha256:deabc0c72eb78c8358ad086c4093b9f8ff98e8c76f134b45967cbe7716423aa0",
+            "camera": "paired-courtyard-pagodas"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-main-stone-vault.png",
+            "hash": "sha256:ffd57718d3d67747a5b640dbe681907bb5bda49a94ad78a3399d28011369312f",
+            "camera": "main-stone-vault"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-western-court-and-stairs.png",
+            "hash": "sha256:48de46ac506db567576fa5eac5a734c4207eab6c07c049ca13426b89bac7929f",
+            "camera": "western-court-and-stairs"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-higher-terrace-halls.png",
+            "hash": "sha256:456cbf8f9db6e44ce26d2426e674a60aa1424faf8748226742ec792692cd57d0",
+            "camera": "higher-terrace-halls"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-compound-plan.png",
+            "hash": "sha256:a555a3d5f24eb7ff6dda938fc265bf834fa500282c1619679baa5591bd8d942b",
+            "camera": "mapped-compound-plan"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 58,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bulguksa"
+          ],
+          "rawTerrainRange": {
+            "min": -64.84805666027037,
+            "max": 94.56084333972962
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 19263.106301357795,
+          "remainingWaterArea": 19263.106301357795,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:1d3c20729c6a96625408f8ea09088eee6ff7402976b8bd6e74b1c6cc797130a6",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-street-paired-courtyard-pagodas.png",
+            "hash": "sha256:da053759905453bd4fa41b330a4475c45d4fab1f770871c4b88a7f44ca800403",
+            "camera": "paired-courtyard-pagodas"
+          },
+          {
+            "path": "shots/site-integration/final-street-main-stone-vault.png",
+            "hash": "sha256:c87f1b669497af8af1a052e4beefbdb5cf989136e19428a56b45dc56a245769f",
+            "camera": "main-stone-vault"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 58,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bulguksa"
+          ],
+          "rawTerrainRange": {
+            "min": -64.84805666027037,
+            "max": 94.56084333972962
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 19263.106301357795,
+          "remainingWaterArea": 19263.106301357795,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:8475e73296e02334395025ef5450406b2b60cc8aaa3684a61129a07e3375af79",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-district-paired-courtyard-pagodas.png",
+            "hash": "sha256:6a28735935261f4c262acd2a11e04b82fa330ca096e2a0d22e4318bac1df4fb6",
+            "camera": "paired-courtyard-pagodas"
+          },
+          {
+            "path": "shots/site-integration/final-district-main-stone-vault.png",
+            "hash": "sha256:41ea8d80e92f9b4370886d2ba25e9f28b62249df356039e3ef83dbdb61458145",
+            "camera": "main-stone-vault"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 58,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.bulguksa"
+          ],
+          "rawTerrainRange": {
+            "min": -64.84805666027037,
+            "max": 94.56084333972962
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 19263.106301357795,
+          "remainingWaterArea": 19263.106301357795,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:68e4c071bd7f627cfe251fa03d6bf68569aa55d86be3da74836a344e75aafc4a",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-paired-courtyard-pagodas.png",
+            "hash": "sha256:aaa98340ecc102f5331abefdaeb9cf8c4a1196084c20f07bca0aade4834bca8d",
+            "camera": "paired-courtyard-pagodas"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-main-stone-vault.png",
+            "hash": "sha256:27416af0b00b2b33b4e0d8351ce966362f053b4bcf4c24fc1c0d83dd5d226d4a",
+            "camera": "main-stone-vault"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 58,
+          "independentBuildings": 42,
+          "remainingBuildings": 58,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184660688738,
+              "area": 260.6540177698889
+            },
+            {
+              "id": 35185158322085,
+              "area": 159.43993115674147
+            },
+            {
+              "id": 35185158322087,
+              "area": 98.63829323565767
+            },
+            {
+              "id": 35184616628068,
+              "area": 607.2554440739083
+            },
+            {
+              "id": 35184616628069,
+              "area": 733.1395562038438
+            },
+            {
+              "id": 35184616628070,
+              "area": 718.1237113402731
+            },
+            {
+              "id": 35184616628072,
+              "area": 238.69034931067574
+            },
+            {
+              "id": 35184616628073,
+              "area": 264.3812924241715
+            },
+            {
+              "id": 35184616628074,
+              "area": 201.2921146361819
+            },
+            {
+              "id": 35184616628078,
+              "area": 565.2511785843913
+            },
+            {
+              "id": 35184616628079,
+              "area": 414.08488407221995
+            },
+            {
+              "id": 35184616628080,
+              "area": 168.44443077297768
+            },
+            {
+              "id": 35185321414718,
+              "area": 195.74994148600098
+            },
+            {
+              "id": 35185321414719,
+              "area": 179.38291551997594
+            },
+            {
+              "id": 35185321414734,
+              "area": 111.27959781083803
+            },
+            {
+              "id": 35185321414735,
+              "area": 91.8921677469612
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.bulguksa"
+          ],
+          "rawTerrainRange": {
+            "min": -64.84805666027037,
+            "max": 94.56084333972962
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 19263.106301357795,
+          "remainingWaterArea": 19263.106301357795,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:a1133394d226a551380909fccacdc3e17782192337b7ce97751d625531c25e07",
+            "camera": "whole-site"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bulguksa"
+          ],
+          "rawTerrainRange": {
+            "min": -64.84805666027037,
+            "max": 94.56084333972962
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 19263.106301357795,
+          "remainingWaterArea": 19263.106301357795,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:6a4d7a996e52a70d34bf95fc8f28bfb627c90d483fc58b6a34f3b0e23ffade88",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-paired-courtyard-pagodas.png",
+            "hash": "sha256:9a5771056ec25aa76293695c196a8aeba6a5a0956e97082c03cc5146ea1486ab",
+            "camera": "paired-courtyard-pagodas"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-main-stone-vault.png",
+            "hash": "sha256:5558b5f02182bf76802bcf95dbe015830211298a8f00f3f6eb9f6a4ded04fb86",
+            "camera": "main-stone-vault"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bulguksa"
+          ],
+          "rawTerrainRange": {
+            "min": -64.84805666027037,
+            "max": 94.56084333972962
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 19263.106301357795,
+          "remainingWaterArea": 19263.106301357795,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-district-whole-site.png",
+            "hash": "sha256:a914b53970fb27952831d455adc536ebc2b4e43059c0d0a54281dec14536a331",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-district-paired-courtyard-pagodas.png",
+            "hash": "sha256:843865f1f97bda98ae3f7d714559f366ad70553d146fd7668085fd169c9de501",
+            "camera": "paired-courtyard-pagodas"
+          },
+          {
+            "path": "shots/site-integration/partial-district-main-stone-vault.png",
+            "hash": "sha256:ceccab7888bfca70bdccf68ee6be03f7ed120c41c6d14d94f46608ae8f0d087e",
+            "camera": "main-stone-vault"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.bulguksa"
+          ],
+          "rawTerrainRange": {
+            "min": -64.84805666027037,
+            "max": 94.56084333972962
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 19263.106301357795,
+          "remainingWaterArea": 19263.106301357795,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-failure-whole-site.png",
+            "hash": "sha256:2a2004c4169cbda91cb6dc68fc13f9807fe4b51bc693d26ee008ac6f97a4e79a",
+            "camera": "whole-site"
+          }
+        ]
+      }
+    ],
+    "floorCoverage": {
+      "checks": 108,
+      "samples": 7904,
+      "missing": 0
+    },
+    "partialResidency": {
+      "status": "known-boundary-limitation",
+      "notes": "Synthetic64m residency clips the temple and entrance bridge. Failure and eviction restore native surfaces; partial architectural completeness/contact remains pending."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/wy/wy7/bulguksa/models/source.glb\",\"hash\":\"sha256:b3bc204ba4bb6aaa597947fe8b7675c5da0bdab0113c71b33b537f82f3228b0c\",\"bytes\":4018956,\"triangles\":33463,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/wy/wy7/bulguksa/model.glb\",\"hash\":\"sha256:48d39ff8a8080fffa3e5d51ced9ee9ff4668f014a29f492590e96cd1c9757a2e\",\"bytes\":4018464,\"triangles\":33463,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/wy/wy7/bulguksa/model.skyline.glb\",\"hash\":\"sha256:db8d3f7dbdef9fab04b9effba7fe1d5ede3edd2d1d9bca39a9ae5e49f90b7980\",\"bytes\":102356,\"triangles\":973,\"materials\":1,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/wy/wy7/bulguksa/model.district.glb\",\"hash\":\"sha256:4ba63a8d0a956788eb73d81041bb52a972d63c90b2ab04f0732c9906392adf6d\",\"bytes\":331712,\"triangles\":3531,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/wy/wy7/bulguksa/model.street.glb\",\"hash\":\"sha256:caae1d69c2ebb1962a3f64893657f376ba1698d3e07156dd79766570cd1cf262\",\"bytes\":1314576,\"triangles\":14563,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/wy/wy7/bulguksa/model.closeup.glb\",\"hash\":\"sha256:8969a09bc0a86c11b0fdb630a3e91b8af430e7bf7df21c95a040d575958ab02b\",\"bytes\":2970644,\"triangles\":33463,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "195-mapped-roof-pagoda-and-vault-probes",
+        "passed": true,
+        "notes": "All27 mapped roof ribbons exist at every level. Pagoda tops retain their nominal heights. District and nearer retain open Dabotap pillars and the entrance vault."
+      },
+      {
+        "check": "7904-occupied-floor-samples",
+        "passed": true,
+        "notes": "Every declared occupied floor pocket has coverage at its own height in all four browser levels."
+      },
+      {
+        "check": "102-raw-map-vertices",
+        "passed": true,
+        "notes": "Every mapped roof control vertex retains raw east/south coordinates."
+      },
+      {
+        "check": "selected-source-runtime-placement-scene",
+        "passed": true,
+        "notes": "Selected generator/import/placement checks, strict medium-fi audit, scene validation and sim30 pass."
+      }
+    ]
+  },
+  "limitations": [
+    "Specific principal Bulguksa compound exterior: sixteen mapped halls/galleries and western auxiliary buildings, two courts, higher Birojeon/Gwaneumjeon/Nahanjeon, both entrance stone stair bridges, Dabotap, Seokgatap and the small sarira stupa. The large373m religious park boundary is not one building and remains outside this model.",
+    "Q408318/way382655135 identifies the wider site. Sixteen actual normal-map roof footprints identify the principal halls and gallery arms; point controls17598413339131/17598413339130/17596588194605 place Dabotap, Seokgatap and the sarira stupa. The ordinary visitor-style layout guides names and relative courts, while current PMTiles geometry controls metric positions. Raw east/south coordinates retain the signed front approach; the main hall east axis is9.67 degrees north of east. Concave gallery roof ribbons are rectified within approximately55cm to suppress sub-metre map jitter; original control vertices remain unchanged in source.",
+    "Building wall/roof heights and courtyard levels are picture/DEM visualization estimates. Ordinary article heights10.4m Dabotap,8.2m Seokgatap and2.1m sarira stupa guide their nominal tops. Main entrance stairs use34 approximate risers split16/18; western stairs use17 split10/7. Roof curvature, brackets, panel bays, pagoda finial/body allocation, bridge arch and rail geometry are simplified estimates rather than surveys.",
+    "Reviewed approximate full-site fit on the unchanged 161-square/6m standard DEM. Sixteen mapped halls retain raw east/south coordinates; the main hall east axis is9.67 degrees north of east and the stairs face the southern approach. Individual court levels step up the hillside. Twenty-seven occupied floor pockets merge to ten level meshes, each with a complete opaque top and continuous retaining foundation. Entrance bridge walks have inward cut-bank joins to the coarse DEM. First-render foundation gaps were corrected; the open stone vault remains real geometry. These buried joins and court/threshold levels are visualization estimates, not surveyed basement walls. Only bounded occupied floors open ground; sixteen individual guarded roof envelopes replace authored buildings. All115 independent source-map records were checked outside these envelopes. Full-site loading replaces16 authored roofs and preserves42 independent tile buildings exactly. Three native water features retain19263.106301357795 square metres. Failure keeps all58 native tile buildings and terrain; eviction restores surfaces and frees geometry. Synthetic64m residency clips the architecture, including part of the entrance bridge, and retains the existing temporary-boundary contact limitation. Partial architectural completeness/contact is not approved. Only the portable source preview seats terrain under authored floors; production uses the unmodified retained grid.",
+    "Building heights, floor levels, curved hip-and-gable roofs, bracket bays, stair dimensions, rail profiles and stone pagoda sculptures are picture/map-guided medium-fi approximations. Fine dancheong painting, inscriptions, exact carved reliefs, deity figures, navigable interiors and the wider religious park are outside scope. Current review status is recorded in qa.json.",
+    "Accepted for the specific medium-fi principal Bulguksa exterior and approximate full-site standard-map/DEM fit. Six ordinary references, including one visitor-style layout diagram, guide identity; pinned PMTiles roof/point controls determine horizontal placement. All16 actual roof controls and102 vertices remain intact. The main hall east axis is9.67 degrees north of east. Gallery ribbons are rectified within approximately55cm of their map envelope to suppress sub-metre jitter. Pagoda nominal heights10.4m/8.2m/2.1m follow ordinary reference descriptions, with approximate body/finial allocation. Heights, court thresholds, stair dimensions, curved roof sections, bays, brackets and stone profiles are visualization estimates. Twenty-seven floor pockets merge to ten meshes; six bounded openings affect only occupied ground. First-render foundation gaps were corrected with continuous retaining faces and inward entrance cut-bank joins, preserving the open vault. The original161-square/6m DEM is unchanged; only the portable source preview has occupied-floor seating. Partial loading clips the temple and bridge at temporary tile edges, so partial architectural completeness/contact remains pending. Exact carved details, inscriptions, deity figures, navigable interiors and the wider religious park are outside scope. No bespoke survey or archival research was used."
+  ]
+}

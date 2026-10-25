@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sp/spz/n0342_modena_cathedral/',
+  '../../../content/worldgen/source/places/sp/spz/modena_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -907,7 +907,7 @@ export const buildModenaSkyline = (o) => build(o, 0),
   buildModenaStreet = (o) => build(o, 2),
   buildModenaCloseup = (o) => build(o, 3);
 export const modenaStudy = {
-  id: 'N0342',
+  id: 'modena_cathedral',
   key: 'modena_cathedral',
   title: 'Modena Cathedral',
   category: 'cathedral',

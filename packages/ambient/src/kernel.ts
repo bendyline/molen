@@ -30,6 +30,8 @@ export {
   AmbientRole,
   AmbientState,
 } from './kernel/components';
+export type { FleetCatalog, FleetLibrary, FleetMix } from './kernel/fleet';
+export { createFleetLibrary, fleetCatalogSchema, registerFleetSchema } from './kernel/fleet';
 export type {
   TransportNetworkAerodrome,
   TransportNetworkDocument,

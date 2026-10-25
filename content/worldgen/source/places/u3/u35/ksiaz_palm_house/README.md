@@ -4,7 +4,7 @@
 
 Tall brick-and-glass Palm House with green barrel roof, roof lantern and glazed polygonal porch; connected low glasshouse ranges enclose two true open courtyards.
 
-Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
 
 ## Sources and reconstruction
 
@@ -18,7 +18,7 @@ Own Palm House multipolygon retains both courtyards and mapped entrance. Central
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-palm-house.mjs --ids=KSI_L01 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/generate-ksiaz-palm-house.mjs --ids=KSI_L01 (or --check).
 
 5919 triangles;713020 source bytes;4 merged material groups;no embedded images. Three existing shared brick, lime plaster and painted metal graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Two courtyards remain truly open; no embedded images. Runtime LODs are separate generated outputs.
 

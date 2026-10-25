@@ -11,7 +11,7 @@ import { skylineNext } from '../../worldgen/scripts/signature-tower-next-models.
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dr/dr5/n0153_7_world_trade_center');
+const source = resolve('../../content/worldgen/source/places/dr/dr5/7_world_trade_center');
 const frame = JSON.parse(await readFile(resolve(source, 'map-frame.json')));
 const emit = (build) => {
   const calls = [];
@@ -26,7 +26,7 @@ const emit = (build) => {
 };
 
 it('retains every original detailed face and closes the mapped roof plant support gap', () => {
-  const original = emit(skylineNext.find((s) => s.id === 'N0153').build);
+  const original = emit(skylineNext.find((s) => s.id === '7_world_trade_center').build);
   const current = emit(buildSevenWtcCurrent);
   expect(JSON.stringify(current.slice(0, original.length))).toBe(JSON.stringify(original));
   const curb = current.slice(original.length);
@@ -60,7 +60,7 @@ it('preserves the full tower and asymmetric rooftop volume within the authored b
 
 it('reproduces all browser bytes and keeps recess and glass as separate material slots', async () => {
   const sidecarPath = await runtimeLodFixture(
-    resolve('../../content/worldgen/assets/places/dr/dr5/n0153_7_world_trade_center/asset.json'),
+    resolve('../../content/worldgen/assets/places/dr/dr5/7_world_trade_center/asset.json'),
   );
   const asset = JSON.parse(await readFile(sidecarPath));
   const master = await readFile(resolve(sidecarPath, '../model.glb'));

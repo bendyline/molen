@@ -10,7 +10,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '../../../..');
 const require = createRequire(resolve(root, 'packages/tooling/package.json'));
 const { chromium } = require('playwright');
-const out = resolve(root, '.artifacts/traffic-signals');
+const drivingSide = process.env.MOLEN_TRAFFIC_SIDE === 'left' ? 'left' : 'right';
+const out = resolve(root, '.artifacts/traffic-signals', drivingSide);
 await mkdir(out, { recursive: true });
 const server = await createServer({
   configFile: false,
@@ -55,7 +56,7 @@ try {
         }
       }
       await page.goto(
-        `http://127.0.0.1:${port}/traffic-signals.html?backend=${backend}${worker ? '&worker=1' : ''}`,
+        `http://127.0.0.1:${port}/traffic-signals.html?backend=${backend}&drivingSide=${drivingSide}${worker ? '&worker=1' : ''}`,
       );
       await page
         .waitForFunction(() => !!window.trafficSignalsQA, undefined, { timeout: 30000 })
@@ -88,7 +89,12 @@ try {
         }
         assert.equal(state.backend, backend);
         assert.equal(state.heads, 6);
-        // Observed 5–12 green/red pixels and 6–9 amber across software WebGL/WebGPU.
+        assert.equal(
+          state.correctLane,
+          true,
+          'Heads must face the incoming lanes for this driving side',
+        );
+        // Observed 5â€“12 green/red pixels and 6â€“9 amber across software WebGL/WebGPU.
         // Stay well inside these values to tolerate driver-specific edge coverage.
         if (name === 'night-green')
           assert(counts.green > 1 && counts.red > 1, 'Night must show bright green and red lenses');

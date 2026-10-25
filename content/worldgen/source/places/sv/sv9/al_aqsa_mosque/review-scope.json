@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.76,
+      "metallic": 0.28
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.45,
+      "metallic": 0.02
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.6,
+      "metallic": 0.5
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/al-aqsa-model.mjs",
+    "export": "buildAlAqsaSkyline",
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAlAqsaDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.28
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.5
+          }
+        }
+      },
+      "street": {
+        "export": "buildAlAqsaStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.28
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.5
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAlAqsaCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.28
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.5
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      126,
+      92,
+      -156
+    ],
+    "lookAt": [
+      0,
+      16,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-al-aqsa-skyline",
+      "position": [
+        126,
+        92,
+        -156
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-al-aqsa-district",
+      "position": [
+        126,
+        92,
+        -156
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-al-aqsa-street",
+      "position": [
+        126,
+        92,
+        -156
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-al-aqsa-closeup",
+      "position": [
+        126,
+        92,
+        -156
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;acceptance recorded after current visual QA.",
+    "anchor": [
+      35.235542683,
+      31.776175889
+    ],
+    "heading": 0.175752450172,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor attachment with a declared raised porch/hall floor,not exact ground contact. Standard viewer DEM datum734.068928m;whole perimeter-9.67 to2.75m relative to it. Floor3.198m uses the highest retained north-front sample plus0.45m,so the porch does not sit below the coarse forecourt samples. This declares an approximate raised attachment plane,not surveyed thresholds. Adaptive limestone footings crossY=0 and extend below retained samples;the south edge has a deep retained-terrain fall. The DEM is not used to infer exact historical retaining-wall courses,steps,street or courtyard paving. Exact contact,altitude,walking and site joins remain unverified. No terrain flattening,ground cutout or road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        35.235542683,
+        31.776175889
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum734.068928m;whole perimeter-9.67 to2.75m relative to it. Floor3.198m uses the highest retained north-front sample plus0.45m,so the porch does not sit below the coarse forecourt samples. This declares an approximate raised attachment plane,not surveyed thresholds. Adaptive limestone footings crossY=0 and extend below retained samples;the south edge has a deep retained-terrain fall. The DEM is not used to infer exact historical retaining-wall courses,steps,street or courtyard paving. Exact contact,altitude,walking and site joins remain unverified. No terrain flattening,ground cutout or road replacement."
+    },
+    "bounds": [
+      35.2337,
+      31.7751,
+      35.2373,
+      31.7774
+    ],
+    "notes": "Retained way/280309331 /Q12192963 identifies the southern Al-Qibli main prayer hall,not the entire Al-Aqsa compound or the separate golden Dome of the Rock. Current standard PMTiles whole35184652398163 and dome part35184663933670 retain32 raw outline points/properties. Earlier exact-QID whole/multilingual tags/facts and current named POI retained. Anchor[35.235542683,31.776175889] and heading0.175752450172rad unchanged,no horizontal rescale. Native+X east-northeast toward the east side wall,+Z south-southeast toward the silver dome/southern retaining edge,−Z north-northwest toward the seven-arch entrance and open forecourt. Three inspected pictures resolve signed facing,approximate3° uncertainty. Four compound minarets,separate pavilions,Dome of the Rock,other compound/town buildings and public forecourt remain host content. Standard viewer DEM datum734.068928m;whole perimeter-9.67 to2.75m relative to it. Floor3.198m uses the highest retained north-front sample plus0.45m,so the porch does not sit below the coarse forecourt samples. This declares an approximate raised attachment plane,not surveyed thresholds. Adaptive limestone footings crossY=0 and extend below retained samples;the south edge has a deep retained-terrain fall. The DEM is not used to infer exact historical retaining-wall courses,steps,street or courtyard paving. Exact contact,altitude,walking and site joins remain unverified. No terrain flattening,ground cutout or road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum734.068928m;whole perimeter-9.67 to2.75m relative to it. Floor3.198m uses the highest retained north-front sample plus0.45m,so the porch does not sit below the coarse forecourt samples. This declares an approximate raised attachment plane,not surveyed thresholds. Adaptive limestone footings crossY=0 and extend below retained samples;the south edge has a deep retained-terrain fall. The DEM is not used to infer exact historical retaining-wall courses,steps,street or courtyard paving. Exact contact,altitude,walking and site joins remain unverified. No terrain flattening,ground cutout or road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

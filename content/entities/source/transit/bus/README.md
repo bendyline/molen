@@ -1,8 +1,11 @@
-# City bus
+# Bendy Bus
+
+![Molen preview](preview.png)
 
 Portable source bundle for `molen.entities.transit.bus`, a 12 m low-floor city bus that drives
-with ambient traffic. It has no `vehicle` component (it is not drivable and never parks); its
-`ambientRole` makes it a bus in the car pool and names the nodes that animate near the camera.
+with ambient traffic and can be driven by a player. Its `vehicle` and `mountable` components
+provide boarding, throttle, steering, braking and reverse; `ambientRole` retains its bus role.
+Select **Bendy Bus** in the World Explorer to board it at the practice apron.
 
 - Model generator: `models/generate.mjs` (deterministic three.js boxes and cylinders, no
   textures). It keeps `source.json`'s pin current and will not overwrite a hand-edited
@@ -24,7 +27,9 @@ with ambient traffic. It has no `vehicle` component (it is not drivable and neve
   (their first child `…-spin` turns); the front pair steers.
 - Paint: `vehicle-paint-and-trim` is white and takes the agent colour; glass, trim, tyres and
   lamps keep their own materials.
-- Budget: about 1,000 rendered triangles, 9 materials, no textures.
+- Close detail: passenger seats, operator panel, animated steering wheel, glazed doors,
+  destination lettering, wipers, ventilation slats and wheel fittings.
+- Budget: 7,016 rendered triangles, no textures.
 
 ## Evidence
 

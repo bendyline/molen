@@ -1,0 +1,569 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "wall",
+      "graph": "tile_mosaic",
+      "roughness": 0.76,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_marble",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.56,
+      "metallic": 0.01
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/herat-model.mjs",
+    "export": "buildHeratSkyline",
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHeratDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56,
+            "metallic": 0.01
+          }
+        }
+      },
+      "street": {
+        "export": "buildHeratStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56,
+            "metallic": 0.01
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHeratCloseup",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56,
+            "metallic": 0.01
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      220,
+      170,
+      190
+    ],
+    "lookAt": [
+      0,
+      10,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-herat-skyline",
+      "position": [
+        220,
+        170,
+        190
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-herat-district",
+      "position": [
+        220,
+        170,
+        190
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-herat-street",
+      "position": [
+        220,
+        170,
+        190
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-herat-closeup",
+      "position": [
+        220,
+        170,
+        190
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained exact mosque outline/hole/axis and current named multipolygon;all vertical/internal controls remain estimated.",
+    "anchor": [
+      62.195611371,
+      34.343152784
+    ],
+    "heading": -0.022920882273,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0475;datum 928.5131664399311 m. 1017 building-ring samples span -3.2980975838862605 to 1.4290032496760432 m. Floor -0.31888288261684467 m is the median of 311 outer/court-edge samples plus0.3 m. Footings sample edges at<=3 m. 16 triangulated ring masks preserve the entire retained courtyard hole;preview seating uses the same masks. Courtyard ground,park,roads and neighboring buildings stay host content. Exact thresholds,stairs and grade joins are unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -7.088,
+          -56.661
+        ],
+        [
+          0.134,
+          -64.854
+        ],
+        [
+          13.851,
+          -64.857
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.088,
+            -56.661
+          ],
+          [
+            0.134,
+            -64.854
+          ],
+          [
+            13.851,
+            -64.857
+          ]
+        ],
+        [
+          [
+            -7.088,
+            -56.661
+          ],
+          [
+            13.851,
+            -64.857
+          ],
+          [
+            21.017,
+            -56.659
+          ]
+        ],
+        [
+          [
+            21.017,
+            -56.659
+          ],
+          [
+            89.446,
+            -56.658
+          ],
+          [
+            89.442,
+            -13.143
+          ]
+        ],
+        [
+          [
+            21.017,
+            -56.659
+          ],
+          [
+            89.442,
+            -13.143
+          ],
+          [
+            78.51,
+            -13.148
+          ]
+        ],
+        [
+          [
+            21.017,
+            -56.659
+          ],
+          [
+            78.51,
+            -13.148
+          ],
+          [
+            78.513,
+            15.435
+          ]
+        ],
+        [
+          [
+            78.513,
+            15.435
+          ],
+          [
+            89.444,
+            15.441
+          ],
+          [
+            89.446,
+            64.857
+          ]
+        ],
+        [
+          [
+            -89.446,
+            64.849
+          ],
+          [
+            -89.446,
+            -56.665
+          ],
+          [
+            -38.512,
+            31.19
+          ]
+        ],
+        [
+          [
+            -89.446,
+            64.849
+          ],
+          [
+            -38.512,
+            31.19
+          ],
+          [
+            41.638,
+            31.535
+          ]
+        ],
+        [
+          [
+            -38.259,
+            -29.155
+          ],
+          [
+            -38.512,
+            31.19
+          ],
+          [
+            -89.446,
+            -56.665
+          ]
+        ],
+        [
+          [
+            -38.259,
+            -29.155
+          ],
+          [
+            -89.446,
+            -56.665
+          ],
+          [
+            -7.088,
+            -56.661
+          ]
+        ],
+        [
+          [
+            -38.259,
+            -29.155
+          ],
+          [
+            -7.088,
+            -56.661
+          ],
+          [
+            21.017,
+            -56.659
+          ]
+        ],
+        [
+          [
+            89.446,
+            64.857
+          ],
+          [
+            -89.446,
+            64.849
+          ],
+          [
+            41.638,
+            31.535
+          ]
+        ],
+        [
+          [
+            89.446,
+            64.857
+          ],
+          [
+            41.638,
+            31.535
+          ],
+          [
+            41.891,
+            -28.822
+          ]
+        ],
+        [
+          [
+            41.891,
+            -28.822
+          ],
+          [
+            -38.259,
+            -29.155
+          ],
+          [
+            21.017,
+            -56.659
+          ]
+        ],
+        [
+          [
+            41.891,
+            -28.822
+          ],
+          [
+            21.017,
+            -56.659
+          ],
+          [
+            78.513,
+            15.435
+          ]
+        ],
+        [
+          [
+            41.891,
+            -28.822
+          ],
+          [
+            78.513,
+            15.435
+          ],
+          [
+            89.446,
+            64.857
+          ]
+        ]
+      ],
+      "basis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0475;datum 928.5131664399311 m. 1017 building-ring samples span -3.2980975838862605 to 1.4290032496760432 m. Floor -0.31888288261684467 m is the median of 311 outer/court-edge samples plus0.3 m. Footings sample edges at<=3 m. 16 triangulated ring masks preserve the entire retained courtyard hole;preview seating uses the same masks. Courtyard ground,park,roads and neighboring buildings stay host content. Exact thresholds,stairs and grade joins are unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        62.195611371,
+        34.343152784
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0475;datum 928.5131664399311 m. 1017 building-ring samples span -3.2980975838862605 to 1.4290032496760432 m. Floor -0.31888288261684467 m is the median of 311 outer/court-edge samples plus0.3 m. Footings sample edges at<=3 m. 16 triangulated ring masks preserve the entire retained courtyard hole;preview seating uses the same masks. Courtyard ground,park,roads and neighboring buildings stay host content. Exact thresholds,stairs and grade joins are unverified."
+    },
+    "bounds": [
+      62.1943,
+      34.3423,
+      62.1969,
+      34.344
+    ],
+    "notes": "Retained Q1291612 /relation5873573 mosque identity,anchor,undirected axis and12-vertex outer footprint with a four-vertex courtyard hole remain unchanged. Current named mosque POI and buildings multipolygon share id52776564006821. Only this mosque envelope is selected;detached buildings,roads,park and courtyard objects remain host content. Internal range/portal/dome/minaret positions and all heights require picture-guided estimates. Retained courtyard hole is not filled or replaced. Current main ring has15 outer and6 hole vertices,including quantized tile-seam points. Western prayer iwan faces positive X;the recessed outer entry faces east along positive X. Four courtyard iwans,one outer entry,eight tower positions and roof partitions are visualization estimates. Standard Protomaps20261014 /Mapzen-USGS viewer extractN0475;datum 928.5131664399311 m. 1017 building-ring samples span -3.2980975838862605 to 1.4290032496760432 m. Floor -0.31888288261684467 m is the median of 311 outer/court-edge samples plus0.3 m. Footings sample edges at<=3 m. 16 triangulated ring masks preserve the entire retained courtyard hole;preview seating uses the same masks. Courtyard ground,park,roads and neighboring buildings stay host content. Exact thresholds,stairs and grade joins are unverified."
+  },
+  "geographicNote": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0475;datum 928.5131664399311 m. 1017 building-ring samples span -3.2980975838862605 to 1.4290032496760432 m. Floor -0.31888288261684467 m is the median of 311 outer/court-edge samples plus0.3 m. Footings sample edges at<=3 m. 16 triangulated ring masks preserve the entire retained courtyard hole;preview seating uses the same masks. Courtyard ground,park,roads and neighboring buildings stay host content. Exact thresholds,stairs and grade joins are unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

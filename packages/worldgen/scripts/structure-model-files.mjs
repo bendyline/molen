@@ -48,7 +48,7 @@ export async function registerSourceDocuments(dir, paths) {
 
 export async function authoredModels() {
   const collections = await readStructureCollections(
-    resolve(content, 'source/next-1000/collections.json'),
+    resolve(content, 'source/structure-catalog/collections.json'),
   );
   const selected = process.argv
     .find((arg) => arg.startsWith('--ids='))
@@ -89,6 +89,7 @@ const notInputs = new Set([
   'shared-capture-report.json',
   'medium-fi-report.json',
   'placement-report.json',
+  'category-integration-report.json',
   'import-report.json',
 ]);
 let recipeIndex;
@@ -137,7 +138,7 @@ export async function modelInputHash(dir, assetId) {
  * Unselected historical/site bundles retain their existing independent workflow. */
 export function authoredPlaceEntries(entries, selection) {
   return entries.filter(
-    (entry) => entry.collection === 'next-1000' || selection?.includes(entry.candidateId),
+    (entry) => entry.collection === 'structure-catalog' || selection?.includes(entry.candidateId),
   );
 }
 
@@ -151,11 +152,15 @@ export async function authoredModelDirectories(selection) {
     if (error.code === 'ENOENT') return [];
     throw error;
   });
+  // A numbered plan entry can also be a reusable category bundle. Selection and
+  // semantic-folder discovery must not import that same physical source twice.
   return [
-    ...places,
-    ...generic
-      .filter((entry) => entry.isDirectory())
-      .map((entry) => resolve(genericRoot, entry.name)),
+    ...new Set([
+      ...places,
+      ...generic
+        .filter((entry) => entry.isDirectory())
+        .map((entry) => resolve(genericRoot, entry.name)),
+    ]),
   ].sort((a, b) => a.localeCompare(b));
 }
 
@@ -183,8 +188,20 @@ export async function checkSourceRegistry({
       throw error;
     });
     if (children.some((entry) => entry.isFile() && entry.name === 'source.json')) {
-      if (!registered.has(dir)) stale.push(relative(repositoryRoot, dir).replaceAll('\\', '/'));
-      return;
+      if (registered.has(dir)) return;
+      // Collection recipes have their own source manifests, but each generated model is
+      // registered independently. Keep scanning below them for actual model bundles.
+      const manifest = await readOptionalJson(resolve(dir, 'source.json'));
+      const collectionRecipes =
+        manifest?.kind === 'structure-collection' &&
+        !(manifest.files?.models?.length > 0) &&
+        !children.some(
+          (entry) => entry.isFile() && ['spec.json', 'map-frame.json'].includes(entry.name),
+        );
+      if (!collectionRecipes) {
+        stale.push(relative(repositoryRoot, dir).replaceAll('\\', '/'));
+        return;
+      }
     }
     await Promise.all(
       children

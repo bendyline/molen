@@ -1,0 +1,329 @@
+{
+  "planId": "nasseef_house",
+  "id": "nasseef_house",
+  "assetId": "molen.worldgen.structure.nasseef_house",
+  "title": "Nasseef House",
+  "category": "historic-residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 39.1878,
+    "latitude": 21.4839
+  },
+  "size": [
+    25.3100004196167,
+    19.75000038743019,
+    24.320000648498535
+  ],
+  "actualBounds": {
+    "min": [
+      -14.21500015258789,
+      -0.4000000059604645,
+      -14.225000381469727
+    ],
+    "max": [
+      11.095000267028809,
+      19.350000381469727,
+      10.095000267028809
+    ]
+  },
+  "visualBrief": "Photo-guided full stepped white coral/plaster merchant house with pale ochre floor bands, grouped tall round-headed wood shutters and upper circular vents, two stacked projecting carved-wood rawashin above the north entrance, terrace parapets, central dark wooden lattice roof pavilion/overhanging hip roof and own short entry steps. Native named point verifies identity nearby; the plan, dimensions and hidden elevations are expressly estimated.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Nassif_house_Jeddah.jpg"
+  ],
+  "stories": [
+    {
+      "id": "nasseef-house-wp",
+      "url": "https://qualla.com/nasseef-house/"
+    }
+  ],
+  "referenceInputHash": "37dcb3c71f4e5e327059bb9379e5f3ad3e98c7b74c6f5c88edc845b5f1196778",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-nasseef-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-nasseef-house.mjs",
+    "level": "skyline",
+    "export": "nasseefSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "wood_weatherboard",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "nasseefDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "wood_weatherboard",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "nasseefStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "wood_weatherboard",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The local story coordinate locates the authored house; independent named native OSM/ProtomapsPOIs verify identity nearby. No current containing roof polygon is available, so the full stepped plan and fixed open northern-approach datum are explicitly photographic/approximate.",
+    "anchor": [
+      39.1878,
+      21.4839
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        39.1878,
+        21.484043729788
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed open northern approach16m from the story anchor, outside the estimated house envelope; approximate datum chosen before terrain acquisition."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/2520141053",
+      "authored/nasseef-house-plan-estimate"
+    ],
+    "source": "https://www.openstreetmap.org/node/2520141053",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1416fe0c99b2a20fb92acfb9ebba91b7a56e04bf0611b0db3e578522dc963d7a",
+    "notes": "No claim of surveyed dimensions, exact native footprint or verified ground contact. Build the actual recognizable house mass and exterior with photo-guided dimensions. Offset internal levels are not seven identical exterior storeys. Native point and authored estimate remain distinct evidence."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Named OSM node2520141053 and independently decoded ProtomapsPOI17594706185469 match the story nearby. Neither current extract provides a containing house roof polygon; unrelated generic building footprints40+maway are not adopted. Full stepped22x21mplan, anchor attachment, setbacks and hidden elevations are photographic estimates at the story coordinate, not a survey or native roof plan.",
+    "The exact cleared Qualla-published434x640UserCyb3r1998PD-selforiginal controls white stepped wall masses, pale ochre floor bands, tall round-headed wood shutters/upper vents, two stacked projecting north-door rawashin, terraces and wooden roof pavilion. Body14.8m, pavilion/roof19.35m, row openings, lattice sections, roof form and entry steps are medium-fi estimates at this limited image detail. Offset internal levels are not asserted as seven identical visible exterior storeys.",
+    "Complete exterior assembly only. Wood screens have physical posts/rails/fine lattice with recessed dark backing; panes, ordinary shutters/doors and hidden rooms are closed. Fine lattice, shutter slats, vent rims and handles retire in lower LODs. Interiors/cisterns/kitchen, inscriptions, temporary restoration works/foreground barriers, tree, neighboring houses and street landscape excluded.",
+    "Foundations extend.4m below a fixed northern dry-approach datum; own short steps rise1.05m. Exact house footprint, doorstep/ground attachment and host terrain are approximate, with source terrain preserved and no whole-square platform or blanket ground opening."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "stacked-rawashin-and-north-entry",
+      "position": [
+        20,
+        12,
+        -34
+      ],
+      "lookAt": [
+        0,
+        9,
+        -11
+      ]
+    },
+    {
+      "name": "roof-pavilion-and-terraces",
+      "position": [
+        -24,
+        27,
+        -22
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "west-arched-shutters-and-bands",
+      "position": [
+        -31,
+        12,
+        -7
+      ],
+      "lookAt": [
+        -11,
+        8,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 36374,
+    "vertices": 109122,
+    "materials": 6,
+    "bytes": 4368632,
+    "sha256": "sha256:2d625fda8c6a3811f1648e228a1796ceb93fb21dd0d0b63b113c643901925dfb"
+  }
+}

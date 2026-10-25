@@ -1,0 +1,387 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "marble": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "rubble": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "ground": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/vesta-model.mjs",
+    "export": "buildVestaSkyline",
+    "errorMeters": 0.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildVestaDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildVestaStreet",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildVestaCloseup",
+        "errorMeters": 0.02,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -22,
+      22,
+      -24
+    ],
+    "lookAt": [
+      0,
+      5,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-ruin-skyline",
+      "position": [
+        -22,
+        22,
+        -24
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-ruin-district",
+      "position": [
+        -22,
+        22,
+        -24
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-ruin-street",
+      "position": [
+        -22,
+        22,
+        -24
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-ruin-closeup",
+      "position": [
+        -22,
+        22,
+        -24
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.8,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      12.486196872,
+      41.891694453
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "bounds": [
+      12.486098045529614,
+      41.89161670507832,
+      12.486297851382007,
+      41.891770554055654
+    ],
+    "terrainReference": {
+      "anchor": [
+        12.486196872,
+        41.891694453
+      ],
+      "modelHeight": 0,
+      "basis": "The unmodified161-square/6m standard Mapzen-USGS grid is retained with21.663m raw datum. The opaque occupied foundation clears the original rendered terrain by at least0.1476m across2826 grid/boundary probes. Its retaining faces continue below the lowest perimeter sample, enclosing the original ground. No terrain or water opening is needed. Eight authored map components are replaced inside the bounded foundation; surrounding Forum ruins remain native. Heights and grade are approximate viewer-scale fits, not surveyed thresholds. The source preview remains a separate visualization; production uses the unchanged full grid."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          7.5392028337940316,
+          0.0916641436472301
+        ],
+        [
+          7.396053172798098,
+          1.5450870426673855
+        ],
+        [
+          6.972105351003118,
+          2.9426557147671493
+        ],
+        [
+          6.283651445447994,
+          4.230662379643266
+        ],
+        [
+          5.357148353633811,
+          5.359609663487008
+        ],
+        [
+          4.228201069790068,
+          6.286112755301192
+        ],
+        [
+          2.9401944049139512,
+          6.974566660856317
+        ],
+        [
+          1.5426257328141877,
+          7.398514482651296
+        ],
+        [
+          0.08920283379403209,
+          7.54166414364723
+        ],
+        [
+          -1.3642200652261234,
+          7.398514482651296
+        ],
+        [
+          -2.7617887373258867,
+          6.974566660856317
+        ],
+        [
+          -4.049795402202003,
+          6.286112755301192
+        ],
+        [
+          -5.178742686045747,
+          5.359609663487009
+        ],
+        [
+          -6.105245777859931,
+          4.230662379643266
+        ],
+        [
+          -6.793699683415055,
+          2.94265571476715
+        ],
+        [
+          -7.217647505210035,
+          1.5450870426673882
+        ],
+        [
+          -7.360797166205969,
+          0.09166414364723102
+        ],
+        [
+          -7.217647505210035,
+          -1.3617587553729262
+        ],
+        [
+          -6.793699683415056,
+          -2.7593274274726878
+        ],
+        [
+          -6.105245777859932,
+          -4.047334092348804
+        ],
+        [
+          -5.178742686045749,
+          -5.176281376192549
+        ],
+        [
+          -4.049795402202005,
+          -6.102784468006733
+        ],
+        [
+          -2.761788737325891,
+          -6.791238373561855
+        ],
+        [
+          -1.364220065226127,
+          -7.215186195356837
+        ],
+        [
+          0.08920283379403025,
+          -7.35833585635277
+        ],
+        [
+          1.5426257328141875,
+          -7.215186195356837
+        ],
+        [
+          2.9401944049139526,
+          -6.791238373561856
+        ],
+        [
+          4.228201069790066,
+          -6.102784468006734
+        ],
+        [
+          5.357148353633809,
+          -5.17628137619255
+        ],
+        [
+          6.283651445447994,
+          -4.047334092348806
+        ],
+        [
+          6.972105351003116,
+          -2.759327427472693
+        ],
+        [
+          7.396053172798098,
+          -1.361758755372929
+        ]
+      ],
+      "basis": "Occupied circular foundation contains all eight authored components; checked against every independent source-map ruin."
+    },
+    "notes": "Q753791/relation1842062 identifies the Roman Forum ruin. Eight current PMTiles component footprints include three full column positions, one stump, the northwest surviving sector and three low masonry fragments. Their raw east/south coordinates control placement. Ordinary northwest and reverse photographs confirm the surviving marble sector faces northwest; the old minimum-area rectangle axis is not a facade direction. In the northwest ordinary photographs the low stump appears left of the three tall columns. The northeastern end of the mapped four-column group,35184503447738, therefore remains the short stump;35184503447720/35184503447713/35184503447731 retain full height. The cella wall stops inside the western bay so the westernmost tall column stands open beneath the broken entablature. PMTiles provides positions, not these surviving heights; the signed survival assignment is picture-guided. Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Eight mapped components retain raw east/south coordinates; three tall columns and the northeastern stump identify the signed northwest surviving sector. The cella wall ends inside the western open bay, while the broken entablature spans the tall columns. The circular occupied base is seated above original terrain, with retaining faces reaching below the lowest perimeter sample. Across2826 mesh-height/boundary probes, the top foundation clears native terrain by at least0.1476m, so no ground or water opening is needed. Full-site loading replaces all8 authored records and preserves2080 independent tile buildings exactly. All2702 independent records in the local extract were checked outside the replacement envelope;409 nearby records remain in source for inspection. Nine native water features retain127659.45095056188 square metres. Failure preserves all2088 native tile buildings and terrain; eviction frees geometry. Synthetic10m partial residency deliberately clips the circular podium and outer entablature, but preserves original ground under and outside the clipped model with no terrain opening. Partial architectural completeness is not claimed. The surrounding unmodeled Forum ruins use the existing generic procedural renderer and are not historical reconstructions. Heights, thresholds, damaged profiles and coarse DEM grade remain approximate.",
+    "groundContactBasis": "Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Eight mapped components retain raw east/south coordinates; three tall columns and the northeastern stump identify the signed northwest surviving sector. The cella wall ends inside the western open bay, while the broken entablature spans the tall columns. The circular occupied base is seated above original terrain, with retaining faces reaching below the lowest perimeter sample. Across2826 mesh-height/boundary probes, the top foundation clears native terrain by at least0.1476m, so no ground or water opening is needed. Full-site loading replaces all8 authored records and preserves2080 independent tile buildings exactly. All2702 independent records in the local extract were checked outside the replacement envelope;409 nearby records remain in source for inspection. Nine native water features retain127659.45095056188 square metres. Failure preserves all2088 native tile buildings and terrain; eviction frees geometry. Synthetic10m partial residency deliberately clips the circular podium and outer entablature, but preserves original ground under and outside the clipped model with no terrain opening. Partial architectural completeness is not claimed. The surrounding unmodeled Forum ruins use the existing generic procedural renderer and are not historical reconstructions. Heights, thresholds, damaged profiles and coarse DEM grade remain approximate."
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "geographicNote": "The unmodified161-square/6m standard Mapzen-USGS grid is retained with21.663m raw datum. The opaque occupied foundation clears the original rendered terrain by at least0.1476m across2826 grid/boundary probes. Its retaining faces continue below the lowest perimeter sample, enclosing the original ground. No terrain or water opening is needed. Eight authored map components are replaced inside the bounded foundation; surrounding Forum ruins remain native. Heights and grade are approximate viewer-scale fits, not surveyed thresholds. The source preview remains a separate visualization; production uses the unchanged full grid."
+}

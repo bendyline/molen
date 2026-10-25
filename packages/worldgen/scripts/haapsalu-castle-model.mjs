@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/',
+  '../../../content/worldgen/source/places/ud/ud2/haapsalu_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -848,7 +848,7 @@ export function buildHaapsaluRuntime(out, level = 'closeup') {
 }
 export const buildHaapsaluSkyline = (out) => buildHaapsaluRuntime(out, 'skyline');
 export const haapsaluStudy = {
-  id: 'N0309',
+  id: 'haapsalu_castle',
   key: 'haapsalu_castle',
   title: 'Haapsalu Castle',
   category: 'castle',

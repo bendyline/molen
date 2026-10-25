@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_granite",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "wall",
+      "graph": "tile_glazed",
+      "roughness": 0.62,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/porto-cathedral-model.mjs",
+    "export": "buildPortoSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPortoDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildPortoStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPortoCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -105,
+      76,
+      -103
+    ],
+    "lookAt": [
+      0,
+      17,
+      8
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-porto-skyline",
+      "position": [
+        -105,
+        76,
+        -103
+      ],
+      "lookAt": [
+        0,
+        17,
+        8
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-porto-district",
+      "position": [
+        -105,
+        76,
+        -103
+      ],
+      "lookAt": [
+        0,
+        17,
+        8
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-porto-street",
+      "position": [
+        -105,
+        76,
+        -103
+      ],
+      "lookAt": [
+        0,
+        17,
+        8
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-porto-closeup",
+      "position": [
+        -105,
+        76,
+        -103
+      ],
+      "lookAt": [
+        0,
+        17,
+        8
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.portuguese_azulejo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      -8.611214702,
+      41.142799644
+    ],
+    "heading": 0.027014727523,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention,not exact host-ground contact. Standard viewer DEM datum 70.919308m; selected raw perimeter -4.85..2.36m. Floor0.5m and adaptive footings crossY=0. Exact hilltop terraces, square/door/step/base joins, absolute altitude and walking remain unverified. Raw DEM is retained without terrain cutout or flattening.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -8.611214702,
+        41.142799644
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 70.919308m; selected raw perimeter -4.85..2.36m. Floor0.5m and adaptive footings crossY=0. Exact hilltop terraces, square/door/step/base joins, absolute altitude and walking remain unverified. Raw DEM is retained without terrain cutout or flattening."
+    },
+    "bounds": [
+      -8.618,
+      41.137,
+      -8.605,
+      41.149
+    ],
+    "notes": "Exact retained way/210461448 and Q1441255 match current cathedral whole35184582550280 and its same-ID Sé do Porto POI. Preserve the raw whole, mapped architectural parts and immediate cloister/Casa do Cabido ranges. Anchor and heading0.027014727523rad unchanged. +X east toward choir, -X west twin-tower/rose facade, -Z north baroque loggia, +Z south cloister courtyard. No horizontal rescale. Separate southeastern bishop palace and neighboring buildings remain host content. Standard viewer DEM datum 70.919308m; selected raw perimeter -4.85..2.36m. Floor0.5m and adaptive footings crossY=0. Exact hilltop terraces, square/door/step/base joins, absolute altitude and walking remain unverified. Raw DEM is retained without terrain cutout or flattening."
+  },
+  "geographicNote": "Standard viewer DEM datum 70.919308m; selected raw perimeter -4.85..2.36m. Floor0.5m and adaptive footings crossY=0. Exact hilltop terraces, square/door/step/base joins, absolute altitude and walking remain unverified. Raw DEM is retained without terrain cutout or flattening.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

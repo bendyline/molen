@@ -1,0 +1,371 @@
+{
+  "planId": "khalid_ibn_al_walid_mosque",
+  "id": "khalid_ibn_al_walid_mosque",
+  "assetId": "molen.worldgen.structure.khalid_ibn_al_walid_mosque",
+  "title": "Khalid ibn al-Walid Mosque",
+  "category": "mosque",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 36.715745424999994,
+    "latitude": 34.736624000000006
+  },
+  "size": [
+    42.28031539916992,
+    40.929999232292175,
+    67.58968353271484
+  ],
+  "actualBounds": {
+    "min": [
+      -20.735363006591797,
+      1.8700000047683716,
+      -49.87111282348633
+    ],
+    "max": [
+      21.544952392578125,
+      42.79999923706055,
+      17.718570709228516
+    ]
+  },
+  "visualBrief": "Whole Khalid ibn al-Walid Mosque Q4022343: entire mapped prayer hallway1235112950/four nativecorners and both tagged minaretcornernodes, central silver dome, lower halfdomes and corner domes, basalt exterior with pale limestone window surrounds/quoins, slender twin minarets with galleries/finials, north-facing open ablaq arcade and bounded three-sided courtyard arcades. Native named worship precinctway150212190 is identity/acquisition context, not an invented building footprint. Eastern ancillaryway1235112951 retained in nativecontext but separately identified, not silently substituted for the hall. Exclude surrounding gardens, park monument, roads/landscape, people, signage and private tomb/prayer interior. Hidden roof/courtyard sections and precise current restored finish are original bounded estimates from three clear2006-09 published Qualla originals and mapped surviving hall.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Khaled_Ebn_El-Walid_Mosque_-_Courtyard.jpg",
+    "https://commons.wikimedia.org/wiki/File:Moschea_di_Khalid_b._al-Walid_(Homs).jpg",
+    "https://commons.wikimedia.org/wiki/File:Homs_Ibn-Whalid-Moschee.jpeg"
+  ],
+  "stories": [
+    {
+      "id": "khalid-ibn-al-walid-mosque-wp",
+      "url": "https://qualla.com/khalid-ibn-al-walid-mosque/"
+    }
+  ],
+  "referenceInputHash": "400da699d6e44765b6a85512eececd736e402946e43467c5455d1cac6ad23b7c",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-khalid-ibn-al-walid-mosque.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-khalid-ibn-al-walid-mosque.mjs",
+    "level": "skyline",
+    "export": "khalidMosqueSkyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "basalt": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.67,
+        "metallic": 0.22
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "khalidMosqueDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.22
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "khalidMosqueStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.22
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "khalidMosqueCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.22
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": 2.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named worshipprecinctway150212190/Q4022343 contains mapped whole prayerhallway1235112950. Its two northern cornersnodes11464728728/11464728729 are explicitly tagged minarets; allfour hall corners retained. Hallmetric frame follows its native north edge, +Xeast/+Zsouth externalframe/heading0; northern courtyard extends within the named precinct as a bounded intrinsic architectural estimate. Precinct9control boundary is not extruded as a building, and separate eastern ancillaryLway1235112951 is not mistaken for mainhall. No copyrighted modern plan/pixels copied. Independent400mfield/16641samples/two original rawTerrariumtiles frozen before any floor/geometry/sectionchoice. FixedSWproviderdatum500.642m/floor+2.5m is a single unsurveyed structural reference, not terrainfitting. Nativehall36.63x32.86m/four exactcorners andtwo tagged northernminarets retained. Body10.8m, central steppedsquare17.4m/drum17.4..19.2m/main pale dome7.8mradius+7.6mrise, fourlower outwardhalfdomes on continuous supporting drums andfour cornerdomes; small domed sideprojection. Minaretgallery23.7..25.2m/narrow uppershaft32.4m/cap37.2m/finial40.3m are bounded originalphotoproportion estimates. Court northlimit-47m/three surrounding lowarcades are bounded intrinsicarchitectural estimates within namedprecinct, not an exactmapped modernplan. Windows/finial/balustradecensus/hiddenroof andcurrentrestoredfinish estimated. No park/landscapebody/artificialterrainplate or privateinterior. Grid/PNG/rawtilesunchanged; exacthostcontact unresolved/replacementfalse.",
+    "anchor": [
+      36.715745424999994,
+      34.736624000000006
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        36.714907953145605,
+        34.73627683636529
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW exterior5m beyond namedwholeprecinct before floors/heights/geometry; unsurveyed reference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1235112950",
+      "way/150212190",
+      "way/1235112951"
+    ],
+    "source": "https://www.openstreetmap.org/way/1235112950",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6c8f837a6090e24ed627172a9722dc9c59a8cffcdd7ccf9dc085a53a97814c48",
+    "notes": "Whole Khalid ibn al-Walid Mosque Q4022343: entire mapped prayer hallway1235112950/four nativecorners and both tagged minaretcornernodes, central silver dome, lower halfdomes and corner domes, basalt exterior with pale limestone window surrounds/quoins, slender twin minarets with galleries/finials, north-facing open ablaq arcade and bounded three-sided courtyard arcades. Native named worship precinctway150212190 is identity/acquisition context, not an invented building footprint. Eastern ancillaryway1235112951 retained in nativecontext but separately identified, not silently substituted for the hall. Exclude surrounding gardens, park monument, roads/landscape, people, signage and private tomb/prayer interior. Hidden roof/courtyard sections and precise current restored finish are original bounded estimates from three clear2006-09 published Qualla originals and mapped surviving hall."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named worshipprecinctway150212190/Q4022343 contains mapped whole prayerhallway1235112950. Its two northern cornersnodes11464728728/11464728729 are explicitly tagged minarets; allfour hall corners retained. Hallmetric frame follows its native north edge, +Xeast/+Zsouth externalframe/heading0; northern courtyard extends within the named precinct as a bounded intrinsic architectural estimate. Precinct9control boundary is not extruded as a building, and separate eastern ancillaryLway1235112951 is not mistaken for mainhall. No copyrighted modern plan/pixels copied.",
+    "Independent400mfield/16641samples/two original rawTerrariumtiles frozen before any floor/geometry/sectionchoice. FixedSWproviderdatum500.642m/floor+2.5m is a single unsurveyed structural reference, not terrainfitting. Nativehall36.63x32.86m/four exactcorners andtwo tagged northernminarets retained. Body10.8m, central steppedsquare17.4m/drum17.4..19.2m/main pale dome7.8mradius+7.6mrise, fourlower outwardhalfdomes on continuous supporting drums andfour cornerdomes; small domed sideprojection. Minaretgallery23.7..25.2m/narrow uppershaft32.4m/cap37.2m/finial40.3m are bounded originalphotoproportion estimates. Court northlimit-47m/three surrounding lowarcades are bounded intrinsicarchitectural estimates within namedprecinct, not an exactmapped modernplan. Windows/finial/balustradecensus/hiddenroof andcurrentrestoredfinish estimated. No park/landscapebody/artificialterrainplate or privateinterior. Grid/PNG/rawtilesunchanged; exacthostcontact unresolved/replacementfalse.",
+    "Whole mapped prayerhall and both tagged northern minarets, pale central dome/four lower halfdomes/four cornerdomes, small side dome and north courtyard open ablaq arcades. Exact four native corners retained at every LOD. Named worship precinct and eastern ancillary footprint remain identity/context controls, not an extruded park boundary or substituted building.",
+    "Three exact cleared published Qualla originals with creator PD-user dedications by Zozo2kx, Cloj and Anamnesis personally inspected/nativeSHA1matched. Explicit CC-BY-SA photograph under misleading PD-architecture label excluded without pixels. No supplemental imagery, generated photograph, photo textures or source media/body/metadata repair.",
+    "Upper roof/dome sections, heights, window/merlon census, hidden rear, minaret balconies/finials, courtyard arcade limits and small side projection are original bounded photo estimates; later restored finish/fixtures unsurveyed. Private prayer/tomb interior, park monument, gardens and surrounding roads/landscape excluded.",
+    "Independent400m field/16641samples/two rawtiles frozen before all structural sections. Fixed500.642m provider datum and+2.5m structural floor are unsurveyed reference estimates. Source ground/height PNG/rawtiles unchanged; exact footing/threshold/courtyard host contact unresolved, geographicpreview/replacementfalse. Flat render ground is a separate diagnosticfixture."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-mosque-hall-dome-group-twin-minarets-and-courtyard",
+      "position": [
+        75,
+        50,
+        90
+      ],
+      "lookAt": [
+        0,
+        17.5,
+        -15
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "northern-open-ablaq-arcades-and-courtyard",
+      "position": [
+        -40,
+        23,
+        -70
+      ],
+      "lookAt": [
+        0,
+        9.5,
+        -24
+      ]
+    },
+    {
+      "name": "silver-central-dome-drums-half-domes-and-corner-domes",
+      "position": [
+        42,
+        35,
+        38
+      ],
+      "lookAt": [
+        0,
+        20.5,
+        0
+      ]
+    },
+    {
+      "name": "native-corner-minaret-gallery-cap-and-finial",
+      "position": [
+        38,
+        36,
+        -34
+      ],
+      "lookAt": [
+        17,
+        29.5,
+        -16
+      ]
+    },
+    {
+      "name": "basalt-wall-pale-recessed-window-surrounds-and-side-projection",
+      "position": [
+        -44,
+        14,
+        25
+      ],
+      "lookAt": [
+        -15,
+        9.5,
+        4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18348,
+    "vertices": 55044,
+    "materials": 5,
+    "bytes": 2205040,
+    "sha256": "sha256:94098ef28cc60f784d20884ea4a9e811f06b92fb109e14e36d5402971d5cba89"
+  }
+}

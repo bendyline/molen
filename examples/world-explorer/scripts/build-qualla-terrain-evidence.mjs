@@ -8,13 +8,15 @@ import { fileURLToPath } from 'node:url';
 import { decodePng16, encodePng16 } from '@bendyline/molen-terrain/kernel';
 import pngjs from 'pngjs';
 import {
-  next1000Entries,
-  next1000Matches,
+  structureCatalogEntries,
+  structureCatalogMatches,
 } from '../../../content/worldgen/source/qualla-structures/work-ownership.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const json = async (p) => JSON.parse(await readFile(resolve(root, p), 'utf8'));
-const batch = await json('content/worldgen/source/qualla-structures/batches/qualla-001.json');
+const batchName = process.argv.find((a) => a.startsWith('--batch='))?.slice(8) ?? 'qualla-001';
+if (!/^qualla-\d{3}$/.test(batchName)) throw Error('Invalid batch name');
+const batch = await json(`content/worldgen/source/qualla-structures/batches/${batchName}.json`);
 const structures = (
   await readFile(
     resolve(root, 'content/worldgen/source/qualla-structures/structures.jsonl'),
@@ -24,9 +26,9 @@ const structures = (
   .trim()
   .split('\n')
   .map(JSON.parse);
-const reserved = next1000Entries(
-  await json('content/worldgen/source/next-1000/candidates.json'),
-  await json('content/worldgen/source/next-1000/collections.json'),
+const reserved = structureCatalogEntries(
+  await json('content/worldgen/source/structure-catalog/candidates.json'),
+  await json('content/worldgen/source/structure-catalog/collections.json'),
 );
 const ids = process.argv
   .find((a) => a.startsWith('--ids='))
@@ -42,7 +44,7 @@ for (const id of ids) {
   const entry = batch.entries.find((e) => e.structureId === id);
   if (!entry?.sourcePath) throw Error(`No local source bundle: ${id}`);
   const target = structures.find((s) => s.id === id);
-  if (!target || next1000Matches(target, reserved, entry.modelIdentity).length)
+  if (!target || structureCatalogMatches(target, reserved, entry.modelIdentity).length)
     throw Error(`Not available for local authoring: ${id}`);
   const dir = resolve(root, entry.sourcePath),
     frame = JSON.parse(await readFile(resolve(dir, 'map-frame.json'))),

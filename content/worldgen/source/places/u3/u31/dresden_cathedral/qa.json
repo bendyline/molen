@@ -1,0 +1,2329 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.dresden_cathedral",
+  "reviewedOn": "2026-10-14",
+  "inputHash": "sha256:51896916343d8db10c6da0128618832d52d53a851759d4a9434423612ef31658",
+  "sourceHash": "sha256:6aeb595a4d0d33702da5cb5d986929d094e731bde386538fff078259defd11fa",
+  "runtimeHash": "sha256:6761180e4427ed20504610b9a615096db328965a70343834d0a79698683e58a7",
+  "captureReportHash": "sha256:7d31dbb48764a6c4d682aad94566ec131002acd481fce9322891ab0c2545a21c",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/single-tower-and-rounded-two-tier-nave.png",
+      "shots/closed-portal-and-layered-tower-base.png",
+      "shots/stacked-open-tower-bays.png",
+      "shots/green-onion-crown-spike-and-cross.png",
+      "shots/upper-windows-ovals-and-figure-balustrade.png",
+      "shots/rounded-rear-and-layered-aisle-roofs.png"
+    ],
+    "notes": "Inspected all 11 final portable/source-terrain views. Individual broad rounded lower body, narrower rounded upper nave, gray hipped roofs/pale metal apron, two balustrade/selected-figure tiers, repeated pilasters/tall windows/oval lights, one tall stepped tower with actual open bays, green onion/spike/cross and one closed recessed entrance are present. Corrected the inward-folded upper roof and excessive silhouette reduction; bounded outline simplification now retains the curved ends. Figures, crown openings and facade relief are medium-fi approximations."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/single-tower-and-rounded-two-tier-nave.png",
+      "shots/shared/closed-portal-and-layered-tower-base.png",
+      "shots/shared/stacked-open-tower-bays.png",
+      "shots/shared/green-onion-crown-spike-and-cross.png",
+      "shots/shared/upper-windows-ovals-and-figure-balustrade.png",
+      "shots/shared/rounded-rear-and-layered-aisle-roofs.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 11 final shared-material/geographic views. Four existing 256-square graphs supply raw sandstone, sandstone trim, standing-seam metal and wood. Gray roofs, pale apron and green crown share metal through linear tints. UVs are metric; glass is flat blue-gray and skyline uses mean tints. Each graph reads once. Unloading releases all model geometries and restores ground. Flat placement checks the signed plan; portable views complement coarse DEM contact. Ground colors are diagnostic.",
+    "captureReportHash": "sha256:73579c11257d84a026c377daa3ce1dedfbfcfe9135431418e263bc88fc4b8265"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/single-tower-and-rounded-two-tier-nave.png",
+      "medium-fi/closed-portal-and-layered-tower-base.png",
+      "medium-fi/stacked-open-tower-bays.png",
+      "medium-fi/green-onion-crown-spike-and-cross.png",
+      "medium-fi/upper-windows-ovals-and-figure-balustrade.png",
+      "medium-fi/rounded-rear-and-layered-aisle-roofs.png",
+      "medium-fi/whole-dresden-skyline.png",
+      "medium-fi/whole-dresden-district.png",
+      "medium-fi/whole-dresden-street.png",
+      "medium-fi/whole-dresden-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 27 final Earth-lighting views: Economy/High, noon/late, three distances, silhouette, six details, four matched whole-model levels and four transitions. Skyline preserves the rounded lower/upper envelopes, layered roofs/apron and stepped single tower/onion/spike/cross, omitting glazing and figures. District adds shared graphs, tall/oval panels, selected pilasters/balustrades and five coarse figures. Street adds actual tower bays, recessed windows/closed portal and all selected mapped figures. Closeup refines profiles, railings, figures, frames and mapped lower facade relief. Detail changes remain visible. Four matched cameras retain the full model; closer details/street cameras crop intentionally. Italian-palazzo neighbors are synthetic context, not local map buildings.",
+    "captureReportHash": "sha256:9cfcea5467d7660a5c89bf9d5987122ef1ab4907697dbb63e7852600e91826c7"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:c0e66a06ef984c8436d0e3d68f2c4cd708f89c45988a848f529dcca8cc21a1a4",
+    "mapFrameHash": "sha256:6b7bc2904c414a6df7baf396fda07a0cda957352d0aa0e7b19973d470b7c0b7a",
+    "notes": "Retained exact-QID way14879154 and 86 current cathedral controls retain the approximately 94.3x53.9m parent, upper-body/apron/tower plans and mapped figure locations. Native+X faces the northeast single tower/entrance, native-X the southwest rounded nave, native+Z the southeast castle side, at heading 0.455206290833rad. Raw transforms match without overall rescaling. The inward-folded upper-body input supplies a reconstructed convex envelope; distant lower-body LODs retain the parent outer envelope while the master keeps facade relief. Figure centers project to the reconstructed cornice. Standard DEM datum 122.273763m and estimated 1.3m floor clear sampled footprint peak 0.866m. All 24 actual viewer mask checks retain the cathedral and leave the adjacent castle block,castle tower and open front square uncovered. Precise portal/ground contact and walking fit remain approximate; no road replacement."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Individual medium-fi current exterior from two useful inspected elevated pictures and standard viewer PMTiles/DEM. Retained map tags explicitly flag inconsistent part heights. The 24m lower cornice,29.8m apron and 49.5/67.5/79.5/86m tower stages plus 87.9m top are approximate controls. Conflicting upper-body/roof/figure prisms are replaced by picture-led 40m cornice,43.5m roof ridge and about 3.5m figures. Openings, crown subdivision, sculpture silhouettes and roof profiles are estimated. Exact sculptures/carved crests/inscriptions, full interiors, adjacent castle/covered connection and certified walking are excluded. Physical laptop/phone timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u3/u31/dresden_cathedral/models/source.glb\",\"hash\":\"sha256:6aeb595a4d0d33702da5cb5d986929d094e731bde386538fff078259defd11fa\",\"bytes\":4697848,\"triangles\":39121,\"materials\":5,\"images\":0,\"min\":[-47.64139938354492,-4.15774393081665,-28.51698112487793],\"max\":[48.099998474121094,89.19999694824219,27.474544525146484],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.glb\",\"hash\":\"sha256:6761180e4427ed20504610b9a615096db328965a70343834d0a79698683e58a7\",\"bytes\":4697348,\"triangles\":39121,\"materials\":5,\"images\":0,\"min\":[-47.64139938354492,-4.15774393081665,-28.51698112487793],\"max\":[48.099998474121094,89.19999694824219,27.474544525146484],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.skyline.glb\",\"hash\":\"sha256:479b58586ba7c347ee8e695c1dfe61e0dbd0eee5cc0b0ef4da3ebff8e0e64cf3\",\"bytes\":83224,\"triangles\":996,\"materials\":1,\"images\":0,\"min\":[-47.157100677490234,-4.15774393081665,-26.95860481262207],\"max\":[48.099998474121094,89.19999694824219,27.03057289123535],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.district.glb\",\"hash\":\"sha256:689abfe89fe7d4de9f2e316ae8e86a3ef1b7fa7997e87be6afff2b17e485bb02\",\"bytes\":345800,\"triangles\":3969,\"materials\":5,\"images\":0,\"min\":[-47.62619400024414,-4.15774393081665,-27.283428192138672],\"max\":[48.099998474121094,89.19999694824219,27.35346794128418],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.street.glb\",\"hash\":\"sha256:da20d9e5d6437cebe52bf8e6f404a114044335d73de6a3164f4c22976ea7445d\",\"bytes\":1325108,\"triangles\":14031,\"materials\":5,\"images\":0,\"min\":[-47.72161865234375,-4.15774393081665,-27.501487731933594],\"max\":[48.099998474121094,89.19999694824219,27.569324493408203],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.closeup.glb\",\"hash\":\"sha256:69b46f3078045dfc6088dc9d59e441d5a17d7be5e21c1e978f17c45de24d164a\",\"bytes\":3787908,\"triangles\":39121,\"materials\":5,\"images\":0,\"min\":[-47.64139938354492,-4.15774393081665,-28.51698112487793],\"max\":[48.099998474121094,89.19999694824219,27.474544525146484],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "86-current-raw-controls-retained-QID-outline-signed-frame",
+        "passed": true
+      },
+      {
+        "check": "flagged-height-inconsistency-recorded-with-estimated-upper-stages",
+        "passed": true
+      },
+      {
+        "check": "standard-DEM-estimated-floor",
+        "passed": true
+      },
+      {
+        "check": "corrected-convex-upper-envelope-bounded-curved-LOD-outlines",
+        "passed": true
+      },
+      {
+        "check": "four-existing-shared-graphs-linear-tints-metric-UVs",
+        "passed": true
+      },
+      {
+        "check": "four-browser-budgets-and-separate-GPU-streams",
+        "passed": true
+      },
+      {
+        "check": "source-inventory-recipe-index-targeted-reproduction",
+        "passed": true
+      },
+      {
+        "check": "source-nave-roof",
+        "passed": true,
+        "notes": "{\"start\":[-4,45.8,1],\"end\":[-4,43.8,1],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-slope--1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,-21],\"end\":[2,25.1,-21],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-slope-1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,21],\"end\":[2,25.1,21],\"hits\":1}"
+      },
+      {
+        "check": "source-towerLower-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.54651700587777,25.5,0.26467207442415985],\"end\":[39.54651700587777,25.1,0.26467207442415985],\"hits\":1}"
+      },
+      {
+        "check": "source-towerMiddle-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.504373516957415,51,0.24404251624770165],\"end\":[39.504373516957415,50.599999999999994,0.24404251624770165],\"hits\":2}"
+      },
+      {
+        "check": "source-towerUpper-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.52544563194435,69,0.25435653837479155],\"end\":[39.52544563194435,68.6,0.25435653837479155],\"hits\":1}"
+      },
+      {
+        "check": "source-copper-onion",
+        "passed": true,
+        "notes": "{\"start\":[39.1,81,0.2],\"end\":[39.1,74.7,0.2],\"hits\":1}"
+      },
+      {
+        "check": "source-entrance-landing",
+        "passed": true,
+        "notes": "{\"start\":[47.4,1.5,2],\"end\":[47.4,1,2],\"hits\":1}"
+      },
+      {
+        "check": "source-tower-base-closed-portal-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[46.6,4.865,0.75],\"end\":[45.25,4.865,0.75],\"hits\":0}"
+      },
+      {
+        "check": "source-tower-base-closed-portal-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[45.25,4.865,0.75],\"end\":[44.65,4.865,0.75],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-0-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-47.271125730390665,12.450000000000001,2.038511070439702],\"end\":[-45.923941689805766,12.450000000000001,2.1256612901373395],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-0-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-45.923941689805766,12.450000000000001,2.1256612901373395],\"end\":[-45.32519322732359,12.450000000000001,2.1643947211140673],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-1-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-40.664194076154004,12.450000000000001,10.089693865247227],\"end\":[-39.59106828616945,12.450000000000001,9.27060837589338],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-1-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-39.59106828616945,12.450000000000001,9.27060837589338],\"end\":[-39.11412349062076,12.450000000000001,8.906570380625004],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-2-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-39.05339416639529,12.450000000000001,18.458482594401232],\"end\":[-38.058831803294424,12.450000000000001,17.545604888515488],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-2-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-38.058831803294424,12.450000000000001,17.545604888515488],\"end\":[-37.6168040863607,12.450000000000001,17.139881463677376],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-3-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-30.901896330375305,12.450000000000001,23.68135287720314],\"end\":[-30.988160139205696,12.450000000000001,22.334111786942724],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-3-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-30.988160139205696,12.450000000000001,22.334111786942724],\"end\":[-31.026499609796982,12.450000000000001,21.735337969049205],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-4-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-23.673111977058497,12.450000000000001,26.76295875287326],\"end\":[-23.58094055088435,12.450000000000001,25.416108936376624],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-4-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-23.58094055088435,12.450000000000001,25.416108936376624],\"end\":[-23.53997547258473,12.450000000000001,24.817509017933673],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-5-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-13.779667538294833,12.450000000000001,27.453632397267047],\"end\":[-13.791066391621076,12.450000000000001,26.10368052177561],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-5-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-13.791066391621076,12.450000000000001,26.10368052177561],\"end\":[-13.796132548654962,12.450000000000001,25.503701910446082],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-6-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-5.034339930481489,12.450000000000001,26.37251484411803],\"end\":[-5.045738194415837,12.450000000000001,25.022562963649957],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-6-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-5.045738194415837,12.450000000000001,25.022562963649957],\"end\":[-5.0508040894977695,12.450000000000001,24.42258435010859],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-7-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[4.709158014192229,12.450000000000001,26.787810295051035],\"end\":[5.782283511457427,12.450000000000001,25.968724422190736],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-7-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[5.782283511457427,12.450000000000001,25.968724422190736],\"end\":[6.259228176908627,12.450000000000001,25.604686256475045],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-8-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[14.906539248566727,12.450000000000001,27.16395091356271],\"end\":[14.697430810843777,12.450000000000001,25.830244176205106],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-8-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[14.697430810843777,12.450000000000001,25.830244176205106],\"end\":[14.604493727411356,12.450000000000001,25.237485626268395],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-9-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[24.484005380295017,12.450000000000001,26.786116337801754],\"end\":[24.533918332441733,12.450000000000001,25.437039358082657],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-9-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[24.533918332441733,12.450000000000001,25.437039358082657],\"end\":[24.556101866729165,12.450000000000001,24.837449589318616],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-10-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[31.513710567164033,12.450000000000001,24.354637958305382],\"end\":[32.38359575217776,12.450000000000001,23.322262171639675],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-10-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[32.38359575217776,12.450000000000001,23.322262171639675],\"end\":[32.77021138996164,12.450000000000001,22.86342848867714],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-11-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[39.79593545085414,12.450000000000001,18.687270970760096],\"end\":[39.68103687928613,12.450000000000001,17.342169369299587],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-11-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[39.68103687928613,12.450000000000001,17.342169369299587],\"end\":[39.62997084747813,12.450000000000001,16.744346435317137],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-12-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[41.730118675500826,12.450000000000001,-16.05087708335646],\"end\":[40.971082969949435,12.450000000000001,-14.934469990178481],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-12-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[40.971082969949435,12.450000000000001,-14.934469990178481],\"end\":[40.63373376748215,12.450000000000001,-14.438289059877157],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-13-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[35.48819493289976,12.450000000000001,-23.259600878745463],\"end\":[34.54169474642579,12.450000000000001,-22.296980809868476],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-13-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[34.54169474642579,12.450000000000001,-22.296980809868476],\"end\":[34.12102799688181,12.450000000000001,-21.86914966814537],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-14-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[27.26064430878979,12.450000000000001,-25.08400354510257],\"end\":[25.911657101995285,12.450000000000001,-25.031720508611222],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-14-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[25.911657101995285,12.450000000000001,-25.031720508611222],\"end\":[25.312107232308836,12.450000000000001,-25.008483603503958],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-15-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[18.482311071697808,12.450000000000001,-26.05105282931406],\"end\":[19.69484104692381,12.450000000000001,-25.457528559230322],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-15-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[19.69484104692381,12.450000000000001,-25.457528559230322],\"end\":[20.233743258135366,12.450000000000001,-25.19373999474866],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-16-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[8.76600890835352,12.450000000000001,-26.434492516110627],\"end\":[8.777401628805457,12.450000000000001,-25.08454058884777],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-16-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[8.777401628805457,12.450000000000001,-25.08454058884777],\"end\":[8.782465060117428,12.450000000000001,-24.48456195450872],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-17-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[1.1996382719049272,12.450000000000001,-27.11793508312841],\"end\":[-0.01289170332107159,12.450000000000001,-27.71145935321215],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-17-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-0.01289170332107159,12.450000000000001,-27.71145935321215],\"end\":[-0.5517939145326265,12.450000000000001,-27.975247917693814],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-18-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-9.460637768731589,12.450000000000001,-26.17055659572255],\"end\":[-8.248107793505586,12.450000000000001,-25.57703232563882],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-18-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-8.248107793505586,12.450000000000001,-25.57703232563882],\"end\":[-7.709205582294027,12.450000000000001,-25.313243761157164],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-19-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-19.439321086270148,12.450000000000001,-26.532198436422718],\"end\":[-19.427927068695887,12.450000000000001,-25.182246520107356],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-19-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-19.427927068695887,12.450000000000001,-25.182246520107356],\"end\":[-19.422863060885103,12.450000000000001,-24.58226789063386],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-20-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-27.686848339632714,12.450000000000001,-25.640568747991274],\"end\":[-26.33719914676502,12.450000000000001,-25.60979446990751],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-20-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-26.33719914676502,12.450000000000001,-25.60979446990751],\"end\":[-25.737355061046042,12.450000000000001,-25.59611701298139],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-21-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-35.60168833005126,12.450000000000001,-23.096234848623578],\"end\":[-34.674761746034534,12.450000000000001,-22.114752751057313],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-21-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-34.674761746034534,12.450000000000001,-22.114752751057313],\"end\":[-34.26279437536043,12.450000000000001,-21.678538485472306],\"hits\":1}"
+      },
+      {
+        "check": "source-lower-window-22-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-42.02043534736687,12.450000000000001,-15.577440085143312],\"end\":[-40.80790537214087,12.450000000000001,-14.983915815059579],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-22-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-40.80790537214087,12.450000000000001,-14.983915815059579],\"end\":[-40.269003160929316,12.450000000000001,-14.720127250577917],\"hits\":2}"
+      },
+      {
+        "check": "source-lower-window-23-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-44.11199481826344,12.450000000000001,-7.653709075514339],\"end\":[-43.674290183235264,12.450000000000001,-6.376636386715909],\"hits\":0}"
+      },
+      {
+        "check": "source-lower-window-23-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-43.674290183235264,12.450000000000001,-6.376636386715909],\"end\":[-43.479754789889405,12.450000000000001,-5.809048525027718],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-0-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-30.845151285142,34.33,-4.928874082733456],\"end\":[-29.829474781308658,34.33,-4.039547798650453],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-0-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-29.829474781308658,34.33,-4.039547798650453],\"end\":[-29.378063001827172,34.33,-3.6442916723913408],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-1-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-24.823060415016073,34.33,-10.53869004338724],\"end\":[-24.260455730219583,34.33,-9.311507918091634],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-1-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-24.260455730219583,34.33,-9.311507918091634],\"end\":[-24.010409203643366,34.33,-8.766093640182476],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-2-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-16.54608909695751,34.33,-11.286009625385129],\"end\":[-16.530006962715618,34.33,-9.936105419540052],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-2-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-16.530006962715618,34.33,-9.936105419540052],\"end\":[-16.522859347496997,34.33,-9.336147994720019],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-3-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-8.37286195191002,34.33,-11.383381672651147],\"end\":[-8.356779817668126,34.33,-10.033477466806072],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-3-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-8.356779817668126,34.33,-10.033477466806072],\"end\":[-8.349632202449508,34.33,-9.433520041986037],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-4-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-0.1996348068625352,34.33,-11.480753719917164],\"end\":[-0.18355267262064157,34.33,-10.13084951407209],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-4-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-0.18355267262064157,34.33,-10.13084951407209],\"end\":[-0.17640505740202217,34.33,-9.530892089252054],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-5-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[7.996377804590995,34.33,-11.459377442464648],\"end\":[7.938619585804161,34.33,-10.110613568333013],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-5-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[7.938619585804161,34.33,-10.110613568333013],\"end\":[7.912949266343345,34.33,-9.511162957607844],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-6-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[16.16270061518696,34.33,-11.109670374663777],\"end\":[16.104942396400126,34.33,-9.760906500532142],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-6-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[16.104942396400126,34.33,-9.760906500532142],\"end\":[16.07927207693931,34.33,-9.161455889806973],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-7-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[23.63081053695416,34.33,-7.916779295030145],\"end\":[22.6761166518941,34.33,-6.962284881306874],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-7-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[22.6761166518941,34.33,-6.962284881306874],\"end\":[22.251808258534076,34.33,-6.538065141874309],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-8-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[20.291820891099217,34.33,12.891106363726378],\"end\":[19.85411747574746,34.33,11.614033256895993],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-8-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[19.85411747574746,34.33,11.614033256895993],\"end\":[19.659582624480013,34.33,11.046445209415824],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-9-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[12.054129914065161,34.33,13.499545117370182],\"end\":[12.02042476853894,34.33,12.149965937342179],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-9-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[12.02042476853894,34.33,12.149965937342179],\"end\":[12.005444703860618,34.33,11.550152968440845],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-10-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[3.882870693718862,34.33,13.703618716926254],\"end\":[3.8491655481926412,34.33,12.35403953689825],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-10-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[3.8491655481926412,34.33,12.35403953689825],\"end\":[3.8341854835143203,34.33,11.754226567996916],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-11-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-4.309438326812089,34.33,13.77205603315215],\"end\":[-4.280750659673849,34.33,12.422360875809513],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-11-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-4.280750659673849,34.33,12.422360875809513],\"end\":[-4.268000585390188,34.33,11.82249636143501],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-12-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-12.481399751753377,34.33,13.598361619306278],\"end\":[-12.45271208461514,34.33,12.24866646196364],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-12-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-12.45271208461514,34.33,12.24866646196364],\"end\":[-12.439962010331477,34.33,11.648801947589137],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-13-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-20.673090564853904,34.33,13.285144136316221],\"end\":[-20.564033272620602,34.33,11.939556343933004],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-13-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-20.564033272620602,34.33,11.939556343933004],\"end\":[-20.51556336496136,34.33,11.341517325096019],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-14-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-28.163904008411336,34.33,10.110331945012058],\"end\":[-27.209207990848988,34.33,9.155839664241494],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-14-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-27.209207990848988,34.33,9.155839664241494],\"end\":[-26.784898649710165,34.33,8.73162087278791],\"hits\":1}"
+      },
+      {
+        "check": "source-upper-window-15-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-32.45535311224059,34.33,3.133199420369987],\"end\":[-31.105401196169712,34.33,3.121805373829434],\"hits\":0}"
+      },
+      {
+        "check": "source-upper-window-15-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-31.105401196169712,34.33,3.121805373829434],\"end\":[-30.505422566804878,34.33,3.1167413531447434],\"hits\":1}"
+      },
+      {
+        "check": "source-towerLower-open-bay-0-clear",
+        "passed": true,
+        "notes": "{\"start\":[32.456518704926516,37.72,0.832775250761457],\"end\":[35.75371592999444,37.72,0.6967956235948347],\"hits\":0}"
+      },
+      {
+        "check": "source-towerLower-open-bay-2-clear",
+        "passed": true,
+        "notes": "{\"start\":[39.853792445378325,37.72,6.938869227703555],\"end\":[39.76369370098821,37.72,3.6400994242375226],\"hits\":0}"
+      },
+      {
+        "check": "source-towerLower-open-bay-4-clear",
+        "passed": true,
+        "notes": "{\"start\":[46.10603410272408,37.72,-0.2767530280403191],\"end\":[42.80615171708813,37.72,-0.24889192666933763],\"hits\":0}"
+      },
+      {
+        "check": "source-towerLower-open-bay-6-clear",
+        "passed": true,
+        "notes": "{\"start\":[38.764946045075405,37.72,-6.999691890637705],\"end\":[38.90091581833163,37.72,-3.7024942591996606],\"hits\":0}"
+      },
+      {
+        "check": "source-towerMiddle-open-bay-0-clear",
+        "passed": true,
+        "notes": "{\"start\":[33.3331566923871,58.79,0.72762156286644],\"end\":[36.63192630372845,58.79,0.6375157845234054],\"hits\":0}"
+      },
+      {
+        "check": "source-towerMiddle-open-bay-2-clear",
+        "passed": true,
+        "notes": "{\"start\":[39.79195182916599,58.79,6.0495567951708225],\"end\":[39.60335369084021,58.79,2.7549504845139565],\"hits\":0}"
+      },
+      {
+        "check": "source-towerMiddle-open-bay-4-clear",
+        "passed": true,
+        "notes": "{\"start\":[45.098127640669034,58.79,-0.3521853547103861],\"end\":[41.7982452542143,58.79,-0.3243243503163724],\"hits\":0}"
+      },
+      {
+        "check": "source-towerMiddle-open-bay-6-clear",
+        "passed": true,
+        "notes": "{\"start\":[38.82689432304413,58.79,-6.0382226124325875],\"end\":[38.92347120479343,58.79,-2.739636111230658],\"hits\":0}"
+      },
+      {
+        "check": "runtime-nave-roof",
+        "passed": true,
+        "notes": "{\"start\":[-4,45.8,1],\"end\":[-4,43.8,1],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-slope--1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,-21],\"end\":[2,25.1,-21],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-slope-1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,21],\"end\":[2,25.1,21],\"hits\":1}"
+      },
+      {
+        "check": "runtime-towerLower-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.54651700587777,25.5,0.26467207442415985],\"end\":[39.54651700587777,25.1,0.26467207442415985],\"hits\":1}"
+      },
+      {
+        "check": "runtime-towerMiddle-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.504373516957415,51,0.24404251624770165],\"end\":[39.504373516957415,50.599999999999994,0.24404251624770165],\"hits\":2}"
+      },
+      {
+        "check": "runtime-towerUpper-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.52544563194435,69,0.25435653837479155],\"end\":[39.52544563194435,68.6,0.25435653837479155],\"hits\":1}"
+      },
+      {
+        "check": "runtime-copper-onion",
+        "passed": true,
+        "notes": "{\"start\":[39.1,81,0.2],\"end\":[39.1,74.7,0.2],\"hits\":1}"
+      },
+      {
+        "check": "runtime-entrance-landing",
+        "passed": true,
+        "notes": "{\"start\":[47.4,1.5,2],\"end\":[47.4,1,2],\"hits\":1}"
+      },
+      {
+        "check": "runtime-tower-base-closed-portal-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[46.6,4.865,0.75],\"end\":[45.25,4.865,0.75],\"hits\":0}"
+      },
+      {
+        "check": "runtime-tower-base-closed-portal-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[45.25,4.865,0.75],\"end\":[44.65,4.865,0.75],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-0-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-47.271125730390665,12.450000000000001,2.038511070439702],\"end\":[-45.923941689805766,12.450000000000001,2.1256612901373395],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-0-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-45.923941689805766,12.450000000000001,2.1256612901373395],\"end\":[-45.32519322732359,12.450000000000001,2.1643947211140673],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-1-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-40.664194076154004,12.450000000000001,10.089693865247227],\"end\":[-39.59106828616945,12.450000000000001,9.27060837589338],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-1-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-39.59106828616945,12.450000000000001,9.27060837589338],\"end\":[-39.11412349062076,12.450000000000001,8.906570380625004],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-2-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-39.05339416639529,12.450000000000001,18.458482594401232],\"end\":[-38.058831803294424,12.450000000000001,17.545604888515488],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-2-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-38.058831803294424,12.450000000000001,17.545604888515488],\"end\":[-37.6168040863607,12.450000000000001,17.139881463677376],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-3-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-30.901896330375305,12.450000000000001,23.68135287720314],\"end\":[-30.988160139205696,12.450000000000001,22.334111786942724],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-3-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-30.988160139205696,12.450000000000001,22.334111786942724],\"end\":[-31.026499609796982,12.450000000000001,21.735337969049205],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-4-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-23.673111977058497,12.450000000000001,26.76295875287326],\"end\":[-23.58094055088435,12.450000000000001,25.416108936376624],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-4-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-23.58094055088435,12.450000000000001,25.416108936376624],\"end\":[-23.53997547258473,12.450000000000001,24.817509017933673],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-5-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-13.779667538294833,12.450000000000001,27.453632397267047],\"end\":[-13.791066391621076,12.450000000000001,26.10368052177561],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-5-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-13.791066391621076,12.450000000000001,26.10368052177561],\"end\":[-13.796132548654962,12.450000000000001,25.503701910446082],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-6-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-5.034339930481489,12.450000000000001,26.37251484411803],\"end\":[-5.045738194415837,12.450000000000001,25.022562963649957],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-6-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-5.045738194415837,12.450000000000001,25.022562963649957],\"end\":[-5.0508040894977695,12.450000000000001,24.42258435010859],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-7-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[4.709158014192229,12.450000000000001,26.787810295051035],\"end\":[5.782283511457427,12.450000000000001,25.968724422190736],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-7-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[5.782283511457427,12.450000000000001,25.968724422190736],\"end\":[6.259228176908627,12.450000000000001,25.604686256475045],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-8-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[14.906539248566727,12.450000000000001,27.16395091356271],\"end\":[14.697430810843777,12.450000000000001,25.830244176205106],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-8-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[14.697430810843777,12.450000000000001,25.830244176205106],\"end\":[14.604493727411356,12.450000000000001,25.237485626268395],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-9-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[24.484005380295017,12.450000000000001,26.786116337801754],\"end\":[24.533918332441733,12.450000000000001,25.437039358082657],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-9-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[24.533918332441733,12.450000000000001,25.437039358082657],\"end\":[24.556101866729165,12.450000000000001,24.837449589318616],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-10-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[31.513710567164033,12.450000000000001,24.354637958305382],\"end\":[32.38359575217776,12.450000000000001,23.322262171639675],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-10-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[32.38359575217776,12.450000000000001,23.322262171639675],\"end\":[32.77021138996164,12.450000000000001,22.86342848867714],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-11-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[39.79593545085414,12.450000000000001,18.687270970760096],\"end\":[39.68103687928613,12.450000000000001,17.342169369299587],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-11-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[39.68103687928613,12.450000000000001,17.342169369299587],\"end\":[39.62997084747813,12.450000000000001,16.744346435317137],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-12-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[41.730118675500826,12.450000000000001,-16.05087708335646],\"end\":[40.971082969949435,12.450000000000001,-14.934469990178481],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-12-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[40.971082969949435,12.450000000000001,-14.934469990178481],\"end\":[40.63373376748215,12.450000000000001,-14.438289059877157],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-13-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[35.48819493289976,12.450000000000001,-23.259600878745463],\"end\":[34.54169474642579,12.450000000000001,-22.296980809868476],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-13-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[34.54169474642579,12.450000000000001,-22.296980809868476],\"end\":[34.12102799688181,12.450000000000001,-21.86914966814537],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-14-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[27.26064430878979,12.450000000000001,-25.08400354510257],\"end\":[25.911657101995285,12.450000000000001,-25.031720508611222],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-14-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[25.911657101995285,12.450000000000001,-25.031720508611222],\"end\":[25.312107232308836,12.450000000000001,-25.008483603503958],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-15-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[18.482311071697808,12.450000000000001,-26.05105282931406],\"end\":[19.69484104692381,12.450000000000001,-25.457528559230322],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-15-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[19.69484104692381,12.450000000000001,-25.457528559230322],\"end\":[20.233743258135366,12.450000000000001,-25.19373999474866],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-16-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[8.76600890835352,12.450000000000001,-26.434492516110627],\"end\":[8.777401628805457,12.450000000000001,-25.08454058884777],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-16-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[8.777401628805457,12.450000000000001,-25.08454058884777],\"end\":[8.782465060117428,12.450000000000001,-24.48456195450872],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-17-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[1.1996382719049272,12.450000000000001,-27.11793508312841],\"end\":[-0.01289170332107159,12.450000000000001,-27.71145935321215],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-17-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-0.01289170332107159,12.450000000000001,-27.71145935321215],\"end\":[-0.5517939145326265,12.450000000000001,-27.975247917693814],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-18-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-9.460637768731589,12.450000000000001,-26.17055659572255],\"end\":[-8.248107793505586,12.450000000000001,-25.57703232563882],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-18-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-8.248107793505586,12.450000000000001,-25.57703232563882],\"end\":[-7.709205582294027,12.450000000000001,-25.313243761157164],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-19-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-19.439321086270148,12.450000000000001,-26.532198436422718],\"end\":[-19.427927068695887,12.450000000000001,-25.182246520107356],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-19-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-19.427927068695887,12.450000000000001,-25.182246520107356],\"end\":[-19.422863060885103,12.450000000000001,-24.58226789063386],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-20-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-27.686848339632714,12.450000000000001,-25.640568747991274],\"end\":[-26.33719914676502,12.450000000000001,-25.60979446990751],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-20-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-26.33719914676502,12.450000000000001,-25.60979446990751],\"end\":[-25.737355061046042,12.450000000000001,-25.59611701298139],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-21-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-35.60168833005126,12.450000000000001,-23.096234848623578],\"end\":[-34.674761746034534,12.450000000000001,-22.114752751057313],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-21-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-34.674761746034534,12.450000000000001,-22.114752751057313],\"end\":[-34.26279437536043,12.450000000000001,-21.678538485472306],\"hits\":1}"
+      },
+      {
+        "check": "runtime-lower-window-22-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-42.02043534736687,12.450000000000001,-15.577440085143312],\"end\":[-40.80790537214087,12.450000000000001,-14.983915815059579],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-22-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-40.80790537214087,12.450000000000001,-14.983915815059579],\"end\":[-40.269003160929316,12.450000000000001,-14.720127250577917],\"hits\":2}"
+      },
+      {
+        "check": "runtime-lower-window-23-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-44.11199481826344,12.450000000000001,-7.653709075514339],\"end\":[-43.674290183235264,12.450000000000001,-6.376636386715909],\"hits\":0}"
+      },
+      {
+        "check": "runtime-lower-window-23-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-43.674290183235264,12.450000000000001,-6.376636386715909],\"end\":[-43.479754789889405,12.450000000000001,-5.809048525027718],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-0-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-30.845151285142,34.33,-4.928874082733456],\"end\":[-29.829474781308658,34.33,-4.039547798650453],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-0-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-29.829474781308658,34.33,-4.039547798650453],\"end\":[-29.378063001827172,34.33,-3.6442916723913408],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-1-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-24.823060415016073,34.33,-10.53869004338724],\"end\":[-24.260455730219583,34.33,-9.311507918091634],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-1-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-24.260455730219583,34.33,-9.311507918091634],\"end\":[-24.010409203643366,34.33,-8.766093640182476],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-2-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-16.54608909695751,34.33,-11.286009625385129],\"end\":[-16.530006962715618,34.33,-9.936105419540052],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-2-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-16.530006962715618,34.33,-9.936105419540052],\"end\":[-16.522859347496997,34.33,-9.336147994720019],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-3-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-8.37286195191002,34.33,-11.383381672651147],\"end\":[-8.356779817668126,34.33,-10.033477466806072],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-3-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-8.356779817668126,34.33,-10.033477466806072],\"end\":[-8.349632202449508,34.33,-9.433520041986037],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-4-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-0.1996348068625352,34.33,-11.480753719917164],\"end\":[-0.18355267262064157,34.33,-10.13084951407209],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-4-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-0.18355267262064157,34.33,-10.13084951407209],\"end\":[-0.17640505740202217,34.33,-9.530892089252054],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-5-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[7.996377804590995,34.33,-11.459377442464648],\"end\":[7.938619585804161,34.33,-10.110613568333013],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-5-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[7.938619585804161,34.33,-10.110613568333013],\"end\":[7.912949266343345,34.33,-9.511162957607844],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-6-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[16.16270061518696,34.33,-11.109670374663777],\"end\":[16.104942396400126,34.33,-9.760906500532142],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-6-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[16.104942396400126,34.33,-9.760906500532142],\"end\":[16.07927207693931,34.33,-9.161455889806973],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-7-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[23.63081053695416,34.33,-7.916779295030145],\"end\":[22.6761166518941,34.33,-6.962284881306874],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-7-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[22.6761166518941,34.33,-6.962284881306874],\"end\":[22.251808258534076,34.33,-6.538065141874309],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-8-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[20.291820891099217,34.33,12.891106363726378],\"end\":[19.85411747574746,34.33,11.614033256895993],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-8-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[19.85411747574746,34.33,11.614033256895993],\"end\":[19.659582624480013,34.33,11.046445209415824],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-9-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[12.054129914065161,34.33,13.499545117370182],\"end\":[12.02042476853894,34.33,12.149965937342179],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-9-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[12.02042476853894,34.33,12.149965937342179],\"end\":[12.005444703860618,34.33,11.550152968440845],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-10-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[3.882870693718862,34.33,13.703618716926254],\"end\":[3.8491655481926412,34.33,12.35403953689825],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-10-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[3.8491655481926412,34.33,12.35403953689825],\"end\":[3.8341854835143203,34.33,11.754226567996916],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-11-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-4.309438326812089,34.33,13.77205603315215],\"end\":[-4.280750659673849,34.33,12.422360875809513],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-11-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-4.280750659673849,34.33,12.422360875809513],\"end\":[-4.268000585390188,34.33,11.82249636143501],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-12-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-12.481399751753377,34.33,13.598361619306278],\"end\":[-12.45271208461514,34.33,12.24866646196364],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-12-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-12.45271208461514,34.33,12.24866646196364],\"end\":[-12.439962010331477,34.33,11.648801947589137],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-13-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-20.673090564853904,34.33,13.285144136316221],\"end\":[-20.564033272620602,34.33,11.939556343933004],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-13-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-20.564033272620602,34.33,11.939556343933004],\"end\":[-20.51556336496136,34.33,11.341517325096019],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-14-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-28.163904008411336,34.33,10.110331945012058],\"end\":[-27.209207990848988,34.33,9.155839664241494],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-14-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-27.209207990848988,34.33,9.155839664241494],\"end\":[-26.784898649710165,34.33,8.73162087278791],\"hits\":1}"
+      },
+      {
+        "check": "runtime-upper-window-15-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-32.45535311224059,34.33,3.133199420369987],\"end\":[-31.105401196169712,34.33,3.121805373829434],\"hits\":0}"
+      },
+      {
+        "check": "runtime-upper-window-15-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-31.105401196169712,34.33,3.121805373829434],\"end\":[-30.505422566804878,34.33,3.1167413531447434],\"hits\":1}"
+      },
+      {
+        "check": "runtime-towerLower-open-bay-0-clear",
+        "passed": true,
+        "notes": "{\"start\":[32.456518704926516,37.72,0.832775250761457],\"end\":[35.75371592999444,37.72,0.6967956235948347],\"hits\":0}"
+      },
+      {
+        "check": "runtime-towerLower-open-bay-2-clear",
+        "passed": true,
+        "notes": "{\"start\":[39.853792445378325,37.72,6.938869227703555],\"end\":[39.76369370098821,37.72,3.6400994242375226],\"hits\":0}"
+      },
+      {
+        "check": "runtime-towerLower-open-bay-4-clear",
+        "passed": true,
+        "notes": "{\"start\":[46.10603410272408,37.72,-0.2767530280403191],\"end\":[42.80615171708813,37.72,-0.24889192666933763],\"hits\":0}"
+      },
+      {
+        "check": "runtime-towerLower-open-bay-6-clear",
+        "passed": true,
+        "notes": "{\"start\":[38.764946045075405,37.72,-6.999691890637705],\"end\":[38.90091581833163,37.72,-3.7024942591996606],\"hits\":0}"
+      },
+      {
+        "check": "runtime-towerMiddle-open-bay-0-clear",
+        "passed": true,
+        "notes": "{\"start\":[33.3331566923871,58.79,0.72762156286644],\"end\":[36.63192630372845,58.79,0.6375157845234054],\"hits\":0}"
+      },
+      {
+        "check": "runtime-towerMiddle-open-bay-2-clear",
+        "passed": true,
+        "notes": "{\"start\":[39.79195182916599,58.79,6.0495567951708225],\"end\":[39.60335369084021,58.79,2.7549504845139565],\"hits\":0}"
+      },
+      {
+        "check": "runtime-towerMiddle-open-bay-4-clear",
+        "passed": true,
+        "notes": "{\"start\":[45.098127640669034,58.79,-0.3521853547103861],\"end\":[41.7982452542143,58.79,-0.3243243503163724],\"hits\":0}"
+      },
+      {
+        "check": "runtime-towerMiddle-open-bay-6-clear",
+        "passed": true,
+        "notes": "{\"start\":[38.82689432304413,58.79,-6.0382226124325875],\"end\":[38.92347120479343,58.79,-2.739636111230658],\"hits\":0}"
+      },
+      {
+        "check": "skyline-nave-roof",
+        "passed": true,
+        "notes": "{\"start\":[-4,45.8,1],\"end\":[-4,43.8,1],\"hits\":1}"
+      },
+      {
+        "check": "skyline-lower-slope--1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,-21],\"end\":[2,25.1,-21],\"hits\":2}"
+      },
+      {
+        "check": "skyline-lower-slope-1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,21],\"end\":[2,25.1,21],\"hits\":2}"
+      },
+      {
+        "check": "skyline-towerLower-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.54651700587777,25.5,0.26467207442415985],\"end\":[39.54651700587777,25.1,0.26467207442415985],\"hits\":3}"
+      },
+      {
+        "check": "skyline-towerMiddle-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.504373516957415,51,0.24404251624770165],\"end\":[39.504373516957415,50.599999999999994,0.24404251624770165],\"hits\":3}"
+      },
+      {
+        "check": "skyline-towerUpper-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.52544563194435,69,0.25435653837479155],\"end\":[39.52544563194435,68.6,0.25435653837479155],\"hits\":2}"
+      },
+      {
+        "check": "skyline-copper-onion",
+        "passed": true,
+        "notes": "{\"start\":[39.1,81,0.2],\"end\":[39.1,74.7,0.2],\"hits\":1}"
+      },
+      {
+        "check": "skyline-entrance-landing",
+        "passed": true,
+        "notes": "{\"start\":[47.4,1.5,2],\"end\":[47.4,1,2],\"hits\":1}"
+      },
+      {
+        "check": "district-nave-roof",
+        "passed": true,
+        "notes": "{\"start\":[-4,45.8,1],\"end\":[-4,43.8,1],\"hits\":1}"
+      },
+      {
+        "check": "district-lower-slope--1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,-21],\"end\":[2,25.1,-21],\"hits\":2}"
+      },
+      {
+        "check": "district-lower-slope-1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,21],\"end\":[2,25.1,21],\"hits\":2}"
+      },
+      {
+        "check": "district-towerLower-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.54651700587777,25.5,0.26467207442415985],\"end\":[39.54651700587777,25.1,0.26467207442415985],\"hits\":3}"
+      },
+      {
+        "check": "district-towerMiddle-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.504373516957415,51,0.24404251624770165],\"end\":[39.504373516957415,50.599999999999994,0.24404251624770165],\"hits\":3}"
+      },
+      {
+        "check": "district-towerUpper-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.52544563194435,69,0.25435653837479155],\"end\":[39.52544563194435,68.6,0.25435653837479155],\"hits\":2}"
+      },
+      {
+        "check": "district-copper-onion",
+        "passed": true,
+        "notes": "{\"start\":[39.1,81,0.2],\"end\":[39.1,74.7,0.2],\"hits\":1}"
+      },
+      {
+        "check": "district-entrance-landing",
+        "passed": true,
+        "notes": "{\"start\":[47.4,1.5,2],\"end\":[47.4,1,2],\"hits\":1}"
+      },
+      {
+        "check": "street-nave-roof",
+        "passed": true,
+        "notes": "{\"start\":[-4,45.8,1],\"end\":[-4,43.8,1],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-slope--1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,-21],\"end\":[2,25.1,-21],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-slope-1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,21],\"end\":[2,25.1,21],\"hits\":1}"
+      },
+      {
+        "check": "street-towerLower-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.54651700587777,25.5,0.26467207442415985],\"end\":[39.54651700587777,25.1,0.26467207442415985],\"hits\":1}"
+      },
+      {
+        "check": "street-towerMiddle-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.504373516957415,51,0.24404251624770165],\"end\":[39.504373516957415,50.599999999999994,0.24404251624770165],\"hits\":2}"
+      },
+      {
+        "check": "street-towerUpper-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.52544563194435,69,0.25435653837479155],\"end\":[39.52544563194435,68.6,0.25435653837479155],\"hits\":1}"
+      },
+      {
+        "check": "street-copper-onion",
+        "passed": true,
+        "notes": "{\"start\":[39.1,81,0.2],\"end\":[39.1,74.7,0.2],\"hits\":1}"
+      },
+      {
+        "check": "street-entrance-landing",
+        "passed": true,
+        "notes": "{\"start\":[47.4,1.5,2],\"end\":[47.4,1,2],\"hits\":1}"
+      },
+      {
+        "check": "street-tower-base-closed-portal-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[46.6,4.865,0.75],\"end\":[45.25,4.865,0.75],\"hits\":0}"
+      },
+      {
+        "check": "street-tower-base-closed-portal-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[45.25,4.865,0.75],\"end\":[44.65,4.865,0.75],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-0-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-46.242346377515105,12.450000000000001,-5.517507734382992],\"end\":[-44.984226669596026,12.450000000000001,-5.027982657859216],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-0-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-44.984226669596026,12.450000000000001,-5.027982657859216],\"end\":[-44.42506235496533,12.450000000000001,-4.810415957181982],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-1-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-43.00037386491878,12.450000000000001,-13.849643729526983],\"end\":[-41.7422541569997,12.450000000000001,-13.360118653003207],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-1-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-41.7422541569997,12.450000000000001,-13.360118653003207],\"end\":[-41.183089842369,12.450000000000001,-13.142551952325972],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-2-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-37.62643438482826,12.450000000000001,-21.01367447250598],\"end\":[-36.669501208158806,12.450000000000001,-20.061425085323553],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-2-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-36.669501208158806,12.450000000000001,-20.061425085323553],\"end\":[-36.24419757408349,12.450000000000001,-19.638203135464693],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-3-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-30.094764598281387,12.450000000000001,-25.841557971444626],\"end\":[-29.57574976912798,12.450000000000001,-24.59531417221477],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-3-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-29.57574976912798,12.450000000000001,-24.59531417221477],\"end\":[-29.345076511726468,12.450000000000001,-24.041428039223725],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-4-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-21.245582202590025,12.450000000000001,-27.268570146419297],\"end\":[-21.215042966629113,12.450000000000001,-25.91891561467166],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-4-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-21.215042966629113,12.450000000000001,-25.91891561467166],\"end\":[-21.201469972868704,12.450000000000001,-25.31906915611716],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-5-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-12.292148532748818,12.450000000000001,-27.38204553561493],\"end\":[-12.305150196533047,12.450000000000001,-26.032108145682034],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-5-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-12.305150196533047,12.450000000000001,-26.032108145682034],\"end\":[-12.310928713770481,12.450000000000001,-25.432135972378525],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-6-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-3.35193255246305,12.450000000000001,-27.295939555292513],\"end\":[-3.3649342162472786,12.450000000000001,-25.946002165359616],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-6-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-3.3649342162472786,12.450000000000001,-25.946002165359616],\"end\":[-3.370712733484714,12.450000000000001,-25.346029992056106],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-7-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[5.588283427822704,12.450000000000001,-27.20983357497009],\"end\":[5.5752817640384755,12.450000000000001,-25.859896185037194],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-7-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[5.5752817640384755,12.450000000000001,-25.859896185037194],\"end\":[5.569503246801041,12.450000000000001,-25.259924011733684],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-8-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[14.52849940810847,12.450000000000001,-27.123727594647672],\"end\":[14.515497744324241,12.450000000000001,-25.773790204714775],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-8-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[14.515497744324241,12.450000000000001,-25.773790204714775],\"end\":[14.509719227086807,12.450000000000001,-25.173818031411265],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-9-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[23.46871538839426,12.450000000000001,-27.03762161432525],\"end\":[23.45571372461003,12.450000000000001,-25.687684224392353],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-9-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[23.45571372461003,12.450000000000001,-25.687684224392353],\"end\":[23.449935207372594,12.450000000000001,-25.087712051088843],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-10-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[32.21195166194275,12.450000000000001,-25.024377480403658],\"end\":[31.74523689473607,12.450000000000001,-23.757618890114564],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-10-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[31.74523689473607,12.450000000000001,-23.757618890114564],\"end\":[31.53780810931088,12.450000000000001,-23.194615072208297],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-11-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[39.240466014873746,12.450000000000001,-19.389683421446666],\"end\":[38.316601940613076,12.450000000000001,-18.405318056203416],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-11-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[38.316601940613076,12.450000000000001,-18.405318056203416],\"end\":[37.90599568538612,12.450000000000001,-17.96782233831753],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-12-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[43.14979168228136,12.450000000000001,13.74216144915794],\"end\":[41.91296024842038,12.450000000000001,13.201099526441698],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-12-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[41.91296024842038,12.450000000000001,13.201099526441698],\"end\":[41.36325738892661,12.450000000000001,12.960627560790034],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-13-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[37.573185449168555,12.450000000000001,20.795572231925533],\"end\":[36.5956666032507,12.450000000000001,19.864467025262282],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-13-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[36.5956666032507,12.450000000000001,19.864467025262282],\"end\":[36.16121378284276,12.450000000000001,19.450642488967503],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-14-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[30.18023798767487,12.450000000000001,25.782756680143944],\"end\":[29.701586766382036,12.450000000000001,24.520459960527326],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-14-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[29.701586766382036,12.450000000000001,24.520459960527326],\"end\":[29.488852890251888,12.450000000000001,23.95943919625327],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-15-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[21.34461138115067,12.450000000000001,27.30345333385533],\"end\":[21.31644666512879,12.450000000000001,25.953747162582708],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-15-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[21.31644666512879,12.450000000000001,25.953747162582708],\"end\":[21.30392901356351,12.450000000000001,25.353877753128206],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-16-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[12.405926690224613,12.450000000000001,27.48997949879956],\"end\":[12.377761974202734,12.450000000000001,26.140273327526938],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-16-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[12.377761974202734,12.450000000000001,26.140273327526938],\"end\":[12.365244322637455,12.450000000000001,25.540403918072435],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-17-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[3.4516429302072194,12.450000000000001,27.382989972509673],\"end\":[3.465659532651035,12.450000000000001,26.033062739338963],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-17-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[3.465659532651035,12.450000000000001,26.033062739338963],\"end\":[3.4718891337371742,12.450000000000001,25.43309508015198],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-18-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-5.488505784997779,12.450000000000001,27.29016236873189],\"end\":[-5.474489182553963,12.450000000000001,25.94023513556118],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-18-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-5.474489182553963,12.450000000000001,25.94023513556118],\"end\":[-5.468259581467824,12.450000000000001,25.340267476374198],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-19-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-14.42865450020273,12.450000000000001,27.197334764954107],\"end\":[-14.414637897758915,12.450000000000001,25.847407531783396],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-19-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-14.414637897758915,12.450000000000001,25.847407531783396],\"end\":[-14.408408296672775,12.450000000000001,25.247439872596413],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-20-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-23.368803215407727,12.450000000000001,27.104507161176322],\"end\":[-23.354786612963913,12.450000000000001,25.75457992800561],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-20-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-23.354786612963913,12.450000000000001,25.75457992800561],\"end\":[-23.348557011877773,12.450000000000001,25.154612268818628],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-21-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-32.0745478550404,12.450000000000001,25.04438356838398],\"end\":[-31.54231539248834,12.450000000000001,23.803727046293453],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-21-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-31.54231539248834,12.450000000000001,23.803727046293453],\"end\":[-31.30576763135409,12.450000000000001,23.25232414758655],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-22-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-38.95871947604779,12.450000000000001,19.286664705951583],\"end\":[-37.981011737381365,12.450000000000001,18.355757848230688],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-22-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-37.981011737381365,12.450000000000001,18.355757848230688],\"end\":[-37.54647496464074,12.450000000000001,17.9420214670214],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-23-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-43.73143559413751,12.450000000000001,11.71877010331435],\"end\":[-42.474957881102085,12.450000000000001,11.225045730161394],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-23-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-42.474957881102085,12.450000000000001,11.225045730161394],\"end\":[-41.916523341975235,12.450000000000001,11.005612675426747],\"hits\":1}"
+      },
+      {
+        "check": "street-lower-window-24-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-47.001218743812345,12.450000000000001,3.3975085302050183],\"end\":[-45.74474103077692,12.450000000000001,2.9037841570520615],\"hits\":0}"
+      },
+      {
+        "check": "street-lower-window-24-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-45.74474103077692,12.450000000000001,2.9037841570520615],\"end\":[-45.18630649165007,12.450000000000001,2.684351102317414],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-0-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-30.845339985083534,34.33,-4.928658573420033],\"end\":[-29.829663481250194,34.33,-4.03933228933703],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-0-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-29.829663481250194,34.33,-4.03933228933703],\"end\":[-29.378251701768708,34.33,-3.6440761630779175],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-1-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-24.82406476570665,34.33,-10.538229596325591],\"end\":[-24.26146008091016,34.33,-9.311047471029985],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-1-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-24.26146008091016,34.33,-9.311047471029985],\"end\":[-24.011413554333945,34.33,-8.765633193120827],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-2-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-16.541499514010862,34.33,-11.04883844623982],\"end\":[-16.511094085408573,34.33,-9.699180893409654],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-2-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-16.511094085408573,34.33,-9.699180893409654],\"end\":[-16.497580561585334,34.33,-9.099333092151802],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-3-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-8.370583984693486,34.33,-11.232914909355245],\"end\":[-8.340178556091196,34.33,-9.883257356525078],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-3-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-8.340178556091196,34.33,-9.883257356525078],\"end\":[-8.326665032267957,34.33,-9.283409555267227],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-4-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-0.19966845537610456,34.33,-11.416991372470669],\"end\":[-0.16926302677381544,34.33,-10.067333819640503],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-4-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-0.16926302677381544,34.33,-10.067333819640503],\"end\":[-0.15574950295057588,34.33,-9.467486018382651],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-5-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[7.999200493404782,34.33,-11.45925656624517],\"end\":[7.941442274617948,34.33,-10.110492692113535],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-5-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[7.941442274617948,34.33,-10.110492692113535],\"end\":[7.915771955157132,34.33,-9.511042081388366],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-6-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[16.16470563314538,34.33,-11.109584513626025],\"end\":[16.106947414358547,34.33,-9.76082063949439],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-6-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[16.106947414358547,34.33,-9.76082063949439],\"end\":[16.081277094897732,34.33,-9.161370028769221],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-7-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[23.631650799804287,34.33,-7.915938856580927],\"end\":[22.676956914744228,34.33,-6.961444442857655],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-7-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[22.676956914744228,34.33,-6.961444442857655],\"end\":[22.252648521384202,34.33,-6.53722470342509],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-8-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[20.29301928271994,34.33,12.890695627565297],\"end\":[19.855315867368184,34.33,11.613622520734912],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-8-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[19.855315867368184,34.33,11.613622520734912],\"end\":[19.660781016100735,34.33,11.046034473254743],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-9-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[12.056214509726603,34.33,13.49949305551181],\"end\":[12.022509364200381,34.33,12.149913875483806],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-9-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[12.022509364200381,34.33,12.149913875483806],\"end\":[12.00752929952206,34.33,11.550100906582472],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-10-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[3.88577345450448,34.33,13.70354622175431],\"end\":[3.8520683089782595,34.33,12.353967041726307],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-10-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[3.8520683089782595,34.33,12.353967041726307],\"end\":[3.8370882442999386,34.33,11.754154072824972],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-11-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-4.311160728978328,34.33,13.728317687894815],\"end\":[-4.262385654885853,34.33,12.379199089643619],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-11-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-4.262385654885853,34.33,12.379199089643619],\"end\":[-4.240707844178088,34.33,11.779590823754198],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-12-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-12.47881339185253,34.33,13.433030183660808],\"end\":[-12.430038317760054,34.33,12.083911585409611],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-12-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-12.430038317760054,34.33,12.083911585409611],\"end\":[-12.40836050705229,34.33,11.48430331952019],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-13-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-20.64646605472674,34.33,13.137742679426799],\"end\":[-20.597690980634265,34.33,11.788624081175602],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-13-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-20.597690980634265,34.33,11.788624081175602],\"end\":[-20.5760131699265,34.33,11.189015815286181],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-14-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-28.164858778836436,34.33,10.109376970790796],\"end\":[-27.210162761274088,34.33,9.154884690020232],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-14-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-27.210162761274088,34.33,9.154884690020232],\"end\":[-26.785853420135265,34.33,8.730665898566649],\"hits\":1}"
+      },
+      {
+        "check": "street-upper-window-15-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-32.455357602112365,34.33,3.1326674661610987],\"end\":[-31.10540568604149,34.33,3.1212734196205454],\"hits\":0}"
+      },
+      {
+        "check": "street-upper-window-15-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-31.10540568604149,34.33,3.1212734196205454],\"end\":[-30.505427056676655,34.33,3.116209398935855],\"hits\":1}"
+      },
+      {
+        "check": "street-towerLower-open-bay-0-clear",
+        "passed": true,
+        "notes": "{\"start\":[32.456518704926516,37.72,0.832775250761457],\"end\":[35.75371592999444,37.72,0.6967956235948347],\"hits\":0}"
+      },
+      {
+        "check": "street-towerLower-open-bay-2-clear",
+        "passed": true,
+        "notes": "{\"start\":[39.853792445378325,37.72,6.938869227703555],\"end\":[39.76369370098821,37.72,3.6400994242375226],\"hits\":0}"
+      },
+      {
+        "check": "street-towerLower-open-bay-4-clear",
+        "passed": true,
+        "notes": "{\"start\":[46.10603410272408,37.72,-0.2767530280403191],\"end\":[42.80615171708813,37.72,-0.24889192666933763],\"hits\":0}"
+      },
+      {
+        "check": "street-towerLower-open-bay-6-clear",
+        "passed": true,
+        "notes": "{\"start\":[38.764946045075405,37.72,-6.999691890637705],\"end\":[38.90091581833163,37.72,-3.7024942591996606],\"hits\":0}"
+      },
+      {
+        "check": "street-towerMiddle-open-bay-0-clear",
+        "passed": true,
+        "notes": "{\"start\":[33.3331566923871,58.79,0.72762156286644],\"end\":[36.63192630372845,58.79,0.6375157845234054],\"hits\":0}"
+      },
+      {
+        "check": "street-towerMiddle-open-bay-2-clear",
+        "passed": true,
+        "notes": "{\"start\":[39.79195182916599,58.79,6.0495567951708225],\"end\":[39.60335369084021,58.79,2.7549504845139565],\"hits\":0}"
+      },
+      {
+        "check": "street-towerMiddle-open-bay-4-clear",
+        "passed": true,
+        "notes": "{\"start\":[45.098127640669034,58.79,-0.3521853547103861],\"end\":[41.7982452542143,58.79,-0.3243243503163724],\"hits\":0}"
+      },
+      {
+        "check": "street-towerMiddle-open-bay-6-clear",
+        "passed": true,
+        "notes": "{\"start\":[38.82689432304413,58.79,-6.0382226124325875],\"end\":[38.92347120479343,58.79,-2.739636111230658],\"hits\":0}"
+      },
+      {
+        "check": "closeup-nave-roof",
+        "passed": true,
+        "notes": "{\"start\":[-4,45.8,1],\"end\":[-4,43.8,1],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-slope--1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,-21],\"end\":[2,25.1,-21],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-slope-1",
+        "passed": true,
+        "notes": "{\"start\":[2,31.3,21],\"end\":[2,25.1,21],\"hits\":1}"
+      },
+      {
+        "check": "closeup-towerLower-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.54651700587777,25.5,0.26467207442415985],\"end\":[39.54651700587777,25.1,0.26467207442415985],\"hits\":1}"
+      },
+      {
+        "check": "closeup-towerMiddle-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.504373516957415,51,0.24404251624770165],\"end\":[39.504373516957415,50.599999999999994,0.24404251624770165],\"hits\":2}"
+      },
+      {
+        "check": "closeup-towerUpper-floor",
+        "passed": true,
+        "notes": "{\"start\":[39.52544563194435,69,0.25435653837479155],\"end\":[39.52544563194435,68.6,0.25435653837479155],\"hits\":1}"
+      },
+      {
+        "check": "closeup-copper-onion",
+        "passed": true,
+        "notes": "{\"start\":[39.1,81,0.2],\"end\":[39.1,74.7,0.2],\"hits\":1}"
+      },
+      {
+        "check": "closeup-entrance-landing",
+        "passed": true,
+        "notes": "{\"start\":[47.4,1.5,2],\"end\":[47.4,1,2],\"hits\":1}"
+      },
+      {
+        "check": "closeup-tower-base-closed-portal-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[46.6,4.865,0.75],\"end\":[45.25,4.865,0.75],\"hits\":0}"
+      },
+      {
+        "check": "closeup-tower-base-closed-portal-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[45.25,4.865,0.75],\"end\":[44.65,4.865,0.75],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-0-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-47.271125730390665,12.450000000000001,2.038511070439702],\"end\":[-45.923941689805766,12.450000000000001,2.1256612901373395],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-0-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-45.923941689805766,12.450000000000001,2.1256612901373395],\"end\":[-45.32519322732359,12.450000000000001,2.1643947211140673],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-1-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-40.664194076154004,12.450000000000001,10.089693865247227],\"end\":[-39.59106828616945,12.450000000000001,9.27060837589338],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-1-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-39.59106828616945,12.450000000000001,9.27060837589338],\"end\":[-39.11412349062076,12.450000000000001,8.906570380625004],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-2-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-39.05339416639529,12.450000000000001,18.458482594401232],\"end\":[-38.058831803294424,12.450000000000001,17.545604888515488],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-2-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-38.058831803294424,12.450000000000001,17.545604888515488],\"end\":[-37.6168040863607,12.450000000000001,17.139881463677376],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-3-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-30.901896330375305,12.450000000000001,23.68135287720314],\"end\":[-30.988160139205696,12.450000000000001,22.334111786942724],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-3-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-30.988160139205696,12.450000000000001,22.334111786942724],\"end\":[-31.026499609796982,12.450000000000001,21.735337969049205],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-4-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-23.673111977058497,12.450000000000001,26.76295875287326],\"end\":[-23.58094055088435,12.450000000000001,25.416108936376624],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-4-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-23.58094055088435,12.450000000000001,25.416108936376624],\"end\":[-23.53997547258473,12.450000000000001,24.817509017933673],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-5-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-13.779667538294833,12.450000000000001,27.453632397267047],\"end\":[-13.791066391621076,12.450000000000001,26.10368052177561],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-5-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-13.791066391621076,12.450000000000001,26.10368052177561],\"end\":[-13.796132548654962,12.450000000000001,25.503701910446082],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-6-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-5.034339930481489,12.450000000000001,26.37251484411803],\"end\":[-5.045738194415837,12.450000000000001,25.022562963649957],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-6-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-5.045738194415837,12.450000000000001,25.022562963649957],\"end\":[-5.0508040894977695,12.450000000000001,24.42258435010859],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-7-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[4.709158014192229,12.450000000000001,26.787810295051035],\"end\":[5.782283511457427,12.450000000000001,25.968724422190736],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-7-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[5.782283511457427,12.450000000000001,25.968724422190736],\"end\":[6.259228176908627,12.450000000000001,25.604686256475045],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-8-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[14.906539248566727,12.450000000000001,27.16395091356271],\"end\":[14.697430810843777,12.450000000000001,25.830244176205106],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-8-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[14.697430810843777,12.450000000000001,25.830244176205106],\"end\":[14.604493727411356,12.450000000000001,25.237485626268395],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-9-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[24.484005380295017,12.450000000000001,26.786116337801754],\"end\":[24.533918332441733,12.450000000000001,25.437039358082657],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-9-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[24.533918332441733,12.450000000000001,25.437039358082657],\"end\":[24.556101866729165,12.450000000000001,24.837449589318616],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-10-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[31.513710567164033,12.450000000000001,24.354637958305382],\"end\":[32.38359575217776,12.450000000000001,23.322262171639675],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-10-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[32.38359575217776,12.450000000000001,23.322262171639675],\"end\":[32.77021138996164,12.450000000000001,22.86342848867714],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-11-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[39.79593545085414,12.450000000000001,18.687270970760096],\"end\":[39.68103687928613,12.450000000000001,17.342169369299587],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-11-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[39.68103687928613,12.450000000000001,17.342169369299587],\"end\":[39.62997084747813,12.450000000000001,16.744346435317137],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-12-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[41.730118675500826,12.450000000000001,-16.05087708335646],\"end\":[40.971082969949435,12.450000000000001,-14.934469990178481],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-12-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[40.971082969949435,12.450000000000001,-14.934469990178481],\"end\":[40.63373376748215,12.450000000000001,-14.438289059877157],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-13-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[35.48819493289976,12.450000000000001,-23.259600878745463],\"end\":[34.54169474642579,12.450000000000001,-22.296980809868476],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-13-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[34.54169474642579,12.450000000000001,-22.296980809868476],\"end\":[34.12102799688181,12.450000000000001,-21.86914966814537],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-14-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[27.26064430878979,12.450000000000001,-25.08400354510257],\"end\":[25.911657101995285,12.450000000000001,-25.031720508611222],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-14-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[25.911657101995285,12.450000000000001,-25.031720508611222],\"end\":[25.312107232308836,12.450000000000001,-25.008483603503958],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-15-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[18.482311071697808,12.450000000000001,-26.05105282931406],\"end\":[19.69484104692381,12.450000000000001,-25.457528559230322],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-15-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[19.69484104692381,12.450000000000001,-25.457528559230322],\"end\":[20.233743258135366,12.450000000000001,-25.19373999474866],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-16-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[8.76600890835352,12.450000000000001,-26.434492516110627],\"end\":[8.777401628805457,12.450000000000001,-25.08454058884777],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-16-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[8.777401628805457,12.450000000000001,-25.08454058884777],\"end\":[8.782465060117428,12.450000000000001,-24.48456195450872],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-17-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[1.1996382719049272,12.450000000000001,-27.11793508312841],\"end\":[-0.01289170332107159,12.450000000000001,-27.71145935321215],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-17-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-0.01289170332107159,12.450000000000001,-27.71145935321215],\"end\":[-0.5517939145326265,12.450000000000001,-27.975247917693814],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-18-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-9.460637768731589,12.450000000000001,-26.17055659572255],\"end\":[-8.248107793505586,12.450000000000001,-25.57703232563882],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-18-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-8.248107793505586,12.450000000000001,-25.57703232563882],\"end\":[-7.709205582294027,12.450000000000001,-25.313243761157164],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-19-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-19.439321086270148,12.450000000000001,-26.532198436422718],\"end\":[-19.427927068695887,12.450000000000001,-25.182246520107356],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-19-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-19.427927068695887,12.450000000000001,-25.182246520107356],\"end\":[-19.422863060885103,12.450000000000001,-24.58226789063386],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-20-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-27.686848339632714,12.450000000000001,-25.640568747991274],\"end\":[-26.33719914676502,12.450000000000001,-25.60979446990751],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-20-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-26.33719914676502,12.450000000000001,-25.60979446990751],\"end\":[-25.737355061046042,12.450000000000001,-25.59611701298139],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-21-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-35.60168833005126,12.450000000000001,-23.096234848623578],\"end\":[-34.674761746034534,12.450000000000001,-22.114752751057313],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-21-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-34.674761746034534,12.450000000000001,-22.114752751057313],\"end\":[-34.26279437536043,12.450000000000001,-21.678538485472306],\"hits\":1}"
+      },
+      {
+        "check": "closeup-lower-window-22-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-42.02043534736687,12.450000000000001,-15.577440085143312],\"end\":[-40.80790537214087,12.450000000000001,-14.983915815059579],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-22-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-40.80790537214087,12.450000000000001,-14.983915815059579],\"end\":[-40.269003160929316,12.450000000000001,-14.720127250577917],\"hits\":2}"
+      },
+      {
+        "check": "closeup-lower-window-23-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-44.11199481826344,12.450000000000001,-7.653709075514339],\"end\":[-43.674290183235264,12.450000000000001,-6.376636386715909],\"hits\":0}"
+      },
+      {
+        "check": "closeup-lower-window-23-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-43.674290183235264,12.450000000000001,-6.376636386715909],\"end\":[-43.479754789889405,12.450000000000001,-5.809048525027718],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-0-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-30.845151285142,34.33,-4.928874082733456],\"end\":[-29.829474781308658,34.33,-4.039547798650453],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-0-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-29.829474781308658,34.33,-4.039547798650453],\"end\":[-29.378063001827172,34.33,-3.6442916723913408],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-1-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-24.823060415016073,34.33,-10.53869004338724],\"end\":[-24.260455730219583,34.33,-9.311507918091634],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-1-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-24.260455730219583,34.33,-9.311507918091634],\"end\":[-24.010409203643366,34.33,-8.766093640182476],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-2-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-16.54608909695751,34.33,-11.286009625385129],\"end\":[-16.530006962715618,34.33,-9.936105419540052],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-2-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-16.530006962715618,34.33,-9.936105419540052],\"end\":[-16.522859347496997,34.33,-9.336147994720019],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-3-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-8.37286195191002,34.33,-11.383381672651147],\"end\":[-8.356779817668126,34.33,-10.033477466806072],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-3-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-8.356779817668126,34.33,-10.033477466806072],\"end\":[-8.349632202449508,34.33,-9.433520041986037],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-4-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-0.1996348068625352,34.33,-11.480753719917164],\"end\":[-0.18355267262064157,34.33,-10.13084951407209],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-4-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-0.18355267262064157,34.33,-10.13084951407209],\"end\":[-0.17640505740202217,34.33,-9.530892089252054],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-5-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[7.996377804590995,34.33,-11.459377442464648],\"end\":[7.938619585804161,34.33,-10.110613568333013],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-5-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[7.938619585804161,34.33,-10.110613568333013],\"end\":[7.912949266343345,34.33,-9.511162957607844],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-6-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[16.16270061518696,34.33,-11.109670374663777],\"end\":[16.104942396400126,34.33,-9.760906500532142],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-6-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[16.104942396400126,34.33,-9.760906500532142],\"end\":[16.07927207693931,34.33,-9.161455889806973],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-7-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[23.63081053695416,34.33,-7.916779295030145],\"end\":[22.6761166518941,34.33,-6.962284881306874],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-7-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[22.6761166518941,34.33,-6.962284881306874],\"end\":[22.251808258534076,34.33,-6.538065141874309],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-8-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[20.291820891099217,34.33,12.891106363726378],\"end\":[19.85411747574746,34.33,11.614033256895993],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-8-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[19.85411747574746,34.33,11.614033256895993],\"end\":[19.659582624480013,34.33,11.046445209415824],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-9-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[12.054129914065161,34.33,13.499545117370182],\"end\":[12.02042476853894,34.33,12.149965937342179],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-9-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[12.02042476853894,34.33,12.149965937342179],\"end\":[12.005444703860618,34.33,11.550152968440845],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-10-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[3.882870693718862,34.33,13.703618716926254],\"end\":[3.8491655481926412,34.33,12.35403953689825],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-10-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[3.8491655481926412,34.33,12.35403953689825],\"end\":[3.8341854835143203,34.33,11.754226567996916],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-11-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-4.309438326812089,34.33,13.77205603315215],\"end\":[-4.280750659673849,34.33,12.422360875809513],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-11-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-4.280750659673849,34.33,12.422360875809513],\"end\":[-4.268000585390188,34.33,11.82249636143501],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-12-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-12.481399751753377,34.33,13.598361619306278],\"end\":[-12.45271208461514,34.33,12.24866646196364],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-12-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-12.45271208461514,34.33,12.24866646196364],\"end\":[-12.439962010331477,34.33,11.648801947589137],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-13-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-20.673090564853904,34.33,13.285144136316221],\"end\":[-20.564033272620602,34.33,11.939556343933004],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-13-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-20.564033272620602,34.33,11.939556343933004],\"end\":[-20.51556336496136,34.33,11.341517325096019],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-14-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-28.163904008411336,34.33,10.110331945012058],\"end\":[-27.209207990848988,34.33,9.155839664241494],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-14-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-27.209207990848988,34.33,9.155839664241494],\"end\":[-26.784898649710165,34.33,8.73162087278791],\"hits\":1}"
+      },
+      {
+        "check": "closeup-upper-window-15-clear-recess",
+        "passed": true,
+        "notes": "{\"start\":[-32.45535311224059,34.33,3.133199420369987],\"end\":[-31.105401196169712,34.33,3.121805373829434],\"hits\":0}"
+      },
+      {
+        "check": "closeup-upper-window-15-closed-backing",
+        "passed": true,
+        "notes": "{\"start\":[-31.105401196169712,34.33,3.121805373829434],\"end\":[-30.505422566804878,34.33,3.1167413531447434],\"hits\":1}"
+      },
+      {
+        "check": "closeup-towerLower-open-bay-0-clear",
+        "passed": true,
+        "notes": "{\"start\":[32.456518704926516,37.72,0.832775250761457],\"end\":[35.75371592999444,37.72,0.6967956235948347],\"hits\":0}"
+      },
+      {
+        "check": "closeup-towerLower-open-bay-2-clear",
+        "passed": true,
+        "notes": "{\"start\":[39.853792445378325,37.72,6.938869227703555],\"end\":[39.76369370098821,37.72,3.6400994242375226],\"hits\":0}"
+      },
+      {
+        "check": "closeup-towerLower-open-bay-4-clear",
+        "passed": true,
+        "notes": "{\"start\":[46.10603410272408,37.72,-0.2767530280403191],\"end\":[42.80615171708813,37.72,-0.24889192666933763],\"hits\":0}"
+      },
+      {
+        "check": "closeup-towerLower-open-bay-6-clear",
+        "passed": true,
+        "notes": "{\"start\":[38.764946045075405,37.72,-6.999691890637705],\"end\":[38.90091581833163,37.72,-3.7024942591996606],\"hits\":0}"
+      },
+      {
+        "check": "closeup-towerMiddle-open-bay-0-clear",
+        "passed": true,
+        "notes": "{\"start\":[33.3331566923871,58.79,0.72762156286644],\"end\":[36.63192630372845,58.79,0.6375157845234054],\"hits\":0}"
+      },
+      {
+        "check": "closeup-towerMiddle-open-bay-2-clear",
+        "passed": true,
+        "notes": "{\"start\":[39.79195182916599,58.79,6.0495567951708225],\"end\":[39.60335369084021,58.79,2.7549504845139565],\"hits\":0}"
+      },
+      {
+        "check": "closeup-towerMiddle-open-bay-4-clear",
+        "passed": true,
+        "notes": "{\"start\":[45.098127640669034,58.79,-0.3521853547103861],\"end\":[41.7982452542143,58.79,-0.3243243503163724],\"hits\":0}"
+      },
+      {
+        "check": "closeup-towerMiddle-open-bay-6-clear",
+        "passed": true,
+        "notes": "{\"start\":[38.82689432304413,58.79,-6.0382226124325875],\"end\":[38.92347120479343,58.79,-2.739636111230658],\"hits\":0}"
+      },
+      {
+        "check": "viewer-footprint-source-cathedral-parent",
+        "passed": true,
+        "notes": "{\"level\":\"source\",\"path\":\"content/worldgen/source/places/u3/u31/dresden_cathedral/models/source.glb\",\"modelHash\":\"sha256:6aeb595a4d0d33702da5cb5d986929d094e731bde386538fff078259defd11fa\",\"name\":\"cathedral-parent\",\"expected\":true,\"covered\":true,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-source-adjacent-castle-block",
+        "passed": true,
+        "notes": "{\"level\":\"source\",\"path\":\"content/worldgen/source/places/u3/u31/dresden_cathedral/models/source.glb\",\"modelHash\":\"sha256:6aeb595a4d0d33702da5cb5d986929d094e731bde386538fff078259defd11fa\",\"name\":\"adjacent-castle-block\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-source-adjacent-castle-tower",
+        "passed": true,
+        "notes": "{\"level\":\"source\",\"path\":\"content/worldgen/source/places/u3/u31/dresden_cathedral/models/source.glb\",\"modelHash\":\"sha256:6aeb595a4d0d33702da5cb5d986929d094e731bde386538fff078259defd11fa\",\"name\":\"adjacent-castle-tower\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-source-open-front-square",
+        "passed": true,
+        "notes": "{\"level\":\"source\",\"path\":\"content/worldgen/source/places/u3/u31/dresden_cathedral/models/source.glb\",\"modelHash\":\"sha256:6aeb595a4d0d33702da5cb5d986929d094e731bde386538fff078259defd11fa\",\"name\":\"open-front-square\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-runtime-cathedral-parent",
+        "passed": true,
+        "notes": "{\"level\":\"runtime\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.glb\",\"modelHash\":\"sha256:6761180e4427ed20504610b9a615096db328965a70343834d0a79698683e58a7\",\"name\":\"cathedral-parent\",\"expected\":true,\"covered\":true,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-runtime-adjacent-castle-block",
+        "passed": true,
+        "notes": "{\"level\":\"runtime\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.glb\",\"modelHash\":\"sha256:6761180e4427ed20504610b9a615096db328965a70343834d0a79698683e58a7\",\"name\":\"adjacent-castle-block\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-runtime-adjacent-castle-tower",
+        "passed": true,
+        "notes": "{\"level\":\"runtime\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.glb\",\"modelHash\":\"sha256:6761180e4427ed20504610b9a615096db328965a70343834d0a79698683e58a7\",\"name\":\"adjacent-castle-tower\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-runtime-open-front-square",
+        "passed": true,
+        "notes": "{\"level\":\"runtime\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.glb\",\"modelHash\":\"sha256:6761180e4427ed20504610b9a615096db328965a70343834d0a79698683e58a7\",\"name\":\"open-front-square\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-skyline-cathedral-parent",
+        "passed": true,
+        "notes": "{\"level\":\"skyline\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.skyline.glb\",\"modelHash\":\"sha256:479b58586ba7c347ee8e695c1dfe61e0dbd0eee5cc0b0ef4da3ebff8e0e64cf3\",\"name\":\"cathedral-parent\",\"expected\":true,\"covered\":true,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-skyline-adjacent-castle-block",
+        "passed": true,
+        "notes": "{\"level\":\"skyline\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.skyline.glb\",\"modelHash\":\"sha256:479b58586ba7c347ee8e695c1dfe61e0dbd0eee5cc0b0ef4da3ebff8e0e64cf3\",\"name\":\"adjacent-castle-block\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-skyline-adjacent-castle-tower",
+        "passed": true,
+        "notes": "{\"level\":\"skyline\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.skyline.glb\",\"modelHash\":\"sha256:479b58586ba7c347ee8e695c1dfe61e0dbd0eee5cc0b0ef4da3ebff8e0e64cf3\",\"name\":\"adjacent-castle-tower\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-skyline-open-front-square",
+        "passed": true,
+        "notes": "{\"level\":\"skyline\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.skyline.glb\",\"modelHash\":\"sha256:479b58586ba7c347ee8e695c1dfe61e0dbd0eee5cc0b0ef4da3ebff8e0e64cf3\",\"name\":\"open-front-square\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-district-cathedral-parent",
+        "passed": true,
+        "notes": "{\"level\":\"district\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.district.glb\",\"modelHash\":\"sha256:689abfe89fe7d4de9f2e316ae8e86a3ef1b7fa7997e87be6afff2b17e485bb02\",\"name\":\"cathedral-parent\",\"expected\":true,\"covered\":true,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-district-adjacent-castle-block",
+        "passed": true,
+        "notes": "{\"level\":\"district\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.district.glb\",\"modelHash\":\"sha256:689abfe89fe7d4de9f2e316ae8e86a3ef1b7fa7997e87be6afff2b17e485bb02\",\"name\":\"adjacent-castle-block\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-district-adjacent-castle-tower",
+        "passed": true,
+        "notes": "{\"level\":\"district\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.district.glb\",\"modelHash\":\"sha256:689abfe89fe7d4de9f2e316ae8e86a3ef1b7fa7997e87be6afff2b17e485bb02\",\"name\":\"adjacent-castle-tower\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-district-open-front-square",
+        "passed": true,
+        "notes": "{\"level\":\"district\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.district.glb\",\"modelHash\":\"sha256:689abfe89fe7d4de9f2e316ae8e86a3ef1b7fa7997e87be6afff2b17e485bb02\",\"name\":\"open-front-square\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-street-cathedral-parent",
+        "passed": true,
+        "notes": "{\"level\":\"street\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.street.glb\",\"modelHash\":\"sha256:da20d9e5d6437cebe52bf8e6f404a114044335d73de6a3164f4c22976ea7445d\",\"name\":\"cathedral-parent\",\"expected\":true,\"covered\":true,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-street-adjacent-castle-block",
+        "passed": true,
+        "notes": "{\"level\":\"street\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.street.glb\",\"modelHash\":\"sha256:da20d9e5d6437cebe52bf8e6f404a114044335d73de6a3164f4c22976ea7445d\",\"name\":\"adjacent-castle-block\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-street-adjacent-castle-tower",
+        "passed": true,
+        "notes": "{\"level\":\"street\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.street.glb\",\"modelHash\":\"sha256:da20d9e5d6437cebe52bf8e6f404a114044335d73de6a3164f4c22976ea7445d\",\"name\":\"adjacent-castle-tower\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-street-open-front-square",
+        "passed": true,
+        "notes": "{\"level\":\"street\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.street.glb\",\"modelHash\":\"sha256:da20d9e5d6437cebe52bf8e6f404a114044335d73de6a3164f4c22976ea7445d\",\"name\":\"open-front-square\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-closeup-cathedral-parent",
+        "passed": true,
+        "notes": "{\"level\":\"closeup\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.closeup.glb\",\"modelHash\":\"sha256:69b46f3078045dfc6088dc9d59e441d5a17d7be5e21c1e978f17c45de24d164a\",\"name\":\"cathedral-parent\",\"expected\":true,\"covered\":true,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-closeup-adjacent-castle-block",
+        "passed": true,
+        "notes": "{\"level\":\"closeup\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.closeup.glb\",\"modelHash\":\"sha256:69b46f3078045dfc6088dc9d59e441d5a17d7be5e21c1e978f17c45de24d164a\",\"name\":\"adjacent-castle-block\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-closeup-adjacent-castle-tower",
+        "passed": true,
+        "notes": "{\"level\":\"closeup\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.closeup.glb\",\"modelHash\":\"sha256:69b46f3078045dfc6088dc9d59e441d5a17d7be5e21c1e978f17c45de24d164a\",\"name\":\"adjacent-castle-tower\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      },
+      {
+        "check": "viewer-footprint-closeup-open-front-square",
+        "passed": true,
+        "notes": "{\"level\":\"closeup\",\"path\":\"content/worldgen/assets/places/u3/u31/dresden_cathedral/model.closeup.glb\",\"modelHash\":\"sha256:69b46f3078045dfc6088dc9d59e441d5a17d7be5e21c1e978f17c45de24d164a\",\"name\":\"open-front-square\",\"expected\":false,\"covered\":false,\"passed\":true}"
+      }
+    ]
+  },
+  "limitations": [
+    "Retained exact-QID way14879154 and86 current cathedral controls retain the approximately94.3x53.9m plan,tower/nave/apron outlines and mapped figure locations. The retained source explicitly flags inconsistent overall/part heights,especially tower stages. The mapped24m lower cornice and29.8m inner apron plus49.5/67.5/79.5/86m tower stages and87.9m cross top are used as approximate controls,not surveyed values. Upper nave has a conflicting26..53m mapped prism and47..53m figures;photo-led40m upper cornice,43.5m roof ridge and3.5m figures replace these vertical values for coherent proportions. Tower subdivisions/openings,roof slope,facade details and all thresholds remain approximate. The raw upper-body plan has an inward fold;its convex outer envelope supplies the reconstructed upper nave. Raw controls remain unchanged.",
+    "Standard DEM datum 122.273763m;estimated floor 1.3m clears sampled footprint peak 0.866m and perimeter -3.75..0.87m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking.",
+    "Individual medium-fi current exterior from two inspected useful pictures and standard PMTiles/DEM. Upper wall/roof heights adjusted from flagged inconsistent map values. Figure positions project to the nearest reconstructed cornice;selected faceted figures,bands,pilasters,ovals,tower crown profiles and side/rear details are approximate. Exact sculptures/carved crests/inscriptions,full interiors,adjacent castle/covered connection and certified walking excluded. Physical device timings pending.",
+    "Skyline preserves rounded lower/upper body envelopes, layered roofs, pale apron and a single stepped tower/onion-spike/cross; figures and glazing are omitted. District adds shared graphs, selected tall/oval glazing, pilasters, balustrades and five coarse figures. Street opens actual tower bays and recesses principal windows/closed portal; closeup refines curved profiles, frames, facade relief and figures. Bounded outline reduction preserves the curved ends. Detail changes remain visible."
+  ]
+}

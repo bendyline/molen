@@ -537,8 +537,8 @@ const parts = [
 ];
 
 export const kingsCrossStation = {
-  id: 'n0791_london_king_s_cross_railway_station',
-  planId: 'N0791',
+  id: 'london_kings_cross_railway_station',
+  planId: 'london_kings_cross_railway_station',
   category: 'railway_station',
   title: "London King's Cross railway station",
   wikidata: 'Q219867',

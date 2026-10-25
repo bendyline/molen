@@ -89,7 +89,7 @@ describe('scatter material', () => {
   it('gives every prepared model the attribute and keeps a host material', async () => {
     const host = new THREE.MeshStandardMaterial();
     const dispose = vi.spyOn(host, 'dispose');
-    const library = new ModelLibrary(undefined, {}, false, {}, host);
+    const library = new ModelLibrary(undefined, {}, false, {}, undefined, host);
     const tree = await library.prepare('builtin:tree.deciduous.oak');
     expect(tree.material).toBe(host);
     expect(tree.geometry.getAttribute(SCATTER_CANOPY_ATTRIBUTE)).toBeDefined();

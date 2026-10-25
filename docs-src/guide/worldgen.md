@@ -323,6 +323,60 @@ styles prefer pitched roofs through three floors and flat roofs from four upward
 style also allows flat roofs on low buildings. Wide, clipped, or unsuitable footprints can still
 require a flat roof for geometric reasons.
 
+### Inferred buildings where outlines are missing
+
+Earth views enable neighborhood building infill by default. `mountEarthView` and
+`createEarthWorldgen` accept `buildingInfill: false` to disable it, or
+`buildingInfill: { seed: 42, density: 0.7 }` to choose a world seed and keep fraction.
+The lower-level renderer and tile generator opt in with the same option. The explorer exposes
+`?buildingInfill=0` and `?infillSeed=42` for comparisons.
+
+Infill makes one row of lots on each side of residential, minor and collector streets. Frontage
+anchors repeat every 16 projected meters, with small gaps and varied widths. Every lot reserves an
+unobstructed approach from its street to its entrance or garage; homes never form landlocked rows
+inside a block. Visible ground-following paths and driveways connect the entrances to the roadside.
+Separately mapped sidewalks move the building setback behind the sidewalk while retaining access.
+Mapped footprints, occupied landmark extents, other streets, water and incompatible land uses
+such as parks, farmland, schools and parking exclude the entire parcel, including its approach.
+Slopes above 0.3 or more than three meters of height variation also exclude it.
+
+Mapped residential, commercial and retail land-use polygons provide district evidence. Commercial
+and retail areas select commercial styles and shopfront plans; residential areas select homes.
+Without a land-use label, at least three nearby classified buildings with a 70% commercial majority
+can select commercial use. Otherwise a dense network of at least three separate street corridors
+establishes residential demand. Density considers streets within 240 meters and accounts for tile
+edges: 650 meters of road in the full window, or 300 meters with explicit suitable land use.
+Highways, paths, service roads, bridges and tunnels do not establish demand. Mapped buildings keep
+priority in the shared rendering budgets.
+
+The regional style's optional `lotPlans` weights select reusable, resizable plans: `cottage`
+(recessed porch), `ranch` (L-shaped), `front-garage`, `side-garage`, `courtyard`, `compact`, and
+`shopfront`. `createLotBuildingPlan(shape, width, depth)` is exported by worldgen's kernel for
+other procedural authors. Plans use local +Z inward from the frontage and return entrance anchors
+and an optional attached garage. Garages have their own single-storey mass and broad door.
+These plans only supply missing outlines; existing mapped outlines remain authoritative.
+The Southwest pool favors stucco, ceramic tile, ranches, courtyards and garages; the North American
+pool used in Washington favors siding and asphalt shingles. Other regional pools use their own
+materials and plan weights, with conservative cottage/ranch/compact forms when no style defines a pool.
+
+A versioned seed and geographic frontage anchor determine each home's identity, footprint and floor
+count; that identity seeds its architectural appearance. Unloading and revisiting unchanged map
+data reproduces the same buildings, including through the worker path. Feature order and road
+direction do not reshuffle them. Reducing density retains an unchanged subset; generation settings
+and exclusion geometry participate in cache keys. Records carry the `inferred` label and an
+`infill:v3` identity; they are visual estimates, not recovered footprints or verified addresses.
+Changes to source data, styles, seed or algorithm version can change the result. The frontage-based
+v3 algorithm regenerates older layouts once; subsequent visits reproduce the new layout.
+
+Infill uses detailed footprints at the finest two terrain levels, skips generalized
+building data, and caps inferred lots at 3,072 per tile before shared rendering budgets.
+Entire parcels stay inside their owner tile, leaving a small margin at tile edges. A neighboring
+halo participates in corner-lot conflict resolution. Coverage depends on the roads and exclusions
+available in that tile. These are synthetic lots, not surveyed parcels or zoning; missing land-use
+data can still allow buildings on genuinely vacant land. Industrial land remains excluded.
+The same inferred footprints and approaches exclude vegetation in scatter-only requests when the
+source supplies matching semantic layers.
+
 ### Inferred trees around homes
 
 Atlas region bindings and the worldwide default accept `treeFillFactor` from 0 to 1. The

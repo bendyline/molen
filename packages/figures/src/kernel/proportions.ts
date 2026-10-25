@@ -111,21 +111,21 @@ export function deriveMetrics(d: ResolvedFigureDescriptor): FigureMetrics {
     };
   }
   // Quadruped: withers = legY + bodyRadius = height exactly.
-  const rawLeg = 0.8 * P.legRatio;
-  const rawBody = 0.2 * (1 + 0.25 * b);
+  const rawLeg = 0.74 * P.legRatio;
+  const rawBody = 0.26 * (1 + 0.25 * b);
   const k = H / (rawLeg + rawBody);
   const legY = rawLeg * k;
   const bodyRadius = rawBody * k;
   const bodyLength = P.bodyLength * H;
-  const headLen = 0.3 * H * P.headScale;
+  const headLen = (d.species === 'cat' ? 0.34 : 0.3) * H * P.headScale;
   return {
     archetype: 'quadruped',
     height: H,
     headLen,
-    headWidth: 0.5 * headLen,
-    headHeight: 0.55 * headLen,
+    headWidth: (d.species === 'cat' ? 0.98 : d.species === 'cow' ? 0.8 : 0.68) * headLen,
+    headHeight: (d.species === 'cat' ? 0.85 : 0.78) * headLen,
     headPitch: dmath.clamp(0.5 * P.neckPitch + 0.15, 0, 1.2),
-    neckLen: P.neckLength * H,
+    neckLen: P.neckLength * H * (d.species === 'cat' ? 0.65 : 1),
     neckPitch: P.neckPitch,
     hipsLen: 0,
     spineLen: 0,
@@ -134,8 +134,8 @@ export function deriveMetrics(d: ResolvedFigureDescriptor): FigureMetrics {
     lowerLegLen: 0,
     ankleHeight: 0,
     footLen: 0,
-    hipHalf: 0.55 * bodyRadius * P.hipWidth,
-    shoulderHalf: 0.55 * bodyRadius * P.shoulderWidth,
+    hipHalf: 0.72 * bodyRadius * P.hipWidth,
+    shoulderHalf: 0.7 * bodyRadius * P.shoulderWidth,
     upperArmLen: 0,
     foreArmLen: 0,
     handLen: 0,

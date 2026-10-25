@@ -8,7 +8,8 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { next1000Entries, next1000Matches } from './work-ownership.mjs';
+import { inspectImageryPolicy, originalHeroPath, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
+import { structureCatalogEntries, structureCatalogMatches } from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../../..');
@@ -49,14 +50,20 @@ export function sourceFamily(image) {
   } catch {
     /* Preserve malformed original metadata. */
   }
-  return decoded
+  const canonical = decoded
     .replace(
       /^https?:\/\/(?:commons\.wikimedia\.org\/wiki\/|en\.wikipedia\.org\/wiki\/)?File:/i,
       'commons:',
     )
     .replaceAll('_', ' ')
-    .normalize('NFC')
-    .toLowerCase();
+    .normalize('NFC');
+  // MediaWiki folds the first title character, not the rest of the filename.
+  // GMRT.jpg and Gmrt.JPG are distinct originals with different licenses.
+  if (canonical.startsWith('commons:')) {
+    const title = canonical.slice('commons:'.length);
+    return `commons:${title.charAt(0).toUpperCase()}${title.slice(1)}`;
+  }
+  return canonical.toLowerCase();
 }
 
 export function rankReference(image, name) {
@@ -137,8 +144,10 @@ export function collectReferences(qualla, structures, entry) {
           (meta.mediaReviews?.[path.basename(p)]?.productionReviews ?? [])
             .map((r) => r.assessment?.record)
             .filter(Boolean);
-        if (meta.hero)
-          add(meta.hero, `${folder}/hero.jpg`, metadataPath, true, records(`${folder}/hero.jpg`));
+        if (meta.hero) {
+          const heroPath = originalHeroPath(folder, meta.hero);
+          add(meta.hero, heroPath, metadataPath, true, records(heroPath));
+        }
         for (let i = 0; i < (meta.gallery ?? []).length; i++) {
           const p = meta.galleryPaths?.[i];
           if (p) add(meta.gallery[i], p, metadataPath, true, records(p));
@@ -164,11 +173,12 @@ export function prepareBatch({
   output = here,
   repository = root,
   check = false,
+  ids,
 }) {
   const batch = read(batchPath);
-  const reserved = next1000Entries(
-    read(path.join(repository, 'content/worldgen/source/next-1000/candidates.json')),
-    read(path.join(repository, 'content/worldgen/source/next-1000/collections.json')),
+  const reserved = structureCatalogEntries(
+    read(path.join(repository, 'content/worldgen/source/structure-catalog/candidates.json')),
+    read(path.join(repository, 'content/worldgen/source/structure-catalog/collections.json')),
   );
   const all = fs
     .readFileSync(path.join(output, 'structures.jsonl'), 'utf8')
@@ -178,6 +188,16 @@ export function prepareBatch({
   const byId = new Map(all.flatMap((r) => [r.id, ...(r.aliasIds ?? [])].map((id) => [id, r])));
   const reviews = optional(path.join(output, 'batches/reference-reviews.json'), { reviews: {} });
   const results = [];
+  const selectedIds = ids ? new Set(ids) : null;
+  if (
+    selectedIds &&
+    (!selectedIds.size ||
+      [...selectedIds].some((id) => !batch.entries.some((entry) => entry.modelIdentity === id)))
+  )
+    throw new Error('Explicit model identities must belong to the fixed batch');
+  const selectedEntries = batch.entries.filter(
+    (entry) => !selectedIds || selectedIds.has(entry.modelIdentity),
+  );
   let changed = 0;
   if (
     batch.entries.length !== batch.targetCount ||
@@ -189,25 +209,67 @@ export function prepareBatch({
     const structure = byId.get(entry.structureId);
     if (!structure)
       throw new Error(`Batch target disappeared; reconcile explicitly: ${entry.name}`);
-    const external = next1000Matches(structure, reserved, entry.modelIdentity);
+    const external = structureCatalogMatches(structure, reserved, entry.modelIdentity);
     if (
       external.length ||
       structure.workAssignment?.localAuthoringAllowed === false ||
-      entry.workOwner === 'next-1000-other-device'
+      entry.workOwner === 'structure-catalog-other-device'
     )
       throw new Error(
         `Other-device work cannot enter the local batch: ${entry.name} (${external.map((m) => m.id).join(', ')}). Record a replacement; retain its coverage link.`,
       );
   }
+  // A policy violation must fail before any accepted reference records are rewritten.
+  if (batch.policy?.imagery?.id === PUBLIC_DOMAIN_POLICY) {
+    for (const entry of selectedEntries) {
+      if (entry.referenceSelection === 'needs-replacement' || !entry.references.length) continue;
+      const structure = byId.get(entry.structureId);
+      const { candidates, conflicts } = collectReferences(qualla, [structure], entry);
+      const references = entry.references.map((p) => candidates.find((c) => c.path === p));
+      if (references.some((r) => !r))
+        throw new Error(`Selected reference disappeared: ${entry.name}`);
+      const result = inspectImageryPolicy({
+        qualla,
+        references,
+        stories: structure.stories,
+        conflicts,
+        allowUnhashed: true,
+      });
+      if (result.status !== 'passed')
+        throw new Error(
+          `Public-domain Qualla references required: ${entry.name}. Exclude uncertain or ineligible sources; select replacements from published Qualla media.`,
+        );
+    }
+  }
   for (const entry of batch.entries) {
+    if (selectedIds && !selectedIds.has(entry.modelIdentity)) {
+      const record = optional(path.join(output, 'references', `${entry.structureId}.json`), null);
+      if (!record || record.structureId !== entry.structureId)
+        throw new Error(`Unselected reference record missing or mismatched: ${entry.name}`);
+      results.push({ entry, record });
+      continue;
+    }
     const structure = byId.get(entry.structureId);
     const { candidates, conflicts } = collectReferences(qualla, [structure], entry);
+    const eligible =
+      batch.policy?.imagery?.id === PUBLIC_DOMAIN_POLICY
+        ? candidates.filter(
+            (r) =>
+              inspectImageryPolicy({
+                qualla,
+                references: [r],
+                stories: structure.stories,
+                conflicts,
+                allowUnhashed: true,
+              }).status === 'passed',
+          )
+        : candidates;
     const selected =
       entry.referenceSelection === 'needs-replacement'
         ? []
         : entry.references.length
           ? entry.references.map((p) => candidates.find((c) => c.path === p))
-          : candidates.slice(0, 2);
+          : eligible.slice(0, 2);
     if (selected.some((r) => !r)) throw new Error(`Selected reference disappeared: ${entry.name}`);
     if (
       selected.length > 2 ||
@@ -265,7 +327,7 @@ export function prepareBatch({
           `| ${e.order}${e.pilot ? ' · pilot' : ''} | [${e.name.replaceAll('|', '/')}](${r.stories[0].url}) | ${e.sourcePath ? `[${e.modelState}](../../${e.sourcePath.replace(/^content\/worldgen\/source\//, '')}/README.md)` : e.modelState} | [${r.review.state}: ${r.references.length} / ${r.candidateCount} candidates](../references/${e.structureId}.json) | ${e.scope.replaceAll('|', '/')} |`,
       )
       .join('\n') +
-    '\n\n## Reserved for the other device\n\nAll next-1,000 candidates and collection members are excluded from local production. Preparation rechecks current list identities and rejects overlaps before writing evidence.\n\n' +
+    '\n\n## Reserved for the other device\n\nAll structure catalog candidates and collection members are excluded from local production. Preparation rechecks current list identities and rejects overlaps before writing evidence.\n\n' +
     (batch.deferredEntries ?? [])
       .map(
         (e) =>
@@ -284,12 +346,14 @@ export function prepareBatch({
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2),
-    qi = args.indexOf('--qualla');
+    qi = args.indexOf('--qualla'),
+    selected = args.find((arg) => arg.startsWith('--ids='));
   console.log(
     JSON.stringify(
       prepareBatch({
         qualla: qi < 0 ? path.resolve(root, '../qualla-internal') : path.resolve(args[qi + 1]),
         check: args.includes('--check'),
+        ids: selected?.slice(6).split(',').filter(Boolean),
       }),
       null,
       2,

@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
 import { appendAgricultureAttributes } from './agriculture-surface';
+import { markTerrainWaterSurface } from './ground-cutout';
 import { createTerrainGroundMaterial } from './ground-material';
 import { applyLandcoverBlend, type LandcoverBlendRange } from './landcover-blend';
 import { visibleLandcoverPolygons } from './landcover-surface';
@@ -610,6 +611,7 @@ function createWaterwayMesh(
   geometry.computeVertexNormals();
   const mesh = new THREE.Mesh(geometry, options.materials?.water ?? DEFAULT_WATER_MATERIAL);
   mesh.name = 'semantic:waterways';
+  markTerrainWaterSurface(mesh);
   mesh.userData.shadowCaster = false;
   mesh.userData.shadowReceiver = false;
   mesh.renderOrder = 1;
@@ -833,6 +835,7 @@ function createWaterMesh(
   if (geometry === null) return undefined;
   const mesh = new THREE.Mesh(geometry, options.materials?.water ?? DEFAULT_WATER_MATERIAL);
   mesh.name = 'semantic:water';
+  markTerrainWaterSurface(mesh);
   mesh.userData.shadowCaster = false;
   mesh.userData.shadowReceiver = false;
   mesh.renderOrder = 2;

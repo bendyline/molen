@@ -1,4 +1,4 @@
-/** N0623 complete browser exteriors. Original detailed source is preserved. */
+/** rembrandt_tower complete browser exteriors. Original detailed source is preserved. */
 import { readFileSync } from 'node:fs';
 import {
   beam,
@@ -11,7 +11,7 @@ import { box, quad, tube as sourceTube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
 const heights = JSON.parse(
-    readFileSync(structureSourcePath('n0623_rembrandt_tower', 'roof-envelope.json')),
+    readFileSync(structureSourcePath('rembrandt_tower', 'roof-envelope.json')),
   ),
   means = {
     cladding: [0.701109, 0.701109, 0.701109],

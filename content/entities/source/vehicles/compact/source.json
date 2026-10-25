@@ -2,17 +2,26 @@
   "format": "molen/source-bundle@1",
   "id": "molen.entities.vehicle.compact",
   "kind": "vehicle",
-  "title": "Compact",
+  "title": "Bendy Compact",
   "order": 0,
   "files": {
-    "definitions": ["entity.types.json"],
+    "definitions": [
+      "entity.types.json"
+    ],
     "models": [
       {
-        "path": "models/source.glb",
+        "path": "models/detailed.glb",
         "assetId": "molen.entities.vehicle.compact",
         "output": "assets/molen/entities/vehicle/compact/asset.json",
         "pipeline": "import",
+        "sha256": "sha256:feb4d6e55d411e86a8b3dde75f7e8417281643a0dbd20f96d2697450e27f7f1c"
+      },
+      {
+        "path": "models/source.glb",
         "sha256": "sha256:11a56da8859a042b075d394ff73540ae88f1b96bf875ffa6705b1b1736c55dc8"
+      },
+      {
+        "path": "models/recipe.json"
       }
     ],
     "scripts": [
@@ -23,6 +32,9 @@
     ],
     "textures": [],
     "sounds": [],
-    "documents": ["README.md"]
+    "documents": [
+      "README.md",
+      "preview.png"
+    ]
   }
 }

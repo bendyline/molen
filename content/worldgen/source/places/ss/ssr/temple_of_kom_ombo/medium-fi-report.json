@@ -1,0 +1,1068 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.temple_of_kom_ombo",
+  "sourceHash": "sha256:0a7c11cb4e7ae96145d9ea50e8e8a74bf6b21abb3561aa8a1bb4e8aabd749604",
+  "runtimeHash": "sha256:2913fd6dbd4d44ea6fbe3c4400846d162375028399b6df9f08a6be239e9147bf",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5312,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:6b2b5121622f9f1180318cfa216022865fe14dcf6ffc958c08901020642359f1",
+      "bytes": 103180,
+      "gzipBytes": 17598,
+      "triangles": 988,
+      "cpuBytes": 101760,
+      "gpuBytes": 101760,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:68d8ee3571ac667bfd903858e710e0ebdd283f60405136b822fef45ca548d0af",
+      "bytes": 342256,
+      "gzipBytes": 99788,
+      "triangles": 3468,
+      "cpuBytes": 338400,
+      "gpuBytes": 338400,
+      "errorMeters": 0.4,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:9f414de5af121a5a53991a1f7d2574fd20e33eb8f991021496bfaf4c34060c52",
+      "bytes": 693368,
+      "gzipBytes": 224973,
+      "triangles": 6952,
+      "cpuBytes": 689496,
+      "gpuBytes": 689496,
+      "errorMeters": 0.16,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:8c041c133788a385800b85ea17a2fd1c48815b7fc77c2f3873c14169260bf2c0",
+      "bytes": 1019084,
+      "gzipBytes": 334009,
+      "triangles": 10232,
+      "cpuBytes": 1015212,
+      "gpuBytes": 1015212,
+      "errorMeters": 0.06,
+      "drawCalls": 3
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:96e24c71925dc914119243919e5bbc5e36a610b2b1382dae3f5a33f546b8df6c"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:a710b7e6be5465c9b0486d895a66a722ae68af7462d6eb8a6fc5841d03a4bcb0"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:189524d9f374f5d1a072bce86e505373bc157346626389b40fb7cfac1d474d85",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          104.1351,
+          34.5805,
+          75.61319999999999
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:1c41bac2e302d508893306a26668b0d0464787e20d5557a49ef50033f0b0bf58",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          104.1351,
+          34.5805,
+          75.61319999999999
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:04939434772349b6f2515c323a1cc9dbfcab5bcd885b3344043f661783016a47",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          104.1351,
+          34.5805,
+          75.61319999999999
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:9408da445f7241ec33cde08c5681bd1b53e7c372d8b61f1da7bd67a885d3fafc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          104.1351,
+          34.5805,
+          75.61319999999999
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:3a4ca3db7c1cdb1abc2d07a237d3b8376524da39ac2e264a88aa24aaba88e81b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 61262,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          162.93509999999998,
+          77.78049999999999,
+          177.6132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:7c0ba70d636d450926ec32e42af5248e99cddbe83d935dd2cd0f8cee3189f19c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 61262,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          162.93509999999998,
+          77.78049999999999,
+          177.6132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:a4df4862ee04e6c0dd8c1db54f9f4a7787b4a2824579c029083958750f08ad10",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 61262,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          162.93509999999998,
+          77.78049999999999,
+          177.6132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:3607ee32a063ddcc0dec4095f27a8448732b833bf7fd10444d465df48e433795",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 61262,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          162.93509999999998,
+          77.78049999999999,
+          177.6132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:c14aa6a79f8c08761ca64b0a58ebdbd231e4c6c1ea09204d71610622b1dd7f97",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 58782,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          279.3351,
+          123.3805,
+          379.2132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:c6c7caff8197030b8d947018b7e6c3e2b170142ab103bb2b7247298ca2c85897",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58782,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          279.3351,
+          123.3805,
+          379.2132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:f5e86c2540cbc9e40dfcf9fe36babcf4a0ce70989759e690a51e43e3c784bf50",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 58782,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          279.3351,
+          123.3805,
+          379.2132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:5aa241a9e48370d8cd64bf950e0043362f032c6a82308a36ae0858209d1e1380",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58782,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          279.3351,
+          123.3805,
+          379.2132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:106fe759dbd4586325bc2cc895dbf27377415e3fb6d1519b7bc4a942d218b125",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 53470,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          279.3351,
+          123.3805,
+          379.2132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/paired-southwest-entrances-and-floral-capitals.png",
+      "hash": "sha256:2938f4eaaab53a00ea01a36e0e1fc62e5de14e8fad85da06b4774cefb846146d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          -3.0436244512191255,
+          19,
+          24.81403534695518
+        ],
+        "lookAt": [
+          25.310482983169525,
+          15,
+          -7.574922518328881
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/surviving-stone-beams-and-cavetto-cornices.png",
+      "hash": "sha256:d265355a1213de396dbcc1bca23d681f9275d3b14471ab92f8de7d23ad98035e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          27.86645980509263,
+          28,
+          14.29896562451833
+        ],
+        "lookAt": [
+          26.00341581393546,
+          17,
+          -8.295924662602191
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/narrowing-inner-hall-and-roofless-twin-shrines.png",
+      "hash": "sha256:2cd7d4f69475b40d39e1e9df73de309239e90ea6d1edb0db1fd8cbcbf97b052a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          82.94498519769004,
+          48,
+          -25.692984072601984
+        ],
+        "lookAt": [
+          37.090341106190444,
+          10,
+          -19.831958970975094
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/enclosure-remnants-and-well-mouth.png",
+      "hash": "sha256:d9426bc0f3806bff1fadc1a21b857a6f0d561014d378edbafe002d0e44d747e5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          3.3067175724561793,
+          36,
+          -82.81343863707153
+        ],
+        "lookAt": [
+          7.585391817999604,
+          5,
+          -45.4143350823
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/kom-ombo-skyline.png",
+      "hash": "sha256:23b4801aaf2e0f69bd269024cacf6c063c5e39bcb68a8f877c646d67887ed7eb",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58782,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          1.7859667648009747,
+          93,
+          161.21665646798107
+        ],
+        "lookAt": [
+          33.59760763885339,
+          10,
+          -17.64088322464781
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/kom-ombo-district.png",
+      "hash": "sha256:653d6559ff1bd9c8f3c6dc10debca99e6bd79e0f8f8e4f5f430dcf69b85154df",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 61262,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          1.7859667648009747,
+          93,
+          161.21665646798107
+        ],
+        "lookAt": [
+          33.59760763885339,
+          10,
+          -17.64088322464781
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/kom-ombo-street.png",
+      "hash": "sha256:89e42d812cdf73aecccaef091c18821ca0a61f8d38a120b0e56ea6a71b9a36d4",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 64746,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          1.7859667648009747,
+          93,
+          161.21665646798107
+        ],
+        "lookAt": [
+          33.59760763885339,
+          10,
+          -17.64088322464781
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/kom-ombo-closeup.png",
+      "hash": "sha256:2943f4d47768e8a4c102800dc01632d0b9acc4f7e0b5f5e93182146088d34c1e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          1.7859667648009747,
+          93,
+          161.21665646798107
+        ],
+        "lookAt": [
+          33.59760763885339,
+          10,
+          -17.64088322464781
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:4b8f4dea55ec053c0cb0651799986d4643d7390b2d13ea8b441cfde06005f4ba",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58782,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          162.93509999999998,
+          77.78049999999999,
+          177.6132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:7c0ba70d636d450926ec32e42af5248e99cddbe83d935dd2cd0f8cee3189f19c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 61262,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          162.93509999999998,
+          77.78049999999999,
+          177.6132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:b820d63a492d78f4e75f7f67d3fafaf7dfd9dc0ae8089be29d390bba87350e7d",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 64746,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          162.93509999999998,
+          77.78049999999999,
+          177.6132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:3e44c55e73995b7946c44d4fc1a3cd59202d0dd1436b529fc616a832be290418",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68026,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/terrain-review.height.png"
+        },
+        "position": [
+          162.93509999999998,
+          77.78049999999999,
+          177.6132
+        ],
+        "lookAt": [
+          46.5351,
+          16.5805,
+          -23.9868
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

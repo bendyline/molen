@@ -1,0 +1,268 @@
+{
+  "planId": "anji_bridge",
+  "id": "anji_bridge",
+  "assetId": "molen.worldgen.structure.anji_bridge",
+  "title": "Anji Bridge",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.763278,
+    "latitude": 37.720224425
+  },
+  "size": [
+    54.72934150695801,
+    11.489885807037354,
+    10.585512638092041
+  ],
+  "actualBounds": {
+    "min": [
+      -27.232454299926758,
+      -5.25,
+      -5.295199394226074
+    ],
+    "max": [
+      27.49688720703125,
+      6.2398858070373535,
+      5.290313243865967
+    ]
+  },
+  "visualBrief": "Complete native bowed stone bridge/end outline: true37.37m/7.285mcircular segmental main vault,28parallel limestone ribs, four genuine through open-spandrel arches with sloping extrados sills, convex humpback deck, carved solid balustrades/ball and shaped posts, arch-ring joints/iron butterfly cramps and bounded native end abutments. No river, banks, park or replica. Native outline/engineering main arch controls retained; small-arch/ring/rail sections and exact grade/contact are photographic estimates.",
+  "nativeAxes": {
+    "x": "northeast along bridge",
+    "y": "up",
+    "z": "southeast side"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Zhaozhou_Bridge.jpg"
+  ],
+  "stories": [
+    {
+      "id": "anji-bridge-wp",
+      "url": "https://qualla.com/anji-bridge/"
+    }
+  ],
+  "referenceInputHash": "44507afe3aa41116fdabbd9807423d76fb0315f6179542fa2a0af960405f44bf",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-anji-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-anji-bridge.mjs",
+    "level": "skyline",
+    "export": "anjiSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "deck": {
+        "slot": "roof",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91,
+        "metallic": 0.4
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "anjiDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0.4
+          }
+        }
+      },
+      "street": {
+        "export": "anjiStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0.4
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.9,
+    "groundY": -5.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named OSMway564558211/ZhaozhouBridge/Q551446 supplies all8signed bridge-outline vertices, including bowed long sides and flared end cross-sections. Frame follows the midpoint-to-midpoint southwest/northeast axis, not the earlier unrelated road. Native mapped deck/abutment extent is about54m; ASCEreports about50.9mstructural length/37.37mclear main span/7.285mrise/28limestone ribs. Broader64mstory length is not used to stretch this native structural footprint. Native map is not a width/height survey; sections, vault thickness, subsidiary arches, balustrade restoration/detail and footing/host contact remain photographic medium-fi estimates. Fixed southwest dry approach[-30,0]/Y0was selected before terrain acquisition. Flat review ground lies below the vault; actual bank/riverbed and footing contact remain approximate.",
+    "anchor": [
+      114.763278,
+      37.720224425
+    ],
+    "heading": 0.8874925999774348,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.76306289851826,
+        37.720015435298585
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed dry southwest approach beyond the native bridge end, selected before terrain acquisition. Approximate end-deck datumY0; source river/bank relief is retained, with no fitted slab or flattened channel."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/564558211"
+    ],
+    "source": "https://www.openstreetmap.org/way/564558211",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3106b5539c568abe41262d2c23bc39611d29d7197a92ec68f8acc393de694f02",
+    "notes": "Native bridge polygon is not the adjacent AnjiBridgePark or secondary-road bridge. Complete main arch/four subsidiary openings span its width; no water/riverbank/promenance/park is modeled. ASCEtext is used for numerical/structural facts only; no ASCEor other unaccepted photograph used."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named OSMway564558211/ZhaozhouBridge/Q551446 supplies all8signed bridge-outline vertices, including bowed long sides and flared end cross-sections. Frame follows the midpoint-to-midpoint southwest/northeast axis, not the earlier unrelated road. Native mapped deck/abutment extent is about54m; ASCEreports about50.9mstructural length/37.37mclear main span/7.285mrise/28limestone ribs. Broader64mstory length is not used to stretch this native structural footprint. Native map is not a width/height survey; sections, vault thickness, subsidiary arches, balustrade restoration/detail and footing/host contact remain photographic medium-fi estimates.",
+    "All8native plan vertices and the two bowed sides/flared ends are retained. Actual structural extent is about54m in mapping, consistent with ASCEabout50.9mstructural length plus mapped end transitions. The broader64mstory length is not used to stretch the native bridge or adopt adjoining riverbank walls. Native widths are mapping estimates, not an independent survey.",
+    "ASCE122.6ftmain span/23.9ftrise/28parallel limestone ribs guide a genuine circular segmental vault. Ring1.12m, deckcrown4.8mabove southwest approach, small arch spans3.0/4.8m and levels, balustrade sections/post forms, footings and crossfall are original medium-fi photographic estimates. All4subsidiary arches are true full-width tunnels with sills following the main extrados.",
+    "Exact2272x1704cleared published QuallaZhao1974PublicDomainexterior and native named PD-user dedication have been inspected and bound. The misleadingCC0crop has an explicitCCBYSA3.0Panoramioparent and is excluded; museum replica and other licensed/unknown sources unused. ASCEpage supplies numeric/structural text facts only; no ASCEphotograph or image texture used.",
+    "Carved dragon/cloud/vine balustrade relief, ball/shaped caps, voussoir/course/rib seams and small iron dovetails are bounded original geometry. Exact restoration date, panel iconography, individual stone ages, irregular erosion/lichen and fine inscriptions are approximated or omitted. Delicate carving/seams and exact28rib division retire progressively with viewing distance.",
+    "Fixed southwest approach[-30,0]/modelY0was chosen before sampling. Main springing is near-4.5m and footings reach-5.25m; riverbed/bank/water and precise original foundations are not reconstructed. Host terrain contact remains unverified, source relief is retained without fitted ground/river slabs, and unrelated park/secondary bridge/boats/visitors are excluded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "main-vault-four-through-relief-arches-and-bowed-outline",
+      "position": [
+        22,
+        9,
+        43
+      ],
+      "lookAt": [
+        0,
+        -0.5,
+        0
+      ]
+    },
+    {
+      "name": "carved-solid-balustrades-shaped-posts-and-deck",
+      "position": [
+        -25,
+        8,
+        15
+      ],
+      "lookAt": [
+        -7,
+        2.6,
+        0
+      ]
+    },
+    {
+      "name": "twenty-eight-stone-ribs-voussoirs-and-iron-dovetails",
+      "position": [
+        2,
+        -3.3,
+        14
+      ],
+      "lookAt": [
+        0,
+        0.4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 40004,
+    "vertices": 120012,
+    "materials": 4,
+    "bytes": 4803320,
+    "sha256": "sha256:39264cf18902441b104a5513cbc124cf6f79e54702530ef50d05bde15303c842"
+  }
+}

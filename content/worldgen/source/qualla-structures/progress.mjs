@@ -8,8 +8,16 @@ import { matchesEvidenceText } from '../../../../packages/worldgen/scripts/evide
 import { modelInputHash } from '../../../../packages/worldgen/scripts/structure-model-files.mjs';
 import { hasUsableStructurePlacement } from '../../../../packages/worldgen-earth/scripts/historical-placement.mjs';
 import { reviewedMediumFi } from '../../../../packages/worldgen-earth/scripts/medium-fi-readiness.mjs';
+import { readPlacementSources } from '../../../../packages/worldgen-earth/scripts/placement-sources.mjs';
 import { reviewedSourceMapFrame } from '../../../../packages/worldgen-earth/scripts/reviewed-source-map-frame.mjs';
-import { next1000Entries, next1000Matches } from './work-ownership.mjs';
+import { inspectImageryInventory } from './imagery-inventory.mjs';
+import {
+  inspectImageryPolicy,
+  PUBLIC_DOMAIN_POLICY,
+  publicDomainReviewMatches,
+  verifiedSupplementalSelection,
+} from './imagery-policy.mjs';
+import { structureCatalogEntries, structureCatalogMatches } from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../../..');
@@ -46,7 +54,15 @@ export function inspectedCaptureMatches(dir, reportBytes, review, inputHash) {
 
 export async function inspectLocalModel(
   entry,
-  { repository = root, project, stylepack, placements, currentReferences } = {},
+  {
+    repository = root,
+    project,
+    stylepack,
+    placements,
+    currentReferences,
+    imageryPolicy,
+    qualla = path.resolve(repository, '../qualla-internal'),
+  } = {},
 ) {
   const row = {
     candidateId: entry.modelIdentity,
@@ -98,9 +114,26 @@ export async function inspectLocalModel(
     qa?.runtimeHash === sidecar?.hash;
   if (!matches) row.blockers.push('review-inputs-stale-or-missing');
   const refs = read(path.join(dir, 'reference-images.json'));
+  const imageryEvidence = read(path.join(dir, 'imagery-evidence.json'));
+  const inventory =
+    imageryPolicy?.id === PUBLIC_DOMAIN_POLICY
+      ? inspectImageryInventory({
+          dir,
+          qualla,
+          evidence: imageryEvidence,
+          selectedReferences: refs?.references,
+          stories: refs?.stories,
+          conflicts: refs?.metadataConflicts,
+          frame: read(path.join(dir, 'map-frame.json')),
+        })
+      : undefined;
+  const supplementalSelection =
+    verifiedSupplementalSelection(refs, inventory, imageryEvidence) &&
+    JSON.stringify(refs.externalReferences) ===
+      JSON.stringify(currentReferences?.externalReferences);
   if (
     refs?.review?.state !== 'accepted' ||
-    !refs.references?.length ||
+    (!refs.references?.length && !supplementalSelection) ||
     refs.inputHash !== currentReferences?.inputHash ||
     currentReferences?.review?.state !== 'accepted'
   )
@@ -191,6 +224,38 @@ export async function inspectLocalModel(
     })
   )
     row.blockers.push('terrain-review-missing-or-unbound');
+  row.technicalReadiness = row.blockers.length ? 'needs-review' : 'ready';
+  if (imageryPolicy?.id === PUBLIC_DOMAIN_POLICY) {
+    const mediumDocument = read(path.join(dir, 'medium-fi-report.json'));
+    row.currentRenderIdentityVerified = !!medium && mediumDocument?.captureVersion === 2;
+    if (!row.currentRenderIdentityVerified)
+      row.blockers.push('current-asset-render-identity-unverified');
+    row.imagery = inspectImageryPolicy({
+      qualla,
+      references: refs?.references,
+      stories: refs?.stories,
+      conflicts: refs?.metadataConflicts,
+    });
+    if (supplementalSelection)
+      row.imagery = {
+        ...row.imagery,
+        status: 'passed',
+        selection: 'verified-public-domain-originals-after-qualla-first-search',
+      };
+    if (row.imagery.status !== 'passed')
+      row.blockers.push('public-domain-qualla-imagery-unverified');
+    row.imagery.inventory = inventory;
+    if (row.imagery.inventory.status !== 'passed')
+      row.blockers.push('public-domain-imagery-inventory-unverified');
+    const inventoryBytes = bytes(path.join(dir, 'imagery-evidence.json'));
+    row.imagery.fidelityReviewPassed =
+      row.imagery.inventory.status === 'passed' &&
+      !!inventoryBytes &&
+      matchesEvidenceText(inventoryBytes, qa?.imageryReview?.imageryEvidenceHash) &&
+      publicDomainReviewMatches(qa?.imageryReview, refs, inputHash);
+    if (!row.imagery.fidelityReviewPassed)
+      row.blockers.push('public-domain-fidelity-review-missing-or-unbound');
+  }
   row.readiness = row.blockers.length ? 'needs-review' : 'ready';
   row.geographic = {
     activePlacement: active ? placement.id : null,
@@ -200,29 +265,53 @@ export async function inspectLocalModel(
   return row;
 }
 
-export async function buildProgress({ repository = root, output = here, check = false } = {}) {
-  const batch = read(path.join(output, 'batches/qualla-001.json'));
+export async function buildProgress({
+  repository = root,
+  output = here,
+  check = false,
+  batchName = 'qualla-001',
+} = {}) {
+  if (!/^qualla-\d{3}$/.test(batchName)) throw Error('Invalid batch name');
+  const batch = read(path.join(output, `batches/${batchName}.json`));
+  const ledger = batchName === 'qualla-001' ? 'readiness.json' : `${batchName}.readiness.json`;
   const structures = fs
     .readFileSync(path.join(output, 'structures.jsonl'), 'utf8')
     .trim()
     .split('\n')
     .map(JSON.parse);
-  const reserved = next1000Entries(
-    read(path.join(repository, 'content/worldgen/source/next-1000/candidates.json')),
-    read(path.join(repository, 'content/worldgen/source/next-1000/collections.json')),
+  const reserved = structureCatalogEntries(
+    read(path.join(repository, 'content/worldgen/source/structure-catalog/candidates.json')),
+    read(path.join(repository, 'content/worldgen/source/structure-catalog/collections.json')),
   );
   const project = read(path.join(repository, 'content/worldgen/project.json')),
     stylepack = read(path.join(repository, 'content/worldgen/stylepack.json')),
-    placements = read(path.join(repository, 'content/earth/structures/placements.json'));
+    placements = (
+      await readPlacementSources(path.join(repository, 'content/earth/source/placements'))
+    ).catalog;
   const rows = [];
   for (const entry of batch.entries) {
     const structure = structures.find((s) => s.id === entry.structureId);
-    if (
-      !structure ||
-      next1000Matches(structure, reserved, entry.modelIdentity).length ||
-      entry.workOwner === 'next-1000-other-device'
-    )
-      throw Error(`Local ownership unavailable: ${entry.name}`);
+    if (!structure) throw Error(`Structure identity unavailable: ${entry.name}`);
+    const otherDevice = structureCatalogMatches(structure, reserved, entry.modelIdentity);
+    if (otherDevice.length || entry.workOwner === 'structure-catalog-other-device') {
+      // A newly resolved alias must remain visible without inspecting or approving
+      // the other device's asset, or preventing unrelated local progress updates.
+      rows.push({
+        candidateId: entry.modelIdentity,
+        backlogTargetId: entry.structureId,
+        title: entry.name,
+        asset: null,
+        sourcePath: null,
+        order: entry.order,
+        pilot: !!entry.pilot,
+        readiness: 'reserved-other-device',
+        blockers: ['structure-catalog-other-device'],
+        reservedCandidateIds: [...new Set(otherDevice.map((m) => m.id))].sort(),
+        geographic: { activePlacement: null },
+        fidelityQa: { target: 'medium-fi', hashBoundReviewPassed: false },
+      });
+      continue;
+    }
     rows.push(
       await inspectLocalModel(entry, {
         repository,
@@ -230,6 +319,7 @@ export async function buildProgress({ repository = root, output = here, check = 
         stylepack,
         placements,
         currentReferences: read(path.join(output, `references/${entry.structureId}.json`)),
+        imageryPolicy: batch.policy?.imagery,
       }),
     );
   }
@@ -238,26 +328,48 @@ export async function buildProgress({ repository = root, output = here, check = 
     ready: rows.filter((r) => r.readiness === 'ready').length,
     started: rows.filter((r) => r.sourcePath).length,
     pilotsReady: rows.filter((r) => r.pilot && r.readiness === 'ready').length,
+    ...(rows.some((r) => r.readiness === 'reserved-other-device')
+      ? {
+          reservedForOtherDevice: rows.filter((r) => r.readiness === 'reserved-other-device')
+            .length,
+        }
+      : {}),
+    ...(batch.policy?.imagery?.id === PUBLIC_DOMAIN_POLICY
+      ? {
+          technicallyValidated: rows.filter((r) => r.technicalReadiness === 'ready').length,
+          publicDomainImageryVerified: rows.filter((r) => r.imagery?.status === 'passed').length,
+          publicDomainFidelityReviewed: rows.filter((r) => r.imagery?.fidelityReviewPassed).length,
+        }
+      : {}),
   };
   const document = {
     format: 'molen/structure-readiness@1',
-    title: 'Qualla compat — local 100 — verified completion ledger',
+    title: `${batch.title ?? 'Qualla compat'} — verified completion ledger`,
     policy:
-      'A source or import is not completion. Ready requires current image references, exact source/runtime/LOD bytes, inspected portable/shared/context captures, photographic fidelity and terrain/placement evidence. Next-1,000 work is excluded.',
+      'A source or import is not completion. Ready requires current image references, exact source/runtime/LOD bytes, inspected portable/shared/context captures, photographic fidelity and terrain/placement evidence. structure catalog work is excluded.' +
+      (batch.policy?.imagery?.id === PUBLIC_DOMAIN_POLICY
+        ? ' Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.'
+        : ''),
     counts,
     candidates: rows,
   };
-  const text = `# Qualla compat — local 100 — completion progress\n\n**${counts.ready} / ${counts.target} completed. ${counts.pilotsReady} / 5 pilots completed.** ${counts.started} models started; ${counts.target - counts.started} not started.\n\nGoal: finish the five pilots, then all remaining local models, using Qualla photographs and synchronizing story annotations after each verified completion. Every next-1,000 candidate and collection member remains assigned to the other device.\n\nCompletion is recomputed from current evidence; editing geometry, source references, material graphs, terrain or placement invalidates the affected approval. [Machine-readable ledger](readiness.json).\n\n| # | Structure and story | Completion | Remaining checks |\n| ---: | --- | --- | --- |\n${rows
+  const text = `# Qualla compat — local 100 — completion progress\n\n**${counts.ready} / ${counts.target} completed. ${rows.some((r) => r.pilot) ? `${counts.pilotsReady} / ${rows.filter((r) => r.pilot).length} pilots completed.` : ''}** ${counts.started} models started; ${counts.target - counts.started} not started.${counts.technicallyValidated === undefined ? '' : `\n\n${counts.technicallyValidated} models retain their technical validation; ${counts.publicDomainImageryVerified} reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.`}\n\nFinish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every structure catalog candidate and collection member remains assigned to the other device.\n\nCompletion is recomputed from current evidence; editing geometry, source references, material graphs, terrain or placement invalidates the affected approval. [Machine-readable ledger](readiness.json).\n\n| # | Structure and story | Completion | Remaining checks |\n| ---: | --- | --- | --- |\n${rows
     .map((r) => {
       const s = structures.find((s) => s.id === r.backlogTargetId);
-      return `| ${r.order}${r.pilot ? ' · pilot' : ''} | [${r.title.replaceAll('|', '/')}](https://qualla.com/${s.stories[0].url.split('qualla.com/')[1]}) | ${r.readiness === 'ready' ? 'Complete' : r.readiness === 'not-started' ? 'Not started' : 'In review'} | ${r.blockers.join('; ') || 'All required evidence current'} |`;
+      return `| ${r.order}${r.pilot ? ' · pilot' : ''} | [${r.title.replaceAll('|', '/')}](https://qualla.com/${s.stories[0].url.split('qualla.com/')[1]}) | ${r.readiness === 'ready' ? 'Complete' : r.readiness === 'not-started' ? 'Not started' : r.readiness === 'reserved-other-device' ? 'Other device' : 'In review'} | ${r.blockers.join('; ') || 'All required evidence current'} |`;
     })
     .join(
       '\n',
-    )}\n\nRefresh with \`node content/worldgen/source/qualla-structures/progress.mjs\`, then run \`sync-qualla.mjs --write\` to reconcile story annotations.\n`;
+    )}\n\nRefresh with \`node content/worldgen/source/qualla-structures/progress.mjs\`, then run \`sync-completed.mjs --ids=<reviewed-model> --write\` for bounded completed-story updates.\n`;
   for (const [p, value] of [
-    ['batches/readiness.json', `${JSON.stringify(document, null, 2)}\n`],
-    ['batches/PROGRESS.md', text],
+    [`batches/${ledger}`, `${JSON.stringify(document, null, 2)}\n`],
+    [
+      `batches/${batchName === 'qualla-001' ? 'PROGRESS' : `${batchName}.PROGRESS`}.md`,
+      text
+        .replaceAll('local 100', `local ${batch.targetCount}`)
+        .replaceAll('completed. **', 'completed.**')
+        .replaceAll('(readiness.json)', `(${ledger})`),
+    ],
   ]) {
     const file = path.join(output, p);
     if (bytes(file)?.toString() === value) continue;
@@ -268,5 +380,12 @@ export async function buildProgress({ repository = root, output = here, check = 
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   console.log(
-    JSON.stringify(await buildProgress({ check: process.argv.includes('--check') }), null, 2),
+    JSON.stringify(
+      await buildProgress({
+        check: process.argv.includes('--check'),
+        batchName: process.argv.find((a) => a.startsWith('--batch='))?.slice(8) ?? 'qualla-001',
+      }),
+      null,
+      2,
+    ),
   );

@@ -58,7 +58,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sp/spv/n0382_cathedral_of_our_lady_immaculate/',
+  '../../../content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1124,7 +1124,7 @@ export const buildMonacoCathedralSkyline = (o) => build(o, 0),
   buildMonacoCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const monacoCathedralStudy = {
-  id: 'N0382',
+  id: 'cathedral_of_our_lady_immaculate',
   key: 'cathedral_of_our_lady_immaculate',
   title: 'Cathedral of Our Lady Immaculate',
   category: 'cathedral',

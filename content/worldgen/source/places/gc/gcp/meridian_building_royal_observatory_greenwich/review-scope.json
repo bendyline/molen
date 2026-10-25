@@ -1,0 +1,742 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "plinth": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "slate",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.25
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.3,
+      "metallic": 0.1
+    },
+    "frame": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "arch": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "lead": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.25
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      46,
+      27.2,
+      -46
+    ],
+    "lookAt": [
+      11,
+      4.2,
+      1
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "north-court-transit-gables-and-shutters",
+      "position": [
+        7,
+        8.2,
+        -30
+      ],
+      "lookAt": [
+        10,
+        4.2,
+        1
+      ],
+      "fov": 63
+    },
+    {
+      "name": "triple-arched-north-entry-and-soffits",
+      "position": [
+        26,
+        3.2,
+        -13
+      ],
+      "lookAt": [
+        25.6,
+        3.2,
+        -0.2
+      ],
+      "fov": 62
+    },
+    {
+      "name": "south-gallery-sash-and-roof-cap",
+      "position": [
+        10,
+        12.2,
+        29
+      ],
+      "lookAt": [
+        11,
+        4.2,
+        2
+      ],
+      "fov": 64
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        46,
+        27.2,
+        -46
+      ],
+      "lookAt": [
+        11,
+        4.2,
+        1
+      ],
+      "fov": 48,
+      "name": "meridian-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        46,
+        27.2,
+        -46
+      ],
+      "lookAt": [
+        11,
+        4.2,
+        1
+      ],
+      "fov": 48,
+      "name": "meridian-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        46,
+        27.2,
+        -46
+      ],
+      "lookAt": [
+        11,
+        4.2,
+        1
+      ],
+      "fov": 48,
+      "name": "meridian-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        46,
+        27.2,
+        -46
+      ],
+      "lookAt": [
+        11,
+        4.2,
+        1
+      ],
+      "fov": 48,
+      "name": "meridian-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.2,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/meridian-model.mjs",
+    "export": "buildMeridianSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMeridianDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "arch": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "lead": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          }
+        }
+      },
+      "street": {
+        "export": "buildMeridianStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "arch": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "lead": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMeridianCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "arch": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "lead": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -0.001634086041206935,
+      51.47782434984716
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Existing Protomaps20261020/Mapzen201x201/6m Observatory extract. Uncovered north approach internal[25.5,-3], datum46.555058333333335m; floor0.2m above control. Closed foundation follows original minimum footprint grade; occupied floor cut only, preserving courtyard/provider, roads/water and independent buildings. Approximate exterior native fit reviewed2026-10-22; boundary grades -1.24..+0.34m relative to the north approach leave a modest downhill base and slight uphill plinth burial. Exact historic terraces/thresholds and accessibility remain approximate.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 7
+    },
+    "bounds": [
+      -0.0018054815634056401,
+      51.477732713046386,
+      -0.001136901723139322,
+      51.47789018464346
+    ],
+    "terrainReference": {
+      "anchor": [
+        -0.0012662889793965324,
+        51.477851299305684
+      ],
+      "modelHeight": 0,
+      "basis": "Existing Protomaps20261020/Mapzen201x201/6m Observatory extract. Uncovered north approach internal[25.5,-3], datum46.555058333333335m; floor0.2m above control. Closed foundation follows original minimum footprint grade; occupied floor cut only, preserving courtyard/provider, roads/water and independent buildings. Approximate exterior native fit reviewed2026-10-22; boundary grades -1.24..+0.34m relative to the north approach leave a modest downhill base and slight uphill plinth burial. Exact historic terraces/thresholds and accessibility remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.883145,
+          3.481715
+        ],
+        [
+          -8.697183,
+          -3.956772
+        ],
+        [
+          -3.118319,
+          -3.77081
+        ],
+        [
+          -3.118319,
+          -4.328696
+        ],
+        [
+          3.018432,
+          -4.328696
+        ],
+        [
+          3.018432,
+          -3.77081
+        ],
+        [
+          7.667486,
+          -3.77081
+        ],
+        [
+          7.667486,
+          -4.328696
+        ],
+        [
+          14.548085,
+          -4.328696
+        ],
+        [
+          14.548085,
+          -1.167341
+        ],
+        [
+          19.755025,
+          -1.167341
+        ],
+        [
+          31.47064,
+          -0.981379
+        ],
+        [
+          31.47064,
+          7.200962
+        ],
+        [
+          7.667486,
+          7.200962
+        ],
+        [
+          7.667486,
+          3.481715
+        ],
+        [
+          3.018432,
+          3.481715
+        ],
+        [
+          3.018432,
+          4.039602
+        ],
+        [
+          -3.304281,
+          4.039602
+        ],
+        [
+          -3.304281,
+          3.481715
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.883145,
+            3.481715
+          ],
+          [
+            -8.697183,
+            -3.956772
+          ],
+          [
+            -3.118319,
+            -3.77081
+          ],
+          [
+            -3.118319,
+            -4.328696
+          ],
+          [
+            3.018432,
+            -4.328696
+          ],
+          [
+            3.018432,
+            -3.77081
+          ],
+          [
+            7.667486,
+            -3.77081
+          ],
+          [
+            7.667486,
+            -4.328696
+          ],
+          [
+            14.548085,
+            -4.328696
+          ],
+          [
+            14.548085,
+            -1.167341
+          ],
+          [
+            19.755025,
+            -1.167341
+          ],
+          [
+            31.47064,
+            -0.981379
+          ],
+          [
+            31.47064,
+            7.200962
+          ],
+          [
+            7.667486,
+            7.200962
+          ],
+          [
+            7.667486,
+            3.481715
+          ],
+          [
+            3.018432,
+            3.481715
+          ],
+          [
+            3.018432,
+            4.039602
+          ],
+          [
+            -3.304281,
+            4.039602
+          ],
+          [
+            -3.304281,
+            3.481715
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared campus Q192988 plus declared way268533454/native35184640622286, named Telescope Gallery. Contiguous way268533446/native35184640622278 is named The Transit House; ways268533457/459 continue east toward the separate Great Equatorial building. Integral parts1459032942/943/944 supply western8m/5m/5m bands. Own anchor raw[-17,1], internalX east,Z south, heading0 baked into native coordinates. Only these seven records are owned; retain separate dome way268533517 and southwest annex way268533460."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -8.883145,
+          3.481715
+        ],
+        [
+          -8.697183,
+          -3.956772
+        ],
+        [
+          -3.118319,
+          -3.77081
+        ],
+        [
+          -3.118319,
+          -4.328696
+        ],
+        [
+          3.018432,
+          -4.328696
+        ],
+        [
+          3.018432,
+          -3.77081
+        ],
+        [
+          7.667486,
+          -3.77081
+        ],
+        [
+          7.667486,
+          -4.328696
+        ],
+        [
+          14.548085,
+          -4.328696
+        ],
+        [
+          14.548085,
+          -1.167341
+        ],
+        [
+          19.755025,
+          -1.167341
+        ],
+        [
+          31.47064,
+          -0.981379
+        ],
+        [
+          31.47064,
+          7.200962
+        ],
+        [
+          7.667486,
+          7.200962
+        ],
+        [
+          7.667486,
+          3.481715
+        ],
+        [
+          3.018432,
+          3.481715
+        ],
+        [
+          3.018432,
+          4.039602
+        ],
+        [
+          -3.304281,
+          4.039602
+        ],
+        [
+          -3.304281,
+          3.481715
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.883145,
+            3.481715
+          ],
+          [
+            -8.697183,
+            -3.956772
+          ],
+          [
+            -3.118319,
+            -3.77081
+          ],
+          [
+            -3.118319,
+            -4.328696
+          ],
+          [
+            3.018432,
+            -4.328696
+          ],
+          [
+            3.018432,
+            -3.77081
+          ],
+          [
+            7.667486,
+            -3.77081
+          ],
+          [
+            7.667486,
+            -4.328696
+          ],
+          [
+            14.548085,
+            -4.328696
+          ],
+          [
+            14.548085,
+            -1.167341
+          ],
+          [
+            19.755025,
+            -1.167341
+          ],
+          [
+            31.47064,
+            -0.981379
+          ],
+          [
+            31.47064,
+            7.200962
+          ],
+          [
+            7.667486,
+            7.200962
+          ],
+          [
+            7.667486,
+            3.481715
+          ],
+          [
+            3.018432,
+            3.481715
+          ],
+          [
+            3.018432,
+            4.039602
+          ],
+          [
+            -3.304281,
+            4.039602
+          ],
+          [
+            -3.304281,
+            3.481715
+          ]
+        ]
+      ],
+      "basis": "Occupied house only; retain original court and detached buildings."
+    },
+    "notes": "Shared campus Q192988 plus declared way268533454/native35184640622286, named Telescope Gallery. Contiguous way268533446/native35184640622278 is named The Transit House; ways268533457/459 continue east toward the separate Great Equatorial building. Integral parts1459032942/943/944 supply western8m/5m/5m bands. Own anchor raw[-17,1], internalX east,Z south, heading0 baked into native coordinates. Only these seven records are owned; retain separate dome way268533517 and southwest annex way268533460. Existing Protomaps20261020/Mapzen201x201/6m Observatory extract. Uncovered north approach internal[25.5,-3], datum46.555058333333335m; floor0.2m above control. Closed foundation follows original minimum footprint grade; occupied floor cut only, preserving courtyard/provider, roads/water and independent buildings. Approximate exterior native fit reviewed2026-10-22; boundary grades -1.24..+0.34m relative to the north approach leave a modest downhill base and slight uphill plinth burial. Exact historic terraces/thresholds and accessibility remain approximate."
+  }
+}

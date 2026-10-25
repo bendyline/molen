@@ -1,0 +1,331 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "carved": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "weathered": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.97,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      91,
+      45,
+      80
+    ],
+    "lookAt": [
+      19,
+      4,
+      4
+    ],
+    "fov": 44
+  },
+  "qaCameras": [
+    {
+      "name": "three-west-false-doors-and-tiered-towers",
+      "position": [
+        -20,
+        13,
+        26
+      ],
+      "lookAt": [
+        11,
+        5,
+        4
+      ],
+      "fov": 46
+    },
+    {
+      "name": "east-pediments-mandapa-and-libraries",
+      "position": [
+        51,
+        18,
+        32
+      ],
+      "lookAt": [
+        19,
+        5,
+        5
+      ],
+      "fov": 46
+    },
+    {
+      "name": "lotus-finials-and-upper-aedicules",
+      "position": [
+        26,
+        15,
+        -4
+      ],
+      "lookAt": [
+        11,
+        9,
+        3
+      ],
+      "fov": 44
+    },
+    {
+      "name": "moat-enclosures-and-approach-gates",
+      "position": [
+        190,
+        150,
+        -165
+      ],
+      "lookAt": [
+        75,
+        0,
+        4
+      ],
+      "fov": 52
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "temple-skyline",
+      "position": [
+        91,
+        45,
+        80
+      ],
+      "lookAt": [
+        19,
+        4,
+        4
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "temple-district",
+      "position": [
+        91,
+        45,
+        80
+      ],
+      "lookAt": [
+        19,
+        4,
+        4
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "temple-street",
+      "position": [
+        91,
+        45,
+        80
+      ],
+      "lookAt": [
+        19,
+        4,
+        4
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "temple-closeup",
+      "position": [
+        91,
+        45,
+        80
+      ],
+      "lookAt": [
+        19,
+        4,
+        4
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -23,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/banteay-model.mjs",
+    "export": "buildBanteaySkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBanteayDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBanteayStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBanteayCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      103.96285057,
+      13.59888275
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "orientationPolicy": "approximate-visualization",
+    "bounds": [
+      103.96251784885526,
+      13.598415626052256,
+      103.96470826305811,
+      13.599340890794902
+    ],
+    "terrainReference": {
+      "anchor": [
+        103.96285057,
+        13.59888275
+      ],
+      "modelHeight": 0,
+      "basis": "SourceY0 is the retained standard Mapzen sample at the raw anchor. Individual plinths use their local coarse grade with retaining foundations. The common platform is an approximate graded stone terrace. Original ground and native moat water stay intact; exact archaeological floors and seasonal water levels are not surveyed."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          4.353246929224996,
+          16.542479664682475
+        ],
+        [
+          31.342922589732268,
+          16.542479664682475
+        ],
+        [
+          31.052711023490257,
+          -8.125507401872202
+        ],
+        [
+          4.353246929224996,
+          -7.835295924943724
+        ]
+      ],
+      "basis": "Only the mapped central temple building is represented; independent modern facilities remain native."
+    },
+    "notes": "SourceY0 is the retained standard Mapzen sample at the raw anchor. Individual plinths use their local coarse grade with retaining foundations. The common platform is an approximate graded stone terrace. Original ground and native moat water stay intact; exact archaeological floors and seasonal water levels are not surveyed.",
+    "groundContactBasis": "Approximate fit on the retained standard Mapzen grid. Sanctuary/library/gateway plinths have buried retaining foundations; enclosure strips follow local coarse grade instead of floating at a constant center height. The eastern approach gate is lower on its local terrain. The central mapped building alone is replaced; all independent facilities, original ground and mapped moat remain native. Exact archaeological floors, wall damage, individual carving and seasonal water height are not surveyed."
+  }
+}

@@ -1,0 +1,916 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:1974bcb3612686ac775ecd1f5044e356ca9d6afc75180a0744f5a5cfbb1abe1d",
+  "sourceHash": "sha256:28a04fb80b78e4b0b703ff2cf4b7a4ec707a9c8f592df813d5c550d76df39035",
+  "runtimeHash": "sha256:64ffd2340016d51a36a938b0ce5406c4a5bfe13f192d2b799d0dd5c8bb7cb160",
+  "captureReportHash": "sha256:6602eaaa966530c59382148c4f6acf37f81bcc9d5d97e2d949d793d3b214b325",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/north-shaped-gable-and-recessed-portal.png",
+      "shots/south-curved-gable-and-entry-soffit.png",
+      "shots/ribbed-dome-portholes-and-comet-vane.png"
+    ],
+    "notes": "Independent Altazimuth Pavilion: circular red-brick body with white arched sash heads, pale ribbed dome and six roof-skirt circular lights, projecting terracotta portals with columns/entablatures, different shaped north and curved south parapets, small open finial and schematic static comet vane. Both entrances have real recesses, closed floors and soffits. Two ordinary photos and the existing map/terrain extract guided one continuous author/inspect/fix pass. Replaced thin parapet strips with solid coping, added metal portal roofs and corrected window heads. Recorded the five contained mapped building parts as integral; moved the whole-building review camera out from behind the independent planetarium."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/north-shaped-gable-and-recessed-portal.png",
+      "shots/shared/south-curved-gable-and-entry-soffit.png",
+      "shots/shared/ribbed-dome-portholes-and-comet-vane.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Four existing 256 px graphs: brick walls/base, stone_limestone_raw tinted terracotta for molded-clay portal ornament and pale details, metal_painted dome/roofs/frames/finial and storefront opaque glass. Raw stone is an explicit shared substitute for terracotta. Five textured draws and one skyline draw. No new graph, private atlas or embedded image. Tangent-projected facades, linear tints and separate POSITION/NORMAL streams retained. Each graph reads once in native textured runs; unload disposes all model geometry.",
+    "captureReportHash": "sha256:fbf6e58ba0c147f4478dce8e27182d0b04abec906735d75f00c517752d3cb677"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/north-shaped-gable-and-recessed-portal.png",
+      "medium-fi/south-curved-gable-and-entry-soffit.png",
+      "medium-fi/ribbed-dome-portholes-and-comet-vane.png",
+      "medium-fi/altazimuth-skyline.png",
+      "medium-fi/altazimuth-district.png",
+      "medium-fi/altazimuth-street.png",
+      "medium-fi/altazimuth-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 956 / 3264 / 4836 / 5524 triangles, within1k/4k/16k/64k caps. Initial skyline+district geometry 360748 bytes, with shared material bakes cached separately. Six GLBs have zero Khronos errors/warnings;72 actual geometry/contact probes and six actual detailed PMTiles level15 cases pass. No matching13/14 records. Inspected48 current portable/shared/medium-fi/native frames including failure, all four LODs, Economy/High and noon/late light. Physical device/dense-city timings remain pending.",
+    "captureReportHash": "sha256:e185946425ec5e3615641357633dc1965c695249d7d767c82b1e7754b5c05e98"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e66eb47323c5942aee57cccd564358a52d839812e569dbf10df323ece4a135c7",
+    "mapFrameHash": "sha256:7e35d5a2363843831e418995aeb963f081a02d352db798c5857b0f3bae966800",
+    "notes": "Approximate native exterior fit accepted. Shared Q192988 plus unique way268533441/native35184640622273 and five contained building parts (ways1462323346/3347/3349/3350/3351). Own anchor[-0.0008725297720465719,51.477339259593734], east/south axes baked into heading0; north and south portal assignments follow the photos and mapped projecting ends. Uncovered south approach[0,6.95] sets datum47.73069916666667m, floor0.2m above it. Original boundary grades -0.455..+0.002m leave a modest base. Only the parent occupied footprint cuts ground; replace its parent plus five integral parts and retain all1296 independent resident/1833 wider buildings, including the four earlier Observatory assets, planetarium, South Building and southwest annex. Original201x201/6m grid, roads and9681.379312m² water retained. Failure keeps all1302 originals; each LOD unload restores ground/water with zero live model geometry. The controlled test manually selects this asset with retained procedural neighbors. Exact historic thresholds, step clearance and accessibility remain approximate. Ground-cutout coordinates are quantized to 1 mm to avoid Float32 edge ambiguity; original elevations and mapped building ownership remain unchanged."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Photo-led medium-fi exterior. Parent footprint has no height; integral parts carry unqualified3.4/4.5/5/7.8m hints. Working body radius3.75m/eaves4.3m, skirt5.35m, crown8.4m, north parapet7.1m/south7m and vane10.6m are reconstructed. Portal/window/porthole inventories, rib counts, shaped parapet/coping/column ornament, hidden faces and vane shape/bearing are simplified. Shared raw stone tinted terracotta substitutes for molded clay. No optics, furnished rooms, working telescope/dome, copied signs/inscriptions, engineering survey or certified walking access. Separate campus structures retain their own assets and placements; this fifth member does not complete the Observatory candidate."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/models/source.glb\",\"hash\":\"sha256:28a04fb80b78e4b0b703ff2cf4b7a4ec707a9c8f592df813d5c550d76df39035\",\"bytes\":607916,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.glb\",\"hash\":\"sha256:64ffd2340016d51a36a938b0ce5406c4a5bfe13f192d2b799d0dd5c8bb7cb160\",\"bytes\":607392,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.skyline.glb\",\"hash\":\"sha256:33d3f2e11f69f57782843079fb4f4122199bd93acf156af7b74cc531578f5e88\",\"bytes\":87272,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.district.glb\",\"hash\":\"sha256:c09562968ed8f8bd246920936e42bf96e386853881133de86f2d712c3948ecfb\",\"bytes\":273476,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.street.glb\",\"hash\":\"sha256:8f33d97cf1e7dda5dc1c217852caa517f6d1fdae5ca7f2b1bf97ffe98ad39811\",\"bytes\":404056,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.closeup.glb\",\"hash\":\"sha256:3b4fd0aecb8ce2a811855cac37c32ac190a882b414535bafae06f38cd43ad31b\",\"bytes\":450708,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "closed-dome-and-portal-roofs-floor-two-actual-recesses-soffits-and-open-approaches",
+        "passed": true,
+        "notes": "72 actual geometry/contact probes across six GLBs; current source/runtime hashes, shared references, LOD caps and vertex streams verified."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native exterior fit accepted. Shared Q192988 plus unique way268533441/native35184640622273 and five contained building parts (ways1462323346/3347/3349/3350/3351). Own anchor[-0.0008725297720465719,51.477339259593734], east/south axes baked into heading0; north and south portal assignments follow the photos and mapped projecting ends. Uncovered south approach[0,6.95] sets datum47.73069916666667m, floor0.2m above it. Original boundary grades -0.455..+0.002m leave a modest base. Only the parent occupied footprint cuts ground; replace its parent plus five integral parts and retain all1296 independent resident/1833 wider buildings, including the four earlier Observatory assets, planetarium, South Building and southwest annex. Original201x201/6m grid, roads and9681.379312m² water retained. Failure keeps all1302 originals; each LOD unload restores ground/water with zero live model geometry. The controlled test manually selects this asset with retained procedural neighbors. Exact historic thresholds, step clearance and accessibility remain approximate. Ground-cutout coordinates are quantized to 1 mm to avoid Float32 edge ambiguity; original elevations and mapped building ownership remain unchanged."
+    },
+    "inputHash": "sha256:1974bcb3612686ac775ecd1f5044e356ca9d6afc75180a0744f5a5cfbb1abe1d",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:1974bcb3612686ac775ecd1f5044e356ca9d6afc75180a0744f5a5cfbb1abe1d",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected all48 current frames in six labeled contact sheets and the native north/south entry and dome views at full resolution. Two ordinary exterior pictures and the existing standard map/terrain extract guided one continuous authoring pass. Corrected thin coping and portal roof/window materials, recorded five integral map parts and moved the whole-site camera out from behind the independent planetarium.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/preview.png",
+          "hash": "sha256:fe4f4c4ace59abf7608dd49cbee5969145cbefff737092a1e1604303130b1555"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/turntable/angle_0.png",
+          "hash": "sha256:d4fd71e4af8b1bd817f4e5ffae27d5eb6c180ab0498931da05dbf78bd98a6a56"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/turntable/angle_1.png",
+          "hash": "sha256:948a354598ce971984b54f3ce357291f53d7cc5fdc811ac321a1169cefbd7930"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/turntable/angle_2.png",
+          "hash": "sha256:0bf5ce9546c25a581de889456136d8312976a0dcf43e9583c995b4a98c1426e0"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/turntable/angle_3.png",
+          "hash": "sha256:472c1de7d652c7a1cffa1cfdfab87254504824a7ebc9d7df987283c6f4548a80"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/north-shaped-gable-and-recessed-portal.png",
+          "hash": "sha256:6d016260b9b393a19c842c096e0cc9120c58223717936c23e7ca3a33bd524eab"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/south-curved-gable-and-entry-soffit.png",
+          "hash": "sha256:09ba83c907ad1c74dc7afb86a29d3290f4e3c7a3c695870510e805986f51dadd"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/ribbed-dome-portholes-and-comet-vane.png",
+          "hash": "sha256:fd0400c2210b6407d01a4a8cbc4a30d5e9a504d33694976970d46785416615bc"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/shared/angle-0.png",
+          "hash": "sha256:48152bb89cdb5f16c5951b13326c2921154f5df2309121792db46213fb2cbb70"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/shared/angle-1.png",
+          "hash": "sha256:b5e5a8c78e4ed3a19873610f0b46eac2ed9b8d065b20fb9f4ab102512597f016"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/shared/angle-2.png",
+          "hash": "sha256:498fcd6d8fc4367940598a8bca6990dacfbbad5572002aee5ea6618fd2c8b52a"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/shared/angle-3.png",
+          "hash": "sha256:16f7f7f8a512cd492c76f54338393ef4d4c6ff34fd83d4c20a239f711ccb8474"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/shared/north-shaped-gable-and-recessed-portal.png",
+          "hash": "sha256:73a2e52a22595864a754c2d03be4fb1f77c62d95c496454d54ed86411f8deecf"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/shared/south-curved-gable-and-entry-soffit.png",
+          "hash": "sha256:48b448f501647dd48356aaa8ea9f6fb117b886cf352ef07875338708037b3652"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/shared/ribbed-dome-portholes-and-comet-vane.png",
+          "hash": "sha256:b92fcf7a05091a6ca5de23fbe2f0e4eb6bb2c0b6bb71b9de6013af05e8d1adcc"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/shots/shared/placement.png",
+          "hash": "sha256:0a253eddc219905ccd706770587a5d2bd11760b35f2cb45df71cb8696069fefd"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/street-noon-economy.png",
+          "hash": "sha256:aefee0bd7e373e5184213b64422587fddfcf88cb40cb6b94eb1c7ce1d6e3648c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/street-noon-high.png",
+          "hash": "sha256:e205b851c63f9b7b2887c882f2fd1f51bd9d42fbe478962eb2a265636aef765a"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/street-late-economy.png",
+          "hash": "sha256:b47a7e236b95dfa4411cb0e92db56ef82b1af008a0690eb9d47a09ff26dcaa6c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/street-late-high.png",
+          "hash": "sha256:7e1f85d17c2e38c338e5d17ca22711314bca2221ed9acca4eaa6d2119fdcbac0"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/block-noon-economy.png",
+          "hash": "sha256:49ca6706363da31cb9c1897aeeed1d5022ea22bfc47503b149f82c1f5937b4dd"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/block-noon-high.png",
+          "hash": "sha256:24f5bcced75cd6cd18f8d016de319f944f38b61122515bd194f604f4f599c718"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/block-late-economy.png",
+          "hash": "sha256:743bf02881dae89d857315c77f09df72d43604849eafb46a3be8e5cb4c4fb62b"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/block-late-high.png",
+          "hash": "sha256:04abd6bb0e0444549b9e506c1fc6f5b85a803ac4e33d9b1811febb6561558e91"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:068617c283d4b1b6ae3f7fadc3f7b22a2b4a06b6a654ea5e4edf977c241dd535"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:6b305a1305c1c688a5449af00a014769671be421cfbd3fa229dae25d5b81e809"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:935dd6c2f24632ac281ffb7eda474a936387257cea112b047595b8a7bb1ede82"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/skyline-late-high.png",
+          "hash": "sha256:215a04eebce327437edb9eed0f3023f508e162618b1bcab214bce14910286f1e"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/silhouette.png",
+          "hash": "sha256:741d24ae48e030a82cdd35433445eaa2fd899ed3d85849dc919dafee3cf81d69"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/north-shaped-gable-and-recessed-portal.png",
+          "hash": "sha256:a446d6e5362c9f2074ba2de418c8e1c6f11d53403f87650758c39b45be4c3742"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/south-curved-gable-and-entry-soffit.png",
+          "hash": "sha256:82634e9bcac9f8b9474512dc30345c12e839ca8976d055eafbc6181afa2e1607"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/ribbed-dome-portholes-and-comet-vane.png",
+          "hash": "sha256:fa454245d0c7b2aa50e32e22895b6bd3b1d36ddea765385e30c50120b49f064f"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/altazimuth-skyline.png",
+          "hash": "sha256:735ee23e90c52a1b0f35f50cdb2a848480d731fcc0227cd87d8f635481c8c06c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/altazimuth-district.png",
+          "hash": "sha256:4e1cebcd256b65c4d326bcafe39c71da44ed6ed9a776848ba78a8c8dd7e0e84f"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/altazimuth-street.png",
+          "hash": "sha256:875b0d0db7ebb24d3a3f479255f4b812676dc4252e166b9983420a321797b37c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/altazimuth-closeup.png",
+          "hash": "sha256:5fa06f4c80a9bb3fad535f39a5420da2badc07b1198b75aec3c09d9756b22c12"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/transition-skyline.png",
+          "hash": "sha256:bbd7245d35fa9c924a31d3f6579fd911d08ddbdd08adcf0d9f7bcd266a899c26"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/transition-district.png",
+          "hash": "sha256:24f5bcced75cd6cd18f8d016de319f944f38b61122515bd194f604f4f599c718"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/transition-street.png",
+          "hash": "sha256:257aec30aa929598cf0640f9365815ba1db3df416084d9a032c55e03a19dd274"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/medium-fi/transition-closeup.png",
+          "hash": "sha256:441b876f112fdc71bdc69bb5eb8349ae84d6d6bf355a156455d70541ccccf36d"
+        },
+        {
+          "path": ".artifacts/altazimuth-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:6f5087e494003731f43b5242e485e9a92dfa799aa18c8cf70b2e8efd1645ebbf"
+        },
+        {
+          "path": ".artifacts/altazimuth-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:41fe90db37fe0b1291b3751a0919858bc88af1f48ed326251fa59124e16542e8"
+        },
+        {
+          "path": ".artifacts/altazimuth-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:566d6bfc4eedfd11e475b89cc6aa98f885fe22d2f520f2bb6601a5b77d1afc22"
+        },
+        {
+          "path": ".artifacts/altazimuth-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:97b5dfd0394db86d72319f57ee893735476f149c277e520be70422ae389413a8"
+        },
+        {
+          "path": ".artifacts/altazimuth-integration/shots/final-closeup-north-shaped-gable-and-recessed-portal.png",
+          "hash": "sha256:c00df2e3b90a923e6edba5cad3eabce42ceeff2739cfd7fc6fd8dfcca0b16a88"
+        },
+        {
+          "path": ".artifacts/altazimuth-integration/shots/final-closeup-south-curved-gable-and-entry-soffit.png",
+          "hash": "sha256:9d87bc3b4f58685bdbbc4edc7ba39057fe37555c3223710828a4a798380cc2be"
+        },
+        {
+          "path": ".artifacts/altazimuth-integration/shots/final-closeup-ribbed-dome-portholes-and-comet-vane.png",
+          "hash": "sha256:cbbc86e013b56f502a456735312e658c345427d851f6e4c62af99ed2b6676d0a"
+        },
+        {
+          "path": ".artifacts/altazimuth-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:beee0db3e655f9e017cfd8b2471f2540b1fb52e7bd5b2c5b3bd3d09d583a9f5d"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:1974bcb3612686ac775ecd1f5044e356ca9d6afc75180a0744f5a5cfbb1abe1d",
+      "sourceHash": "sha256:28a04fb80b78e4b0b703ff2cf4b7a4ec707a9c8f592df813d5c550d76df39035",
+      "runtimeHash": "sha256:64ffd2340016d51a36a938b0ce5406c4a5bfe13f192d2b799d0dd5c8bb7cb160",
+      "files": {
+        "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/models/source.glb": "sha256:28a04fb80b78e4b0b703ff2cf4b7a4ec707a9c8f592df813d5c550d76df39035",
+        "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.glb": "sha256:64ffd2340016d51a36a938b0ce5406c4a5bfe13f192d2b799d0dd5c8bb7cb160",
+        "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.skyline.glb": "sha256:33d3f2e11f69f57782843079fb4f4122199bd93acf156af7b74cc531578f5e88",
+        "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.district.glb": "sha256:c09562968ed8f8bd246920936e42bf96e386853881133de86f2d712c3948ecfb",
+        "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.street.glb": "sha256:8f33d97cf1e7dda5dc1c217852caa517f6d1fdae5ca7f2b1bf97ffe98ad39811",
+        "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.closeup.glb": "sha256:3b4fd0aecb8ce2a811855cac37c32ac190a882b414535bafae06f38cd43ad31b"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184640622273,
+        35185834412178,
+        35185834412179,
+        35185834412181,
+        35185834412182,
+        35185834412183
+      ],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            16383,
+            10900
+          ],
+          "id": 35184640622273,
+          "owned": true,
+          "covered": 0.9999891918739349,
+          "area": 60.623419797271154,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16383,
+            10900
+          ],
+          "id": 35185834412178,
+          "owned": true,
+          "covered": 0.9999904197394419,
+          "area": 1.1412294154771576,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16383,
+            10900
+          ],
+          "id": 35185834412179,
+          "owned": true,
+          "covered": 0.9999874391329913,
+          "area": 1.0374788509448711,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16383,
+            10900
+          ],
+          "id": 35185834412181,
+          "owned": true,
+          "covered": 1.0000000064753496,
+          "area": 26.59407342533057,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16383,
+            10900
+          ],
+          "id": 35185834412182,
+          "owned": true,
+          "covered": 0.9999956759762101,
+          "area": 40.08131334602024,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16383,
+            10900
+          ],
+          "id": 35185834412183,
+          "owned": true,
+          "covered": 0.9975008852024605,
+          "area": 43.41854273562342,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 1296,
+      "widerIndependent": 1833,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000011308651437502704,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1296,
+          "remainingBuildings": 1296,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.821599166666665,
+            "max": 2.069500833333329
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:6f5087e494003731f43b5242e485e9a92dfa799aa18c8cf70b2e8efd1645ebbf",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 514071
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18,
+                13.2,
+                -20
+              ],
+              "lookAt": [
+                0,
+                4.4,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000011308651437502704,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1296,
+          "remainingBuildings": 1296,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.821599166666665,
+            "max": 2.069500833333329
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:41fe90db37fe0b1291b3751a0919858bc88af1f48ed326251fa59124e16542e8",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 516379
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18,
+                13.2,
+                -20
+              ],
+              "lookAt": [
+                0,
+                4.4,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000011308651437502704,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1296,
+          "remainingBuildings": 1296,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.821599166666665,
+            "max": 2.069500833333329
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:566d6bfc4eedfd11e475b89cc6aa98f885fe22d2f520f2bb6601a5b77d1afc22",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 517951
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18,
+                13.2,
+                -20
+              ],
+              "lookAt": [
+                0,
+                4.4,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000011308651437502704,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1296,
+          "remainingBuildings": 1296,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.821599166666665,
+            "max": 2.069500833333329
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:97b5dfd0394db86d72319f57ee893735476f149c277e520be70422ae389413a8",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 518639
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18,
+                13.2,
+                -20
+              ],
+              "lookAt": [
+                0,
+                4.4,
+                0
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-north-shaped-gable-and-recessed-portal.png",
+            "hash": "sha256:c00df2e3b90a923e6edba5cad3eabce42ceeff2739cfd7fc6fd8dfcca0b16a88",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 518639
+            },
+            "camera": {
+              "name": "north-shaped-gable-and-recessed-portal",
+              "position": [
+                8,
+                4.7,
+                -14
+              ],
+              "lookAt": [
+                0,
+                4,
+                -2
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-south-curved-gable-and-entry-soffit.png",
+            "hash": "sha256:9d87bc3b4f58685bdbbc4edc7ba39057fe37555c3223710828a4a798380cc2be",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 519455
+            },
+            "camera": {
+              "name": "south-curved-gable-and-entry-soffit",
+              "position": [
+                -6,
+                3.4000000000000004,
+                14
+              ],
+              "lookAt": [
+                0,
+                3.7,
+                3
+              ],
+              "fov": 56
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-ribbed-dome-portholes-and-comet-vane.png",
+            "hash": "sha256:cbbc86e013b56f502a456735312e658c345427d851f6e4c62af99ed2b6676d0a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 518639
+            },
+            "camera": {
+              "name": "ribbed-dome-portholes-and-comet-vane",
+              "position": [
+                13,
+                11.2,
+                -9
+              ],
+              "lookAt": [
+                0,
+                6.2,
+                0
+              ],
+              "fov": 58
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1296,
+          "remainingBuildings": 1302,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184640622273,
+              "area": 60.62276311850745
+            },
+            {
+              "id": 35185834412178,
+              "area": 1.1412170535773924
+            },
+            {
+              "id": 35185834412179,
+              "area": 1.0374676129387694
+            },
+            {
+              "id": 35185834412181,
+              "area": 26.593785355695232
+            },
+            {
+              "id": 35185834412182,
+              "area": 40.08087918129455
+            },
+            {
+              "id": 35185834412183,
+              "area": 43.41807242168372
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.821599166666665,
+            "max": 2.069500833333329
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:beee0db3e655f9e017cfd8b2471f2540b1fb52e7bd5b2c5b3bd3d09d583a9f5d",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 513021
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18,
+                13.2,
+                -20
+              ],
+              "lookAt": [
+                0,
+                4.4,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Independent Altazimuth Pavilion: circular red-brick body with white sash lights, pale ribbed dome and roof-skirt circular windows, two projecting north/south portals with terracotta columns and entablatures, ornate northern shaped gable and simpler curved southern gable, small cage finial and schematic static comet vane. Preserve every other Observatory member and the separately mapped planetarium. Exterior only; no optics, furnished rooms, operating dome, copied lettering or inscriptions.",
+    "Shared campus Q192988 plus unique way268533441/native35184640622273. The mapped rounded body with two north/south projecting entrances establishes identity and orientation. Own anchor raw[35.8,55], internalX east,Z south, heading0 baked into geometry. Photos from opposite ends establish different north/south gables; the vane bearing and exact ornamental inventories remain approximate. Parent plus its five contained building parts are owned; retain all other campus buildings, including the southern planetarium.",
+    "Parent footprint has no height; five integral building parts carry unqualified3.4/4.5/5/7.8m height hints. Working body radius3.75m/eaves4.3m, roof skirt5.35m, dome crown8.4m, north parapet7.1m/south7.0m and schematic finial/vane10.6m are photo-led estimates. Portal/wall-window/porthole inventories, rib counts, ornamental curves, hidden elevations and vane form/bearing are simplified. Shared raw stone tinted terracotta represents molded clay portal trim; no copied inscriptions or surveyed engineering.",
+    "Existing standard Protomaps20261020/Mapzen201x201/6m Observatory extract reused. Uncovered south entry approach internal[0,6.95], datum47.73069916666667m; floor0.2m above control. Closed footing unions mapped floor with reconstructed circular body and north/south portals. Only the occupied mapped footprint cuts ground; retain original approaches/provider, all independent buildings, roads and water. Approximate native exterior fit reviewed on the original hill; boundary grade -0.46..+0.002m leaves a modest base. Exact historic thresholds, steps and accessibility remain approximate. Ground-cutout coordinates are quantized to1mm to avoid Float32 boundary ambiguity; original elevations and the mapped building-ownership mask remain unchanged.",
+    "Photo-led medium-fi exterior. Parent footprint has no height; integral parts carry unqualified3.4/4.5/5/7.8m hints. Working body radius3.75m/eaves4.3m, skirt5.35m, crown8.4m, north parapet7.1m/south7m and vane10.6m are reconstructed. Portal/window/porthole inventories, rib counts, shaped parapet/coping/column ornament, hidden faces and vane shape/bearing are simplified. Shared raw stone tinted terracotta substitutes for molded clay. No optics, furnished rooms, working telescope/dome, copied signs/inscriptions, engineering survey or certified walking access. Separate campus structures retain their own assets and placements; this fifth member does not complete the Observatory candidate.",
+    "Approximate native exterior fit accepted. Shared Q192988 plus unique way268533441/native35184640622273 and five contained building parts (ways1462323346/3347/3349/3350/3351). Own anchor[-0.0008725297720465719,51.477339259593734], east/south axes baked into heading0; north and south portal assignments follow the photos and mapped projecting ends. Uncovered south approach[0,6.95] sets datum47.73069916666667m, floor0.2m above it. Original boundary grades -0.455..+0.002m leave a modest base. Only the parent occupied footprint cuts ground; replace its parent plus five integral parts and retain all1296 independent resident/1833 wider buildings, including the four earlier Observatory assets, planetarium, South Building and southwest annex. Original201x201/6m grid, roads and9681.379312m² water retained. Failure keeps all1302 originals; each LOD unload restores ground/water with zero live model geometry. The controlled test manually selects this asset with retained procedural neighbors. Exact historic thresholds, step clearance and accessibility remain approximate. Ground-cutout coordinates are quantized to 1 mm to avoid Float32 edge ambiguity; original elevations and mapped building ownership remain unchanged."
+  ]
+}

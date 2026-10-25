@@ -1,0 +1,265 @@
+{
+  "planId": "amphitrite_point_lighthouse",
+  "id": "amphitrite_point_lighthouse",
+  "assetId": "molen.worldgen.structure.amphitrite_point_lighthouse",
+  "title": "Amphitrite Point Lighthouse",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -125.5411931909091,
+    "latitude": 48.92117484545454
+  },
+  "size": [
+    11.806087970733643,
+    7.5999999940395355,
+    11.788787841796875
+  ],
+  "actualBounds": {
+    "min": [
+      -4.228619575500488,
+      -0.3499999940395355,
+      -7.798471927642822
+    ],
+    "max": [
+      7.577468395233154,
+      7.25,
+      3.9903159141540527
+    ]
+  },
+  "visualBrief": "Low broad white concrete lighthouse/service building on its complete native D-shaped footprint: gently battered lower wall, setback flat-roof upper storey with a small physical vent, short red hexagonal glazed lantern and hipped roof/weather mast, and recessed landward door with intrinsic short approach steps/handrails. Detached station, helipads, fence, trail and rocky landscape excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Amphitritepoint.jpg"
+  ],
+  "stories": [
+    {
+      "id": "amphitrite-point-lighthouse-wp",
+      "url": "https://qualla.com/amphitrite-point-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "95b316867b9f7b77b578aebcdbfbaf2da66ed2a064af4689073a5ee0734dc142",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-amphitrite-point-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-amphitrite-point-lighthouse.mjs",
+    "level": "skyline",
+    "export": "amphitriteSkyline",
+    "errorMeters": 0.7,
+    "surfaces": {
+      "white": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.12
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.91,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "amphitriteDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "amphitriteStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named native building way374651008 retains the signed D-shaped service-body footprint. Original attached access footway374651033 fixes the landward entry and off-body dry approach datum before terrain sampling.",
+    "anchor": [
+      -125.5411931909091,
+      48.92117484545454
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -125.5411101,
+        48.9212572
+      ],
+      "modelHeight": 0,
+      "basis": "Original approach-footway point outside the building sets a fixed approximate dry rocky approach datum before terrain acquisition. Do not use the15mseamark focal elevation as structural height."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/374651008"
+    ],
+    "source": "https://www.openstreetmap.org/way/374651008",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f15af0f109228449141f325caa62e2a3a8f75939982c1ca01f46990eba7835cf",
+    "notes": "Physical body heights, upper-storey setback, lantern and small openings are medium-fi photographic estimates. Building roof/lantern are about6m total, with a weather mast above; no15m-tall tower or whole-rock platform."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The full original named lighthouse way374651008/Q28375578 controls its irregular D-shaped lower plan, anchor and true-east orientation. Original attached footway fixes entrance/approach; neighboring station buildings and helipads are distinct objects. The native15mseamark light-height is a focal elevation above sea level, not a15mstructural height.",
+    "One exact Qualla-published448x336TourismUcluelet2008PD-selforiginal controls broad low white massing, narrower upper storey, red lantern/hip roof, weather mast and access-step typology. About6mprimarystructure height, upper setbacks, glazing sections, slight wall batter, vents/door and small fittings are medium-fi photographic estimates; the image has limited detail. No attribution/share-alike alternative or supplemental photograph was used.",
+    "Exterior assembly only. Lantern panes are restrained opaque glazing for portable appearance; internal optics, inscriptions, electrical/meteorological equipment and hidden fittings are not engineering reconstructions. Fine mullions/vent slats/weather fittings retire in lower LODs. Detached station/helipads, fence, Wild Pacific Trail, cliff rock/landscape and former wooden lighthouse excluded.",
+    "Footings extend.35m below a fixed original approach datum and a short own-entry stair rises.28m. Exact rocky foundation and terrain/step contact remain approximate; source terrain is preserved and no whole-rock platform or blanket ground opening is introduced."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "mapped-landward-door-and-steps",
+      "position": [
+        18,
+        5,
+        -19
+      ],
+      "lookAt": [
+        3,
+        1.7,
+        -4
+      ]
+    },
+    {
+      "name": "red-lantern-and-weather-mast",
+      "position": [
+        9,
+        8,
+        -10
+      ],
+      "lookAt": [
+        0,
+        4.9,
+        -0.3
+      ]
+    },
+    {
+      "name": "rounded-seaward-body",
+      "position": [
+        -17,
+        9,
+        17
+      ],
+      "lookAt": [
+        -1,
+        2,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1128,
+    "vertices": 3384,
+    "materials": 3,
+    "bytes": 137672,
+    "sha256": "sha256:ad0e2d8ebc7b22f62e9522e85087891427a26a191f6726db94adb8df88f30579"
+  }
+}

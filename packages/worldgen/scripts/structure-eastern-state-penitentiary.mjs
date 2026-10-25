@@ -214,6 +214,131 @@ function castleBlock(o, x, z, w, d, height, detail) {
         );
       }
 }
+function trianglePrism(o, points, front, back) {
+  const a = points.map(([x, y]) => [x, y, front]),
+    b = points.map(([x, y]) => [x, y, back]);
+  for (const [p, n] of [
+    [a, [0, 0, 1]],
+    [b.slice().reverse(), [0, 0, -1]],
+  ])
+    o.addTriangle(
+      'stone',
+      'palette:#ffffff',
+      p,
+      n,
+      p.map(([x, y]) => [x, y]),
+      pale,
+    );
+  for (let i = 0; i < 3; i++) {
+    const j = (i + 1) % 3,
+      p = [a[i], b[i], b[j], a[j]];
+    quad(o, 'stone', p, normalFor(...p), pale);
+  }
+}
+/** The 1937 barbican is a deep entrance recess, not a black rectangle on a solid box. */
+function barbican(o, x, detail) {
+  const front = 101.8,
+    back = 98.4,
+    width = 9.8,
+    opening = 2.6,
+    height = 5.2,
+    lintel = 3.7,
+    jamb = (width - opening) / 2;
+  for (const side of [-1, 1])
+    B(
+      o,
+      'stone',
+      x + (side * (opening + jamb)) / 2,
+      0,
+      (front + back) / 2,
+      jamb,
+      height,
+      front - back,
+      weather,
+    );
+  B(o, 'stone', x, lintel, (front + back) / 2, opening, height - lintel, front - back, weather);
+  B(o, 'stone', x, -3, (front + back) / 2, opening, 3, front - back, weather);
+  trianglePrism(
+    o,
+    [
+      [x - 1.3, 3.3],
+      [x - 0.95, 3.7],
+      [x - 1.3, 3.7],
+    ],
+    front,
+    back,
+  );
+  trianglePrism(
+    o,
+    [
+      [x + 0.95, 3.7],
+      [x + 1.3, 3.3],
+      [x + 1.3, 3.7],
+    ],
+    front,
+    back,
+  );
+  // The existing inner gatehouse remains opaque; no cell interiors or navigation are invented.
+  quad(
+    o,
+    'glass',
+    [
+      [x - 1.3, 0, 98.14],
+      [x + 1.3, 0, 98.14],
+      [x + 1.3, 3.7, 98.14],
+      [x - 1.3, 3.7, 98.14],
+    ],
+    [0, 0, 1],
+    c.dark,
+  );
+  if (!detail) return;
+  for (const side of [-1, 1]) B(o, 'stone', x + side * 1.55, 0, 101.89, 0.45, 4, 0.4, pale);
+  B(o, 'stone', x, 3.75, 101.9, 3.6, 0.5, 0.4, pale);
+  const count = detail === 1 ? 5 : 11;
+  for (let i = 0; i < count; i++) {
+    const xx = x - 1.1 + (2.2 * i) / (count - 1);
+    if (detail === 1)
+      quad(
+        o,
+        'metal',
+        [
+          [xx - 0.035, 0, 100.5],
+          [xx + 0.035, 0, 100.5],
+          [xx + 0.035, 3.35, 100.5],
+          [xx - 0.035, 3.35, 100.5],
+        ],
+        [0, 0, 1],
+        c.dark,
+      );
+    else B(o, 'metal', xx, 0, 100.5, 0.045, 3.35, 0.045, c.dark);
+  }
+  for (const y of [0.2, 1.8, 3.25])
+    if (detail === 1)
+      quad(
+        o,
+        'metal',
+        [
+          [x - 1.15, y, 100.52],
+          [x + 1.15, y, 100.52],
+          [x + 1.15, y + 0.045, 100.52],
+          [x - 1.15, y + 0.045, 100.52],
+        ],
+        [0, 0, 1],
+        c.dark,
+      );
+    else B(o, 'metal', x, y, 100.5, 2.3, 0.045, 0.045, c.dark);
+  if (detail >= 2) {
+    for (const side of [-1, 1]) {
+      B(o, 'stone', x + side * 3.25, 4, 101.83, 0.55, 0.55, 0.12, pale);
+      for (let i = 0; i < 3; i++)
+        B(o, 'metal', x + side * 3.25, 4.07 + i * 0.13, 101.91, 0.42, 0.045, 0.04, c.dark);
+    }
+    // Small barred side hatch shown beside the main doorway.
+    B(o, 'glass', x + 2.05, 0.15, 101.83, 0.75, 1.65, 0.04, c.dark);
+    for (const xx of [1.85, 2.05, 2.25])
+      B(o, 'metal', x + xx, 0.15, 101.88, 0.035, 1.65, 0.035, weather);
+  }
+}
 function gatehouse(o, frame, detail) {
   const f = frame.features.find((f) => f.id === 'buildings/35184422281912');
   if (detail) prism(o, f.rings, -3, 9.5, stone);
@@ -252,20 +377,32 @@ function gatehouse(o, frame, detail) {
       [x, 10.3, z],
       [x - 2.1, 8, z],
     ];
-    o.addConvexPolygon('glass', 'palette:#ffffff', p, [0, 0, 1], (q) => [q[0], q[1]], c.dark);
+    // Recessed faux-portcullis backing and actual stone reveals above the later barbican.
+    const rear = p.map(([xx, yy]) => [xx, yy, 98.14]);
+    o.addConvexPolygon('glass', 'palette:#ffffff', rear, [0, 0, 1], (q) => [q[0], q[1]], c.dark);
+    for (let i = 0; i < p.length - 1; i++) {
+      const q = [p[i], rear[i], rear[i + 1], p[i + 1]];
+      quad(o, 'stone', q, normalFor(...q), weather);
+    }
+    for (const dx of [-1.6, -0.8, 0, 0.8, 1.6]) {
+      const top = 10.3 - (Math.max(0, Math.abs(dx) - 0.05) * 2.3) / 2.1;
+      if (detail >= 2) B(o, 'metal', x + dx, 5.2, 98.23, 0.05, top - 5.2, 0.05, pale);
+    }
+    if (detail >= 2)
+      for (const y of [5.6, 6.4, 7.2, 8, 8.8, 9.6]) {
+        const half = y <= 8 ? 2.05 : ((10.3 - y) * 2.1) / 2.3;
+        B(o, 'metal', x, y, 98.23, half * 2, 0.05, 0.05, pale);
+      }
     for (const sign of [-1, 1]) {
       bar(o, [x + sign * 3, 97.5], [x + sign * 3, 100.2], 0, 12.8, 0.8, weather);
       beam(o, 'stone', [x + sign * 3, 12.8, 98.5], [x + sign * 3, 14.7, 98.5], 0.65, 0.65, pale);
     }
     for (const sign of [-1, 1])
       beam(o, 'stone', [x + sign * 2.25, 8, 98.9], [x, 10.5, 98.9], 0.4, 0.4, pale);
-    B(o, 'stone', x, 0, 100.1, 9.8, 5.2, 3.4, weather);
-    B(o, 'glass', x, 0, 101.83, 2.6, 3.7, 0.08, 'dark');
-    for (const dx of [-1.55, 1.55]) B(o, 'stone', x + dx, 0, 101.89, 0.45, 4, 0.4, pale);
-    B(o, 'stone', x, 3.75, 101.9, 3.6, 0.5, 0.4, pale);
+    barbican(o, x, detail);
     for (const xx of [-14, 16])
       for (const zz of [84, 90]) B(o, 'stone', xx, 10, zz, 1.1, 2.3, 1.3, weather);
-  }
+  } else barbican(o, 1.5, detail);
 }
 function build(o, frame, detail) {
   if (detail) prism(o, frame.features[0].rings, -3, 4.2, weather);
@@ -390,10 +527,17 @@ export const easternStateModel = {
   cell: 'dr/dr4',
   title: 'Eastern State Penitentiary',
   brief:
-    'Surviving radial prison with seven original cellblock roofs, later infill blocks, central hub, castellated Fairmount Avenue gatehouse, high stone perimeter and watch boxes.',
+    'Surviving radial prison with seven original cellblock roofs, later infill blocks, central hub, castellated Fairmount Avenue gatehouse, deep chamfered barbican entrance with barred gate and recessed faux portcullis, high stone perimeter and watch boxes.',
   camera: [265, 180, 320],
   mediumFiContext: { scale: 2.5 },
   build: easternState,
+  qaCameras: [
+    { name: 'front', position: [3.45, 17.355, 418], lookAt: [3.45, 7.245, -3.2] },
+    { name: 'back', position: [3.45, 21.36, -424.4], lookAt: [3.45, 7.245, -3.2] },
+    { name: 'barbican-entry', position: [7, 3.3, 111], lookAt: [1.5, 2.2, 99.7] },
+    { name: 'entrance-depth', position: [1.61, 1.8, 104], lookAt: [1.61, 1.8, 98.14] },
+    { name: 'portcullis-surround', position: [9, 10, 112], lookAt: [1.5, 8, 98.5] },
+  ],
   quality: 'medium-fi-exterior',
   reviewStatus: 'review-in-qa.json',
   geographicStatus: 'preview-proposal',
@@ -410,10 +554,11 @@ export const easternStateModel = {
     },
   },
   limitations: [
-    'Original medium-fi surviving exterior from local Qualla masonry/courtyard photographs, generalized current footprints, museum map and inspected archival HABS exterior views; not a measured survey or an exact 2026 condition inventory.',
+    'Original medium-fi surviving exterior now controlled by four individually inspected original HABS government photographs:1998front/barbican/reverse gate and2003aerial. Earlier CC photographs,museum visitor map and lithograph are excluded as current imagery controls. Not a measured survey or exact2026condition inventory.',
     'Seven original radial wings, later infill and separate gatehouse are differentiated. Detailed decay, exact skylight counts, hidden roof joins, smaller yard partitions and service fixtures are generalized.',
     'The 1855 hero lithograph is rejected as current form evidence; its historic central turret and rows of separate exercise yards are not restored.',
     'Three mapped corner controls establish the perimeter; northeast corner closure, roof heights and unseen rear details remain photographic interpretations. Ground contact uses coarse host terrain, not surveyed pavement levels.',
     'No interiors, surrounding streets, temporary visitor attractions or reference-photo textures are included. Research images remain local and are not embedded in runtime packs.',
+    'The barbican has real floor,jambs,chamfered lintel,recess and barred gate. It terminates at an opaque inner boundary;cell interiors and a navigable prison passage are excluded. Existing footprint/levels are retained;recess depth,bar spacing,vent/hatch proportions and unseen details are estimates. Monochrome originals do not establish material color.',
   ],
 };

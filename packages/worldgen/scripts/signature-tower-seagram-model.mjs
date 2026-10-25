@@ -485,7 +485,7 @@ function buildSeagram(out) {
   }
 }
 export const seagramStudy = {
-  id: 'N0205',
+  id: 'seagram_building',
   key: 'seagram_building',
   title: 'Seagram Building',
   wikidataId: 'Q737484',

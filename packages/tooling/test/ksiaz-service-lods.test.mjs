@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { buildKsiazService } from '../../worldgen/scripts/ksiaz-service-models.mjs';
+import { buildKsiazService } from '../../../content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/ksiaz-service-models.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 it('keeps the forester house deterministic, textured and within all browser LOD budgets', async () => {

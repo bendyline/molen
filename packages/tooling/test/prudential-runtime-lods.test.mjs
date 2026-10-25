@@ -10,7 +10,7 @@ import { encodeAuthoredAssembly } from '../../worldgen/scripts/authored-glb-asse
 import { twoPrudentialPlazaStudy } from '../../worldgen/scripts/two-prudential-plaza-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dp/dp3/n0228_two_prudential_plaza'),
+const source = resolve('../../content/worldgen/source/places/dp/dp3/two_prudential_plaza'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -127,7 +127,11 @@ it('reproduces the original instanced master and honors the reviewed geometry ov
   // Regression: sourceGeometry must affect the bytes even when the study has encodeAssembly.
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=N0228', '--check'],
+    [
+      'packages/worldgen/scripts/generate-signature-towers.mjs',
+      '--ids=two_prudential_plaza',
+      '--check',
+    ],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const spec = await read(`${source}/spec.json`),

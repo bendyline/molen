@@ -1,0 +1,535 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "plaster_lime",
+      "slot": "wall"
+    },
+    "wing": {
+      "graph": "brick",
+      "slot": "wall"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "floor": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim"
+    },
+    "panel": {
+      "graph": "wood_plain",
+      "slot": "trim"
+    },
+    "gold": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim"
+    },
+    "column": {
+      "graph": "stone_granite",
+      "slot": "trim"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      52.53128185053551,
+      90,
+      191.02477438054888
+    ],
+    "lookAt": [
+      0,
+      7,
+      0
+    ],
+    "fov": 42
+  },
+  "qaCameras": [
+    {
+      "name": "second-court-dome-canopy-and-open-route",
+      "position": [
+        -20.705856120392568,
+        9,
+        47.85088841726559
+      ],
+      "lookAt": [
+        0.12749140284540106,
+        5,
+        7.963902682868526
+      ],
+      "fov": 65
+    },
+    {
+      "name": "third-court-arcade-and-open-balustrade",
+      "position": [
+        0.01360860948622089,
+        2.8,
+        -4.562051600513507
+      ],
+      "lookAt": [
+        4.247864579663577,
+        1.3,
+        0.07514328206555265
+      ],
+      "fov": 82
+    },
+    {
+      "name": "lead-dome-five-finials-and-connected-wings",
+      "position": [
+        6.339586865459506,
+        35,
+        46.182352022989186
+      ],
+      "lookAt": [
+        2.9052710726104634,
+        7,
+        2.645637918282252
+      ],
+      "fov": 65
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        52.53128185053551,
+        90,
+        191.02477438054888
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 42,
+      "name": "felicity-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        52.53128185053551,
+        90,
+        191.02477438054888
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 42,
+      "name": "felicity-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        52.53128185053551,
+        90,
+        191.02477438054888
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 42,
+      "name": "felicity-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        52.53128185053551,
+        90,
+        191.02477438054888
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 42,
+      "name": "felicity-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-felicity-model.mjs",
+    "export": "buildTopkapiFelicitySkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiFelicityDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall"
+          },
+          "wing": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "panel": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiFelicityStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall"
+          },
+          "wing": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "panel": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiFelicityCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall"
+          },
+          "wing": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "panel": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      28.984378427267075,
+      41.012632673216075
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Existing standard PMTiles/Mapzen terrain retained. Native front-path control internal[3.8,23] sets Y0; rear control[3.8,-12] defines the modest through-passage cross slope. Connected wings follow nine front-ground samples along their length, preserving original terrain outside the tightly occupied mapped parent. Roof/floor subdivisions follow those controls; columns remain upright. This is an explicit approximate adaptation to the host terrain, whose eastern wing drops several metres. No broad courtyard slab, terrain flattening, independent-building replacement or water cutout. Original native terrain, footprint ownership, front-facing entry and approximate exterior contact were visually inspected2026-10-21 and accepted. The independent Audience Chamber procedural shell meets the rear boundary and obscures a distant rear view; the authored rear portico remains intact and is inspected from inside its own footprint. Exact historical wing levels and host terrain accuracy remain approximate.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 7.81
+    },
+    "bounds": [
+      28.983827835347007,
+      41.01238823533906,
+      28.984929019187142,
+      41.01287711109309
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.984291759251708,
+        41.012433732833784
+      ],
+      "modelHeight": 0,
+      "basis": "Existing standard front path control internal[3.8,23]; nativeY0. Actual provider ground reference, independent of model-interior roof heights."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -45.69632611428571,
+          -15.69230607857143
+        ],
+        [
+          -39.85609951428572,
+          -26.698886978571426
+        ],
+        [
+          45.72558288571429,
+          18.001209221428574
+        ],
+        [
+          41.4610722947139,
+          26.081434173549706
+        ],
+        [
+          36.1606,
+          23.4311
+        ],
+        [
+          36.157224920164076,
+          23.43742846194712
+        ],
+        [
+          36.066746585714284,
+          23.392187621428572
+        ],
+        [
+          34.269753785714286,
+          26.761648821428572
+        ],
+        [
+          28.429527185714285,
+          23.616811721428572
+        ],
+        [
+          27.531030785714286,
+          25.18928012142857
+        ],
+        [
+          6.191741285714286,
+          13.957975421428571
+        ],
+        [
+          3.047003885714286,
+          20.022826121428572
+        ],
+        [
+          -11.32883881428571,
+          12.385606721428573
+        ],
+        [
+          -8.184101414285713,
+          6.320756021428571
+        ],
+        [
+          -25.255533014285714,
+          -2.43948417857143
+        ],
+        [
+          -24.132412514285715,
+          -4.46110107857143
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Existing standard PMTiles/Mapzen terrain retained. Native front-path control internal[3.8,23] sets Y0; rear control[3.8,-12] defines the modest through-passage cross slope. Connected wings follow nine front-ground samples along their length, preserving original terrain outside the tightly occupied mapped parent. Roof/floor subdivisions follow those controls; columns remain upright. This is an explicit approximate adaptation to the host terrain, whose eastern wing drops several metres. No broad courtyard slab, terrain flattening, independent-building replacement or water cutout. Original native terrain, footprint ownership, front-facing entry and approximate exterior contact were visually inspected2026-10-21 and accepted. The independent Audience Chamber procedural shell meets the rear boundary and obscures a distant rear view; the authored rear portico remains intact and is inspected from inside its own footprint. Exact historical wing levels and host terrain accuracy remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -45.8485,
+          -15.771
+        ],
+        [
+          -24.2197,
+          -4.506
+        ],
+        [
+          -25.3462,
+          -2.4783
+        ],
+        [
+          -8.2234,
+          6.3083
+        ],
+        [
+          -11.3776,
+          12.3914
+        ],
+        [
+          3.0415,
+          20.0516
+        ],
+        [
+          6.1957,
+          13.9685
+        ],
+        [
+          27.5992,
+          25.2336
+        ],
+        [
+          28.5004,
+          23.6564
+        ],
+        [
+          34.3582,
+          26.8107
+        ],
+        [
+          36.1606,
+          23.4311
+        ],
+        [
+          41.5678,
+          26.1348
+        ],
+        [
+          45.8485,
+          18.0239
+        ],
+        [
+          -39.9907,
+          -26.8107
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -45.8485,
+            -15.771
+          ],
+          [
+            -24.2197,
+            -4.506
+          ],
+          [
+            -25.3462,
+            -2.4783
+          ],
+          [
+            -8.2234,
+            6.3083
+          ],
+          [
+            -11.3776,
+            12.3914
+          ],
+          [
+            3.0415,
+            20.0516
+          ],
+          [
+            6.1957,
+            13.9685
+          ],
+          [
+            27.5992,
+            25.2336
+          ],
+          [
+            28.5004,
+            23.6564
+          ],
+          [
+            34.3582,
+            26.8107
+          ],
+          [
+            36.1606,
+            23.4311
+          ],
+          [
+            41.5678,
+            26.1348
+          ],
+          [
+            45.8485,
+            18.0239
+          ],
+          [
+            -39.9907,
+            -26.8107
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only named Gate of Felicity OSM way32396111/native building35184404484943. All other palace members, independent buildings and native paths remain unchanged."
+    },
+    "notes": "Individual Gate of Felicity Q6041550 and OSM way32396111/native35184404484943. Its approximately97x22m notched connected gate-and-wing footprint fixes shape and placement. The projecting canopy lies on the Second Courtyard side southwest. Internal+X follows the front wall east-southeast; internal+Z faces Second Courtyard south-southwest, internal-Z the Third Courtyard north-northeast. Native world+X east/+Z south at heading0. The Audience Chamber is separately mapped immediately behind and remains independent. Existing standard PMTiles/Mapzen terrain retained. Native front-path control internal[3.8,23] sets Y0; rear control[3.8,-12] defines the modest through-passage cross slope. Connected wings follow nine front-ground samples along their length, preserving original terrain outside the tightly occupied mapped parent. Roof/floor subdivisions follow those controls; columns remain upright. This is an explicit approximate adaptation to the host terrain, whose eastern wing drops several metres. No broad courtyard slab, terrain flattening, independent-building replacement or water cutout. Original native terrain, footprint ownership, front-facing entry and approximate exterior contact were visually inspected2026-10-21 and accepted. The independent Audience Chamber procedural shell meets the rear boundary and obscures a distant rear view; the authored rear portico remains intact and is inspected from inside its own footprint. Exact historical wing levels and host terrain accuracy remain approximate."
+  }
+}

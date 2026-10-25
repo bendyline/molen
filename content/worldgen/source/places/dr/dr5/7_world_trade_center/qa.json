@@ -1,0 +1,288 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.7_world_trade_center",
+  "reviewedOn": "2026-10-09",
+  "inputHash": "sha256:fd7a649e10df2d0dcd3e4474c8a52e8c6c2ba7141e3271f049b7da63ec677338",
+  "sourceHash": "sha256:5c0b77ec0b6773166e023dfdfce7d1e141097c51b27588dea8792468c0ca867e",
+  "runtimeHash": "sha256:f3d705b331b4082633c37ddacd056f9db9bec16180b369662e123c0ae93b82e6",
+  "captureReportHash": "sha256:e9f5f0a24261b21ba6254bf686c1344bde8021848d6bae1ea00d7f2c7620c321",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/steel-scrim.png",
+      "shots/concave-spandrels.png",
+      "shots/roof-plant.png",
+      "shots/ground-lobby.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Ten current portable views inspected against owner tower photograph and material consultant scrim/spandrel references. Oblique glass body, horizontal concave spandrels, vertical mullions, lower scrim and glazed lobby are present. Offset roof plant rests continuously on the new223-to223.85m curb. Original4832-triangle emitted geometry remains exact; current4852-triangle master adds only that curb. Fine scrim moire occurs at some camera distances."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:b4232e6cff133d2fca3734a5eb32565ba9be41620e31454819198cee88be529a",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/steel-scrim.png",
+      "shots/shared/concave-spandrels.png",
+      "shots/shared/roof-plant.png",
+      "shots/shared/ground-lobby.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Ten current shared-material views inspected including north-up perimeter, scrim, spandrels, roof and lobby. Canonical stone/concrete/painted-metal graphs load once and metric bindings remain. Glazing and dark recess are distinct local PBR materials. Unload disposes model geometry. Original shared capture used the unchanged detailed master and placement before runtime district material slot/context framing edits; exact image hashes are retained with explicit binding proof."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:d8d84fae2b62a80d7ec09be5cc8569140448d857971c253621af792799c5b4b8",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/steel-scrim.png",
+      "medium-fi/concave-spandrels.png",
+      "medium-fi/roof-plant.png",
+      "medium-fi/ground-lobby.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/steel-scrim-district.png",
+      "medium-fi/roof-plant-district.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All24 current browser views inspected, including complete skyline silhouette, noon/late economy/high, transitions and explicit district scrim and rooftop cameras. Skyline82triangles keeps the oblique plan and service block. District3892triangles uses every third podium strip with original floors, mullions, roof and lobby. Street and closeup retain4852triangles. Review context scale3 includes the entire226m skyline; brownstone neighbors are synthetic context. Fine strip moire is documented. District roughness separates recess from glazing."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:699403c0727d98161c46c12ffb8f8249cbf9a21b22c1822b49e2bea4e2e9a3b0",
+    "mapFrameHash": "sha256:7ee5df1d0d8ed36889abe466433dec5cdac765b23433a30bc7275e0b89d32f05",
+    "notes": "Attributed2026-09-27 exact-QID map snapshot identifies current2006 tower at250GreenwichStreet, way277890516 and roof parts1530740417/418. Native mapped plan81.197x49.118m matches north-up perimeter; facade frames extend bounds slightly. Signed+X10.8463NNE/+Z100.8463ESE and roof asymmetry retain correct orientation at anchor-74.01207728,40.713396197. GroundY0 uses host terrain contact; flat review stage does not verify sidewalk grade or survey datum."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Fresh medium-fi exterior review of current2006 identity from owner/material consultant references and original map snapshot. Original detailed facade retained while support gap repaired. Original4832-triangle source recipe remains available.741ft225.8568m owner height versus226.03m modeled service cap differs0.17m; rounded height/roof detail approximation declared. LED art, exact wire orientations, interior layout, facade hardware and surveyed sidewalk are excluded."
+  },
+  "legacyFidelityScope": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed exterior world-viewer representation with stated reconstruction limits.",
+    "notes": "Detailed exterior accepted for world-viewer use: published741 ft height, current2006 oblique plan, pale glass curtain wall, concave spandrels and steel podium scrim. Individual micro-prism orientations and LED art are simplified.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/dr/dr5/7_world_trade_center/models/source.glb",
+        "hash": "sha256:5c0b77ec0b6773166e023dfdfce7d1e141097c51b27588dea8792468c0ca867e",
+        "bytes": 553576,
+        "triangles": 4852,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -40.85774230957031,
+          0,
+          -24.834115982055664
+        ],
+        "max": [
+          40.85765075683594,
+          226.02999877929688,
+          24.834095001220703
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/dr/dr5/7_world_trade_center/model.glb",
+        "hash": "sha256:f3d705b331b4082633c37ddacd056f9db9bec16180b369662e123c0ae93b82e6",
+        "bytes": 553076,
+        "triangles": 4852,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -40.85774230957031,
+          0,
+          -24.834115982055664
+        ],
+        "max": [
+          40.85765075683594,
+          226.02999877929688,
+          24.834095001220703
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/dr/dr5/7_world_trade_center/model.skyline.glb",
+        "hash": "sha256:8f20d49f06f6d628a23c9f773bae0436e975384dd7b54c7f9275f4e50348a5ab",
+        "bytes": 8844,
+        "triangles": 82,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -40.598575592041016,
+          0,
+          -24.55911636352539
+        ],
+        "max": [
+          40.598594665527344,
+          226.02999877929688,
+          24.55909538269043
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/dr/dr5/7_world_trade_center/model.district.glb",
+        "hash": "sha256:98dab3d0be82ee42a814793671721a4eaffb60cef199e859b84e4d40df37de3e",
+        "bytes": 316868,
+        "triangles": 3892,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -40.85774230957031,
+          0,
+          -24.834115982055664
+        ],
+        "max": [
+          40.85765075683594,
+          226.02999877929688,
+          24.834095001220703
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/dr/dr5/7_world_trade_center/model.street.glb",
+        "hash": "sha256:251dc15899e852f9f221057286a62eb8071236562e8ff4ec4e5eb881f54f3fe6",
+        "bytes": 553324,
+        "triangles": 4852,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -40.85774230957031,
+          0,
+          -24.834115982055664
+        ],
+        "max": [
+          40.85765075683594,
+          226.02999877929688,
+          24.834095001220703
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/dr/dr5/7_world_trade_center/model.closeup.glb",
+        "hash": "sha256:251dc15899e852f9f221057286a62eb8071236562e8ff4ec4e5eb881f54f3fe6",
+        "bytes": 553324,
+        "triangles": 4852,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -40.85774230957031,
+          0,
+          -24.834115982055664
+        ],
+        "max": [
+          40.85765075683594,
+          226.02999877929688,
+          24.834095001220703
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": [
+      "unchanged original faces and continuous roof support",
+      "full tower and asymmetric rooftop within authored limits",
+      "exact forced LOD hashes and separate glass/recess PBR"
+    ],
+    "notes": "Six current GLBs validate with zero Khronos errors and warnings, no images. Three focused checks pass: original emitted faces with continuous curb, complete tower/offset roof within authored budgets, exact forced four-level reproduction with separate local glass/recess material parameters and unchanged master import. Selected source reproducibility, runtime levels and strict medium-fi geometry pass. Exterior collision hull does not represent interiors."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:1caf7319f7a20e948e5fee538faa6c8531a1ee9f2c9c1a2b91b30245f185fe31",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:8f20d49f06f6d628a23c9f773bae0436e975384dd7b54c7f9275f4e50348a5ab",
+        "bytes": 8844,
+        "gzipBytes": 1720,
+        "triangles": 82,
+        "cpuBytes": 7440,
+        "gpuBytes": 7440,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:98dab3d0be82ee42a814793671721a4eaffb60cef199e859b84e4d40df37de3e",
+        "bytes": 316868,
+        "gzipBytes": 72157,
+        "triangles": 3892,
+        "cpuBytes": 310848,
+        "gpuBytes": 310848,
+        "errorMeters": 0.6,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:251dc15899e852f9f221057286a62eb8071236562e8ff4ec4e5eb881f54f3fe6",
+        "bytes": 553324,
+        "gzipBytes": 110547,
+        "triangles": 4852,
+        "cpuBytes": 550416,
+        "gpuBytes": 550416,
+        "errorMeters": 0,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:251dc15899e852f9f221057286a62eb8071236562e8ff4ec4e5eb881f54f3fe6",
+        "bytes": 553324,
+        "gzipBytes": 110547,
+        "triangles": 4852,
+        "cpuBytes": 550416,
+        "gpuBytes": 550416,
+        "errorMeters": 0,
+        "drawCalls": 5
+      }
+    ],
+    "initialBytes": 325712,
+    "notes": "82/3892/4852/4852triangles,1/5/5/5draws. Initial325712bytes meets phone3MB/laptop6MB targets. Skyline8844bytes, district316868, near553324each. Authored skyline1m/district0.6m reservations. Separate vertex streams and canonical256-square graph sharing pass. Model unloading releases geometry. Physical-device timing, total scene memory and graph-bake startup remain unmeasured."
+  },
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Static daylight facade. The scrim uses continuous modeled triangular strips with panel seams; the individual micro-prism orientation field and nighttime LED art are not reconstructed. Roof services are simplified within mapped extents."
+  ]
+}

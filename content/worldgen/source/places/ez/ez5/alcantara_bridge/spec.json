@@ -1,0 +1,318 @@
+{
+  "planId": "alcantara_bridge",
+  "id": "alcantara_bridge",
+  "assetId": "molen.worldgen.structure.alcantara_bridge",
+  "title": "Alcántara Bridge",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -6.8924449,
+    "latitude": 39.7224044
+  },
+  "size": [
+    192.2959976196289,
+    71,
+    17.198652267456055
+  ],
+  "actualBounds": {
+    "min": [
+      -96.09600067138672,
+      0,
+      -10.050762176513672
+    ],
+    "max": [
+      96.19999694824219,
+      71,
+      7.147890090942383
+    ]
+  },
+  "visualBrief": "Whole surviving Roman bridge across the Tagus at Alcántara, Cáceres: all six unequal round through-vaults, five tall piers with native rectangular/pointed cutwater projections and stepped base ledges, both abutments/approach-wing masonry, narrow paved stone deck and solid parapets, intrinsic central triumphal gateway with an open arched road passage, cornices/attic and bounded inscription-panel recesses. Exclude the separate Roman temple outside the bridge footprint on the southeast approach, Torre del Oro/town walls, downstream modern viaduct/dam, natural river/water/bedrock/hills/trees and whole valley/approach road slabs. This is the whole bridge and its attached honorific arch, not a complete model of every building in the surrounding monument complex. Build closed real through-vault geometry for all6semicircular spans, five connected tall piers and mapped front/back lower rectangular/triangular cutwaters, original approach abutments, continuous narrow paved roadway/solid parapets and central passage gateway, layered cornices/attic and bounded recessed inscription panels. Keep six arch voids and gateway passage truly open at everyLOD; no opaque rectangle behind arches.71moverall maximum includes14mabove-deck honorific gate; approx57mmaximum hidden foundation/deck drop is an explicit text-derived estimate, not measured river bed. One public-domain source photo controls permanent masonry; unseen rear/course count/inscription panels/current fine repairs bounded. Freeze independent512m129²field at fixed southeast approach before geometry; do not fit field to bridge or fabricate water/hills/whole river-valley slab. Separate temple/castle/modernviaduct excluded and not claimed built.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Alc%C3%A1ntara,_puente_romano,_J._Laurent_y_Cia._Madrid.jpg"
+  ],
+  "stories": [
+    {
+      "id": "alcantara-bridge-wp",
+      "url": "https://qualla.com/alcantara-bridge/"
+    }
+  ],
+  "referenceInputHash": "17a487500721d646cfe32431fd54dccf41bc434e5fd98cdede6489fca721e47e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-alcantara-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-alcantara-bridge.mjs",
+    "level": "skyline",
+    "export": "alcantaraBridgeSkyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "panel": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "alcantaraBridgeDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "alcantaraBridgeStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "alcantaraBridgeCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5,
+    "groundY": -0.18
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native Q996197 bridge1275882833 has original63-point physical perimeter, distinct from two-node pedestrian road29421412 and downstream modern viaduct941353697/941353698. Fixed anchor at native crossing-axis midpoint, +X southeast toward town/+Z southwest, heading along original NW-to-SE road before terrain/geometry. Native191.965mcrossing axis agrees approximately with authority194mlength; official8moverallwidth controls the body, not an extrusion of lower projecting cutwaters as a giant deck. Six span intervals derived from adjacent native pier/abutment shoulders, five explicit rectangular/pointed front/back cutwaters retained in place. Native contour is coarse aggregate plan, not a measured arch/stone/foundation-height survey; body levels/span radii/uncertain low foundations and fine masonry estimated from the exact whole bridge photo and primary text. Geometry uses bed-relativeY0 and57mdeck/71moverall including14mgate, derived from municipal structural dimensions. Fixed preselected104mSEaxis sample yields134.0421mcoarse provider height, not a surveyed upper-road approach. Original sample point/field retained unchanged; no ground fitting or corrected survey claim. Actual road/abutment/river-floor agreement unresolved.",
+    "anchor": [
+      -6.8924449,
+      39.7224044
+    ],
+    "heading": -0.8128693382598282,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -6.891609932138085,
+        39.72172589380336
+      ],
+      "modelHeight": 0,
+      "basis": "Original104mSEaxis sampling point fixed before terrain and geometry; provider134.0421mcoarse gorge-level proxy is not a surveyed road threshold. Ground-relative geometry has lowest deep footingY0/deck57m/overall71m from independent architectural dimensions. Original raw field/contact retained; actual gorge/road/abutment agreement unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1275882833",
+      "way/29421412"
+    ],
+    "source": "https://www.openstreetmap.org/way/1275882833",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3768130470de1d3f435667155f9f1bcc3457ac2471d79ac9e85e2df1770bde3c",
+    "notes": "Whole surviving Roman bridge across the Tagus at Alcántara, Cáceres: all six unequal round through-vaults, five tall piers with native rectangular/pointed cutwater projections and stepped base ledges, both abutments/approach-wing masonry, narrow paved stone deck and solid parapets, intrinsic central triumphal gateway with an open arched road passage, cornices/attic and bounded inscription-panel recesses. Exclude the separate Roman temple outside the bridge footprint on the southeast approach, Torre del Oro/town walls, downstream modern viaduct/dam, natural river/water/bedrock/hills/trees and whole valley/approach road slabs. This is the whole bridge and its attached honorific arch, not a complete model of every building in the surrounding monument complex."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native Q996197 bridge1275882833 has original63-point physical perimeter, distinct from two-node pedestrian road29421412 and downstream modern viaduct941353697/941353698. Fixed anchor at native crossing-axis midpoint, +X southeast toward town/+Z southwest, heading along original NW-to-SE road before terrain/geometry. Native191.965mcrossing axis agrees approximately with authority194mlength; official8moverallwidth controls the body, not an extrusion of lower projecting cutwaters as a giant deck. Six span intervals derived from adjacent native pier/abutment shoulders, five explicit rectangular/pointed front/back cutwaters retained in place. Native contour is coarse aggregate plan, not a measured arch/stone/foundation-height survey; body levels/span radii/uncertain low foundations and fine masonry estimated from the exact whole bridge photo and primary text.",
+    "Geometry uses bed-relativeY0 and57mdeck/71moverall including14mgate, derived from municipal structural dimensions. Fixed preselected104mSEaxis sample yields134.0421mcoarse provider height, not a surveyed upper-road approach. Original sample point/field retained unchanged; no ground fitting or corrected survey claim. Actual road/abutment/river-floor agreement unresolved.",
+    "Whole bridge with all6unequal through-vaults/five main piers/front and back native lower projections/both end abutments,8mbody and continuous stone deck/solid parapets, central honorific gateway/open roadway/upper attic/cornices/tablet recesses. Original63point contour retained as coarse lower physical plan reference; not extruded into an overwide solid deck. Native shoulder-derived arch intervals and body/cutwater heights/hidden low foundations are approximate, not a precise Roman survey. Separate temple80366887outside bridge footprint, Torre delOro/townwalls and modern viaduct/dam are not built or silently counted.",
+    "Municipal194mlength/8mwidth/71mheight INCLUDING approx14mabove-deck gateway. Native axis191.965m retained rather than rescaled. Bed-relative geometry has deck57m/top71m/deepest footing0m; five footing/wing levels and cutwater head/profile from broad source-photo proportions, not verified geology or modern water/foundation survey.6semicircular arcs remain real openings at all detail levels, skyline curve faceting bounded1.8m; smaller stone joints/pilasters/coarse courses simplify at distance.",
+    "Exact Qualla-published1830x1261JeanLaurent photo/circa1870nativePD-old record/BNEitem/named1816–1886creator lifespan/nativeSHA1 bound, plus official municipal current structural text. No local media/category edits; omitted rights category recovered by strict new native library proof with64focused provenance regression tests. Primary BNEcatalog bibliography corroborates original photo identity; no protected catalog image pixels. Old1811templecrop competingCCBY4.0unused/no pixels viewed; unrelatedLaurent1864Toledobridge rejected. No questionable source pixels/photo textures or generated bitmaps.",
+    "Neutral gray-buff granite palette is not copied from sepia toning. Shared granite/course appearance with raw low-frequency trim texture for modeled ring stones; no unique photographic material. Current repair patches/inscription text/royal relief/stone census are not reproduced, bounded shallow tablets and simple cornices retain permanent structure.",
+    "Independent512m129²16641values/four rawTerrariumtiles frozen before geometry unchanged.134.0421mprovider sample at fixed SEaxispoint is a coarse gorge-level proxy, not an architectural road threshold; source field123.64..226.64m/3.67moutput pixel spacing may oversample a much coarser native DEM. Actual bank/road/riverbed contact and live host elevation agreement are unverified. Flat portable/shared/context fixtures show bridge geometry only; no valley/water/hill mesh or fitted/flattened/reacquired field. Geographic preview/replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-six-arch-crossing-five-piers-and-central-gateway",
+      "position": [
+        -220,
+        110,
+        245
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "all-six-open-round-vaults-and-tall-pier-undercrofts",
+      "position": [
+        0,
+        32,
+        180
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ]
+    },
+    {
+      "name": "central-triumphal-arch-open-road-passage-and-tablets",
+      "position": [
+        24,
+        75,
+        22
+      ],
+      "lookAt": [
+        3.256,
+        64,
+        0
+      ]
+    },
+    {
+      "name": "native-pointed-cutwaters-stepped-bases-and-pier-shafts",
+      "position": [
+        -40,
+        35,
+        -75
+      ],
+      "lookAt": [
+        3,
+        28,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19650,
+    "vertices": 58950,
+    "materials": 4,
+    "bytes": 2360764,
+    "sha256": "sha256:e1c3890abc762984a5a51e9fb8e32c5b6536ba714c67a5638396410c2fbb66a2"
+  }
+}

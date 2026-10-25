@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/gc/gcm/n0316_harlech_castle/',
+  '../../../content/worldgen/source/places/gc/gcm/harlech_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -570,7 +570,7 @@ const rotateCamera = ({ position, lookAt, ...rest }) => {
   return { ...rest, position: p(position), lookAt: p(lookAt) };
 };
 export const harlechStudy = {
-  id: 'N0316',
+  id: 'harlech_castle',
   key: 'harlech_castle',
   title: 'Harlech Castle',
   category: 'castle',

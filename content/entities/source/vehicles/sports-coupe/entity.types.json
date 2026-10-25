@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.sports_coupe": {
-      "doc": "Sports coupe. Mountable and ambient road vehicle.",
+      "doc": "Bendy Sports Coupe. Sports coupe. Mountable and ambient road vehicle.",
       "components": {
         "transform": {
           "pos": [
@@ -31,7 +31,9 @@
           "kind": "molen.entities.vehicle.sports_coupe",
           "color": "#c66a4a",
           "spec": {
-            "label": "Sports coupe",
+            "label": "Bendy Sports Coupe",
+            "bodyStyle": "coupe",
+            "genericLabel": "Sports coupe",
             "width": 2.0832,
             "length": 4.449999999999999,
             "height": 1.43,
@@ -76,7 +78,32 @@
               "wheel-front-left",
               "wheel-front-right"
             ],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "close-detail",
+                "steering-wheel",
+                "cabin"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
           }
         },
         "vehicleInput": {

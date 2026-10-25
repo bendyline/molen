@@ -434,7 +434,7 @@ export function buildSamara(out) {
   roofStructure(out);
 }
 export const samaraStudy = {
-  id: 'N0701',
+  id: 'samara_arena',
   key: 'samara_arena',
   wikidataId: 'Q4439099',
   title: 'Samara Arena',

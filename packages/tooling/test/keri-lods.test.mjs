@@ -6,9 +6,9 @@ import { buildKeriSkyline } from '../../worldgen/scripts/keri-skyline-model.mjs'
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ud/ud9/n0640_keri_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/ud/ud9/keri_lighthouse'),
   runtime = await runtimeLodFixture(
-    resolve('../../content/worldgen/assets/places/ud/ud9/n0640_keri_lighthouse'),
+    resolve('../../content/worldgen/assets/places/ud/ud9/keri_lighthouse'),
   );
 it('retains the restored drum, narrow bottle and asymmetric wing at skyline distance', () => {
   const faces = [],

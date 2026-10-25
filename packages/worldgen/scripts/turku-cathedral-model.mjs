@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u6/u6x/n0351_turku_cathedral/',
+  '../../../content/worldgen/source/places/u6/u6x/turku_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -970,7 +970,7 @@ const cam = (name, p, look, fov = 48) => ({
   fov,
 });
 export const turkuCathedralStudy = {
-  id: 'N0351',
+  id: 'turku_cathedral',
   key: 'turku_cathedral',
   title: 'Turku Cathedral',
   category: 'cathedral',

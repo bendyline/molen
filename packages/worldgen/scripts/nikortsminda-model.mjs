@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sz/szw/n0377_nikortsminda_cathedral/',
+  '../../../content/worldgen/source/places/sz/szw/nikortsminda_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -837,7 +837,7 @@ export const buildNikortsmindaSkyline = (o) => build(o, 0),
   buildNikortsmindaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const nikortsmindaStudy = {
-  id: 'N0377',
+  id: 'nikortsminda_cathedral',
   key: 'nikortsminda_cathedral',
   title: 'Nikortsminda Cathedral',
   category: 'cathedral',

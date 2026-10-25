@@ -1,0 +1,569 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "relief": {
+      "slot": "trim",
+      "graph": "brick",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.22
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      60.29471845656746,
+      31.204574212624337,
+      68.40018781149844
+    ],
+    "lookAt": [
+      3.2947184565674608,
+      6.704574212624339,
+      1.400187811498437
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "eastern-pointed-panels-rounded-shafts-and-open-cap",
+      "position": [
+        35.65847920952905,
+        10.199395082996107,
+        -13.692135728701448
+      ],
+      "lookAt": [
+        22.658479209529048,
+        8.199395082996107,
+        2.3078642712985524
+      ],
+      "fov": 49
+    },
+    {
+      "name": "eastern-cap-actual-open-slots",
+      "position": [
+        30.658479209529048,
+        15.199395082996107,
+        -8.692135728701448
+      ],
+      "lookAt": [
+        22.658479209529048,
+        13.199395082996107,
+        2.3078642712985524
+      ],
+      "fov": 48
+    },
+    {
+      "name": "western-relief-and-supported-stabilizing-members",
+      "position": [
+        -3.0690422963941266,
+        8.204574212624339,
+        -14.507488648301678
+      ],
+      "lookAt": [
+        -16.069042296394127,
+        6.204574212624339,
+        0.4925113516983215
+      ],
+      "fov": 50
+    },
+    {
+      "name": "separate-footings-and-clear-native-ground-gap",
+      "position": [
+        3.2947184565674608,
+        9.204574212624339,
+        56.40018781149844
+      ],
+      "lookAt": [
+        3.2947184565674608,
+        1.2045742126243386,
+        1.400187811498437
+      ],
+      "fov": 56
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        60.29471845656746,
+        31.204574212624337,
+        68.40018781149844
+      ],
+      "lookAt": [
+        3.2947184565674608,
+        6.704574212624339,
+        1.400187811498437
+      ],
+      "fov": 46,
+      "name": "kharaqan-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        60.29471845656746,
+        31.204574212624337,
+        68.40018781149844
+      ],
+      "lookAt": [
+        3.2947184565674608,
+        6.704574212624339,
+        1.400187811498437
+      ],
+      "fov": 46,
+      "name": "kharaqan-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        60.29471845656746,
+        31.204574212624337,
+        68.40018781149844
+      ],
+      "lookAt": [
+        3.2947184565674608,
+        6.704574212624339,
+        1.400187811498437
+      ],
+      "fov": 46,
+      "name": "kharaqan-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        60.29471845656746,
+        31.204574212624337,
+        68.40018781149844
+      ],
+      "lookAt": [
+        3.2947184565674608,
+        6.704574212624339,
+        1.400187811498437
+      ],
+      "fov": 46,
+      "name": "kharaqan-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kharaqan-model.mjs",
+    "export": "buildKharaqanSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKharaqanDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          }
+        }
+      },
+      "street": {
+        "export": "buildKharaqanStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKharaqanCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      49.009027777,
+      35.840055555
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original6m standard Mapzen grid, native paths/water and the one independent mapped utility/visitor building remain unchanged. Each tower has its own level floor just above the highest sampled occupied rim and a bounded buried footing below the lowest rim. No connecting precinct slab, ground/water cutout or flattened terrain. Coarse DEM/contact/plinth levels are visualization estimates, not surveyed archaeology or foundation engineering.",
+    "replaceFootprint": false,
+    "bounds": [
+      49.008731846275325,
+      35.83993517906479,
+      49.009396727619176,
+      35.840150774732976
+    ],
+    "terrainReference": {
+      "anchor": [
+        49.009027777,
+        35.840055555
+      ],
+      "modelHeight": 0,
+      "basis": "Original6m standard Mapzen grid, native paths/water and the one independent mapped utility/visitor building remain unchanged. Each tower has its own level floor just above the highest sampled occupied rim and a bounded buried footing below the lowest rim. No connecting precinct slab, ground/water cutout or flattened terrain. Coarse DEM/contact/plinth levels are visualization estimates, not surveyed archaeology or foundation engineering."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -20.566911970516493,
+          0.47251027676661894
+        ],
+        [
+          -19.598723932868417,
+          -2.19000657266923
+        ],
+        [
+          -18.630535895220333,
+          -3.1581943190249855
+        ],
+        [
+          -15.968018791688118,
+          -3.8843350603726763
+        ],
+        [
+          -15.94319120521451,
+          -3.8801971310457732
+        ],
+        [
+          -15.92801879168812,
+          -3.8843350603726763
+        ],
+        [
+          -14.475736735215998,
+          -3.6422881534452083
+        ],
+        [
+          -13.265501688155899,
+          -2.9161473931141764
+        ],
+        [
+          -12.297313650507819,
+          -1.7059126623156424
+        ],
+        [
+          -11.57117262227176,
+          -0.2536307604048072
+        ],
+        [
+          -11.57117262227176,
+          1.2386513756339044
+        ],
+        [
+          -12.0552666410958,
+          2.690933752128273
+        ],
+        [
+          -13.02345467874388,
+          3.90116924858824
+        ],
+        [
+          -14.475736735215998,
+          4.627310625877865
+        ],
+        [
+          -15.92801879168812,
+          4.869357763769319
+        ],
+        [
+          -17.420300848160235,
+          4.869357763769319
+        ],
+        [
+          -18.872582904632353,
+          4.143216365914408
+        ],
+        [
+          -19.840770942280436,
+          3.1750279298305846
+        ],
+        [
+          -20.566911970516493,
+          0.512510276766619
+        ],
+        [
+          -20.560678204762976,
+          0.49536742258046573
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -20.566911970516493,
+            0.47251027676661894
+          ],
+          [
+            -19.598723932868417,
+            -2.19000657266923
+          ],
+          [
+            -18.630535895220333,
+            -3.1581943190249855
+          ],
+          [
+            -15.968018791688118,
+            -3.8843350603726763
+          ],
+          [
+            -15.94319120521451,
+            -3.8801971310457732
+          ],
+          [
+            -15.92801879168812,
+            -3.8843350603726763
+          ],
+          [
+            -14.475736735215998,
+            -3.6422881534452083
+          ],
+          [
+            -13.265501688155899,
+            -2.9161473931141764
+          ],
+          [
+            -12.297313650507819,
+            -1.7059126623156424
+          ],
+          [
+            -11.57117262227176,
+            -0.2536307604048072
+          ],
+          [
+            -11.57117262227176,
+            1.2386513756339044
+          ],
+          [
+            -12.0552666410958,
+            2.690933752128273
+          ],
+          [
+            -13.02345467874388,
+            3.90116924858824
+          ],
+          [
+            -14.475736735215998,
+            4.627310625877865
+          ],
+          [
+            -15.92801879168812,
+            4.869357763769319
+          ],
+          [
+            -17.420300848160235,
+            4.869357763769319
+          ],
+          [
+            -18.872582904632353,
+            4.143216365914408
+          ],
+          [
+            -19.840770942280436,
+            3.1750279298305846
+          ],
+          [
+            -20.566911970516493,
+            0.512510276766619
+          ],
+          [
+            -20.560678204762976,
+            0.49536742258046573
+          ]
+        ],
+        [
+          [
+            18.16060953540668,
+            2.166839599737083
+          ],
+          [
+            18.402656544818704,
+            0.9566043358230472
+          ],
+          [
+            20.09698561070284,
+            -1.2218187187412075
+          ],
+          [
+            22.759502714235058,
+            -2.19000657266923
+          ],
+          [
+            22.786931286100266,
+            -2.1854351451240377
+          ],
+          [
+            22.799502714235057,
+            -2.19000657266923
+          ],
+          [
+            24.251784770707175,
+            -1.9479596214472992
+          ],
+          [
+            25.704066827179297,
+            -0.9797717422081546
+          ],
+          [
+            26.672254864827377,
+            -0.011583755396742338
+          ],
+          [
+            27.156348883651415,
+            1.4406984233544873
+          ],
+          [
+            27.156348883651415,
+            3.1750279298305846
+          ],
+          [
+            26.672254864827377,
+            4.627310625877865
+          ],
+          [
+            25.704066827179297,
+            5.5954992217381445
+          ],
+          [
+            24.493831780119198,
+            6.563687922006801
+          ],
+          [
+            22.799502714235057,
+            6.805735115266335
+          ],
+          [
+            22.78104117577352,
+            6.802658189852326
+          ],
+          [
+            22.759502714235058,
+            6.805735115266335
+          ],
+          [
+            21.30722065776294,
+            6.563687922006801
+          ],
+          [
+            20.09698561070284,
+            5.837546384940721
+          ],
+          [
+            18.402656544818704,
+            3.659122134425963
+          ],
+          [
+            18.16060953540668,
+            2.206839599737083
+          ],
+          [
+            18.164245898093746,
+            2.1886577830438902
+          ]
+        ]
+      ],
+      "basis": "Original6m standard Mapzen grid, native paths/water and the one independent mapped utility/visitor building remain unchanged. Each tower has its own level floor just above the highest sampled occupied rim and a bounded buried footing below the lowest rim. No connecting precinct slab, ground/water cutout or flattened terrain. Coarse DEM/contact/plinth levels are visualization estimates, not surveyed archaeology or foundation engineering."
+    },
+    "notes": "Exact-QID OSMway523609290 is the broad archaeological site, not either tower footprint. Two standard PMTiles15m-high rounded footprints35184977138948/949 inside it control the west/east tower centers and diameter. Named Kharraqan attraction35184895698122 lies about100m north and is not used as a tower anchor. Retain candidate reference anchor49.009027777,35.840055555 with heading0/native east-south axes; separate centers are [{\"name\":\"west\",\"center\":[-16.069042296394127,0.4925113516983215],\"radius\":4.466394197736715},{\"name\":\"east\",\"center\":[22.658479209529048,2.3078642712985524],\"radius\":4.486896107087301}]. The mapped pair spacing is 38.77004550183612m. Circular quantization does not establish directed facades. Whole photographs show the eastern foreground tower and western tower behind/right; approximate northeast entry/panel phase is inferred from that relation, with45degree uncertainty and2m plan uncertainty, not a surveyed azimuth. Original6m standard Mapzen grid, native paths/water and the one independent mapped utility/visitor building remain unchanged. Each tower has its own level floor just above the highest sampled occupied rim and a bounded buried footing below the lowest rim. No connecting precinct slab, ground/water cutout or flattened terrain. Coarse DEM/contact/plinth levels are visualization estimates, not surveyed archaeology or foundation engineering."
+  }
+}

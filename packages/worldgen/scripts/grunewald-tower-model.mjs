@@ -878,8 +878,8 @@ function buildGrunewaldTower(out) {
 }
 
 export const grunewaldTower = {
-  id: 'n0616_grunewald_tower',
-  planId: 'N0616',
+  id: 'grunewald_tower',
+  planId: 'grunewald_tower',
   title: 'Grunewald Tower',
   wikidata: 'Q833787',
   authoringFile: 'grunewald-tower-model.mjs',

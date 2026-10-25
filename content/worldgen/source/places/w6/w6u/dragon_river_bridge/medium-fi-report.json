@@ -1,0 +1,1451 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.dragon_river_bridge",
+  "sourceHash": "sha256:d110464e83d269d2287402f92834213967c7262885b3b03c7687314ea51a8c4f",
+  "runtimeHash": "sha256:512d4871786a82a899f003fbe2cb480a455c7f7b1b61d104abbdd1d3736ea196",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:47c55da960b961e35199f6a9d2e70f25819e15ab6b22ce2cb8e66e22d78eecfc",
+      "bytes": 52624,
+      "gzipBytes": 9418,
+      "triangles": 480,
+      "cpuBytes": 51264,
+      "gpuBytes": 51264,
+      "errorMeters": 6,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:3bb4d4dd6c036a074a7a1c7bf0409e5212e563c30cc84175b15a49a50f3fed8a",
+      "bytes": 372696,
+      "gzipBytes": 85854,
+      "triangles": 3900,
+      "cpuBytes": 366624,
+      "gpuBytes": 366624,
+      "errorMeters": 4,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:bb8d399d9a9647672ac93bce35182ba02b2952a8fa6e8832a613347bca1c346a",
+      "bytes": 1514736,
+      "gzipBytes": 391992,
+      "triangles": 15836,
+      "cpuBytes": 1506468,
+      "gpuBytes": 1506468,
+      "errorMeters": 2,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:65a3be41b3b3a7bfe1c00837331082faef0036891674232ed04ce8594e33cf4f",
+      "bytes": 5354568,
+      "gzipBytes": 1410469,
+      "triangles": 54172,
+      "cpuBytes": 5346252,
+      "gpuBytes": 5346252,
+      "errorMeters": 0.7,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-water.terrain.json",
+      "hash": "sha256:2ca6a620aa97ed68619f9104886d7f8ebc192e4861b128265784991b5c0499f3"
+    },
+    "heightmap": {
+      "path": "terrain-water.height.png",
+      "hash": "sha256:f4d792d76e502783096494422777251c4ad06e527b772debc52c501eb7be2d7b"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-river",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            3.1616,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            1200,
+            0.06,
+            1200
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#53827c",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:03968a64d28e67fc3744a69ac53128f2e5b60503f471dd63e573118b16925eaf",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          960,
+          542.3505,
+          1660
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:08fc1d82db5dfc17b07c930882ba013cbc3a78c38b9f15e136471b2ac35150e1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          960,
+          542.3505,
+          1660
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:bd95d99439c06eac15b9092a16ccd5b2fffa09fee0635209c3aee4e4ca2a04e7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          960,
+          542.3505,
+          1660
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:eea8cc92223d5d28177e34ae4e6b8e1d31b9c05fe3f2b93179d8a1f7fa765d29",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          960,
+          542.3505,
+          1660
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:37fc7345cc5355a81df8de86ce80c7e7787b6978d2aa1ee3ec306d447b6789aa",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 38230,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1262.3505,
+          3360
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:c043dc08402f9ef6e7db4d6fb880e2f5303537fc00997f0bf92073a71f38bd3d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38230,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1262.3505,
+          3360
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:d5f727749f291bb597bd71518631ed41f205c6d5892c918cd8b38310e80eeeeb",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 38230,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1262.3505,
+          3360
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:ff79315515dc8c06dd1c94b638558f93365618246836c5bcf75cf0a8db9bebc8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38230,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1262.3505,
+          3360
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:4de52a1176551b13e3b3d2480bcf44877459e21927ad2e5d01e0ae8d28ecab11",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 34810,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2022.3505,
+          6720
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:1e9d1a3113b8cba8ea96c9b2aa882c1af28a74bfa2b7bcffc10b4076087065cf",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 34810,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2022.3505,
+          6720
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:081f9796033e5913c36c21d7a3675b2f4597bf42b84f5e127c23c3a6c1ed7bee",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 34810,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2022.3505,
+          6720
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:93fc0e84dc9e397ad42d8fc0cbef954bf29acd76b0c7e44de941a6a7ebaee39d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 34810,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2022.3505,
+          6720
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:862f9f588e312116dd6551ee697453998646028e1f6399ea2111b150e380b807",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 30254,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2022.3505,
+          6720
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-elevation.png",
+      "hash": "sha256:2ac3a43b348ffb2582361be71609f1c64f57c670849705926472262a44f42b75",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          0,
+          35,
+          535
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-elevation.png",
+      "hash": "sha256:1e35b62f1e23ef5cba8ca8bd6a79ef1707f0b656c072b25a1c9ee2fff1c0f031",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -15,
+          68,
+          -510
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/main-arch.png",
+      "hash": "sha256:19b99ab5066e74c7a1174aa10b94a218e7b5464fba87b1d272675896c9f6a66e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 87446,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -80,
+          29,
+          72
+        ],
+        "lookAt": [
+          -41,
+          35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/horseshoe-and-hangers.png",
+      "hash": "sha256:12585f2de50f19cc7e990691897e6507b8834c4d6a5f10f708fa7c844a5937bf",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 87446,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -15,
+          16.627172281447724,
+          1
+        ],
+        "lookAt": [
+          -5,
+          37.06895441921459,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/dorsal-scales.png",
+      "hash": "sha256:d40a57150098db7f276e3ab9c58056eb45ad04af9652f86e5fb88102f797c4dc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 87446,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -61,
+          60,
+          18
+        ],
+        "lookAt": [
+          -42,
+          43,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/head-south.png",
+      "hash": "sha256:47609c8287243ed2bff7355abf494527ca5b643239a255a93ef80914be027cd7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          242,
+          33,
+          25
+        ],
+        "lookAt": [
+          222,
+          28,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/head-front.png",
+      "hash": "sha256:ddb6092336245c2fc08adcaf2b4374e1c0d7ba422b10ee9975e050ca8c2a1ee3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          259,
+          36,
+          8
+        ],
+        "lookAt": [
+          224,
+          29,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/head-rear.png",
+      "hash": "sha256:33a262f3a4a4e714f5e019de4f072f5ea1950da30bd55368c61bd5d8e9d84987",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          193,
+          32,
+          -19
+        ],
+        "lookAt": [
+          220,
+          28,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/tail.png",
+      "hash": "sha256:fc315209aa75be1d73dad30f3967b2f150db1b62bcb6ac8e34986da20edd6ec0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 87446,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -319,
+          22,
+          22
+        ],
+        "lookAt": [
+          -287,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/lower-arch.png",
+      "hash": "sha256:d371910e57e00d874cd6f404da80d50af16467bde86d2d40f344e8c7cafca906",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 87446,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          64,
+          5,
+          33
+        ],
+        "lookAt": [
+          59,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/box-and-wings.png",
+      "hash": "sha256:05896ba63de1e30d1666134f01354a6f77a1074ddaca9d5b851ca4160ce14aed",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 87446,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -56,
+          9,
+          24
+        ],
+        "lookAt": [
+          -40,
+          12,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/sidewalk-and-lights.png",
+      "hash": "sha256:9141c14bcd438a43a3d27b21b0194b94e55aae034ef6f9075873ad0273db175c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          100,
+          20,
+          27
+        ],
+        "lookAt": [
+          125,
+          18,
+          18
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-approaches.png",
+      "hash": "sha256:c362604daf0e9822be38f513245459fd8b8790ad5d3e540ee642aa0dd3b2cea9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          310,
+          32,
+          70
+        ],
+        "lookAt": [
+          285,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-dragon-skyline.png",
+      "hash": "sha256:d2e4ed4e51343ffd138c11bad085703962e56bae1715f29dbaf59d40ba5d0e38",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 34810,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          430,
+          260,
+          510
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-dragon-district.png",
+      "hash": "sha256:5d6324b06a599f98fbdbaa30ea31cae7058771e758ad587be47ba1c546826ff7",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38230,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          430,
+          260,
+          510
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-dragon-street.png",
+      "hash": "sha256:c83371db974b80ef0c1ac5b472ce3eb93ef9157e3eca820ad62ba306c455f5b1",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 50166,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          430,
+          260,
+          510
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-dragon-closeup.png",
+      "hash": "sha256:229cb1f76477f2d9987d3a99919f8b920af1bca93ff422454afcc99494dfd804",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          430,
+          260,
+          510
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:970e9520bb7e55ed663a6f02b2f7996bfe9786d9733118c648da5e4a88c6b971",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 34810,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1262.3505,
+          3360
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:c043dc08402f9ef6e7db4d6fb880e2f5303537fc00997f0bf92073a71f38bd3d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38230,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1262.3505,
+          3360
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:a338200c327fda1921dc1762e26096de5a88ce15a2a3b2cd947a952a9c019d33",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 50166,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1262.3505,
+          3360
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:d2c4ffbe96ceac0c2ae6b929ab5bd406f49ba8aacbb841fbc9cd6a27a69f1ad4",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 88502,
+        "groundY": 0,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w6u/dragon_river_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1262.3505,
+          3360
+        ],
+        "lookAt": [
+          0,
+          242.3505,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.clay_fired": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

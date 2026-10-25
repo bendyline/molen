@@ -1,0 +1,350 @@
+{
+  "planId": "bridge_of_no_return",
+  "id": "bridge_of_no_return",
+  "assetId": "molen.worldgen.structure.bridge_of_no_return",
+  "title": "Bridge of No Return, Panmunjom",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 126.67052355,
+    "latitude": 37.9560751
+  },
+  "size": [
+    4.8696205615997314,
+    6.979999899864197,
+    146.9801788330078
+  ],
+  "actualBounds": {
+    "min": [
+      -2.5072946548461914,
+      -5.599999904632568,
+      -73.4900894165039
+    ],
+    "max": [
+      2.36232590675354,
+      1.3799999952316284,
+      73.4900894165039
+    ]
+  },
+  "visualBrief": "Whole original native six-vertex Bridge of No Return and both mapped bridge-axis halves, approximately144.68m long/4.74m wide. Low straight concrete slab/girder crossing with narrow carriageway, curbs, repeated pierced vertical-slot concrete parapets, heavier panel/end posts, concrete top rails, four light-blue cylindrical south/east entry bollards, integral low abutments and bounded partly concealed supporting bents. Exclude checkpoint buildings, MDL sign, adjacent roads, trees, people, vehicles, river water, full border plaza/site floor and other nearby bridges. Preserve full six-vertex deck perimeter, both original axis halves, open carriageway, actual through slots and visible gaps between all bollards. Concrete end posts slightly taper, dark weathered rail faces, lighter horizontal cap faces. Open low girder/bent supports rather than closed embankment; hidden supports explicitly bounded, no suspension cables/towers. Lower support extents are geometry assumptions, not a terrain bathymetry reconstruction. All four LODs preserve whole length/bollard count and open passage. Freeze independent400m field first; no fit/flatten/reacquisition.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:BridgeOfNoReturn2DMZ.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_Bridge_of_No_Return,_CP-3_Dec_75a.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bridge_of_No_Return-a.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bridge-of-no-return-wp",
+      "url": "https://qualla.com/bridge-of-no-return/"
+    }
+  ],
+  "referenceInputHash": "a77b8d67e8200ec87491c42314a73700ab65be21183f803e0cf71f6b3f7df04b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bridge-of-no-return.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bridge-of-no-return.mjs",
+    "level": "skyline",
+    "export": "bridgeOfNoReturnSkyline",
+    "errorMeters": 0.65,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "weathered": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "blue": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bridgeOfNoReturnDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "bridgeOfNoReturnStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          }
+        }
+      },
+      "closeup": {
+        "export": "bridgeOfNoReturnCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.15,
+    "groundY": -6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original man_made=bridge way1190761298/Q483844, all six original area vertices and both road bridge ways91440695/1300933882 with all three original axis nodes. Combined native axis144.6802m; geographic split is a border edit, not evidence of a physical deck discontinuity. Full mapped envelope retained as low straight concrete crossing; no unsupported84m truncation or invented94m/50m ground-vs-deck partition. Whole1975 elevated photograph supports continuous deck/parapet; abutment/support stations and partly landward spans are bounded photo interpretation. Native bridge:structure=suspension conflicts with all accepted concrete photographs and is not adopted. Independent400m field frozen before any geometry at fixed east approach; raw ground unchanged. Concealed bents/abutment depths are bounded assumptions. Actual host bank/river/threshold contact remains unverified.",
+    "anchor": [
+      126.67052355,
+      37.9560751
+    ],
+    "heading": 1.523690326840164,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        126.67141508164357,
+        37.9560419619881
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed east/south dry approach six metres beyond native bridge endpoint, before terrain and model geometry. True bank threshold/deck-to-host contact unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1190761298",
+      "ways/1300933882+91440695"
+    ],
+    "source": "https://www.openstreetmap.org/way/1190761298",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c3cbe0a258dfe5ebe7f51687b7abd65b48027fe43be9d2f11c78b7d49069be2e",
+    "notes": "Whole original native six-vertex Bridge of No Return and both mapped bridge-axis halves, approximately144.68m long/4.74m wide. Low straight concrete slab/girder crossing with narrow carriageway, curbs, repeated pierced vertical-slot concrete parapets, heavier panel/end posts, concrete top rails, four light-blue cylindrical south/east entry bollards, integral low abutments and bounded partly concealed supporting bents. Exclude checkpoint buildings, MDL sign, adjacent roads, trees, people, vehicles, river water, full border plaza/site floor and other nearby bridges."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original man_made=bridge way1190761298/Q483844, all six original area vertices and both road bridge ways91440695/1300933882 with all three original axis nodes. Combined native axis144.6802m; geographic split is a border edit, not evidence of a physical deck discontinuity. Full mapped envelope retained as low straight concrete crossing; no unsupported84m truncation or invented94m/50m ground-vs-deck partition. Whole1975 elevated photograph supports continuous deck/parapet; abutment/support stations and partly landward spans are bounded photo interpretation. Native bridge:structure=suspension conflicts with all accepted concrete photographs and is not adopted.",
+    "Three published Qualla originals individually inspected/native SHA1 matched: Edward N Johnson Army Public Affairs2008/PD-USGov-Military-Army and Wbfergus own1975/1976 PD-user. Existing published PD policy passes unchanged; fourth summer Army image excluded. No copied photograph/diagram, photo texture, generated bitmap or downloaded mesh.",
+    "Native whole144.68m extent and all six original perimeter vertices preserved, with both road-bridge axis halves. Straight low concrete girder/slab deck, open narrow passage, curbs, pierced concrete parapets/heavier endposts, and exactly four blue bollards. No suspension cables/towers, checkpoint buildings, MDL sign, roads, people, vehicles, trees, river water or site floor.",
+    "Photo-proportioned deck0.15m/0.45m slab/0.65m girders/parapet1.15m/48panels/six bars and four1.18m entry bollards, seven representative low twin-column bents/abutments are original estimates. Vegetation hides most underside; support census/heights/foundations/landward limits and fine current cosmetics are not engineering survey. Lower supports extend to-5.6m as bounded geometry, not derived river bathymetry.",
+    "Independent400m129x129/16641 samples/two original Terrarium tiles frozen before geometry; datum15.0243m, whole relative field[-5.4068,2.3288]m unchanged/no fit/flatten/reacquire. Portable/shared isolated stage Y-6m exposes low supports separately from native ground. Geographic preview/replaceFootprint=false; real host terrain/threshold and bank attachment unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-crossing-pierced-parapets-and-low-bents",
+      "position": [
+        66,
+        24,
+        110
+      ],
+      "lookAt": [
+        0,
+        -0.7,
+        0
+      ]
+    },
+    {
+      "name": "four-blue-entry-bollards-and-actual-parapet-slots",
+      "position": [
+        -5,
+        3.4,
+        83
+      ],
+      "lookAt": [
+        0,
+        0.8,
+        60
+      ]
+    },
+    {
+      "name": "whole-low-girders-open-twin-column-bents-and-abutments",
+      "position": [
+        24,
+        -0.2,
+        15
+      ],
+      "lookAt": [
+        0,
+        -2.4,
+        6
+      ]
+    },
+    {
+      "name": "weathered-concrete-slot-bars-posts-and-cap-rail",
+      "position": [
+        5.2,
+        2.4,
+        58
+      ],
+      "lookAt": [
+        2.1,
+        0.9,
+        54
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26452,
+    "vertices": 79356,
+    "materials": 5,
+    "bytes": 3177656,
+    "sha256": "sha256:639ebd98b613764c545b27552dc192525ea40ffd2f1d273c623fce6cca371fed"
+  }
+}

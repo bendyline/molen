@@ -6,7 +6,7 @@ import { face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapBytes = readFileSync(structureSourcePath('n0611_vijaya_stambha', 'map-frame.json'));
+const mapBytes = readFileSync(structureSourcePath('vijaya_stambha', 'map-frame.json'));
 const map = JSON.parse(mapBytes);
 const tau = Math.PI * 2,
   slot = 'yser_stone';
@@ -634,8 +634,8 @@ function build(out) {
   );
 }
 export const vijayaStambha = {
-  id: 'n0611_vijaya_stambha',
-  planId: 'N0611',
+  id: 'vijaya_stambha',
+  planId: 'vijaya_stambha',
   title: 'Vijaya Stambha',
   wikidata: 'Q2724452',
   authoringFile: 'vijaya-stambha-model.mjs',

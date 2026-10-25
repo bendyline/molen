@@ -7,7 +7,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2f/n0240_prague_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u2/u2f/prague_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1182,7 +1182,7 @@ export function buildPragueSkyline(out) {
   box(o, 'plaster', [153, 0, -76], [258, 8, -66], plaster);
 }
 export const pragueStudy = {
-  id: 'N0240',
+  id: 'prague_castle',
   key: 'prague_castle',
   title: 'Prague Castle',
   category: 'castle',

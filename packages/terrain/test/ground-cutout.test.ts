@@ -2,7 +2,10 @@ import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import {
   markTerrainGroundSurface,
+  markTerrainWaterSurface,
   setTerrainGroundCutout,
+  setTerrainGroundCutouts,
+  setTerrainWaterCutout,
   subtractTerrainGroundGeometry,
   TerrainGroundCutoutController,
   terrainGroundSourceGeometry,
@@ -59,6 +62,51 @@ const square: [[number, number], [number, number], [number, number], [number, nu
   [3, 7],
 ];
 describe('model-owned ground openings', () => {
+  it('keeps ground and native-water openings independent and restores each visible owner', () => {
+    const scene = new THREE.Group(),
+      ground = new THREE.Mesh(plane()),
+      water = new THREE.Mesh(plane());
+    markTerrainGroundSurface(ground);
+    markTerrainWaterSurface(water);
+    scene.add(ground, water);
+    const originalGround = ground.geometry,
+      originalWater = water.geometry,
+      groundOwner = new THREE.Group(),
+      waterOwner = new THREE.Group();
+    scene.add(groundOwner, waterOwner);
+    setTerrainGroundCutout(groundOwner, square);
+    const controller = new TerrainGroundCutoutController();
+    try {
+      controller.update(scene);
+      expect(area(ground.geometry)).toBeCloseTo(84, 5);
+      expect(water.geometry).toBe(originalWater);
+      setTerrainWaterCutout(waterOwner, [
+        [1, 1],
+        [3, 1],
+        [3, 3],
+        [1, 3],
+      ]);
+      controller.update(scene);
+      expect(area(ground.geometry)).toBeCloseTo(84, 5);
+      expect(area(water.geometry)).toBeCloseTo(96, 5);
+      waterOwner.visible = false;
+      controller.update(scene);
+      expect(water.geometry).toBe(originalWater);
+      expect(area(ground.geometry)).toBeCloseTo(84, 5);
+      groundOwner.removeFromParent();
+      waterOwner.visible = true;
+      controller.update(scene);
+      expect(ground.geometry).toBe(originalGround);
+      expect(area(water.geometry)).toBeCloseTo(96, 5);
+      waterOwner.removeFromParent();
+      controller.update(scene);
+      expect(water.geometry).toBe(originalWater);
+    } finally {
+      controller.dispose();
+      ground.geometry.dispose();
+      water.geometry.dispose();
+    }
+  });
   it('leaves regions without cutouts untouched without traversing their buildings', () => {
     const root = new THREE.Group(),
       ground = new THREE.Mesh(plane());
@@ -148,6 +196,43 @@ describe('model-owned ground openings', () => {
     controller.update(root);
     ground.geometry.dispose();
     expect(onSourceDispose).toHaveBeenCalledTimes(1);
+    controller.dispose();
+  });
+  it('keeps the ground between separate openings and replaces all openings atomically', () => {
+    const root = new THREE.Group(),
+      ground = new THREE.Mesh(plane()),
+      owner = new THREE.Group(),
+      controller = new TerrainGroundCutoutController();
+    root.add(ground, owner);
+    markTerrainGroundSurface(ground);
+    const source = ground.geometry,
+      positions = Array.from(source.getAttribute('position').array),
+      left: [number, number][] = [
+        [1, 1],
+        [3, 1],
+        [3, 3],
+        [1, 3],
+      ],
+      right: [number, number][] = [
+        [7, 1],
+        [9, 1],
+        [9, 3],
+        [7, 3],
+      ];
+    setTerrainGroundCutouts(owner, [left, right]);
+    controller.update(root);
+    expect(area(ground.geometry)).toBeCloseTo(92, 4);
+    const ray = new THREE.Raycaster(new THREE.Vector3(5, 100, 2), new THREE.Vector3(0, -1, 0));
+    expect(ray.intersectObject(ground).length).toBeGreaterThan(0);
+    expect(Array.from(source.getAttribute('position').array)).toEqual(positions);
+    expect(() => setTerrainGroundCutouts(owner, [left, []])).toThrow('vertices');
+    expect(controller.update(root)).toBe(false);
+    setTerrainGroundCutout(owner, left);
+    controller.update(root);
+    expect(area(ground.geometry)).toBeCloseTo(96, 4);
+    owner.visible = false;
+    controller.update(root);
+    expect(ground.geometry).toBe(source);
     controller.dispose();
   });
   it('updates clipped normals from the retained grid without corrupting original topology', () => {

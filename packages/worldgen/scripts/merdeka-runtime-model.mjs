@@ -14,7 +14,7 @@ import {
 } from './signature-tower-expansion-models.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0178_merdeka_118',
+const key = 'merdeka_118',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json')));
 const settings = {

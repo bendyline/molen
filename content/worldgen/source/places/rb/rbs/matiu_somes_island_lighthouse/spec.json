@@ -1,0 +1,312 @@
+{
+  "planId": "matiu_somes_island_lighthouse",
+  "id": "matiu_somes_island_lighthouse",
+  "assetId": "molen.worldgen.structure.matiu_somes_island_lighthouse",
+  "title": "Matiu / Somes Island Lighthouse",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 174.86374083181818,
+    "latitude": -41.25970354545455
+  },
+  "size": [
+    5.172745227813721,
+    10.100000381469727,
+    6.062488555908203
+  ],
+  "actualBounds": {
+    "min": [
+      -2.548159122467041,
+      0,
+      -2.3491036891937256
+    ],
+    "max": [
+      2.6245861053466797,
+      10.100000381469727,
+      3.7133848667144775
+    ]
+  },
+  "visualBrief": "Complete surviving1900 white round lighthouse and native attached gabled porch. Sector lantern with landward diamond panels and seaward glass, broad gallery lip, domed metal roof/vent/access loops, tall external ladder/cage and own entry door. Full native22-vertex tower/porch boundary; no relocated1866 tower or surrounding island/site.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Somes_Island_Lighthouse.jpg"
+  ],
+  "stories": [
+    {
+      "id": "matiu-somes-island-lighthouse-wp",
+      "url": "https://qualla.com/matiu-somes-island-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "97aa94787fd6396ece59a961c39c1784c9343d9f85b376609cc92ab06d5dd49a",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-matiu-somes-island-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-matiu-somes-island-lighthouse.mjs",
+    "level": "skyline",
+    "export": "matiuSkyline",
+    "errorMeters": 0.55,
+    "surfaces": {
+      "white": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.9,
+        "metallic": 0.1
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.87,
+        "metallic": 0.25
+      },
+      "porchRoof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.91,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.7,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "matiuDistrict",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.25
+          },
+          "porchRoof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.91,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "matiuStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.25
+          },
+          "porchRoof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.91,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Complete original native lighthouse building way759327801, all22 nonduplicate outline vertices/node IDs preserved, including own attached porch corners0..3. Full vertex mean anchor[174.86374083181818,-41.25970354545455]. Original lighthouse node1052815087/Q28375022 lies[0.37390635921477655,0.15078731014888702]m from this anchor and confirms the same building, not another island tower. Own porch outer edge1to2 fixes a natural ESE entrance front; signed heading1.158762611733087rad is the exact outward normal of that mapped front edge. All arc/jog coordinates retained. Upper profiles/floors/census are photographic estimates. Native lighthouse height29 is seamark focal elevation, not building height. Fixed approach[0,6.5] before independent terrain and geometry; no surveyed threshold or host contact. Independent64m source terrain frozen before geometry; exact foundation/threshold/host contact unverified.",
+    "anchor": [
+      174.86374083181818,
+      -41.25970354545455
+    ],
+    "heading": 1.158762611733087,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        174.8638120057507,
+        -41.25972692920249
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed entrance-side approach6.5m from original native anchor before independent terrain/geometry. Sloping wall foot/steps/floor/host contact approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/759327801",
+      "node/1052815087"
+    ],
+    "source": "https://www.openstreetmap.org/way/759327801",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e7cd95b950e675036eba7ff5543b960bf698b05256524d5e6359d327dd213e25",
+    "notes": "Complete surviving1900 Matiu/Somes Island lighthouse, not the relocated1866 tower. Full original native22-vertex outline includes round masonry tower and attached four-corner gabled entrance porch. White cylindrical base/plinth/cornice, broad lantern gallery, sector lantern with blank landward diamond-braced panels and dark seaward glass/white framing, domed metal roof/riveted seam and access loops, vent cowl/finial, external ladder/cage and own entry doors. Exclude keeper cottages, island/shore/sea/vegetation/city, paths/stairs beyond the building, signs/people and interior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete original native lighthouse building way759327801, all22 nonduplicate outline vertices/node IDs preserved, including own attached porch corners0..3. Full vertex mean anchor[174.86374083181818,-41.25970354545455]. Original lighthouse node1052815087/Q28375022 lies[0.37390635921477655,0.15078731014888702]m from this anchor and confirms the same building, not another island tower. Own porch outer edge1to2 fixes a natural ESE entrance front; signed heading1.158762611733087rad is the exact outward normal of that mapped front edge. All arc/jog coordinates retained. Upper profiles/floors/census are photographic estimates. Native lighthouse height29 is seamark focal elevation, not building height. Fixed approach[0,6.5] before independent terrain and geometry; no surveyed threshold or host contact.",
+    "Complete surviving1900 tower and attached gabled porch only. Every native outer arc/porch point retained; a short hidden circular tower continuation is estimated beneath the porch. No relocated1866 tower, keeper cottages, island/sea/shore/vegetation/city, paths/site stairs, signs, people or interior.",
+    "One exact published2008 Matt Lamont1944x2592 public-domain original only, native SHA1/named own photographer/PD-self matched; nine source families inventoried without conflicts. Other attribution and unrelated imagery unused; no supplemental photography/copied pixels/generated bitmap. Primary DOC and harbour operator text only establish the1900 replacement and present navigation use.",
+    "Native round base/own porch positions and ESE entrance bearing retained. White plain masonry, own gabled porch/closed door/casements, broad round gallery, folded white landward lantern panels/diamond frames, muted seaward glass, domed dark metal roof/access loops/vent cowl/finial and exterior ladder/cage follow the photo. Exact9m roof/cowl proportion, lantern sector angle/pane count, concealed windows, roof/ladder/rivet census and finish after2008 are estimates. Native29m seamark height is focal elevation above sea level, never building height.",
+    "Independent64m129x129at0.5m terrain and original raw tile frozen before geometry. Fixed porch-side approach[0,6.5], provider21.9885m, full relative field[-14.763,14.8693] unchanged without clipping/fitting/flattening. Coarse composite data cannot establish building floor, threshold, steps, wall footing or precise host contact. Geographic preview; replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole1900-tower-and-native-gabled-porch",
+      "position": [
+        12,
+        8,
+        15
+      ],
+      "lookAt": [
+        0,
+        4.9,
+        0.5
+      ]
+    },
+    {
+      "name": "porch-real-door-side-casements-and-gallery-base",
+      "position": [
+        4,
+        3.5,
+        8
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        2.5
+      ]
+    },
+    {
+      "name": "landward-diamond-panels-open-ladder-cage-and-dome",
+      "position": [
+        7,
+        7.3,
+        6
+      ],
+      "lookAt": [
+        0,
+        6.7,
+        0
+      ]
+    },
+    {
+      "name": "seaward-sector-glass-dome-vent-and-roof-access-loops",
+      "position": [
+        -7,
+        8.7,
+        -6
+      ],
+      "lookAt": [
+        0,
+        7.1,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5946,
+    "vertices": 17838,
+    "materials": 5,
+    "bytes": 716784,
+    "sha256": "sha256:dcb25cbf18fb14ae0d22fe6f1c7a40acf58a77b6ebf4cdf5b493c43345c5191d"
+  }
+}

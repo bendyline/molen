@@ -69,7 +69,7 @@ export interface EarthVehiclesOptions {
   water?: WaterSettings;
   waterAt?: BoatEnvironment['waterAt'];
   /** Load a vehicle model by entity type id, e.g. from the entities content pack. */
-  loadModel: (kind: string) => Promise<THREE.Object3D>;
+  loadModel: (kind: string, signal?: AbortSignal) => Promise<THREE.Object3D>;
   /** Entity types: the vehicle components a parked car becomes when it is driven. */
   types: TypeLibrary;
   /**
@@ -82,8 +82,8 @@ export interface EarthVehiclesOptions {
 /**
  * Drivable parked cars for an Earth view. The ECS world (on the main thread, from the SES-free
  * `@bendyline/molen-kernel/world`) is the source of truth; terrain tiles only draw dormant cars as
- * instances. Nearby cars load their full model, and a car someone has driven stays resident for
- * the session even after its source tile is evicted.
+ * instances. Driven cars keep their small simulation state after tile eviction; their models
+ * unload outside the near set. The mounted car and explicitly host-owned cars stay resident.
  */
 /** How a host adds a car with {@link EarthVehicles.spawn} or {@link EarthVehicles.spawnNear}. */
 export interface EarthSpawnOptions {
@@ -112,7 +112,7 @@ export class EarthVehicles {
   message: string = '';
   private accumulator = 0;
   private active = new Map<string, VehicleVisual>();
-  private loading = new Set<string>();
+  private loading = new Map<string, AbortController>();
   private retained = new Set<string>();
   private nearby = new Set<string>();
   private disposed = false;
@@ -134,7 +134,7 @@ export class EarthVehicles {
 
   private readonly root: THREE.Object3D;
   private readonly sampleHeight: (x: number, z: number) => number | undefined;
-  private readonly loadModel: (kind: string) => Promise<THREE.Object3D>;
+  private readonly loadModel: (kind: string, signal?: AbortSignal) => Promise<THREE.Object3D>;
   private readonly types: TypeLibrary;
   private readonly obstacles: ((box: OBB, except?: string) => boolean) | undefined;
 
@@ -246,17 +246,26 @@ export class EarthVehicles {
         }))
         .filter(
           ({ id, distance }) =>
-            resident.has(id) &&
-            !this.retained.has(id) &&
+            (resident.has(id) || this.retained.has(id)) &&
+            id !== this.mountedId &&
+            !this.owned.has(id) &&
             distance < (this.active.has(id) ? 20 : 14),
         )
         .sort((a, b) => a.distance - b.distance || a.id.localeCompare(b.id))
         .slice(0, 8);
       this.nearby = new Set(candidates.map(({ id }) => id));
+      for (const [id, controller] of this.loading)
+        if (id !== this.mountedId && !this.owned.has(id) && !this.nearby.has(id))
+          controller.abort();
       for (const { id, vehicle } of candidates) void this.activate(id, vehicle);
     }
     for (const [id, visual] of this.active) {
-      if (!this.retained.has(id) && (!resident.has(id) || !this.nearby.has(id))) {
+      if (
+        observer !== undefined &&
+        id !== this.mountedId &&
+        !this.owned.has(id) &&
+        !this.nearby.has(id)
+      ) {
         visual.dispose();
         this.active.delete(id);
       }
@@ -270,8 +279,7 @@ export class EarthVehicles {
       const ids = mesh.userData.vehicleIds as string[];
       for (let i = 0; i < ids.length; i++) {
         const id = ids[i] as string;
-        const hide =
-          this.active.has(id) || (this.retained.has(id) && this.loading.has(id)) || visible.has(id);
+        const hide = this.active.has(id) || this.retained.has(id) || visible.has(id);
         setParkedVehicleHidden(mesh, i, hide);
         if (!hide) visible.add(id);
       }
@@ -578,6 +586,7 @@ export class EarthVehicles {
   }
   /** Remove a car added with {@link spawn}. */
   remove(id: string): void {
+    this.loading.get(id)?.abort();
     if (this.world.get(PLAYER, Mounted)?.vehicle === id) this.world.remove(PLAYER, Mounted);
     this.active.get(id)?.dispose();
     this.active.delete(id);
@@ -801,23 +810,28 @@ export class EarthVehicles {
       visual.object.position.fromArray(t.pos);
       visual.object.quaternion.fromArray(t.rot);
       const input = this.world.get(id, BoatInput) ?? this.world.get(id, VehicleInput);
-      visual.update(state.steer, typeof state.wheelAngle === 'number' ? state.wheelAngle : 0, {
-        speed: state.speed,
-        heading: state.yaw,
-        pitch: state.pitch,
-        roll: state.roll,
-        throttle: input?.throttle,
-        brake: Number(input?.brake ?? false),
-        bodyRoll: typeof state.bodyRoll === 'number' ? state.bodyRoll : 0,
-        bodyPitch: typeof state.bodyPitch === 'number' ? state.bodyPitch : 0,
-        pedalAngle: typeof state.pedalAngle === 'number' ? state.pedalAngle : 0,
-        ...readModelSignals(this.data(id)?.visual.interior?.sources, (name) =>
-          this.world.get(id, { name }),
-        ),
-        ...readModelSignals(this.data(id)?.visual.animation?.sources, (name) =>
-          this.world.get(id, { name }),
-        ),
-      });
+      visual.update(
+        state.steer,
+        typeof state.wheelAngle === 'number' ? state.wheelAngle : 0,
+        {
+          speed: state.speed,
+          heading: state.yaw,
+          pitch: state.pitch,
+          roll: state.roll,
+          throttle: input?.throttle,
+          brake: Number(input?.brake ?? false),
+          bodyRoll: typeof state.bodyRoll === 'number' ? state.bodyRoll : 0,
+          bodyPitch: typeof state.bodyPitch === 'number' ? state.bodyPitch : 0,
+          pedalAngle: typeof state.pedalAngle === 'number' ? state.pedalAngle : 0,
+          ...readModelSignals(this.data(id)?.visual.interior?.sources, (name) =>
+            this.world.get(id, { name }),
+          ),
+          ...readModelSignals(this.data(id)?.visual.animation?.sources, (name) =>
+            this.world.get(id, { name }),
+          ),
+        },
+        this.world.tick / this.world.tickRate,
+      );
     }
   }
   cameraPose(): VehicleCameraPose | undefined {
@@ -845,14 +859,26 @@ export class EarthVehicles {
     const v = this.data(id);
     return v ? v.spec.label : 'Vehicle';
   }
+  /** The spec's name-free label and body style, present only where the type declares them. */
+  genericIdentity(id: string): { genericLabel?: string; bodyStyle?: string } {
+    const spec = this.data(id)?.spec as { genericLabel?: string; bodyStyle?: string } | undefined;
+    return {
+      ...(spec?.genericLabel !== undefined ? { genericLabel: spec.genericLabel } : {}),
+      ...(spec?.bodyStyle !== undefined ? { bodyStyle: spec.bodyStyle } : {}),
+    };
+  }
   private async activate(id: string, vehicle: VehicleData | BoatData): Promise<void> {
     if (this.loading.has(id) || this.active.has(id)) return;
-    this.loading.add(id);
+    // Explicit boarding/spawning takes priority; background parking never floods the network.
+    if (id !== this.mountedId && !this.owned.has(id) && this.loading.size >= 2) return;
+    const controller = new AbortController();
+    this.loading.set(id, controller);
     try {
-      const model = await this.loadModel(vehicle.kind);
+      const model = await this.loadModel(vehicle.kind, controller.signal);
       const visual = createVehicleVisual(model, vehicle);
       if (
         this.disposed ||
+        controller.signal.aborted ||
         !this.world.exists(id) ||
         (!this.retained.has(id) && !this.nearby.has(id))
       ) {
@@ -865,6 +891,7 @@ export class EarthVehicles {
       this.sync(performance.now());
       this.render();
     } catch (error) {
+      if (controller.signal.aborted) return;
       this.message = `Vehicle model could not load: ${String(error)}`;
       console.error(this.message);
     } finally {
@@ -873,6 +900,7 @@ export class EarthVehicles {
   }
   dispose(): void {
     this.disposed = true;
+    for (const controller of this.loading.values()) controller.abort();
     for (const v of this.active.values()) v.dispose();
     this.active.clear();
     this.object.removeFromParent();

@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.pickup": {
-      "doc": "Pickup truck with a long wheelbase and torque-focused performance.",
+      "doc": "Bendy Pickup. Pickup truck with a long wheelbase and torque-focused performance.",
       "components": {
         "transform": {
           "pos": [
@@ -23,7 +23,9 @@
           "kind": "molen.entities.vehicle.pickup",
           "color": "#aa6c3f",
           "spec": {
-            "label": "Pickup",
+            "label": "Bendy Pickup",
+            "bodyStyle": "pickup",
+            "genericLabel": "Pickup",
             "width": 1.98,
             "length": 5.05,
             "height": 1.8,
@@ -75,7 +77,8 @@
             "interior": {
               "nodes": [
                 "body",
-                "steering-wheel"
+                "steering-wheel",
+                "cabin"
               ],
               "bindings": [
                 {
@@ -84,6 +87,15 @@
                   "property": "rotation",
                   "axis": "z",
                   "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
                 }
               ]
             }
@@ -151,8 +163,8 @@
         "audioSource": {
           "sound": "vehicle.engine.diesel",
           "loop": true,
-          "pitch": 1.0,
-          "gain": 1.0,
+          "pitch": 1,
+          "gain": 1,
           "when": {
             "self.occupied": true
           },

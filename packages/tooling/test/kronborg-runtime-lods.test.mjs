@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { kronborgStudy } from '../../worldgen/scripts/kronborg-castle-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u3/u3b/n0244_kronborg_castle'),
+const source = resolve('../../content/worldgen/source/places/u3/u3b/kronborg_castle'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

@@ -1,0 +1,884 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "concrete_plain",
+      "slot": "wall"
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "seat": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "seat2": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "seat3": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "panel": {
+      "graph": "metal_painted",
+      "slot": "wall"
+    },
+    "mark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "goal": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "display": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "fabric_canvas",
+      "slot": "wall"
+    },
+    "glass": {
+      "graph": "window_grid",
+      "slot": "window"
+    },
+    "turf": {
+      "graph": "fabric_canvas",
+      "slot": "wall"
+    },
+    "apron": {
+      "graph": "fabric_canvas",
+      "slot": "wall"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -323.3464192761469,
+      260,
+      346.3337886220376
+    ],
+    "lookAt": [
+      0,
+      26,
+      0
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "open-southern-bowl-and-crossing-restaurant",
+      "position": [
+        -0.5816081547504441,
+        6,
+        -29.994361669392596
+      ],
+      "lookAt": [
+        2.5203020039185913,
+        24,
+        129.97556723403457
+      ],
+      "fov": 88
+    },
+    {
+      "name": "membrane-underside-and-cable-ring",
+      "position": [
+        0,
+        5,
+        0
+      ],
+      "lookAt": [
+        -46.15475881358978,
+        46,
+        -59.11631110665952
+      ],
+      "fov": 80
+    },
+    {
+      "name": "south-steps-louvers-and-ground-contact-frame",
+      "position": [
+        -51.01534066975839,
+        -5.610836865830333,
+        206.02775302455854
+      ],
+      "lookAt": [
+        2.423367311460184,
+        20,
+        124.97650695580248
+      ],
+      "fov": 74
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -323.3464192761469,
+        260,
+        346.3337886220376
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 43,
+      "name": "fonte-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -323.3464192761469,
+        260,
+        346.3337886220376
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 43,
+      "name": "fonte-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -323.3464192761469,
+        260,
+        346.3337886220376
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 43,
+      "name": "fonte-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -323.3464192761469,
+        260,
+        346.3337886220376
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 43,
+      "name": "fonte-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/fonte-model.mjs",
+    "export": "buildFonteSkyline",
+    "errorMeters": 12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFonteDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat2": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat3": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "panel": {
+            "graph": "metal_painted",
+            "slot": "wall"
+          },
+          "mark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "goal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "display": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "turf": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          },
+          "apron": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          }
+        }
+      },
+      "street": {
+        "export": "buildFonteStreet",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat2": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat3": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "panel": {
+            "graph": "metal_painted",
+            "slot": "wall"
+          },
+          "mark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "goal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "display": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "turf": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          },
+          "apron": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildFonteCloseup",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat2": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat3": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "panel": {
+            "graph": "metal_painted",
+            "slot": "wall"
+          },
+          "mark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "goal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "display": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "turf": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          },
+          "apron": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -38.50426375865936,
+      -12.978828636190258
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard6m Mapzen grid, roads, lake and every independent building remain unchanged. Datum36.752336730748624m defines field/modelY0; own boundary samples span-4.793902576630785..15.867745853967847m. Main bounded ground opening stays within occupied retaining floors; apron and field are partitioned without overlapping hidden caps. Columns/entrance posts reach original grades, local south stairs follow original descending samples. Only stadium and attached entrance-canopy strip are replaced at99.5percent detailed coverage; generalized complexes use bounded clipping. No whole precinct/parking slab or terrain flattening. Failure/unload retains/restores original context.",
+    "replaceFootprint": false,
+    "bounds": [
+      -38.50592311761502,
+      -12.980445603701677,
+      -38.502604399703706,
+      -12.977211668678839
+    ],
+    "terrainReference": {
+      "anchor": [
+        -38.50426375865936,
+        -12.978828636190258
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard6m Mapzen grid, roads, lake and every independent building remain unchanged. Datum36.752336730748624m defines field/modelY0; own boundary samples span-4.793902576630785..15.867745853967847m. Main bounded ground opening stays within occupied retaining floors; apron and field are partitioned without overlapping hidden caps. Columns/entrance posts reach original grades, local south stairs follow original descending samples. Only stadium and attached entrance-canopy strip are replaced at99.5percent detailed coverage; generalized complexes use bounded clipping. No whole precinct/parking slab or terrain flattening. Failure/unload retains/restores original context."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -102.648677,
+          -4.320626
+        ],
+        [
+          -99.768229,
+          -29.982813
+        ],
+        [
+          -94.269193,
+          -52.764572
+        ],
+        [
+          -90.39760369665035,
+          -61.93414967469465
+        ],
+        [
+          -64.03933141340528,
+          -98.25402896425099
+        ],
+        [
+          -63.107988,
+          -99.113734
+        ],
+        [
+          -48.967609,
+          -107.231392
+        ],
+        [
+          -33.256076,
+          -113.777893
+        ],
+        [
+          -19.942828167307205,
+          -116.63074518010541
+        ],
+        [
+          14.622257978253586,
+          -116.89804508427655
+        ],
+        [
+          25.40031,
+          -114.825333
+        ],
+        [
+          39.540689,
+          -110.373712
+        ],
+        [
+          53.419209,
+          -102.517913
+        ],
+        [
+          63.66087660530372,
+          -93.93295312722375
+        ],
+        [
+          84.69133679915586,
+          -66.48342298416196
+        ],
+        [
+          89.817592,
+          -55.645026
+        ],
+        [
+          96.887782,
+          -32.601405
+        ],
+        [
+          100.815665,
+          -10.343382
+        ],
+        [
+          102.386818,
+          12.438339
+        ],
+        [
+          97.411499,
+          46.479952
+        ],
+        [
+          92.72833004434115,
+          62.30579599866431
+        ],
+        [
+          67.27607497240275,
+          101.25004946413594
+        ],
+        [
+          54.204786,
+          111.158888
+        ],
+        [
+          41.373701,
+          117.70533
+        ],
+        [
+          28.804476,
+          121.371336
+        ],
+        [
+          23.107718661270457,
+          122.58340614018685
+        ],
+        [
+          -18.0589459993732,
+          122.89345203128707
+        ],
+        [
+          -29.590052,
+          120.847621
+        ],
+        [
+          -41.111843,
+          116.134184
+        ],
+        [
+          -53.942927,
+          109.325884
+        ],
+        [
+          -64.40382319564225,
+          100.84898622879547
+        ],
+        [
+          -88.34725642661842,
+          67.89161940825832
+        ],
+        [
+          -96.102205,
+          46.74181
+        ],
+        [
+          -100.553806,
+          23.174545
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Original standard6m Mapzen grid, roads, lake and every independent building remain unchanged. Datum36.752336730748624m defines field/modelY0; own boundary samples span-4.793902576630785..15.867745853967847m. Main bounded ground opening stays within occupied retaining floors; apron and field are partitioned without overlapping hidden caps. Columns/entrance posts reach original grades, local south stairs follow original descending samples. Only stadium and attached entrance-canopy strip are replaced at99.5percent detailed coverage; generalized complexes use bounded clipping. No whole precinct/parking slab or terrain flattening. Failure/unload retains/restores original context."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -114.054085,
+          -4.800695
+        ],
+        [
+          -110.853588,
+          -33.314236
+        ],
+        [
+          -104.743548,
+          -58.627303
+        ],
+        [
+          -93.687284,
+          -84.813257
+        ],
+        [
+          -81.467204,
+          -99.651976
+        ],
+        [
+          -70.119986,
+          -110.126371
+        ],
+        [
+          -54.408454,
+          -119.145991
+        ],
+        [
+          -36.951196,
+          -126.419881
+        ],
+        [
+          -20.657755,
+          -129.911349
+        ],
+        [
+          -4.946223,
+          -131.657083
+        ],
+        [
+          13.092943,
+          -130.49326
+        ],
+        [
+          28.222567,
+          -127.583704
+        ],
+        [
+          43.934099,
+          -122.637458
+        ],
+        [
+          59.354677,
+          -113.908792
+        ],
+        [
+          79.139569,
+          -97.324333
+        ],
+        [
+          89.613924,
+          -83.358481
+        ],
+        [
+          99.797325,
+          -61.827807
+        ],
+        [
+          107.653091,
+          -36.223783
+        ],
+        [
+          112.017405,
+          -11.492646
+        ],
+        [
+          113.763131,
+          13.820377
+        ],
+        [
+          108.234999,
+          51.644391
+        ],
+        [
+          99.797325,
+          80.157844
+        ],
+        [
+          89.904879,
+          95.869327
+        ],
+        [
+          78.266707,
+          109.835081
+        ],
+        [
+          60.22754,
+          123.509875
+        ],
+        [
+          45.970779,
+          130.7837
+        ],
+        [
+          47.134597,
+          134.275134
+        ],
+        [
+          32.877836,
+          138.348475
+        ],
+        [
+          18.912029,
+          141.258003
+        ],
+        [
+          1.454771,
+          142.421814
+        ],
+        [
+          -15.129624,
+          141.258003
+        ],
+        [
+          -28.513521,
+          138.93038
+        ],
+        [
+          -27.93231574119275,
+          135.15256079963814
+        ],
+        [
+          -32.877836,
+          134.275134
+        ],
+        [
+          -45.679825,
+          129.037982
+        ],
+        [
+          -59.936586,
+          121.473204
+        ],
+        [
+          -76.811935,
+          107.798409
+        ],
+        [
+          -89.613924,
+          91.79598
+        ],
+        [
+          -97.178736,
+          78.12117
+        ],
+        [
+          -106.780228,
+          51.935345
+        ],
+        [
+          -111.726451,
+          25.749494
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -114.054085,
+            -4.800695
+          ],
+          [
+            -110.853588,
+            -33.314236
+          ],
+          [
+            -104.743548,
+            -58.627303
+          ],
+          [
+            -93.687284,
+            -84.813257
+          ],
+          [
+            -81.467204,
+            -99.651976
+          ],
+          [
+            -70.119986,
+            -110.126371
+          ],
+          [
+            -54.408454,
+            -119.145991
+          ],
+          [
+            -36.951196,
+            -126.419881
+          ],
+          [
+            -20.657755,
+            -129.911349
+          ],
+          [
+            -4.946223,
+            -131.657083
+          ],
+          [
+            13.092943,
+            -130.49326
+          ],
+          [
+            28.222567,
+            -127.583704
+          ],
+          [
+            43.934099,
+            -122.637458
+          ],
+          [
+            59.354677,
+            -113.908792
+          ],
+          [
+            79.139569,
+            -97.324333
+          ],
+          [
+            89.613924,
+            -83.358481
+          ],
+          [
+            99.797325,
+            -61.827807
+          ],
+          [
+            107.653091,
+            -36.223783
+          ],
+          [
+            112.017405,
+            -11.492646
+          ],
+          [
+            113.763131,
+            13.820377
+          ],
+          [
+            108.234999,
+            51.644391
+          ],
+          [
+            99.797325,
+            80.157844
+          ],
+          [
+            89.904879,
+            95.869327
+          ],
+          [
+            78.266707,
+            109.835081
+          ],
+          [
+            60.22754,
+            123.509875
+          ],
+          [
+            45.970779,
+            130.7837
+          ],
+          [
+            47.134597,
+            134.275134
+          ],
+          [
+            32.877836,
+            138.348475
+          ],
+          [
+            18.912029,
+            141.258003
+          ],
+          [
+            1.454771,
+            142.421814
+          ],
+          [
+            -15.129624,
+            141.258003
+          ],
+          [
+            -28.513521,
+            138.93038
+          ],
+          [
+            -27.93231574119275,
+            135.15256079963814
+          ],
+          [
+            -32.877836,
+            134.275134
+          ],
+          [
+            -45.679825,
+            129.037982
+          ],
+          [
+            -59.936586,
+            121.473204
+          ],
+          [
+            -76.811935,
+            107.798409
+          ],
+          [
+            -89.613924,
+            91.79598
+          ],
+          [
+            -97.178736,
+            78.12117
+          ],
+          [
+            -106.780228,
+            51.935345
+          ],
+          [
+            -111.726451,
+            25.749494
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only own Arena Fonte Nova stadium parent52776561479861 and integrated southern entrance-canopy strip35185526867760 are replaced; retain the separate northeast garage, utilities, lake and every independent native building."
+    },
+    "notes": "Retained Q6499360 and named native Casa de Apostas Arena Fonte Nova POI52776561479861 establish stadium parent52776561479861 and integrated south entrance-canopy strip35185526867760. Only these two owned records are replaced. Separate pitch35184620593198 supplies105.072780x59.075187m mapped field and axis; these map proportions are retained rather than certified as regulation dimensions. Native38-point outer/28-point roof opening control the approximately271x227m envelope and135x94m roof aperture. Anchor[-38.50426375865936,-12.978828636190258]/heading0/native east-south/internal X[0.019386938491681473,0.9998120556464198]/Z[-0.9998120556464198,0.019386938491681473]. Positive internal X points south toward the lake and the photographed open seating break. Fine20degree/2m facing remains approximate. All independent buildings, especially the garage to the northeast, remain native. Original standard6m Mapzen grid, roads, lake and every independent building remain unchanged. Datum36.752336730748624m defines field/modelY0; own boundary samples span-4.793902576630785..15.867745853967847m. Main bounded ground opening stays within occupied retaining floors; apron and field are partitioned without overlapping hidden caps. Columns/entrance posts reach original grades, local south stairs follow original descending samples. Only stadium and attached entrance-canopy strip are replaced at99.5percent detailed coverage; generalized complexes use bounded clipping. No whole precinct/parking slab or terrain flattening. Failure/unload retains/restores original context."
+  }
+}

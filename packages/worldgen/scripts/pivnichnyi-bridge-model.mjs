@@ -14,9 +14,7 @@ import {
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0030_pivnichnyi_bridge', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('pivnichnyi_bridge', 'map-frame.json')));
 const concrete = [0.54, 0.52, 0.46],
   edge = [0.66, 0.64, 0.58],
   iron = [0.31, 0.34, 0.32],
@@ -729,7 +727,7 @@ export function buildPivnichnyi(out) {
   plaques(out);
 }
 export const pivnichnyiStudy = {
-  id: 'N0030',
+  id: 'pivnichnyi_bridge',
   key: 'pivnichnyi_bridge',
   title: 'Pivnichnyi Bridge',
   wikidataId: 'Q2467654',

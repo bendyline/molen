@@ -1,0 +1,722 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.temple_of_edfu",
+  "reviewedOn": "2026-10-18",
+  "inputHash": "sha256:f8617618bc3e21be208e3e6072fafbf770e83e7ce9c4ca0a6de15d45bbd93ed5",
+  "sourceHash": "sha256:085653d72367539c7b00b5202e9e413d12f030c6fe1373831ff10cfd07f5895b",
+  "runtimeHash": "sha256:ffc2aead8befe6506d76c012174c0bd49d565b3362435aa1f0a0aad875a6f44b",
+  "captureReportHash": "sha256:2877396b565fd34fe31ee9c59ee6b949b6d7dc8cd13e2ffefbee57d32492ec17",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/south-pylons-and-gateway.png",
+      "shots/open-central-gateway.png",
+      "shots/forecourt-and-peristyle.png",
+      "shots/columned-hall-front.png",
+      "shots/rear-roof-ranges.png",
+      "shots/southern-colonnaded-building.png"
+    ],
+    "notes": "Inspected all11 portable views. The distinctive twin battered pylons, broad concave cornices, open central gateway, tall facade recesses and two faceted falcons identify the entrance. The open court retains peristyle galleries, a raised column-fronted roofed hall and separately mapped rear roof ranges. The separate southern colonnaded building retains its fourteen mapped column centers and rear wall controls. Fine inscriptions and relief inventories are omitted; facade details and architectural heights are estimates from one ordinary frontal picture and retained nominal dimensions."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/south-pylons-and-gateway.png",
+      "shots/shared/open-central-gateway.png",
+      "shots/shared/forecourt-and-peristyle.png",
+      "shots/shared/columned-hall-front.png",
+      "shots/shared/rear-roof-ranges.png",
+      "shots/shared/southern-colonnaded-building.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all11 shared-material views. Three common256-square sandstone, limestone-grain and granite graphs use metric UVs and linear tints. Ground is an explicit earth constant. Four near draws and one skyline draw; no embedded images or unique atlas. Each graph loads once and eviction frees all model geometry. Flat-stage ground openings expose the sky beneath graded model floors and are not geographic-contact evidence. The separate full-site terrain fixture establishes approximate contact.",
+    "captureReportHash": "sha256:aa7d935bfc60c22575042742315ca21fdd4e5155a4c565657c713f7efb3f622f"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/south-pylons-and-gateway.png",
+      "medium-fi/open-central-gateway.png",
+      "medium-fi/forecourt-and-peristyle.png",
+      "medium-fi/columned-hall-front.png",
+      "medium-fi/rear-roof-ranges.png",
+      "medium-fi/southern-colonnaded-building.png",
+      "medium-fi/whole-temple-skyline.png",
+      "medium-fi/whole-temple-district.png",
+      "medium-fi/whole-temple-street.png",
+      "medium-fi/whole-temple-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all27 current medium-fi frames: street, block and skyline ranges at noon and late afternoon, Economy and High, untextured silhouette, six architectural details and four whole-model LOD views plus level transitions. Context framing1.8 shows the large compound beside synthetic procedural buildings. The939-triangle skyline retains both pylons, open gateway, court, hall roofs and southern component; district adds column rhythm, street adds recesses and selected faceted capitals, and closeup refines those forms. Initial geometry377472bytes plus three shared graphs; separate attribute streams avoid duplicate GPU uploads. Physical-device and dense-city measurements remain pending.",
+    "captureReportHash": "sha256:c888d1f1935c519b4838765394dc4387783b100ff4545fec749de0e47c3bf9a2"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:a05994ddac6d3ac6f51a1433346ce226eeb514fcb3d7c8658aebe4cd94c518cf",
+    "mapFrameHash": "sha256:c70ec5e523f653b1fa9987c2a72b42b58d09f9aea6ac33f73ae20daf2dcad631",
+    "notes": "Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Cross-axis medians set a graded visualization floor; both occupied compounds retain complete floors in every level. Local ground openings and perimeter joins remain bounded to those compounds. Loading replaces22 mapped temple/column records and preserves26 independent buildings in the960m tile exactly;27 independent records are preserved across the larger extract. No water is present in this local extract. Failure retains all48 native tile buildings and original ground; eviction restores ground and frees all geometry. A synthetic64m partial tile verifies clipping and lifecycle only. It exposes the existing terrain-excavation sky-sliver limitation at temporary clipped boundaries; full-site contact does not approve those temporary edges."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted for the specific medium-fi temple exterior and approximate standard-map/DEM placement. The actual73-by143m mapped main envelope and separate southern controls are used; the593-by258m archaeological-site boundary is not treated as a building. The36m pylon height is a retained nominal fact. Other elevations, gallery columns, facade recesses, simplified falcons and southern roof forms remain visualization estimates. Fine relief, inscriptions, navigable interiors and surveyed thresholds are omitted. Full-site fit passes; synthetic64m partial residency exposes the existing terrain-excavation sky-sliver limitation at temporary clipping boundaries. No bespoke surveys or archival reconstruction research were used."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:085653d72367539c7b00b5202e9e413d12f030c6fe1373831ff10cfd07f5895b"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:ffc2aead8befe6506d76c012174c0bd49d565b3362435aa1f0a0aad875a6f44b"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:14c27e890030b6f65d59bd8e029fe2da4343af6bc78b768c530795426d843377"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:2194a755be06e980fd91a2df26a1138b333eee73c08c02f3253c8923871cda19"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:a4646c4220e1148915d84036e69549731d4f6f2c07aaba00cb6646a04e06d6de"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:6677f836ca74f60a5f6e6042798906668617e115577de36c29dc2b1dea8aad75"
+      }
+    ],
+    "reports": [
+      {
+        "phase": "final",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 48,
+          "independentBuildings": 26,
+          "remainingBuildings": 26,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_edfu"
+          ],
+          "rawTerrainRange": {
+            "min": -13.79669292194616,
+            "max": 9.138507078053834
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:8c20c98c375a589092882de7033fa78d911bc9acd850f39b49563d4cb14297e9",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-south-pylons-and-gateway.png",
+            "hash": "sha256:7a6c938644d12d7aeefdda9e7ffa4ca13428414ab519582bc92d521c4126b1a7",
+            "camera": "south-pylons-and-gateway"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-central-gateway.png",
+            "hash": "sha256:1e4c9c9747ac81051c2e8369b413f185e2e2989b7680916397284b4ce6b38d2e",
+            "camera": "open-central-gateway"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-forecourt-and-peristyle.png",
+            "hash": "sha256:3dfb00303ca5a13c6a76ea8368c7e6b85b1ddc6a18d8b3e46bfb5206d82230b6",
+            "camera": "forecourt-and-peristyle"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-columned-hall-front.png",
+            "hash": "sha256:3b4577281510a64ea7875171893ec29e2ba4fd7b8325cb5b0c7e41fd253f515a",
+            "camera": "columned-hall-front"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-rear-roof-ranges.png",
+            "hash": "sha256:6117d562468e64d5d8e191aad0db3e4fa101d6d3656460d863c5c0c6a76f0fa1",
+            "camera": "rear-roof-ranges"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-southern-colonnaded-building.png",
+            "hash": "sha256:448a0c670e87d75d01bef3665bed3988bd26ee66c1cf13d6abc952f247868d8d",
+            "camera": "southern-colonnaded-building"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 48,
+          "independentBuildings": 26,
+          "remainingBuildings": 26,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_edfu"
+          ],
+          "rawTerrainRange": {
+            "min": -13.79669292194616,
+            "max": 9.138507078053834
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:0cd25db6a1465ea9090f3051d4ea4476ed54188628fab3891b1d659f41d784a4",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-street-south-pylons-and-gateway.png",
+            "hash": "sha256:e52f07a699d200121cecd67cbc609faa8006f9b83048ed18f9c0a6779b54514f",
+            "camera": "south-pylons-and-gateway"
+          },
+          {
+            "path": "shots/site-integration/final-street-forecourt-and-peristyle.png",
+            "hash": "sha256:a6e4023e20e4d9289d46ef273793be5254742781c3a6c944fffaab97bd0c3488",
+            "camera": "forecourt-and-peristyle"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 48,
+          "independentBuildings": 26,
+          "remainingBuildings": 26,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_edfu"
+          ],
+          "rawTerrainRange": {
+            "min": -13.79669292194616,
+            "max": 9.138507078053834
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:f1fe06b5d860a3251c9a281e0adb482060cffa3eeb2e44b95da730884fbf98ac",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-district-south-pylons-and-gateway.png",
+            "hash": "sha256:eb3019aa85685fe308377f6b38556de0728dd3f17579e627ea402723b8177549",
+            "camera": "south-pylons-and-gateway"
+          },
+          {
+            "path": "shots/site-integration/final-district-forecourt-and-peristyle.png",
+            "hash": "sha256:6221576ed590a28abd56863f4ed8539535b36b725e4b7c030cdda90df26d5933",
+            "camera": "forecourt-and-peristyle"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 48,
+          "independentBuildings": 26,
+          "remainingBuildings": 26,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_edfu"
+          ],
+          "rawTerrainRange": {
+            "min": -13.79669292194616,
+            "max": 9.138507078053834
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:6d181ce25c91d40757bc4ee1957cb3b75eabe819e8476e8bac0efb10f4624afd",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-south-pylons-and-gateway.png",
+            "hash": "sha256:aa0bf4d8ee2b3bd96c983314fbf14809b3fe963e83db75de654569dda24aeb3b",
+            "camera": "south-pylons-and-gateway"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-forecourt-and-peristyle.png",
+            "hash": "sha256:763d5562a4669e551f7462418a34b34cfa0f02d3bc97c266a6236aa63c76ffe3",
+            "camera": "forecourt-and-peristyle"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 48,
+          "independentBuildings": 26,
+          "remainingBuildings": 48,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184647902608,
+              "area": 447.3291463768575
+            },
+            {
+              "id": 35184647902609,
+              "area": 360.1967690124553
+            },
+            {
+              "id": 35184647902611,
+              "area": 715.6981882689465
+            },
+            {
+              "id": 35185429790796,
+              "area": 104.82723572757635
+            },
+            {
+              "id": 35185429790797,
+              "area": 346.4569203410221
+            },
+            {
+              "id": 35185429790798,
+              "area": 811.5858619394246
+            },
+            {
+              "id": 35185626007075,
+              "area": 0.8790645523760077
+            },
+            {
+              "id": 35185626007076,
+              "area": 0.8424369195324743
+            },
+            {
+              "id": 35185626007077,
+              "area": 0.8424369625316785
+            },
+            {
+              "id": 35185626007078,
+              "area": 0.8424370079609389
+            },
+            {
+              "id": 35185626007079,
+              "area": 0.9156924530117294
+            },
+            {
+              "id": 35185626007080,
+              "area": 0.8058094081150102
+            },
+            {
+              "id": 35185626007081,
+              "area": 0.8058095553764133
+            },
+            {
+              "id": 35185626007082,
+              "area": 0.7691821075752614
+            },
+            {
+              "id": 35185626007083,
+              "area": 0.6959268178945877
+            },
+            {
+              "id": 35185626007084,
+              "area": 0.6959267866363916
+            },
+            {
+              "id": 35185626007085,
+              "area": 0.8058099171989852
+            },
+            {
+              "id": 35185626007086,
+              "area": 0.8424375898187009
+            },
+            {
+              "id": 35185626007087,
+              "area": 0.8424375459753719
+            },
+            {
+              "id": 35185626007088,
+              "area": 0.8424374883702512
+            },
+            {
+              "id": 35185626007089,
+              "area": 61.314760568470206
+            },
+            {
+              "id": 52776572243683,
+              "area": 1918.1047996791422
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_edfu"
+          ],
+          "rawTerrainRange": {
+            "min": -13.79669292194616,
+            "max": 9.138507078053834
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:42a9c997bf0e0a6843b7baad8131f6dd140c2039a628a36adc2c68ac7e05ac1d",
+            "camera": "whole-site"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_edfu"
+          ],
+          "rawTerrainRange": {
+            "min": -13.79669292194616,
+            "max": 9.138507078053834
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:5fa0e4913134b3d205a39ec479c1859986b2119a84468ae81fc9fa1a8d10d63f",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-south-pylons-and-gateway.png",
+            "hash": "sha256:3ed61a66970d7d39827c6c1020be8a3c12e47a5e091832e9eb6d3a7ead0fb453",
+            "camera": "south-pylons-and-gateway"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-forecourt-and-peristyle.png",
+            "hash": "sha256:dab4a2091049c09c447ae98aa169d0c7bfb9a3fc9aa7a269a24ad47ca2495d00",
+            "camera": "forecourt-and-peristyle"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_edfu"
+          ],
+          "rawTerrainRange": {
+            "min": -13.79669292194616,
+            "max": 9.138507078053834
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-skyline-whole-site.png",
+            "hash": "sha256:75db873a844deb5f04bad42ad368623a759066f0d98e37f366ed450a669f9640",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-skyline-south-pylons-and-gateway.png",
+            "hash": "sha256:0aa7cd782125dd4004f1cbf4d09dc31779a3d7ea579b8e6b09ace1a38b1d5b49",
+            "camera": "south-pylons-and-gateway"
+          },
+          {
+            "path": "shots/site-integration/partial-skyline-forecourt-and-peristyle.png",
+            "hash": "sha256:4293c56f53db535c7f0d3c4e6a78e5e54e8c27b2016b81d88b854f398a43cefb",
+            "camera": "forecourt-and-peristyle"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_edfu"
+          ],
+          "rawTerrainRange": {
+            "min": -13.79669292194616,
+            "max": 9.138507078053834
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-failure-whole-site.png",
+            "hash": "sha256:314b1e2981e0feee21cdec2369ee5042d3eee50feaf415c42b9b182964df07d2",
+            "camera": "whole-site"
+          }
+        ]
+      }
+    ],
+    "floorCoverage": {
+      "checks": 8,
+      "samples": 1496,
+      "missing": 0
+    },
+    "partialResidency": {
+      "status": "known-boundary-gaps",
+      "notes": "Ground restoration and disposal pass; synthetic64m residency exposes sky slivers at temporary clipped floor/terrain boundaries. This remains an engine limitation."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/ss/ssr/temple_of_edfu/models/source.glb\",\"hash\":\"sha256:085653d72367539c7b00b5202e9e413d12f030c6fe1373831ff10cfd07f5895b\",\"bytes\":1685120,\"triangles\":14019,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/ss/ssr/temple_of_edfu/model.glb\",\"hash\":\"sha256:ffc2aead8befe6506d76c012174c0bd49d565b3362435aa1f0a0aad875a6f44b\",\"bytes\":1684676,\"triangles\":14019,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/ss/ssr/temple_of_edfu/model.skyline.glb\",\"hash\":\"sha256:14c27e890030b6f65d59bd8e029fe2da4343af6bc78b768c530795426d843377\",\"bytes\":96528,\"triangles\":939,\"materials\":1,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/ss/ssr/temple_of_edfu/model.district.glb\",\"hash\":\"sha256:2194a755be06e980fd91a2df26a1138b333eee73c08c02f3253c8923871cda19\",\"bytes\":280944,\"triangles\":2767,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/ss/ssr/temple_of_edfu/model.street.glb\",\"hash\":\"sha256:a4646c4220e1148915d84036e69549731d4f6f2c07aaba00cb6646a04e06d6de\",\"bytes\":808540,\"triangles\":7987,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/ss/ssr/temple_of_edfu/model.closeup.glb\",\"hash\":\"sha256:6677f836ca74f60a5f6e6042798906668617e115577de36c29dc2b1dea8aad75\",\"bytes\":1116840,\"triangles\":11003,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "172-shape-and-opening-probes",
+        "passed": true,
+        "notes": "All six files retain the pylons, open gateway, court and mapped roof ranges; near levels retain all fourteen southern column controls."
+      },
+      {
+        "check": "1496-compound-floor-samples",
+        "passed": true,
+        "notes": "Complete occupied floor coverage in all four browser levels."
+      },
+      {
+        "check": "167-raw-map-vertices",
+        "passed": true,
+        "notes": "Every mapped control outline retains its raw east/south coordinates."
+      },
+      {
+        "check": "selected-source-runtime-placement-scene",
+        "passed": true,
+        "notes": "Selected generator/import/placement checks, strict medium-fi audit, scene validate and sim30 passed."
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Edfu exterior: twin battered pylons and open gateway, open forecourt and peristyle, raised column-fronted roofed hall, independently mapped rear roof ranges and enclosing passage wall. The separate southern mapped colonnaded building retains all fourteen column controls and rear wall controls. No generic archaeological-park mass substitutes for the temple.",
+    "Q613037 identifies Temple of Edfu. Standard PMTiles building52776572243683 supplies its eight-point perimeter and open inner court; five independent roof-range controls and the southern building with fifteen parts retain their own positions. The593-by258m archaeological-site boundary is not the temple footprint. Raw+X east/+Z south and heading0 preserve the signed south-facing pylon front,2.08 degrees west of south.",
+    "Retained nominal facts give137m length,79m width and36m pylon height. Mapped wall envelope is about73by143m; tower taper, cornices, staff recesses and open portal follow one ordinary frontal photograph. Court columns, roof heights, simplified falcons and southern building elevation are visualization estimates; no exact relief or inscription inventory.",
+    "Retain the unchanged161-square/6m standard Mapzen-USGS grid and92.762m reference datum. Median cross-axis samples establish an approximate longitudinal visualization grade. Complete opaque court floors and local perimeter joins replace ground only under the two occupied mapped compounds. The original grid remains outside. These coarse levels are not surveyed archaeological thresholds.",
+    "Fine relief,inscriptions,exact carving inventories,navigable interiors and surveyed thresholds are omitted. Southern roof/column heights are approximations from normal-map controls; this is not an archaeological reconstruction. Synthetic partial residency exposes the existing terrain-excavation sky-sliver limitation at temporary clipped boundaries; full-site contact does not approve those temporary edges.",
+    "Accepted for the specific medium-fi temple exterior and approximate standard-map/DEM placement. The actual73-by143m mapped main envelope and separate southern controls are used; the593-by258m archaeological-site boundary is not treated as a building. The36m pylon height is a retained nominal fact. Other elevations, gallery columns, facade recesses, simplified falcons and southern roof forms remain visualization estimates. Fine relief, inscriptions, navigable interiors and surveyed thresholds are omitted. Full-site fit passes; synthetic64m partial residency exposes the existing terrain-excavation sky-sliver limitation at temporary clipping boundaries. No bespoke surveys or archival reconstruction research were used."
+  ]
+}

@@ -1,0 +1,614 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "metal_painted",
+      "slot": "wall",
+      "roughness": 0.72,
+      "metallic": 0.65
+    },
+    "roof": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.2,
+      "metallic": 0.9
+    },
+    "stone": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.5,
+      "metallic": 0.65
+    },
+    "seam": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.4,
+      "metallic": 0.7
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -20,
+      19,
+      -26
+    ],
+    "lookAt": [
+      0,
+      4,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "north-reflective-disc-and-rim",
+      "position": [
+        0,
+        7,
+        -21
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "east-oblique-profile-and-base",
+      "position": [
+        21,
+        8,
+        1
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "south-high-shell-and-cap",
+      "position": [
+        0,
+        17,
+        23
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -20,
+        19,
+        -26
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 46,
+      "name": "planetarium-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -20,
+        19,
+        -26
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 46,
+      "name": "planetarium-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -20,
+        19,
+        -26
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 46,
+      "name": "planetarium-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -20,
+        19,
+        -26
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 46,
+      "name": "planetarium-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.2,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/planetarium-model.mjs",
+    "export": "buildPlanetariumSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPlanetariumDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.72,
+            "metallic": 0.65
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.2,
+            "metallic": 0.9
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.5,
+            "metallic": 0.65
+          },
+          "seam": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.4,
+            "metallic": 0.7
+          }
+        }
+      },
+      "street": {
+        "export": "buildPlanetariumStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.72,
+            "metallic": 0.65
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.2,
+            "metallic": 0.9
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.5,
+            "metallic": 0.65
+          },
+          "seam": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.4,
+            "metallic": 0.7
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPlanetariumCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.72,
+            "metallic": 0.65
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.2,
+            "metallic": 0.9
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.5,
+            "metallic": 0.65
+          },
+          "seam": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.4,
+            "metallic": 0.7
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -0.000744161385767647,
+      51.47714612180765
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Existing standard Protomaps20261020/Mapzen201x201/6m Observatory extract reused. Uncovered north approach internal[0,-9.5] fixes datum47.67441333333333m. Working footing top0.2m above provider, with closed foundation to original minimum boundary grade. Only mapped occupied parent cuts ground. Approximate native exterior fit inspected on the original hill; boundary grades -0.714..+0.105m leave a modest closed footing on the lower side. Exact paving, buried theater and access levels remain unverified. No bespoke terrain acquisition or broad flattening.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 7
+    },
+    "bounds": [
+      -0.0009015771291513231,
+      51.477049461546954,
+      -0.000587048880243873,
+      51.47724368678861
+    ],
+    "terrainReference": {
+      "anchor": [
+        -0.000744161385767647,
+        51.47723146175964
+      ],
+      "modelHeight": 0,
+      "basis": "Existing standard Protomaps20261020/Mapzen201x201/6m Observatory extract reused. Uncovered north approach internal[0,-9.5] fixes datum47.67441333333333m. Working footing top0.2m above provider, with closed foundation to original minimum boundary grade. Only mapped occupied parent cuts ground. Approximate native exterior fit inspected on the original hill; boundary grades -0.714..+0.105m leave a modest closed footing on the lower side. Exact paving, buried theater and access levels remain unverified. No bespoke terrain acquisition or broad flattening."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.913903,
+          0.135603
+        ],
+        [
+          -7.356016,
+          2.925078
+        ],
+        [
+          -5.310433,
+          5.714554
+        ],
+        [
+          -3.264849,
+          7.202276
+        ],
+        [
+          -0.847341,
+          7.760171
+        ],
+        [
+          0.640356,
+          7.760171
+        ],
+        [
+          3.801712,
+          6.830345
+        ],
+        [
+          6.405182,
+          4.412798
+        ],
+        [
+          7.706917,
+          1.623322
+        ],
+        [
+          7.892879,
+          -1.166152
+        ],
+        [
+          6.963069,
+          -3.76966
+        ],
+        [
+          5.103447,
+          -6.187202
+        ],
+        [
+          2.685939,
+          -7.488955
+        ],
+        [
+          -0.661379,
+          -7.860884
+        ],
+        [
+          -3.636774,
+          -7.117025
+        ],
+        [
+          -6.054281,
+          -5.071413
+        ],
+        [
+          -7.356016,
+          -2.839836
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.913903,
+            0.135603
+          ],
+          [
+            -7.356016,
+            2.925078
+          ],
+          [
+            -5.310433,
+            5.714554
+          ],
+          [
+            -3.264849,
+            7.202276
+          ],
+          [
+            -0.847341,
+            7.760171
+          ],
+          [
+            0.640356,
+            7.760171
+          ],
+          [
+            3.801712,
+            6.830345
+          ],
+          [
+            6.405182,
+            4.412798
+          ],
+          [
+            7.706917,
+            1.623322
+          ],
+          [
+            7.892879,
+            -1.166152
+          ],
+          [
+            6.963069,
+            -3.76966
+          ],
+          [
+            5.103447,
+            -6.187202
+          ],
+          [
+            2.685939,
+            -7.488955
+          ],
+          [
+            -0.661379,
+            -7.860884
+          ],
+          [
+            -3.636774,
+            -7.117025
+          ],
+          [
+            -6.054281,
+            -5.071413
+          ],
+          [
+            -7.356016,
+            -2.839836
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared campus Q192988 plus unique way268533449/native35184640622281, the mapped rounded planetarium cone. Own anchor raw[44.7,76.5], X east/Z south, heading0 baked into footprint. Only this parent footprint is owned; South Building, Altazimuth Pavilion and all other campus buildings remain independent. Photo-led north-facing sloped cap and near-vertical north shell establish working orientation; no surveyed engineering claim."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -7.914,
+          0.136
+        ],
+        [
+          -7.356,
+          2.925
+        ],
+        [
+          -5.31,
+          5.715
+        ],
+        [
+          -3.265,
+          7.202
+        ],
+        [
+          -0.847,
+          7.76
+        ],
+        [
+          0.64,
+          7.76
+        ],
+        [
+          3.802,
+          6.83
+        ],
+        [
+          6.405,
+          4.413
+        ],
+        [
+          7.707,
+          1.623
+        ],
+        [
+          7.893,
+          -1.166
+        ],
+        [
+          6.963,
+          -3.77
+        ],
+        [
+          5.103,
+          -6.187
+        ],
+        [
+          2.686,
+          -7.489
+        ],
+        [
+          -0.661,
+          -7.861
+        ],
+        [
+          -3.637,
+          -7.117
+        ],
+        [
+          -6.054,
+          -5.071
+        ],
+        [
+          -7.356,
+          -2.84
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.914,
+            0.136
+          ],
+          [
+            -7.356,
+            2.925
+          ],
+          [
+            -5.31,
+            5.715
+          ],
+          [
+            -3.265,
+            7.202
+          ],
+          [
+            -0.847,
+            7.76
+          ],
+          [
+            0.64,
+            7.76
+          ],
+          [
+            3.802,
+            6.83
+          ],
+          [
+            6.405,
+            4.413
+          ],
+          [
+            7.707,
+            1.623
+          ],
+          [
+            7.893,
+            -1.166
+          ],
+          [
+            6.963,
+            -3.77
+          ],
+          [
+            5.103,
+            -6.187
+          ],
+          [
+            2.686,
+            -7.489
+          ],
+          [
+            -0.661,
+            -7.861
+          ],
+          [
+            -3.637,
+            -7.117
+          ],
+          [
+            -6.054,
+            -5.071
+          ],
+          [
+            -7.356,
+            -2.84
+          ]
+        ]
+      ],
+      "basis": "Occupied mapped cone footprint only; retain paving and independent buildings."
+    },
+    "notes": "Shared campus Q192988 plus unique way268533449/native35184640622281, the mapped rounded planetarium cone. Own anchor raw[44.7,76.5], X east/Z south, heading0 baked into footprint. Only this parent footprint is owned; South Building, Altazimuth Pavilion and all other campus buildings remain independent. Photo-led north-facing sloped cap and near-vertical north shell establish working orientation; no surveyed engineering claim. Existing standard Protomaps20261020/Mapzen201x201/6m Observatory extract reused. Uncovered north approach internal[0,-9.5] fixes datum47.67441333333333m. Working footing top0.2m above provider, with closed foundation to original minimum boundary grade. Only mapped occupied parent cuts ground. Approximate native exterior fit inspected on the original hill; boundary grades -0.714..+0.105m leave a modest closed footing on the lower side. Exact paving, buried theater and access levels remain unverified. No bespoke terrain acquisition or broad flattening."
+  }
+}

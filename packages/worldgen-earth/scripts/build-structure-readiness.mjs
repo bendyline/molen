@@ -18,16 +18,20 @@ import {
   historicalIdentityResolved,
 } from './historical-placement.mjs';
 import { reviewedMediumFi } from './medium-fi-readiness.mjs';
+import { readStructurePlacements } from './placement-sources.mjs';
+import { readinessRefresh } from './readiness-refresh.mjs';
 import { readinessSourceIdentity } from './readiness-source-identity.mjs';
+import { reviewedCategoryRules } from './reviewed-category-rules.mjs';
 import { reviewedSourceMapFrame } from './reviewed-source-map-frame.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
-const catalog = await readJson('content/worldgen/source/next-1000/candidates.json');
+const catalog = await readJson('content/worldgen/source/structure-catalog/candidates.json');
 const details = await readJson('content/earth/structures/evidence/wikidata-details.json');
 const geographic = await readJson('content/earth/structures/georeferencing.json');
 const identityReview = await readJson('content/earth/structures/identity-review.json');
-const placements = await readJson('content/earth/structures/placements.json');
+const placements = await readStructurePlacements();
+const mapRules = await readJson('content/earth/structures/map-rules.json');
 const project = await readJson('content/worldgen/project.json');
 const geoById = new Map(geographic.candidates.map((entry) => [entry.candidateId, entry]));
 const reviewedById = new Map(identityReview.reviews.map((entry) => [entry.candidateId, entry]));
@@ -56,9 +60,25 @@ async function imageFiles(directory) {
   }
   return paths;
 }
-const collectionPath = 'content/worldgen/source/next-1000/collections.json';
+const collectionPath = 'content/worldgen/source/structure-catalog/collections.json';
 const collectionBytes = await bytes(collectionPath);
 const collections = validateStructureCollections(JSON.parse(collectionBytes), catalog.candidates);
+const selectedArguments = process.argv.filter((argument) => argument.startsWith('--ids='));
+if (process.argv.includes('--ids') || selectedArguments.length > 1)
+  throw new Error(
+    'Use one --ids=stari_most,pont_de_normandie argument for a selected readiness refresh.',
+  );
+const selectedArgument = selectedArguments[0];
+if (selectedArgument && process.argv.includes('--check'))
+  throw new Error('--check always verifies the full ledger; omit --ids.');
+const refresh = selectedArgument
+  ? readinessRefresh(
+      catalog.candidates,
+      await readJson('content/earth/structures/readiness.json'),
+      selectedArgument.slice(6).split(','),
+      { collections, hash: hash(collectionBytes) },
+    )
+  : undefined;
 async function modelReadiness(candidate, geo) {
   if (geo?.wikidataId !== candidate.wikidataId)
     throw new Error(`${candidate.id}: stale geographic identity; regenerate georeferencing`);
@@ -132,6 +152,20 @@ async function modelReadiness(candidate, geo) {
   const sharedReviewed =
     reviewMatches && sharedMatches && qa.sharedSurfaceReview?.status === 'passed';
   const visualReviewed = reviewMatches && capturesMatch && qa.visualReview?.status === 'passed';
+  const category =
+    reviewMatches &&
+    (await reviewedCategoryRules({
+      spec,
+      sourceEntry: sourceEntries.find((e) => e.assetId === asset),
+      sourceManifest,
+      sidecar,
+      qa,
+      rules: mapRules.rules ?? [],
+      placements: placements.entries,
+      reportBytes: await bytes(`${sourceDirectory}/category-integration-report.json`),
+      exampleBytes: await bytes(`${sourceDirectory}/map-example.json`),
+      readImage: (path) => bytes(`${sourceDirectory}/${path}`),
+    }));
   const geographicReviewed =
     reviewMatches &&
     hasHistoricalPlacementCapture(placement, sharedCapture, placementHash) &&
@@ -169,7 +203,11 @@ async function modelReadiness(candidate, geo) {
   const rejected =
     recommendation?.original.wikidataId === candidate.wikidataId ? recommendation : undefined;
   const blockers = [];
-  if (rejected && !historicalIdentityResolved(rejected, placement, geographicReviewed))
+  if (
+    rejected &&
+    !(rejected.reasonCode === 'category' && category) &&
+    !historicalIdentityResolved(rejected, placement, geographicReviewed)
+  )
     blockers.push(`identity:${rejected.reasonCode}`);
   if (!source) blockers.push('source-model-missing');
   if (!runtime || !sidecar) blockers.push('runtime-import-missing');
@@ -177,10 +215,11 @@ async function modelReadiness(candidate, geo) {
   if (needsSharedReview && !sharedReviewed)
     blockers.push('shared-surface-review-missing-or-unbound');
   if (!fidelityReviewed) blockers.push(`${fidelityTarget}-fidelity-review-missing-or-unbound`);
-  if (geo.orientationStatus === 'unresolved' && !localFrame)
+  if (geo.orientationStatus === 'unresolved' && !localFrame && !category)
     blockers.push('orientation-unresolved');
-  if (!geographicReviewed) blockers.push('geographic-review-missing-or-unbound');
-  if (!hasUsableStructurePlacement(placement)) blockers.push('runtime-placement-inactive');
+  if (!geographicReviewed && !category) blockers.push('geographic-review-missing-or-unbound');
+  if (!hasUsableStructurePlacement(placement) && !category)
+    blockers.push('runtime-placement-inactive');
   const assetRegistered = typeof project.assets?.[asset] === 'string';
   if (source && !assetRegistered) blockers.push('asset-registry-missing');
   return {
@@ -210,8 +249,12 @@ async function modelReadiness(candidate, geo) {
     },
     geographic: {
       disposition: geo.disposition,
-      orientationEvidence: localFrame ? 'reviewed-source-frame' : geo.orientationStatus,
-      anchor: placement?.anchor ?? geo.anchor ?? geo.referenceAnchor,
+      orientationEvidence: category
+        ? 'reviewed-map-category-rule'
+        : localFrame
+          ? 'reviewed-source-frame'
+          : geo.orientationStatus,
+      anchor: category ? null : (placement?.anchor ?? geo.anchor ?? geo.referenceAnchor),
       heading: placement?.heading ?? geo.heading ?? null,
       mappedFeatureIds: localFrame
         ? (localFrame.elements ?? []).map((p) => `${p.type}/${p.id}`)
@@ -225,7 +268,16 @@ async function modelReadiness(candidate, geo) {
             },
           }
         : {}),
-      verified: geographicReviewed,
+      verified: geographicReviewed || Boolean(category),
+      ...(category
+        ? {
+            placementKind: 'map-category',
+            activeRules: category.rules,
+            ruleHash: category.ruleHash,
+            exampleFeatureId: category.example,
+            orientationLimit: category.orientationLimit,
+          }
+        : {}),
       activePlacement: placement?.status === 'preview' ? placement.id : null,
       ...(placement?.status === 'historical'
         ? { historicalPlacement: placement.id, appearance: placement.appearance }
@@ -267,6 +319,10 @@ async function modelReadiness(candidate, geo) {
 }
 const records = [];
 for (const candidate of catalog.candidates) {
+  if (refresh && !refresh.selected.has(candidate.id)) {
+    records.push(refresh.records.get(candidate.id));
+    continue;
+  }
   const collection = collections.find((entry) => entry.id === candidate.id);
   if (!collection) {
     records.push(await modelReadiness(candidate, geoById.get(candidate.id)));
@@ -333,14 +389,16 @@ const counts = {
   authoredAssets: individualRecords.filter((record) => record.model.source.present).length,
   importedAssets: individualRecords.filter((record) => record.model.runtime.present).length,
   placedAssets: individualRecords.filter((record) => record.geographic.activePlacement).length,
+  activeCategoryModels: individualRecords.filter((record) => record.geographic.activeRules?.length)
+    .length,
   fidelityReviews: records.filter((record) => record.fidelityQa.hashBoundReviewPassed).length,
   ready: records.filter((record) => record.readiness === 'ready').length,
 };
 const output = {
   format: 'molen/structure-readiness@1',
-  title: 'Next 1,000 structure production and placement readiness',
+  title: 'structure catalog structure production and placement readiness',
   policy:
-    'All current catalog identities remain visible. Missing geometry, undirected map axes, missing datum/facade review and unbound screenshots remain explicit blockers. ready requires hash-bound fidelity against the declared standard, visual and geographic review plus an active runtime placement. New medium-fi reviews also bind all four runtime LODs and the required context captures; legacy maximum-fidelity reviews retain their original meaning.',
+    'All current catalog identities remain visible. Missing geometry, undirected map axes, missing datum/facade review and unbound screenshots remain explicit blockers. ready requires hash-bound fidelity, visual and geographic review plus an active runtime placement, or a deliberately reusable type with hash-bound current map rules and inspected real-map integration including negative matches, all four LODs, failure and eviction. Reusable types never receive a fabricated unique anchor. New medium-fi reviews bind all four runtime LODs and the required context captures; legacy maximum-fidelity reviews retain their original meaning.',
   counts,
   candidates: records,
 };
@@ -352,7 +410,7 @@ if (process.argv.includes('--check')) {
       'Structure readiness ledger is stale: run node packages/worldgen-earth/scripts/build-structure-readiness.mjs',
     );
 } else await writeIndex(path, serialized);
-const progressPath = resolve(root, 'content/worldgen/source/next-1000/PROGRESS.md');
+const progressPath = resolve(root, 'content/worldgen/source/structure-catalog/PROGRESS.md');
 const reviewed = (value) => (value ? 'Passed' : 'Pending');
 const cells = (text) => String(text).replaceAll('|', '\\|');
 const progress = `# All 1,000 structure models — production progress
@@ -360,6 +418,7 @@ const progress = `# All 1,000 structure models — production progress
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
 There are ${counts.authoredAssets} authored assets, ${counts.importedAssets} imported assets and ${counts.placedAssets} active geographic asset previews.
+There are ${counts.activeCategoryModels} reviewed reusable map-category models; they have rule-based instances rather than a unique landmark anchor.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
 New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
@@ -407,3 +466,7 @@ if (process.argv.includes('--check')) {
     throw new Error('Structure production progress is stale; rebuild the readiness ledger.');
 } else await writeIndex(progressPath, progress);
 console.log(JSON.stringify(counts));
+if (refresh)
+  console.log(
+    `Refreshed ${[...refresh.selected].join(', ')}; retained ${records.length - refresh.selected.size} previously checked candidate records. Full verification requires --check without --ids.`,
+  );

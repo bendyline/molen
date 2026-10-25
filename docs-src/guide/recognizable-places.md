@@ -163,3 +163,9 @@ Raw model buffers are available through `generateLandmarkModel` and `generateSig
 
 The data and shapes are intentionally stylized. Mapping accuracy, coverage and source freshness
 bound recognition. A sign treatment must not be interpreted as recovered photographic appearance.
+
+## Font-backed sign names
+
+Storefront sign designs select a `font` id or role and optional `letterSpacing`. Pass the host's
+font library to `ModelLibrary` or the standalone sign generators; Earth content wires this
+automatically. See [Fonts and lettering](typography.md) for loading faces and generating labels.

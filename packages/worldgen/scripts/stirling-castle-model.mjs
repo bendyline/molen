@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcv/n0262_stirling_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gcv/stirling_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -773,7 +773,7 @@ export const buildStirlingSkyline = (o) =>
     'skyline',
   );
 export const stirlingStudy = {
-  id: 'N0262',
+  id: 'stirling_castle',
   key: 'stirling_castle',
   title: 'Stirling Castle',
   category: 'castle',

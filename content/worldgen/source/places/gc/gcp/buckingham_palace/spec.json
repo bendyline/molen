@@ -1,0 +1,425 @@
+{
+  "planId": "buckingham_palace",
+  "id": "buckingham_palace",
+  "assetId": "molen.worldgen.structure.buckingham_palace",
+  "title": "Buckingham Palace",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.142494922278919,
+    "latitude": 51.501063427790385
+  },
+  "size": [
+    216.35939025878906,
+    38.279998779296875,
+    149.8721160888672
+  ],
+  "actualBounds": {
+    "min": [
+      -123.66175842285156,
+      -4,
+      -83.8921127319336
+    ],
+    "max": [
+      92.6976318359375,
+      34.279998779296875,
+      65.9800033569336
+    ]
+  },
+  "visualBrief": "Individual palace quadrangle with native courtyard voids, pale Portland-stone three-pediment east facade in 3:7:3:7:3 bay rhythm, rusticated low storey/mezzanines, real arched carriage passages, divided sash glazing and giant Corinthian orders. Continuous first-floor balustrade and ceremonial balcony, pierced rooftop balustrade, original simplified pediment relief and bare flagstaff. Distinct warm Bath-stone garden front with engaged-column five-window bow, shallow green copper half dome, tall attic, giant-column pavilions, raised terrace/balustrades and conservatory. Attached palace wings/ballroom, courtyard porticoes and Ambassadors’ Court temple porch. Separate Royal Mews, memorial, gates, neighbors, people, interiors and photo textures excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Buckingham_Palace_in_2025.04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Buckingham_Palace_in_2025.06.jpg"
+  ],
+  "stories": [
+    {
+      "id": "buckingham-palace-wp",
+      "url": "https://qualla.com/buckingham-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:fa92e14cbcefa69ece5601681574124aa2604c63ba6d7a9e52f39e09ca1fbd06",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-buckingham-palace.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-buckingham-palace.mjs",
+    "level": "skyline",
+    "export": "buckinghamPalaceSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.05
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.35,
+        "doubleSided": true
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87,
+        "metallic": 0.2
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.66,
+        "metallic": 0.45
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buckinghamPalaceDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.35,
+            "doubleSided": true
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0.2
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.66,
+            "metallic": 0.45
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buckinghamPalaceStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.35,
+            "doubleSided": true
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0.2
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.66,
+            "metallic": 0.45
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.3,
+    "cameraYaw": 0,
+    "groundY": -4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Four unchanged original Terrarium tiles, 2m/193×193 review grid, source pixels 2.974m. Dry main east forecourt [0,65] datum 6.4092m. Native outline ground −1.174..+0.470m; buried −4m foundation, own raised garden terrace and steps. Ground remains unchanged; threshold engineering is approximate.",
+    "anchor": [
+      -0.142494922278919,
+      51.501063427790385
+    ],
+    "heading": 2.1511472384761183,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.14171050456237727,
+        51.501383591577586
+      ],
+      "modelHeight": 0,
+      "basis": "Dry main east forecourt approach outside the palace frontage; acquire host ground independently before authoring."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776563341652",
+      "buildings/35185598843734",
+      "buildings/35185598843721",
+      "buildings/35185598843730",
+      "buildings/35185598843722",
+      "buildings/35185598843729",
+      "buildings/35185598843733",
+      "buildings/35185598843726",
+      "buildings/35185598843720",
+      "buildings/35185409884873",
+      "buildings/35185598843723",
+      "buildings/35185598843731",
+      "buildings/35185598843719",
+      "buildings/35185598994021",
+      "buildings/35185598843732",
+      "buildings/35185598843725",
+      "buildings/35185598843728",
+      "buildings/35185598843727",
+      "buildings/35185598843724",
+      "buildings/35185585129399"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e393b2715f5fbb672ec670b6eadf3c81acf10d849b9c7d5a0222a473672bc054"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Four local originals individually inspected; all 78 candidate contact views inspected. Many candidates are interiors, a Shenzhen replica, nearby landmarks, gates, vehicles or historical images and cannot control the palace exterior.",
+    "Nominal 108m frontage, 120m quadrangle depth and 24m height are primary owner controls. Native front is approximately 107.9m wide; projections, attached south blocks and conservatories extend beyond the nominal main rectangle. Preserve native outlines rather than scaling the parcel to these numbers.",
+    "Main palace quadrangle, garden bow, attached conservatory/ballroom and Ambassadors’ Court masses only. Separate Royal Mews and Riding School, forecourt gates, Victoria Memorial, gardens, neighbors, interiors, people, guards, vehicles, temporary works/canopies, banners and photographic textures are excluded.",
+    "Qualla narrative dates the balcony to the 1913 refacing; owner records place its introduction with the 1847–1849 wing and appearances from 1851. Story content is not changed by this modeling work.",
+    "Native generalized component heights of 6/12/18/21/24m are massing evidence, not surveyed storey levels. Intermediate heights, unseen facade bays, stone detailing, roof engineering and flagstaff dimensions require conservative interpretation.",
+    "The owner aerial page was located and the image opened, but browser pixel capture failed. No aerial imagery has been visually inspected for this model yet.",
+    "Independent original terrain must be acquired before authoring. No terrain fitting/flattening or footprint replacement. Ground contacts and raised terraces must be tested against the actual samples.",
+    "The native6m Ambassadors’ Court porch projection is interpreted as an open colonnade, with its solid low wall recessed behind real columns and a pitched temple roof. Original footprints remain preserved. This changes the authored mass partition, not the host terrain or map evidence."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        15,
+        166
+      ],
+      "lookAt": [
+        0,
+        12,
+        60
+      ]
+    },
+    {
+      "name": "balcony-detail",
+      "position": [
+        20,
+        16,
+        92
+      ],
+      "lookAt": [
+        0,
+        11,
+        62
+      ]
+    },
+    {
+      "name": "east-pavilion",
+      "position": [
+        65,
+        19,
+        92
+      ],
+      "lookAt": [
+        45,
+        13,
+        62
+      ]
+    },
+    {
+      "name": "quadrangle",
+      "position": [
+        12,
+        91,
+        22
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "court-portico",
+      "position": [
+        25,
+        21,
+        5
+      ],
+      "lookAt": [
+        0,
+        11,
+        -17
+      ]
+    },
+    {
+      "name": "garden-bow",
+      "position": [
+        23,
+        26,
+        -107
+      ],
+      "lookAt": [
+        0,
+        13,
+        -62
+      ]
+    },
+    {
+      "name": "garden-terrace",
+      "position": [
+        65,
+        19,
+        -114
+      ],
+      "lookAt": [
+        23,
+        8,
+        -63
+      ]
+    },
+    {
+      "name": "ambassadors-court",
+      "position": [
+        -93,
+        14,
+        15
+      ],
+      "lookAt": [
+        -65,
+        5,
+        7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63641,
+    "vertices": 190923,
+    "materials": 7,
+    "bytes": 7640980,
+    "sha256": "sha256:d067827970a8b5fd9fd03968b8f8b78cd3004326166d5074bfb35dd368710e0e"
+  }
+}

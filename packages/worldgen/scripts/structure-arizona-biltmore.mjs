@@ -122,6 +122,29 @@ function line(o, slot, a, b, w, color) {
     color,
   );
 }
+function reliefStrip(o, a, b, w, backZ, color) {
+  const dx = b[0] - a[0],
+    dy = b[1] - a[1],
+    len = Math.hypot(dx, dy),
+    ox = (-dy * w) / (2 * len),
+    oy = (dx * w) / (2 * len),
+    top = [
+      [a[0] + ox, a[1] + oy, a[2]],
+      [b[0] + ox, b[1] + oy, b[2]],
+      [b[0] - ox, b[1] - oy, b[2]],
+      [a[0] - ox, a[1] - oy, a[2]],
+    ],
+    back = top.map((p) => [p[0], p[1], backZ]);
+  quad(o, 'wall', top, [0, 0, 1], color);
+  // Four physical side faces join the relief to the underlying masonry. The
+  // rear penetrates that wall slightly; the painted strips no longer float.
+  for (let i = 0; i < 4; i++) {
+    const j = (i + 1) % 4,
+      ex = top[j][0] - top[i][0],
+      ey = top[j][1] - top[i][1];
+    quad(o, 'wall', [top[i], top[j], back[j], back[i]], [-ey, ex, 0], color);
+  }
+}
 function window(o, x, y, z, w, h, d) {
   face(o, 'glass', x, y, z, w, h, glass);
   if (d < 2) return;
@@ -134,7 +157,7 @@ function window(o, x, y, z, w, h, d) {
     for (const yy of [y + h * 0.33, y + h * 0.67])
       face(o, 'metal', x, yy, z + 0.045, w, 0.025, copper);
 }
-function panel(o, x, y, z, w, h, d, ornament = false) {
+function panel(o, x, y, z, w, h, d, ornament = false, solidLeafBand = false) {
   if (d < 2) return;
   // The published full block is 18 by 13.5 inches. A shallow original stepped-leaf relief
   // captures the pattern's rhythm; it does not reproduce an exact mold or image texture.
@@ -151,17 +174,28 @@ function panel(o, x, y, z, w, h, d, ornament = false) {
       const xx = x - w / 2 + (i + 0.5) * sx,
         yy = y + (j + 0.5) * sy,
         sg = (i + j) % 2 ? 1 : -1;
-      // Four low sloping strips produce actual relief/shadow at close range.
-      for (let k = 0; k < 2; k++) {
+      const solid = solidLeafBand && i >= 3 && i < 9 && j < 12;
+      // Native cleared wall photographs resolve three stepped angular ribs.
+      // One prominent lower tower band receives full sides/depth; the rest
+      // retains the existing simpler treatment within the close-range budget.
+      for (let k = 0; k < (solid ? 3 : 2); k++) {
         const r = 0.15 - k * 0.042,
           top = yy + 0.12 - k * 0.033;
-        const pts = [
-          [xx - sg * r, yy - 0.09, z + 0.035],
-          [xx, top, z + 0.055],
-          [xx + sg * r, yy + 0.04, z + 0.035],
-        ];
-        for (let q = 0; q < 2; q++)
-          line(o, 'wall', pts[q], pts[q + 1], 0.024, k % 2 ? shade : light);
+        const pts = solid
+          ? [
+              [xx - r, yy + sg * (0.12 - k * 0.015), z + 0.035],
+              [xx, yy - sg * (0.12 - k * 0.06), z + 0.055],
+              [xx + r, yy + sg * (0.12 - k * 0.015), z + 0.035],
+            ]
+          : [
+              [xx - sg * r, yy - 0.09, z + 0.035],
+              [xx, top, z + 0.055],
+              [xx + sg * r, yy + 0.04, z + 0.035],
+            ];
+        for (let q = 0; q < 2; q++) {
+          if (solid) reliefStrip(o, pts[q], pts[q + 1], 0.024, z - 0.05, light);
+          else line(o, 'wall', pts[q], pts[q + 1], 0.024, k % 2 ? shade : light);
+        }
       }
     }
 }
@@ -295,7 +329,7 @@ function roomBlock(o, x, z, w, depth, h, d, { levels = 2, windows = true, patter
     }
   }
 }
-function hotel(o, frame, d = 3) {
+export function hotel(o, frame, d = 3) {
   frame ??= JSON.parse(fs.readFileSync(new URL('map-frame.json', base)));
   const outline = frame.geometry.outline;
   prism(o, [outline], -1, 0.45, shade); // A buried foundation follows only the scoped main-hotel outline.
@@ -344,8 +378,18 @@ function hotel(o, frame, d = 3) {
   }
   B(o, 'copper', vx, 10.7, 15.3, vw + 1.5, 0.13, 8.5, copper);
   if (d > 1)
-    for (let xx = vx - vw / 2; xx <= vx + vw / 2; xx += 0.85)
-      B(o, 'copper', xx, 10.61, 15.9, 0.11, 0.18, 9.6, copper);
+    for (let xx = vx - vw / 2; xx <= vx + vw / 2; xx += 0.85) {
+      // Rafter ends meet the existing solid tower walls rather than emerging
+      // as isolated copper cubes through the textile-block facade.
+      let front = 20.7;
+      for (const [left, right, wallZ] of [
+        [-10.5, -5.1, 20],
+        [-5.6, -0.8, 19],
+        [23.4, 27.8, 20.15],
+      ])
+        if (xx >= left && xx <= right) front = Math.min(front, wallZ - 0.01);
+      B(o, 'copper', xx, 10.61, (11.1 + front) / 2, 0.11, 0.18, front - 11.1, copper);
+    }
   // Tower and south projecting risalits. Twin slim slots and vertical fins dominate the silhouette.
   roomBlock(o, -7.8, 17, 5.4, 6, 18.3, d, { levels: 4, windows: false, pattern: true });
   roomBlock(o, -3.2, 15.5, 4.8, 7, 12.3, d, { levels: 3, pattern: true });
@@ -360,7 +404,7 @@ function hotel(o, frame, d = 3) {
       B(o, 'wall', xx, 4, 20.2, 0.2, h - 4, 0.65, light);
     }
     if (d > 0) window(o, tx, h - 5.85, 20.075, 0.55, 4.8, d);
-    if (d > 1) panel(o, tx, 8.1, 20.045, w, Math.max(1, h - 8.3), d, true);
+    if (d > 1) panel(o, tx, 8.1, 20.045, w, Math.max(1, h - 8.3), d, true, tx === -7.8);
   }
   // Shallow sloping side roofs are distinct from the largely flat block roofs.
   hip(o, -14, 11.5, 14.5, 14.8, 12.05, 1.4, d);
@@ -502,6 +546,8 @@ export const biltmoreModel = {
   qaCameras: [
     { name: 'front', position: [-4, 22, 165], lookAt: [-8, 7, 4] },
     { name: 'back', position: [110, 65, -155], lookAt: [-8, 7, -5] },
+    { name: 'textile-relief', position: [-7.8, 10, 24], lookAt: [-7.8, 10, 20.1] },
+    { name: 'textile-profile', position: [-6.2, 10.8, 24], lookAt: [-7.8, 10.2, 20.1] },
   ],
   build: hotel,
   surfaces,
@@ -522,10 +568,11 @@ export const biltmoreModel = {
     },
   },
   limitations: [
-    'Original medium-fi main-block exterior from individually inspected Qualla photos, architect-published 1929 plans and official 2024 resort map. Not a survey or photogrammetric reconstruction.',
+    'Original medium-fi main-block exterior. Current relief construction uses exact native Daderot public-domain originals already cleared in Qualla, with explicit creator releases and original hashes bound. Earlier attribution-licensed views are excluded as current controls; inherited main-block massing, factual plan/map controls and hidden facade approximations retained. Not a surveyed reconstruction.',
     'Current restored main building only. Later East/Garden/Paradise/Valley/Ocatilla wings, separate conference halls, cottages, villas, pools and broader grounds are excluded. Connected boundary clipping is an explicit scope decision.',
     'Upper-room setbacks, heights, service-side roofs and exact window positions are photo-derived approximations. Original plans guide massing but do not claim that every 1929 interior survives.',
-    'Geometric textile-block relief uses the published 18 by 13.5 inch module with a simplified original stepped-leaf motif, not a replica of the exact mold. No photographic pixels, readable signage or interiors are embedded.',
+    'Geometric textile-block relief uses the published18by13.5inch module.72modules in one lower south-tower band now have three stepped angular ribs with real tops/sides joined to the underlying wall. The rest retains simplified original relief. Profiles, depth and exact mold/current condition remain estimates; no exact mold replica, photographic pixels, readable signage or interiors are embedded.',
+    'Veranda rafters are trimmed where they meet existing solid tower walls, removing isolated copper ends through the facade. These intersections remain an approximate exterior construction detail, not structural engineering.',
     'Independent terrain rises across the footprint and is not flattened; the foundation extends below the south approach datum. Another host DEM can change exact ground contact.',
   ],
 };

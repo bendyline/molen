@@ -5,15 +5,13 @@ import { checkNodeVersion } from '../check-node-version.mjs';
 
 const read = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8');
 
-test('accepts the pinned Node major and rejects a different Node/V8 before regression tests', () => {
-  for (const actual of ['24.18.0', '24.21.0', 'v24.0.0']) {
-    assert.doesNotThrow(() => checkNodeVersion(actual, '24.18.0'), actual);
+test('accepts any release of the pinned major and rejects another major before regression tests', () => {
+  for (const actual of ['24.0.0', '24.18.0', '24.21.0', 'v24.0.0']) {
+    assert.doesNotThrow(() => checkNodeVersion(actual, '24'));
+    assert.doesNotThrow(() => checkNodeVersion(actual, '24.18.0'));
   }
   for (const actual of ['22.23.3', '23.11.0', '25.0.0']) {
-    assert.throws(
-      () => checkNodeVersion(actual, '24.18.0'),
-      /Pinned simulation hashes.*native math/,
-    );
+    assert.throws(() => checkNodeVersion(actual, '24'), /Pinned simulation hashes.*native math/);
   }
 });
 
@@ -38,9 +36,10 @@ test('CI regression jobs and release share the local runtime pin; packed install
   assert.equal(read('.node-version').trim().split('.')[0], assetNode);
 });
 
-test('local build and regression entry points check the runtime before doing work', () => {
+test('regression entry points check the runtime before doing work; build does not', () => {
   const { scripts } = JSON.parse(read('package.json'));
-  for (const hook of ['prebuild', 'preverify', 'pretest:unit', 'pretest:golden']) {
+  assert.equal(scripts.prebuild, undefined);
+  for (const hook of ['preverify', 'pretest:unit', 'pretest:golden']) {
     assert.ok(scripts[hook].startsWith('node scripts/check-node-version.mjs'), hook);
   }
 });

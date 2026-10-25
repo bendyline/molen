@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "stone_limestone",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "dome": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.7,
+      "metallic": 0.25
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "accent": {
+      "slot": "wall",
+      "graph": "tile_mosaic",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.47,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/aleppo-model.mjs",
+    "export": "buildAleppoSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAleppoDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildAleppoStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAleppoCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      125,
+      96,
+      -145
+    ],
+    "lookAt": [
+      -3,
+      12,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-aleppo-skyline",
+      "position": [
+        125,
+        96,
+        -145
+      ],
+      "lookAt": [
+        -3,
+        12,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-aleppo-district",
+      "position": [
+        125,
+        96,
+        -145
+      ],
+      "lookAt": [
+        -3,
+        12,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-aleppo-street",
+      "position": [
+        125,
+        96,
+        -145
+      ],
+      "lookAt": [
+        -3,
+        12,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-aleppo-closeup",
+      "position": [
+        125,
+        96,
+        -145
+      ],
+      "lookAt": [
+        -3,
+        12,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Historical picture/standard-map exterior;acceptance recorded separately in QA.",
+    "anchor": [
+      37.156906549,
+      36.199308821
+    ],
+    "heading": 0.017131698562,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and working floor,not surveyed paving. Standard viewer DEM datum389.814833m;whole perimeter0.08..2.09m relative to anchor. Working floor2.385m uses maximum bilinear core sample at2m spacing plus0.3m. Raw DEM retained without cutout/flattening;footings extend below it and crossY=0. Paving stays inside whole footprint. This clearance plane is not surveyed paving;exact altitude,street/threshold/terrain joins and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        37.156906549,
+        36.199308821
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum389.814833m;whole perimeter0.08..2.09m relative to anchor. Working floor2.385m uses maximum bilinear core sample at2m spacing plus0.3m. Raw DEM retained without cutout/flattening;footings extend below it and crossY=0. Paving stays inside whole footprint. This clearance plane is not surveyed paving;exact altitude,street/threshold/terrain joins and walking remain unverified."
+    },
+    "bounds": [
+      37.151,
+      36.193,
+      37.163,
+      36.206
+    ],
+    "notes": "Retained exact relation/71855 /Q1481968 matches current standard PMTiles whole52776558205103 (3*2^44+71855). Current single building control has six outer vertices/four court vertices,no tagged height or minaret component. Earlier six-vertex outer/four-vertex court retained separately. Anchor[37.156906549,36.199308821] and heading0.017131698562rad unchanged,no horizontal rescale. Native+X approximately east,+Z south/model prayer range;minaret is estimated at the northwest court corner. Arcades follow actual current courtyard edges. Main portal,dome,pavilions,minaret and facade facing are picture estimates,not extra mapped controls. Neighbouring souks,streets and other city buildings remain host content. Standard viewer DEM datum389.814833m;whole perimeter0.08..2.09m relative to anchor. Working floor2.385m uses maximum bilinear core sample at2m spacing plus0.3m. Raw DEM retained without cutout/flattening;footings extend below it and crossY=0. Paving stays inside whole footprint. This clearance plane is not surveyed paving;exact altitude,street/threshold/terrain joins and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum389.814833m;whole perimeter0.08..2.09m relative to anchor. Working floor2.385m uses maximum bilinear core sample at2m spacing plus0.3m. Raw DEM retained without cutout/flattening;footings extend below it and crossY=0. Paving stays inside whole footprint. This clearance plane is not surveyed paving;exact altitude,street/threshold/terrain joins and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

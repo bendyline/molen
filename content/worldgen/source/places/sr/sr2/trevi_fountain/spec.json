@@ -1,0 +1,465 @@
+{
+  "planId": "trevi_fountain",
+  "id": "trevi_fountain",
+  "assetId": "molen.worldgen.structure.trevi_fountain",
+  "title": "Trevi Fountain",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 12.483248859643936,
+    "latitude": 41.90106326199151
+  },
+  "size": [
+    50.391639709472656,
+    29.549999237060547,
+    32.76943302154541
+  ],
+  "actualBounds": {
+    "min": [
+      -25.195819854736328,
+      -3.25,
+      -4.199999809265137
+    ],
+    "max": [
+      25.195819854736328,
+      26.299999237060547,
+      28.569433212280273
+    ]
+  },
+  "visualBrief": "Pale Palazzo Poli fountain facade with four giant Corinthian columns, actual deep conch niche and four small inner columns, flanking allegory niches, three pedimented shutter-window bays per wing, attic/balustrade and sculptural papal crest. Recognizable posed Oceanus/shell chariot, distinct sea horses/tritons and side/attic figures, rough stepped travertine rock and curved spill bowls; mapped turquoise basin with separate dry amphitheatre/stairs. Full rear palace and neighboring city excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fontana_di_Trevi_di_notte.JPG"
+  ],
+  "stories": [
+    {
+      "id": "trevi-fountain-wp",
+      "url": "https://qualla.com/trevi-fountain/"
+    }
+  ],
+  "referenceInputHash": "sha256:8b5386f698af8e8cdfd7087ed2f493da6c40492f1d54bdff029b300c9eef1717",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-trevi-fountain.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-trevi-fountain.mjs",
+    "level": "skyline",
+    "export": "treviFountainSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "facade": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "sculpture": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "shutter": {
+        "slot": "window",
+        "localRef": "palette:#fffefd",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "water": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.27,
+        "metallic": 0.03
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "treviFountainDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "facade": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "sculpture": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "shutter": {
+            "slot": "window",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "treviFountainStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "facade": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "sculpture": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "shutter": {
+            "slot": "window",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.03
+          }
+        }
+      }
+    },
+    "caps": {
+      "closeup": {
+        "triangles": 64000,
+        "errorMeters": 0.06,
+        "prune": true
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.05,
+    "groundY": -3.8,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Frozen independent Terrarium256m source field, original2PNG tiles/all66049derived1m samples retained; provider-relative32.7437m dry outer Piazza di Trevi path contact. Physical fountain/site opening requires actual floor coverage; no source flattening or fitting.",
+    "anchor": [
+      12.483248859643936,
+      41.90106326199151
+    ],
+    "heading": 0.33730799786839577,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        12.483309209070717,
+        41.900779779373494
+      ],
+      "modelHeight": 0,
+      "basis": "Native dry outer Piazza di Trevi path vertex south of fountain; outside water/rockwork and palace roof. Freeze whole independent256m terrain square before any model geometry. Sample source as supplied; no flattening, fitting, rooftop-to-ground substitution or survey-datum claim."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          24.845821363026918,
+          -0.000004488024405446822
+        ],
+        [
+          23.897647989390915,
+          6.732622799925766
+        ],
+        [
+          18.96694766857714,
+          25.49234232305197
+        ],
+        [
+          17.53971814538015,
+          26.875840580944143
+        ],
+        [
+          14.780672774595171,
+          28.02776189733115
+        ],
+        [
+          13.2282128053415,
+          28.425318871340437
+        ],
+        [
+          8.938573099130867,
+          28.56943327135771
+        ],
+        [
+          -9.121446157099351,
+          28.358728076028736
+        ],
+        [
+          -12.204500461029475,
+          27.748478130476762
+        ],
+        [
+          -15.203073906353112,
+          26.225834931672853
+        ],
+        [
+          -17.56158063215601,
+          24.221153913083832
+        ],
+        [
+          -18.860598032018565,
+          21.881531145315023
+        ],
+        [
+          -20.12085362583439,
+          8.01573791969841
+        ],
+        [
+          -21.335390169621814,
+          4.763721905191917
+        ],
+        [
+          -22.10863847716848,
+          0.2534380823366593
+        ],
+        [
+          -24.845819789027836,
+          0.253
+        ],
+        [
+          -24.845819789027836,
+          -4.2
+        ],
+        [
+          24.845819789027836,
+          -4.2
+        ]
+      ],
+      "basis": "Immediate fountain/site envelope, basin/rockwork/amphitheatre and4.2m immediate backing facade thickness only. Keeps original provider heights for anchoring and restores original rendered terrain when model hides. Full palace behind and unrelated streets excluded."
+    },
+    "featureIds": [
+      "water/20549310",
+      "water/1312355522",
+      "buildings/35184503324428",
+      "roads/35184503324250"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:62db9aa523c5c26cd29ff44eeb35f5444c7719508f2ebf2f50251df032be6578"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native map geometry is quantized and low-zoom; precise sculpted rock placement and facade heights are photographic interpretations, not a construction survey.",
+    "Native whole-fountain envelope differs from actual water edge. Preserve both; do not fill the whole envelope with water.",
+    "Mapped Palazzo Poli has rear courts and wings; asset scope covers fountain facade and immediate backing thickness, not complete palace or its interior.",
+    "Statues, arms, horses, shell chariot and papal crest must retain interpreted recognizable silhouettes; no exact facial/inscription/art-conservation reproduction.",
+    "Native map preparation establishes location and signed axes; geometry, independent terrain and actual visual/placement acceptance must be separately verified before any completion annotation.",
+    "Facade width49.69m follows mapped line;26.3m reported overall height is a non-survey visual control. Individual cornices, column dimensions, water/step levels, rock positions and statue poses are photographic estimates. Sculptures retain restrained silhouettes, not exact faces, muscle/finger/fabric detail or copied reliefs/inscriptions.",
+    "Immediate4.2m backing facade is a bounded wall volume, not the complete Palazzo Poli. No interior, water simulation, fountain plumbing or navigable collision claim. Waterfall strips are static pale geometric surfaces.",
+    "Original Terrarium pixels may oversample much coarser composite source data;1m sampling does not imply survey accuracy. Provider-relative vertical reference only; default coarse host terrain compatibility not certified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        15,
+        68
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ]
+    },
+    {
+      "name": "left-oblique",
+      "position": [
+        -43,
+        16,
+        42
+      ],
+      "lookAt": [
+        -2,
+        9,
+        2
+      ]
+    },
+    {
+      "name": "right-oblique",
+      "position": [
+        43,
+        16,
+        42
+      ],
+      "lookAt": [
+        2,
+        9,
+        2
+      ]
+    },
+    {
+      "name": "deep-niche",
+      "position": [
+        0,
+        1.8,
+        17
+      ],
+      "lookAt": [
+        0,
+        8,
+        -1
+      ]
+    },
+    {
+      "name": "rock-and-spillways",
+      "position": [
+        15,
+        3.3,
+        24
+      ],
+      "lookAt": [
+        0,
+        1.7,
+        6
+      ]
+    },
+    {
+      "name": "papal-crest",
+      "position": [
+        5,
+        25,
+        17
+      ],
+      "lookAt": [
+        0,
+        24,
+        0.2
+      ]
+    },
+    {
+      "name": "basin-and-stairs",
+      "position": [
+        -26,
+        9,
+        31
+      ],
+      "lookAt": [
+        0,
+        -0.5,
+        17
+      ]
+    },
+    {
+      "name": "overhead",
+      "position": [
+        0,
+        85,
+        15
+      ],
+      "lookAt": [
+        0,
+        0,
+        14
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 106683,
+    "vertices": 320049,
+    "materials": 5,
+    "bytes": 12805116,
+    "sha256": "sha256:3bbd48def439f66ef1153bb4b1223b2af5570079cdc0068d2a21b3b29e852e36"
+  }
+}

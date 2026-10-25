@@ -1,0 +1,339 @@
+{
+  "planId": "stowe_house",
+  "id": "stowe_house",
+  "assetId": "molen.worldgen.structure.stowe_house",
+  "title": "Stowe House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.01804,
+    "latitude": 52.0312
+  },
+  "size": [
+    154.5,
+    24.40000033378601,
+    81.82500076293945
+  ],
+  "actualBounds": {
+    "min": [
+      -75.5999984741211,
+      -1.7999999523162842,
+      -55.70000076293945
+    ],
+    "max": [
+      78.9000015258789,
+      22.600000381469727,
+      26.125
+    ]
+  },
+  "visualBrief": "Neoclassical main house with six-column Corinthian south portico and broad stairs, triple-arched end pavilions, lower Ionic links, oval copper dome, four-column Ionic north entrance with clock pediment, corner towers and two open curved north colonnades.",
+  "nativeAxes": {
+    "x": "east-northeast along the south front",
+    "y": "up",
+    "z": "south-southeast toward the garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Stowe_House_-_Buckinghamshire,_England_-_DSC07055.jpg",
+    "https://commons.wikimedia.org/wiki/File:Stowe_House_-_Buckinghamshire,_England_-_DSC07239.jpg"
+  ],
+  "stories": [
+    {
+      "id": "stowe-house-wp",
+      "url": "https://qualla.com/stowe-house/"
+    }
+  ],
+  "referenceInputHash": "sha256:786bf0f69b43488396b01e740a694b043a073fccc62267c6373ba8107232bc76",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-stowe-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-stowe-house.mjs",
+    "level": "skyline",
+    "export": "stoweSkyline",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "capitalStone": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.3
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "stoweDistrict",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "capitalStone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "stoweStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "capitalStone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "South garden approach [4.3,26], Y=0. Unmodified public terrain data; foundations extend to -1.8 m and principal floor is 4.5 m above the south stair approach. North curved walks are at Y=1.5; coarse host elevations are not surveyed floor levels.",
+    "anchor": [
+      -1.01804,
+      52.0312
+    ],
+    "heading": 0.45,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.017818339236044,
+        52.03100649233862
+      ],
+      "modelHeight": 0,
+      "basis": "Garden approach beyond the foot of the south principal staircase, independent ground datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185865628522"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a8e0ab19bca94ade8bd8daa270a276f65c978120d7a22329efaf903a9e981198",
+    "notes": "Mapped principal front spans about 154 m; central block about 43 by 29 m. Curved colonnades reach about 56 m behind the garden facade. Heights, roof joins and ornament are photographic estimates, not a survey."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Current construction uses two exact native cleared Qualla photographer-CC0 south-front/capital-detail originals. Six close capitals use closed layered leaf stocks and corner volutes; original house/wings/steps retained. Earlier attribution/private conservation/aerial sources are historical and excluded. Broader north/hidden roof fidelity remains pending; dimensions, leaf/scroll profiles and current condition are estimates.",
+    "Main house, flanking pavilions and links, north curved colonnades and south steps only; attached service courts, separate garden temples, freestanding statues and interiors excluded.",
+    "Independent unmodified Terrarium terrain retained; ground beneath buildings is interpolated composite evidence. Host terrain can differ. Footprint replacement disabled.",
+    "Corinthian acanthus, Ionic volutes, roundel sculpture, lions and fine carved ornament simplified or omitted. No photographic textures and no physical-device performance measurement."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        4,
+        27,
+        145
+      ],
+      "lookAt": [
+        4,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -90,
+        58,
+        -130
+      ],
+      "lookAt": [
+        3,
+        8,
+        -23
+      ]
+    },
+    {
+      "name": "south-capital-crown",
+      "position": [
+        1,
+        16.8,
+        15.5
+      ],
+      "lookAt": [
+        2.1,
+        16.1,
+        11.05
+      ]
+    },
+    {
+      "name": "south-portico-capitals",
+      "position": [
+        18,
+        17.8,
+        24
+      ],
+      "lookAt": [
+        4.3,
+        15.8,
+        11
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62407,
+    "vertices": 187221,
+    "materials": 6,
+    "bytes": 7492532,
+    "sha256": "sha256:860536554aa48dcfbc3a65dd642630e957c445c675c8400a3a6a58e7bdee44b6"
+  }
+}

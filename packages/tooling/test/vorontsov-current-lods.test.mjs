@@ -9,7 +9,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u8/u8m/n0667_vorontsov_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/u8/u8m/vorontsov_lighthouse'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -82,7 +82,7 @@ it('preserves the exact operator-photo source and signed sea-level pier placemen
   smoothMeshNormals(m, ['trim'], 32);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(p.anchor).toEqual([30.7600343, 46.4965348]);

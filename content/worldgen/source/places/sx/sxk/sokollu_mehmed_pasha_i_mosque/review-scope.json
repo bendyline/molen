@@ -1,0 +1,537 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85,
+      "metallic": 0.16
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "wall",
+      "graph": "tile_ceramic",
+      "roughness": 0.75,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "roof",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.55,
+      "metallic": 0.65
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.52,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sokollu-model.mjs",
+    "export": "buildSokolluSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSokolluDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildSokolluStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSokolluCloseup",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -72,
+      53,
+      64
+    ],
+    "lookAt": [
+      0,
+      12,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-sokollu-skyline",
+      "position": [
+        -72,
+        53,
+        64
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-sokollu-district",
+      "position": [
+        -72,
+        53,
+        64
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-sokollu-street",
+      "position": [
+        -72,
+        53,
+        64
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-sokollu-closeup",
+      "position": [
+        -72,
+        53,
+        64
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained exact outline/court/axis plus current named polygon;all vertical/internal controls estimated.",
+    "anchor": [
+      28.972060811,
+      41.004807408
+    ],
+    "heading": -0.684993803383,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0476;datum 23.286754970166193 m. 416 building-ring samples span -3.084618103491099 to 2.796820877134717 m. Floor 0.2386633355291785 m is the median of 148 outer/court-edge samples plus0.25 m. Footings follow sampled grade;two exact notched masks preserve the mapped court hole. Fountain foundation uses the maximum standard DEM sample around its local base,not the range floor. Exact stairs,thresholds and retaining levels are unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -27.354,
+          -4.748
+        ],
+        [
+          -25.006,
+          -6.68
+        ],
+        [
+          -25.008,
+          -22.563
+        ],
+        [
+          -10.34,
+          -22.667013210937878
+        ],
+        [
+          -10.34,
+          -12.57043032159265
+        ],
+        [
+          -17.49,
+          -12.577
+        ],
+        [
+          -17.498,
+          -2.881
+        ],
+        [
+          -17.511,
+          9.664
+        ],
+        [
+          -10.34,
+          9.67256272886483
+        ],
+        [
+          -10.34,
+          22.187272805507746
+        ],
+        [
+          -25.147,
+          22.227
+        ],
+        [
+          -25.005,
+          1.023
+        ],
+        [
+          -26.977,
+          -0.873
+        ],
+        [
+          -27.119,
+          -2.64
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -27.354,
+            -4.748
+          ],
+          [
+            -25.006,
+            -6.68
+          ],
+          [
+            -25.008,
+            -22.563
+          ],
+          [
+            -10.34,
+            -22.667013210937878
+          ],
+          [
+            -10.34,
+            -12.57043032159265
+          ],
+          [
+            -17.49,
+            -12.577
+          ],
+          [
+            -17.498,
+            -2.881
+          ],
+          [
+            -17.511,
+            9.664
+          ],
+          [
+            -10.34,
+            9.67256272886483
+          ],
+          [
+            -10.34,
+            22.187272805507746
+          ],
+          [
+            -25.147,
+            22.227
+          ],
+          [
+            -25.005,
+            1.023
+          ],
+          [
+            -26.977,
+            -0.873
+          ],
+          [
+            -27.119,
+            -2.64
+          ]
+        ],
+        [
+          [
+            -10.34,
+            -22.667013210937878
+          ],
+          [
+            -4.419,
+            -22.709
+          ],
+          [
+            4.291,
+            -22.565
+          ],
+          [
+            4.296,
+            -18.601
+          ],
+          [
+            8.771,
+            -18.607
+          ],
+          [
+            8.773,
+            -14.396
+          ],
+          [
+            27.354,
+            -14.397
+          ],
+          [
+            27.354,
+            10.155
+          ],
+          [
+            7.914,
+            10.153
+          ],
+          [
+            7.917,
+            14.074
+          ],
+          [
+            3.609,
+            14.072
+          ],
+          [
+            3.613,
+            19.043
+          ],
+          [
+            3.559,
+            22.709
+          ],
+          [
+            -5.393,
+            22.174
+          ],
+          [
+            -10.34,
+            22.187272805507746
+          ],
+          [
+            -10.34,
+            9.67256272886483
+          ],
+          [
+            -4.949,
+            9.679
+          ],
+          [
+            -3.19,
+            9.68
+          ],
+          [
+            -3.18,
+            -1.886
+          ],
+          [
+            -3.169,
+            -12.561
+          ],
+          [
+            -4.43,
+            -12.565
+          ],
+          [
+            -10.34,
+            -12.57043032159265
+          ]
+        ]
+      ],
+      "basis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0476;datum 23.286754970166193 m. 416 building-ring samples span -3.084618103491099 to 2.796820877134717 m. Floor 0.2386633355291785 m is the median of 148 outer/court-edge samples plus0.25 m. Footings follow sampled grade;two exact notched masks preserve the mapped court hole. Fountain foundation uses the maximum standard DEM sample around its local base,not the range floor. Exact stairs,thresholds and retaining levels are unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        28.972060811,
+        41.004807408
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0476;datum 23.286754970166193 m. 416 building-ring samples span -3.084618103491099 to 2.796820877134717 m. Floor 0.2386633355291785 m is the median of 148 outer/court-edge samples plus0.25 m. Footings follow sampled grade;two exact notched masks preserve the mapped court hole. Fountain foundation uses the maximum standard DEM sample around its local base,not the range floor. Exact stairs,thresholds and retaining levels are unverified."
+    },
+    "bounds": [
+      28.9715,
+      41.0043,
+      28.9727,
+      41.0054
+    ],
+    "notes": "Retained Q1572472 /relation4567928 mosque identity,anchor,undirected axis,20-vertex outer envelope and eight-vertex courtyard remain unchanged. Current named mosque point and main25-vertex ring with a six-vertex hole share id52776562701176;tile seam points are retained. Positive X is assigned to the main hall and negative X to the medrese courtyard. Facing,internal partitions,dome/tower/fountain positions and bay counts are picture/map-guided estimates. Only the main mosque envelope is selected;neighbor buildings remain host content. Standard Protomaps20261014 /Mapzen-USGS viewer extractN0476;datum 23.286754970166193 m. 416 building-ring samples span -3.084618103491099 to 2.796820877134717 m. Floor 0.2386633355291785 m is the median of 148 outer/court-edge samples plus0.25 m. Footings follow sampled grade;two exact notched masks preserve the mapped court hole. Fountain foundation uses the maximum standard DEM sample around its local base,not the range floor. Exact stairs,thresholds and retaining levels are unverified."
+  },
+  "geographicNote": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0476;datum 23.286754970166193 m. 416 building-ring samples span -3.084618103491099 to 2.796820877134717 m. Floor 0.2386633355291785 m is the median of 148 outer/court-edge samples plus0.25 m. Footings follow sampled grade;two exact notched masks preserve the mapped court hole. Fountain foundation uses the maximum standard DEM sample around its local base,not the range floor. Exact stairs,thresholds and retaining levels are unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

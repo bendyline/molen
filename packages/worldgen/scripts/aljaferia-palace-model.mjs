@@ -4,10 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 
-const root = new URL(
-  '../../../content/worldgen/source/places/ez/ezr/n0294_aljaferia/',
-  import.meta.url,
-);
+const root = new URL('../../../content/worldgen/source/places/ez/ezr/aljaferia/', import.meta.url);
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
 const frame = read('map-frame.json'),
   refs = read('reference-metadata.json'),
@@ -993,7 +990,7 @@ const camera = (name, position, lookAt) => ({
   })(),
 });
 export const aljaferiaStudy = {
-  id: 'N0294',
+  id: 'aljaferia',
   key: 'aljaferia',
   title: 'Aljafería',
   category: 'castle',

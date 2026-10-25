@@ -5,7 +5,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/gc/gc7/n0975_spire_of_dublin');
+const source = resolve('../../content/worldgen/source/places/gc/gc7/spire_of_dublin');
 const runtime = await runtimeLodFixture(
   source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
 );
@@ -49,7 +49,7 @@ it('preserves the instanced physical-hole master and the exact mapped monument c
   ).toBe(11884);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json');
-  const p = (await read('../../content/earth/structures/placements.json')).entries.find(
+  const p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
     (p) => p.asset === s.assetId,
   );
   expect(f.mappedIdentity.wikidataId).toBe('Q1134365');

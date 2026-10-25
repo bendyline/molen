@@ -19,8 +19,8 @@ import {
 } from './signature-tower-expansion-models.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const scope = JSON.parse(readFileSync(structureSourcePath('n0182_23_marina', 'review-scope.json'))),
-  map = JSON.parse(readFileSync(structureSourcePath('n0182_23_marina', 'map-frame.json')));
+const scope = JSON.parse(readFileSync(structureSourcePath('23_marina', 'review-scope.json'))),
+  map = JSON.parse(readFileSync(structureSourcePath('23_marina', 'map-frame.json')));
 const settings = {
   skyline: { mult: 0, sides: 6, screen: 0 },
   district: { mult: 12, sides: 8, screen: 0 },

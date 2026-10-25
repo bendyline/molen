@@ -13,16 +13,16 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const output = resolve(root, 'content/earth/structures/evidence/bridge-terrain/ign');
 const cache = resolve(root, '.artifacts/bridge-terrain/ign');
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
-const ids = (process.argv.find((arg) => arg.startsWith('--ids='))?.slice(6) ?? 'N0019,N0026').split(
-  ',',
-);
+const ids = (
+  process.argv.find((arg) => arg.startsWith('--ids='))?.slice(6) ?? 'pont_de_l_archeveche,pont_aval'
+).split(',');
 const offline = process.argv.includes('--offline');
 const endpoint = 'https://data.geopf.fr/altimetrie/1.0/calcul/alti/rest/elevation.json';
 const resource = 'ign_rge_alti_wld';
 await mkdir(cache, { recursive: true });
 await mkdir(output, { recursive: true });
 for (const id of ids) {
-  if (!['N0019', 'N0026', 'N0028'].includes(id))
+  if (!['pont_de_l_archeveche', 'pont_aval', 'pont_de_tolbiac'].includes(id))
     throw new Error(`No reviewed IGN grid settings for ${id}`);
   const folder = knownSourceEntries().find((entry) => entry.candidateId === id)?.key;
   if (!folder) throw new Error(`Missing model ${id}`);
@@ -39,8 +39,8 @@ for (const id of ids) {
     ((anchor[0] * Math.PI) / 180) * radius * factor,
     -radius * Math.asinh(Math.tan((anchor[1] * Math.PI) / 180)) * factor,
   ];
-  const size = id === 'N0019' ? 256 : 768;
-  const resolution = id === 'N0019' ? 129 : 257;
+  const size = id === 'pont_de_l_archeveche' ? 256 : 768;
+  const resolution = id === 'pont_de_l_archeveche' ? 129 : 257;
   const origin = center.map((value) => value - size / 2);
   const coordinates = [];
   for (let row = 0; row < resolution; row++)
@@ -123,9 +123,9 @@ for (const id of ids) {
     anchorElevation: heights[(heights.length - 1) / 2],
     heights,
     sources,
-    reviewHalfLength: id === 'N0019' ? 33.6 : id === 'N0026' ? 156.25 : 98.4,
-    reviewDeckHeight: id === 'N0019' ? 8.2 : id === 'N0026' ? 15 : 9,
-    ...(id === 'N0026'
+    reviewHalfLength: id === 'pont_de_l_archeveche' ? 33.6 : id === 'pont_aval' ? 156.25 : 98.4,
+    reviewDeckHeight: id === 'pont_de_l_archeveche' ? 8.2 : id === 'pont_aval' ? 15 : 9,
+    ...(id === 'pont_aval'
       ? {
           // Sample a carriageway lane, avoiding the central barrier. These coordinates
           // follow the authored skew/curve, whose current spec is hash-bound above.
@@ -139,11 +139,11 @@ for (const id of ids) {
           reviewCameraRange: 328.125,
           reviewCameraFov: 55,
         }
-      : id === 'N0028'
+      : id === 'pont_de_tolbiac'
         ? {
             reviewProbePoints: [-101.4, -74, -49, 0, 49, 74, 96.1].map((x) => [x, 0]),
             reviewProbeBasis:
-              'Current modeled road endpoints are asymmetric (-101.9/+96.6 m). Probe 0.5 m inside each endpoint and retain unmodified IGN ground values; upper road bank stations beyond the modeled endpoints are preserved separately in N0028-bank-profile.json.',
+              'Current modeled road endpoints are asymmetric (-101.9/+96.6 m). Probe 0.5 m inside each endpoint and retain unmodified IGN ground values; upper road bank stations beyond the modeled endpoints are preserved separately in pont_de_tolbiac-bank-profile.json.',
           }
         : {}),
     sourceLabel: 'IGN RGE ALTI ground elevation (NGF-IGN69)',

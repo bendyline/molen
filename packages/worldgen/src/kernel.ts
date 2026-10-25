@@ -82,6 +82,8 @@ export type {
   LandmarkDoc,
   SignLandmarkDoc,
 } from './kernel/landmark-types';
+export type { LotBuildingPlan, LotPlanChoice, LotPlanKind } from './kernel/lot-plans';
+export { createLotBuildingPlan, LOT_PLAN_KINDS } from './kernel/lot-plans';
 export type { BuilderMark } from './kernel/mesh-buffers';
 export { MeshBufferBuilder } from './kernel/mesh-buffers';
 export { type PlantSeason, seasonalPlantId, seasonalPlantPresets } from './kernel/plant-seasons';

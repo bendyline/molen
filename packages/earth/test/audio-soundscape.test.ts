@@ -18,7 +18,10 @@ const bank = JSON.parse(
 ) as SoundbankDoc;
 const clips = earthSoundscapeClips([bank]);
 const packs = {
-  provided: () => [{ pack: { manifest: { id: 'molen.sounds' } }, path: 'sounds.soundbank.json' }],
+  provided: (role: string) =>
+    role === 'soundbank'
+      ? [{ pack: { manifest: { id: 'molen.sounds' } }, path: 'sounds.soundbank.json' }]
+      : [],
   readJson: async <T>() => bank as T,
   assetProvider: () => ({ load: async () => new ArrayBuffer(0), loadText: async () => '' }),
 };
@@ -131,6 +134,11 @@ describe('World soundscape content and behavior', () => {
     expect(category(coastal, 'coast')).toHaveLength(1);
     expect(category(run(), 'coast')).toHaveLength(0);
     expect(category(run({ heightAboveGround: 800 }), 'birds')).toHaveLength(0);
+    for (const heightAboveGround of [undefined, Number.NaN, Number.POSITIVE_INFINITY]) {
+      const ground = run({ heightAboveGround });
+      for (const name of ['birds', 'night', 'insects', 'coast', 'river', 'traffic'])
+        expect(category(ground, name)).toHaveLength(0);
+    }
     expect(warnings).toEqual([]);
     audio!.dispose();
   });

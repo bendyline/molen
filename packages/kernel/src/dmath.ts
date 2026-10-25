@@ -80,7 +80,8 @@ export const dmath: DMath = {
   acos: (x) => Math.acos(x),
   atan: (x) => Math.atan(x),
   atan2: (y, x) => Math.atan2(y, x),
-  pow: (x, y) => x ** y,
+  // biome-ignore lint/style/useExponentiationOperator: Asset builds install portable Math.pow; ** bypasses it.
+  pow: (x, y) => Math.pow(x, y),
   exp: (x) => Math.exp(x),
   log: (x) => Math.log(x),
   log2: (x) => Math.log2(x),

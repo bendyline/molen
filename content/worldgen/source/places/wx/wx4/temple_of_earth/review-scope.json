@@ -1,0 +1,573 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_granite",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "red": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.55,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.75,
+      "metallic": 0
+    },
+    "paint": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.72,
+      "metallic": 0
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.7,
+      "metallic": 0.7
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -207.32024076807255,
+      155,
+      -170.93366481728646
+    ],
+    "lookAt": [
+      1.915082944778215,
+      3,
+      19.908100293966264
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "two-square-yellow-brick-terraces-stairs-and-vessels",
+      "position": [
+        -32.543266563638895,
+        14,
+        -24.998715994385442
+      ],
+      "lookAt": [
+        0,
+        4.168978818156205,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "open-north-lingxing-gate-and-yellow-tile-coping",
+      "position": [
+        -20.887859411907662,
+        8,
+        -81.37381230585414
+      ],
+      "lookAt": [
+        -6.310198303044219,
+        3,
+        -65.59719046861883
+      ],
+      "fov": 50
+    },
+    {
+      "name": "mapped-huangqi-hall-open-door-painted-beams-and-hipped-roof",
+      "position": [
+        8.234856662546324,
+        11,
+        85.60483126405492
+      ],
+      "lookAt": [
+        8.867272150909494,
+        7.487399134588733,
+        102.62247066116515
+      ],
+      "fov": 56
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -207.32024076807255,
+        155,
+        -170.93366481728646
+      ],
+      "lookAt": [
+        1.915082944778215,
+        3,
+        19.908100293966264
+      ],
+      "fov": 45,
+      "name": "earth-temple-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -207.32024076807255,
+        155,
+        -170.93366481728646
+      ],
+      "lookAt": [
+        1.915082944778215,
+        3,
+        19.908100293966264
+      ],
+      "fov": 45,
+      "name": "earth-temple-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -207.32024076807255,
+        155,
+        -170.93366481728646
+      ],
+      "lookAt": [
+        1.915082944778215,
+        3,
+        19.908100293966264
+      ],
+      "fov": 45,
+      "name": "earth-temple-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -207.32024076807255,
+        155,
+        -170.93366481728646
+      ],
+      "lookAt": [
+        1.915082944778215,
+        3,
+        19.908100293966264
+      ],
+      "fov": 45,
+      "name": "earth-temple-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/earth-temple-model.mjs",
+    "export": "buildEarthTempleSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEarthTempleDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.55,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.7
+          }
+        }
+      },
+      "street": {
+        "export": "buildEarthTempleStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.55,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.7
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEarthTempleCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.55,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.7
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.409787957,
+      39.951456448
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain pinned standard Protomaps2026-10-14/Mapzen13-14 original6m forest/urban terrain, water and independent buildings. Altar and each southern hall/court footing have separate local level tops with buried bottoms. Long enclosure walls/coping and approach strips follow sampled grade; gateway feet are locally seated. Courtyard ground stays open except narrow grade-following approach strips; do not flatten the132m precinct or cut ground/water. Forest DEM varies several meters across the enclosure and does not resolve ceremonial paving, exact thresholds or landscaped moat levels.",
+    "replaceFootprint": false,
+    "bounds": [
+      116.40892076468407,
+      39.95045922082482,
+      116.41065523276791,
+      39.952122867792944
+    ],
+    "terrainReference": {
+      "anchor": [
+        116.409787957,
+        39.951456448
+      ],
+      "modelHeight": 0,
+      "basis": "Retain pinned standard Protomaps2026-10-14/Mapzen13-14 original6m forest/urban terrain, water and independent buildings. Altar and each southern hall/court footing have separate local level tops with buried bottoms. Long enclosure walls/coping and approach strips follow sampled grade; gateway feet are locally seated. Courtyard ground stays open except narrow grade-following approach strips; do not flatten the132m precinct or cut ground/water. Forest DEM varies several meters across the enclosure and does not resolve ceremonial paving, exact thresholds or landscaped moat levels."
+    },
+    "notes": "Exact-QID Q615178/way78050667 supplies the132.344x131.955m main ceremonial enclosure; named standard PMTiles point35184450139499 corroborates identity. Root heading0, internal angle+1.474895246492rad, +u approximately south and +v west. Standard native footprints35184749931995/35184756358521/35184756358522 fix the southern Huangqi hall and L-shaped side court. The main altar/enclosure has no native building shell. Its inner wall, terrace dimensions, gateway allocations and vessels are photo-led approximations within the named square. Replace only the three southern matching shells, preserving the other park buildings. Do not treat the whole Ditan Park as one solid building. Retain pinned standard Protomaps2026-10-14/Mapzen13-14 original6m forest/urban terrain, water and independent buildings. Altar and each southern hall/court footing have separate local level tops with buried bottoms. Long enclosure walls/coping and approach strips follow sampled grade; gateway feet are locally seated. Courtyard ground stays open except narrow grade-following approach strips; do not flatten the132m precinct or cut ground/water. Forest DEM varies several meters across the enclosure and does not resolve ceremonial paving, exact thresholds or landscaped moat levels.",
+    "buildingCutout": {
+      "outline": [
+        [
+          -2.904360303503981,
+          100.75067806584912
+        ],
+        [
+          19.98461127227578,
+          98.00396562072089
+        ],
+        [
+          20.02461127227578,
+          98.00396562072089
+        ],
+        [
+          20.482390703791378,
+          105.09964146271919
+        ],
+        [
+          20.482390703791378,
+          105.13964146271918
+        ],
+        [
+          -1.9488014404727905,
+          108.1152494279977
+        ],
+        [
+          -1.9888014404727905,
+          108.1152494279977
+        ],
+        [
+          -2.904360303503981,
+          100.79067806584911
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -2.904360303503981,
+            100.75067806584912
+          ],
+          [
+            19.98461127227578,
+            98.00396562072089
+          ],
+          [
+            20.02461127227578,
+            98.00396562072089
+          ],
+          [
+            20.482390703791378,
+            105.09964146271919
+          ],
+          [
+            20.482390703791378,
+            105.13964146271918
+          ],
+          [
+            -1.9488014404727905,
+            108.1152494279977
+          ],
+          [
+            -1.9888014404727905,
+            108.1152494279977
+          ],
+          [
+            -2.904360303503981,
+            100.79067806584911
+          ]
+        ],
+        [
+          [
+            -12.059948933815885,
+            77.63254591673805
+          ],
+          [
+            2.8178825904409597,
+            75.8014097369808
+          ],
+          [
+            2.8578825904409597,
+            75.8014097369808
+          ],
+          [
+            2.8578825904409597,
+            79.961466764721
+          ],
+          [
+            -6.295611823055897,
+            80.87682587048775
+          ],
+          [
+            -5.611036892597553,
+            93.88389881339602
+          ],
+          [
+            -3.3221397350195763,
+            95.2572541690542
+          ],
+          [
+            -1.9488014404727905,
+            108.0752494279977
+          ],
+          [
+            -1.9488014404727905,
+            108.1152494279977
+          ],
+          [
+            -8.81549291320672,
+            109.03082134618349
+          ],
+          [
+            -8.855492913206719,
+            109.03082134618349
+          ],
+          [
+            -12.059948933815885,
+            77.67254591673804
+          ]
+        ],
+        [
+          [
+            10.142353494690484,
+            75.34362576164708
+          ],
+          [
+            24.562405587431737,
+            74.19916594512252
+          ],
+          [
+            24.602405587431736,
+            74.19916594512252
+          ],
+          [
+            27.349082176525304,
+            104.41296286577999
+          ],
+          [
+            27.349082176525304,
+            104.45296286577998
+          ],
+          [
+            20.482390703791378,
+            105.13964146271918
+          ],
+          [
+            20.44239070379138,
+            105.13964146271918
+          ],
+          [
+            19.526831840760188,
+            92.32165121221391
+          ],
+          [
+            19.526831840760188,
+            92.28165121221392
+          ],
+          [
+            21.583735868703403,
+            88.39634194480304
+          ],
+          [
+            20.671521383258074,
+            78.36187272945077
+          ],
+          [
+            10.411243210448282,
+            79.04589834579778
+          ],
+          [
+            10.371243210448283,
+            79.04589834579778
+          ],
+          [
+            10.142353494690484,
+            75.38362576164707
+          ]
+        ]
+      ],
+      "basis": "Replace only the three mapped southern Huangqi hall/court shells with a two-centimeter numeric tolerance to prevent zero-area native edge slivers. Preserve independent buildings, native courtyard ground and water."
+    }
+  }
+}

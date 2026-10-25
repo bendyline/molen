@@ -1,0 +1,1395 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.mir_castle_complex",
+  "sourceHash": "sha256:53fbd7653173288d0f0ab75edc827eb64af374bb6f68a88fd30d94222ccf079f",
+  "runtimeHash": "sha256:5e336fdc7a85f2f0482c6768219cebc50ff638a6aea9f26f2ff915805542e3e8",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:df6483ba78cc697ae541bb20bb6594ebe77b5d33bdde3d0153ddd209622e7ba5",
+      "bytes": 78900,
+      "gzipBytes": 15534,
+      "triangles": 898,
+      "cpuBytes": 77496,
+      "gpuBytes": 77496,
+      "errorMeters": 1.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:6c7da481deb01305317ff26e12c4a45c62ea7839489a95b5f62a81834d76adfc",
+      "bytes": 266864,
+      "gzipBytes": 74465,
+      "triangles": 3709,
+      "cpuBytes": 258420,
+      "gpuBytes": 258420,
+      "errorMeters": 0.75,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:52b0d160f0f133d11e0425bd9d7b28593c44a1b05801a0d1f92ccc8e61fefb12",
+      "bytes": 822480,
+      "gzipBytes": 237190,
+      "triangles": 13581,
+      "cpuBytes": 812832,
+      "gpuBytes": 812832,
+      "errorMeters": 0.35,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:2ca915f2a016638003a4b4cda5105bd9bda9ee84cedd59616238524bca552fcc",
+      "bytes": 3102128,
+      "gzipBytes": 903316,
+      "triangles": 41975,
+      "cpuBytes": 3092364,
+      "gpuBytes": 3092364,
+      "errorMeters": 0.15,
+      "drawCalls": 8
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:644a57773758b1a45f96ca5efee4d9d7589771c51b94778a6f04778fd64ced5a"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:7b7a63113c1233bf13f960b4dca2d9f1f2a8afe4ed612e5826c24a4be1c86143"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:b0291675bf63ec3eb8063443c6ed122baa15fb1b8f310ec44385e190f654c391",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          154.7043,
+          89.2038,
+          227.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:fa7a41970c4be6b7c8425f2d00ed78988270da61850eb7c98ab7cde46e28cb68",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          154.7043,
+          89.2038,
+          227.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f26ada47ca4c4b3634b0fd18e18a3a4f67a4dae2fd3ae5d2fe20163f527ca4f3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          154.7043,
+          89.2038,
+          227.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:916d4f23c570677b808eef8de489a7ea1a623a23c1dce93ec36cd21dd3821a94",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          154.7043,
+          89.2038,
+          227.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:fb578f4e875ab2caa9c02618a0453e2980cea00adb77de084ad171d905e06516",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 18655,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          301.7043,
+          197.2038,
+          482.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:393450d7e86cc4f1e0d604785308caf054141220c485e46b316675a81de59262",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 18655,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          301.7043,
+          197.2038,
+          482.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:b41f14dc5622f0d7e244b93b647282656501746c23725a51a6e702960185fd3d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 18655,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          301.7043,
+          197.2038,
+          482.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:b1752aa0bfa9f853bc659d710ae946449a43bc11e7389e126c98dc8642d924d2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 18655,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          301.7043,
+          197.2038,
+          482.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:28bf157fab05459ac77a3a760fbc9a9307149530d35351d85be17d70ab782a80",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15844,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          592.7043,
+          311.2038,
+          986.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:d74c82463a96a1c1df5f1f026b21d9adf9b2e0a33b58fc1eaecb22584f5f755d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15844,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          592.7043,
+          311.2038,
+          986.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:10aa6c9f23e6f45fc675b5c8cebacb3645fc29eaa42d9ffa13872497e0ffdd22",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15844,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          592.7043,
+          311.2038,
+          986.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:51cb1e09723dd9aa4263cbb8fa2225e7ef53620fc5c318e080fdd565446bb5b1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15844,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          592.7043,
+          311.2038,
+          986.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:746efa67b92cb4379a564c3637feec1e5b8a8160b174d705725b5b284cef4ffc",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9604,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          592.7043,
+          311.2038,
+          986.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/castle-courtyard-plan.png",
+      "hash": "sha256:86ed33d95812f04a8727488a8dc2f1329d846ce2139a96eb8687b0ebf1da31e0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          190,
+          0.2
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-gate-and-blind-niches.png",
+      "hash": "sha256:4f5c401424610a91c9bedad48bc51b75ef2f8411d61dda2dcac9eb5e37f7dc13",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          -79,
+          16,
+          1
+        ],
+        "lookAt": [
+          -33,
+          12,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southwest-brick-tower.png",
+      "hash": "sha256:b849906cab71fb234861a8e4480d7030898ee1d9178d23b090cd5df7b7eafd48",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          -62,
+          25,
+          64
+        ],
+        "lookAt": [
+          -33,
+          15,
+          32
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northwest-pale-tower.png",
+      "hash": "sha256:ac26bd1fc7060591c36d268ed7bc361fe58dcb26b29946e9e5b63d7f629d451b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          -64,
+          29,
+          -57
+        ],
+        "lookAt": [
+          -28,
+          17,
+          -27
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/courtyard-palace-and-gallery.png",
+      "hash": "sha256:ef9b06c6254070a115ea54acf5290550e47ea8f37e418392e84457197617cf35",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          -22,
+          14,
+          19
+        ],
+        "lookAt": [
+          7,
+          13,
+          -13
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-tiles-and-dormers.png",
+      "hash": "sha256:9e8722f7be75dd24e65f0f3d89fdd150c67e05111404a03d540be5b07ad21852",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          -7,
+          28,
+          14
+        ],
+        "lookAt": [
+          8,
+          19,
+          -17
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northeast-tower-and-bridge.png",
+      "hash": "sha256:c55ec89221de46781e6d38de32c6612fc9a2bdbad9729d1d3bba22848ea22cbe",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          67,
+          32,
+          -78
+        ],
+        "lookAt": [
+          26,
+          13,
+          -40
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southeast-pale-tower.png",
+      "hash": "sha256:7f6080de9bd655db9ad44f0c44eadca4877c8acc000f87d3ee4b0ff7997ceb13",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          64,
+          26,
+          62
+        ],
+        "lookAt": [
+          30,
+          15,
+          29
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southern-wallwalk-and-balcony.png",
+      "hash": "sha256:d3feabe4eb12b7e24d29a69d4f4bab7d9690a3c9e1c2588c22aea02756dac896",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          10,
+          16,
+          71
+        ],
+        "lookAt": [
+          8,
+          8,
+          32
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-bridge-bank-and-steps.png",
+      "hash": "sha256:63d38e8218c0b60b2c8805ef92e473fd2c02e2dfdc083957e9a49591e9f1a79d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          52,
+          15,
+          -85
+        ],
+        "lookAt": [
+          20,
+          3,
+          -62
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-mir-skyline.png",
+      "hash": "sha256:0aed97d1166e3c734177087a49cfc98dd4a6c5f314af8a4c36d3b590e856aa35",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15844,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          149
+        ],
+        "lookAt": [
+          0,
+          12,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-mir-district.png",
+      "hash": "sha256:de58ec243a6878a65a2c5e94bc21ece326d2bb4545b43d86a8fc0647ffd660db",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 18655,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          149
+        ],
+        "lookAt": [
+          0,
+          12,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-mir-street.png",
+      "hash": "sha256:381ef853b085f1759d53929c0f72bc4a9f20426d875ca9cbd77356e90598f254",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 28527,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          149
+        ],
+        "lookAt": [
+          0,
+          12,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-mir-closeup.png",
+      "hash": "sha256:179068a63f92b2a20d66a4b5490d7142b2f5643059f737fc85938422a1b31448",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          149
+        ],
+        "lookAt": [
+          0,
+          12,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:c8a0a167d9d78d0ba42a211760110d4fd7993e960b236ff986540107b51a331a",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15844,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          301.7043,
+          197.2038,
+          482.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:393450d7e86cc4f1e0d604785308caf054141220c485e46b316675a81de59262",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 18655,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          301.7043,
+          197.2038,
+          482.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:6151ae5672d4a0d60fa332f570812f4d61dc6c0cbd6e3a856f9dadef168fc059",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 28527,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          301.7043,
+          197.2038,
+          482.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:69c0a54e0176d601a6c33018a908ae4dfee434259621f88ef52f7351843951bd",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 56921,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u9d/mir_castle_complex/terrain-review.height.png"
+        },
+        "position": [
+          301.7043,
+          197.2038,
+          482.4505
+        ],
+        "lookAt": [
+          10.7043,
+          44.2038,
+          -21.5495
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.earth_rammed": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

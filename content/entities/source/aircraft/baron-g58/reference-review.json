@@ -1,0 +1,269 @@
+{
+  "variant": "2016 Beechcraft Baron G58, TH-2453 onward equipment, G1000/GFC700, two IO-550-C and stock 77-inch McCauley three-blade propellers",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://africair.com/wp-content/uploads/2016/03/Baron-G58-Specification-Description-TH-2453-to-TBD-Revision-A.pdf",
+      "title": "Baron G58 Specification and Description, February 2016 Revision A",
+      "author": "Beechcraft Corporation",
+      "license": "Copyright Beechcraft; local study only, no source pixels distributed.",
+      "scope": "PDF pages 7–8 dimensions and three-view; page 17 real panel photograph; page 18 club-seating plan."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Beechcraft_G58_Baron_(N67WM,_cn_TH-2485)_(1-12-2023).jpg",
+      "title": "File:Beechcraft G58 Baron (N67WM, cn TH-2485) (1-12-2023).jpg",
+      "author": "ZLEA",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "revision": 1168869689,
+      "scope": "G58 N67WM TH-2485 at Daytona, 2023. Four-window shell, rounded nose, nacelles, landing gear and tail."
+    },
+    {
+      "url": "https://mccauley.txtav.com/-/media/mccauley/files/stc_guide.pdf",
+      "title": "McCauley STC / TC Kits Conversion Catalog",
+      "author": "McCauley Propeller Systems",
+      "scope": "BAR512-01P: G58 TH-2125 onward, 3AF32C512 / 82NEA-5, three round-tip blades, 77-inch maximum diameter."
+    },
+    {
+      "url": "https://www.caa.co.uk/Documents/Download/3934/ca692457-336e-4190-840e-cd26cf498935/2843",
+      "title": "EASA Type Certificate Data Sheet IM.A.280, Issue 04 (2018)",
+      "author": "European Aviation Safety Agency",
+      "scope": "G58 IO-550-C engines: 300 HP at 2700 RPM."
+    },
+    {
+      "url": "https://static.garmin.com/pumac/G1000:BeechcraftBaron58_G58_CockpitReferenceGuide_0857.08_.pdf",
+      "title": "G1000 Cockpit Reference Guide for the Beechcraft 58/G58, 190-00526-02 Rev A",
+      "author": "Garmin",
+      "license": "Copyright Garmin; local study only, no source pixels distributed.",
+      "scope": "Page 5 / PDF page 21: default EIS mirrored RPM scales with separate left and right readings."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.78,
+      -0.25
+    ],
+    "lookAt": [
+      0,
+      1.45,
+      1.12
+    ],
+    "fov": 74
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.46
+    ],
+    "viewHeight": 0.82,
+    "cameraHeight": 9.7
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "propNormalized": 0,
+    "propNormalized2": 0,
+    "verticalSpeed": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "elevator": 0,
+    "flapPosition": 0,
+    "gear": 1
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/g58-dimensions-small.png",
+      "crop": {
+        "left": 350,
+        "top": 1380,
+        "width": 670,
+        "height": 205
+      },
+      "referenceAnchor": [
+        592,
+        1582
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 646,
+        "meters": 9.0932,
+        "description": "29-foot-ten-inch overall length; uniform scale."
+      },
+      "scope": "Manufacturer side view, with printed-height/drawing disagreement retained.",
+      "edgeMode": "photo"
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/g58-top-level.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 820,
+        "height": 630
+      },
+      "referenceAnchor": [
+        412,
+        398
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 804,
+        "meters": 11.5316,
+        "description": "37-foot-ten-inch wingspan; independent plan-view scale."
+      },
+      "scope": "Planform, nacelle separation and 15-foot-eleven-inch horizontal tail span.",
+      "preparation": "Three-view crop [278,677,820,630] at 1376px page width, rigidly rotated 180 degrees. No nonuniform scaling.",
+      "edgeMode": "photo"
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/g58-dimensions-small.png",
+      "crop": {
+        "left": 270,
+        "top": 265,
+        "width": 830,
+        "height": 263
+      },
+      "referenceAnchor": [
+        686,
+        525
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 820,
+        "meters": 11.5316,
+        "description": "37-foot-ten-inch wingspan; independent front-view scale."
+      },
+      "scope": "Wing dihedral, engine separation and nine-foot-seven-inch wheel track.",
+      "edgeMode": "photo"
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/g58-panel-small.png",
+      "crop": {
+        "left": 170,
+        "top": 886,
+        "width": 1040,
+        "height": 670
+      },
+      "referenceAnchor": [
+        686,
+        1090
+      ],
+      "modelAnchor": [
+        0,
+        -1.61
+      ],
+      "scaleControls": {
+        "pixels": 282,
+        "meters": 0.29972,
+        "description": "11.8-inch GDU bezel width; single uniform photo scale."
+      },
+      "scope": "Actual factory panel photograph; depth/perspective residuals documented rather than warped away.",
+      "edgeMode": "photo"
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Dedicated G58 shell, radar nose, independent engine nacelles and 77-inch three-blade McCauley geometry replace the generic twin.",
+      "Calibrated top/side/front overlays led to a 0.35 m aft wing correction, 0.30 m forward tailplane correction, shorter nacelle afterbodies, rounded nose and closed trailing-edge bays between split flaps.",
+      "Factory panel photo calibrates actual two-display layout, right standby stack, dual yokes, six engine levers, subpanels and club cabin. Panel/yoke/pedestal gaps corrected after inspection.",
+      "Adaptable G1000 helper now offers mirrored twin RPM needles and two numeric readings connected independently to engine-1 and engine-2; zero, asymmetric cruise and missing sensors tested.",
+      "Explicit nearest-knot digital airspeed avoids floating-point truncation at nominal whole-knot values. Skyhawk, Skylane and Bonanza received the same metadata-only correction."
+    ],
+    "independentDimensions": {
+      "lengthMeters": 9.0932,
+      "spanMeters": 11.5316,
+      "heightMeters": 2.9718,
+      "tailSpanMeters": 4.8514,
+      "mainGearTrackMeters": 2.921,
+      "wingAreaSqMeters": 18.506285568,
+      "propellerDiameterMeters": 1.9558,
+      "maxPropRpm": 2700,
+      "wingDihedralDegrees": 6
+    },
+    "visual": "Individually inspected four turntables, ground three-quarter, pilot, cabin, wide cabin and calibrated side/top/front/panel overlays. Inspected zero, asymmetric 2500/1800-RPM cruise, upper-range and unavailable-speed/RPM/gear cases. Compared factory cockpit photo and McCauley/Garmin documentation, as well as CC BY-SA exterior photo. Verified current whole-knot readouts at cruise and upper range.",
+    "limitations": [
+      "Manufacturer three-view consists of perspective renderings rather than consistent orthographic drawings. The printed 2.9718 m height is retained; uniform side scale implies about 2.72 m and front scale about 3.58 m. Horizontal tail elevation follows the side/cabin relationships rather than the raised front-view projection. No reference was stretched to conceal residuals.",
+      "Curved wing-root fillets, tips, fuselage cross-section, windscreen and nacelle transitions remain polygonal approximations; small aft-body, side-window and tailplane contour residuals remain. Rivet lines follow visible panel divisions, not a manufacturing fastener map.",
+      "Cockpit photo perspective/depth cannot exactly match the orthographic overlay. Pedestal curvature, climate controller, fine switch legends, seat contours and brake/gear mechanisms are simplified. No suitable freely licensed exact G58 cockpit photograph was verified for redistribution; manufacturer/Garmin imagery remains local study only. CC BY-SA exterior imagery also remains unshipped.",
+      "Displays show TAS, geometric world elevation, true heading and normalized simulated engine shaft RPM scaled to 2700. IAS/pressure altitude, magnetic errors, propeller governing, manifold pressure, thermal/oil/fuel/electrical systems, navigation and propeller sync are not simulated. Unsupported indications are blank or INOP; standby-speed calibration is approximate.",
+      "Both throttle handles follow the shared pilot power input; independent engine-state channels can drive different tachometer values but separate cockpit throttle interaction is not yet provided. Propeller/mixture levers, trim and most switches remain static. Three gear lamps share one simulated gear sensor and the gear doors use simplified linked motion; current pilot flap input selects only up/down."
+    ]
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "TAS m/s to knots, nearest whole-knot readout",
+      "altitude": "world meters to feet",
+      "heading": "true heading radians",
+      "rpm": "independent engine-1/engine-2 normalized speed to 2700 RPM",
+      "climb": "m/s to ft/min",
+      "gear": "actual position 0-1, locked threshold .999"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/baron-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true
+  },
+  "sourceHash": "sha256:89dec984d69b06c01eb1953a2988ec10b0045203a08dc664e131bccd03eb06bc",
+  "runtimeHash": "sha256:618d20ae7e10a24e460de00b7306822b12e07de0da14e0d858bb95095ce2bd5e",
+  "limitations": [
+    "Manufacturer three-view consists of perspective renderings rather than consistent orthographic drawings. The printed 2.9718 m height is retained; uniform side scale implies about 2.72 m and front scale about 3.58 m. Horizontal tail elevation follows the side/cabin relationships rather than the raised front-view projection. No reference was stretched to conceal residuals.",
+    "Curved wing-root fillets, tips, fuselage cross-section, windscreen and nacelle transitions remain polygonal approximations; small aft-body, side-window and tailplane contour residuals remain. Rivet lines follow visible panel divisions, not a manufacturing fastener map.",
+    "Cockpit photo perspective/depth cannot exactly match the orthographic overlay. Pedestal curvature, climate controller, fine switch legends, seat contours and brake/gear mechanisms are simplified. No suitable freely licensed exact G58 cockpit photograph was verified for redistribution; manufacturer/Garmin imagery remains local study only. CC BY-SA exterior imagery also remains unshipped.",
+    "Displays show TAS, geometric world elevation, true heading and normalized simulated engine shaft RPM scaled to 2700. IAS/pressure altitude, magnetic errors, propeller governing, manifold pressure, thermal/oil/fuel/electrical systems, navigation and propeller sync are not simulated. Unsupported indications are blank or INOP; standby-speed calibration is approximate.",
+    "Both throttle handles follow the shared pilot power input; independent engine-state channels can drive different tachometer values but separate cockpit throttle interaction is not yet provided. Propeller/mixture levers, trim and most switches remain static. Three gear lamps share one simulated gear sensor and the gear doors use simplified linked motion; current pilot flap input selects only up/down."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:02b2dc4b42f6f20956645796e99dcf7658444df8c30c86d37318c90f79c1692b",
+    "sourceHash": "sha256:89dec984d69b06c01eb1953a2988ec10b0045203a08dc664e131bccd03eb06bc",
+    "runtimeHash": "sha256:618d20ae7e10a24e460de00b7306822b12e07de0da14e0d858bb95095ce2bd5e",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/baron-g58-pair.png",
+        "sha256": "sha256:0e03b8ff60a1c8b383f1a1928ee4186abdee47f5ff608eb2d31715e74d462dea",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/baron-g58-exterior-pair.png",
+        "sha256": "sha256:b355f1ccc98fa830141a79786021d5bedd5d8aa1499753f58298c8173c372c3e",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

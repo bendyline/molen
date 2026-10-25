@@ -5,12 +5,28 @@ import { expect, it } from 'vitest';
 const models = [
   ['aircraft', 'p-51', 'aircraft', 'p51d'],
   ['aircraft', 'oh-6', 'aircraft', 'oh6'],
+  ['aircraft', 'airliner', 'aircraft', 'airliner'],
+  ['transit', 'bus', 'transit', 'bus'],
+  ['transit', 'light-rail-car', 'transit', 'lightrail'],
   ...['compact', 'sedan', 'suv', 'pickup', 'van'].map((name) => [
     'vehicles',
     name,
     'vehicle',
     name,
   ]),
+  ...['sports-coupe', 'station-wagon', 'electric-hatchback', 'taxi', 'offroad', 'box-truck'].map(
+    (name) => ['vehicles', name, 'vehicle', name.replaceAll('-', '_')],
+  ),
+  ...[
+    'speedboat',
+    'sailboat',
+    'fishing-boat',
+    'tugboat',
+    'container-ship',
+    'bulk-carrier',
+    'passenger-ferry',
+    'car-ferry',
+  ].map((name) => ['watercraft', name, 'watercraft', name.replaceAll('-', '_')]),
 ];
 
 it.each(
@@ -19,11 +35,17 @@ it.each(
   const root = new URL(`../../../content/entities/source/${category}/${name}/`, import.meta.url);
   const doc = JSON.parse(await readFile(new URL('entity.types.json', root), 'utf8'));
   const components = Object.values(doc.types)[0].components;
-  const visual = components.aircraft?.spec.visual ?? components.vehicle.visual;
+  const visual =
+    components.aircraft?.spec.visual ?? components.boat?.visual ?? components.vehicle.visual;
   const spec = visual.interior;
   expect(spec.nodes.length).toBeGreaterThan(0);
   for (const path of [
-    new URL('models/source.glb', root),
+    new URL(
+      category === 'vehicles' && ['compact', 'sedan', 'suv', 'pickup', 'van'].includes(name)
+        ? 'models/detailed.glb'
+        : 'models/source.glb',
+      root,
+    ),
     new URL(
       `../../../content/entities/assets/molen/entities/${runtimeCategory}/${runtimeName}/model.glb`,
       import.meta.url,

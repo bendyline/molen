@@ -1,0 +1,549 @@
+{
+  "planId": "bagnell_dam",
+  "id": "bagnell_dam",
+  "assetId": "molen.worldgen.structure.bagnell_dam",
+  "title": "Bagnell Dam",
+  "category": "infrastructure",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -92.62539458081129,
+    "latitude": 38.20327815433034
+  },
+  "size": [
+    760.5221557617188,
+    37.439998626708984,
+    89.25123977661133
+  ],
+  "actualBounds": {
+    "min": [
+      -362.402587890625,
+      -0.5,
+      -65.3849868774414
+    ],
+    "max": [
+      398.11956787109375,
+      36.939998626708984,
+      23.866252899169922
+    ]
+  },
+  "visualBrief": "Whole Bagnell Dam: full775.1m licensed crest path including west359.97m and curved east100.89m retaining sections,158.50m twelve-radial-gate spillway and155.75m integral eight-unit powerhouse. Full crest two-lane road/sidewalk/parapets, battered concrete face, spillway chutes/divider piers, powerhouse tailrace outlets/flat roof/eight turbine-bay crowns and two service gantries. Represent post2018 non-overflow pier infills/new concrete surface; no2011 open supporting-pier gaps on retaining section. Exclude independent office/switchyard/pylons/WillmoreLodge/town/river/lake/naturalbank/vehicles and underground machinery. Subdued pale concrete/gray overlay, battered faces and vertical form joints, actual twelve curved closed radialgate leaves belowcrestroad, steep ribbed concrete chutes, sixteen physically open tailrace outlet arches under eight native-unitrooftopcrowns, longcream/brick intakegallery/windowband and simple metal servicegantries. Two-lane asphaltroad/openmetalfence/paleparapets. No full-height solidrectangularbox, fictitious15th/13thgate, unrelatedhydrocomplex or wholevalley slab.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:UserKTrimble-AP_of_Bagnell_Dam_MO_2011-03-01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bagnell-dam-wp",
+      "url": "https://qualla.com/bagnell-dam/"
+    }
+  ],
+  "referenceInputHash": "5e9c13228f55a5a37261fa1c645210172ff47947fc533d95bb6877cb6851bd7e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bagnell-dam.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bagnell-dam.mjs",
+    "level": "skyline",
+    "export": "bagnellDamSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.06
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.2
+      },
+      "paint": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bagnellDamDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.06
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "bagnellDamStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.06
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "bagnellDamCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.06
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 8,
+    "groundY": -0.66,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native named dam/plantway249573944/Q14693496 supplies all17unique outlinevertices/18closedpositions and eight independently mapped generator centres. Whole crest follows native road527179353, bounded by federal FERC2007 four-section lengths: west1181ft, spillway520ft, powerhouse511ft, curved east331ft, total2543ft/775.1064m. Zero station is native spillway-west transition vertex14 projected onto actual crestroad; section boundaries/retaining endpoints interpolated along the mapped road. Native polygon covers roughly620m of lower concrete footprint and does NOT by itself represent both full retaining crests; no stretching that polygon to775m. Native crest endpoints/curvature and all17lower-outline controls retained, full fixedanchor[-92.62539458081129,38.20327815433034],heading0.6247155361171215 before terrain orgeometry; +X NE alongdam/+Z SE downstream. Profile/heights/retaining-toe taper/roof/outlet arch and ornamental census are medium-fi photographic architectural estimates. Independent1024mfield frozen before geometry; downstream provider-relative toe is architectural zero, not surveyed riverbed/bedrock. Actual host contact unverified.",
+    "anchor": [
+      -92.62539458081129,
+      38.20327815433034
+    ],
+    "heading": 0.6247155361171215,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -92.62406618498099,
+        38.20336635846627
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed downstream open Osage source point before independent field; provider-relative exterior tailwater/toe zero, not surveyed waterline or bedrock. Maximum148ft total includes buried/submerged foundation."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -258.08889001449637,
+          16.407651970204867
+        ],
+        [
+          -235.68010761555058,
+          21.270912093788866
+        ],
+        [
+          -209.96442107710502,
+          23.866252836245465
+        ],
+        [
+          -185.2418941847293,
+          22.753661633287265
+        ],
+        [
+          -148.32874750162014,
+          21.785094547901373
+        ],
+        [
+          -95.27175081198911,
+          19.172291249820468
+        ],
+        [
+          -78.09241096747735,
+          17.931657863072655
+        ],
+        [
+          -53.553814562164874,
+          15.698128487340881
+        ],
+        [
+          -10.537839678559662,
+          15.479158843105365
+        ],
+        [
+          159.69919555965856,
+          10.032415721663682
+        ],
+        [
+          161.91594298111312,
+          22.857157200918934
+        ],
+        [
+          310.11074296821636,
+          16.406185490638336
+        ],
+        [
+          307.2483540069511,
+          -23.86625283702236
+        ],
+        [
+          -1.8951824610330554,
+          -11.583460869519572
+        ],
+        [
+          -1.323201517351595,
+          -6.5734861435932235
+        ],
+        [
+          -310.11074296709387,
+          10.420551826866983
+        ],
+        [
+          -293.58653979455084,
+          12.31706433950373
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            -361.6803504993257,
+            11.365412921239084
+          ],
+          [
+            -360.0068792464104,
+            11.705142962661956
+          ],
+          [
+            -324.8258543585891,
+            16.26865473526064
+          ],
+          [
+            -294.588255775046,
+            16.800395426180202
+          ],
+          [
+            -294.4324565817297,
+            7.801744048814702
+          ],
+          [
+            -324.12677378077757,
+            7.295846571384258
+          ],
+          [
+            -358.8214506404285,
+            2.783553473107996
+          ],
+          [
+            -359.82319760831666,
+            2.559109318738389
+          ]
+        ],
+        [
+          [
+            313.5042075901811,
+            -5.663689878888259
+          ],
+          [
+            336.33885461480077,
+            -9.66300390862095
+          ],
+          [
+            354.44345047412526,
+            -15.965671418421366
+          ],
+          [
+            376.42544292434417,
+            -30.5745832090499
+          ],
+          [
+            394.518795171812,
+            -53.433066481567444
+          ],
+          [
+            398.1195737996655,
+            -60.66949277337724
+          ],
+          [
+            388.4033948159053,
+            -65.38498489568391
+          ],
+          [
+            385.75428969593526,
+            -59.74364836942265
+          ],
+          [
+            369.03520304440343,
+            -38.45013744459001
+          ],
+          [
+            349.459161854325,
+            -25.546739571530864
+          ],
+          [
+            333.7372525647572,
+            -20.144972558316923
+          ],
+          [
+            311.6471823234975,
+            -16.302837267607842
+          ]
+        ]
+      ],
+      "basis": "Duplicate composite DEM is hidden only under the native17vertex physical concrete dam/powerhouse footprint and two narrow actual retaining-crest extensions. Their authored concrete foundations/mass cover these cuts. No river, reservoir, valley, adjacentbanks or officeyard is removed; source16641heights remain unchanged."
+    },
+    "featureIds": [
+      "way/249573944",
+      "way/527179353",
+      "node/890735576",
+      "node/6825281468",
+      "node/6825281469",
+      "node/6825281470",
+      "node/6825281471",
+      "node/6825281472",
+      "node/6825281473",
+      "node/8484233434"
+    ],
+    "source": "https://www.openstreetmap.org/way/249573944",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ed0328b2767eaed625290fc40429b93e31e5aa57d4b0d48d5b338755fba9a999",
+    "notes": "Whole Bagnell Dam: full775.1m licensed crest path including west359.97m and curved east100.89m retaining sections,158.50m twelve-radial-gate spillway and155.75m integral eight-unit powerhouse. Full crest two-lane road/sidewalk/parapets, battered concrete face, spillway chutes/divider piers, powerhouse tailrace outlets/flat roof/eight turbine-bay crowns and two service gantries. Represent post2018 non-overflow pier infills/new concrete surface; no2011 open supporting-pier gaps on retaining section. Exclude independent office/switchyard/pylons/WillmoreLodge/town/river/lake/naturalbank/vehicles and underground machinery."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "Native named dam/plantway249573944/Q14693496 supplies all17unique outlinevertices/18closedpositions and eight independently mapped generator centres. Whole crest follows native road527179353, bounded by federal FERC2007 four-section lengths: west1181ft, spillway520ft, powerhouse511ft, curved east331ft, total2543ft/775.1064m. Zero station is native spillway-west transition vertex14 projected onto actual crestroad; section boundaries/retaining endpoints interpolated along the mapped road. Native polygon covers roughly620m of lower concrete footprint and does NOT by itself represent both full retaining crests; no stretching that polygon to775m. Native crest endpoints/curvature and all17lower-outline controls retained, full fixedanchor[-92.62539458081129,38.20327815433034],heading0.6247155361171215 before terrain orgeometry; +X NE alongdam/+Z SE downstream. Profile/heights/retaining-toe taper/roof/outlet arch and ornamental census are medium-fi photographic architectural estimates.",
+    "Fullfour-section775.106mcrest/12closedradialgates/eightnativegeneratorbaycrowns andintegralpowerhouse represented. Tailraceoutlets use16deepphysicalarchedrecesses(two perunit) atdetailedlevels/eightmergedrecessesatskyline, simplifieddarkengine-roomclosures; actualhiddenoutletinternalcensus approximate. Publishedwhole2011ownCC0aerial suppliesarchitecture; primaryowner2018text supplies newretainingupperinfills/overlay. Gatesclosed/nonoperable; no hydrologic simulation or plantinterior.",
+    "FERC148ft/45.1104m maximum is abovebedrock, not45mabovevisible tailwater. Exteriorcrest31.2m/normalpoolabout28m/0mtoe/powerhouseroof11.8m/retainingbanktoe27m/uppergallery28m/gantry36.9m are architecturalestimates independent of frozenDEM. Buriedfoundation/riverbed notinvented as measured. Upperinfills are solidconcrete basedonownertext; exactpost2018surfacejointlocations/crownhardware/windows/railcensus/roofmachinery approximate.",
+    "One exactpublishedKTrimble2011ownCC0wholeaerial individuallyinspected/nativeSHA1bound, originalnamedfirst-person selfrelease preserved; unchangedpublishedpolicy passes. No supplementalphoto needed; uncertain/attribution/historicNARAphoto pixels notused. FERC/ownerprotectedPDFimages/plans notviewed/adopted; textfacts only. No media/body/category/imagerypolicy edits, photo textures/downloaded mesh/generated bitmap.",
+    "Independent1024m129square8m16641samplefield/fourrawTerrariumtiles frozenbeforegeometry; sourcegrid/PNG/tiles unchanged, providerdownstreamdatum172.378m not actualchart/survey. Sourcegroundcuts onlyunderphysicalnativeconcrete/retainingextensions, sourcevaluesneverflattened/fitted/reacquired. Portableflatstage is for isolatedgeometry; contextretainsindependentDEM. Ordinarygeographicpreview/replacementdisabled; actualhost/footing contact unverified.",
+    "Independentoffice/switchyard/transmissiontowers/WillmoreLodge/town/banks/river/lake/water/vehicles/boats/people/interiorhydraulicmachinery excluded. Twoauxiliary internalunits inFERCtext do not become tenmainrooftopgeneratorbays."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-four-section-dam-full-crest-and-integral-powerhouse",
+      "position": [
+        -475,
+        420,
+        700
+      ],
+      "lookAt": [
+        8,
+        17,
+        -13
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "twelve-closed-radialgates-ribbed-chutes-and-road-viaduct",
+      "position": [
+        69,
+        72,
+        118
+      ],
+      "lookAt": [
+        80,
+        16,
+        5
+      ]
+    },
+    {
+      "name": "eight-native-turbine-bays-open-tailraces-and-intake-gallery",
+      "position": [
+        220,
+        51,
+        116
+      ],
+      "lookAt": [
+        231,
+        14,
+        4
+      ]
+    },
+    {
+      "name": "west-retaining-face-with-post2018-infilled-upper-piers",
+      "position": [
+        -177,
+        74,
+        144
+      ],
+      "lookAt": [
+        -171,
+        23,
+        11
+      ]
+    },
+    {
+      "name": "curved-east-retaining-crest-road-and-two-service-gantries",
+      "position": [
+        365,
+        77,
+        -135
+      ],
+      "lookAt": [
+        324,
+        28,
+        -13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23826,
+    "vertices": 71478,
+    "materials": 5,
+    "bytes": 2862340,
+    "sha256": "sha256:75bc0257886f885e7fdbb0557c70e90254b54e874dc93d97b98cfb37b1cf5b78"
+  }
+}

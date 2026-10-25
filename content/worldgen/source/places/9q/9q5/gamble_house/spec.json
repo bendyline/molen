@@ -38,8 +38,8 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Gamble_House_2016-1.jpg",
-    "https://commons.wikimedia.org/wiki/File:Gamble_House_6.jpg"
+    "https://commons.wikimedia.org/wiki/File:Gamble_Porch.jpg",
+    "https://www.loc.gov/item/2013631616/"
   ],
   "stories": [
     {
@@ -47,7 +47,7 @@
       "url": "https://qualla.com/gamble-house-pasadena-california/"
     }
   ],
-  "referenceInputHash": "042955833419c07dc88454e538678d7996348c23743574542b47f28645491bb4",
+  "referenceInputHash": "sha256:3795fd1ae01223d936c717f05b1293bb8426ef1cde916686b6068f1571dbbc03",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-gamble-house.mjs"
   },
@@ -97,6 +97,12 @@
         "roughness": 0.3,
         "metallic": 0.12,
         "localRef": "palette:#ffffff"
+      },
+      "bowl": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
       }
     },
     "authoredLevels": {
@@ -139,6 +145,12 @@
             "roughness": 0.3,
             "metallic": 0.12,
             "localRef": "palette:#ffffff"
+          },
+          "bowl": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
           }
         }
       },
@@ -181,6 +193,12 @@
             "roughness": 0.3,
             "metallic": 0.12,
             "localRef": "palette:#ffffff"
+          },
+          "bowl": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
           }
         }
       }
@@ -266,7 +284,7 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior from inspected local Qualla front/rear photographs, porch and entry details, local HABS construction section, online first-floor plan and aerial roof context. Dimensions, upper room boundaries and hidden roof joins are estimates, not survey data.",
+    "New five open tapered front bowls from inspected native cleared Qualla photographer-public-domain porch and exact native Highsmith public-domain front/detail. Original three lower levels and every original attribute outside420upper planter triangles retained. Whole fixed main house/gables/three open sleeping porches/attached terraces retained pending wider cleared exterior review; earlier attribution/private/satellite and uncleared HABS controls excluded. Bowl profiles, dimensions, concealed rear faces, ornaments, upper-room boundaries and hidden roof joins are medium-fi estimates, not survey data.",
     "Main house and attached terraces only. Detached garage, interiors, furniture, vegetation, visitors and photographic pixels excluded.",
     "Independent unmodified USGS CA_LosAngeles_B23 bare-earth tile retained. Ground under structures is interpolated by the source product; host terrain can differ. Footprint replacement remains disabled.",
     "Cedar shakes, art-glass branches, beam-end profiles, terrace fieldstones and chimney brackets are simplified at medium-fi scale and omitted progressively at distance. No physical-device frame-rate measurement claimed."
@@ -298,16 +316,42 @@
         4,
         -1
       ]
+    },
+    {
+      "name": "front-planters",
+      "position": [
+        13.8,
+        4.9,
+        18.3
+      ],
+      "lookAt": [
+        10.7,
+        2.55,
+        13
+      ]
+    },
+    {
+      "name": "planter-mouth",
+      "position": [
+        11.8,
+        4.3,
+        14.4
+      ],
+      "lookAt": [
+        10.7,
+        2.53,
+        13
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 28706,
-    "vertices": 86118,
+    "triangles": 32106,
+    "vertices": 96318,
     "materials": 6,
-    "bytes": 3448372,
-    "sha256": "sha256:94198b90b55af09814cf37fd9d12a994fb3dac9047f8ba57f3520a597efa32fc"
+    "bytes": 3856372,
+    "sha256": "sha256:d7b2ae50dcb68762477c361d4220ce8ea73dd5da25edfa9dc3b9953dec7b9d64"
   }
 }

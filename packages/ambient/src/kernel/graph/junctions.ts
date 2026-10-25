@@ -1,5 +1,5 @@
 /**
- * Node groups → junctions and movements. A node group is a node plus the node it is stitched to
+ * Node groups â†’ junctions and movements. A node group is a node plus the node it is stitched to
  * across a tile border. For every lane arriving at the group this computes its outgoing
  * movements (turn class, target lane, connector curve), trims lanes back from junction cores, and
  * builds the junction record: arms in angular order, a conflict matrix between arm-pair
@@ -7,6 +7,7 @@
  */
 
 import { dmath } from '@bendyline/molen-kernel/determinism';
+import { isArterialRoad } from '@bendyline/molen-terrain/kernel';
 import { connectorLength, laneSample, sampleLaneBody } from './sample';
 import type {
   JunctionArm,
@@ -31,9 +32,14 @@ export interface GraphStore {
   setJunction(junction: TransportJunction): void;
   deleteJunction(id: string): void;
   /** Whether a mapped traffic-signal point lies within `radius` of a point. */
-  signalNear(x: number, z: number, radius: number): boolean;
+  signalNear(x: number, z: number, radius: number, layer?: number): boolean;
   /** Stop and yield signs within `radius` of a point. */
-  giveWayNear(x: number, z: number, radius: number): readonly { x: number; z: number }[];
+  giveWayNear(
+    x: number,
+    z: number,
+    radius: number,
+    layer?: number,
+  ): readonly { x: number; z: number; allWay?: boolean }[];
 }
 
 interface Arm {
@@ -198,13 +204,13 @@ class EndCache {
   }
 }
 
-function roadWeight(turn: TurnKind, target: TransportEdge): number {
+function roadWeight(turn: TurnKind, target: TransportEdge, drivingSide: 'right' | 'left'): number {
   const base =
     turn === 'straight'
       ? 3
-      : turn === 'right'
+      : turn === drivingSide
         ? 2
-        : turn === 'left'
+        : turn === 'left' || turn === 'right'
           ? 1.5
           : turn === 'merge'
             ? 2
@@ -288,11 +294,11 @@ function buildJunction(
   cx /= group.length;
   cz /= group.length;
   const n = arms.length;
-  const side = store.traffic === 'right' ? 1 : -1;
   // Each arm has an entry and an exit point on the core's rim; movements are chords between
   // them and two movements conflict when their chords cross.
   const rim: { angle: number; arm: number; exit: boolean }[] = [];
   arms.forEach((arm, k) => {
+    const side = arm.edge.drivingSide === 'right' ? 1 : -1;
     const bx = arm.node.x + arm.dx * radius - cx;
     const bz = arm.node.z + arm.dz * radius - cz;
     const q = arm.edge.width / 4;
@@ -370,23 +376,23 @@ function buildJunction(
     groups++;
   }
 
-  const major = arms.some(
-    (a) =>
-      a.edge.width >= 10 ||
-      a.edge.kind === 'trunk' ||
-      a.edge.kind === 'primary' ||
-      a.edge.kind === 'secondary' ||
-      a.edge.kind === 'tertiary',
-  );
+  const major = arms.filter((a) => isArterialRoad(a.edge.kind, a.edge.width)).length;
   const minor = arms.filter(
     (a) => a.edge.kind === 'service' || a.edge.kind === 'living' || a.edge.link,
   ).length;
   // A stop or yield sign makes the arm it stands on give way.
   let signed = 0;
-  for (const sign of store.giveWayNear(cx, cz, radius + 20)) {
+  for (const sign of store.giveWayNear(cx, cz, radius + 20, group[0]?.layer)) {
     const sx = sign.x - cx;
     const sz = sign.z - cz;
     const length = dmath.hypot(sx, sz);
+    if (sign.allWay && length <= 4) {
+      for (const arm of junctionArms) {
+        if (!arm.yields) signed++;
+        arm.yields = true;
+      }
+      continue;
+    }
     let best: JunctionArm | undefined;
     let bestDot = Number.NEGATIVE_INFINITY;
     for (const arm of junctionArms) {
@@ -402,9 +408,13 @@ function buildJunction(
     }
   }
   let control: JunctionControl = 'none';
-  if (groups >= 2 && ((n >= 4 && major) || store.signalNear(cx, cz, radius + 20)))
+  if (
+    groups >= 2 &&
+    (store.signalNear(cx, cz, radius + 20, group[0]?.layer) ||
+      (n >= 4 && major >= 4 && signed === 0))
+  )
     control = 'signal';
-  else if ((minor > 0 && minor < n) || (signed > 0 && signed < n)) control = 'yield';
+  else if ((minor > 0 && minor < n) || signed > 0) control = 'yield';
   return {
     id,
     x: cx,
@@ -466,8 +476,8 @@ function buildRoadMovements(
   junction: TransportJunction | undefined,
 ): void {
   const n = arms.length;
-  const left = store.traffic === 'left';
   arms.forEach((inArm, i) => {
+    const left = inArm.edge.drivingSide === 'left';
     const incoming = lanesAt(store, inArm, 'road', true);
     const nIn = incoming.length;
     for (const lane of incoming) {
@@ -499,7 +509,7 @@ function buildRoadMovements(
           lane,
           target,
           moveTurn,
-          roadWeight(moveTurn, outArm.edge),
+          roadWeight(moveTurn, outArm.edge, inArm.edge.drivingSide),
           n >= 3 ? junction : undefined,
           i * n + o,
         );
@@ -512,7 +522,7 @@ function buildRoadMovements(
             lane,
             f.lane,
             f.turn,
-            roadWeight(f.turn, store.edge(f.lane.edge) ?? inArm.edge),
+            roadWeight(f.turn, store.edge(f.lane.edge) ?? inArm.edge, inArm.edge.drivingSide),
             n >= 3 ? junction : undefined,
             i * n + f.o,
           );

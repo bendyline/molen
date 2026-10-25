@@ -814,7 +814,7 @@ function detailSides(out) {
 const mean = { metal: [0.908889, 0.908889, 0.908889], stone: [0.701109, 0.701109, 0.701109] };
 function build(out, detail, m) {
   m ??= JSON.parse(
-    readFileSync(resolve(structureSourcePath('n0206_the_center'), 'map-frame.json'), 'utf8'),
+    readFileSync(resolve(structureSourcePath('the_center'), 'map-frame.json'), 'utf8'),
   );
   let target = out;
   if (detail === 'skyline') {

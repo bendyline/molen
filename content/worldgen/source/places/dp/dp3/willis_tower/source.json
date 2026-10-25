@@ -1,0 +1,44 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.willis_tower",
+  "kind": "static-structure",
+  "title": "Willis Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.willis_tower",
+        "output": "assets/places/dp/dp3/willis_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3f6c601de738c8c322671aeb2afb08f8c9c5cfdfaf2943c7c11da65da4d3cafe"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-willis-tower",
+        "path": "models/generate-willis-tower.mjs"
+      },
+      {
+        "id": "willis-tower-model",
+        "path": "models/willis-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "capture-report.json",
+      "import-report.json",
+      "map-evidence.json",
+      "placement-report.json",
+      "qa.json",
+      "shared-capture-report.json"
+    ]
+  }
+}

@@ -466,7 +466,7 @@ export function buildKullen(out) {
 
 export const lighthouseKullenLizardStudies = [
   lighthouseStudy({
-    id: 'N0679',
+    id: 'kullen_lighthouse',
     key: 'kullen_lighthouse',
     title: 'Kullen Lighthouse',
     wikidataId: 'Q1518751',
@@ -1056,7 +1056,7 @@ export function buildLizard(out) {
 }
 lighthouseKullenLizardStudies.push(
   lighthouseStudy({
-    id: 'N0680',
+    id: 'lizard_lighthouse',
     key: 'lizard_lighthouse',
     title: 'Lizard Lighthouse',
     wikidataId: 'Q1866643',

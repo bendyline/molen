@@ -1,0 +1,706 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stone_limestone_raw",
+      "slot": "wall",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "stone": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "column": {
+      "graph": "stone_granite",
+      "slot": "wall",
+      "roughness": 0.5,
+      "metallic": 0
+    },
+    "gold": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.28,
+      "metallic": 0.85
+    },
+    "patina": {
+      "graph": "metal_copper",
+      "slot": "trim",
+      "roughness": 0.65,
+      "metallic": 0.6
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.35,
+      "metallic": 0.1
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.55,
+      "metallic": 0.35
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      -54.68035277146906,
+      125,
+      220.5902514182975
+    ],
+    "lookAt": [
+      0,
+      45,
+      0
+    ],
+    "fov": 53
+  },
+  "qaCameras": [
+    {
+      "name": "southwest-portico-five-domes-and-pylons",
+      "position": [
+        -135.82208642513254,
+        45,
+        102.24930727943263
+      ],
+      "lookAt": [
+        0.9502309497413841,
+        43,
+        1.2872688694105783
+      ],
+      "fov": 55
+    },
+    {
+      "name": "drum-colonnade-ribbed-gilded-dome-and-lantern",
+      "position": [
+        -32.75249807213506,
+        95,
+        98.7536018079077
+      ],
+      "lookAt": [
+        -0.5062504197053239,
+        77,
+        1.0821785954953018
+      ],
+      "fov": 55
+    },
+    {
+      "name": "granite-columns-recess-and-working-threshold",
+      "position": [
+        -43.31329600614977,
+        7,
+        33.93295327677288
+      ],
+      "lookAt": [
+        -31.72787618145457,
+        6.5,
+        25.38087472910042
+      ],
+      "fov": 60
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -54.68035277146906,
+        125,
+        220.5902514182975
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ],
+      "fov": 53,
+      "name": "isaac-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -54.68035277146906,
+        125,
+        220.5902514182975
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ],
+      "fov": 53,
+      "name": "isaac-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -54.68035277146906,
+        125,
+        220.5902514182975
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ],
+      "fov": 53,
+      "name": "isaac-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -54.68035277146906,
+        125,
+        220.5902514182975
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ],
+      "fov": 53,
+      "name": "isaac-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/isaac-model.mjs",
+    "export": "buildIsaacSkyline",
+    "errorMeters": 5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildIsaacDistrict",
+        "errorMeters": 3,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0
+          },
+          "gold": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.28,
+            "metallic": 0.85
+          },
+          "patina": {
+            "graph": "metal_copper",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.6
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.35,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.55,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "buildIsaacStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0
+          },
+          "gold": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.28,
+            "metallic": 0.85
+          },
+          "patina": {
+            "graph": "metal_copper",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.6
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.35,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.55,
+            "metallic": 0.35
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildIsaacCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0
+          },
+          "gold": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.28,
+            "metallic": 0.85
+          },
+          "patina": {
+            "graph": "metal_copper",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.6
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.35,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.55,
+            "metallic": 0.35
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "draft-proposal",
+    "anchor": [
+      30.30614274,
+      59.934092874
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": false,
+    "groundContactBasis": "NATIVE FIT DRAFT. Standard Protomaps20261020 and unmodified MapzenTerrarium201x201/6m grid. Uncovered southwest approach fixes datum40.21964233688743m; original parent-boundary grades-20.819..-0.356m. The coarse urban elevation field varies about20m across the footprint and cannot establish a credible cathedral foundation. Preserve the architectural master plinth1.2m below floor instead of inventing a20m masonry pedestal. Inspect the native render; geographic readiness remains pending standard terrain recovery/grade handling. No bespoke terrain sources or custom per-artifact flattening.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 20
+    },
+    "bounds": [
+      30.305152983885844,
+      59.93361850154786,
+      30.307159571427267,
+      59.93454988616018
+    ],
+    "terrainReference": {
+      "anchor": [
+        30.30529397724159,
+        59.93376137387606
+      ],
+      "modelHeight": 0,
+      "basis": "NATIVE FIT DRAFT. Standard Protomaps20261020 and unmodified MapzenTerrarium201x201/6m grid. Uncovered southwest approach fixes datum40.21964233688743m; original parent-boundary grades-20.819..-0.356m. The coarse urban elevation field varies about20m across the footprint and cannot establish a credible cathedral foundation. Preserve the architectural master plinth1.2m below floor instead of inventing a20m masonry pedestal. Inspect the native render; geographic readiness remains pending standard terrain recovery/grade handling. No bespoke terrain sources or custom per-artifact flattening."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -52.19929575547702,
+          8.669759841829926
+        ],
+        [
+          -21.832847441118254,
+          49.806899818462014
+        ],
+        [
+          -10.314539459809758,
+          41.42984506098289
+        ],
+        [
+          -6.275652245584701,
+          46.96468267984563
+        ],
+        [
+          3.896359997648777,
+          39.63476436853424
+        ],
+        [
+          7.486481965848828,
+          44.57123836489044
+        ],
+        [
+          38.60087235691593,
+          21.684005468737375
+        ],
+        [
+          34.861161973374216,
+          16.59797298318277
+        ],
+        [
+          45.18276263194936,
+          9.118526170024499
+        ],
+        [
+          40.6951101716993,
+          2.9853910855997503
+        ],
+        [
+          53.70930230642448,
+          -6.737850971138278
+        ],
+        [
+          23.342853992065717,
+          -47.8743609571134
+        ],
+        [
+          10.328661857340535,
+          -38.15122723197655
+        ],
+        [
+          5.9905978124321395,
+          -43.98511054046162
+        ],
+        [
+          -4.181414430801338,
+          -36.35618435750771
+        ],
+        [
+          -9.267420552418075,
+          -43.237177298190886
+        ],
+        [
+          -40.381810943485185,
+          -20.350346829890622
+        ],
+        [
+          -35.295804821868444,
+          -13.469311239967263
+        ],
+        [
+          -45.31822864976026,
+          -5.989910182989368
+        ],
+        [
+          -40.68098777416852,
+          0.29279841278454954
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -52.19929575547702,
+            8.669759841829926
+          ],
+          [
+            -21.832847441118254,
+            49.806899818462014
+          ],
+          [
+            -10.314539459809758,
+            41.42984506098289
+          ],
+          [
+            -6.275652245584701,
+            46.96468267984563
+          ],
+          [
+            3.896359997648777,
+            39.63476436853424
+          ],
+          [
+            7.486481965848828,
+            44.57123836489044
+          ],
+          [
+            38.60087235691593,
+            21.684005468737375
+          ],
+          [
+            34.861161973374216,
+            16.59797298318277
+          ],
+          [
+            45.18276263194936,
+            9.118526170024499
+          ],
+          [
+            40.6951101716993,
+            2.9853910855997503
+          ],
+          [
+            53.70930230642448,
+            -6.737850971138278
+          ],
+          [
+            23.342853992065717,
+            -47.8743609571134
+          ],
+          [
+            10.328661857340535,
+            -38.15122723197655
+          ],
+          [
+            5.9905978124321395,
+            -43.98511054046162
+          ],
+          [
+            -4.181414430801338,
+            -36.35618435750771
+          ],
+          [
+            -9.267420552418075,
+            -43.237177298190886
+          ],
+          [
+            -40.381810943485185,
+            -20.350346829890622
+          ],
+          [
+            -35.295804821868444,
+            -13.469311239967263
+          ],
+          [
+            -45.31822864976026,
+            -5.989910182989368
+          ],
+          [
+            -40.68098777416852,
+            0.29279841278454954
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Q215423 plus named cathedral relation3229838/native52776561363086 and13 integral height-tagged parts. Four porticos and four corner-tower positions follow actual parts; dome center/radius follow relation3229897. Own14 records only. Existing reviewed map-axis anchor[30.30614274,59.934092874]. InternalX south-southeast along broad southwest facade; internalZ west-southwest toward its portico. +Y up, geometry baked into native east/south coordinates, heading0. Two nearby5m buildings remain independent."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -52.19929575547702,
+          8.669759841829926
+        ],
+        [
+          -21.832847441118254,
+          49.806899818462014
+        ],
+        [
+          -10.314539459809758,
+          41.42984506098289
+        ],
+        [
+          -6.275652245584701,
+          46.96468267984563
+        ],
+        [
+          3.896359997648777,
+          39.63476436853424
+        ],
+        [
+          7.486481965848828,
+          44.57123836489044
+        ],
+        [
+          38.60087235691593,
+          21.684005468737375
+        ],
+        [
+          34.861161973374216,
+          16.59797298318277
+        ],
+        [
+          45.18276263194936,
+          9.118526170024499
+        ],
+        [
+          40.6951101716993,
+          2.9853910855997503
+        ],
+        [
+          53.70930230642448,
+          -6.737850971138278
+        ],
+        [
+          23.342853992065717,
+          -47.8743609571134
+        ],
+        [
+          10.328661857340535,
+          -38.15122723197655
+        ],
+        [
+          5.9905978124321395,
+          -43.98511054046162
+        ],
+        [
+          -4.181414430801338,
+          -36.35618435750771
+        ],
+        [
+          -9.267420552418075,
+          -43.237177298190886
+        ],
+        [
+          -40.381810943485185,
+          -20.350346829890622
+        ],
+        [
+          -35.295804821868444,
+          -13.469311239967263
+        ],
+        [
+          -45.31822864976026,
+          -5.989910182989368
+        ],
+        [
+          -40.68098777416852,
+          0.29279841278454954
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -52.19929575547702,
+            8.669759841829926
+          ],
+          [
+            -21.832847441118254,
+            49.806899818462014
+          ],
+          [
+            -10.314539459809758,
+            41.42984506098289
+          ],
+          [
+            -6.275652245584701,
+            46.96468267984563
+          ],
+          [
+            3.896359997648777,
+            39.63476436853424
+          ],
+          [
+            7.486481965848828,
+            44.57123836489044
+          ],
+          [
+            38.60087235691593,
+            21.684005468737375
+          ],
+          [
+            34.861161973374216,
+            16.59797298318277
+          ],
+          [
+            45.18276263194936,
+            9.118526170024499
+          ],
+          [
+            40.6951101716993,
+            2.9853910855997503
+          ],
+          [
+            53.70930230642448,
+            -6.737850971138278
+          ],
+          [
+            23.342853992065717,
+            -47.8743609571134
+          ],
+          [
+            10.328661857340535,
+            -38.15122723197655
+          ],
+          [
+            5.9905978124321395,
+            -43.98511054046162
+          ],
+          [
+            -4.181414430801338,
+            -36.35618435750771
+          ],
+          [
+            -9.267420552418075,
+            -43.237177298190886
+          ],
+          [
+            -40.381810943485185,
+            -20.350346829890622
+          ],
+          [
+            -35.295804821868444,
+            -13.469311239967263
+          ],
+          [
+            -45.31822864976026,
+            -5.989910182989368
+          ],
+          [
+            -40.68098777416852,
+            0.29279841278454954
+          ]
+        ]
+      ],
+      "basis": "Actual occupied cathedral parent only; preserve independent neighbors, original surrounding plaza and roads."
+    },
+    "notes": "Q215423 plus named cathedral relation3229838/native52776561363086 and13 integral height-tagged parts. Four porticos and four corner-tower positions follow actual parts; dome center/radius follow relation3229897. Own14 records only. Existing reviewed map-axis anchor[30.30614274,59.934092874]. InternalX south-southeast along broad southwest facade; internalZ west-southwest toward its portico. +Y up, geometry baked into native east/south coordinates, heading0. Two nearby5m buildings remain independent. NATIVE FIT DRAFT. Standard Protomaps20261020 and unmodified MapzenTerrarium201x201/6m grid. Uncovered southwest approach fixes datum40.21964233688743m; original parent-boundary grades-20.819..-0.356m. The coarse urban elevation field varies about20m across the footprint and cannot establish a credible cathedral foundation. Preserve the architectural master plinth1.2m below floor instead of inventing a20m masonry pedestal. Inspect the native render; geographic readiness remains pending standard terrain recovery/grade handling. No bespoke terrain sources or custom per-artifact flattening."
+  }
+}

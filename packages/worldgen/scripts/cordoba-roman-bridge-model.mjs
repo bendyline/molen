@@ -5,9 +5,7 @@ import { loft, normalFor, sphere } from './authored-structure-mesh.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0009_puente_romano', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('puente_romano', 'map-frame.json')));
 const stone = [0.76, 0.684, 0.52],
   pale = [0.87, 0.809, 0.668],
   mortar = [0.56, 0.515, 0.43];
@@ -611,7 +609,7 @@ export function buildCordobaBridge(out) {
   shrine(out);
 }
 export const cordobaStudy = {
-  id: 'N0009',
+  id: 'puente_romano',
   key: 'puente_romano',
   title: 'Roman Bridge of Córdoba',
   wikidataId: 'Q97625652',

@@ -8,7 +8,7 @@ import {
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u6/u6r/n0643_kiipsaare_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/u6/u6r/kiipsaare_lighthouse'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -86,7 +86,7 @@ it('keeps the true door and stair-window recesses in district, street and closeu
 it('preserves the source master and places the offshore base with an explicit water datum', async () => {
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.sourceFacts.heightMeters).toBe(26);

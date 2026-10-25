@@ -10,6 +10,23 @@ import type {
 } from '@bendyline/molen-schema';
 import { type ComponentType, defineComponent, Transform, type TransformData } from './component';
 import { dmath as m } from './dmath';
+import {
+  aircraftDeparture,
+  aircraftDragCoefficient,
+  aircraftEngineThrust,
+  engineThrottle,
+  freeRotationRates,
+} from './flight-aerodynamics';
+
+export {
+  aircraftDeparture,
+  aircraftDragCoefficient,
+  aircraftEngineThrust,
+  engineThrottle,
+  waveDragCoefficient,
+} from './flight-aerodynamics';
+export { sampleAtmosphere } from './weather';
+
 import { approach, quatFromAxisAngle, quatMul, quatNormalize, quatRotateVec3 } from './math3d';
 import { groundFieldOf } from './terrain';
 import {
@@ -228,8 +245,13 @@ function wingForces(
   return { axial, lateral, speed, angleOfAttack, alpha, separation, cl, lift, liftAxis };
 }
 /** Move a hydraulic surface toward its selection over `time` seconds for full travel; 0 is instant. */
-function travel(position: number, selected: boolean, time: number | undefined, h: number): number {
-  const target = selected ? 1 : 0;
+function travel(
+  position: number,
+  selected: boolean | number,
+  time: number | undefined,
+  h: number,
+): number {
+  const target = m.clamp(Number(selected), 0, 1);
   return time !== undefined && time > 0 ? approach(position, target, h / time) : target;
 }
 /** Restore a substep's starting state, dropping fields the substep introduced. */
@@ -316,12 +338,16 @@ export function stepAircraft(
       const running = control.enabled && !e.failed && !s.crashed;
       e.rpm = approach(
         e.rpm,
-        running ? engine.idleRpm + control.power * (1 - engine.idleRpm) : 0,
+        running
+          ? helicopter?.powerLimitedRotor
+            ? 1
+            : engine.idleRpm + control.power * (1 - engine.idleRpm)
+          : 0,
         h * engine.spoolRate,
       );
       e.rotorAngle = (e.rotorAngle + e.rpm * engine.rotorAngularSpeed * h) % m.TAU;
       e.thrust = 0;
-      propwash += running ? engine.power * control.power * e.rpm : 0;
+      propwash += running && engine.propulsion !== 'jet' ? engine.power * control.power * e.rpm : 0;
       ratedPower += engine.power;
     }
     s.engines = bank;
@@ -330,8 +356,8 @@ export function stepAircraft(
     propwash /= m.max(1, ratedPower);
     if (s.crashed) continue;
     const time = start + n * h;
-    const atmosphere = env.weather ? sampleAtmosphere(env.weather, t.pos[1]) : undefined;
-    const density = atmosphere?.densityKgM3 ?? 1.225 * m.exp(-m.max(0, t.pos[1]) / 8500);
+    const atmosphere = sampleAtmosphere(env.weather ?? {}, t.pos[1]);
+    const density = atmosphere.densityKgM3;
     const slope = field?.terrain ? terrainSlope(surface, t.pos[0], t.pos[2]) : undefined;
     const windAt = (point: Vec3): Vec3 =>
       env.wind
@@ -345,14 +371,23 @@ export function stepAircraft(
     let wheelLoad = 1;
     let liftoffTrim: number | undefined;
     if (airplane) {
+      const poweredLift = spec.poweredLift;
+      if (poweredLift)
+        s.thrustVectorPosition = approach(
+          s.thrustVectorPosition ?? 0,
+          m.clamp(input.thrustVector ?? 0, 0, 1),
+          h / poweredLift.transitTime,
+        );
       // A state without positions starts at the selection, as the instant gear and flaps did.
       // The gear's weight-on-wheels lock holds it still on the ground; flaps move anywhere.
       const gearFrom = s.gearPosition ?? (input.gear ? 1 : 0);
-      s.gearPosition = s.grounded
-        ? gearFrom
-        : travel(gearFrom, input.gear, airplane.gearTransitTime, h);
+      s.gearPosition = airplane.fixedGear
+        ? 1
+        : s.grounded
+          ? gearFrom
+          : travel(gearFrom, input.gear, airplane.gearTransitTime, h);
       s.flapPosition = travel(
-        s.flapPosition ?? (input.flaps ? 1 : 0),
+        s.flapPosition ?? m.clamp(Number(input.flaps), 0, 1),
         input.flaps,
         airplane.flapTransitTime,
         h,
@@ -366,8 +401,24 @@ export function stepAircraft(
       const wind = windAt(com);
       const air = s.velocity.map((v, i) => v - (wind[i] ?? 0));
       s.airspeed = m.hypot(air[0] ?? 0, air[1] ?? 0, air[2] ?? 0);
+      s.mach = s.airspeed / atmosphere.speedOfSound;
+      s.equivalentAirspeed = s.airspeed * m.sqrt(density / 1.225);
+      s.overspeed =
+        s.mach > (airplane.maxMach ?? Infinity) ||
+        s.equivalentAirspeed > (airplane.maxEquivalentAirspeed ?? Infinity) ||
+        (gearOut > 0.01 && s.equivalentAirspeed > (airplane.gearLimitSpeed ?? Infinity)) ||
+        (flapsOut > 0.01 && s.equivalentAirspeed > (airplane.flapLimitSpeed ?? Infinity));
       const wing = wingForces(air, axes, airplane, flapsOut, density);
-      const { lateral, angleOfAttack, alpha, separation, cl, lift, liftAxis } = wing;
+      const { lateral, angleOfAttack, alpha, separation, cl, lift: wingLift, liftAxis } = wing;
+      const departure = aircraftDeparture(airplane, alpha, s.grounded);
+      s.departure = departure;
+      const hoverDirection = poweredLift
+        ? m.sin(((s.thrustVectorPosition ?? 0) * m.PI) / 2) *
+          m.clamp(1 - m.abs(wing.axial) / poweredLift.controlFadeSpeed, 0, 1)
+        : 0;
+      // The wing polar is not a vertical rotor-wash model. Blend it out in the powered-lift
+      // regime; profile/separated-flow drag remains, while engine thrust carries the weight.
+      const lift = wingLift * (1 - hoverDirection);
       // Equivalent airspeed relative to the reference speed: control power grows with it up to
       // maxControlAuthority, stability and damping without limit.
       const ratio = (s.airspeed * m.sqrt(density / 1.225)) / airplane.controlAuthoritySpeed;
@@ -376,18 +427,23 @@ export function stepAircraft(
       s.angleOfAttack = angleOfAttack;
       // A stall is an incidence limit, not an arbitrary true-airspeed switch.
       s.stalled = !s.grounded && wing.speed > 1 && m.abs(alpha) > airplane.stallAngle;
-      const sideslip = m.atan2(lateral, m.max(1, s.airspeed));
+      const sideslip = m.asin(m.clamp(lateral / m.max(0.01, s.airspeed), -1, 1));
       s.sideslip = sideslip;
       const drag =
         0.5 *
         density *
         s.airspeed ** 2 *
         airplane.wingArea *
-        (airplane.profileDrag +
-          cl * cl * airplane.inducedDrag +
-          gearOut * airplane.gearDrag +
-          flapsOut * airplane.flapDrag +
-          separation * airplane.stallDrag * m.sin(alpha) ** 2);
+        aircraftDragCoefficient(
+          airplane,
+          cl,
+          s.mach,
+          gearOut,
+          flapsOut,
+          separation,
+          alpha,
+          m.max(0, com[1] - ground) / spec.span,
+        );
       const force: Vec3 = [0, -weight, 0];
       for (let i = 0; i < 3; i++)
         force[i] =
@@ -404,30 +460,47 @@ export function stepAircraft(
         const control = controls[index];
         if (!e || !control) continue;
         const commandedRpm = engine.idleRpm + control.power * (1 - engine.idleRpm);
-        const axisLength = m.max(0.0001, m.hypot(...engine.thrustAxis));
-        const thrustAxis = vehicleLocalPoint({ pos: [0, 0, 0], rot }, engine.thrustAxis);
+        const vectorAngle = engine.vectored ? ((s.thrustVectorPosition ?? 0) * m.PI) / 2 : 0;
+        const localAxis: Vec3 = engine.vectored
+          ? [0, m.sin(vectorAngle), m.cos(vectorAngle)]
+          : engine.thrustAxis;
+        const axisLength = m.max(0.0001, m.hypot(...localAxis));
+        const thrustAxis = vehicleLocalPoint({ pos: [0, 0, 0], rot }, localAxis);
         const propellerSpeed = dot(air, thrustAxis) / axisLength;
         const running = control.enabled && !e.failed;
         const spooled = m.clamp(e.rpm / m.max(0.01, commandedRpm), 0, 1);
         // Engine failures remove powered thrust immediately; the rotor continues to spool down.
+        if (engine.afterburnerThrust !== undefined) {
+          const reheat =
+            running && e.rpm > 0.8 ? engineThrottle(engine, control.power).afterburner : 0;
+          e.afterburner = running ? approach(e.afterburner ?? 0, reheat, h / 0.6) : 0;
+        }
         e.thrust = running
-          ? m.min(
-              engine.maxThrust ?? airplane.maxThrust,
-              (engine.power * (engine.propellerEfficiency ?? airplane.propellerEfficiency)) /
-                m.max(engine.minPropellerSpeed ?? airplane.minPropellerSpeed, propellerSpeed),
-            ) *
-            control.power *
-            spooled
+          ? aircraftEngineThrust(
+              engine,
+              airplane,
+              atmosphere,
+              propellerSpeed,
+              control.power,
+              e.afterburner ?? 0,
+            ) * spooled
           : 0;
         for (let i = 0; i < 3; i++)
           force[i] = (force[i] ?? 0) + ((thrustAxis[i] ?? 0) / axisLength) * e.thrust;
         // (r × F).y in body coordinates.
         moment[1] +=
-          (((engine.position[2] - spec.centerOfMass[2]) * engine.thrustAxis[0] -
-            (engine.position[0] - spec.centerOfMass[0]) * engine.thrustAxis[2]) *
+          (((engine.position[2] - spec.centerOfMass[2]) * localAxis[0] -
+            (engine.position[0] - spec.centerOfMass[0]) * localAxis[2]) *
             e.thrust) /
           axisLength;
-        if (effects > 0) {
+        if (engine.vectored) {
+          // Off-center vertical thrust matters too: an Osprey engine failure rolls the airframe.
+          const arm = engine.position.map((v, i) => v - (spec.centerOfMass[i] ?? 0));
+          const torque = cross(arm, localAxis);
+          moment[0] += (torque[0] * e.thrust) / axisLength;
+          moment[2] += (torque[2] * e.thrust) / axisLength;
+        }
+        if (effects > 0 && engine.propulsion !== 'jet') {
           // A clockwise propeller (seen from the cockpit) rolls the airframe left against its
           // torque, and its slipstream, P-factor and precession yaw the nose left.
           const spin = engine.propellerRotation === 'counterclockwise' ? -1 : 1;
@@ -484,7 +557,10 @@ export function stepAircraft(
       let trim = m.clamp(s.pitchTrim ?? incidence, safeMin, safeMax);
       liftoffTrim = m.clamp(incidence, safeMin, safeMax);
       const trimTarget = s.grounded ? 0 : m.clamp(incidenceFor(liftAxis[1] ?? 1), safeMin, safeMax);
-      trim += (trimTarget - trim) * m.min(1, h * (s.grounded ? 4 : (airplane.autoTrim ?? 1)));
+      trim +=
+        (trimTarget - trim) *
+        m.min(1, h * (s.grounded ? 4 : (airplane.autoTrim ?? 1))) *
+        (1 - departure);
       trim = m.clamp(trim, safeMin, safeMax);
       const deep = 1.5 * (airplane.stallTransitionAngle ?? 0.12);
       const highest = m.max(
@@ -504,9 +580,18 @@ export function stepAircraft(
       s.elevator = elevator;
       s.pitchTrim = trim;
       const frequency =
-        (airplane.pitchFrequency ?? 3.5) * (s.grounded ? ratio : m.max(ratio, propwash * 0.6));
+        (airplane.pitchFrequency ?? 3.5) *
+        (s.grounded ? ratio : m.max(ratio, propwash * 0.6)) *
+        m.sqrt(1 - hoverDirection) *
+        (1 - departure * (airplane.departure?.pitchBlanking ?? 0));
       const pitchDamping = 2 * (airplane.pitchDamping ?? 0.7) * frequency;
-      const stallBreak = airplane.stallPitchRate * separation * m.sign(alpha) * m.max(frequency, 1);
+      const stallBreak =
+        airplane.stallPitchRate *
+        separation *
+        m.sign(alpha) *
+        m.max(frequency, 1) *
+        (1 - hoverDirection) *
+        (1 - departure * (airplane.departure?.pitchBlanking ?? 0));
       // Weight on the wheels holds the nose at its resting attitude until the elevator lifts it.
       const gear = s.grounded ? 8 * wheelLoad : 0;
 
@@ -514,11 +599,12 @@ export function stepAircraft(
       const pitchInertia = airplane.pitchInertia ?? spec.mass * (0.18 * spec.length) ** 2;
       const yawInertia =
         airplane.yawInertia ?? (spec.mass * (spec.span ** 2 + spec.length ** 2)) / 12;
-      // Euler's equations for the body axes: ω̇ = (M - ω × Iω) / I.
+      // Euler's equations for the body axes: dω/dt = (M - ω × Iω) / I.
+      const free = freeRotationRates(omega, [pitchInertia, yawInertia, rollInertia], h);
       const spinning: Vec3 = [
-        (moment[0] - (rollInertia - yawInertia) * omega[1] * omega[2]) / pitchInertia,
-        (moment[1] - (pitchInertia - rollInertia) * omega[2] * omega[0]) / yawInertia,
-        (moment[2] - (yawInertia - pitchInertia) * omega[0] * omega[1]) / rollInertia,
+        moment[0] / pitchInertia + (free[0] - omega[0]) / h,
+        moment[1] / yawInertia + (free[1] - omega[1]) / h,
+        moment[2] / rollInertia + (free[2] - omega[2]) / h,
       ];
       s.pitchRate =
         (s.pitchRate +
@@ -533,7 +619,11 @@ export function stepAircraft(
       // Roll: ailerons command a rate against roll damping, which fades as the wing separates.
       const rollDamping = airplane.rollResponse * m.max(ratio, 0.05);
       const aileron =
-        m.clamp(input.roll, -1, 1) * airplane.rollAuthority * authority * (1 - 0.65 * separation);
+        m.clamp(input.roll, -1, 1) *
+        airplane.rollAuthority *
+        authority *
+        (1 - 0.65 * separation) *
+        (1 - 2 * departure * (airplane.departure?.aileronReversal ?? 0));
       let gust = 0;
       if (field?.structured) {
         // A vertical gust across the span rolls the airplane like a roll rate would damp it.
@@ -545,7 +635,9 @@ export function stepAircraft(
       // Yawing speeds up the outer wing, which lifts more (overbanking in a turn); in a stall
       // the retreating wing stalls deeper instead, rolling toward the inside of the yaw.
       const yawRoll =
-        -(rollDamping * 0.12 * m.clamp(cl, -1.5, 1.5) + 2 * separation) * (s.yawRate ?? 0);
+        -(rollDamping * 0.12 * m.clamp(cl, -1.5, 1.5) + 2 * separation) *
+        (s.yawRate ?? 0) *
+        (1 - departure * m.sin(alpha) ** 2);
       s.rollRate =
         (s.rollRate +
           h *
@@ -557,10 +649,20 @@ export function stepAircraft(
         (1 + h * rollDamping * (1 - 0.7 * separation));
 
       // Yaw: weathercock stability, damping and rudder, plus tailwheel steering and tire grip.
-      const directional = (airplane.directionalStability ?? 4) * dynamic;
-      const yawDamping = (airplane.yawDamping ?? 1.2) * m.max(ratio, 0.05);
+      const directional = (airplane.directionalStability ?? 4) * dynamic * (1 - departure);
+      const yawDamping = (airplane.yawDamping ?? 1.2) * m.max(ratio, 0.05) * (1 - 0.9 * departure);
       const tail = m.max(m.min(dynamic, airplane.maxControlAuthority ** 2), propwash * 0.35);
-      const rudder = -m.clamp(input.yaw, -1, 1) * airplane.rudderAuthority * tail;
+      const rudder =
+        -m.clamp(input.yaw, -1, 1) *
+        airplane.rudderAuthority *
+        tail *
+        (1 - departure * (airplane.departure?.rudderBlanking ?? 0));
+      // Negative yaw damping from separated flow produces autorotation. Cubic aerodynamic
+      // damping bounds the rate; no direction is injected into a perfectly symmetric stall.
+      const yawRate = s.yawRate ?? 0;
+      const spinGain = departure * (airplane.departure?.yawInstability ?? 0) * m.min(dynamic, 1);
+      const spinMoment = spinGain * yawRate;
+      const spinDamping = spinGain * (yawRate / (airplane.departure?.yawSaturationRate ?? 1)) ** 2;
       let grip = 0;
       let steer = 0;
       if (s.grounded) {
@@ -577,9 +679,26 @@ export function stepAircraft(
             (directional * sideslip +
               yawDamping * 0.5 * pathYaw +
               rudder +
+              spinMoment +
               spinning[1] +
               grip * steer)) /
-        (1 + h * (yawDamping + grip));
+        (1 + h * (yawDamping + spinDamping + grip));
+
+      if (poweredLift) {
+        // Hover moments represent differential rotor pitch or reaction jets. They require
+        // powered thrust and vertical vectoring and fade continuously as wing controls take over.
+        const thrust = Object.values(bank).reduce((sum, engine) => sum + engine.thrust, 0);
+        const hover =
+          m.sin(((s.thrustVectorPosition ?? 0) * m.PI) / 2) *
+          m.clamp(1 - m.abs(wing.axial) / poweredLift.controlFadeSpeed, 0, 1) *
+          m.clamp(thrust / weight, 0, 1);
+        const damping = 1 + h * hover * poweredLift.damping;
+        s.pitchRate =
+          (s.pitchRate + h * hover * input.pitch * poweredLift.pitchAuthority) / damping;
+        s.rollRate = (s.rollRate + h * hover * input.roll * poweredLift.rollAuthority) / damping;
+        s.yawRate = (s.yawRate - h * hover * input.yaw * poweredLift.yawAuthority) / damping;
+        if (hover > 0.5 && s.airspeed < 5) s.stalled = false;
+      }
 
       const turn: Vec3 = [-s.pitchRate, s.yawRate, s.rollRate];
       const angle = m.hypot(...turn) * h;
@@ -605,6 +724,8 @@ export function stepAircraft(
       const wind = windAt(t.pos);
       const air = s.velocity.map((v, i) => v - (wind[i] ?? 0));
       s.airspeed = m.hypot(air[0] ?? 0, air[1] ?? 0, air[2] ?? 0);
+      s.mach = s.airspeed / atmosphere.speedOfSound;
+      s.equivalentAirspeed = s.airspeed * m.sqrt(density / 1.225);
       const authority = s.rpm * s.rpm;
       // Rotor disc response with light attitude damping: cyclic commands a tilt, not velocity.
       s.pitchRate +=
@@ -646,7 +767,43 @@ export function stepAircraft(
         1 +
         helicopter.translationalLift *
           m.clamp(m.hypot(air[0] ?? 0, air[2] ?? 0) / helicopter.translationalLiftSpeed, 0, 1);
-      const lift =
+      const horizontal = m.hypot(air[0] ?? 0, air[2] ?? 0);
+      const rotorDragDensity = helicopter.powerLimitedRotor ? density / 1.225 : 1;
+      const induced = m.sqrt(
+        weight /
+          m.max(
+            0.01,
+            2 * density * m.PI * helicopter.rotorRadius ** 2 * (helicopter.rotorDiscs ?? 1),
+          ),
+      );
+      const descent = -(air[1] ?? 0) / m.max(1, induced);
+      const ring =
+        helicopter.vortexRing && !s.grounded
+          ? m.smoothstep((descent - 0.4) / 0.8) *
+            (1 - m.smoothstep((descent - 1.8) / 0.8)) *
+            (1 - m.smoothstep(horizontal / m.max(1, 2 * induced))) *
+            m.clamp(power * s.rpm, 0, 1)
+          : 0;
+      s.vortexRing = ring;
+      const retreat = helicopter.retreatingBladeSpeed
+        ? m.smoothstep(
+            (horizontal /
+              m.max(
+                1,
+                helicopter.retreatingBladeSpeed *
+                  m.max(0.1, s.rpm) *
+                  m.min(1, m.sqrt(density / 1.225)),
+              ) -
+              1) /
+              0.35,
+          )
+        : 0;
+      // High density altitude and low rotor RPM erode retreating-blade margin. The
+      // separated blades add drag; this estimated trend is not a rotorcraft VNE placard.
+      const rotorHorizontalDrag =
+        (helicopter.horizontalDrag + s.airspeed * helicopter.quadraticDrag) * (1 + 3 * retreat);
+      s.overspeed = retreat > 0;
+      let lift =
         spec.mass *
         9.81 *
         helicopter.liftMultiplier *
@@ -654,16 +811,58 @@ export function stepAircraft(
         s.rpm ** 2 *
         groundEffect *
         translational *
-        (density / 1.225);
+        (density / 1.225) *
+        (1 - 0.55 * ring) *
+        (1 - 0.35 * retreat);
+      if (helicopter.powerLimitedRotor) {
+        const shaft = engines.reduce((sum, e, i) => {
+          const running = controls[i]?.enabled && !bank[e.id]?.failed;
+          const lapse = m.pow(
+            m.min(1, density / 1.225 / (e.ratedDensityRatio ?? 1)),
+            e.densityExponent ?? 1,
+          );
+          return sum + (running ? e.power * (bank[e.id]?.rpm ?? 0) ** 3 * lapse : 0);
+        }, 0);
+        const discArea = m.PI * helicopter.rotorRadius ** 2 * (helicopter.rotorDiscs ?? 1);
+        const profilePower =
+          engines.reduce((sum, e) => sum + e.power, 0) *
+          (helicopter.profilePowerFraction ?? 0.12) *
+          s.rpm ** 3 *
+          (density / 1.225);
+        const parasitePower = horizontal ** 2 * rotorHorizontalDrag * rotorDragDensity;
+        const required = (thrust: number): number => {
+          const hoverSquared = thrust / m.max(0.01, 2 * density * discArea);
+          // Rationalized momentum-theory root avoids subtracting almost equal values at speed.
+          const halfV2 = horizontal ** 2 / 2;
+          const vi = m.sqrt(
+            hoverSquared ** 2 / m.max(0.000001, m.sqrt(halfV2 ** 2 + hoverSquared ** 2) + halfV2),
+          );
+          return (
+            (thrust * vi) / ((helicopter.rotorEfficiency ?? 0.75) * groundEffect) +
+            thrust * m.max(0, air[1] ?? 0) +
+            profilePower +
+            parasitePower
+          );
+        };
+        if (required(lift) > shaft) {
+          let lo = 0,
+            hi = lift;
+          for (let iteration = 0; iteration < 18; iteration++) {
+            const mid = (lo + hi) / 2;
+            if (required(mid) > shaft) hi = mid;
+            else lo = mid;
+          }
+          lift = lo;
+        }
+      }
       const force = [0, -weight, 0];
       for (let i = 0; i < 3; i++)
         force[i] =
           (force[i] ?? 0) +
           (up[i] ?? 0) * lift -
           (air[i] ?? 0) *
-            (i === 1
-              ? helicopter.verticalDrag
-              : helicopter.horizontalDrag + s.airspeed * helicopter.quadraticDrag);
+            (i === 1 ? helicopter.verticalDrag : rotorHorizontalDrag) *
+            rotorDragDensity;
       for (let i = 0; i < 3; i++)
         s.velocity[i] = (s.velocity[i] ?? 0) + ((force[i] ?? 0) / spec.mass) * h;
       pos = t.pos.map((v, i) => v + (s.velocity[i] ?? 0) * h) as Vec3;
@@ -751,7 +950,9 @@ export function flyAircraft(world: World, actor: string, input: AircraftInputDat
     !world
       .get(mounted.vehicle, Mountable)
       ?.seats.some((s) => s.id === mounted.seat && s.role === 'driver') ||
-    ![input.power, input.pitch, input.roll, input.yaw].every(Number.isFinite)
+    ![input.power, input.pitch, input.roll, input.yaw, input.thrustVector ?? 0].every(
+      Number.isFinite,
+    )
   )
     return false;
   const aircraft = world.get(mounted.vehicle, Aircraft);
@@ -773,6 +974,9 @@ export function flyAircraft(world: World, actor: string, input: AircraftInputDat
     pitch: m.clamp(input.pitch, -1, 1),
     roll: m.clamp(input.roll, -1, 1),
     yaw: m.clamp(input.yaw, -1, 1),
+    ...(input.thrustVector === undefined
+      ? {}
+      : { thrustVector: m.clamp(input.thrustVector, 0, 1) }),
     ...(input.engines
       ? {
           engines: Object.fromEntries(
@@ -808,7 +1012,10 @@ export function installAircraft(world: World, environment?: AircraftEnvironment)
         const surfacesSettled =
           aircraft.spec.model !== 'airplane' ||
           state.crashed ||
-          (state.gearPosition !== undefined && state.flapPosition === (input.flaps ? 1 : 0));
+          (state.gearPosition !== undefined &&
+            state.flapPosition === (input.flaps ? 1 : 0) &&
+            (!aircraft.spec.poweredLift ||
+              state.thrustVectorPosition === (input.thrustVector ?? 0)));
         if (
           state.grounded &&
           !input.engine &&

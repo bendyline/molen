@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { buildMoeve } from '../../worldgen/scripts/signature-tower-moeve-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ez/ezj/n0203_torre_moeve'),
+const source = resolve('../../content/worldgen/source/places/ez/ezj/torre_moeve'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

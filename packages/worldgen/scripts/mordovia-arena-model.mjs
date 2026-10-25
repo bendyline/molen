@@ -503,7 +503,7 @@ export function buildMordovia(out) {
   stairs(out);
 }
 export const mordoviaStudy = {
-  id: 'N0695',
+  id: 'mordovia_arena',
   key: 'mordovia_arena',
   wikidataId: 'Q4533552',
   title: 'Mordovia Arena',

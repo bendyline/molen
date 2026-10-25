@@ -5,6 +5,29 @@ import type { VehicleInteriorSpec } from './vehicle-interior';
 /** Stable external entity/type id for a wheeled vehicle. */
 export type VehicleKind = string;
 
+/** Generic body styles, independent of any make or model name. */
+export type VehicleBodyStyle =
+  | 'city'
+  | 'hatchback'
+  | 'sedan'
+  | 'fastback'
+  | 'coupe'
+  | 'roadster'
+  | 'wagon'
+  | 'crossover'
+  | 'suv'
+  | 'offroad'
+  | 'pickup'
+  | 'van'
+  | 'cargo-van'
+  | 'box-truck'
+  | 'motorhome'
+  | 'bus'
+  | 'light-rail'
+  | 'bicycle'
+  | 'motorcycle'
+  | 'scooter';
+
 /** Self-balancing two-wheel handling and metric rider contact points, in model space. */
 export interface CycleSpec extends JsonObject {
   maxLean: number;
@@ -26,6 +49,10 @@ export interface CycleSpec extends JsonObject {
 /** Data-driven tuning consumed by the generic wheeled-vehicle solver. */
 export interface VehicleSpec extends JsonObject {
   label: string;
+  /** Generic body style, so a host can classify or relabel the vehicle without its real name. */
+  bodyStyle?: VehicleBodyStyle;
+  /** Name-free display label such as 'Full-size pickup', for hosts that must not show the real name. */
+  genericLabel?: string;
   width: number;
   length: number;
   height: number;
@@ -38,6 +65,7 @@ export interface VehicleSpec extends JsonObject {
   maxSpeed: number;
   reverseSpeed: number;
   brakeDeceleration: number;
+  /** Maximum steering angle in radians; zero locks the wheels for straight-track vehicles. */
   maxSteer: number;
   /** Peak tire friction on dry pavement as an acceleration in m/s² (grip / 9.81 is the friction coefficient). */
   grip: number;

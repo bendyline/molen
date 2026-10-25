@@ -1,0 +1,401 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.edificio_italia",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:73742af71b742ea5dc3c2ae8c151fed7dc95e940fc0ce09f46523b9abe877b12",
+  "sourceHash": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c",
+  "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+  "captureReportHash": "sha256:ddd964c4a93cbab769de14a61408f182a44269f94a5efd19705614a8c5ded1ec",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/sunshade-cells.png",
+      "shots/curved-end.png",
+      "shots/restaurant-terrace.png",
+      "shots/ground.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all10 final source views. Curved asymmetric tower, narrow end, concrete sunshade rhythm, selected louver impressions and upper restaurant terrace remain complete. Adjacent club/theatre blocks are outside this standalone tower source."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:0fcb8c9c218519696a3bb00bb735d82c7c9aa3076e107c506cdae66be3ab4f64",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/sunshade-cells.png",
+      "shots/shared/curved-end.png",
+      "shots/shared/restaurant-terrace.png",
+      "shots/shared/ground.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all10 shared-viewer views including north-up placement. The curved envelope and signed long axis fit retained exact-QID controls. Three common granite/concrete/painted-metal graphs plus opaque glass PBR use zero embedded images. Shared graph cache and unloading pass."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:6d5bd424cd4bf8cdce135cb6946720dfd011e9c81ffcb6dddd92f6997a606793",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/sunshade-cells.png",
+      "medium-fi/curved-end.png",
+      "medium-fi/restaurant-terrace.png",
+      "medium-fi/ground.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/whole-edificio_italia-skyline.png",
+      "medium-fi/whole-edificio_italia-district.png",
+      "medium-fi/whole-edificio_italia-street.png",
+      "medium-fi/whole-edificio_italia-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all26 final light, detail-level and transition views. Skyline/district merge window and sunshade repetition; street/closeup restore projecting full-height fins, floor shelves and representative louver strips. All levels retain the roof/restaurant silhouette. Coarse PMTiles terrain outside bounded local contact contains urban height imprint; geographic fit staging is flat and neighbors are synthetic."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:6f33c75386d3b0c6e70b157e727e6a29e057aa99cf57f1ee27e9d574330ebda8",
+    "mapFrameHash": "sha256:788cfc14f98c4e775ed5cf6e9fc8a8f322ca3006994224de84562cc2254058dd",
+    "notes": "Retain the existing exact-QID curved asymmetric tower part and signed long-axis frame,165m authored height and151m terrace. Inspected street exterior picture supports concrete grid and selected louver/window states. Standard viewer PMTiles checks the curved tower and streets, with off-footprint[-70,0] supplying approximate ground; raw terrain retained separate from radius40m bounded preview contact correction. The standalone tower excludes adjacent club/theatre blocks. Exact shutter state, roof details and thresholds remain reconstructed; no surveyed fit claimed."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior and approximate picture/PMTiles fit. Inspected street picture supports the curved concrete grid and varying window/louver impressions. Existing165m height,151m terrace and signed mapped part retained. Picture crops roof; authored roof/service dimensions remain approximations, as do shutter states and thresholds. PMTiles[-70,0]764.5263m sets approximate contact; raw heights remain separate from bounded local correction. Physical-device timing pending."
+  },
+  "legacyFidelityScope": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed exterior world-viewer representation with stated reconstruction limits.",
+    "notes": "Exterior reconstruction accepted for world-viewer use:165 m curved tower, concrete sunshade grid and restaurant terrace. Shutter distribution and rooftop service dimensions remain approximate.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/6g/6gy/edificio_italia/models/source.glb",
+        "hash": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c",
+        "bytes": 3292976,
+        "triangles": 27418,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -27.231956481933594,
+          0,
+          -13.75777530670166
+        ],
+        "max": [
+          27.255950927734375,
+          165,
+          13.758000373840332
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.glb",
+        "hash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "bytes": 3292548,
+        "triangles": 27418,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -27.231956481933594,
+          0,
+          -13.75777530670166
+        ],
+        "max": [
+          27.255950927734375,
+          165,
+          13.758000373840332
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.skyline.glb",
+        "hash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
+        "bytes": 40440,
+        "triangles": 404,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -27.100610733032227,
+          0,
+          -13.500772476196289
+        ],
+        "max": [
+          25.966442108154297,
+          165,
+          12.389999389648438
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.district.glb",
+        "hash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34",
+        "bytes": 174416,
+        "triangles": 2258,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -27.220993041992188,
+          0,
+          -13.723119735717773
+        ],
+        "max": [
+          27.239168167114258,
+          165,
+          13.757246017456055
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.street.glb",
+        "hash": "sha256:e931b1a073eb887bf978784ca7f4e8a3f1601e90fb5544f38edbf010140ebf24",
+        "bytes": 626776,
+        "triangles": 8444,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -27.220993041992188,
+          0,
+          -13.723119735717773
+        ],
+        "max": [
+          27.255950927734375,
+          165,
+          13.758000373840332
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.closeup.glb",
+        "hash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
+        "bytes": 1948236,
+        "triangles": 27418,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -27.231956481933594,
+          0,
+          -13.75777530670166
+        ],
+        "max": [
+          27.255950927734375,
+          165,
+          13.758000373840332
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validate with zero errors, warnings and images. Original473498-triangle41821548-byte master reproduced exactly at sha256:647a5c5cc663718214ebc333eaa74ce7934df878f5a1f4e8786aab629f67d23e; detailed recipe preserved. Independent compact source27418triangles at sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c. Browser404/2258/8444/27418triangles meet1k/4k/16k/64k budgets; initial214856bytes. Current hashes, map frame and shared graph bindings checked."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:96ce5580c77dcb3a525044d94f84ec1a31140590abf701d5b89e574ad18c251c",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
+        "bytes": 40440,
+        "gzipBytes": 6173,
+        "triangles": 404,
+        "cpuBytes": 39036,
+        "gpuBytes": 39036,
+        "errorMeters": 3,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34",
+        "bytes": 174416,
+        "gzipBytes": 36332,
+        "triangles": 2258,
+        "cpuBytes": 169500,
+        "gpuBytes": 169500,
+        "errorMeters": 1.5,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:e931b1a073eb887bf978784ca7f4e8a3f1601e90fb5544f38edbf010140ebf24",
+        "bytes": 626776,
+        "gzipBytes": 120747,
+        "triangles": 8444,
+        "cpuBytes": 621768,
+        "gpuBytes": 621768,
+        "errorMeters": 0.65,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
+        "bytes": 1948236,
+        "gzipBytes": 398360,
+        "triangles": 27418,
+        "cpuBytes": 1943196,
+        "gpuBytes": 1943196,
+        "errorMeters": 0.3,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 214856,
+    "notes": "skyline: 404 triangles, 40440 bytes, 1 draws; district: 2258 triangles, 174416 bytes, 4 draws; street: 8444 triangles, 626776 bytes, 4 draws; closeup: 27418 triangles, 1948236 bytes, 4 draws. Initial skyline+district 214856 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Retain the existing exact-QID curved asymmetric tower part and signed long-axis frame,165m authored height and151m terrace. Inspected street exterior picture supports concrete grid and selected louver/window states. Standard viewer PMTiles checks the curved tower and streets, with off-footprint[-70,0] supplying approximate ground; raw terrain retained separate from radius40m bounded preview contact correction. The standalone tower excludes adjacent club/theatre blocks. Exact shutter state, roof details and thresholds remain reconstructed; no surveyed fit claimed.",
+    "Three shared granite/concrete/painted-metal graphs plus opaque glass PBR; no embedded photographs. Perimeter simplification bounded2.4/1/.35/.1m; detail grid is reconstructed. Picture crops roof, retained authored dimensions control it. Physical-device timing pending."
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:bb9388165342abdac0c6490ce255785c62ee284c28dcdb55183fe46eda3acd60",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:d74dc5f2fdfa361d0408a2bed26119142fac7d27f7afa7e9f4c4937044b06b7d",
+    "previousSharedCaptureReportHash": "sha256:c01936089fa734522371e72c1ec1cd3a19abaa0bc336dd58a5d0c60e3df18d33",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/italia-browser-model.mjs",
+        "beforeHash": "sha256:9d46540cec2712c3ba2177671217af08c3029360d986292f36150b0f9e315221",
+        "afterHash": "sha256:b77d1fad14751c7ea25ec15a83f453aed836d31a90cacfea7418144df139a0b1",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/6g/6gy/edificio_italia/models/source.glb",
+        "hash": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c",
+        "bytes": 3292976
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.glb",
+        "hash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "bytes": 3292548
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.skyline.glb",
+        "hash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
+        "bytes": 40440
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.district.glb",
+        "hash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34",
+        "bytes": 174416
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.street.glb",
+        "hash": "sha256:e931b1a073eb887bf978784ca7f4e8a3f1601e90fb5544f38edbf010140ebf24",
+        "bytes": 626776
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.closeup.glb",
+        "hash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
+        "bytes": 1948236
+      }
+    ],
+    "retainedInspectedImageCount": 46
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:cd9872a0012be1ed1ffaebc6878f819e131e00ecb07f571bd1b5496180869e8a",
+    "inputHash": "sha256:73742af71b742ea5dc3c2ae8c151fed7dc95e940fc0ce09f46523b9abe877b12",
+    "previousQaHash": "sha256:454923f82b94f0b0d75f3101e88771b88b88423c27da672761ff3c24112bb814",
+    "sourceHash": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c",
+    "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:e931b1a073eb887bf978784ca7f4e8a3f1601e90fb5544f38edbf010140ebf24"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5"
+      }
+    ],
+    "sceneHash": "sha256:28a1698a19cc2a2b02df387a58369df61db7c367ee5dc7a7827dc8c3a501bac5",
+    "qaCamerasHash": "sha256:e3ce941e34d97ea910aa2d5145291f11bbe340b616d16bfa3b0c6e86a7421b81",
+    "placementHash": "sha256:6f33c75386d3b0c6e70b157e727e6a29e057aa99cf57f1ee27e9d574330ebda8",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:788cfc14f98c4e775ed5cf6e9fc8a8f322ca3006994224de84562cc2254058dd"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-fit.terrain.json",
+        "hash": "sha256:b802a01a9e654a5d2475d2e4acb58754fc7e36871a3001809c61f3719a6538b4"
+      },
+      {
+        "path": "terrain-fit.height.png",
+        "hash": "sha256:e13bcfeb1355581d73a84724b0eff6be6fbd169d7534b759ab4be5a11fba7bb3"
+      }
+    ],
+    "framesVerified": 46,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
+}

@@ -1,0 +1,486 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.bell_412ep": {
+      "doc": "Bell 412EP: original polygonal exterior and heli-analog cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.bell_412ep",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.bell_412ep",
+          "spec": {
+            "label": "Bell 412EP",
+            "genericLabel": "Helicopter with enclosed cockpit",
+            "model": "helicopter",
+            "mass": 4300,
+            "span": 14.02,
+            "length": 17.13,
+            "height": 4.54,
+            "centerOfMass": [
+              0,
+              1.25,
+              0
+            ],
+            "pilotEye": [
+              -0.55,
+              1.94,
+              2.12
+            ],
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.35,
+            "hardLandingPitch": 0.4,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.25,
+                7.3659
+              ],
+              [
+                0,
+                1.25,
+                -7.3659
+              ],
+              [
+                6.4492,
+                4.34,
+                0
+              ],
+              [
+                -6.4492,
+                4.34,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "main-rotor",
+                  "axis": "y",
+                  "multiplier": 1
+                },
+                {
+                  "node": "tail-rotor",
+                  "axis": "x",
+                  "multiplier": 4.5
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": []
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "bindings": [
+                  {
+                    "node": "412-needle-163-184",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.035,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-horizon-265",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "412-needle-397-153",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0206,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-489-153",
+                    "source": "rotorSpeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-494-276",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-265-352",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "offset": 0
+                  },
+                  {
+                    "node": "412-needle-1048-125",
+                    "source": "rotorSpeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-1184-130",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.035,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-horizon-1341",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "412-needle-1485-181",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0206,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-1184-298",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-1341-381",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "offset": 0
+                  },
+                  {
+                    "node": "412-needle-1490-497",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0206,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-873-153",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-873-239",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-873-325",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-873-410",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-873-493",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-948-153",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-948-239",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-948-325",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-948-410",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-needle-948-493",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 2.9,
+                    "offset": -1.65
+                  },
+                  {
+                    "node": "412-cyclic--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.16
+                  },
+                  {
+                    "node": "412-cyclic--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.16
+                  },
+                  {
+                    "node": "412-collective--1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "412-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.045
+                  },
+                  {
+                    "node": "412-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.045
+                  },
+                  {
+                    "node": "412-cyclic-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.16
+                  },
+                  {
+                    "node": "412-cyclic-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.16
+                  },
+                  {
+                    "node": "412-collective-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "412-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.045
+                  },
+                  {
+                    "node": "412-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.045
+                  }
+                ]
+              }
+            },
+            "engine": {
+              "position": [
+                0,
+                1.25,
+                0
+              ],
+              "thrustAxis": [
+                0,
+                1,
+                0
+              ],
+              "power": 1342000,
+              "idleRpm": 1,
+              "spoolRate": 0.16,
+              "rotorAngularSpeed": 24,
+              "ratedDensityRatio": 0.7,
+              "densityExponent": 1
+            },
+            "helicopter": {
+              "rotorPosition": [
+                0,
+                3.52,
+                0
+              ],
+              "rotorRadius": 7.01,
+              "cyclicTilt": 0.5,
+              "cyclicResponse": 4,
+              "cyclicDamping": 2.4,
+              "groundLevelRate": 1,
+              "maxTilt": 0.65,
+              "yawRate": 0.85,
+              "liftMultiplier": 2.05,
+              "groundEffect": 0.12,
+              "translationalLift": 0.1,
+              "translationalLiftSpeed": 18,
+              "verticalDrag": 774,
+              "horizontalDrag": 68.79931110880828,
+              "quadraticDrag": 1.1800132249466002,
+              "groundDeceleration": 9,
+              "vortexRing": true,
+              "retreatingBladeSpeed": 70.92124984,
+              "rotorDiscs": 1,
+              "powerLimitedRotor": true,
+              "rotorEfficiency": 0.75,
+              "profilePowerFraction": 0.12
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.55,
+                1.94,
+                2.12
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                0.55,
+                1.94,
+                2.12
+              ]
+            }
+          ],
+          "entries": [
+            [
+              2,
+              0,
+              2.12
+            ]
+          ],
+          "exits": [
+            [
+              2.7,
+              0,
+              2.12
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.2,
+          "width": 8.03,
+          "height": 2.5,
+          "cruise": 45,
+          "weight": 0.35
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.bell_412ep"
+      ]
+    }
+  }
+}

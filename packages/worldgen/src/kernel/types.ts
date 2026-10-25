@@ -98,6 +98,10 @@ export interface ModelPlacementRequest {
   scale?: Vec3;
 }
 export interface BuildingRequest {
+  /** Reserved approach from a public boundary to an entrance, in local meters. */
+  access?: { from: Vec2; to: Vec2; width: number; garage?: boolean };
+  /** Admission/detail priority before footprint area (default 0); inferred scenery can use -1. */
+  priority?: number;
   /** Caller-owned stable identity, e.g. `f:123456` or `room:hall-1`; seeds every look choice. */
   identity: string;
   /** Opaque category labels, most specific first (e.g. `['house', 'building']`). */

@@ -608,7 +608,7 @@ export function buildMunich(out) {
   floodlights(out);
 }
 export const munichStudy = {
-  id: 'N0692',
+  id: 'munich_olympic_stadium',
   key: 'munich_olympic_stadium',
   wikidataId: 'Q131610',
   title: 'Munich Olympic Stadium',

@@ -1,0 +1,273 @@
+{
+  "variant": "A400M Atlas, modern eight-display flight deck, clean unarmed transport",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://image.contactad.airbus.com/lib/fe2d1171756404747c1678/m/1/7f52cf78-0b6e-49b2-8028-4cc0b85158bd.pdf",
+      "title": "A400M – The 21st Century Airlifter,2025 pp18–19,24–25 and cover",
+      "author": "Airbus",
+      "license": "Copyright Airbus; local reference study only. No brochure pixels shipped in model.",
+      "scope": "Length45.10m, span42.40m, height14.70m; dimensioned general-arrangement illustrations, not engineering station drawings. Cargo hold17.70m, height3.85–4.00m; eight-blade propellers and down-between-engines rotation. Cover photograph confirms nose, glazing and probe."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Airbus_A400M_cockpit_ILA2014.jpg",
+      "title": "A400M flight deck,ILA2014",
+      "author": "Oleg Belyakov",
+      "license": "CC BY-SA3.0 https://creativecommons.org/licenses/by-sa/3.0/",
+      "scope": "Six main screens plus two pedestal screens, sidesticks, FCU/radio shelf, throttle bank, keyboards and roof-mounted HUDs. Local cropped/rectified comparison only; no photo pixels in model. Dimensions and planar correction estimated."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cockpit_of_a_RAF_A400M_Atlas_MOD_45163798.jpg",
+      "title": "RAF A400M Atlas flight deck,24May2017",
+      "author": "Sgt Ralph Merry ABIPP/MOD",
+      "license": "OGL v1.0 https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+      "scope": "Overhead divisions, fire guards, HUD roof brackets, crew seating and pedestal depth. Wide-angle occupied photograph."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Chievres_Fire_Fighters_424th_Squadron_Turkish_Airbus_A400M_exercise_180712-A-HZ738-0032.jpg",
+      "title": "Turkish A400M fire rescue exercise,Chièvres,12July2018",
+      "author": "US Army / Henri Cambier",
+      "license": "Public domain US federal government work",
+      "scope": "Seat structure, restraint, bulkhead and sidewall vents; occupied panel not used for screen positioning."
+    },
+    {
+      "url": "https://www.easa.europa.eu/sites/default/files/dfu/TCDS%20P%20012%20-%20FH385-FH386%20Series%20-%20Issue04%20_20151512_1.0.pdf",
+      "title": "EASA P.012,FH385/FH386 series,Issue04,15December2015,pp5–6",
+      "author": "European Aviation Safety Agency",
+      "license": "Publicly available certification reference; no document pixels shipped",
+      "scope": "Eight blades;5.334m diameter;FH385 counterclockwise/FH386 clockwise viewed aft-looking-forward;maximum takeoff speed860rpm. The simulator uses860rpm as its full-scale visual speed, without FADEC mode scheduling."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      5.38,
+      17.5
+    ],
+    "lookAt": [
+      0,
+      4.54,
+      19.45
+    ],
+    "fov": 84
+  },
+  "panelOriginHeight": 30,
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -4.7
+    ],
+    "viewHeight": 2.05,
+    "cameraHeight": 10.65
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0,
+    "engine2": 0,
+    "engine3": 0,
+    "engine4": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0,
+    "engine2": 0,
+    "engine3": 0,
+    "engine4": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/a400m-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 850,
+        "height": 300
+      },
+      "referenceAnchor": [
+        12,
+        292
+      ],
+      "modelAnchor": [
+        -22.55,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 816,
+        "meters": 45.1,
+        "description": "Airbus overall length. Uniform scale; general-arrangement illustration differs slightly between views."
+      },
+      "edgeMode": "photo",
+      "scope": "Fuselage, cockpit, ramp, nacelle and fin silhouettes."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/a400m-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 790,
+        "height": 830
+      },
+      "referenceAnchor": [
+        394,
+        814
+      ],
+      "modelAnchor": [
+        0,
+        22.55
+      ],
+      "scaleControls": {
+        "pixels": 749,
+        "meters": 42.4,
+        "description": "Manufacturer span. Rotated180degrees to nose-down; no perspective fitting."
+      },
+      "edgeMode": "photo",
+      "scope": "Wing and tail sweep/taper, engine spacing and nacelle stagger."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/a400m-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 790,
+        "height": 290
+      },
+      "referenceAnchor": [
+        395,
+        277
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 749,
+        "meters": 42.4,
+        "description": "Manufacturer span; height independently compared against14.70m."
+      },
+      "edgeMode": "photo",
+      "scope": "Wing anhedral, gear, propeller discs and T-tail height."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/a400m-panel-rectified.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1200,
+        "height": 230
+      },
+      "referenceAnchor": [
+        600,
+        115
+      ],
+      "modelAnchor": [
+        0,
+        -4.57
+      ],
+      "scaleControls": {
+        "pixels": 1200,
+        "meters": 2.38,
+        "description": "Estimated2.38m width across six main displays. Photo plane reconstructed from four outer display corners; equal display aspect assumed. Qualitative layout comparison, not measured cockpit geometry."
+      },
+      "edgeMode": "photo",
+      "scope": "Six-screen row, standby strip, relative display spacing. Excludes glare shield and pedestal on different planes.",
+      "referencePreparation": {
+        "source": ".artifacts/aircraft/references/a400m-cockpit.jpg",
+        "sourceSize": [
+          1600,
+          1067
+        ],
+        "sourceCorners": [
+          [
+            470,
+            367
+          ],
+          [
+            1110,
+            403
+          ],
+          [
+            1124,
+            516
+          ],
+          [
+            500,
+            590
+          ]
+        ],
+        "targetCorners": [
+          [
+            0,
+            0
+          ],
+          [
+            1200,
+            0
+          ],
+          [
+            1200,
+            230
+          ],
+          [
+            0,
+            230
+          ]
+        ],
+        "method": "Single planar homography estimated from six-screen row outer corners before model capture. Lens distortion and panel nonplanarity remain. Not a quantitative accuracy test."
+      }
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced the generic transport with a dedicated A400M shell, rounded nose/radome, six window panes, swept anhedral wing, staggered nacelles, swept T-tail, probe, sponsons and six twin-wheel main legs. Overlay review corrected the rudder outline and nose width. Close renders corrected overlapping nose surfaces, floating skin fittings and a cargo floor extending through the rising rear body.",
+      "Eight individually shaped blades per propeller,5.334m diameter, correctly handed down-between-engines rotation. Both visual signs and aircraft engine rotation metadata match; full-scale simulated propeller speed is860rpm from EASA P.012.",
+      "Six main screens and two sloped pedestal screens, narrow standby strip, FCU/radio shelf, roof-mounted HUD assemblies, sidesticks with boots, pedals, folding trays, four throttles, keyboards/trackballs, overhead fire guards and blue/gray seats with harnesses. Standby horizon uses a real panel aperture to avoid masking neighbouring instruments.",
+      "Shared bounded expressions drive units, signs, heading cards, digit decoding and availability; each engine gauge reads its own normalized simulated RPM and converts it to configured shaft RPM. Unsupported core/system quantities stay blank. Tests check actual rotor directions, control trailing-edge directions and fixed swept/canted hinge axes."
+    ],
+    "independentDimensions": "Airbus2025 brochure labels length45.10m, span42.40m and height14.70m; three views compared at independent uniform scales. Cargo floor length17.70m and approximately3.9m internal height cross-check the published17.70m/3.85–4.00m envelope. EASA P.012 independently specifies eight blades and5.334m propeller diameter. Engine offsets6.85/12.85m and tailspan19m are estimates sampled from the Airbus illustrations, not independent engineering dimensions. Panel width2.38m across the six displays is a photographic estimate.",
+    "visual": "Personally inspected final-hash side/top/front/panel overlays, all eight standard views and13 detail/state captures: zero, cruise, limits, negative altitude, missing telemetry, console, overhead, close exterior, gear-up, tail, both control extremes and seats. Twenty-five instrument tests, targeted geometry/sightline/hash checks and byte-identical regeneration passed. Panel homography inputs and assumptions are recorded explicitly.",
+    "limitations": [
+      "The dimensioned Airbus views are general-arrangement illustrations with small inter-view discrepancies, not engineering cross-sections. Nose glazing, fuselage sections, airfoils, nacelles and local fairings are reconstructed. Window corners and the top of the tail remain approximate.",
+      "Cockpit width and depth are estimated from perspective photographs. The panel overlay uses a documented planar rectification of the six-screen row; it does not prove metric cockpit accuracy. Overhead, seats, sidewalls and ancillary controls retain simplified geometry and switch arrangements.",
+      "Display symbology is an original simulator adaptation. Speed is true airspeed, altitude is geometric and heading is true. Navigation/maps, flight management, autopilot, radios, electrical/hydraulic systems and collimated HUD symbology are not implemented.",
+      "Engine gauges show each simulated propeller shaft speed against the configured860rpm full scale. FADEC speed modes, torque, ITT, NG, fuel, oil and engine failure annunciations are not simulated and remain blank. Propeller pitch, feathering and reverse are not animated.",
+      "Gear retracts through translation/hiding; flaps rotate without full Fowler travel. Cargo ramp stays closed, hold furnishings are minimal, and skin fasteners are selective rather than a manufacturing rivet schedule. Assisted flight tuning is not certified A400M performance."
+    ]
+  },
+  "sourceHash": "sha256:1b3c59db102a20ec3274aa73fa6b83f01570af960bdaabf43581c0d9593d8a3d",
+  "runtimeHash": "sha256:4cd8915ff22bcd40a1569d2b537fa2f6c0fcc3afa6f23b5743473052fdd05dc0",
+  "limitations": [
+    "The dimensioned Airbus views are general-arrangement illustrations with small inter-view discrepancies, not engineering cross-sections. Nose glazing, fuselage sections, airfoils, nacelles and local fairings are reconstructed. Window corners and the top of the tail remain approximate.",
+    "Cockpit width and depth are estimated from perspective photographs. The panel overlay uses a documented planar rectification of the six-screen row; it does not prove metric cockpit accuracy. Overhead, seats, sidewalls and ancillary controls retain simplified geometry and switch arrangements.",
+    "Display symbology is an original simulator adaptation. Speed is true airspeed, altitude is geometric and heading is true. Navigation/maps, flight management, autopilot, radios, electrical/hydraulic systems and collimated HUD symbology are not implemented.",
+    "Engine gauges show each simulated propeller shaft speed against the configured860rpm full scale. FADEC speed modes, torque, ITT, NG, fuel, oil and engine failure annunciations are not simulated and remain blank. Propeller pitch, feathering and reverse are not animated.",
+    "Gear retracts through translation/hiding; flaps rotate without full Fowler travel. Cargo ramp stays closed, hold furnishings are minimal, and skin fasteners are selective rather than a manufacturing rivet schedule. Assisted flight tuning is not certified A400M performance."
+  ]
+}

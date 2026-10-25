@@ -1,0 +1,1028 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.haapsalu_castle",
+  "sourceHash": "sha256:1e544640a9d57c44488e69abfd0eb2a82427660371a4d70736b9498d3d992f2b",
+  "runtimeHash": "sha256:68f524685fd80d3f8f90125e3363633843bde0562d7bdcb93e8630897c32813d",
+  "fixtureHash": "sha256:1ba4310b401880bcebc368fc2ba02cb9a4358a498f6e03d2057ad1ccc352069c",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4268,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:7ece37dbecb5c55191c83b133537b5358d2ce12c0eca3cdab19244340c6bd73e",
+      "bytes": 70316,
+      "gzipBytes": 23035,
+      "triangles": 755,
+      "cpuBytes": 68900,
+      "gpuBytes": 68900,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:d0b0edeb8ec7218be72e062daf031b44b125a451318131012af591c6c7fcb4d6",
+      "bytes": 312628,
+      "gzipBytes": 97253,
+      "triangles": 3284,
+      "cpuBytes": 305224,
+      "gpuBytes": 305224,
+      "errorMeters": 1.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:229150b98b6bae9267d3373f6dfbb2f697ad786d933bfee991dbb6eaa1a44cfc",
+      "bytes": 598244,
+      "gzipBytes": 189292,
+      "triangles": 5973,
+      "cpuBytes": 589664,
+      "gpuBytes": 589664,
+      "errorMeters": 0.5,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:229150b98b6bae9267d3373f6dfbb2f697ad786d933bfee991dbb6eaa1a44cfc",
+      "bytes": 598244,
+      "gzipBytes": 189292,
+      "triangles": 5973,
+      "cpuBytes": 589664,
+      "gpuBytes": 589664,
+      "errorMeters": 0.15,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:88b3b5be4ddd30822938e24ebeac17d309da5c7056e8fc17e4cbfacbd2c25500"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:7aadcb52826fd960dfe649c744796a2b68d705bea9e666061b51de488e5f1d04"
+    }
+  },
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:04c2f46a8f34a5d6ba88b10d6ee65d5c42738410acb3f9e45f8a713665097133",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          59.4521,
+          43.715,
+          100.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:1a402ad47d697972ea558cc7113f11611415d73aa4479f721574e7629f17237d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          59.4521,
+          43.715,
+          100.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:2084aed6fc2c97f1195dce9239c27a4b489818ac99a8dc1c6529b0a6c15e9a70",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          59.4521,
+          43.715,
+          100.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:876af3e8938caf5dec907836cbbf2c26287962b6c483261e312b519c75e07f4f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          59.4521,
+          43.715,
+          100.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:64cf2d97c035187fefdc2e2b60229fcc923a38b96bf0d6a8421b1b97a90f0525",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 40322,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          108.4521,
+          79.715,
+          185.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:9fabe5d2ca35462d84ff55a8a17cfddd0b6fd0fc397e89fc6086d7a9ed55dfe0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40322,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          108.4521,
+          79.715,
+          185.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:a00cc2f584aa16460d0fd865227453e5cf9215db5765794a0cd592e7600587b4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 40322,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          108.4521,
+          79.715,
+          185.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:f5eda2cae66b162e23a323b7ec6438e262b95d2b8fb66f0a0c824cf8dadbf40e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40322,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          108.4521,
+          79.715,
+          185.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:78ac69dfa0a0ff7eb040c89fdc45ad7e702895e517dda0c64527ce3f9d963e0a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 37793,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          205.4521,
+          117.715,
+          353.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:06b5c576a3563c8eee98c4aa4812c25f87971e18a2319c5b3337a58f4c54fd64",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 37793,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          205.4521,
+          117.715,
+          353.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:01922801a580620481dcd27dcc3444b736abbffc9130b2ff89e2b677de8d0f78",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 37793,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          205.4521,
+          117.715,
+          353.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:9d2499542b782b970726ea9aa25ec5a34399dd26a73f0858e90cfd70488563f4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 37793,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          205.4521,
+          117.715,
+          353.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:f147b760f65a6b7d34f461e8ad974fc2ab16c8df34e14c25d253ff850d660e47",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 33525,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          205.4521,
+          117.715,
+          353.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/clock-and-west-wing.png",
+      "hash": "sha256:347eddaff9831289c5392ff3a21f7b6e75320c1dda804268151638ead13f3d9c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          -81,
+          47,
+          -59
+        ],
+        "lookAt": [
+          -2,
+          18,
+          -27
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/cathedral-and-baptistry.png",
+      "hash": "sha256:e788634a3893965a6a10bd035452e83228e00dfca3ef8de24d9679ab9cc12773",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          71,
+          41,
+          48
+        ],
+        "lookAt": [
+          7,
+          13,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/open-court-and-folded-stairs.png",
+      "hash": "sha256:3e42fad6e156a20c143818b352f6730def99f1dfbd269d4f43a608376327ef99",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          43,
+          34,
+          -8
+        ],
+        "lookAt": [
+          8,
+          11,
+          -30
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/outer-enclosure-and-towers.png",
+      "hash": "sha256:3dc614b1874e95955064180547f810ca4ef27875b45420442408de91258e705e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          177,
+          94,
+          173
+        ],
+        "lookAt": [
+          14,
+          9,
+          20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/clock-tower-detail.png",
+      "hash": "sha256:aea108ca56d08eb2195f01055a20713885489fc49bbbc3360e63cbcc7fa096d1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          -43,
+          33,
+          -42
+        ],
+        "lookAt": [
+          -13,
+          23,
+          -32
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/northwest-wall-gap.png",
+      "hash": "sha256:0317f190fe4ae57764ab9af0c589002661e4fa09e127a949adb1b2141e812d25",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          -65,
+          18,
+          -119
+        ],
+        "lookAt": [
+          -54,
+          5,
+          -73
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/east-ruin-and-entrance.png",
+      "hash": "sha256:9544744ffdc2481c0d1f07e7f3ca95b3f487835a98adf675f00d8d3dba55b964",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          72,
+          25,
+          -37
+        ],
+        "lookAt": [
+          26,
+          12,
+          -36
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:a6d6925f2587ce1ec7b161755e998f9bcb28b310bf0a1da6c0bbe3e208468b56",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 37793,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          108.4521,
+          79.715,
+          185.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:9fabe5d2ca35462d84ff55a8a17cfddd0b6fd0fc397e89fc6086d7a9ed55dfe0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40322,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          108.4521,
+          79.715,
+          185.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:5b07b5c47037fc537a4869d7f044c09b853d58b0728a11dbf962e4402ad172ae",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          108.4521,
+          79.715,
+          185.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:ced50f5561d5cb695294a085cfbb58cde52d499086d90c4c5d54e083246dde8a",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43011,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud2/haapsalu_castle/terrain-review.height.png"
+        },
+        "position": [
+          108.4521,
+          79.715,
+          185.0648
+        ],
+        "lookAt": [
+          11.4521,
+          28.715,
+          17.0648
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.plaster_lime": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    }
+  ],
+  "errors": []
+}

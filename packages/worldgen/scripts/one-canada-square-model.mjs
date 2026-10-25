@@ -5,7 +5,7 @@ import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frameBytes = readFileSync(structureSourcePath('n0222_one_canada_square', 'map-frame.json'));
+const frameBytes = readFileSync(structureSourcePath('one_canada_square', 'map-frame.json'));
 const frame = JSON.parse(frameBytes);
 const cx = -2.65;
 const module = 3.048;
@@ -679,7 +679,7 @@ function base(out) {
 }
 
 export const oneCanadaSquareStudy = {
-  id: 'N0222',
+  id: 'one_canada_square',
   key: 'one_canada_square',
   title: 'One Canada Square',
   wikidataId: 'Q503477',

@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineGlobal } from '../../worldgen/scripts/signature-tower-global-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/sp/sp3/n0173_torre_glories'),
+const source = resolve('../../content/worldgen/source/places/sp/sp3/torre_glories'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -84,7 +84,7 @@ it('reproduces Torre Glòries original detailed master and the independent signe
         doubleSided: true,
       },
     });
-  skylineGlobal.find((p) => p.id === 'N0173').build(a.wrap(b), m);
+  skylineGlobal.find((p) => p.id === 'torre_glories').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`);
   expect(m.elements).toHaveLength(1);
   expect(m.elements[0].id).toBe(44213122);

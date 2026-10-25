@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/',
+  '../../../content/worldgen/source/places/ey/eyc/castle_of_saint_george/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root))),
@@ -700,7 +700,7 @@ export function buildSaoJorgeRuntime(out, level = 'closeup') {
 }
 export const buildSaoJorgeSkyline = (o) => buildSaoJorgeRuntime(o, 'skyline');
 export const saoJorgeStudy = {
-  id: 'N0308',
+  id: 'castle_of_saint_george',
   key: 'castle_of_saint_george',
   title: 'Castle of Saint George',
   category: 'castle',

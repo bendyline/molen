@@ -1,0 +1,1757 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.dhc_2": {
+      "doc": "De Havilland Canada DHC-2 Beaver: original polygonal exterior and classic cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.dhc_2",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.dhc_2",
+          "spec": {
+            "label": "De Havilland Canada DHC-2 Beaver",
+            "genericLabel": "Civil transport with enclosed cockpit",
+            "model": "airplane",
+            "mass": 1800,
+            "span": 14.6304,
+            "length": 9.2456,
+            "height": 2.74,
+            "centerOfMass": [
+              0,
+              1.7,
+              0
+            ],
+            "pilotEye": [
+              0.34,
+              2.551102149677117,
+              1.878948113937678
+            ],
+            "hardLandingSpeed": 4,
+            "hardLandingRoll": 0.2,
+            "hardLandingPitch": 0.28,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.7,
+                3.975608
+              ],
+              [
+                0,
+                1.7,
+                -3.975608
+              ],
+              [
+                6.729984,
+                1.7,
+                0
+              ],
+              [
+                -6.729984,
+                1.7,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "Beaver-propeller",
+                  "engine": "engine-1",
+                  "axis": "z",
+                  "multiplier": 1
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": [
+                  {
+                    "node": "Beaver-flap--1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.55
+                  },
+                  {
+                    "node": "Beaver-aileron--1",
+                    "source": "aileronR",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "Beaver-elevator--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.35
+                  },
+                  {
+                    "node": "Beaver-flap-1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.55
+                  },
+                  {
+                    "node": "Beaver-aileron-1",
+                    "source": "aileronL",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "Beaver-elevator-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.35
+                  },
+                  {
+                    "node": "Beaver-rudder-moving",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.42
+                  }
+                ],
+                "derived": {
+                  "aileronR": {
+                    "op": "add",
+                    "args": [
+                      "aileronDroop",
+                      "rollRight"
+                    ]
+                  },
+                  "aileronDroop": {
+                    "op": "multiply",
+                    "args": [
+                      "flapPosition",
+                      -0.18
+                    ]
+                  },
+                  "rollRight": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      0.32
+                    ]
+                  },
+                  "aileronL": {
+                    "op": "add",
+                    "args": [
+                      "aileronDroop",
+                      "rollLeft"
+                    ]
+                  },
+                  "rollLeft": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      -0.32
+                    ]
+                  }
+                },
+                "sources": {
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  }
+                }
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "sources": {
+                  "trueAirspeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "airspeed"
+                    ]
+                  },
+                  "altitude": {
+                    "component": "transform",
+                    "path": [
+                      "pos",
+                      1
+                    ]
+                  },
+                  "yaw": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "pitch": {
+                    "component": "aircraftState",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "roll": {
+                    "component": "aircraftState",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "verticalSpeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "verticalSpeed"
+                    ]
+                  },
+                  "yawRate": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yawRate"
+                    ]
+                  },
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "engine1": {
+                    "component": "aircraftState",
+                    "path": [
+                      "engines",
+                      "engine-1",
+                      "rpm"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "power": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "power"
+                    ]
+                  }
+                },
+                "derived": {
+                  "mph": {
+                    "op": "multiply",
+                    "args": [
+                      "trueAirspeed",
+                      2.236936292054402
+                    ]
+                  },
+                  "feet": {
+                    "op": "divide",
+                    "args": [
+                      "altitude",
+                      0.3048
+                    ]
+                  },
+                  "verticalFpm": {
+                    "op": "multiply",
+                    "args": [
+                      "verticalSpeed",
+                      196.85039370078738
+                    ]
+                  },
+                  "northYaw": {
+                    "op": "subtract",
+                    "args": [
+                      3.141592653589793,
+                      "yaw"
+                    ]
+                  },
+                  "trueHeading": {
+                    "op": "modulo",
+                    "args": [
+                      "northYaw",
+                      6.283185307179586
+                    ]
+                  },
+                  "engineRpm": {
+                    "op": "multiply",
+                    "args": [
+                      "engine1",
+                      2300
+                    ]
+                  },
+                  "turnDegrees": {
+                    "op": "multiply",
+                    "args": [
+                      "yawRate",
+                      57.29577951308232
+                    ]
+                  },
+                  "Beaver.speed.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "mph",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.speed.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.speed.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.attitude-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "roll",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.attitude-bank.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.attitude-bank.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.attitude-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "pitch",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.attitude-pitch.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.attitude-pitch.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.vsi.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "verticalFpm",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.vsi.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.vsi.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.altimeter-0.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.altimeter-0.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.altimeter-0.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.altimeter-1.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.altimeter-1.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.altimeter-1.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.altimeter-2.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.altimeter-2.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.altimeter-2.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.heading.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.heading.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.heading.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.turn.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "turnDegrees",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.turn.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.turn.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.rpm.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "engineRpm",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.rpm.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.rpm.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.flap-indicator.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "flapPosition",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Beaver.flap-indicator.available": {
+                    "op": "greater",
+                    "args": [
+                      "Beaver.flap-indicator.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "aileronDroop": {
+                    "op": "multiply",
+                    "args": [
+                      "flapPosition",
+                      -0.18
+                    ]
+                  },
+                  "rollLeft": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      -0.32
+                    ]
+                  },
+                  "rollRight": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      0.32
+                    ]
+                  },
+                  "aileronL": {
+                    "op": "add",
+                    "args": [
+                      "aileronDroop",
+                      "rollLeft"
+                    ]
+                  },
+                  "aileronR": {
+                    "op": "add",
+                    "args": [
+                      "aileronDroop",
+                      "rollRight"
+                    ]
+                  }
+                },
+                "bindings": [
+                  {
+                    "node": "Beaver-speed",
+                    "source": "mph",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        25,
+                        0.5
+                      ],
+                      [
+                        50,
+                        1.1
+                      ],
+                      [
+                        75,
+                        1.7
+                      ],
+                      [
+                        100,
+                        2.3
+                      ],
+                      [
+                        125,
+                        2.9
+                      ],
+                      [
+                        150,
+                        3.5
+                      ],
+                      [
+                        175,
+                        4.1
+                      ],
+                      [
+                        200,
+                        4.7
+                      ],
+                      [
+                        225,
+                        5.3
+                      ],
+                      [
+                        250,
+                        5.9
+                      ]
+                    ],
+                    "responseSeconds": 0.2,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Beaver-speed",
+                    "source": "Beaver.speed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-attitude-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Beaver-attitude-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.08715,
+                    "min": -0.024900000000000002,
+                    "max": 0.024900000000000002,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Beaver-attitude-bank",
+                    "source": "Beaver.attitude-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-attitude-pitch",
+                    "source": "Beaver.attitude-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-vsi",
+                    "source": "verticalFpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -2000,
+                        -2.4
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        2000,
+                        2.4
+                      ]
+                    ],
+                    "responseSeconds": 0.5,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Beaver-vsi",
+                    "source": "Beaver.vsi.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-altimeter-0",
+                    "source": "Beaver.altimeter-0.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-altimeter-1",
+                    "source": "Beaver.altimeter-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-altimeter-2",
+                    "source": "Beaver.altimeter-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-altimeter-0",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.006283185307179587,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Beaver-altimeter-1",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Beaver-altimeter-2",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.00006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Beaver-heading-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Beaver-heading-drum",
+                    "source": "Beaver.heading.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-turn",
+                    "source": "turnDegrees",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -6,
+                        -0.6
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        6,
+                        0.6
+                      ]
+                    ],
+                    "responseSeconds": 0.2,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Beaver-turn",
+                    "source": "Beaver.turn.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-rpm",
+                    "source": "engineRpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        500,
+                        0.9
+                      ],
+                      [
+                        1000,
+                        1.8
+                      ],
+                      [
+                        1500,
+                        2.7
+                      ],
+                      [
+                        2000,
+                        3.6
+                      ],
+                      [
+                        2500,
+                        4.5
+                      ]
+                    ],
+                    "responseSeconds": 0.2,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Beaver-rpm",
+                    "source": "Beaver.rpm.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-quadrant-0",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.65
+                  },
+                  {
+                    "node": "Beaver-flap-indicator",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        -1.1
+                      ],
+                      [
+                        1,
+                        1.1
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Beaver-flap-indicator",
+                    "source": "Beaver.flap-indicator.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Beaver-column",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.14
+                  },
+                  {
+                    "node": "Beaver-wheel",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.65
+                  },
+                  {
+                    "node": "Beaver-flap-pump",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.45
+                  },
+                  {
+                    "node": "Beaver-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "Beaver-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "Beaver-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "Beaver-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  }
+                ]
+              }
+            },
+            "airplane": {
+              "wingPosition": [
+                0,
+                1.7,
+                0
+              ],
+              "wingArea": 23.23,
+              "controlAuthoritySpeed": 45,
+              "maxControlAuthority": 1.8,
+              "pitchAuthority": 0.18,
+              "pitchResponse": 2.5,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 1.05,
+              "rollResponse": 2,
+              "rudderAuthority": 1,
+              "groundSteerSpeed": 8,
+              "groundLevelRate": 2,
+              "maxGroundPitch": 0.22,
+              "camberAngle": 0.045,
+              "flapLift": 0.8,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "pitchFrequency": 3.5,
+              "pitchDamping": 0.7,
+              "maxLoadFactor": 3.8,
+              "minLoadFactor": -1.5,
+              "autoTrim": 1,
+              "directionalStability": 4,
+              "yawDamping": 1.2,
+              "dihedralEffect": 2.5,
+              "propellerEffects": 0.08,
+              "stallSpeed": 26,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.04869754154331233,
+              "inducedDrag": 0.04212821756676095,
+              "gearDrag": 0.004,
+              "flapDrag": 0.075,
+              "gearTransitTime": 0,
+              "flapTransitTime": 4,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.85,
+              "maxThrust": 7560,
+              "minPropellerSpeed": 25,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 4,
+              "rollingDeceleration": 0.22,
+              "groundTrackRate": 12,
+              "fixedGear": true,
+              "groundEffect": true,
+              "criticalMach": 0.62,
+              "waveDrag": 0.22,
+              "maxMach": 0.72,
+              "maxEquivalentAirspeed": 76.54933333333334,
+              "flapLimitSpeed": 45
+            },
+            "engines": [
+              {
+                "id": "engine-1",
+                "position": [
+                  0,
+                  1.798921912669385,
+                  3.6359981675943724
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 335600,
+                "idleRpm": 0.18,
+                "spoolRate": 0.25,
+                "rotorAngularSpeed": 240.85543677521747,
+                "maxThrust": 7131.5,
+                "minPropellerSpeed": 25,
+                "propellerEfficiency": 0.85,
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 1
+              }
+            ]
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.34,
+                2.551102149677117,
+                1.878948113937678
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                -0.34,
+                2.551102149677117,
+                1.878948113937678
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.55,
+              0,
+              1.878948113937678
+            ]
+          ],
+          "exits": [
+            [
+              2.25,
+              0,
+              1.878948113937678
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.83,
+          "width": 11.28,
+          "height": 4.1,
+          "cruise": 90,
+          "weight": 0.35
+        },
+        "model.signals": {
+          "sources": {
+            "trueAirspeed": {
+              "component": "aircraftState",
+              "path": [
+                "airspeed"
+              ]
+            },
+            "altitude": {
+              "component": "transform",
+              "path": [
+                "pos",
+                1
+              ]
+            },
+            "yaw": {
+              "component": "aircraftState",
+              "path": [
+                "yaw"
+              ]
+            },
+            "pitch": {
+              "component": "aircraftState",
+              "path": [
+                "pitch"
+              ]
+            },
+            "roll": {
+              "component": "aircraftState",
+              "path": [
+                "roll"
+              ]
+            },
+            "verticalSpeed": {
+              "component": "aircraftState",
+              "path": [
+                "verticalSpeed"
+              ]
+            },
+            "yawRate": {
+              "component": "aircraftState",
+              "path": [
+                "yawRate"
+              ]
+            },
+            "flapPosition": {
+              "component": "aircraftState",
+              "path": [
+                "flapPosition"
+              ]
+            },
+            "engine1": {
+              "component": "aircraftState",
+              "path": [
+                "engines",
+                "engine-1",
+                "rpm"
+              ]
+            },
+            "pitchInput": {
+              "component": "aircraftInput",
+              "path": [
+                "pitch"
+              ]
+            },
+            "rollInput": {
+              "component": "aircraftInput",
+              "path": [
+                "roll"
+              ]
+            },
+            "yawInput": {
+              "component": "aircraftInput",
+              "path": [
+                "yaw"
+              ]
+            },
+            "power": {
+              "component": "aircraftInput",
+              "path": [
+                "power"
+              ]
+            }
+          },
+          "derived": {
+            "mph": {
+              "op": "multiply",
+              "args": [
+                "trueAirspeed",
+                2.236936292054402
+              ]
+            },
+            "feet": {
+              "op": "divide",
+              "args": [
+                "altitude",
+                0.3048
+              ]
+            },
+            "verticalFpm": {
+              "op": "multiply",
+              "args": [
+                "verticalSpeed",
+                196.85039370078738
+              ]
+            },
+            "northYaw": {
+              "op": "subtract",
+              "args": [
+                3.141592653589793,
+                "yaw"
+              ]
+            },
+            "trueHeading": {
+              "op": "modulo",
+              "args": [
+                "northYaw",
+                6.283185307179586
+              ]
+            },
+            "engineRpm": {
+              "op": "multiply",
+              "args": [
+                "engine1",
+                2300
+              ]
+            },
+            "turnDegrees": {
+              "op": "multiply",
+              "args": [
+                "yawRate",
+                57.29577951308232
+              ]
+            },
+            "Beaver.speed.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "mph",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.speed.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.speed.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.attitude-bank.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "roll",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.attitude-bank.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.attitude-bank.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.attitude-pitch.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "pitch",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.attitude-pitch.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.attitude-pitch.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.vsi.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "verticalFpm",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.vsi.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.vsi.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.altimeter-0.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.altimeter-0.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.altimeter-0.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.altimeter-1.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.altimeter-1.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.altimeter-1.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.altimeter-2.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.altimeter-2.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.altimeter-2.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.heading.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.heading.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.heading.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.turn.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "turnDegrees",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.turn.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.turn.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.rpm.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "engineRpm",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.rpm.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.rpm.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.flap-indicator.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "flapPosition",
+                -100000000000000000000
+              ]
+            },
+            "Beaver.flap-indicator.available": {
+              "op": "greater",
+              "args": [
+                "Beaver.flap-indicator.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "aileronDroop": {
+              "op": "multiply",
+              "args": [
+                "flapPosition",
+                -0.18
+              ]
+            },
+            "rollLeft": {
+              "op": "multiply",
+              "args": [
+                "rollInput",
+                -0.32
+              ]
+            },
+            "rollRight": {
+              "op": "multiply",
+              "args": [
+                "rollInput",
+                0.32
+              ]
+            },
+            "aileronL": {
+              "op": "add",
+              "args": [
+                "aileronDroop",
+                "rollLeft"
+              ]
+            },
+            "aileronR": {
+              "op": "add",
+              "args": [
+                "aileronDroop",
+                "rollRight"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "Beaver-speed",
+              "source": "mph",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  25,
+                  0.5
+                ],
+                [
+                  50,
+                  1.1
+                ],
+                [
+                  75,
+                  1.7
+                ],
+                [
+                  100,
+                  2.3
+                ],
+                [
+                  125,
+                  2.9
+                ],
+                [
+                  150,
+                  3.5
+                ],
+                [
+                  175,
+                  4.1
+                ],
+                [
+                  200,
+                  4.7
+                ],
+                [
+                  225,
+                  5.3
+                ],
+                [
+                  250,
+                  5.9
+                ]
+              ],
+              "responseSeconds": 0.2,
+              "missing": "hold"
+            },
+            {
+              "node": "Beaver-speed",
+              "source": "Beaver.speed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-attitude-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Beaver-attitude-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.08715,
+              "min": -0.024900000000000002,
+              "max": 0.024900000000000002,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Beaver-attitude-bank",
+              "source": "Beaver.attitude-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-attitude-pitch",
+              "source": "Beaver.attitude-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-vsi",
+              "source": "verticalFpm",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -2000,
+                  -2.4
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  2000,
+                  2.4
+                ]
+              ],
+              "responseSeconds": 0.5,
+              "missing": "hold"
+            },
+            {
+              "node": "Beaver-vsi",
+              "source": "Beaver.vsi.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-altimeter-0",
+              "source": "Beaver.altimeter-0.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-altimeter-1",
+              "source": "Beaver.altimeter-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-altimeter-2",
+              "source": "Beaver.altimeter-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-altimeter-0",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.006283185307179587,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Beaver-altimeter-1",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.0006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Beaver-altimeter-2",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.00006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Beaver-heading-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Beaver-heading-drum",
+              "source": "Beaver.heading.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-turn",
+              "source": "turnDegrees",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -6,
+                  -0.6
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  6,
+                  0.6
+                ]
+              ],
+              "responseSeconds": 0.2,
+              "missing": "hold"
+            },
+            {
+              "node": "Beaver-turn",
+              "source": "Beaver.turn.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-rpm",
+              "source": "engineRpm",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  500,
+                  0.9
+                ],
+                [
+                  1000,
+                  1.8
+                ],
+                [
+                  1500,
+                  2.7
+                ],
+                [
+                  2000,
+                  3.6
+                ],
+                [
+                  2500,
+                  4.5
+                ]
+              ],
+              "responseSeconds": 0.2,
+              "missing": "hold"
+            },
+            {
+              "node": "Beaver-rpm",
+              "source": "Beaver.rpm.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-quadrant-0",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.65
+            },
+            {
+              "node": "Beaver-flap-indicator",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  -1.1
+                ],
+                [
+                  1,
+                  1.1
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Beaver-flap-indicator",
+              "source": "Beaver.flap-indicator.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Beaver-column",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.14
+            },
+            {
+              "node": "Beaver-wheel",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.65
+            },
+            {
+              "node": "Beaver-flap-pump",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.45
+            },
+            {
+              "node": "Beaver-pedal--1--1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.04
+            },
+            {
+              "node": "Beaver-pedal--1-1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.04
+            },
+            {
+              "node": "Beaver-pedal-1--1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.04
+            },
+            {
+              "node": "Beaver-pedal-1-1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.04
+            },
+            {
+              "node": "Beaver-flap--1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.55
+            },
+            {
+              "node": "Beaver-aileron--1",
+              "source": "aileronR",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "Beaver-elevator--1",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.35
+            },
+            {
+              "node": "Beaver-flap-1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.55
+            },
+            {
+              "node": "Beaver-aileron-1",
+              "source": "aileronL",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "Beaver-elevator-1",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.35
+            },
+            {
+              "node": "Beaver-rudder-moving",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.42
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.dhc_2"
+      ]
+    }
+  }
+}

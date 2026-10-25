@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/',
+  '../../../content/worldgen/source/places/u2/u2e/liechtenstein_castle/',
   import.meta.url,
 );
 const read = (n) => JSON.parse(readFileSync(new URL(n, root)));
@@ -657,7 +657,7 @@ export function buildLiechtensteinRuntime(o, level = 'closeup') {
 export const buildLiechtensteinSkyline = (o) => buildLiechtensteinRuntime(o, 'skyline');
 const camera = (name, p, look) => ({ name, position: native(p), lookAt: native(look) });
 export const liechtensteinStudy = {
-  id: 'N0302',
+  id: 'liechtenstein_castle',
   key: 'liechtenstein_castle',
   title: 'Liechtenstein Castle',
   category: 'castle',

@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.cathedral_of_christ_the_saviour",
+  "sourceHash": "sha256:6f967a329c598d2e26fa2fa2fb8ba57ccd7417fa1825589f3a1ff3a4e44c8df8",
+  "runtimeHash": "sha256:5fb56d9f40c42bdd620d06c1a8d5375d49a4c78d6ba5f39b722232438a12d98e",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4268,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:7aa60ffa9442c2da1ba5c9e8a88b47d74b3d721e2feb487f86ac9a9802aeca85",
+      "bytes": 82460,
+      "gzipBytes": 13844,
+      "triangles": 792,
+      "cpuBytes": 81036,
+      "gpuBytes": 81036,
+      "errorMeters": 2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:dcd64055e36376eefa2e2d80ca6b596522774bdd211485a849a01ad2f93bf855",
+      "bytes": 347564,
+      "gzipBytes": 96230,
+      "triangles": 3931,
+      "cpuBytes": 339092,
+      "gpuBytes": 339092,
+      "errorMeters": 0.8,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:6020463fdbf3d45a728399e0e924ac46cf015810c674eba79c51952cd3195fd6",
+      "bytes": 1343344,
+      "gzipBytes": 358553,
+      "triangles": 15837,
+      "cpuBytes": 1334828,
+      "gpuBytes": 1334828,
+      "errorMeters": 0.25,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:6b8a2602a3528817f1131c36d81c67bb7da8f9b5265ac0403b245377916933bc",
+      "bytes": 3236020,
+      "gzipBytes": 848563,
+      "triangles": 37632,
+      "cpuBytes": 3227476,
+      "gpuBytes": 3227476,
+      "errorMeters": 0.07,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:c1a482aa4b44157c8e190bc0bdf9e51b62e028544785219471ad01f076e45f13"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:4e6bed6c9131cfd1c5b59716ea5db3976c8f9c61e911bb1784172622d33779ce"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:05219389ffa7d13888810f54616f5d1e1f67187d969e124a562ff49a5204ea74",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          60.067400000000006,
+          56.372,
+          107.13130000000001
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:3e247121b6ccf52f60bd37f0772a444aa9ab2d29a40b743faeeb2614ce65e1d9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          60.067400000000006,
+          56.372,
+          107.13130000000001
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:5469c6c840368b0e3e465c4f2f372fa58a0805cdba673e7957ff9a8dfc486af8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          60.067400000000006,
+          56.372,
+          107.13130000000001
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:9f6ff699e3d5dfd6d2613e6039500b65a61a340cb373e7dee2675ac8d214ffea",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          60.067400000000006,
+          56.372,
+          107.13130000000001
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:209bc9a3ed4cbc9f4143f8869e3e8d719de0c89f0e3a83d93912f796f12b2f10",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 29001,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          123.76740000000001,
+          103.17200000000001,
+          217.6313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:7d4406539ffbe69e31b87eda1357b5f2b3a8d567e10e2b65970cd77ac3d4a5c0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 29001,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          123.76740000000001,
+          103.17200000000001,
+          217.6313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:1fdc55b615894bf58ed47ec4e6ff27025573666ff6375cd53dae9c9798830e9b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 29001,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          123.76740000000001,
+          103.17200000000001,
+          217.6313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:227638bf841f65c5df2904b254e239cd2be88d5ab48c43740384ddd784d6606c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 29001,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          123.76740000000001,
+          103.17200000000001,
+          217.6313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:2accefdbddbfe108ccfdc332253c244ce98838b6ec4825cfef594224a13d6bd3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25862,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          249.8674,
+          152.572,
+          436.0313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:13efaae4fe137e4d22ecf410f33a3ac5426b17b69700be4ca5e6d01098bca3fa",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25862,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          249.8674,
+          152.572,
+          436.0313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:bf43db54fb2f067b1f2ac43be5d6ecaedb0599ae2f8036a64e0ff738376c9e3c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25862,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          249.8674,
+          152.572,
+          436.0313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:20896fe77147825d3c2f1ec488cd50523531fdc19981ccbbba71d04aa0673491",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25862,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          249.8674,
+          152.572,
+          436.0313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:e624432ec46931d28e334c93e1fa23b5852e15788a0b75ce9a0d6c3d2d496192",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21594,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          249.8674,
+          152.572,
+          436.0313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northeast-rose-portal-and-banded-stone.png",
+      "hash": "sha256:2ccf5e074be35127123df351d7f0105006f0ba9bf0b5f2c4784583167ac118f9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 60518,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          40,
+          18,
+          -4
+        ],
+        "lookAt": [
+          13,
+          8,
+          -1.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northwest-three-door-porch-and-link.png",
+      "hash": "sha256:1149e1bff79463afd57e196319da38e1bc3f2fa424338faa87bb4325a5d1f796",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 60518,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          5,
+          10,
+          -39
+        ],
+        "lookAt": [
+          1,
+          3,
+          -10
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/clock-louvers-and-open-upper-crown.png",
+      "hash": "sha256:e251820da7137a20272746b42dffd92ed0a5e2e1d659fb9c715ccacceeb8f1a6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          -48,
+          41,
+          -43
+        ],
+        "lookAt": [
+          -16.72,
+          35,
+          -8.59
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/five-domed-drums-and-curved-roof.png",
+      "hash": "sha256:8734db1f264016378226fb836ba589ec3ea0781cbc1f0b4170d0373b90ac8858",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          36,
+          40,
+          -39
+        ],
+        "lookAt": [
+          3,
+          17,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southeast-apse-and-estimated-hidden-bays.png",
+      "hash": "sha256:b9fe0de2a956e2b4a5a353035090bab8a47b84aca454b92b95a7a6b9c6dce3dd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          27,
+          23,
+          43
+        ],
+        "lookAt": [
+          3,
+          8,
+          7.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-roof-and-signed-plan.png",
+      "hash": "sha256:713a1c95cbf6f5594bf761b3c2707a1cf8bb53166d71534878d7df76b8d43902",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          -3,
+          98,
+          1
+        ],
+        "lookAt": [
+          -3,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-banja-cathedral-skyline.png",
+      "hash": "sha256:be0086b6ee16b05003e7c8f834b1a198ceccd62e8423c9d08910eae2642be921",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25862,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          64,
+          48,
+          -72
+        ],
+        "lookAt": [
+          -3,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-banja-cathedral-district.png",
+      "hash": "sha256:627d6237babd8183101e9ca20591497a862a37b57882ade91c322f5c4ceca02a",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 29001,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          64,
+          48,
+          -72
+        ],
+        "lookAt": [
+          -3,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-banja-cathedral-street.png",
+      "hash": "sha256:64f412d8abbc9a6fcbb8063bcfefd7ef37d97f632208055c9f1eb3aa35060da0",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 40907,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          64,
+          48,
+          -72
+        ],
+        "lookAt": [
+          -3,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-banja-cathedral-closeup.png",
+      "hash": "sha256:da8d64d8dcbe2d7e8252d3d409f6a436c021e317381ff01d1a3f647a3b1b2339",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          64,
+          48,
+          -72
+        ],
+        "lookAt": [
+          -3,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:0e0528d6f6b70911c13eee2438123d33a5c8447a254af1c24f8dbe1563600f1a",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25862,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          123.76740000000001,
+          103.17200000000001,
+          217.6313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:7d4406539ffbe69e31b87eda1357b5f2b3a8d567e10e2b65970cd77ac3d4a5c0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 29001,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          123.76740000000001,
+          103.17200000000001,
+          217.6313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:729a3d59e4f00aab8c8c3efb769eb96b388bc5783482b16a56555c9e916f09ec",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 40907,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          123.76740000000001,
+          103.17200000000001,
+          217.6313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:aa00a49527f98902e8e00442c67c3e8995c8646350b7c16c4fbd7296766b272a",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 62702,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/terrain-review.height.png"
+        },
+        "position": [
+          123.76740000000001,
+          103.17200000000001,
+          217.6313
+        ],
+        "lookAt": [
+          -2.3326,
+          36.872,
+          -0.7687
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

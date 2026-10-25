@@ -747,7 +747,7 @@ export function buildVieille(out) {
 
 export const lighthouseNorthernStudies = [
   lighthouseStudy({
-    id: 'N0652',
+    id: 'bell_rock_lighthouse',
     smoothNormalSlots: ['trim', 'foundation', 'wall'],
     key: 'bell_rock_lighthouse',
     title: 'Bell Rock Lighthouse',
@@ -791,7 +791,7 @@ export const lighthouseNorthernStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0653',
+    id: 'bengtskar_lighthouse',
     key: 'bengtskar_lighthouse',
     title: 'Bengtskär Lighthouse',
     wikidataId: 'Q3737012',
@@ -837,7 +837,7 @@ export const lighthouseNorthernStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0654',
+    id: 'vieille_lighthouse',
     key: 'vieille_lighthouse',
     title: 'La Vieille Lighthouse',
     wikidataId: 'Q2085015',

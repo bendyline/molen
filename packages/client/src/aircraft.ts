@@ -18,6 +18,7 @@ export interface AircraftVisual {
     input: AircraftInputData,
     altitude: number,
     signals?: ModelSignals,
+    timeSeconds?: number,
   ): void;
   dispose(): void;
 }
@@ -54,7 +55,7 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
     object: model,
     interior,
     animation,
-    update(state, input, altitude, signals) {
+    update(state, input, altitude, signals, timeSeconds) {
       const gear = state.gearPosition ?? Number(input.gear);
       const flaps = state.flapPosition ?? Number(input.flaps);
       for (const binding of spec.visual.rotors) {
@@ -85,15 +86,57 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
           input.power * spec.visual.collective.multiplier,
         );
       }
+      const engineSignals: Record<string, number | undefined> = Object.create(null);
+      for (const engine of spec.engines ?? []) {
+        const reading = state.engines?.[engine.id];
+        const prefix = `engines.${engine.id}.`;
+        engineSignals[`${prefix}rpmNormalized`] = reading?.rpm;
+        engineSignals[`${prefix}rotorRpm`] =
+          reading === undefined
+            ? undefined
+            : (reading.rpm * engine.rotorAngularSpeed * 60) / (2 * Math.PI);
+        engineSignals[`${prefix}failed`] =
+          reading === undefined ? undefined : Number(reading.failed);
+        engineSignals[`${prefix}thrustN`] = reading?.thrust;
+        engineSignals[`${prefix}afterburner`] = reading?.afterburner ?? 0;
+      }
       const telemetry: ModelSignals = {
         airspeed: state.airspeed,
+        trueAirspeed: state.airspeed,
+        equivalentAirspeed: state.equivalentAirspeed,
+        mach: state.mach,
+        overspeed: Number(state.overspeed ?? false),
+        departure: state.departure ?? 0,
+        vortexRing: state.vortexRing ?? 0,
+        afterburner: Math.max(
+          0,
+          ...Object.values(state.engines ?? {}).map((engine) => engine.afterburner ?? 0),
+        ),
         altitude,
         altitudeAGL: state.altitudeAGL,
         heading: state.yaw,
         verticalSpeed: state.verticalSpeed,
         rpm: state.rpm,
+        rpmNormalized: state.rpm,
+        // Shaft/prop/rotor speed configured by the flight model, never inferred turbine N1/N2.
+        rotorRpm:
+          spec.engines?.length || spec.engine === undefined
+            ? undefined
+            : (state.rpm * spec.engine.rotorAngularSpeed * 60) / (2 * Math.PI),
         pitch: state.pitch,
         roll: state.roll,
+        pitchRate: state.pitchRate,
+        rollRate: state.rollRate,
+        yawRate: state.yawRate,
+        angleOfAttack: state.angleOfAttack,
+        sideslip: state.sideslip,
+        loadFactor: state.loadFactor,
+        groundSpeed:
+          state.velocity === undefined
+            ? undefined
+            : Math.hypot(state.velocity[0], state.velocity[2]),
+        stalled: Number(state.stalled),
+        crashed: Number(state.crashed),
         power: input.power,
         pitchInput: input.pitch,
         rollInput: input.roll,
@@ -101,13 +144,15 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
         elevator: state.elevator ?? input.pitch,
         gear,
         flaps,
+        thrustVector: state.thrustVectorPosition ?? 0,
         engine: Number(input.engine),
         brake: Number(input.brake),
         grounded: Number(state.grounded),
+        ...engineSignals,
         ...signals,
       };
-      interior?.update(telemetry);
-      animation?.update(telemetry);
+      interior?.update(telemetry, timeSeconds);
+      animation?.update(telemetry, timeSeconds);
     },
     dispose() {
       const geometries = new Set<THREE.BufferGeometry>(),

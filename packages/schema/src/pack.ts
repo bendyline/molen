@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { assetId } from './asset-id';
 import type { ValidationIssue } from './issues';
 import { registerSchema } from './registry';
 
@@ -15,9 +16,8 @@ const packPath = z
   .string()
   .min(1)
   .regex(/^(?![A-Za-z]:|[/\\])(?!.*\\)(?!.*(?:^|\/)\.\.?(?:\/|$)).+$/);
-// Same dotted lower_snake grammar as project asset ids.
+// Pack namespaces retain alphabetic segment starts; asset names also allow numeric starts.
 const packId = z.string().regex(/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*$/);
-const assetId = packId;
 const sha256 = z.string().regex(/^sha256:[0-9a-f]{64}$/);
 const role = z.string().regex(/^[a-z][a-z0-9-]*$/);
 
@@ -76,6 +76,8 @@ export interface PackSourceConfig {
   provides: Record<string, string | string[]>;
   /** Group small text files into compressed solid blocks (default true). */
   solid: boolean;
+  /** Files or directory prefixes (ending /) excluded from solid blocks. */
+  independent?: string[];
 }
 
 export interface PackIndexEntry {
@@ -239,6 +241,10 @@ const sourceSchema = z.strictObject({
     .record(role, z.union([packPath, z.array(packPath)]))
     .describe('Role (e.g. types, stylepack, stars) to the file or files that provide it.')
     .default({}),
+  independent: z
+    .array(packPath)
+    .describe('Files or directory prefixes ending / kept independently readable.')
+    .default([]),
   solid: z
     .boolean()
     .describe('Group small text files into compressed solid blocks (default true).')

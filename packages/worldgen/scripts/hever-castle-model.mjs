@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u1/u10/n0312_hever_castle/',
+  '../../../content/worldgen/source/places/u1/u10/hever_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -559,7 +559,7 @@ export const buildHeverDistrict = (out) => build(out, 1);
 export const buildHeverStreet = (out) => build(out, 2);
 export const buildHeverCloseup = (out) => build(out, 3);
 export const heverStudy = {
-  id: 'N0312',
+  id: 'hever_castle',
   key: 'hever_castle',
   title: 'Hever Castle',
   category: 'castle',

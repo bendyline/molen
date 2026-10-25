@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/srb/n0327_florence_cathedral/',
+  '../../../content/worldgen/source/places/sr/srb/florence_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -930,7 +930,7 @@ export const buildFlorenceDistrict = (out) => build(out, 1);
 export const buildFlorenceStreet = (out) => build(out, 2);
 export const buildFlorenceCloseup = (out) => build(out, 3);
 export const florenceStudy = {
-  id: 'N0327',
+  id: 'florence_cathedral',
   key: 'florence_cathedral',
   title: 'Florence Cathedral',
   category: 'cathedral',

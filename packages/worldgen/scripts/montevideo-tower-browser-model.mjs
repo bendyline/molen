@@ -1,4 +1,4 @@
-/** N0619 complete browser exteriors; historical detailed recipe stays unchanged. */
+/** montevideo complete browser exteriors; historical detailed recipe stays unchanged. */
 import { readFileSync } from 'node:fs';
 import {
   beam,
@@ -10,9 +10,7 @@ import {
 import { box, quad, tube as sourceTube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const survey = JSON.parse(
-    readFileSync(structureSourcePath('n0619_montevideo', 'roof-envelope.json')),
-  ),
+const survey = JSON.parse(readFileSync(structureSourcePath('montevideo', 'roof-envelope.json'))),
   means = {
     brick: [0.620345, 0.549823, 0.504963],
     concrete: [0.710816, 0.710816, 0.681928],

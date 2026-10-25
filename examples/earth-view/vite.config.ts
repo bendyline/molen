@@ -6,7 +6,7 @@ export default defineConfig({
   // Relative asset URLs, so one production build plays from any directory (molen.dev/play).
   base: './',
   // Reuse the World Explorer's Sammamish terrain package and content packs rather than copying
-  // 22 MB of data; its build script writes the packs (see predev/prebuild).
+  // 22 MB of data; dev reuses prepared packs and production prebuild refreshes them.
   publicDir: '../world-explorer/public',
   build: {
     target: 'es2022',

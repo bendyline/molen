@@ -155,7 +155,7 @@ function railing(o, y, r, d, curved = false) {
   if (!curved && d > 1) ring(o, y + 0.42, r, 0.035, n, iron);
 }
 function lighthouse(output, _f, d = 3) {
-  // Photo-derived height controls, preserving the approximately 18 m total height.
+  // Approximate18m height controls, checked against dated historic imagery and architectural text.
   const levels = [
     [0, 0],
     [2.55, 2.55],
@@ -504,8 +504,8 @@ export const robbenLighthouseModel = {
     },
   },
   limitations: [
-    "Original medium-fi surviving tower exterior, based on an individually inspected 2012 Qualla image and the architect's 2019 northeast photograph; not a surveyed reconstruction.",
-    'Published 21.25 m base circumference controls the base diameter. Approximately 18 m tower height excludes the small interpreted weather vane. Other heights, window levels, ladder orientation and ornament are photographic estimates; upper proportions were adjusted against the long-lens Qualla photograph.',
+    'Full surviving tower reviewed using a dated public-domain Walsh photographic postcard circulated by1911, reproduced in1987, and independent museum/firsthand architectural text. No private modern photograph is an active reference; not a surveyed reconstruction.',
+    'Published 21.25 m base circumference controls the base diameter. Approximately 18 m tower height excludes the small interpreted weather vane. Other heights, window levels, ladder orientation and ornament remain bounded medium-fi estimates checked against the historic card and architect’s detailed written site description. Current white/black/red paint hierarchy follows factual text, not grayscale colour inference.',
     'Map circle controls the actual Minto Hill location, independently of the island story point. Published coordinates and focal-plane heights differ and are not treated as precise geometry.',
     'Round as-built shaft, staggered sash windows, east door and stripe, curved gallery rails and red lantern/dome are retained. Lens and glazing are visual approximations, not a working navigation light or optical simulation.',
     'Office, engine room, demolished keeper house, paths, shell bollards and vegetation are excluded. No interior stairs or reference image pixels are embedded.',

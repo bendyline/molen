@@ -51,7 +51,49 @@ function face(o, s, x, y, z, w, h, c) {
     c,
   );
 }
-function prism(o, loops, low, high, color = brick, slot = 'wall') {
+function portalProfile({ x, y, w, stem, rise }, d) {
+  const rr = w / 2,
+    points = [
+      [x - rr, y],
+      [x + rr, y],
+      [x + rr, y + stem],
+    ],
+    n = d > 1 ? 16 : 8;
+  for (let i = 1; i <= n; i++) {
+    const a = (i * Math.PI) / n;
+    points.push([x + Math.cos(a) * rr, y + stem + Math.sin(a) * rise]);
+  }
+  return points;
+}
+function piercedFrontWall(o, a, b, low, high, color, slot, portals) {
+  const outer = [
+      [a[0], low],
+      [b[0], low],
+      [b[0], high],
+      [a[0], high],
+    ],
+    points = [...outer],
+    holes = [],
+    zAt = (x) => a[1] + ((x - a[0]) * (b[1] - a[1])) / (b[0] - a[0]);
+  for (const p of portals) {
+    holes.push(points.length);
+    points.push(...p.profile);
+  }
+  const indices = earcut(points.flat(), holes),
+    normal = [b[1] - a[1], 0, a[0] - b[0]];
+  for (let i = 0; i < indices.length; i += 3) {
+    const p = indices.slice(i, i + 3).map((j) => [points[j][0], points[j][1], zAt(points[j][0])]);
+    o.addTriangle(
+      slot,
+      ref,
+      p,
+      normal,
+      p.map((p) => [p[0], p[1]]),
+      color,
+    );
+  }
+}
+function prism(o, loops, low, high, color = brick, slot = 'wall', portals = []) {
   const rings = loops.map((r, i) => {
     r = cleanRing(r);
     if (r[0][0] === r.at(-1)[0] && r[0][1] === r.at(-1)[1]) r.pop();
@@ -89,6 +131,10 @@ function prism(o, loops, low, high, color = brick, slot = 'wall') {
     for (let i = 0; i < r.length; i++) {
       const a = r[i],
         b = r[(i + 1) % r.length];
+      if (portals.length && a[1] > 14.25 && b[1] > 14.25) {
+        piercedFrontWall(o, a, b, low, high, color, slot, portals);
+        continue;
+      }
       quad(
         o,
         slot,
@@ -196,19 +242,35 @@ function basket(o, x, y, z, w, d) {
     if (d > 1) beam(o, 'metal', [x + xx, y, z], [x + xx, y, z + 0.28], 0.035, 0.035, iron);
   }
 }
-function arch(o, x, y, z, w, stem, rise, d, col = iron) {
+function arch(o, x, y, z, w, stem, rise, d, col = iron, portal = null) {
+  const panelZ = portal ? 13.97 : z,
+    frontZ = (xx) => (portal ? portal.frontZ(xx) + 0.004 : z + 0.015),
+    jointZ = (xx) => (portal ? frontZ(xx) + 0.007 : z + 0.022);
   const rr = w / 2,
     points = [
-      [x - rr, y, z],
-      [x + rr, y, z],
-      [x + rr, y + stem, z],
+      [x - rr, y, panelZ],
+      [x + rr, y, panelZ],
+      [x + rr, y + stem, panelZ],
     ],
     n = d > 1 ? 16 : 8;
   for (let i = 1; i <= n; i++) {
     const a = (i * Math.PI) / n;
-    points.push([x + Math.cos(a) * rr, y + stem + Math.sin(a) * rise, z]);
+    points.push([x + Math.cos(a) * rr, y + stem + Math.sin(a) * rise, panelZ]);
   }
   o.addConvexPolygon('metal', ref, points, [0, 0, 1], (p) => [p[0], p[1]], col);
+  if (portal) {
+    for (let i = 0; i < portal.profile.length; i++) {
+      const a = portal.profile[i],
+        b = portal.profile[(i + 1) % portal.profile.length],
+        p = [
+          [a[0], a[1], portal.frontZ(a[0])],
+          [b[0], b[1], portal.frontZ(b[0])],
+          [b[0], b[1], panelZ],
+          [a[0], a[1], panelZ],
+        ];
+      quad(o, 'brick', p, normalFor(...p), brick);
+    }
+  }
   if (d < 1) return;
   // A shallow recessed panel with individual radial brick joints around the visible arch.
   for (let i = 0; i < n; i++) {
@@ -218,10 +280,18 @@ function arch(o, x, y, z, w, stem, rise, d, col = iron) {
       o,
       'brick',
       [
-        [x + Math.cos(a) * rr, y + stem + Math.sin(a) * rise, z + 0.015],
-        [x + Math.cos(b) * rr, y + stem + Math.sin(b) * rise, z + 0.015],
-        [x + Math.cos(b) * (rr + 0.17), y + stem + Math.sin(b) * (rise + 0.19), z + 0.015],
-        [x + Math.cos(a) * (rr + 0.17), y + stem + Math.sin(a) * (rise + 0.19), z + 0.015],
+        [x + Math.cos(a) * rr, y + stem + Math.sin(a) * rise, frontZ(x + Math.cos(a) * rr)],
+        [x + Math.cos(b) * rr, y + stem + Math.sin(b) * rise, frontZ(x + Math.cos(b) * rr)],
+        [
+          x + Math.cos(b) * (rr + 0.17),
+          y + stem + Math.sin(b) * (rise + 0.19),
+          frontZ(x + Math.cos(b) * (rr + 0.17)),
+        ],
+        [
+          x + Math.cos(a) * (rr + 0.17),
+          y + stem + Math.sin(a) * (rise + 0.19),
+          frontZ(x + Math.cos(a) * (rr + 0.17)),
+        ],
       ],
       [0, 0, 1],
       brick,
@@ -230,23 +300,27 @@ function arch(o, x, y, z, w, stem, rise, d, col = iron) {
       line(
         o,
         'stone',
-        [x + Math.cos(a) * rr, y + stem + Math.sin(a) * rise, z + 0.022],
-        [x + Math.cos(a) * (rr + 0.17), y + stem + Math.sin(a) * (rise + 0.19), z + 0.022],
+        [x + Math.cos(a) * rr, y + stem + Math.sin(a) * rise, jointZ(x + Math.cos(a) * rr)],
+        [
+          x + Math.cos(a) * (rr + 0.17),
+          y + stem + Math.sin(a) * (rise + 0.19),
+          jointZ(x + Math.cos(a) * (rr + 0.17)),
+        ],
         0.015,
         pale,
       );
   }
   for (const sg of [-1, 1])
-    B(o, 'metal', x + sg * (rr - 0.045), y, z + 0.035, 0.075, stem, 0.075, col);
-  B(o, 'metal', x, y + stem - 0.04, z + 0.035, w, 0.075, 0.075, col);
+    B(o, 'metal', x + sg * (rr - 0.045), y, panelZ + 0.035, 0.075, stem, 0.075, col);
+  B(o, 'metal', x, y + stem - 0.04, panelZ + 0.035, w, 0.075, 0.075, col);
   if (d > 1)
     for (let i = 1; i < 5; i++) {
       const a = (i * Math.PI) / 5;
       line(
         o,
         'metal',
-        [x, y + stem, z + 0.05],
-        [x + Math.cos(a) * rr * 0.93, y + stem + Math.sin(a) * rise * 0.93, z + 0.05],
+        [x, y + stem, panelZ + 0.05],
+        [x + Math.cos(a) * rr * 0.93, y + stem + Math.sin(a) * rise * 0.93, panelZ + 0.05],
         0.035,
         iron,
       );
@@ -264,7 +338,40 @@ function roundedStep(o, x, z, w, d) {
   }
   prism(o, [points], -0.15, 0.12, brick, 'brick');
 }
-function doorPanels(o, x, y, z, w, h, d, { double = false, light = false, solid = false } = {}) {
+function recessedLeafPanel(o, x, y, z, w, h) {
+  const outer = [
+      [x - w / 2, y, z + 0.045],
+      [x + w / 2, y, z + 0.045],
+      [x + w / 2, y + h, z + 0.045],
+      [x - w / 2, y + h, z + 0.045],
+    ],
+    inner = [
+      [x - w / 2 + 0.025, y + 0.025, z + 0.015],
+      [x + w / 2 - 0.025, y + 0.025, z + 0.015],
+      [x + w / 2 - 0.025, y + h - 0.025, z + 0.015],
+      [x - w / 2 + 0.025, y + h - 0.025, z + 0.015],
+    ],
+    back = outer.map(([xx, yy]) => [xx, yy, z]);
+  for (let i = 0; i < 4; i++) {
+    const j = (i + 1) % 4;
+    for (const p of [
+      [outer[i], outer[j], inner[j], inner[i]],
+      [back[i], back[j], outer[j], outer[i]],
+    ])
+      quad(o, 'metal', p, normalFor(...p), iron);
+  }
+  face(o, 'metal', x, y + 0.025, z + 0.015, w - 0.05, h - 0.05, rgb('292f2b'));
+}
+function doorPanels(
+  o,
+  x,
+  y,
+  z,
+  w,
+  h,
+  d,
+  { double = false, light = false, solid = false, recessed = false } = {},
+) {
   const c = light ? pale : iron;
   const count = double ? 2 : 1,
     ww = w / count;
@@ -273,13 +380,18 @@ function doorPanels(o, x, y, z, w, h, d, { double = false, light = false, solid 
     face(o, 'metal', xx, y + 0.08, z, ww - 0.08, h - 0.12, c);
     if (d > 1) {
       if (solid) {
-        const p = [
-          [xx, y + 0.7, z + 0.035],
-          [xx + ww * 0.24, y + 1.2, z + 0.035],
-          [xx, y + 1.7, z + 0.035],
-          [xx - ww * 0.24, y + 1.2, z + 0.035],
-        ];
-        for (let k = 0; k < 4; k++) line(o, 'metal', p[k], p[(k + 1) % 4], 0.025, rgb('464b43'));
+        if (!recessed) {
+          const p = [
+            [xx, y + 0.7, z + 0.035],
+            [xx + ww * 0.24, y + 1.2, z + 0.035],
+            [xx, y + 1.7, z + 0.035],
+            [xx - ww * 0.24, y + 1.2, z + 0.035],
+          ];
+          for (let k = 0; k < 4; k++) line(o, 'metal', p[k], p[(k + 1) % 4], 0.025, rgb('464b43'));
+        } else {
+          for (const yy of [y + 0.5, y + 1.65])
+            B(o, 'metal', xx - ww / 2 + 0.075, yy, z + 0.03, 0.025, 0.16, 0.035, rgb('77725b'));
+        }
       } else if (light) {
         const ww2 = ww - 0.25,
           hh = h - 0.55;
@@ -288,8 +400,31 @@ function doorPanels(o, x, y, z, w, h, d, { double = false, light = false, solid 
           face(o, 'metal', xx + xx2, y + 0.35, z + 0.035, 0.05, hh, pale);
         for (let j = 0; j <= 4; j++)
           face(o, 'metal', xx, y + 0.35 + (j * hh) / 4, z + 0.04, ww2, 0.045, pale);
+      } else if (recessed) {
+        const gw = ww - 0.22,
+          gh = h - 0.97,
+          baseY = y + 0.8;
+        face(o, 'glass', xx, baseY, z + 0.015, gw, gh, glass);
+        for (const dx of [-gw / 2, gw / 2])
+          B(o, 'metal', xx + dx, baseY, z + 0.03, 0.035, gh, 0.045, iron);
+        for (const yy of [baseY, baseY + gh])
+          B(o, 'metal', xx, yy, z + 0.03, gw, 0.035, 0.045, iron);
+        for (let col = 1; col < 3; col++)
+          B(o, 'metal', xx - gw / 2 + (gw * col) / 3, baseY, z + 0.035, 0.025, gh, 0.035, iron);
+        for (let row = 1; row < 3; row++)
+          B(o, 'metal', xx, baseY + (gh * row) / 3, z + 0.035, gw, 0.025, 0.035, iron);
+        for (const sg of [-1, 1])
+          recessedLeafPanel(
+            o,
+            xx + (sg * (ww - 0.24)) / 4,
+            y + 0.19,
+            z,
+            (ww - 0.24) / 2 - 0.03,
+            0.38,
+          );
       } else upperWindow(o, xx, y + 0.8, z + 0.015, ww - 0.22, h - 0.97, d, 3);
-      face(o, 'metal', xx, y + 0.22, z + 0.025, ww - 0.24, 0.38, light ? stone : rgb('252b28'));
+      if (!recessed)
+        face(o, 'metal', xx, y + 0.22, z + 0.025, ww - 0.24, 0.38, light ? stone : rgb('252b28'));
       B(
         o,
         'metal',
@@ -449,15 +584,38 @@ function skylight(o, x, z, y, d) {
   }
   if (d > 1) beam(o, 'metal', [x, y + 0.45, z - 0.9], [x, y + 0.45, z + 0.9], 0.04, 0.04, iron);
 }
-function stonewall(o, frame, d = 3) {
+export function stonewall(o, frame, d = 3) {
   frame ??= JSON.parse(fs.readFileSync(new URL('map-frame.json', base)));
   const west = cleanRing(frame.features[0].rings[0]),
     east = cleanRing(frame.features[1].rings[0]),
-    upper = clipRear(east, -7.5);
-  prism(o, [west], -2.2, 6.5, brick, 'brick');
+    upper = clipRear(east, -7.5),
+    frontEdge = west
+      .map((p, i) => [p, west[(i + 1) % west.length]])
+      .find(([a, b]) => a[1] > 14.25 && b[1] > 14.25),
+    frontZ = (x) =>
+      frontEdge[0][1] +
+      ((x - frontEdge[0][0]) * (frontEdge[1][1] - frontEdge[0][1])) /
+        (frontEdge[1][0] - frontEdge[0][0]),
+    eastEdge = east
+      .map((p, i) => [p, east[(i + 1) % east.length]])
+      .find(([a, b]) => a[1] > 14.25 && b[1] > 14.25),
+    eastZ = (x) =>
+      eastEdge[0][1] +
+      ((x - eastEdge[0][0]) * (eastEdge[1][1] - eastEdge[0][1])) /
+        (eastEdge[1][0] - eastEdge[0][0]),
+    visitorPortal = { x: 4.48, y: 0, w: 1.32, stem: 2.24, rise: 0.34, frontZ: eastZ },
+    visitorPortals = d > 0 ? [{ ...visitorPortal, profile: portalProfile(visitorPortal, d) }] : [],
+    portals =
+      d > 0
+        ? [
+            { x: -7.62, y: 0.12, w: 1.15, stem: 2.12, rise: 0.55 },
+            { x: -1.69, y: 0.12, w: 1.6, stem: 2.12, rise: 0.38 },
+          ].map((p) => ({ ...p, profile: portalProfile(p, d), frontZ }))
+        : [];
+  prism(o, [west], -2.2, 6.5, brick, 'brick', portals);
   prism(o, [west], 6.5, 6.58, roof, 'roof');
   parapet(o, west, 6.58, d);
-  prism(o, [east], -2.2, 3.2, brick, 'brick');
+  prism(o, [east], -2.2, 3.2, brick, 'brick', visitorPortals);
   prism(o, [east], 3.2, 3.28, roof, 'roof');
   prism(o, [upper], 3.28, 7.02, brick, 'brick');
   prism(o, [upper], 7.02, 7.1, roof, 'roof');
@@ -474,7 +632,15 @@ function stonewall(o, frame, d = 3) {
       [-4.621, 8.3],
       [2.51, 5.97],
     ]) {
-      B(o, 'stone', cx, -0.02, z, w, 0.1, 0.14, stone);
+      if (cx < 0) B(o, 'stone', cx, -0.02, z, w, 0.1, 0.14, stone);
+      else {
+        // The restored visitor entry crosses the sill at street level.
+        for (const [a, b] of [
+          [cx - w / 2, 3.82],
+          [5.14, cx + w / 2],
+        ])
+          B(o, 'stone', (a + b) / 2, -0.02, z, b - a, 0.1, 0.14, stone);
+      }
       B(o, 'brick', cx, 3.16, z + 0.025, w, 0.19, 0.12, brick);
       if (d > 2)
         for (let x = cx - w / 2 + 0.04; x < cx + w / 2; x += 0.09)
@@ -495,20 +661,21 @@ function stonewall(o, frame, d = 3) {
       upperWindow(o, x, 4.54, z + 0.025, 1.0, 1.83, d, 3);
       basket(o, x, 4.15, z + 0.1, 1.32, d);
     }
-    arch(o, -7.62, 0.12, z + 0.035, 1.15, 2.12, 0.55, d);
-    doorPanels(o, -7.62, 0.12, z + 0.08, 1.1, 2.08, d, { solid: true });
-    arch(o, -1.69, 0.12, z + 0.035, 1.6, 2.12, 0.38, d);
-    doorPanels(o, -1.69, 0.12, z + 0.08, 1.52, 2.08, d, { double: true });
+    arch(o, -7.62, 0.12, z + 0.035, 1.15, 2.12, 0.55, d, iron, portals[0]);
+    doorPanels(o, -7.62, 0.12, 13.99, 1.1, 2.08, d, { solid: true, recessed: true });
+    arch(o, -1.69, 0.12, z + 0.035, 1.6, 2.12, 0.38, d, iron, portals[1]);
+    doorPanels(o, -1.69, 0.12, 13.99, 1.52, 2.08, d, { double: true, recessed: true });
     for (const [x, w] of [
       [-7.62, 1.48],
       [-1.69, 1.9],
-      [4.48, 1.63],
     ])
       roundedStep(o, x, z, w, d);
     display(o, -4.7, 0.88, z + 0.045, 3.55, 1.45, d);
     display(o, 1.65, 1.0, z + 0.045, 2.9, 1.28, d, true);
-    arch(o, 4.48, 0.04, z + 0.035, 1.32, 2.2, 0.34, d);
-    doorPanels(o, 4.48, 0.04, z + 0.08, 1.24, 2.16, d, { light: true });
+    // 2024 visitor-center access: retain the segmental head, lower the entry,
+    // and remove the obsolete raised round stoop. Heights/depth remain estimates.
+    arch(o, 4.48, 0, z + 0.035, 1.32, 2.24, 0.34, d, pale, visitorPortals[0]);
+    doorPanels(o, 4.48, 0, 13.99, 1.24, 2.2, d, { light: true, double: true });
     face(o, 'metal', 6.08, 0.06, z + 0.035, 0.83, 2.94, iron);
     doorPanels(o, 6.08, 0.06, z + 0.08, 0.8, 2.5, d);
     face(o, 'glass', 6.08, 2.67, z + 0.08, 0.66, 0.22, glass);
@@ -576,6 +743,9 @@ export const stonewallModel = {
   qaCameras: [
     { name: 'front', position: [0, 6, 40], lookAt: [0, 3.6, 8] },
     { name: 'back', position: [-22, 20, -34], lookAt: [0, 3, 0] },
+    { name: 'main-portal', position: [0.6, 2.8, 18.3], lookAt: [-1.69, 1.45, 14.05] },
+    { name: 'side-portal', position: [-9.5, 2.5, 17.5], lookAt: [-7.62, 1.4, 14.05] },
+    { name: 'visitor-portal', position: [7.4, 2.4, 17.8], lookAt: [4.48, 1.2, 14.1] },
   ],
   build: stonewall,
   surfaces,
@@ -595,10 +765,13 @@ export const stonewallModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior of 51–53 Christopher Street, using individually inspected local 2014/2016 photos, official city designation photo/map and current NPS visitor-center photograph. No exact 1969 reconstruction.',
+    'Full fixed51–53exterior reviewed using the inspected2025creator CC0 photograph of53and primary LPC/EDG architectural descriptions. The2024visitor entry at51has a real segmental recess, paired doors and lowered threshold, replacing the obsolete raised round stoop. No exact1969reconstruction or measured accessibility certification.',
+    'Earlier attribution-licensed photographs and the prior NPS visitor-center image are excluded as current construction controls. The latter exact asset grant was not established; its existing geometry remains an unapproved approximation.',
     'Both individual mapped footprints are retained; taller neighboring buildings, interiors, crowds and temporary banners are excluded.',
     'Vertical dimensions and hidden rear/roof details are approximations. The 51 rear-wing upper-story termination, skylight spacing and equipment positions are interpreted from limited evidence.',
     'Small pride flags, window baskets, lanterns and storefront lettering are simplified original geometry. The red sign is colored geometry, not a physically simulated neon tube. No photo pixels or official visitor-center logos are embedded.',
     'Map heights are coarse controls, with parapets interpreted from facade photographs. Independent terrain is unchanged; exact contact can differ with another host DEM.',
+    'Portal widths and arch-head heights retained from prior authored layout. Recess backs at z13.97 imply about0.34m depth; actual jambs, soffits, fanlights and door details remain estimates. Both53rounded thresholds, map and USGS ground retained;51entry is lowered to the original model street datum as an approximate representation of the documented2024access change.',
+    'The main door leaves have black three-by-three glazing frames and two simplified beveled lower panels each. The side leaf is plain with simplified hinges/pull; prior generic pale door-window sills and diamond ornament removed. Exact hardware, profiles and glazing subdivision remain photographic interpretations.',
   ],
 };

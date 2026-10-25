@@ -1,0 +1,338 @@
+{
+  "planId": "brisbane_synagogue",
+  "id": "brisbane_synagogue",
+  "assetId": "molen.worldgen.structure.brisbane_synagogue",
+  "title": "Brisbane Synagogue",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.02694359999998,
+    "latitude": -27.473283133333336
+  },
+  "size": [
+    14.935150623321533,
+    15.420000188052654,
+    23.694759368896484
+  ],
+  "actualBounds": {
+    "min": [
+      -9.214797973632812,
+      -0.11999999731779099,
+      -8.27708911895752
+    ],
+    "max": [
+      5.720352649688721,
+      15.300000190734863,
+      15.417670249938965
+    ]
+  },
+  "visualBrief": "Complete surviving1886synagogue on its original six-vertex whole outline/rear jog. High nave/gabled roof and lower side aisles, pale rendered street facade, deep round rose/portal arches and original circular/flower tracery, twin octagonal towers with open upper arcades/pointed faceted spires, geometric friezes/gable vent and intrinsic threshold steps. Exact published1949public-domain facade and current native plan; hidden height/roof/side/color estimates. No neighboring buildings, grounds, signs or interior.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_2_389897_Synagogue_Church_on_Margaret_Street,_Brsibane,_1949.jpg"
+  ],
+  "stories": [
+    {
+      "id": "brisbane-synagogue-wp",
+      "url": "https://qualla.com/brisbane-synagogue/"
+    }
+  ],
+  "referenceInputHash": "078779e854542e4599b4670a3ecb2a50956e3b1a71b939f451625fb491f8907c",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-brisbane-synagogue.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-brisbane-synagogue.mjs",
+    "level": "skyline",
+    "export": "brisbaneSynagogueSkyline",
+    "errorMeters": 0.7,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.94,
+        "metallic": 0.12
+      },
+      "spire": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.88,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.65,
+        "metallic": 0
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "brisbaneSynagogueDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.94,
+            "metallic": 0.12
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "brisbaneSynagogueStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.94,
+            "metallic": 0.12
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6,
+    "groundY": -0.16
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Whole original native synagogue building way49748178, all six nonduplicate exterior vertices/nodeIDs retained, including small rear jog vertices1/2/3. Name/religion/street address98Margaret Street match the story/source facade. Exact vertex-mean anchor[153.02694359999998,-27.473283133333336]. Actual short southeast street-facing edge4to5 fixes heading0.694563611421631rad and the full facade axis. Central entrance position within that edge is a photographic estimate, not a mapped doorway node. Original edge midpoint[-1.7453225309977514,14.71767062448226]plus3m outward fixes approach[-1.7453225309977514,17.71767062448226]before independent terrain/geometry. Upper nave/aisle partition, towers/rose/roof heights, cropped doors and current finishes are photographic estimates; no grounds or neighboring roofs added. Independent96m field frozen before geometry. Exact historic/current floor, steps and host contact unverified.",
+    "anchor": [
+      153.02694359999998,
+      -27.473283133333336
+    ],
+    "heading": 0.694563611421631,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.02704484141256,
+        -27.473415456065908
+      ],
+      "modelHeight": 0,
+      "basis": "Original facade midpoint plus3m outward before terrain/geometry; actual door/steps/floor/host contact not surveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/49748178"
+    ],
+    "source": "https://www.openstreetmap.org/way/49748178",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:80e8776ad4fb58ade44269aef802dbfcef313f54de136e20919ffb6a2f6fbcad",
+    "notes": "Complete surviving1886 Brisbane Synagogue in its original six-vertex native whole-building envelope, including rear jog. Main high gabled nave and lower side aisles, pale rendered Moorish/Romanesque street facade, twin octagonal tower/arched belfry-like slots and pointed faceted metal spires/finials, central large circular geometric rose window in concentric arch, gable vent and friezes/coping, lower round entrance arch and own threshold/steps. Use original geometric tracery, no copied stained-glass artwork or religious lettering. Exclude surrounding Margaret Street/site, neighbor offices/sheds, fence/people/birds/wires, signs and interior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole original native synagogue building way49748178, all six nonduplicate exterior vertices/nodeIDs retained, including small rear jog vertices1/2/3. Name/religion/street address98Margaret Street match the story/source facade. Exact vertex-mean anchor[153.02694359999998,-27.473283133333336]. Actual short southeast street-facing edge4to5 fixes heading0.694563611421631rad and the full facade axis. Central entrance position within that edge is a photographic estimate, not a mapped doorway node. Original edge midpoint[-1.7453225309977514,14.71767062448226]plus3m outward fixes approach[-1.7453225309977514,17.71767062448226]before independent terrain/geometry. Upper nave/aisle partition, towers/rose/roof heights, cropped doors and current finishes are photographic estimates; no grounds or neighboring roofs added.",
+    "Complete current whole synagogue envelope/native rear jog, high nave and lower aisles. Front arcades/spires, round rose/portal/side lights and geometric moulding/friezes are original authored geometry, not copied stained-glass pixels. No whole grounds/site pad, neighbors, fence/people/birds/wires, signs or interior.",
+    "Only unconflicted exact803x1000published1949SLQoriginal, native SHA1076740f84a9c004b2c37d9826ff56866b1463d5b and explicit public-domain archive grant matched. Full37source families inventoried; conflicting1906hero/relief-map path excluded, all other exterior/first-synagogue/interior/portrait/attribution imagery unused. No supplementary photography/copied pixels/generated bitmap.",
+    "Current six-point plan and actual Margaret Street edge retained. Main nave/aisle split,12.5m ridge/15.3m tower tips, rose/tracery/arch dimensions, hidden wall/roof/door census, tower profiles and current finish after1949 are bounded estimates from one cropped monochrome facade. Neutral pale render/dark metal/wood/glass palette is not a historic or current color survey.",
+    "Independent96m129x129at0.75m terrain, fixed approach[-1.7453225309977514,17.71767062448226], provider30.7177m/full relative[-13.5052,14.715]. Raw tile/grid/PNG unchanged without clipping/fitting/flattening. Coarse composite urban elevations may include neighboring roofs and vegetation; precise synagogue foot/threshold/steps/host contact unverified. Geographic preview; replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-six-vertex-synagogue-nave-aisles-and-twin-spires",
+      "position": [
+        -25,
+        18,
+        40
+      ],
+      "lookAt": [
+        -1.7453225309977514,
+        6.5,
+        4
+      ]
+    },
+    {
+      "name": "main-rose-geometric-tracery-concentric-arch-and-entry",
+      "position": [
+        3.2546774690022486,
+        7.4,
+        25
+      ],
+      "lookAt": [
+        -1.7453225309977514,
+        6.1,
+        14.71767062448226
+      ]
+    },
+    {
+      "name": "open-octagonal-tower-arcades-and-pointed-spires",
+      "position": [
+        8.25467746900225,
+        13.2,
+        23
+      ],
+      "lookAt": [
+        1.2546774690022486,
+        12.5,
+        14.11767062448226
+      ]
+    },
+    {
+      "name": "whole-estimated-rear-roofs-and-original-small-jog",
+      "position": [
+        24,
+        23,
+        -26
+      ],
+      "lookAt": [
+        -1.7453225309977514,
+        6,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12348,
+    "vertices": 37044,
+    "materials": 6,
+    "bytes": 1485488,
+    "sha256": "sha256:5ef553f85c36646282213e63e9c206d6baed59dd96c11c37595e30dc76a57085"
+  }
+}

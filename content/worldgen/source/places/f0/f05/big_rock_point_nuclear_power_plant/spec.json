@@ -1,0 +1,305 @@
+{
+  "planId": "big_rock_point_nuclear_power_plant",
+  "id": "big_rock_point_nuclear_power_plant",
+  "assetId": "molen.worldgen.structure.big_rock_point_nuclear_power_plant",
+  "title": "Big Rock Point Nuclear Power Plant",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -85.1972,
+    "latitude": 45.3589
+  },
+  "size": [
+    95.16000366210938,
+    73.6520004272461,
+    58.14999961853027
+  ],
+  "actualBounds": {
+    "min": [
+      -42.08000183105469,
+      -0.5,
+      -24.149999618530273
+    ],
+    "max": [
+      53.08000183105469,
+      73.1520004272461,
+      34
+    ]
+  },
+  "visualBrief": "Representative circa1963historical Big Rock Point principal station exterior: clipped spherical steel containment, equatorial rim/outer ribs/crown walkway and curved access ladder, tapered red/white striped stack, attached high flat-roof turbine hall/clerestory, front two-storey glazed pier block/canopy and intrinsic shoreward water building/short service connection. No plant internals, modern spent-fuel yard or landscape. Photographic plan/sections and colors are estimates; historical-only.",
+  "nativeAxes": {
+    "x": "approximate southeast",
+    "y": "up",
+    "z": "approximate southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1963",
+    "validFrom": "1963-01-01",
+    "validUntil": "1964-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HD.6D.163_(10822339503).jpg",
+    "https://commons.wikimedia.org/wiki/File:HD.6D.164_(10822113216).jpg",
+    "https://commons.wikimedia.org/wiki/File:HD.6D.167_(10822115046).jpg"
+  ],
+  "stories": [
+    {
+      "id": "big-rock-point-nuclear-power-plant-wp",
+      "url": "https://qualla.com/big-rock-point-nuclear-power-plant/"
+    }
+  ],
+  "referenceInputHash": "1442dad265e98499f856e658710aea96862724e8fb28018f95b503b5e1be5253",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-big-rock-point-nuclear-power-plant.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-big-rock-point-nuclear-power-plant.mjs",
+    "level": "skyline",
+    "export": "bigRockPointSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "shell": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.12
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.14
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.36,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bigRockPointDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.12
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.14
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "bigRockPointStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.12
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.14
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.7,
+    "groundY": -0.55
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Former plant identity Q836568/CC0native Wikidata coordinate45.3589N,85.1972W, distinct from the Qualla roadside-marker coordinate45.36277777777778N,85.17555555555556W about1.75km east. Exact native BigRockRoadway17761137provides site access context only; no surviving plant roof polygon exists. Do not place the old station at the marker or adopt current storage/roads as its plan. Whole station plan/heading/module positions interpreted from DOEaerial/front/shoreward photographs. Local+Xapproximately southeast across station front, +Zsouthwest away from lake. Registration at the four-decimal former-plant coordinate is approximate, not a surveyed native roof match. Sphere nominal130ftdiameter/102ftvisible height and stack240ftheight control scale; other sections/positions are estimates. Independent restored-site terrain frozen at fixed southwest approach before geometry. Historic plant grades/shore/foundations remain approximate.",
+    "anchor": [
+      -85.1972,
+      45.3589
+    ],
+    "heading": -0.55,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -85.19765853994365,
+        45.35871820752591
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest station front approach[-20,36], retained before new site terrain and unchanged geometry. The first acquisition was at a rejected roadside-marker location; it is archived intact and never fitted or reused. Modern restored greenfield/shore does not establish1963plant ground/foundations."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "historical-station-photo-envelope"
+    ],
+    "source": "https://qualla.com/big-rock-point-nuclear-power-plant/",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:35de9e8937b4f91bc96c05e00cfc089b2c9fc5b942eb4084e94b291fffda28b9",
+    "notes": "Historical representative early-operation1963 Big Rock Point principal station exterior: partially buried spherical containment shell with equatorial rim/vertical outer ribs/crown walkway and exterior access ladder, tapered red-and-white striped stack, attached tall turbine hall with clerestory, lower two-storey front office/control block with deep vertical piers and glazing, shallow entrance canopy, and intrinsic low shoreward cooling-water building/short connecting service volume. Exclude interiors and process equipment, switchyard/powerlines, detached ancillary sheds, parking/roads/landscape/lake/shore riprap, people/vehicles/lettering and current spent-fuel storage/marker. Demolished station: historical-only, never default current-world."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Former plant identity Q836568/CC0native Wikidata coordinate45.3589N,85.1972W, distinct from the Qualla roadside-marker coordinate45.36277777777778N,85.17555555555556W about1.75km east. Exact native BigRockRoadway17761137provides site access context only; no surviving plant roof polygon exists. Do not place the old station at the marker or adopt current storage/roads as its plan. Whole station plan/heading/module positions interpreted from DOEaerial/front/shoreward photographs. Local+Xapproximately southeast across station front, +Zsouthwest away from lake. Registration at the four-decimal former-plant coordinate is approximate, not a surveyed native roof match. Sphere nominal130ftdiameter/102ftvisible height and stack240ftheight control scale; other sections/positions are estimates.",
+    "Historical representative circa1963appearance only, with1963-01-01through1964-01-01viewing range. DOE archive photos are undated;1963is an interpretation of early-operation configuration, not their exposure date or proof of unchanged later years. Original station demolished; never current-world eligible.",
+    "Three exact already-published QuallaDOE exterior originals/native SHA1s and primary PD-USGov-DOE/ENERGY.GOVreviewed government-work releases bind all reference imagery. Generated Qualla categories omit the grant, recovered through exact primary proof without editing media metadata. Interior/fish images, modern marker artwork, attribution-licensed1970/NRCphotos and postcards unused. No generated bitmap or copied image pixels.",
+    "Nominal130ftdiameter shell/28ftburied/102ftvisible and240ftstack are owner text controls. Above-grade clipped spherical shell preserves inward-curving lower profile, rim/ribs/crown walkway/ladder, seven alternating broad stack bands, attached tall turbinehall/clerestory, lower front glazed pier block/canopy and shoreward cooling-water building. Module dimensions/bearing/hidden sections/window counts/roof vents/ribs/crown details are bounded photographic estimates. Muted blue-green shell and pale walls are material estimates from monochrome; red/white stack is confirmed by owner text. No engineering/interior/operational replica claim.",
+    "Switchyard/powerlines, detached sheds, parking/roads, vegetation, shoreline riprap/lake, people/vehicles/lettering, modern marker and spent-fuel storage excluded. No whole-site slab. Fixed independent modern Terrarium field remains unchanged; restored shore/greenfield differs from historic station grading. Exact historical ground/foundation/host attachment unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "clipped-sphere-equatorial-rim-and-front-pier-block",
+      "position": [
+        80,
+        28,
+        104
+      ],
+      "lookAt": [
+        10,
+        16,
+        8
+      ]
+    },
+    {
+      "name": "sphere-crown-walkway-and-exterior-access-ladder",
+      "position": [
+        -28,
+        48,
+        -48
+      ],
+      "lookAt": [
+        13,
+        24,
+        -6
+      ]
+    },
+    {
+      "name": "tapered-striped-stack-and-hall-clerestory",
+      "position": [
+        -81,
+        53,
+        50
+      ],
+      "lookAt": [
+        -17,
+        34,
+        -8
+      ]
+    },
+    {
+      "name": "shoreward-water-building-and-lower-shell-ribs",
+      "position": [
+        85,
+        18,
+        -34
+      ],
+      "lookAt": [
+        33,
+        10,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19624,
+    "vertices": 58872,
+    "materials": 5,
+    "bytes": 2358008,
+    "sha256": "sha256:a04c26d151858ffd9df7806ae299afe09df498cf02ed2cf063dcaa04f132858e"
+  }
+}

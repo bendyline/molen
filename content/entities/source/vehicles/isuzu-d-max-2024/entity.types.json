@@ -1,0 +1,174 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.isuzu_d_max_2024": {
+      "doc": "2024 Isuzu D-MAX; double cab. Original polygonal reference interpretation, simplified trim and game handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.isuzu_d_max_2024",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.isuzu_d_max_2024",
+          "color": "#6a6c70",
+          "spec": {
+            "label": "2024 Isuzu D-MAX",
+            "bodyStyle": "pickup",
+            "genericLabel": "Midsize pickup",
+            "width": 2.17,
+            "length": 5.444999999999999,
+            "height": 1.87,
+            "centerOfMass": [
+              0,
+              0.537,
+              0
+            ],
+            "wheelbase": 3.125,
+            "wheelTrack": 1.6082,
+            "wheelRadius": 0.37,
+            "mass": 2115,
+            "engineForce": 7191,
+            "maxSpeed": 46,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              -0.4301,
+              1.52,
+              0.5424
+            ],
+            "drive": "all",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.22,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.4301,
+                1.52,
+                0.5424
+              ]
+            }
+          ],
+          "entries": [
+            [
+              -1.385,
+              0,
+              0.5424
+            ]
+          ],
+          "exits": [
+            [
+              -1.485,
+              0,
+              0.5424
+            ],
+            [
+              1.485,
+              0,
+              0.5424
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1,
+          "colors": [
+            "#6a6c70",
+            "#deded7",
+            "#555c63",
+            "#a8adb0",
+            "#314852"
+          ]
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.isuzu_d_max_2024"
+      ]
+    }
+  }
+}

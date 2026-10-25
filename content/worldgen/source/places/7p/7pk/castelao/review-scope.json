@@ -1,0 +1,1281 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "roof": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "seat": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "seatGreen": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "mark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "screen": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "mesh": {
+      "slot": "trim",
+      "graph": "metal_perforated_round",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "translucent": {
+      "slot": "trim",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.3,
+      "metallic": 0.1
+    },
+    "turf": {
+      "slot": "wall",
+      "graph": "fabric_canvas",
+      "roughness": 0.98,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -379.21684214204174,
+      231.3229952326098,
+      253.61306479717837
+    ],
+    "lookAt": [
+      0,
+      19.322995232609784,
+      0
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "open-pitch-two-tiers-and-central-hospitality",
+      "position": [
+        13.917790415910645,
+        35.322995232609784,
+        7.5030067265587475
+      ],
+      "lookAt": [
+        -61.833936186775965,
+        13.322995232609784,
+        -41.23789926329562
+      ],
+      "fov": 77
+    },
+    {
+      "name": "western-glazed-frontage-and-tapered-lattice-fins",
+      "position": [
+        -172.75242755395692,
+        25.322995232609784,
+        -4.753816804932992
+      ],
+      "lookAt": [
+        -100.483011067553,
+        24.322995232609784,
+        -17.526108718081815
+      ],
+      "fov": 64
+    },
+    {
+      "name": "membrane-roof-translucent-inner-band-and-frame",
+      "position": [
+        185.1123447617801,
+        79.32299523260978,
+        -130.1284742736803
+      ],
+      "lookAt": [
+        42.841594284938786,
+        24.322995232609784,
+        -12.829567378703798
+      ],
+      "fov": 56
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -379.21684214204174,
+        231.3229952326098,
+        253.61306479717837
+      ],
+      "lookAt": [
+        0,
+        19.322995232609784,
+        0
+      ],
+      "fov": 43,
+      "name": "castelao-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -379.21684214204174,
+        231.3229952326098,
+        253.61306479717837
+      ],
+      "lookAt": [
+        0,
+        19.322995232609784,
+        0
+      ],
+      "fov": 43,
+      "name": "castelao-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -379.21684214204174,
+        231.3229952326098,
+        253.61306479717837
+      ],
+      "lookAt": [
+        0,
+        19.322995232609784,
+        0
+      ],
+      "fov": 43,
+      "name": "castelao-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -379.21684214204174,
+        231.3229952326098,
+        253.61306479717837
+      ],
+      "lookAt": [
+        0,
+        19.322995232609784,
+        0
+      ],
+      "fov": 43,
+      "name": "castelao-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 1.3229952326097845,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/castelao-model.mjs",
+    "export": "buildCastelaoSkyline",
+    "errorMeters": 6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCastelaoDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "roof": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "seatGreen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "mesh": {
+            "slot": "trim",
+            "graph": "metal_perforated_round",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "translucent": {
+            "slot": "trim",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "turf": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCastelaoStreet",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "roof": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "seatGreen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "mesh": {
+            "slot": "trim",
+            "graph": "metal_perforated_round",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "translucent": {
+            "slot": "trim",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "turf": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCastelaoCloseup",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "roof": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "seatGreen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "mesh": {
+            "slot": "trim",
+            "graph": "metal_perforated_round",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "translucent": {
+            "slot": "trim",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "turf": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -38.52244534119621,
+      -3.807239025270286
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard6m Mapzen samples contain a strong stadium mound, with peripheral elevations spanning-1.1768092568212616..15.584233367967013m relative to raw anchor datum. Model floor uses the lower15percent perimeter sample (1.3229952326097845m relative), not a surveyed foundation/excavation. A bounded opening inside90percent of the stadium body, clipped inside the common floor of every level with a1percent inset, reveals a closed supported floor; original sample values/outside ground/water remain unchanged. Replace the parent stadium roof shell completely, clipping only overlapping native podium strips inside that same mask. Preserve native podium geometry/holes outside the owned stadium edge, all other independent buildings and native roads. Failure/unload restore original ground. No whole-site flattening/water cutout or inferred real excavation.",
+    "replaceFootprint": false,
+    "bounds": [
+      -38.52406588510711,
+      -3.808855992781705,
+      -38.52082479728531,
+      -3.8056220577588666
+    ],
+    "terrainReference": {
+      "anchor": [
+        -38.52244534119621,
+        -3.807239025270286
+      ],
+      "modelHeight": 0,
+      "basis": "Standard6m Mapzen samples contain a strong stadium mound, with peripheral elevations spanning-1.1768092568212616..15.584233367967013m relative to raw anchor datum. Model floor uses the lower15percent perimeter sample (1.3229952326097845m relative), not a surveyed foundation/excavation. A bounded opening inside90percent of the stadium body, clipped inside the common floor of every level with a1percent inset, reveals a closed supported floor; original sample values/outside ground/water remain unchanged. Replace the parent stadium roof shell completely, clipping only overlapping native podium strips inside that same mask. Preserve native podium geometry/holes outside the owned stadium edge, all other independent buildings and native roads. Failure/unload restore original ground. No whole-site flattening/water cutout or inferred real excavation."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -103.609719,
+          9.566306
+        ],
+        [
+          -102.805326,
+          -11.079771
+        ],
+        [
+          -101.732803,
+          -21.000616
+        ],
+        [
+          -99.587756,
+          -30.921461
+        ],
+        [
+          -93.420745,
+          -53.176335
+        ],
+        [
+          -85.913081,
+          -70.872985
+        ],
+        [
+          -81.354856,
+          -70.336723
+        ],
+        [
+          -75.187846,
+          -83.475148
+        ],
+        [
+          -69.020836,
+          -92.859738
+        ],
+        [
+          -62.049433,
+          -100.635542
+        ],
+        [
+          -52.932983,
+          -108.143216
+        ],
+        [
+          -45.96158,
+          -111.628922
+        ],
+        [
+          -31.750644,
+          -117.259678
+        ],
+        [
+          -22.366063,
+          -118.064072
+        ],
+        [
+          -0.915593,
+          -118.868465
+        ],
+        [
+          11.686558,
+          -118.064072
+        ],
+        [
+          39.57217,
+          -112.701447
+        ],
+        [
+          47.884227,
+          -109.483872
+        ],
+        [
+          62.631425,
+          -102.24433
+        ],
+        [
+          75.501707,
+          -91.787214
+        ],
+        [
+          85.690681,
+          -78.380657
+        ],
+        [
+          88.908251,
+          -69.800461
+        ],
+        [
+          92.662083,
+          -58.002694
+        ],
+        [
+          95.611523,
+          -39.233522
+        ],
+        [
+          95.611523,
+          -39.769784
+        ],
+        [
+          96.415916,
+          -26.095104
+        ],
+        [
+          96.415916,
+          -12.956688
+        ],
+        [
+          95.879654,
+          -1.427059
+        ],
+        [
+          93.734607,
+          17.610231
+        ],
+        [
+          91.321429,
+          34.234341
+        ],
+        [
+          85.690681,
+          57.293584
+        ],
+        [
+          76.574231,
+          78.744037
+        ],
+        [
+          68.530304,
+          92.150568
+        ],
+        [
+          56.732546,
+          102.875791
+        ],
+        [
+          51.638059,
+          106.093357
+        ],
+        [
+          44.934787,
+          109.847185
+        ],
+        [
+          23.216186,
+          116.014187
+        ],
+        [
+          4.983286,
+          118.159231
+        ],
+        [
+          -7.082603,
+          118.427362
+        ],
+        [
+          -25.315503,
+          115.477926
+        ],
+        [
+          -39.79457,
+          110.919707
+        ],
+        [
+          -50.251674,
+          107.16588
+        ],
+        [
+          -61.24504,
+          101.535138
+        ],
+        [
+          -68.216443,
+          96.172527
+        ],
+        [
+          -75.455977,
+          89.201131
+        ],
+        [
+          -82.159249,
+          78.475907
+        ],
+        [
+          -88.326259,
+          66.678158
+        ],
+        [
+          -91.275698,
+          55.6848
+        ],
+        [
+          -96.638316,
+          55.416669
+        ],
+        [
+          -99.319625,
+          46.032094
+        ],
+        [
+          -101.732803,
+          32.893687
+        ],
+        [
+          -103.073457,
+          21.095932
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Standard6m Mapzen samples contain a strong stadium mound, with peripheral elevations spanning-1.1768092568212616..15.584233367967013m relative to raw anchor datum. Model floor uses the lower15percent perimeter sample (1.3229952326097845m relative), not a surveyed foundation/excavation. A bounded opening inside90percent of the stadium body, clipped inside the common floor of every level with a1percent inset, reveals a closed supported floor; original sample values/outside ground/water remain unchanged. Replace the parent stadium roof shell completely, clipping only overlapping native podium strips inside that same mask. Preserve native podium geometry/holes outside the owned stadium edge, all other independent buildings and native roads. Failure/unload restore original ground. No whole-site flattening/water cutout or inferred real excavation."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          0.1742373528898149,
+          -132.02661100368454
+        ],
+        [
+          13.010064913516032,
+          -131.20730173523754
+        ],
+        [
+          43.994077392908444,
+          -125.24882982901795
+        ],
+        [
+          53.22969649734273,
+          -121.67374686309682
+        ],
+        [
+          69.61547232779066,
+          -113.629810673454
+        ],
+        [
+          83.91578577981791,
+          -102.0107929289851
+        ],
+        [
+          95.23686726267285,
+          -87.11461839097372
+        ],
+        [
+          98.81194562567966,
+          -77.5810679024029
+        ],
+        [
+          102.98287038252094,
+          -64.47243752795808
+        ],
+        [
+          106.21002554861052,
+          -43.93598398873022
+        ],
+        [
+          106.21002554861052,
+          -44.213648658394966
+        ],
+        [
+          106.23502554861052,
+          -43.78864849607612
+        ],
+        [
+          106.23502554861052,
+          -44.18864865839497
+        ],
+        [
+          106.26002554861053,
+          -43.763648496076115
+        ],
+        [
+          106.26002554861053,
+          -44.213648658394966
+        ],
+        [
+          107.15379513936223,
+          -29.019559812593258
+        ],
+        [
+          107.15379513936223,
+          -14.371319859744649
+        ],
+        [
+          106.55794874552775,
+          -1.5606213242058773
+        ],
+        [
+          104.17456317018988,
+          19.591923673224066
+        ],
+        [
+          101.49325439793476,
+          38.06315632954472
+        ],
+        [
+          95.23686726267285,
+          63.68453767134202
+        ],
+        [
+          85.10747856748687,
+          87.51837462968241
+        ],
+        [
+          76.16978265996981,
+          102.41451971662165
+        ],
+        [
+          63.06116199561147,
+          114.33143412070125
+        ],
+        [
+          57.40062125418401,
+          117.90650815337834
+        ],
+        [
+          49.952541331253144,
+          122.07742768890014
+        ],
+        [
+          25.820762380957127,
+          128.9296522458712
+        ],
+        [
+          5.561984990585163,
+          131.31303458471274
+        ],
+        [
+          0.1742373528898149,
+          131.43276214590182
+        ],
+        [
+          0.1742373528898149,
+          71.29236740486026
+        ],
+        [
+          16.53514327652285,
+          71.08261235676532
+        ],
+        [
+          26.068685577874362,
+          68.69922851982177
+        ],
+        [
+          31.43130312238459,
+          64.23038366775361
+        ],
+        [
+          36.19807427306034,
+          57.974000522717205
+        ],
+        [
+          39.77315263606717,
+          48.44046351706456
+        ],
+        [
+          46.02953977132909,
+          27.585848009352176
+        ],
+        [
+          50.49749059593261,
+          1.9696005700397983
+        ],
+        [
+          50.20046452817038,
+          -12.881703664064457
+        ],
+        [
+          49.306694937418676,
+          -30.459176259802724
+        ],
+        [
+          47.519155755915264,
+          -44.75949532713324
+        ],
+        [
+          44.242000589825686,
+          -54.29304255847907
+        ],
+        [
+          38.879383045315464,
+          -61.14528021395567
+        ],
+        [
+          30.23961033471565,
+          -66.50790133046998
+        ],
+        [
+          19.216452048777963,
+          -69.18921200262719
+        ],
+        [
+          6.107831384419632,
+          -71.27467590954747
+        ],
+        [
+          0.1742373528898149,
+          -71.27467590954747
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            0.1742373528898149,
+            -132.02661100368454
+          ],
+          [
+            13.010064913516032,
+            -131.20730173523754
+          ],
+          [
+            43.994077392908444,
+            -125.24882982901795
+          ],
+          [
+            53.22969649734273,
+            -121.67374686309682
+          ],
+          [
+            69.61547232779066,
+            -113.629810673454
+          ],
+          [
+            83.91578577981791,
+            -102.0107929289851
+          ],
+          [
+            95.23686726267285,
+            -87.11461839097372
+          ],
+          [
+            98.81194562567966,
+            -77.5810679024029
+          ],
+          [
+            102.98287038252094,
+            -64.47243752795808
+          ],
+          [
+            106.21002554861052,
+            -43.93598398873022
+          ],
+          [
+            106.21002554861052,
+            -44.213648658394966
+          ],
+          [
+            106.23502554861052,
+            -43.78864849607612
+          ],
+          [
+            106.23502554861052,
+            -44.18864865839497
+          ],
+          [
+            106.26002554861053,
+            -43.763648496076115
+          ],
+          [
+            106.26002554861053,
+            -44.213648658394966
+          ],
+          [
+            107.15379513936223,
+            -29.019559812593258
+          ],
+          [
+            107.15379513936223,
+            -14.371319859744649
+          ],
+          [
+            106.55794874552775,
+            -1.5606213242058773
+          ],
+          [
+            104.17456317018988,
+            19.591923673224066
+          ],
+          [
+            101.49325439793476,
+            38.06315632954472
+          ],
+          [
+            95.23686726267285,
+            63.68453767134202
+          ],
+          [
+            85.10747856748687,
+            87.51837462968241
+          ],
+          [
+            76.16978265996981,
+            102.41451971662165
+          ],
+          [
+            63.06116199561147,
+            114.33143412070125
+          ],
+          [
+            57.40062125418401,
+            117.90650815337834
+          ],
+          [
+            49.952541331253144,
+            122.07742768890014
+          ],
+          [
+            25.820762380957127,
+            128.9296522458712
+          ],
+          [
+            5.561984990585163,
+            131.31303458471274
+          ],
+          [
+            0.1742373528898149,
+            131.43276214590182
+          ],
+          [
+            0.1742373528898149,
+            71.29236740486026
+          ],
+          [
+            16.53514327652285,
+            71.08261235676532
+          ],
+          [
+            26.068685577874362,
+            68.69922851982177
+          ],
+          [
+            31.43130312238459,
+            64.23038366775361
+          ],
+          [
+            36.19807427306034,
+            57.974000522717205
+          ],
+          [
+            39.77315263606717,
+            48.44046351706456
+          ],
+          [
+            46.02953977132909,
+            27.585848009352176
+          ],
+          [
+            50.49749059593261,
+            1.9696005700397983
+          ],
+          [
+            50.20046452817038,
+            -12.881703664064457
+          ],
+          [
+            49.306694937418676,
+            -30.459176259802724
+          ],
+          [
+            47.519155755915264,
+            -44.75949532713324
+          ],
+          [
+            44.242000589825686,
+            -54.29304255847907
+          ],
+          [
+            38.879383045315464,
+            -61.14528021395567
+          ],
+          [
+            30.23961033471565,
+            -66.50790133046998
+          ],
+          [
+            19.216452048777963,
+            -69.18921200262719
+          ],
+          [
+            6.107831384419632,
+            -71.27467590954747
+          ],
+          [
+            0.1742373528898149,
+            -71.27467590954747
+          ]
+        ],
+        [
+          [
+            -115.14690976089493,
+            10.60422917263016
+          ],
+          [
+            -114.25314017014321,
+            -12.335857191487383
+          ],
+          [
+            -113.06144738247428,
+            -23.359017527392666
+          ],
+          [
+            -110.67806180713642,
+            -34.382179130435986
+          ],
+          [
+            -103.82582827804,
+            -59.1098165285077
+          ],
+          [
+            -95.48397876435743,
+            -78.77276166225879
+          ],
+          [
+            -95.43635567460262,
+            -78.76715894122401
+          ],
+          [
+            -95.43397876435742,
+            -78.77276166225879
+          ],
+          [
+            -90.41666780715836,
+            -78.18248930104477
+          ],
+          [
+            -83.56705088766805,
+            -92.77516444278562
+          ],
+          [
+            -76.71481735857165,
+            -103.20248699257444
+          ],
+          [
+            -68.96881423872354,
+            -111.84226939219144
+          ],
+          [
+            -58.839425543537544,
+            -120.18412900004648
+          ],
+          [
+            -51.09342242368945,
+            -124.0571354917521
+          ],
+          [
+            -35.303492987076005,
+            -130.3135309269201
+          ],
+          [
+            -24.876181094972786,
+            -131.20730173523754
+          ],
+          [
+            -1.0423253415940028,
+            -132.10107255462862
+          ],
+          [
+            -1.0238214045861296,
+            -132.0998914506428
+          ],
+          [
+            -0.9923253415940029,
+            -132.10107255462862
+          ],
+          [
+            0.1742373528898149,
+            -132.02661100368454
+          ],
+          [
+            0.1742373528898149,
+            -71.27467590954747
+          ],
+          [
+            -5.16325009843529,
+            -71.27467590954747
+          ],
+          [
+            -16.484331581290213,
+            -70.38090565807468
+          ],
+          [
+            -26.613720276476194,
+            -67.40167154713997
+          ],
+          [
+            -32.870107411738125,
+            -63.23074394686199
+          ],
+          [
+            -38.232724956248354,
+            -52.80342573951251
+          ],
+          [
+            -41.50988012233794,
+            -43.269878658451454
+          ],
+          [
+            -44.78703528842752,
+            -32.24671602714382
+          ],
+          [
+            -48.957960045268806,
+            -10.796241027446094
+          ],
+          [
+            -49.851729636020515,
+            2.0144570303452527
+          ],
+          [
+            -50.14901589015298,
+            13.905906209857454
+          ],
+          [
+            -49.553806439103276,
+            36.82146400925889
+          ],
+          [
+            -47.46834406068263,
+            46.35500216973146
+          ],
+          [
+            -44.489112091510286,
+            55.88853938420086
+          ],
+          [
+            -38.828571350082825,
+            62.74076866960588
+          ],
+          [
+            -30.784645033317485,
+            66.91169060493841
+          ],
+          [
+            -6.656103493026949,
+            71.3799358120944
+          ],
+          [
+            0.1742373528898149,
+            71.29236740486026
+          ],
+          [
+            0.1742373528898149,
+            131.43276214590182
+          ],
+          [
+            -7.844558870690403,
+            131.6109573733108
+          ],
+          [
+            -7.8505979469875005,
+            131.6099804652341
+          ],
+          [
+            -7.894558870690403,
+            131.6109573733108
+          ],
+          [
+            -28.153336261062368,
+            128.33380664969175
+          ],
+          [
+            -44.241188894593044,
+            123.2691189508647
+          ],
+          [
+            -55.8601935743652,
+            119.09819946596512
+          ],
+          [
+            -68.07504464797184,
+            112.8418199008705
+          ],
+          [
+            -75.82104776781995,
+            106.88336279216547
+          ],
+          [
+            -83.86497408458528,
+            99.13736799637717
+          ],
+          [
+            -91.31305400751616,
+            87.22045170345511
+          ],
+          [
+            -98.16528753661255,
+            74.11184206989265
+          ],
+          [
+            -101.44244270270214,
+            61.89699965996
+          ],
+          [
+            -107.40090664104683,
+            61.599076654635454
+          ],
+          [
+            -110.38013861021919,
+            51.17177089561204
+          ],
+          [
+            -113.06144738247428,
+            36.573540924837076
+          ],
+          [
+            -114.55106336706046,
+            23.46492436235502
+          ],
+          [
+            -115.14690976089493,
+            10.65422917263016
+          ],
+          [
+            -115.1458496901427,
+            10.627020689750722
+          ]
+        ]
+      ],
+      "basis": "Replace parent52776565344956 completely; clip only shared-edge strips of native podium52776573472797/798 inside that same mask. Retain the full native podium outside this boundary and all unrelated footprints."
+    },
+    "notes": "Retained exact-QID OSMrelation8822987 identifies the wider venue; its509.531x473.022m axis is not used as stadium dimensions. Standard PMTiles parent52776565344956 supplies the stadium roof/body and central aperture. Own anchor[-38.52244534119621,-3.807239025270286]/global heading0/native east-south, internal X[0.1718245952753119,-0.9851275594858137]/Z[0.9851275594858137,0.1718245952753119] follows minimum rectangle of the142.981965x100.227635m roof aperture. Entire irregular native outer ring retained. Side glazing/entries and fine frame/row distribution are ordinary-picture allocations with20degree/2m uncertainty. The two native access-podium records retain all geometry outside the shared stadium edge; only their overlapping strips within the owned stadium mask are clipped. All other ancillary structures remain intact. Standard6m Mapzen samples contain a strong stadium mound, with peripheral elevations spanning-1.1768092568212616..15.584233367967013m relative to raw anchor datum. Model floor uses the lower15percent perimeter sample (1.3229952326097845m relative), not a surveyed foundation/excavation. A bounded opening inside90percent of the stadium body, clipped inside the common floor of every level with a1percent inset, reveals a closed supported floor; original sample values/outside ground/water remain unchanged. Replace the parent stadium roof shell completely, clipping only overlapping native podium strips inside that same mask. Preserve native podium geometry/holes outside the owned stadium edge, all other independent buildings and native roads. Failure/unload restore original ground. No whole-site flattening/water cutout or inferred real excavation."
+  }
+}

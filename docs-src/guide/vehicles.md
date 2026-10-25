@@ -1,7 +1,18 @@
 # Mountable vehicles and driving
 
-World explorer's parking cars are external entity types with stable IDs, metric dimensions, and five
-models: compact, sedan, SUV, pickup and van. You can walk up to one, get in and drive it.
+Generic vehicles use the Bendy house brand, with stable asset/type IDs. The Bendy Bus and
+Bendy Light Rail are also mountable through the vehicle API. World Explorer has buttons for
+both at the practice area: W/S applies traction or reverse, Space brakes, V switches view,
+and E exits after stopping. The bus steers with A/D; light rail has locked steering on its
+straight practice track. Player controls do not yet follow curved rail-network routes.
+See the [close-view vehicle standard](medium-fi.md#controllable-vehicles-close-view-fidelity)
+for the extra model detail expected around the operator.
+
+World Explorer's parking cars are external entity types with stable IDs and metric dimensions.
+The entity pack includes eleven Bendy road models and eighty U.S. market reference vehicles:
+forty recent models plus forty varied models from 2005–2024. These range from the F-150,
+Prius and Model 3 to the Smart fortwo, MX-5 and Sprinter. You can walk up to one, get in and drive it.
+See the [entity catalog](entities.md#road-cycle-and-water-fleets) for IDs and authoring details.
 
 Each type owns its GLB reference, complete physics configuration, seats, named visual bindings,
 and optional deterministic scripts. Dormant cars use generic dimension-driven instance proxies;

@@ -10,7 +10,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/tj/tjm/n0575_ka_ba_ye_zartosht'),
+const source = resolve('../../content/worldgen/source/places/tj/tjm/ka_ba_ye_zartosht'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -85,13 +85,13 @@ it('reproduces the preserved14038-triangle draft and binds the measured north-no
     )(surfaces, normalize, meshCross, MATERIAL_REPEAT_METERS),
     b = new MeshBufferBuilder(),
     used = new Map(),
-    draft = heritageTowers.find((s) => s.planId === 'N0575');
+    draft = heritageTowers.find((s) => s.planId === 'ka_ba_ye_zartosht');
   draft.build(wrap(b, used, draft.componentMap));
   const m = b.finalize(),
     s = await read(`${source}/spec.json`),
     scope = await read(`${source}/review-scope.json`),
     frame = await read(`${source}/map-frame.json`),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(m.triangleCount).toBe(14038);

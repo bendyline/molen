@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.electric_hatchback": {
-      "doc": "Electric hatchback. Mountable and ambient road vehicle.",
+      "doc": "Bendy Electric Hatchback. Electric hatchback. Mountable and ambient road vehicle.",
       "components": {
         "transform": {
           "pos": [
@@ -31,7 +31,9 @@
           "kind": "molen.entities.vehicle.electric_hatchback",
           "color": "#839daf",
           "spec": {
-            "label": "Electric hatchback",
+            "label": "Bendy Electric Hatchback",
+            "bodyStyle": "hatchback",
+            "genericLabel": "Electric hatchback",
             "width": 2.0160000000000005,
             "length": 4.199999999999999,
             "height": 1.75,
@@ -76,7 +78,23 @@
               "wheel-front-left",
               "wheel-front-right"
             ],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "close-detail",
+                "steering-wheel",
+                "cabin"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
           }
         },
         "vehicleInput": {

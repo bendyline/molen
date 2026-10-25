@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/',
+  '../../../content/worldgen/source/places/u2/u2y/wawel_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -876,7 +876,7 @@ export const buildWawelCathedralDistrict = (out) => build(out, 1);
 export const buildWawelCathedralStreet = (out) => build(out, 2);
 export const buildWawelCathedralCloseup = (out) => build(out, 3);
 export const wawelCathedralStudy = {
-  id: 'N0332',
+  id: 'wawel_cathedral',
   key: 'wawel_cathedral',
   title: 'Wawel Cathedral',
   category: 'cathedral',

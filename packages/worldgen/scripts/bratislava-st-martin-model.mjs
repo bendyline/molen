@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2s/n0350_st_martin_s_cathedral_bratislava/',
+  '../../../content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -878,7 +878,7 @@ const cam = (name, p, look, fov = 48) => ({
   fov,
 });
 export const bratislavaStudy = {
-  id: 'N0350',
+  id: 'st_martins_cathedral_bratislava',
   key: 'st_martin_s_cathedral_bratislava',
   title: "St. Martin's Cathedral, Bratislava",
   category: 'cathedral',

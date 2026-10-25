@@ -18,7 +18,12 @@ export interface VehicleVisual {
   interior?: VehicleInteriorVisual;
   /** The visual's exterior `animation` bindings, posed from the same signals as the interior. */
   animation?: ModelSignalVisual;
-  update(steer: number, wheelAngle: number, signals?: VehicleInteriorSignals): void;
+  update(
+    steer: number,
+    wheelAngle: number,
+    signals?: VehicleInteriorSignals,
+    timeSeconds?: number,
+  ): void;
   dispose(): void;
 }
 
@@ -118,7 +123,7 @@ export function createVehicleVisual(
     object: model,
     interior,
     animation,
-    update(steer, angle, signals) {
+    update(steer, angle, signals, timeSeconds) {
       const roll = signals?.bodyRoll ?? 0;
       const pitch = signals?.bodyPitch ?? 0;
       const lean = Number.isFinite(roll) && Number.isFinite(pitch) && (roll !== 0 || pitch !== 0);
@@ -140,8 +145,8 @@ export function createVehicleVisual(
       if (interior === undefined && steeringWheel !== undefined)
         steeringWheel.rotation.z = steer * 2.5;
       const telemetry = { steering: steer, wheelAngle: angle, ...signals };
-      interior?.update(telemetry);
-      animation?.update(telemetry);
+      interior?.update(telemetry, timeSeconds);
+      animation?.update(telemetry, timeSeconds);
     },
     dispose() {
       const geometries = new Set<THREE.BufferGeometry>();

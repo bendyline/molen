@@ -1,0 +1,415 @@
+{
+  "planId": "eden_hotel",
+  "id": "eden_hotel",
+  "assetId": "molen.worldgen.structure.eden_hotel",
+  "title": "Eden Hotel",
+  "category": "building",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -64.467549,
+    "latitude": -31.091761019999996
+  },
+  "size": [
+    91.0916805267334,
+    18.30000001192093,
+    57.44610404968262
+  ],
+  "actualBounds": {
+    "min": [
+      -28.59144401550293,
+      -0.30000001192092896,
+      -23.614999771118164
+    ],
+    "max": [
+      62.50023651123047,
+      18,
+      33.83110427856445
+    ]
+  },
+  "visualBrief": "Whole surviving Eden Hotel principal building/current museum and intrinsic northern courtyard/gallery: complete main10-corner gross native envelope, paired faceted front towers/oculi/hip roofs, two-level galleries/open veranda colonnades, glazed central winter-garden entrance, broad raised steps/terrace/stone plinth, central pediment/parapet/balusters and bounded relief, room wings/roof masses, adjacent actual northern L-gallery outline and observed open courtyard/small outdoor stage/short stairs/balustrade. Main gross map does not resolve interior courts. Exclude detached southern way604420828 of unconfirmed function, whole estate/park/hills/trees/furniture/lion statues/people/text/interiors.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:La_Falda_043.JPG",
+    "https://commons.wikimedia.org/wiki/File:La_Falda_060.JPG"
+  ],
+  "stories": [
+    {
+      "id": "eden-hotel-wp",
+      "url": "https://qualla.com/eden-hotel/"
+    }
+  ],
+  "referenceInputHash": "2b9bfbb7473c5970b4ef561b43c260730807492b16edc625da0ad0712900aab7",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-eden-hotel.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-eden-hotel.mjs",
+    "level": "skyline",
+    "export": "edenSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stucco",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.4,
+        "metallic": 0.1
+      },
+      "door": {
+        "slot": "door",
+        "localRef": "palette:#fffffd",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "edenDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.1
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "edenStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.1
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "edenCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.1
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named Museo Hotel Edén node1947768879 lies inside actual10-corner principal buildingway604420826, fixing identity independently of generic building=yes tags. Nearby8-corner northern L-galleryway604420827 supplies an adjacent gallery envelope; inclusion as hotel courtyard wing is a bounded interpretation of the exact cleared courtyard photograph, not a separately named museum polygon. Detached southern604420828 remains excluded. Anchor at principal polygon vertex mean; +X north along actual western front edge9-to4 and +Z east across depth. No separately mapped tower/roof/patio outlines or native heights; those sections and exact stage position require bounded original estimates. Independent200m/16641sample field/two raw tiles/PNG frozen before any geometry. Exterior western reference1032.7371m is5m beyond actual principal front, not a surveyed floor datum. Choose forecourt+.03/main first floor2.13/upper6.25/plinth-.3/main eaves10.7/ridge12.7/tower eaves15.2/cap18 before geometry.12original estimated.175m main risers,6courtyard.175m risers. Field varies-16.83 to+4.87m over200m, with about-3.51m southern front/-5.23m southern rear/-5.27m north-gallery ground differences; coarse composite cannot certify common foundation/courtyard levels. Isolated/flat appearance accepted; preserve independent field/PNG/raw tiles unchanged and render separate incompatible source-field evidence, no fitting/flattening/reacquisition/whole-site pad. Exact live host contact unverified/replacementfalse. Main native gross envelope does not separately map hidden interior patios; roof/room-wing subdivisions are original bounded estimates, observed external north courtyard remains open.",
+    "anchor": [
+      -64.467549,
+      -31.091761019999996
+    ],
+    "heading": 1.665480504965103,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -64.46777717998673,
+        -31.091779576772034
+      ],
+      "modelHeight": 0,
+      "basis": "Exterior point5m west of actual principal west front selected before terrain/geometry; not a surveyed stair or building floor datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/604420826",
+      "way/604420827",
+      "node/1947768879"
+    ],
+    "source": "https://www.openstreetmap.org/way/604420826",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fa23ee6e6a3df792e89b7638a8ff06712df473f5874c379d166577e0352004e3",
+    "notes": "Whole surviving Eden Hotel principal building/current museum and intrinsic northern courtyard/gallery: complete main10-corner gross native envelope, paired faceted front towers/oculi/hip roofs, two-level galleries/open veranda colonnades, glazed central winter-garden entrance, broad raised steps/terrace/stone plinth, central pediment/parapet/balusters and bounded relief, room wings/roof masses, adjacent actual northern L-gallery outline and observed open courtyard/small outdoor stage/short stairs/balustrade. Main gross map does not resolve interior courts. Exclude detached southern way604420828 of unconfirmed function, whole estate/park/hills/trees/furniture/lion statues/people/text/interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Named Museo Hotel Edén node1947768879 lies inside actual10-corner principal buildingway604420826, fixing identity independently of generic building=yes tags. Nearby8-corner northern L-galleryway604420827 supplies an adjacent gallery envelope; inclusion as hotel courtyard wing is a bounded interpretation of the exact cleared courtyard photograph, not a separately named museum polygon. Detached southern604420828 remains excluded. Anchor at principal polygon vertex mean; +X north along actual western front edge9-to4 and +Z east across depth. No separately mapped tower/roof/patio outlines or native heights; those sections and exact stage position require bounded original estimates.",
+    "Independent200m/16641sample field/two raw tiles/PNG frozen before any geometry. Exterior western reference1032.7371m is5m beyond actual principal front, not a surveyed floor datum. Choose forecourt+.03/main first floor2.13/upper6.25/plinth-.3/main eaves10.7/ridge12.7/tower eaves15.2/cap18 before geometry.12original estimated.175m main risers,6courtyard.175m risers. Field varies-16.83 to+4.87m over200m, with about-3.51m southern front/-5.23m southern rear/-5.27m north-gallery ground differences; coarse composite cannot certify common foundation/courtyard levels. Isolated/flat appearance accepted; preserve independent field/PNG/raw tiles unchanged and render separate incompatible source-field evidence, no fitting/flattening/reacquisition/whole-site pad. Exact live host contact unverified/replacementfalse. Main native gross envelope does not separately map hidden interior patios; roof/room-wing subdivisions are original bounded estimates, observed external north courtyard remains open.",
+    "Complete actual main10-corner gross hotel envelope and adjacent8-corner northern L-gallery, paired faceted towers/tile hips/oculi, two genuinely open two-level front verandas/square columns/balusters, glazed central winter garden/upper bays/curved pediment and bounded original rosette, raised main12-riser stair/terrace/stone plinth, room wings/estimated rear roofs and observed open courtyard/small curved outdoor stage/6-riser stair/pierced balustrades. Detached southern unknown building/whole park/estate/hills/trees/furniture/lion statues/people/text/interiors excluded.",
+    "Two exact cleared2816x2112 ClaudioElias2009 own/PD-self Qualla originals individually inspected/native byte matched; no attribution-only hero or other dubious imagery, new external photo fetch, borrowed mesh or generated bitmap. Front/northern court appearance is2009-supported surviving museum, not a survey of every later restoration detail.",
+    "Whole native gross main/gallery boundaries retained; upper room/roof divisions/hidden interior patio sections/tower dimensions/entry/stair census/stage coordinates/fine window census/ornamental relief are original bounded photographic estimates. Source map does not separately delineate roof parts/interior courts; only the actually observed external north courtyard is asserted open. No fake entire courtyard pad or roof over the observed outdoor stage.",
+    "Six actual canonical slots: pale stucco wall/trim, fired-clay roof, rough stone foundation/stairs, opaque local glass and dark doors. Three shared graphs and2 local accents. Near levels restore actual recessed oculi/windows, sash/grid mullions, open veranda/annex columns, moldings, roof courses and open balusters; no transparent interiors or active illumination.",
+    "Independent16641value200m source field/two raw tiles/PNG frozen before geometry and unchanged. Flat/isolated appearance accepted with source-field limitation evidence; coarse local grades disagree with common building/platform levels, so exact foundation/threshold/courtyard contact remains unverified and replacementfalse. No fitting/flattening/reacquisition or surrounding ground pad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-west-twin-oculus-towers-open-verandas-and-glazed-winter-garden",
+      "position": [
+        -72,
+        30,
+        -102
+      ],
+      "lookAt": [
+        -2,
+        8,
+        -3
+      ]
+    },
+    {
+      "name": "whole-rear-room-wings-roofs-and-northern-l-gallery",
+      "position": [
+        87,
+        53,
+        82
+      ],
+      "lookAt": [
+        16,
+        6,
+        5
+      ]
+    },
+    {
+      "name": "west-elevation-raised-stair-twelve-risers-towers-and-pediment",
+      "position": [
+        -0.9,
+        12,
+        -87
+      ],
+      "lookAt": [
+        -0.9,
+        8,
+        -13
+      ]
+    },
+    {
+      "name": "southern-tower-real-oculus-recessed-windows-and-tiled-hip",
+      "position": [
+        -36,
+        14,
+        -30
+      ],
+      "lookAt": [
+        -25,
+        12,
+        -14
+      ]
+    },
+    {
+      "name": "open-upper-and-lower-verandas-columns-and-baluster-spaces",
+      "position": [
+        -17,
+        7,
+        -27
+      ],
+      "lookAt": [
+        -17,
+        6,
+        -13
+      ]
+    },
+    {
+      "name": "winter-garden-grid-glazing-central-upper-bays-and-bounded-pediment",
+      "position": [
+        -0.9,
+        8,
+        -29
+      ],
+      "lookAt": [
+        -0.9,
+        7,
+        -14.7
+      ]
+    },
+    {
+      "name": "whole-open-northern-courtyard-stage-steps-and-long-gallery",
+      "position": [
+        22,
+        18,
+        41
+      ],
+      "lookAt": [
+        42,
+        2,
+        13
+      ]
+    },
+    {
+      "name": "curved-outdoor-stage-wall-open-balustrade-and-six-step-run",
+      "position": [
+        41,
+        7,
+        8
+      ],
+      "lookAt": [
+        41,
+        2.6,
+        23
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16015,
+    "vertices": 48045,
+    "materials": 6,
+    "bytes": 1925340,
+    "sha256": "sha256:806c0bbfa6091a87a021e255be7acca20de94ff3fdac308918865ada24f5ba86"
+  }
+}

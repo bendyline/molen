@@ -10,7 +10,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u1/u15/n0619_montevideo'),
+const source = resolve('../../content/worldgen/source/places/u1/u15/montevideo'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -93,7 +93,7 @@ it('reproduces the untouched historical draft and binds the open southeast quay 
   const s = await read(`${source}/spec.json`),
     scope = await read(`${source}/review-scope.json`),
     frame = await read(`${source}/map-frame.json`),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(m.triangleCount).toBe(493066);

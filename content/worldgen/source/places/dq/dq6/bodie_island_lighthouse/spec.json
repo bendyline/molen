@@ -1,0 +1,391 @@
+{
+  "planId": "bodie_island_lighthouse",
+  "id": "bodie_island_lighthouse",
+  "assetId": "molen.worldgen.structure.bodie_island_lighthouse",
+  "title": "Bodie Island Lighthouse",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.5633087368421,
+    "latitude": 35.81855783157895
+  },
+  "size": [
+    8.92549991607666,
+    50.45911940932274,
+    17.100971698760986
+  ],
+  "actualBounds": {
+    "min": [
+      -4.658299922943115,
+      -0.3499999940395355,
+      -4.267199993133545
+    ],
+    "max": [
+      4.267199993133545,
+      50.1091194152832,
+      12.833771705627441
+    ]
+  },
+  "visualBrief": "Surviving1872Bodie Island Lighthouse exterior with five horizontal daymark bands, octagonal granite base, recessed5shaftwindows/four servicewindows,16bracket flared black lowergallery/uppergallery/openrails,16-sidedglazedlantern/threepanerows/darkroofball, intrinsic attached white gabled oilhouse/workroom/passage, four sashwindows/twobrickchimneys and bracketed westentry/foursteps. Native center/axis plus official physical dimensions and exactNPS2021PDexteriors; no detachedquarters/sitefence/grounds/interior.",
+  "nativeAxes": {
+    "x": "southeast across oilhousefront",
+    "y": "up",
+    "z": "southwest/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://npgallery.nps.gov/AssetDetail/681aa44b-0257-4c51-b68f-d38ab53a8b1e",
+    "https://npgallery.nps.gov/AssetDetail/abaa3875-db4b-4915-b153-a2a5d9c8dcca",
+    "https://npgallery.nps.gov/AssetDetail/c87674aa-9d17-4c10-a4dd-9d4f2fc65f5d"
+  ],
+  "stories": [
+    {
+      "id": "bodie-island-lighthouse-wp",
+      "url": "https://qualla.com/bodie-island-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "ed896a13a95c2403803a694e699f3eb00b245d17745d6e8dfa563cfdf6faa7b4",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bodie-island-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bodie-island-lighthouse.mjs",
+    "level": "skyline",
+    "export": "bodieIslandSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "white": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "black": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.34,
+        "metallic": 0.07
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_asphalt",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bodieIslandDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "black": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.34,
+            "metallic": 0.07
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "bodieIslandStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "black": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.34,
+            "metallic": 0.07
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.45,
+    "groundY": -0.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named towerway295323506/Q4286384and connected OilHouseway326756769fix identity/center and southwest entrance axis; detached DoubleKeepersQuartersway232984092and site features excluded. Tower mean circle anchor[-75.5633087368421,35.81855783157894]; preserved original mapped circleabout9.84mdiameter and oilhouseabout10x7.4m are approximate mapping envelopes, not surveys. Official registered architectural text instead documents28ftgranite base diameter and27ft5inx18ft4inoilhouse; geometry uses those physical dimensions while preserving mapped center/front reference. No terrain/image rescale to reconcile footprints. Native48mheight and15.4mseamarklandmarkheight are inconsistent with official164.4ft=50.10912mground-to-ventilator-ball;156ftis sea-to-focalplane,150ftground-to-focalplane. Use distinct official datums; exact section/window/roof details and map/hostcontact remain estimates. Independent coastal relief frozen at fixed southwest oilhouse entry approach before geometry. Exact granite/sill/host ground contact remains approximate.",
+    "anchor": [
+      -75.5633087368421,
+      35.81855783157895
+    ],
+    "heading": -1.074,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.56344237861826,
+        35.81850112426153
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest open entry approach beyond native oilhousefront before independent terrain and geometry. Exact four-step sill/granite base/coastal host contact remains approximate; no fence/grounds slab."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/295323506",
+      "way/326756769"
+    ],
+    "source": "https://www.openstreetmap.org/way/295323506",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ed3a72bace13fff199ce33cd74c0f80028000597fcbf0068a2b45b4e3aadb5ac",
+    "notes": "Whole surviving1872Bodie Island Lighthouse permanent exterior and intrinsic attached oil house/workroom/passage: five broad white-black-white-black-white shaft bands, octagonal dressed granite base, five narrow recessed shaft windows in opposing3/2groups, four upper service windows, flared corbelled two-level black galleries/open rails,16-sided glazed lantern/roof/ventilator ball, plus low white gabled oil house with four sash windows, west entrance/transom/three-bracket gabled canopy/four steps and two brick chimney caps. Exclude detached DoubleKeepersQuarters/visitorcenter/storehouse/cisterns, site fence/paved paths/boardwalk/marsh/landscape, interiors/Fresnel lens replica/lettering/people/vehicles and temporary scaffolding. Original native plan fixes identity/center/axis; official measured architectural text controls scale where approximate mapped envelope differs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_asphalt",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named towerway295323506/Q4286384and connected OilHouseway326756769fix identity/center and southwest entrance axis; detached DoubleKeepersQuartersway232984092and site features excluded. Tower mean circle anchor[-75.5633087368421,35.81855783157894]; preserved original mapped circleabout9.84mdiameter and oilhouseabout10x7.4m are approximate mapping envelopes, not surveys. Official registered architectural text instead documents28ftgranite base diameter and27ft5inx18ft4inoilhouse; geometry uses those physical dimensions while preserving mapped center/front reference. No terrain/image rescale to reconcile footprints. Native48mheight and15.4mseamarklandmarkheight are inconsistent with official164.4ft=50.10912mground-to-ventilator-ball;156ftis sea-to-focalplane,150ftground-to-focalplane. Use distinct official datums; exact section/window/roof details and map/hostcontact remain estimates.",
+    "Three exact primaryNPSgovernment originals dated2021-12-12were inspected after publishedQuallainventory. ExplicitsoleCapeHatterasNationalSeashorecredit/FullGrantingRightsand originalbytes are bound. Unspecified-authorQualla1871drawing/1928aerial, attributionphotos, unrelatedOuterBanks views and exteriorartwork unused as modelcontrols. No copied pixels/generatedtextures; permanent surviving exterior only, currentcosmeticconditionunverified.",
+    "Official50.10912mground-to-ventilator-ball governs totalheight;156ftis sea-to-focalplane,150ftground-to-focalplane. Granitebase8.5344mdiameter/3.3528mhigh, nominal6.7056mpaintbands, oilhouse8.3566x5.588m and2.1336mpassagewidth are physical textcontrols. Nativeenvelopes are larger/approximate, retained unchanged, not forced to model footprint or terrain. Heights of small sections, window/casing placement, roof/chimney/canopy/railing details and concealed rear joints remain bounded estimates.",
+    "Whole individual tower and intrinsic connected oilhouse/passage exterior only. Fivebodywindows+fourservicewindows, twoopen galleries/corbel brackets/closed16-sidedlantern, octagonalgranitebase and oilhouseentry/foursteps/twochimneys retained. Separate doublekeepersquarters/visitorcenter/storehouse/cisterns/sitefence/paths/boardwalk/marsh/landscape, interiors/lensreplica/signage/people/vehicles and temporaryworks excluded.",
+    "Independent160mTerrariumfield stays unchanged at fixed southwestentry. Grid samples/source pixels are not survey accuracy; sandy grass/pavement/base/threshold and host contact remain approximate. No fullsite slab or authored landscape."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "five-bands-oilhouse-and-west-casement-windows",
+      "position": [
+        24,
+        21,
+        40
+      ],
+      "lookAt": [
+        0,
+        22,
+        4
+      ]
+    },
+    {
+      "name": "corbel-brackets-two-open-galleries-and-glazed-lantern",
+      "position": [
+        15,
+        46,
+        19
+      ],
+      "lookAt": [
+        0,
+        44,
+        0
+      ]
+    },
+    {
+      "name": "oilhouse-four-steps-cantilevered-canopy-and-chimneys",
+      "position": [
+        14,
+        7.8,
+        24
+      ],
+      "lookAt": [
+        0,
+        3.6,
+        8
+      ]
+    },
+    {
+      "name": "opposite-three-white-band-windows-and-granite-base",
+      "position": [
+        -22,
+        23,
+        -38
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8542,
+    "vertices": 25626,
+    "materials": 7,
+    "bytes": 1029212,
+    "sha256": "sha256:196fb60b3b1c9d8bebf51dc759e58b05aa58883c53a67e416ca9d01053ad983d"
+  }
+}

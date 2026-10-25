@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.offroad": {
-      "doc": "Off-road utility. Mountable and ambient road vehicle.",
+      "doc": "Bendy Offroad. Off-road utility. Mountable and ambient road vehicle.",
       "components": {
         "transform": {
           "pos": [
@@ -31,7 +31,9 @@
           "kind": "molen.entities.vehicle.offroad",
           "color": "#8a9b72",
           "spec": {
-            "label": "Off-road utility",
+            "label": "Bendy Offroad",
+            "bodyStyle": "offroad",
+            "genericLabel": "Off-road SUV",
             "width": 2.1728,
             "length": 4.3999999999999995,
             "height": 2.1,
@@ -76,7 +78,32 @@
               "wheel-front-left",
               "wheel-front-right"
             ],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "close-detail",
+                "steering-wheel",
+                "cabin"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
           }
         },
         "vehicleInput": {

@@ -34,8 +34,8 @@ molen sim run scene.json --ticks 30 --assert checks.json --hash
 
 One invariant matters more than the rest: **build before you typecheck or
 test**, because packages consume each other's `dist`. The root scripts encode it.
-Use the Node major in `.node-version` for repository builds and tests; CI and Release install its
-exact version. Native math can change the bits of a simulation hash between Node/V8 versions; the
+Run repository tests on the Node major in `.node-version` (any release of it), matching CI and
+Release. Native math can change the bits of a simulation hash between Node/V8 major versions; the
 published packages' Node ≥22.13 support is checked separately by the Node 22 packed-install job.
 `pnpm build` only compiles and bundles. Use `pnpm all` to execute the same checks as CI, including
 the browser tests.
@@ -131,8 +131,8 @@ version of a new package is therefore a one-time authenticated publish:
 3. On npmjs.com, the owner adds a GitHub Actions trusted publisher to each newly published
    package: organization `bendyline`, repository `molen`, workflow filename `release.yml`, no
    environment, and permission for direct `npm publish`. The filename is entered without
-   `.github/workflows/`. The `Release` job has `id-token: write` and uses npm 11.19.1 on Node
-   24.18.0; it sends no `NPM_TOKEN` or `NODE_AUTH_TOKEN`.
+   `.github/workflows/`. The `Release` job has `id-token: write` and uses npm 11.19.1 on the Node
+   major in `.node-version`; it sends no `NPM_TOKEN` or `NODE_AUTH_TOKEN`.
 
 A new package's first version pins its Molen dependencies at the versions already on npm. If it
 relies on unreleased changes in them, the next `Release` run releases those dependencies and gives

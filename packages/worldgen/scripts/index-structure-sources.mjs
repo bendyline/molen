@@ -3,8 +3,10 @@ import { existsSync, readFileSync } from 'node:fs';
 import { readdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { basename, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { readStructurePlacements } from '../../worldgen-earth/scripts/placement-sources.mjs';
 import { validateFolderLocationEvidence } from './folder-location-evidence.mjs';
 import { formatJson } from './format-json.mjs';
+import { structureKeyPattern } from './structure-identity.mjs';
 import {
   encodeSourceGeohash,
   sourceRepositoryRoot as root,
@@ -49,7 +51,7 @@ async function discover(directory) {
 
 /** Collection members are independent identities even when a spec also names its parent plan. */
 export function structureSourceCandidateId(key, spec, frame) {
-  if (typeof spec?.id === 'string' && /^N\d{4}(?:_[A-Z0-9_]+)?$/.test(spec.id)) return spec.id;
+  if (typeof spec?.id === 'string' && structureKeyPattern.test(spec.id)) return spec.id;
   return (
     spec?.planId ??
     { 'space-needle': 'A01', 'golden-gate-bridge': 'C01', 'sr-520-floating-bridge': 'C02' }[key] ??
@@ -133,16 +135,14 @@ export function resolvePlaceSourceLocation({
 export async function buildStructureSourceIndex({ includeLegacy = false } = {}) {
   const prior = optionalJson(structureSourceIndexPath);
   const oldByKey = new Map((prior?.entries ?? []).map((entry) => [entry.key, entry]));
-  const catalog = optionalJson(resolve(structureSourceRoot, 'next-1000/candidates.json'));
+  const catalog = optionalJson(resolve(structureSourceRoot, 'structure-catalog/candidates.json'));
   const members = optionalJson(
-    resolve(structureSourceRoot, 'next-1000/collections.json'),
+    resolve(structureSourceRoot, 'structure-catalog/collections.json'),
   ).collections.flatMap((entry) => entry.members);
   const candidates = new Map([...catalog.candidates, ...members].map((entry) => [entry.id, entry]));
-  const placements = optionalJson(
-    resolve(root, 'content/earth/structures/placements.json'),
-  ).entries;
+  const placements = (await readStructurePlacements()).entries;
   const directories = ['places', 'reusable', 'map-structures'];
-  if (includeLegacy) directories.push('next-1000/models', 'site-structures');
+  if (includeLegacy) directories.push('structure-catalog/models', 'site-structures');
   const bundles = (
     await Promise.all(directories.map((dir) => discover(resolve(structureSourceRoot, dir))))
   ).flat();
@@ -161,8 +161,8 @@ export async function buildStructureSourceIndex({ includeLegacy = false } = {}) 
     const role = reusable ? 'reusable' : 'place';
     const collection = isMap
       ? 'map-structures'
-      : /^N\d{4}/.test(candidateId)
-        ? 'next-1000'
+      : candidates.has(candidateId)
+        ? 'structure-catalog'
         : 'site-structures';
     const placement = placements.find((entry) => entry.asset === assetId);
     const location = reusable

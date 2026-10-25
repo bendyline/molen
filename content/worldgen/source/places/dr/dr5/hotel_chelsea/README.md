@@ -8,14 +8,16 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Hotel Chelsea: Where Art Checked In and Never Left](https://qualla.com/hotel-chelsea/)
 
-Original medium-fi exterior from individually inspected Qualla 2025 and 2010 facade photographs, 2011 ironwork detail and the official NYC landmark report. Not a survey or photogrammetric reconstruction.
+Full medium-fi exterior reviewed against the cleared Qualla sign original, exact1936Abbott WPA balcony photograph and primary NYC landmark description of the roof, chimneys and end gables. No whole-building photographic survey claimed.
+
+Earlier attribution-licensed facade/ironwork photographs are excluded from the active review. Retained architecture now compared with independent public-domain imagery and primary factual architectural descriptions.
 
 Mapped height 52.5 m provides a coarse upper roof control. Intermediate levels, roof slopes, rear/service openings and exact balcony panel spacing remain photographic approximations.
 
-2025 restored finishes take precedence over older white windows, air conditioners and shop signage. Flower-and-leaf ironwork is original simplified geometry; no photo pixels are embedded.
+2025 public-domain night view resolves vertically stacked cream HOTEL and a red horizontal CHELSEA footer. Original simplified letter outlines, sign dimensions, thickness, concealed mounts and unlit appearance remain estimates. No photo pixels or measured neon emission are embedded.
 
 The hotel parcel only; adjacent buildings, interiors and precise rooftop spa/garden fit-out are excluded. Hidden roof service enclosure and side/rear openings are conservative interpretations.
 
 Independent terrain is preserved unchanged, with foundation below the central sidewalk datum. Exact contact with another host DEM remains uncertain.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=hotel_chelsea`. Add `--check` to verify exact regeneration. 43677 triangles; 5 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=hotel_chelsea`. Add `--check` to verify exact regeneration. 44745 triangles; 5 materials; no embedded photographs.

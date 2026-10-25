@@ -340,8 +340,8 @@ function permanent(out) {
 }
 
 export const attoTower = {
-  id: 'n0621_amazon_tall_tower_observatory',
-  planId: 'N0621',
+  id: 'amazon_tall_tower_observatory',
+  planId: 'amazon_tall_tower_observatory',
   title: 'Amazon Tall Tower Observatory',
   wikidata: 'Q18109585',
   authoringFile: 'atto-tower-model.mjs',

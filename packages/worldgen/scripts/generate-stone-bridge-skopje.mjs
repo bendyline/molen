@@ -17,26 +17,30 @@ if (process.argv.slice(2).some((argument) => argument !== '--check'))
     'Usage: node packages/worldgen/scripts/generate-stone-bridge-skopje.mjs [--check]',
   );
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
-const catalog = await readJson('content/worldgen/source/next-1000/candidates.json');
+const catalog = await readJson('content/worldgen/source/structure-catalog/candidates.json');
 const candidate = catalog.candidates.find((entry) => entry.id === skopjeResearch.id);
 if (candidate?.wikidataId !== skopjeResearch.wikidataId)
-  throw new Error('N0004 identity changed; the Skopje research must be reviewed before reuse.');
+  throw new Error(
+    'stone_bridge_in_skopje identity changed; the Skopje research must be reviewed before reuse.',
+  );
 const osm = await readJson('content/earth/structures/evidence/osm-features.json');
 const feature = osm.elements.find(
   (entry) => entry.type === 'way' && entry.id === 734159692 && entry.tags?.wikidata === 'Q1780883',
 );
 if (!feature)
-  throw new Error('N0004 exact-identity OSM outline is absent from the evidence cache.');
+  throw new Error(
+    'stone_bridge_in_skopje exact-identity OSM outline is absent from the evidence cache.',
+  );
 const coordinates = featureLines(feature)[0]?.coordinates;
 const frame = fitMapFrame(coordinates, [
   candidate.referenceCoordinate.longitude,
   candidate.referenceCoordinate.latitude,
 ]);
-if (!frame) throw new Error('N0004 OSM outline cannot be fitted.');
+if (!frame) throw new Error('stone_bridge_in_skopje OSM outline cannot be fitted.');
 const rounded = (number, decimals = 6) => Number(number.toFixed(decimals));
 const evidence = {
   ...skopjeResearch,
-  assetId: `molen.worldgen.structure.n0004_${skopjeResearch.key}`,
+  assetId: `molen.worldgen.structure.${skopjeResearch.key}`,
   mapEvidence: {
     source: 'https://www.openstreetmap.org/way/734159692',
     capturedAt: osm.capturedAt,
@@ -60,7 +64,7 @@ const evidence = {
     ],
   },
 };
-const dir = structureSourceDirectory('n0004_stone_bridge_in_skopje');
+const dir = structureSourceDirectory('stone_bridge_in_skopje');
 for (const [name, body] of [
   ['research.json', biomeJson(evidence, resolve(dir, 'research.json'))],
 ]) {
@@ -74,5 +78,5 @@ for (const [name, body] of [
   }
 }
 console.log(
-  `N0004: primary research and map evidence ${check ? 'verified' : 'written'}; source geometry is maintained by generate-researched-bridges.mjs.`,
+  `stone_bridge_in_skopje: primary research and map evidence ${check ? 'verified' : 'written'}; source geometry is maintained by generate-researched-bridges.mjs.`,
 );

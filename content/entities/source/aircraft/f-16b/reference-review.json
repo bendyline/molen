@@ -1,0 +1,301 @@
+{
+  "variant": "F-16B Block 15, original analog panels; no MLU avionics, no external stores",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://www.aahs-online.org/resources/e-library/fm/USAF-F16A_B-Flight-Manual.pdf",
+      "title": "T.O.1F-16A-1, 14 August 1995, change14 15 August2003, publicly hosted AAHS copy",
+      "author": "USAF / Lockheed Martin",
+      "license": "Document carries distribution and reproduction restrictions. Local study only; no document or diagram pixels distributed.",
+      "scope": "General arrangement/dimensions PDF32,36–37, front and rear Block15 panel drawings PDF53/58. No operational or weapons implementation."
+    },
+    {
+      "url": "https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf",
+      "title": "NASA public report 19930022544, figure2",
+      "author": "NASA",
+      "license": "Public NASA report; local study.",
+      "scope": "Independent 40-degree wing sweep and F16C wind-tunnel planform; not a B-canopy reference."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F-16B_Cockpit_(49128335933).jpg",
+      "title": "F-16B Cockpit, ET197 at RIAT2019",
+      "author": "Falcon Photography",
+      "license": "CC BY-SA 2.0 https://creativecommons.org/licenses/by-sa/2.0/",
+      "scope": "Tandem canopy, intake and gear photograph. Modernized avionics and external stores excluded. Local study only."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:General_Dynamics_F-16A_Fighting_Falcon_Cockpit_FrontPanel_Wide_Cold_War_NMUSAF_26Sep09_(14620247703).jpg",
+      "title": "F-16A museum front panel, 26 September2009",
+      "author": "Valder137",
+      "license": "CC BY 2.0 https://creativecommons.org/licenses/by/2.0/",
+      "scope": "Analog panel depth, instrument bezels and colors; A/front-B arrangement checked independently. Local study only."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Fighter_cockpit.jpg",
+      "title": "Fighter cockpit",
+      "author": "Geert Boogaard / Vaassen",
+      "license": "Public-domain dedication by creator",
+      "scope": "Close instrument and HUD controls photograph; no pixels embedded."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F-16_Cockpit_part.JPG",
+      "title": "F-16 cockpit section, Wernigerode",
+      "author": "Alf van Beem",
+      "license": "CC0 1.0",
+      "scope": "Cockpit shell, coaming and seat construction; no pixels embedded."
+    },
+    {
+      "url": "https://www.forsvaret.dk/da/materiel2/f-16-fighting-falcon/",
+      "title": "F-16 Fighting Falcon",
+      "author": "Danish Defence",
+      "license": "Factual dimensional cross-check",
+      "scope": "Overall length15.03m and height5.09m; rounded values checked against drawing."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.91,
+      4.65
+    ],
+    "lookAt": [
+      0,
+      2.28,
+      5.54
+    ],
+    "fov": 77
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.34
+    ],
+    "viewHeight": 1.2,
+    "cameraHeight": 4.9
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "angleOfAttack": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "flapPosition": 0,
+    "gear": 1
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/f16-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 835,
+        "height": 300
+      },
+      "referenceAnchor": [
+        506,
+        283
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 784,
+        "meters": 15.0876,
+        "description": "Printed 49ft6in length; independently 13ft2in wheelbase. A canopy outline differs from B and is excluded."
+      },
+      "scope": "Body, intake, wing, fin, enlarged stabilator and gear. B canopy checked separately against photo."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/f16-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 550,
+        "height": 820
+      },
+      "referenceAnchor": [
+        279,
+        801
+      ],
+      "modelAnchor": [
+        0,
+        9.391
+      ],
+      "scaleControls": {
+        "pixels": 776,
+        "meters": 15.0876,
+        "description": "Uniform length calibration from nose probe to fin tip; independent 40-degree sweep."
+      },
+      "scope": "Wing planform, LEX, enlarged stabilators; reference external stores and single canopy excluded."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/f16-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 605,
+        "height": 300
+      },
+      "referenceAnchor": [
+        301,
+        290
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 502,
+        "meters": 9.4488,
+        "description": "Printed31ft span without missiles; independently93in main track."
+      },
+      "scope": "Intake, body, span, anhedral stabilators, gear and fin. External stores excluded."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/f16-panel.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1145,
+        "height": 1040
+      },
+      "referenceAnchor": [
+        589,
+        420
+      ],
+      "modelAnchor": [
+        0,
+        -2.34
+      ],
+      "scaleControls": {
+        "pixels": 100,
+        "meters": 0.08,
+        "description": "Instrument face approx80mm; cockpit width is reconstructed, not certified dimensional data."
+      },
+      "scope": "Front panel silhouette, analog instruments, receiver, HUD controls and lower pedestal."
+    },
+    {
+      "view": "rear-panel",
+      "reference": ".artifacts/aircraft/references/f16-rear-panel.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1130,
+        "height": 740
+      },
+      "referenceAnchor": [
+        564,
+        400
+      ],
+      "modelAnchor": [
+        0,
+        -2.45
+      ],
+      "scaleControls": {
+        "pixels": 100,
+        "meters": 0.083,
+        "description": "Rear analog instrument faces approximately83mm; cockpit dimensions reconstructed."
+      },
+      "scope": "Independent rear panel outline, upper twin display housings, lower instrument cluster and handgrip."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced generic fighter geometry with Block 15 F-16B body stations, hollow chin intake, 40-degree swept wing, enlarged anhedral stabilators, fin, ventral fins, individual nozzle petals and measured wheel locations.",
+      "Reconstructed tandem canopy and separate reclined seats from B photographs; removed opaque skin beneath the cockpit and overlapping nose loft.",
+      "Distinct original Block 15 front and rear analog panel outlines and instrument positions; rear twin display housings and handgrip, front HUD glass/control housing and lower pedestal.",
+      "Live TAS, geometric altitude with signed five-digit counter and hundreds needle, attitude/standby attitude, true heading, climb and angle-of-attack pointer on both panels. Missing data hides moving readings against black faces.",
+      "Named expressions mix flap and roll into flaperons, pitch and roll into stabilators, and move tiny-deflection force sticks, throttle, pedals and gear. Heading-card direction checked at four cardinal headings.",
+      "Geometric access seams, selected fastener rows, intake/rescue markings, gear braces and hubs; no external weapons or stores.",
+      "Dedicated cabin inspection camera avoids the seat back; standard operator camera uses the authored pilot eye."
+    ],
+    "independentDimensions": [
+      "Overall 49ft6in (15.0876m) length and 31ft (9.4488m) span without missiles, 16ft8.5in (5.0927m) height.",
+      "13ft2in (4.0132m) wheelbase, 93in (2.3622m) main track, 40-degree leading-edge sweep and 10-degree stabilator anhedral independently checked.",
+      "Front/rear panel drawings calibrated uniformly to approximately80/83mm instrument faces. Seat spacing, cockpit depth and canopy cross-section are photographic reconstructions, not certified dimensions."
+    ],
+    "visual": "Inspected current-hash side/top/front and separate front/rear-panel overlays, four turntable views, three-quarter, operator, cabin, cabin-wide, zero/cruise/limits/below-sea-level/missing instrument states, rear cockpit, side-stick, close exterior and canopy side. A-model canopy and stores in general-arrangement drawing explicitly excluded; B canopy compared separately to the cited photograph.",
+    "limitations": [
+      "Polygonal interpretation of an original analog Block 15 F-16B; reference B photograph depicts a later MLU airframe and only informs external canopy/body shape.",
+      "Panel dimensions, seating, side-console switch identities, duct depth, landing-gear folding and detailed skin/fastener positions remain approximations; not every rivet is reproduced.",
+      "Airspeed is simulation TAS, altitude geometric and heading true; not calibrated pitot-static IAS/Mach/pressure altitude or magnetic navigation. Dial calibration and angle-of-attack scale are illustrative.",
+      "Unsupported engine fuel/temperature/oil/RPM and navigation/radar displays are blank or INOP. HUD glass has no collimated display. Flight controls do not implement the real FLCS or automatic leading-edge flap logic.",
+      "Flight smoke establishes controllability in the shared simplified dynamics, not certification of F-16 performance. No external stores or weapons systems.",
+      "The publicly hosted flight manual carries reproduction restrictions: its diagrams remain local study evidence and are not redistributed in the model or preview."
+    ]
+  },
+  "instrumentReview": {
+    "typeDefinitionHash": "sha256:acf3189d485921285a6f2003d668c2dd9ef7f1ecb3d5ce0405a52c1fb97d01ec",
+    "checks": "33 shared instrument/control tests plus the F-16B geometry test passed.",
+    "captures": {
+      "zero": {
+        "path": ".artifacts/aircraft/f-16b-instruments/zero.png",
+        "sha256": "sha256:f5dca3e9ca6b1905b92b38fe1297a4d3bafe4d64967667dd8c04619bc0c7ab18",
+        "inspected": true
+      },
+      "cruise": {
+        "path": ".artifacts/aircraft/f-16b-instruments/cruise.png",
+        "sha256": "sha256:46d69a31cd7a1daa844e3e7225e73439a80dfe86d23b2f4e8d97d7a82f7569ad",
+        "inspected": true
+      },
+      "limits": {
+        "path": ".artifacts/aircraft/f-16b-instruments/limits.png",
+        "sha256": "sha256:3ecbe17e5ea6515d6ce3351280ebad78268912040e2615c8a0217e66b9cb723f",
+        "inspected": true
+      },
+      "below-sea-level": {
+        "path": ".artifacts/aircraft/f-16b-instruments/below-sea-level.png",
+        "sha256": "sha256:ed7c2068cd2e132c3092c0a9bdd8016fae202064e73ac5be33a5e821bda2464a",
+        "inspected": true
+      },
+      "missing": {
+        "path": ".artifacts/aircraft/f-16b-instruments/missing.png",
+        "sha256": "sha256:b06a79d7bfc6ed8429eac88122c6a1e8cd0047185e2fa6fa8d801e8a3fea9aac",
+        "inspected": true
+      },
+      "rear": {
+        "path": ".artifacts/aircraft/f-16b-instruments/rear.png",
+        "sha256": "sha256:bcff9627867710b8145c7ad8e9a29d152978fae40f530ce868487eb6069e53e7",
+        "inspected": true
+      },
+      "controls": {
+        "path": ".artifacts/aircraft/f-16b-instruments/controls.png",
+        "sha256": "sha256:587435ca8f477423866be35504b70252c626bd31984a468bffe9e8f9f7317a21",
+        "inspected": true
+      },
+      "close-exterior": {
+        "path": ".artifacts/aircraft/f-16b-instruments/close-exterior.png",
+        "sha256": "sha256:50084ae8981d1346cb4723cd187550e3e911ada2fd7ad7f468d7c4929484a5f5",
+        "inspected": true
+      },
+      "canopy-side": {
+        "path": ".artifacts/aircraft/f-16b-instruments/canopy-side.png",
+        "sha256": "sha256:5fe0101164bb571dd390c24f58ff17bbef8568a146c49d4b7b6ee2836d81b1fe",
+        "inspected": true
+      }
+    }
+  },
+  "sourceHash": "sha256:047f239a79d0d17415ac255657e6fcd1a40501b88b3c4027a74bcbe4cbac34c5",
+  "runtimeHash": "sha256:8fcfe7d57ce701c9f7d2e076ea4d270013fd9461c5282115f2b1656a5dc1770d",
+  "limitations": [
+    "Polygonal interpretation of an original analog Block 15 F-16B; reference B photograph depicts a later MLU airframe and only informs external canopy/body shape.",
+    "Panel dimensions, seating, side-console switch identities, duct depth, landing-gear folding and detailed skin/fastener positions remain approximations; not every rivet is reproduced.",
+    "Airspeed is simulation TAS, altitude geometric and heading true; not calibrated pitot-static IAS/Mach/pressure altitude or magnetic navigation. Dial calibration and angle-of-attack scale are illustrative.",
+    "Unsupported engine fuel/temperature/oil/RPM and navigation/radar displays are blank or INOP. HUD glass has no collimated display. Flight controls do not implement the real FLCS or automatic leading-edge flap logic.",
+    "Flight smoke establishes controllability in the shared simplified dynamics, not certification of F-16 performance. No external stores or weapons systems.",
+    "The publicly hosted flight manual carries reproduction restrictions: its diagrams remain local study evidence and are not redistributed in the model or preview."
+  ]
+}

@@ -29,7 +29,10 @@ const bank = {
 };
 
 const packs = {
-  provided: () => [{ pack: { manifest: { id: 'molen.sounds' } }, path: 'sounds.soundbank.json' }],
+  provided: (role: string) =>
+    role === 'soundbank'
+      ? [{ pack: { manifest: { id: 'molen.sounds' } }, path: 'sounds.soundbank.json' }]
+      : [],
   readJson: async <T>() => bank as T,
   assetProvider: () => ({
     load: async () => new ArrayBuffer(0),
@@ -87,16 +90,77 @@ describe('createEarthAudio', () => {
     const street = gains(0, 1.7);
     expect(street['ambience.city.traffic']).toBeGreaterThan(0.4);
     expect(street['ambience.birds']).toBeGreaterThan(0.2);
-    const above = gains(300, 60);
-    expect(above['ambience.city.traffic']).toBeLessThan(street['ambience.city.traffic'] as number);
-    expect(above['ambience.birds']).toBeLessThan(street['ambience.birds'] as number);
-    const high = gains(600, 600);
+    const above = gains(300, 30);
+    expect(above['ambience.city.traffic']).toBeLessThan(
+      (street['ambience.city.traffic'] as number) * 0.25,
+    );
+    expect(above['ambience.birds']).toBeLessThan((street['ambience.birds'] as number) * 0.25);
+    const high = gains(600, 100);
     expect(high['ambience.city.traffic']).toBeUndefined();
     expect(high['ambience.birds']).toBeUndefined();
     // Far from any street, on the ground: birds at full voice, no traffic.
     const field = gains(900, 1.7, 400);
     expect(field['ambience.city.traffic']).toBeUndefined();
     expect(field['ambience.birds']).toBeCloseTo(0.7);
+    audio.dispose();
+  });
+
+  it.each([
+    { daylight: 1, wildlife: 'ambience.birds' },
+    { daylight: 0, wildlife: 'ambience.crickets' },
+  ])('keeps $wildlife and traffic quiet without a known ground height or while driving', async ({
+    daylight,
+    wildlife,
+  }) => {
+    const audio = await createEarthAudio(
+      packs,
+      { ...renderer, sky: { frame: { daylight } } },
+      { onWarning: () => {} },
+    );
+    if (!audio) throw new Error('no audio');
+    const world = new World({ tickRate: 60 });
+    world.spawnRaw(
+      { transform: { pos: [5, 1500, 0], rot: [0, 0, 0, 1] }, vehicle: {} as never },
+      'parked-1',
+    );
+    audio.attachWorld(world);
+    let nowMs = 0;
+    const after = (mode: string, heightAboveGround?: number) => {
+      // Let time-of-day hysteresis and fades settle, as in the rendered frame loop.
+      for (const end = nowMs + 6000; nowMs < end; nowMs += 250)
+        audio.update({
+          nowMs,
+          mode,
+          position: [0, 1501.7, 0],
+          ...(heightAboveGround !== undefined ? { heightAboveGround } : {}),
+        });
+      return audio.layer.director.voices().map((voice) => voice.sound);
+    };
+    const expectQuiet = (sounds: string[]) => {
+      expect(sounds).not.toContain(wildlife);
+      expect(sounds).not.toContain('ambience.city.traffic');
+      expect(sounds).toContain('ambience.wind');
+    };
+    const expectAudible = (sounds: string[]) => {
+      expect(sounds).toContain(wildlife);
+      expect(sounds).toContain('ambience.city.traffic');
+    };
+    // Unloaded terrain must not default to ground-level volume in an aerial view.
+    expectQuiet(after('fly'));
+    // Ground level in the mountains is still audible; absolute altitude is irrelevant.
+    for (const mode of ['walk', 'fly', 'orbit']) expectAudible(after(mode, 1.7));
+    expectQuiet(after('drive', 1.7));
+    expectQuiet(after('pilot', 1.7));
+    // Leaving the vehicle restores outdoor ambience.
+    expectAudible(after('walk', 1.7));
+    // Losing terrain coverage after a valid sample must not turn the volume back up.
+    expectQuiet(after('fly', 3200));
+    // A single missing sample after climbing must not restart a loud ground loop, even for
+    // the director's condition hysteresis interval.
+    audio.update({ nowMs, mode: 'fly', position: [0, 3200, 0] });
+    expectQuiet(audio.layer.director.voices().map((voice) => voice.sound));
+    expectQuiet(after('fly'));
+    expectQuiet(after('fly', Number.NaN));
     audio.dispose();
   });
 

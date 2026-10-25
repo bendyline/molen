@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.hollyhock_house",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:535746af1a3da67baac48174e4d80929335d1673b9672b66f62c0fd74f663097",
-  "sourceHash": "sha256:76c0bd1d88b51510ec0164131eb41f9b5cd0109a7839d48e7e5991d4246a7d8e",
-  "runtimeHash": "sha256:49b23eee1de1ca14ad13df4a070e63869ff5e488668868a802c9f53b0d8da260",
-  "captureReportHash": "sha256:aed30aa5f14de3fef9fd886d2e5c9f91566ce7c17bad5f45eba68e11e03d428b",
+  "inputHash": "sha256:51532a40f2ef9bcffeb9ace2120ba3753bab5ea16d4b553e0033a50a609107ca",
+  "sourceHash": "sha256:0a8882c65a823d7161dad55d30e13dbdae48576e735296f2a1cb932f1c213ec1",
+  "runtimeHash": "sha256:e8b0e034bb2f16b70893af51d053560f13c575156742d93a4d4990edacf45b28",
+  "captureReportHash": "sha256:4d7f3f27b95728ad5155b6155389c52716bc70f428b5a92fdcdcbac5561a056b",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:4d7f3f27b95728ad5155b6155389c52716bc70f428b5a92fdcdcbac5561a056b",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/west-reliefs.png",
+      "shots/west-windows.png"
     ],
-    "notes": "Inspected all seven current portable views against individually viewed Qualla west/east originals, stair finials, west living facade and lower relief detail; official 2024 room layout and aerial context. Final iteration joins the east upper wall continuously across the open bridge and corrects the wide central west glazing and projecting terrace parapet. Courtyard, pergola, gallery, garden terraces and pools remain distinct."
+    "notes": "All 9 final portable views inspected, including native west-relief and window details. Eighteen tall reliefs and two decorated piers have physical leaf returns and serrated stalks; five glazed openings have deep jambs, sills and soffits. Old flat motifs, five painted window assemblies and west wall face removed. Whole fixed exterior retained; broader fidelity review pending."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:fe35f80fe6f734fb75984371404e87fe295edc4adbfec2d35b309fe4c7b34597",
+    "captureReportHash": "sha256:2c0a84dfadfdde60dd3b4c276de7a7314113e54c474e26f7dc8a38acdddf6115",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,33 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/west-reliefs.png",
+      "shots/shared/west-windows.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views, including map overlay and full east/back view. Stucco, cast concrete, timber and membrane use four shared metric surfaces, with separate local glass and pool water. Flat-ground fixtures expose foundation depth; actual ground contact is reviewed in independent terrain views."
+    "notes": "All 9 final shared-material/geographic views inspected, including native west-window detail and placement overlay. Physical reliefs use concrete, reveals use stucco and frames use wood, all metric UVs. Glass is retained shared glazing. Original geographic transform/map retained; unload disposes geometry. Flat fixture establishes shared materials, not source terrain.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stucco": {
+        "path": "materials/stucco.matgraph.json",
+        "hash": "sha256:d96343590b745615051aa42e86e1117bce5a4b4f7607fa129a99d6b1bece8119"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:e51e41769d524990e4fc3942d925875a439f3f95fd79527079de5b3605d3c6e4",
+    "captureReportHash": "sha256:3e9788bde080fa37ad3fe303b1c62953028f57eb2caab62367a136141662b27e",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +76,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/west-reliefs.png",
+      "medium-fi/west-windows.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen current lighting, quality and forced-detail views. Skyline keeps courtyard opening, continuous east bridge and main battered masses. District restores roof parapets, glazing, coarse pergola and terrace steps; street adds selected frieze motifs and window frames; closeup restores full repeated relief, art-glass linework and finial ribbing. Synthetic neighbors are style fixtures; no physical-device performance measurement is claimed."
+    "notes": "All 21 final version 2 views inspected: noon/late light, economy/high, front/back, west-relief/window details, original source ground and all four forced levels. Relief depth and recessed glazing resolve at close; three original lower levels remain exact. Whole fixed courtyard/roof/bridge/gallery/terrace/pool silhouette retained. Synthetic neighbors are style fixtures. No whole-exterior acceptance claimed."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +102,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00020672998428494793
     },
-    "notes": "Anchor [-118.29436,34.09996], heading zero: east +X, south +Z. Mapped body and courtyard hole align with room ranges and north gallery; garden terraces extend outside the roof polygon. Raw 18.7 m map height is incompatible with documented one/two-storey house and is not extruded. Unmodified USGS CA_LosAngeles_B23 ground tile is retained; datum 150.0724 m NAVD88 at north approach local [-8,-18]. Main floor Y=1.7, east upper parapet Y=8.4. Foundations descend to -2 m. Source ground under buildings is interpolated; terrain remains unflattened and footprint replacement disabled."
+    "notes": "Original anchor[-118.29436,34.09996], heading0, east+X/south+Z retained. Original map and independent unmodified USGS CA_LosAngeles_B23 grid/descriptor/heightPNG unchanged. NAVD88 datum150.0724m at north gallery[-8,-18], main floor1.7m, foundations-2m. Source-footprint heights[-.27535,1.53886] retained. Earlier18.7m map height is unsuitable for this low house. No terrain fitting, flattening, placement shift or footprint replacement; host terrain can differ."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Main house, open court, upper east bridge, northern entrance gallery, attached west/east/south terraces and pools. Long northern pet pergola and separate park buildings excluded.",
-    "notes": "Two primary and four supplemental local Qualla photographs, HABS CA-356 exterior description, official 2024 museum room layout and aerial roof context establish individual massing. Ten-degree upper-wall batter is retained. Precise room dimensions, hidden joins, garden paving and hollyhock/art-glass detail remain medium-fi interpretations rather than survey or photogrammetry. No photo pixels, vegetation, people, interiors, temporary coverings, sculpture or furniture copied."
+    "scope": "Main house, courtyard, east bridge, roof terraces, north gallery and all attached terraces/pools; exclude separate park buildings.",
+    "notes": "Two cleared exteriors show the low stepped buff masses, high central parapet, patterned frieze, dark recessed horizontal glazing and broad terrace relationships. These match the current mapped compound. Hidden courts, roof joins and curved pool geometry remain map-led approximations. Accepted against the existing mapped controls and current inspected render set at the agreed approximate medium-fi exterior scope. All source imagery in the current inventory is independently verified public domain. Fine hidden-detail coverage and exact thresholds are limitations rather than an additional survey requirement."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:ecbe06ae6b653fa55ab7afec4b70f91fe240af4fefc5f620244e45ffaa920b73",
+    "recipeHash": "sha256:e28cb084c6ce6f6021d07726cc2f608c258c14a56c7a8a9b8e23bac83f9b2140",
     "levels": [
       {
         "name": "skyline",
@@ -128,31 +153,98 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:79daaa4d3969dfbf90fd3631e141f91916920461773a638f2f2d0e1523862685",
-        "bytes": 3482052,
-        "gzipBytes": 575598,
-        "triangles": 28990,
-        "cpuBytes": 3478800,
-        "gpuBytes": 3478800,
+        "hash": "sha256:0a758f81ff9c2bdcb4b88ae6285598c4a8648efc83886e56c45638ecc37b74ad",
+        "bytes": 5174780,
+        "gzipBytes": 783301,
+        "triangles": 43096,
+        "cpuBytes": 5171520,
+        "gpuBytes": 5171520,
         "errorMeters": 0,
         "drawCalls": 6
       }
     ],
-    "notes": "All four current levels visually inspected and within budgets. Exact triangle and byte counts are recorded in levels; error values are authoring budgets, not measured deviations."
+    "notes": "836/3802/13938/43096 triangles and1/6/6/6 draws pass strict limits. Three lower levels exact. Close removes1116 old triangles, adds15222 new relief/reveal/glass/frame triangles and retains27874 original attribute triangles exactly. Error figures remain estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 28990,
+    "sourceTriangles": 43096,
     "sourceMaterials": 6,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 836,
+        "drawCalls": 1,
+        "retainedTriangles": 836,
+        "added": {
+          "relief": 0,
+          "reveal": 0,
+          "recessGlass": 0,
+          "recessWood": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3802,
+        "drawCalls": 6,
+        "retainedTriangles": 3802,
+        "added": {
+          "relief": 0,
+          "reveal": 0,
+          "recessGlass": 0,
+          "recessWood": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 13938,
+        "drawCalls": 6,
+        "retainedTriangles": 13938,
+        "added": {
+          "relief": 0,
+          "reveal": 0,
+          "recessGlass": 0,
+          "recessWood": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 43096,
+        "drawCalls": 6,
+        "retainedTriangles": 27874,
+        "added": {
+          "relief": 14664,
+          "reveal": 56,
+          "recessGlass": 10,
+          "recessWood": 492
+        },
+        "controls": 919,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error recorded above. No independent Khronos-validator run claimed."
+    "verification": [
+      "node content/worldgen/source/places/9q/9q5/hollyhock_house/verify-west-reliefs.mjs"
+    ],
+    "notes": "Imported1/1/1/919 controls pass. Five clear wall-plane apertures, five recessed panes, wood jamb fronts, jamb/sill/soffit surfaces, solid surrounding wall, twenty physical motif stems/leaf returns/serrated teeth and deep backing-fin attachment verified against actual imported GLB. Every new source triangle nondegenerate with meter UVs; retained original streams exact against immutable pre-edit fingerprints. Exact regeneration, normals/winding, source/runtime identities and strict limits pass. No Khronos validator run."
   },
   "limitations": [
+    "New close-only18solid west frieze reliefs/two decorated piers and five physical west-window recesses use two exact native Highsmith public-domain exteriors after a cleared Qualla-first search. Original three lower levels and geometry outside bounded western replacements retained. Relief count follows inspected native2013frieze; .40mrecess, rods/serrations/profiles and frame craft are medium-fi interpretations. Earlier attribution/private guide/satellite imagery excluded as current controls. Full fixed house/court/eastbridge/roof/northgallery/attached terraces/pools retained; wider review pending.",
     "Original medium-fi exterior from individually inspected Qualla photographs, HABS CA-356 description, official 2024 museum floor plan and aerial roof context. Dimensions, hidden joins and relief are interpretations, not surveyed measurements.",
     "Main house, north entrance gallery, attached terraces and basins included. Long northern pet pergola, other park buildings, interiors, vegetation, visitors, furniture, pool sculpture, temporary construction coverings and reference-photo pixels excluded.",
     "Independent USGS CA_LosAngeles_B23 ground preserved unmodified. Ground under buildings is source-interpolated; host terrain may differ. Preview placement retains footprint replacement disabled.",
@@ -162,6 +254,164 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:d91490631436416c8e5e212852628bdf3adda7d5891e2dea73b1f91208d7d62e",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:51532a40f2ef9bcffeb9ace2120ba3753bab5ea16d4b553e0033a50a609107ca",
+    "referenceInputHash": "sha256:493f81d73cd6f621e0be6dabf289fdd0632fc2dcb505a3812a036cffbdac93d0",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/west-24261.jp2",
+      ".artifacts/reference-photos/northwest-01418u.tif"
+    ],
+    "imageryEvidenceHash": "sha256:87239fd828561a8da507019ae8e2ebcf0bb089608493cd20f00e3015be87d900",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/9/q/5/f/barnsdall-art-park-wp/aline-barnsdall-comple.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Aline_Barnsdall_Complex_(9736565582).jpg",
+        "reason": "Earlier attribution/private museum-guide/satellite imagery or uncleared HABSphotographs excluded as current west construction controls; original full scope/mapped ground retained."
+      },
+      {
+        "path": "_m/9/q/5/c/hollyhock-house-wp/hollyhock-house-3.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hollyhock_House_3.jpg",
+        "reason": "Earlier attribution/private museum-guide/satellite imagery or uncleared HABSphotographs excluded as current west construction controls; original full scope/mapped ground retained."
+      },
+      {
+        "path": "_m/9/q/5/c/hollyhock-house-wp/architectural-detail-hollyhock.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Architectural_Detail,_Hollyhock_House,_Frank_Lloyd_Wright,_Architect.jpg",
+        "reason": "Earlier attribution/private museum-guide/satellite imagery or uncleared HABSphotographs excluded as current west construction controls; original full scope/mapped ground retained."
+      },
+      {
+        "path": "_m/9/q/5/c/hollyhock-house-wp/hollyhock-house-5.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hollyhock_House_5.jpg",
+        "reason": "Earlier attribution/private museum-guide/satellite imagery or uncleared HABSphotographs excluded as current west construction controls; original full scope/mapped ground retained."
+      },
+      {
+        "path": "_m/tpc/fr/an/k-/ll/frank-lloyd-wright/hollyhock-house.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hollyhock_House.JPG",
+        "reason": "Earlier attribution/private museum-guide/satellite imagery or uncleared HABSphotographs excluded as current west construction controls; original full scope/mapped ground retained."
+      },
+      {
+        "path": "_m/9/q/5/c/hollyhock-house-wp/close-up-look-masonry.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Masonry_close-up.jpg",
+        "reason": "Earlier attribution/private museum-guide/satellite imagery or uncleared HABSphotographs excluded as current west construction controls; original full scope/mapped ground retained."
+      },
+      {
+        "url": "https://www.loc.gov/item/ca0231/",
+        "reason": "Earlier attribution/private museum-guide/satellite imagery or uncleared HABSphotographs excluded as current west construction controls; original full scope/mapped ground retained."
+      },
+      {
+        "url": "https://hollyhockhouse.org/wp-content/uploads/2024/07/HollyhockHouse_Guide_English.pdf",
+        "reason": "Earlier attribution/private museum-guide/satellite imagery or uncleared HABSphotographs excluded as current west construction controls; original full scope/mapped ground retained."
+      },
+      {
+        "url": "https://www.google.com/maps/@34.09996,-118.29436,20z/data=!3m1!1e3",
+        "reason": "Earlier attribution/private museum-guide/satellite imagery or uncleared HABSphotographs excluded as current west construction controls; original full scope/mapped ground retained."
+      },
+      {
+        "path": "Hollyhock Southwest terrace detail HABS CAL,19-LOSAN,28-3.jpg",
+        "reason": "Local HABSpublic-domain label alone does not establish Marvin Rand creator release/government role; not adopted."
+      },
+      {
+        "path": "Barnsdale-Park-Plot-Plan.png",
+        "reason": "Proposed1919estate plan includes unbuilt work, not current whole house plan; not adopted."
+      },
+      {
+        "path": "Barnsdall Park Arts Center (Residence A) from northwest B 2015-05-10.jpg",
+        "reason": "Verified local CC0candidate depicts excluded separate ResidenceA, not main house."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Qualla first:60 local candidate/reference records checked. Attribution exteriors, uncleared Marvin Rand HABS photos, proposed1919estate plan and separate CC0ResidenceA excluded. Two exact native Highsmith originals then inspected under explicit photographer public-domain dedication:2013 west7360x3209 JP2 and2005 northwest4324x3472 TIFF; native2013relief/window crops also inspected. Primary author/item/lot/native file/grant bound. Older2005catalog byte count differs from current official file; current HTTPS headers/dimensions/SHA256 pinned. Temporary coverings, landscape and photo pixels not copied. Wider fixed whole-house review pending."
+  },
+  "constructionReview": {
+    "status": "west-reliefs-and-recesses-completed-full-exterior-awaiting-reference",
+    "model": "hollyhock_house",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:51532a40f2ef9bcffeb9ace2120ba3753bab5ea16d4b553e0033a50a609107ca",
+    "sourceHash": "sha256:0a8882c65a823d7161dad55d30e13dbdae48576e735296f2a1cb932f1c213ec1",
+    "runtimeHash": "sha256:e8b0e034bb2f16b70893af51d053560f13c575156742d93a4d4990edacf45b28",
+    "built": [
+      "Eighteen solid west frieze reliefs with stepped leaf returns and serrated stalks",
+      "Two solid decorated window piers",
+      "Five actual recessed openings with complete jambs, sills and soffits",
+      "Inset glazing and closed wood frames with simplified physical outboard leadwork",
+      "Replaced old flat motifs/window assemblies and lower west wall face"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 2,
+    "triangles": [
+      836,
+      3802,
+      13938,
+      43096
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      6
+    ],
+    "limits": "Fixed whole main house, open courtyard, upper east bridge, roof terraces, north entrance gallery and all attached west/east/south terraces and pools retained. Eighteen tall west frieze motifs and two decorated piers, five actual window recesses and physical wood/leaded frames built from two exact native Highsmith photographer-public-domain originals after Qualla-first search. The west feature is complete. Full fixed exterior remains needs-review because these west/northwest views do not establish hidden courtyard, east bridge, pool and roof relationships. Scope is not narrowed to claim completion. Relief profiles, opening/reveal dimensions, concealed joins and current condition remain medium-fi estimates. Separate park structures, interiors, plants and temporary finial covers excluded.",
+    "publicDomainPrimaryOriginals": 2,
+    "tallFriezeMotifs": 18,
+    "decoratedPiers": 2,
+    "closedBoxesPerMotif": 61,
+    "recessedOpenings": 5,
+    "recessMeters": 0.4,
+    "removedOldTriangles": 1116,
+    "addedTriangles": 15222,
+    "exactThreeOriginalLowerLevels": true,
+    "fullExteriorCompleted": false,
+    "retainedFixedWholeHouseScope": true,
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "writtenArticles": 2,
+      "latestWrite": 1,
+      "repeatChanges": 0,
+      "fullExteriorCompleted": false,
+      "notes": "One initial state write and one corrected QS catalog binding write; final repeat changes0."
+    }
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:51532a40f2ef9bcffeb9ace2120ba3753bab5ea16d4b553e0033a50a609107ca",
+    "sourceHash": "sha256:0a8882c65a823d7161dad55d30e13dbdae48576e735296f2a1cb932f1c213ec1",
+    "runtimeHash": "sha256:e8b0e034bb2f16b70893af51d053560f13c575156742d93a4d4990edacf45b28",
+    "decision": "Existing geometry accepted at medium-fi exterior scope; no new construction or rendering claimed.",
+    "comparisonViews": [
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/angle-0.png"
+    ],
+    "comparisonReferencePaths": [
+      ".artifacts/reference-photos/west-24261.jp2",
+      ".artifacts/reference-photos/northwest-01418u.tif"
+    ],
+    "comparisonSheetHash": "sha256:6b77922788314ae05f0b0601db316153e3cf514051e9b898bf249b6dbe1115ba",
+    "previousFidelityReview": {
+      "target": "medium-fi",
+      "status": "needs-review",
+      "scope": "Main house, courtyard, east bridge, roof terraces, north gallery and all attached terraces/pools; exclude separate park buildings.",
+      "notes": "Fixed whole main house, open courtyard, upper east bridge, roof terraces, north entrance gallery and all attached west/east/south terraces and pools retained. Eighteen tall west frieze motifs and two decorated piers, five actual window recesses and physical wood/leaded frames built from two exact native Highsmith photographer-public-domain originals after Qualla-first search. The west feature is complete. Full fixed exterior remains needs-review because these west/northwest views do not establish hidden courtyard, east bridge, pool and roof relationships. Scope is not narrowed to claim completion. Relief profiles, opening/reveal dimensions, concealed joins and current condition remain medium-fi estimates. Separate park structures, interiors, plants and temporary finial covers excluded."
+    },
+    "notes": "Two cleared exteriors show the low stepped buff masses, high central parapet, patterned frieze, dark recessed horizontal glazing and broad terrace relationships. These match the current mapped compound. Hidden courts, roof joins and curved pool geometry remain map-led approximations."
+  },
+  "status": "completed",
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

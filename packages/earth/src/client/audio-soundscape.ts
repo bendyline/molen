@@ -214,6 +214,9 @@ export function earthSoundscapeEnvironment(
       default:
         continue;
     }
+    // A missing streamed terrain sample must not resolve to ground-level volume.
+    if (['birds', 'night', 'insects', 'coast', 'river', 'traffic'].includes(clip.category))
+      drives.push(identity('host.terrainKnown'));
     ambience.push({
       sound: clip.id,
       when: { [`host.soundscape.${clip.category}`]: clip.id },

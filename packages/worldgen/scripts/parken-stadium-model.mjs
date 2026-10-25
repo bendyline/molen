@@ -559,7 +559,7 @@ export function buildParken(out) {
   details(out);
 }
 export const parkenStudy = {
-  id: 'N0707',
+  id: 'parken_stadium',
   key: 'parken_stadium',
   wikidataId: 'Q33003',
   title: 'Parken Stadium',

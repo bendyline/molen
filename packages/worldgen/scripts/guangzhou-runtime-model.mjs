@@ -398,9 +398,7 @@ function buildNative(out, mapped, cfg) {
 }
 
 const map = JSON.parse(
-  readFileSync(
-    structureSourcePath('n0186_guangzhou_international_finance_center', 'map-frame.json'),
-  ),
+  readFileSync(structureSourcePath('guangzhou_international_finance_center', 'map-frame.json')),
 );
 const settings = {
   skyline: {

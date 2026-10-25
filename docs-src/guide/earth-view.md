@@ -4,7 +4,7 @@
 composes:
 
 - streamed terrain from a `molen/terrain-package@1`;
-- worldgen buildings, street surfaces, trees and parked cars from content packs;
+- worldgen buildings, seeded infill for streets with missing outlines, street surfaces, trees and parked cars from content packs;
 - traffic, pedestrians, trains and aircraft that come and go around the viewer;
 - orbit, walk, drive and fly navigation, with cars and aircraft the host can put the viewer in;
 - markers placed by latitude/longitude;
@@ -128,7 +128,9 @@ added.
 `view.vehicleStatus()` describes the car or aircraft the viewer is in for a HUD: speed and
 heading for a car; airspeed, altitude and height above ground, vertical speed, attitude, load
 factor (g), sideslip, power, engine, gear, flaps and stall/impact flags for an aircraft (SI units,
-compass radians). An airplane started in flight is trimmed for level flight at its launch speed.
+compass radians). Both carry the type's `label` and, where the type declares them, its name-free
+`genericLabel` (`Full-size pickup`) and `bodyStyle`, so a HUD that must not show a real
+manufacturer or model name has something to show instead. An airplane started in flight is trimmed for level flight at its launch speed.
 `view.setThrottle(power)` sets an aircraft's throttle or collective from an on-screen lever.
 
 Listen for `modechange`. The input profile, clip planes and touch stick follow the mode
@@ -513,16 +515,25 @@ world/geographic conversion) and ticked on their sync.
 
 ## Geographic structures and regional styles
 
-The Earth pack may provide a `molen/structure-placements@1` document. Each record binds a
+The Earth pack may provide a regional `molen/structure-placement-index@1` directory, or a
+legacy flat `molen/structure-placements@1` document. Each placement binds a
 WGS84 `[longitude, latitude]` anchor to an asset ID from the style pack, with an optional
 heading, scale, terrain or sea-level datum, and minimum tile level. The Earth viewer loads the
-catalog with the packs, indexes it by three-character geohash, and draws each `preview` model
+regional directory with the packs, then reads compact `molen/structure-placement-data@1`
+regions as terrain tiles need them. Flat catalogs still load eagerly. Resident placements
+are indexed by three-character geohash, and the viewer draws each `preview` model
 in the terrain tile containing its anchor. `draft` records remain queryable but are not drawn.
 Long structures may supply `bounds: [west, south, east, north]`. Their extent is indexed across
 geohash cells and geometry is clipped to each resident tile, so a bridge end stays visible when
 its center is outside the view. Extended structures use either `datum: 'sea-level'` with an
 absolute `elevation`, or a `terrainReference` with the host sampler described below. Every
 tile must resolve the same model origin, avoiding inconsistent ground samples between tiles.
+
+Models with `groundCutout` stay whole in each intersecting resident tile. Their floors and
+openings therefore remain together while adjacent tiles load, including when the anchor tile
+is absent. These instances share the library's geometry and textures and release with their
+tiles. Ordinary extended bridges continue to use clipped geometry.
+
 `replaceRoads: { length, width, deckHeight?, deckHeights? }` describes a model-local rectangle along +X:
 mapped parallel bridge lines inside it are replaced only after the model loads successfully.
 Outside approach fragments remain procedural. `deckHeight` joins those approaches to the
@@ -546,7 +557,45 @@ only if it shares a covered endpoint with a mapped bridge and continues outward 
 axis. The remaining grade fragment receives a 20 m terrain blend. Nearby roads, transverse paths
 and tunnels remain intact. This requires the source tile to retain the shared bridge/approach
 endpoint; disconnected or generalized map geometry is left in place.
-Sunken structures can declare `groundCutout: { outline: [[x, z], ...], basis: 'source evidence' }` on a placement. The simple polygon uses native model metres and follows the same heading and scale as the model. It should bound the ground opening covered by the authored concourse or rim. The terrain pyramid subtracts the polygon from actual elevation and draped ground triangles across tile and LOD boundaries, preserving interpolated heights and surface attributes along its edge. The cutout becomes active only when its successfully loaded structure is visible, and the original ground returns on layer hiding or eviction. Failed or cancelled models leave the ground intact. Heights remain available for anchoring; an opening does not itself author walkable floors or collision.
+Sunken structures can declare `groundCutout: { outline: [[x, z], ...], basis: 'source evidence' }` on a placement. The simple polygon uses native model metres and follows the same heading and scale as the model. It should bound the ground opening covered by the authored concourse or rim. The terrain pyramid subtracts the polygon from actual elevation and draped ground triangles across tile and LOD boundaries, preserving interpolated heights and surface attributes along its edge. The cutout becomes active only when its successfully loaded structure is visible, and the original ground returns on layer hiding or eviction. Failed or cancelled models leave the ground intact. Heights remain available for anchoring; an opening does not itself author walkable floors or collision. Separate excavations can add `additionalOutlines: [[[x, z], ...], ...]` to the same object (up to 64 total polygons). Ground between those outlines stays intact; every opening needs matching model geometry. Client integrations can register the same set with `setTerrainGroundCutouts(object, outlines)`. The singular `setTerrainGroundCutout` remains available for one polygon.
+
+For separated parts, `groundCutout.outlines` supplies the complete set of up to 64 simple polygons
+and supersedes the single `outline`. Keep `outline` as the primary boundary for compatibility.
+Each ring follows the same model pose and lifetime; ground in the gaps stays visible. This lets
+a structure cover a main building and a detached component without clearing the ground between them.
+For an extended structure, each resident tile clips these openings to its own rendered model
+piece. Terrain outside that tile stays intact until the corresponding model piece loads.
+
+A landmark that authors a lake or basin can separately declare
+`waterCutout: { outlines: [[[x, z], ...], ...], basis: 'source evidence' }` with geographic
+`bounds`. Up to 16 simple native model polygons replace only the covered native water. The
+viewer keeps other polygons from the same map feature, and clips replacement to resident model
+tiles. Native water returns when the model is hidden or evicted; failed or cancelled loads
+leave it intact. Ground openings and water openings are independent, so a bridge's ground
+opening does not remove the river underneath it. Custom water adapters can register their mesh
+with `markTerrainWaterSurface`; `TerrainGroundCutoutController` coordinates both surface kinds.
+
+When a map merges a landmark with neighboring buildings, declare
+`buildingCutout: { outline: [[x, z], ...], basis: 'source evidence' }` and geographic `bounds`.
+This simple native model polygon follows the placement's heading and scale. While the model is
+loaded, the viewer subtracts only that area from mapped buildings and preserves their remaining
+polygons, holes, heights and other attributes. It takes precedence over `replaceFootprint` for
+that placement. Bounds ensure every overlapping tile receives the mask. Failed loads leave the
+mapped buildings intact; eviction restores the original source data. This affects procedural
+building geometry; use `groundCutout` separately when the model also covers the terrain opening.
+For separated buildings or precincts, `buildingCutout.outlines` provides up to 64 independent
+simple masks and supersedes `outline`. Keep the primary `outline` for compatibility. Separate
+masks preserve intervening buildings without inventing connecting structure geometry.
+
+For a whole landmark whose source footprint slightly overlaps a neighboring building, set
+`buildingCutout.minimumCoverage` to a fraction in `(0, 1]`, for example `0.995`. This changes
+the mask to whole-building replacement: a mapped feature goes only when the union of that
+placement's masks covers at least that fraction of its occupied area. The calculation includes
+all components and subtracts holes; overlapping masks do not count twice. Lower-coverage
+neighbors keep their original polygons and attributes intact. Separate placements make separate
+coverage decisions. Generalized tiles fall back to area subtraction so a coarse merged block
+can retain the surrounding complex while the landmark occupies its part. Use ordinary
+subtraction when only part of a precise map building should go.
 
 ### Bridge elevations and terrain fit
 
@@ -626,6 +675,14 @@ each document may contain `rules` for deliberately generic assets. The shipped
 `structures/map-rules.json` recognizes windmills and wind turbines from class, subclass, or
 explicit map tags. Unique named landmarks never become arbitrary category replacements.
 
+Regional types can set `bounds: [west, south, east, north]` in WGS84 degrees. An optional
+`match.names` array accepts exact category labels such as “Svan tower”; it requires regional
+bounds and a class, subclass or explicit tag match. Partial names and business names do not
+establish a type. Bounds use half-open east/north edges. With `fit: "footprint"`, an explicitly
+typed point can use its sole complete containing building for size and the undirected longest
+axis; the matcher never chooses the nearest house. Generalized, clipped or ambiguous footprints
+do not establish that fit. A footprint axis alone does not establish the entrance's facing.
+
 ```json
 {
   "id": "generic.windmill",
@@ -660,10 +717,33 @@ eviction. Rules require source classification evidence: a cafe with “Windmill�
 not a windmill. Providers that omit POIs, classifications, or structure tags cannot imply that
 object. The semantic decoder preserves public structure tags and Wikidata IDs when supplied.
 
-`content.worldgen.structures.query([west, south, east, north])` returns preview placements in a
-geographic rectangle. Pass `true` as the second argument to include drafts. The default
-catalog and its source notes live in `content/earth/structures/placements.json` in the engine
-repository. Named model sources and previews live in
+`content.worldgen.structures.query([west, south, east, north])` returns resident preview
+placements in a geographic rectangle. Pass `true` as the second argument to include drafts.
+For a regional catalog, `isLoaded(bounds)` distinguishes complete coverage from an unloaded
+region. Use `await structures.queryAsync(bounds, { signal, viewingDate, includeDraft })` to
+load and query complete coverage; flat indexes expose only the synchronous query. Async
+results remain valid even when a large query exceeds the retained cache budget. Terrain
+renderers await coverage before replacing buildings, roads, water or ground. Parking avoids
+unloaded landmark coverage until nearby terrain has loaded it.
+
+Regional reads share in-flight requests, run at most four requests at once, and retain at most
+32 parsed regions or 4 MiB of serialized data (JavaScript object overhead is additional).
+Cancelling one query does not cancel another query sharing its read. `dispose()` on the
+regional stream cancels its reads and drops the cache. Directory coverage includes complete
+structure extents and mapped identity search neighborhoods across region boundaries and the
+antimeridian. Regions whose minimum tile level exceeds the requested level are skipped.
+
+In the engine repository, authoritative placements and their source notes live in individual
+`content/earth/source/placements/<gh2>/<gh3>/<placement-id>.json` files. A deterministic build
+produces the ignored `content/earth/structures/placements/index.json` and `cells/*.json` files.
+Runtime data retains titles and source URLs, all placement numbers, cutouts, statuses and
+historical dates, while omitting `note` and `basis` explanations. Detailed map evidence stays
+in the source; only `wikidata`, `names` and `maxDistance` are runtime matching fields.
+The compiler starts with geohash2 regions and subdivides regions over 192 KiB when possible.
+The pack keeps these files independently readable rather than combining them in solid blocks.
+The generated `authoring.json` aggregate supports local review fixtures and is excluded from packs.
+
+Named model sources and previews live in
 `content/worldgen/source/places/<gh2>/<gh3>/<source-key>/`; imported runtime bundles mirror
 that organization under `content/worldgen/assets/places/<gh2>/<gh3>/<source-key>/`.
 Each runtime bundle contains `asset.json`, `model.glb`, and any collision data. Reusable models
@@ -889,7 +969,7 @@ shores; rivers and traffic follow nearby watercourses and streets. Enclosed cock
 reduce outdoor ambience to 18%; open boats and exterior cameras retain outside sound.
 Mapped ground materials, rain and snow select walking sounds. Birds, crickets and traffic come from
 the ground, so they fade as the view rises above the terrain and are gone a few hundred meters
-up. Traffic also fades with distance from the nearest street. Sound starts on the first click or
+up. Unknown terrain height silences ground ambience. Traffic also fades with distance from the nearest street. Sound starts on the first click or
 key press. The `audioready` event fires once it has loaded, and then `view.audio` sets volume,
 mute and bus gains (`view.audio.setBusGain('music', 0)` turns music off).
 
@@ -907,6 +987,10 @@ A composing host passes `location`, `solarHour`, `terrain`, and `inVehicle` to `
 material. `surface` overrides the mapped walking material, and `indoors` attenuates outdoor
 ambience for a host that detects interiors. Missing mapped data uses conservative fallbacks;
 lakes do not produce surf, and wildlife rendering density does not mute regional ambience.
+A pack's `birdsong` catalog replaces broad bird palettes with curated recordings selected by
+geography, habitat, season and sunlight; uncovered places stay quiet. The default pack includes
+eight such recordings. Hosts pass the sky's `utcMs` and `sunAltitudeDeg` in `location`, along with
+`regionalAmbience.habitat` and habitat levels. Curated birds fade out inside enclosed vehicles.
 See [Sound and music](audio.md) for the rule format.
 
 The composing pieces are exported too, for hosts that build their own view: `createEarthWorldgen`,

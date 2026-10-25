@@ -4,7 +4,7 @@ import { arundelParts, arundelPlanPoint } from '../../worldgen/scripts/arundel-c
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/gc/gcp/n0303_arundel_castle/',
+  '../../../content/worldgen/source/places/gc/gcp/arundel_castle/',
   import.meta.url,
 );
 const frame = JSON.parse(readFileSync(new URL('map-frame.json', root))),
@@ -74,7 +74,7 @@ function boundaryDistance(q, rings) {
   return minimum;
 }
 it('rebuilds four deterministic browser levels with shared materials and separate GPU layouts', async () => {
-  const id = 'molen.worldgen.structure.n0303_arundel_castle',
+  const id = 'molen.worldgen.structure.arundel_castle',
     sizes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

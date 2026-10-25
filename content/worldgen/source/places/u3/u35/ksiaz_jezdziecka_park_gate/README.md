@@ -4,7 +4,7 @@
 
 Chamfered sandstone pillars and urns supporting a curved iron opening, crowned scroll crest, open leaves and tall wing railings.
 
-Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
 
 ## Sources and reconstruction
 
@@ -18,7 +18,7 @@ Own mapped gate point/path axis; native Y0 is estimated local ground contact. He
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-park-gates.mjs --ids=KSI_G01 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/generate-ksiaz-park-gates.mjs --ids=KSI_G01 (or --check).
 
 4820 triangles;580380 source bytes;2 merged material groups;no embedded images. Shared sandstone and painted metal use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
 

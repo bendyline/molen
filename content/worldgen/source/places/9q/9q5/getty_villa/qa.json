@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.getty_villa",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:81311ba7d283ab75f0a4e57fd706cdfa822706c169d657d43b112eb9e07041e0",
-  "sourceHash": "sha256:2901d070218f4e76f6929327acb53c8211a8220041be58e5b258755514078fbd",
-  "runtimeHash": "sha256:bb536ce00ffcd4717af0ad4c4532bc39ebe0267adb54d02321bb1e69e2828d23",
-  "captureReportHash": "sha256:b1d1f6d13df7f72ea1c5a1ba57f8d262722bbb2a09f0a22e3f4e40b7a524eccb",
+  "inputHash": "sha256:d4fe3dd35ed13d1e8b8ee25edc26d3bd7d4458cf2035b02aa6b3f48e2224feeb",
+  "sourceHash": "sha256:fb2f7233b8c3034ddd48608668fd37c29e896861166b53946657ab2d6516e91e",
+  "runtimeHash": "sha256:03350c8c1ebce1d7fcd59de611590f3f93a0e15125303927123564aebd77eaf9",
+  "captureReportHash": "sha256:1e006d4679df073d705c6e38c8a8d03dc26ba3e9d467563fd4beb767c7308406",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:1e006d4679df073d705c6e38c8a8d03dc26ba3e9d467563fd4beb767c7308406",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/pool-coping.png",
+      "shots/pool-profile.png"
     ],
-    "notes": "Inspected all seven current portable views against individually viewed local Qualla exterior originals and both pages of the official Getty visitor plan. Museum ranges enclose an open inner court; west entrance has two open gallery levels, and south balcony faces the long outer pool. Final review removed an incorrect solid south-colonnade back wall and added the shallow northern museum projection. Attached south terrace has through-open brick arches. Final pool correction gives the water an open basin rim, eliminating the overlapping stone cap and visible depth flicker."
+    "notes": "All9final portable views inspected, including native coping/profile details. Broad closed slab has actual top/underside/bevel,24curved-end panels have physical open joints/returns and recessed backing. Original water/inner walls/straight sides and every other original structure retained. Wider whole-exterior review pending."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:62a7409a339ca29647634c8bda1edd132d965559406d3290c91284c2d7cb1ef5",
+    "captureReportHash": "sha256:37f8eaf25609322d9d13c1edecb004d8d29310b12ef3198b10575b9ac6514061",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,37 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/pool-coping.png",
+      "shots/shared/pool-profile.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views including full front/back and map overlay. Cream stucco, pale limestone, red tile and brick use four shared metric surfaces, with local glass and pool water. Flat-ground fixtures obscure the below-datum terrace supports; independent terrain views expose their hillside setting."
+    "notes": "All9final shared/geographic views inspected, including native pool detail/placement overlay. Initial shared limestone graph introduced unsupported coarse masonry courses; new poolStone now uses continuous smooth concrete_plain with original marble tint/.87roughness and metric UVs. Real panel joints remain geometry. Other shared materials retained; unload disposes geometry. Flat fixture establishes materials, source ground separate.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.stucco": {
+        "path": "materials/stucco.matgraph.json",
+        "hash": "sha256:d96343590b745615051aa42e86e1117bce5a4b4f7607fa129a99d6b1bece8119"
+      },
+      "matgraph:molen.worldgen.material.tile_flat": {
+        "path": "materials/tile_flat.matgraph.json",
+        "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:761ce7d5a4fc50778548436c95902c4a875ae737a9dd7116474955d90178b7cd",
+    "captureReportHash": "sha256:27c537b29a41f650486049a98eec9aad1f0e753b8af04200871eff5c5bcfc2e5",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +80,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/pool-coping.png",
+      "medium-fi/pool-profile.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen current lighting, quality and forced-detail views. Skyline retains the two-court layout, long pool, open colonnades and south supporting arcade. District restores window and painted-wall rhythms; street adds columns, pilasters, window surrounds and rails; closeup adds finer capitals, fluting, roof ribs, coffers and balusters. Synthetic neighbors are style fixtures; no physical-device performance measurement claimed."
+    "notes": "All21final version2frames inspected: noon/late light/economy/high/front/back/pool details and all four forced levels over original source ground. Coping bevel and true panel gaps read at close with smooth surfaces. Three original lower levels exact. Main museum/both courts/roofs/westgallery/terrace remain included; synthetic neighbors are style fixtures. Wider exterior fidelity pending."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +106,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00035155162811406626
     },
-    "notes": "Anchor [-118.56505,34.04509], heading -0.6 radians: east-southeast +X, south-southwest +Z along the outer peristyle. Mapped museum envelope, inner-court hole, outer U, west entrance and south viewing terrace align with source geometry. Independent unmodified USGS CA_LosAngeles_B23 raster 114605 retained; datum 53.8476 m NAVD88 at west approach [-44,-49]. Main and court floors Y=1, upper galleries Y=6.3. East retaining base and south arcade descend into the measured slope; no ground flattening or geometry fitting. Source ground under structures is interpolated. Footprint replacement disabled."
+    "notes": "Original anchor[-118.56505,34.04509],heading-.6,+Xeast-southeast/+Zsouth-southwest retained. Original map/independent USGS CA_LosAngeles_B23 grid/descriptor/heightPNG unchanged; NAVD88datum53.8476m at west approach[-44,-49],floors1m/upper6.3m. Raw ground under pool ends -1.15683/-1.24867m versus podium base-3.3m; west court edges about-2.50..-2.53m and east-4.66..-6.97m with retained east base-10m. South arcade raw center-7.02069m with retained piers-9.8m. No source-ground/contact change, fitting, flattening or footprint replacement; host terrain can differ."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Main museum villa, inner/outer peristyles, pools, west entrance gallery and attached south terrace. Separate modern campus buildings excluded.",
-    "notes": "Two primary and four supplemental local Qualla images, both pages of the official Getty 2023 visitor plan, Getty garden descriptions and aerial roof context establish individual massing. Hidden joins, exact gallery depths and heights remain estimates. Column ornament, wall painting, roof tile and baluster profiles are simplified; no artworks, interiors, vegetation, visitors or photo pixels copied."
+    "scope": "Main museum, both peristyles/pools, west entrance gallery, tiled roofs and attached south terrace; separate modern campus excluded.",
+    "notes": "The cleared aerial establishes the long peristyle axis and main building location; two cleared ground exteriors show the narrow long pool, surrounding colonnades and red tiled roof line. Current geometry preserves these primary relationships. Hidden museum service roofs and individual columns/sculptures remain simplified estimates. Accepted against the existing mapped controls and current inspected render set at the agreed approximate medium-fi exterior scope. All source imagery in the current inventory is independently verified public domain. Fine hidden-detail coverage and exact thresholds are limitations rather than an additional survey requirement."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:a76d36264aeb11f7b41911046506e5faf39eaa13958e4853edaa9765c02c37a9",
+    "recipeHash": "sha256:9527fe2e34812a32d3f35e4404b8d4eee46c9e2e36dff6cd34b3b89ad18ae47d",
     "levels": [
       {
         "name": "skyline",
@@ -128,32 +157,86 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:931e873745a2a141821ba5c7d7f8e868a610caba722bf528650bf928dd1d8dcb",
-        "bytes": 7620492,
-        "gzipBytes": 1500286,
-        "triangles": 63477,
-        "cpuBytes": 7617240,
-        "gpuBytes": 7617240,
+        "hash": "sha256:f2083de2006c39f2ca510a4f332ebcc65c80fb61f7d97ae36a1e201d08439d22",
+        "bytes": 7648248,
+        "gzipBytes": 1505029,
+        "triangles": 63705,
+        "cpuBytes": 7644600,
+        "gpuBytes": 7644600,
         "errorMeters": 0,
-        "drawCalls": 6
+        "drawCalls": 7
       }
     ],
-    "notes": "All four current levels visually inspected and within budgets. Exact triangle and byte counts are recorded in levels; error values are authoring budgets, not measured deviations."
+    "notes": "904/3929/14065/63705triangles,1/6/6/6draws pass strict budgets. Three lower levels exact. Close removes468old coping/rail/curved-wall triangles and adds696physical stone triangles;63009other original attributes exact against immutable pre-edit fingerprints. Original basin water/inner walls/straight sides retained. Error measures remain estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 63477,
-    "sourceMaterials": 6,
+    "sourceTriangles": 63705,
+    "sourceMaterials": 7,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 904,
+        "drawCalls": 1,
+        "retainedTriangles": 904,
+        "added": {
+          "poolStone": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3929,
+        "drawCalls": 6,
+        "retainedTriangles": 3929,
+        "added": {
+          "poolStone": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 14065,
+        "drawCalls": 6,
+        "retainedTriangles": 14065,
+        "added": {
+          "poolStone": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 63705,
+        "drawCalls": 7,
+        "retainedTriangles": 63009,
+        "added": {
+          "poolStone": 696
+        },
+        "controls": 184,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error recorded above. No independent Khronos-validator run claimed."
+    "verification": [
+      "node content/worldgen/source/places/9q/9q5/getty_villa/verify-pool-coping.mjs"
+    ],
+    "notes": "Imported1/1/1/184controls pass: all30cap sections have actual top/underside,24end panels have closed fronts/backs,24joints have open recesses/physical backing/side returns, and retained water remains clear. Every new source UVtriangle nondegenerate and metric; source/runtime hashes/counts, normals/winding, exact regeneration and retained original streams pass. Map/ground hashes exact. No Khronos validator run."
   },
   "limitations": [
-    "Original medium-fi exterior from six individually inspected local Qualla photographs, official Getty visitor plans/axonometric and aerial roof context. Hidden joins, gallery depths, heights and fine ornament are estimates, not surveyed geometry.",
+    "New outer-pool broad beveled coping and24jointed curved-end panels from native cleared Qualla CC0aerial and two exact native Highsmith photographer-public-domain pool views/detail. Original basin footprint/water/inner walls/straight sides and all other original geometry retained; three lower levels exact. Full fixed museum/both peristyles/roofs/pools/attached terrace retained pending broader cleared exterior review. Earlier attribution/private visitor-plan/satellite controls excluded; hidden joins, gallery depths, heights, stone profiles/panel dimensions and fine ornament remain medium-fi estimates, not surveyed geometry.",
     "Main villa, peristyles, pools and attached viewing terrace only. Modern theater, entry pavilion, cafe, auditorium, parking and separate campus buildings excluded. No artworks, vegetation, people, interiors or photographic pixels copied.",
     "Independent unmodified USGS CA_LosAngeles_B23 raster 114605 retained. Bare-earth ground under structures is interpolated by the source; host terrain may differ. Footprint replacement remains disabled.",
     "Column capitals/fluting, painted wall panels, roof tiles, balusters and brick arcade details are simplified progressively with distance. No physical-device frame-rate measurement claimed."
@@ -161,6 +244,151 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:36f4645f838de61afde8aa6bff5b736516b6877079acf24e931c302fe5dbd4e9",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:d4fe3dd35ed13d1e8b8ee25edc26d3bd7d4458cf2035b02aa6b3f48e2224feeb",
+    "referenceInputHash": "sha256:395a6fd3b4ab9b523972523ff3497cd51d1b1ea6a089e11266d03ad9a493fc3b",
+    "acceptedReferencePaths": [
+      "_m/9/q/5/9/getty-villa-wp/hero.jpg"
+    ],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/pool-25524.jp2",
+      ".artifacts/reference-photos/pool-25543.jp2"
+    ],
+    "imageryEvidenceHash": "sha256:4b1bd5d6881b78ea04797ac96d2a8be78ec7cd757c38eec897236d190dba93af",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/9/q/5/9/getty-villa-wp/getty-villa-pacific-pa.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:060807-002-GettyVilla001.jpg",
+        "reason": "Earlier attribution/private visitor-plan/uncleared satellite imagery excluded as current construction controls; full fixed museum/courts/terrace and original map/ground retained."
+      },
+      {
+        "path": "_m/9/q/5/9/getty-villa-wp/getty-villa-museum-entrance.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Getty_Villa_Museum_Entrance.jpg",
+        "reason": "Earlier attribution/private visitor-plan/uncleared satellite imagery excluded as current construction controls; full fixed museum/courts/terrace and original map/ground retained."
+      },
+      {
+        "path": "_m/9/q/5/9/getty-villa-wp/central-courtyard-gard.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:060807-006-GettyVilla005courtyard.jpg",
+        "reason": "Earlier attribution/private visitor-plan/uncleared satellite imagery excluded as current construction controls; full fixed museum/courts/terrace and original map/ground retained."
+      },
+      {
+        "path": "_m/9/q/5/9/getty-villa-wp/gardens-getty-villa-ma.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:060807-002-GettyVilla002.jpg",
+        "reason": "Earlier attribution/private visitor-plan/uncleared satellite imagery excluded as current construction controls; full fixed museum/courts/terrace and original map/ground retained."
+      },
+      {
+        "path": "_m/9/q/5/9/getty-villa-wp/outer-peristyle-archit.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Getty_Villa_SW12.jpg",
+        "reason": "Earlier attribution/private visitor-plan/uncleared satellite imagery excluded as current construction controls; full fixed museum/courts/terrace and original map/ground retained."
+      },
+      {
+        "url": "https://www.getty.edu/visit/downloads/GettyVilla_Map_2023.pdf",
+        "reason": "Earlier attribution/private visitor-plan/uncleared satellite imagery excluded as current construction controls; full fixed museum/courts/terrace and original map/ground retained."
+      },
+      {
+        "url": "https://www.getty.edu/visit/villa/top-things-to-do/gardens/",
+        "reason": "Earlier attribution/private visitor-plan/uncleared satellite imagery excluded as current construction controls; full fixed museum/courts/terrace and original map/ground retained."
+      },
+      {
+        "url": "https://www.google.com/maps/@34.04509,-118.56505,19z/data=!3m1!1e3",
+        "reason": "Earlier attribution/private visitor-plan/uncleared satellite imagery excluded as current construction controls; full fixed museum/courts/terrace and original map/ground retained."
+      },
+      {
+        "path": "Qualla WhiteHouse2022photos",
+        "reason": "Native published corridor/innercourt/tabletop files checked, but local metadata lacks recorded PD basis. No exact primary release/native binding adopted; not current controls."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Started with58Qualla reference/candidate records. Native3264x1840published Alfred Twu CC0aerial and600x600native villa crop inspected; exact primary own-work CC0dedication/revision/native SHA1bound. Native WhiteHouse images checked but incomplete recorded PD basis not adopted; statues/scooters irrelevant. Two exact native Highsmith pool originals7360x4912/6474x4540and native coping crop inspected under explicit photographer public-domain dedication; primary author/item/native file/grant pinned.129primary building-category records have no eligible PD/CC0architecture. Attribution/private visitor-plan/satellite controls excluded; no landscape/sculpture/furniture/pixels copied. Broader fixed exterior still pending."
+  },
+  "constructionReview": {
+    "status": "pool-coping-and-joints-completed-full-exterior-awaiting-reference",
+    "model": "getty_villa",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:d4fe3dd35ed13d1e8b8ee25edc26d3bd7d4458cf2035b02aa6b3f48e2224feeb",
+    "sourceHash": "sha256:fb2f7233b8c3034ddd48608668fd37c29e896861166b53946657ab2d6516e91e",
+    "runtimeHash": "sha256:03350c8c1ebce1d7fcd59de611590f3f93a0e15125303927123564aebd77eaf9",
+    "built": [
+      "Continuous closed broad flat coping slab with real bevel and underside",
+      "Twenty-four closed curved-end stone panels",
+      "Twenty-four physically recessed joints with backing and side returns",
+      "Smooth shared stone binding without unsupported masonry courses",
+      "Removed narrow rectangular top rails; retained original basin water/inner walls/straight sides"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      904,
+      3929,
+      14065,
+      63705
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      7
+    ],
+    "limits": "Full fixed main museum, inner/outer peristyles, pools, west entrance gallery, tiled roofs and attached south terrace retained. Built broad flat beveled outer-pool coping and24closed jointed curved-end panels with real recessed backing, replacing narrow rectangular rails. Native cleared Qualla CC0aerial and two exact native Highsmith photographer-public-domain pool originals support this work. Wider main museum/inner court/west gallery/terrace fidelity remains needs-review after attribution/private-plan/satellite controls excluded.129primary building-category files checked; no eligible PD/CC0architecture. Scope is not narrowed to claim completion. Basin dimensions/stone profiles/panel pitch/joint widths, hidden joins, gallery depths and current condition remain medium-fi estimates. Separate modern campus, sculpture, plants, furniture and pixels excluded.",
+    "publicDomainPrimaryOriginals": 3,
+    "reusedNativeQuallaOriginals": 1,
+    "copingSegments": 30,
+    "closedEndPanels": 24,
+    "recessedJointChecks": 24,
+    "removedOldTriangles": 468,
+    "addedTriangles": 696,
+    "exactThreeOriginalLowerLevels": true,
+    "fullExteriorCompleted": false,
+    "retainedFixedWholeMuseumScope": true,
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "writtenArticles": 1,
+      "repeatChanges": 0,
+      "fullExteriorCompleted": false
+    }
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:d4fe3dd35ed13d1e8b8ee25edc26d3bd7d4458cf2035b02aa6b3f48e2224feeb",
+    "sourceHash": "sha256:fb2f7233b8c3034ddd48608668fd37c29e896861166b53946657ab2d6516e91e",
+    "runtimeHash": "sha256:03350c8c1ebce1d7fcd59de611590f3f93a0e15125303927123564aebd77eaf9",
+    "decision": "Existing geometry accepted at medium-fi exterior scope; no new construction or rendering claimed.",
+    "comparisonViews": [
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/angle-0.png"
+    ],
+    "comparisonReferencePaths": [
+      "_m/9/q/5/9/getty-villa-wp/hero.jpg",
+      ".artifacts/reference-photos/pool-25524.jp2",
+      ".artifacts/reference-photos/pool-25543.jp2"
+    ],
+    "comparisonSheetHash": "sha256:611ea077029bb16f3eef6a9456f5fd77e21e4e090c6662a0a04b6fc0ff700b8e",
+    "previousFidelityReview": {
+      "target": "medium-fi",
+      "status": "needs-review",
+      "scope": "Main museum, both peristyles/pools, west entrance gallery, tiled roofs and attached south terrace; separate modern campus excluded.",
+      "notes": "Full fixed main museum, inner/outer peristyles, pools, west entrance gallery, tiled roofs and attached south terrace retained. Built broad flat beveled outer-pool coping and24closed jointed curved-end panels with real recessed backing, replacing narrow rectangular rails. Native cleared Qualla CC0aerial and two exact native Highsmith photographer-public-domain pool originals support this work. Wider main museum/inner court/west gallery/terrace fidelity remains needs-review after attribution/private-plan/satellite controls excluded.129primary building-category files checked; no eligible PD/CC0architecture. Scope is not narrowed to claim completion. Basin dimensions/stone profiles/panel pitch/joint widths, hidden joins, gallery depths and current condition remain medium-fi estimates. Separate modern campus, sculpture, plants, furniture and pixels excluded."
+    },
+    "notes": "The cleared aerial establishes the long peristyle axis and main building location; two cleared ground exteriors show the narrow long pool, surrounding colonnades and red tiled roof line. Current geometry preserves these primary relationships. Hidden museum service roofs and individual columns/sculptures remain simplified estimates."
+  },
+  "status": "completed",
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

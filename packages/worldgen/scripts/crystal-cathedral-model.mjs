@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/9q/9qh/n0387_crystal_cathedral/',
+  '../../../content/worldgen/source/places/9q/9qh/crystal_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -822,7 +822,7 @@ export const buildCrystalCathedralSkyline = (o) => build(o, 0),
   buildCrystalCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const crystalCathedralStudy = {
-  id: 'N0387',
+  id: 'crystal_cathedral',
   key: 'crystal_cathedral',
   title: 'Crystal Cathedral',
   category: 'cathedral',

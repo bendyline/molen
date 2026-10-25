@@ -330,7 +330,7 @@ function portal(out, at, cx, big = true) {
   }
 }
 export function build70Pine(out, m) {
-  const evidence = partsEvidence('n0188_70_pine_street').filter(
+  const evidence = partsEvidence('70_pine_street').filter(
     (p) => p.type === 'way' && p.tags?.['building:part'],
   );
   const parts = evidence

@@ -1,0 +1,343 @@
+{
+  "planId": "kaohsiung_lighthouse",
+  "id": "kaohsiung_lighthouse",
+  "assetId": "molen.worldgen.structure.kaohsiung_lighthouse",
+  "title": "Kaohsiung Lighthouse",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 120.2649722,
+    "latitude": 22.6151667
+  },
+  "size": [
+    24.375398635864258,
+    15.319999806582928,
+    15.634434223175049
+  ],
+  "actualBounds": {
+    "min": [
+      -17.967592239379883,
+      -0.11999999731779099,
+      -6.877303600311279
+    ],
+    "max": [
+      6.407806396484375,
+      15.199999809265137,
+      8.75713062286377
+    ]
+  },
+  "visualBrief": "Whole principal Kaohsiung/Cihou lighthouse and physically attached station: complete original6-vertex principal building containing named lighthouse/seamark node, white octagonal brick shaft/black plinth, projecting octagonal corbelled gallery/black open circular rail, white drum/diamond-framed glazing/opaque shutters/black dome/vented finial/weather vane/access ladder, attached single-storey connector and taller two-storey end room with recessed windows/door/balcony/flat roofs/cornices/drainpipe. Exclude separate museum683896246/signal station891000539/other compound buildings/fort/hill/harbor/site-paving slab/flags/signletters/people/plants/interiors. Preserve complete original6-point mapped envelope and named tower location, not tower-only crop or entire hill/compound. Original octagonal tower/body and attachment division estimated inside native footprint; white gallery brackets/open black circular rail, physical recessed narrow shaft/attached-station windows, diamond two-row lantern glazing/opaque white shutters/ladder/domed black roof/vented finial/weather vane. Official15.2m overall height as upper-control; gallery/shaft/room heights/radius/photo proportions bounded. No50m shaft or58.2m tower confusion. Explicitly distinguish separate museum/signal/outbuildings. Freeze independent256m129x129field before geometry at fixed landward bank; no fit/flatten/reacquire. Articulate the full original station into native split-vertex west two-storey room and lower connector; photo-based octagonal shaft projects from seaward facade rather than being buried in a solid station box. POI is identity anchor,3.451m shaft-centre offset explicitly bounded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kaohsiung_Lighthouse_2026_03_25_114909.jpg",
+    "https://commons.wikimedia.org/wiki/File:Lantern_room_and_dome_of_Kaohsiung_Lighthouse%2C_showing_glazing_structure_and_weather_vane_2025_12_17_101037.jpg",
+    "https://commons.wikimedia.org/wiki/File:Seaward-facing_rear_view_of_the_Kaohsiung_Lighthouse_2026_03_28_1428.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kaohsiung-lighthouse-wp",
+      "url": "https://qualla.com/kaohsiung-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "027bb48a01be36f9ba798eb3a82a61632a8dfdfce219054784de093e1764a0bf",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-kaohsiung-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-kaohsiung-lighthouse.mjs",
+    "level": "skyline",
+    "export": "kaohsiungLighthouseSkyline",
+    "errorMeters": 0.65,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.16
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.31,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "kaohsiungLighthouseDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.31,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "kaohsiungLighthouseStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.31,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "kaohsiungLighthouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.31,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named lighthouse/seamark node3250130923/Q3847130 lies within whole6-vertex physical buildingway683896236 (two collinear original split vertices retained), not nearby independent museum683896246/signal891000539 or visitor compound parcel. Fixed named-node anchor and heading along original NW-to-SE long edge before terrain/geometry; +X southeast/+Z southwest landward. Official lighthouse15.2m structural height overrides maplandmark50m, which is not used as a tower height; separate58.2m elevation-of-light is not structural height or provider terrain datum. Station height/shaft radius/octagonal orientation/interior attachment partition and precise tower within mapped-envelope plan are bounded photo-derived estimates; native node identifies the tower, not a measured octagonal perimeter. Story/official tourism point north of physical mapped building is approximate POI, not adopted as a roof polygon. The native lighthouse point is an approximate identity POI, not a surveyed shaft centre. Original photo-based shaft centre is placed on the seaward station facade at[0,-3.45100279] local,3.451m seaward of that POI; octagonal shaft projects from the coarse rectangular mapped station, as the clear rear photograph shows. Station keeps all6 original vertices; no map/anchor/heading/terrain refit. Independent256mfield frozen before geometry at fixed landward approach; raw coastal pits/actual hilltop threshold and live host grade agreement unverified.",
+    "anchor": [
+      120.2649722,
+      22.6151667
+    ],
+    "heading": -0.7636958063442364,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        120.26479124047097,
+        22.615145350785458
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed original principal landward long-edge approach6m outboard, before independent field/geometry. Actual hilltop thresholds/step heights and host grade not surveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/683896236",
+      "node/3250130923"
+    ],
+    "source": "https://www.openstreetmap.org/way/683896236",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9e77d96093831481ff08a700a5a3a858b16f0e7bb7dfe7f591cc72481e2fbbb2",
+    "notes": "Whole principal Kaohsiung/Cihou lighthouse and physically attached station: complete original6-vertex principal building containing named lighthouse/seamark node, white octagonal brick shaft/black plinth, projecting octagonal corbelled gallery/black open circular rail, white drum/diamond-framed glazing/opaque shutters/black dome/vented finial/weather vane/access ladder, attached single-storey connector and taller two-storey end room with recessed windows/door/balcony/flat roofs/cornices/drainpipe. Exclude separate museum683896246/signal station891000539/other compound buildings/fort/hill/harbor/site-paving slab/flags/signletters/people/plants/interiors. Whole original station6-ring retained; projecting octagonal shaft centre is a3.451m seaward photo-based correction relative to approximate POI, not a native measured tower polygon. Frozen anchor/heading/contact/field unchanged."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Named lighthouse/seamark node3250130923/Q3847130 lies within whole6-vertex physical buildingway683896236 (two collinear original split vertices retained), not nearby independent museum683896246/signal891000539 or visitor compound parcel. Fixed named-node anchor and heading along original NW-to-SE long edge before terrain/geometry; +X southeast/+Z southwest landward. Official lighthouse15.2m structural height overrides maplandmark50m, which is not used as a tower height; separate58.2m elevation-of-light is not structural height or provider terrain datum. Station height/shaft radius/octagonal orientation/interior attachment partition and precise tower within mapped-envelope plan are bounded photo-derived estimates; native node identifies the tower, not a measured octagonal perimeter. Story/official tourism point north of physical mapped building is approximate POI, not adopted as a roof polygon. The native lighthouse point is an approximate identity POI, not a surveyed shaft centre. Original photo-based shaft centre is placed on the seaward station facade at[0,-3.45100279] local,3.451m seaward of that POI; octagonal shaft projects from the coarse rectangular mapped station, as the clear rear photograph shows. Station keeps all6 original vertices; no map/anchor/heading/terrain refit.",
+    "Whole original6-vertex coarse principal attached station retained, split at original collinear west-room vertex into higher two-storey room and lower connector. Station7.9/4.75m roofs and partition/white window census/hidden landward facade are bounded original photo interpretation. Octagonal shaft radius2.55m/white gallery3.55m/glazing/drum/dome/ladder/finial intermediate heights estimated against official15.2m overall structural height, not official58.2m light elevation or native50m landmark tag. Named native point is identity proxy; photo-derived shaft centre3.451m seaward on coarse station facade, not a surveyed octagonal footprint.",
+    "Three exact2025/2026TheNatureBox own/self-cc-zero whole/lantern/rear originals individually inspected/nativeSHA1matched/item-specific grants bound; Qualla-first80families/zero conflicts. Published lighthousePD-self has no clear named source/author and is unused. Samecreatorfourthnight view inspected but distant duplicate/unused, never claimed as a close landward photograph. No restricted pixels/photo textures/generated bitmap/downloaded mesh/metadata repair.",
+    "White octagonal shaft/black plinth, actual recessed narrow shaft/room windows and upper door, projecting corbelled gallery with physically open black rails, white drum/diamond-framed glass/representative opaque white shutters, black dome/vent finial/open weather vane and access ladder. Exact shutter/pane/bracket/rung/vent census and current patina bounded; skyline windows flatten their0.24m recess within0.65m error while detailed openings have physical reveals; original fine fittings simplify at distance, full station/tower/black crown survive. No compass text/signletters/flags/people/interiors.",
+    "Independent museum683896246/signal891000539/fort/other detached compound buildings not included. No invented hill/harbor/tree/whole visitor compound or city ground/paving slab. Intrinsic station body only, thresholds/plinth/upper balcony photo estimates; hidden foundation/actual steep hillside support unknown.",
+    "Independent256m129x129field/all16641values/two raw tilebytes frozen before geometry and unchanged.40.3312m provider-relative approach datum/absolute-357.0477..43.6849m contains implausible coastal composite pits, not bathymetry/foundation control; official58.2m light elevation and native50m landmark heights not terrain-fit constraints. Portable/shared/context flat fixtures separate; ordinary native preview/replaceFootprint=false, true hilltop entry grade and host contact unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-octagonal-lighthouse-and-complete-attached-station",
+      "position": [
+        -28,
+        18,
+        -34
+      ],
+      "lookAt": [
+        -6,
+        6.5,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "corbelled-gallery-diamond-glazing-black-dome-and-access-ladder",
+      "position": [
+        7,
+        12,
+        -16
+      ],
+      "lookAt": [
+        0,
+        10.6,
+        -3.45
+      ]
+    },
+    {
+      "name": "two-storey-endroom-open-balcony-and-low-window-connector",
+      "position": [
+        -25,
+        9,
+        -19
+      ],
+      "lookAt": [
+        -12,
+        4.5,
+        -3
+      ]
+    },
+    {
+      "name": "whole-landward-station-flat-roofs-and-octagonal-tower",
+      "position": [
+        23,
+        10,
+        27
+      ],
+      "lookAt": [
+        -5,
+        6,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9348,
+    "vertices": 28044,
+    "materials": 5,
+    "bytes": 1125032,
+    "sha256": "sha256:f7700a287b8633e8b27b7fc29f852db77f904d89a859786256f76809c264dbf1"
+  }
+}

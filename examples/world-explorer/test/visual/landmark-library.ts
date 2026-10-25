@@ -43,7 +43,7 @@ async function json<T>(path: string): Promise<T> {
 const pack = await resolveStylePackDocuments(await json('worldgen/stylepack.json'), (path) =>
   json(`worldgen/${path}`),
 );
-const catalog = await json<StructureCatalogDoc>('earth/structures/placements.json');
+const catalog = await json<StructureCatalogDoc>('earth/structures/placements/authoring.json');
 const reads: Record<string, number> = {};
 const loads: string[] = [];
 const resources: Array<{ asset: string; disposed: boolean }> = [];
@@ -231,9 +231,15 @@ async function mount(input: ReviewInput) {
           wgs84ToWorld(factor, entry.bounds[2], entry.bounds[3]),
         ]
       : [];
-    const tileSize = Math.max(
-      256,
+    const boundedSpan = Math.max(
+      0,
       ...boundCorners.flatMap((point) => point.map((v, i) => 2 * Math.abs(v - center[i]) + 16)),
+    );
+    // Small bounded ruins need a local review query. Preserve the existing stage
+    // size for point placements and larger structures.
+    const tileSize = Math.max(
+      input.reviewBoundedPlacement && entry.bounds && boundedSpan < 128 ? 128 : 256,
+      boundedSpan,
     );
     const origin: [number, number] = [center[0] - tileSize / 2, center[1] - tileSize / 2];
     const [west, north] = worldToWgs84(factor, ...origin);
@@ -397,8 +403,7 @@ function groundAt(point: THREE.Vector3): boolean {
     ).intersectObject(ground).length > 0
   );
 }
-function cutoutProbe(): THREE.Vector3 | undefined {
-  const outline = active?.placement?.groundCutout?.outline;
+function cutoutProbe(outline: [number, number][]): THREE.Vector3 | undefined {
   if (!outline || !object || !geographicRenderers) return undefined;
   const points = outline.map(([x, z]) => new THREE.Vector2(x, z));
   let selected: number[] | undefined,
@@ -437,16 +442,25 @@ function cutoutProbe(): THREE.Vector3 | undefined {
   object.updateWorldMatrix(true, false);
   return object.localToWorld(center);
 }
+function cutoutProbes(): THREE.Vector3[] {
+  const cutout = active?.placement?.groundCutout;
+  return cutout
+    ? [cutout.outline, ...(cutout.additionalOutlines ?? [])]
+        .map(cutoutProbe)
+        .filter((p): p is THREE.Vector3 => !!p)
+    : [];
+}
 function verifyGroundLifecycle() {
-  const probe = cutoutProbe();
-  if (!probe || !object)
+  const probes = cutoutProbes();
+  if (!probes.length || !object)
     return { applicable: false, unchanged: ground.geometry === uncutGroundGeometry };
   object.visible = false;
   groundCutouts.update(scene);
-  const hiddenRestored = groundAt(probe) && ground.geometry === uncutGroundGeometry;
+  const hiddenRestored = probes.every(groundAt) && ground.geometry === uncutGroundGeometry;
   object.visible = true;
   groundCutouts.update(scene);
-  const visibleOpen = !groundAt(probe) && ground.geometry !== uncutGroundGeometry;
+  const visibleOpen =
+    probes.every((probe) => !groundAt(probe)) && ground.geometry !== uncutGroundGeometry;
   return { applicable: true, hiddenRestored, visibleOpen };
 }
 
@@ -502,7 +516,8 @@ function telemetry() {
     })),
     visibleStructures,
     groundCutoutActive: ground.geometry !== uncutGroundGeometry,
-    groundCoversCutoutProbe: cutoutProbe() ? groundAt(cutoutProbe() as THREE.Vector3) : null,
+    groundCoversCutoutProbe: cutoutProbes().length ? cutoutProbes().some(groundAt) : null,
+    groundCutoutProbes: cutoutProbes().length,
     surfaceReads: { ...reads },
     draws: renderer.info.render.calls,
     renderedTriangles: renderer.info.render.triangles,
@@ -566,10 +581,9 @@ async function view(input: {
     );
     camera.lookAt(target);
   }
-  if (
-    camera === perspectiveCamera &&
-    new URLSearchParams(location.search).get('clipping') === 'adaptive'
-  ) {
+  // Large distributed arrays need the same depth fitting in the north-up plan.
+  // The explicit opt-in keeps the existing default capture path unchanged.
+  if (new URLSearchParams(location.search).get('clipping') === 'adaptive') {
     camera.updateMatrixWorld(true);
     const forward = camera.getWorldDirection(new THREE.Vector3());
     const depths: number[] = [];

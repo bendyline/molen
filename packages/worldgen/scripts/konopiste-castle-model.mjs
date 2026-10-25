@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u2/u2f/n0288_konopiste_castle/';
+const root = '../../../content/worldgen/source/places/u2/u2f/konopiste_castle/';
 const read = (n) => JSON.parse(readFileSync(new URL(root + n, import.meta.url)));
 const frame = read('map-frame.json'),
   refs = read('reference-metadata.json'),
@@ -672,7 +672,7 @@ export const buildKonopisteSkyline = (o) =>
     0,
   );
 export const konopisteStudy = {
-  id: 'N0288',
+  id: 'konopiste_castle',
   key: 'konopiste_castle',
   title: 'Konopiště Castle',
   category: 'castle',

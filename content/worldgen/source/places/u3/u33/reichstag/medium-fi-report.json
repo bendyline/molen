@@ -1,9 +1,14 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.reichstag",
-  "sourceHash": "sha256:5fa548651c3c7aa23bd696f892b6a918a60a7fd74e619510fd5c213e3128e508",
-  "runtimeHash": "sha256:f0751f5e5179e12fb66e10098ba7e9dbc2fbad3402e819929c01dd7adcbdd6b9",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.reichstag",
+    "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca"
+  },
+  "sourceHash": "sha256:f6e70008b12ab8c526df17d6950a5b21a6b3be1465b128b4a02cc7f1858bf094",
+  "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,48 +33,48 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:908184770e1f780aef3a2c68fb8ca13dae857c3f07854994157cdf6adb0c36f0",
-      "bytes": 52676,
-      "gzipBytes": 8657,
-      "triangles": 668,
-      "cpuBytes": 51312,
-      "gpuBytes": 51312,
+      "hash": "sha256:17d55d1d093c315ac9fb3c95a51fc12438029b0e75bc37f794ba2f19bd52058d",
+      "bytes": 53612,
+      "gzipBytes": 8773,
+      "triangles": 680,
+      "cpuBytes": 52248,
+      "gpuBytes": 52248,
       "errorMeters": 1.2,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:4e12bcb426d04e7d37f4b099ce0b255446d480f2262e898559629218fada563d",
-      "bytes": 275368,
-      "gzipBytes": 65741,
-      "triangles": 3894,
-      "cpuBytes": 268020,
-      "gpuBytes": 268020,
+      "hash": "sha256:76108069df1e81f268813290ae68863c34e903bf548ff01ec94a48dcda416e95",
+      "bytes": 284764,
+      "gzipBytes": 66456,
+      "triangles": 3998,
+      "cpuBytes": 277428,
+      "gpuBytes": 277428,
       "errorMeters": 0.55,
       "drawCalls": 6
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:4116f0084aa254762da73a55a50dbb404f93cc2ce994485687315f2631d48e2f",
-      "bytes": 990992,
-      "gzipBytes": 247165,
-      "triangles": 14469,
-      "cpuBytes": 983612,
-      "gpuBytes": 983612,
+      "hash": "sha256:cc5373d63344d0e6248e385ac56d2733749c4fa3c0aac73ee2456b2eda61f1b5",
+      "bytes": 1007528,
+      "gzipBytes": 250264,
+      "triangles": 14681,
+      "cpuBytes": 1000148,
+      "gpuBytes": 1000148,
       "errorMeters": 0.25,
       "drawCalls": 6
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:18a3abc9b5d72e89ee70bc4c5d47d354113694ea933b48d5d302b1e6f312602d",
-      "bytes": 4243328,
-      "gzipBytes": 752407,
-      "triangles": 35333,
-      "cpuBytes": 4239960,
-      "gpuBytes": 4239960,
+      "hash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
+      "bytes": 4268768,
+      "gzipBytes": 755264,
+      "triangles": 35545,
+      "cpuBytes": 4265400,
+      "gpuBytes": 4265400,
       "errorMeters": 0,
       "drawCalls": 6
     }
@@ -90,14 +95,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:e215f1c94082d6caf200446dbce6e08557eaaab8d6abd542deb1135d80be3b9f",
+      "hash": "sha256:6b0a7063f22a9372349ba85700c88ea89c5ed34607db1043a9fc7b5d102bda07",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 13,
-        "triangles": 51015,
+        "triangles": 51227,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -124,19 +132,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:e521d4921cb34c89933510876567425dbfd6add0cf8d2e878ccb5e46fa6a0b99",
+      "hash": "sha256:c84db7e47f171ccdf55653499f61107328e88ca2a57d4cbe1475110b7f5acd23",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 51015,
+        "triangles": 51227,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -163,19 +175,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:b6d00c43b5a12efc4d31b2dafceeeaa164771570f985a24de30e7e80cfc4c155",
+      "hash": "sha256:b9638b16f77242bc77079fb74b3b6ce6791fe6cebf10ae21f83a6e938533c61c",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 13,
-        "triangles": 51015,
+        "triangles": 51227,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -202,19 +218,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:c4398792c32ba02a7db18cef9a5f91824ed39f95894906c7292560b653632fca",
+      "hash": "sha256:5b7dcc70f05c0ea0d099b2eefcb5eefae618cc070e429d3daef9749e1754379d",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 51015,
+        "triangles": 51227,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -241,19 +261,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:89db2e55b63bab3c4ac61bbba8a6d6b0076a9e9f536610b1ee7de9e291242576",
+      "hash": "sha256:89effa8fae033288ed09b54432a9e7c6f41f1dead1f5f15f4f597a1b520f9897",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:76108069df1e81f268813290ae68863c34e903bf548ff01ec94a48dcda416e95",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 13,
-        "triangles": 18616,
+        "triangles": 18720,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -280,19 +304,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:2a7513316f71737887a458c30badb70b6dcefe38e1cd1eb399d15f2bbc3776b2",
+      "hash": "sha256:7fac8542d21d6b1a6de5394ec5ccb92da621f22cb55db01544247b9fe3b9ee90",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:76108069df1e81f268813290ae68863c34e903bf548ff01ec94a48dcda416e95",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 18616,
+        "triangles": 18720,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -319,19 +347,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:b927aa1bac9a994e48faacd575be4776e5cf49e09b46cd121c4c8bd0ffa281a0",
+      "hash": "sha256:de5cef6ac7a984c865e0ec17b575e3614a8489a4a16f5a7806206cdd8ed21381",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:76108069df1e81f268813290ae68863c34e903bf548ff01ec94a48dcda416e95",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 13,
-        "triangles": 18616,
+        "triangles": 18720,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -358,19 +390,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:980e2f8b22a0c1c9f70d060f1326412bdaf6caed79d5f164eaa103b90239b269",
+      "hash": "sha256:21017fa97f8a5b868341e860a5617264ab81c3b17290dcffc404eb544290b8fc",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:76108069df1e81f268813290ae68863c34e903bf548ff01ec94a48dcda416e95",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 18616,
+        "triangles": 18720,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -397,19 +433,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:d509ce11020c3500c79fe907c74126cca18346f6118c0a7ac876285ee26eacd9",
+      "hash": "sha256:714b957328b432cc1bdc96f62244d503486a817cc22cff857a0e39fedd2090f0",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:17d55d1d093c315ac9fb3c95a51fc12438029b0e75bc37f794ba2f19bd52058d",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 15102,
+        "triangles": 15114,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -436,19 +476,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:9e12383db8e0a8c3a058f29c23036a4dbf2e2452ea770f4a8edba769e53e5bb3",
+      "hash": "sha256:3e6bc72b40c8cedef9326d03053e46cdbe6e54da490ffadbe98321bc1718dacd",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:17d55d1d093c315ac9fb3c95a51fc12438029b0e75bc37f794ba2f19bd52058d",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15102,
+        "triangles": 15114,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -475,19 +519,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:29e11c717f769129535f9fa48ad449545604d7ac692d76a0a145a6817cf470e4",
+      "hash": "sha256:f0ab813a11b787f78a40a8373f4ad1f9d13cefc1231531d8bd9b344f7bb98c95",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:17d55d1d093c315ac9fb3c95a51fc12438029b0e75bc37f794ba2f19bd52058d",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 15102,
+        "triangles": 15114,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -514,19 +562,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:551ba91dbb0b191183fb9885d2ee3ad60036d4c58072755b9f963626b0789fae",
+      "hash": "sha256:e93fa4fa70728626dc39216d0a3460e34b461da5810ae9ab7d770e06c56e2f65",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:17d55d1d093c315ac9fb3c95a51fc12438029b0e75bc37f794ba2f19bd52058d",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15102,
+        "triangles": 15114,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -553,19 +605,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:e5f3ce6cf604aef4257e44e83bed2af4aaa216623d77f95406568d33b3a32c0a",
+      "hash": "sha256:768f7a9c42c7d4fc9a961a6ccf65c45b9d3628256480541f0d36537c43dd3ee7",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:17d55d1d093c315ac9fb3c95a51fc12438029b0e75bc37f794ba2f19bd52058d",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 3,
-        "triangles": 8862,
+        "triangles": 8874,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -592,19 +648,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/front.png",
-      "hash": "sha256:46f8931c17c8dcbc9887815a6937d63bbb3b4a4e2e287a2b303586178246e0bc",
+      "hash": "sha256:8c5bcb1fd5eb35034b3ec1db69ef25a04e28b3d6a12cfeb7e4ac4bc8c9a130f8",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 51015,
+        "triangles": 51227,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -631,19 +691,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/back.png",
-      "hash": "sha256:9d67f584d1b3999f546e1b7918727da751f0356401225296ef8b601c58068560",
+      "hash": "sha256:ed28f5a27cadce352217c5d61867b513664635bfcbe06ed66b294ac035d994cb",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 51015,
+        "triangles": 51227,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -670,19 +734,109 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/portico-ceiling.png",
+      "hash": "sha256:17835b8c39dda7ecd50b45aa116f04b6cb5773c03dc55e7b1a7e173bb787eaa1",
+      "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51227,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.height.png"
+        },
+        "position": [
+          1.6,
+          8,
+          78
+        ],
+        "lookAt": [
+          1.6,
+          21.7,
+          47
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_ashlar": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 2.1,
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/entrance-frame.png",
+      "hash": "sha256:1cce9da8eeec8a9faa2091e8b9be8e676517d1f07022442287d37ab8d8145951",
+      "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51227,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.height.png"
+        },
+        "position": [
+          -17,
+          10,
+          72
+        ],
+        "lookAt": [
+          1.6,
+          16,
+          45
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_ashlar": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 2.1,
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:0e868895010337c37609cc817405c712f38fe9a4ca1c880a8079f916503dfab1",
+      "hash": "sha256:1cdc73b301f69e22554a8bfbc8fddc72052603a4cbbd0f9cbe96c2afcfc9422e",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:17d55d1d093c315ac9fb3c95a51fc12438029b0e75bc37f794ba2f19bd52058d",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15102,
+        "triangles": 15114,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -709,19 +863,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:2a7513316f71737887a458c30badb70b6dcefe38e1cd1eb399d15f2bbc3776b2",
+      "hash": "sha256:7fac8542d21d6b1a6de5394ec5ccb92da621f22cb55db01544247b9fe3b9ee90",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:76108069df1e81f268813290ae68863c34e903bf548ff01ec94a48dcda416e95",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 18616,
+        "triangles": 18720,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -748,19 +906,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:24b1281aadf429eb32e5294fdae580d79db5211d4a0ca8a9d260f9d25fde5b37",
+      "hash": "sha256:fbe1690eb516dd2e07200176ce3cd75a354860e6312283f7210907de693e1d40",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:cc5373d63344d0e6248e385ac56d2733749c4fa3c0aac73ee2456b2eda61f1b5",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 30151,
+        "triangles": 30363,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -787,19 +949,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:87f5912e32590b566160e472fcb2a17fb6b3e7a743ce546865d020ed99249535",
+      "hash": "sha256:19ce21fdda9394a864a43cc28ff1961f3182e0ba639ab68593f7abbb80ce1eeb",
       "state": {
+        "assetId": "molen.worldgen.structure.reichstag",
+        "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+        "lodHash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 51015,
+        "triangles": 51227,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u3/u33/reichstag/terrain-review.terrain.json",
@@ -826,15 +992,10 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 2.1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     }
   ],
-  "errors": [],
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:ec76d51c86bb7c968b328a0a13603df6593f516e901a61fc4cc59370f8c31525",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:2e54242cb1e5b99be0625eaaf343bc75974bb481d659d081eb21a0acbd6b403d"
-  }
+  "errors": []
 }

@@ -1,3 +1,4 @@
+import { AircraftInput, AircraftState } from '@bendyline/molen-kernel/aircraft';
 import { Vehicle } from '@bendyline/molen-kernel/vehicles';
 import { Transform } from '@bendyline/molen-kernel/world';
 import * as THREE from 'three';
@@ -38,8 +39,37 @@ function setup() {
 }
 
 describe('earth aircraft', () => {
+  it('preserves the Osprey parked vertical nacelle preset while airborne launches use forward thrust', () => {
+    const { vehicles, aircraft } = setup();
+    const id = aircraft.spawn('molen.entities.aircraft.mv_22b', {
+      position: [0, 12, 0],
+      heading: 0,
+    });
+    expect(vehicles.world.get(id, AircraftInput)?.thrustVector).toBe(1);
+    expect(vehicles.world.get(id, AircraftState)?.thrustVectorPosition).toBe(1);
+    const flying = aircraft.spawn('molen.entities.aircraft.mv_22b', {
+      position: [100, 500, 0],
+      heading: 0,
+      airborne: { speed: 90 },
+    });
+    expect(vehicles.world.get(flying, AircraftInput)?.thrustVector ?? 0).toBe(0);
+    expect(vehicles.world.get(flying, AircraftState)?.thrustVectorPosition ?? 0).toBe(0);
+    aircraft.dispose();
+    vehicles.dispose();
+  });
   it('lists the flyable types in the entities pack', () => {
-    expect(EarthAircraft.typeIds(ENTITY_TYPES)).toEqual([P51, OH6]);
+    const aircraft = EarthAircraft.typeIds(ENTITY_TYPES);
+    expect(aircraft).toHaveLength(53);
+    expect(aircraft).toEqual(
+      expect.arrayContaining([
+        P51,
+        OH6,
+        'molen.entities.aircraft.airliner',
+        'molen.entities.aircraft.mv_22b',
+        'molen.entities.aircraft.av_8b',
+        'molen.entities.aircraft.f_16b',
+      ]),
+    );
     expect(EarthVehicles.typeIds(ENTITY_TYPES)).toContain('molen.entities.vehicle.sedan');
   });
 

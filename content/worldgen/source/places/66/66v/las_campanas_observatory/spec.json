@@ -1,0 +1,472 @@
+{
+  "planId": "las_campanas_observatory",
+  "id": "las_campanas_observatory",
+  "assetId": "molen.worldgen.structure.las_campanas_observatory",
+  "title": "Las Campanas Observatory",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -70.6973958,
+    "latitude": -29.01423665
+  },
+  "size": [
+    1478.300048828125,
+    151.63499641418457,
+    1644.623046875
+  ],
+  "actualBounds": {
+    "min": [
+      -739.1500244140625,
+      -122.69999694824219,
+      -822.3115234375
+    ],
+    "max": [
+      739.1500244140625,
+      28.934999465942383,
+      822.3115234375
+    ]
+  },
+  "visualBrief": "Whole operating Las Campanas Observatory architectural group across its mapped telescope, service and accommodation ridges: twin Magellan enclosures/connecting building, HenriettaSwope, IrénéeDuPont, Warsaw/OGLE enclosure, Pagoda and mapped smaller instrument/service/accommodation buildings. Retain every selected intrinsic native building envelope/position, including the whole27-corner combined Magellan way136126240; no single generic telescope substitution. Exclude separately named future GiantMagellanTelescope construction project and southern construction support ways136126248/136126273/136126275, whole mountains/roads/landscape/snow/cars/people/sky/interior optics/text. Current newer minor-instrument shells/hidden faces remain bounded estimates; old cleared2008 photo does not certify later surface details.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Magscope.jpg"
+  ],
+  "stories": [
+    {
+      "id": "las-campanas-observatory-wp",
+      "url": "https://qualla.com/las-campanas-observatory/"
+    }
+  ],
+  "referenceInputHash": "222f63cd8848a724a0ab6171b3c6b927ba3aac43c102cb2750659541c73bfc44",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-las-campanas-observatory.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-las-campanas-observatory.mjs",
+    "level": "skyline",
+    "export": "campanasSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.18
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83,
+        "metallic": 0.25
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.18
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.31,
+        "metallic": 0.2
+      },
+      "door": {
+        "slot": "door",
+        "localRef": "palette:#fffffd",
+        "roughness": 0.87,
+        "metallic": 0.25
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "campanasDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.25
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.31,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.87,
+            "metallic": 0.25
+          }
+        }
+      },
+      "street": {
+        "export": "campanasStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.25
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.31,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.87,
+            "metallic": 0.25
+          }
+        }
+      },
+      "closeup": {
+        "export": "campanasCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.25
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.31,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.87,
+            "metallic": 0.25
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 4,
+    "groundY": -130
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Sections selected now after original terrain freeze and before geometry, using one already inspected exact2008 creatorPD Qualla ridge photograph/native footprints. TwinMagellan distinct mapped centers/drums/faceted pale enclosures/truncated roof caps and low connection; Clay4.5/Baade.5 estimated relative floors follow separate ridge controls, not one giant common platform. Older Swope/duPont circular drums/closed domes with independently mapped outlines, Warsaw octagon/dome and named smaller instruments; service/accommodation native footprints retained. Heights/radii/shutter widths/vent counts/hidden small-instrument roofs/accommodation sections are bounded original medium-fi estimates, no measured engineering layout claimed. Per-building floor estimates sample only the already frozen original coarse field, rounded with allowance; they do not change terrain or certify threshold/foundation contact. Two larger source-grade spreads up to10.7m remain unresolved, no full-ridge terrain pad. Source raw12tiles/16641values/PNG unchanged; futureGMTconstruction excluded.",
+    "anchor": [
+      -70.6973958,
+      -29.01423665
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -70.69203166283958,
+        -29.01426299987947
+      ],
+      "modelHeight": 0,
+      "basis": "Exterior point5m east of actual combined Magellan envelope, selected before terrain/geometry. Reference elevation only, not surveyed thresholds or a common floor for all ridge buildings."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/136126236",
+      "way/136126237",
+      "way/136126238",
+      "way/136126239",
+      "way/136126240",
+      "way/136126241",
+      "way/136126242",
+      "way/136126243",
+      "way/136126245",
+      "way/136126246",
+      "way/136126247",
+      "way/136126249",
+      "way/136126250",
+      "way/136126251",
+      "way/136126252",
+      "way/136126253",
+      "way/136126254",
+      "way/136126255",
+      "way/136126256",
+      "way/136126257",
+      "way/136126258",
+      "way/136126259",
+      "way/136126260",
+      "way/136126262",
+      "way/136126263",
+      "way/136126265",
+      "way/136126266",
+      "way/136126267",
+      "way/136126268",
+      "way/136126269",
+      "way/136126270",
+      "way/136126271",
+      "way/136126274",
+      "way/136126276",
+      "way/136126277",
+      "way/937268772",
+      "way/937269612",
+      "way/937271699",
+      "node/602392497",
+      "node/602392498",
+      "node/602392510",
+      "node/602392519",
+      "node/602392520",
+      "node/3470733819",
+      "node/3470735693",
+      "node/8676604946",
+      "node/8676693817"
+    ],
+    "source": "https://www.openstreetmap.org/way/136126240",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:85ffa390192e30a53f08af7dbd190123456032ffbe8c7078f082ea01eda6c73f",
+    "notes": "Whole operating Las Campanas Observatory architectural group across its mapped telescope, service and accommodation ridges: twin Magellan enclosures/connecting building, HenriettaSwope, IrénéeDuPont, Warsaw/OGLE enclosure, Pagoda and mapped smaller instrument/service/accommodation buildings. Retain every selected intrinsic native building envelope/position, including the whole27-corner combined Magellan way136126240; no single generic telescope substitution. Exclude separately named future GiantMagellanTelescope construction project and southern construction support ways136126248/136126273/136126275, whole mountains/roads/landscape/snow/cars/people/sky/interior optics/text. Current newer minor-instrument shells/hidden faces remain bounded estimates; old cleared2008 photo does not certify later surface details."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole38-building operating observatory group retains actual native footprints and positions, both individually mapped Magellan enclosures/low connector, Swope/duPont/Warsaw domes, Pagoda, CHAT/TMMT and named minor roll-off instruments, service and accommodation wings. Separate futureGMT construction/three support ways excluded; no whole mountain/campus floor, roads, landscape, snow, people, optics/interiors/text.",
+    "One exact2288x1712 cleared Qualla GeneralEpitaph2008 own/PD-self original first, individually inspected/nativeSHA1matched. Primary institution text confirms principal operating instruments; no protected galleries/PDF pixels, attribution-only or uncertain imagery, generated bitmap/borrowed mesh or policy changes. Photo does not survey later small-instrument roofs/hidden faces or current fixtures.",
+    "Original bounded medium-fi sections: twin faceted enclosure heights/radii/closed shutter seams/vent panels, older dome proportions/native duPont annex, low service bar/brown accommodation roofs, smaller instrument enclosures, window/door census and hidden faces. Actual footprint/position controls retained; per-building floor estimates rounded from previously frozen independent coarse source field do not certify separately surveyed terrace/threshold/contact.",
+    "Original2500m independent16641-value field/twelve raw tiles/PNG frozen before geometry and per-building levels, unchanged. Rugged site includes many separate floors; per-building source-center estimates/footing depths do not establish exact source or host contact, especially two steep lower service footprints. No field flattening/fitting/reacquisition; geographic preview approximate/replacementfalse."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-operating-observatory-ridges-and-all38-native-buildings",
+      "position": [
+        1650,
+        720,
+        1720
+      ],
+      "lookAt": [
+        0,
+        -60,
+        0
+      ]
+    },
+    {
+      "name": "opposite-whole-ridge-group-and-older-telescope-line",
+      "position": [
+        -1700,
+        580,
+        -1520
+      ],
+      "lookAt": [
+        0,
+        -60,
+        0
+      ]
+    },
+    {
+      "name": "twin-magellan-faceted-enclosures-low-connection-and-closed-shutters",
+      "position": [
+        570,
+        32,
+        -75
+      ],
+      "lookAt": [
+        485,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "opposite-magellan-clay-baade-distinct-native-centers",
+      "position": [
+        400,
+        38,
+        85
+      ],
+      "lookAt": [
+        485,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "swope-closed-white-dome-drum-and-entrance",
+      "position": [
+        -246,
+        -93,
+        -216
+      ],
+      "lookAt": [
+        -276,
+        -99,
+        -249
+      ]
+    },
+    {
+      "name": "du-pont-dome-whole-native-annex-and-service-projection",
+      "position": [
+        -597,
+        -90,
+        -720
+      ],
+      "lookAt": [
+        -639,
+        -101,
+        -762
+      ]
+    },
+    {
+      "name": "warsaw-ogle-dome-chat-and-smaller-instrument-ridge",
+      "position": [
+        -450,
+        -103,
+        -448
+      ],
+      "lookAt": [
+        -409,
+        -113,
+        -479
+      ]
+    },
+    {
+      "name": "lower-magellan-brown-service-bar-and-native-wing",
+      "position": [
+        550,
+        -18,
+        225
+      ],
+      "lookAt": [
+        511,
+        -30,
+        189
+      ]
+    },
+    {
+      "name": "southern-accommodation-l-wings-and-main-service-building",
+      "position": [
+        760,
+        -12,
+        748
+      ],
+      "lookAt": [
+        641,
+        -40,
+        607
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15363,
+    "vertices": 46089,
+    "materials": 6,
+    "bytes": 1847188,
+    "sha256": "sha256:ddaf2c1715075d75ff25f8dbd3016d3cb36dda12d85f3e726a60b8f0e8082e44"
+  }
+}

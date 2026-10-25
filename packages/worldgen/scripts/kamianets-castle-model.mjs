@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u8/u8d/n0278_kamianets_podilskyi_castle/';
+const root = '../../../content/worldgen/source/places/u8/u8d/kamianets_podilskyi_castle/';
 const frame = JSON.parse(readFileSync(new URL(`${root}map-frame.json`, import.meta.url)));
 const references = JSON.parse(
   readFileSync(new URL(`${root}reference-metadata.json`, import.meta.url)),
@@ -438,7 +438,7 @@ export const buildKamianetsSkyline = (o) =>
     0,
   );
 export const kamianetsStudy = {
-  id: 'N0278',
+  id: 'kamianets_podilskyi_castle',
   key: 'kamianets_podilskyi_castle',
   title: 'Kamianets-Podilskyi Castle',
   category: 'castle',

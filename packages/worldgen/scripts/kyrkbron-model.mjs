@@ -5,7 +5,7 @@ import { beam, loft, normalFor } from './authored-structure-mesh.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const map = JSON.parse(readFileSync(structureSourcePath('n0010_kyrkbron', 'map-frame.json')));
+const map = JSON.parse(readFileSync(structureSourcePath('kyrkbron', 'map-frame.json')));
 const concrete = [0.63, 0.622, 0.584],
   edge = [0.69, 0.689, 0.649],
   metal = [0.52, 0.54, 0.53],
@@ -351,7 +351,7 @@ export function buildKyrkbron(out) {
     }
 }
 export const kyrkbronStudy = {
-  id: 'N0010',
+  id: 'kyrkbron',
   key: 'kyrkbron',
   title: 'Kyrkbron',
   wikidataId: 'Q3603778',

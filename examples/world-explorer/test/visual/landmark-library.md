@@ -3,7 +3,7 @@
 Build the workspace, import the authored sources, then run:
 
 ```sh
-node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=N0637,N0641
+node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=tower_of_hercules,kopu_lighthouse
 ```
 
 The batch runner uses the world viewer's `StructureModelLibrary`, material resolver and
@@ -22,7 +22,7 @@ Four turntable views, model-specific close cameras, and applicable placement vie
 written to the source bundle's `shots/shared/`. `shared-capture-report.json` binds each
 image to the source/runtime models, material graphs, spec, placement and fixture hashes.
 These images require visual inspection; successful capture is not maximum-fidelity approval.
-The separate `capture-next-1000-models.mjs` runner also exercises normal Molen asset/scene
+The separate `capture-structure-models.mjs` runner also exercises normal Molen asset/scene
 screenshots with the portable GLB materials.
 
 Unchanged captures are reused after checking model, spec, placement, fixture, graph and

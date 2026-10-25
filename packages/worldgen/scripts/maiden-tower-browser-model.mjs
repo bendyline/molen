@@ -1,4 +1,4 @@
-/** N0638 complete whole-ensemble far silhouette. */
+/** maidens_tower complete whole-ensemble far silhouette. */
 import { loft, radialRing } from './authored-structure-mesh.mjs';
 import { triangle } from './heritage-tower-detail-mesh.mjs';
 import { hipRoof } from './lighthouse-expansion-models.mjs';

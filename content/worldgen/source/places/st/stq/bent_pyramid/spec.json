@@ -1,0 +1,248 @@
+{
+  "planId": "bent_pyramid",
+  "id": "bent_pyramid",
+  "assetId": "molen.worldgen.structure.bent_pyramid",
+  "title": "Bent Pyramid",
+  "category": "archaeological",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 31.209467947483063,
+    "latitude": 29.790236254626997
+  },
+  "size": [
+    188.3377685546875,
+    105.70999908447266,
+    188.33346557617188
+  ],
+  "actualBounds": {
+    "min": [
+      -94.16902160644531,
+      -1,
+      -94.16539764404297
+    ],
+    "max": [
+      94.16874694824219,
+      104.70999908447266,
+      94.1680679321289
+    ]
+  },
+  "visualBrief": "Surviving Dahshur Bent Pyramid:188m square lower footprint, steep pale limestone casing to47.04m, abrupt shallower upper slope to104.71m, weathered/exposed stone patches and ragged dark crown, small north/west passage mouths. Main pyramid only; satellite pyramid, enclosure, temples, causeway, access stairs and interior chambers excluded.",
+  "nativeAxes": "+X east; +Z south; +Y up.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Dahshur_banner_Bent_Pyramid.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bent-pyramid-wp",
+      "url": "https://qualla.com/bent-pyramid/"
+    }
+  ],
+  "referenceInputHash": "63833db5ef1158e624d25083d8a467c5a624d4381107390b304d12d85c026269",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bent-pyramid.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bent-pyramid.mjs",
+    "level": "skyline",
+    "export": "bentPyramidSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "raw": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "opening": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bentPyramidDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "bentPyramidStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native cardinal pyramid footprint centroid; standard unmodified Terrarium source heights referenced to dry desert160m east. Native footprint cutout removes pyramid returns only beneath actual masonry. Coarse DEM retains artificial pyramid-return mounds outside that ring; geographic placement is approximate and does not certify excavation-level contact. Portable asset stage uses a flat floor for geometry inspection.",
+    "anchor": [
+      31.209467947483063,
+      29.790236254626997
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        31.21112410657153,
+        29.790236254626997
+      ],
+      "modelHeight": 0,
+      "basis": "Dry desert160m east of center, beyond the smoothed pyramid return at110m. External reference selected before first rendering; source heights and masonry shape unchanged."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -89.13925311151829,
+          -90.04619318113356
+        ],
+        [
+          89.13925311151829,
+          -90.04619318113356
+        ],
+        [
+          89.13925311151829,
+          90.04619318113356
+        ],
+        [
+          -89.13925311151829,
+          90.04619318113356
+        ]
+      ],
+      "basis": "Native main-pyramid ring only, fully beneath the physical188m masonry shell; removes pyramid DEM returns without changing original source heights."
+    },
+    "featureIds": [
+      "buildings/35184412007666"
+    ],
+    "source": "https://build.protomaps.com/20261019.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5205b0636c93d2623aed9ee1e8484adaa23c5f6503399f14e2bc3f8eb1eb8976",
+    "notes": "Native main-pyramid polygon retained. Cardinal orientation fixed; portal offsets and original excavation level remain approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Approximate surviving188m base and104.71m overall height; native mapped plan is coarser/narrower and remains the geographic control. Native building-part47.04m breakpoint adopted; article rounds this to49m. No survey claim.",
+    "One inspected clear public-domain Qualla panorama controls identifying pale casing, bend and dark weathered crown. Stone loss/color patch positions, hidden faces and exact portal depths are medium-fi interpretations; original pixels are not textures.",
+    "The coarse source DEM has artificial pyramid returns outside the native cutout and may obscure lower casing in geographic views. This is a recorded host-terrain limitation; pyramid geometry is not fitted to it.",
+    "Main pyramid exterior only. Satellite pyramid and detached structures, enclosure/causeway, modern visitor stair and interior are excluded. Footing extends1m below visualization datum; no fitted terrain platform or reshaped elevation field."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "north-casing-and-passage",
+      "position": [
+        85,
+        40,
+        -140
+      ],
+      "lookAt": [
+        0,
+        28,
+        -65
+      ]
+    },
+    {
+      "name": "slope-change-and-crown",
+      "position": [
+        140,
+        114,
+        -140
+      ],
+      "lookAt": [
+        0,
+        72,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28346,
+    "vertices": 85038,
+    "materials": 3,
+    "bytes": 3403860,
+    "sha256": "sha256:27c5444eb2ceaa8c821503d89e231a9fe7a4c2511600b70fd69ebecd3326802a"
+  }
+}

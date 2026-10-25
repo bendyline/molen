@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.8,
+      "metallic": 0.2
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    },
+    "gold": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.55,
+      "metallic": 0.45
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/passau-cathedral-model.mjs",
+    "export": "buildPassauSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPassauDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "buildPassauStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPassauCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.45
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -129,
+      84,
+      132
+    ],
+    "lookAt": [
+      0,
+      26,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-passau-skyline",
+      "position": [
+        -129,
+        84,
+        132
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-passau-district",
+      "position": [
+        -129,
+        84,
+        132
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-passau-street",
+      "position": [
+        -129,
+        84,
+        132
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-passau-closeup",
+      "position": [
+        -129,
+        84,
+        132
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      13.465532041,
+      48.574226786
+    ],
+    "heading": -0.069200720611,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention,not exact host-ground contact. Standard viewer DEM datum320.362551m;selected perimeter-3.53 to1.82m relative to it. Floor0.5m;adaptive masonry footings crossY=0 and extend below retained samples. Coarse terrain falls about2m at both west/east ends;precise entry pavement/stair levels are not inferred from those samples. Exact Domplatz/Residenzplatz,threshold/step/base and attached-host joins,altitude and walking remain unverified. No flattening,cutout or road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        13.465532041,
+        48.574226786
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum320.362551m;selected perimeter-3.53 to1.82m relative to it. Floor0.5m;adaptive masonry footings crossY=0 and extend below retained samples. Coarse terrain falls about2m at both west/east ends;precise entry pavement/stair levels are not inferred from those samples. Exact Domplatz/Residenzplatz,threshold/step/base and attached-host joins,altitude and walking remain unverified. No flattening,cutout or road replacement."
+    },
+    "bounds": [
+      13.457,
+      48.569,
+      13.475,
+      48.58
+    ],
+    "notes": "Exact retained way/24771505 and Q267182 identify Dom St. Stephan /Passau Cathedral. Current standard viewer whole35184396860337 and ten selected tower,aisle,nave,transept,choir/crossing parts retain82 raw outline points and all properties,alongside earlier whole/multilingual tags and same-ID named POI. Anchor[13.465532041,48.574226786] and heading−0.069200720611rad unchanged;no horizontal rescale. Native+X east polygonal Gothic choir/Residenzplatz,−X west twin-tower front/Domplatz,+Z south. West-front,elevated north-side and east-end pictures resolve signed facing,approximate3°. Adjoining Domhof/chapel ranges to north,Residenz/hosts to south and surrounding town/plazas remain host content. Standard viewer DEM datum320.362551m;selected perimeter-3.53 to1.82m relative to it. Floor0.5m;adaptive masonry footings crossY=0 and extend below retained samples. Coarse terrain falls about2m at both west/east ends;precise entry pavement/stair levels are not inferred from those samples. Exact Domplatz/Residenzplatz,threshold/step/base and attached-host joins,altitude and walking remain unverified. No flattening,cutout or road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum320.362551m;selected perimeter-3.53 to1.82m relative to it. Floor0.5m;adaptive masonry footings crossY=0 and extend below retained samples. Coarse terrain falls about2m at both west/east ends;precise entry pavement/stair levels are not inferred from those samples. Exact Domplatz/Residenzplatz,threshold/step/base and attached-host joins,altitude and walking remain unverified. No flattening,cutout or road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

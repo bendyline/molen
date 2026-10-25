@@ -1,0 +1,1157 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.nuremberg_castle",
+  "sourceHash": "sha256:984ff94c7f3a2738254c5f4fbd58cd7f392a1548ab362b33c9c233580e4ec6fe",
+  "runtimeHash": "sha256:d3034804ee48a27c5a5d3b20c61c56251ad951de7e0fbc67f6cb0d0669500eef",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 8272,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:853acd1a6d6c00842bc008c994a9c1f769ffc1d9b234f935bab36f5456cbf91b",
+      "bytes": 103720,
+      "gzipBytes": 20746,
+      "triangles": 985,
+      "cpuBytes": 102284,
+      "gpuBytes": 102284,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:b76d80f1e381ba27fbf02f368c047377dcb41d022c328fb6d63958dca9c16bcc",
+      "bytes": 311776,
+      "gzipBytes": 95352,
+      "triangles": 3293,
+      "cpuBytes": 303336,
+      "gpuBytes": 303336,
+      "errorMeters": 0.7,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:9a02e1d3f7ec965541aa49a9a261bbef76aeacf73b37a4524c985bec8b0d6f5c",
+      "bytes": 505216,
+      "gzipBytes": 145225,
+      "triangles": 5309,
+      "cpuBytes": 496728,
+      "gpuBytes": 496728,
+      "errorMeters": 0.3,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:db00d0bfa2a328578621b5e7aec72f26f0358a1cb1d91da161195a121b72cceb",
+      "bytes": 768728,
+      "gzipBytes": 217187,
+      "triangles": 8168,
+      "cpuBytes": 760232,
+      "gpuBytes": 760232,
+      "errorMeters": 0.1,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:b37b6f12a128a0b9df81b287015acb74f1c39d87556ff596eab5a493a0ce9560"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:6136099dd75f0044f13c79c6e5d46ef1c586e001c32a730a3a0994dcbf26f40c"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:d02786ef0420a22087d041ed80c264749b24447d71e19b5a8e8b8d06e85706fa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          336.602,
+          179.70219999999998,
+          519.3545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:4036fd8fa602862000e349e0545d7b1d35f27376ee7d92f40c1dea12868a3685",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          336.602,
+          179.70219999999998,
+          519.3545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f99d6108c91604efa9d56ea7ec5d1db54fda36c849481f75f8bc2dac52e83288",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          336.602,
+          179.70219999999998,
+          519.3545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:61eab59d2d6b45d96651df3924dc0d40418fc67dd5644cfcd1fb6621d7b75c47",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          336.602,
+          179.70219999999998,
+          519.3545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:d4e8b6eabf26792e2fb26658f897a8b59a996a82b149652a64dc9fbefd1e012e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 64047,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          645.302,
+          406.50219999999996,
+          1054.8545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:b8c7230237e3a3061ee46f4bc18ff6092c4478eeea9c064a1ae34f8192d62191",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 64047,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          645.302,
+          406.50219999999996,
+          1054.8545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:0f45d33941d38b76b3271951174d213191dfe37efffa190232f0da59800c7362",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 64047,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          645.302,
+          406.50219999999996,
+          1054.8545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:ae2c55de4038ea4a0f4bfafcd5f58c5d3eab6ed7b85c318b0c40f3ab8f80e0f9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 64047,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          645.302,
+          406.50219999999996,
+          1054.8545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:03a9033d8af4ffa4da692aa69754c3f4dcd56f1a9da1877c1927cc23df5f6a47",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 61739,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          1256.402,
+          645.9022,
+          2113.2544999999996
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:1f7f624c4c68e599fed563804425a670e0ce6403c0090d168841e49dfab1834e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 61739,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          1256.402,
+          645.9022,
+          2113.2544999999996
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:fc402b11b4e641acb69dde98ac6312e52738e0828a839a9622b3130788cb1682",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 61739,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          1256.402,
+          645.9022,
+          2113.2544999999996
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:b47832824ee0b694e0fe9a464dd5ffa0bd05ac40799c049e631cf3313a8595f1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 61739,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          1256.402,
+          645.9022,
+          2113.2544999999996
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:06bc6c4835d866ea50cc895b4a8d55ce28cd866c949ed274dd62e2dd0ea649e1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 53467,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          1256.402,
+          645.9022,
+          2113.2544999999996
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/sinwell-renaissance-helm.png",
+      "hash": "sha256:b1cbe5798466eb6f566983176282ea5c5a5a6e8f61663d74a926a0485ab7141d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          139,
+          32,
+          101
+        ],
+        "lookAt": [
+          85,
+          28,
+          33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/imperial-inner-court.png",
+      "hash": "sha256:91293e5e7d5afdd1cf5fb8ecb77f7b4cbf327fd071fc723edb9d405c13202f70",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          1,
+          48,
+          17
+        ],
+        "lookAt": [
+          1,
+          6,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/timber-well-and-bailey.png",
+      "hash": "sha256:e0b9a4a534369cc4d78fefa54b51f0d90095ff727e9a82833e327d7e9e9d1100",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          64,
+          19,
+          45
+        ],
+        "lookAt": [
+          53,
+          10,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/hasenburg-passage.png",
+      "hash": "sha256:185de427dcc5fbbb56643ea377a2d29b91194afd29d9e2c2b46fec1e60a79cd3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          99,
+          4.100000000000001,
+          56
+        ],
+        "lookAt": [
+          74,
+          4.100000000000001,
+          52
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/palas-chapel-city-front.png",
+      "hash": "sha256:849698b017053c949f6ba43c3825b3d4b4f6d3c09641eea2b8b44988f5d5a3fc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          -7,
+          14,
+          99
+        ],
+        "lookAt": [
+          4,
+          16,
+          27
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/stables-and-eastern-towers.png",
+      "hash": "sha256:2cd3b973f824d31e8278860056297b7e8441637c14d53da6bce2e6527e4db967",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          190,
+          32,
+          75
+        ],
+        "lookAt": [
+          172,
+          20,
+          -17
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-bastions.png",
+      "hash": "sha256:e14bedc4127124c7c76bb6d01bf8341505a4c58b611f944e98a603ff98ae1047",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          -115,
+          104,
+          -114
+        ],
+        "lookAt": [
+          -27,
+          1,
+          -34
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-nuremberg-skyline.png",
+      "hash": "sha256:00bb5294db89493860b9c038582a8479ce4a045bf0084c0004b7b594c69cfdfa",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 61739,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          340,
+          240,
+          350
+        ],
+        "lookAt": [
+          30,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-nuremberg-district.png",
+      "hash": "sha256:c5c1a5152e19263c4874cf73575ed238c4c4bf01fca91bd87ffe5e6100a5cfaf",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 64047,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          340,
+          240,
+          350
+        ],
+        "lookAt": [
+          30,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-nuremberg-street.png",
+      "hash": "sha256:ceeb883c323e6afeb28524b5509712f52e42943618db316d548d70e910e4d45f",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 66063,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          340,
+          240,
+          350
+        ],
+        "lookAt": [
+          30,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-nuremberg-closeup.png",
+      "hash": "sha256:639ce2dd8d9bae2eae3f4ca50d0067530d8a3cc53d18d2f8bcfa6b1c3d6ae468",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          340,
+          240,
+          350
+        ],
+        "lookAt": [
+          30,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:a67f76095206df3366afd775aa710b4d2c7047c39ee4c1a68cc7bb0b10b298a3",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 61739,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          645.302,
+          406.50219999999996,
+          1054.8545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:b8c7230237e3a3061ee46f4bc18ff6092c4478eeea9c064a1ae34f8192d62191",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 64047,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          645.302,
+          406.50219999999996,
+          1054.8545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:5400bb52fb394b651e7fbc07e5c742f3b64c4b603e601ccb4addc9f9445dd60b",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 66063,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          645.302,
+          406.50219999999996,
+          1054.8545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:771584e1fbe43d3187c9f7b13550ece7e4c5461def1608a41d8969e324a58393",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68922,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0z/nuremberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          645.302,
+          406.50219999999996,
+          1054.8545
+        ],
+        "lookAt": [
+          34.202,
+          85.2022,
+          -3.5455
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6.3,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -470,8 +470,8 @@ export function buildAljaz(out, options = {}) {
 }
 
 export const aljazTower = {
-  id: 'n0602_aljaz_tower',
-  planId: 'N0602',
+  id: 'aljaz_tower',
+  planId: 'aljaz_tower',
   title: 'Aljaž Tower',
   wikidata: 'Q650987',
   authoringFile: 'aljaz-tower-model.mjs',

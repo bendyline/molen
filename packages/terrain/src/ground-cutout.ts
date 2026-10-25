@@ -3,9 +3,11 @@ import * as THREE from 'three';
 
 type Point = readonly [number, number];
 export type TerrainGroundOutline = readonly Point[];
-const owners = new WeakMap<THREE.Object3D, TerrainGroundOutline>();
+const owners = new WeakMap<THREE.Object3D, readonly TerrainGroundOutline[]>();
 const ceilings = new WeakMap<THREE.Object3D, number>();
 const surfaces = new WeakSet<THREE.Mesh>();
+const waterSurfaces = new WeakSet<THREE.Mesh>();
+const waterOwners = new WeakSet<THREE.Object3D>();
 const ownerRefs = new Set<WeakRef<THREE.Object3D>>();
 const surfaceRefs = new Set<WeakRef<THREE.Mesh>>();
 interface CutState {
@@ -20,6 +22,13 @@ const states = new WeakMap<THREE.Mesh, CutState>();
 export function markTerrainGroundSurface(mesh: THREE.Mesh): void {
   if (!surfaces.has(mesh)) surfaceRefs.add(new WeakRef(mesh));
   surfaces.add(mesh);
+  waterSurfaces.delete(mesh);
+}
+
+/** Mark native water that can be replaced by an explicit model-owned water opening. */
+export function markTerrainWaterSurface(mesh: THREE.Mesh): void {
+  markTerrainGroundSurface(mesh);
+  waterSurfaces.add(mesh);
 }
 
 /** A simple model-local X/Z polygon. Only a visible owner opens the ground.
@@ -30,22 +39,44 @@ export function setTerrainGroundCutout(
   outline: TerrainGroundOutline,
   maxHeight?: number,
 ): void {
+  setTerrainGroundCutouts(object, [outline], maxHeight);
+}
+
+/** Separate model-local openings preserve ground between river channels, stairs and basements.
+ * Replaces this owner's previous openings. The optional ceiling applies to every outline. */
+export function setTerrainGroundCutouts(
+  object: THREE.Object3D,
+  outlines: readonly TerrainGroundOutline[],
+  maxHeight?: number,
+): void {
   if (maxHeight !== undefined && !Number.isFinite(maxHeight))
     throw new Error('Ground cutout ceiling must be finite');
-  const points = outline.map(([x, z]) => [x, z] as Point);
-  if (
-    points.length > 3 &&
-    points[0]?.[0] === points.at(-1)?.[0] &&
-    points[0]?.[1] === points.at(-1)?.[1]
-  )
-    points.pop();
-  if (points.length < 3 || points.length > 512 || points.some((p) => !p.every(Number.isFinite)))
-    throw new Error('Ground cutout requires 3–512 finite X/Z vertices');
+  if (!outlines.length || outlines.length > 64)
+    throw new Error('Ground cutouts require 1–64 outlines');
+  const polygons = outlines.map((outline) => {
+    const points = outline.map(([x, z]) => [x, z] as Point);
+    if (
+      points.length > 3 &&
+      points[0]?.[0] === points.at(-1)?.[0] &&
+      points[0]?.[1] === points.at(-1)?.[1]
+    )
+      points.pop();
+    if (points.length < 3 || points.length > 512 || points.some((p) => !p.every(Number.isFinite)))
+      throw new Error('Ground cutout requires 3–512 finite X/Z vertices');
+    return points;
+  });
   if (!owners.has(object)) ownerRefs.add(new WeakRef(object));
-  owners.set(object, points);
+  owners.set(object, polygons);
+  waterOwners.delete(object);
   if (maxHeight !== undefined) {
     ceilings.set(object, maxHeight);
   } else ceilings.delete(object);
+}
+
+/** Replace only native water within this visible owner's footprint. Ground remains intact. */
+export function setTerrainWaterCutout(object: THREE.Object3D, outline: TerrainGroundOutline): void {
+  setTerrainGroundCutout(object, outline);
+  waterOwners.add(object);
 }
 
 /** Original regular grid, used by terrain height morphs and normal-apron updates. */
@@ -272,6 +303,7 @@ export class TerrainGroundCutoutController {
       points: THREE.Vector3[];
       bounds: [number, number, number, number];
       maxHeight?: number;
+      water: boolean;
     }> = [];
     for (const ref of ownerRefs) {
       const object = ref.deref();
@@ -281,17 +313,20 @@ export class TerrainGroundCutoutController {
       }
       if (!visibleWithin(object)) continue;
       object.updateWorldMatrix(true, false);
-      const points = (owners.get(object) ?? []).map(([x, z]) =>
-        new THREE.Vector3(x, 0, z).applyMatrix4(object.matrixWorld),
-      );
       const ceiling = ceilings.get(object);
-      cutters.push({
-        points,
-        bounds: bounds(points.map((p) => [p.x, p.z])),
-        ...(ceiling !== undefined
-          ? { maxHeight: new THREE.Vector3(0, ceiling, 0).applyMatrix4(object.matrixWorld).y }
-          : {}),
-      });
+      for (const outline of owners.get(object) ?? []) {
+        const points = outline.map(([x, z]) =>
+          new THREE.Vector3(x, 0, z).applyMatrix4(object.matrixWorld),
+        );
+        cutters.push({
+          points,
+          water: waterOwners.has(object),
+          bounds: bounds(points.map((p) => [p.x, p.z])),
+          ...(ceiling !== undefined
+            ? { maxHeight: new THREE.Vector3(0, ceiling, 0).applyMatrix4(object.matrixWorld).y }
+            : {}),
+        });
+      }
     }
     if (!cutters.length && !this.active.size) return false;
     const targets: THREE.Mesh[] = [];
@@ -316,6 +351,7 @@ export class TerrainGroundCutoutController {
       const worldBox = box?.clone().applyMatrix4(mesh.matrixWorld);
       const nearby = cutters.filter(
         (c) =>
+          c.water === waterSurfaces.has(mesh) &&
           worldBox &&
           overlaps([worldBox.min.x, worldBox.min.z, worldBox.max.x, worldBox.max.z], c.bounds),
       );

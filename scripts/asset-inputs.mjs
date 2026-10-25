@@ -57,7 +57,7 @@ function excluded(path, patterns) {
 }
 
 /** Generator-written fields that describe outputs, or reviews, are not inputs. */
-function digest(path, bytes) {
+export function inputDigest(path, bytes) {
   if (path.endsWith('/source.json')) {
     const manifest = JSON.parse(bytes);
     const { documents, models, ...files } = manifest.files ?? {};
@@ -70,6 +70,9 @@ function digest(path, bytes) {
   }
   return sha(bytes);
 }
+
+// Changing the normalization rules also invalidates locally memoized input hashes.
+export const INPUT_HASH_KIND = `input:${sha(inputDigest.toString())}`;
 
 export function validateInputs(plan) {
   const inputs = plan?.inputs;
@@ -88,7 +91,7 @@ export function validateInputs(plan) {
 }
 
 /** Everything that builds the asset bundle, and the key and release name derived from it. */
-export async function assetInputs(root = ROOT) {
+export async function assetInputs(root = ROOT, { fileCache } = {}) {
   root = resolve(root);
   const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
   const inputs = validateInputs(plan);
@@ -110,7 +113,12 @@ export async function assetInputs(root = ROOT) {
     const stat = await exists(join(root, path));
     if (!stat) continue; // tracked but deleted in this working tree
     if (stat.isSymbolicLink()) throw new Error(`Asset inputs do not follow symlinks: ${path}`);
-    files.push([path, digest(path, await readFile(join(root, path)))]);
+    const file = join(root, path);
+    const digest = () => readFile(file).then((bytes) => inputDigest(path, bytes));
+    files.push([
+      path,
+      fileCache ? await fileCache.get(file, INPUT_HASH_KIND, digest) : await digest(),
+    ]);
   }
   const key = sha(JSON.stringify({ format: FORMAT, version: inputs.version, files }));
   return { key, release: `assets-${key.slice(0, 16)}`, repository: plan.repository, inputs: files };

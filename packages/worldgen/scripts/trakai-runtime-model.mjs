@@ -7,7 +7,7 @@ import { buildTrakaiRuntime } from './trakai-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u9/u99/n0280_trakai_island_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u9/u99/trakai_island_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

@@ -166,7 +166,7 @@ function buildAlphabet(out) {
     }
   }
   const letters = JSON.parse(
-    readFileSync(structureSourcePath('n0582_alphabetic_tower', 'reference-metadata.json'), 'utf8'),
+    readFileSync(structureSourcePath('alphabetic_tower', 'reference-metadata.json'), 'utf8'),
   ).letters;
   for (let i = 0; i < 33; i++) {
     const strand = i < 17 ? 0 : 1,
@@ -233,8 +233,8 @@ function buildAlphabet(out) {
 }
 
 export const alphabeticTower = {
-  id: 'n0582_alphabetic_tower',
-  planId: 'N0582',
+  id: 'alphabetic_tower',
+  planId: 'alphabetic_tower',
   title: 'Alphabetic Tower',
   wikidata: 'Q18822753',
   build: buildAlphabet,

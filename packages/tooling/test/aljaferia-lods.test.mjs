@@ -10,7 +10,7 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ez/ezr/n0294_aljaferia/map-frame.json',
+      '../../../content/worldgen/source/places/ez/ezr/aljaferia/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -60,7 +60,7 @@ const direction = (x, z) => {
   return [p[0], 0, p[1]];
 };
 it('builds deterministic levels with no embedded images and within browser budgets', async () => {
-  const id = 'molen.worldgen.structure.n0294_aljaferia',
+  const id = 'molen.worldgen.structure.aljaferia',
     bytes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

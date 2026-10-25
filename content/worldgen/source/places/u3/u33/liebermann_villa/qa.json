@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.liebermann_villa",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-19",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:8c57f959b89ce822a12b81b37b242973a615f9c4013e670cc9a58c9b5dca2e93",
+  "inputHash": "sha256:85eddc6e9723386f8a97721256769f8c547a60c886fa84162dca0007e1cf1ac7",
   "sourceHash": "sha256:caeb9599bb6ca948de69bb525c9e311dc031d9ee86e743b7e8c5de526201a716",
   "runtimeHash": "sha256:0e8fa4a39300df97a98cff72b8e3cd1d91083f4c5fccc1860ac72877a0a4af4e",
-  "captureReportHash": "sha256:3eaf74c2c288bfe9cfbc08e5a895feb9da219cc5d602cd7ee45375e1ddd5a815",
+  "captureReportHash": "sha256:4750581ce74ac3a4d58ed44facc9ac161e42f49dd29dedc81f481a63015c0361",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:4750581ce74ac3a4d58ed44facc9ac161e42f49dd29dedc81f481a63015c0361",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -18,11 +19,11 @@
       "shots/front.png",
       "shots/back.png"
     ],
-    "notes": "Inspected all seven current portable views and the full shared front view against individually inspected local street and lake photographs. The two Ionic street columns, eyebrow dormer, lake pediment and open southwest loggia match the distinct elevations. Corrected dormer roof normals and the front door panel."
+    "notes": "Seven existing portable views actually inspected and retained. Source/runtime/LOD bytes, scene, camera and independent ground remain identical. Current comparison uses the cleared Qualla painting and independent primary architectural descriptions. The two-storey street colonnade, eyebrow/hipped roof, lake pediment, tall openings, open loggia and upper terrace agree at medium-fi scope."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:ba4cc880d35ee46a7d9b3f54355b6e91c3445090586297a408b1f0900298d478",
+    "captureReportHash": "sha256:75d818e3cf0e3d2a5371970dbceee8e91b32fbf8cbbc88dcaa590cb7c7cf31b0",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -32,11 +33,11 @@
       "shots/shared/back.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views including the north-up placement overlay. Lime plaster, limestone, flat roof tiles, painted wood and metal retain metric-scale bindings; glass remains separate. Flat shared ground is a material fixture; independent Berlin terrain is in the portable scene."
+    "notes": "Seven existing shared-material views actually inspected and retained, including native mapped overlay. Geometry, source/runtime/LOD bytes, shared surfaces, cameras and ground are unchanged. Lime plaster, tile, stone, painted shutters and metal guards preserve the described hierarchy; flat material fixture remains distinct from source ground."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:2c9c9ff81b86db5e79cd82bea6c3e0dba36b99791c51c44635db29b87668f7e9",
+    "captureReportHash": "sha256:da4576f0bb5d6a1e8eb802746ef524dd04c9ac0ac157fe7c1f0cf4fe0a65302b",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -58,7 +59,7 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail frames. Skyline retains the columned frontage, dormer and major openings; district retains shutter color. Finer levels restore louvers, frames, balusters and iron guards. Synthetic neighbors are style fixtures. No physical-device frame-rate measurement is claimed."
+    "notes": "Nineteen fresh version2 frames actually inspected: source-ground context, lighting/quality, façades, silhouette and four forced runtime levels. Each binds the actual current asset and detail hashes. Columns/hipped roof survive at skyline, eyebrow and pediment restore at district, and shutters, casements, loggia and guards resolve at street/closeup. Synthetic neighbors are style fixtures."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +78,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00005358428955304362
     },
-    "notes": "Mapped villa rectangle controls roughly 19.45 by 14.29 m; separate garden house and adjacent Hamspohn villa are excluded. Anchor [13.16488802433014,52.4287717083313], heading -2.156201909528956; +X southwest and +Z northwest toward the street. Independent Berlin DGM1 heights are sampled unchanged into a 2 m review grid. Datum 33.905 m at street approach [0,10]; foundation -1.2 m. Photo-derived upper terrace is included, wider gardens excluded. Footprint suppression remains off; other host DEMs can differ."
+    "notes": "Mapped villa rectangle controls roughly 19.45 by 14.29 m; separate garden house and adjacent Hamspohn villa are excluded. Anchor [13.16488802433014,52.4287717083313], heading -2.156201909528956; +X southwest and +Z northwest toward the street. Independent Berlin DGM1 heights are sampled unchanged into a 2 m review grid. Datum 33.905 m at street approach [0,10]; foundation -1.2 m. Photo-derived upper terrace is included, wider gardens excluded. Footprint suppression remains off; other host DEMs can differ. Current2026-10-19 review retains these exact native map, Berlin DGM1, scene and global placement hashes; current version2 source-ground captures and retained mapped overlay were inspected."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Restored Liebermann Villa exterior and upper terrace; separate garden house, wider gardens and interiors excluded.",
-    "notes": "Original medium-fi restored villa exterior from individually inspected 2014 street and lake photographs and 2008 terrace detail. Official museum description confirms the columns and pediment face different directions. Roof height and curvature, fine capitals, hidden side openings and terrace depth are estimates. Garden house, wider gardens, furniture, vegetation and interiors are excluded. No photo pixels are embedded."
+    "scope": "Restored Wannsee villa exterior: hipped tiled roof with eyebrow dormer, columned street facade, lake-facing pediment and loggia, shutters and raised terrace. Exclude the wider garden and separate garden house.",
+    "notes": "Full restored villa exterior accepted at the agreed approximate medium-fi scope. The exact1518×1177public-domain1918MeinHausinWannsee painting already published on Qualla was inspected individually first. It supports the lake facade, paired storeys, central tall openings/pilasters, raised terrace and left loggia. Berlin heritage record09075511 independently identifies the broad two-storey plaster body, natural-stone base, hipped roof, large street eyebrow dormer, monumental Ionic columns, central lake pediment over three window axes and open left lake loggia. Restoring architects Nedelykov/Moreira independently describe the final simple hipped roof, seven lake-facing window axes, tall garden doors, sand-coloured rough plaster, pale sandstone bands/frames, shell-limestone details and green timber shutters. Museum restoration history identifies the2003–06restored building as the same historic architecture. Existing geometry agrees with those controls and the native mapped envelope. No new geometry was required. Exact roof pitch/eyebrow curve, colours, side openings, terrace depth, small side entrance/pergola and capital/railing profiles remain bounded medium-fi approximations; the artwork is not a photograph or measured elevation. Full original main-villa/upper-terrace scope retained; wider garden, separate garden house, interiors, furniture and vegetation excluded. Native Berlin DGM1 ground and placement remain unchanged. No reference pixels embedded."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:5ca622db57f48399c981ee025739ae4089bd26902f7b454729f83b4d50c52b41",
+    "recipeHash": "sha256:d7365144d140a756ae0f00b3809272e5b2ded45c470f42326b30abc466d933f7",
     "levels": [
       {
         "name": "skyline",
@@ -138,7 +139,7 @@
         "drawCalls": 6
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets: 915 skyline, 1549 district, 6349 street and 22869 closeup triangles. Major openings, columns, roof shape, lake pediment and terrace remain at distance; trim and fine metalwork return progressively. Error values are authoring budgets, not measured mesh deviations."
+    "notes": "All four unchanged registered levels verified and inspected in fresh actual-runtime captures. Triangle counts 915/1549/6349/22869; draw calls 1/5/6/6. Error values remain authoring budgets, not measured mesh distances."
   },
   "geometryValidation": {
     "status": "passed",
@@ -150,11 +151,15 @@
     "runtimeLodsVerified": 4,
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "notes": "Exact targeted regeneration, imported master integrity, four actual LOD digests, strict medium-fi budgets, source/scene/terrain schemas and repeated30tick state pass. All geometry, native map/ground and global placement bytes remain unchanged.",
+    "integration": {
+      "repeatTicks": 30,
+      "stateHash": "sha256:418d059816dddf4c44fd87626e189a4fa7973576f886855dac87bcc528f4ae11"
+    }
   },
   "limitations": [
-    "Original medium-fi restored villa exterior from individually inspected Qualla street and lake photographs; not a measured survey.",
-    "Mapped rectangle controls main building width and depth. Roof height, curved dormer, terrace depth, hidden side openings and Ionic capitals are photographic approximations.",
+    "Original medium-fi restored villa exterior reviewed against the public-domain 1918 painting already published on Qualla and factual descriptions by Berlin heritage authorities, the restoring architects and the museum. Earlier attribution-only photos are excluded from the current review; this is not a measured survey.",
+    "Mapped rectangle controls main building width and depth. Roof pitch and eyebrow curve, paint shades, terrace depth, side openings, small side entrance/pergola and Ionic capitals are approximate; the painting does not establish every elevation or current paint colour.",
     "Street columns, lake pediment and southwest open loggia are distinct. Wider garden, separate garden house, interiors, furniture and vegetation are excluded.",
     "No reference-image pixels are embedded. Shared materials and original simplified geometry represent tile, shutters, iron guards and limestone.",
     "Independent terrain remains unchanged; another host DEM can change exact foundation contact."
@@ -163,5 +168,62 @@
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:414b73b6552315b94cadbca5b1518dd378bd35ff1777e7e0a9041a0cec2cc7fe",
     "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  },
+  "branchIntegrationReview": {
+    "date": "2026-10-15",
+    "reviewer": "Codex",
+    "priorInputHash": "sha256:8c57f959b89ce822a12b81b37b242973a615f9c4013e670cc9a58c9b5dca2e93",
+    "inputHash": "sha256:ca998b7e0f84b62f77eddf86aa91de92d322677440ad292d3a9bc253fd1ab15f",
+    "sourceRegeneration": "exact-byte-match",
+    "freshlyInspectedFrames": 33,
+    "reason": "Recipe fingerprints changed in the merged branch; all current capture chains were regenerated and inspected rather than carrying stale approval."
+  },
+  "status": "completed",
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:85eddc6e9723386f8a97721256769f8c547a60c886fa84162dca0007e1cf1ac7",
+    "referenceInputHash": "75cd73a8eff5aff74f5e914aef150d06dfae3b13245526654118f619b66a6559",
+    "acceptedReferencePaths": [
+      "_m/u/3/3/6/liebermann-villa-wp/max-liebermann-mein-haus-in-wa.jpg"
+    ],
+    "auxiliaryReferencePaths": [],
+    "imageryEvidenceHash": "sha256:bb000045304e50e9637e0eaebf03a59b2470220ee3a65ec4740ea31e0597e5e8",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/u/3/3/6/liebermann-villa-wp/liebermann-manor-berli.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Liebermann-Villa_B-Wannsee_02-2014.jpg",
+        "reason": "Historical attribution-only photographs excluded from the active public-domain review."
+      },
+      {
+        "path": "_m/u/3/3/6/liebermann-villa-wp/berlin-wannsee-die-liebermann-.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Berlin-Wannsee,_die_Liebermann-Villa.JPG",
+        "reason": "Historical attribution-only photographs excluded from the active public-domain review."
+      },
+      {
+        "path": "_m/u/3/3/6/liebermann-villa-wp/liebermann-villa-z12.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Liebermann_Villa_z12.jpg",
+        "reason": "Historical attribution-only photographs excluded from the active public-domain review."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Full restored villa exterior accepted at the agreed approximate medium-fi scope. The exact1518×1177public-domain1918MeinHausinWannsee painting already published on Qualla was inspected individually first. It supports the lake facade, paired storeys, central tall openings/pilasters, raised terrace and left loggia. Berlin heritage record09075511 independently identifies the broad two-storey plaster body, natural-stone base, hipped roof, large street eyebrow dormer, monumental Ionic columns, central lake pediment over three window axes and open left lake loggia. Restoring architects Nedelykov/Moreira independently describe the final simple hipped roof, seven lake-facing window axes, tall garden doors, sand-coloured rough plaster, pale sandstone bands/frames, shell-limestone details and green timber shutters. Museum restoration history identifies the2003–06restored building as the same historic architecture. Existing geometry agrees with those controls and the native mapped envelope. No new geometry was required. Exact roof pitch/eyebrow curve, colours, side openings, terrace depth, small side entrance/pergola and capital/railing profiles remain bounded medium-fi approximations; the artwork is not a photograph or measured elevation. Full original main-villa/upper-terrace scope retained; wider garden, separate garden house, interiors, furniture and vegetation excluded. Native Berlin DGM1 ground and placement remain unchanged. No reference pixels embedded."
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:85eddc6e9723386f8a97721256769f8c547a60c886fa84162dca0007e1cf1ac7",
+    "sourceHash": "sha256:caeb9599bb6ca948de69bb525c9e311dc031d9ee86e743b7e8c5de526201a716",
+    "runtimeHash": "sha256:0e8fa4a39300df97a98cff72b8e3cd1d91083f4c5fccc1860ac72877a0a4af4e",
+    "notes": "Full restored villa exterior accepted at the agreed approximate medium-fi scope. The exact1518×1177public-domain1918MeinHausinWannsee painting already published on Qualla was inspected individually first. It supports the lake facade, paired storeys, central tall openings/pilasters, raised terrace and left loggia. Berlin heritage record09075511 independently identifies the broad two-storey plaster body, natural-stone base, hipped roof, large street eyebrow dormer, monumental Ionic columns, central lake pediment over three window axes and open left lake loggia. Restoring architects Nedelykov/Moreira independently describe the final simple hipped roof, seven lake-facing window axes, tall garden doors, sand-coloured rough plaster, pale sandstone bands/frames, shell-limestone details and green timber shutters. Museum restoration history identifies the2003–06restored building as the same historic architecture. Existing geometry agrees with those controls and the native mapped envelope. No new geometry was required. Exact roof pitch/eyebrow curve, colours, side openings, terrace depth, small side entrance/pergola and capital/railing profiles remain bounded medium-fi approximations; the artwork is not a photograph or measured elevation. Full original main-villa/upper-terrace scope retained; wider garden, separate garden house, interiors, furniture and vegetation excluded. Native Berlin DGM1 ground and placement remain unchanged. No reference pixels embedded.",
+    "newCaptures": 19,
+    "retainedFrames": 14,
+    "geometryChanged": false
+  },
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

@@ -5,9 +5,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0018_skopje_aqueduct', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('skopje_aqueduct', 'map-frame.json')));
 const line = frame.geometry.centerlines[0];
 const stations = [0];
 for (let i = 1; i < line.length; i++)
@@ -501,7 +499,7 @@ export function buildSkopjeAqueduct(base) {
   }
 }
 export const skopjeAqueductStudy = {
-  id: 'N0018',
+  id: 'skopje_aqueduct',
   key: 'skopje_aqueduct',
   title: 'Skopje Aqueduct',
   wikidataId: 'Q862032',

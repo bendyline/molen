@@ -13,7 +13,7 @@ import {
 import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0197_432_park_avenue';
+const key = '432_park_avenue';
 const frame = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'), 'utf8'));
 const parts = partsEvidence(key),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'), 'utf8'));

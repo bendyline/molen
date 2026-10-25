@@ -1,0 +1,358 @@
+{
+  "planId": "hassan_tower",
+  "id": "hassan_tower",
+  "assetId": "molen.worldgen.structure.hassan_tower",
+  "title": "Hassan Tower",
+  "category": "tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -6.82278835,
+    "latitude": 34.02413545
+  },
+  "size": [
+    20.50979995727539,
+    44.03999924659729,
+    20.5384464263916
+  ],
+  "actualBounds": {
+    "min": [
+      -10.254899978637695,
+      -1.2400000095367432,
+      -10.2692232131958
+    ],
+    "max": [
+      10.254899978637695,
+      42.79999923706055,
+      10.2692232131958
+    ]
+  },
+  "visualBrief": "Whole surviving Hassan Tower/Tour Hassan Q579331, full nativeway253426261/nine boundarycontrols,44m ochre sandstone square unfinishedminaret, full four exteriorfaces with cornerpilasters, plainlower mass, recessed horseshoe/lobedarch panels, upper sebka diamond/lobedarch relief, small realarchedopenings and low level uncompletedtop. No inventedcompleted minarettop, roofspires or private rampinterior. Foreground separateunfinishedmosquecolumnfield, modern HassanMosque7150024, MausoleumMohammedV/Q219028, balustrades/gardens/park/landscape excluded; this asset is the complete named minaret. Hiddenfacade ornament andsection/recessdepths bounded originalestimates.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hassan_Tower_and_columns_(Rabat,_Morocco)_(15126547404).jpg"
+  ],
+  "stories": [
+    {
+      "id": "hassan-tower-wp",
+      "url": "https://qualla.com/hassan-tower/"
+    }
+  ],
+  "referenceInputHash": "21f421f280f7efbc5f3cba57613b33197280f885160ba05c9711158ef9023d87",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hassan-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hassan-tower.mjs",
+    "level": "skyline",
+    "export": "hassanTowerSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "relief": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "recess": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "terrace": {
+        "slot": "roof",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hassanTowerDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "hassanTowerStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "hassanTowerCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.3199999999999998
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual named44m square unfinishedminaretway253426261/Q579331/allnine unique native boundarycontrols, including three intermediate stations along both sideedges and entrance-taggednode11871966802 on southernedge. Nativeheight44 retained as factualsectionreference. Namedphysicaltower is separate from foregroundunfinishedmosquecolumnfield and modernsouthern HassanMosquerelation7150024, not an instruction to extrude their distinct outlines. HassanII MosqueQ41346/hassan_ii_mosque inCasablanca is unrelated and reserved elsewhere; not this tower. Original400mfield/16641samples/four rawTerrariumtiles frozen before floor/sections/geometry. Single structural floor-1.2m relative to fixed33.4426m provider datum is an unsurveyed reference chosen after immutablefield acquisition, not terrainfitting. Actual nativeheight44m andwhole ninecontrol15.5m-square footprint retained. Intermediate nativeedge stations remain atplinth/fullwall geometry; four major facade directions interpolate nativeedge deviations rather than replacingthem with a generic box. ClearCC0original supplies long plainlowerbody/cornerpiers, broad blindhorseshoe/lobedarch panels, uppersebka diamondrelief and small openings. Lowerpanel13.9..24.65m/upper27.1..43.55m/.22mphysicalrecess, three lowerarches belowupperdiamondfield, small.48mdeep windowbacks, .42mrecessedunfinishedroofterrace andhiddenface ornamental census are bounded originalphoto estimates. No completedupperlantern/spire/roof, privateinterior, foregroundcolumnfield/modernmosque/mausoleum/parkplate. Sourcegrid/PNG/rawtiles unchanged; precise foundation/threshold/hostcontact unresolved, geographicpreview/replaceFootprintfalse.",
+    "anchor": [
+      -6.82278835,
+      34.02413545
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -6.822975370189981,
+        34.02398031863973
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW exterior5m beyond actualwholeminaretbefore floors/sections/geometry; unsurveyed reference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/253426261"
+    ],
+    "source": "https://www.openstreetmap.org/way/253426261",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5f41f2a893fce2d8c48dd7c7ce9be1361866c7347c66f64638f680ddd224647a",
+    "notes": "Whole surviving Hassan Tower/Tour Hassan Q579331, full nativeway253426261/nine boundarycontrols,44m ochre sandstone square unfinishedminaret, full four exteriorfaces with cornerpilasters, plainlower mass, recessed horseshoe/lobedarch panels, upper sebka diamond/lobedarch relief, small realarchedopenings and low level uncompletedtop. No inventedcompleted minarettop, roofspires or private rampinterior. Foreground separateunfinishedmosquecolumnfield, modern HassanMosque7150024, MausoleumMohammedV/Q219028, balustrades/gardens/park/landscape excluded; this asset is the complete named minaret. Hiddenfacade ornament andsection/recessdepths bounded originalestimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named44m square unfinishedminaretway253426261/Q579331/allnine unique native boundarycontrols, including three intermediate stations along both sideedges and entrance-taggednode11871966802 on southernedge. Nativeheight44 retained as factualsectionreference. Namedphysicaltower is separate from foregroundunfinishedmosquecolumnfield and modernsouthern HassanMosquerelation7150024, not an instruction to extrude their distinct outlines. HassanII MosqueQ41346/hassan_ii_mosque inCasablanca is unrelated and reserved elsewhere; not this tower.",
+    "Original400mfield/16641samples/four rawTerrariumtiles frozen before floor/sections/geometry. Single structural floor-1.2m relative to fixed33.4426m provider datum is an unsurveyed reference chosen after immutablefield acquisition, not terrainfitting. Actual nativeheight44m andwhole ninecontrol15.5m-square footprint retained. Intermediate nativeedge stations remain atplinth/fullwall geometry; four major facade directions interpolate nativeedge deviations rather than replacingthem with a generic box. ClearCC0original supplies long plainlowerbody/cornerpiers, broad blindhorseshoe/lobedarch panels, uppersebka diamondrelief and small openings. Lowerpanel13.9..24.65m/upper27.1..43.55m/.22mphysicalrecess, three lowerarches belowupperdiamondfield, small.48mdeep windowbacks, .42mrecessedunfinishedroofterrace andhiddenface ornamental census are bounded originalphoto estimates. No completedupperlantern/spire/roof, privateinterior, foregroundcolumnfield/modernmosque/mausoleum/parkplate. Sourcegrid/PNG/rawtiles unchanged; precise foundation/threshold/hostcontact unresolved, geographicpreview/replaceFootprintfalse.",
+    "Whole surviving44m square unfinishedminaret/allnine nativeboundarycontrols, full fourfacades/nativeedge interpolation, long plainlower masonry/cornerpiers, real recessedblind horseshoe/lobedarch panels, raisedupper sebka diamondnetwork, small actualarchedopening/windowbacks andlevelunfinishedtop/recessedterrace. No fabricatedcompleted upperlantern/spire orprivateinterior.",
+    "Exact published CarlosZGZ creatorCC0 original/nativeSHA1matched andpersonallyinspected. No supplementalphotographs/generatedbitmaps/photo textures or copied protectedplan. Anonymoushistoricaldrawing/1921plan unselected; foreground separateunfinishedmosquecolumnfield/modernHassanMosque/mausoleum/park/whitebalustrades excluded.",
+    "44m nativeheight andwholemappedfootprint factual. Panelheights/reliefdepths/lobe anddiamondcensus, hiddennorth/west facade ornament andunfinishedterrace section original bounded photoestimates. Detail levels simplify physicalcarving while preserving silhouette/main recessedpanelvocabulary.",
+    "Original400m129x129field/16641samples/four rawtiles frozen before floors/geometry. Floor-1.2m relative fixed33.4426m provider datum is unsurveyed structuralreference. Groundgrid/PNG/rawtiles unchanged; exacthostfoundation/threshold contact unresolved, geographicpreview/replaceFootprintfalse. Diagnosticflatground separate; no artificialsiteplate."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole44m-unfinished-minaret-native-footprint",
+      "position": [
+        48,
+        30,
+        57
+      ],
+      "lookAt": [
+        0,
+        20.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "southern-horseshoe-panel-and-native-entrance",
+      "position": [
+        9,
+        15,
+        30
+      ],
+      "lookAt": [
+        0,
+        12.8,
+        6
+      ]
+    },
+    {
+      "name": "upper-sebka-relief-lobed-arcade-and-window",
+      "position": [
+        20,
+        36,
+        27
+      ],
+      "lookAt": [
+        2,
+        32.8,
+        4
+      ]
+    },
+    {
+      "name": "eastern-paired-blind-arches-and-corner-piers",
+      "position": [
+        34,
+        23,
+        -14
+      ],
+      "lookAt": [
+        6,
+        21.8,
+        -2
+      ]
+    },
+    {
+      "name": "level-uncompleted-top-recessed-roof-terrace",
+      "position": [
+        25,
+        55,
+        27
+      ],
+      "lookAt": [
+        0,
+        40.8,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 41886,
+    "vertices": 125658,
+    "materials": 5,
+    "bytes": 5029492,
+    "sha256": "sha256:281bda92f2dccd04ce817ec64ea4f5d5b6835d1713dec9d4b536e2d8eacca955"
+  }
+}

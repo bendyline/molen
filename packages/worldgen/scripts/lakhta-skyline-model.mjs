@@ -6,15 +6,15 @@ import { face, localOutline, mappedCap, mappedSolid } from './signature-tower-ex
 import { skylineNext } from './signature-tower-next-models.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-export const lakhtaSkylineAssetId = 'molen.worldgen.structure.n0160_lakhta_centre';
+export const lakhtaSkylineAssetId = 'molen.worldgen.structure.lakhta_centre';
 const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0160_lakhta_centre', 'map-frame.json'), 'utf8'),
+  readFileSync(structureSourcePath('lakhta_centre', 'map-frame.json'), 'utf8'),
 );
 
 export function lakhtaSkinRows() {
   const triangles = [];
   skylineNext
-    .find((s) => s.id === 'N0160')
+    .find((s) => s.id === 'lakhta_centre')
     .build(
       {
         addQuad(component) {

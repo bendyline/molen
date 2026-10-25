@@ -133,6 +133,46 @@ A serialized generation request: labeled building outlines, optional labeled pol
       "items": {
         "type": "object",
         "properties": {
+          "priority": {
+            "type": "number"
+          },
+          "access": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "[x, z] in local meters."
+              },
+              "to": {
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "[x, z] in local meters."
+              },
+              "width": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 12
+              },
+              "garage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "from",
+              "to",
+              "width"
+            ],
+            "additionalProperties": false
+          },
           "identity": {
             "type": "string",
             "minLength": 1,

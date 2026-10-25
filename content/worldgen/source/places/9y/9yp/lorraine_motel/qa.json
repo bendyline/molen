@@ -1,12 +1,12 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.lorraine_motel",
-  "reviewedOn": "2026-10-14",
+  "reviewedOn": "2026-10-17",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:d6ab334065444b7ef4c4a2e75ecad69cc4d05a98f3ed9c72c412fbab553b8b67",
-  "sourceHash": "sha256:335d4371be8987e8b7605d6229017c563b1e1bdbf063b5af0739d743df9fc8b1",
-  "runtimeHash": "sha256:e1a2abc446b3f82bcc49461c25ef92fddc4c3d63499d22d3d9801054214ed432",
-  "captureReportHash": "sha256:c8b39616c2b56afb552cbedf2f5ab16d0daac68688e893cd2cfe6d28ef962d10",
+  "inputHash": "sha256:11ae7311394ad22b2dcaa3245216eb296c6a8601b9a1e91902405092850d4d21",
+  "sourceHash": "sha256:57a0714d3a0297d81f451347253fab15d2b05c84ea3b4245e0f942885218c1d6",
+  "runtimeHash": "sha256:53ffe4d61c2e20b179d52e416732e4533659ffc490308ce80f8d9377bdf7a65c",
+  "captureReportHash": "sha256:64c221c61f19694c22a6c9a285811616537f84e84edad9418c775927f7f17d27",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -18,11 +18,11 @@
       "shots/front.png",
       "shots/back.png"
     ],
-    "notes": "Inspected all seven final portable views. Nine main room pairs, two jog pairs and two return pairs on each floor, alternating mint doors and cream windows, balcony rails, external stairs, wreath, tan parapet and white canopy are coherent with the selected Qualla photographs. The freestanding yellow Lorraine oval and five MOTEL roundels remain visible from both sides after closing the sign geometry. Rear museum interface is deliberately plain and documented; ground foundations cover the preserved coarse terrain slope."
+    "notes": "Actually inspected all seven final portable frames against the public-domain Qualla Hinnerk exterior, creator-released Rohan sign/street originals and Highsmith Room 306 detail. The two-storey room frontage, angled jog and return, cream windows and mint doors, rectangular balcony rails, external stairs, canopy and wreath are recognizable. Yellow oval, five white MOTEL roundels, green posts, lower board and red arrow distinguish the sign. The arrow now has a thin closed body and remains visible from behind. Hidden rear attachment surface, small sign lettering and room spacing remain generalized."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:cd9e273bfa198c18c1ffeb083d51a32d7c3a1b1baac1bc8ccc1e27b4732a4ace",
+    "captureReportHash": "sha256:2b1b6c43693792c2bfdd7ee110d64f4fe4e669bfa4d7cd2b270665328ddac401",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -32,11 +32,11 @@
       "shots/shared/back.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared viewer frames including the north-up geographic overlay. Corrected the draft heading and located the motel frontage on the separately mapped west balcony polygon within the combined museum envelope. Shared concrete, sandstone, painted metal and roof bindings load with metric UVs. The courtyard and sign face west-northwest; flat fixture tests transforms and unloading, while portable and context captures show the independent terrain."
+    "notes": "Actually inspected all seven final shared-material views including the north-up mapped overlay. Concrete, sandstone, painted metal and roof bindings load with metric UVs. The frontage follows the independently mapped west balcony polygon, rather than the whole modern museum envelope. The flat fixture checks transforms and unload; portable and context views retain independent source terrain. No photograph is a texture. Ground, placement and cameras remain unchanged."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:a53d4425340a32818dde067f8a027cba8cfad22fddebcfada1d2c620ec88e6ce",
+    "captureReportHash": "sha256:8770147e406646c2a98ba481671300a325939871845fb1c112e489119621a4f5",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -58,12 +58,12 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected nineteen final frames: twelve light/distance/mode combinations, front, back, silhouette and four forced detail levels. The corrected authored skyline has 738 triangles and preserves the long two-storey motel, return and tall sign; district retains room rhythm, railings and readable sign blocks. Street and closeup retain full source detail. An earlier 1058-triangle skyline failed and its captures were discarded; only the final passing generation is approved. Surrounding houses are synthetic style context, not Memphis parcels. No physical-device frame rate is claimed."
+    "notes": "Actually inspected all nineteen current frames across lighting, distance, economy/high modes, front/back, silhouette and four forced detail levels. Every frame identifies actual current asset/runtime/detail bytes. Long two-storey frontage, jog, return and tall sign remain recognizable at distance; close views retain room rhythm, rail pattern, stairs and wreath. The closed red arrow survives back views. Synthetic context houses are style fixtures, not Memphis parcels."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:c3dd595055dc10e7de1084cc2c41fb251b1e60b57e1cbabd78f068f8907b67b1",
-    "mapGeometryHash": "sha256:70cad445a4b11c31ac0e151dbe25ca62b41c0de7a6d1b4f688a05535a39d4dc2",
+    "mapGeometryHash": "sha256:7538617dbda24f3cb5e3dd25ea7347176e8c73447b184459641b5e10be22865c",
     "terrain": {
       "path": "terrain-grid.json",
       "hash": "sha256:97fd8f3cf857f35fea7d7b9d5c796faf2c88018c1c44291ee8cb20cc5f7c6888",
@@ -77,90 +77,156 @@
       ],
       "maxPngEncodingErrorMeters": 0.0000840863227722366
     },
-    "notes": "The mapped balcony feature 35185917602225 identifies the west-facing preserved motel frontage independently of combined museum feature 35184467221497. The main facade spans about 42.57 m with a jog and short northern return; the nine-metre rear closure is an interpretation inside the museum envelope, not a model of the whole museum. Heading -106.67 degrees makes +X south-southwest and +Z west-northwest. The museum donor-brick map is schematic and was explicitly rejected for geodetic alignment. Preserved 4225 Terrarium samples use the front courtyard reference [0,8] and 78.5267 m composite host datum. Foundation closures extend to -3.8 m across the observed -3.443004..0.018893 m footprint range; front platform and sign foundations extend to -1.2 m. Generalized map and coarse terrain are not surveyed dimensions; footprint suppression remains off."
+    "notes": "The native balcony feature 35185917602225 independently controls the west-facing frontage within combined museum feature 35184467221497. The main facade spans approximately 42.57 m with an angled jog and short northern return. The 9 m hidden rear depth is an interpretation, not surveyed museum geometry. Heading -106.67 degrees, anchor, +X south-southwest/+Z west-northwest, courtyard reference [0,8], source terrain and all cameras remain unchanged. The preserved 4225 Terrarium samples use the 78.5267 m host datum; -3.8 m rear foundation closures span the prior -3.443004..0.018893 m footprint relief, while front platform/sign closures reach -1.2 m. The schematic donor map is excluded. Coarse terrain and generalized map controls do not confer survey accuracy; footprint suppression stays off."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Preserved motel rooms, balcony, stairs, courtyard sign and rear closure; modern museum and opposite rooming house excluded.",
-    "notes": "Accepted as an original medium-fi preserved motel exterior using two inspected local Qualla courtyard/sign photographs plus a local wider courtyard view. Individual room pairs, return, canopy, balcony, stairs, air conditioners, memorial wreath and sign distinguish this building. The modern museum and rooming house across the street are excluded. Hidden rear closure, exact room spacing, small lettering and ornamental sign script are interpretations. Historic vehicles, interiors and exact surveyed detail are outside scope. Reference photographs are not embedded or redistributed."
+    "scope": "Preserved motel exterior, balcony/stairs, memorial wreath and roadside sign; later museum, opposite rooming house, interiors and historic vehicles excluded.",
+    "notes": "All 33 fresh current renders compared against four actually inspected public-domain originals. Started with the cleared Qualla Hinnerk exterior; Rohan creator-released sign/street photographs fill the cropped-sign gap, and Highsmith explicitly dedicated Room 306 detail confirms the railing, door, curtain divisions, soffit and wreath. A real one-sided red-arrow defect was repaired with a 0.12 m closed plate. Hidden rear closure, exact room widths, fine typography, message text, hardware and reverse sign artwork remain estimates. The two earlier CC photos and rights-unverified schematic donor map are excluded from current imagery approval. Photographs are local comparison inputs and never runtime textures."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:a6a35a7407b894640e9425f40f7bc0b49a13a8dd357325de7ff54952388ce99d",
+    "recipeHash": "sha256:fdce193c0a7533507b08e3414da4343d640334a20bbd7f25a06fbfbc92922428",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:f7288b5f6b298f4fd0f892f47f81ccd9d0ed242a076dd125b75df3f27e211bb9",
-        "bytes": 56416,
-        "gzipBytes": 10034,
-        "triangles": 738,
-        "cpuBytes": 55008,
-        "gpuBytes": 55008,
+        "hash": "sha256:c45800dc24c8a4bbc8b8a10fb86cf40e44f8e43535abb37e804b2a397e8ef167",
+        "bytes": 57232,
+        "gzipBytes": 10214,
+        "triangles": 748,
+        "cpuBytes": 55824,
+        "gpuBytes": 55824,
         "errorMeters": 0.5,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:694fe52c8da697c9b48e553a2050634f1667c00e0d3aece3fa05519d9a4a962d",
-        "bytes": 365408,
-        "gzipBytes": 65880,
+        "hash": "sha256:935094b20d302d711bfbbdb8550b18ce5091712b9ee847cadd8e28d531dcd4bc",
+        "bytes": 365192,
+        "gzipBytes": 65858,
         "triangles": 3975,
-        "cpuBytes": 359336,
-        "gpuBytes": 359336,
+        "cpuBytes": 359120,
+        "gpuBytes": 359120,
         "errorMeters": 0.3498595732098271,
         "drawCalls": 5
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:6a80c579978e9fc6d085eea0e1e2754a9ef22d86b2a017ab7062b285631a6f78",
-        "bytes": 909440,
-        "gzipBytes": 129880,
-        "triangles": 7554,
-        "cpuBytes": 906480,
-        "gpuBytes": 906480,
+        "hash": "sha256:5596ef540ddfa1c7ee8e4433ad596f5a80e7431a838ea4f78588b234335ef523",
+        "bytes": 910640,
+        "gzipBytes": 130101,
+        "triangles": 7564,
+        "cpuBytes": 907680,
+        "gpuBytes": 907680,
         "errorMeters": 0,
         "drawCalls": 5
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:6a80c579978e9fc6d085eea0e1e2754a9ef22d86b2a017ab7062b285631a6f78",
-        "bytes": 909440,
-        "gzipBytes": 129880,
-        "triangles": 7554,
-        "cpuBytes": 906480,
-        "gpuBytes": 906480,
+        "hash": "sha256:5596ef540ddfa1c7ee8e4433ad596f5a80e7431a838ea4f78588b234335ef523",
+        "bytes": 910640,
+        "gzipBytes": 130101,
+        "triangles": 7564,
+        "cpuBytes": 907680,
+        "gpuBytes": 907680,
         "errorMeters": 0,
         "drawCalls": 5
       }
     ],
-    "notes": "All four current hash-bound levels pass strict triangle/material/download limits and were visually inspected. The final explicitly authored skyline has 738 triangles, district is reduced within its 4000-triangle cap, and street/closeup preserve full source geometry."
+    "notes": "All four current levels pass strict geometry/material/download checks and were inspected: 748/3975/7564/7564 triangles and 1/5/5/5 draws. Actual imported Float32 meshes pass 522 room-band roof/void probes and eight sign probes at each level, including front and back ray hits on the physical red arrow with front-side materials. The 9 m room-band depth is documented interpretation; these scoped probes are not a global mesh-distance measurement."
   },
   "geometryValidation": {
     "status": "passed",
     "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 7554,
+    "sourceTriangles": 7564,
     "sourceMaterials": 5,
     "runtimeLodsVerified": 4,
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Targeted source regeneration, normal import verification, current-LOD validation and strict medium-fi audit passed for the final build. Source bundle, scene and terrain schemas pass. Terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "notes": "Raw source/skyline and actual imported Float32 meshes pass finite-attribute, nondegeneracy and winding/normal checks. The red arrow is now closed geometry, adding ten triangles to the authored full and skyline meshes. Scene/ground files remain byte-identical to the prior freeze; all functional frame coordinates and cameras are unchanged. Exact scoped regeneration, normal import verification, strict detail/material checks, four schemas, six runtime pack members and repeated 30-tick state hashes pass. No independent Khronos certificate is claimed.",
+    "semanticControls": {
+      "roomBandControlsPerLevel": 522,
+      "signControlsPerLevel": 8,
+      "levels": 4,
+      "failures": 0
+    },
+    "integration": {
+      "runtimePackMembers": 6,
+      "repeatTicks": 30,
+      "stateHash": "sha256:48419a6ef336797a34f0f3c640f296e0b2b510e037bbd7712b1fd2b2ec03489b"
+    }
   },
   "limitations": [
     "Original medium-fi preserved motel exterior and sign; modern museum envelope, interiors, historic cars and neighboring buildings are outside scope.",
-    "Protomaps frontage and separate balcony polygon control location and alignment. Room widths, wall depths, roof heights and sign position are photographic estimates. The museum donor map is schematic and is not used as geodetic coordinates.",
-    "Hidden rear is a simplified attachment surface. Fine sign typography, room numbers, flowers and hardware are simplified. Photos remain local Qualla references and are not embedded.",
+    "Protomaps frontage and separate balcony polygon control location and alignment. Room widths, wall depths, roof heights and sign position are photographic estimates from inspected public-domain views. The museum donor map is excluded from current imagery approval and supplies no geodetic coordinates.",
+    "Hidden rear is a simplified attachment surface. Fine sign typography, room numbers, flowers and hardware are simplified. Cleared Qualla and supporting public-domain photographs remain local reference inputs and are not embedded.",
     "Independent coarse host terrain is retained for contact review; it is not a survey. No footprint suppression is requested for the combined museum polygon."
   ],
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:1bcd506bc2aa102c1ec766ebc87ad68e1810146572e4e6b49179ce156d4c4e30",
     "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  },
+  "referenceMetadataRefresh": {
+    "date": "2026-10-16",
+    "previousInputHash": "sha256:d6ab334065444b7ef4c4a2e75ecad69cc4d05a98f3ed9c72c412fbab553b8b67",
+    "currentReferenceInputHash": "7adf7d0e2d8ecf1829341ee9fcd8c985b4380193e01a150a6acc67cbbfee5b60",
+    "selectedImageBytesUnchanged": true,
+    "sourceRuntimeMapPlacementTerrainUnchanged": true,
+    "framesInspected": {
+      "portable": 7,
+      "shared": 7,
+      "context": 19
+    },
+    "assetIntegrity": true,
+    "threeSchemas": true,
+    "runtimePackFiles": 6,
+    "repeat30TickHash": "sha256:48419a6ef336797a34f0f3c640f296e0b2b510e037bbd7712b1fd2b2ec03489b",
+    "scopeCorrection": null
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-17",
+    "inputHash": "sha256:11ae7311394ad22b2dcaa3245216eb296c6a8601b9a1e91902405092850d4d21",
+    "referenceInputHash": "5276fa57d4a81f62479caeff6db714e36a210a7dd984599d5a84aaef9ea283c0",
+    "acceptedReferencePaths": [
+      "_m/9/y/p/z/lorraine-motel-wk/lorraine-motel.jpg"
+    ],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/rohan-sign-2010.jpg",
+      ".artifacts/reference-photos/rohan-street-2010.jpg",
+      ".artifacts/reference-photos/highsmith-room-306.jp2"
+    ],
+    "imageryEvidenceHash": "sha256:2f76bfc3bc0f006fb5b380e941acaa9cde8ffd363220e359c44adbb512701e2e",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/9/y/p/z/lorraine-motel-wk/lorraine-motel-memphis-1.jpg",
+        "license": "CC BY-SA 3.0",
+        "reason": "Attribution/share-alike license; excluded from current public-domain-only imagery review."
+      },
+      {
+        "path": "_m/9/y/p/z/lorraine-motel-wk/lorraine-motel-memphis.jpg",
+        "license": "CC BY-SA 4.0",
+        "reason": "Attribution/share-alike license; excluded from current public-domain-only imagery review."
+      },
+      {
+        "url": "https://civilrightsmuseum.org/commemorative-brick/",
+        "reason": "Positive public-domain rights were not established; excluded from current imagery approval. The schematic donor map supplies no geodetic coordinates."
+      },
+      {
+        "path": "../qualla-internal/_m/9/y/p/z/lorraine-motel-wk/national-civil-rights.jpg",
+        "reason": "Positive public-domain rights were not established; excluded from current imagery approval. The schematic donor map supplies no geodetic coordinates."
+      }
+    ],
+    "notes": "Started with cleared published Qualla originals, then inspected only independently verified public-domain supporting originals to fill exterior coverage gaps. Saved Commons revisions explicitly retain the Rohan creator PD-self dedication and native original hashes. Saved Library of Congress item identifies this exact Highsmith photograph and the primary collection rights statement explicitly records her public-domain dedication. All four original image hashes and primary source snapshots pass the complete inventory checks. All 33 current frames were inspected; 19 have version-2 actual asset identities. Questionable and attribution-licensed sources are excluded."
   }
 }

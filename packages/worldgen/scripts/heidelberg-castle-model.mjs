@@ -661,7 +661,7 @@ export const buildHeidelbergSkyline = (o) =>
     'skyline',
   );
 export const heidelbergStudy = {
-  id: 'N0267',
+  id: 'heidelberg_castle',
   key: 'heidelberg_castle',
   title: 'Heidelberg Castle',
   category: 'castle',

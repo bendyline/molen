@@ -14,10 +14,10 @@ import {
 } from '../scripts/structure-source-paths.mjs';
 
 const catalog = JSON.parse(
-  readFileSync(resolve(structureSourceRoot, 'next-1000/candidates.json'), 'utf8'),
+  readFileSync(resolve(structureSourceRoot, 'structure-catalog/candidates.json'), 'utf8'),
 );
 const collections = JSON.parse(
-  readFileSync(resolve(structureSourceRoot, 'next-1000/collections.json'), 'utf8'),
+  readFileSync(resolve(structureSourceRoot, 'structure-catalog/collections.json'), 'utf8'),
 ).collections;
 
 describe('geographic structure source addressing', () => {
@@ -88,10 +88,10 @@ describe('geographic structure source addressing', () => {
       (entry) =>
         entry.referenceCoordinate &&
         !collections.some((collection) => collection.id === entry.id) &&
-        !entries.some((source) => source.key.startsWith(`${entry.id.toLowerCase()}_`)),
+        !entries.some((source) => source.candidateId === entry.id),
     );
     expect(candidate).toBeDefined();
-    const key = `${candidate.id.toLowerCase()}_source_address_test`;
+    const key = candidate.id;
     const coordinate = candidate.referenceCoordinate;
     const hash = encodeStructureGeohash(coordinate.longitude, coordinate.latitude);
     const expected = `content/worldgen/source/places/${hash.slice(0, 2)}/${hash}/${key}`;
@@ -101,7 +101,7 @@ describe('geographic structure source addressing', () => {
   });
 
   it('leaves unknown identities and composite collection parents unlocated', () => {
-    const key = 'n9999_unlocated_source_address_test';
+    const key = 'unlocated_source_address_test';
     expect(structureSourceDirectory(key)).toBe(
       resolve(structureSourceRoot, 'places/unlocated', key),
     );

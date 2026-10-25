@@ -565,7 +565,7 @@ export class ThreeSceneBackend implements SceneBackend {
 
   private applyModelSignals(id: EntityId): void {
     const state = this.modelSignals.get(id);
-    state?.visual?.update(state.signals);
+    state?.visual?.update(state.signals, this.animationTick / this.animationTickRate);
   }
 
   destroy(id: EntityId): void {
@@ -711,8 +711,8 @@ export class ThreeSceneBackend implements SceneBackend {
     for (const id of this.animations) {
       const binding = this.gltf.get(id);
       if (binding) this.poseAnimation(binding);
-      this.applyModelSignals(id);
     }
+    for (const id of this.modelSignals.keys()) this.applyModelSignals(id);
     for (const handle of this.handles.values()) handle.setTick?.(tick, tickRate, undefined);
     if (this.pointLightSlots.length > 0 && this.renderer)
       this.updateLocalLights(this.renderer.camera);
@@ -782,6 +782,8 @@ export class ThreeSceneBackend implements SceneBackend {
       this.applyModelSignals(id);
       this.lastPoseTick.set(id, tick);
     }
+    for (const id of this.modelSignals.keys())
+      if (!this.animations.has(id)) this.applyModelSignals(id);
     for (const [id, handle] of this.handles) {
       if (handle.setTick === undefined) continue;
       const object = handle.object;

@@ -1,0 +1,334 @@
+{
+  "planId": "parliament_buildings_barbados",
+  "id": "parliament_buildings_barbados",
+  "assetId": "molen.worldgen.structure.parliament_buildings_barbados",
+  "title": "Parliament Buildings, Barbados",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -59.6140958,
+    "latitude": 13.09728995
+  },
+  "size": [
+    78.94677352905273,
+    40.400000005960464,
+    84.11644744873047
+  ],
+  "actualBounds": {
+    "min": [
+      -39.36357498168945,
+      -0.4000000059604645,
+      -41.657196044921875
+    ],
+    "max": [
+      39.58319854736328,
+      40,
+      42.459251403808594
+    ]
+  },
+  "visualBrief": "Both native coral-limestone neo-Gothic Parliament wings and open V-shaped courtyard: rounded/faceted ends with projecting green shuttered oriels/sloping red-brown hoods/brackets, genuinely open upper pointed galleries and lower round arcades with green balustrades, corbelled parapets, low hipped roofs/gabled courtyard entrances, stepped buttress feet and surviving west square clocktower with four black/gold Roman dials, pointed louvred lights, battlements, corner pinnacles and flagpole. Intrinsic front green iron railings; no vanished east tower or detached neighbors.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Bridgetown_barbados_parliament_building.jpg",
+    "https://commons.wikimedia.org/wiki/File:Parliament_of_Barbados,_east_wing-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Parliament_of_Barbados,_east_wing-2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Parliament_Bridgetown_Barbados.JPG"
+  ],
+  "stories": [
+    {
+      "id": "parliament-buildings-barbados-wp",
+      "url": "https://qualla.com/parliament-buildings-barbados/"
+    }
+  ],
+  "referenceInputHash": "af0049f6b0d7cb5e9c19e251b5b235dba2f2b2714600ef829555509e7bf60564",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-parliament-buildings-barbados.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-parliament-buildings-barbados.mjs",
+    "level": "skyline",
+    "export": "barbadosSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.18
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "barbadosDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "barbadosStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original east named Parliament Of Barbados government buildingway385175774/Q7138905and separate west government buildingway385175773, both KGGroundSurvey2015. The west wing is matched by its adjacent court position, long gallery, rounded south end and projecting entrance/tower mass in the accepted photos/local two-wing story; it has no independent native name/wikidata. Full signed outlines are retained separately, including round/faceted ends and projecting blocks. Native map supplies no heights or separate clocktower polygon. A fixed open southern court approach defines approximate groundY0 before terrain acquisition.",
+    "anchor": [
+      -59.6140958,
+      13.09728995
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -59.61413,
+        13.09698
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed open southern court approach between the two wings, chosen before terrain sampling. Approximate ground datum only; no stair/foundation survey or terrain flattening."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/385175773",
+      "way/385175774"
+    ],
+    "source": "https://www.openstreetmap.org/way/385175774",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:be7d5e56c01884d67704e6843871fc4ab733dc4e8b6d53622449fe359cebb7c9",
+    "notes": "Clocktower belongs to the surviving WESTwing. Do not build the demolished/sunken historic east tower, fill the V-shaped courtyard or adopt detached Treasury/RBC/neighbor roofs. Native plan exact; elevations, hidden roof sections, tower within the west projection and fence alignment are photographic medium-fi estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original east named Parliament Of Barbados government buildingway385175774/Q7138905and separate west government buildingway385175773, both KGGroundSurvey2015. The west wing is matched by its adjacent court position, long gallery, rounded south end and projecting entrance/tower mass in the accepted photos/local two-wing story; it has no independent native name/wikidata. Full signed outlines are retained separately, including round/faceted ends and projecting blocks. Native map supplies no heights or separate clocktower polygon.",
+    "Four exact cleared published QuallaPD-selfdaylight originals control persistent exterior form.13mwall/15mroof,30mclock battlement, tower position within the native west projection, hidden elevation openings, roof sections and fine joinery are photographic medium-fi estimates. No native architectural height/survey or independent tower polygon exists. Clock hands are an authored static display; minute-exact current time/clock mechanics are not claimed.",
+    "Full signed wings remain separate; courtyard is open and not a building extrusion. The named east and unnamed government west footprints are associated by site/photographic form/local two-wing story, without inventing a native west name. The clocktower is on the WESTwing; demolished/sunken historical east tower is excluded. Detached Treasury/RBC/other buildings, interiors, roads, fountain, vegetation, people and vehicles are omitted.",
+    "Upper pointed and lower round galleries have real openings/reveals, shallow closed backing and walking slabs from district detail onward, with green balustrades. Skyline uses dark pointed panels on a simplified wall and drops fine shutter/corbel/fence detail. Oriel/window recesses, gabled entry decorative gates and flag are closed visual detail, not a traversable interior or exact reproduction of stained-glass/artwork.",
+    "Coral stone/trim, green timber/ironwork, muted roof/hood palette and geometric Roman numerals are original shared-surface/mesh authoring, not photographic texture. Small rear windows, buttress feet, fence alignment and flag bands are bounded interpretations; concealed roof additions and temporary work are excluded.",
+    "Footings extend.4m below a fixed open southern court approach selected before terrain sampling. Exact stair/foundation/terrain attachment remains approximate and host-dependent. Source relief is retained without a whole-courtyard platform or terrain flattening."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "west-clocktower-and-open-gallery",
+      "position": [
+        10,
+        22,
+        52
+      ],
+      "lookAt": [
+        -22,
+        18,
+        3
+      ]
+    },
+    {
+      "name": "rounded-oriels-and-pointed-arcade",
+      "position": [
+        -6,
+        13,
+        62
+      ],
+      "lookAt": [
+        -29,
+        7,
+        29
+      ]
+    },
+    {
+      "name": "east-gallery-gable-and-open-courtyard",
+      "position": [
+        -22,
+        18,
+        38
+      ],
+      "lookAt": [
+        18,
+        8,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 60921,
+    "vertices": 182763,
+    "materials": 6,
+    "bytes": 7314256,
+    "sha256": "sha256:db5545313a5a5947cab1869692d3165ddb0f26a545d990e81c943713f5cffc25"
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.moritzburg_castle",
+  "reviewedOn": "2026-10-13",
+  "inputHash": "sha256:ae642e85667bba3204bcf018f1043c8834517f47febacc2a3258acdee8845ecb",
+  "sourceHash": "sha256:5428c8f8ded4b15eb64ac7e7975dad5c9712d714341eb26bbe387291a1738850",
+  "runtimeHash": "sha256:746bd05f7d6d51485b42aaf91a55b0073d7b1eb19aec743ff96f097f98568df3",
+  "captureReportHash": "sha256:21dbb320044f7feed0ec573955aee12265407f286f7b438f27bd2346cc7161ec",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/four-domes-and-palace.png",
+      "shots/chapel-spire-and-west-ranges.png",
+      "shots/east-projecting-range-and-stairs.png",
+      "shots/south-ramp-pavilion-pair.png",
+      "shots/north-pavilion-bridge.png",
+      "shots/mapped-island-and-palace-plan.png"
+    ],
+    "notes": "All11 current portable views inspected, including the1024x640 curated summary. Four pale tower bodies/red domes/lanterns, connected ranges and projecting east block, separate west chapel spire, terrace stair cut-outs, axial ramps, eight paired pavilions and two short bridges remain distinct. The park grass polygon was corrected into a photo-led complete island edge, real stair treads replaced sloping caps, and a hidden overlapping cap was removed to eliminate lawn flicker."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:9b3905c2a50263ec69465c5541d2d6e5dbea6cd9c250b7d1b9efc0367355f05f",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/four-domes-and-palace.png",
+      "shots/shared/chapel-spire-and-west-ranges.png",
+      "shots/shared/east-projecting-range-and-stairs.png",
+      "shots/shared/south-ramp-pavilion-pair.png",
+      "shots/shared/north-pavilion-bridge.png",
+      "shots/shared/mapped-island-and-palace-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All11 current shared/geographic views inspected. Five existing256-square graphs supply plaster, ceramic tile, sandstone, slate and painted metal, with metricUVs and linear tints. Glass and lawn are untextured. Each graph loads once; disposal leaves0 live model geometries. Geographic fixture uses flat terrain, complemented by the retained DEM source views."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:d6f007429d26bfcc61a7890a7356afeafe852f1722713b7948ef124c587b3f75",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/four-domes-and-palace.png",
+      "medium-fi/chapel-spire-and-west-ranges.png",
+      "medium-fi/east-projecting-range-and-stairs.png",
+      "medium-fi/south-ramp-pavilion-pair.png",
+      "medium-fi/north-pavilion-bridge.png",
+      "medium-fi/mapped-island-and-palace-plan.png",
+      "medium-fi/whole-moritzburg-skyline.png",
+      "medium-fi/whole-moritzburg-district.png",
+      "medium-fi/whole-moritzburg-street.png",
+      "medium-fi/whole-moritzburg-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All27 current Earth-lighting frames inspected: Economy/High, noon/late, three distances, untextured skyline,6 details,4 matching LOD views and4 transitions. Four dome towers, projecting palace range and chapel spire persist in skyline; district adds windows/paths, street adds frames/steps/dormers, closeup adds selected mullions and finer curved forms. Island flicker is corrected. White terrain patches and synthetic terrace neighbors are review context, not site materials or actual neighbors."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:8d1a7536c08894a28305efd7e0030bb5fc6a8965ad9e9c7cc802e358315b9e56",
+    "mapFrameHash": "sha256:75e94193697da276c005d4c5a73f20abb37787cf701ccf7372bf61a72e43c35b",
+    "notes": "Retained exact-QID low plan plus25 PMTiles component outlines fix approximate palace dimensions and facing; all component transforms match. NativeX follows the north/south bridge axis; nativeZ faces west chapel, preserving geographic orientation. Eight mapped pavilions are paired at the four approaches. The park polygon is preserved as a grass control; retaining perimeter is a photo estimate. Two actual short bridge paths are suppressed while unrelated bridge/path/tunnel guards remain."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Individual Moritzburg exterior from two inspected photos and standard viewer PMTiles/DEM. Deterministic detailed master and4 independently authored browser levels retain its identity with shared surfaces. Heights, island edge, stairs and water/terrain joins remain explicit exterior estimates; full interiors and survey precision are excluded."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u3/u31/moritzburg_castle/models/source.glb\",\"hash\":\"sha256:5428c8f8ded4b15eb64ac7e7975dad5c9712d714341eb26bbe387291a1738850\",\"bytes\":1854940,\"triangles\":15424,\"materials\":7,\"images\":0,\"min\":[-128.82017517089844,-3.706995964050293,-104],\"max\":[136.48562622070312,43,107],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/u3/u31/moritzburg_castle/model.glb\",\"hash\":\"sha256:746bd05f7d6d51485b42aaf91a55b0073d7b1eb19aec743ff96f097f98568df3\",\"bytes\":1854288,\"triangles\":15424,\"materials\":7,\"images\":0,\"min\":[-128.82017517089844,-3.706995964050293,-104],\"max\":[136.48562622070312,43,107],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u3/u31/moritzburg_castle/model.skyline.glb\",\"hash\":\"sha256:76694c0583d096c468ca908cc979611ca1f124a0141263bedf09f4493d6587f6\",\"bytes\":94692,\"triangles\":901,\"materials\":1,\"images\":0,\"min\":[-128.82012939453125,-3.706995964050293,-104],\"max\":[136.48562622070312,42.400001525878906,107],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u3/u31/moritzburg_castle/model.district.glb\",\"hash\":\"sha256:eec56df67202b6f47c3d37a08a50360f3ccd674a9f8aa3348c7c92bb562b0750\",\"bytes\":293096,\"triangles\":3111,\"materials\":7,\"images\":0,\"min\":[-128.82017517089844,-3.706995964050293,-104],\"max\":[136.48562622070312,42.400001525878906,107],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u3/u31/moritzburg_castle/model.street.glb\",\"hash\":\"sha256:b6c05bb4e14cccf21695066411a2db441fd7552b0969f84b48640a3551ae93cd\",\"bytes\":973736,\"triangles\":10875,\"materials\":7,\"images\":0,\"min\":[-128.82017517089844,-3.706995964050293,-104],\"max\":[136.48562622070312,43,107],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u3/u31/moritzburg_castle/model.closeup.glb\",\"hash\":\"sha256:17bbfae1b8f1178dc8a13dc58f576fc6bf6f2c9c668790619f611359eefd2f04\",\"bytes\":1297832,\"triangles\":14567,\"materials\":7,\"images\":0,\"min\":[-128.82017517089844,-3.706995964050293,-104],\"max\":[136.48562622070312,43,107],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "25-mapped-component-transforms",
+        "passed": true
+      },
+      {
+        "check": "4-LOD-budgets-and-split-GPU-streams",
+        "passed": true
+      },
+      {
+        "check": "two-actual-bridge-paths-replaced",
+        "passed": true
+      },
+      {
+        "check": "unrelated-path-bridge-tunnel-preserved",
+        "passed": true
+      }
+    ]
+  },
+  "limitations": [
+    "Mapped components establish approximate scale and facing; eaves, dome profiles, window/dormer rhythm and material colors are exterior-picture estimates.",
+    "The0.8m exact-QID part is a low plan only. Component heights are approximate mapped data, not certified building surveys.",
+    "The park polygon maps grass areas; the rectangular island retaining edge is a photo-led estimate against pavilion/bridge locations. Terrace stairs, island levels, short bridge engineering and coarse DEM/water joins are approximate; no terrain carving or surveyed lake level.",
+    "Long land causeways, lake, formal gardens beyond the island, site trees, detailed interiors and certified walkable collision are excluded.",
+    "Physical laptop and phone frame-rate measurements remain pending."
+  ]
+}

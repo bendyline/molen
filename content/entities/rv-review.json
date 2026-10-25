@@ -1,0 +1,511 @@
+{
+  "date": "2026-10-20",
+  "scope": "Six drivable motorhomes: two Class Cs, three Class As and one Class B",
+  "generators": [
+    {
+      "path": "packages/entities/scripts/rv-geometry.mjs",
+      "sha256": "sha256:d875b99e0475dcd83bd758f05f760101e809c38224f6f649630fc92577819f3c"
+    },
+    {
+      "path": "packages/entities/scripts/road-vehicle-geometry.mjs",
+      "sha256": "sha256:4572ac969c13bd486ed25f071bc642bb3ca89d47f6e5231201c1d9972d27edb4"
+    },
+    {
+      "path": "packages/entities/scripts/vehicle-detail.mjs",
+      "sha256": "sha256:27c915bae24baffefeff6b81a86d507e0418c2a91aa0471d139340eeb33b381d"
+    },
+    {
+      "path": "packages/entities/scripts/generate-fleet.mjs",
+      "sha256": "sha256:fa19b12aedc92830cadb8bb496b9cf8fb2498919a70611d92890fa5734cf848a"
+    }
+  ],
+  "checks": {
+    "entityTests": 385,
+    "earthTests": 136,
+    "build": "passed",
+    "typecheck": "passed",
+    "lint": "passed",
+    "inspection": "All six source pins, imported source/runtime hashes and verified inspections agree",
+    "reproducibility": "Whole fleet generate-fleet.mjs --check passed; prior models remain byte-identical",
+    "visualReview": "Four exterior angles, lit three-quarter scene, exact driverEye and coach interior per model inspected"
+  },
+  "limitations": [
+    "Original polygonal reference interpretation of the 2022 View 24D; simplified trim and floorplan, not manufacturer CAD",
+    "Five other RVs are original Bendy designs",
+    "Driving controls, steering, wheel spin and analog speed needle are live; screen graphics illustrative",
+    "Doors, slideouts, awnings, furnishings and leveling equipment do not animate; stowed touring configuration",
+    "Living area is visual geometry, not walkable or interactable RV systems",
+    "Near-view masters rely on existing host distance/proxy policies; no separate authored GLB LOD chain"
+  ],
+  "models": [
+    {
+      "id": "molen.entities.vehicle.winnebago_view_2022",
+      "slug": "winnebago-view-2022",
+      "label": "2022 Winnebago View 24D",
+      "rvClass": "C",
+      "year": 2022,
+      "length": 7.7724,
+      "width": 2.29235,
+      "height": 3.3528,
+      "sourceHash": "sha256:25ce460df9598648c1a6f5f719feb624a16a297193cb6ec7adf2362337d24870",
+      "runtimeHash": "sha256:4c9290c942c20d113a5564d109299543a63e513d69cd8d89419f97b0c5f1111e",
+      "recipeHash": "sha256:dce806f52fbe69486cd5be3c42aa2d2b5266b2c3ddaa688cdfd48b7fc7fc8c10",
+      "definitionHash": "sha256:974292bee43b7eb191b313259d0105106db48bfd6439f0ad68fc5ca42b4cda30",
+      "stats": {
+        "triangles": 27352,
+        "vertices": 45811,
+        "meshes": 42,
+        "primitives": 42,
+        "materials": 23,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 927220
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.3162, -0.0035, -4.0362],
+          "max": [1.2012, 3.3128, 3.9682]
+        },
+        "sphere": {
+          "center": [-0.0575, 1.6546, -0.034],
+          "radius": 4.3319
+        }
+      },
+      "exteriorCamera": {
+        "position": [6.40352, 5.016498, 7.60418],
+        "lookAt": [0, 1.6546500000000002, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4646, 1.77, 2.2362],
+        "lookAt": [0.4646, 1.61, 3.2362],
+        "fov": 70
+      },
+      "livingCamera": {
+        "position": [0, 2.4699999999999998, 1.1562],
+        "lookAt": [-0.15, 2.1, -1.9862000000000002],
+        "fov": 80
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/winnebago-view-2022/shots/angle_0.png",
+          "sha256": "sha256:a1cb31b311c4094982d6bb5b6849b7804b7e63f74d2ba439f0bd24fe14a62b00"
+        },
+        {
+          "path": "source/vehicles/winnebago-view-2022/shots/angle_1.png",
+          "sha256": "sha256:c9ce87425d269fe71466c735eb0c9ba6e31e41d3e80207525fa229accb2d6bc9"
+        },
+        {
+          "path": "source/vehicles/winnebago-view-2022/shots/angle_2.png",
+          "sha256": "sha256:fe3dc046dfa058a8ba7910f39d1491c974e7a5f8015629641452b1504e2a459d"
+        },
+        {
+          "path": "source/vehicles/winnebago-view-2022/shots/angle_3.png",
+          "sha256": "sha256:e7b85df30a6f8ff38d0a657ce82115f086e535236b62959fdd1873c5a891127c"
+        },
+        {
+          "path": "source/vehicles/winnebago-view-2022/shots/three-quarter.png",
+          "sha256": "sha256:f7c7581b0a4c6a764a364d6f45f0e31dda50929ca65e89c359619bee9c1c4c04"
+        },
+        {
+          "path": "source/vehicles/winnebago-view-2022/shots/operator.png",
+          "sha256": "sha256:1d1755b1b55b6e068db2e260f578e7646611d76c9a016435ed9b7efcdb4c57fc"
+        },
+        {
+          "path": "source/vehicles/winnebago-view-2022/shots/living.png",
+          "sha256": "sha256:45e18fb2009d61c0a8e9f0a574f9ea17a37ef641e6a827b057d972276a90fa3b"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.bendy_class_c_family",
+      "slug": "bendy-class-c-family",
+      "label": "Bendy Class C Family",
+      "rvClass": "C",
+      "length": 9.45,
+      "width": 2.51,
+      "height": 3.45,
+      "sourceHash": "sha256:0e9831ee4869b35bf5bc9e9dac016ddd7d61db81a9a5dca4a1d081c61a334c84",
+      "runtimeHash": "sha256:65c67a53fec3bc5503b75b24ad3f2996b5286687b134cf13c59ffc8e9d52e8b0",
+      "recipeHash": "sha256:bdc516d6a32719d22e003109d4b00c784840108f5310a09db8d991d353fc6c22",
+      "definitionHash": "sha256:454d912540e0739196f80824a8652ff239c5d1c546ec58b202764b0c1ae980fc",
+      "stats": {
+        "triangles": 26627,
+        "vertices": 43521,
+        "meshes": 42,
+        "primitives": 42,
+        "materials": 23,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 889724
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.4248, -0.0035, -4.875],
+          "max": [1.3098, 3.4101, 4.7935]
+        },
+        "sphere": {
+          "center": [-0.0575, 1.7033, -0.0408],
+          "radius": 5.1412
+        }
+      },
+      "exteriorCamera": {
+        "position": [7.7348, 5.76407, 9.185075],
+        "lookAt": [0, 1.7033, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4646, 1.77, 3.0749999999999997],
+        "lookAt": [0.4646, 1.61, 4.074999999999999],
+        "fov": 70
+      },
+      "livingCamera": {
+        "position": [0, 2.4699999999999998, 1.9949999999999994],
+        "lookAt": [-0.15, 2.1, -2.8249999999999997],
+        "fov": 80
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/bendy-class-c-family/shots/angle_0.png",
+          "sha256": "sha256:9bb66125090cc454982ccca4a3d032c9586143e0b20ea57ced5e91d4de14ee57"
+        },
+        {
+          "path": "source/vehicles/bendy-class-c-family/shots/angle_1.png",
+          "sha256": "sha256:710132409039ad7c59c9a86249c54505334dd98e88208b67bb6b8004d4f16e3b"
+        },
+        {
+          "path": "source/vehicles/bendy-class-c-family/shots/angle_2.png",
+          "sha256": "sha256:ba74ea29a53846739b754fefc723fca26fcaa7d144cce57afb4eecc4abf4e305"
+        },
+        {
+          "path": "source/vehicles/bendy-class-c-family/shots/angle_3.png",
+          "sha256": "sha256:c6f673e73e93ca4f1d3efcb380b303dcdaea265202c6a7d9bbcca3bbd6a1382a"
+        },
+        {
+          "path": "source/vehicles/bendy-class-c-family/shots/three-quarter.png",
+          "sha256": "sha256:a0f5e1568020fb18097dc2352a394691108571749b627a5d627bb3fcb1c686ad"
+        },
+        {
+          "path": "source/vehicles/bendy-class-c-family/shots/operator.png",
+          "sha256": "sha256:50bfd31013c4c17c5306f22a45cd7a35b50d29d70f2a983f40ef914838e863a8"
+        },
+        {
+          "path": "source/vehicles/bendy-class-c-family/shots/living.png",
+          "sha256": "sha256:fb013c92913010c171473feeb2611119b2f999aac1d8d64bdf684ece9ddbd33b"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.bendy_class_a_compact",
+      "slug": "bendy-class-a-compact",
+      "label": "Bendy Class A Compact",
+      "rvClass": "A",
+      "length": 9.1,
+      "width": 2.5,
+      "height": 3.65,
+      "sourceHash": "sha256:8e0adb3579a22863fb8535d724e395748965c2a16d83c379ff2e0cf101672cd2",
+      "runtimeHash": "sha256:9e089c8bb626f857acc9354c7de885c8344d77bce9c33c6eb5687866da1a815c",
+      "recipeHash": "sha256:d275b7681109e87d79d663ccf4a748484f210174ee557bc001d6cf44fab5f930",
+      "definitionHash": "sha256:cf2a30c7a16c7d8edf37a1d4b1fb698e6e432dd03d103df13c03808358da955d",
+      "stats": {
+        "triangles": 21750,
+        "vertices": 30410,
+        "meshes": 32,
+        "primitives": 32,
+        "materials": 20,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 643952
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.5098, -0.0035, -4.7],
+          "max": [1.5098, 3.61, 4.62]
+        },
+        "sphere": {
+          "center": [0, 1.8032, -0.04],
+          "radius": 5.02
+        }
+      },
+      "exteriorCamera": {
+        "position": [7.456, 5.71765, 8.854],
+        "lookAt": [0, 1.80325, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.5750000000000001, 2.15, 3.57],
+        "lookAt": [0.5750000000000001, 1.99, 4.57],
+        "fov": 70
+      },
+      "livingCamera": {
+        "position": [0, 2.54, 2.4499999999999997],
+        "lookAt": [-0.15, 2.17, -2.65],
+        "fov": 80
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/bendy-class-a-compact/shots/angle_0.png",
+          "sha256": "sha256:6338aac96b7306d2ec81bc568bf3088973413ec0e9471c21c52c7a63750cfbf9"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-compact/shots/angle_1.png",
+          "sha256": "sha256:f7042bd1ec6d2f79fc2ba56c46dffe01041cf8a0ef80a3bc403751dd21d33b1b"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-compact/shots/angle_2.png",
+          "sha256": "sha256:302eab7992bde02b535b1d781086a7c396c5beafceb544450d064b0a95aef50f"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-compact/shots/angle_3.png",
+          "sha256": "sha256:69ba898b416a6761e80a37fb24047dabf4aff4a3eae4ba7edb77174b0eae1220"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-compact/shots/three-quarter.png",
+          "sha256": "sha256:07d54b18dc4962f9186bf7d9d11dccb4fe2a5c482ef4dd825d877ab3fff74c44"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-compact/shots/operator.png",
+          "sha256": "sha256:64f8802cb72a30453a6f22a1f537854967a7bce25edfb812eca4a5783a8aa254"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-compact/shots/living.png",
+          "sha256": "sha256:aa5ea6c07e37be53ad8329434ec92cb6f5ffa2476ce4802c6002d10654472e9e"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.bendy_class_a_touring",
+      "slug": "bendy-class-a-touring",
+      "label": "Bendy Class A Touring",
+      "rvClass": "A",
+      "length": 11.4,
+      "width": 2.55,
+      "height": 3.82,
+      "sourceHash": "sha256:75dc41cd3c68f1c1f5c23c6bf27f83f189012bd43c3b35751d0dc5267eadaf65",
+      "runtimeHash": "sha256:8e89e605e6886ee7d0010374a094212e8acab1912dafc60023908ddfdc456932",
+      "recipeHash": "sha256:d40be3c4788974200794361651f0dcde022553e3f16c7e29230d49c643e8cb9c",
+      "definitionHash": "sha256:5d2416e6eb1d3054d0b7a0d781891482fc8b26fd8bbd2984450f26117f599af4",
+      "stats": {
+        "triangles": 23182,
+        "vertices": 32302,
+        "meshes": 32,
+        "primitives": 32,
+        "materials": 20,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 682844
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.5352, -0.0035, -5.85],
+          "max": [1.5352, 3.7799, 5.77]
+        },
+        "sphere": {
+          "center": [0, 1.8882, -0.04],
+          "radius": 6.1267
+        }
+      },
+      "exteriorCamera": {
+        "position": [9.296, 6.7686, 11.038999999999998],
+        "lookAt": [0, 1.8882, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.5865, 2.218, 4.720000000000001],
+        "lookAt": [0.5865, 2.058, 5.720000000000001],
+        "fov": 70
+      },
+      "livingCamera": {
+        "position": [0, 2.54, 3.6],
+        "lookAt": [-0.15, 2.17, -3.8000000000000003],
+        "fov": 80
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/bendy-class-a-touring/shots/angle_0.png",
+          "sha256": "sha256:81d6bdf054f6289cd62a62c1fb62b8450f33bd3bd9dfeee99f46a7218e5198d2"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-touring/shots/angle_1.png",
+          "sha256": "sha256:b380cc2f13001e80453e56c3899ea5f37a29dc45671ab8e02a812b309bc96e5a"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-touring/shots/angle_2.png",
+          "sha256": "sha256:45557c06b76c9cc31d75c9c6df731b787b2b1ce21a0548ba7b176a297ff3ff4d"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-touring/shots/angle_3.png",
+          "sha256": "sha256:1f0a0ebd5cc2e5e596569ba76ba1a1fa75a690f624d23a7c0e8694cf1342af94"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-touring/shots/three-quarter.png",
+          "sha256": "sha256:a5c6f73aeae45eee7c518738e89fadc4fe66d59f43954c18556a4b7be11002d1"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-touring/shots/operator.png",
+          "sha256": "sha256:a253a3a1a89a1c83d52c8640ea8662be65c77147972ce0fff71c7ce9f23f2b05"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-touring/shots/living.png",
+          "sha256": "sha256:72238b8c504721322d9a306d2b62c2b6bf525e5b5e8589c839562a18c7a255f9"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.bendy_class_a_grand",
+      "slug": "bendy-class-a-grand",
+      "label": "Bendy Class A Grand",
+      "rvClass": "A",
+      "length": 12.9,
+      "width": 2.55,
+      "height": 3.95,
+      "sourceHash": "sha256:f6065a5866fce0600446683e0b05a3420962032de773111f5ac671c3d652a4c0",
+      "runtimeHash": "sha256:575ffcdcac9876ee5b8dced46e28571f040e18468c50cde9c248d6b482891aad",
+      "recipeHash": "sha256:779247c5c0430c67c5fc57791f38ad77f7d8447fff64013b09920a2a1292b61f",
+      "definitionHash": "sha256:94dc2b19f6a10bda2b3e42935fc216b13d8adcaa505291fe89d742df71a765c3",
+      "stats": {
+        "triangles": 24518,
+        "vertices": 33792,
+        "meshes": 32,
+        "primitives": 32,
+        "materials": 20,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 716140
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.5346, -0.0035, -6.6],
+          "max": [1.5346, 3.9099, 6.52]
+        },
+        "sphere": {
+          "center": [0, 1.9532, -0.04],
+          "radius": 6.8568
+        }
+      },
+      "exteriorCamera": {
+        "position": [10.496, 7.4636, 12.463999999999999],
+        "lookAt": [0, 1.9532, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.5865, 2.27, 5.470000000000001],
+        "lookAt": [0.5865, 2.11, 6.470000000000001],
+        "fov": 70
+      },
+      "livingCamera": {
+        "position": [0, 2.54, 4.35],
+        "lookAt": [-0.15, 2.17, -4.550000000000001],
+        "fov": 80
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/bendy-class-a-grand/shots/angle_0.png",
+          "sha256": "sha256:93fa43439e09c791e744a238bc474035ac016c66d385910739bb5b32ebbb40df"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-grand/shots/angle_1.png",
+          "sha256": "sha256:7b39a1a686389eefe90c3194005ca0c8b567bea33a9508f441bca3537954468e"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-grand/shots/angle_2.png",
+          "sha256": "sha256:ccbdf37f6eecaf94ecec5858c8e35935862bec06d49ac9c8ea48df2cfb345f8e"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-grand/shots/angle_3.png",
+          "sha256": "sha256:cdb4598be227350565ebb63abf500784b5e46a121e171ea445d6f2516a99ef6c"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-grand/shots/three-quarter.png",
+          "sha256": "sha256:a6b0ae19afc6f7b673c5fe210eda9003225aa451ec7b0529e2ce9e32ae1792e5"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-grand/shots/operator.png",
+          "sha256": "sha256:2ae4496978598f5bd967ae23f1168e9ae181a4a9c52341f7a4c5ea32a116dbbb"
+        },
+        {
+          "path": "source/vehicles/bendy-class-a-grand/shots/living.png",
+          "sha256": "sha256:2639b4eb96037222c57ac76112e8887e8e11ce7997eea5373df65bd9aa2e0beb"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.bendy_class_b_camper",
+      "slug": "bendy-class-b-camper",
+      "label": "Bendy Class B Camper",
+      "rvClass": "B",
+      "length": 6.36,
+      "width": 2.05,
+      "height": 2.95,
+      "sourceHash": "sha256:dd0519ab2c245782dca340937b612e7cecab786fc69cbd7e1f1693322f474959",
+      "runtimeHash": "sha256:45d5a4cf2f2d606589d7ec012f39e0d0dcd1879ac2ae8c2e559495201f0efb5a",
+      "recipeHash": "sha256:b0b7f35d8c1bda6df46cb2769a819f78c9031ecf309a9cedbbe9a1f73231e5c5",
+      "definitionHash": "sha256:b6051eed16fd871f64022a9c74d30ab5d4922bbb11eb86a0df4eb3d0be2d5f09",
+      "stats": {
+        "triangles": 22323,
+        "vertices": 42589,
+        "meshes": 41,
+        "primitives": 41,
+        "materials": 22,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 848036
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.171, -0.0035, -3.33],
+          "max": [1.165, 2.91, 3.2485]
+        },
+        "sphere": {
+          "center": [-0.003, 1.4533, -0.0407],
+          "radius": 3.5032
+        }
+      },
+      "exteriorCamera": {
+        "position": [5.2628, 4.21622, 6.249575],
+        "lookAt": [0, 1.4532500000000002, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4715, 1.8, 1.5300000000000002],
+        "lookAt": [0.4715, 1.6400000000000001, 2.5300000000000002],
+        "fov": 70
+      },
+      "livingCamera": {
+        "position": [0, 2.09, 0.44999999999999996],
+        "lookAt": [-0.15, 1.7200000000000002, -1.2800000000000002],
+        "fov": 80
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/bendy-class-b-camper/shots/angle_0.png",
+          "sha256": "sha256:461c65c879c78d9fc6f7b8a65dcc1942cf2d1c7574ce98e319788f7a24ebdb20"
+        },
+        {
+          "path": "source/vehicles/bendy-class-b-camper/shots/angle_1.png",
+          "sha256": "sha256:6b87718460690b6f7a6f7a2eebba6cfaac74383a68091153fe156e746909ab2e"
+        },
+        {
+          "path": "source/vehicles/bendy-class-b-camper/shots/angle_2.png",
+          "sha256": "sha256:2d4bf3d77b38ec51b190cd0583011307f6d8e11330c6bf6976b7221dfef8c55c"
+        },
+        {
+          "path": "source/vehicles/bendy-class-b-camper/shots/angle_3.png",
+          "sha256": "sha256:5be69a3f20d10eb9bcb71b39e0536b003d2d1fb761c83a554a930e3fe618099a"
+        },
+        {
+          "path": "source/vehicles/bendy-class-b-camper/shots/three-quarter.png",
+          "sha256": "sha256:3400de107caa52cc427642839ad34d792ec6d37e101ceb08e72ab4c2509dd5ec"
+        },
+        {
+          "path": "source/vehicles/bendy-class-b-camper/shots/operator.png",
+          "sha256": "sha256:d959a5cb26fb4d58ead8af74d4dbdf4278dfa7ddf3988c9864ab131961efb428"
+        },
+        {
+          "path": "source/vehicles/bendy-class-b-camper/shots/living.png",
+          "sha256": "sha256:9e2bbaab255bb67a1d92a4d27eb67d90012447bf4d868f02f399b75f1a2aabe6"
+        }
+      ]
+    }
+  ]
+}

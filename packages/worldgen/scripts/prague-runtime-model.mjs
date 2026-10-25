@@ -7,7 +7,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2f/n0240_prague_castle/review-map-parts.json',
+      '../../../content/worldgen/source/places/u2/u2f/prague_castle/review-map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1168,7 +1168,7 @@ function defences(o) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2f/n0240_prague_castle/site-grade.json',
+      '../../../content/worldgen/source/places/u2/u2f/prague_castle/site-grade.json',
       import.meta.url,
     ),
   ),

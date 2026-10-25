@@ -1,0 +1,322 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.aw139": {
+      "doc": "Leonardo AW139: original polygonal exterior and heli-glass cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.aw139",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.aw139",
+          "spec": {
+            "label": "Leonardo AW139",
+            "genericLabel": "Helicopter with enclosed cockpit",
+            "model": "helicopter",
+            "mass": 5100,
+            "span": 13.8,
+            "length": 16.62,
+            "height": 4.98,
+            "centerOfMass": [
+              0,
+              1.35,
+              0
+            ],
+            "pilotEye": [
+              -0.48,
+              1.82,
+              2.24
+            ],
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.35,
+            "hardLandingPitch": 0.4,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.35,
+                7.1466
+              ],
+              [
+                0,
+                1.35,
+                -7.1466
+              ],
+              [
+                6.348000000000001,
+                4.78,
+                0
+              ],
+              [
+                -6.348000000000001,
+                4.78,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "main-rotor",
+                  "axis": "y",
+                  "multiplier": 1
+                },
+                {
+                  "node": "tail-rotor",
+                  "axis": "x",
+                  "multiplier": 5
+                }
+              ],
+              "gearNodes": [
+                "AW139-gear-nose",
+                "AW139-gear-left",
+                "AW139-gear-right"
+              ],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": []
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "bindings": [
+                  {
+                    "node": "AW139-horizon-380",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "AW139-horizon-969",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "AW139-cyclic--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "AW139-cyclic--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "AW139-collective--1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "AW139-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "AW139-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "AW139-cyclic-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "AW139-cyclic-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "AW139-collective-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "AW139-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "AW139-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  }
+                ]
+              }
+            },
+            "engine": {
+              "position": [
+                0,
+                1.35,
+                0
+              ],
+              "thrustAxis": [
+                0,
+                1,
+                0
+              ],
+              "power": 2284000,
+              "idleRpm": 1,
+              "spoolRate": 0.1,
+              "rotorAngularSpeed": 38,
+              "ratedDensityRatio": 0.7,
+              "densityExponent": 1
+            },
+            "helicopter": {
+              "rotorPosition": [
+                0,
+                3.57,
+                0
+              ],
+              "rotorRadius": 6.9,
+              "cyclicTilt": 0.5,
+              "cyclicResponse": 2.5,
+              "cyclicDamping": 2.4,
+              "groundLevelRate": 1,
+              "maxTilt": 0.65,
+              "yawRate": 0.5,
+              "liftMultiplier": 2.05,
+              "groundEffect": 0.12,
+              "translationalLift": 0.1,
+              "translationalLiftSpeed": 18,
+              "verticalDrag": 918,
+              "horizontalDrag": 81.59918294300518,
+              "quadraticDrag": 0.514615882817691,
+              "groundDeceleration": 9,
+              "vortexRing": true,
+              "retreatingBladeSpeed": 95.9180838,
+              "rotorDiscs": 1,
+              "powerLimitedRotor": true,
+              "rotorEfficiency": 0.75,
+              "profilePowerFraction": 0.12
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.48,
+                1.82,
+                2.24
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                0.48,
+                1.82,
+                2.24
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.93,
+              0,
+              2.24
+            ]
+          ],
+          "exits": [
+            [
+              2.63,
+              0,
+              2.24
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.2,
+          "width": 8.03,
+          "height": 2.5,
+          "cruise": 45,
+          "weight": 0.35
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.aw139"
+      ]
+    }
+  }
+}

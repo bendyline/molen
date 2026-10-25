@@ -1,0 +1,289 @@
+{
+  "planId": "bridge_of_the_americas",
+  "id": "bridge_of_the_americas",
+  "assetId": "molen.worldgen.structure.bridge_of_the_americas",
+  "title": "Bridge of the Americas",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.56501277296486,
+    "latitude": 8.943190636170607
+  },
+  "size": [
+    1678.3272094726562,
+    121.53120422363281,
+    18.12196922302246
+  ],
+  "actualBounds": {
+    "min": [
+      -717.37939453125,
+      -67,
+      -9.061952590942383
+    ],
+    "max": [
+      960.9478149414062,
+      54.53120422363281,
+      9.060016632080078
+    ]
+  },
+  "visualBrief": "Complete native bridge deck/abutments on their original asymmetric1677.7mplan, pale paired curved cantilever/tied-arch trusses over the actual PanamaCanalcrossing,344mmainspan with46slender hangers, physical vertical/diagonal/top cross-bracing, open H-shaped concrete main piers, side arms and graded approach spans. Fourlane roadway, continuous/open rails and restrained lights. Canal/ships/new fourthbridge and landscape excluded.",
+  "nativeAxes": {
+    "x": "NEalong native bridge axis",
+    "y": "up,central deckY0",
+    "z": "SEacross deck"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Americas_bridge5.jpg",
+    "https://commons.wikimedia.org/wiki/File:110813-N-ZI300-055_(6046073423).jpg",
+    "https://commons.wikimedia.org/wiki/File:330-CFD-DN-ST-88-02592_(23649027100).jpg"
+  ],
+  "stories": [
+    {
+      "id": "bridge-of-the-americas-wp",
+      "url": "https://qualla.com/bridge-of-the-americas/"
+    }
+  ],
+  "referenceInputHash": "e8927b3c535f00cf17192e851777bf6c038865fdb83636c8101d5b8c94d620f4",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bridge-of-the-americas.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bridge-of-the-americas.mjs",
+    "level": "skyline",
+    "export": "americasSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.3
+      },
+      "cable": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.35
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "mark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "americasDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.3
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "americasStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.3
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 18,
+    "groundY": -67
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original full named/wikidata bridge envelopeway745707421/Q216061and two named Route1bridge centerlines863696429/147612377. Anchor is their crossing with the original PanamaCanalcenterlineway179053882; +X follows the native NEroad axis. The polygon suspension tag is not an engineering design claim: inspected photographs/local story establish cantilever/tied-arch steel. Nearby186mnew-bridge piers are separate and excluded. Fixed original bridge/channel crossing defines approximate water-relative attachment before elevation sampling.",
+    "anchor": [
+      -79.56501277296486,
+      8.943190636170607
+    ],
+    "heading": 0.3987355330286376,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.56501277296486,
+        8.943190636170607
+      ],
+      "modelHeight": -64,
+      "basis": "Fixed native bridge/PanamaCanalcenterline intersection defines approximate water-relative datum before terrain acquisition: central deckY0,2.7msoffit and61.3mclearance imply high-waterY-64. Source terrain is retained; tide/bathymetry, pier foundations and approach grade are approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/745707421",
+      "ways/863696429+147612377"
+    ],
+    "source": "https://www.openstreetmap.org/way/745707421",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cd434e90705289b47bd31701e24684e75e2778902c400e90809f5f8392b6eaa4",
+    "notes": "Original full plan/abutments retained. Main truss center follows the channel crossing;344mmainspan/46hangers have primary engineering text support. Pier positions, cantilever arm sections, hidden braces, approach support spacing and vertical road profile remain photographic medium-fi estimates, not a survey."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original full named/wikidata bridge envelopeway745707421/Q216061and two named Route1bridge centerlines863696429/147612377. Anchor is their crossing with the original PanamaCanalcenterlineway179053882; +X follows the native NEroad axis. The polygon suspension tag is not an engineering design claim: inspected photographs/local story establish cantilever/tied-arch steel. Nearby186mnew-bridge piers are separate and excluded.",
+    "Complete original mapped abutment plan is retained, about1677.7mprojected length. Published1654/1669mfigures use differing end scopes; the native envelope is not rescaled. Its suspension tag is not adopted as engineering design. The separately mapped186mnewbridgepiers belong to another crossing and are excluded.",
+    "Main344mspan and46hangers have primary rehabilitation-engineer text support. Photographs control the open curved lattice/cantilever silhouette, Hpiers and roadway. Main pier placement at±172mabout the original channel crossing,54mupper/34mlower crown above deck, steel sections, side arms±325m, approach support spacing and camber/grade remain medium-fi estimates, not a survey or complete structural analysis.",
+    "Exact already-cleared/published QuallaPD-selfoverview and two official USNavystaff1984/2011originals used. Their explicit primary Navy/DoDrelease categories and exact native hashes are preserved. No new image was downloaded. Pale steel/concrete/road colors, small fittings, rail and lights are authored approximations; no photographic texture, ships, people, gun, fireworks or landscape adopted.",
+    "Fixed original native bridge/PanamaCanalcenterline crossing establishes approximate waterY-64 and deckY0 before terrain acquisition.2.7mslab plus61.3mhigh-waterclearance are controls; tides, pier bases, seabed, road gradient and host-terrain approach contact remain unverified. No water/mountain/port platform or terrain flattening is part of the model.",
+    "Curved chord sampling, cross-bracing and suspenders simplify with distance. Skyline keeps both open arch profiles/side arms and concrete support rhythm, with merged approach piers. Fine rail posts, fourlane markings and sparse lamps appear only near. Hidden gussets, rivets, access ladders and actual maintenance gear are omitted."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "paired-curved-chords-and-hangers",
+      "position": [
+        90,
+        63,
+        285
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "open-main-pier-and-cantilever-arm",
+      "position": [
+        -255,
+        -7,
+        160
+      ],
+      "lookAt": [
+        -172,
+        -17,
+        0
+      ]
+    },
+    {
+      "name": "deck-rails-and-overhead-bracing",
+      "position": [
+        45,
+        12,
+        32
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23980,
+    "vertices": 71940,
+    "materials": 4,
+    "bytes": 2880256,
+    "sha256": "sha256:6e36b5c11092437c1cd4bad8e5e76286eaa621eb0e0c145aa898b82431d0c6be"
+  }
+}

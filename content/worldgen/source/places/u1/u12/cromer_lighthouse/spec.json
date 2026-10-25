@@ -1,0 +1,374 @@
+{
+  "planId": "cromer_lighthouse",
+  "id": "cromer_lighthouse",
+  "assetId": "molen.worldgen.structure.cromer_lighthouse",
+  "title": "Cromer Lighthouse",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 1.3164926,
+    "latitude": 52.9246805
+  },
+  "size": [
+    15.204271793365479,
+    21.220000378787518,
+    23.846269607543945
+  ],
+  "actualBounds": {
+    "min": [
+      -6.924499034881592,
+      -0.11999999731779099,
+      -4.139772415161133
+    ],
+    "max": [
+      8.279772758483887,
+      21.100000381469727,
+      19.706497192382812
+    ]
+  },
+  "visualBrief": "Whole connected surviving Cromer Lighthouse building: white1833octagonaltower, steppedgallerycornices andopenbalustrade, modernsmallglazedlantern/roundedcap/finial/weather vane andbounded2007radiomastdetails; all attachedL-shapedkeeperaccommodation, represented bylowgable-rooflink andtwo two-storeyhippedcottagewings/whitewalls/paintedsashes/greenfittings/chimneys. Completeoriginalnine-pointconnectedbuildingenvelope, notjustthetower oronecottage. Exclude detachedgarage/golfclub/chaletpark, widerpropertyboundary/gardenwalls withouta verifiedwholetrace, pavedyard/grass/slopingnaturalcliff/sea/trees andinteriors. Original9pointcoarsewholeLplan boundsallattachedaccommodation; interpret3roofvolumesfromsourcephoto/operatorthreecottages. NEoctagontower5moffsetfromgeneralPOI derivedbeforeterrain, notmisclaimedasmeasured. 18mstructuraltower plusseparatesmallfinial/weatherhardware/radiomast. Preserveeightflatwhitefaces/steppedcornices/fullyopenoctagonalbalustrade/roundglazedlanternandmetalcap, source-visibletwooffsetwindowstacks/recessedwhiteframes, twohippedwhitecottagewings/slatetiles/chimneys/greentrim andlowgablelink. Hiddenrearwindows/finecurrentequipment estimated; no opaquegalleryrailslab, genericcylinder/wholeflatLblock/84mtower, noyard/cliff/grass/sea mesh. Freezeindependent256m129²fieldatfixedNEapproachbeforegeometry; retainall16641samples/PNG/rawtiles.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cromer_Lighthouse_23rd_Oct_2007.JPG"
+  ],
+  "stories": [
+    {
+      "id": "cromer-lighthouse-wp",
+      "url": "https://qualla.com/cromer-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "fbe5469c451a8a64a8d368d143b8cf89edc73fee41959ec5e6b896dcd88da134",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cromer-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cromer-lighthouse.mjs",
+    "level": "skyline",
+    "export": "cromerLighthouseSkyline",
+    "errorMeters": 0.65,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.05
+      },
+      "green": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.32,
+        "metallic": 0.06
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.24
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cromerLighthouseDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.32,
+            "metallic": 0.06
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.24
+          }
+        }
+      },
+      "street": {
+        "export": "cromerLighthouseStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.32,
+            "metallic": 0.06
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.24
+          }
+        }
+      },
+      "closeup": {
+        "export": "cromerLighthouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.32,
+            "metallic": 0.06
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.24
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "NativeconnectedL-buildingway345723769 hasoriginal9perimeterpoints, distinctfromnearbydetachedgarage680776047/chalet/golfclub. Native855264061/Q2752583 isgeneral lighthousePOI, notmeasuredtowercentre. Beforegeometry/ground, align+Xalongoriginalupperarmfirstedge/+Zsouthwestalongcottages. Toweroctagon interpretedatNEendofnativeupperarm: centre[5,-.86],circumradius3.1m fitsits5.67macrossarm/NEend andclearsourcephoto. Thisisapproximately5mfromgeneralPOI andisexplicitlyphoto/outline-derived,notsurveyed. Nativepolygonisonecoarsewholebuildingenvelope, notseparateroom/wall/eaves survey; subdividedtwo2-storeyhippedwings pluslowgablelinkinsideexistingL, no inventedextraoutlyingcottages. Exposedoctagonprojectsmodestlybeyondcoarserectangularaggregatecorner, finefootprintoffsets/verticals/hiddenrearopenings approximate. Link east-end extends0.1m beyond initial2.1m subdivision estimate to2.2m, ensuring actual attachment to octagon western flats; whole native9pointaggregate and independentfield unchanged. Internal roofpartcorners remain photo-bounded, not measured. Independent256m129²field frozen at fixedNEapproach beforegeometry; actualcliffthreshold/foundations and livehostterraincontact unverified.",
+    "anchor": [
+      1.3164926,
+      52.9246805
+    ],
+    "heading": -0.39704811168324616,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        1.3166418415403123,
+        52.924651150115835
+      ],
+      "modelHeight": 0,
+      "basis": "FixedNEapproachpointoutsideinterpretedtowerbeforeindependentground, providerrelativegrade/notsurveyedthreshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/345723769",
+      "node/855264061"
+    ],
+    "source": "https://www.openstreetmap.org/way/345723769",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5ba518eaa4a65e185e48b5cce8bc3977ba9f4eebb6e70dedd43a53cb30818bb0",
+    "notes": "Whole connected surviving Cromer Lighthouse building: white1833octagonaltower, steppedgallerycornices andopenbalustrade, modernsmallglazedlantern/roundedcap/finial/weather vane andbounded2007radiomastdetails; all attachedL-shapedkeeperaccommodation, represented bylowgable-rooflink andtwo two-storeyhippedcottagewings/whitewalls/paintedsashes/greenfittings/chimneys. Completeoriginalnine-pointconnectedbuildingenvelope, notjustthetower oronecottage. Exclude detachedgarage/golfclub/chaletpark, widerpropertyboundary/gardenwalls withouta verifiedwholetrace, pavedyard/grass/slopingnaturalcliff/sea/trees andinteriors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "NativeconnectedL-buildingway345723769 hasoriginal9perimeterpoints, distinctfromnearbydetachedgarage680776047/chalet/golfclub. Native855264061/Q2752583 isgeneral lighthousePOI, notmeasuredtowercentre. Beforegeometry/ground, align+Xalongoriginalupperarmfirstedge/+Zsouthwestalongcottages. Toweroctagon interpretedatNEendofnativeupperarm: centre[5,-.86],circumradius3.1m fitsits5.67macrossarm/NEend andclearsourcephoto. Thisisapproximately5mfromgeneralPOI andisexplicitlyphoto/outline-derived,notsurveyed. Nativepolygonisonecoarsewholebuildingenvelope, notseparateroom/wall/eaves survey; subdividedtwo2-storeyhippedwings pluslowgablelinkinsideexistingL, no inventedextraoutlyingcottages. Exposedoctagonprojectsmodestlybeyondcoarserectangularaggregatecorner, finefootprintoffsets/verticals/hiddenrearopenings approximate. Link east-end extends0.1m beyond initial2.1m subdivision estimate to2.2m, ensuring actual attachment to octagon western flats; whole native9pointaggregate and independentfield unchanged. Internal roofpartcorners remain photo-bounded, not measured.",
+    "Whole1833octagonaltower and allconnectedkeeperaccommodation retained as two two-storeyhippedwings andlowgabledlink. Original9pointnativeaggregateoutline preserved incontrols; finepartsubdivision/towercentre[5,-.86]/3.1mradius/eaves5.8m/ridges7.65–7.8m/link3–4.6m estimatedfromsingleclearwholephoto. Official18mstructuraltower separatefrom84mMHWlight elevation; mainshaft13.25m/gallery13.95m/lantern17m/roof18m/finial18.8m/mast21.1m are photo-boundedintermediates andhardware, notsurveyedlevels.",
+    "Qualla-first30families/0reservedconflicts;publishedmodernexteriors attribution-requiring andunused. OneStavros1own2007original:explicitnativePD-user-en grant boundtoexactsame-name/date/size/original-uploaddescription andnativeSHA1/originalpixels. NativePermissionabsent, acceptedonlybystrictsamelineoriginalphotographer-uploadproof; no source metadata/category/articlebody edits. Allarchitecturalreferencepixelsinspected; operator2025textconfirmssurvivingoctagonaltower/20thcenturylantern/threecottages. No restrictedphotos,photo-textures/generatedbitmap/downloadedmesh.",
+    "Whiteeightflatshaftfaces/steppedcornices/physicallyopenwhiteoctagonalbalustrade/rounddarkglazedlantern/slimframes/grayroundedcap/weatherhardware. Twoobservedoffsetwindowstacks physicallyrecessedatdetailedLODs; whitecottagepaintedsashes/greensills/grayhippedslateroofs/chimneys/lowblankgablelink. Hiddenrearwindowcensus/roofvalleys/cottagepartitions/currentradiomastdetails,2007greenpaint/trimandpatina approximate. Skylinewindowdepth/slatecourses/finesashbarsandbalusters simplify; entireconnectedbody/crown preserved.",
+    "Detachedgarage/chaletpark/golfclub/widerboundarywalls withoutwholetrace/yardpaving/grass/cliff/sea/trees/interiors excluded. No hugepropertyslab or inventedvisiblefoundation. Standaloneportable/shared/contextflatfixtures separatefrom truegeographicgrade; ordinarypreview/replaceFootprint=false.",
+    "Independent256m129x129field/all16641values/twooriginalrawtiles/PNG frozenbeforegeometry unchanged; providerNEapproachdatum74.8043m,absolute47.3–75.4315m,relative-27.5043–.6272m. Terrainfieldisnotfinefoundation/cliffthreshold survey; actualhostcontactunverified. No terrainfit/flatten/reacquisition."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-connected-octagonal-tower-and-three-keeper-dwellings",
+      "position": [
+        30,
+        22,
+        38
+      ],
+      "lookAt": [
+        0,
+        8,
+        6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "stepped-gallery-open-white-balustrade-round-glazed-lantern",
+      "position": [
+        17,
+        17,
+        13
+      ],
+      "lookAt": [
+        5,
+        15.4,
+        -0.86
+      ]
+    },
+    {
+      "name": "two-hipped-cottage-wings-green-trim-and-low-gable-link",
+      "position": [
+        -21,
+        10,
+        25
+      ],
+      "lookAt": [
+        -2,
+        3.7,
+        8
+      ]
+    },
+    {
+      "name": "whole-seaward-and-hidden-rear-attached-building",
+      "position": [
+        -24,
+        19,
+        -25
+      ],
+      "lookAt": [
+        0,
+        7,
+        6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9900,
+    "vertices": 29700,
+    "materials": 5,
+    "bytes": 1191236,
+    "sha256": "sha256:dcf0dade92aa38344504b3999c24eb89a0a98cbfae228b8d5af6f323c1f9f8b1"
+  }
+}

@@ -32,6 +32,7 @@ function fixture() {
       ],
     },
   );
+  tile.pois = [{ class: 'traffic_signals', point: [0.5, 0.5] }];
   const context = {
     address: { level: 3, x: 0, z: 0 },
     tileSize: 200,

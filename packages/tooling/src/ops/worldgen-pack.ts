@@ -6,6 +6,7 @@
 
 import { readFile, stat } from 'node:fs/promises';
 import { dirname, join, resolve, sep } from 'node:path';
+import { type FontLibrary, loadFontLibrary } from '@bendyline/molen-materials/text';
 import type { Pack, PackSet } from '@bendyline/molen-pack';
 import { extractPack, PACK_SOURCE_FILE } from '@bendyline/molen-pack/node';
 import {
@@ -128,6 +129,7 @@ async function asContentPack(path: string): Promise<ContentPack | undefined> {
 }
 
 export interface LoadedStylePackFiles {
+  fonts?: FontLibrary;
   pack: ResolvedStylePack;
   /** Directory every pack path resolves against. */
   dir: string;
@@ -166,7 +168,19 @@ async function withLandmarks(
   options: PackOptions,
 ): Promise<LoadedStylePackFiles> {
   const source = await providedBy('landmarks', own, options);
-  return source === undefined ? loaded : { ...loaded, landmarks: await landmarkDocs(source) };
+  const fontSource = await providedBy('fonts', own, options);
+  const fonts = fontSource
+    ? await loadFontLibrary(await fontSource.pack.readJson(fontSource.path), (path) =>
+        fontSource.pack.readJson(
+          fontSource.path.slice(0, fontSource.path.lastIndexOf('/') + 1) + path,
+        ),
+      )
+    : undefined;
+  return {
+    ...loaded,
+    ...(source ? { landmarks: await landmarkDocs(source) } : {}),
+    ...(fonts ? { fonts } : {}),
+  };
 }
 
 async function stylePackAt(path: string): Promise<LoadedStylePackFiles> {

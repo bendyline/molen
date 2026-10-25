@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u9/u9d/n0250_mir_castle_complex/map-parts.json',
+      '../../../content/worldgen/source/places/u9/u9d/mir_castle_complex/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -914,7 +914,7 @@ export function buildMirSkyline(out) {
   buildMirRuntime(out, 'skyline');
 }
 export const mirStudy = {
-  id: 'N0250',
+  id: 'mir_castle_complex',
   key: 'mir_castle_complex',
   title: 'Mir Castle Complex',
   category: 'castle',

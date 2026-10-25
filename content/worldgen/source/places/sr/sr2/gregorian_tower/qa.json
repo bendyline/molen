@@ -1,0 +1,743 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.gregorian_tower",
+  "reviewedOn": "2026-10-20",
+  "inputHash": "sha256:e9a6c30721bb09f2b8b65f7b6817493a37f03d588cbc6f78cd8a74a16aec5264",
+  "sourceHash": "sha256:cb449e20445a676cfe6d3cd500089db1a431569cec487e14a2f7964431aac095",
+  "runtimeHash": "sha256:9d7845fa87be44b14c6844987f63818e2c5089d647fbf6f78445df44ab90fd31",
+  "captureReportHash": "sha256:d2b3fadc840b5328687c6428dd4109cf1e12b817e92cfe92283d1b44fa166d81",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/stepped-terraces-cornices-and-pedimented-house.png",
+      "shots/upper-shutters-cornice-and-open-roof-rail.png",
+      "shots/palace-roof-join-and-bounded-footprint.png"
+    ],
+    "notes": "Inspected47 final source/shared/context/native views during one continuous picture/map/build/fix round. The notched plan supports a lower west chamber/stone-balustraded terrace, taller east flat block/projecting cornice/iron roof rail, small pedimented roof house with closed pitched cap, sparse recessed closed light shutters, broad string courses/pilasters and bounded buried footing. Moved the east stone band above the small shutters before final capture. Two useful ordinary2011 courtyard/bird-eye pictures carried through construction; no copied fresco, coat of arms, inscription, image atlas, whole museum or Saint Peter dome."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/stepped-terraces-cornices-and-pedimented-house.png",
+      "shots/shared/upper-shutters-cornice-and-open-roof-rail.png",
+      "shots/shared/palace-roof-join-and-bounded-footprint.png"
+    ],
+    "notes": "Four reused256-square graphs (stucco, stone_limestone_raw, metal_painted and wood_vertical) supply five merged groups: stucco walls, limestone trim/foundation, painted metal and closed wooden shutters. Metric repeats/linear tints, zero embedded images, at most five runtime draws. Runtime LOD streams are separate and CPU/GPU byte counts agree. Skyline is one flat merged draw with graph means; graph reads occur once and eviction releases every model geometry. Source4514triangles/545096bytes.",
+    "captureReportHash": "sha256:ceab06ca8871aa566c377e9d7571b2827a7309d259f4f523cae83b48a0965e76"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/stepped-terraces-cornices-and-pedimented-house.png",
+      "medium-fi/upper-shutters-cornice-and-open-roof-rail.png",
+      "medium-fi/palace-roof-join-and-bounded-footprint.png",
+      "medium-fi/gregorian-skyline.png",
+      "medium-fi/gregorian-district.png",
+      "medium-fi/gregorian-street.png",
+      "medium-fi/gregorian-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected street/block/skyline at noon/late afternoon in Economy/High, texture-free silhouette, three close details, all four authored LODs and transitions. Levels742/1634/3506/4514triangles remain inside1000/4000/16000/64000 limits. Skyline+district total231412bytes, below3MB phones/6MB laptops. Fine frame bars, balusters and downpipes drop with distance; the stepped tower, roof house/pediment and terrace edges remain. Synthetic context tile edges are fixture boundaries; native captures prove the museum join. Physical-device/dense-city timing remains pending.",
+    "captureReportHash": "sha256:41d5368f70d20bde847c359760edc37956e00c702d5d4fad324733cd52d893fb"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:3ba37084debf3af43616a73a2e2627709e98758334a242ceeb8435b69ef8b172",
+    "mapFrameHash": "sha256:7dc00da1e8e831d0ded5b0ea342286008a2acedeeba26c796585f58f12b43447",
+    "notes": "Exact-QID retained OSMway176719116 supplies the notched16.997x14.984m tower polygon and undirected axis0.06657450338rad. The current PMTiles has no separate tower building/point at that ID; its footprint lies within palace52776558306308 and touches part35184483819981. Global heading0 and internal axes{\"xAxis\":[0.9977847361323613,-0.06652533608539087],\"zAxis\":[0.06652533608539087,0.9977847361323613]} preserve native east/south placement at12.454195746,41.905161124. West/east stepped mass assignment follows the two pictures and mapped notch; window schedule/directed facade interpretation retain20degree/2m approximation, not surveyed facing. Retain original6m standard terrain, paths/water and all museum geometry outside the exact tower polygon. Only subtract the overlapping tower area from palace52776558306308 and touching part35184483819981; retain their large remaining footprints and all other independent inputs. A bounded footing sits above the highest occupied rim with buried sides below the lowest. No ground/water cutout, precinct slab or full-palace replacement. Coarse DEM/contact levels and hidden lower walls are visualization estimates; adjoining roof joins must be inspected in native context. All four loaded levels retain both partially clipped museum input IDs: part35184483819981 retains1511.696513m2 of1512.958634m2, palace52776558306308 retains14735.711517m2 of14972.570030m2. Symmetric difference from the independently computed original-minus-tower shapes is below4e-9m2; residual tower overlap below6e-10m2. All1228 unrelated resident inputs remain byte-equivalent among1230 source records, and original6m terrain/paths/1538.154890m2 water geometry stay unchanged. Failed loading restores the exact original palace/part polygons and all1230 inputs; eviction restores terrain/water bindings and releases geometry. Host procedural museum facades remain generic approximations; their retained geometry is not an authored Vatican Museum reconstruction."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Neither retained Wikidata nor tower map geometry supplies a qualified tower height. Picture-led nominal levels: west terrace22.8m, taller east deck30.2m, upper house22.8..27.9m with29.8m pediment/ridge, and roof rails/piers to31.4m above the attachment plane. Neighbor palace17m is a map attribute, not a tower height. Cornice, shutter, terrace, roof-house, ornament and lower hidden wall dimensions are visualization estimates; no73m height datum or modern repair accuracy is asserted. Retain original6m standard terrain, paths/water and all museum geometry outside the exact tower polygon. Only subtract the overlapping tower area from palace52776558306308 and touching part35184483819981; retain their large remaining footprints and all other independent inputs. A bounded footing sits above the highest occupied rim with buried sides below the lowest. No ground/water cutout, precinct slab or full-palace replacement. Coarse DEM/contact levels and hidden lower walls are visualization estimates; adjoining roof joins must be inspected in native context. Closed shutters, simplified roof-house pediment/acroteria, railing allocation and hidden lower walls are picture-led approximations. Lower walls stay plain where the selected photos are occluded by museum wings; no claim of surveyed or complete decorative inventory. Neither modern observatory fittings, roof wires, fresco/interior nor authentic heraldic sculpture/lettering is reconstructed. Source pictures were viewed only, not copied."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/gregorian_tower/models/source.glb\",\"hash\":\"sha256:cb449e20445a676cfe6d3cd500089db1a431569cec487e14a2f7964431aac095\",\"bytes\":545096,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/sr2/gregorian_tower/model.glb\",\"hash\":\"sha256:9d7845fa87be44b14c6844987f63818e2c5089d647fbf6f78445df44ab90fd31\",\"bytes\":544604,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/gregorian_tower/model.skyline.glb\",\"hash\":\"sha256:75fea9f507853ddc572390f163b3a181d7cba1245b8c44263c2fd28b85795355\",\"bytes\":77560,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/gregorian_tower/model.district.glb\",\"hash\":\"sha256:8768b78219f366f754793245d691949b6adc1686ce3b5fd90d94f8942215f283\",\"bytes\":153852,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/gregorian_tower/model.street.glb\",\"hash\":\"sha256:71566eeabf72137b04579128158f5140f39e7f983bd8ac4da06ef38e307d2a60\",\"bytes\":322344,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/gregorian_tower/model.closeup.glb\",\"hash\":\"sha256:fe9f613e371d5aa8ced4a81236ac498e08ddac186db07157fe38d9b7c9779777\",\"bytes\":415800,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "recessed-shutters-inward-reveals-notched-plan-open-terraces-roof-closure-and-ground-contact",
+        "passed": true,
+        "notes": "366 actual front-face mesh/contact checks across six files verify closed recessed shutters/renderable inward jambs, stepped seated decks/open rails and corner piers, actual empty northeast setback, closed triangular pediment/pitched roof/ridge/renderable underside, and buried exact-plan footing contact. No whole museum or precinct slab authored."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Four reused256-square graphs (stucco, stone_limestone_raw, metal_painted and wood_vertical) supply five merged groups: stucco walls, limestone trim/foundation, painted metal and closed wooden shutters. Metric repeats/linear tints, zero embedded images, at most five runtime draws. Runtime LOD streams are separate and CPU/GPU byte counts agree. Skyline is one flat merged draw with graph means; graph reads occur once and eviction releases every model geometry. Source4514triangles/545096bytes. Inspected street/block/skyline at noon/late afternoon in Economy/High, texture-free silhouette, three close details, all four authored LODs and transitions. Levels742/1634/3506/4514triangles remain inside1000/4000/16000/64000 limits. Skyline+district total231412bytes, below3MB phones/6MB laptops. Fine frame bars, balusters and downpipes drop with distance; the stepped tower, roof house/pediment and terrace edges remain. Synthetic context tile edges are fixture boundaries; native captures prove the museum join. Physical-device/dense-city timing remains pending."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:cb449e20445a676cfe6d3cd500089db1a431569cec487e14a2f7964431aac095"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:9d7845fa87be44b14c6844987f63818e2c5089d647fbf6f78445df44ab90fd31"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:75fea9f507853ddc572390f163b3a181d7cba1245b8c44263c2fd28b85795355"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:8768b78219f366f754793245d691949b6adc1686ce3b5fd90d94f8942215f283"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:71566eeabf72137b04579128158f5140f39e7f983bd8ac4da06ef38e307d2a60"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:fe9f613e371d5aa8ced4a81236ac498e08ddac186db07157fe38d9b7c9779777"
+      }
+    ],
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1230,
+          "independentBuildings": 1228,
+          "remainingBuildings": 1230,
+          "changedIndependent": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.gregorian_tower"
+          ],
+          "rawTerrainRange": {
+            "min": -22.71918766682852,
+            "max": 32.55101233317148
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1538.1548904255292,
+          "remainingWaterArea": 1538.1548904255292,
+          "nativeWaterUnchanged": true,
+          "partialReplacement": [
+            {
+              "id": 35184483819981,
+              "originalArea": 1512.9586342730377,
+              "expectedRemainingArea": 1511.696513356037,
+              "actualRemainingArea": 1511.6965133563567,
+              "outsideSymmetricDifferenceArea": 3.197442310920451e-10,
+              "remainingTowerOverlapArea": 3.197442310920451e-10,
+              "originalShapeHash": "sha256:e8daf67af640f7be31a84c11f634fac56792697e0f1ac0961dbcd0d0e955bbcd",
+              "expectedShapeHash": "sha256:35a62a3810222ad16986e945eb8536e82383fa51d1edde9905a27e2aa652d542",
+              "actualShapeHash": "sha256:6a9ee0a889b9a8d48fd2c4027cce26e5d4c5230cd7701369c42098aaabd792c8",
+              "toleranceSquareMeters": 0.002
+            },
+            {
+              "id": 52776558306308,
+              "originalArea": 14972.570029661565,
+              "expectedRemainingArea": 14735.711516944291,
+              "actualRemainingArea": 14735.711516942283,
+              "outsideSymmetricDifferenceArea": 3.1079139262146782e-9,
+              "remainingTowerOverlapArea": 5.371703082346357e-10,
+              "originalShapeHash": "sha256:d5cec43e9062951c17fe90009cf06ef1ea87d2eb70e50788baf09af8f2139587",
+              "expectedShapeHash": "sha256:187d97b08432c2c6dd465db2fd18d6c1c93936057332490b50e6dfbe8337fe21",
+              "actualShapeHash": "sha256:7da600298468d85bacd413690292014270d1e09ecc059a812e38e4b06741190a",
+              "toleranceSquareMeters": 0.002
+            }
+          ],
+          "retainedPartialControls": [
+            {
+              "id": 35184483819981,
+              "area": 1511.6965133563824
+            },
+            {
+              "id": 52776558306308,
+              "area": 14735.711516942327
+            }
+          ]
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:246680aa3bd93a77f7a5398e4ac6a7acde637347abfc79684fc3fb2527aad92b",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 303390
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.359630602396585,
+                32.45731979518116,
+                -48.891166155040196
+              ],
+              "lookAt": [
+                0,
+                17.457319795181157,
+                0
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1230,
+          "independentBuildings": 1228,
+          "remainingBuildings": 1230,
+          "changedIndependent": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_vertical": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.gregorian_tower"
+          ],
+          "rawTerrainRange": {
+            "min": -22.71918766682852,
+            "max": 32.55101233317148
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1538.1548904255292,
+          "remainingWaterArea": 1538.1548904255292,
+          "nativeWaterUnchanged": true,
+          "partialReplacement": [
+            {
+              "id": 35184483819981,
+              "originalArea": 1512.9586342730377,
+              "expectedRemainingArea": 1511.696513356037,
+              "actualRemainingArea": 1511.6965133563567,
+              "outsideSymmetricDifferenceArea": 3.197442310920451e-10,
+              "remainingTowerOverlapArea": 3.197442310920451e-10,
+              "originalShapeHash": "sha256:e8daf67af640f7be31a84c11f634fac56792697e0f1ac0961dbcd0d0e955bbcd",
+              "expectedShapeHash": "sha256:35a62a3810222ad16986e945eb8536e82383fa51d1edde9905a27e2aa652d542",
+              "actualShapeHash": "sha256:6a9ee0a889b9a8d48fd2c4027cce26e5d4c5230cd7701369c42098aaabd792c8",
+              "toleranceSquareMeters": 0.002
+            },
+            {
+              "id": 52776558306308,
+              "originalArea": 14972.570029661565,
+              "expectedRemainingArea": 14735.711516944291,
+              "actualRemainingArea": 14735.711516942283,
+              "outsideSymmetricDifferenceArea": 3.1079139262146782e-9,
+              "remainingTowerOverlapArea": 5.371703082346357e-10,
+              "originalShapeHash": "sha256:d5cec43e9062951c17fe90009cf06ef1ea87d2eb70e50788baf09af8f2139587",
+              "expectedShapeHash": "sha256:187d97b08432c2c6dd465db2fd18d6c1c93936057332490b50e6dfbe8337fe21",
+              "actualShapeHash": "sha256:7da600298468d85bacd413690292014270d1e09ecc059a812e38e4b06741190a",
+              "toleranceSquareMeters": 0.002
+            }
+          ],
+          "retainedPartialControls": [
+            {
+              "id": 35184483819981,
+              "area": 1511.6965133563824
+            },
+            {
+              "id": 52776558306308,
+              "area": 14735.711516942327
+            }
+          ]
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:3755224501bcaf6f0cb3ff38d616a273cceb505f99a7dfed5e0e5e16fef8dd72",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 304282
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.359630602396585,
+                32.45731979518116,
+                -48.891166155040196
+              ],
+              "lookAt": [
+                0,
+                17.457319795181157,
+                0
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1230,
+          "independentBuildings": 1228,
+          "remainingBuildings": 1230,
+          "changedIndependent": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_vertical": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.gregorian_tower"
+          ],
+          "rawTerrainRange": {
+            "min": -22.71918766682852,
+            "max": 32.55101233317148
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1538.1548904255292,
+          "remainingWaterArea": 1538.1548904255292,
+          "nativeWaterUnchanged": true,
+          "partialReplacement": [
+            {
+              "id": 35184483819981,
+              "originalArea": 1512.9586342730377,
+              "expectedRemainingArea": 1511.696513356037,
+              "actualRemainingArea": 1511.6965133563567,
+              "outsideSymmetricDifferenceArea": 3.197442310920451e-10,
+              "remainingTowerOverlapArea": 3.197442310920451e-10,
+              "originalShapeHash": "sha256:e8daf67af640f7be31a84c11f634fac56792697e0f1ac0961dbcd0d0e955bbcd",
+              "expectedShapeHash": "sha256:35a62a3810222ad16986e945eb8536e82383fa51d1edde9905a27e2aa652d542",
+              "actualShapeHash": "sha256:6a9ee0a889b9a8d48fd2c4027cce26e5d4c5230cd7701369c42098aaabd792c8",
+              "toleranceSquareMeters": 0.002
+            },
+            {
+              "id": 52776558306308,
+              "originalArea": 14972.570029661565,
+              "expectedRemainingArea": 14735.711516944291,
+              "actualRemainingArea": 14735.711516942283,
+              "outsideSymmetricDifferenceArea": 3.1079139262146782e-9,
+              "remainingTowerOverlapArea": 5.371703082346357e-10,
+              "originalShapeHash": "sha256:d5cec43e9062951c17fe90009cf06ef1ea87d2eb70e50788baf09af8f2139587",
+              "expectedShapeHash": "sha256:187d97b08432c2c6dd465db2fd18d6c1c93936057332490b50e6dfbe8337fe21",
+              "actualShapeHash": "sha256:7da600298468d85bacd413690292014270d1e09ecc059a812e38e4b06741190a",
+              "toleranceSquareMeters": 0.002
+            }
+          ],
+          "retainedPartialControls": [
+            {
+              "id": 35184483819981,
+              "area": 1511.6965133563824
+            },
+            {
+              "id": 52776558306308,
+              "area": 14735.711516942327
+            }
+          ]
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:ce1c721e9328d0c24b8aae26a9bac35860b407954e251e7b4a805fd0b0003d37",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 306154
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.359630602396585,
+                32.45731979518116,
+                -48.891166155040196
+              ],
+              "lookAt": [
+                0,
+                17.457319795181157,
+                0
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1230,
+          "independentBuildings": 1228,
+          "remainingBuildings": 1230,
+          "changedIndependent": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_vertical": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.gregorian_tower"
+          ],
+          "rawTerrainRange": {
+            "min": -22.71918766682852,
+            "max": 32.55101233317148
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1538.1548904255292,
+          "remainingWaterArea": 1538.1548904255292,
+          "nativeWaterUnchanged": true,
+          "partialReplacement": [
+            {
+              "id": 35184483819981,
+              "originalArea": 1512.9586342730377,
+              "expectedRemainingArea": 1511.696513356037,
+              "actualRemainingArea": 1511.6965133563567,
+              "outsideSymmetricDifferenceArea": 3.197442310920451e-10,
+              "remainingTowerOverlapArea": 3.197442310920451e-10,
+              "originalShapeHash": "sha256:e8daf67af640f7be31a84c11f634fac56792697e0f1ac0961dbcd0d0e955bbcd",
+              "expectedShapeHash": "sha256:35a62a3810222ad16986e945eb8536e82383fa51d1edde9905a27e2aa652d542",
+              "actualShapeHash": "sha256:6a9ee0a889b9a8d48fd2c4027cce26e5d4c5230cd7701369c42098aaabd792c8",
+              "toleranceSquareMeters": 0.002
+            },
+            {
+              "id": 52776558306308,
+              "originalArea": 14972.570029661565,
+              "expectedRemainingArea": 14735.711516944291,
+              "actualRemainingArea": 14735.711516942283,
+              "outsideSymmetricDifferenceArea": 3.1079139262146782e-9,
+              "remainingTowerOverlapArea": 5.371703082346357e-10,
+              "originalShapeHash": "sha256:d5cec43e9062951c17fe90009cf06ef1ea87d2eb70e50788baf09af8f2139587",
+              "expectedShapeHash": "sha256:187d97b08432c2c6dd465db2fd18d6c1c93936057332490b50e6dfbe8337fe21",
+              "actualShapeHash": "sha256:7da600298468d85bacd413690292014270d1e09ecc059a812e38e4b06741190a",
+              "toleranceSquareMeters": 0.002
+            }
+          ],
+          "retainedPartialControls": [
+            {
+              "id": 35184483819981,
+              "area": 1511.6965133563824
+            },
+            {
+              "id": 52776558306308,
+              "area": 14735.711516942327
+            }
+          ]
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:9eb8c69bdd15ea25cef4ce9aa7cd8dc80b9ad65729801cc84215f989b799b2b6",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 307162
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.359630602396585,
+                32.45731979518116,
+                -48.891166155040196
+              ],
+              "lookAt": [
+                0,
+                17.457319795181157,
+                0
+              ],
+              "fov": 44
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-stepped-terraces-cornices-and-pedimented-house.png",
+            "hash": "sha256:0381ee4052aa5931829ca51d407b1bc9b187b81c702f0bb926e31cc7cd934b54",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 307162
+            },
+            "camera": {
+              "name": "stepped-terraces-cornices-and-pedimented-house",
+              "position": [
+                -30.998042766485597,
+                33.45731979518116,
+                -29.002092073626866
+              ],
+              "lookAt": [
+                0,
+                25.457319795181157,
+                0
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-upper-shutters-cornice-and-open-roof-rail.png",
+            "hash": "sha256:af45f2be25b7a83124ba8bca06541a143d365eb6e6435b5c65003e320cd63eb9",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 307162
+            },
+            "camera": {
+              "name": "upper-shutters-cornice-and-open-roof-rail",
+              "position": [
+                21.152864856738756,
+                33.45731979518116,
+                -28.470270605537745
+              ],
+              "lookAt": [
+                4.789366733435334,
+                26.457319795181157,
+                -0.3193216132098761
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-palace-roof-join-and-bounded-footprint.png",
+            "hash": "sha256:2bcc6441dc606a99391f88637b02e40d376795f8482a2061346f24162e960395",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 307162
+            },
+            "camera": {
+              "name": "palace-roof-join-and-bounded-footprint",
+              "position": [
+                -37.250852527621326,
+                25.457319795181157,
+                -32.59407900164397
+              ],
+              "lookAt": [
+                0,
+                16.457319795181157,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 1230,
+          "independentBuildings": 1228,
+          "remainingBuildings": 1230,
+          "changedIndependent": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.gregorian_tower"
+          ],
+          "rawTerrainRange": {
+            "min": -22.71918766682852,
+            "max": 32.55101233317148
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1538.1548904255292,
+          "remainingWaterArea": 1538.1548904255292,
+          "nativeWaterUnchanged": true,
+          "partialReplacement": [
+            {
+              "id": 35184483819981,
+              "originalArea": 1512.9586342730377,
+              "expectedRemainingArea": 1512.9586342730377,
+              "actualRemainingArea": 1512.9586342730377,
+              "outsideSymmetricDifferenceArea": 0,
+              "remainingTowerOverlapArea": 0,
+              "originalShapeHash": "sha256:e8daf67af640f7be31a84c11f634fac56792697e0f1ac0961dbcd0d0e955bbcd",
+              "expectedShapeHash": "sha256:e8daf67af640f7be31a84c11f634fac56792697e0f1ac0961dbcd0d0e955bbcd",
+              "actualShapeHash": "sha256:e8daf67af640f7be31a84c11f634fac56792697e0f1ac0961dbcd0d0e955bbcd",
+              "toleranceSquareMeters": 0.002
+            },
+            {
+              "id": 52776558306308,
+              "originalArea": 14972.570029661565,
+              "expectedRemainingArea": 14972.570029661565,
+              "actualRemainingArea": 14972.570029661565,
+              "outsideSymmetricDifferenceArea": 0,
+              "remainingTowerOverlapArea": 0,
+              "originalShapeHash": "sha256:d5cec43e9062951c17fe90009cf06ef1ea87d2eb70e50788baf09af8f2139587",
+              "expectedShapeHash": "sha256:d5cec43e9062951c17fe90009cf06ef1ea87d2eb70e50788baf09af8f2139587",
+              "actualShapeHash": "sha256:d5cec43e9062951c17fe90009cf06ef1ea87d2eb70e50788baf09af8f2139587",
+              "toleranceSquareMeters": 0.002
+            }
+          ],
+          "retainedPartialControls": [
+            {
+              "id": 35184483819981,
+              "area": 1512.958634273025
+            },
+            {
+              "id": 52776558306308,
+              "area": 14972.570029661514
+            }
+          ]
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:317ff4d4a7e019da7a0b26cc951800a7b0a06b8da73b19c069965e8ff991cb07",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 302644
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.359630602396585,
+                32.45731979518116,
+                -48.891166155040196
+              ],
+              "lookAt": [
+                0,
+                17.457319795181157,
+                0
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific standing Gregorian Tower exterior on its retained notched plan: low west chamber/stone balustraded terrace, taller east flat-roofed block/projecting cornice and iron roof rail, small pedimented upper house/pitched cap, sparse recessed closed light shutters, broad pilasters/string courses and bounded buried footings. Existing shared stucco, limestone, painted metal and wood graphs. No fresco/interior, copied coats of arms or inscriptions, photograph atlas, Saint Peter's dome or whole Vatican museum authored.",
+    "Exact-QID retained OSMway176719116 supplies the notched16.997x14.984m tower polygon and undirected axis0.06657450338rad. The current PMTiles has no separate tower building/point at that ID; its footprint lies within palace52776558306308 and touches part35184483819981. Global heading0 and internal axes{\"xAxis\":[0.9977847361323613,-0.06652533608539087],\"zAxis\":[0.06652533608539087,0.9977847361323613]} preserve native east/south placement at12.454195746,41.905161124. West/east stepped mass assignment follows the two pictures and mapped notch; window schedule/directed facade interpretation retain20degree/2m approximation, not surveyed facing.",
+    "Neither retained Wikidata nor tower map geometry supplies a qualified tower height. Picture-led nominal levels: west terrace22.8m, taller east deck30.2m, upper house22.8..27.9m with29.8m pediment/ridge, and roof rails/piers to31.4m above the attachment plane. Neighbor palace17m is a map attribute, not a tower height. Cornice, shutter, terrace, roof-house, ornament and lower hidden wall dimensions are visualization estimates; no73m height datum or modern repair accuracy is asserted.",
+    "Retain original6m standard terrain, paths/water and all museum geometry outside the exact tower polygon. Only subtract the overlapping tower area from palace52776558306308 and touching part35184483819981; retain their large remaining footprints and all other independent inputs. A bounded footing sits above the highest occupied rim with buried sides below the lowest. No ground/water cutout, precinct slab or full-palace replacement. Coarse DEM/contact levels and hidden lower walls are visualization estimates; adjoining roof joins must be inspected in native context.",
+    "Two ordinary photographs carried through construction: whole skyline and close base. Fine glazing inventory, signed facade facing, rails and mast colors remain picture-led approximations. Preserve the adjacent Ma'mun Centre; no furnished restaurant or copied identity text."
+  ]
+}

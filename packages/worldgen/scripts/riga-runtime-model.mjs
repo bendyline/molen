@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ud/ud1/n0264_riga_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/ud1/riga_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -658,7 +658,7 @@ function forecourt(o, d) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ud/ud1/n0264_riga_castle/site-grade.json',
+      '../../../content/worldgen/source/places/ud/ud1/riga_castle/site-grade.json',
       import.meta.url,
     ),
   ),

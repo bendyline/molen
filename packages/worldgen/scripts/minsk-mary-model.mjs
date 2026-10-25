@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u9/u9e/n0376_cathedral_of_the_holy_name_of_saint_virgin_mary/',
+  '../../../content/worldgen/source/places/u9/u9e/cathedral_of_the_holy_name_of_saint_virgin_mary/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1088,7 +1088,7 @@ export const buildMinskMarySkyline = (o) => build(o, 0),
   buildMinskMaryCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const minskMaryStudy = {
-  id: 'N0376',
+  id: 'cathedral_of_the_holy_name_of_saint_virgin_mary',
   key: 'cathedral_of_the_holy_name_of_saint_virgin_mary',
   title: 'Cathedral of the Holy Name of Saint Virgin Mary',
   category: 'cathedral',

@@ -1,0 +1,174 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.renault_kwid_2024": {
+      "doc": "2024 Renault Kwid; left-hand drive regional configuration. Original polygonal reference interpretation, simplified trim and game handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.renault_kwid_2024",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.renault_kwid_2024",
+          "color": "#4c7f9b",
+          "spec": {
+            "label": "2024 Renault Kwid",
+            "bodyStyle": "crossover",
+            "genericLabel": "Subcompact crossover",
+            "width": 1.879,
+            "length": 3.8600000000000003,
+            "height": 1.5590000000000002,
+            "centerOfMass": [
+              0,
+              0.44370000000000004,
+              0
+            ],
+            "wheelbase": 2.423,
+            "wheelTrack": 1.35794,
+            "wheelRadius": 0.285,
+            "mass": 988,
+            "engineForce": 3359.2,
+            "maxSpeed": 36,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.3632,
+              1.209,
+              0.2888
+            ],
+            "drive": "front",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.17,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.3632,
+                1.209,
+                0.2888
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.2395,
+              0,
+              0.2888
+            ]
+          ],
+          "exits": [
+            [
+              1.3395000000000001,
+              0,
+              0.2888
+            ],
+            [
+              -1.3395000000000001,
+              0,
+              0.2888
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1,
+          "colors": [
+            "#4c7f9b",
+            "#deded7",
+            "#555c63",
+            "#a8adb0",
+            "#314852"
+          ]
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.renault_kwid_2024"
+      ]
+    }
+  }
+}

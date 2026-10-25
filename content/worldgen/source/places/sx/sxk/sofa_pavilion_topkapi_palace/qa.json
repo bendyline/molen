@@ -1,0 +1,956 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.sofa_pavilion_topkapi_palace",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:517d08875177e951905883d9528c4ee35d140cdc5e8057292ba8b50bba243659",
+  "sourceHash": "sha256:70863bb5e6364b8b4890b0e4d0915d29bd940a55ba09825100640e1c5a3bb335",
+  "runtimeHash": "sha256:f6494f043193c2ee976b0619ded73a16d8701cc07668da6e5cc71656dfcbc9ce",
+  "captureReportHash": "sha256:570bedbbed9fddb8fe0140517933601c78f46d576d7590521d5bdf0e65f8e936",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/two-raised-timber-wings-and-central-stone-stair.png",
+      "shots/glazed-hall-oval-clerestory-and-grounded-shafts.png",
+      "shots/ornamental-room-sashes-panels-and-open-undercroft.png"
+    ],
+    "notes": "Two independently shaped raised timber wings: northwest glazed hall with oval clerestory tracery and southeast taller ornamental room with paired window levels, pilasters, raised panels and a sparse plastered end wall. Both retain separate shallow lead hips, broad pale soffits and small finials. Eighteen stone supports meet the upper floors, both undercrofts remain open, and a thirteen-tread central stone stair/solid parapets reaches a genuinely open round-arched connector and real room doors. Two ordinary exterior pictures and existing PMTiles guided this continuous authoring pass. Current source, shared, medium-fi and native views inspected."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/two-raised-timber-wings-and-central-stone-stair.png",
+      "shots/shared/glazed-hall-oval-clerestory-and-grounded-shafts.png",
+      "shots/shared/ornamental-room-sashes-panels-and-open-undercroft.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Eight existing256px shared graphs across nine roles: painted lap wood, plain wood, lime plaster, limestone, ashlar, standing-seam metal, painted metal and bronze. Plain wood serves trim/floor; linear vertex tints distinguish pale timber and warmer accents. Metric wall/roof/floor quad UVs. No new graph, private atlas or embedded images. Eight close-up draws, one skyline draw; POSITION and NORMAL have separate streams and CPU/GPU byte accounting agrees. Native fixture requests each graph once and releases all model geometry on unload.",
+    "captureReportHash": "sha256:2e3005b2be8143c5dfcdf164f8cc824c94fdf1cf73dd6221c1ecf07f77580de3"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/two-raised-timber-wings-and-central-stone-stair.png",
+      "medium-fi/glazed-hall-oval-clerestory-and-grounded-shafts.png",
+      "medium-fi/ornamental-room-sashes-panels-and-open-undercroft.png",
+      "medium-fi/sofa-skyline.png",
+      "medium-fi/sofa-district.png",
+      "medium-fi/sofa-street.png",
+      "medium-fi/sofa-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored representations preserve the paired-wing silhouette and central stair. All are within triangle/draw/download budgets. Skyline and district total384176bytes; shared graph caching is used. Flat synthetic fixtures do not establish native ground fit. Physical ordinary-laptop, phone/tablet and dense-city timing measurements remain pending.",
+    "captureReportHash": "sha256:ee7192590c5a9a3a4724b58fdc4d54d7d4d0c98bdcfd295c5f48f881d9f70bcf"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:5e35624ba45594cca753af1d4fe322cbfe759876b89d1ba52810db435b0d68ae",
+    "mapFrameHash": "sha256:56fb5694e0358af1c7467a6b5502663f18bfb9a411b240b1c3bf4017379c9f56",
+    "notes": "Named Sofa Pavilion, site Q170495/way194486642/native35184566575474, exact twelve-corner parent canopy, heading0 in east/up/south coordinates and signed northeast stair-facing. Two actual overlapping standard PMTiles cases at levels14/15 pass; no overlapping level13 feature present. Only its parent native building is suppressed after model loading; all258 independent resident records of259 and all572 wider records of573 remain unchanged. Original161x161/6m terrain, roads and3400906.0006393427square metres water retained. No ground cutout: original terrain remains under both open undercrofts, stair, center and provider. Provider internal[-13,0] is outside all573 original buildings. Each column foot samples the original grid and embeds0.08m; native fit and facing accepted as approximate. Failed loading preserves259 records; each unload restores terrain/water and zero live geometries. All fourteen prior palace assets retain input/source/runtime hashes, including inactive Hasoda."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Pictured paired raised-room composition and mapped wing/notch plan guide the exterior. Floor3.3100118364189455m relative to provider, room/eave heights, shallow roof pitches, eighteen-support inventory, window/frame ornament and hidden rear/retaining arrangement are explicit picture-led reconstruction controls. Original coarse6m terrain retained. Historic upper-terrace levels, thresholds and accessibility are unverified. No bespoke terrain, precinct flattening, copied inscriptions/art, furnished rooms or independent neighbouring buildings. Hasoda remains an inactive terrain-fit draft; this does not approve the whole Topkapi collection."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxk/sofa_pavilion_topkapi_palace/models/source.glb\",\"hash\":\"sha256:70863bb5e6364b8b4890b0e4d0915d29bd940a55ba09825100640e1c5a3bb335\",\"bytes\":2067460,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.glb\",\"hash\":\"sha256:f6494f043193c2ee976b0619ded73a16d8701cc07668da6e5cc71656dfcbc9ce\",\"bytes\":2066744,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.skyline.glb\",\"hash\":\"sha256:6812f90f943f6b20b9049821cbd4fe21421e33abea6c65860dd66a3b17acdda2\",\"bytes\":74572,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.district.glb\",\"hash\":\"sha256:33d4042c967f9fa669097f8ee46c32731e0ddcc1f288f68cf42a5fd2eeea0fbb\",\"bytes\":309604,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.street.glb\",\"hash\":\"sha256:fb18ebd09021915b3f9513bbfd4b70d7b2fe55199303f0ba7318ab79bab0af8d\",\"bytes\":1101464,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.closeup.glb\",\"hash\":\"sha256:8884e9a0c79a0b73000d9d017714179e8b8ff266c255ebe1e9c39ca986881cd9\",\"bytes\":1695336,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "real-entry-two-open-undercrofts-grounded-shafts-two-closed-hips-and-central-stair",
+        "passed": true,
+        "notes": "400 actual ray/contact probes across six current files; original terrain retained beneath both raised rooms and the central stair; no ground cutout declared."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:517d08875177e951905883d9528c4ee35d140cdc5e8057292ba8b50bba243659",
+    "frameReview": {
+      "frames": [
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\preview.png",
+          "hash": "sha256:4474dd49f1cae130eda45ac25586983efbf42e4239e5ba825b70b40d34e9bbdb"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\turntable\\angle_0.png",
+          "hash": "sha256:19eb5597e712ee36476e338ab399955df4cc8ebca5acebef98ab326d22265a68"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\turntable\\angle_1.png",
+          "hash": "sha256:5ba0136ddc51d595b1aebca3811cb33f4f12be95f9b410da7d5c012df9c28562"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\turntable\\angle_2.png",
+          "hash": "sha256:5f231a417250519d1ae1ce9458a9664128cf0918ec5faaf4cb1d1aaafd98fa6f"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\turntable\\angle_3.png",
+          "hash": "sha256:de29203055f78f59cd0246f9e96fc0edc902efe9ddb0978f513c8415aff764b2"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\two-raised-timber-wings-and-central-stone-stair.png",
+          "hash": "sha256:06301c80b3e774de17156f223b18824d4bf6f3dc78c0007d0e5611bedcb5035b"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\glazed-hall-oval-clerestory-and-grounded-shafts.png",
+          "hash": "sha256:70ae5bd7583931445c73cbd46ea95114970e1bdd98687aad44c154ccbf96fec9"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\ornamental-room-sashes-panels-and-open-undercroft.png",
+          "hash": "sha256:f84b5f3eb68275d4ae392dc767837d82a29b722d65dfdfbb2b8695b80acfa4ce"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\shared\\angle-0.png",
+          "hash": "sha256:12267475972f9953066688317320f0e228da6868c0f3db04ed9636108548dafb"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\shared\\angle-1.png",
+          "hash": "sha256:f1172dcdbdbb2c3b96171c0207b29bb9c664f9650f78b093b1eb82eb896bdbb1"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\shared\\angle-2.png",
+          "hash": "sha256:c7712f84da136dc41a78eac4f037d3d852d6ec35c5c7ba02bf6ecdc3c61a91ec"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\shared\\angle-3.png",
+          "hash": "sha256:d6a686c5351186dfff3ebf91392e519a1f28e8018e4c4406954282ef661a3292"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\shared\\two-raised-timber-wings-and-central-stone-stair.png",
+          "hash": "sha256:023dbb853504958f13e3901209dadcc52c097df105ca3739ac9e897e48135532"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\shared\\glazed-hall-oval-clerestory-and-grounded-shafts.png",
+          "hash": "sha256:051dbb5b0d35d9510cab1a3b64382cd3f9d98d4f51b47ea48f32745a7ed632b7"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\shared\\ornamental-room-sashes-panels-and-open-undercroft.png",
+          "hash": "sha256:3865ca2e4b68528166e07937dbce4db3dd0e21cf30701172ec130ed9b2645cc3"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\shots\\shared\\placement.png",
+          "hash": "sha256:f1e908516d25e95dc072e2702ca4d771fa33b8889e7ff55678b88a42233a222d"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\street-noon-economy.png",
+          "hash": "sha256:dff5ecf6ab822e762dab526e833d582bcf3cd681ab2007a5e65a7fb202002f75"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\street-noon-high.png",
+          "hash": "sha256:40dfe4671bfcb698a15f5a5dd76bbd699ecff873b2edb7c6157826b5c05369fa"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\street-late-economy.png",
+          "hash": "sha256:8a1416e9f44c8ad946280443c428c9393c72e59157990260e0824b5db3d55854"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\street-late-high.png",
+          "hash": "sha256:6d923e9b15f1261e21b7b90e2c751567ef5dc9dffc089881f0514e543aa219ed"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\block-noon-economy.png",
+          "hash": "sha256:5b175ae030d3844218c320c423ef68c6305b9e49dca18506612f738ebf98442b"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\block-noon-high.png",
+          "hash": "sha256:603e858c3ca6c8bcfa5a247f4bf1805c90938b9fbae653e6b0f6f0bc0d29ffda"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\block-late-economy.png",
+          "hash": "sha256:67a04e7f18951cae5b7cd157562af3be07278f96e2b65fb5b2e62f44b12a9db6"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\block-late-high.png",
+          "hash": "sha256:cb75f4a6c88489bd4605eaadccf451a9d8b69322e97c9b941a1783825e42b9de"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\skyline-noon-economy.png",
+          "hash": "sha256:a0def1808dd8bbf2e0c9a4090e0db5056870c8ae96a510c3f8e0c5deda5cb5dc"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\skyline-noon-high.png",
+          "hash": "sha256:fbc1decab9bda078748fd6b699caadbf62b8abf3a582bb90ff30969f25e4ff0d"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\skyline-late-economy.png",
+          "hash": "sha256:bc6b777c01edb58b02313827276827f85ca90821e55bcb9cbbe243907b8b3341"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\skyline-late-high.png",
+          "hash": "sha256:8de6fcce82f8d29548d7e74e030c302bf35ba1c61d5aed995f6ef91c25140399"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\silhouette.png",
+          "hash": "sha256:d2a0fa9949c0bc6cdcd4060c3c2b356abd2ebe0e6a0d1f73a9d6226af64519e8"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\two-raised-timber-wings-and-central-stone-stair.png",
+          "hash": "sha256:3629f94f1c62aba4a680e3ec11ac72f4ab120c5431be6edb8414f226e04e5ab5"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\glazed-hall-oval-clerestory-and-grounded-shafts.png",
+          "hash": "sha256:8f2b85965f6f1d753c06d151724a3bb4499012c63be2b75e450301f8ac0142ce"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\ornamental-room-sashes-panels-and-open-undercroft.png",
+          "hash": "sha256:2387b190718d0cf1d65fb5f161fa1468d1c156aa2f0bddf2a0f73b7d45b4d095"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\sofa-skyline.png",
+          "hash": "sha256:82fe650f0a3a62b14847ce266f2363c5e22d9d55e11d8cc206df580cbb5760bf"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\sofa-district.png",
+          "hash": "sha256:d3f959b6b3b892bdf9e37216677a5d4f7e0529f13acdc50c21f72e8f452d1db5"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\sofa-street.png",
+          "hash": "sha256:6c495cc6397eb2af1822ee100d1407b262f83de84998d9084eb954772bd97102"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\sofa-closeup.png",
+          "hash": "sha256:594fe0ad997e14fa4ad031ee376b22550418203253dbfb9c7ab8209633cf3b31"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\transition-skyline.png",
+          "hash": "sha256:49cfc299fd959ac2d42bf0820bd13aa6906609e96ccff93c36f7561fe3773414"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\transition-district.png",
+          "hash": "sha256:603e858c3ca6c8bcfa5a247f4bf1805c90938b9fbae653e6b0f6f0bc0d29ffda"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\transition-street.png",
+          "hash": "sha256:3c0ad72229e8db94270aa057b618e78b6c0cc9717f91d0e6ef49855aec164d80"
+        },
+        {
+          "path": "content\\worldgen\\source\\places\\sx\\sxk\\sofa_pavilion_topkapi_palace\\medium-fi\\transition-closeup.png",
+          "hash": "sha256:3f9362ee65b53111a6b6c3d7dcfc365cb96f17ba42db7cc06aed1da760d62156"
+        },
+        {
+          "path": ".artifacts/topkapi-sofa-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:721ad325ada89db0f55886927d5259b5d0fe4f204c8249276bd05ae7bdba2554"
+        },
+        {
+          "path": ".artifacts/topkapi-sofa-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:d0d5a8804bc2a47ff699ae56f0aa60e851814e699578d0f2a8f187330c9d55fd"
+        },
+        {
+          "path": ".artifacts/topkapi-sofa-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:5e68a8495a64dd3ef653dcefc9b88e5fd258cc579f2b203fd88b142290bcde1d"
+        },
+        {
+          "path": ".artifacts/topkapi-sofa-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:daa86221b1af68d547723051dc4df72f21198796fe95e0ad52234db5757a6113"
+        },
+        {
+          "path": ".artifacts/topkapi-sofa-integration/shots/final-closeup-two-raised-timber-wings-and-central-stone-stair.png",
+          "hash": "sha256:8f4afb0df81cca8017c9dd337c5f7dfa6273a0b9330b0afa16b4a7985ad9c4d4"
+        },
+        {
+          "path": ".artifacts/topkapi-sofa-integration/shots/final-closeup-glazed-hall-oval-clerestory-and-grounded-shafts.png",
+          "hash": "sha256:32bcaac0b8d5666fc277d6e74ca2e3d939a11fa7c6dbb2586a820a5bb4dcd561"
+        },
+        {
+          "path": ".artifacts/topkapi-sofa-integration/shots/final-closeup-ornamental-room-sashes-panels-and-open-undercroft.png",
+          "hash": "sha256:57dfdf74b38a119c5587305231a468b992dda48067a4bb529a5e53b0861963f1"
+        },
+        {
+          "path": ".artifacts/topkapi-sofa-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:64535d313c85860168bc38b9bb14f90aaedb16dedfbb6760091f985548950ea3"
+        }
+      ],
+      "sheets": [
+        ".artifacts\\topkapi-sofa-review\\capture-report-0.jpg",
+        ".artifacts\\topkapi-sofa-review\\capture-report-1.jpg",
+        ".artifacts\\topkapi-sofa-review\\shared-capture-report-0.jpg",
+        ".artifacts\\topkapi-sofa-review\\shared-capture-report-1.jpg",
+        ".artifacts\\topkapi-sofa-review\\medium-fi-report-0.jpg",
+        ".artifacts\\topkapi-sofa-review\\medium-fi-report-1.jpg",
+        ".artifacts\\topkapi-sofa-review\\medium-fi-report-2.jpg",
+        ".artifacts\\topkapi-sofa-review\\medium-fi-report-3.jpg",
+        ".artifacts\\topkapi-sofa-review\\native-0.jpg",
+        ".artifacts\\topkapi-sofa-review\\native-1.jpg"
+      ],
+      "status": "inspected",
+      "inputHash": "sha256:517d08875177e951905883d9528c4ee35d140cdc5e8057292ba8b50bba243659",
+      "notes": "All48 current frames inspected: paired wings and complete hip roofs; lower/upper glazing; continuous central stair/round entry; grounded supports and open undercrofts; four LOD silhouettes; source/shared/medium-fi/native contexts. Native terrain and failure fallback retained. Approximate reconstruction limits recorded."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:517d08875177e951905883d9528c4ee35d140cdc5e8057292ba8b50bba243659",
+      "sourceHash": "sha256:70863bb5e6364b8b4890b0e4d0915d29bd940a55ba09825100640e1c5a3bb335",
+      "runtimeHash": "sha256:f6494f043193c2ee976b0619ded73a16d8701cc07668da6e5cc71656dfcbc9ce",
+      "files": {
+        "content/worldgen/source/places/sx/sxk/sofa_pavilion_topkapi_palace/models/source.glb": "sha256:70863bb5e6364b8b4890b0e4d0915d29bd940a55ba09825100640e1c5a3bb335",
+        "content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.glb": "sha256:f6494f043193c2ee976b0619ded73a16d8701cc07668da6e5cc71656dfcbc9ce",
+        "content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.skyline.glb": "sha256:6812f90f943f6b20b9049821cbd4fe21421e33abea6c65860dd66a3b17acdda2",
+        "content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.district.glb": "sha256:33d4042c967f9fa669097f8ee46c32731e0ddcc1f288f68cf42a5fd2eeea0fbb",
+        "content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.street.glb": "sha256:fb18ebd09021915b3f9513bbfd4b70d7b2fe55199303f0ba7318ab79bab0af8d",
+        "content/worldgen/assets/places/sx/sxk/sofa_pavilion_topkapi_palace/model.closeup.glb": "sha256:8884e9a0c79a0b73000d9d017714179e8b8ff266c255ebe1e9c39ca986881cd9"
+      }
+    },
+    "preservedMembers": [
+      {
+        "asset": "molen.worldgen.structure.gate_of_salutation_topkapi_palace",
+        "inputHash": "sha256:0a52b9af3b571a54e4fd83b157c6a072d5bd3e725554b55c9d5191a7ea98b044",
+        "sourceHash": "sha256:531f1f4b806f391653269bec502d96e6abf7647823f7a0bf395f5225c79ecdfe",
+        "runtimeHash": "sha256:92bca0aacb504f346d048aeb42dd68f499eb1800bdda2573f7f14568841bb00d",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_gate_topkapi_palace",
+        "inputHash": "sha256:e5ecd840eac8634c6a2f3c82871f3243bfc10845705f5b617a69e67cfc0800de",
+        "sourceHash": "sha256:7a56eaa1398cf42a46442536dbe45b6834596d9b3ed15429dd25f56c414c1c09",
+        "runtimeHash": "sha256:0ac29d303f82f04c2c8450f8cbd53f58ad967daa02ac4a6b634eaab32c91ebce",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.gate_of_felicity_topkapi_palace",
+        "inputHash": "sha256:60916dfdfb785c016abbf3c096b41a22563f5109507bff69083f006b1daa0001",
+        "sourceHash": "sha256:337e05137e257792295fd557f29463ff21ba5a6e4e515eb0c9ef5c6d6f693143",
+        "runtimeHash": "sha256:b98b68a9ed89a363706253dff8a894f3a2fdc80cad028eaa3810e0b0e49f88b9",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_council_hall_topkapi_palace",
+        "inputHash": "sha256:58f0bce402de4a05f12950a109b87543f1c936a960fdbf4756b928237b946fc0",
+        "sourceHash": "sha256:2225c439d3cdabe44790b10d7abe72d7a361f9ea71719515fac54a4878a232ad",
+        "runtimeHash": "sha256:2c3d1cce002ff939daa4ef152b4488b43f327c9e5eabad5f1c2eca8d8562d383",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.tower_of_justice_topkapi_palace",
+        "inputHash": "sha256:219a1a343cf2a993979c5af59c734dbd14a39782e5ba088ee584ef92aed3f290",
+        "sourceHash": "sha256:dfdc0d06990acc65f05893e24e4a6f5b292661ad97b0b9f404e2300791e418f4",
+        "runtimeHash": "sha256:d7bff441bfbaff86a4578a449c1280e9ddf814a0de190865c98237ae3b86755c",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.palace_kitchens_topkapi_palace",
+        "inputHash": "sha256:edbc800a3fd69705a9e78f7f98e45b4722190b464a7f03ad4aa6c0894a4b296f",
+        "sourceHash": "sha256:ad2bc7e06bef640a001ef60d029936252d91f74f94e4032c6dae671aa5bdbd92",
+        "runtimeHash": "sha256:693b3acba3c158ad3e1b0c388a3d4aa7edc088dfbc0ab9e82dd6074b9e51cccd",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_harem_topkapi_palace",
+        "inputHash": "sha256:df97e03dbb3cbeecd512e47fef57d635500b4fb349b02a1af695421bdb647b52",
+        "sourceHash": "sha256:7e22c6fd6761ff86e4e35320732d357294434a10ba565c39012ce12babe2d622",
+        "runtimeHash": "sha256:72359c535333df60842bd02efbdb60a4de86d29ed51ab00ab5434da47f359d96",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.audience_chamber_topkapi_palace",
+        "inputHash": "sha256:f0ae33ae6fbe3c28af23699d003252595d6107771bb4cbd1820940e90734a4e4",
+        "sourceHash": "sha256:277459ee2d0e5178232fb43b261ff3ad035de68784f66ea72797afc60d16fdaa",
+        "runtimeHash": "sha256:1d3b436a3c5173dc569e41417e5db7e0f3bac8b7d459ae084e79a903a988e4d2",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.library_of_ahmed_iii_topkapi_palace",
+        "inputHash": "sha256:83475e26b415302771dc9af96679cc98c6766f4c412646242e38dd2cfaa9b974",
+        "sourceHash": "sha256:210616d3e0c9c2cc40bd5168adaf2dffe4107eece9b41a20e979d01c4e046989",
+        "runtimeHash": "sha256:37c2231aafde4d9694dbb769870338a4b89b5ae1c1f64614242aadcd19f39b72",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.mosque_of_the_agas_topkapi_palace",
+        "inputHash": "sha256:aeacbbf5b2756970bb7ff5d95e128daa106a7149e4eac8274a908bc9cee0e9c9",
+        "sourceHash": "sha256:8236de3f0f301528fc61003fd827059a37bb5bd7467cf61f4e23c51db35d323c",
+        "runtimeHash": "sha256:a470dc4b6eabace20803b51897087d54958efb3c64b039967cc182da45e75d36",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.has_oda_kogusu_topkapi_palace",
+        "inputHash": "sha256:c6274d29f35ce7a38609be675d51585977101118f57b6f416fdc66989e48f243",
+        "sourceHash": "sha256:9e0b02d7fe7179385b9eac3285f20183dfe8510261c5e304831a5da3c354e6a8",
+        "runtimeHash": "sha256:77606eb313350e3691f3d0cc8d324ef0e3eeb7f64e3b4c3c231397d0aa76cb9d",
+        "geographicStatus": "pending-terrain-fit"
+      },
+      {
+        "asset": "molen.worldgen.structure.halberdiers_quarters_topkapi_palace",
+        "inputHash": "sha256:8de257b6ad1a0f21d6eb09668a0fa07b764f439f400b9d68213df1b1ae0fe8f2",
+        "sourceHash": "sha256:2785087df10e8289982ae0a133b32b97c478655196afcdb2e1066b15af3cc213",
+        "runtimeHash": "sha256:c633cd39255e93e6ad66ea8c5aaaba746be9978fc3236120f6cf689851ce73d1",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.baghdad_kiosk_topkapi_palace",
+        "inputHash": "sha256:6c931a9c5547e576b92cf02208208efcbbe37bb0223c24a2f0b2d14dc1a7e35a",
+        "sourceHash": "sha256:8254d74d891c624f66d5776af79a53a7e2106bec5872ee4481d3be00e8e0b746",
+        "runtimeHash": "sha256:3e247cd67e5a81f37aef7b2e60cc176a27837373c9a815d8d942028a6e47f1d3",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.yerevan_kiosk_topkapi_palace",
+        "inputHash": "sha256:8b14736d0bae567f92842a17a1ae2a06a9883a9c68c5f577e5f8c0a41f7b0370",
+        "sourceHash": "sha256:bc5d867e6a441e72fc6845e7860bd4ee2b6be922cd281f8e74f29a4db0a90b78",
+        "runtimeHash": "sha256:5bb01f9b0c67bb0ecc83b803002ef133c567c34237c2afc3de512816a008ff73",
+        "geographicStatus": "passed"
+      }
+    ],
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:517d08875177e951905883d9528c4ee35d140cdc5e8057292ba8b50bba243659",
+      "mapLevels": [
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6141
+          ],
+          "id": 35184404484940,
+          "owned": false,
+          "covered": 0.0028180146190735934,
+          "area": 100451.73151761232,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 35184566575474,
+          "owned": true,
+          "covered": 0.999997361436713,
+          "area": 287.8731847673953,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "ownedNativeIds": [
+        35184566575474
+      ],
+      "independentBuildingsUnchanged": 258,
+      "widerIndependentBuildingsUnchanged": 572,
+      "footprintQuantizationMeters": 0.0001,
+      "retainedOriginalGround": true,
+      "providerAttachment": {
+        "internal": [
+          -13,
+          0
+        ],
+        "modelLocal": [
+          -11.083877323747856,
+          -6.79320715657252
+        ],
+        "absoluteGroundMeters": 43.86410104056773,
+        "modelHeight": 0,
+        "buildingsContainingControl": []
+      }
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.sofa_pavilion_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -44.61100104056773,
+            "max": 11.602398959432271
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:721ad325ada89db0f55886927d5259b5d0fe4f204c8249276bd05ae7bdba2554",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 310712
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                41.11726163321793,
+                20.310011836418944,
+                -13.504473176896052
+              ],
+              "lookAt": [
+                -0.8526059479806043,
+                5.310011836418946,
+                -0.5225543966594246
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.wood_painted_lap": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.sofa_pavilion_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -44.61100104056773,
+            "max": 11.602398959432271
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:d0d5a8804bc2a47ff699ae56f0aa60e851814e699578d0f2a8f187330c9d55fd",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 19,
+              "triangles": 313084
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                41.11726163321793,
+                20.310011836418944,
+                -13.504473176896052
+              ],
+              "lookAt": [
+                -0.8526059479806043,
+                5.310011836418946,
+                -0.5225543966594246
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.wood_painted_lap": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.sofa_pavilion_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -44.61100104056773,
+            "max": 11.602398959432271
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:5e68a8495a64dd3ef653dcefc9b88e5fd258cc579f2b203fd88b142290bcde1d",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 19,
+              "triangles": 321624
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                41.11726163321793,
+                20.310011836418944,
+                -13.504473176896052
+              ],
+              "lookAt": [
+                -0.8526059479806043,
+                5.310011836418946,
+                -0.5225543966594246
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.wood_painted_lap": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.sofa_pavilion_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -44.61100104056773,
+            "max": 11.602398959432271
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:daa86221b1af68d547723051dc4df72f21198796fe95e0ad52234db5757a6113",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 19,
+              "triangles": 327708
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                41.11726163321793,
+                20.310011836418944,
+                -13.504473176896052
+              ],
+              "lookAt": [
+                -0.8526059479806043,
+                5.310011836418946,
+                -0.5225543966594246
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-two-raised-timber-wings-and-central-stone-stair.png",
+            "hash": "sha256:8f4afb0df81cca8017c9dd337c5f7dfa6273a0b9330b0afa16b4a7985ad9c4d4",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 18,
+              "triangles": 326468
+            },
+            "camera": {
+              "name": "two-raised-timber-wings-and-central-stone-stair",
+              "position": [
+                13.063859916485615,
+                6.310011836418946,
+                -21.315148699515106
+              ],
+              "lookAt": [
+                0.7150572419976695,
+                4.310011836418946,
+                -3.0803722406012373
+              ],
+              "fov": 57
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-glazed-hall-oval-clerestory-and-grounded-shafts.png",
+            "hash": "sha256:32bcaac0b8d5666fc277d6e74ca2e3d939a11fa7c6dbb2586a820a5bb4dcd561",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 18,
+              "triangles": 326468
+            },
+            "camera": {
+              "name": "glazed-hall-oval-clerestory-and-grounded-shafts",
+              "position": [
+                -7.701093959097753,
+                5.310011836418946,
+                -19.967302066958077
+              ],
+              "lookAt": [
+                -3.878024049226531,
+                4.810011836418946,
+                -7.068304568538389
+              ],
+              "fov": 63
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-ornamental-room-sashes-panels-and-open-undercroft.png",
+            "hash": "sha256:57dfdf74b38a119c5587305231a468b992dda48067a4bb529a5e53b0861963f1",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 19,
+              "triangles": 327708
+            },
+            "camera": {
+              "name": "ornamental-room-sashes-panels-and-open-undercroft",
+              "position": [
+                17.02447853233977,
+                2.2,
+                -4.813224563834761
+              ],
+              "lookAt": [
+                6.875801723200145,
+                5.010011836418945,
+                -1.6502577566058987
+              ],
+              "fov": 63
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 259,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184566575474,
+              "area": 287.87901719517635
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.sofa_pavilion_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -44.61100104056773,
+            "max": 11.602398959432271
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:64535d313c85860168bc38b9bb14f90aaedb16dedfbb6760091f985548950ea3",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 11,
+              "triangles": 309949
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                41.11726163321793,
+                20.310011836418944,
+                -13.504473176896052
+              ],
+              "lookAt": [
+                -0.8526059479806043,
+                5.310011836418946,
+                -0.5225543966594246
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Sofa/Terrace Pavilion: two elevated pale painted-timber wings on slender stone columns, different glazed-hall and ornamental-room window rhythms, two separate shallow lead hips with small finials, broad white soffits, raised panel/cornice work and central stone stair/round-arched entrance connector. Open undercrofts retain native ground. Do not include the independent Baghdad/Yerevan/Sofa Mosque, surrounding retaining precinct, copied interior art or furnishings.",
+    "Named Topkapi Q170495 member OSM way194486642 v17 / native35184566575474, explicitly Sofa Köşkü/Sofa Pavilion. No separate Wikidata tag was present in the standard map identity preflight, so retain the site QID with this independent way. Exact twelve-corner canopy retained. Internal+X southeast orders the glazed hall then taller ornamental room; internal-Z northeast faces the photographed central garden stair.",
+    "Picture-led elevated walking floor3.3100118364189455m relative to uncovered provider,3.15m above the highest native canopy boundary. Glazed hall eaves4.55m above floor; ornamental wing5.35m; shallow lead hips1.05/1.15m. Two-room partition follows exact mapped wings/connector. Roof pitches,18support positions, window/frame ornament inventory, back wall/floor arrangement and room heights are reconstruction controls, not surveyed dimensions.",
+    "Existing standard Protomaps20261020/Mapzen extract and original161x161/6m grid retained. Provider internal[-13,0] is outside all573 native buildings. Each shaft base samples retained ground and embeds .08m; central stair foot follows that ground. Keep ground beneath both open undercrofts and their original notched courts. No terrain/water cutouts, flattening, bespoke terrain or independent surrounding-terrace reconstruction. Historical thresholds/accessibility remain unverified."
+  ]
+}

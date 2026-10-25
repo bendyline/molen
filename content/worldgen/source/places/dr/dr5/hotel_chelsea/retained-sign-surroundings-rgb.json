@@ -1,0 +1,44 @@
+{
+  "format": "molen/retained-geometry-controls@1",
+  "recordedOn": "2026-10-18",
+  "scope": "Exact original source triangle attributes outside bounded sign box; complete skyline/district source retained.",
+  "excludedSignBox": {
+    "min": [
+      -0.25,
+      12,
+      13.8
+    ],
+    "max": [
+      0.25,
+      26.2,
+      18.5
+    ]
+  },
+  "levels": [
+    {
+      "level": "skyline",
+      "triangles": 880,
+      "retainedTriangles": 880,
+      "attributeHash": "sha256:1c1fb855604b9fc0e06e830cedd49f6407da867ccc79369caf2178e50a319470"
+    },
+    {
+      "level": "district",
+      "triangles": 3787,
+      "retainedTriangles": 3787,
+      "attributeHash": "sha256:73fbc54861caa628e50928e1347bdffa366f66beca1ad16524029a9e70d760b0"
+    },
+    {
+      "level": "street",
+      "triangles": 13199,
+      "retainedTriangles": 12989,
+      "attributeHash": "sha256:a660a42873e5da5337307138f7ce45ebd9d6b420909509fdc669f825cf8de402"
+    },
+    {
+      "level": "closeup",
+      "triangles": 43677,
+      "retainedTriangles": 43467,
+      "attributeHash": "sha256:ee9e164348755c7663e888a2d237302069740bce2006d075154abf2fce8ecc9f"
+    }
+  ],
+  "correction": "MeshBufferBuilder colors are RGB, not RGBA. Exact original geometry reconstructed by restoring only the old line lettering; all four immutable prior fingerprints matched before computing corrected RGB fingerprints. Original baseline retained unchanged."
+}

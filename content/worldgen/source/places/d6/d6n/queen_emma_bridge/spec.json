@@ -1,0 +1,382 @@
+{
+  "planId": "queen_emma_bridge",
+  "id": "queen_emma_bridge",
+  "assetId": "molen.worldgen.structure.queen_emma_bridge",
+  "title": "Queen Emma Bridge, Willemstad",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -68.9359048,
+    "latitude": 12.1065644
+  },
+  "size": [
+    164.881178855896,
+    8.052420854568481,
+    15.869999885559082
+  ],
+  "actualBounds": {
+    "min": [
+      -12.032500267028809,
+      -2.700000047683716,
+      -7.934999942779541
+    ],
+    "max": [
+      152.8486785888672,
+      5.352420806884766,
+      7.934999942779541
+    ]
+  },
+  "visualBrief": "Whole surviving QueenEmmafloatingpontoonbridge in its staticclosed/crossingconfiguration: original6vertexmovingdeckoutline/152.816mcenterline and12.013mfixedhingeapproach,16separateorthogonalboatpontoons, underdeckstringers/crossbeams, restoredwoodwalkway/curbs/openrailings, definingrepeatedtransversearchedlightframes, smallintrinsicglazedoperatorhut/freeendsideplatform/hingeandboundedpushgear. Notonlydecorativearches/flatwalkway. Exclude baywater/wholequay/Handelskadebuildings/city/ships/ferries/people/flags/royalornamentalposts/asphalttrafficmarkings/temporaryrenovationequipment. No whole-site floor. Allnative6movingdeckcorners retained atdeck0, originalnative12mhingeapproachseparate.16orthogonalboatpontoons withchamferedpointedends/shallowtaperedhulls belowdeck, twoopaque mainstringers/crosssupports, woodboarddeck; no water/sitefloor. Mainidentityis repeatedthinwhitetransversehalfellipticarches OVERwalkway, notlongitudinalsidearches.16representativearchframes withoriginalmediumfigauge/railpostcensus; trueemptywalkway/headroom. Thinwhiterails/topandmidbars/realgaps, smallwindowedflatcapoperatorcabinnearPundafreeendandboundedmechanicalpod. Currentrestoredwoodwalkway(noasphaltcenterline) followsoperator/tourismtext; detailedplankseams originalnotphototexture. Tallroyalflagornamentalcolumns/flags/lightedcityoutlines/historiclanemarkingsnotadopted. Underwaterdraft/propellers/hingehardware/2026electrification/paintcolors arebounded ratherthanclaimedcurrentsurvey. Independent400mfieldfixeddrywestapproachbeforegeometry; preserve rawtilebytes/allvalues nofit/flatten/reacquire.",
+  "nativeAxes": {
+    "x": "east-southeast fromOtrobanda hingetowardPunda",
+    "y": "up",
+    "z": "southwest/perpendicularto span"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/ac654492-d0b4-102d-bcf8-003048976d84",
+    "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/aeb059d0-d0b4-102d-bcf8-003048976d84",
+    "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/aeaf1336-d0b4-102d-bcf8-003048976d84"
+  ],
+  "stories": [
+    {
+      "id": "queen-emma-bridge-wp",
+      "url": "https://qualla.com/queen-emma-bridge/"
+    }
+  ],
+  "referenceInputHash": "fc518acfa0318f0c74a7c6aa6ef1fa13053aad6f4909fc2703c9ceacb9af5efb",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-queen-emma-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-queen-emma-bridge.mjs",
+    "level": "skyline",
+    "export": "pontoonSkyline",
+    "errorMeters": 0.85,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.13
+      },
+      "hull": {
+        "slot": "wall",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.9,
+        "metallic": 0.16
+      },
+      "wood": {
+        "slot": "roof",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "cabin": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.38,
+        "metallic": 0.08
+      },
+      "machine": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "pontoonDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13
+          },
+          "hull": {
+            "slot": "wall",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.9,
+            "metallic": 0.16
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cabin": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          },
+          "machine": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "pontoonStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13
+          },
+          "hull": {
+            "slot": "wall",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.9,
+            "metallic": 0.16
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cabin": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          },
+          "machine": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "pontoonCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13
+          },
+          "hull": {
+            "slot": "wall",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.9,
+            "metallic": 0.16
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cabin": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          },
+          "machine": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3,
+    "groundY": -3.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named nativeclosedbridgearea894738774/Q182945, all6originaloutervertices andexactmovablecenterline30410363 withseparate12.013mfixedbridgeapproach711130267. AnchoratnativewesternOtrobanda hinge/centerline endpoint; signedheadingfromwholemainspan towardPunda. +Xalongmovingdecktoeast-southeast/+Zperpendiculartowardsouthwest/+Yup. Originalmovingplan152.816m andtotalnativeaxisabout164.83m retained; story167mnominal isnotusedtostretchthemap. Nativewholeenvelopeabout10.8m includesedge/curbwidth;9mquotedusablewidthnotimposed. Individualpontoonhulls/archcensus/section/cabin/heights/underwatermachinery are explicitphotographicestimates, notcurrentengineeringsurvey. Independent400mfield frozen atdrywesternapproachbeforegeometry; lownegativewaterDEMretaineddiagnosticonly/noinferredbathymetry, actualwaterline/shoregradeunverified.",
+    "anchor": [
+      -68.9359048,
+      12.1065644
+    ],
+    "heading": -0.7352372598294423,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -68.9360274532489,
+        12.106672859724947
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed drywesternapproach[-18,0],6mbeyondnativefixedbridgeendpoint,beforeindependentterrain/modelgeometry. Modelwooddeck0; waterplane-1.85m/floatdraft/actualshoregradeunverified. No bankflattening/watermesh."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/894738774",
+      "way/30410363",
+      "way/711130267"
+    ],
+    "source": "https://www.openstreetmap.org/way/894738774",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6deb1f1e458626856a144e7b3537e2cb9f810e9d4a3083b72f485c91c6579a7f",
+    "notes": "Whole surviving QueenEmmafloatingpontoonbridge in its staticclosed/crossingconfiguration: original6vertexmovingdeckoutline/152.816mcenterline and12.013mfixedhingeapproach,16separateorthogonalboatpontoons, underdeckstringers/crossbeams, restoredwoodwalkway/curbs/openrailings, definingrepeatedtransversearchedlightframes, smallintrinsicglazedoperatorhut/freeendsideplatform/hingeandboundedpushgear. Notonlydecorativearches/flatwalkway. Exclude baywater/wholequay/Handelskadebuildings/city/ships/ferries/people/flags/royalornamentalposts/asphalttrafficmarkings/temporaryrenovationequipment. No whole-site floor."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Named nativeclosedbridgearea894738774/Q182945, all6originaloutervertices andexactmovablecenterline30410363 withseparate12.013mfixedbridgeapproach711130267. AnchoratnativewesternOtrobanda hinge/centerline endpoint; signedheadingfromwholemainspan towardPunda. +Xalongmovingdecktoeast-southeast/+Zperpendiculartowardsouthwest/+Yup. Originalmovingplan152.816m andtotalnativeaxisabout164.83m retained; story167mnominal isnotusedtostretchthemap. Nativewholeenvelopeabout10.8m includesedge/curbwidth;9mquotedusablewidthnotimposed. Individualpontoonhulls/archcensus/section/cabin/heights/underwatermachinery are explicitphotographicestimates, notcurrentengineeringsurvey.",
+    "Wholeclosed152.816mmovingbridge/original12.013mhingeapproach,16separateorthogonalboatpontoons and16representativetransversearchedlightframes. Nativeoriginal6deckvertices retained. Thinraisedwoodwalk/openrails/intrinsicoperatorcabin andboundedhinge/pushgear. Not a lonearch/genericfootbridge/citywaterfront. Staticclosedpose; noanimation/collision-clearancecertification/active2026machinerysimulation.",
+    "Qualla-first27families/0conflicts; anonymouspublishedmuseumphotos/attributionimages/unverifiedmodernagencycandidateexcluded. Threeexactnativephotographicoriginalsindividuallyinspected/SHA1matched, primaryNationaalArchiefitem-specificownCC0boundbyexistingvalidator:927-8469BertVerhoeff1975wholebridge,252-3109and252-3538WillemvandePoll1955deck/night. Deckviewcorrectlyresolvestransversearchesoverwalkway. No newpolicyexception/siblingmetadatachange, phototexture/generatedbitmap/downloadedmesh/royalornamentalcolumns/flags/copyofnearbycity.",
+    "Owner2026electrificationretainsappearance; tourismboard16pontoons/restoredwooddeck textcontrols principalstableform. Historicphotosshowasphaltlane/royaldecorations, notadopted ascurrent. Exactpresentpaintcolors/unrecordedinterimrefits/cabinwindowcount/archcensus/beamgauges/underwaterhullpropulsion/draft are boundedoriginalmediumfiestimates. Mutedwhite/gray/brownwood palette doesnotclaimsurveyedcolorfromblackandwhitephotos.",
+    "Deck0/pontoons-1..-2.7m/estimatedwaterline-1.85m/archcrown5.3m arephotoestimates. Floatingcraftareintrinsic bridge supports, nottrafficprops. Actualbarechannel/banks/ships/ferries/quay/facades/trees/people/roadmarkings/renovationequipment/watermesh excluded; no whole-site floor. Openairheadroom/between-boatgaps real atallLODs.",
+    "Independent400m129x129field/16641samples/rawtilebytes acquired atfixedlandwardwestapproachbeforegeometry andunchanged. Compositewatercellsincludedeeplowoutliersdown to-379.8896m; diagnosticrawvaluesareNOTsurveyedbathymetry/waterclassification/hostshoregrade. Do notflatten/fit/resampleawaynegativecells. Flatinspectionstage-3.2mseparate; ordinarynativepreview/replaceFootprint=false, realwater/shore/threshold/compatiblehostcontactunverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-pontoon-bridge-and-hinge-approach",
+      "position": [
+        210,
+        85,
+        140
+      ],
+      "lookAt": [
+        70,
+        1,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sixteen-boat-pontoons-stringers-and-open-water-gaps",
+      "position": [
+        83,
+        8,
+        32
+      ],
+      "lookAt": [
+        73,
+        -1.25,
+        0
+      ]
+    },
+    {
+      "name": "transverse-light-arches-woodwalk-and-open-rails",
+      "position": [
+        41,
+        3.6,
+        2
+      ],
+      "lookAt": [
+        76,
+        2.3,
+        0
+      ]
+    },
+    {
+      "name": "punda-freeend-glazed-operator-cabin-and-intrinsic-hardware",
+      "position": [
+        166,
+        8,
+        -19
+      ],
+      "lookAt": [
+        149,
+        1,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18914,
+    "vertices": 56742,
+    "materials": 6,
+    "bytes": 2273316,
+    "sha256": "sha256:837a02666670d1894b8cb337a044e2f6ab9fe7655cb0144d001377f38c34fb01"
+  }
+}

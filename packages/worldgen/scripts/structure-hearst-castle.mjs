@@ -339,6 +339,52 @@ function outlineWindows(o, points, ys, detail, frontLimit = Infinity, include = 
     }
   }
 }
+function entrancePortal(o, detail) {
+  // The stone aperture is rectangular; the semicircular arch belongs to the inset metal grille.
+  for (const x of [-2.85, 2.85]) B(o, 'concrete', x, 0.2, 1.1, 1.5, 8.3, 0.7, stucco);
+  B(o, 'concrete', 0, 6.5, 1.1, 4.2, 2, 0.7, stucco);
+  B(o, 'concrete', 0, 0.2, 1.35, 4.2, 0.15, 0.9, white);
+  for (const [z, y] of [
+    [2.15, 0.175],
+    [1.8, 0.35],
+  ])
+    B(o, 'concrete', 0, 0, z, 4.8, y, 0.4, white);
+  // The inner sides and underside of these blocks are the actual reveals.
+  face(o, 'metal', 0, 0.35, 0.9, 4.2, 6.15, dark);
+  if (!detail) return;
+  const z = 1.08,
+    n = detail > 2 ? 12 : 6;
+  for (let i = 0; i <= n; i++) {
+    const x = -1.85 + (3.7 * i) / n;
+    beam(o, 'metal', [x, 0.5, z], [x, 4.35, z], 0.035, 0.035, gold);
+  }
+  for (const y of [1.2, 4.35]) beam(o, 'metal', [-1.9, y, z], [1.9, y, z], 0.05, 0.05, gold);
+  for (let i = 0; i < 8; i++) {
+    const a = (i * Math.PI) / 8,
+      b = ((i + 1) * Math.PI) / 8;
+    beam(
+      o,
+      'metal',
+      [Math.cos(a) * 1.85, 4.4 + Math.sin(a) * 1.85, z],
+      [Math.cos(b) * 1.85, 4.4 + Math.sin(b) * 1.85, z],
+      0.055,
+      0.055,
+      gold,
+    );
+  }
+  for (let i = 0; i <= (detail > 2 ? 12 : 4); i++) {
+    const a = (i * Math.PI) / (detail > 2 ? 12 : 4);
+    beam(
+      o,
+      'metal',
+      [0, 4.4, z],
+      [Math.cos(a) * 1.85, 4.4 + Math.sin(a) * 1.85, z],
+      0.025,
+      0.025,
+      gold,
+    );
+  }
+}
 function mainHouse(o, frame, detail) {
   const f = frame.features[0];
   prism(o, f.rings[0], -9.0, 0, stucco, stucco);
@@ -385,12 +431,14 @@ function mainHouse(o, frame, detail) {
     [11.9, 0.6],
     [12.65, 0.26],
     [18.8, 0.45],
-  ])
-    B(o, 'concrete', 0, y, 0.65, 27.2, h, 0.6, white);
-  B(o, 'concrete', 0, 0.2, 1.1, 7.2, 8.3, 0.7, stucco);
-  win(o, 0, 0.35, 1.48, 4.2, 5.4, detail);
+  ]) {
+    if (y === 0.3) {
+      // The low stone band stops at the doorway instead of projecting through its floor.
+      for (const x of [-7.85, 7.85]) B(o, 'concrete', x, y, 0.65, 11.5, h, 0.6, white);
+    } else B(o, 'concrete', 0, y, 0.65, 27.2, h, 0.6, white);
+  }
+  entrancePortal(o, detail);
   if (detail) {
-    arch(o, 0, 4.0, 1.51, 4.2, 2.5, detail, { fill: gold });
     for (const x of [-5.7, -3.5, 3.5, 5.7]) {
       B(o, 'concrete', x, 0.3, 1.0, 0.35, 11.1, 0.65, white);
       for (const yy of [1.1, 3.5, 6, 8.8, 10.8])
@@ -408,20 +456,6 @@ function mainHouse(o, frame, detail) {
         B(o, 'concrete', x, yy, 1.3, 0.55, 0.23, 0.3, white);
         cylinder(o, x, 1.25, 0.26, yy + 0.2, 0.33, white, 6, 0.13);
       }
-    }
-    for (let x = -1.85; x < 2; x += 0.31) face(o, 'metal', x, 0.5, 1.57, 0.045, 3.8, gold);
-    for (const y of [1.2, 2.7, 4.2]) face(o, 'metal', 0, y, 1.58, 4.1, 0.06, gold);
-    for (let i = 0; i <= 12; i++) {
-      const a = (i * Math.PI) / 12;
-      beam(
-        o,
-        'metal',
-        [0, 4.4, 1.58],
-        [Math.cos(a) * 1.85, 4.4 + Math.sin(a) * 1.85, 1.58],
-        0.035,
-        0.035,
-        gold,
-      );
     }
     for (const x of [-2.65, 2.65]) {
       B(o, 'concrete', x, 0.3, 1.65, 0.5, 7.3, 0.4, white);
@@ -711,7 +745,6 @@ export function hearstDistrict(o) {
     }
   }
   for (const x of [-5.7, -3.5, 3.5, 5.7]) B(f, 'concrete', x, 0.3, 1, 0.35, 11.1, 0.65, white);
-  win(f, 0, 0.35, 1.48, 4.2, 5.4, 0);
   for (const x of [-5.3, 0, 5.3]) win(f, x, 15.95, 0.08, 2.1, 2.7, 0);
   B(f, 'concrete', 0, 15.6, 1.1, 11.8, 0.2, 0.9, white);
   const frame = JSON.parse(fs.readFileSync(framePath));
@@ -735,6 +768,7 @@ export function hearstStreet(o) {
 }
 export function hearstSkyline(o) {
   const main = facing(o, 0, 0, 0, 3.8);
+  entrancePortal(main, 0);
   // Purpose-built skyline preserves the detached hilltop masses within 1000 triangles.
   B(main, 'concrete', 0, -9, -5, 27, 28, 11, white);
   B(main, 'concrete', -1.3, -9, -22, 13, 26.5, 23, stucco);
@@ -835,6 +869,8 @@ export const hearstModel = {
   qaCameras: [
     { name: 'front', position: [0, 17, 65], lookAt: [0, 21, -3] },
     { name: 'back', position: [115, 75, -180], lookAt: [-15, 1, -25] },
+    { name: 'entrance-portal', position: [7, 8, 13], lookAt: [0, 7, 1.1] },
+    { name: 'entrance-reveals', position: [-2.8, 6, 5.5], lookAt: [0, 6, 1.1] },
   ],
   build: hearst,
   quality: 'medium-fi-exterior',
@@ -854,7 +890,8 @@ export const hearstModel = {
     },
   },
   limitations: [
-    'Original medium-fi coordinated exterior from inspected Qualla photographs and map/terrain controls; not an architectural or land survey.',
+    'Qualla public-domain corpus searched first. New portal construction follows the inspected original Daderot CC0 Casa Grande facade photograph; prior attribution-licensed imagery is excluded as a current control. Map/site layout and source ground retained; not an architectural or land survey.',
+    'The rectangular stone entrance has actual jamb/head reveals, threshold steps, recessed metal grille with arched fan and opaque inner boundary. Width, 0.55 m depth, levels and ornament are photographic estimates; interiors are not modeled.',
     'Main facade and twin towers, rear wing layout, three guest-house footprints, pool temple/colonnades and terraced setting are retained. Fine carved figures, tile motifs, unseen window rhythms, interiors and complete garden ornament are generalized or omitted.',
     'The 1941 aerial is supplementary layout evidence only. Modern exterior photographs control visible fabric; exact current roof services and restoration details remain uncertain.',
     'Neptune pool center is mapped; basin dimensions come from California State Parks. Detailed curved perimeter, retaining joins and vertical terrace levels are interpretations, with unmodified host terrain retained for review.',

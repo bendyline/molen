@@ -1,0 +1,354 @@
+{
+  "planId": "louisville_water_tower",
+  "id": "louisville_water_tower",
+  "assetId": "molen.worldgen.structure.louisville_water_tower",
+  "title": "Louisville Water Tower",
+  "category": "public-works",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -85.70118943529413,
+    "latitude": 38.28055582352941
+  },
+  "size": [
+    50.75481414794922,
+    56.58800049126148,
+    48.50886535644531
+  ],
+  "actualBounds": {
+    "min": [
+      -25.47017478942871,
+      -0.20000000298023224,
+      -43.21958541870117
+    ],
+    "max": [
+      25.284639358520508,
+      56.38800048828125,
+      5.289279937744141
+    ]
+  },
+  "visualBrief": "Whole ornamental WaterTower and original1860whitePumpingStationNo1: actualnative17/36vertexplans/separatepositions, open10columncircularbase/balustrade/tenposedhumanstatues, tallribbedpaneledpaleironshaft/uppercapital/slottedlantern/ribbeddome/finial, highGreekpumpcenter/openfrontportico/pediment andcompleteattachedwings/endpavilions/dressedrecessedsash/slateroofs. No detachedlatercampusbuildings/river/site.",
+  "nativeAxes": {
+    "x": "northeast across actual pump front",
+    "y": "up",
+    "z": "southeast/front on original native bearing"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:LWT_Statues.jpg",
+    "https://commons.wikimedia.org/wiki/File:LWT_Distant.jpg",
+    "https://commons.wikimedia.org/wiki/File:LWT_Indian.jpg"
+  ],
+  "stories": [
+    {
+      "id": "louisville-water-tower-wp",
+      "url": "https://qualla.com/louisville-water-tower/"
+    }
+  ],
+  "referenceInputHash": "89ffae42a96df1e4ff82d989e4786a416fb6498768dd2c9cb7f4019b0281766e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-louisville-water-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c",
+    "structure-louisville-water-statuary.mjs": "sha256:72b3eb3c838ca63d01e8aad5c64f230518f14cdb2a25b4046ee14a53d7f6d972"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-louisville-water-tower.mjs",
+    "level": "skyline",
+    "export": "louisvilleSkyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "shaft": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.18
+      },
+      "statue": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.94,
+        "metallic": 0.1
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.36,
+        "metallic": 0.06
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "louisvilleDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "shaft": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.18
+          },
+          "statue": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.94,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "louisvilleStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "shaft": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.18
+          },
+          "statue": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.94,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    },
+    "caps": {
+      "closeup": {
+        "triangles": 64000,
+        "errorMeters": 0.06,
+        "prune": true
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -0.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exactoriginal17vertextowerbaseway332331161/man_madewater_tower/Q3263909 and complete36vertexoriginalwhitepumphouseway332331169. NamedWaterWorksMuseumnode5146055222/Q17019049liesinsidepump at local[5.345,-28.941]; sourcephotoandownerhistoryidentify originalNo1building and both attachedlowwings. Tower anchor originalbasevertexmean[-85.70118943529413,38.28055582352941]; actualnativepump SEfrontstraightface10to11fixes heading0.5579686882207181rad; +Xnortheastacrosspumpfront/+Zsoutheastfront. Preserve fullnativepumpjogs/pavilions andtowercircle; do not substituteparkboundary/siteplatform or detached laterRomanesquehallsway332331167/othercampusbuildings. Towerfittedbasecenter[0.08128424771871767,-0.5307198486860636]withinoriginalring, individualcolonnade/shaft/sculptures approximate. Fixedsoutheastfrontapproach[0.08128424771871767,7.5]beforeterrain/geometry. NativepointUSGSrivergaugeele is separateproviderdatum, not a buildingfloor survey; unused. No nativebuildingheighttags; owner185ftoveralltower controls vertical silhouette. Independent160mfield frozen before geometry at fixed SEfrontapproach; exact floors/steps/host contact unverified.",
+    "anchor": [
+      -85.70118943529413,
+      38.28055582352941
+    ],
+    "heading": 0.5579686882207181,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -85.7011432036785,
+        38.28049905515297
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southeastfront approach outside towerbase before terrain and geometry. No rivergauge datum or site slab; exact ownsteps/floors/host contact remain estimates."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/332331161",
+      "way/332331169"
+    ],
+    "source": "https://www.openstreetmap.org/way/332331161",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a1a47d80f221e253144f3700b14ab2a6ccc4660c3c1b82c7fe43cef1e4f3b5d8",
+    "notes": "Complete Louisville ornamental WaterTower/Q3263909 and associated original1860white PumpingStationNo1/WaterWorksMuseum: original17vertexcircular towerbaseway332331161 and complete36vertexpumphouse/wingsway332331169, separate intrinsic structures at actualnativepositions, no connecting site slab. Tower has circular open ten-column lower colonnade/cornice, open balustrade/ten statuepedestals and ten representative zinc human sculptures with varied draped/standing poses including visible hunter/dog/raised-arm/waterpouring figures, tall tapered ribbed/paneled pale castiron shaft, large uppercapital, slotted lantern and ribbed domedcap/finial. Pumphouse has tall central Greektempleblock/front columns/pediment, lower attached symmetricalwings/endpavilions/pilasters/smallpediments/dressed recessed sash/entries/slate roofs and hidden rear wall offsets. No detached later yellow/Romanesque pumping halls/chimneys/adjacent buildings/river/landscape/plaza/roads/powerpylons/people/flags/lettering/interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Exactoriginal17vertextowerbaseway332331161/man_madewater_tower/Q3263909 and complete36vertexoriginalwhitepumphouseway332331169. NamedWaterWorksMuseumnode5146055222/Q17019049liesinsidepump at local[5.345,-28.941]; sourcephotoandownerhistoryidentify originalNo1building and both attachedlowwings. Tower anchor originalbasevertexmean[-85.70118943529413,38.28055582352941]; actualnativepump SEfrontstraightface10to11fixes heading0.5579686882207181rad; +Xnortheastacrosspumpfront/+Zsoutheastfront. Preserve fullnativepumpjogs/pavilions andtowercircle; do not substituteparkboundary/siteplatform or detached laterRomanesquehallsway332331167/othercampusbuildings. Towerfittedbasecenter[0.08128424771871767,-0.5307198486860636]withinoriginalring, individualcolonnade/shaft/sculptures approximate. Fixedsoutheastfrontapproach[0.08128424771871767,7.5]beforeterrain/geometry. NativepointUSGSrivergaugeele is separateproviderdatum, not a buildingfloor survey; unused. No nativebuildingheighttags; owner185ftoveralltower controls vertical silhouette.",
+    "Whole original WaterTowerandPumpingStationNo1 only; actual17/36vertexnativeplansandrelativepositions retained. Owner185ft/56.388moverallheight andtenstatuesareprimarycontrols. Allotherverticalsections, exactcolumn/rib/sashcensus, finecapitals/ornament/pumproofpartitionsandhiddenrearelevations remain bounded estimates from cleared2007exteriors andnativeplan.",
+    "Realopenlowercolonnade/annularcoveredwalk/closedcentralbaseentry, openbalusters andtenpedestalhumanfigures. Near statuary uses original posed generatedanatomy andsculpteddrapery/urn/hunterdog/raisedarm/hatattributes fromseveralvisiblePDcloseups; unseenposes/placementassignmentsestimated andnotportraitreplicas. Skyline preserves tower/pump heights, alltenlowercolumns/figures and mainwing/pavilion silhouette with simplified footprints/thin annular roof/rail proxies; districtcoarsensdrapery/anatomy/capitals and pump lights are flat shadow/glazing hints within the0.9merror. Nearlevelsaddpaneledshaft/ribs/rivets/dome details and genuinely recessed pump/lantern lights; streetcoarsens paintseams/roofmoldings below0.35merror. No interiorwaterpipe/engines.",
+    "Onlythree exact already-cleared publishedBedfordQualla1600x1200PDoriginals from2007; nativeSHA1/ownauthor/PD-user-w-or-en releases bound. Unrelated/food/grave/uncertain/attributionimageryunused. Riveroverviewviewedbutnotadopted. Ownertextonlysupports185ftheight/tenstatues/2024restoration; ownerwebphotographs/videos/docimagesunused. Shared proceduralplaster/paintedmetal/slate andmutedglazing, no copiedpixels/generatedbitmap.",
+    "Cleanpalefinishesrepresentpermanentarchitectureafter2024restoration;2007peelingpaint/temporaryscaffold/currentcosmeticsunverified. No detachedlaterRomanesque/yellowpumphalls/chimneys, river/USGSgauge/pylons/othercampusbuildings/roads/plazas/lawns/landscape/people/signage. Original160mterrain/rawtiles/grid/PNG unchanged at fixedfrontapproach; no flattening/fitting or connectinggroundslab; exactfloor/threshold/host contactunverified; replaceFootprintfalse."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "open-circular-colonnade-balustrade-and-ten-zinc-statues",
+      "position": [
+        17,
+        11,
+        19
+      ],
+      "lookAt": [
+        0.08128424771871767,
+        5.8,
+        -0.5307198486860636
+      ]
+    },
+    {
+      "name": "draped-raised-arm-pouring-and-hunter-with-dog-figures",
+      "position": [
+        8.8,
+        9.8,
+        9.5
+      ],
+      "lookAt": [
+        2,
+        9,
+        3.3
+      ]
+    },
+    {
+      "name": "tapered-ribbed-iron-shaft-capital-slotted-lantern-and-ribbed-dome",
+      "position": [
+        20,
+        51,
+        26
+      ],
+      "lookAt": [
+        0,
+        48,
+        0
+      ]
+    },
+    {
+      "name": "complete-original-pump-station-center-portico-and-two-wings",
+      "position": [
+        40,
+        24,
+        5
+      ],
+      "lookAt": [
+        0,
+        6,
+        -29
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 104477,
+    "vertices": 313431,
+    "materials": 7,
+    "bytes": 12541308,
+    "sha256": "sha256:8639ec3828545cae5a63976cd15cfdeb46352bd1ea56bf1f18b90f7cf947e32b"
+  }
+}

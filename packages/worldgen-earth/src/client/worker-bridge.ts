@@ -15,7 +15,7 @@ import {
 import type { PlacesContentDocs } from '../kernel/places';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
 import type { RegionalEnvironmentDocs } from '../kernel/regional-environment';
-import type { TileGeometry } from '../kernel/semantic-adapter';
+import type { SemanticAdapterOptions, TileGeometry } from '../kernel/semantic-adapter';
 import type { WorldgenTileOutput } from '../kernel/tile-generate';
 import type {
   WorldgenWorkerConfigure,
@@ -24,6 +24,8 @@ import type {
 } from '../kernel/worker-protocol';
 
 export interface WorldgenGenerateRequest {
+  buildingInfill?: SemanticAdapterOptions['buildingInfill'];
+  buildingInfillExclusions?: SemanticAdapterOptions['buildingInfillExclusions'];
   /** Renderer requests compact cells instead of retaining a second canonical vertex copy. */
   renderCellsOnly?: boolean;
   tile: TerrainSemanticTile;
@@ -124,6 +126,10 @@ export function createWorldgenWorkerBridge(
       const id = nextId++;
       const ground = tileHeightGrid(request.ground, request.geom, request.resolution);
       const message: WorldgenWorkerGenerate = {
+        ...(request.buildingInfill !== undefined ? { buildingInfill: request.buildingInfill } : {}),
+        ...(request.buildingInfillExclusions !== undefined
+          ? { buildingInfillExclusions: request.buildingInfillExclusions }
+          : {}),
         kind: 'generate',
         id,
         tile: request.tile,

@@ -126,6 +126,100 @@ function spiral(o, detail) {
   }
   if (detail > 1) cylinder(o, 'metal', x, z, 0.1, start, end - start, c.white, 8);
 }
+function escapeStair(o, detail) {
+  // Two opposite flights reach the upper-storey landing at 4 m, not the roof.
+  const lowerX = 16.1,
+    upperX = 14.65,
+    width = 1.35;
+  const deck = (x, y, z, w, d) => B(o, 'metal', x, y - 0.12, z, w, 0.12, d, cream);
+  deck(15.4, 2, 16.45, 3.05, 1.1);
+  deck(14.65, 4, 20.35, 1.7, 1.1);
+  for (const [x, z, y] of [
+    [16.8, 16.05, 2],
+    [14.0, 16.05, 2],
+    [15.4, 20.7, 4],
+  ])
+    B(o, 'metal', x, -0.2, z, 0.09, y + 0.2, 0.09, cream);
+  for (const flight of [0, 1]) {
+    const x = flight ? upperX : lowerX;
+    if (!detail) {
+      const z0 = flight ? 16.95 : 19.95,
+        z1 = flight ? 19.95 : 16.95;
+      const p = [
+        [x - width / 2, flight * 2 + 0.2, z0],
+        [x + width / 2, flight * 2 + 0.2, z0],
+        [x + width / 2, flight * 2 + 2, z1],
+        [x - width / 2, flight * 2 + 2, z1],
+      ];
+      if (flight) p.reverse();
+      quad(o, 'metal', p, normalFor(...p), cream);
+    }
+    for (let i = 0; detail && i < 10; i++) {
+      const y = flight * 2 + (i + 1) * 0.2,
+        z = flight ? 17.1 + i * 0.3 : 19.8 - i * 0.3;
+      deck(x, y, z, width, 0.32);
+    }
+    const z0 = flight ? 16.95 : 19.95,
+      z1 = flight ? 19.95 : 16.95;
+    for (const sign of [-1, 1]) {
+      const xx = x + sign * (width / 2 - 0.04);
+      beam(o, 'metal', [xx, flight * 2 + 0.03, z0], [xx, flight * 2 + 1.83, z1], 0.09, 0.16, cream);
+      if (detail) {
+        for (const dy of [0.5, 1.0])
+          beam(
+            o,
+            'metal',
+            [xx, flight * 2 + 0.2 + dy, z0],
+            [xx, flight * 2 + 2 + dy, z1],
+            0.045,
+            0.045,
+            cream,
+          );
+        for (let i = 0; i <= 10; i += detail > 1 ? 1 : 5) {
+          const z = z0 + ((z1 - z0) * i) / 10,
+            y = flight * 2 + 0.2 + (1.8 * i) / 10;
+          beam(o, 'metal', [xx, y, z], [xx, y + 1, z], 0.04, 0.04, cream);
+        }
+      }
+    }
+  }
+  if (!detail) return;
+  for (const [x, y, z, w, d, openFront] of [
+    [15.4, 2, 16.45, 3.05, 1.1, false],
+    [14.65, 4, 20.35, 1.7, 1.1, true],
+  ]) {
+    const edges = [
+      [
+        [x - w / 2, y, z - d / 2],
+        [x + w / 2, y, z - d / 2],
+      ],
+      [
+        [x + w / 2, y, z - d / 2],
+        [x + w / 2, y, z + d / 2],
+      ],
+    ];
+    if (openFront)
+      edges.push([
+        [x - w / 2, y, z + d / 2],
+        [x + w / 2, y, z + d / 2],
+      ]);
+    for (const [a, b] of edges) {
+      beam(
+        o,
+        'metal',
+        a.map((v, i) => (i === 1 ? v + 1 : v)),
+        b.map((v, i) => (i === 1 ? v + 1 : v)),
+        0.045,
+        0.045,
+        cream,
+      );
+      for (let i = 0; i <= 4; i += detail > 1 ? 1 : 4) {
+        const p = a.map((v, k) => v + ((b[k] - v) * i) / 4);
+        beam(o, 'metal', p, [p[0], p[1] + 1, p[2]], 0.04, 0.04, cream);
+      }
+    }
+  }
+}
 function operations(o, detail) {
   const x = -3.25,
     z = 13.85,
@@ -159,7 +253,7 @@ function operations(o, detail) {
       B(o, 'concrete', xx, 0.1, 20.57, 0.2, 8.15, 0.15, cream);
   }
   // Curved projecting bay on the southwestern/right front. Rear half lies within the wall.
-  const sides = detail > 1 ? 24 : 8;
+  const sides = detail > 1 ? 24 : detail ? 8 : 6;
   cylinder(o, 'concrete', 6.65, 20.35, 1.72, -0.7, 1.9, cream, sides);
   cylinder(o, 'glass', 6.65, 20.35, 1.735, 1.2, 2.1, glazing, sides);
   cylinder(o, 'concrete', 6.65, 20.35, 1.75, 3.3, 1.85, cream, sides);
@@ -197,28 +291,8 @@ function operations(o, detail) {
         for (const yy of [1.7, 5.2]) pane(o, sign * 4.58, yy, zz, 0.9, 1.3, detail, 'x', sign);
     for (const xx of [-2.8, 2.8])
       for (const yy of [1.7, 5.2]) pane(o, xx, yy, -3.88, 0.9, 1.3, detail, 'z', -1);
-    // Photographed outside stair on the southwest end, two flights and a landing.
-    B(o, 'metal', 14.9, 4.0, 13.85, 2.1, 0.18, 2.0, cream);
-    for (let i = 0; i < 20; i++) {
-      const yy = i * 0.2,
-        zz = 19.8 - i * 0.3;
-      B(o, 'metal', 14.9, yy, zz, 1.7, 0.12, 0.32, cream);
-    }
-    if (detail > 1)
-      for (const xx of [14.05, 15.75]) {
-        beam(o, 'metal', [xx, 0.95, 20], [xx, 4.95, 13.9], 0.06, 0.06, cream);
-        for (let i = 0; i <= 10; i++)
-          beam(
-            o,
-            'metal',
-            [xx, i * 0.4, 19.8 - i * 0.6],
-            [xx, i * 0.4 + 0.95, 19.8 - i * 0.6],
-            0.05,
-            0.05,
-            cream,
-          );
-      }
   }
+  escapeStair(o, detail);
   cylinder(o, 'concrete', -0.8, 12.2, 3.1, 8.3, 2.0, cream, 8);
   cab(o, -0.8, 12.2, 10.3, 3.6, detail);
   if (detail > 1)
@@ -230,7 +304,7 @@ function operations(o, detail) {
 }
 function build(o, detail) {
   operations(o, detail);
-  const sides = detail === 0 ? 8 : detail === 1 ? 12 : detail === 2 ? 24 : 40;
+  const sides = detail === 0 ? 6 : detail === 1 ? 12 : detail === 2 ? 24 : 40;
   const bands = [
     [0, 9, cream],
     [9, 14, orange],
@@ -305,6 +379,12 @@ export const fordTowerModel = {
     'Restored orange-and-white control/water tower, three intermediate circular balconies, elevator spine, spiral escape stair and upper octagonal glazed cab; attached cream Moderne operations building with garage bays, rounded bay and smaller aerological cab.',
   camera: [62, 35, 90],
   lookAt: [-2, 25, 6],
+  qaCameras: [
+    { name: 'front', position: [-3, 39, 115], lookAt: [-2, 25, 6] },
+    { name: 'back', position: [-3, 48, -93], lookAt: [-2, 25, 6] },
+    { name: 'switchback-stair', position: [29, 8, 27], lookAt: [15.3, 2.5, 18.6] },
+    { name: 'stair-upper-landing', position: [22, 7, 22], lookAt: [14.8, 3, 18.5] },
+  ],
   build: fordTower,
   quality: 'medium-fi-exterior',
   reviewStatus: 'review-in-qa.json',
@@ -323,7 +403,8 @@ export const fordTowerModel = {
     },
   },
   limitations: [
-    'Original medium-fi restored exterior, using inspected local Qualla aerial for site context and museum/Warren LeMay supplemental front and side photographs for architectural evidence; not a measured survey.',
+    'Qualla corpus searched first. New stair construction uses the inspected original 2013 Bernard Spragg photograph with the photographer’s explicit primary CC0 dedication. Prior private museum and attribution-licensed imagery is excluded; mapped operations/tower frame retained. Not a measured survey.',
+    'Two physical switchback flights, intermediate landing, upper-storey landing, stringers, support posts and railings follow the public-domain photograph. Flight widths, tread counts and 0/2/4 m levels are photographic estimates. The 2013 reference does not certify every detail of the later restoration.',
     'Museum sources describe 158 ft tower height and 168 ft observation access differently. The recipe approximates a 48.2 m shaft/tank transition and 51.2 m upper deck; individual levels, cabin roof and antenna heights are estimates.',
     'Orange/white restored exterior represents the modern tower, not the incomplete camouflage-era 1941 structure. Spiral tread count, hidden rear windows, rail subdivisions, doors and rooftop equipment are simplified.',
     'Includes the attached operations building and small aerological cab. Hangars, museum aircraft, interiors, vegetation and other site structures are excluded.',

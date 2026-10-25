@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sy/sy6/n0314_citadel_of_aleppo/',
+  '../../../content/worldgen/source/places/sy/sy6/citadel_of_aleppo/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -827,7 +827,7 @@ export const buildAleppoDistrict = (out) => build(out, 1);
 export const buildAleppoStreet = (out) => build(out, 2);
 export const buildAleppoCloseup = (out) => build(out, 3);
 export const aleppoStudy = {
-  id: 'N0314',
+  id: 'citadel_of_aleppo',
   key: 'citadel_of_aleppo',
   title: 'Citadel of Aleppo',
   category: 'castle',

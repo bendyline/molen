@@ -1,0 +1,370 @@
+{
+  "planId": "angkor_wat",
+  "id": "angkor_wat",
+  "assetId": "molen.worldgen.structure.angkor_wat",
+  "title": "Angkor Wat",
+  "category": "temple",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 103.86693525000001,
+    "latitude": 13.41245115
+  },
+  "size": [
+    1307.2246398925781,
+    64.5999984741211,
+    845.1850280761719
+  ],
+  "actualBounds": {
+    "min": [
+      -807.0337524414062,
+      -1.5,
+      -424.9413757324219
+    ],
+    "max": [
+      500.1908874511719,
+      63.099998474121094,
+      420.24365234375
+    ]
+  },
+  "visualBrief": "Complete ancient Angkor Wat architectural ensemble: native three concentric galleries/open courts, five articulated lotus-bud towers, curved corbelled stone roofs, real gallery openings/colonnade and turned balusters, layered plinths/steep steps, six libraries and cruciform galleries, full outer laterite enclosure/four gateways, monumental west gopura and ancient causeway/naga rails. Exact native master plans with photographically estimated sections/repeats and simplified far levels; no natural moat/forest/site slab or later separate monastery/stupa.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20191210_Angkor_Wat_from_west-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:20191210_Angkor_Wat_outer_wall_front_view-5.jpg",
+    "https://commons.wikimedia.org/wiki/File:20191210_Angkor_Wat_interior_courtyard-2.jpg",
+    "https://commons.wikimedia.org/wiki/File:20191210_Angkor_Wat_front_stairs_towers-2.jpg",
+    "https://commons.wikimedia.org/wiki/File:20191210_Angkor_Wat_towers-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:20191210_Angkor_Wat_Southern_Library-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:20191210_Angkor_Wat_western_gate-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:20191210_Angkor_Wat_western_view_over_moat-3.jpg",
+    "https://commons.wikimedia.org/wiki/File:20191210_Angkor_Wat_outer_gallery_wall_corner-2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "angkor-wat-wp",
+      "url": "https://qualla.com/angkor-wat/"
+    }
+  ],
+  "referenceInputHash": "4ba89d80a602e6d46a655e1a2512d218e103d270dae7c786bf5a0b496abb0831",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-angkor-wat.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-angkor-wat.mjs",
+    "level": "skyline",
+    "export": "angkorSkyline",
+    "errorMeters": 10,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_granite",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "laterite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "angkorDistrict",
+        "errorMeters": 4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "laterite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "angkorStreet",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "laterite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -0.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fixed west bank approach outside the exact native ancient causeway before terrain acquisition. Bounded intrinsic architectural plinths/courts/steps and thin footings only; no fitted or flattened entire enclosure. Raw relief retained separately; vegetation/building returns make precise host contact unverified.",
+    "anchor": [
+      103.86693525000001,
+      13.41245115
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        103.85945459502523,
+        13.412530799999999
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed west bank approach3moutside the native ancient causeway before terrain acquisition. Approximate distributed wall/library levels follow preserved raw relief; core terrace floors remain estimated intrinsic architecture."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/1535019",
+      "relation/12094941",
+      "relation/1648455",
+      "way/886790391",
+      "way/886790392",
+      "way/886790393",
+      "way/886790394",
+      "way/886790395",
+      "way/886790396",
+      "way/886790399",
+      "way/886790400",
+      "way/886790406",
+      "way/886790407",
+      "way/886790410",
+      "way/886790411",
+      "way/886790412",
+      "way/886790413",
+      "way/886790416",
+      "way/886790417",
+      "way/886790427",
+      "way/886790428",
+      "way/886790444",
+      "way/886790445",
+      "way/886790446",
+      "way/886790447",
+      "way/886790450",
+      "way/886790451",
+      "way/886790452",
+      "way/886790453",
+      "way/886790454",
+      "way/886790455",
+      "way/886790456",
+      "way/886790457",
+      "way/886790458",
+      "way/886790459",
+      "way/886790460",
+      "way/886790461",
+      "way/886790462",
+      "way/886790463",
+      "way/886790464",
+      "way/886790465",
+      "way/886790466",
+      "way/886790467",
+      "way/886790468",
+      "way/886988158",
+      "way/886988159",
+      "way/888459762",
+      "way/888649874",
+      "way/888649875",
+      "way/888649876",
+      "way/888649877",
+      "way/888649879",
+      "way/888649880",
+      "way/39842240",
+      "way/240011220",
+      "way/120320892",
+      "way/120320893",
+      "way/120324355",
+      "way/120324357",
+      "way/642066967",
+      "way/888569856",
+      "way/888649878",
+      "way/1092292990",
+      "way/1462271693",
+      "way/1092279918",
+      "way/502932535",
+      "way/471925578",
+      "way/513679283",
+      "way/513679284",
+      "way/513679286",
+      "way/513679288",
+      "way/107936174",
+      "way/160675511"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=103.8587,13.4086,103.8720,13.4164",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:78f7d6c669d279871c0d9cbb1a9585eabd3e80faea100963cda06f0035228c06",
+    "notes": "Complete Angkor Wat ancient architectural ensemble: five central lotus-bud towers and their tiered sanctuaries; three concentric galleries with native open courts, cruciform connecting galleries, six mapped libraries, bounded intrinsic terraces/stone stairs/paved causeways and naga balustrades; west monumental gopura plus north/east/south outer gates and full native enclosure wall network. Include ancient western bridge/causeway footprint. No natural moat/water/forest/landscape mesh or entire82ha ground slab; modern floating pontoon/access facilities, later separate stupa/monasteries/sculpture collections, neighboring Angkor monuments and people excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact original OSM area payload establishes three gallery multipolygons/courtyard holes, fifty explicit-height roof/tower parts and five tower footprint controls, six library footprints, cruciform galleries/Terrace of Honor, four outer gateways, four enclosure wall polylines and the ancient west causeway polygon. Original coordinates retained in source/map controls; native heights and note=\"simplified shape\" are mapped estimates, not survey accuracy. Roof sections, stone steps/courses/colonnade and baluster/window repeats, lost gate fragments and concealed details are photographic medium-fi interpretations. Far LODs simplify small plan articulations while retaining all defining structures.",
+    "Upper entry/corner pavilion sections are bounded Boolean intersections of original native gallery polygons and explicit estimated16m selection boxes. Ground master footprint/courtyard topology remains native; exact upper pavilion/pediment/roof breakage and concealed details remain original photographic medium-fi interpretations, not independent surveyed pavilion footprints.",
+    "All ancient structures in scope are retained, including six mapped libraries, cruciform galleries, ancient west causeway, four outer gateways and full enclosure wall polylines. The present conservation state of concealed N/S/E gateway wings is conservatively represented by broken walls/lintels, not complete invented roofs. Separate later Chedei Chey Non stupa, modern monasteries/floating bridge/access facilities and neighboring temples are excluded.",
+    "Mapped native roof/tower heights are simplified estimates. Gallery platform/court levels4/11/23m, six library floor sections, vaulted profiles, tier taper/lotus finials, plinth/door/pediment details, stone/baluster/column counts, naga anatomy and exact stair landings remain photographic medium-fi estimates. Native master footprints/courtyard topology are retained; distant levels simplify small projections and roof sections. Individual ancient sculpture/epic relief figures are original representative motifs, not an exact census or photograph texture.",
+    "Nine exact Balon Greyjoy December2019own-work CC0 originals inspected after the Qualla-first scan. The ambiguous-source1866record, blank postcard backs, unrelated neighboring temples, regional map alias and all other-licensed imagery are unused. No visitor/sign/modern mural or landscape imagery is reproduced.",
+    "Raw source terrain is preserved separately without flattening or fitting; coarse building/vegetation returns vary by about24m across the central native footprint and do not establish surveyed temple ground. Review stage is flatY-.25 for legible architecture; actual native geographic alignment is approximate preview, not verified precise thresholds/ground contact or a full enclosure terrain replacement. Cultural plinth/court/causeway surfaces stay bounded to intrinsic architecture, with no82ha ground slab or natural moat/forest mesh."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "full-ancient-enclosure-four-gates-and-west-causeway",
+      "position": [
+        -1310,
+        920,
+        1030
+      ],
+      "lookAt": [
+        -130,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "five-lotus-towers-open-upper-courts-and-vaulted-galleries",
+      "position": [
+        95,
+        85,
+        112
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ]
+    },
+    {
+      "name": "western-colonnade-libraries-and-cruciform-galleries",
+      "position": [
+        -210,
+        47,
+        105
+      ],
+      "lookAt": [
+        -80,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "western-gopura-ancient-causeway-and-outer-library",
+      "position": [
+        -680,
+        72,
+        195
+      ],
+      "lookAt": [
+        -470,
+        7,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63740,
+    "vertices": 191220,
+    "materials": 5,
+    "bytes": 7652032,
+    "sha256": "sha256:46fced8121ae77b87dc04ffe134e0a8ee0834c6a92f95feed2b9920bd036da40"
+  }
+}

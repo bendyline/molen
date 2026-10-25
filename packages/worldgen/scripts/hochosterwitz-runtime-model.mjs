@@ -10,7 +10,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/',
+  '../../../content/worldgen/source/places/u2/u26/hochosterwitz_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -734,7 +734,7 @@ const _camera = (name, p, look) => ({ name, position: native(p), lookAt: native(
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u2/u26/hochosterwitz_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

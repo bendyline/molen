@@ -11,6 +11,26 @@ export async function reviewedMediumFi({ qa, reportBytes, sidecar, readImage }) 
   )
     return false;
   const report = JSON.parse(reportBytes);
+  if (report.captureVersion !== undefined) {
+    if (
+      report.captureVersion !== 2 ||
+      report.renderedAsset?.assetId !== sidecar.id ||
+      report.renderedAsset?.runtimeHash !== sidecar.hash ||
+      !report.frames?.length ||
+      !report.frames.every((frame) => {
+        const level = sidecar.runtimeLods?.levels?.find(
+          (level) => level.name === frame.state?.level,
+        );
+        return (
+          frame.state?.assetId === sidecar.id &&
+          frame.state.runtimeHash === sidecar.hash &&
+          !!level &&
+          frame.state.lodHash === level.hash
+        );
+      })
+    )
+      return false;
+  }
   if (
     report.sourceHash !== qa.sourceHash ||
     report.runtimeHash !== sidecar.hash ||

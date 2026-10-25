@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.watercraft.speedboat": {
-      "doc": "Open speedboat. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Speedboat. Open speedboat. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [
@@ -46,13 +46,13 @@
           "kind": "molen.entities.watercraft.speedboat",
           "color": "#709cb5",
           "spec": {
-            "label": "Open speedboat",
+            "label": "Bendy Speedboat",
             "length": 6.6000000000000005,
             "width": 2.5850000000000004,
             "height": 1.45,
             "draft": 0.5,
             "mass": 1200,
-            "thrust": 2160.0,
+            "thrust": 2160,
             "maxSpeed": 15.600000000000001,
             "reverseSpeed": 3,
             "turnRate": 0.46875,
@@ -68,7 +68,22 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "helm",
+                "helm-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {

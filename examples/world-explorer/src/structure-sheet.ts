@@ -129,6 +129,9 @@ async function main(): Promise<void> {
   const models = new ModelLibrary(
     async (ref) => (await assets.instance(ref)).scene,
     content.worldgen.places.landmarks.definitions,
+    false,
+    {},
+    content.fonts,
   );
   function createPreview() {
     let yaw = 0.68;

@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.st_giles_cathedral",
+  "sourceHash": "sha256:6612156fd0c6553fe4d79ad40e0a926763bd3f989200499cbf16569726a754b8",
+  "runtimeHash": "sha256:64aba2bd0873756249d0c09d1084df048b51b6ae03f4fd74003defc6632c2078",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4268,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:f633178e76ba25f65e10e2a0e58b8fd81f0f3f4b3bafaa76899e5a93d9523260",
+      "bytes": 92632,
+      "gzipBytes": 18242,
+      "triangles": 901,
+      "cpuBytes": 91196,
+      "gpuBytes": 91196,
+      "errorMeters": 1.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:e0631b339cc53b06fe65459f079c52f2573b3c03c64303771b3dfe0b2e05a1c2",
+      "bytes": 217692,
+      "gzipBytes": 62716,
+      "triangles": 2260,
+      "cpuBytes": 209188,
+      "gpuBytes": 209188,
+      "errorMeters": 0.8,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:89b35c19feda7510818c4b00a7da79f88a03575c8347d2ddf30645b36be34e66",
+      "bytes": 893132,
+      "gzipBytes": 236190,
+      "triangles": 9313,
+      "cpuBytes": 884604,
+      "gpuBytes": 884604,
+      "errorMeters": 0.25,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:e18529f026ff91dc4174322229ffdff587a657eb5691e4326d45e57ff30e186f",
+      "bytes": 1609372,
+      "gzipBytes": 467975,
+      "triangles": 16573,
+      "cpuBytes": 1600824,
+      "gpuBytes": 1600824,
+      "errorMeters": 0.06,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:1e645d7a1ce5967ab47d3f9aea66678666128f5c5dc7a798352da7f4b640540a"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:429f7755ccd87fdf4d0542e5d4796d676c1c52f3884cab7ca396927417e76108"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:d0d8a6880d0ab52623184ed751224d4ca7c5ae994960a7f6d96289e63bceb41a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          47.4743,
+          44.9514,
+          82.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:6df5cb99b7f52c4b07c617611668640fa39b4f66de0b71135b92f35458673355",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          47.4743,
+          44.9514,
+          82.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:12424d21b819da4929007bca91903ba3200c0e95de75c6efa68546016c539f31",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          47.4743,
+          44.9514,
+          82.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:8712c82c2f245f1cc5e91bbbfd6c4e632b75a0a275a140ebe73d534809ceb88b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          47.4743,
+          44.9514,
+          82.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:2b9476be538b5d8f6936a62358eb4e4667885143635ce638bddd085441cd98a6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 27330,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          96.4743,
+          80.9514,
+          167.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:dbfdf9e834a081b989694d52b40e0abc8fe52225c7e63df74b98f70d47637bf2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 27330,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          96.4743,
+          80.9514,
+          167.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:c5eca2bcbed6932146eda95cc342faf5bcec71218052621fbc748e7d9d5fb8d8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 27330,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          96.4743,
+          80.9514,
+          167.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:5b601941eca7bfa59252ee625a15a0637fac02f5010ad8160327b32e62d93678",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 27330,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          96.4743,
+          80.9514,
+          167.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:6e7d19d46ae59e11160cf975704bdaeca44ffd97ef4ada0c4e8de3ec540ad9ac",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25971,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4743,
+          118.9514,
+          335.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:487c864ebca7d4e4666472dfa30e1f241db70a92effb394c119d38185d5bf69f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25971,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4743,
+          118.9514,
+          335.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:94afd298b60e76f40ccec2c84fd18ddde5730d0537d84325b8e1868c22032ecc",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25971,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4743,
+          118.9514,
+          335.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:7b45fe5f999a183e7c1b4db63ebff9c1d7b8d2d9074dd798388ae7b189625369",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25971,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4743,
+          118.9514,
+          335.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:20d338c007f7122f1445a25f35d680fc63e07c0d8d3d88dc453229c8d282ba56",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21703,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4743,
+          118.9514,
+          335.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-eight-rib-crown.png",
+      "hash": "sha256:bc748916245d3cb5788d6c565a40d4969be8a48c6fd3eef70902c7be176475e9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 41640,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -31,
+          35.16,
+          33
+        ],
+        "lookAt": [
+          -1.0461796198535769,
+          32.66,
+          -5.081473846642892
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-gothic-front.png",
+      "hash": "sha256:9aa727fbb1471ca3861aa76c34844fa1d02b06b9437b0be9d08764b2bd380297",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -82,
+          23.16,
+          15
+        ],
+        "lookAt": [
+          -31,
+          12.16,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-choir-and-thistle-chapel.png",
+      "hash": "sha256:fa21c12ff0f0cbba00dd20726df83b0a3bf7c444aaa4ab894e8c8141c9f96686",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          76,
+          31.16,
+          41
+        ],
+        "lookAt": [
+          28,
+          12.16,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northern-aisles-and-turret.png",
+      "hash": "sha256:12abf3e0f8fb9ac7308b11cd6d23867ffde87bb9aa4e75380ff6a12b765f5fc8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -25,
+          37.16,
+          -75
+        ],
+        "lookAt": [
+          -5,
+          14.16,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-crossing-and-south-ranges.png",
+      "hash": "sha256:0b5b883fad133dc63187cf3e6c0a3568ef079f4f328269d494f0e047cb80b49e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          37,
+          111.16,
+          69
+        ],
+        "lookAt": [
+          0,
+          17.16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-entry-and-window-tracery.png",
+      "hash": "sha256:2273645730983e605d0a8725592864ac68de786e7679af056ca7961b6d72c362",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -60,
+          14.16,
+          -2
+        ],
+        "lookAt": [
+          -31,
+          11.16,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-giles-skyline.png",
+      "hash": "sha256:e4cfdfc7d880e6a8430b6d7ffafc7631a2bce0b75562b9d66a2580c7a3834281",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25971,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -100,
+          69,
+          95
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-giles-district.png",
+      "hash": "sha256:3b2c8c952b7abdaa3c98ef6187ff2c1b3e59f2d189f27d70c5c949333535b5dc",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 27330,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -100,
+          69,
+          95
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-giles-street.png",
+      "hash": "sha256:1a695a34fbb90663eb6e4f4d2520e7f8f05894de5cc6529d98899d6ecd3531dc",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34383,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -100,
+          69,
+          95
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-giles-closeup.png",
+      "hash": "sha256:ef3c1db4c46551bcece32c317c5dcec61be987188f86b1a96dd6bc604e70e461",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -100,
+          69,
+          95
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:945e3eedf3def169833a4bd70b5d289352574298374de65d3ab7ccd37771c3c1",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25971,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          96.4743,
+          80.9514,
+          167.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:dbfdf9e834a081b989694d52b40e0abc8fe52225c7e63df74b98f70d47637bf2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 27330,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          96.4743,
+          80.9514,
+          167.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:8576835d114176abf95adb791879045a36bd646beb11310ba32c66e0f5674f39",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34383,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          96.4743,
+          80.9514,
+          167.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:67f508b449ea3a617828628499e474ec91156ca46579e3a434dbe1025a848aa1",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41643,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcv/st_giles_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          96.4743,
+          80.9514,
+          167.9571
+        ],
+        "lookAt": [
+          -0.5257,
+          29.9514,
+          -0.0429
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

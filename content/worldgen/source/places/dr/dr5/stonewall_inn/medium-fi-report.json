@@ -1,9 +1,14 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.stonewall_inn",
-  "sourceHash": "sha256:115729d6a60055925a94babd2ca29844ad7f81ca31f08d4c616cd090ca79c541",
-  "runtimeHash": "sha256:6514fa55c852b576cd7ed2b74164089aa716ec18304e4bb8cba21bfa225ab69b",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.stonewall_inn",
+    "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc"
+  },
+  "sourceHash": "sha256:3964911242e00f0f339de983a11f8a1d5e2c33825a8850917dc21653527f976f",
+  "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -40,36 +45,36 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:d0d30e2f8a65ddda80d2aed1f51a8d16e81b4d9357be038ef6e0ea389cbb797d",
-      "bytes": 234452,
-      "gzipBytes": 46995,
-      "triangles": 2969,
-      "cpuBytes": 227156,
-      "gpuBytes": 227156,
+      "hash": "sha256:2e02e2eb5471fb0033ee7037b06a3b730b429827187cbb8a4dcee7e5d8c217d8",
+      "bytes": 240428,
+      "gzipBytes": 48605,
+      "triangles": 3062,
+      "cpuBytes": 233152,
+      "gpuBytes": 233152,
       "errorMeters": 0.16,
       "drawCalls": 6
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:8a0509311ffe096cc7df9293e1abd802ef617d8fa07f2093ed0ba4c41b8b1892",
-      "bytes": 404876,
-      "gzipBytes": 81341,
-      "triangles": 5171,
-      "cpuBytes": 396464,
-      "gpuBytes": 396464,
+      "hash": "sha256:1c149254e7c353efcc8ca3f4187e4576d1ef5cbd7b7c76bdc89f270ac5396e24",
+      "bytes": 429416,
+      "gzipBytes": 86517,
+      "triangles": 5514,
+      "cpuBytes": 421024,
+      "gpuBytes": 421024,
       "errorMeters": 0.06,
       "drawCalls": 7
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:1e1ddb08090bb59028f35ca32bcf4568f2770b0187c7586698bd0d066bd82883",
-      "bytes": 931588,
-      "gzipBytes": 162092,
-      "triangles": 7733,
-      "cpuBytes": 927960,
-      "gpuBytes": 927960,
+      "hash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
+      "bytes": 972752,
+      "gzipBytes": 169519,
+      "triangles": 8076,
+      "cpuBytes": 969120,
+      "gpuBytes": 969120,
       "errorMeters": 0,
       "drawCalls": 7
     }
@@ -77,11 +82,11 @@
   "terrainFixture": {
     "descriptor": {
       "path": "terrain-review.terrain.json",
-      "hash": "sha256:e0a412d582783ccc9b432594d6f6448cfc9a49db23239a2c91b0f0ee4c62745c"
+      "hash": "sha256:c221e28f4f64d476f65274b8346866e975d4ff6634fcbeefca4dc3a474d5005a"
     },
     "heightmap": {
       "path": "terrain-review.height.png",
-      "hash": "sha256:41b3d72985aab6bbd8765566dc084fb82fb658d3e79c7d87a865302ceaa603ac"
+      "hash": "sha256:6a81983c2d3cc148511fb467989c71370174b560108dd595e21ceeb41c88eef1"
     }
   },
   "fixtureEntities": [],
@@ -90,15 +95,18 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:653a1db98cfeb2f89f92c4dd750b40c45867156e3fda79adb903ed02a2e559b9",
+      "hash": "sha256:b70ecb4e83fb1e43f06468addd4b2fbc116cedc53d0b08ce819421d51e7c0478",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 13,
-        "triangles": 22167,
-        "groundY": -4,
+        "triangles": 47086,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -125,20 +133,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:d5052f71440f7285f90ce7db6127ade5d77f60e84d7b19ae36c042ab6f4189a6",
+      "hash": "sha256:aaf2f809e1026fd5fecd3fe10ca01c3a5f18d3b256d8957b516f6d16ae412acc",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 22167,
-        "groundY": -4,
+        "triangles": 47086,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -165,20 +177,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:c2cbe073b1231ea5ea342a043ced06b18f8a316f89b25e499aeacfef7dd1979f",
+      "hash": "sha256:877c0da2cd8dcf4800491fcab20d192f82d44b5b971f4083f2ef058be55629e6",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 13,
-        "triangles": 22167,
-        "groundY": -4,
+        "triangles": 47086,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -205,20 +221,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:1d5696bb44c28e68d41d019297e97f8dafedb93cfbcb3574859f91d4d623e7c4",
+      "hash": "sha256:44788a314eee00c992516091fc18a1a5379e98101c1a4dfa3a9391e2fbd5cdc6",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 22167,
-        "groundY": -4,
+        "triangles": 47086,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -245,20 +265,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:5a921e2dc93b644f54b2297400ba594a51b747ca99fc9956906cd2e17f617fb9",
+      "hash": "sha256:3ff555922dfd534f5c8a302f7eacb389e86598f6272f0ac3281fac95b16919a4",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2e02e2eb5471fb0033ee7037b06a3b730b429827187cbb8a4dcee7e5d8c217d8",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 17403,
-        "groundY": -4,
+        "triangles": 42072,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -285,20 +309,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:424bbf2703a5c131891089d605d86da8bebfa6b0b622197ef5e1b0837cc932e1",
+      "hash": "sha256:3189fb4e15e256e6949e9dba49c6e4b4a38cc477dfe6adc10b79dfbb7f477116",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2e02e2eb5471fb0033ee7037b06a3b730b429827187cbb8a4dcee7e5d8c217d8",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 17403,
-        "groundY": -4,
+        "triangles": 42072,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -325,20 +353,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:b3d5788d25925265848d157574761b81015fbdcda4b9e94df8abcb2a65ba195a",
+      "hash": "sha256:be73da3064b6c2c7eeeb51480d076d5cff8eba2c76a5c7940a9c54edae3ec018",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2e02e2eb5471fb0033ee7037b06a3b730b429827187cbb8a4dcee7e5d8c217d8",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 17403,
-        "groundY": -4,
+        "triangles": 42072,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -365,20 +397,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:d6412b1f7a2e8a0e570588bbaf945e3f4b1d6b39e3b94e337b145f12b85f1991",
+      "hash": "sha256:2dad7d7ed1284a4aab42bd09c88813de664e4281fbac816ce07d3bd8a06b15d1",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2e02e2eb5471fb0033ee7037b06a3b730b429827187cbb8a4dcee7e5d8c217d8",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 17403,
-        "groundY": -4,
+        "triangles": 42072,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -405,20 +441,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:e91eb60fe3355dcbe4c607815f72ff5cfed290531e75b8c6be8f93f0d42bb4b2",
+      "hash": "sha256:7fb68665af2c0c1adc21826f3a7807982de2d08036b328b0f090101a8f3ba4a8",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2da3fe0254ffbe5cd1ec04cac613a3065e351073d528ae13c1a6f4db9252d09f",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 14772,
-        "groundY": -4,
+        "triangles": 39348,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -445,20 +485,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:21aa36a6aee814058c859bd00a664a7652de8ffdc756c0ce6b35932973839faf",
+      "hash": "sha256:c3de00cf58e8e34e1ab77992b8fcd5c75dd225e3410646ef4d6fce6bc0311df1",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2da3fe0254ffbe5cd1ec04cac613a3065e351073d528ae13c1a6f4db9252d09f",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 14772,
-        "groundY": -4,
+        "triangles": 39348,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -485,20 +529,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:d29f6eb0111646bae0193843eee187afcea7e1216d426dbebb8c7aa3dbfb412e",
+      "hash": "sha256:c5d56b97b19a52b7dac691d2e5b572f3c713f98f219901dea9b0592d5da16607",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2da3fe0254ffbe5cd1ec04cac613a3065e351073d528ae13c1a6f4db9252d09f",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 14772,
-        "groundY": -4,
+        "triangles": 39348,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -525,20 +573,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:19bd8e7dba1990d9b06ee52e26dc794d3f9490f13b8bcee9252f5f8ba50be63b",
+      "hash": "sha256:a1106386b025526c3c16d3daeb113bfcbd33f19b7d818f6e1fb06f33ec792a76",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2da3fe0254ffbe5cd1ec04cac613a3065e351073d528ae13c1a6f4db9252d09f",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 14772,
-        "groundY": -4,
+        "triangles": 39348,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -565,20 +617,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:022fc7eb91619ce22b7f709d658511523e4564675c72281c8ebb8e8cdb302ea3",
+      "hash": "sha256:9e492a64ddf840732f9d67890afbbc2148a3a9b6f85622cc31d35957fc610643",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2da3fe0254ffbe5cd1ec04cac613a3065e351073d528ae13c1a6f4db9252d09f",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 3,
-        "triangles": 8532,
-        "groundY": -4,
+        "triangles": 33108,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -605,20 +661,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/front.png",
-      "hash": "sha256:dcd1b4e1502c03553f5136c6154b33790e99bfa64b8b7fd684d7aebe8a6fe267",
+      "hash": "sha256:e04f7a29cf2a0affdd346922ba76a8707cf8c06e5e515bb5789caf2300546196",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 22167,
-        "groundY": -4,
+        "triangles": 47086,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -645,20 +705,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/back.png",
-      "hash": "sha256:8dbefa3ba245ce1282cacef6474f81514df5e34a5dbb7f06f10cbf783b6329db",
+      "hash": "sha256:76b4e33a885e01865a7f77a76ca698f4ce6abde6b0281e0e2c0db0525890fc1f",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 22167,
-        "groundY": -4,
+        "triangles": 47086,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -685,20 +749,156 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/main-portal.png",
+      "hash": "sha256:1c50533d5baa44bd365f1abef1f5cce67e42eefc203e6ebcf3293886ef3d8e6c",
+      "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47086,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
+        },
+        "position": [
+          0.6,
+          2.8,
+          18.3
+        ],
+        "lookAt": [
+          -1.69,
+          1.45,
+          14.05
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/side-portal.png",
+      "hash": "sha256:b5f0aa9f15e9cf527f6e06f7a5d4aa142efbab72470b5a2d26fa9206f0cf28eb",
+      "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47086,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
+        },
+        "position": [
+          -9.5,
+          2.5,
+          17.5
+        ],
+        "lookAt": [
+          -7.62,
+          1.4,
+          14.05
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/visitor-portal.png",
+      "hash": "sha256:49ebd4c3fafa7f4c56ca0f07fe5397ff1cbadb720489d366b53219a71f882991",
+      "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47086,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
+        },
+        "position": [
+          7.4,
+          2.4,
+          17.8
+        ],
+        "lookAt": [
+          4.48,
+          1.2,
+          14.1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:bdd68b05f103d51fc8f599f8ad1234cc5351a5ea3521440c38f6d64103225184",
+      "hash": "sha256:c540ef25a767e71b954e33421a894265e75cb694171c22b8b0805b30b94efc0b",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2da3fe0254ffbe5cd1ec04cac613a3065e351073d528ae13c1a6f4db9252d09f",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 14772,
-        "groundY": -4,
+        "triangles": 39348,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -725,20 +925,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:424bbf2703a5c131891089d605d86da8bebfa6b0b622197ef5e1b0837cc932e1",
+      "hash": "sha256:3189fb4e15e256e6949e9dba49c6e4b4a38cc477dfe6adc10b79dfbb7f477116",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:2e02e2eb5471fb0033ee7037b06a3b730b429827187cbb8a4dcee7e5d8c217d8",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 17403,
-        "groundY": -4,
+        "triangles": 42072,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -765,20 +969,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:6e6ae2a80691f900f255af6bbaf878f6db6254862ee631cdecf9bbce7dc5b803",
+      "hash": "sha256:af084900dc75b2c80589069ce34154011643602325d1e6ffad37cd5046c7cad6",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:1c149254e7c353efcc8ca3f4187e4576d1ef5cbd7b7c76bdc89f270ac5396e24",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 19605,
-        "groundY": -4,
+        "triangles": 44524,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -805,20 +1013,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:9adea4679ea4a4b7e2d0987a717255bb8b416c286dacd876da5ed70068e871f0",
+      "hash": "sha256:c089d8ecd30f4015f3aa0a5428be8af9a7c6016addfab3508af2c826b275f1a8",
       "state": {
+        "assetId": "molen.worldgen.structure.stonewall_inn",
+        "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+        "lodHash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 22167,
-        "groundY": -4,
+        "triangles": 47086,
+        "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.terrain.json",
           "heightmap": "content/worldgen/source/places/dr/dr5/stonewall_inn/terrain-review.height.png"
@@ -845,15 +1057,10 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     }
   ],
-  "errors": [],
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:0c944ff2df9aca6bb45721e109d8176396e4915d83118b5ff1c186912c1f1ef6",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:16b859cc616284e6e00f439a7265af942d21586b9de50cf8c931f57b6c3ed319"
-  }
+  "errors": []
 }

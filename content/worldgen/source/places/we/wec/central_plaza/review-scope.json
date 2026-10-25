@@ -1,0 +1,406 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Hong Kong’s three-sided gold-and-silver tower with mapped reentrant corners, an open base of green granite columns, ceramic-frit cat-scratch facade patterns, stepped mechanical crown, triangular glazed observation pyramid and open three-legged mast support.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast",
+    "front": "+Z south-southeast Gloucester Road frontage",
+    "origin": "Published street datum 4.1 mPD / mapped tower frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 374.3,
+    "operatorHeightFeet": 1228,
+    "completionYear": 1992,
+    "architect": "Ng Chun Man & Associates",
+    "engineer": "Ove Arup & Partners",
+    "groundDatumMetersPD": 4.1,
+    "baseHeightMeters": 30.5,
+    "skyLobbyTopMeters": 172.3,
+    "mainTowerTopMeters": 265.9,
+    "observationGalleryMeters": 288.4,
+    "roofApexMeters": 310.3,
+    "featureFrameTopMeters": 330.65,
+    "mastAboveRoofMeters": 64,
+    "mastMaximumDiameterMeters": 1.6,
+    "baseColumnDiameterMeters": 2.8,
+    "typicalFloorMeters": 3.6,
+    "roofGlassPaneMeters": [
+      2,
+      1.5
+    ],
+    "operatorStoreys": 75,
+    "currentOwnerArchitect": "Dennis Lau & Ng Chun Man Architects & Engineers (H.K.) Ltd.",
+    "originalMasterHash": "sha256:35872f75e0d2ba29bc9eed8db3be4616ce0f0e90058773528cd96ae863cae5ab",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-world-models.mjs#skylineWorld[central_plaza].build",
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    }
+  },
+  "reconstruction": {
+    "massing": "Exact-QID whole footprint and eight separate mapped crown/roof/mast parts preserve the triangular shaft, reentrant corner offices and three smaller top terraces. Arup’s elevation supplies ground-relative heights by subtracting4.1mPD; map height309m is a roof-era envelope and does not set the final mast tip.",
+    "facade": "Owner specification and original engineer photographs establish gold and silver coated glass, ceramic-frit cat scratches, metallic horizontal spandrels and green granite columns. Fine pane spacing and scratch-zone heights are reconstructed from those photographs.",
+    "crown": "Three independently mapped triangular glass roof faces meet at the separately mapped central mast. The feature frame has three corner legs, sloping upper struts and an open Vierendeel support with four daylight Lightime band housings. Engineer64m mast above the roof and maximum1.6m base diameter determine its proportions.",
+    "entry": "Eighteen green-granite round base columns support the transfer band around an inset glazed lobby and first-floor circulation balcony. The separately adjoining30.5m podium, landscape and external pedestrian bridges are outside this tower asset."
+  },
+  "limitations": [
+    "Original 169555-triangle, 17860136-byte master remains exactly reproducible from unchanged recipe. Reviewed source/four browser levels retain signed reentrant triangular plan, gold/silver facade and three frit scratch zones, eighteen open-base green granite columns, inset lobby/balcony, sky-lobby band, separately mapped crown steps, triangular observation pyramid, open three-legged Vierendeel support, four daylight Lightime bands and mast to 374.3 m. Whole backing panels with narrowly overlaid original-phase frit patches and long trim strips replace independently framed cells. Skyline averages facade/trim colour, simplifies round columns and omits collars/rail/door details; district uses shallow transfer/crown strips, omits balcony guardrail and entry frames, and aggregates facade/roof seams; street restores the balcony/entries and finer facade/roof strips; close-up restores fine trim/collars while preserving exterior. Two canonical shared graphs, four near draw groups, zero images; tinted granite approximates Baltic green stone/foundation and painted metal approximates coated gold/silver metal. Lobby glazing is one explicit near transparent group; upper glazing remains opaque. Published heights subtract 4.1 mPD; the mapped 309 m envelope does not set final height. Owner current architectural credit Dennis Lau & Ng Chun Man and original engineer credit Ng Chun Man & Associates are retained as source-specific names. Exact pane/scratch pitch, ring fittings, balcony guardrail, mast taper and entry door schedule are reconstructions. Adjoining podium, bridges, garden, interior art, lettering and time-driven Lightime illumination are excluded. Finite along-ray 1.5/.75/.3/.1 m allowances exclude omitted thin mullions, roof seams and small collars; no global surface-distance bound, physical-device or surveyed grade claim."
+  ],
+  "surfaceOverrides": {
+    "foundation": {
+      "graph": "stone_granite",
+      "slot": "wall",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "cladding": {
+      "graph": "stone_granite",
+      "slot": "wall",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "clear_glass": {
+      "slot": "window",
+      "localRef": "palette:#feffff",
+      "ref": "palette:#feffff",
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "opacity": 0.52,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.52
+      ],
+      "doubleSided": true
+    }
+  },
+  "geographic": {
+    "heading": 0.076907698117,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "exact identity and independent parts plus owner compass facades and engineer north-arrow plans",
+    "notes": "Fresh OSM API on 2026-10-10 confirms exact Q112640 whole 27087018 and eight separately retained crown/roof/mast geometries, unchanged from independent map-parts. Signed heading 0.076907698117 puts +X east-northeast and +Z south-southeast; the broad +Z face fronts Gloucester Road. Owner 2025 guide independently describes south, northwest and northeast facades; Arup 1993 north-arrow site/first-floor plans corroborate the clipped triangular compass phase. Native mast center [-0.01329,4.79924] is independently checked against part 1047690918. Source Y=0 is published 4.1 mPD street datum, not sea level; 378.4 mPD tip gives 374.3 m above street. Map height 309 m is an envelope-era figure, not mast height. Accept 2 m footprint / 1 degree reconstruction allowance; automatic replacement disabled. Separate adjoining 30.5 m podium, garden, bridges and neighbouring towers are outside tower scope.",
+    "evidence": "Fresh OSM API on 2026-10-10 confirms exact Q112640 whole 27087018 and eight separately retained crown/roof/mast geometries, unchanged from independent map-parts. Signed heading 0.076907698117 puts +X east-northeast and +Z south-southeast; the broad +Z face fronts Gloucester Road. Owner 2025 guide independently describes south, northwest and northeast facades; Arup 1993 north-arrow site/first-floor plans corroborate the clipped triangular compass phase. Native mast center [-0.01329,4.79924] is independently checked against part 1047690918. Source Y=0 is published 4.1 mPD street datum, not sea level; 378.4 mPD tip gives 374.3 m above street. Map height 309 m is an envelope-era figure, not mast height. Accept 2 m footprint / 1 degree reconstruction allowance; automatic replacement disabled. Separate adjoining 30.5 m podium, garden, bridges and neighbouring towers are outside tower scope.",
+    "replaceFootprint": false
+  },
+  "geographicNote": "Fresh OSM API on 2026-10-10 confirms exact Q112640 whole 27087018 and eight separately retained crown/roof/mast geometries, unchanged from independent map-parts. Signed heading 0.076907698117 puts +X east-northeast and +Z south-southeast; the broad +Z face fronts Gloucester Road. Owner 2025 guide independently describes south, northwest and northeast facades; Arup 1993 north-arrow site/first-floor plans corroborate the clipped triangular compass phase. Native mast center [-0.01329,4.79924] is independently checked against part 1047690918. Source Y=0 is published 4.1 mPD street datum, not sea level; 378.4 mPD tip gives 374.3 m above street. Map height 309 m is an envelope-era figure, not mast height. Accept 2 m footprint / 1 degree reconstruction allowance; automatic replacement disabled. Separate adjoining 30.5 m podium, garden, bridges and neighbouring towers are outside tower scope.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/central-runtime-model.mjs",
+    "export": "buildCentralReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/central-runtime-model.mjs",
+    "export": "buildCentralSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCentralDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "ref": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildCentralStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "ref": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCentralCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "ref": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        325,
+        235,
+        545
+      ],
+      "lookAt": [
+        0,
+        174,
+        4.8
+      ]
+    },
+    {
+      "name": "above-triangular-roof",
+      "position": [
+        66,
+        347,
+        95
+      ],
+      "lookAt": [
+        0,
+        297,
+        5
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        325,
+        235,
+        545
+      ],
+      "lookAt": [
+        0,
+        174,
+        4.8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        325,
+        235,
+        545
+      ],
+      "lookAt": [
+        0,
+        174,
+        4.8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        325,
+        235,
+        545
+      ],
+      "lookAt": [
+        0,
+        174,
+        4.8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        325,
+        235,
+        545
+      ],
+      "lookAt": [
+        0,
+        174,
+        4.8
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-three-legged-crown",
+      "position": [
+        33,
+        337,
+        46
+      ],
+      "lookAt": [
+        0,
+        316,
+        4.8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-green-open-base",
+      "position": [
+        65,
+        17,
+        78
+      ],
+      "lookAt": [
+        5,
+        14,
+        23
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-frit-compositions",
+      "position": [
+        0,
+        218,
+        129
+      ],
+      "lookAt": [
+        0,
+        212,
+        27
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-observation-pyramid",
+      "position": [
+        66,
+        347,
+        95
+      ],
+      "lookAt": [
+        0,
+        297,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

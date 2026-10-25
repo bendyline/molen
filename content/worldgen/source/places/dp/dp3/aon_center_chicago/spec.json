@@ -1,0 +1,482 @@
+{
+  "planId": "aon_center_chicago",
+  "id": "aon_center_chicago",
+  "assetId": "molen.worldgen.structure.aon_center_chicago",
+  "title": "Aon Center",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q271695",
+  "referenceCoordinate": {
+    "latitude": 41.885277777,
+    "longitude": -87.621388888
+  },
+  "visualBrief": "Chicago white granite pinstriped tube with four notched solid corners, full-height V piers, tall glass lobby, mapped roof plant and current eastern broadcast mast.",
+  "size": [
+    61.009986877441406,
+    362.5,
+    60.10798263549805
+  ],
+  "actualBounds": {
+    "min": [
+      -30.504993438720703,
+      0,
+      -30.054000854492188
+    ],
+    "max": [
+      30.504993438720703,
+      362.5,
+      30.05398178100586
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X south/slightly east",
+    "front": "+X south Randolph lobby; +Z west/slightly south",
+    "origin": "Exact-QID mapped ground-contact footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 346.3,
+    "floors": 83,
+    "architects": [
+      "Edward Durell Stone & Associates",
+      "Perkins+Will"
+    ],
+    "currentCladding": "White granite replacing the original Carrara marble",
+    "structure": "Tube-in-tube with V-shaped perimeter columns",
+    "heightToTipMeters": 362.5,
+    "highestOccupiedMeters": 328,
+    "originalMasterHash": "sha256:b92e60895bc497091a848d3d0496c4b40ff75da7869261501710b2f98655ccfc",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-global-models.mjs#skylineGlobal[aon_center_chicago].build",
+    "surfaceMeans": {
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    },
+    "antennaLocal": [
+      8,
+      -12
+    ],
+    "antennaScope": "Published tip; photographic position/support reconstruction"
+  },
+  "reconstruction": {
+    "plan": "Signed exact outline with separate32 m roof service block",
+    "facade": "Four principal V-pier faces with white solid notched corner returns; merged glazed planes and strip frames",
+    "heightDatum": "340m main roof,346.3m architectural plant and362.5m functional mast"
+  },
+  "referencePages": [
+    "https://www.skyscrapercenter.com/chicago/aon-center/339",
+    "https://www.architecture.org/online-resources/buildings-of-chicago/aon-center",
+    "https://www.aoncenter.info/toc.cfm",
+    "https://www.openstreetmap.org/way/64388609"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "anchor": [
+      -87.621549995,
+      41.885281566
+    ],
+    "heading": -1.558093833718,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/64388609",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/64388609",
+      "way/284775635"
+    ],
+    "wikidataId": "Q271695",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6e7422e45c13fd896c9a794e3ef5cb5545a8b48b265310129854176366dc6de1",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API on 2026-10-10 confirms unchanged exact Q271695 notched outline 64388609 and independent roof plant 284775635. Native +X almost south/slightly east; +Z almost west/slightly south. Owner handbook page6 names Randolph lower lobby south and north upper/lower entrances; the photo-supported tall lobby remains a shell, not a surveyed door layout. Published 346.3 m architectural/362.5 m tip replace rounded map height tags. Roof antenna at native [8,-12] is a photograph estimate on the eastern side of the mapped roof plant, not an independently mapped location. Signed footprint/roof phase retained, ground Y=0, accepted plan2 m/1 degree; replacement disabled. Sunken two-level plaza, terrain slope and exact doors remain outside this tower shell.",
+    "evidence": "Fresh public OSM API on 2026-10-10 confirms unchanged exact Q271695 notched outline 64388609 and independent roof plant 284775635. Native +X almost south/slightly east; +Z almost west/slightly south. Owner handbook page6 names Randolph lower lobby south and north upper/lower entrances; the photo-supported tall lobby remains a shell, not a surveyed door layout. Published 346.3 m architectural/362.5 m tip replace rounded map height tags. Roof antenna at native [8,-12] is a photograph estimate on the eastern side of the mapped roof plant, not an independently mapped location. Signed footprint/roof phase retained, ground Y=0, accepted plan2 m/1 degree; replacement disabled. Sunken two-level plaza, terrain slope and exact doors remain outside this tower shell.",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Original 168138-triangle/17479792-byte master remains exactly reproducible from the unchanged global recipe. Reviewed source keeps the signed notched tower and separate roof plant, corrects the corner returns to broad solid granite surfaces, retains full-height V-faced granite piers down through the tall lobby and adds the photo-supported eastern roof antenna to published362.5 m tip. Published architectural346.3 m/occupied328 m/83floors/1973/recladding1992 from CVU. Main roof340 m, lobby10.4 m,15bays per long face, pier half-width.69 m/depth.58 m, glazing/floor pitch,8 m south/12 m east antenna offset, antenna diameter/supports and service forms are reconstructed, not measured construction dimensions. Full vertical glass planes and long frame/spandrel strips replace per-window frame geometry; distant levels aggregate horizontal coverage. Stone grain uses canonical shared granite; no tiny joint geometry or copied facade photo. Three shared256px concrete/granite/painted-metal graphs and opaque palette glass, zero embedded images. Two-level landscaped sunken plaza, fountains/sculptures, subterranean garage/pedways, lobby interiors, detailed doors, flags/lettering, minor rooftop aerials and proposed observation-deck/elevator alterations excluded. Ground-contact shell has no terrain-grade proof. Physical phones/laptops and dense-city timing remain unmeasured. Cached Los Angeles Aon photos/brochure explicitly rejected; they do not inform this model."
+  ],
+  "qaCameras": [
+    {
+      "name": "granite-piers",
+      "position": [
+        77,
+        156,
+        85
+      ],
+      "lookAt": [
+        0,
+        135,
+        0
+      ]
+    },
+    {
+      "name": "notched-corners",
+      "position": [
+        73,
+        69,
+        73
+      ],
+      "lookAt": [
+        17,
+        59,
+        17
+      ]
+    },
+    {
+      "name": "roof-mechanical",
+      "position": [
+        80,
+        375,
+        93
+      ],
+      "lookAt": [
+        0,
+        337,
+        0
+      ]
+    },
+    {
+      "name": "ground-lobby",
+      "position": [
+        75,
+        14,
+        81
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -382,
+        288,
+        643
+      ],
+      "lookAt": [
+        0,
+        166,
+        0
+      ]
+    },
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        353,
+        279,
+        521
+      ],
+      "lookAt": [
+        0,
+        164,
+        0
+      ]
+    },
+    {
+      "name": "eastern-roof-antenna",
+      "position": [
+        42,
+        360,
+        -68
+      ],
+      "lookAt": [
+        6,
+        351,
+        -11
+      ]
+    },
+    {
+      "name": "south-tall-lobby",
+      "position": [
+        79,
+        25,
+        41
+      ],
+      "lookAt": [
+        28,
+        6,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/aon-chicago-runtime-model.mjs",
+    "export": "buildAonChicagoReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/aon-chicago-runtime-model.mjs",
+    "export": "buildAonChicagoSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAonChicagoDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildAonChicagoStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAonChicagoCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        353,
+        279,
+        521
+      ],
+      "lookAt": [
+        0,
+        164,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        353,
+        279,
+        521
+      ],
+      "lookAt": [
+        0,
+        164,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        353,
+        279,
+        521
+      ],
+      "lookAt": [
+        0,
+        164,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        353,
+        279,
+        521
+      ],
+      "lookAt": [
+        0,
+        164,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-notched-corners",
+      "position": [
+        95,
+        141,
+        84
+      ],
+      "lookAt": [
+        0,
+        122,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-south-lobby",
+      "position": [
+        78,
+        25,
+        29
+      ],
+      "lookAt": [
+        29,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-v-faced-granite",
+      "position": [
+        51,
+        79,
+        20
+      ],
+      "lookAt": [
+        30,
+        73,
+        8
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-roof-plant-and-mast",
+      "position": [
+        39,
+        361,
+        -65
+      ],
+      "lookAt": [
+        7,
+        350,
+        -11
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 2310,
+    "vertices": 5902,
+    "materials": 4,
+    "bytes": 242980,
+    "sha256": "sha256:ce857e47a6f0ec1b42809a9b55abc8246ab3ef925f4164956192f1c195dde5d9"
+  }
+}

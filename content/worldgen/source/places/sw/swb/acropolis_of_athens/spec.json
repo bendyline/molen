@@ -1,0 +1,659 @@
+{
+  "planId": "acropolis_of_athens",
+  "id": "acropolis_of_athens",
+  "assetId": "molen.worldgen.structure.acropolis_of_athens",
+  "title": "Acropolis of Athens",
+  "category": "archaeological-ensemble",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.72661765,
+    "latitude": 37.97150335
+  },
+  "size": [
+    381.5409851074219,
+    71.0099983215332,
+    261.4449996948242
+  ],
+  "actualBounds": {
+    "min": [
+      -239.14999389648438,
+      -21.049999237060547,
+      -102.44499969482422
+    ],
+    "max": [
+      142.3909912109375,
+      49.959999084472656,
+      159
+    ]
+  },
+  "visualBrief": "Surviving Acropolis ensemble from native architectural component plans: roofless Parthenon/fluted peristyle and broken pediments, Erechtheion/Ionic porches/six Caryatids, monumental Propylaea, Nike/bastion, Beulé Gate/Agrippa, intrinsic stone fortifications/Roma ruins and lower-slope Odeon/Dionysus theatres/Stoa remains. Genuine open ruins and stage arches, original representative carved detail; no conjectural temple reconstruction or natural hill mesh.",
+  "nativeAxes": {
+    "x": "east-northeast",
+    "y": "up",
+    "z": "south-southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Acropole_d%27Ath%C3%A8nes_(en_l%27ann%C3%A9e_2025).jpg",
+    "https://commons.wikimedia.org/wiki/File:Erechtheum_Acropolis_Athens.jpg",
+    "https://commons.wikimedia.org/wiki/File:2432_July_2018_in_Athens.jpg",
+    "https://commons.wikimedia.org/wiki/File:Temple_of_Athena_Nik%C3%A8_from_Propylaea,_Acropolis,_Athens,_Greece.jpg",
+    "https://commons.wikimedia.org/wiki/File:Parthenon_6.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ac.acropolis1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Athenes_acro01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Athenes_acro02.jpg"
+  ],
+  "stories": [
+    {
+      "id": "acropolis-of-athens-wp",
+      "url": "https://qualla.com/acropolis-of-athens/"
+    },
+    {
+      "id": "propylaea-acropolis-of-athens-wp",
+      "url": "https://qualla.com/propylaea-acropolis-of-athens/"
+    },
+    {
+      "id": "temple-of-athena-nike-wp",
+      "url": "https://qualla.com/temple-of-athena-nike/"
+    },
+    {
+      "id": "theatre-of-dionysus-wp",
+      "url": "https://qualla.com/theatre-of-dionysus/"
+    },
+    {
+      "id": "parthenon-wp",
+      "url": "https://qualla.com/parthenon/"
+    },
+    {
+      "id": "odeon-of-herodes-atticus-wp",
+      "url": "https://qualla.com/odeon-of-herodes-atticus/"
+    }
+  ],
+  "referenceInputHash": "946f1ff54ba1e1c5e4ef31854449366be2e285b9de922e6e58a050fff338dfa8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-acropolis-of-athens.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-acropolis-of-athens.mjs",
+    "level": "skyline",
+    "export": "acropolisSkyline",
+    "errorMeters": 8,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "fresh": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "acropolisDistrict",
+        "errorMeters": 3,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "fresh": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "acropolisStreet",
+        "errorMeters": 1,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "fresh": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3.1,
+    "groundY": -23
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fixed west approach outside Beulé Gate before independent raw terrain acquisition; approximate relative architecture levels and wall contact, no natural hill/citadel terrain replacement.",
+    "anchor": [
+      23.72661765,
+      37.97150335
+    ],
+    "heading": 0.22670425169193298,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.724507184603738,
+        37.97162718557584
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed west approach3moutside native Beulé Gate before source-terrain acquisition. Compound floor levels/fortification sections are independent approximate architectural controls, not terrain flattening or a surveyed threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/910010406",
+      "way/384709198",
+      "way/384709199",
+      "way/384709197",
+      "way/384715304",
+      "way/384709202",
+      "way/386428643",
+      "way/386428690",
+      "way/386428656",
+      "way/386428645",
+      "way/386428688",
+      "way/386428605",
+      "way/386428739",
+      "way/386428683",
+      "way/386428596",
+      "way/386428724",
+      "way/386428658",
+      "way/386428590",
+      "way/386428619",
+      "way/386428675",
+      "way/386428729",
+      "way/386428612",
+      "way/386428737",
+      "way/386428706",
+      "way/386428623",
+      "way/386428654",
+      "way/386428664",
+      "way/386428610",
+      "way/386428705",
+      "way/386428685",
+      "way/386428587",
+      "way/386428676",
+      "way/386428723",
+      "way/386428624",
+      "way/386428594",
+      "way/386428733",
+      "way/386428668",
+      "way/386428618",
+      "way/386428671",
+      "way/386428701",
+      "way/386428615",
+      "way/386428707",
+      "way/386428661",
+      "way/386428604",
+      "way/386428696",
+      "way/386428652",
+      "way/386428622",
+      "way/386428718",
+      "way/386428692",
+      "way/386428588",
+      "way/386428673",
+      "way/386428736",
+      "way/386428620",
+      "way/386428730",
+      "way/386428621",
+      "way/386428663",
+      "way/386428694",
+      "way/386428625",
+      "way/386428704",
+      "way/386428744",
+      "way/386428641",
+      "way/386428742",
+      "way/386428711",
+      "way/386428602",
+      "way/386428674",
+      "way/386428722",
+      "way/386428601",
+      "way/386428642",
+      "way/386428721",
+      "way/386428611",
+      "way/386428666",
+      "way/386428716",
+      "way/386428635",
+      "way/386428681",
+      "way/386428715",
+      "way/386428607",
+      "way/386428680",
+      "way/386428726",
+      "way/386428631",
+      "way/386428672",
+      "way/386428699",
+      "way/386428586",
+      "way/386428599",
+      "way/386428743",
+      "way/386428719",
+      "way/386428600",
+      "way/386428585",
+      "way/386428598",
+      "way/386428693",
+      "way/386428713",
+      "way/386428644",
+      "way/386428651",
+      "way/386428638",
+      "way/386428617",
+      "way/386428609",
+      "way/386428732",
+      "way/386428709",
+      "way/386428670",
+      "way/386428629",
+      "way/386428717",
+      "way/386428653",
+      "way/386428667",
+      "way/386428592",
+      "way/386428614",
+      "way/386428738",
+      "way/386428595",
+      "way/386428735",
+      "way/386428740",
+      "way/386428678",
+      "way/386428657",
+      "way/386428606",
+      "way/386428698",
+      "way/386428665",
+      "way/386428589",
+      "way/386428591",
+      "way/386428720",
+      "way/386428626",
+      "way/386428725",
+      "way/386428655",
+      "way/386428650",
+      "way/386428608",
+      "way/386428662",
+      "way/386428613",
+      "way/386428703",
+      "way/386428734",
+      "way/386428669",
+      "way/386428630",
+      "way/386428695",
+      "way/386428687",
+      "way/386428628",
+      "way/386428728",
+      "way/386428745",
+      "way/386428741",
+      "way/386428632",
+      "way/386428708",
+      "way/386428636",
+      "way/386428731",
+      "way/386428648",
+      "way/386428616",
+      "way/386428697",
+      "way/386428691",
+      "way/386428684",
+      "way/386428582",
+      "way/386428556",
+      "way/386428561",
+      "way/386428536",
+      "way/386428501",
+      "way/386428566",
+      "way/386428579",
+      "way/386428531",
+      "way/386428557",
+      "way/386428516",
+      "way/386428502",
+      "way/386428564",
+      "way/386428544",
+      "way/386428524",
+      "way/386428525",
+      "way/386428549",
+      "way/386428508",
+      "way/386428497",
+      "way/386428538",
+      "way/386428542",
+      "way/386428507",
+      "way/386428527",
+      "way/386428537",
+      "way/386428577",
+      "way/386428559",
+      "way/386428517",
+      "way/386428540",
+      "way/386428562",
+      "way/386428539",
+      "way/386428568",
+      "way/386428548",
+      "way/386428571",
+      "way/386428518",
+      "way/386428541",
+      "way/386428526",
+      "way/386428551",
+      "way/386428563",
+      "way/386428510",
+      "way/386428534",
+      "way/386428505",
+      "way/386428521",
+      "way/386428496",
+      "way/386428558",
+      "way/386428495",
+      "way/386428503",
+      "way/386428535",
+      "way/386428545",
+      "way/386428519",
+      "way/386428543",
+      "way/386428504",
+      "way/386428553",
+      "way/386428511",
+      "way/386428520",
+      "way/386428576",
+      "way/386428550",
+      "way/386428528",
+      "way/386428574",
+      "way/386428498",
+      "way/386428555",
+      "way/386428513",
+      "way/386428500",
+      "way/386428522",
+      "way/386428530",
+      "way/386428499",
+      "way/386428546",
+      "way/386428515",
+      "way/386428569",
+      "way/386428567",
+      "way/386428533",
+      "way/386428560",
+      "way/386428514",
+      "way/386428529",
+      "way/386428575",
+      "way/386428578",
+      "way/386428506",
+      "way/386428512",
+      "way/386428572",
+      "way/386428523",
+      "way/386428580",
+      "way/386428509",
+      "way/386428573",
+      "way/386428565",
+      "way/386428547",
+      "way/386428570",
+      "way/386428494",
+      "way/386428552",
+      "way/386428583",
+      "way/386428679",
+      "way/386428686",
+      "way/386428659",
+      "way/386428727",
+      "way/386428702",
+      "way/386428627",
+      "way/386428689",
+      "way/386428700",
+      "way/386428677",
+      "way/386428603",
+      "way/386428634",
+      "way/386428710",
+      "way/386428682",
+      "way/386428660",
+      "way/386428593",
+      "way/386428712",
+      "way/386428637",
+      "way/386428597",
+      "way/386428633",
+      "way/386428714",
+      "way/386428640",
+      "way/386428748",
+      "way/386428749",
+      "way/386428532",
+      "way/386534713",
+      "way/386428747",
+      "way/386428746",
+      "way/386534714",
+      "way/386534712",
+      "way/386534711",
+      "way/386614405",
+      "way/386614404",
+      "way/386614400",
+      "way/386614409",
+      "way/386614408",
+      "way/386614407",
+      "way/386631612",
+      "way/386631610",
+      "way/386631608",
+      "way/386631607",
+      "way/386631606",
+      "way/386631621",
+      "way/386631620",
+      "way/386631614",
+      "way/386631618",
+      "way/386614406",
+      "way/386670811",
+      "way/386670813",
+      "way/386670805",
+      "way/386670809",
+      "way/386670816",
+      "way/386670803",
+      "way/386670804",
+      "way/386670817",
+      "way/386670812",
+      "way/386670802",
+      "way/386670806",
+      "way/386670801",
+      "way/910010401",
+      "way/910010386",
+      "way/910010392",
+      "way/910010394",
+      "way/910010393",
+      "way/910010391",
+      "way/910010387",
+      "way/910010388",
+      "way/910010389",
+      "way/910010390",
+      "way/910010397",
+      "way/910010395",
+      "way/910010396",
+      "way/910010398",
+      "way/910010402",
+      "way/910010400",
+      "way/910010399",
+      "way/910010384",
+      "way/910010385",
+      "way/910010307",
+      "way/910010308",
+      "way/910010310",
+      "way/910010309",
+      "way/910010263",
+      "way/910010311",
+      "way/910010312",
+      "way/910010313",
+      "way/910010350",
+      "way/910010353",
+      "way/910010356",
+      "way/910010300",
+      "way/910010381",
+      "way/910010377",
+      "way/910010299",
+      "way/910010408",
+      "way/910010354",
+      "way/910010352",
+      "way/910010348",
+      "way/910010269",
+      "way/910010267",
+      "way/910010265",
+      "way/910010262",
+      "way/910010260",
+      "way/910010258",
+      "way/910010256",
+      "way/910010254",
+      "way/910010411",
+      "way/910010407",
+      "way/910010383",
+      "way/910010382",
+      "way/910010327",
+      "way/910010328",
+      "way/910010334",
+      "way/910010374",
+      "way/426887028",
+      "way/144928413",
+      "way/985645891",
+      "way/985645894",
+      "way/10973697",
+      "way/144928419"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=23.7223,37.9695,23.7284,37.9732",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b4b9acd43999b82bb680a16bc8cb552f4131922d47fcdd41be0a8709518d290e",
+    "notes": "Surviving Acropolis architectural ensemble: native Parthenon with mapped surviving column/capital/wall and pediment-fragment controls, roofless Erechtheion with six modern Caryatid replicas/Ionic porches, Propylaea open monumental entrance and wings, roofless Athena Nike temple on built bastion, Beulé Gate/steps and Agrippa pedestal, intrinsic stone fortifications and low Roma/Augustus circular remains. Include lower-slope Odeon of Herodes Atticus surviving perforated stage wall/open seating, Theatre of Dionysus surviving lower stone seats/orchestra and Stoa of Eumenes ruined retaining arcade. No natural rock/hill/precinct slab, lost Hekatompedon (reserved hekatompedon_temple), conjectural Old Temple of Athena/Older Parthenon, vanished Frankish/Ottoman buildings, modern worksheds/museum/church/lifts/scaffolds/visitors or unrelated Athens structures."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original native OSM area supplies precise source coordinates for Parthenon287component members including42complete outer shafts/4broken shafts/inner shafts, surviving irregular cella walls, cornice and pediment fragments; Erechtheum31vertex envelope; Propylaea wall/opening/column multipolygon; Nike outer/inner temple controls; Beulé Gate/Agrippa; original fortification strips excluding natural-cliff members; Odeon and Dionysus/Stoa plans. Native mapped heights are estimates. Column centers/capitals and actual wall voids are retained; regular profiles/fluting and concealed ruination are authored estimates. Archaeological parcels/low foundations never become full buildings. Roof-tagged Parthenon polygons are only surviving pediment fragments, never a complete roof.",
+    "Architectural floor/seat/wall-height estimates constrained by inspected photographs and independent frozen raw source relief (datum118.0403m): Parthenon native center raw+28.31m, Erechtheum+24.99m, Propylaea+9.45m, Nike+5.17m, Odeon seating center-9.82m, Dionysus-3.65m. Entry terraces and marble platforms remain separate architectural floor estimates, not a fitted/flattened DEM or a claim of surveyed absolute heights.",
+    "Eight exact published Qualla originals actually inspected with native SHA1/explicit own-work CC0, PD-self or Adam Carr PD-user-en grants. Two Odeon originals are retained as source copies with primary release because old Qualla category metadata omitted its PD-self basis; no new imagery fetched. No questionable or other-licensed imagery used.",
+    "Complete surviving compound is interpreted at medium fidelity. Hidden elevations, floor/threshold differences, fortification sections, ruined crown profiles, masonry seams and detailed sculpture are estimates. Six on-site Caryatids are original representative draped figures, not a copy of museum artifacts. No roof is restored over the main temples. hekatompedon_temple Hekatompedon, all conjectural archaic predecessors and Panathenaic Stadium are excluded.",
+    "Native exact architectural perimeters/columns control plan, but current restoration state may differ from mapped parts or dated photos. Temporary scaffolds/cranes and modern worksheds/lifts/museum are omitted. Surviving low foundations retain low heights; natural cliff-tagged wall members are excluded.",
+    "Raw source relief frozen separately before geometry at fixed west contact:118.0403m provider datum,800m grid, no flattening/fitting. Discontinuous rocky plateau is not constructed as an asset mesh. Distributed intrinsic masonry/temple platform levels remain approximate; exact host-terrain contact is unverified. Flat review stageY-23 shows the architecture without certifying its fit to any host DEM."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "complete-surviving-compound",
+      "position": [
+        -460,
+        410,
+        450
+      ],
+      "lookAt": [
+        -48,
+        10,
+        35
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "parthenon-broken-pediments-open-cella-and-fluted-peristyle",
+      "position": [
+        -74,
+        73,
+        64
+      ],
+      "lookAt": [
+        0,
+        38,
+        0
+      ]
+    },
+    {
+      "name": "erechtheion-six-caryatids-and-ionic-porches",
+      "position": [
+        -28,
+        51,
+        -29
+      ],
+      "lookAt": [
+        0,
+        31,
+        -68
+      ]
+    },
+    {
+      "name": "propylaea-athena-nike-and-beule-approach",
+      "position": [
+        -207,
+        65,
+        10
+      ],
+      "lookAt": [
+        -135,
+        20,
+        -53
+      ]
+    },
+    {
+      "name": "odeon-stage-archways-and-open-stone-seating",
+      "position": [
+        -200,
+        28,
+        107
+      ],
+      "lookAt": [
+        -198,
+        -7,
+        40
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63951,
+    "vertices": 191853,
+    "materials": 4,
+    "bytes": 7676924,
+    "sha256": "sha256:b1a8e5cb6aea36321c273e727b42e9fd64c0679db6ba10193c4a42e7704949fa"
+  }
+}

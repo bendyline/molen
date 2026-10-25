@@ -1,0 +1,371 @@
+{
+  "planId": "banqueting_house",
+  "id": "banqueting_house",
+  "assetId": "molen.worldgen.structure.banqueting_house",
+  "title": "Banqueting House",
+  "category": "residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.1259,
+    "latitude": 51.5046
+  },
+  "size": [
+    42.850046157836914,
+    26.299999237060547,
+    22.798521995544434
+  ],
+  "actualBounds": {
+    "min": [
+      -19.053205490112305,
+      0,
+      -9.644338607788086
+    ],
+    "max": [
+      23.79684066772461,
+      26.299999237060547,
+      13.154183387756348
+    ]
+  },
+  "visualBrief": "Whole surviving Banqueting House, Whitehall: full8point native building contour including set-back north James Wyatt stair annex; two principal storeys over rusticated basement, seven bays on both long faces, shallow advanced middle3bays, Ionic lower order/Composite upper order, alternating lower window pediments, upper cornice hoods, garland frieze and balustraded parapet, concealed low roof and intrinsic1688weathervane. Northern annex entrance/roundel/bands. Exclude separate RUSI, Ministry of Defence, Horse Guards, old southern low gateway in historical images, lost Whitehall Palace, general street/grounds/interiors/temporary flags and people. Pale grey-white Portland stone; genuine recessed sash windows/reveals/grids, projected orders/entablatures/alternating segmental and triangular lower pediments, center3bay emphasis, corner double pilasters, open balustrade and wrought-iron vane. Whole slight-tapered mainhall plus inset northannex. Fine decorative masks/garlands and exact levels/hidden detail estimates; do not impose old gate or lost palace.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_Banqueting_House,_Whitehall_-_Thomas_Hosmer_Shepherd.png"
+  ],
+  "stories": [
+    {
+      "id": "banqueting-house-wp",
+      "url": "https://qualla.com/banqueting-house/"
+    }
+  ],
+  "referenceInputHash": "cc1229d90aa7d229b8340335dc22e0bb7feab2bc1fd55c706230516af916c5a4",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-banqueting-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-banqueting-house.mjs",
+    "level": "skyline",
+    "export": "banquetingHouseSkyline",
+    "errorMeters": 0.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0.02
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.3
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.04
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "banquetingHouseDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "banquetingHouseStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "banquetingHouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -0.08
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named native way140470549/Q642039/listed1357353/all8vertices retained; full footprint includes northern set-back stair annex. Adjacent RUSI31117836 shares south boundary but is independent and excluded; roof547280182 is across Whitehall near Horse Guards, excluded. Fixed Qualla anchor[-.1259,51.5046], heading-1.4016227089117175 from west wall4to2 before terrain/geometry. Local+XalonglonghalltowardsSSE,+Ztoweststreet. Native main façade~37.25m and width~21m are coarse map controls, not a measured architectural survey. Northern annex4.74m alongaxis/setback5.29m follows whole outline. Main height/bay subdivision/roof pitch/ornament and unseen annex faces estimated independently of terrain. Independent256m129-square2m field frozen before geometry; street datum and architectural floors are estimates, host contact unverified.",
+    "anchor": [
+      -0.1259,
+      51.5046
+    ],
+    "heading": -1.4016227089117175,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.12618036282773135,
+        51.50466132430475
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed Whitehall street approach before independent terrain acquisition, not a surveyed threshold"
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/140470549"
+    ],
+    "source": "https://www.openstreetmap.org/way/140470549",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f19e2d9446f9651bfdc830c5c63e15e960b50b401f05445092363fa6eab70dad",
+    "notes": "Whole surviving Banqueting House, Whitehall: full8point native building contour including set-back north James Wyatt stair annex; two principal storeys over rusticated basement, seven bays on both long faces, shallow advanced middle3bays, Ionic lower order/Composite upper order, alternating lower window pediments, upper cornice hoods, garland frieze and balustraded parapet, concealed low roof and intrinsic1688weathervane. Northern annex entrance/roundel/bands. Exclude separate RUSI, Ministry of Defence, Horse Guards, old southern low gateway in historical images, lost Whitehall Palace, general street/grounds/interiors/temporary flags and people."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Named native way140470549/Q642039/listed1357353/all8vertices retained; full footprint includes northern set-back stair annex. Adjacent RUSI31117836 shares south boundary but is independent and excluded; roof547280182 is across Whitehall near Horse Guards, excluded. Fixed Qualla anchor[-.1259,51.5046], heading-1.4016227089117175 from west wall4to2 before terrain/geometry. Local+XalonglonghalltowardsSSE,+Ztoweststreet. Native main façade~37.25m and width~21m are coarse map controls, not a measured architectural survey. Northern annex4.74m alongaxis/setback5.29m follows whole outline. Main height/bay subdivision/roof pitch/ornament and unseen annex faces estimated independently of terrain.",
+    "Surviving exterior after Soane refacing/northernWyattannex:7bay facades/2orders/center3bay emphasis/alternating lower pediments/uppercornices/garlandfrieze/openbalustrade/concealedroof/weathervane. Fine Ionic/Composite capital/frieze masks stylized, exact facade relief/window census of hidden annex/heights estimated. No interiors/execution scaffold or lostWhitehallPalace.",
+    "One accepted published1831ThomasHosmerShepherd engraving individually inspected/exactnativeSHA1; PD-Art(PD-old-100) namedcreator. Current primaryoperator/listing text supports conservedexterior/Portlandcolor/annex; no protected currentphoto/plan used. Campbell/Britannica screening images not adopted due incomplete publishedattribution/basis, no metadata/policy edits.",
+    "Independent256m129-square2m all16641samples/one originalTerrariumtile/PNG frozen before geometry unchanged. Provider datum4.1413m/sourcepixel2.9736478786520997m/absolute.346..6.0841m notsurveyaccuracy. No fitting/flattening/reacquisition; ordinarygeographicpreview/replacementdisabled; host contactunverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-seven-bay-hall-and-setback-north-stair-annex",
+      "position": [
+        -43,
+        33,
+        51
+      ],
+      "lookAt": [
+        -1,
+        11,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "ionic-and-composite-orders-alternating-pediments-and-sashes",
+      "position": [
+        3,
+        14,
+        34
+      ],
+      "lookAt": [
+        3,
+        12.5,
+        12
+      ]
+    },
+    {
+      "name": "whole-east-face-and-concealed-roof-balustrade",
+      "position": [
+        40,
+        36,
+        -43
+      ],
+      "lookAt": [
+        2,
+        12,
+        -2
+      ]
+    },
+    {
+      "name": "north-wyatt-annex-entry-roundel-and-weather-vane",
+      "position": [
+        -34,
+        24,
+        29
+      ],
+      "lookAt": [
+        -12,
+        13,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16494,
+    "vertices": 49482,
+    "materials": 6,
+    "bytes": 1982976,
+    "sha256": "sha256:4c4b9279f0219d7eba30bbf19efe9cc1b9a608c9c6164118f498d6180abd0128"
+  }
+}

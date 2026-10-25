@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { checkModelSignalNames, modelSignalDerivedSchema } from './model-signal-expressions';
 import {
   type ModelSignalBinding,
   type ModelSignalSpec,
@@ -14,13 +15,16 @@ export interface VehicleInteriorSpec extends ModelSignalSpec {
   nodes: string[];
 }
 
-export const vehicleInteriorSchema: z.ZodType<VehicleInteriorSpec> = z.strictObject({
-  nodes: z
-    .array(z.string().min(1))
-    .min(1)
-    .describe('Cabin nodes in the same exterior/interior GLB.'),
-  sources: modelSignalSourcesSchema
-    .optional()
-    .describe('Optional component fields overriding or extending host telemetry.'),
-  bindings: modelSignalBindingsSchema,
-});
+export const vehicleInteriorSchema: z.ZodType<VehicleInteriorSpec> = z
+  .strictObject({
+    nodes: z
+      .array(z.string().min(1))
+      .min(1)
+      .describe('Cabin nodes in the same exterior/interior GLB.'),
+    sources: modelSignalSourcesSchema
+      .optional()
+      .describe('Optional component fields overriding or extending host telemetry.'),
+    bindings: modelSignalBindingsSchema,
+    derived: modelSignalDerivedSchema.optional(),
+  })
+  .superRefine((value, ctx) => checkModelSignalNames(value, ctx));

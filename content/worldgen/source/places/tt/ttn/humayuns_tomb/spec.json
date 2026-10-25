@@ -1,0 +1,398 @@
+{
+  "planId": "humayuns_tomb",
+  "id": "humayuns_tomb",
+  "assetId": "molen.worldgen.structure.humayuns_tomb",
+  "title": "Humayun’s Tomb",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 77.25064650177956,
+    "latitude": 28.59328535243456
+  },
+  "size": [
+    100.26114273071289,
+    43.10000002384186,
+    98.6853256225586
+  ],
+  "actualBounds": {
+    "min": [
+      -50.257835388183594,
+      -0.6000000238418579,
+      -49.34429931640625
+    ],
+    "max": [
+      50.0033073425293,
+      42.5,
+      49.341026306152344
+    ]
+  },
+  "visualBrief": "Main native clipped mausoleum on raised terrace, four real central stair niches and open upper-deck exits, clipped lower stone plinth and corner steps, deeply recessed pointed iwans and smaller arched bays, red sandstone with white marble inlay, four open corner chhatris and eight smaller tiled kiosks, marble double dome and metal finial. Separate gates, other tombs, gardens, water, trees and navigable interiors excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Humayun_Tomb-23.jpg",
+    "https://commons.wikimedia.org/wiki/File:Humayun_Tomb_UNESCO_world_heritage_site.jpg",
+    "https://commons.wikimedia.org/wiki/File:Humayun_ka_Maqbaraa.jpg"
+  ],
+  "stories": [
+    {
+      "id": "humayun-s-tomb-wp",
+      "url": "https://qualla.com/humayun-s-tomb/"
+    }
+  ],
+  "referenceInputHash": "fe00fe4cd1d355294844bdd1dc64d9ba25573501a2e218f12d2e5b7591935f33",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-humayuns-tomb.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-humayuns-tomb.mjs",
+    "level": "skyline",
+    "export": "humayunsTombSkyline",
+    "errorMeters": 2.8,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.5,
+        "metallic": 0.55
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "humayunsTombDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.55
+          }
+        }
+      },
+      "street": {
+        "export": "humayunsTombStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.55
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "owner-accepted-medium-fi-preview",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      77.25064650177956,
+      28.59328535243456
+    ],
+    "heading": 0.02150206196628255,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        77.25078051793086,
+        28.59282736689271
+      ],
+      "modelHeight": 0,
+      "basis": "Dry southern garden path,3m outside mapped lower platform and12m east of centerline, away from central water channel. Chosen before ground acquisition and model geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184592474486"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f1fd4cb3b976df82b82ba65d34215cd53a1eecf6dd7330394240d6f8dd9ae72d"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    }
+  ],
+  "limitations": [
+    "Owner accepted the medium-fi model and geographic preview on 2026-10-19 with known host-terrain limitations. Original source ground remains unmodified; contact can intrude or float with coarse urban surface DEMs.",
+    "Native quantized terrace/body/roof parts, UNESCO42.5m double-dome height reference, estimated42.5m overall finial height and photo proportions. Exact crown datum, levels, inlay motifs, fine stonework, unseen elevations and chhatri capitals are estimates.",
+    "Raised platform lower step1.3m, main deck7m, wing parapet20.75m and central parapet23.75m follow map/photo interpretation; conflicting native3/7/20/28height tags retained as facts, not surveyed dimensions.",
+    "Four central upper-terrace stairways follow the primary survey text;2.25m width,8.4m run,26close-view risers,shaft proportions and unseen corners are estimates. Coarse levels use2/3/16risers. The lower plinth preserves mapped long edges with estimated3.2m corner cuts and six-step corner access. No geometry or source elevation is fitted to the incompatible DEM.",
+    "Separate garden tombs, gates, garden design, water, trees, furnishings and interior tomb chambers excluded. Four sides use symmetric photo-directed rhythms with small native asymmetries.",
+    "Original photo pixels are inspection controls only, not redistributed textures; standard sandstone, marble, glazed tile and bronze graphs with opaque dark jaali backing."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "south-whole",
+      "position": [
+        0,
+        22,
+        120
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "mausoleum-oblique",
+      "position": [
+        57,
+        20,
+        64
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "main-iwan",
+      "position": [
+        0,
+        17,
+        44
+      ],
+      "lookAt": [
+        0,
+        16,
+        21
+      ]
+    },
+    {
+      "name": "clipped-corner",
+      "position": [
+        42,
+        16,
+        43
+      ],
+      "lookAt": [
+        23,
+        15,
+        22
+      ]
+    },
+    {
+      "name": "terrace-arcade",
+      "position": [
+        15,
+        5,
+        68
+      ],
+      "lookAt": [
+        15,
+        4,
+        47
+      ]
+    },
+    {
+      "name": "terrace-stair-mouth",
+      "position": [
+        0,
+        4.7,
+        54
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        40
+      ]
+    },
+    {
+      "name": "terrace-stair-exit",
+      "position": [
+        0,
+        17,
+        60
+      ],
+      "lookAt": [
+        0,
+        5,
+        42
+      ]
+    },
+    {
+      "name": "lower-corner-steps",
+      "position": [
+        59,
+        5,
+        59
+      ],
+      "lookAt": [
+        47,
+        1,
+        47
+      ]
+    },
+    {
+      "name": "roof-kiosks",
+      "position": [
+        44,
+        42,
+        45
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "dome-finial",
+      "position": [
+        35,
+        42,
+        40
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ]
+    },
+    {
+      "name": "north-west",
+      "position": [
+        -110,
+        60,
+        -110
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 42634,
+    "vertices": 127902,
+    "materials": 5,
+    "bytes": 5119336,
+    "sha256": "sha256:545d45c22d92b877e384fdaa6c0e8d88a6cdf5c9f6ecfb59bc23260c2a4a572e"
+  }
+}

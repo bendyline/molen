@@ -1,0 +1,233 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "identity": "Rounded glass Gherkin with six dark spiral bands, triangular lattice and tapered crown.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
+  },
+  "brief": "Budgeted curved skin retains the full silhouette, spiral tint bands and lower entrance pods; detail tiers restore facade lines and structural diagonals.",
+  "sourceFacts": {
+    "heightMeters": 180,
+    "floors": 41,
+    "spirallingLightWells": 6,
+    "originalMasterHash": "sha256:d66c621ed711c1ad27ccd810b2ef9fc4e80819c53376ef1c734a962466c75a0b",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-expansion-models.mjs#skylineExpansion[30_st_mary_axe].build",
+    "reviewScope": "Original94364-triangle9048116-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail.",
+    "pictureLedAdjustment": "Lower exterior supports use paired opposing diagonals to approximate the X-braced entrance visible in the inspected picture; member size remains reconstructed. Continuous spiral phase rotates the skin rings; this keeps dark bands connected at every tier."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/gherkin-browser-model.mjs",
+    "export": "buildGherkinCloseup"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "anchor": [
+      -0.080332487,
+      51.51447512
+    ],
+    "heading": 0.610458485976,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/4959489",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/4959489"
+    ],
+    "wikidataId": "Q191161",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Retain180m height,56.6m widest diameter and the authored circular ground envelope from existing exact-QID controls. Inspected exterior pictures support the rounded tapered crown, six dark spiral bands and silver diagrid. Standard viewer PMTiles supplies approximate street/building fit; rotational facade phase remains approximate within sixfold symmetry. Off-footprint[-70,0] sets approximate ground contact, raw PMTiles heights stay separate from bounded radius40m preview correction. Door locations, member sections, glass colors and facade phase remain reconstructed.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain180m height,56.6m widest diameter and the authored circular ground envelope from existing exact-QID controls. Inspected exterior pictures support the rounded tapered crown, six dark spiral bands and silver diagrid. Standard viewer PMTiles supplies approximate street/building fit; rotational facade phase remains approximate within sixfold symmetry. Off-footprint[-70,0] sets approximate ground contact, raw PMTiles heights stay separate from bounded radius40m preview correction. Door locations, member sections, glass colors and facade phase remain reconstructed.",
+    "terrainReference": {
+      "anchor": [
+        -0.08116043562967883,
+        51.51411465281223
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
+  },
+  "geographicNote": "Retain180m height,56.6m widest diameter and the authored circular ground envelope from existing exact-QID controls. Inspected exterior pictures support the rounded tapered crown, six dark spiral bands and silver diagrid. Standard viewer PMTiles supplies approximate street/building fit; rotational facade phase remains approximate within sixfold symmetry. Off-footprint[-70,0] sets approximate ground contact, raw PMTiles heights stay separate from bounded radius40m preview correction. Door locations, member sections, glass colors and facade phase remain reconstructed.",
+  "camera": {
+    "position": [
+      220,
+      125,
+      270
+    ],
+    "lookAt": [
+      0,
+      72,
+      0
+    ],
+    "fov": 44
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/gherkin-browser-model.mjs",
+    "export": "buildGherkinSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGherkinDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.15,
+            "metallic": 0.25
+          }
+        }
+      },
+      "street": {
+        "export": "buildGherkinStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.15,
+            "metallic": 0.25
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGherkinCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.15,
+            "metallic": 0.25
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-30_st_mary_axe-skyline",
+      "position": [
+        220,
+        125,
+        270
+      ],
+      "lookAt": [
+        0,
+        72,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-30_st_mary_axe-district",
+      "position": [
+        220,
+        125,
+        270
+      ],
+      "lookAt": [
+        0,
+        72,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-30_st_mary_axe-street",
+      "position": [
+        220,
+        125,
+        270
+      ],
+      "lookAt": [
+        0,
+        72,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-30_st_mary_axe-closeup",
+      "position": [
+        220,
+        125,
+        270
+      ],
+      "lookAt": [
+        0,
+        72,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Retain180m height,56.6m widest diameter and the authored circular ground envelope from existing exact-QID controls. Inspected exterior pictures support the rounded tapered crown, six dark spiral bands and silver diagrid. Standard viewer PMTiles supplies approximate street/building fit; rotational facade phase remains approximate within sixfold symmetry. Off-footprint[-70,0] sets approximate ground contact, raw PMTiles heights stay separate from bounded radius40m preview correction. Door locations, member sections, glass colors and facade phase remain reconstructed.",
+    "Shared granite/painted-metal graphs and opaque glass PBR; no copied picture textures. Curved facade and spiral phase approximate. Far tiers merge facade grids; closer tiers retain diagrid. Physical-device timing pending."
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ]
+}

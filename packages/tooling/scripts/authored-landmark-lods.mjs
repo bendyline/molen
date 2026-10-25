@@ -338,21 +338,21 @@ import {
   buildKsiazEntrance,
   buildKsiazEntranceSkyline,
   ksiazEntranceSurfaces,
-} from '../../worldgen/scripts/ksiaz-entrance-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs';
 
 const entranceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_gatehouse/map-frame.json',
   '../../../content/worldgen/source/places/u3/u35/ksiaz_north_officina/map-frame.json',
   '../../../content/worldgen/source/places/u3/u35/ksiaz_south_officina/map-frame.json',
   '../../../content/worldgen/source/places/u3/u35/ksiaz_zamkowy_hotel/map-frame.json',
-  '../../../content/worldgen/source/places/u3/u35/n0291_ksiaz_castle_and_park_complex/surface-means.json',
+  '../../../content/worldgen/source/places/u3/u35/ksiaz_castle_and_park_complex/surface-means.json',
 ];
 
 import {
   buildKsiazPark,
   buildKsiazParkSkyline,
   ksiazParkSurfaces,
-} from '../../worldgen/scripts/ksiaz-park-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/ksiaz-park-models.mjs';
 
 const parkData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_hochberg_mausoleum/map-frame.json',
@@ -364,7 +364,7 @@ import {
   buildKsiazGate,
   buildKsiazGateSkyline,
   ksiazGateSurfaces,
-} from '../../worldgen/scripts/ksiaz-gate-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/ksiaz-gate-models.mjs';
 
 const gateData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_lion_gate/map-frame.json',
@@ -378,7 +378,7 @@ import {
   buildKsiazService,
   buildKsiazServiceSkyline,
   ksiazServiceSurfaces,
-} from '../../worldgen/scripts/ksiaz-service-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/ksiaz-service-models.mjs';
 
 const serviceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_forester_house/map-frame.json',
@@ -389,7 +389,7 @@ import {
   buildKsiazSwiss,
   buildKsiazSwissSkyline,
   ksiazSwissSurfaces,
-} from '../../worldgen/scripts/ksiaz-swiss-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/ksiaz-swiss-models.mjs';
 
 const swissData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_swiss_house_i/map-frame.json',
@@ -401,7 +401,7 @@ import {
   buildOldKsiaz,
   buildOldKsiazSkyline,
   oldKsiazSurfaces,
-} from '../../worldgen/scripts/old-ksiaz-model.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/models/old-ksiaz-model.mjs';
 
 const oldKsiazData = [
   '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/map-frame.json',
@@ -412,7 +412,7 @@ import {
   buildKsiazStable,
   buildKsiazStableSkyline,
   ksiazStableSurfaces,
-} from '../../worldgen/scripts/ksiaz-stable-model.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/ksiaz-stable-model.mjs';
 
 const ksiazStableData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/map-frame.json',
@@ -423,7 +423,7 @@ import {
   buildKsiazPalm,
   buildKsiazPalmSkyline,
   ksiazPalmSurfaces,
-} from '../../worldgen/scripts/ksiaz-palm-model.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/ksiaz-palm-model.mjs';
 
 const ksiazPalmData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_house/map-frame.json',
@@ -434,7 +434,7 @@ import {
   buildKsiazPalmService,
   buildKsiazPalmServiceSkyline,
   ksiazPalmServiceSurfaces,
-} from '../../worldgen/scripts/ksiaz-palm-service-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs';
 
 const ksiazPalmServiceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_administration/map-frame.json',
@@ -447,7 +447,7 @@ const ksiazPalmServiceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_boiler_range/surface-means.json',
 ];
 const recipes = {
-  'molen.worldgen.structure.n0021_sanjo_ohashi_bridge': {
+  'molen.worldgen.structure.sanjo_ohashi_bridge': {
     build: buildSanjoSkyline,
     levels: buildSanjoRuntime,
     surfaces: sanjoRuntimeSurfaces,
@@ -458,7 +458,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_administration': {
     build: (o) => buildKsiazPalmServiceSkyline(o, 'ksiaz_palm_administration'),
     levels: (o, level) => buildKsiazPalmService(o, 'ksiaz_palm_administration', level),
-    source: '../../worldgen/scripts/ksiaz-palm-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs',
     data: ksiazPalmServiceData,
     errorMeters: 1,
     surfaces: ksiazPalmServiceSurfaces,
@@ -466,7 +467,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_utility': {
     build: (o) => buildKsiazPalmServiceSkyline(o, 'ksiaz_palm_utility'),
     levels: (o, level) => buildKsiazPalmService(o, 'ksiaz_palm_utility', level),
-    source: '../../worldgen/scripts/ksiaz-palm-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs',
     data: ksiazPalmServiceData,
     errorMeters: 1,
     surfaces: ksiazPalmServiceSurfaces,
@@ -474,7 +476,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_residence': {
     build: (o) => buildKsiazPalmServiceSkyline(o, 'ksiaz_palm_residence'),
     levels: (o, level) => buildKsiazPalmService(o, 'ksiaz_palm_residence', level),
-    source: '../../worldgen/scripts/ksiaz-palm-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs',
     data: ksiazPalmServiceData,
     errorMeters: 1,
     surfaces: ksiazPalmServiceSurfaces,
@@ -482,7 +485,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_boiler_range': {
     build: (o) => buildKsiazPalmServiceSkyline(o, 'ksiaz_palm_boiler_range'),
     levels: (o, level) => buildKsiazPalmService(o, 'ksiaz_palm_boiler_range', level),
-    source: '../../worldgen/scripts/ksiaz-palm-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs',
     data: ksiazPalmServiceData,
     errorMeters: 1,
     surfaces: ksiazPalmServiceSurfaces,
@@ -490,7 +494,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_house': {
     build: (o) => buildKsiazPalmSkyline(o, 'ksiaz_palm_house'),
     levels: (o, level) => buildKsiazPalm(o, 'ksiaz_palm_house', level),
-    source: '../../worldgen/scripts/ksiaz-palm-model.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/ksiaz-palm-model.mjs',
     data: ksiazPalmData,
     errorMeters: 1,
     surfaces: ksiazPalmSurfaces,
@@ -498,7 +503,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_stable_ensemble': {
     build: (o) => buildKsiazStableSkyline(o, 'ksiaz_stable_ensemble'),
     levels: (o, level) => buildKsiazStable(o, 'ksiaz_stable_ensemble', level),
-    source: '../../worldgen/scripts/ksiaz-stable-model.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/ksiaz-stable-model.mjs',
     data: ksiazStableData,
     errorMeters: 1,
     surfaces: ksiazStableSurfaces,
@@ -506,7 +512,8 @@ const recipes = {
   'molen.worldgen.structure.old_ksiaz_ruins': {
     build: (o) => buildOldKsiazSkyline(o),
     levels: (o, level) => buildOldKsiaz(o, 'old_ksiaz_ruins', level),
-    source: '../../worldgen/scripts/old-ksiaz-model.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/models/old-ksiaz-model.mjs',
     data: oldKsiazData,
     errorMeters: 1,
     surfaces: oldKsiazSurfaces,
@@ -514,7 +521,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_swiss_house_i': {
     build: (o) => buildKsiazSwissSkyline(o, 'ksiaz_swiss_house_i'),
     levels: (o, level) => buildKsiazSwiss(o, 'ksiaz_swiss_house_i', level),
-    source: '../../worldgen/scripts/ksiaz-swiss-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/ksiaz-swiss-models.mjs',
     data: swissData,
     errorMeters: 1,
     surfaces: ksiazSwissSurfaces,
@@ -522,7 +530,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_swiss_house_ii': {
     build: (o) => buildKsiazSwissSkyline(o, 'ksiaz_swiss_house_ii'),
     levels: (o, level) => buildKsiazSwiss(o, 'ksiaz_swiss_house_ii', level),
-    source: '../../worldgen/scripts/ksiaz-swiss-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/ksiaz-swiss-models.mjs',
     data: swissData,
     errorMeters: 1,
     surfaces: ksiazSwissSurfaces,
@@ -530,7 +539,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_forester_house': {
     build: (o) => buildKsiazServiceSkyline(o, 'ksiaz_forester_house'),
     levels: (o, level) => buildKsiazService(o, 'ksiaz_forester_house', level),
-    source: '../../worldgen/scripts/ksiaz-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/ksiaz-service-models.mjs',
     data: serviceData,
     errorMeters: 1,
     surfaces: ksiazServiceSurfaces,
@@ -538,7 +548,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_lion_gate': {
     build: (o) => buildKsiazGateSkyline(o, 'ksiaz_lion_gate'),
     levels: (o, level) => buildKsiazGate(o, 'ksiaz_lion_gate', level),
-    source: '../../worldgen/scripts/ksiaz-gate-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/ksiaz-gate-models.mjs',
     data: gateData,
     errorMeters: 1,
     surfaces: ksiazGateSurfaces,
@@ -546,7 +557,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_jezdziecka_park_gate': {
     build: (o) => buildKsiazGateSkyline(o, 'ksiaz_jezdziecka_park_gate'),
     levels: (o, level) => buildKsiazGate(o, 'ksiaz_jezdziecka_park_gate', level),
-    source: '../../worldgen/scripts/ksiaz-gate-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/ksiaz-gate-models.mjs',
     data: gateData,
     errorMeters: 1,
     surfaces: ksiazGateSurfaces,
@@ -554,7 +566,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_hochberg_alley_gate': {
     build: (o) => buildKsiazGateSkyline(o, 'ksiaz_hochberg_alley_gate'),
     levels: (o, level) => buildKsiazGate(o, 'ksiaz_hochberg_alley_gate', level),
-    source: '../../worldgen/scripts/ksiaz-gate-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/ksiaz-gate-models.mjs',
     data: gateData,
     errorMeters: 1,
     surfaces: ksiazGateSurfaces,
@@ -562,7 +575,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_hochberg_mausoleum': {
     build: (o) => buildKsiazParkSkyline(o, 'ksiaz_hochberg_mausoleum'),
     levels: (o, level) => buildKsiazPark(o, 'ksiaz_hochberg_mausoleum', level),
-    source: '../../worldgen/scripts/ksiaz-park-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/ksiaz-park-models.mjs',
     data: parkData,
     errorMeters: 1,
     surfaces: ksiazParkSurfaces,
@@ -570,7 +584,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_forge': {
     build: (o) => buildKsiazParkSkyline(o, 'ksiaz_forge'),
     levels: (o, level) => buildKsiazPark(o, 'ksiaz_forge', level),
-    source: '../../worldgen/scripts/ksiaz-park-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/ksiaz-park-models.mjs',
     data: parkData,
     errorMeters: 1,
     surfaces: ksiazParkSurfaces,
@@ -578,7 +593,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_gatehouse': {
     build: (o) => buildKsiazEntranceSkyline(o, 'ksiaz_gatehouse'),
     levels: (o, level) => buildKsiazEntrance(o, 'ksiaz_gatehouse', level),
-    source: '../../worldgen/scripts/ksiaz-entrance-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs',
     data: entranceData,
     errorMeters: 1,
     surfaces: ksiazEntranceSurfaces,
@@ -586,7 +602,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_north_officina': {
     build: (o) => buildKsiazEntranceSkyline(o, 'ksiaz_north_officina'),
     levels: (o, level) => buildKsiazEntrance(o, 'ksiaz_north_officina', level),
-    source: '../../worldgen/scripts/ksiaz-entrance-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs',
     data: entranceData,
     errorMeters: 1,
     surfaces: ksiazEntranceSurfaces,
@@ -594,7 +611,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_south_officina': {
     build: (o) => buildKsiazEntranceSkyline(o, 'ksiaz_south_officina'),
     levels: (o, level) => buildKsiazEntrance(o, 'ksiaz_south_officina', level),
-    source: '../../worldgen/scripts/ksiaz-entrance-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs',
     data: entranceData,
     errorMeters: 1,
     surfaces: ksiazEntranceSurfaces,
@@ -602,223 +620,224 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_zamkowy_hotel': {
     build: (o) => buildKsiazEntranceSkyline(o, 'ksiaz_zamkowy_hotel'),
     levels: (o, level) => buildKsiazEntrance(o, 'ksiaz_zamkowy_hotel', level),
-    source: '../../worldgen/scripts/ksiaz-entrance-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs',
     data: entranceData,
     errorMeters: 1,
     surfaces: ksiazEntranceSurfaces,
   },
-  'molen.worldgen.structure.n0297_nuremberg_castle': {
+  'molen.worldgen.structure.nuremberg_castle': {
     build: buildNurembergSkyline,
     levels: buildNurembergRuntime,
     source: '../../worldgen/scripts/nuremberg-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u0/u0z/n0297_nuremberg_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u0/u0z/n0297_nuremberg_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u0/u0z/nuremberg_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u0/u0z/nuremberg_castle/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: nurembergSurfaces,
   },
-  'molen.worldgen.structure.n0298_egeskov_castle': {
+  'molen.worldgen.structure.egeskov_castle': {
     build: buildEgeskovSkyline,
     levels: buildEgeskovRuntime,
     source: '../../worldgen/scripts/egeskov-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u1/u1z/n0298_egeskov_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u1/u1z/n0298_egeskov_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u1/u1z/egeskov_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u1/u1z/egeskov_castle/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: egeskovSurfaces,
   },
-  'molen.worldgen.structure.n0299_wawel_castle': {
+  'molen.worldgen.structure.wawel_castle': {
     build: buildWawelSkyline,
     levels: buildWawelRuntime,
     source: '../../worldgen/scripts/wawel-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u2/u2y/n0299_wawel_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u2/u2y/n0299_wawel_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u2/u2y/wawel_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u2y/wawel_castle/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: wawelSurfaces,
   },
-  'molen.worldgen.structure.n0300_saint_michael_s_castle': {
+  'molen.worldgen.structure.saint_michaels_castle': {
     build: buildSaintMichaelSkyline,
     levels: buildSaintMichaelRuntime,
     source: '../../worldgen/scripts/saint-michaels-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/map-frame.json',
-      '../../../content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/surface-means.json',
+      '../../../content/worldgen/source/places/ud/udt/saint_michaels_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/udt/saint_michaels_castle/surface-means.json',
     ],
     errorMeters: 6,
     surfaces: saintMichaelSurfaces,
   },
-  'molen.worldgen.structure.n0301_hochosterwitz_castle': {
+  'molen.worldgen.structure.hochosterwitz_castle': {
     build: buildHochosterwitzSkyline,
     levels: buildHochosterwitzRuntime,
     source: '../../worldgen/scripts/hochosterwitz-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/surface-means.json',
-      '../../../content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/terrain-samples.json',
+      '../../../content/worldgen/source/places/u2/u26/hochosterwitz_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u26/hochosterwitz_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u2/u26/hochosterwitz_castle/terrain-samples.json',
     ],
     errorMeters: 6,
     surfaces: hochosterwitzSurfaces,
   },
-  'molen.worldgen.structure.n0302_liechtenstein_castle': {
+  'molen.worldgen.structure.liechtenstein_castle': {
     build: buildLiechtensteinSkyline,
     levels: buildLiechtensteinRuntime,
     source: '../../worldgen/scripts/liechtenstein-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u2/u2e/liechtenstein_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u2e/liechtenstein_castle/surface-means.json',
     ],
     errorMeters: 2.5,
     surfaces: liechtensteinSurfaces,
   },
-  'molen.worldgen.structure.n0303_arundel_castle': {
+  'molen.worldgen.structure.arundel_castle': {
     build: buildArundelSkyline,
     levels: buildArundelRuntime,
     source: '../../worldgen/scripts/arundel-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/gc/gcp/n0303_arundel_castle/map-frame.json',
-      '../../../content/worldgen/source/places/gc/gcp/n0303_arundel_castle/surface-means.json',
+      '../../../content/worldgen/source/places/gc/gcp/arundel_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gcp/arundel_castle/surface-means.json',
     ],
     errorMeters: 5,
     surfaces: arundelSurfaces,
   },
-  'molen.worldgen.structure.n0304_leeds_castle': {
+  'molen.worldgen.structure.leeds_castle': {
     build: buildLeedsSkyline,
     levels: buildLeedsRuntime,
     source: '../../worldgen/scripts/leeds-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u1/u10/n0304_leeds_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u1/u10/n0304_leeds_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u1/u10/leeds_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u1/u10/leeds_castle/surface-means.json',
     ],
     errorMeters: 2,
     surfaces: leedsSurfaces,
   },
-  'molen.worldgen.structure.n0305_turku_castle': {
+  'molen.worldgen.structure.turku_castle': {
     build: buildTurkuSkyline,
     levels: buildTurkuRuntime,
     source: '../../worldgen/scripts/turku-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u6/u6x/n0305_turku_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u6/u6x/n0305_turku_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u6/u6x/turku_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u6/u6x/turku_castle/surface-means.json',
     ],
     errorMeters: 2,
     surfaces: turkuSurfaces,
   },
-  'molen.worldgen.structure.n0306_gediminas_tower': {
+  'molen.worldgen.structure.gediminas_tower': {
     build: buildGediminasSkyline,
     levels: buildGediminasRuntime,
     source: '../../worldgen/scripts/gediminas-tower-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u9/u99/n0306_gediminas_tower/map-frame.json',
-      '../../../content/worldgen/source/places/u9/u99/n0306_gediminas_tower/surface-means.json',
+      '../../../content/worldgen/source/places/u9/u99/gediminas_tower/map-frame.json',
+      '../../../content/worldgen/source/places/u9/u99/gediminas_tower/surface-means.json',
     ],
     errorMeters: 0.5,
     surfaces: gediminasSurfaces,
   },
-  'molen.worldgen.structure.n0307_ljubljana_castle': {
+  'molen.worldgen.structure.ljubljana_castle': {
     build: buildLjubljanaSkyline,
     levels: buildLjubljanaRuntime,
     source: '../../worldgen/scripts/ljubljana-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u2/u24/ljubljana_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u24/ljubljana_castle/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: ljubljanaSurfaces,
   },
-  'molen.worldgen.structure.n0308_castle_of_saint_george': {
+  'molen.worldgen.structure.castle_of_saint_george': {
     build: buildSaoJorgeSkyline,
     levels: buildSaoJorgeRuntime,
     source: '../../worldgen/scripts/sao-jorge-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/map-frame.json',
-      '../../../content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/surface-means.json',
+      '../../../content/worldgen/source/places/ey/eyc/castle_of_saint_george/map-frame.json',
+      '../../../content/worldgen/source/places/ey/eyc/castle_of_saint_george/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: saoJorgeSurfaces,
   },
-  'molen.worldgen.structure.n0309_haapsalu_castle': {
+  'molen.worldgen.structure.haapsalu_castle': {
     build: buildHaapsaluSkyline,
     levels: buildHaapsaluRuntime,
     source: '../../worldgen/scripts/haapsalu-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/map-frame.json',
-      '../../../content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/surface-means.json',
+      '../../../content/worldgen/source/places/ud/ud2/haapsalu_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/ud2/haapsalu_castle/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: haapsaluSurfaces,
   },
-  'molen.worldgen.structure.n0296_kalmar_castle': {
+  'molen.worldgen.structure.kalmar_castle': {
     build: buildKalmarSkyline,
     levels: buildKalmarRuntime,
     source: '../../worldgen/scripts/kalmar-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u6/u65/n0296_kalmar_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u6/u65/n0296_kalmar_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u6/u65/kalmar_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u6/u65/kalmar_castle/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: kalmarSurfaces,
   },
-  'molen.worldgen.structure.n0295_pembroke_castle': {
+  'molen.worldgen.structure.pembroke_castle': {
     build: buildPembrokeSkyline,
     levels: buildPembrokeRuntime,
     source: '../../worldgen/scripts/pembroke-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/gc/gch/n0295_pembroke_castle/map-frame.json',
-      '../../../content/worldgen/source/places/gc/gch/n0295_pembroke_castle/relief-grid.json',
-      '../../../content/worldgen/source/places/gc/gch/n0295_pembroke_castle/surface-means.json',
+      '../../../content/worldgen/source/places/gc/gch/pembroke_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gch/pembroke_castle/relief-grid.json',
+      '../../../content/worldgen/source/places/gc/gch/pembroke_castle/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: pembrokeSurfaces,
   },
-  'molen.worldgen.structure.n0294_aljaferia': {
+  'molen.worldgen.structure.aljaferia': {
     build: buildAljaferiaSkyline,
     levels: buildAljaferiaRuntime,
     source: '../../worldgen/scripts/aljaferia-palace-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/ez/ezr/n0294_aljaferia/map-frame.json',
-      '../../../content/worldgen/source/places/ez/ezr/n0294_aljaferia/surface-means.json',
+      '../../../content/worldgen/source/places/ez/ezr/aljaferia/map-frame.json',
+      '../../../content/worldgen/source/places/ez/ezr/aljaferia/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: aljaferiaSurfaces,
   },
-  'molen.worldgen.structure.n0293_rumeli_hisar': {
+  'molen.worldgen.structure.rumeli_hisar': {
     build: buildRumeliSkyline,
     levels: buildRumeliRuntime,
     source: '../../worldgen/scripts/rumeli-fortress-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/sx/sxk/n0293_rumeli_hisar/map-frame.json',
-      '../../../content/worldgen/source/places/sx/sxk/n0293_rumeli_hisar/relief-grid.json',
-      '../../../content/worldgen/source/places/sx/sxk/n0293_rumeli_hisar/surface-means.json',
+      '../../../content/worldgen/source/places/sx/sxk/rumeli_hisar/map-frame.json',
+      '../../../content/worldgen/source/places/sx/sxk/rumeli_hisar/relief-grid.json',
+      '../../../content/worldgen/source/places/sx/sxk/rumeli_hisar/surface-means.json',
       '../../worldgen/scripts/authored-wall-openings.mjs',
     ],
     errorMeters: 2,
     surfaces: rumeliSurfaces,
   },
-  'molen.worldgen.structure.n0292_devin_castle': {
+  'molen.worldgen.structure.devin_castle': {
     build: buildDevinSkyline,
     levels: buildDevinRuntime,
     source: '../../worldgen/scripts/devin-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u2/u2s/n0292_devin_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u2/u2s/n0292_devin_castle/openings.json',
+      '../../../content/worldgen/source/places/u2/u2s/devin_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u2s/devin_castle/openings.json',
       '../../worldgen/scripts/authored-wall-openings.mjs',
-      '../../../content/worldgen/source/places/u2/u2s/n0292_devin_castle/relief-grid.json',
-      '../../../content/worldgen/source/places/u2/u2s/n0292_devin_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u2/u2s/devin_castle/relief-grid.json',
+      '../../../content/worldgen/source/places/u2/u2s/devin_castle/surface-means.json',
     ],
     errorMeters: 2,
     surfaces: devinSurfaces,
   },
-  'molen.worldgen.structure.n0291_ksiaz_castle_and_park_complex': {
+  'molen.worldgen.structure.ksiaz_castle_and_park_complex': {
     build: buildKsiazSkyline,
     levels: buildKsiazRuntime,
     source: '../../worldgen/scripts/ksiaz-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u3/u35/n0291_ksiaz_castle_and_park_complex/map-frame.json',
-      '../../../content/worldgen/source/places/u3/u35/n0291_ksiaz_castle_and_park_complex/surface-means.json',
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_castle_and_park_complex/map-frame.json',
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_castle_and_park_complex/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: {
@@ -831,13 +850,13 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0290_warwick_castle': {
+  'molen.worldgen.structure.warwick_castle': {
     build: buildWarwickSkyline,
     levels: buildWarwickRuntime,
     source: '../../worldgen/scripts/warwick-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/gc/gcq/n0290_warwick_castle/map-frame.json',
-      '../../../content/worldgen/source/places/gc/gcq/n0290_warwick_castle/surface-means.json',
+      '../../../content/worldgen/source/places/gc/gcq/warwick_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gcq/warwick_castle/surface-means.json',
     ],
     errorMeters: 1,
     surfaces: {
@@ -848,11 +867,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.45, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0289_castel_nuovo': {
+  'molen.worldgen.structure.castel_nuovo': {
     build: buildCastelNuovoSkyline,
     levels: buildCastelNuovoRuntime,
     source: '../../worldgen/scripts/castel-nuovo-model.mjs',
-    data: '../../../content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/map-frame.json',
+    data: '../../../content/worldgen/source/places/sr/sr6/castel_nuovo/map-frame.json',
     errorMeters: 1,
     surfaces: {
       basalt: { slot: 'wall', graph: 'stone_basalt', roughness: 0.94, metallic: 0 },
@@ -863,11 +882,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.45, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0288_konopiste_castle': {
+  'molen.worldgen.structure.konopiste_castle': {
     build: buildKonopisteSkyline,
     levels: buildKonopisteRuntime,
     source: '../../worldgen/scripts/konopiste-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u2/u2f/n0288_konopiste_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u2/u2f/konopiste_castle/map-frame.json',
     errorMeters: 1,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -878,11 +897,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.45, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0287_elmina_castle': {
+  'molen.worldgen.structure.elmina_castle': {
     build: buildElminaSkyline,
     levels: buildElminaRuntime,
     source: '../../worldgen/scripts/elmina-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/eb/ebz/n0287_elmina_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/eb/ebz/elmina_castle/map-frame.json',
     errorMeters: 1,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -894,11 +913,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.45, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0286_kromeriz_castle': {
+  'molen.worldgen.structure.kromeriz_castle': {
     build: buildKromerizSkyline,
     levels: buildKromerizRuntime,
     source: '../../worldgen/scripts/kromeriz-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u2/u2u/kromeriz_castle/map-frame.json',
     errorMeters: 1,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -909,11 +928,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.45, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0285_corvin_castle': {
+  'molen.worldgen.structure.corvin_castle': {
     build: buildCorvinSkyline,
     levels: buildCorvinRuntime,
     source: '../../worldgen/scripts/corvin-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u8/u80/n0285_corvin_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u8/u80/corvin_castle/map-frame.json',
     errorMeters: 1,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.86, metallic: 0 },
@@ -924,13 +943,13 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.45, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0284_dover_castle': {
+  'molen.worldgen.structure.dover_castle': {
     build: buildDoverSkyline,
     levels: buildDoverRuntime,
     source: '../../worldgen/scripts/dover-castle-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/u1/u10/n0284_dover_castle/map-frame.json',
-      '../../../content/worldgen/source/places/u1/u10/n0284_dover_castle/relief-grid.json',
+      '../../../content/worldgen/source/places/u1/u10/dover_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u1/u10/dover_castle/relief-grid.json',
     ],
     errorMeters: 3,
     surfaces: {
@@ -942,11 +961,11 @@ const recipes = {
       recess: { slot: 'window', roughness: 0.45, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0283_beaumaris_castle': {
+  'molen.worldgen.structure.beaumaris_castle': {
     build: buildBeaumarisSkyline,
     levels: buildBeaumarisRuntime,
     source: '../../worldgen/scripts/beaumaris-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/gc/gcm/n0283_beaumaris_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/gc/gcm/beaumaris_castle/map-frame.json',
     errorMeters: 1,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -960,11 +979,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0282_akershus_fortress': {
+  'molen.worldgen.structure.akershus_fortress': {
     build: buildAkershusSkyline,
     levels: buildAkershusRuntime,
     source: '../../worldgen/scripts/akershus-fortress-model.mjs',
-    data: '../../../content/worldgen/source/places/u4/u4x/n0282_akershus_fortress/map-frame.json',
+    data: '../../../content/worldgen/source/places/u4/u4x/akershus_fortress/map-frame.json',
     errorMeters: 2,
     surfaces: {
       brick: { slot: 'wall', graph: 'brick', roughness: 0.9, metallic: 0 },
@@ -977,14 +996,14 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0281_acrocorinth': {
+  'molen.worldgen.structure.acrocorinth': {
     build: buildAcrocorinthSkyline,
     levels: buildAcrocorinthRuntime,
     source: '../../worldgen/scripts/acrocorinth-model.mjs',
     data: [
-      '../../../content/worldgen/source/places/sw/sw8/n0281_acrocorinth/map-frame.json',
-      '../../../content/worldgen/source/places/sw/sw8/n0281_acrocorinth/survey-lines.json',
-      '../../../content/worldgen/source/places/sw/sw8/n0281_acrocorinth/relief-grid.json',
+      '../../../content/worldgen/source/places/sw/sw8/acrocorinth/map-frame.json',
+      '../../../content/worldgen/source/places/sw/sw8/acrocorinth/survey-lines.json',
+      '../../../content/worldgen/source/places/sw/sw8/acrocorinth/relief-grid.json',
     ],
     errorMeters: 5,
     surfaces: {
@@ -1000,11 +1019,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0280_trakai_island_castle': {
+  'molen.worldgen.structure.trakai_island_castle': {
     build: buildTrakaiSkyline,
     levels: buildTrakaiRuntime,
     source: '../../worldgen/scripts/trakai-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u9/u99/n0280_trakai_island_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u9/u99/trakai_island_castle/map-frame.json',
     errorMeters: 1.5,
     surfaces: {
       brick: { slot: 'wall', graph: 'brick', roughness: 0.9, metallic: 0 },
@@ -1014,11 +1033,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0279_gripsholm_castle': {
+  'molen.worldgen.structure.gripsholm_castle': {
     build: buildGripsholmSkyline,
     levels: buildGripsholmRuntime,
     source: '../../worldgen/scripts/gripsholm-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u6/u6s/gripsholm_castle/map-frame.json',
     errorMeters: 1.5,
     surfaces: {
       brick: { slot: 'wall', graph: 'brick', roughness: 0.9, metallic: 0 },
@@ -1029,11 +1048,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0278_kamianets_podilskyi_castle': {
+  'molen.worldgen.structure.kamianets_podilskyi_castle': {
     build: buildKamianetsSkyline,
     levels: buildKamianetsRuntime,
     source: '../../worldgen/scripts/kamianets-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u8/u8d/n0278_kamianets_podilskyi_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u8/u8d/kamianets_podilskyi_castle/map-frame.json',
     errorMeters: 0.5,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1044,11 +1063,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0277_lubart_s_castle': {
+  'molen.worldgen.structure.lubarts_castle': {
     build: buildLubartSkyline,
     levels: buildLubartRuntime,
     source: '../../worldgen/scripts/lubart-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u9/u94/n0277_lubart_s_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u9/u94/lubarts_castle/map-frame.json',
     errorMeters: 0.5,
     surfaces: {
       brick: { slot: 'wall', graph: 'brick', roughness: 0.9, metallic: 0 },
@@ -1061,11 +1080,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0276_miramare_castle': {
+  'molen.worldgen.structure.miramare_castle': {
     build: buildMiramareSkyline,
     levels: buildMiramareRuntime,
     source: '../../worldgen/scripts/miramare-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u2/u21/n0276_miramare_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u2/u21/miramare_castle/map-frame.json',
     errorMeters: 0.3,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1073,11 +1092,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0275_dublin_castle': {
+  'molen.worldgen.structure.dublin_castle': {
     build: buildDublinSkyline,
     levels: buildDublinRuntime,
     source: '../../worldgen/scripts/dublin-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/gc/gc7/n0275_dublin_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/gc/gc7/dublin_castle/map-frame.json',
     errorMeters: 0.7,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1089,11 +1108,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0274_hermann_castle': {
+  'molen.worldgen.structure.hermann_castle': {
     build: buildHermannSkyline,
     levels: buildHermannRuntime,
     source: '../../worldgen/scripts/hermann-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/ud/uds/n0274_hermann_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/ud/uds/hermann_castle/map-frame.json',
     errorMeters: 0.7,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1103,11 +1122,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0273_caernarfon_castle': {
+  'molen.worldgen.structure.caernarfon_castle': {
     build: buildCaernarfonSkyline,
     levels: buildCaernarfonRuntime,
     source: '../../worldgen/scripts/caernarfon-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/gc/gck/n0273_caernarfon_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/gc/gck/caernarfon_castle/map-frame.json',
     errorMeters: 0.6,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1117,11 +1136,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0272_kuressaare_castle': {
+  'molen.worldgen.structure.kuressaare_castle': {
     build: buildKuressaareSkyline,
     levels: buildKuressaareRuntime,
     source: '../../worldgen/scripts/kuressaare-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u6/u6r/n0272_kuressaare_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u6/u6r/kuressaare_castle/map-frame.json',
     errorMeters: 0.3,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1131,11 +1150,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0271_swallow_s_nest': {
+  'molen.worldgen.structure.swallows_nest': {
     build: buildSwallowsNestSkyline,
     levels: buildSwallowsNestRuntime,
     source: '../../worldgen/scripts/swallows-nest-model.mjs',
-    data: '../../../content/worldgen/source/places/sz/szb/n0271_swallow_s_nest/map-frame.json',
+    data: '../../../content/worldgen/source/places/sz/szb/swallows_nest/map-frame.json',
     errorMeters: 0.2,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1145,11 +1164,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0270_conwy_castle': {
+  'molen.worldgen.structure.conwy_castle': {
     build: buildConwySkyline,
     levels: buildConwyRuntime,
     source: '../../worldgen/scripts/conwy-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/gc/gcm/n0270_conwy_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/gc/gcm/conwy_castle/map-frame.json',
     errorMeters: 0.8,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1159,11 +1178,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0269_vaduz_castle': {
+  'molen.worldgen.structure.vaduz_castle': {
     build: buildVaduzSkyline,
     levels: buildVaduzRuntime,
     source: '../../worldgen/scripts/vaduz-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u0/u0q/n0269_vaduz_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u0/u0q/vaduz_castle/map-frame.json',
     errorMeters: 0.6,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -1173,11 +1192,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0268_hohensalzburg_fortress': {
+  'molen.worldgen.structure.hohensalzburg_fortress': {
     build: buildHohensalzburgSkyline,
     levels: buildHohensalzburgRuntime,
     source: '../../worldgen/scripts/hohensalzburg-fortress-model.mjs',
-    data: '../../../content/worldgen/source/places/u2/u23/n0268_hohensalzburg_fortress/map-frame.json',
+    data: '../../../content/worldgen/source/places/u2/u23/hohensalzburg_fortress/map-frame.json',
     errorMeters: 1.5,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -1187,11 +1206,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0267_heidelberg_castle': {
+  'molen.worldgen.structure.heidelberg_castle': {
     build: buildHeidelbergSkyline,
     levels: buildHeidelbergRuntime,
     source: '../../worldgen/scripts/heidelberg-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u0/u0y/heidelberg_castle/map-frame.json',
     errorMeters: 1.5,
     surfaces: {
       sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
@@ -1201,11 +1220,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0266_eltz_castle': {
+  'molen.worldgen.structure.eltz_castle': {
     build: buildEltzSkyline,
     levels: buildEltzRuntime,
     source: '../../worldgen/scripts/eltz-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u0/u0v/n0266_eltz_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/u0/u0v/eltz_castle/map-frame.json',
     errorMeters: 0.7,
     surfaces: {
       sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
@@ -1215,11 +1234,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0265_chateau_de_vincennes': {
+  'molen.worldgen.structure.chateau_de_vincennes': {
     build: buildVincennesSkyline,
     levels: buildVincennesRuntime,
     source: '../../worldgen/scripts/vincennes-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u0/u09/n0265_chateau_de_vincennes/map-frame.json',
+    data: '../../../content/worldgen/source/places/u0/u09/chateau_de_vincennes/map-frame.json',
     errorMeters: 2,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1229,11 +1248,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0264_riga_castle': {
+  'molen.worldgen.structure.riga_castle': {
     build: buildRigaSkyline,
     levels: buildRigaRuntime,
     source: '../../worldgen/scripts/riga-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/ud/ud1/n0264_riga_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/ud/ud1/riga_castle/map-frame.json',
     errorMeters: 1.5,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -1244,11 +1263,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0263_toompea_castle': {
+  'molen.worldgen.structure.toompea_castle': {
     build: buildToompeaSkyline,
     levels: buildToompeaRuntime,
     source: '../../worldgen/scripts/toompea-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/ud/ud9/n0263_toompea_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/ud/ud9/toompea_castle/map-frame.json',
     errorMeters: 1.5,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -1258,11 +1277,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0262_stirling_castle': {
+  'molen.worldgen.structure.stirling_castle': {
     build: buildStirlingSkyline,
     levels: buildStirlingRuntime,
     source: '../../worldgen/scripts/stirling-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/gc/gcv/n0262_stirling_castle/map-frame.json',
+    data: '../../../content/worldgen/source/places/gc/gcv/stirling_castle/map-frame.json',
     errorMeters: 1.5,
     surfaces: {
       sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
@@ -1272,11 +1291,11 @@ const recipes = {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0261_royal_castle_in_warsaw': {
+  'molen.worldgen.structure.royal_castle_in_warsaw': {
     build: buildWarsawSkyline,
     levels: buildWarsawRuntime,
     source: '../../worldgen/scripts/warsaw-royal-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u3/u3q/n0261_royal_castle_in_warsaw/map-frame.json',
+    data: '../../../content/worldgen/source/places/u3/u3q/royal_castle_in_warsaw/map-frame.json',
     errorMeters: 1.5,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -1287,7 +1306,7 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0260_khotyn_fortress': {
+  'molen.worldgen.structure.khotyn_fortress': {
     build: buildKhotynSkyline,
     levels: buildKhotynRuntime,
     source: '../../worldgen/scripts/khotyn-fortress-model.mjs',
@@ -1300,7 +1319,7 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0259_shanhai_pass': {
+  'molen.worldgen.structure.shanhai_pass': {
     build: buildShanhaiSkyline,
     levels: buildShanhaiRuntime,
     source: '../../worldgen/scripts/shanhai-pass-model.mjs',
@@ -1312,11 +1331,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0258_sforza_castle': {
+  'molen.worldgen.structure.sforza_castle': {
     build: buildSforzaSkyline,
     levels: buildSforzaRuntime,
     source: '../../worldgen/scripts/sforza-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u0/u0n/n0258_sforza_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u0/u0n/sforza_castle/map-parts.json',
     errorMeters: 2,
     surfaces: {
       brick: { slot: 'wall', graph: 'brick', roughness: 0.9, metallic: 0 },
@@ -1334,11 +1353,11 @@ const recipes = {
     },
   },
 
-  'molen.worldgen.structure.n0257_citadel_of_salah_ed_din': {
+  'molen.worldgen.structure.citadel_of_salah_ed_din': {
     build: buildSalahSkyline,
     levels: buildSalahRuntime,
     source: '../../worldgen/scripts/salah-citadel-model.mjs',
-    data: '../../../content/worldgen/source/places/sy/sy3/n0257_citadel_of_salah_ed_din/map-parts.json',
+    data: '../../../content/worldgen/source/places/sy/sy3/citadel_of_salah_ed_din/map-parts.json',
     errorMeters: 3,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1357,11 +1376,11 @@ const recipes = {
     },
   },
 
-  'molen.worldgen.structure.n0256_durham_castle': {
+  'molen.worldgen.structure.durham_castle': {
     build: buildDurhamSkyline,
     levels: buildDurhamRuntime,
     source: '../../worldgen/scripts/durham-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/gc/gcw/n0256_durham_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/gc/gcw/durham_castle/map-parts.json',
     errorMeters: 2,
     surfaces: {
       sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.88, metallic: 0 },
@@ -1377,11 +1396,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0255_buda_castle': {
+  'molen.worldgen.structure.buda_castle': {
     build: buildBudaSkyline,
     levels: buildBudaRuntime,
     source: '../../worldgen/scripts/buda-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u2/u2m/n0255_buda_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u2/u2m/buda_castle/map-parts.json',
     errorMeters: 2,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.88, metallic: 0 },
@@ -1397,11 +1416,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0254_nesvizh_castle': {
+  'molen.worldgen.structure.nesvizh_castle': {
     build: buildNesvizhSkyline,
     levels: buildNesvizhRuntime,
     source: '../../worldgen/scripts/nesvizh-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u9/u96/nesvizh_castle/map-parts.json',
     errorMeters: 2,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -1417,11 +1436,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0253_bratislava_castle': {
+  'molen.worldgen.structure.bratislava_castle': {
     build: buildBratislavaSkyline,
     levels: buildBratislavaRuntime,
     source: '../../worldgen/scripts/bratislava-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u2/u2s/n0253_bratislava_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u2/u2s/bratislava_castle/map-parts.json',
     errorMeters: 2,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -1437,11 +1456,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0252_hohenzollern_castle': {
+  'molen.worldgen.structure.hohenzollern_castle': {
     build: buildHohenzollernSkyline,
     levels: buildHohenzollernRuntime,
     source: '../../worldgen/scripts/hohenzollern-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u0/u0w/n0252_hohenzollern_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u0/u0w/hohenzollern_castle/map-parts.json',
     errorMeters: 2,
     surfaces: {
       sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
@@ -1456,11 +1475,11 @@ const recipes = {
     },
   },
 
-  'molen.worldgen.structure.n0251_kernave': {
+  'molen.worldgen.structure.kernave': {
     build: buildKernaveSkyline,
     levels: buildKernaveRuntime,
     source: '../../worldgen/scripts/kernave-landscape-model.mjs',
-    data: '../../../content/worldgen/source/places/u9/u9c/n0251_kernave/map-parts.json',
+    data: '../../../content/worldgen/source/places/u9/u9c/kernave/map-parts.json',
     errorMeters: 12,
     surfaces: {
       foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
@@ -1469,11 +1488,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0250_mir_castle_complex': {
+  'molen.worldgen.structure.mir_castle_complex': {
     build: buildMirSkyline,
     levels: buildMirRuntime,
     source: '../../worldgen/scripts/mir-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u9/u9d/n0250_mir_castle_complex/map-parts.json',
+    data: '../../../content/worldgen/source/places/u9/u9d/mir_castle_complex/map-parts.json',
     errorMeters: 2,
     surfaces: {
       brick: { slot: 'wall', graph: 'brick', roughness: 0.9, metallic: 0 },
@@ -1488,11 +1507,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0249_alamut_castle': {
+  'molen.worldgen.structure.alamut_castle': {
     build: buildAlamutSkyline,
     levels: buildAlamutRuntime,
     source: '../../worldgen/scripts/alamut-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/tn/tn7/n0249_alamut_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/tn/tn7/alamut_castle/map-parts.json',
     errorMeters: 4,
     surfaces: {
       sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
@@ -1510,11 +1529,11 @@ const recipes = {
     },
   },
 
-  'molen.worldgen.structure.n0248_bran_castle': {
+  'molen.worldgen.structure.bran_castle': {
     build: buildBranSkyline,
     levels: buildBranRuntime,
     source: '../../worldgen/scripts/bran-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u8/u84/n0248_bran_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u8/u84/bran_castle/map-parts.json',
     errorMeters: 2,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -1528,11 +1547,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0247_karlstejn_castle': {
+  'molen.worldgen.structure.karlstejn_castle': {
     build: buildKarlstejnSkyline,
     levels: buildKarlstejnRuntime,
     source: '../../worldgen/scripts/karlstejn-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u2/u2f/n0247_karlstejn_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u2/u2f/karlstejn_castle/map-parts.json',
     errorMeters: 5,
     surfaces: {
       plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
@@ -1546,11 +1565,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0246_takht_e_soleyman': {
+  'molen.worldgen.structure.takht_e_soleyman': {
     build: buildTakhtSkyline,
     levels: buildTakhtRuntime,
     source: '../../worldgen/scripts/takht-e-soleyman-model.mjs',
-    data: '../../../content/worldgen/source/places/tn/tn9/n0246_takht_e_soleyman/map-parts.json',
+    data: '../../../content/worldgen/source/places/tn/tn9/takht_e_soleyman/map-parts.json',
     errorMeters: 8,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1568,11 +1587,11 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0245_hofburg_palace': {
+  'molen.worldgen.structure.hofburg_palace': {
     build: buildHofburgSkyline,
     levels: buildHofburgRuntime,
     source: '../../worldgen/scripts/hofburg-palace-model.mjs',
-    data: '../../../content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/map-parts.json',
+    data: '../../../content/worldgen/source/places/u2/u2e/hofburg_palace/map-parts.json',
     errorMeters: 10,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1588,11 +1607,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0244_kronborg_castle': {
+  'molen.worldgen.structure.kronborg_castle': {
     build: buildKronborgSkyline,
     levels: buildKronborgRuntime,
     source: '../../worldgen/scripts/kronborg-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u3/u3b/n0244_kronborg_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u3/u3b/kronborg_castle/map-parts.json',
     errorMeters: 5,
     surfaces: {
       sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
@@ -1608,11 +1627,11 @@ const recipes = {
     },
   },
 
-  'molen.worldgen.structure.n0243_malbork_castle': {
+  'molen.worldgen.structure.malbork_castle': {
     build: buildMalborkSkyline,
     levels: buildMalborkRuntime,
     source: '../../worldgen/scripts/malbork-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u3/u3t/n0243_malbork_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u3/u3t/malbork_castle/map-parts.json',
     errorMeters: 8,
     surfaces: {
       brick: { slot: 'wall', graph: 'brick', roughness: 0.87, metallic: 0 },
@@ -1624,11 +1643,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0242_edinburgh_castle': {
+  'molen.worldgen.structure.edinburgh_castle': {
     build: buildEdinburghSkyline,
     levels: buildEdinburghRuntime,
     source: '../../worldgen/scripts/edinburgh-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/gc/gcv/n0242_edinburgh_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/gc/gcv/edinburgh_castle/map-parts.json',
     errorMeters: 5,
     surfaces: {
       sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
@@ -1647,11 +1666,11 @@ const recipes = {
     },
   },
 
-  'molen.worldgen.structure.n0241_wartburg': {
+  'molen.worldgen.structure.wartburg': {
     build: buildWartburgSkyline,
     levels: buildWartburgRuntime,
     source: '../../worldgen/scripts/wartburg-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u1/u1p/n0241_wartburg/map-parts.json',
+    data: '../../../content/worldgen/source/places/u1/u1p/wartburg/map-parts.json',
     errorMeters: 3,
     surfaces: {
       sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
@@ -1666,11 +1685,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0240_prague_castle': {
+  'molen.worldgen.structure.prague_castle': {
     build: buildPragueSkyline,
     levels: buildPragueRuntime,
     source: '../../worldgen/scripts/prague-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/u2/u2f/n0240_prague_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/u2/u2f/prague_castle/map-parts.json',
     errorMeters: 8,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1685,11 +1704,11 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0239_windsor_castle': {
+  'molen.worldgen.structure.windsor_castle': {
     build: buildWindsorSkyline,
     levels: buildWindsorRuntime,
     source: '../../worldgen/scripts/windsor-castle-model.mjs',
-    data: '../../../content/worldgen/source/places/gc/gcp/n0239_windsor_castle/map-parts.json',
+    data: '../../../content/worldgen/source/places/gc/gcp/windsor_castle/map-parts.json',
     errorMeters: 8,
     surfaces: {
       limestone: { slot: 'wall', graph: 'stone_limestone', roughness: 0.82, metallic: 0 },
@@ -1707,7 +1726,7 @@ const recipes = {
       glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
     },
   },
-  'molen.worldgen.structure.n0237_neuschwanstein_castle': {
+  'molen.worldgen.structure.neuschwanstein_castle': {
     build: buildNeuschwansteinSkyline,
     source: '../../worldgen/scripts/neuschwanstein-castle-model.mjs',
     errorMeters: 4,
@@ -1731,7 +1750,7 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0236_chateau_de_montsoreau': {
+  'molen.worldgen.structure.chateau_de_montsoreau': {
     build: buildMontsoreauSkyline,
     source: '../../worldgen/scripts/montsoreau-castle-model.mjs',
     errorMeters: 3,
@@ -1746,7 +1765,7 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0235_millennium_tower': {
+  'molen.worldgen.structure.millennium_tower': {
     build: buildMillenniumSkyline,
     source: '../../worldgen/scripts/millennium-tower-model.mjs',
     errorMeters: 4,
@@ -1758,7 +1777,7 @@ const recipes = {
       recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
     },
   },
-  'molen.worldgen.structure.n0234_barolo_palace': {
+  'molen.worldgen.structure.barolo_palace': {
     build: buildBaroloSkyline,
     source: '../../worldgen/scripts/barolo-palace-model.mjs',
     errorMeters: 7,
@@ -1772,17 +1791,17 @@ const recipes = {
       clear_glass: { slot: 'window', roughness: 0.12, metallic: 0.05, opacity: 0.52 },
     },
   },
-  'molen.worldgen.structure.n0233_china_world_trade_center_tower_iii': {
+  'molen.worldgen.structure.china_world_trade_center_tower_iii': {
     build: buildChinaWorldSkyline,
     source: '../../worldgen/scripts/china-world-tower-model.mjs',
     errorMeters: 20,
   },
-  'molen.worldgen.structure.n0232_gran_torre_costanera': {
+  'molen.worldgen.structure.gran_torre_costanera': {
     build: buildGranTorreSkyline,
     source: '../../worldgen/scripts/gran-torre-costanera-model.mjs',
     errorMeters: 20,
   },
-  'molen.worldgen.structure.n0230_nina_tower': {
+  'molen.worldgen.structure.nina_tower': {
     build: buildNinaSkyline,
     source: '../../worldgen/scripts/nina-tower-model.mjs',
     // Conservative refinement allowance for omitted crown equipment and facade relief.

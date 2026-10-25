@@ -13,7 +13,7 @@ import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 it('preserves the independently mapped upper core and northwest address entrance', async () => {
-  const base = resolve('../../content/worldgen/source/places/6g/6gy/n0148_edificio_altino_arantes');
+  const base = resolve('../../content/worldgen/source/places/6g/6gy/edificio_altino_arantes');
   const frame = JSON.parse(await readFile(base + '/map-frame.json')),
     parts = JSON.parse(await readFile(base + '/map-parts.json'));
   const raw = parts.elements
@@ -61,7 +61,7 @@ it('retains mast height, front-facing portal and a visible canton on both flag s
 
 it('reproduces all four browser levels with the exact repaired source and shared mosaic', async () => {
   const path = await runtimeLodFixture(
-    resolve('../../content/worldgen/assets/places/6g/6gy/n0148_edificio_altino_arantes/asset.json'),
+    resolve('../../content/worldgen/assets/places/6g/6gy/edificio_altino_arantes/asset.json'),
   );
   const asset = JSON.parse(await readFile(path)),
     master = await readFile(resolve(path, '../model.glb'));

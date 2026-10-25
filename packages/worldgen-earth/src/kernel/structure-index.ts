@@ -1,7 +1,7 @@
 /** Indexed, geographic placements for authored structure assets. Coordinates are WGS84. */
 import { dmath } from '@bendyline/molen-kernel/determinism';
 import { type BuildingMetrics, matchesWhen } from '@bendyline/molen-worldgen/kernel';
-import { validGroundOutline } from './ground-cutout';
+import { MAX_STRUCTURE_GROUND_OUTLINES, validGroundOutline } from './ground-cutout';
 import { projectWgs84 } from './projection';
 import { createRegionResolver, regionStyleRules } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
@@ -27,8 +27,8 @@ export interface StructurePlacement {
   /** Vertical offset from datum, in world meters (lake surfaces need not be sea level). */
   elevation?: number;
   /** Ground at another known site point; modelHeight is that point's native model Y in metres. */
-  terrainReference?: { anchor: [number, number]; modelHeight: number; basis: string };
-  /** WGS84 extent [west, south, east, north]. Extended models are clipped per resident tile. */
+  terrainReference?: { anchor: [number, number]; modelHeight: number; basis?: string };
+  /** WGS84 extent [west, south, east, north]. Ground-opening models stay whole; others clip per tile. */
   bounds?: [number, number, number, number];
   /** Suppress mapped bridge centerlines inside this model-local rectangle (meters). */
   replaceRoads?: {
@@ -45,7 +45,25 @@ export interface StructurePlacement {
   /** Only a contained, nongeneralized mapped footprint may be replaced. */
   replaceFootprint?: boolean;
   /** Ground opening in native model X/Z metres; active only while this structure is visible. */
-  groundCutout?: { outline: [number, number][]; basis: string };
+  groundCutout?: {
+    outline: [number, number][];
+    /** Complete set for separated openings; when present, supersedes outline. */
+    outlines?: [number, number][][];
+    /** Separate excavations appended to outline when outlines is omitted; at most 63 rings. */
+    additionalOutlines?: [number, number][][];
+    basis?: string;
+  };
+  /** Remove only this native X/Z area from mapped buildings; overrides whole-footprint replacement. */
+  buildingCutout?: {
+    outline: [number, number][];
+    /** Complete set of independent occupied masks; supersedes outline when present. */
+    outlines?: [number, number][][];
+    /** Replace a whole mapped building only above this covered-area fraction; preserve others intact. */
+    minimumCoverage?: number;
+    basis?: string;
+  };
+  /** Replace only native water in these model-local X/Z polygons while the model is resident. */
+  waterCutout?: { outlines: [number, number][][]; basis?: string };
   /** Optional confirmed map identity used to refine orientation from a nearby feature. */
   mapIdentity?: { wikidata?: string; names?: string[]; maxDistance?: number };
   /** Fixed is the catalog heading; mapped follows a confirmed footprint or bridge axis. */
@@ -67,8 +85,16 @@ export interface StructureMapRule {
   title: string;
   asset: string;
   /** All supplied fields must match; values within each array are alternatives. */
-  match: { classes?: string[]; subclasses?: string[]; tags?: Record<string, string[]> };
-  /** Native model dimensions in meters, in +X,+Y,+Z order. Base must be Y=0. */
+  match: {
+    classes?: string[];
+    subclasses?: string[];
+    tags?: Record<string, string[]>;
+    /** Exact category labels, never substring or fuzzy name inference. Requires bounds. */
+    names?: string[];
+  };
+  /** Optional regional scope [west, south, east, north], WGS84 degrees. */
+  bounds?: [number, number, number, number];
+  /** Ground-relative model dimensions in meters, +X,+Y,+Z. Attachment plane is Y=0; footings may extend below. */
   dimensions: [number, number, number];
   orientation?: 'direction' | 'longest-edge' | 'north';
   lengthAxis?: 'x' | 'z';
@@ -81,13 +107,28 @@ export interface StructureMapRule {
 }
 
 export interface StructureCatalogDoc {
-  format: 'molen/structure-placements@1';
+  format: 'molen/structure-placements@1' | 'molen/structure-placement-data@1';
   title: string;
   entries: StructurePlacement[];
   rules?: StructureMapRule[];
 }
 
+export interface StructureLoadOptions extends StructureQueryOptions {
+  signal?: AbortSignal;
+  /** Skip regions whose placements all require finer tiles. */
+  level?: number;
+}
+
 export interface StructureIndex {
+  /** Release an optional regional loader when the owning content is closed. */
+  dispose?(): void;
+  /** Present for regional catalogs. Returned records do not depend on cache residency. */
+  queryAsync?(
+    bounds: readonly [number, number, number, number],
+    options?: StructureLoadOptions,
+  ): Promise<StructurePlacement[]>;
+  /** False means coverage is not loaded; an empty synchronous query is then incomplete. */
+  isLoaded?(bounds: readonly [number, number, number, number]): boolean;
   readonly entries: readonly StructurePlacement[];
   readonly cells: ReadonlyMap<string, readonly StructurePlacement[]>;
   readonly rules: readonly StructureMapRule[];
@@ -172,7 +213,7 @@ function candidateCells(bounds: readonly [number, number, number, number]): stri
 
 type GeographicBox = [number, number, number, number];
 
-function lookupBounds(entry: StructurePlacement): GeographicBox[] {
+export function structurePlacementBounds(entry: StructurePlacement): GeographicBox[] {
   if (entry.bounds) return [entry.bounds];
   const [longitude, latitude] = entry.anchor;
   if (entry.orientation !== 'mapped') return [[longitude, latitude, longitude, latitude]];
@@ -202,8 +243,12 @@ function lookupBounds(entry: StructurePlacement): GeographicBox[] {
 }
 
 export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
-  if (doc.format !== 'molen/structure-placements@1')
+  if (
+    doc.format !== 'molen/structure-placements@1' &&
+    doc.format !== 'molen/structure-placement-data@1'
+  )
     throw new Error('invalid structure catalog format');
+  const evidence = doc.format === 'molen/structure-placements@1';
   const ids = new Set<string>();
   for (const rule of doc.rules ?? []) {
     if (ids.has(rule.id)) throw new Error(`duplicate structure map rule ${rule.id}`);
@@ -221,6 +266,23 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     )
       throw new Error(`invalid structure map rule ${rule.id}`);
     if (
+      rule.bounds &&
+      (rule.bounds.length !== 4 ||
+        rule.bounds.some((n) => !Number.isFinite(n)) ||
+        rule.bounds[0] < -180 ||
+        rule.bounds[2] > 180 ||
+        rule.bounds[1] < -90 ||
+        rule.bounds[3] > 90 ||
+        rule.bounds[0] >= rule.bounds[2] ||
+        rule.bounds[1] >= rule.bounds[3])
+    )
+      throw new Error(`invalid structure map rule bounds ${rule.id}`);
+    if (
+      rule.match.names &&
+      (!rule.bounds || !rule.match.names.length || rule.match.names.some((name) => !name.trim()))
+    )
+      throw new Error(`exact category names require regional bounds ${rule.id}`);
+    if (
       rule.maxPerTile !== undefined &&
       (!Number.isInteger(rule.maxPerTile) || rule.maxPerTile < 1 || rule.maxPerTile > 64)
     )
@@ -233,16 +295,81 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     if (ids.has(entry.id)) throw new Error(`duplicate structure placement ${entry.id}`);
     ids.add(entry.id);
     if (
+      entry.waterCutout &&
+      ((evidence && !entry.waterCutout.basis?.trim()) ||
+        !entry.bounds ||
+        !Array.isArray(entry.waterCutout.outlines) ||
+        entry.waterCutout.outlines.length < 1 ||
+        entry.waterCutout.outlines.length > 16 ||
+        entry.waterCutout.outlines.some(
+          (outline) =>
+            outline.length < 3 ||
+            outline.length > 512 ||
+            outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+            !validGroundOutline(outline),
+        ))
+    )
+      throw new Error(
+        `invalid water cutout ${entry.id}: valid outlines, basis and bounds are required`,
+      );
+    if (
       entry.groundCutout &&
-      (!entry.groundCutout.basis?.trim() ||
+      ((evidence && !entry.groundCutout.basis?.trim()) ||
+        (entry.groundCutout.additionalOutlines?.length ?? 0) > 63 ||
+        (entry.groundCutout.additionalOutlines ?? []).some(
+          (outline) =>
+            outline.length < 3 ||
+            outline.length > 512 ||
+            outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+            !validGroundOutline(outline),
+        ) ||
         entry.groundCutout.outline.length < 3 ||
         entry.groundCutout.outline.length > 512 ||
         entry.groundCutout.outline.some(
           (p) => p.length !== 2 || p.some((v) => !Number.isFinite(v)),
         ) ||
-        !validGroundOutline(entry.groundCutout.outline))
+        !validGroundOutline(entry.groundCutout.outline) ||
+        (entry.groundCutout.outlines !== undefined &&
+          (entry.groundCutout.outlines.length < 1 ||
+            entry.groundCutout.outlines.length > MAX_STRUCTURE_GROUND_OUTLINES ||
+            entry.groundCutout.outlines.some(
+              (outline) =>
+                outline.length < 3 ||
+                outline.length > 512 ||
+                outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+                !validGroundOutline(outline),
+            ))))
     )
       throw new Error(`invalid ground cutout ${entry.id}`);
+    if (
+      entry.buildingCutout &&
+      (!entry.bounds ||
+        (evidence && !entry.buildingCutout.basis?.trim()) ||
+        (entry.buildingCutout.minimumCoverage !== undefined &&
+          (!Number.isFinite(entry.buildingCutout.minimumCoverage) ||
+            entry.buildingCutout.minimumCoverage <= 0 ||
+            entry.buildingCutout.minimumCoverage > 1)) ||
+        entry.buildingCutout.outline.length < 3 ||
+        entry.buildingCutout.outline.length > 512 ||
+        entry.buildingCutout.outline.some(
+          (p) => p.length !== 2 || p.some((v) => !Number.isFinite(v)),
+        ) ||
+        !validGroundOutline(entry.buildingCutout.outline) ||
+        (entry.buildingCutout.outlines !== undefined &&
+          (!Array.isArray(entry.buildingCutout.outlines) ||
+            entry.buildingCutout.outlines.length < 1 ||
+            entry.buildingCutout.outlines.length > MAX_STRUCTURE_GROUND_OUTLINES ||
+            entry.buildingCutout.outlines.some(
+              (outline) =>
+                outline.length < 3 ||
+                outline.length > 512 ||
+                outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+                !validGroundOutline(outline),
+            ))))
+    )
+      throw new Error(
+        `invalid building cutout ${entry.id}: a valid outline and bounds are required`,
+      );
     if (!entry.asset || !entry.source || !['preview', 'draft', 'historical'].includes(entry.status))
       throw new Error(`invalid structure placement ${entry.id}`);
     if (
@@ -259,7 +386,7 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       if (
         entry.datum === 'sea-level' ||
         !Number.isFinite(reference.modelHeight) ||
-        !reference.basis?.trim()
+        (evidence && !reference.basis?.trim())
       )
         throw new Error(`invalid structure terrain reference ${entry.id}`);
       encodeStructureGeohash(...reference.anchor);
@@ -305,7 +432,7 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       )
         throw new Error(`invalid structure road replacement ${entry.id}`);
     }
-    const extent = lookupBounds(entry);
+    const extent = structurePlacementBounds(entry);
     boxes.set(entry.id, extent);
     const keys = new Set<string>();
     for (const box of extent) {

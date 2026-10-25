@@ -1,0 +1,1033 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.baghdad_kiosk_topkapi_palace",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:6c931a9c5547e576b92cf02208208efcbbe37bb0223c24a2f0b2d14dc1a7e35a",
+  "sourceHash": "sha256:8254d74d891c624f66d5776af79a53a7e2106bec5872ee4481d3be00e8e0b746",
+  "runtimeHash": "sha256:3e247cd67e5a81f37aef7b2e60cc176a27837373c9a815d8d942028a6e47f1d3",
+  "captureReportHash": "sha256:7f4296295c58ee3e269eaafd1f683007093b704be19f93b127bf3f8a4912f767",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/open-pool-arcade-and-tiled-cross-room.png",
+      "shots/garden-bay-and-stone-undercroft.png",
+      "shots/marble-capitals-gold-grilles-and-clear-entry.png"
+    ],
+    "notes": "Inspected48 current source/shared/medium-fi/native views in one continuous author/build/inspect/fix pass. Distinct eight-corner canopy and cross-shaped blue room, open pointed galleries/round grey shafts/faceted pale capitals/gold collars, geometric open white railings, two room window levels, real northwest entrance and bounded six-tread approach, stone basement with recessed pointed openings, three tall garden glazing arches, broad lead hip and warm soffit, shallow central dome and small pointed roof stack. Corrected the first generic garden-window treatment to three full-height arched bays, aligned their header depth to the piers, fixed skyline back-facing wall visibility, reduced district shaft profiles and widened the entrance camera. 8 byte-identical PNGs reuse prior actual inspection; 40 changed frames actually inspected after these final fixes."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/open-pool-arcade-and-tiled-cross-room.png",
+      "shots/shared/garden-bay-and-stone-undercroft.png",
+      "shots/shared/marble-capitals-gold-grilles-and-clear-entry.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Eight existing256px graphs: stone_limestone, stone_limestone_raw, stone_marble, metal_standing_seam, wood_plain, tile_glazed, metal_bronze_cast and metal_painted. Nine authored roles merge to eight textured draws/one skyline draw; column and trim share the same marble graph/slot. Every requested graph is read once; no new graph, private atlas or embedded images. Linear vertex tints with metric wall/roof UVs; dark window backs use trim and remain opaque both ways. Generic blue glazed tiles and simplified geometric grilles substitute for bespoke historical patterns; no copied picture pixels or inscriptions. Separate POSITION/NORMAL streams; CPU/GPU buffer accounting is equal.",
+    "captureReportHash": "sha256:155a8d3a20bc3e0ae3ebbf263b28d387239850bd0759bb982acd4e5ad55d371f"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/open-pool-arcade-and-tiled-cross-room.png",
+      "medium-fi/garden-bay-and-stone-undercroft.png",
+      "medium-fi/marble-capitals-gold-grilles-and-clear-entry.png",
+      "medium-fi/baghdad-skyline.png",
+      "medium-fi/baghdad-district.png",
+      "medium-fi/baghdad-street.png",
+      "medium-fi/baghdad-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs889/3577/13901/18237triangles. Initial skyline+district419488bytes. Skyline retains the notched canopy, raised floor, blue cross-room, dome/stack, clear entry and open galleries. District restores pointed gallery/glazing arches, all columns/collars and simple railing. Street adds recessed lower arches, window reveals/mullions, geometric rails and near capital profiles; closeup refines curves, shafts and grilles. Synthetic flat ground exposes terrain-dependent basement foundations and does not approve native fit. Physical ordinary-laptop/phone/tablet and dense-city timings remain pending.",
+    "captureReportHash": "sha256:a5a2dd3205f3b02ae3d2f4ff734501bc8f566f9ab58b3276a7144b218667a46e"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:6b7a0ad080ca9532d50280ec5f550b03e9c65b48088e7808e131527cc0dfad64",
+    "mapFrameHash": "sha256:a7c819861cf6264b0d0e25e0d9282e802bc13aa2d9a79bb48155eecf0a3605b3",
+    "notes": "Independent Q6096486 / OSM way32396296 / native35184404485128. OSM v23 explicitly names Baghdad Kiosk and repeats Q6096486. Exact eight-corner parent retained; internal+X southeast faces the garden, internal+Z southwest faces the pool court. Existing standard Protomaps20261020/Mapzen PMTiles and original161x161/6m heightfield retained. Open provider control internal[-18,0] is outside every original building record. Raised terrace/stone basement meet original coarse falling terrain; local protective foundations and bounded approach stair accommodate grade. No bespoke terrain or precinct flattening; historical thresholds/accessibility are unverified. Approximate native exterior fit inspected: the standard grid seats the raised basement, upper terrace and bounded stair. Some garden basement openings are buried by the coarse uphill grade; threshold heights remain unverified. Approximate original-terrain exterior fit/facing accepted, with some uphill garden basement recesses partly buried by the coarse native grade. Replace only way32396296/native35184404485128. All258 independent resident records of259 and572 wider records of573 retain original geometry; original161x161/6m terrain, roads and3400906.0006393427square metres water remain unchanged. Two actual overlapping PMTiles cases14/15 pass, including the detailed owned parent; no matching overlapping level13 feature was present. Provider control internal[-18,0] is outside all573 original records, remains uncovered in every LOD and provides modelWorldY approximately0. The outside pool court retains terrain. Failed loading preserves259 originals; every unload restores terrain/water and releases all model geometry. This fixture renders this kiosk against native context, not all thirteen authored palace members together."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Baghdad Kiosk as a distinct notched canopy footprint with cross-shaped blue-tiled room, open pointed colonnade and white geometric terrace rails, raised stone basement with recessed pointed openings, tall glazed garden bay, two window levels, broad lead hip/eaves, shallow central lead dome and small pointed roof stack. No independent Iftar/Yerevan kiosk, pool, surrounding terrace, copied artwork or furnishings. Picture-led upper room height6.25m, broad lead hip rise1.1m and shallow central dome rise1.8m/radius4m. Upper walking floor is .25m above the highest original parent boundary sample. Cross-room proportions, opening/column inventory, roof-stack location and inaccessible roofs/interiors are reconstructed controls, not surveyed dimensions. Three ordinary photos actually viewed: Moonik2012 garden facade, Dosseman2016 outer walkway and Dosseman2008 pool-court view. Original mapped canopy is exact; the cross-room, heights, opening and column inventory, dome/stack profiles and inaccessible rear/interior arrangement are picture-led approximations. The pictures do not fully expose the roof, so the shallow dome/stack dimensions are reconstruction controls. Native grade/step heights are visualization accommodations, not verified historic thresholds or accessibility. No custom terrain, precinct flattening, furnished interior, copied inscriptions, pool or independent Iftar/Yerevan kiosk. This completes one medium-fi Baghdad Kiosk member; Topkapi remains incomplete12/18ready and Hasoda remains an inactive terrain-fit draft."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/models/source.glb\",\"hash\":\"sha256:8254d74d891c624f66d5776af79a53a7e2106bec5872ee4481d3be00e8e0b746\",\"bytes\":2111776,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.glb\",\"hash\":\"sha256:3e247cd67e5a81f37aef7b2e60cc176a27837373c9a815d8d942028a6e47f1d3\",\"bytes\":2111060,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.skyline.glb\",\"hash\":\"sha256:9c80eaf41530d2bb4ed84d96d2803164a0beea004a3e4575c48d4301aaf80aa4\",\"bytes\":82372,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.district.glb\",\"hash\":\"sha256:62c144bb578c6094f874761e14374972d9d00128971e531ab1231637f8680ce1\",\"bytes\":337116,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.street.glb\",\"hash\":\"sha256:b14d3a0aeec6610e5d3293fdd8a54181becdb06d4ea2c190f86d3613284678a8\",\"bytes\":1316948,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.closeup.glb\",\"hash\":\"sha256:22a1c29054d6041c4aaa6cd3443749cb249d84b6d079a08b3f77650cc53d7ae2\",\"bytes\":1734616,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "real-entry-open-gallery-walking-floor-opaque-windows-recessed-basement-roof-and-stair-contacts",
+        "passed": true,
+        "notes": "212 actual ray/contact probes across six current files; occupied ground openings are sealed by model floors."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:6c931a9c5547e576b92cf02208208efcbbe37bb0223c24a2f0b2d14dc1a7e35a",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:6c931a9c5547e576b92cf02208208efcbbe37bb0223c24a2f0b2d14dc1a7e35a",
+      "previousInspection": "48frames-actually-inspected",
+      "total": 48,
+      "unchanged": 8,
+      "changed": 40,
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/preview.png",
+          "hash": "sha256:3eb2e48265f9f8fc553c19c0177d20e18b73fb79142458d9d3ea96016985407f",
+          "previousHash": "sha256:cb3ec2275eccb7909f4c6ec028a33d03eb9fe7803fd97966fe952e1696a79cbb",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/turntable/angle_0.png",
+          "hash": "sha256:bcfc8e61f0a6424f4516e340d657ca57f77530ffb533ce8c3c3d08e69e254300",
+          "previousHash": "sha256:2fe7772d34a2eccbd9623f92a1c86bc76b05e7d25af823c9eb73457cbfea8323",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/turntable/angle_1.png",
+          "hash": "sha256:4a73746e0918a9157a2c78678e6e9a18df6a8bba00016d6ef99fc643fecb9119",
+          "previousHash": "sha256:8784327f22b37eea9404e6405b0554cb4cc1afdb0c346a2ed27b4a92cea51515",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/turntable/angle_2.png",
+          "hash": "sha256:26ca257bf528478897b4c2a4b52c0a518f1d845e670c0dfe5ef41a2a4534e6fc",
+          "previousHash": "sha256:26ca257bf528478897b4c2a4b52c0a518f1d845e670c0dfe5ef41a2a4534e6fc",
+          "changed": false
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/turntable/angle_3.png",
+          "hash": "sha256:aa49652dc71162aaf04f4921723171d674cb2700585504b22da790f434522357",
+          "previousHash": "sha256:aa49652dc71162aaf04f4921723171d674cb2700585504b22da790f434522357",
+          "changed": false
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/open-pool-arcade-and-tiled-cross-room.png",
+          "hash": "sha256:5a4a242f9f180512c21d3eaf85dcdbcc3396eb9a8530b0256f035758b57b4852",
+          "previousHash": "sha256:5a4a242f9f180512c21d3eaf85dcdbcc3396eb9a8530b0256f035758b57b4852",
+          "changed": false
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/garden-bay-and-stone-undercroft.png",
+          "hash": "sha256:e223a89622ffd7e6fea67befed57719adf45ae22744c88e6dee0f99f6bcb0f2d",
+          "previousHash": "sha256:e78bcd36283d58d30f3564e70c05de42dea43c536fd22a013e7f885ea16a151d",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/marble-capitals-gold-grilles-and-clear-entry.png",
+          "hash": "sha256:f760dfadc4577b62fa70e69088134c1dc45bc9aa9b136cec13e940a42d396943",
+          "previousHash": "sha256:bcb9d40d7da93de15585407069f24a3b46efd6d27f33452f586257f70cb90739",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/shared/angle-0.png",
+          "hash": "sha256:9c193142a06c24a0c291210120368cb1b624621287db141517c916615cae5ccc",
+          "previousHash": "sha256:5846ea593f3e00798a59ef5b2c729632eccb09992ee2361e9c2cf1f2c9514426",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/shared/angle-1.png",
+          "hash": "sha256:db37cb2c5fde2b710c886205e8d69081f4adf494536733587c7c50e5c111d995",
+          "previousHash": "sha256:97dd90f265468b2e684b9f17cea2d29b88184e1cc6e40f58bcd37ab5f85ffe05",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/shared/angle-2.png",
+          "hash": "sha256:e793415dfd3c62c87405bf7b77ac5483280afcee45fb42e90432d5e34c92dd2d",
+          "previousHash": "sha256:e793415dfd3c62c87405bf7b77ac5483280afcee45fb42e90432d5e34c92dd2d",
+          "changed": false
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/shared/angle-3.png",
+          "hash": "sha256:5f92416c14b0e62b78d981e7d7be4cef9dc78e6169e0de0e2b4406ceabcd9e84",
+          "previousHash": "sha256:5f92416c14b0e62b78d981e7d7be4cef9dc78e6169e0de0e2b4406ceabcd9e84",
+          "changed": false
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/shared/open-pool-arcade-and-tiled-cross-room.png",
+          "hash": "sha256:e10a830ffea5bcdc53a357e9d370e66808bb323ae37c76cd96c7a36007bbc99f",
+          "previousHash": "sha256:e10a830ffea5bcdc53a357e9d370e66808bb323ae37c76cd96c7a36007bbc99f",
+          "changed": false
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/shared/garden-bay-and-stone-undercroft.png",
+          "hash": "sha256:1683a3d22067853a7b5dabb5a4b23a81e1e90520ed94a9a7bb7122adf51c0c85",
+          "previousHash": "sha256:63af533b4e9b464b2d4826b67eb1b1770a44c78d24f23ec5208eb9fea59ea3d7",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/shared/marble-capitals-gold-grilles-and-clear-entry.png",
+          "hash": "sha256:e19962b229de587c0ddf219446df86f28c4fed340f3e1d33627edf5763a59dea",
+          "previousHash": "sha256:30e6392dab7505363fb92a6f694c97e3b297fa32cc219814f444cbfe60efdf61",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/shots/shared/placement.png",
+          "hash": "sha256:c14ecfa29d2bfc7562c9cff6c5b43498b32384ebcf01b5a1a5eb9a9e0d35ea7a",
+          "previousHash": "sha256:6de1a93e57d838e99b13e67d51cacc7121ae442a93c6bf93c221cd7600d5f977",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/street-noon-economy.png",
+          "hash": "sha256:31d84ba9d5d694327e819613ebf2c2ef8586e8284956a4164216d38ccd3632b0",
+          "previousHash": "sha256:190802f9a81899880d631a3c611772eb5b0887466f8a5c9ebf8e8a5485f7dd8b",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/street-noon-high.png",
+          "hash": "sha256:b517785d1e25d4015f0da2dec06bf8c19530bfefbbe40a2addfd7917336ceab6",
+          "previousHash": "sha256:2f4b5ceb839f056956943efc8d16c2e7c9c0db5d11695c7d6aad25be185b13ba",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/street-late-economy.png",
+          "hash": "sha256:8af02a01bea42a1159f2e09fdc1418700adf8802e97d441e914d1eb3c6c5fccb",
+          "previousHash": "sha256:d87d5036538edbdb668ccafbd9cb6242737f6083a45df591e748ec0c71a45481",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/street-late-high.png",
+          "hash": "sha256:79e803282328c881d59c51f087fd16168e053427f28f63245705f908b3b1c490",
+          "previousHash": "sha256:724ba4dd9245857b9a2363897c7cf2711d9126fcec886189605287d0e2169a68",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/block-noon-economy.png",
+          "hash": "sha256:98164005a0881283160cbd9ea4492e54edb665e9623c910d6d80f23aa49009db",
+          "previousHash": "sha256:96c445295e6a3c09427bd8dd05ec6b519fdc346267a27c4af804a636e76131d4",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/block-noon-high.png",
+          "hash": "sha256:8eb6fc3d9728d403c796469d01e38da798b6ddd7d8c7d19f3ff9bc8489724420",
+          "previousHash": "sha256:00f3038697346349ca0587705d0c89612caec2331474b429e649118f92bbb0cc",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/block-late-economy.png",
+          "hash": "sha256:c1fe7654b05dd53b174c07c40d62fe4bfcd819f0290873423b48ce38415fa83b",
+          "previousHash": "sha256:d2bc9413e2a7c32e334a4b0a5b73ab4a68c7739b0fe320285318ba5719f8baa6",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/block-late-high.png",
+          "hash": "sha256:99925b0eb241fbcf5d7fc1f779ec069350ee07037cecd39c481e53ab5a1fcf49",
+          "previousHash": "sha256:81393c82694e2c61bc100ed96f39104c0da5917738a11545dc6d3df1d123f10c",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:8935478e57ef502f776cf9c40b2e78d9b7d798c787adefea1a1abf69b33fe418",
+          "previousHash": "sha256:cc5c8257c14b320613d65096244cc54e2505ac415579fbefb87e192b9c5d76bb",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:6f0b7cd0a2cccaf6a372ed043193eff6aeb7e3e13f7b25109e139152b091a4da",
+          "previousHash": "sha256:b004b6b19eaf01f4ae6096686ed7161c7678c91955afa691545e7745dbbbeb07",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:4b804dcdd4fc181b6c2447906272923133890b0e5e61500ef891b3c78ab80438",
+          "previousHash": "sha256:202019d22e2c7278e100b1094166cc5e776a2fa2bbdb7462d7587d9f20fe01b0",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/skyline-late-high.png",
+          "hash": "sha256:fbb23bb4301437cb5a4fcd364465342e1c427c1e924a3f43869e28a5c60831e9",
+          "previousHash": "sha256:2ee634ba5b49f32baeb06f61fa9a5f4bda4d190698d5ad54c66f8138c9b58df7",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/silhouette.png",
+          "hash": "sha256:63747f964355c16817977b8af7c0d2ad12ae857a863fe66ba94369a8c0426f18",
+          "previousHash": "sha256:b5505934e70d0d60909631c2219a53aae126b6cafcd4bcebc1ef30ef0e336a0b",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/open-pool-arcade-and-tiled-cross-room.png",
+          "hash": "sha256:15018e8338562d3d1900a35da4d6c4cd6ec1ee788050348e0547fb768e8d4ce5",
+          "previousHash": "sha256:faa7357c583385cecf0eb7c9545669c307fb1f404c1e550b5af2417872f96b0d",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/garden-bay-and-stone-undercroft.png",
+          "hash": "sha256:15ed3989e2ffff50b9c874889059d61bec11bc73a0b0f04f9ff0239fc0501153",
+          "previousHash": "sha256:f43fcd026f8123407584c4702f63e2ba4386051520c45064e00b73eda0a90008",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/marble-capitals-gold-grilles-and-clear-entry.png",
+          "hash": "sha256:02994f1efcf59f84935068ee3493ed7e0c96d99f531a426f8402d8480648665b",
+          "previousHash": "sha256:046bbb4bb384c6403851d53b33c7703d4763a5f8eaf0bd742700780a69301bf2",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/baghdad-skyline.png",
+          "hash": "sha256:16e6214cdf95712a8264991a56c744176bd6508d3e1b718b51c6fcd590992417",
+          "previousHash": "sha256:b9b0bb33a64d84b4f5903a1969e41c8bba9c285e6221a2fabad337f5c71f8436",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/baghdad-district.png",
+          "hash": "sha256:358a89ec169ebbcd48963a6578d4f069d82e95e8e42e76aa7b8dcd4d070f25e6",
+          "previousHash": "sha256:cdbcafa122cfb50dce1ede97c3d4a9475b769398832d996e8a55eb9b11a70321",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/baghdad-street.png",
+          "hash": "sha256:5daddeb0e12b3f4965b3104578f86ad3c2c0112b18a2d2fbce59682ce2847aa4",
+          "previousHash": "sha256:86dc7948540f890ee0be9ccf5815173fdfefc3ede3f7231262e4e72d6eaff7bc",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/baghdad-closeup.png",
+          "hash": "sha256:aec010ac2ae8831e31a911f1e4f2990fdf222f083c2caa40d08eb20c6e4d7770",
+          "previousHash": "sha256:c89ff84a9f993305c6b83f6f7b6eaff45e2468572816b63b7374c759e3b52f45",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/transition-skyline.png",
+          "hash": "sha256:a0f168c3c41c7ce8d7d7ad2161c237212efba513f429a121a1dfbd3f559cf816",
+          "previousHash": "sha256:f5b3087c33fd896825c24eecdf93cc199aa651f2c85c67ebbcd33fb2f7c56f32",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/transition-district.png",
+          "hash": "sha256:8eb6fc3d9728d403c796469d01e38da798b6ddd7d8c7d19f3ff9bc8489724420",
+          "previousHash": "sha256:00f3038697346349ca0587705d0c89612caec2331474b429e649118f92bbb0cc",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/transition-street.png",
+          "hash": "sha256:f38ad62a63979e116edfd94e57e8b454c87d623f3642fb05aa62e5923642046c",
+          "previousHash": "sha256:3076566842101990e3f600fbec95f8deafb37e510beff03e84abd9851d9ed2ed",
+          "changed": true
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/medium-fi/transition-closeup.png",
+          "hash": "sha256:e1a6e10e48eb19cd24f2ef60a661c60ae932d973dde6be121519d6eb864db03b",
+          "previousHash": "sha256:2282410fdc57474250e2089b9a06207ca5e2288a87bc8d8adab9c102cfca6bd3",
+          "changed": true
+        },
+        {
+          "path": ".artifacts/topkapi-baghdad-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:829d1bc19907e579315ac472a627db8a807dacc8dfe6183dd8947c6465dc321a",
+          "previousHash": "sha256:7a437ad1547aeb112927b064e0b4f2566bf0b96ce27b7de024d3f15fda1b9278",
+          "changed": true
+        },
+        {
+          "path": ".artifacts/topkapi-baghdad-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:e8c14db92ce3597d67468387d51cc2c19b5f93582c50119e6d1be5d039d2cea9",
+          "previousHash": "sha256:2ac002e4b9fc4ab1b79041385fab1141ca7949092c609612117c8baffa7408ae",
+          "changed": true
+        },
+        {
+          "path": ".artifacts/topkapi-baghdad-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:a6b148a1347cf975d685ad2141b3799b229f802ebfa4c92eaa0c9e7925d32dd9",
+          "previousHash": "sha256:d7ab8aeb601718932f6789e7771d448bcb29ee569a59ea8ee081e7fc00fd25af",
+          "changed": true
+        },
+        {
+          "path": ".artifacts/topkapi-baghdad-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:bd6d01aaa22dec5301740739b99a1be1df6bd47d85d0acc68757fe0e37e0c09c",
+          "previousHash": "sha256:6d1b8a5b85ed6247a7dff4ad1a33e0503dcd9852eb91db8d0b01ceb59590ac49",
+          "changed": true
+        },
+        {
+          "path": ".artifacts/topkapi-baghdad-integration/shots/final-closeup-open-pool-arcade-and-tiled-cross-room.png",
+          "hash": "sha256:d38aa44762de6a42bc68d55e5a499542a33af8a7414f0578efa1f9cc49cf080e",
+          "previousHash": "sha256:d38aa44762de6a42bc68d55e5a499542a33af8a7414f0578efa1f9cc49cf080e",
+          "changed": false
+        },
+        {
+          "path": ".artifacts/topkapi-baghdad-integration/shots/final-closeup-garden-bay-and-stone-undercroft.png",
+          "hash": "sha256:a359ab7a6dd71fedb709954f6d95b7704c6a21d5adc84906b05e9d68470a3a87",
+          "previousHash": "sha256:8ad75064e92c491a5c9d7b4c07ef06dab7ba7eb986d73800e29871f8f7d9e1a2",
+          "changed": true
+        },
+        {
+          "path": ".artifacts/topkapi-baghdad-integration/shots/final-closeup-marble-capitals-gold-grilles-and-clear-entry.png",
+          "hash": "sha256:97dfbb76e5562e33c275e796f8b3dee17f409a3448db1483e0e7d53f30f8acac",
+          "previousHash": "sha256:42e9326634a2980239356c3bd8c2861ca99d8bfe289efe7bc17b9bbfb78ce790",
+          "changed": true
+        },
+        {
+          "path": ".artifacts/topkapi-baghdad-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:605c8f150524850d768566fde64e0e53cd1066dfb7d459c7bc25e68cd9f037e9",
+          "previousHash": "sha256:605c8f150524850d768566fde64e0e53cd1066dfb7d459c7bc25e68cd9f037e9",
+          "changed": false
+        }
+      ],
+      "inspection": "All40 changed frames actually inspected in changed-final-0..6.jpg. Garden header depths now meet piers; entry camera shows open terrace, capitals, grilles and entrance. Eight byte-identical frames retain actual previous inspection. Approximate native fit accepted with uphill basement recesses partly buried by original coarse grade."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:6c931a9c5547e576b92cf02208208efcbbe37bb0223c24a2f0b2d14dc1a7e35a",
+      "sourceHash": "sha256:8254d74d891c624f66d5776af79a53a7e2106bec5872ee4481d3be00e8e0b746",
+      "runtimeHash": "sha256:3e247cd67e5a81f37aef7b2e60cc176a27837373c9a815d8d942028a6e47f1d3",
+      "files": {
+        "content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/models/source.glb": "sha256:8254d74d891c624f66d5776af79a53a7e2106bec5872ee4481d3be00e8e0b746",
+        "content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.glb": "sha256:3e247cd67e5a81f37aef7b2e60cc176a27837373c9a815d8d942028a6e47f1d3",
+        "content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.skyline.glb": "sha256:9c80eaf41530d2bb4ed84d96d2803164a0beea004a3e4575c48d4301aaf80aa4",
+        "content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.district.glb": "sha256:62c144bb578c6094f874761e14374972d9d00128971e531ab1231637f8680ce1",
+        "content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.street.glb": "sha256:b14d3a0aeec6610e5d3293fdd8a54181becdb06d4ea2c190f86d3613284678a8",
+        "content/worldgen/assets/places/sx/sxk/baghdad_kiosk_topkapi_palace/model.closeup.glb": "sha256:22a1c29054d6041c4aaa6cd3443749cb249d84b6d079a08b3f77650cc53d7ae2"
+      }
+    },
+    "preservedMembers": [
+      {
+        "asset": "molen.worldgen.structure.gate_of_salutation_topkapi_palace",
+        "inputHash": "sha256:0a52b9af3b571a54e4fd83b157c6a072d5bd3e725554b55c9d5191a7ea98b044",
+        "sourceHash": "sha256:531f1f4b806f391653269bec502d96e6abf7647823f7a0bf395f5225c79ecdfe",
+        "runtimeHash": "sha256:92bca0aacb504f346d048aeb42dd68f499eb1800bdda2573f7f14568841bb00d",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_gate_topkapi_palace",
+        "inputHash": "sha256:e5ecd840eac8634c6a2f3c82871f3243bfc10845705f5b617a69e67cfc0800de",
+        "sourceHash": "sha256:7a56eaa1398cf42a46442536dbe45b6834596d9b3ed15429dd25f56c414c1c09",
+        "runtimeHash": "sha256:0ac29d303f82f04c2c8450f8cbd53f58ad967daa02ac4a6b634eaab32c91ebce",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.gate_of_felicity_topkapi_palace",
+        "inputHash": "sha256:60916dfdfb785c016abbf3c096b41a22563f5109507bff69083f006b1daa0001",
+        "sourceHash": "sha256:337e05137e257792295fd557f29463ff21ba5a6e4e515eb0c9ef5c6d6f693143",
+        "runtimeHash": "sha256:b98b68a9ed89a363706253dff8a894f3a2fdc80cad028eaa3810e0b0e49f88b9",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_council_hall_topkapi_palace",
+        "inputHash": "sha256:58f0bce402de4a05f12950a109b87543f1c936a960fdbf4756b928237b946fc0",
+        "sourceHash": "sha256:2225c439d3cdabe44790b10d7abe72d7a361f9ea71719515fac54a4878a232ad",
+        "runtimeHash": "sha256:2c3d1cce002ff939daa4ef152b4488b43f327c9e5eabad5f1c2eca8d8562d383",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.tower_of_justice_topkapi_palace",
+        "inputHash": "sha256:219a1a343cf2a993979c5af59c734dbd14a39782e5ba088ee584ef92aed3f290",
+        "sourceHash": "sha256:dfdc0d06990acc65f05893e24e4a6f5b292661ad97b0b9f404e2300791e418f4",
+        "runtimeHash": "sha256:d7bff441bfbaff86a4578a449c1280e9ddf814a0de190865c98237ae3b86755c",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.palace_kitchens_topkapi_palace",
+        "inputHash": "sha256:edbc800a3fd69705a9e78f7f98e45b4722190b464a7f03ad4aa6c0894a4b296f",
+        "sourceHash": "sha256:ad2bc7e06bef640a001ef60d029936252d91f74f94e4032c6dae671aa5bdbd92",
+        "runtimeHash": "sha256:693b3acba3c158ad3e1b0c388a3d4aa7edc088dfbc0ab9e82dd6074b9e51cccd",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_harem_topkapi_palace",
+        "inputHash": "sha256:df97e03dbb3cbeecd512e47fef57d635500b4fb349b02a1af695421bdb647b52",
+        "sourceHash": "sha256:7e22c6fd6761ff86e4e35320732d357294434a10ba565c39012ce12babe2d622",
+        "runtimeHash": "sha256:72359c535333df60842bd02efbdb60a4de86d29ed51ab00ab5434da47f359d96",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.audience_chamber_topkapi_palace",
+        "inputHash": "sha256:f0ae33ae6fbe3c28af23699d003252595d6107771bb4cbd1820940e90734a4e4",
+        "sourceHash": "sha256:277459ee2d0e5178232fb43b261ff3ad035de68784f66ea72797afc60d16fdaa",
+        "runtimeHash": "sha256:1d3b436a3c5173dc569e41417e5db7e0f3bac8b7d459ae084e79a903a988e4d2",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.library_of_ahmed_iii_topkapi_palace",
+        "inputHash": "sha256:83475e26b415302771dc9af96679cc98c6766f4c412646242e38dd2cfaa9b974",
+        "sourceHash": "sha256:210616d3e0c9c2cc40bd5168adaf2dffe4107eece9b41a20e979d01c4e046989",
+        "runtimeHash": "sha256:37c2231aafde4d9694dbb769870338a4b89b5ae1c1f64614242aadcd19f39b72",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.mosque_of_the_agas_topkapi_palace",
+        "inputHash": "sha256:aeacbbf5b2756970bb7ff5d95e128daa106a7149e4eac8274a908bc9cee0e9c9",
+        "sourceHash": "sha256:8236de3f0f301528fc61003fd827059a37bb5bd7467cf61f4e23c51db35d323c",
+        "runtimeHash": "sha256:a470dc4b6eabace20803b51897087d54958efb3c64b039967cc182da45e75d36",
+        "geographicStatus": "passed"
+      },
+      {
+        "asset": "molen.worldgen.structure.has_oda_kogusu_topkapi_palace",
+        "inputHash": "sha256:c6274d29f35ce7a38609be675d51585977101118f57b6f416fdc66989e48f243",
+        "sourceHash": "sha256:9e0b02d7fe7179385b9eac3285f20183dfe8510261c5e304831a5da3c354e6a8",
+        "runtimeHash": "sha256:77606eb313350e3691f3d0cc8d324ef0e3eeb7f64e3b4c3c231397d0aa76cb9d",
+        "geographicStatus": "pending-terrain-fit"
+      },
+      {
+        "asset": "molen.worldgen.structure.halberdiers_quarters_topkapi_palace",
+        "inputHash": "sha256:8de257b6ad1a0f21d6eb09668a0fa07b764f439f400b9d68213df1b1ae0fe8f2",
+        "sourceHash": "sha256:2785087df10e8289982ae0a133b32b97c478655196afcdb2e1066b15af3cc213",
+        "runtimeHash": "sha256:c633cd39255e93e6ad66ea8c5aaaba746be9978fc3236120f6cf689851ce73d1",
+        "geographicStatus": "passed"
+      }
+    ],
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:6c931a9c5547e576b92cf02208208efcbbe37bb0223c24a2f0b2d14dc1a7e35a",
+      "mapLevels": [
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6141
+          ],
+          "id": 35184404484940,
+          "owned": false,
+          "covered": 0.006149381118446918,
+          "area": 100451.44760808765,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 35184404485128,
+          "owned": true,
+          "covered": 0.9999995034397782,
+          "area": 620.0798109316905,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "ownedNativeIds": [
+        35184404485128
+      ],
+      "independentBuildingsUnchanged": 258,
+      "widerIndependentBuildingsUnchanged": 572,
+      "footprintQuantizationMeters": 0.0001,
+      "groundBoundaryRounding": {
+        "outsideArea": 2.483882379777924e-7,
+        "maxDistanceMeters": 4.6664699654528225e-7
+      },
+      "providerAttachment": {
+        "internal": [
+          -18,
+          0
+        ],
+        "modelLocal": [
+          -14.327143861469416,
+          -10.896464966802728
+        ],
+        "absoluteGroundMeters": 40.89335351866111,
+        "modelHeight": 0,
+        "buildingsContainingControl": []
+      }
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": false,
+          "modelWorldY": 1.7065719504216759e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.baghdad_kiosk_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -41.640253518661105,
+            "max": 14.573146481338895
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:829d1bc19907e579315ac472a627db8a807dacc8dfe6183dd8947c6465dc321a",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 311744
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                5.84123273161455,
+                29.89017037678115,
+                53.44043413161157
+              ],
+              "lookAt": [
+                -0.7959524367483009,
+                6.89017037678115,
+                -0.6053591648223738
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": false,
+          "modelWorldY": 1.7065719504216759e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.tile_glazed": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.baghdad_kiosk_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -41.640253518661105,
+            "max": 14.573146481338895
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:e8c14db92ce3597d67468387d51cc2c19b5f93582c50119e6d1be5d039d2cea9",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 314432
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                5.84123273161455,
+                29.89017037678115,
+                53.44043413161157
+              ],
+              "lookAt": [
+                -0.7959524367483009,
+                6.89017037678115,
+                -0.6053591648223738
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": false,
+          "modelWorldY": 1.7065719504216759e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.tile_glazed": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.baghdad_kiosk_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -41.640253518661105,
+            "max": 14.573146481338895
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:a6b148a1347cf975d685ad2141b3799b229f802ebfa4c92eaa0c9e7925d32dd9",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 324756
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                5.84123273161455,
+                29.89017037678115,
+                53.44043413161157
+              ],
+              "lookAt": [
+                -0.7959524367483009,
+                6.89017037678115,
+                -0.6053591648223738
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": false,
+          "modelWorldY": 1.7065719504216759e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.tile_glazed": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.baghdad_kiosk_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -41.640253518661105,
+            "max": 14.573146481338895
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:bd6d01aaa22dec5301740739b99a1be1df6bd47d85d0acc68757fe0e37e0c09c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 329092
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                5.84123273161455,
+                29.89017037678115,
+                53.44043413161157
+              ],
+              "lookAt": [
+                -0.7959524367483009,
+                6.89017037678115,
+                -0.6053591648223738
+              ],
+              "fov": 47
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-pool-arcade-and-tiled-cross-room.png",
+            "hash": "sha256:d38aa44762de6a42bc68d55e5a499542a33af8a7414f0578efa1f9cc49cf080e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 327040
+            },
+            "camera": {
+              "name": "open-pool-arcade-and-tiled-cross-room",
+              "position": [
+                -32.42076010805145,
+                9.89017037678115,
+                2.9823336527256465
+              ],
+              "lookAt": [
+                -5.190480513386252,
+                5.89017037678115,
+                -1.4348909506152676
+              ],
+              "fov": 57
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-garden-bay-and-stone-undercroft.png",
+            "hash": "sha256:a359ab7a6dd71fedb709954f6d95b7704c6a21d5adc84906b05e9d68470a3a87",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 329092
+            },
+            "camera": {
+              "name": "garden-bay-and-stone-undercroft",
+              "position": [
+                13.497612075676521,
+                6.490170376781149,
+                15.29099304344068
+              ],
+              "lookAt": [
+                7.163571930734708,
+                5.59017037678115,
+                5.448232483401364
+              ],
+              "fov": 68
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-marble-capitals-gold-grilles-and-clear-entry.png",
+            "hash": "sha256:97dfbb76e5562e33c275e796f8b3dee17f409a3448db1483e0e7d53f30f8acac",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 327040
+            },
+            "camera": {
+              "name": "marble-capitals-gold-grilles-and-clear-entry",
+              "position": [
+                -17.768705578477732,
+                5.490170376781149,
+                -4.71943874474225
+              ],
+              "lookAt": [
+                -5.5716670572381055,
+                5.39017037678115,
+                -4.237514153756617
+              ],
+              "fov": 72
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 259,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184404485128,
+              "area": 620.0941265900624
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.baghdad_kiosk_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -41.640253518661105,
+            "max": 14.573146481338895
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:605c8f150524850d768566fde64e0e53cd1066dfb7d459c7bc25e68cd9f037e9",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 310796
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                5.84123273161455,
+                29.89017037678115,
+                53.44043413161157
+              ],
+              "lookAt": [
+                -0.7959524367483009,
+                6.89017037678115,
+                -0.6053591648223738
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Baghdad Kiosk as a distinct notched canopy footprint with cross-shaped blue-tiled room, open pointed colonnade and white geometric terrace rails, raised stone basement with recessed pointed openings, tall glazed garden bay, two window levels, broad lead hip/eaves, shallow central lead dome and small pointed roof stack. No independent Iftar/Yerevan kiosk, pool, surrounding terrace, copied artwork or furnishings.",
+    "Independent Q6096486 / OSM way32396296 / native35184404485128. OSM v23 explicitly names Baghdad Kiosk and repeats Q6096486. Exact eight-corner parent retained; internal+X southeast faces the garden, internal+Z southwest faces the pool court.",
+    "Picture-led upper room height6.25m, broad lead hip rise1.1m and shallow central dome rise1.8m/radius4m. Upper walking floor is .25m above the highest original parent boundary sample. Cross-room proportions, opening/column inventory, roof-stack location and inaccessible roofs/interiors are reconstructed controls, not surveyed dimensions.",
+    "Existing standard Protomaps20261020/Mapzen PMTiles and original161x161/6m heightfield retained. Open provider control internal[-18,0] is outside every original building record. Raised terrace/stone basement meet original coarse falling terrain; local protective foundations and bounded approach stair accommodate grade. No bespoke terrain or precinct flattening; historical thresholds/accessibility are unverified."
+  ]
+}

@@ -1,7 +1,10 @@
 # @bendyline/molen-entities
 
 Ids and helpers for Molen's curated entity collection: trees, a shrub and a boulder, the P-51D and
-OH-6 aircraft, eleven road vehicles, six cycles and eight watercraft. The models and type documents themselves are content, not
+OH-6 aircraft, Bendy Small Airliner, eleven Bendy road vehicles, eighty-two real-world reference
+road vehicles, six RVs (including the 2022 Winnebago View 24D), six cycles, eight watercraft,
+Bendy Bus and Bendy Light Rail. All transport models are controllable; light rail currently
+supports a straight track with traction, braking and reverse. The models and type documents themselves are content, not
 code: they ship as the `molen.entities` content pack.
 
 Part of [Molen](https://molen.dev), an AI-legible 3D experience engine: a deterministic headless
@@ -54,6 +57,8 @@ meter-scaled, rooted at ground level (watercraft use the waterline).
 | --- | --- |
 | `MOLEN_ENTITY_IDS`, `MolenEntityId` | Every id in the pack |
 | `MOLEN_AIRCRAFT_ENTITY_IDS`, `MOLEN_VEHICLE_ENTITY_IDS` | The aircraft and vehicle ids, with typed unions |
+| `MOLEN_US_VEHICLE_ENTITY_IDS`, `MOLEN_VARIETY_VEHICLE_ENTITY_IDS` | Forty recent U.S. models and forty varied models from 2005–2024 |
+| `MOLEN_RV_ENTITY_IDS`, `MolenRvEntityId` | Two Class Cs, three Class As and one Class B, all drivable |
 | `MOLEN_CYCLE_ENTITY_IDS`, `MOLEN_WATERCRAFT_ENTITY_IDS` | Rideable cycles and watercraft |
 | `molenAircraft(types, id)`, `molenVehicle(types, id)` | Resolved `aircraft` and `vehicle` component data from a type library |
 | `createMolenEntitiesAssetIndex(baseUrl)` | A client `assets.index` for the pack's files extracted to a static directory (`molen pack extract`) |

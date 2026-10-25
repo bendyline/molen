@@ -420,7 +420,7 @@ export function buildRoterSand(target) {
 
 export const roterSandStudies = [
   {
-    id: 'N1007',
+    id: 'roter_sand',
     key: 'roter_sand',
     title: 'Roter Sand',
     wikidataId: 'Q220034',

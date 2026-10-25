@@ -4,6 +4,7 @@
  * archstyle-schema.ts is the validation engine; keep the two in sync.
  */
 
+import type { LotPlanChoice } from './lot-plans';
 import type { SelectionWhen } from './rules';
 
 export interface NumberRange {
@@ -188,6 +189,8 @@ export interface ArchLodTier {
 }
 
 export interface ArchStyleDoc {
+  /** Weighted resizable plans for vacant lots; never alters a supplied mapped outline. */
+  lotPlans?: LotPlanChoice[];
   format: 'molen/archstyle@1';
   id: string;
   title: string;

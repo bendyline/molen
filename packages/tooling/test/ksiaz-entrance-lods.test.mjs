@@ -2,7 +2,7 @@ import { expect, it } from 'vitest';
 import {
   buildKsiazEntrance,
   ksiazEntranceModels,
-} from '../../worldgen/scripts/ksiaz-entrance-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 it.each(

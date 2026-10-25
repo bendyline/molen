@@ -7,7 +7,7 @@ import { annulus, face, transform } from './heritage-tower-detail-mesh.mjs';
 import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapBytes = readFileSync(structureSourcePath('n0615_gerbrandy_tower', 'map-frame.json'));
+const mapBytes = readFileSync(structureSourcePath('gerbrandy_tower', 'map-frame.json'));
 const map = JSON.parse(mapBytes);
 const pi = Math.PI;
 const concrete = [0.72, 0.73, 0.69],
@@ -368,8 +368,8 @@ function buildGerbrandy(out) {
 }
 
 export const gerbrandyTower = {
-  id: 'n0615_gerbrandy_tower',
-  planId: 'N0615',
+  id: 'gerbrandy_tower',
+  planId: 'gerbrandy_tower',
   title: 'Gerbrandy Tower',
   wikidata: 'Q778390',
   build: buildGerbrandy,

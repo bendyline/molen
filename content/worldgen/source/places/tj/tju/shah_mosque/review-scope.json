@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "brick_longformat",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "wall",
+      "graph": "tile_mosaic",
+      "roughness": 0.72,
+      "metallic": 0
+    },
+    "dome": {
+      "slot": "wall",
+      "graph": "tile_mosaic",
+      "roughness": 0.72,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.5,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/shah-model.mjs",
+    "export": "buildShahSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildShahDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildShahStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildShahCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      200,
+      145,
+      215
+    ],
+    "lookAt": [
+      -7,
+      18,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-shah-skyline",
+      "position": [
+        200,
+        145,
+        215
+      ],
+      "lookAt": [
+        -7,
+        18,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-shah-district",
+      "position": [
+        200,
+        145,
+        215
+      ],
+      "lookAt": [
+        -7,
+        18,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-shah-street",
+      "position": [
+        200,
+        145,
+        215
+      ],
+      "lookAt": [
+        -7,
+        18,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-shah-closeup",
+      "position": [
+        200,
+        145,
+        215
+      ],
+      "lookAt": [
+        -7,
+        18,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;acceptance recorded separately in QA.",
+    "anchor": [
+      51.677832934,
+      32.654893778
+    ],
+    "heading": 1.006149928764,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared working floor,not surveyed paving. Standard viewer DEM datum1581.578325m;whole perimeter-10.58..-2.33m relative to anchor. Working floor2.826m is maximum bilinear sample over the core at2m spacing plus0.3m;not surveyed paving elevation. Raw DEM retained without cutout/flattening;adaptive footings extend below it and crossY=0. Model court paving stays inside whole footprint. Exact altitude,street/threshold/terrace/terrain joins,planting and walking unverified;adjacent square and city remain host content.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        51.677832934,
+        32.654893778
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum1581.578325m;whole perimeter-10.58..-2.33m relative to anchor. Working floor2.826m is maximum bilinear sample over the core at2m spacing plus0.3m;not surveyed paving elevation. Raw DEM retained without cutout/flattening;adaptive footings extend below it and crossY=0. Model court paving stays inside whole footprint. Exact altitude,street/threshold/terrace/terrain joins,planting and walking unverified;adjacent square and city remain host content."
+    },
+    "bounds": [
+      51.671,
+      32.648,
+      51.685,
+      32.662
+    ],
+    "notes": "Retained exact relation/1627974 /Q643098 matches current PMTiles whole52776559761222 (3*2^44+1627974). Earlier retained outline/four courtyard holes remain separate from current25-point outer/four four-point holes and18 raw building/part controls. Anchor[51.677832934,32.654893778] and heading1.006149928764rad unchanged,no horizontal rescale. Native−X southwest prayer hall/main dome,+X northeast angled square entrance;+Z southeast side iwan/pavilion,−Z northwest side iwan. The entrance front follows its mapped diagonal rather than rotating it onto the prayer axis. Exact components locate52m main dome,overlapping38m dome component,two22m side caps,27m entrance/prayer frames,three18m side frames,four48m minarets and6/9/12m ranges. Adjacent Naqsh-e Jahan square arcades,roads and city buildings remain host content. Opening/cornice/pavilion/roof profiles are picture estimates within about2.5m/facing about3°. Standard viewer DEM datum1581.578325m;whole perimeter-10.58..-2.33m relative to anchor. Working floor2.826m is maximum bilinear sample over the core at2m spacing plus0.3m;not surveyed paving elevation. Raw DEM retained without cutout/flattening;adaptive footings extend below it and crossY=0. Model court paving stays inside whole footprint. Exact altitude,street/threshold/terrace/terrain joins,planting and walking unverified;adjacent square and city remain host content."
+  },
+  "geographicNote": "Standard viewer DEM datum1581.578325m;whole perimeter-10.58..-2.33m relative to anchor. Working floor2.826m is maximum bilinear sample over the core at2m spacing plus0.3m;not surveyed paving elevation. Raw DEM retained without cutout/flattening;adaptive footings extend below it and crossY=0. Model court paving stays inside whole footprint. Exact altitude,street/threshold/terrace/terrain joins,planting and walking unverified;adjacent square and city remain host content.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

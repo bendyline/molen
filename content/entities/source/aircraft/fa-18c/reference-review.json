@@ -1,0 +1,271 @@
+{
+  "variant": "Late F/A-18C, NATOPS FO-5 front cockpit 163985 and up; clean airframe with empty wingtip rails",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://server.3rd-wing.net/public/Bureau_4thMEG/VMFA-232/Documentation/Support/A1-F18AC-NFM-000_-_NATOPS_Flight_Manual_-_February_2000.pdf",
+      "title": "A1-F18AC-NFM-000 NATOPS Flight Manual, February 2000 with changes",
+      "author": "US Navy",
+      "license": "Publicly hosted technical manual; local geometry study only, no reference pixels redistributed",
+      "scope": "PDF58 stated clean span37ft6in,length56ft,height15ft3in,canopy10ft6in,fin cant20deg. PDF59 general arrangement. PDF694/695 FO-5 late C front panel and consoles."
+    },
+    {
+      "url": "https://ntrs.nasa.gov/api/citations/19970010502/downloads/19970010502.pdf",
+      "title": "NASA TM4786, Extraction of Lateral-Directional Stability and Control Derivatives for the Basic F-18 Aircraft at High Angles of Attack, February1997",
+      "author": "Kenneth W.Iliff and Kon-Sheng Charles Wang,NASA",
+      "license": "NASA public report; local study",
+      "scope": "PDF23 Figure2 basic F18 three-view. Use baseline geometry only; exclude research airdata booms and later HARV modifications. Drawing span37.4ft differs slightly from NATOPS37.5ft; front-looking reference is actually rear elevation."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F18_Cockpit.JPG",
+      "title": "F18 cockpit at Sion airshow1997",
+      "author": "Jamcib",
+      "license": "Public domain dedication by photographer",
+      "scope": "Real cockpit photograph: UFC/DDI/MPCD housings, coaming, stick, seat and right console. Specific national fit/serial unknown; use NATOPS for selected US late-C layout."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:US_Navy_030528-N-0295M-007_A_pilot_looks_through_his_Heads-Up_Display_(HUD)_while_sitting_in_his_F-A-18C_Hornet_aboard_the_aircraft_carrier_USS_Constellation_(CV_64).jpg",
+      "title": "F/A18C of VFA151,28May2003,forward canopy/HUD photograph",
+      "author": "Photographers Mate2ndClass Daniel J.McLain,US Navy",
+      "license": "Public domain US federal government work",
+      "scope": "Windscreen arch, canopy shape, curved coaming and HUD housing; viewed from outside looking aft."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:An_F-A-18C_Hornet_launches_from_the_flight_deck_of_the_conventionally_powered_aircraft_carrier.jpg",
+      "title": "F/A18C VFA192 launching from USS Kitty Hawk,17August2005,050817-N-3488C-028",
+      "author": "Photographers Mate3rdClass Jonathan Chandler,US Navy",
+      "license": "Public domain US federal government work",
+      "scope": "Exterior photo: LEX curvature, canted fins and fairings, round-sided inlet, twin nose wheels and main trailing arms. No reference pixels embedded; pylons omitted."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.98,
+      5.7
+    ],
+    "lookAt": [
+      0,
+      2.45,
+      6.65
+    ],
+    "fov": 82
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.43
+    ],
+    "viewHeight": 1.3,
+    "cameraHeight": 3.8
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "angleOfAttack": 0,
+    "loadFactor": 1,
+    "gear": 1,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/fa18-three-view.png",
+      "crop": {
+        "left": 230,
+        "top": 847,
+        "width": 796,
+        "height": 236
+      },
+      "referenceAnchor": [
+        240,
+        1078
+      ],
+      "modelAnchor": [
+        -10.9,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 778,
+        "meters": 17.0688,
+        "description": "56ft length; independently15ft3in fin height and10ft6in canopy height from NATOPS."
+      },
+      "scope": "Side silhouette. Research boom excluded; drawing minor vertical/longitudinal scale discrepancy remains."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/fa18-three-view.png",
+      "crop": {
+        "left": 230,
+        "top": 190,
+        "width": 796,
+        "height": 550
+      },
+      "rotate": 270,
+      "referenceAnchor": [
+        237,
+        466
+      ],
+      "modelAnchor": [
+        0,
+        10.9
+      ],
+      "scaleControls": {
+        "pixels": 781,
+        "meters": 17.0688,
+        "description": "56ft length; independent NATOPS37ft6in clean span and NASA21.6ft stabilator span."
+      },
+      "scope": "LEX, wings, twin canted fins, stabilators, canopy and engine spacing. No airdata boom or external stores."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/fa18-three-view.png",
+      "crop": {
+        "left": 592,
+        "top": 1170,
+        "width": 568,
+        "height": 218
+      },
+      "referenceAnchor": [
+        876,
+        1383
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 548,
+        "meters": 11.39952,
+        "description": "NASA37.4ft drawing span; model uses NATOPS37.5ft. Independent fin cant20deg and15ft3in fin height."
+      },
+      "scope": "Rear-elevation reference used for bilateral height,dihedral,track and fin cant only; visible front details cannot be compared."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/fa18-panel.png",
+      "crop": {
+        "left": 330,
+        "top": 180,
+        "width": 750,
+        "height": 650
+      },
+      "referenceAnchor": [
+        707,
+        550
+      ],
+      "modelAnchor": [
+        0,
+        -2.43
+      ],
+      "scaleControls": {
+        "pixels": 130,
+        "meters": 0.127,
+        "description": "Nominal5in DDI active screen; panel reconstruction, not manufacturing dimensions."
+      },
+      "scope": "Late-C FO5 instrument panel, coaming, HUD, UFC, two DDIs, MPCD, IFEI and standby layout."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Dedicated clean F/A18C shell, tapered radome, true single canopy aperture, curved LEX joined continuously to fuselage, paired round-sided intakes and F404 fairings, thin swept wings, canted fins and stabilators.",
+      "Used NATOPS clean37ft6in span rather than missile-inclusive40ft5in span. Preserved56ft length,15ft3in fin height,10ft6in canopy and20degree fin cant; NASA baseline three-view supplies contours without research booms.",
+      "Corrected LEX gaps revealed by top overlay, console walls protruding into exterior, attitude mask protruding above coaming, floating fasteners and retracted gear intersecting cabin. Gear is hidden when fully retracted behind the closed bay.",
+      "Late-C FO5 layout: two upper DDIs, central UFC keypad and five option fields, lower MPCD, left IFEI and right standby cluster. Physical HUD/coaming, SJU17-inspired seat/harness, center stick, pedals and twin left throttles.",
+      "Live attitude, TAS, geometric altitude including signed display, vertical speed and true heading. DDI and MPCD presentations are simplified simulator displays; unmodeled radar/engine/fuel/hydraulic/clock quantities blank or INOP.",
+      "Animated leading flaps, trailing flaps, ailerons, differential stabilators, rudders, gear and pilot controls through shared named expressions. Independent imported-node tests cover calibration, control directions, cardinal headings, missing readings and gear-bay visibility.",
+      "Canopy rail/bow fasteners, selected access seams, wing fastener rows, tail fairings and warning stencils are geometry; no photo textures or external weapons."
+    ],
+    "independentDimensions": [
+      "NATOPS56ft=17.0688m length;37ft6in=11.43m clean span;15ft3in=4.6482m fin height;10ft6in=3.2004m canopy height. Rail/fin thickness extends measured runtime bounds slightly to11.4398m span,4.6601m height.",
+      "NASA21.6ft=6.58368m stabilator span and400ft2=37.161216m2 nominal aerodynamic wing area. Main track2.96m and wheelbase5.38m reconstructed from the drawing, not independent manufacturing dimensions.",
+      "Uniform length scale for side/top; rear-elevation width calibrated independently to NASA37.4ft. Rear elevation differs vertically from stated canopy/fin dimensions and side view by roughly10percent. Kept actual NATOPS dimensions and disclosed discrepancy; no stretched axes.",
+      "Panel normalized from FO5, nominal5in DDI screen used as scale. Panel/seat depth and installation are reconstructed from photos. Swiss airshow cockpit photo checks depth and housings only; national avionics differences do not override US late-C foldout."
+    ],
+    "visual": "Inspected four overlays, eight standard views and ten detail/instrument states. Rechecked all22 current-geometry captures in six contact sheets, plus full-size seated cruise after correcting gear intrusion. Compared actual US Navy exterior and canopy/HUD photos, public-domain cockpit photo and both FO5 panel/console foldouts.",
+    "limitations": [
+      "Polygonal interpretation, not an engineering replica. Airfoil sections, compound fuselage curvature, inlet ducts, canopy refraction, individual fastener positions, stencils and unit livery remain simplified. NASA drawings have disclosed scale disagreements.",
+      "Panel main instrument positions follow the foldout; switch counts, console spacing, dial marks, seat and harness details remain approximations. Static switches do not operate aircraft systems.",
+      "DDI attitude/TAS/geometric-altitude and MPCD true-heading are simplified simulator presentations, not authentic Hornet software pages. No collimated HUD, radar/RWR, navigation map, flight director, magnetic heading, calibrated IAS/Mach or pressure altitude.",
+      "IFEI core RPM,temperature,fuel flow,nozzle schedule,fuel quantity/time,hydraulic and cabin pressure are unsupported and unavailable. No fabricated power-to-engine-readout conversion.",
+      "Shared simplified flight physics and visual control mixes, not Hornet flight-control laws or automatic flap schedules. Gear retraction is an approximate animation with closed-bay hiding; no mechanical linkage/bay simulation, wing-fold control, launch-bar or carrier arresting operation.",
+      "Reference imagery/PDFs are local study material only. Source URLs and license information retained; no reference pixels redistributed in model textures."
+    ]
+  },
+  "instrumentReview": {
+    "typeDefinitionHash": "sha256:961706080e05b0fb925048bc98b32bef0cc58871233b2f0f605eaf27fa83427e",
+    "checks": "16 shared imported instrument tests plus targeted Hornet geometry test passed. Cardinal heading test now covers13models.",
+    "captures": {
+      "zero": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/zero.png",
+        "sha256": "sha256:b44b25e30c7f8c5ee2d5d8c68eb609ab969a1d11da6e7a507eba675ca4bf8c0d",
+        "inspected": true
+      },
+      "cruise": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/cruise.png",
+        "sha256": "sha256:6ef66573dd42ea8f76284f1b8505da70dc25b7aaad0c5601b69bdd3da7a16f7c",
+        "inspected": true
+      },
+      "limits": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/limits.png",
+        "sha256": "sha256:567a4d13195280b48d91901fe071566e49fe7630858d76ad059bda9cc278a856",
+        "inspected": true
+      },
+      "below-sea-level": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/below-sea-level.png",
+        "sha256": "sha256:bb901b1723b45a87cc6fe9957546fa38f5a3e4fa42df5a614b50cc961f58131c",
+        "inspected": true
+      },
+      "missing": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/missing.png",
+        "sha256": "sha256:03190f9f85b12bdeac43684b4cac3f05c904249874f6a0bb1728f2d7d3b83082",
+        "inspected": true
+      },
+      "controls": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/controls.png",
+        "sha256": "sha256:d1213a220b2d0976112db87c5aa9291a7696c9a9d041ed5de3aa6349e983b05e",
+        "inspected": true
+      },
+      "close-exterior": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/close-exterior.png",
+        "sha256": "sha256:822a9828dd226c7c633fa232a293cce64ca29bafe4d868da9df77e990601f2e0",
+        "inspected": true
+      },
+      "clean-flight": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/clean-flight.png",
+        "sha256": "sha256:27a9e9635e5baccfaadd0c022650a3e993e6368db43246596d535c3431540d7d",
+        "inspected": true
+      },
+      "canopy-side": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/canopy-side.png",
+        "sha256": "sha256:59d1e300a79078c3b65c10f03faddf73e72cf62b129d67cce9ad3a2f0ddbd05a",
+        "inspected": true
+      },
+      "exhausts": {
+        "path": ".artifacts/aircraft/fa-18c-instruments/exhausts.png",
+        "sha256": "sha256:ef5c56b5e786415c4f2988c7b50b867412e432b5fe87335def0efe876799dab8",
+        "inspected": true
+      }
+    }
+  },
+  "sourceHash": "sha256:4dfab731a047614b25722117afc64ab427b6ee14a75be52f2213b1f828e1c7a9",
+  "runtimeHash": "sha256:506efab027163175ac1eb37aa1877e82d1044e589f42b2eacc0ff030e4c92bc1",
+  "limitations": [
+    "Polygonal interpretation, not an engineering replica. Airfoil sections, compound fuselage curvature, inlet ducts, canopy refraction, individual fastener positions, stencils and unit livery remain simplified. NASA drawings have disclosed scale disagreements.",
+    "Panel main instrument positions follow the foldout; switch counts, console spacing, dial marks, seat and harness details remain approximations. Static switches do not operate aircraft systems.",
+    "DDI attitude/TAS/geometric-altitude and MPCD true-heading are simplified simulator presentations, not authentic Hornet software pages. No collimated HUD, radar/RWR, navigation map, flight director, magnetic heading, calibrated IAS/Mach or pressure altitude.",
+    "IFEI core RPM,temperature,fuel flow,nozzle schedule,fuel quantity/time,hydraulic and cabin pressure are unsupported and unavailable. No fabricated power-to-engine-readout conversion.",
+    "Shared simplified flight physics and visual control mixes, not Hornet flight-control laws or automatic flap schedules. Gear retraction is an approximate animation with closed-bay hiding; no mechanical linkage/bay simulation, wing-fold control, launch-bar or carrier arresting operation.",
+    "Reference imagery/PDFs are local study material only. Source URLs and license information retained; no reference pixels redistributed in model textures."
+  ]
+}

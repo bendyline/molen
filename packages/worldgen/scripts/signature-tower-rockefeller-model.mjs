@@ -772,7 +772,7 @@ function roof(out, highest) {
 }
 export function buildRockefeller(out, m) {
   const base = clean(localOutline(m)),
-    parts = partsEvidence('n0190_30_rockefeller_plaza')
+    parts = partsEvidence('30_rockefeller_plaza')
       .filter((p) => p.type === 'way' && p.tags?.['building:part'])
       .map((p) => ({
         id: p.id,

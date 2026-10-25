@@ -1,0 +1,35 @@
+{
+  "format": "molen/structure-dimension-controls@1",
+  "reviewedOn": "2026-10-16",
+  "controls": [
+    {
+      "source": "map-frame.json",
+      "control": "Own connected building 52776563341652 has three internal courtyard voids and 19 retained component parts. East native range spans 107.872m along the frontage; anchor and heading are derived from that frontage, not the article point.",
+      "status": "native-own-building-controls"
+    },
+    {
+      "source": "supplemental-reference-review.json:owner",
+      "control": "108m nominal frontage / 120m quadrangle-inclusive depth / 24m main height. Native bow, conservatory, garden terrace and attached south masses extend outside the nominal main rectangle; retain native plans rather than rescaling the whole outline.",
+      "status": "primary-nominal-controls"
+    },
+    {
+      "source": "supplemental-reference-review.json:Historic England and local photographs",
+      "control": "East rhythm 3:7:3:7:3, rusticated ground and mezzanines, tall Corinthian order, three pediments and central balcony. Garden five-window circular bow and shallow half dome, large attic, temple conservatory and Ambassadors’ Court porch are distinct. Intermediate storey heights, roof geometry, columns, ornament and flagstaff remain estimated.",
+      "status": "primary-description-and-photographic-proportions"
+    },
+    {
+      "source": "terrain-grid.json",
+      "control": "Four unchanged original Terrarium tiles; 193×193 samples at2m spacing, source pixels2.974m, dry eastern datum6.4092m. Own native outlines span -1.174..+0.470m relative to this datum. Buried -4m foundation and own garden terrace, ground unchanged.",
+      "status": "independent-ground-before-geometry"
+    }
+  ],
+  "limitations": [
+    "Four local originals individually inspected; all 78 candidate contact views inspected. Many candidates are interiors, a Shenzhen replica, nearby landmarks, gates, vehicles or historical images and cannot control the palace exterior.",
+    "Nominal 108m frontage, 120m quadrangle depth and 24m height are primary owner controls. Native front is approximately 107.9m wide; projections, attached south blocks and conservatories extend beyond the nominal main rectangle. Preserve native outlines rather than scaling the parcel to these numbers.",
+    "Main palace quadrangle, garden bow, attached conservatory/ballroom and Ambassadors’ Court masses only. Separate Royal Mews and Riding School, forecourt gates, Victoria Memorial, gardens, neighbors, interiors, people, guards, vehicles, temporary works/canopies, banners and photographic textures are excluded.",
+    "Qualla narrative dates the balcony to the 1913 refacing; owner records place its introduction with the 1847–1849 wing and appearances from 1851. Story content is not changed by this modeling work.",
+    "Native generalized component heights of 6/12/18/21/24m are massing evidence, not surveyed storey levels. Intermediate heights, unseen facade bays, stone detailing, roof engineering and flagstaff dimensions require conservative interpretation.",
+    "The owner aerial page was located and the image opened, but browser pixel capture failed. No aerial imagery has been visually inspected for this model yet.",
+    "Independent original terrain must be acquired before authoring. No terrain fitting/flattening or footprint replacement. Ground contacts and raised terraces must be tested against the actual samples."
+  ]
+}

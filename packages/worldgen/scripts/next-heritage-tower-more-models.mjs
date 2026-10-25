@@ -204,10 +204,7 @@ function buildFerdowsi(out) {
   const marble = [0.84, 0.82, 0.72],
     trim = [0.91, 0.9, 0.81];
   const data = JSON.parse(
-    readFileSync(
-      structureSourcePath('n0576_ferdowsi_mausoleum', 'reference-metadata.json'),
-      'utf8',
-    ),
+    readFileSync(structureSourcePath('ferdowsi_mausoleum', 'reference-metadata.json'), 'utf8'),
   );
   const [lon, lat] = data.anchor,
     h = data.heading;
@@ -735,7 +732,7 @@ function capsule(cx, cz, width, length) {
 }
 function buildCoeur(out) {
   const data = JSON.parse(
-    readFileSync(structureSourcePath('n0573_c_ur_defense', 'reference-metadata.json'), 'utf8'),
+    readFileSync(structureSourcePath('c_ur_defense', 'reference-metadata.json'), 'utf8'),
   );
   const [lon, lat] = data.anchor,
     h = data.heading;
@@ -816,8 +813,8 @@ function buildCoeur(out) {
 
 export const moreHeritageTowers = [
   {
-    id: 'n0576_ferdowsi_mausoleum',
-    planId: 'N0576',
+    id: 'ferdowsi_mausoleum',
+    planId: 'ferdowsi_mausoleum',
     componentMap: { limestone: 'marble' },
     title: 'Ferdowsi Mausoleum',
     wikidata: 'Q5959602',
@@ -870,8 +867,8 @@ export const moreHeritageTowers = [
     ],
   },
   {
-    id: 'n0567_einstein_tower',
-    planId: 'N0567',
+    id: 'einstein_tower',
+    planId: 'einstein_tower',
     title: 'Einstein Tower',
     wikidata: 'Q321789',
     build: buildEinstein,
@@ -922,8 +919,8 @@ export const moreHeritageTowers = [
     ],
   },
   {
-    id: 'n0573_c_ur_defense',
-    planId: 'N0573',
+    id: 'c_ur_defense',
+    planId: 'c_ur_defense',
     title: 'Cœur Défense',
     wikidata: 'Q2349903',
     build: buildCoeur,

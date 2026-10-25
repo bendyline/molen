@@ -1,0 +1,437 @@
+{
+  "planId": "municipal_theatre_ignacio_a_pane",
+  "id": "municipal_theatre_ignacio_a_pane",
+  "assetId": "molen.worldgen.structure.municipal_theatre_ignacio_a_pane",
+  "title": "Municipal Theatre Ignacio A. Pane",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -57.63477445,
+    "latitude": -25.2810262
+  },
+  "size": [
+    58.46840286254883,
+    17.073829352855682,
+    61.06111145019531
+  ],
+  "actualBounds": {
+    "min": [
+      -29.38239097595215,
+      -0.18000000715255737,
+      -30.37703514099121
+    ],
+    "max": [
+      29.08601188659668,
+      16.893829345703125,
+      30.6840763092041
+    ]
+  },
+  "visualBrief": "Whole surviving TeatroMunicipalIgnacioA.Pane exterior on actual17-corner named native footprintway277951940/Q9082167: dusty-pink historic street-front/flanking wings/central curved pediment, tall arched timber/glazed windows/fanlights/lower doors/guards, pilasters/cornice/pierced roof parapet and projecting glazed steel-truss canopy; whole intrinsic auditorium/stage/service envelope and included SalaBaudilioAlio position. Keep full rear/side native building massing with bounded hidden roof/height divisions, no facade-only panel or generic theatre box. Exclude separate TeatroGuarani/neighbor offices/cables/whole street/trees/people/signage and interior performance/audience rooms.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Teatro_Municipal_Ignacio_A._Pane.jpg"
+  ],
+  "stories": [
+    {
+      "id": "municipal-theatre-ignacio-a-pane-wp",
+      "url": "https://qualla.com/municipal-theatre-ignacio-a-pane/"
+    }
+  ],
+  "referenceInputHash": "e957d167dd31c7938ec73db9b6b0b94017d359050738e2d1030317b600f1369c",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-municipal-theatre-ignacio-a-pane.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-municipal-theatre-ignacio-a-pane.mjs",
+    "level": "skyline",
+    "export": "paneSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stucco",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.4,
+        "metallic": 0.14
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "paneDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.14
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "paneStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.14
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "paneCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.14
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -0.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Frozen independent terrain precedes these architectural choices. Floor+.06/base-.18, historic body10.8/cornice11.25/pierced parapet12.05, upper arched windows5.55..9.4, lower openings.28..3.85, central curved pediment to12.9, projecting8.5m glazed steel canopy5.08..5.65. Whole native17-corner theatre includes hall13.05+1.55 barrel estimate and rear stage15.5+1.4 gable estimate; four-level native tag does not turn photographed historic front into four storeys. Local facade working axis2.579rad transformed back to unchanged geographic east/south frame. Original200m/16641-value raw terrain/two tiles/PNG unchanged; local foundations/threshold and host contact unresolved; independent flat appearance preview/replacementfalse.",
+    "anchor": [
+      -57.63477445,
+      -25.2810262
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -57.63511207172588,
+        -25.281343314313638
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exterior southwest point beyond actual whole envelope before terrain/geometry; not a surveyed building threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/277951940",
+      "node/4057297334",
+      "node/13703056563"
+    ],
+    "source": "https://www.openstreetmap.org/way/277951940",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:331ada7200817ae1b713ae438603f23fcfcad8525dd0d62c9b31f31faa0b40f5",
+    "notes": "Whole surviving TeatroMunicipalIgnacioA.Pane exterior on actual17-corner named native footprintway277951940/Q9082167: dusty-pink historic street-front/flanking wings/central curved pediment, tall arched timber/glazed windows/fanlights/lower doors/guards, pilasters/cornice/pierced roof parapet and projecting glazed steel-truss canopy; whole intrinsic auditorium/stage/service envelope and included SalaBaudilioAlio position. Keep full rear/side native building massing with bounded hidden roof/height divisions, no facade-only panel or generic theatre box. Exclude separate TeatroGuarani/neighbor offices/cables/whole street/trees/people/signage and interior performance/audience rooms."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole named17-corner theatre envelopeway277951940/Q9082167 includes intrinsic auditorium/stage/service body and SalaBaudilioAlio identity position; pink historic two-storey front/wings/real arched window reveals/wood fanlights/lower doors/guards, curved central pediment/pilaster-capital scrolls/pierced parapets and projecting closed-glazed steel-truss canopy with actual underside/braces. No facade-only panel or separate neighboring theatre.",
+    "Qualla-first exact sole local candidate was indoor ballet and excluded without pixels. One2048x1360 PattyP own/PD-self exact native exterior original individually inspected/SHA1matched; preserved native grant. No questionable sources, borrowed meshes/photo textures/generated bitmaps or policy/verifier changes.",
+    "Photograph is undated/cropped. Heights, opening/rail census, original capital/crest ornament and especially hidden whole auditorium/barrel/rear-stage roof partition/sections/materials are bounded original medium-fi estimates from photo/native perimeter, not surveyed construction/private interior. Native whole-building4levels does not impose four repeated historic facade storeys.",
+    "Original200m/129x129/16641-value independent source field/two raw tiles/PNG frozen before geometry/architectural sections unchanged. Floor+.06 independent; urban source artifacts/grade disagree with foundations/thresholds. Isolated/shared-flat appearance accepted only after current views plus separate unchanged original-field image; precise source/host terrain contact unverified/replacementfalse. No source flattening/fitting/reacquisition/full street or city pad, offices/cables/trees/people/performance rooms/text."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-historic-front-canopy-and-full-theatre-hall",
+      "position": [
+        -107.82651359763864,
+        55,
+        36.07551753444775
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "opposite-whole-auditorium-and-rear-stage",
+      "position": [
+        94.97426044186163,
+        40,
+        -28.807808898308032
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "pink-arched-front-and-recessed-central-pediment",
+      "position": [
+        -37.719677847894005,
+        13,
+        54.24228888101141
+      ],
+      "lookAt": [
+        -12.573225949298003,
+        7,
+        18.080762960337136
+      ]
+    },
+    {
+      "name": "left-historic-wing-and-included-sala-baudilio-alio",
+      "position": [
+        -56.95055294963208,
+        16,
+        7.850765486954273
+      ],
+      "lookAt": [
+        -21.660111963879736,
+        6,
+        9.991974264988563
+      ]
+    },
+    {
+      "name": "right-historic-wing-and-native-side-envelope",
+      "position": [
+        21.10905823352153,
+        18,
+        54.66633022705838
+      ],
+      "lookAt": [
+        4.602448760632305,
+        7,
+        17.082665641103972
+      ]
+    },
+    {
+      "name": "canopy-glazing-steel-diagonals-and-visible-underside",
+      "position": [
+        -18.123767153450398,
+        2.2,
+        28.76680490022332
+      ],
+      "lookAt": [
+        -11.72714345223261,
+        5.4,
+        18.61381493543862
+      ]
+    },
+    {
+      "name": "arched-timber-fanlights-and-pilaster-capitals",
+      "position": [
+        -24.04634463290814,
+        8,
+        25.035441074512946
+      ],
+      "lookAt": [
+        -10.441018048892074,
+        8,
+        14.696432972075568
+      ]
+    },
+    {
+      "name": "pierced-parapet-and-curved-central-pediment",
+      "position": [
+        -35.172429479069464,
+        20,
+        23.935333808825078
+      ],
+      "lookAt": [
+        -15.111473440494176,
+        11,
+        16.481607035032688
+      ]
+    },
+    {
+      "name": "whole-native-envelope-roof-partitions-and-front-recess",
+      "position": [
+        3.7653671411952754,
+        76,
+        -15.356497331488287
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 32955,
+    "vertices": 98865,
+    "materials": 6,
+    "bytes": 3958300,
+    "sha256": "sha256:4a7e97f65e964807473d417f874875536527f5626ce8c26ca02142820225524d"
+  }
+}

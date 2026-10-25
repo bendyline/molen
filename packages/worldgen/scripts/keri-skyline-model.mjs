@@ -1,7 +1,7 @@
 /** Restored2024 bottle-tower silhouette with the mapped east-southeast wing. */
 import { loft, radialRing } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
-export const keriRuntimeAssetId = 'molen.worldgen.structure.n0640_keri_lighthouse';
+export const keriRuntimeAssetId = 'molen.worldgen.structure.keri_lighthouse';
 export function buildKeriSkyline(out) {
   const pale = [0.69, 0.69, 0.62],
     iron = [0.36, 0.13, 0.08],

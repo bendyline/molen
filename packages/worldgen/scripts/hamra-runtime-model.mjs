@@ -12,9 +12,7 @@ import {
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const scope = JSON.parse(
-  readFileSync(structureSourcePath('n0180_al_hamra_tower', 'review-scope.json')),
-);
+const scope = JSON.parse(readFileSync(structureSourcePath('al_hamra_tower', 'review-scope.json')));
 const settings = {
   skyline: { angles: 32, mult: 0, rows: 0, columns: 0, branches: 4, wing: 2, step: 43.75 },
   district: { angles: 64, mult: 16, rows: 20, columns: 6, branches: 6, wing: 4, step: 21.875 },

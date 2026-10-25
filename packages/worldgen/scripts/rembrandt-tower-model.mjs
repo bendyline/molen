@@ -5,10 +5,10 @@ import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frameBytes = readFileSync(structureSourcePath('n0623_rembrandt_tower', 'map-frame.json'));
+const frameBytes = readFileSync(structureSourcePath('rembrandt_tower', 'map-frame.json'));
 const frame = JSON.parse(frameBytes);
 const heights = JSON.parse(
-  readFileSync(structureSourcePath('n0623_rembrandt_tower', 'roof-envelope.json')),
+  readFileSync(structureSourcePath('rembrandt_tower', 'roof-envelope.json')),
 );
 const roofHeight = (surface) => {
   const range = heights.roofs.find((r) => r.surface === surface).heightsAboveGround;
@@ -478,7 +478,7 @@ function entrance(out) {
 }
 
 export const rembrandtStudy = {
-  id: 'N0623',
+  id: 'rembrandt_tower',
   key: 'rembrandt_tower',
   title: 'Rembrandt Tower',
   wikidataId: 'Q2361620',

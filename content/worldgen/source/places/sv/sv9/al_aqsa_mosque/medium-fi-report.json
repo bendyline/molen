@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.al_aqsa_mosque",
+  "sourceHash": "sha256:276f8b4e59ae982284ec1e0c1a3e81c93e4783469a38260d4a56faa6408f1b8e",
+  "runtimeHash": "sha256:66a43c2cfb04758908aa4fc39d28e190de410dfa3ccb8c8259226c94e690451c",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 10478,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:b7d75c1226835f582caaa0807707e186858ef0292aa55c8a7af5c9a34e7853a0",
+      "bytes": 59096,
+      "gzipBytes": 14636,
+      "triangles": 850,
+      "cpuBytes": 57660,
+      "gpuBytes": 57660,
+      "errorMeters": 1.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ce27396faf33b46f963f6b5d2250986a8e576bec31515fbf6778499b20ab98df",
+      "bytes": 227252,
+      "gzipBytes": 71493,
+      "triangles": 2554,
+      "cpuBytes": 219840,
+      "gpuBytes": 219840,
+      "errorMeters": 0.7,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:bff80042a2cd3696c3fec82d792e2b78a914acf6f3fc687a291d851be7d82103",
+      "bytes": 685288,
+      "gzipBytes": 209937,
+      "triangles": 7062,
+      "cpuBytes": 677848,
+      "gpuBytes": 677848,
+      "errorMeters": 0.3,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:b7ca16ca54ab9269fe145ff7c8748593a816e815b1cda2f0a063cf399197d669",
+      "bytes": 1369720,
+      "gzipBytes": 442687,
+      "triangles": 13745,
+      "cpuBytes": 1362236,
+      "gpuBytes": 1362236,
+      "errorMeters": 0.1,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:7651650a6b5fcdc4fda20c350d9f5a1aa59ffb31d65d74bf37bd8bc9e175ec3e"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:3e81c4500284e41830c1a4b4ec7c4936cb1ba6e3d73a5bce345ac191faf89543"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:15df67628d530b27a7a1194f05ba3771dc99cbb06c0614af6bad06f613654aa5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          71.8971,
+          54.0884,
+          124.17
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:60144dbdc4e49a8f8e9d2fe3827eb8c9cd7785b5ba23042333f25b55d2520b93",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          71.8971,
+          54.0884,
+          124.17
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:9cbc7004ffbe66de942dce2e7873bac1112f53ba60ba1f59b65529759110136f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          71.8971,
+          54.0884,
+          124.17
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:0bffaa7fa8c3752057944345acd83a0972c3467539073201f2556020a93affb4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          71.8971,
+          54.0884,
+          124.17
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:e27ed05404828a26a812ca8b82ada22726df5ebfa7c2cce092aa4168acabd1b3",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 33834,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.3971,
+          108.08840000000001,
+          251.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:97ca9fe80f72bc21dee916ab96f5c7ee5a9c4e504928df516ab9eeaa126a2d80",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33834,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.3971,
+          108.08840000000001,
+          251.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:fde4a374a6c8f17a1b330d6499c6acbb342d4e2ba6ae6bab92a9986fa2369449",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 33834,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.3971,
+          108.08840000000001,
+          251.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:cd0c5659620d0283d10206a69db9cc7f881152cdf444d73df158a14d3aaed38f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33834,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.3971,
+          108.08840000000001,
+          251.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:1a8903044fd4d3e2f61b9b8ec1c324cf3b41379999d306ad5a06611f2e864d2d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32130,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.8971,
+          165.0884,
+          503.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:5fe5660262b9e3e4f5e4d78bfde865c4fbd2e64607155cd23053bd7c9db8025c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32130,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.8971,
+          165.0884,
+          503.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:946d8b53bc26c79f3bec35f2c6e580afd042dae50479345b3eae74939f8ff07f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32130,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.8971,
+          165.0884,
+          503.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:1a300352b0385140f2ed3024572cdcb7ea419a241f4b80e313a45f03f4620952",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32130,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.8971,
+          165.0884,
+          503.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:b42186cb6d9602a9efc9b950f679072e719725fea1ffedef3e82c3a8d64db98f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21652,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.8971,
+          165.0884,
+          503.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-seven-arch-porch.png",
+      "hash": "sha256:85363f4587945548fa4e754efae86c0e6f427451a6fedf96c05ca6e6b9ea7cad",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          12,
+          20,
+          -113
+        ],
+        "lookAt": [
+          7,
+          10,
+          -34
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/green-door-and-fanlight.png",
+      "hash": "sha256:c5165e35888273de491de39128b2264922851fbef74ce8514d265aade6f60211",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          9,
+          8,
+          -55
+        ],
+        "lookAt": [
+          8,
+          7,
+          -34
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-buttresses-and-clerestory.png",
+      "hash": "sha256:c7d2d70d9949dbf9b5662a9632b5a3d718f2b790b66badd7257dd7ca99a5906c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          115,
+          32,
+          -28
+        ],
+        "lookAt": [
+          27,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-silver-dome-and-oculi.png",
+      "hash": "sha256:89a74a5ad75349fe47eed23f40109a546c4bd12de6099f35517f0cfbd02777a6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          60,
+          52,
+          126
+        ],
+        "lookAt": [
+          8,
+          19,
+          28
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-attached-wing-and-roofs.png",
+      "hash": "sha256:ca88a26077f08330b171a2886569cc066a900d6948a5ccaaedc1b3908ae27e8b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -128,
+          56,
+          34
+        ],
+        "lookAt": [
+          -13,
+          14,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-and-signed-plan.png",
+      "hash": "sha256:0853bf1bb368f6b74ffe9b792ab807ff6c04f738db73c761b921f04fac743696",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          217,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-al-aqsa-skyline.png",
+      "hash": "sha256:59395a23821c38f272c24aa19deb6469a59d4dd73070d6c944e0e93fa9869c53",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32130,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          126,
+          92,
+          -156
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-al-aqsa-district.png",
+      "hash": "sha256:6ef61a89316165c35163c019d5516a191c61ace9ecfe413575eece6261c75336",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33834,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          126,
+          92,
+          -156
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-al-aqsa-street.png",
+      "hash": "sha256:52181c72a3a49458079648580b95ca56372387240a1988267a4b592d706030ac",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38342,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          126,
+          92,
+          -156
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-al-aqsa-closeup.png",
+      "hash": "sha256:a8f046c2c6c57fea71c3843608888b0f22807f639281b02adfd1320031cbdbdb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          126,
+          92,
+          -156
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:d0ac2451b7388f441eb8a01e05fd97113ed3a9fc55e68b3882cef8bcbf3b8ae7",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32130,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.3971,
+          108.08840000000001,
+          251.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:97ca9fe80f72bc21dee916ab96f5c7ee5a9c4e504928df516ab9eeaa126a2d80",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33834,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.3971,
+          108.08840000000001,
+          251.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:8f60d26f916cd6a61515cb8baf3c92cf45557d958bdcc1727525ccb611c1eace",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38342,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.3971,
+          108.08840000000001,
+          251.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:ad4600af0230e6a1fffa9e74430f80be8214b68544eafbb93b4547c6972578da",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45025,
+        "groundY": -50,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/sv9/al_aqsa_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.3971,
+          108.08840000000001,
+          251.67
+        ],
+        "lookAt": [
+          -0.1029,
+          31.5884,
+          -0.33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

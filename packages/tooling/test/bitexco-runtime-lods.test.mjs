@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { bitexcoStudy } from '../../worldgen/scripts/signature-tower-bitexco-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/w3/w3g/n0209_bitexco_financial_tower'),
+const source = resolve('../../content/worldgen/source/places/w3/w3g/bitexco_financial_tower'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

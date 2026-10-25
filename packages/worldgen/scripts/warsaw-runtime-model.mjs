@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u3/u3q/n0261_royal_castle_in_warsaw/reviewed-plan.json',
+      '../../../content/worldgen/source/places/u3/u3q/royal_castle_in_warsaw/reviewed-plan.json',
       import.meta.url,
     ),
   ),
@@ -626,7 +626,7 @@ function buildWarsawBody(o, level) {
   details(o, d);
 }
 
-const base = '../../../content/worldgen/source/places/u3/u3q/n0261_royal_castle_in_warsaw/';
+const base = '../../../content/worldgen/source/places/u3/u3q/royal_castle_in_warsaw/';
 const grade = JSON.parse(readFileSync(new URL(`${base}site-grade.json`, import.meta.url)));
 export function warsawGround(x, z) {
   const g = grade.grid,

@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u1/u17/n0363_st_martin_s_cathedral_utrecht/',
+  '../../../content/worldgen/source/places/u1/u17/st_martins_cathedral_utrecht/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -945,7 +945,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const utrechtDomStudy = {
-  id: 'N0363',
+  id: 'st_martins_cathedral_utrecht',
   key: 'st_martin_s_cathedral_utrecht',
   title: 'St. Martin’s Cathedral, Utrecht',
   category: 'cathedral',

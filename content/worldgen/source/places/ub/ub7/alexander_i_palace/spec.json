@@ -1,0 +1,336 @@
+{
+  "planId": "alexander_i_palace",
+  "id": "alexander_i_palace",
+  "assetId": "molen.worldgen.structure.alexander_i_palace",
+  "title": "Alexander I Palace",
+  "category": "palace-castle-fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 38.94174388571429,
+    "latitude": 47.20925338571429
+  },
+  "size": [
+    42.390398025512695,
+    9.149999618530273,
+    28.020336151123047
+  ],
+  "actualBounds": {
+    "min": [
+      -28.513334274291992,
+      0,
+      -13.376272201538086
+    ],
+    "max": [
+      13.877063751220703,
+      9.149999618530273,
+      14.644063949584961
+    ]
+  },
+  "visualBrief": "Whole surviving Alexander I Palace/House of the Mayor (Papkov house), Grecheskaya40, Taganrog: full 14-vertex native main block and attached rear returns/fingers, raised basement/single principal floor, 13-window street elevation, shallow central risalit, white rusticated corners/cornice/dentils/recess panels/window hoods, green hipped metal roofs/chimneys, modest intrinsic side pedestrian gate. No Tsarskoye Selo palace, surrounding sanatorium campus/independent neighbors, grounds/street/trees/temporary scaffolding/cars/people/interiors. Preserve recessed individual windows with deep reveals, wooden frames/sashes, basement lights/grilles, projecting white sills/pedimented hoods, shallow risalit, rusticated corner strips and full hip-roof/rear-return silhouette. Avoid generic palace portico or unrelated monumental palace architecture. Heights/roof pitches/hidden rear details estimates independent of frozen terrain.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Alexander_palace_2008.jpg",
+    "https://commons.wikimedia.org/wiki/File:Alexander_Palace_(Taganrog)_in_2010.jpg"
+  ],
+  "stories": [
+    {
+      "id": "alexander-i-palace-wp",
+      "url": "https://qualla.com/alexander-i-palace/"
+    }
+  ],
+  "referenceInputHash": "795d70138635d2ff3e0740ef6d7ba2202b169d9aeba090bb1b79985e2e2ed761",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-alexander-i-palace.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-alexander-i-palace.mjs",
+    "level": "skyline",
+    "export": "alexanderIPalaceSkyline",
+    "errorMeters": 0.3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.25
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.04
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "alexanderIPalaceDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "alexanderIPalaceStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "alexanderIPalaceCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.7,
+    "groundY": -0.08
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native one-storey historic way335749889 at Qualla Taganrog coordinate, all14 vertices retained, front long edge0=33.73m faces Grecheskaya street and fits photographed raised-basement 13-window house between neighboring42 and36 parcels. Fixed14-vertex mean anchor and native longest-edge heading before terrain/geometry. Full concave main/rear-return outline, not a front-only box or surrounding sanatorium parcel. Address/identity confirmed by Rostov heritage society VOOPIiK primary record Grecheskaya40; map has historic/building:levels1 tags but lacks name/number. This is approximate independent-map registration, not a surveyed footprint. Rear asymmetry retained from map; roof subdivisions and unphotographed window census estimated. Independent256m129-square2m field frozen before geometry at fixed street approach; heights/roof pitch are photographic architecture estimates, no DEM fitting and hostcontact unverified.",
+    "anchor": [
+      38.94174388571429,
+      47.20925338571429
+    ],
+    "heading": -0.8116506724758922,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        38.9414250959043,
+        47.20923365546022
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed street approach outside palace front before independent field; provider-relative, not a surveyed threshold"
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/335749889"
+    ],
+    "source": "https://www.openstreetmap.org/way/335749889",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fd39d56fce71db2403fbdd82e503a1f64b20a67fffac5c75c5b7ef4551edb816",
+    "notes": "Whole surviving Alexander I Palace/House of the Mayor (Papkov house), Grecheskaya40, Taganrog: full 14-vertex native main block and attached rear returns/fingers, raised basement/single principal floor, 13-window street elevation, shallow central risalit, white rusticated corners/cornice/dentils/recess panels/window hoods, green hipped metal roofs/chimneys, modest intrinsic side pedestrian gate. No Tsarskoye Selo palace, surrounding sanatorium campus/independent neighbors, grounds/street/trees/temporary scaffolding/cars/people/interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native one-storey historic way335749889 at Qualla Taganrog coordinate, all14 vertices retained, front long edge0=33.73m faces Grecheskaya street and fits photographed raised-basement 13-window house between neighboring42 and36 parcels. Fixed14-vertex mean anchor and native longest-edge heading before terrain/geometry. Full concave main/rear-return outline, not a front-only box or surrounding sanatorium parcel. Address/identity confirmed by Rostov heritage society VOOPIiK primary record Grecheskaya40; map has historic/building:levels1 tags but lacks name/number. This is approximate independent-map registration, not a surveyed footprint. Rear asymmetry retained from map; roof subdivisions and unphotographed window census estimated.",
+    "Full14-vertex single-storey historic palace and attached rear returns, raised basement and13-window street front; green hipped metal roof/standing seams/chimney box, white rusticated corners/dentil cornice/upper panels/three pedimented hoods, wooden sashes/basement grilles and intrinsic attached pedestrian gate. Small painted moldings/window grille pattern simplified. Gate placement/dimensions, rear window census and low return hip profiles bounded estimates; full native outline retained, not surrounding campus.",
+    "Two published ISasha PD originals exactly native-SHA1-bound and individually inspected. 2010 ochre/white/green repaint selected without temporary scaffolding;2008 photo supplies proportions, no mixed original1825restoration claim. Current exact finish/condition/rear arrangement unverified; hidden facades/roof subdivisions/chimney heights interpreted from complete native geometry and visible front. No attribution/unknown photo textures or generated bitmap.",
+    "Original public independent256m129-square2m field/all16641values/one originalTerrariumtile/PNG frozen before geometry unchanged; provider-relative datum41.2232m/sourcepixel3.24534m, not survey accuracy. No terrain flattening/fit/reacquisition; actual host-grade contact unverified. All architecture localY0, slight internal basement/approach variations unsurveyed. Flat capture fixtures are separate.",
+    "No TsarskoyeSeloAlexanderPalace, independent sanatorium campus/neighbor buildings, trees/yard/street/temporary renovation/cars/visitors/interiors or plaque inscriptions. Ordinary geographic preview, replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-palace-native-rear-returns-and-green-hip-roofs",
+      "position": [
+        40,
+        42,
+        -40
+      ],
+      "lookAt": [
+        -5,
+        3,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "thirteen-window-raised-basement-and-classical-cornice",
+      "position": [
+        6,
+        10,
+        43
+      ],
+      "lookAt": [
+        -6,
+        3.4,
+        14.2
+      ]
+    },
+    {
+      "name": "left-return-rusticated-corner-and-intrinsic-pedestrian-gate",
+      "position": [
+        -38,
+        11,
+        29
+      ],
+      "lookAt": [
+        -24,
+        3,
+        12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10248,
+    "vertices": 30744,
+    "materials": 5,
+    "bytes": 1232992,
+    "sha256": "sha256:bb377aaf958aaf9644567baf224e9ac0fff298f661e4e51738a207670a4b0aa6"
+  }
+}

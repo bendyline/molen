@@ -1,0 +1,83 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.monnow_bridge",
+  "inputHash": "sha256:e813e1984b3d3e821d3e043492bf1e44fcb58da9df219483f70e28f4af785ce0",
+  "captureReportHash": "sha256:374c41391b2bb3a7d52f6e130f7f33e0562951b4dd1cc1a20e7dbb43598a38be",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/west-gate.png",
+      "shots/east-gate.png",
+      "shots/river-arches.png",
+      "shots/ribbed-vault.png",
+      "shots/machicolations.png",
+      "shots/north-garderobe.png",
+      "shots/stone-roof.png",
+      "shots/roadway-passage.png"
+    ],
+    "notes": "Inspected all 13 current portable frames. Three vaults and three gate passages are open. Crown follows short slope strips; parapets end at their actual longitudinal wall corners instead of stepping across skewed entrances. Retaining walls, approach caps, roof, corbels and recessed windows render consistently."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:eef80095c89afc4432479d3421af732183f1a528d988895d7d6b343ea91f06c4",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/west-gate.png",
+      "shots/shared/east-gate.png",
+      "shots/shared/river-arches.png",
+      "shots/shared/ribbed-vault.png",
+      "shots/shared/machicolations.png",
+      "shots/shared/north-garderobe.png",
+      "shots/shared/stone-roof.png",
+      "shots/shared/roadway-passage.png"
+    ],
+    "notes": "Inspected all 12 current shared-surface asset views with sky reflections. Canonical sandstone, painted metal and timber graphs are shared; no bitmap images are embedded. Bounds/clipping and unload checks pass. Geographic fit was reviewed in the separate real-terrain fixture."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:99081dcf025066fc13916f0992fcd5d00b1b5dc8272337b3cac80256564754e5",
+    "notes": "Current production placement and clipping reviewed over independent, unmodified Welsh Government 1 m DTM, with and without mapped OSM roads. Native +X is northeast into Monmouth; decorated gate face southwest. A dry western bank reference carries the native origin consistently across tiles. End probes near X -23.8/+22.8 show approximately 0.05/0.16 m surface separation from the filtered DTM. Both public-road joins are continuous, covered procedural spans are removed, perpendicular paths/tunnels remain intact, and model resources unload. Coarse water elevations are not bathymetry. Host terrain must use a consistent vertical reference and resolve the bank point; generalized map data lacking shared endpoints cannot use the optional connected-approach clipping.",
+    "terrainCaptures": [
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/wales/monnow_bridge-fit-report.json",
+        "reportHash": "sha256:944a889c38460a43c9b03a596d1a215428b59f7cf838349292e16fac19137f71",
+        "inspectedFrames": [
+          "shots/monnow_bridge/bank-oblique.png",
+          "shots/monnow_bridge/side-elevation.png",
+          "shots/monnow_bridge/reverse-bank.png",
+          "shots/monnow_bridge/plan.png",
+          "shots/monnow_bridge/west-approach.png",
+          "shots/monnow_bridge/east-approach.png"
+        ],
+        "terrainEvidenceHash": "sha256:ae3f857d031ca65e04dd77fde0078c145a8a51c96fc5315c52ade6aaca6ac14a"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/wales/monnow_bridge-roads-fit-report.json",
+        "reportHash": "sha256:4959f8e4257af6f6e41a83a7b8e789bdf66ed337ccb52b30f660ab75644e2687",
+        "inspectedFrames": [
+          "shots/monnow_bridge-roads/bank-oblique.png",
+          "shots/monnow_bridge-roads/side-elevation.png",
+          "shots/monnow_bridge-roads/reverse-bank.png",
+          "shots/monnow_bridge-roads/plan.png",
+          "shots/monnow_bridge-roads/west-approach.png",
+          "shots/monnow_bridge-roads/east-approach.png"
+        ],
+        "terrainEvidenceHash": "sha256:ae3f857d031ca65e04dd77fde0078c145a8a51c96fc5315c52ade6aaca6ac14a",
+        "roadEvidenceHash": "sha256:3f8c395541de5599dd2c5f6e67f11e12144456a8bc9b067b8237de150f04781d"
+      }
+    ]
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "432223-triangle authored exterior, including ribbed medieval vaults within widened segmental arches, three unlike open passages, western machicolations and north garderobe, mixed sandstone rubble, stone slate roof and oak passage timbers. Current LiDAR-constrained crown and roof envelope, mapped retaining walls and sloping approach caps reviewed. The original skewed bridge and gate footprints are retained; individual masonry, wall thickness, hidden foundations and minor details are reconstructed. Upper rooms and surrounding buildings/remote riverbank walls are outside this exterior bridge asset; no scan or survey precision is asserted."
+  }
+}

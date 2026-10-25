@@ -10,6 +10,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import { addTransitDetail } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
 
 // GLTFExporter uses FileReader only to pack its binary buffer in Node.
 globalThis.FileReader = class {
@@ -28,7 +29,6 @@ const livery = mat('rail-livery-stripe', '#1d6f8f', 0.1, 0.45);
 const doorGlass = mat('door-glass', '#1d2a31', 0.1, 0.15, { transparent: true, opacity: 0.85 });
 const glass = mat('vehicle-glass', '#26343c', 0.1, 0.12, { transparent: true, opacity: 0.82 });
 const trim = mat('trim-charcoal', '#22272b', 0.05, 0.7);
-const rubber = mat('rubber', '#141718', 0, 0.92);
 const rim = mat('wheel-rim', '#9aa2a6', 0.7, 0.35);
 const lamp = mat('lamp-lens', '#fff4d6', 0, 0.3, { emissive: '#fff4d6', emissiveIntensity: 0.6 });
 const tail = mat('tail-lens', '#c9302c', 0, 0.3, { emissive: '#8a1512', emissiveIntensity: 0.5 });
@@ -58,11 +58,21 @@ function bogie(parent, name, z) {
   box(g, 'bogie-frame', [W * 0.72, 0.36, 2.6], [0, 0.55, 0], trim);
   for (const dz of [-0.9, 0.9])
     for (const x of [-0.72, 0.72]) {
-      const wheel = new T.Mesh(new T.CylinderGeometry(0.34, 0.34, 0.14, 16), rubber);
-      wheel.name = 'rail-wheel';
+      const pivot = new T.Group();
+      pivot.name = `${name}-wheel-${dz < 0 ? 'rear' : 'front'}-${x < 0 ? 'right' : 'left'}`;
+      pivot.position.set(x, 0.34, dz);
+      g.add(pivot);
+      const spin = new T.Group();
+      spin.name = `${pivot.name}-spin`;
+      pivot.add(spin);
+      const wheel = new T.Mesh(new T.CylinderGeometry(0.34, 0.34, 0.14, 24), rim);
+      wheel.name = 'rail-wheel-tread';
       wheel.rotation.z = Math.PI / 2;
-      wheel.position.set(x, 0.34, dz);
-      g.add(wheel);
+      spin.add(wheel);
+      const flange = new T.Mesh(new T.CylinderGeometry(0.365, 0.365, 0.025, 24), trim);
+      flange.rotation.z = Math.PI / 2;
+      flange.position.x = -Math.sign(x) * 0.065;
+      spin.add(flange);
     }
 }
 
@@ -95,10 +105,13 @@ function lightRail() {
     [0, L / 4 + 0.25],
     [1, -L / 4 - 0.25],
   ]) {
-    box(body, `lower-${i}`, [W, 1.0, section], [0, FLOOR + 0.5, zc], paint);
+    box(body, `floor-${i}`, [W, 0.1, section], [0, FLOOR, zc], trim);
+    for (const x of [-W / 2 + 0.04, W / 2 - 0.04]) {
+      box(body, `lower-${i}`, [0.08, 1.0, section], [x, FLOOR + 0.5, zc], paint);
+      box(body, `stripe-${i}`, [0.09, 0.14, section], [x, FLOOR + 1.02, zc], livery);
+    }
     box(body, `windows-${i}`, [W - 0.03, 1.2, section - 0.4], [0, FLOOR + 1.62, zc], glass);
     box(body, `roof-${i}`, [W, 0.5, section], [0, FLOOR + 2.47, zc], paint);
-    box(body, `stripe-${i}`, [W + 0.01, 0.14, section], [0, FLOOR + 1.02, zc], livery);
     for (let k = 0; k < 6; k++) {
       const z = zc - section / 2 + 0.6 + k * ((section - 1.2) / 5);
       for (const x of [-W / 2 + 0.01, W / 2 - 0.01])
@@ -113,6 +126,8 @@ function lightRail() {
   box(body, 'articulation', [W - 0.25, 2.5, 1.0], [0, FLOOR + 1.3, 0], trim);
   cab(body, 1);
   cab(body, -1);
+  for (const z of [-L / 2, L / 2])
+    box(body, 'lower-cab', [W, 1.08, 0.08], [0, FLOOR + 0.54, z], paint);
   // Roof equipment and pantograph.
   box(body, 'roof-equipment', [W * 0.6, 0.3, 3.2], [0, FLOOR + 2.87, -L / 4], trim);
   const pantograph = new T.Group();
@@ -126,6 +141,10 @@ function lightRail() {
   bogie(g, 'bogie-front', L / 2 - 4.2);
   bogie(g, 'bogie-middle', 0);
   bogie(g, 'bogie-rear', -L / 2 + 4.2);
+  for (const node of [...body.children]) if (node.name === 'destination-text') body.remove(node);
+  glass.opacity = 0.18;
+  glass.depthWrite = false;
+  addTransitDetail(g, true);
   return g;
 }
 

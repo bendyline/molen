@@ -1,0 +1,1203 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.shanhai_pass",
+  "sourceHash": "sha256:c871108e5be14e468103d45a29c3e13025444131cfe882f3f98c6f9220b596f2",
+  "runtimeHash": "sha256:5e7d79452ae443352ee236eb091c2ef65b1f3bc518bfd03859374977339f0b0f",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:d00e5bf4eee3c348bbb2e0417d7b34dc3211aaaa62bd5335ed37040ca89d414a",
+      "bytes": 31996,
+      "gzipBytes": 5083,
+      "triangles": 342,
+      "cpuBytes": 30600,
+      "gpuBytes": 30600,
+      "errorMeters": 0.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:98d6117b07da5cc8b6352de07d71e36f43720f0b4b35b69578804abb0efbeb78",
+      "bytes": 125772,
+      "gzipBytes": 20418,
+      "triangles": 1538,
+      "cpuBytes": 120828,
+      "gpuBytes": 120828,
+      "errorMeters": 0.4,
+      "drawCalls": 4
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:f250c9ca41d70fc3aec75be295b5872e8fd27da328ca42e6e2a4f01be51becf8",
+      "bytes": 317012,
+      "gzipBytes": 51276,
+      "triangles": 4114,
+      "cpuBytes": 312036,
+      "gpuBytes": 312036,
+      "errorMeters": 0.2,
+      "drawCalls": 4
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:547cc732d5c65601a8ed07ffe38d9110e66e5508a9eccbf2c9a08ade778f9335",
+      "bytes": 346532,
+      "gzipBytes": 55802,
+      "triangles": 4522,
+      "cpuBytes": 341556,
+      "gpuBytes": 341556,
+      "errorMeters": 0.1,
+      "drawCalls": 4
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:9c47da9232aefd75133de5074699972d1fc86567b70aa2f545233f5948d20bf3"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:1903090db45ba42685874328b4b3d9c3a00d7d388da0f8bc0419f511d49bb5d9"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:564e7e972ab2b8049080c92e42e6040c9672c60c10e6a25b4a9ad93c03798995",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          144,
+          88.8885,
+          249
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:0563e4060ed3c697d688b45e38a8739f5ecddb478169bcd2cda65fa255468c17",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          144,
+          88.8885,
+          249
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:6eeef1034d9ec4f79b0df517a521ab3e579577e624eabde2e17eb2b7916b9bff",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          144,
+          88.8885,
+          249
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:2f9210d180885b6650ecf603ac461cb5dca11ef6c72b2e68753f9e70a5f2061e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          144,
+          88.8885,
+          249
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:fb20d3a10028dee943d28a85ddd4c63138e7f2e980186ca565a1d0289dce822e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 41572,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          196.8885,
+          504
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:346af1cd3bbbb750492278423090cc77e78f5d5b7f45db7774b5ce55283ed7db",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41572,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          196.8885,
+          504
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:de2552399c627e160cf2d4e181d8657ca72bd88252922204c785a9bf5e7284c2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 41572,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          196.8885,
+          504
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:4b4e315a7f7b64d66883368cf0b2cbb3fca8fcea2bf3e0455e53a42da1960041",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41572,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          196.8885,
+          504
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:2a1c7eb9d5faa5e807e82141f47080d6a1d6442254de98e2379b4d9f3bb1756b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 40376,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          582,
+          310.8885,
+          1008
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:8a180e5b69949cf5b3f732c510dab0701d2d1c4603c4465e1ab39472249e01ca",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40376,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          582,
+          310.8885,
+          1008
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:7ad001e75a3dee5a12570e3731862db6bc55ff62da423593630c45c65f7e2121",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 40376,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          582,
+          310.8885,
+          1008
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:a2330cf159c2a16eb007bc53bfb8290261c7a98691f3956a780c3d9c9d8e29d5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40376,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          582,
+          310.8885,
+          1008
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:de978ceca818b5f58c6ceacbefa25cc7563ea66ef101898edfcf470d6581afed",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 34136,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          582,
+          310.8885,
+          1008
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/gate-arch-and-roof-tiers.png",
+      "hash": "sha256:08d7963b429961207016f6311ff480873bae7eba0fd0482367ea336abc83baf7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          4,
+          15,
+          79
+        ],
+        "lookAt": [
+          0,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-gallery-and-plaque.png",
+      "hash": "sha256:bec958ba9560dce36b3ce248359ff832b4d88b013e7043923a3e6195e6d9b31f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          -12,
+          24,
+          -54
+        ],
+        "lookAt": [
+          0,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/hip-and-gable-profile.png",
+      "hash": "sha256:5c8e555e183f8108e2a803a8f329f33492dd3870d7bfb22024aee8a7cc06bfd3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          29,
+          6
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-plan-and-wall-contact.png",
+      "hash": "sha256:b9506342cb4e82a1b212aea9819d56b35d2754c3c36b73d6c8066c31b34636e5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          18,
+          79,
+          35
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/through-passage.png",
+      "hash": "sha256:c0f975de41087b730a45f94591c9c791413b167b7e9dea7d8acef1ff67d6a611",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          3,
+          25
+        ],
+        "lookAt": [
+          0,
+          4,
+          -15
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/upper-gallery-rhythm.png",
+      "hash": "sha256:5048f8c2fb46b1a10c7f4bd870bcf05cf913df8c1ce32be27ab17ecae889d676",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          20,
+          22,
+          31
+        ],
+        "lookAt": [
+          0,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/outward-arrow-shutters.png",
+      "hash": "sha256:cc878a1e3cd33c5af14483b49a99f8c81bf5fe5c11bd7f99523d020ea40478a0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          20,
+          21,
+          35
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/town-gallery-plaque-close.png",
+      "hash": "sha256:5851a6d34e0651c57490a96947b7fb6b341e545a78ecab3429da809c73321f36",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          -5,
+          22,
+          -27
+        ],
+        "lookAt": [
+          0,
+          19,
+          -5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/buried-platform-foot.png",
+      "hash": "sha256:e0414dae568cbb355fab757e9ed541f95f1d81e70667bb14899080f23575676f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          -31,
+          1,
+          23
+        ],
+        "lookAt": [
+          -21,
+          1,
+          13
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-shanhai-skyline.png",
+      "hash": "sha256:56f022e1c8c0e385093c619663d7f58b70fb9f612441b353fb18af5d62cb1b07",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40376,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          90,
+          65,
+          120
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-shanhai-district.png",
+      "hash": "sha256:c583ab4a06cbd905554ef1ae49a609d82ad04910240ffb66b163fb1157e3d6ff",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41572,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          90,
+          65,
+          120
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-shanhai-street.png",
+      "hash": "sha256:c116160e65d3377e151634c330df01af60ff0842925da5d7965d691931a7450b",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44148,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          90,
+          65,
+          120
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-shanhai-closeup.png",
+      "hash": "sha256:436871670f51872b1d73a1b34f035176d343c123ff9bb262199706380f226437",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          90,
+          65,
+          120
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:67b91a5d62b2260a580681291750ea706fac0a31c44888b23a9e31121a5cac68",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40376,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          196.8885,
+          504
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:346af1cd3bbbb750492278423090cc77e78f5d5b7f45db7774b5ce55283ed7db",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41572,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          196.8885,
+          504
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:a52285bedaa397ae3d5da1a4b93e7bc69119118a2038d588dfb2a5e484793976",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44148,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          196.8885,
+          504
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:391baaf4e4b6b65c959ea275b0e68cc578989d82357d342dacef2fbce535a275",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 44556,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wxj/shanhai_pass/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          196.8885,
+          504
+        ],
+        "lookAt": [
+          0,
+          43.8885,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

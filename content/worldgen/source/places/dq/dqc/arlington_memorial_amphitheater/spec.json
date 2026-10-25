@@ -1,0 +1,327 @@
+{
+  "planId": "arlington_memorial_amphitheater",
+  "id": "arlington_memorial_amphitheater",
+  "assetId": "molen.worldgen.structure.arlington_memorial_amphitheater",
+  "title": "Arlington Memorial Amphitheater",
+  "category": "civic-cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.07300415,
+    "latitude": 38.87642955
+  },
+  "size": [
+    84.99470138549805,
+    18.995976269245148,
+    99.7477912902832
+  ],
+  "actualBounds": {
+    "min": [
+      -44.13709259033203,
+      -0.30000001192092896,
+      -39.3465461730957
+    ],
+    "max": [
+      40.857608795166016,
+      18.69597625732422,
+      60.4012451171875
+    ]
+  },
+  "visualBrief": "Whole Arlington Memorial Amphitheater and attached ReceptionHall: original47vertexouter/70vertexopenarena controls, elliptical covered outerround-arch/engagedDoric arcade and separateinnerDoric colonnade/openbalustrades, three axisporticos/steps, intrinsic openairbowl with straightcentralbenchblocks/curvedperimeterrows/aisles, raisedsemiovaltwolevelstage/deeprecessedprosceniumarch, T-shaped hall/eastpedimentedprostyle/sidepavilions/balustradedterraces/darkmetalroofs/twoglazedpyramids. No separateTomb/cemeteryforecourt/site mesh.",
+  "nativeAxes": {
+    "x": "northward across actual east front",
+    "y": "up",
+    "z": "east/front on actual native bearing"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:ArlMemAmpTomb3170-012122.jpg",
+    "https://commons.wikimedia.org/wiki/File:ArlNatCem-082613.jpg",
+    "https://commons.wikimedia.org/wiki/File:ArlMemAmp4720-022022.jpg"
+  ],
+  "stories": [
+    {
+      "id": "arlington-memorial-amphitheater-wp",
+      "url": "https://qualla.com/arlington-memorial-amphitheater/"
+    }
+  ],
+  "referenceInputHash": "a2cdfa04a7de430fee430db36b2fdc4a31cabc894e8d01f1f8f43d51a2e5ac2d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-arlington-memorial-amphitheater.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-arlington-memorial-amphitheater.mjs",
+    "level": "skyline",
+    "export": "arlingtonSkyline",
+    "errorMeters": 3.8,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.14
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.35,
+        "metallic": 0.08
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "arlingtonDistrict",
+        "errorMeters": 1.8,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "arlingtonStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.65,
+    "groundY": -0.35
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named MemorialAmphitheaterrelation15311889/Q4792362,400MemorialDrive: original47vertexouterway38457132includes elliptical coveredarcade/threeaxisporticos and attached eastReceptionHall; original70vertexinnerway1065498813is open-air seating/roofopening, not a solidroof or empty nonexistent auditorium. Anchor original inner-ring bboxcenter[-77.07300415,38.87642955]. Actualnativeeastfront straightfacevertices31to29fixes heading1.5129608715914962rad, +Xacrossfront towardnorth/+Zeast/front. Preserve full originalsignedrings without substituting genericcircle/siteboundary. Nativeplanhas no height/column/window/bench census or hallroofpartitions; those are bounded aerial/text estimates. SeparateTombnode356582211/Q3531107is approximately[-1.028,65.352]inthisframe and excluded; fixedsouthendfrontapproach[-19,61.5]avoids it. NativeoutereastfrontZ56.751m, no forecourt/promenadeextension. Original independent160mfield frozen at fixedsouthfront[-19,61.5]before geometry. Intrinsic arena/stage/terrace/ownstairs levels and hostgroundcontact approximate.",
+    "anchor": [
+      -77.07300415,
+      38.87642955
+    ],
+    "heading": 1.5129608715914962,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.07230836211589,
+        38.87622722220778
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southend ofeastfrontapproach[-19,61.5]before terrain/geometry, outside buildingand awayfrom separateTomb[-1.028,65.352]. Ownstairs/terrace/arena floor heightsand hostgroundcontactremainapproximate; no cemeteryforecourt slab."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/15311889"
+    ],
+    "source": "https://www.openstreetmap.org/relation/15311889",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0d72ddc86689df05d50f4c53680c9fd4cd26cf2cb0a1828680de529675d26b5b",
+    "notes": "Complete permanent Arlington Memorial Amphitheater and connected east ReceptionHall exterior: original47vertexwholeouter/70vertexinneropen-seating roof-opening multipolygon; elliptical white marble covered arcade with outer round arches/engaged Doric columns and inner freestanding fluted Doric colonnade/open balustrades, west/north/south porticos/own steps, true open-air bowl with intrinsic floor/curved perimeter seating and straight central bench blocks/aisles, raised semioval two-level east stage and large recessed proscenium arch, attached T-shaped ReceptionHall with east prostyle pedimented entrance/side pavilions/dressed sash/balustraded terraces/dark metal roofs and two glazed pyramidal skylights. Include only intrinsic hall-side terrace/balustrade and entry steps. Exclude separate TombofUnknownSoldier/Q3531107and its forecourt/graveplatform, cemetery roads/plazas/grounds/trees/grave markers/statues/flagpoles/flags/people/interiorrooms/displaycases/lettering."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named MemorialAmphitheaterrelation15311889/Q4792362,400MemorialDrive: original47vertexouterway38457132includes elliptical coveredarcade/threeaxisporticos and attached eastReceptionHall; original70vertexinnerway1065498813is open-air seating/roofopening, not a solidroof or empty nonexistent auditorium. Anchor original inner-ring bboxcenter[-77.07300415,38.87642955]. Actualnativeeastfront straightfacevertices31to29fixes heading1.5129608715914962rad, +Xacrossfront towardnorth/+Zeast/front. Preserve full originalsignedrings without substituting genericcircle/siteboundary. Nativeplanhas no height/column/window/bench census or hallroofpartitions; those are bounded aerial/text estimates. SeparateTombnode356582211/Q3531107is approximately[-1.028,65.352]inthisframe and excluded; fixedsouthendfrontapproach[-19,61.5]avoids it. NativeoutereastfrontZ56.751m, no forecourt/promenadeextension.",
+    "Complete surviving Amphitheater/ReceptionHall exterior and intrinsic arena architecture. Original whole47/70vertexnativeperimeter/arenaopening retained in main plinth. Coveredwalkroof follows these controls with a photo-supported east interruption for the tall stage proscenium; no low roof bar crosses its opening. Individual outerarch bays/innercolumns resampled within original curves;56nominalbays with stage interruption, exactcensus/fineprofiles/fluting/benchcounts and all vertical sections are bounded interpretations of three cleared aerials and primarytext, not surveyed replicas. Skyline coarsens original rings/column cadence and seating; district simplifies roundarches to open pier bays; near levels add archvaults/engaged columns/shaft and trim detail.",
+    "Real openairarena roofopening with own floor, straightcentralbenchblocks/curvedperimeterrows/aisles; stage has two raisedsemioval levels and genuinelyrecessedprosceniumarch againstclosedhallbackwall/door. Hallincludes eastprostylepediment/sidepavilions, darkmetalhip/gableroofs and twoglazedpyramids/openbalustrades. Hidden hallroofpartitions, sash/roofgear, terrace/stair projections and modern cosmetics remain estimates. No interiorrooms/displays/sculpture/lettering.",
+    "Only three exact already-cleared QuallaDuaneLempkeCC0aerial originals2013/2022; primaryCommonsnativeSHA1/source-author/cc-zero records bound. No supplemental images, copied pixels or generatedbitmap. PrimaryHABS2020indexed architecturaltext facts only; document photographs/drawings unused. Shared proceduralmarble/concrete/paintedmetal with mutedglazing only.",
+    "SeparateTombofUnknownSoldier/Q3531107atlocal[-1.028,65.352], itsforecourt/graveplatform and all cemeteryroads/plazas/grounds/trees/graves/statues/flagpoles/flags/people excluded. Ownhallfrontsteps endaboutZ60.4, before Tomb. Original160mterrain/rawtile/grid/PNG frozenunchanged at fixedsouthendfront[-19,61.5]; exactfloor/threshold/hostcontactunverified; replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "open-elliptical-bowl-inner-colonnade-benches-and-stage",
+      "position": [
+        -57,
+        42,
+        -49
+      ],
+      "lookAt": [
+        0,
+        6,
+        4
+      ]
+    },
+    {
+      "name": "outer-round-arches-engaged-doric-and-west-portico",
+      "position": [
+        -57,
+        13,
+        -25
+      ],
+      "lookAt": [
+        -25,
+        6,
+        -6
+      ]
+    },
+    {
+      "name": "recessed-stage-proscenium-from-arena-eye-level",
+      "position": [
+        0,
+        3,
+        -8
+      ],
+      "lookAt": [
+        0,
+        9,
+        28
+      ]
+    },
+    {
+      "name": "east-reception-hall-prostyle-pediment-roofs-and-skylights",
+      "position": [
+        48,
+        32,
+        87
+      ],
+      "lookAt": [
+        0,
+        10,
+        43
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 52503,
+    "vertices": 157509,
+    "materials": 6,
+    "bytes": 6303980,
+    "sha256": "sha256:648e225f6ce31560eb92c4d7f5929c1764ba28fbf54943f8e029b512780a89cc"
+  }
+}

@@ -38,8 +38,7 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Hemingway_House_tourists.jpg",
-    "https://commons.wikimedia.org/wiki/File:HemingwayAlleyCat.jpg"
+    "https://www.loc.gov/item/2011631878/"
   ],
   "stories": [
     {
@@ -47,7 +46,7 @@
       "url": "https://qualla.com/ernest-hemingway-house/"
     }
   ],
-  "referenceInputHash": "b75967ccaf8b77e2267dcf4891bfc7fecba837663cf6c08d0052f843b3a5aa4d",
+  "referenceInputHash": "sha256:6b67b60dfafb94c0626dac0836662e3780ca130d866a7e49c1e994dfbf9884d3",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-hemingway-house.mjs"
   },
@@ -99,6 +98,12 @@
         "roughness": 0.3,
         "metallic": 0.12,
         "localRef": "palette:#ffffff"
+      },
+      "doorIron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.25
       }
     },
     "authoredLevels": {
@@ -143,6 +148,12 @@
             "roughness": 0.3,
             "metallic": 0.12,
             "localRef": "palette:#ffffff"
+          },
+          "doorIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
           }
         }
       },
@@ -187,6 +198,12 @@
             "roughness": 0.3,
             "metallic": 0.12,
             "localRef": "palette:#ffffff"
+          },
+          "doorIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
           }
         }
       }
@@ -272,6 +289,7 @@
     }
   ],
   "limitations": [
+    "New close-only front entrance frame, three fanlight spokes and paired lower scroll/diamond grilles use the exact native Highsmith photograph under an explicit photographer public-domain dedication after the cleared Qualla search. Physical rod sizes, frame depth and simplified scrolls are estimates. Earlier attribution imagery and unverified HABS originals excluded as current construction controls; full fixed exterior scope retained pending broader public-domain review.",
     "Original medium-fi exterior informed by individually inspected Qualla photographs (2006, 2009, 2019), HABS FL-179 architectural description and measured drawings. Main facade and gallery dimensions follow the measured plans; fine dimensions, parapet height and ornamental profiles remain interpreted.",
     "Surviving museum exterior only; interiors, detached studio, removed studio catwalk, pool, cats, visitors, furniture and garden structures excluded. Historic roof and rear-ell evidence guide portions obscured in local photos.",
     "Coarse mapped envelope is approximately one metre inside some measured gallery edges; it is retained as evidence without stretching the building. Placement is an approximate terrain-relative preview, with footprint replacement disabled.",
@@ -304,16 +322,29 @@
         4,
         0
       ]
+    },
+    {
+      "name": "entrance-ironwork",
+      "position": [
+        2.5,
+        2.4,
+        11.5
+      ],
+      "lookAt": [
+        -0.55,
+        2,
+        5.55
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 36694,
-    "vertices": 110082,
+    "triangles": 38710,
+    "vertices": 116130,
     "materials": 6,
-    "bytes": 4406984,
-    "sha256": "sha256:f6ca2031962be0ff19a4dd425541391f7d5d6442fbf72307969f6d9e3b26ba15"
+    "bytes": 4648904,
+    "sha256": "sha256:4125b51822fe499e58c8f1fd76a25aa26635748e94b9ea6b9b722ed1c368f0ca"
   }
 }

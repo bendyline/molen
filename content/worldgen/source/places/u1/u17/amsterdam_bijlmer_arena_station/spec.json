@@ -1,0 +1,323 @@
+{
+  "planId": "amsterdam_bijlmer_arena_station",
+  "id": "amsterdam_bijlmer_arena_station",
+  "assetId": "molen.worldgen.structure.amsterdam_bijlmer_arena_station",
+  "title": "Amsterdam Bijlmer ArenA station",
+  "category": "railway-station",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.947366770792841,
+    "latitude": 52.31199822015524
+  },
+  "size": [
+    93.60606002807617,
+    25.92092552781105,
+    424.09112548828125
+  ],
+  "actualBounds": {
+    "min": [
+      -47.09000015258789,
+      -0.4000000059604645,
+      -212.00677490234375
+    ],
+    "max": [
+      46.51605987548828,
+      25.520925521850586,
+      212.0843505859375
+    ]
+  },
+  "visualBrief": "Complete open elevated station with five timber/glass folded canopy ribbons, diagonal roof cleft and concourse, eight rail lanes on four separate pier-supported viaducts, original long platform vertices/short metro island/stair-light openings, inclined steel columns and roof ribs, framed screens and intrinsic stair/escalator access. Ordinary geographic identity; no neighboring arena/concert hall, trains/people/public plaza or natural ground. Native platform plan, photo/text-controlled characteristic forms and explicitly approximate roof sections/support census.",
+  "nativeAxes": {
+    "x": "across tracks toward northeast",
+    "y": "up",
+    "z": "along platforms toward southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HMH_right.JPG",
+    "https://commons.wikimedia.org/wiki/File:BijlmerArena1.jpg",
+    "https://commons.wikimedia.org/wiki/File:BijlmerArena2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "amsterdam-bijlmer-arena-station-wp",
+      "url": "https://qualla.com/amsterdam-bijlmer-arena-station/"
+    }
+  ],
+  "referenceInputHash": "f5688d61704ac5488b429593c17220a3e5bc981620e22e279dd89496c5390971",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-amsterdam-bijlmer-arena-station.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-amsterdam-bijlmer-arena-station.mjs",
+    "level": "skyline",
+    "export": "bijlmerSkyline",
+    "errorMeters": 5,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.28
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.3
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.24,
+        "metallic": 0.1
+      },
+      "track": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bijlmerDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.28
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.24,
+            "metallic": 0.1
+          },
+          "track": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "bijlmerStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.28
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.24,
+            "metallic": 0.1
+          },
+          "track": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "groundY": -0.58
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original station platform ways, subway stair/lightwell inner ring and eight original rail/subway centerlines identify the complete rail station rather than the nearby arena/AFAS Live. BAG hallway282372392 alone is a diagonal lower-hall polygon, not the complete canopy or station envelope. Native platform vertices and rail intersections are preserved. Five folded200m roof ribbons,70m diagonal boulevard, elevated eight-track configuration and separated open viaduct decks are controlled by primary architect/builder text and the native Qualla photographs. Roof registration/sections and support/auxiliary census are architectural estimates, not an as-built roof survey. Fixed west boulevard approach[-58,-35]chosen before raw terrain. Platform/roof levels and footings are bounded architectural estimates; exact host attachment remains approximate.",
+    "anchor": [
+      4.947366770792841,
+      52.31199822015524
+    ],
+    "heading": 0.5267165265019327,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.946371524368357,
+        52.31200809905819
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed west-side diagonal boulevard approach before independent terrain acquisition. Platform/roof/footing levels are section estimates; no fitted/flattened ground."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/166071017",
+      "way/166071018",
+      "way/166071019",
+      "way/166071026",
+      "way/222385370",
+      "way/222385371",
+      "way/222385375",
+      "way/282372392"
+    ],
+    "source": "https://www.openstreetmap.org/way/282372392",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6627a187c1b69d514f28a705bf3e86b5b94530b0cfa7d98d7aa9eaad7fdc3823",
+    "notes": "Complete intrinsic Amsterdam Bijlmer ArenA station: five folded longitudinal roof ribbons with glass strips, timber soffits and steel girders/inclined supports; eight elevated track lanes, mapped platform edges including shorter metro island and real stair/light openings; separated concrete viaduct decks and piers, open diagonal concourse with intrinsic stair/escalator banks, framed platform-end glazing and low auxiliary enclosures. Exclude adjacent AFAS Live, arena, offices/shops outside the station, bus fleet, trains, people, signs/logos, public plaza and natural ground. Roof section/canopy registration, pier census and concealed details are explicit estimates; native platform/hall coordinates remain unchanged."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Original station platform ways, subway stair/lightwell inner ring and eight original rail/subway centerlines identify the complete rail station rather than the nearby arena/AFAS Live. BAG hallway282372392 alone is a diagonal lower-hall polygon, not the complete canopy or station envelope. Native platform vertices and rail intersections are preserved. Five folded200m roof ribbons,70m diagonal boulevard, elevated eight-track configuration and separated open viaduct decks are controlled by primary architect/builder text and the native Qualla photographs. Roof registration/sections and support/auxiliary census are architectural estimates, not an as-built roof survey.",
+    "Only three native published Qualla creator own-work PD-self originals control imagery: Mojito platform and concourse photographs and Erik1980 overview station portion. All matched to pinned primary native SHA1 and actually inspected. Neighboring concert hall, trains, people, signs/logos and shops are excluded. Six assumed-source2005pictures and all attribution images excluded; panorama is context only. No outside image, photo texture or generated bitmap.",
+    "Original platform and metro stair/lightwell rings and eight track intersections are preserved. Rail paths interpolate original centerlines, with tangent extensions where source ways stop before platform ends. Four viaduct deck widths/sections, pier locations and cantilever supports are explicit estimates. No solid ground-level building or parcel slab fills the open station; longitudinal daylight gaps and diagonal access remain real openings.",
+    "Primary architect text controls eight raised tracks,70m boulevard, diagonal split/daylight openings and folded roof identity; builder controls four nominal350m viaducts and18000m²roof/one-third glass. Five nominal200m roof ribbons follow the rail axis with photo-estimated fold/sweep profiles and registration. Native mapped platform extremities include staggered/apron lengths and are not resized to rounded published platform lengths. Exact current roof survey, screens, room/bay census and minor alterations unverified.",
+    "Platform10m/trackbed9m/deckbottom7.8m, roof18.5-25.5m and footings-.4m are interpreted sections rather than surveyed elevations. Ground-contact datum chosen before independent raw520mTerrarium field. Source heights can include buildings/vegetation or elevated rail features; no flattening/fitting. Flat inspection stage is not a geographic grade certification.",
+    "Intrinsic exterior stairs/escalators, grilles/screens/roof ribs/timber slats, representative overhead contact supports and two low auxiliary enclosures simplify with distance. No full operating rail system, rolling stock, copied signs, interior shops or off-site road/bus structures. Original metro lightwell is preserved; concealed room partitions and foundations omitted."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "five-folded-ribbons-diagonal-cleft-eight-track-open-station",
+      "position": [
+        140,
+        165,
+        210
+      ],
+      "lookAt": [
+        0,
+        13,
+        10
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "open-concourse-viaduct-piers-and-stair-escalator-banks",
+      "position": [
+        -87,
+        12,
+        -62
+      ],
+      "lookAt": [
+        0,
+        8,
+        -10
+      ]
+    },
+    {
+      "name": "timber-soffits-steel-ribs-glass-strips-and-platforms",
+      "position": [
+        -20,
+        14,
+        55
+      ],
+      "lookAt": [
+        -3,
+        18,
+        -28
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 36784,
+    "vertices": 110352,
+    "materials": 6,
+    "bytes": 4417696,
+    "sha256": "sha256:77eb0a84e975f277de65f25b4edf9939b3af13dc3933c065467d94ded7e5ce01"
+  }
+}

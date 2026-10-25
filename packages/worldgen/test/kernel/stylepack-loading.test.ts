@@ -31,7 +31,7 @@ describe('style pack document loading', () => {
     expect(Object.keys(concurrent.archstyles)).toEqual(Object.keys(concurrent.root.styles));
     expect(Object.keys(concurrent.materials)).toEqual(Object.keys(concurrent.root.materials));
     expect(concurrent.assets).toEqual(concurrent.root.assets);
-  });
+  }, 30_000); // Serial reads of the full pack can exceed 5 s under parallel test load.
 
   it('reads documents concurrently, at most 16 at a time, and each only once', async () => {
     let inFlight = 0;

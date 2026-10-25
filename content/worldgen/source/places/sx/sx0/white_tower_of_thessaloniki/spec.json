@@ -1,0 +1,434 @@
+{
+  "planId": "white_tower_of_thessaloniki",
+  "id": "white_tower_of_thessaloniki",
+  "assetId": "molen.worldgen.structure.white_tower_of_thessaloniki",
+  "title": "White Tower of Thessaloniki",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 22.948382198810577,
+    "latitude": 40.626329681399405
+  },
+  "size": [
+    22.699039459228516,
+    43.249998450279236,
+    23.094999313354492
+  ],
+  "actualBounds": {
+    "min": [
+      -11.349519729614258,
+      -0.6499999761581421,
+      -11.354999542236328
+    ],
+    "max": [
+      11.349519729614258,
+      42.599998474121094,
+      11.739999771118164
+    ]
+  },
+  "visualBrief": "Warm weathered cylindrical stone fortification with sparse recessed arched windows, pointed street entrance, cordon, genuine arched corbel niches, brick crenellations, annular terrace around narrower upper turret, safety grilles and axial mast. Surviving standalone tower; former enclosure walls/plaza and interiors excluded.",
+  "nativeAxes": {
+    "x": "southeast tangential to entrance facade",
+    "y": "up",
+    "z": "east-northeast toward main entrance and Leoforos Nikis"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%CE%9B%CE%B5%CF%85%CE%BA%CF%8C%CF%82_%CE%A0%CF%8D%CF%81%CE%B3%CE%BF%CF%82_%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7%CF%82.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_White_Tower_of_Thessaloniki_Greece.jpg",
+    "https://commons.wikimedia.org/wiki/File:%CE%9B%CE%B5%CF%85%CE%BA%CF%8C%CF%82_%CE%A0%CF%8D%CF%81%CE%B3%CE%BF%CF%82_(%CE%9C%CE%AC%CF%81%CF%84%CE%B9%CE%BF%CF%82_2015).jpg",
+    "https://commons.wikimedia.org/wiki/File:Wikimedia_CEE_Meeting_2025_13.jpg",
+    "https://commons.wikimedia.org/wiki/File:White_Tower_Thessaloniki.JPG"
+  ],
+  "stories": [
+    {
+      "id": "white-tower-of-thessaloniki-wp",
+      "url": "https://qualla.com/white-tower-of-thessaloniki/"
+    }
+  ],
+  "referenceInputHash": "sha256:de5e304723cca86617eca722cbf41a0ec207c4cf03c0eed73f0e5c87e5a9eb16",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-white-tower-of-thessaloniki.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-white-tower-of-thessaloniki.mjs",
+    "level": "skyline",
+    "export": "whiteTowerOfThessalonikiSkyline",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0,
+        "baseColorFactor": [
+          0.64,
+          0.79,
+          0.85,
+          1
+        ]
+      },
+      "paving": {
+        "slot": "roof",
+        "graph": "stone_limestone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.2
+      },
+      "archVoussoir": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "archSpandrel": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "steppedCorbel": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.65,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "whiteTowerOfThessalonikiDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0,
+            "baseColorFactor": [
+              0.64,
+              0.79,
+              0.85,
+              1
+            ]
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.2
+          },
+          "archVoussoir": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "archSpandrel": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steppedCorbel": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "whiteTowerOfThessalonikiStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0,
+            "baseColorFactor": [
+              0.64,
+              0.79,
+              0.85,
+              1
+            ]
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.2
+          },
+          "archVoussoir": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "archSpandrel": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steppedCorbel": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Bounded32m land review using unchanged original DeltaDTM v1.1.1 pixels, datum3.0965865mEGM2008 at existing dry approach[0,13]. Existing footing, architecture, anchor, heading and dry reference unchanged. Source one arcsecond(~30m);1m review spacing is interpolation, not source resolution. Rejected Terrarium retained; another host ground field requires its own contact review.",
+    "anchor": [
+      22.948382198810577,
+      40.626329681399405
+    ],
+    "heading": 2.24,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        22.948502878820165,
+        40.62640212750932
+      ],
+      "modelHeight": 0,
+      "basis": "Dry street-side approach immediately outside narrow tower footing; avoids sea, vegetation and roof."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185102115179",
+      "buildings/35185102115249"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:83a9eafae0e00bb4ac8314867145a99a116d6cb7a5251f44ef8fb2ccad06c9df",
+    "notes": "Use official21.7m body diameter and33.9m masonry height; mapped corbel outline22.9m and upper12m guide proportions. Mapped height tags26.5/27.5/29/30.5/31/32 are approximate, not a reason to override primary total33.9m. Ground/roof parallax and former outer-wall footprint kept separate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "Current medium-fi exterior uses the exact cleared Qualla Ktrepas2019 photographer CC0 native and exact named photographer CC0/public-domain originals. Earlier attribution/private/museum/aerial reference controls are historical and excluded. Closed physical arch voussoirs/spandrels and stepped corbels rebuilt from inspected current natives. Operator33.9m masonry height/21.7m body diameter retained. Map root22.9m corbel/12m upper diameter are controls, not survey. Exact window distribution, profiles, masonry pattern, threshold and mast fittings remain estimates.",
+    "Physical window/door recesses at district and above. Skyline retains entry recess and simplified26/20-merlon crenellated silhouette but replaces arched corbels with a broad projecting band and omits small windows/grilles. Main entrance represented closed; no playable or surveyed interiors. Flags, cars/trees, signs, interpretation furniture, former outer enclosure and plaza excluded.",
+    "Bounded32m land preview uses independently reproduced DeltaDTM v1.1.1 original one arcsecond coastal heights, resampled at1m; not a surveyed site/floor or a1m source. Existing geometry and dry reference unchanged. Rejected Terrarium retained. Sea and surrounding square excluded; no NODATA filling, flattening, cutout or footprint replacement. Another host field requires contact review."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        23,
+        90
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -17,
+        33,
+        27
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        48,
+        27,
+        -72
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        -11,
+        5,
+        22
+      ],
+      "lookAt": [
+        0,
+        2.1,
+        10
+      ]
+    },
+    {
+      "name": "corbel-detail",
+      "position": [
+        -4,
+        28.2,
+        15.7
+      ],
+      "lookAt": [
+        0,
+        26.4,
+        10.9
+      ]
+    },
+    {
+      "name": "corbel-intrados",
+      "position": [
+        -2.4,
+        24.9,
+        14.5
+      ],
+      "lookAt": [
+        0,
+        26.55,
+        11.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 51212,
+    "vertices": 153636,
+    "materials": 6,
+    "bytes": 6149200,
+    "sha256": "sha256:359b4441a12858e4d6040185c19ffb239296ba6b9d96d3ea25447c5ad5ab13dd"
+  }
+}

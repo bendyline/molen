@@ -13,7 +13,7 @@ import {
 import { build70Pine } from '../../worldgen/scripts/signature-tower-pine-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dr/dr5/n0188_70_pine_street'),
+const source = resolve('../../content/worldgen/source/places/dr/dr5/70_pine_street'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -84,7 +84,7 @@ const surfaces = {
 it('reconstitutes the original detailed master and verifies signed independent door/outline controls', async () => {
   const m = (
       await read(resolve('../../content/earth/structures/georeferencing.json'))
-    ).candidates.find((p) => p.candidateId === 'N0188'),
+    ).candidates.find((p) => p.candidateId === '70_pine_street'),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   build70Pine(a.wrap(b), m);

@@ -1,0 +1,377 @@
+{
+  "planId": "palace_of_darius_in_susa",
+  "id": "palace_of_darius_in_susa",
+  "assetId": "molen.worldgen.structure.palace_of_darius_in_susa",
+  "title": "Palace of Darius in Susa",
+  "category": "ruins",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 48.24911315,
+    "latitude": 32.192066
+  },
+  "size": [
+    317.01263427734375,
+    9.170104503631592,
+    274.0240478515625
+  ],
+  "actualBounds": {
+    "min": [
+      -158.50631713867188,
+      -2,
+      -137.01202392578125
+    ],
+    "max": [
+      158.50631713867188,
+      7.170104503631592,
+      137.01202392578125
+    ]
+  },
+  "visualBrief": "Whole surviving Palace of Darius in Susa/Q1729938 ruins: complete named palace footprintway378357186/all16uniquecontrols, intrinsic separate Darius Gate foundationway378357152/allfourcontrols, and all four mapped historic wall lines380592011/012/018/063. Low roofless mud-brick room/courtyard foundations, Apadana hypostyle hall with pale broken column bases/stumps, northern bell-shaped fluted remnants and exposed excavated foundation face; surviving condition from six clear Qualla creatorPD photographs. No reconstructed tall palace/hypostyle roof/full intact columns. Whole physical ruins retained, not a decorative isolated column. Eroded sections, exact individual wall/stone survival census and unseen/excavated detail are bounded estimates, with metric room/column plan confidence recorded before construction. Exclude later Shush Castleway378357151, Susa Museum378357783, wider RoyalCity378357184, Acropolis/whole tepe/landscape/roads/vegetation, Louvre reconstruction/museum objects and private interiors.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Darius_Gate_Apadana_Susa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ionian_Column_Portico_Apadana_Susa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Apadana_Susa_South_entrances.jpg",
+    "https://commons.wikimedia.org/wiki/File:King%27s_apartments_Apadana_Susa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Northern_Portico_Apadana_Susa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Excavated_Courtyard_Apadana_Susa.jpg"
+  ],
+  "stories": [
+    {
+      "id": "palace-of-darius-in-susa-wp",
+      "url": "https://qualla.com/palace-of-darius-in-susa/"
+    }
+  ],
+  "referenceInputHash": "5b61857e9dc74fbf4bc5bd8ab3a2e495e170fee7498470e4d11345726004f48f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-palace-of-darius-in-susa.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-palace-of-darius-in-susa.mjs",
+    "level": "skyline",
+    "export": "dariusSusaSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "adobe": {
+        "slot": "wall",
+        "graph": "earth_adobe",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "foundation",
+        "graph": "brick_longformat",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "mud": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "fracture": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "dariusSusaDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "adobe": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_longformat",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "mud": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "fracture": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "dariusSusaStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "adobe": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_longformat",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "mud": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "fracture": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "dariusSusaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "adobe": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_longformat",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "mud": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "fracture": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 5.5,
+    "groundY": 2.94
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual named palace archaeological footprintway378357186 and separate named Darius Gate foundation378357152 are architectural boundary controls, not roof outlines or vertical wall heights. All16 palace/four gate native controls preserved; allfour historic wall lines retained in original positions. Exact Wikipedia identityQ1729938 confirms palace; nearby labelnode6390306285 is reference only. WiderRoyalCity heritagearea378357184 and ShushCastle378357151 are distinct exclusions. Fixed wholepalace+gate bbox midpoint/+Xeast/+Zsouth/heading0, working axes along southern native palace edge. Native outlines alone do not measure each excavated room/column location or surviving wallheight; no modern protected plan is silently copied. Original1000m field/16641samples/four rawtiles frozen before any floor or geometry. Fixed SWdatum84.5893m; main floor+3m and gatefloor−2m are separate flat structural reference estimates chosen after viewing the immutable field, not terrain edits or survey certification. Palace wall bands/room foundations about.4–1.2m high, broad2.4m low mud-brick walls and three open courtyard groupings, main square/bell stone remnants andtwo taller broken northern shafts follow clear2007ruin photos. Full native boundaries and four mapped wall lines retained. Unmapped room passages/survival census/absolute historical grid origin/individual chipped-stone shapes/2.6m excavation lining are original bounded estimates. No intact ancient roof, full-height colonnade, whole tepe mesh or neighboring ShushCastle. Groundgrid/PNG/rawtiles unchanged; exact floor/footing/host contact unresolved/replacementfalse.",
+    "anchor": [
+      48.24911315,
+      32.192066
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        48.247313842851106,
+        32.190736391400755
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW exterior5m beyond wholepalace+gate acquisitionbounds before terrain/floor/foundationwall/column sections; no surveyed palace floor or tepe elevation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/378357186",
+      "way/378357152",
+      "way/380592011",
+      "way/380592012",
+      "way/380592018",
+      "way/380592063"
+    ],
+    "source": "https://www.openstreetmap.org/way/378357186",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:89c983f047e2f9a61d00edaae502206c4781365376170360caf1f8e19093eb61",
+    "notes": "Whole surviving Palace of Darius in Susa/Q1729938 ruins: complete named palace footprintway378357186/all16uniquecontrols, intrinsic separate Darius Gate foundationway378357152/allfourcontrols, and all four mapped historic wall lines380592011/012/018/063. Low roofless mud-brick room/courtyard foundations, Apadana hypostyle hall with pale broken column bases/stumps, northern bell-shaped fluted remnants and exposed excavated foundation face; surviving condition from six clear Qualla creatorPD photographs. No reconstructed tall palace/hypostyle roof/full intact columns. Whole physical ruins retained, not a decorative isolated column. Eroded sections, exact individual wall/stone survival census and unseen/excavated detail are bounded estimates, with metric room/column plan confidence recorded before construction. Exclude later Shush Castleway378357151, Susa Museum378357783, wider RoyalCity378357184, Acropolis/whole tepe/landscape/roads/vegetation, Louvre reconstruction/museum objects and private interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_adobe",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.35,
+        0.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named palace archaeological footprintway378357186 and separate named Darius Gate foundation378357152 are architectural boundary controls, not roof outlines or vertical wall heights. All16 palace/four gate native controls preserved; allfour historic wall lines retained in original positions. Exact Wikipedia identityQ1729938 confirms palace; nearby labelnode6390306285 is reference only. WiderRoyalCity heritagearea378357184 and ShushCastle378357151 are distinct exclusions. Fixed wholepalace+gate bbox midpoint/+Xeast/+Zsouth/heading0, working axes along southern native palace edge. Native outlines alone do not measure each excavated room/column location or surviving wallheight; no modern protected plan is silently copied.",
+    "Original1000m field/16641samples/four rawtiles frozen before any floor or geometry. Fixed SWdatum84.5893m; main floor+3m and gatefloor−2m are separate flat structural reference estimates chosen after viewing the immutable field, not terrain edits or survey certification. Palace wall bands/room foundations about.4–1.2m high, broad2.4m low mud-brick walls and three open courtyard groupings, main square/bell stone remnants andtwo taller broken northern shafts follow clear2007ruin photos. Full native boundaries and four mapped wall lines retained. Unmapped room passages/survival census/absolute historical grid origin/individual chipped-stone shapes/2.6m excavation lining are original bounded estimates. No intact ancient roof, full-height colonnade, whole tepe mesh or neighboring ShushCastle. Groundgrid/PNG/rawtiles unchanged; exact floor/footing/host contact unresolved/replacementfalse.",
+    "Whole low roofless palace/gate ruin model: all16 palace/four gate native boundary controls and allfour original historic wall lines, low broad mud-brick room foundations/three open courtyard groupings, exposed intrinsic excavation lining, low square stone remnants/bell bases/two taller broken northern shafts. Native archaeological boundaries are overall extents, not proof that every perimeter wall survives. Unmapped room partitions/door gaps/surviving stone census and erosion are bounded original estimates from the clear ruin family; no claim of a complete measured current excavation plan.",
+    "Six exact published Qualla Pentocelo April2007 Own/PD-self original exteriors/column/foundation views individually inspected/nativeSHA1matched. Museum friezes/reconstruction display/unknown artifact views excluded. Original1857 library text/NOT_IN_COPYRIGHT and exact native text hash supplies factual6x6 organization/8.3058m axis pitch/2.4384m square pedestals, three original12-column porticoes; no book image/modern protected drawing used.21 low central remnants andsix portico bell remnants are bounded surviving-family estimates, not72 restored intact columns or a certified present census.",
+    "The ruins have no intact hypostyle roof, tall palace facade or complete ancient bull capitals at this site. Northern short fluted shafts/bell remnants stay broken/low. Later ShushCastle, SusaMuseum, widerRoyalCity/Acropolis/tepe, vegetation/roads/landscape/people/signs/ropes and private museum interiors are absent. Only constructed courtyard/gate floor patches and foundation masonry, no whole-site terrain plate.",
+    "Independent1000m129x129field/16641samples/four rawTerrariumtiles frozen before all floor/section/geometry decisions and unchanged. Mainfloor+3m/gatefloor−2m relative to fixed84.5893mSWdatum are unsurveyed separate architectural references. The flat portable/context fixture near mainfloor can hide the lowergate/deep excavation; transparent-background whole turntables and additional model-only detail show all geometry. Exact native mound/floor/threshold/excavation contact remains unresolved; geographicpreview/replaceFootprintfalse, no artificial tepe or source terrain changes."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-low-palace-foundations-apadana-and-intrinsic-gate",
+      "position": [
+        335,
+        260,
+        420
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "open-private-apartment-room-and-courtyard-foundations",
+      "position": [
+        -84.90833062604247,
+        42,
+        43.76728675961829
+      ],
+      "lookAt": [
+        -60.9004375487915,
+        3,
+        6.718385696411502
+      ]
+    },
+    {
+      "name": "low-square-bases-on-historical-apadana-column-grid",
+      "position": [
+        29.573167864507845,
+        18,
+        -31.850082299071705
+      ],
+      "lookAt": [
+        21.105552276022074,
+        3.4,
+        -73.1816620686091
+      ]
+    },
+    {
+      "name": "northern-bell-base-and-broken-fluted-shafts",
+      "position": [
+        39.00092249518426,
+        11,
+        -93.30020388254589
+      ],
+      "lookAt": [
+        35.707690214789714,
+        4.7,
+        -113.62640916408743
+      ]
+    },
+    {
+      "name": "intrinsic-darius-gate-low-foundation-pavement",
+      "position": [
+        156.19415006631414,
+        27,
+        156.33101894717421
+      ],
+      "lookAt": [
+        138.92177024996622,
+        -1.7,
+        112.88375326244076
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20578,
+    "vertices": 61734,
+    "materials": 5,
+    "bytes": 2472628,
+    "sha256": "sha256:8d17e4898442ac4e601ab5bb47ff00a0d8bf85fb1da42ffa300dc7fb109bc26f"
+  }
+}

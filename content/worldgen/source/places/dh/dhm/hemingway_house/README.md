@@ -8,6 +8,8 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [The Hemingway House: Where the Cats Outnumber the Tourists](https://qualla.com/ernest-hemingway-house/)
 
+New close-only front entrance frame, three fanlight spokes and paired lower scroll/diamond grilles use the exact native Highsmith photograph under an explicit photographer public-domain dedication after the cleared Qualla search. Physical rod sizes, frame depth and simplified scrolls are estimates. Earlier attribution imagery and unverified HABS originals excluded as current construction controls; full fixed exterior scope retained pending broader public-domain review.
+
 Original medium-fi exterior informed by individually inspected Qualla photographs (2006, 2009, 2019), HABS FL-179 architectural description and measured drawings. Main facade and gallery dimensions follow the measured plans; fine dimensions, parapet height and ornamental profiles remain interpreted.
 
 Surviving museum exterior only; interiors, detached studio, removed studio catwalk, pool, cats, visitors, furniture and garden structures excluded. Historic roof and rear-ell evidence guide portions obscured in local photos.
@@ -16,4 +18,4 @@ Coarse mapped envelope is approximately one metre inside some measured gallery e
 
 Independent unmodified Terrarium elevations are preserved; ground contact is host-dependent, not a site survey. Reference photographs are not embedded or redistributed.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=hemingway_house`. Add `--check` to verify exact regeneration. 36694 triangles; 6 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=hemingway_house`. Add `--check` to verify exact regeneration. 38710 triangles; 6 materials; no embedded photographs.

@@ -8,7 +8,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u9/u9c/n0251_kernave/map-parts.json',
+      '../../../content/worldgen/source/places/u9/u9c/kernave/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -458,7 +458,7 @@ export function buildKernaveSkyline(out) {
   buildKernaveRuntime(out, 'skyline');
 }
 export const kernaveStudy = {
-  id: 'N0251',
+  id: 'kernave',
   key: 'kernave',
   title: 'Kernavė',
   category: 'castle',

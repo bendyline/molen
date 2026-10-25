@@ -720,7 +720,7 @@ export function buildHampden(out) {
   roof(out);
 }
 export const hampdenStudy = {
-  id: 'N0689',
+  id: 'hampden_park',
   key: 'hampden_park',
   wikidataId: 'Q193651',
   title: 'Hampden Park',

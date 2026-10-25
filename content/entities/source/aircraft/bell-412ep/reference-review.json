@@ -1,0 +1,268 @@
+{
+  "variant": "Bell 412EP, standard low skid gear, conventional fin, analog instrument fit based on N7506M in 2006",
+  "references": [
+    {
+      "url": "https://www.pdf-archive.com/2012/05/16/412ep-productspecs02-2012/412ep-productspecs02-2012.pdf",
+      "title": "Bell 412EP Product Specifications, February 2012",
+      "author": "Bell Helicopter Textron",
+      "pages": [
+        10,
+        12
+      ],
+      "license": "Copyright Bell; local research only, no distributed image pixels.",
+      "scope": "Printed low-skid dimensions and standard fifteen-seat arrangement. Conventional fin predates FastFin configuration."
+    },
+    {
+      "url": "https://www.jetphotos.com/photo/5928332",
+      "title": "N7506M Bell 412EP cockpit, 29 December 2006",
+      "author": "Cam",
+      "license": "All rights reserved; local research only, no distributed reference pixels.",
+      "scope": "Exact EP analog instrument arrangement, panel envelope, controls and pedestal."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_412_INAER_EC-IPM_cockpit_detail_(6738332727).jpg",
+      "author": "Curimedia",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "scope": "Oblique cockpit photo, controls and coaming depth; equipment fit differs."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Agusta-Bell_AB-412_Griffon,_Italy_-_Army_JP6943483.jpg",
+      "author": "Aldo Bidini",
+      "license": "GFDL 1.2",
+      "scope": "Family reference for overhead panel, seat frames, belts and control pedestal; not the exact EP avionics fit."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_412_Line_Drawing.svg",
+      "author": "Jetijones",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "scope": "Secondary conventional-fin silhouette; manufacturer dimensions take precedence."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_412_EP_Penerbad_TNI_AD.jpg",
+      "author": "Kodam XVII Cenderawasih",
+      "license": "Public domain",
+      "revision": 928980724,
+      "scope": "Exterior photo of an EP, cabin, cowling, rotor head and tail shape."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.8,
+      0.32
+    ],
+    "lookAt": [
+      0,
+      1.35,
+      2.9
+    ],
+    "fov": 80
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.4
+    ],
+    "viewHeight": 1.25,
+    "cameraHeight": 7.3
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/bell-412-dimensions.png",
+      "crop": {
+        "left": 550,
+        "top": 710,
+        "width": 850,
+        "height": 270
+      },
+      "referenceAnchor": [
+        795.6,
+        956.3
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 378,
+        "meters": 7.01,
+        "description": "Printed main rotor radius, hub to forward blade tip."
+      },
+      "scope": "Low gear side silhouette; schematic printed dimensions take precedence."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/bell-412-dimensions.png",
+      "crop": {
+        "left": 160,
+        "top": 720,
+        "width": 210,
+        "height": 255
+      },
+      "referenceAnchor": [
+        263.2,
+        956.3
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 153.5,
+        "meters": 2.89,
+        "description": "Printed outside skid span."
+      },
+      "scope": "Front sheet may use slightly different scale; calibrated independently by width."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/bell-412-dimensions.png",
+      "crop": {
+        "left": 560,
+        "top": 425,
+        "width": 790,
+        "height": 175
+      },
+      "rotate": 270,
+      "referenceAnchor": [
+        790.7,
+        511.5
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 378,
+        "meters": 7.01,
+        "description": "Same sheet scale as main rotor radius."
+      },
+      "scope": "Rotor pose differs, fuselage and stabilizer compared separately."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/bell-412ep-panel-rectified.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1800,
+        "height": 600
+      },
+      "referenceAnchor": [
+        900,
+        600
+      ],
+      "modelAnchor": [
+        0,
+        -1.0633333333333335
+      ],
+      "scaleControls": {
+        "pixels": 1800,
+        "meters": 2,
+        "description": "Assumed panel face width, relative arrangement only."
+      },
+      "edgeMode": "photo",
+      "scope": "Planar homography from oblique photograph using inferred face corners and approximately circular instrument faces; absolute size, coaming and cabin depth are not validated."
+    }
+  ],
+  "panelRectification": {
+    "source": ".artifacts/aircraft/references/bell-412ep-panel.jpg",
+    "sourceQuad": [
+      [
+        352,
+        14
+      ],
+      [
+        1038,
+        226
+      ],
+      [
+        945,
+        556
+      ],
+      [
+        324,
+        220
+      ]
+    ],
+    "output": [
+      1800,
+      600
+    ],
+    "method": "Four-point projective rectification, inferred panel plane and gauge roundness. Perspective residuals remain."
+  },
+  "status": "reviewed-with-limitations",
+  "reviewNotes": {
+    "corrections": [
+      "Individual rounded 412EP nose and chin windows, broad dual cockpit glazing, separate pilot/hinged/sliding doors, twin-engine cowling and exhausts, low skid geometry and conventional fin.",
+      "Four-blade rotor head, tapered tail boom, stabilizers, seam lines, rivets, wipers, steps and navigation lights.",
+      "Analog EP panel individually placed from N7506M photograph, asymmetric navigation fit, twin engine gauge columns, warning grid and fire handles; overhead and pedestal controls, dual cyclics/collectives/pedals and fifteen seats."
+    ],
+    "limitations": [
+      "Dimension sheet is schematic and its front hub height differs from side; printed dimensions take precedence. Static rotor azimuth and blade droop differ from the drawing.",
+      "Panel homography uses inferred corners and gauge roundness. Absolute panel width, coaming depth and cabin placement remain reconstruction assumptions.",
+      "The cockpit is a 2006 analog EP equipment fit. The fifteen-seat layout follows the manufacturer standard interior, while overhead structure is corroborated by a related AB-412 photo; equipment installations vary.",
+      "Instrument legends, controls and engine indications are simplified for the assisted flight simulation. No reference pixels or manufacturer artwork are shipped."
+    ],
+    "independentDimensions": [
+      {
+        "feature": "main rotor diameter",
+        "referenceMeters": 14.02,
+        "modelMeters": 14.02
+      },
+      {
+        "feature": "skid outside span",
+        "referenceMeters": 2.89,
+        "modelMeters": 2.89
+      },
+      {
+        "feature": "nose to tail rotor axis",
+        "referenceMeters": 12.91,
+        "modelMeters": 12.91
+      },
+      {
+        "feature": "main rotor hub height",
+        "referenceMeters": 3.52,
+        "modelMeters": 3.52
+      },
+      {
+        "feature": "tail rotor diameter",
+        "referenceMeters": 2.61,
+        "modelMeters": 2.61
+      }
+    ],
+    "visual": "Individually inspected four calibrated overlays, current lit three-quarter, operator, close and wide cockpit, and four turntable views. Compared with exact EP exterior photo and exact N7506M panel photo; no blocking silhouette or cockpit clipping defects found."
+  },
+  "sourceHash": "sha256:55a925f7d408e6bedcce9d70615b480826d99bfbfce818fac34625f152a04715",
+  "runtimeHash": "sha256:3fd7d248a015cf7c713f198571b8043f4a21488478bcb935c03175d89fdd20f1",
+  "limitations": [
+    "Dimension sheet is schematic and its front hub height differs from side; printed dimensions take precedence. Static rotor azimuth and blade droop differ from the drawing.",
+    "Panel homography uses inferred corners and gauge roundness. Absolute panel width, coaming depth and cabin placement remain reconstruction assumptions.",
+    "The cockpit is a 2006 analog EP equipment fit. The fifteen-seat layout follows the manufacturer standard interior, while overhead structure is corroborated by a related AB-412 photo; equipment installations vary.",
+    "Instrument legends, controls and engine indications are simplified for the assisted flight simulation. No reference pixels or manufacturer artwork are shipped."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:e2929a6763ce5b6bb41b65af0f7dcccd5e93a00905b0425b71be466fa9cad1dc",
+    "sourceHash": "sha256:55a925f7d408e6bedcce9d70615b480826d99bfbfce818fac34625f152a04715",
+    "runtimeHash": "sha256:3fd7d248a015cf7c713f198571b8043f4a21488478bcb935c03175d89fdd20f1",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/bell-412ep-pair.png",
+        "sha256": "sha256:1ad108ec03488920192716cfffda5fab6178881c4e7076f64063b46a1d31bc98",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

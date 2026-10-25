@@ -1,0 +1,873 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "panel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.3,
+      "metallic": 0.15
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -62.38719718041325,
+      26.614638963953794,
+      -18.65040557125331
+    ],
+    "lookAt": [
+      0,
+      17.614638963953794,
+      0
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "front-entry-loggia-and-two-capped-turrets",
+      "position": [
+        -29.775738402331672,
+        13.614638963953796,
+        -15.569373866533967
+      ],
+      "lookAt": [
+        -0.436277643518402,
+        12.614638963953796,
+        -0.899812101366741
+      ],
+      "fov": 49
+    },
+    {
+      "name": "curved-gallery-columns-open-spaces-and-closed-shaft",
+      "position": [
+        -5.725954380159688,
+        16.614638963953794,
+        29.44848801613302
+      ],
+      "lookAt": [
+        0.436277643518402,
+        14.614638963953796,
+        0.899812101366741
+      ],
+      "fov": 49
+    },
+    {
+      "name": "arched-upper-glazing-cornice-steep-roof-and-finial",
+      "position": [
+        -7.498321768563235,
+        34.614638963953794,
+        28.08514145691794
+      ],
+      "lookAt": [
+        0.436277643518402,
+        28.614638963953794,
+        0.899812101366741
+      ],
+      "fov": 43
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -62.38719718041325,
+        26.614638963953794,
+        -18.65040557125331
+      ],
+      "lookAt": [
+        0,
+        17.614638963953794,
+        0
+      ],
+      "fov": 43,
+      "name": "gardos-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -62.38719718041325,
+        26.614638963953794,
+        -18.65040557125331
+      ],
+      "lookAt": [
+        0,
+        17.614638963953794,
+        0
+      ],
+      "fov": 43,
+      "name": "gardos-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -62.38719718041325,
+        26.614638963953794,
+        -18.65040557125331
+      ],
+      "lookAt": [
+        0,
+        17.614638963953794,
+        0
+      ],
+      "fov": 43,
+      "name": "gardos-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -62.38719718041325,
+        26.614638963953794,
+        -18.65040557125331
+      ],
+      "lookAt": [
+        0,
+        17.614638963953794,
+        0
+      ],
+      "fov": 43,
+      "name": "gardos-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/gardos-model.mjs",
+    "export": "buildGardosSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGardosDistrict",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "buildGardosStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.15
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGardosCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      20.409737414,
+      44.848316064
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original6m standard Mapzen ground, native paths/roads/water and all independent fortress/neighborhood buildings. Replace only the tower shell. Bounded buried feet follow the retained tower outline; the gallery is supported by its base/columns, with no whole-hill mesh, broad terrain platform, flattening or ground/water cutout. Coarse DEM contact/nearby ruin and bank heights are not surveyed foundation/flood measurements.",
+    "replaceFootprint": false,
+    "bounds": [
+      20.409509343252477,
+      44.84815436724886,
+      20.40996548474752,
+      44.848477760751145
+    ],
+    "terrainReference": {
+      "anchor": [
+        20.409737414,
+        44.848316064
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original6m standard Mapzen ground, native paths/roads/water and all independent fortress/neighborhood buildings. Replace only the tower shell. Bounded buried feet follow the retained tower outline; the gallery is supported by its base/columns, with no whole-hill mesh, broad terrain platform, flattening or ground/water cutout. Coarse DEM contact/nearby ruin and bank heights are not surveyed foundation/flood measurements."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.110831576495336,
+          -1.5540833929293374
+        ],
+        [
+          -4.0475417179502955,
+          -2.579797964406155
+        ],
+        [
+          -4.225623108777197,
+          -2.9446630759975654
+        ],
+        [
+          -4.602618388022831,
+          -3.572988240255834
+        ],
+        [
+          -4.5790469469081785,
+          -3.583702523894069
+        ],
+        [
+          -4.602618388022831,
+          -3.6229882402558338
+        ],
+        [
+          -3.552990168985074,
+          -4.100091629851954
+        ],
+        [
+          0.01355625205162294,
+          -5.829346510626992
+        ],
+        [
+          0.02313647856706216,
+          -5.809748815174123
+        ],
+        [
+          0.06355625205162294,
+          -5.829346510626992
+        ],
+        [
+          0.5958723816382743,
+          -4.740419294190421
+        ],
+        [
+          2.594761964104256,
+          -5.739863277767793
+        ],
+        [
+          2.604761962922238,
+          -5.719863293338871
+        ],
+        [
+          2.644761964104256,
+          -5.739863277767793
+        ],
+        [
+          4.126575566012774,
+          -2.77623803098819
+        ],
+        [
+          4.106575553804974,
+          -2.766238028989691
+        ],
+        [
+          4.126575566012774,
+          -2.72623803098819
+        ],
+        [
+          4.049710436559622,
+          -2.6878054820397144
+        ],
+        [
+          4.05672740355338,
+          -2.673288372920271
+        ],
+        [
+          3.808002645187555,
+          -2.548570542077036
+        ],
+        [
+          5.043645150491214,
+          0.004425387865333884
+        ],
+        [
+          5.02378247650069,
+          0.013386555324430905
+        ],
+        [
+          5.043645150491214,
+          0.05442538786533389
+        ],
+        [
+          4.853332937096994,
+          0.14028591271464108
+        ],
+        [
+          4.972236622224549,
+          0.8725554599690418
+        ],
+        [
+          4.968029679991574,
+          0.8966469636851684
+        ],
+        [
+          4.972236622224549,
+          0.9225554599690419
+        ],
+        [
+          4.830396932879591,
+          1.734815579959261
+        ],
+        [
+          4.546632074233417,
+          2.5592102093677243
+        ],
+        [
+          4.064580291214926,
+          3.2496970510154797
+        ],
+        [
+          3.7488701972612,
+          3.5894274549329643
+        ],
+        [
+          3.773759985134778,
+          3.64495188672137
+        ],
+        [
+          3.914887908597271,
+          3.7860798914591745
+        ],
+        [
+          3.8815545961419584,
+          3.802746559807268
+        ],
+        [
+          3.914887908597271,
+          3.8360798914591743
+        ],
+        [
+          3.8695893592546873,
+          3.8587291826016235
+        ],
+        [
+          3.883529958967732,
+          3.8898280365487925
+        ],
+        [
+          3.8650177209065104,
+          3.8985307179576525
+        ],
+        [
+          3.883529958967732,
+          3.9398280365487923
+        ],
+        [
+          0.9376922682893855,
+          5.3246787941612235
+        ],
+        [
+          0.5278853899492303,
+          5.529582382342556
+        ],
+        [
+          0.5178853907712613,
+          5.509582367387006
+        ],
+        [
+          0.47788538994923024,
+          5.529582382342556
+        ],
+        [
+          0.2987158296048553,
+          5.17124296423926
+        ],
+        [
+          -0.07875477923552668,
+          5.197486437467553
+        ],
+        [
+          -0.10207701770791751,
+          5.195631678172276
+        ],
+        [
+          -0.12875477923552667,
+          5.197486437467553
+        ],
+        [
+          -0.9656367391203674,
+          5.130931308294012
+        ],
+        [
+          -1.5196014652465673,
+          4.927626658798552
+        ],
+        [
+          -1.8506788416212978,
+          4.894518895661613
+        ],
+        [
+          -2.0938326371932297,
+          4.651364935345407
+        ],
+        [
+          -2.4959238745429015,
+          4.418149235595564
+        ],
+        [
+          -2.993374023221427,
+          3.8360798914591743
+        ],
+        [
+          -2.9974684224789474,
+          3.8360798914591743
+        ],
+        [
+          -3.2035422852068742,
+          3.9397515518396786
+        ],
+        [
+          -3.2134301820696627,
+          3.919571950804689
+        ],
+        [
+          -3.253542285206874,
+          3.9397515518396786
+        ],
+        [
+          -3.304340845775989,
+          3.8360798914591743
+        ],
+        [
+          -3.332492443529816,
+          3.8360798914591743
+        ],
+        [
+          -4.598757002199442,
+          1.4009552986275469
+        ],
+        [
+          -4.624496715389675,
+          1.4124801957435689
+        ],
+        [
+          -4.633530052087227,
+          1.3941374668927056
+        ],
+        [
+          -4.674496715389676,
+          1.4124801957435689
+        ],
+        [
+          -6.110831576495336,
+          -1.5040833929293376
+        ],
+        [
+          -6.09105063388908,
+          -1.5139170093670642
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.110831576495336,
+            -1.5540833929293374
+          ],
+          [
+            -4.0475417179502955,
+            -2.579797964406155
+          ],
+          [
+            -4.225623108777197,
+            -2.9446630759975654
+          ],
+          [
+            -4.602618388022831,
+            -3.572988240255834
+          ],
+          [
+            -4.5790469469081785,
+            -3.583702523894069
+          ],
+          [
+            -4.602618388022831,
+            -3.6229882402558338
+          ],
+          [
+            -3.552990168985074,
+            -4.100091629851954
+          ],
+          [
+            0.01355625205162294,
+            -5.829346510626992
+          ],
+          [
+            0.02313647856706216,
+            -5.809748815174123
+          ],
+          [
+            0.06355625205162294,
+            -5.829346510626992
+          ],
+          [
+            0.5958723816382743,
+            -4.740419294190421
+          ],
+          [
+            2.594761964104256,
+            -5.739863277767793
+          ],
+          [
+            2.604761962922238,
+            -5.719863293338871
+          ],
+          [
+            2.644761964104256,
+            -5.739863277767793
+          ],
+          [
+            4.126575566012774,
+            -2.77623803098819
+          ],
+          [
+            4.106575553804974,
+            -2.766238028989691
+          ],
+          [
+            4.126575566012774,
+            -2.72623803098819
+          ],
+          [
+            4.049710436559622,
+            -2.6878054820397144
+          ],
+          [
+            4.05672740355338,
+            -2.673288372920271
+          ],
+          [
+            3.808002645187555,
+            -2.548570542077036
+          ],
+          [
+            5.043645150491214,
+            0.004425387865333884
+          ],
+          [
+            5.02378247650069,
+            0.013386555324430905
+          ],
+          [
+            5.043645150491214,
+            0.05442538786533389
+          ],
+          [
+            4.853332937096994,
+            0.14028591271464108
+          ],
+          [
+            4.972236622224549,
+            0.8725554599690418
+          ],
+          [
+            4.968029679991574,
+            0.8966469636851684
+          ],
+          [
+            4.972236622224549,
+            0.9225554599690419
+          ],
+          [
+            4.830396932879591,
+            1.734815579959261
+          ],
+          [
+            4.546632074233417,
+            2.5592102093677243
+          ],
+          [
+            4.064580291214926,
+            3.2496970510154797
+          ],
+          [
+            3.7488701972612,
+            3.5894274549329643
+          ],
+          [
+            3.773759985134778,
+            3.64495188672137
+          ],
+          [
+            3.914887908597271,
+            3.7860798914591745
+          ],
+          [
+            3.8815545961419584,
+            3.802746559807268
+          ],
+          [
+            3.914887908597271,
+            3.8360798914591743
+          ],
+          [
+            3.8695893592546873,
+            3.8587291826016235
+          ],
+          [
+            3.883529958967732,
+            3.8898280365487925
+          ],
+          [
+            3.8650177209065104,
+            3.8985307179576525
+          ],
+          [
+            3.883529958967732,
+            3.9398280365487923
+          ],
+          [
+            0.9376922682893855,
+            5.3246787941612235
+          ],
+          [
+            0.5278853899492303,
+            5.529582382342556
+          ],
+          [
+            0.5178853907712613,
+            5.509582367387006
+          ],
+          [
+            0.47788538994923024,
+            5.529582382342556
+          ],
+          [
+            0.2987158296048553,
+            5.17124296423926
+          ],
+          [
+            -0.07875477923552668,
+            5.197486437467553
+          ],
+          [
+            -0.10207701770791751,
+            5.195631678172276
+          ],
+          [
+            -0.12875477923552667,
+            5.197486437467553
+          ],
+          [
+            -0.9656367391203674,
+            5.130931308294012
+          ],
+          [
+            -1.5196014652465673,
+            4.927626658798552
+          ],
+          [
+            -1.8506788416212978,
+            4.894518895661613
+          ],
+          [
+            -2.0938326371932297,
+            4.651364935345407
+          ],
+          [
+            -2.4959238745429015,
+            4.418149235595564
+          ],
+          [
+            -2.993374023221427,
+            3.8360798914591743
+          ],
+          [
+            -2.9974684224789474,
+            3.8360798914591743
+          ],
+          [
+            -3.2035422852068742,
+            3.9397515518396786
+          ],
+          [
+            -3.2134301820696627,
+            3.919571950804689
+          ],
+          [
+            -3.253542285206874,
+            3.9397515518396786
+          ],
+          [
+            -3.304340845775989,
+            3.8360798914591743
+          ],
+          [
+            -3.332492443529816,
+            3.8360798914591743
+          ],
+          [
+            -4.598757002199442,
+            1.4009552986275469
+          ],
+          [
+            -4.624496715389675,
+            1.4124801957435689
+          ],
+          [
+            -4.633530052087227,
+            1.3941374668927056
+          ],
+          [
+            -4.674496715389676,
+            1.4124801957435689
+          ],
+          [
+            -6.110831576495336,
+            -1.5040833929293376
+          ],
+          [
+            -6.09105063388908,
+            -1.5139170093670642
+          ]
+        ]
+      ],
+      "basis": "Replace only the mapped tower shell; retain independent fortress ruins/neighborhood inputs and native terrain/water."
+    },
+    "notes": "Retained exact-QID OSMway403091486/native building35184775180318 identifies Gardoš Tower. Own anchor20.409737414,44.848316064/global heading0/native east-south. Retained high-resolution mapped outline controls the complete base; internal X[0.436277643518402,0.899812101366741]/Z[-0.899812101366741,0.436277643518402] axes retain its rounded eastern end and squared western entry/loggia. Ordinary front and opposite photographs identify the base/gallery/two turrets/main shaft. Fine entry/window allocation retains20degree/2m uncertainty rather than a surveyed facade orientation. Retain original6m standard Mapzen ground, native paths/roads/water and all independent fortress/neighborhood buildings. Replace only the tower shell. Bounded buried feet follow the retained tower outline; the gallery is supported by its base/columns, with no whole-hill mesh, broad terrain platform, flattening or ground/water cutout. Coarse DEM contact/nearby ruin and bank heights are not surveyed foundation/flood measurements."
+  }
+}

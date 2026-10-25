@@ -1,4 +1,6 @@
-# Roll-on car ferry
+# Bendy Car Ferry
+
+![Molen preview](preview.png)
 
 Original brief: add diverse cars, motorcycles, bicycles, boats, cargo ships and ferries to Molen.
 

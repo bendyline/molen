@@ -1,12 +1,12 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.hangar_37",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-19",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:ef11acf36f20f2a225b27544b930ba8c61ac54e7ffdd7e0963f1cf912287927b",
+  "inputHash": "sha256:e1e5ca2ead28404c358e7b161400cf073eb5e126fdcc122dcb82dfe0007d3092",
   "sourceHash": "sha256:69cd159411f06b2a586986af5f1d0c6bc1d3962c8606f438589c920b7907dcef",
   "runtimeHash": "sha256:678dfdd2a2e7168c51cfd0c2de6c42c77239fd0075c70a84b855bfc91743fdb7",
-  "captureReportHash": "sha256:8067f8b1c43b53a586f1fed886b23c680551da879138be7e268b485a11e042ad",
+  "captureReportHash": "sha256:af44fae72c83e0e6847266bc79430923918f68716c2bd0a199cfdb0e01e656cc",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -18,11 +18,12 @@
       "shots/front.png",
       "shots/back.png"
     ],
-    "notes": "Inspected all seven final portable views against the local Qualla aerial and individually inspected museum/architect front references. Twin shallow gables, six ridge vents, sliding doors, track, entrance canopy and support struts retain their relative proportions. Corrected inward-facing checker canopy, occluded entrance glazing and the number plaque position. Hidden rear/side details remain conservative estimates."
+    "notes": "Previously inspected unchanged geometry and rendering fixtures retained; no second artistic review. Owner explicitly accepts documented limitations.",
+    "captureReportHash": "sha256:af44fae72c83e0e6847266bc79430923918f68716c2bd0a199cfdb0e01e656cc"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:e4dbbf380426f5e89f044a21283e5716e585861604cd6274bb23d18e3b08f426",
+    "captureReportHash": "sha256:7f908da4d89c5d9d69344efe710054907e95a99948a87c6396bd86f1de48993e",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -32,11 +33,11 @@
       "shots/shared/back.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected seven final shared-material views including the full front and north-up map overlay. Cream corrugated metal, standing-seam roofs, painted trim and concrete foundation retain metric surface bindings. The checker pattern and entrance glazing now face outward and are visible. Material graph reads, transform and unload checks pass. Flat shared terrain is a material/placement fixture; independent terrain is checked separately."
+    "notes": "Previously inspected unchanged geometry and rendering fixtures retained; no second artistic review. Owner explicitly accepts documented limitations."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:8382bde986a0ee76d3a347a94383a33f963e64597ae5fcf68d3c8f990a0f8435",
+    "captureReportHash": "sha256:93d0f6ef121d518122fb1ce1bd72de1a7941a83e61ef84e44e4d8dd5822527c6",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -58,7 +59,7 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected nineteen final frames across lighting, quality, front/back, silhouette and four forced detail levels. The double gable and entrance canopy remain distinct at distance; tiny lettering and corrugation simplify away. Synthetic neighbors are a style fixture, not Ford Island. No physical-device performance measurement is claimed."
+    "notes": "Focused current integration captures individually inspected. Owner accepts remaining documented approximation/host-ground limitations."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +78,20 @@
       ],
       "maxPngEncodingErrorMeters": 0.000030517578125
     },
-    "notes": "Named Hangar 37 feature and polygon 35184564459486 establish the approximately 68.7 by 47.7 m footprint. Anchor [-157.9618153721094,21.359750397735485], heading 2.563691278339407; +X northwest and +Z northeast toward the separate control tower. Apron contact [0,29] establishes datum 4 m. Unmodified independent terrain is retained and foundation extends to -0.75 m. Footprint suppression remains off; other host DEMs can differ."
+    "notes": "Original mapped footprint,apron contact and global placement retained. Owner accepts approximate modern entrance; active historical image is PDNavy80-G-32480.",
+    "reviewedBy": "Prior map/apron review retained; owner accepted remaining entrance interpretation",
+    "acceptanceBasis": "explicit-owner-acceptance-2026-10-19",
+    "groundContactVerified": true
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Historic Hangar 37 museum exterior and entrance canopy; other hangars, control tower, aircraft and interiors excluded.",
-    "notes": "Original medium-fi Hangar 37 exterior follows the individually inspected local aerial for site context and museum/architect front photographs for architecture. Dated 2008–2017 references support the cream double-gable hangar, corrugated doors, checker canopy and earlier Pacific Aviation Museum lettering. Roof equipment positions, hidden rear doorway, side cladding and exact heights are interpretations. Architectural project floor area is not treated as a measured footprint. Hangar 79, aircraft, interiors and separate antennas are excluded. Reference photographs are not embedded or redistributed."
+    "scope": "Model the historic hangar exterior, roof and glazing. Research exact footprint and current museum modifications; no aircraft models are implied.",
+    "notes": "Original medium-fi Hangar 37 exterior follows the individually inspected local aerial for site context and museum/architect front photographs for architecture. Dated 2008–2017 references support the cream double-gable hangar, corrugated doors, checker canopy and earlier Pacific Aviation Museum lettering. Roof equipment positions, hidden rear doorway, side cladding and exact heights are interpretations. Architectural project floor area is not treated as a measured footprint. Hangar 79, aircraft, interiors and separate antennas are excluded. Reference photographs are not embedded or redistributed. Owner accepted the model as good enough on2026-10-19,including the documented limitations. No additional surface survey or source research required."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:303f3f51a7af37739d9978bb0ca39ad9556e936eb416538f894d05f52fbe6847",
+    "recipeHash": "sha256:f8289bc2bf7a29bf1776ef166160d4078a45ef7cc260249975acfa9f208f17e8",
     "levels": [
       {
         "name": "skyline",
@@ -153,7 +157,7 @@
     "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
   },
   "limitations": [
-    "Original medium-fi exterior from a local Qualla aerial plus individually inspected museum and architect front photographs; no survey accuracy claimed.",
+    "Owner accepted this medium-fi exterior on 2026-10-19. Active imagery is the public-domain Navy80-G-32480historic reference; current entrance details remain approximate. Earlier private imagery is excluded.",
     "Mapped approximately 68.7 by 47.7 m footprint and northeast entrance are retained. Architect project floor area is not assumed to equal the mapped footprint.",
     "Twin shallow gables, cream metal cladding, door tracks, checker canopy and ridge vents follow dated references. Exact heights, rear service door, roof equipment placement and concealed side details are interpretations.",
     "Dated 2008–2017 exterior and Pacific Aviation Museum lettering are represented; later name/signage or renovation changes are not fully documented.",
@@ -164,5 +168,81 @@
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:6645a1a3f1924b016c0ece572b4aeadb6d320110b187ad709e2ff15ac0bf8880",
     "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  },
+  "status": "completed",
+  "ownerAcceptance": {
+    "acceptedOn": "2026-10-19",
+    "acceptedBy": "owner",
+    "authority": "Just resolve the and bless the 3 unresolved items, they are probably good enough, and continue on to the next models.",
+    "acceptedLimits": [
+      "Modern entrance/canopy details remain approximate; historic PD reference supports main volume."
+    ],
+    "geometryChanged": false,
+    "inputHash": "sha256:e1e5ca2ead28404c358e7b161400cf073eb5e126fdcc122dcb82dfe0007d3092",
+    "sourceHash": "sha256:69cd159411f06b2a586986af5f1d0c6bc1d3962c8606f438589c920b7907dcef",
+    "runtimeHash": "sha256:678dfdd2a2e7168c51cfd0c2de6c42c77239fd0075c70a84b855bfc91743fdb7",
+    "placementHash": "sha256:7497179e68323d7f3c3702c77fcd551793df0bcaf1b2bba5befbc24c4f48eac4",
+    "previousGeographicReview": {
+      "status": "passed",
+      "placementHash": "sha256:7497179e68323d7f3c3702c77fcd551793df0bcaf1b2bba5befbc24c4f48eac4",
+      "mapGeometryHash": "sha256:5170900b3a61a3d1c56f3acdb04f38061ea263f7b726a2d63e70064c8f21240c",
+      "terrain": {
+        "path": "terrain-grid.json",
+        "hash": "sha256:ff58c04de61497797d5007e5a86ffdd5f3124fdbecb8425431e790428eea0dab",
+        "descriptorHash": "sha256:b0ea191f73c4274e5b4a67dc3eee861d94748b6ccb34d52dc8d93007f3c13b5b",
+        "heightfieldHash": "sha256:f39bdf3b98281c4010c2647e107e7a957605a9c162cbe3d5d0dc23f7e332c073",
+        "modelDatumElevationMeters": 4,
+        "sourcePixelGroundSpacing": 4.449169664452794,
+        "footprintRelativeRangeMeters": [
+          -0.12508743602399974,
+          0.009647047593750457
+        ],
+        "maxPngEncodingErrorMeters": 0.000030517578125
+      },
+      "notes": "Named Hangar 37 feature and polygon 35184564459486 establish the approximately 68.7 by 47.7 m footprint. Anchor [-157.9618153721094,21.359750397735485], heading 2.563691278339407; +X northwest and +Z northeast toward the separate control tower. Apron contact [0,29] establishes datum 4 m. Unmodified independent terrain is retained and foundation extends to -0.75 m. Footprint suppression remains off; other host DEMs can differ."
+    },
+    "previousGeographicDiagnosticRetained": true,
+    "freshIntegrationFrames": 19,
+    "retainedPreviouslyInspectedFrames": 14,
+    "notes": "Acceptance is the owner’s explicit good-enough decision; it does not assert that the old source gap or coarse DEM artifacts were scientifically resolved. No new questionable imagery or fitted ground/geometry."
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:e1e5ca2ead28404c358e7b161400cf073eb5e126fdcc122dcb82dfe0007d3092",
+    "referenceInputHash": "sha256:5ba58ba7f7988fbedb50b4bb744d78783150f319f0fd1bc121aeeab773508207",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/navy-80-G-32480.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:a8a2496ed44083390156ae2ebfa89af7153b5460b83caf22973218906d71078d",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/8/7/z/9/ford-island-wp/2-11-aerial-2-8101025775.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:2.11_aerial_2_(8101025775).jpg",
+        "reason": "Earlier non-public-domain imagery excluded from active reference set."
+      },
+      {
+        "url": "https://www.pearlharboraviationmuseum.org/blog/hangar-37-gateway-to-the-museum/",
+        "reason": "Earlier non-public-domain imagery excluded from active reference set."
+      },
+      {
+        "url": "https://www.pearlharboraviationmuseum.org/wp-content/uploads/2020/06/Pre-Visit-Lesson-Historcal-Context.pdf",
+        "reason": "Earlier non-public-domain imagery excluded from active reference set."
+      },
+      {
+        "url": "https://www.ahl.design/projects/pacific-aviation-museum",
+        "reason": "Earlier non-public-domain imagery excluded from active reference set."
+      }
+    ],
+    "notes": "All active reference imagery is verified public-domainNavy80-G-32480. It supports historic main volume; modern entrance geometry remains an explicit owner-accepted approximation. Earlier private/attribution-only imagery is excluded."
+  },
+  "validation": {
+    "completed": true,
+    "activePlacement": "hangar-37",
+    "storyAnnotation": "pending-bounded-sync",
+    "ownerAcceptedLimitations": true
   }
 }

@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "cap": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.15
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kotor-cathedral-model.mjs",
+    "export": "buildKotorSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKotorDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildKotorStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKotorCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -55,
+      37,
+      48
+    ],
+    "lookAt": [
+      0,
+      14,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kotor-skyline",
+      "position": [
+        -55,
+        37,
+        48
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-kotor-district",
+      "position": [
+        -55,
+        37,
+        48
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-kotor-street",
+      "position": [
+        -55,
+        37,
+        48
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-kotor-closeup",
+      "position": [
+        -55,
+        37,
+        48
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior; current acceptance recorded separately in QA.",
+    "anchor": [
+      18.771557132,
+      42.42416531
+    ],
+    "heading": -0.258079235423,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention, not exact host-ground contact. Standard viewer DEM datum 16.356409 m; selected perimeter -3.69 to 5.16 m. Floor0.5 m; adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact square/street slopes, threshold/step/base contact, east/north adjoining walls, absolute altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        18.771557132,
+        42.42416531
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 16.356409 m; selected perimeter -3.69 to 5.16 m. Floor0.5 m; adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact square/street slopes, threshold/step/base contact, east/north adjoining walls, absolute altitude and walking remain unverified."
+    },
+    "bounds": [
+      18.766,
+      42.419,
+      18.778,
+      42.43
+    ],
+    "notes": "Exact retained way/165389709 and Q966429 identify Kotor Cathedral / St. Tryphon. Current standard viewer whole 35184537478541 and tower parts 35184579975938 / 35184579975941 supply 20 raw points and properties. Earlier whole/tags retained. Anchor [18.771557132,42.42416531] and heading -0.258079235423 rad unchanged, with no horizontal rescale. Native +X east apses, -X west square/twin towers, +Z south street. Adjacent north/east ranges, east building, square cafes/canopies, surrounding houses and city walls remain host content. Nave/aisle/apse and upper tower profiles are picture estimates constrained by these map controls. Standard viewer DEM datum 16.356409 m; selected perimeter -3.69 to 5.16 m. Floor0.5 m; adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact square/street slopes, threshold/step/base contact, east/north adjoining walls, absolute altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 16.356409 m; selected perimeter -3.69 to 5.16 m. Floor0.5 m; adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact square/street slopes, threshold/step/base contact, east/north adjoining walls, absolute altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

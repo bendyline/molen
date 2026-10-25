@@ -1,0 +1,318 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.ch_47f": {
+      "doc": "Boeing CH-47F Chinook: original polygonal exterior and heli-glass cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.ch_47f",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.ch_47f",
+          "spec": {
+            "label": "Boeing CH-47F Chinook",
+            "genericLabel": "Helicopter with enclosed cockpit",
+            "model": "helicopter",
+            "mass": 15000,
+            "span": 18.29,
+            "length": 30.14,
+            "height": 5.68,
+            "centerOfMass": [
+              0,
+              1.9,
+              0
+            ],
+            "pilotEye": [
+              -0.57,
+              2.63,
+              6.12
+            ],
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.35,
+            "hardLandingPitch": 0.4,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.9,
+                12.9602
+              ],
+              [
+                0,
+                1.9,
+                -12.9602
+              ],
+              [
+                8.4134,
+                5.4799999999999995,
+                0
+              ],
+              [
+                -8.4134,
+                5.4799999999999995,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "rotor-0",
+                  "axis": "y",
+                  "multiplier": 1
+                },
+                {
+                  "node": "rotor-1",
+                  "axis": "y",
+                  "multiplier": -1
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": []
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "bindings": [
+                  {
+                    "node": "CH47-horizon-508",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "CH47-horizon-1259",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "CH47-cyclic--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "CH47-cyclic--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "CH47-thrust--1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "CH47-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "CH47-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "CH47-cyclic-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "CH47-cyclic-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "CH47-thrust-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "CH47-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "CH47-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  }
+                ]
+              }
+            },
+            "engine": {
+              "position": [
+                0,
+                1.9,
+                0
+              ],
+              "thrustAxis": [
+                0,
+                1,
+                0
+              ],
+              "power": 7058000,
+              "idleRpm": 1,
+              "spoolRate": 0.1,
+              "rotorAngularSpeed": 24,
+              "ratedDensityRatio": 0.7,
+              "densityExponent": 1
+            },
+            "helicopter": {
+              "rotorPosition": [
+                0,
+                4.03,
+                5.9309
+              ],
+              "rotorRadius": 9.145,
+              "cyclicTilt": 0.5,
+              "cyclicResponse": 2.5,
+              "cyclicDamping": 2.4,
+              "groundLevelRate": 1,
+              "maxTilt": 0.65,
+              "yawRate": 0.5,
+              "liftMultiplier": 2.05,
+              "groundEffect": 0.12,
+              "translationalLift": 0.1,
+              "translationalLiftSpeed": 18,
+              "verticalDrag": 2700,
+              "horizontalDrag": 239.99759689119168,
+              "quadraticDrag": 1.700769533716534,
+              "groundDeceleration": 9,
+              "vortexRing": true,
+              "retreatingBladeSpeed": 93.01147519999999,
+              "rotorDiscs": 2,
+              "powerLimitedRotor": true,
+              "rotorEfficiency": 0.75,
+              "profilePowerFraction": 0.12
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.57,
+                2.63,
+                6.12
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                0.57,
+                2.63,
+                6.12
+              ]
+            }
+          ],
+          "entries": [
+            [
+              2.6923000000000004,
+              0,
+              6.12
+            ]
+          ],
+          "exits": [
+            [
+              3.3923,
+              0,
+              6.12
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.2,
+          "width": 8.03,
+          "height": 2.5,
+          "cruise": 45,
+          "weight": 0.35
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.ch_47f"
+      ]
+    }
+  }
+}

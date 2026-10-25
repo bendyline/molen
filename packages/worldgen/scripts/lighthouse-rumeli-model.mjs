@@ -290,7 +290,7 @@ export function buildRumeli(out) {
 }
 export const rumeliStudies = [
   lighthouseStudy({
-    id: 'N0670',
+    id: 'rumeli_feneri',
     key: 'rumeli_feneri',
     title: 'Rumeli Feneri',
     wikidataId: 'Q3269761',

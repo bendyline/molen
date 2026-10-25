@@ -1,0 +1,95 @@
+{
+  "id": "neuschwanstein.castle",
+  "title": "Neuschwanstein Castle",
+  "asset": "molen.worldgen.structure.neuschwanstein_castle",
+  "anchor": [
+    10.749533954,
+    47.557554931
+  ],
+  "heading": 0.381105898007,
+  "datum": "terrain",
+  "elevation": 0,
+  "orientation": "fixed",
+  "mapIdentity": {
+    "wikidata": "Q4152",
+    "maxDistance": 80
+  },
+  "replaceFootprint": false,
+  "groundCutout": {
+    "outline": [
+      [
+        -17,
+        -5.7
+      ],
+      [
+        37.7,
+        -5.7
+      ],
+      [
+        37.7,
+        -9.3
+      ],
+      [
+        54.5,
+        -9.3
+      ],
+      [
+        54.5,
+        -14.5
+      ],
+      [
+        62.1,
+        -14.5
+      ],
+      [
+        63.9,
+        21.4
+      ],
+      [
+        28.5,
+        21.4
+      ],
+      [
+        28.5,
+        19.5
+      ],
+      [
+        9.6,
+        22.7
+      ],
+      [
+        9.6,
+        21
+      ],
+      [
+        7.7,
+        21
+      ],
+      [
+        7.7,
+        13.2
+      ],
+      [
+        -14.4,
+        13.2
+      ],
+      [
+        -17,
+        10
+      ]
+    ],
+    "basis": "Exact reviewed upper/lower court platform union in signed source-local XZ. Production terrain masking replaces only ground under the retained closed paving/platform; the surrounding ridge and all occupied building footprints are retained. Prevents0.1m-rounded DGM1 samples poking through the reconstructed court plane. Model unload restores terrain; no precinct-wide flattening or alteration of source heights."
+  },
+  "terrainReference": {
+    "anchor": [
+      10.75021803,
+      47.55770701
+    ],
+    "modelHeight": 1,
+    "basis": "Public DGM1-based bare-earth heights, rounded by the service to0.1m and sampled here at3m spacing. Building interiors are interpolated ground, not floor measurements; edge/cliff samples and model footprint approximations remain uncertain. The model uses upper courtY8.2 and lower court/entryY1.0:7.2m difference from open-court samples, withY0 at960.7m DHHN2016 only for this evidence fixture. Production uses the explicit lower-court terrain reference, not an absolute height. The owner section and plan establish the stepped arrangement; architectural heights remain a photographic reconstruction. Host terrain must preserve the local ridge/court profile; coarse Mapzen terrain cannot establish correct contact."
+  },
+  "minLevel": 13,
+  "status": "preview",
+  "source": "https://api.openstreetmap.org/api/0.6/map?bbox=10.7477,47.5567,10.7518,47.5586",
+  "note": "Fresh exact-Q4152 precinct and seven distinct occupied ways establish the signed plan; the owner plan and actually inspected south/northwest/court photographs resolve +X111.84° toward the east-southeast gate, +Z201.84° toward Marienbruecke. Individual ranges are fitted independently, without extruding or stretching the precinct. Actually inspected owner complex and Palas section drawings show a lower gate wing and substantial stepped foundations; there are no printed elevation dimensions, so they are used as relative architectural evidence. Bavaria’s public DGM1 height API resolves open upper court968.9m and lower court961.7m DHHN2016:7.2m difference. Correct the upper court edge to the owner plan’s cranked partition nearx39, lower the gateway/connecting range5.5m, replace the former1.7m step by the mapped north stair route and extend embedded foundations toY-7. Use the independently sampled lower-court point[54,1,3.4] as explicit terrain reference. No scaling of the whole ensemble; footprint replacement remains off. The old17m coarse-Mapzen difference is rejected as unsuitable ridge evidence. DGM heights round to0.1m;3m sampling and photo-fitted architectural heights are approximate. Placement is a medium-fi preview requiring host terrain that retains the local ridge profile, not a promise of contact on coarse global terrain. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+}

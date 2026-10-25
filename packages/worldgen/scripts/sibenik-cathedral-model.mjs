@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/srg/n0339_sibenik_cathedral/',
+  '../../../content/worldgen/source/places/sr/srg/sibenik_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -761,7 +761,7 @@ export const buildSibenikSkyline = (o) => build(o, 0),
   buildSibenikStreet = (o) => build(o, 2),
   buildSibenikCloseup = (o) => build(o, 3);
 export const sibenikStudy = {
-  id: 'N0339',
+  id: 'sibenik_cathedral',
   key: 'sibenik_cathedral',
   title: 'Šibenik Cathedral',
   category: 'cathedral',

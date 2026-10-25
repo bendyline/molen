@@ -7,6 +7,7 @@
 
 import type { ArchFacadeDetails } from './archstyle-types';
 import { buildFacadeDetails, type FacadeDetailWindow } from './facade-details';
+import { distancePointToSegment } from './geometry2d';
 import type { BuildingOpening } from './interior-types';
 import type { MeshBufferBuilder } from './mesh-buffers';
 import { hashCoord, unit01 } from './seed';
@@ -34,6 +35,8 @@ export interface FacadeBands {
 }
 
 export interface FacadeInput {
+  /** Preferred entrance anchor on the exterior, in the same frame as the outline. */
+  entranceAt?: Vec2;
   /** Outer ring first, holes after (canonical orientation, as for walls). */
   rings: readonly (readonly Vec2[])[];
   /** Wall base height. */
@@ -524,7 +527,7 @@ function buildBands(edge: Edge, input: FacadeInput, out: MeshBufferBuilder, stat
 /** Emit windows and bands for every edge of the rings; returns what was placed. */
 export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeStats {
   const stats: FacadeStats = { windows: 0, storefronts: 0, bands: 0 };
-  const entrance = input.details?.entrance;
+  let entrance = input.details?.entrance;
   let entranceEdge: Edge | undefined;
   // Interior generation owns actual traversable openings. This fallback is facade appearance,
   // and must never paste an opaque panel across a door the walker can enter.
@@ -541,21 +544,46 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
       if (input.seamEdges?.has(index)) continue;
       const edge = edgeOf(ring, index, 0, input);
       if (
-        edge.length < entrance.width + 2 * input.cornerMargin ||
+        edge.length < (input.entranceAt ? 0.65 : entrance.width) + 2 * input.cornerMargin ||
         edge.top < input.base + entrance.height + 0.2
       )
         continue;
-      if (entranceEdge === undefined || edge.length > entranceEdge.length) entranceEdge = edge;
+      const score = (e: Edge): number =>
+        input.entranceAt
+          ? distancePointToSegment(input.entranceAt, e.a, [
+              e.a[0] + e.dir[0] * e.length,
+              e.a[1] + e.dir[1] * e.length,
+            ])
+          : -e.length;
+      if (entranceEdge === undefined || score(edge) < score(entranceEdge)) entranceEdge = edge;
     }
-    if (entranceEdge !== undefined)
+    if (entranceEdge !== undefined) {
+      // Narrow lots retain the supplied driveway/door alignment rather than moving the door
+      // onto a longer side wall. Unanchored facade entrances retain their authored dimensions.
+      if (input.entranceAt)
+        entrance = {
+          ...entrance,
+          width: Math.min(entrance.width, entranceEdge.length - 2 * input.cornerMargin),
+        };
+      const center = input.entranceAt
+        ? Math.max(
+            entrance.width / 2 + input.cornerMargin,
+            Math.min(
+              entranceEdge.length - entrance.width / 2 - input.cornerMargin,
+              (input.entranceAt[0] - entranceEdge.a[0]) * entranceEdge.dir[0] +
+                (input.entranceAt[1] - entranceEdge.a[1]) * entranceEdge.dir[1],
+            ),
+          )
+        : entranceEdge.length / 2;
       input = {
         ...input,
         entranceReservation: {
           edge: entranceEdge.key,
-          start: (entranceEdge.length - entrance.width) / 2,
-          end: (entranceEdge.length + entrance.width) / 2,
+          start: center - entrance.width / 2,
+          end: center + entrance.width / 2,
         },
       };
+    }
   }
   const detailBudget = { remaining: 3600 };
   let remainingEdges = input.rings.reduce((count, ring) => count + ring.length, 0);

@@ -1,0 +1,363 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.devin_castle",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:b0a26d5008ea443c51599de7e766800d4e802d89a396cb922028863e44b81527",
+  "sourceHash": "sha256:cc07b36ef68818e1c8ee943ffc2672d9ad6c2a6a5733d0fefa95f799b4eaa055",
+  "runtimeHash": "sha256:52c5aeee11bd3caf7d5101abdb908c288f7cbb24fa0dac8eb1e94cf2572e03c1",
+  "captureReportHash": "sha256:d7e365130720e9d5ee6c287a3bb4b496cc44d41d703c7004a7d5f6b3a75d43e3",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/upper-cliff-and-maiden.png",
+      "shots/garay-and-bathory-courts.png",
+      "shots/own-wall-plan.png",
+      "shots/maiden-open-crenellation.png",
+      "shots/upper-roofless-courtyard.png",
+      "shots/moravian-gate-passage.png",
+      "shots/bathory-west-openings.png"
+    ],
+    "notes": "Inspected all 12 final portable views. Roofless upper ruins on the pale cliff, lower irregular curtains, ruined palaces, middle court, scalloped attic, gate passages and tiny separate Maiden Tower/spur retain the inspected picture's identity. Footings use retained PMTiles ground and the broad duplicate grass terrain patch is omitted."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:84c02fc66094ac0f60c9b4a0bbf66fe04f2190f6d7e197efe629efaa93669123",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/upper-cliff-and-maiden.png",
+      "shots/shared/garay-and-bathory-courts.png",
+      "shots/shared/own-wall-plan.png",
+      "shots/shared/maiden-open-crenellation.png",
+      "shots/shared/upper-roofless-courtyard.png",
+      "shots/shared/moravian-gate-passage.png",
+      "shots/shared/bathory-west-openings.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 12 final shared-material views. Common rubble stone, weathered limestone, brick and gravel graphs are reused with an explicit local color slot. Wall openings, attic, exposed cliff and Maiden Tower read correctly. Retained east/south wall traces and site boundary fit approximately. Shared flat fixture checks materials/orientation; hillside fit comes from source/medium-fi PMTiles views. Material-cache reuse and unload checks passed."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:b697824aab93374b832a372e69aa9e9c2fdbf9d6df7da9bd18070403c6081032",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/upper-cliff-and-maiden.png",
+      "medium-fi/garay-and-bathory-courts.png",
+      "medium-fi/own-wall-plan.png",
+      "medium-fi/maiden-open-crenellation.png",
+      "medium-fi/upper-roofless-courtyard.png",
+      "medium-fi/moravian-gate-passage.png",
+      "medium-fi/bathory-west-openings.png",
+      "medium-fi/whole-devin-skyline.png",
+      "medium-fi/whole-devin-district.png",
+      "medium-fi/whole-devin-street.png",
+      "medium-fi/whole-devin-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 28 final medium-fi views: noon/late lighting, high/economy quality, silhouette, seven feature views and all four matched tiers. Roofless cliff-top ruin, lower wall plan and small tower remain consistent through upgrades. Bounded architectural cliff/spur proxies join coarse PMTiles terrain, with surrounding ground supplied by the host."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:fe1ffce47759da5e108ede54a97340a39b5b35263f31b0061b23bca9c35c2fc7",
+    "mapFrameHash": "sha256:5203e569a2b39c8db350d6674c2ce33f0648637384ac426c679d841f921606c1",
+    "notes": "Inspected aerial picture confirms roofless upper ruins on the pale cliff, lower irregular curtains, ruined palaces, middle court and small separate Maiden Tower on a spur. Retained east/south mapped wall traces and standard viewer PMTiles set approximate location, scale and orientation. The derivative omits the broad grass terrain patch, uses current PMTiles for architectural footings and shifts the old134.99m study datum into the170.02671087466376m PMTiles anchor datum. The bounded pale upper cliff and Maiden Tower spur remain explicit architectural landscape proxies; host PMTiles supplies surrounding ground. Anchor 16.979973665,48.17314752; heading 0; standard PMTiles datum 170.02671087466376m. Floors are reconstructed and foundations extend below the coarse sampled ground."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current ruins/cliff exterior and map fit from one inspected picture and standard viewer PMTiles. Cliff/spur geometry, surviving wall heights and terraces remain reconstructed; the old134.99m study datum is translated to the170.02671087466376m coarse anchor datum. No exact survey, thresholds, river/waterline simulation, vegetation, caverns, interiors or terrain cutouts. Footprint replacement remains off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
+    "status": "pending",
+    "target": "medium-fi",
+    "notes": "Present-day roofless ruins interpreted from official Bratislava City Museum photographs/descriptions and independent mapped masonry. Maiden Tower retains published2.8m diameter/4.88m height. Moravian portal, four other mapped passages, six photo-informed apertures, paired attic profiles and mapped approaches are now authored. Five gate names/associations, exact aperture and wall heights, surviving bay correspondence, modern closure states and fine remains/current restoration still need source-specific review. Coarse DEM and original cliff reconstruction do not establish surveyed elevations. Visitor infrastructure, landscape and terrain blending remain incomplete. No complete Devín site approval.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u2/u2s/devin_castle/models/source.glb",
+        "hash": "sha256:cc07b36ef68818e1c8ee943ffc2672d9ad6c2a6a5733d0fefa95f799b4eaa055",
+        "bytes": 778148,
+        "triangles": 6460,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -249.17604064941406,
+          -35.036712646484375,
+          -189.9980010986328
+        ],
+        "max": [
+          176.21099853515625,
+          44.76329040527344,
+          186.84100341796875
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u2/u2s/devin_castle/model.glb",
+        "hash": "sha256:52c5aeee11bd3caf7d5101abdb908c288f7cbb24fa0dac8eb1e94cf2572e03c1",
+        "bytes": 777724,
+        "triangles": 6460,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -249.17604064941406,
+          -35.036712646484375,
+          -189.9980010986328
+        ],
+        "max": [
+          176.21099853515625,
+          44.76329040527344,
+          186.84100341796875
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u2/u2s/devin_castle/model.skyline.glb",
+        "hash": "sha256:4e66a321da91db40b5d264bd98a462fb2d4ccc0715fa2780726f1e8d064fa9a4",
+        "bytes": 67744,
+        "triangles": 630,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -248.489990234375,
+          -35.036712646484375,
+          -179.766845703125
+        ],
+        "max": [
+          149.18609619140625,
+          44.76329040527344,
+          187.7796173095703
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u2/u2s/devin_castle/model.district.glb",
+        "hash": "sha256:be2f26558ca71dc5b167f6febbdad7e2908857fe0db7ca5290cc5736e07c796a",
+        "bytes": 281176,
+        "triangles": 2928,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -249.17604064941406,
+          -35.036712646484375,
+          -179.8679962158203
+        ],
+        "max": [
+          176.21099853515625,
+          44.76329040527344,
+          186.76300048828125
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u2/u2s/devin_castle/model.street.glb",
+        "hash": "sha256:aff7bd15ab86b92c7d832eef34ab5982305a824db9ac101ecbbb2b6b349072d6",
+        "bytes": 620160,
+        "triangles": 6460,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -249.17604064941406,
+          -35.036712646484375,
+          -189.9980010986328
+        ],
+        "max": [
+          176.21099853515625,
+          44.76329040527344,
+          186.84100341796875
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u2/u2s/devin_castle/model.closeup.glb",
+        "hash": "sha256:aff7bd15ab86b92c7d832eef34ab5982305a824db9ac101ecbbb2b6b349072d6",
+        "bytes": 620160,
+        "triangles": 6460,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -249.17604064941406,
+          -35.036712646484375,
+          -189.9980010986328
+        ],
+        "max": [
+          176.21099853515625,
+          44.76329040527344,
+          186.84100341796875
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Four tiers contain 630/2928/6460/6460 triangles and initial skyline+district downloads total 348920 bytes. Separate POSITION/NORMAL streams retained."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:5b96ca4237363d94e9991afbf55ee3be9a56ac3753cfecb2384d3d36baed64ac",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:4e66a321da91db40b5d264bd98a462fb2d4ccc0715fa2780726f1e8d064fa9a4",
+        "bytes": 67744,
+        "gzipBytes": 15084,
+        "triangles": 630,
+        "cpuBytes": 66312,
+        "gpuBytes": 66312,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:be2f26558ca71dc5b167f6febbdad7e2908857fe0db7ca5290cc5736e07c796a",
+        "bytes": 281176,
+        "gzipBytes": 96686,
+        "triangles": 2928,
+        "cpuBytes": 276088,
+        "gpuBytes": 276088,
+        "errorMeters": 0.7,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:aff7bd15ab86b92c7d832eef34ab5982305a824db9ac101ecbbb2b6b349072d6",
+        "bytes": 620160,
+        "gzipBytes": 206713,
+        "triangles": 6460,
+        "cpuBytes": 615052,
+        "gpuBytes": 615052,
+        "errorMeters": 0.3,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:aff7bd15ab86b92c7d832eef34ab5982305a824db9ac101ecbbb2b6b349072d6",
+        "bytes": 620160,
+        "gzipBytes": 206713,
+        "triangles": 6460,
+        "cpuBytes": 615052,
+        "gpuBytes": 615052,
+        "errorMeters": 0.1,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 348920,
+    "notes": "skyline: 630 triangles, 67744 bytes, 1 draws; district: 2928 triangles, 281176 bytes, 4 draws; street: 6460 triangles, 620160 bytes, 4 draws; closeup: 6460 triangles, 620160 bytes, 4 draws. Initial skyline+district 348920 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current ruins/cliff exterior from one inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. The bounded upper cliff/spur, ruin heights and terrace levels remain reconstructed; broad duplicated terrain is omitted.",
+    "Four common graphs plus local color slot, zero embedded images. Waterlines, river simulation, vegetation, caverns, interiors and terrain cutouts excluded.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:b81ddbf0df91428518716b34f12d44357563aae3c6035c546cac2f626d71c7ea",
+    "inputHash": "sha256:b0a26d5008ea443c51599de7e766800d4e802d89a396cb922028863e44b81527",
+    "previousQaHash": "sha256:6e27bee3e831109d038465d9364acf224d0345cb311ec270807590047f0c8ce0",
+    "sourceHash": "sha256:cc07b36ef68818e1c8ee943ffc2672d9ad6c2a6a5733d0fefa95f799b4eaa055",
+    "runtimeHash": "sha256:52c5aeee11bd3caf7d5101abdb908c288f7cbb24fa0dac8eb1e94cf2572e03c1",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:4e66a321da91db40b5d264bd98a462fb2d4ccc0715fa2780726f1e8d064fa9a4"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:be2f26558ca71dc5b167f6febbdad7e2908857fe0db7ca5290cc5736e07c796a"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:aff7bd15ab86b92c7d832eef34ab5982305a824db9ac101ecbbb2b6b349072d6"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:aff7bd15ab86b92c7d832eef34ab5982305a824db9ac101ecbbb2b6b349072d6"
+      }
+    ],
+    "sceneHash": "sha256:d005371394a91399f6930c11a5342925acef8ba276cc0fea7046f106ea14e473",
+    "qaCamerasHash": "sha256:b7f5a8e071f64f462aafc3fd89f95c83d7bf6c69d2e63e3c4647fcc613a4259f",
+    "placementHash": "sha256:fe1ffce47759da5e108ede54a97340a39b5b35263f31b0061b23bca9c35c2fc7",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:5203e569a2b39c8db350d6674c2ce33f0648637384ac426c679d841f921606c1"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/stone_drywall.matgraph.json",
+        "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+      },
+      {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      },
+      {
+        "path": "materials/stone_limestone_weathered.matgraph.json",
+        "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:ab95e7a67dd3d0c83b9fef83f4a29432591f3280cc2bc2bb88d3f809c72c0066"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:3d667d1e9132012a4942dfc7fde48d47ff4dbf0736fadadc699dc2462cc998e6"
+      }
+    ],
+    "framesVerified": 52,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
+}

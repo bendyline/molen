@@ -4,7 +4,7 @@ import { expect, it } from 'vitest';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u6/u6r/n0674_ristna_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/u6/u6r/ristna_lighthouse'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );

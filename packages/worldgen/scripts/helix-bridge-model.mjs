@@ -373,7 +373,7 @@ export function buildHelix(out) {
 }
 
 export const helixStudy = {
-  id: 'N0007',
+  id: 'the_helix_bridge',
   key: 'the_helix_bridge',
   title: 'The Helix Bridge',
   wikidataId: 'Q2681107',

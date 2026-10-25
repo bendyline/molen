@@ -1,0 +1,222 @@
+{
+  "variant": "Leonardo AW139 short nose, civil transport body with four-display Primus Epic and center chart installation",
+  "references": [
+    {
+      "url": "https://www.avincis.com/wp-content/uploads/2024/11/A4-AW139-Specifications-Flyer-Low-Res.pdf",
+      "title": "Avincis AW139 Specifications, page 4",
+      "author": "Avincis",
+      "license": "Copyright Avincis; local analysis only; no pixels shipped.",
+      "scope": "Short-nose dimensions, rotor diameters, wheelbase and doors."
+    },
+    {
+      "url": "https://www.easa.europa.eu/sites/default/files/dfu/AB%20139%20JOEB%20FINAL%20REPORT%20Rev%204-%2015_10_2012%20AWTAx.pdf",
+      "title": "EASA AW139 OEB Final Report Revision 4, 2012-10-15, pages 14 and 17",
+      "author": "EASA / AgustaWestland",
+      "license": "Publicly accessible technical reference; source image copyright not established; local analysis only.",
+      "scope": "Three-view exterior drawing and frontal cockpit photographs. Exterior drawing labels 13.77m body; selected short-nose body uses 13.53m from Avincis/type certificate."
+    },
+    {
+      "url": "https://www.easa.europa.eu/sites/default/files/dfu/TCDS_EASA_R006_LH_AW139_Issue25.pdf",
+      "title": "EASA.R.006 Issue 25, 2021-09-08",
+      "author": "EASA",
+      "license": "Factual dimensions used; no imagery shipped.",
+      "scope": "Independent fuselage width 2.26m and short-nose fuselage length 13.53m; four-display and long-nose configurations identified."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:AgustaWestland_AW139_Instrument_Panel.JPG",
+      "author": "Ahunt",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "revision": 1035377646,
+      "scope": "Powered-up Ornge Air Ambulance cockpit, Ottawa, 2013-01-23. Detailed Primus displays, chart installation, coaming, controls and console; cabin mission fit differs."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Helicorp_(VH-TJO)_Agustawestland_AW139_at_Wagga_Wagga_Airport.jpg",
+      "author": "Bidgee",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "scope": "Exterior nose, cockpit glazing, side windows, gear/sponsons, cowl and exhausts."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:AW139_(14630958499).jpg",
+      "author": "PK-REN",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "scope": "Opposite side, tail rotor, stabilizer and belly proportions."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.88,
+      1.47
+    ],
+    "lookAt": [
+      0,
+      1.35,
+      2.88
+    ],
+    "fov": 86
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.39
+    ],
+    "viewHeight": 1.2,
+    "cameraHeight": 7.5
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/aw139-oeb-dimensions.png",
+      "crop": {
+        "left": 990,
+        "top": 1724,
+        "width": 1579,
+        "height": 645
+      },
+      "referenceAnchor": [
+        1592.7966101694915,
+        2155.6144067796613
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 722.9872881355932,
+        "meters": 8.4,
+        "description": "Main-to-tail rotor axis separation 8.40m."
+      },
+      "scope": "EASA three-view drawing: low-resolution outlines, long-nose body shown; selected short nose is 0.24m shorter. No nonuniform scaling."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/aw139-oeb-dimensions.png",
+      "crop": {
+        "left": 957,
+        "top": 1077,
+        "width": 1502,
+        "height": 630
+      },
+      "referenceAnchor": [
+        1592.7966101694915,
+        1392.584745762712
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 714.0889830508474,
+        "meters": 8.4,
+        "description": "Main-to-tail rotor axis separation 8.40m."
+      },
+      "rotate": 270,
+      "scope": "EASA three-view drawing: low-resolution outlines, long-nose body shown; selected short nose is 0.24m shorter. No nonuniform scaling."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/aw139-oeb-dimensions.png",
+      "crop": {
+        "left": 412,
+        "top": 1713,
+        "width": 456,
+        "height": 667
+      },
+      "referenceAnchor": [
+        636.228813559322,
+        2160.063559322034
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 271.39830508474574,
+        "meters": 3.04,
+        "description": "Main gear center spacing 3.04m."
+      },
+      "scope": "EASA three-view drawing: low-resolution outlines, long-nose body shown; selected short nose is 0.24m shorter. No nonuniform scaling."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/aw139-panel-analysis.png",
+      "crop": {
+        "left": 310,
+        "top": 1320,
+        "width": 750,
+        "height": 230
+      },
+      "referenceAnchor": [
+        674,
+        1370
+      ],
+      "modelAnchor": [
+        0,
+        -1.52
+      ],
+      "scaleControls": {
+        "pixels": 100,
+        "meters": 0.2032,
+        "description": "Nominal 8-inch display-unit width; estimated pixel casing edges. Absolute panel scale remains approximate."
+      },
+      "edgeMode": "photo",
+      "scope": "Near-frontal bottom cockpit photo on EASA page 14, cross-checked against Ahunt CC0 detail photo. Curved coaming and pedestal are not coplanar."
+    }
+  ],
+  "status": "reviewed-with-limitations",
+  "reviewNotes": {
+    "corrections": [
+      "Rebuilt short-nose fuselage with explicit belly, cockpit, cabin and tapering tail-boom stations, chin/roof/pilot glazing apertures, rounded cabin windows and sliding-door seams.",
+      "Added integrated engine/transmission cowl, screened intakes, open paired exhausts, swept fin, stabilizer endplates, five-bladed articulated main rotor and starboard four-blade tail rotor.",
+      "Set rotor diameters 13.8m/2.7m, rotor-axis spacing 8.4m, wheelbase 4.34m and main gear spacing 3.04m. Added twin nose wheels, single main wheels, sponsons and stable gear animation nodes.",
+      "Replaced generic dashboard with four portrait Primus displays, central chart display, standby unit, radio/gear panels, twin FMS keypads, engine levers, long inclined console and animated dual flight controls. Moved parked windshield wipers outboard after the direct pilot sightline test caught an obstruction."
+    ],
+    "independentDimensions": {
+      "bodyLengthM": 13.53,
+      "fuselageWidthM": 2.26,
+      "mainRotorDiameterM": 13.8,
+      "tailRotorDiameterM": 2.7,
+      "rotorAxisSpacingM": 8.4,
+      "wheelbaseM": 4.34,
+      "mainGearSpacingM": 3.04,
+      "stabilizerSpanM": 4.22
+    },
+    "limitations": [
+      "Exterior drawing is low-resolution and depicts a 13.77m body; selected short-nose body uses 13.53m per operator/type-certificate data. Rotor clocking, blade droop and landing-gear compression differ between drawings/photos.",
+      "Cockpit absolute scale uses estimated edges of nominal 8-inch display units. Panel face layout is photo-matched; coaming depth, side-panel curvature, seat adjustment and pedestal depth remain estimates.",
+      "Selected cockpit includes the center chart installation shown in the 2013 Ornge photograph and EASA lower cockpit photo. The transport cabin does not reproduce Ornge medical equipment. Switch legends and display graphics are simplified original geometry."
+    ],
+    "visual": "Individually inspected four calibrated overlays, all four turntable views, lit three-quarter view, forward pilot sightline, downward cockpit and centered cabin captures. Rechecked final front/panel overlays after wiper correction. No panel/window clipping detected; forward clearance test passes."
+  },
+  "sourceHash": "sha256:907c541269f31bbbeffcc6de0f6df9ad040ace258532ad4433de66f4955b5f83",
+  "runtimeHash": "sha256:51d6ecdb3d66c12750f1e6462fb87b8a5ea25c5590f1f2f26e937189e7d2677d",
+  "limitations": [
+    "Exterior drawing is low-resolution and depicts a 13.77m body; selected short-nose body uses 13.53m per operator/type-certificate data. Rotor clocking, blade droop and landing-gear compression differ between drawings/photos.",
+    "Cockpit absolute scale uses estimated edges of nominal 8-inch display units. Panel face layout is photo-matched; coaming depth, side-panel curvature, seat adjustment and pedestal depth remain estimates.",
+    "Selected cockpit includes the center chart installation shown in the 2013 Ornge photograph and EASA lower cockpit photo. The transport cabin does not reproduce Ornge medical equipment. Switch legends and display graphics are simplified original geometry."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:47f2be17ba9b5ad4c0dc7d59836958a888e0e7a091f7a09aebe52d7cd60d7f41",
+    "sourceHash": "sha256:907c541269f31bbbeffcc6de0f6df9ad040ace258532ad4433de66f4955b5f83",
+    "runtimeHash": "sha256:51d6ecdb3d66c12750f1e6462fb87b8a5ea25c5590f1f2f26e937189e7d2677d",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/aw139-pair.png",
+        "sha256": "sha256:15ae6818f3e17dc3474ba66b85ef1518965dc21300a0d543d41854e1001f80f7",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

@@ -7,7 +7,7 @@ import { buildVaduzRuntime } from './vaduz-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u0/u0q/n0269_vaduz_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u0/u0q/vaduz_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

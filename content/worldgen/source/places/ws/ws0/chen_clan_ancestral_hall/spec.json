@@ -1,0 +1,348 @@
+{
+  "planId": "chen_clan_ancestral_hall",
+  "id": "chen_clan_ancestral_hall",
+  "assetId": "molen.worldgen.structure.chen_clan_ancestral_hall",
+  "title": "Chen Clan Ancestral Hall",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 113.24013255000001,
+    "latitude": 23.129827925
+  },
+  "size": [
+    81.69335174560547,
+    12.54199954867363,
+    85.7151870727539
+  ],
+  "actualBounds": {
+    "min": [
+      -40.4779167175293,
+      -0.2199999988079071,
+      -38.23934555053711
+    ],
+    "max": [
+      41.21543502807617,
+      12.321999549865723,
+      47.4758415222168
+    ]
+  },
+  "visualBrief": "Complete native museum/5roofed-range compound: three successive transverse hall ranges/long side wings, open courts and inferred low covered links, nineteen articulated Lingnan gable/roof volumes, grey rolled tile courses, red raised firewalls, genuinely pierced multi-tier ceramic ridge/pavilion/robed-figure/fish ornament, stone colonnades/carved brackets, dark timber screens/plaque, intrinsic platforms/steps/pierced rails and entrance guardians. No metro station, modern museum collections, square/streets or landscape. Native parent outlines retained; roof subdivisions, concealed elevations/layout and fine sculpture are bounded photographic estimates.",
+  "nativeAxes": {
+    "x": "east/slightly-south",
+    "y": "up",
+    "z": "south/slightly-west/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tablet_of_Chen_Clan_Academy.jpg",
+    "https://commons.wikimedia.org/wiki/File:%E5%88%98%E5%BA%86%E4%BC%8F%E7%8B%BC%E9%A9%B93.jpg",
+    "https://commons.wikimedia.org/wiki/File:Flying_Cod.jpg",
+    "https://commons.wikimedia.org/wiki/File:Pottery_on_the_ridge.JPG",
+    "https://commons.wikimedia.org/wiki/File:陈家祠.jpg",
+    "https://commons.wikimedia.org/wiki/File:陈家祠_09.jpg",
+    "https://commons.wikimedia.org/wiki/File:陈家祠_26.jpg",
+    "https://commons.wikimedia.org/wiki/File:陈家祠_35.jpg",
+    "https://commons.wikimedia.org/wiki/File:陈家祠_45.jpg"
+  ],
+  "stories": [
+    {
+      "id": "chen-clan-ancestral-hall-wp",
+      "url": "https://qualla.com/chen-clan-ancestral-hall/"
+    }
+  ],
+  "referenceInputHash": "bd76932e1b8c53149f212ddb4587871d9fab1189c3b53e3af1abdab17c912845",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-chen-clan-ancestral-hall.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-chen-clan-ancestral-hall.mjs",
+    "level": "skyline",
+    "export": "chenClanSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "ceramic": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.76,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "chenClanDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "ceramic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "chenClanStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "ceramic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named museumway520935699/Q5090739supplies its4corner87.45x97.8mbounded site; all4corners of each of5roofed-buildingways682114503–682114507are retained separately. These establish three successive roughly60x17mtransverse ranges and two narrow roughly9x82mlong side wings. The enclosure is NOT a solid building footprint. Underground metrostation/Q5090740, adjacent square and modern buildings are excluded. Native outlines do not survey the19historical building subdivisions/nine halls/six courtyards: subdivisions and four low inner connecting walks are photo/text-inferred topology within these controls, not newly measured native footprints. The broader13,200m2story figure is not used to stretch or replace this native bounded complex. Roof/elevation/ornament/grade details remain photographic estimates. Fixed south approach[0,53]was selected before terrain acquisition; bounded native platforms/steps only, no courtyard/site flattening.",
+    "anchor": [
+      113.24013255000001,
+      23.129827925
+    ],
+    "heading": -0.15828210622718655,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        113.24005094579965,
+        23.129357771618146
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed south/front approach beyond the original museum edge, selected before terrain sampling. Bounded intrinsic platforms/steps only; no whole-enclosure slab/flattening."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/520935699",
+      "way/682114503",
+      "way/682114504",
+      "way/682114505",
+      "way/682114506",
+      "way/682114507"
+    ],
+    "source": "https://www.openstreetmap.org/way/520935699",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5f43137ffa6eaccb1c8703e616d86294383c12e14f73379ce6b099392fa4f206",
+    "notes": "Complete complex, not just a facade or generic temple. Preserve three hall depths/long wings, open courtyard spaces and low roofed links; roof/gable subdivisions and fine sculpture are conservative original interpretations. Do not adopt the similarly named subway station, square or modern towers, fill courtyard spaces, or borrow planting/visitor/exhibition geometry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named museumway520935699/Q5090739supplies its4corner87.45x97.8mbounded site; all4corners of each of5roofed-buildingways682114503–682114507are retained separately. These establish three successive roughly60x17mtransverse ranges and two narrow roughly9x82mlong side wings. The enclosure is NOT a solid building footprint. Underground metrostation/Q5090740, adjacent square and modern buildings are excluded. Native outlines do not survey the19historical building subdivisions/nine halls/six courtyards: subdivisions and four low inner connecting walks are photo/text-inferred topology within these controls, not newly measured native footprints. The broader13,200m2story figure is not used to stretch or replace this native bounded complex. Roof/elevation/ornament/grade details remain photographic estimates.",
+    "All5original roofed-range outlines are preserved independently inside the named museum enclosure. Nine transverse-range gables, six long-wing roof segments and four low covered links are a bounded photo/text-inferred topology for the nine halls/six courts; they are not separately surveyed19historic building footprints. No enclosure-sized solid block or filled courts, and no similarly named underground metrostation.",
+    "Main eaves5.4m/ridges8.65–9.55m/ceramic crowns roughly11.6m, wing eaves4.6m/ridges6.8m, low-walk eaves3.6m/ridges4.7m and intrinsic.65mplatforms are photographic estimates. Exact internal room divisions, hidden roofs/rear elevations, individual roof extents and grade/contact remain unverified.",
+    "Four exact QuallaZyng1PublicDomainarchitectural originals were inspected first, then same-creatorPD-self450x260overall front for broad composition and four explicit self|cc-zero2019courtyard/hall/corridor originals by神樂坂秀吉. Native hashes/revision/dedications are saved; all9selected originals inspected. No other image, museum screen-door/collection material, modern exhibit or photographic texture.",
+    "Grey paired cylindrical tile rolls/rounded eave ends, raised red hard-gable walls, open stone/timber colonnades and pierced ceramic tableaux/pavilion/robed-figure/fish crests are genuine geometry. Fine portraits/drama identities, particular relief scenes, complete ridge sculptural census, calligraphy fonts, erosion/individual tile joints and detailed interior objects are bounded original medium-fi approximations. Entrance plaque uses original geometric strokes for the observed right-to-left陳氏書院; no image glyph texture.",
+    "Roof tile cover rolls are grouped at roughly.65mclose-detail pitch rather than every ancient tile; paired roll/gutter rhythm and rounded eave silhouettes are retained. Fine rolled tiles/robed figures/lattice, capital and brick relief, pierced rail inserts and lettering retire progressively at distance.",
+    "Only intrinsic native floors/platforms, low walk floors, three short entrance flights, rails and guardians are included. Trees/planting/visitors/lantern decor, museum exhibits/furnishings, utility wires/flags/cameras/bins, modern neighboring buildings and adjacent square/roads excluded. Fixed front point[0,53]precedes terrain sampling; source relief is retained without a whole-site slab, and exact footing/threshold/host-terrain contact remains unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "south-entrance-colonnade-plaque-and-guardian-lions",
+      "position": [
+        1,
+        9,
+        73
+      ],
+      "lookAt": [
+        0,
+        5,
+        43
+      ]
+    },
+    {
+      "name": "pierced-ceramic-tableaux-fish-ridges-and-rolled-tiles",
+      "position": [
+        12,
+        15,
+        59
+      ],
+      "lookAt": [
+        0,
+        9,
+        37
+      ]
+    },
+    {
+      "name": "six-open-courts-low-covered-links-and-gathering-hall",
+      "position": [
+        24,
+        19,
+        24
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "complete-native-three-range-side-wing-compound",
+      "position": [
+        -105,
+        65,
+        -122
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62681,
+    "vertices": 188043,
+    "materials": 5,
+    "bytes": 7524960,
+    "sha256": "sha256:4f538a1c7885d2ee22ed5a3c9377f6ed5137a76f83349b21b7819a33365a71bd"
+  }
+}

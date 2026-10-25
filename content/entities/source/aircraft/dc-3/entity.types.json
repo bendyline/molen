@@ -1,0 +1,2852 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.dc_3": {
+      "doc": "Douglas DC-3: original polygonal exterior and classic cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.dc_3",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.dc_3",
+          "spec": {
+            "label": "Douglas DC-3",
+            "genericLabel": "Civil transport with enclosed cockpit",
+            "model": "airplane",
+            "mass": 9000,
+            "span": 28.956,
+            "length": 19.6469,
+            "height": 5.16,
+            "centerOfMass": [
+              0,
+              3.3,
+              0
+            ],
+            "pilotEye": [
+              0.56,
+              4.98592820846063,
+              6.472216373220554
+            ],
+            "hardLandingSpeed": 4,
+            "hardLandingRoll": 0.2,
+            "hardLandingPitch": 0.28,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                3.3,
+                8.448167
+              ],
+              [
+                0,
+                3.3,
+                -8.448167
+              ],
+              [
+                13.31976,
+                3.3,
+                0
+              ],
+              [
+                -13.31976,
+                3.3,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "DC3-propeller-1",
+                  "engine": "engine-1",
+                  "axis": "z",
+                  "multiplier": 1
+                },
+                {
+                  "node": "DC3-propeller--1",
+                  "engine": "engine-2",
+                  "axis": "z",
+                  "multiplier": 1
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": [
+                  {
+                    "node": "DC3-flap--1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.7853981633974483
+                  },
+                  {
+                    "node": "DC3-aileron--1",
+                    "source": "aileronR",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "DC3-elevator--1",
+                    "source": "elevatorAngle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "DC3-main-gear--1",
+                    "source": "gearPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1.3,
+                    "offset": -1.3
+                  },
+                  {
+                    "node": "DC3-flap-1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.7853981633974483
+                  },
+                  {
+                    "node": "DC3-aileron-1",
+                    "source": "aileronL",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "DC3-elevator-1",
+                    "source": "elevatorAngle",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "DC3-main-gear-1",
+                    "source": "gearPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1.3,
+                    "offset": -1.3
+                  },
+                  {
+                    "node": "DC3-rudder",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.5235987755982988
+                  }
+                ],
+                "derived": {
+                  "aileronR": {
+                    "op": "add",
+                    "args": [
+                      "rightUp",
+                      "rightDown"
+                    ]
+                  },
+                  "rightUp": {
+                    "op": "multiply",
+                    "args": [
+                      "rollDown",
+                      -0.47123889803846897
+                    ]
+                  },
+                  "rollDown": {
+                    "op": "min",
+                    "args": [
+                      "rollInput",
+                      0
+                    ]
+                  },
+                  "rightDown": {
+                    "op": "multiply",
+                    "args": [
+                      "rollUp",
+                      -0.3141592653589793
+                    ]
+                  },
+                  "rollUp": {
+                    "op": "max",
+                    "args": [
+                      "rollInput",
+                      0
+                    ]
+                  },
+                  "elevatorAngle": {
+                    "op": "add",
+                    "args": [
+                      "elevatorUp",
+                      "elevatorDown"
+                    ]
+                  },
+                  "elevatorUp": {
+                    "op": "multiply",
+                    "args": [
+                      "pitchUp",
+                      0.5235987755982988
+                    ]
+                  },
+                  "pitchUp": {
+                    "op": "max",
+                    "args": [
+                      "pitchInput",
+                      0
+                    ]
+                  },
+                  "elevatorDown": {
+                    "op": "multiply",
+                    "args": [
+                      "pitchDown",
+                      0.3490658503988659
+                    ]
+                  },
+                  "pitchDown": {
+                    "op": "min",
+                    "args": [
+                      "pitchInput",
+                      0
+                    ]
+                  },
+                  "aileronL": {
+                    "op": "add",
+                    "args": [
+                      "leftUp",
+                      "leftDown"
+                    ]
+                  },
+                  "leftUp": {
+                    "op": "multiply",
+                    "args": [
+                      "rollUp",
+                      0.47123889803846897
+                    ]
+                  },
+                  "leftDown": {
+                    "op": "multiply",
+                    "args": [
+                      "rollDown",
+                      0.3141592653589793
+                    ]
+                  }
+                },
+                "sources": {
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "gearPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  }
+                }
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "sources": {
+                  "trueAirspeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "airspeed"
+                    ]
+                  },
+                  "altitude": {
+                    "component": "transform",
+                    "path": [
+                      "pos",
+                      1
+                    ]
+                  },
+                  "yaw": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "pitch": {
+                    "component": "aircraftState",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "roll": {
+                    "component": "aircraftState",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "verticalSpeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "verticalSpeed"
+                    ]
+                  },
+                  "yawRate": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yawRate"
+                    ]
+                  },
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "gearPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  },
+                  "engine1": {
+                    "component": "aircraftState",
+                    "path": [
+                      "engines",
+                      "engine-1",
+                      "rpm"
+                    ]
+                  },
+                  "engine2": {
+                    "component": "aircraftState",
+                    "path": [
+                      "engines",
+                      "engine-2",
+                      "rpm"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "power": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "power"
+                    ]
+                  }
+                },
+                "derived": {
+                  "mph": {
+                    "op": "multiply",
+                    "args": [
+                      "trueAirspeed",
+                      2.2369362920544
+                    ]
+                  },
+                  "feet": {
+                    "op": "divide",
+                    "args": [
+                      "altitude",
+                      0.3048
+                    ]
+                  },
+                  "verticalFpm": {
+                    "op": "multiply",
+                    "args": [
+                      "verticalSpeed",
+                      196.85039370078738
+                    ]
+                  },
+                  "northYaw": {
+                    "op": "subtract",
+                    "args": [
+                      3.141592653589793,
+                      "yaw"
+                    ]
+                  },
+                  "trueHeading": {
+                    "op": "modulo",
+                    "args": [
+                      "northYaw",
+                      6.283185307179586
+                    ]
+                  },
+                  "rpm1": {
+                    "op": "multiply",
+                    "args": [
+                      "engine1",
+                      2350
+                    ]
+                  },
+                  "rpm2": {
+                    "op": "multiply",
+                    "args": [
+                      "engine2",
+                      2350
+                    ]
+                  },
+                  "turnDegrees": {
+                    "op": "multiply",
+                    "args": [
+                      "yawRate",
+                      57.29577951308232
+                    ]
+                  },
+                  "rollUp": {
+                    "op": "max",
+                    "args": [
+                      "rollInput",
+                      0
+                    ]
+                  },
+                  "rollDown": {
+                    "op": "min",
+                    "args": [
+                      "rollInput",
+                      0
+                    ]
+                  },
+                  "leftUp": {
+                    "op": "multiply",
+                    "args": [
+                      "rollUp",
+                      0.47123889803846897
+                    ]
+                  },
+                  "leftDown": {
+                    "op": "multiply",
+                    "args": [
+                      "rollDown",
+                      0.3141592653589793
+                    ]
+                  },
+                  "rightUp": {
+                    "op": "multiply",
+                    "args": [
+                      "rollDown",
+                      -0.47123889803846897
+                    ]
+                  },
+                  "rightDown": {
+                    "op": "multiply",
+                    "args": [
+                      "rollUp",
+                      -0.3141592653589793
+                    ]
+                  },
+                  "aileronL": {
+                    "op": "add",
+                    "args": [
+                      "leftUp",
+                      "leftDown"
+                    ]
+                  },
+                  "aileronR": {
+                    "op": "add",
+                    "args": [
+                      "rightUp",
+                      "rightDown"
+                    ]
+                  },
+                  "pitchUp": {
+                    "op": "max",
+                    "args": [
+                      "pitchInput",
+                      0
+                    ]
+                  },
+                  "pitchDown": {
+                    "op": "min",
+                    "args": [
+                      "pitchInput",
+                      0
+                    ]
+                  },
+                  "elevatorUp": {
+                    "op": "multiply",
+                    "args": [
+                      "pitchUp",
+                      0.5235987755982988
+                    ]
+                  },
+                  "elevatorDown": {
+                    "op": "multiply",
+                    "args": [
+                      "pitchDown",
+                      0.3490658503988659
+                    ]
+                  },
+                  "elevatorAngle": {
+                    "op": "add",
+                    "args": [
+                      "elevatorUp",
+                      "elevatorDown"
+                    ]
+                  },
+                  "DC3.speed.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "mph",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.speed.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.speed.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.speed-right.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "mph",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.speed-right.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.speed-right.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-0.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-0.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.altimeter-0.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-1.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-1.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.altimeter-1.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-2.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-2.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.altimeter-2.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-right-0.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-right-0.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.altimeter-right-0.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-right-1.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-right-1.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.altimeter-right-1.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-right-2.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.altimeter-right-2.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.altimeter-right-2.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.attitude-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "roll",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.attitude-bank.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.attitude-bank.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.attitude-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "pitch",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.attitude-pitch.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.attitude-pitch.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.attitude-right-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "roll",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.attitude-right-bank.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.attitude-right-bank.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.attitude-right-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "pitch",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.attitude-right-pitch.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.attitude-right-pitch.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.heading.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.heading.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.heading.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.heading-right.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.heading-right.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.heading-right.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.vsi.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "verticalFpm",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.vsi.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.vsi.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.vsi-right.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "verticalFpm",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.vsi-right.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.vsi-right.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.turn.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "turnDegrees",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.turn.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.turn.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.turn-right.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "turnDegrees",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.turn-right.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.turn-right.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.rpm-left.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "rpm1",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.rpm-left.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.rpm-left.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.rpm-right.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "rpm2",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.rpm-right.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.rpm-right.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.flaps.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "flapPosition",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.flaps.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.flaps.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.compass.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "DC3.compass.available": {
+                    "op": "greater",
+                    "args": [
+                      "DC3.compass.availableValue",
+                      -100000000000000000000
+                    ]
+                  }
+                },
+                "bindings": [
+                  {
+                    "node": "DC3-speed",
+                    "source": "mph",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        40,
+                        0.5
+                      ],
+                      [
+                        80,
+                        1.4
+                      ],
+                      [
+                        120,
+                        2.4
+                      ],
+                      [
+                        160,
+                        3.4
+                      ],
+                      [
+                        200,
+                        4.4
+                      ],
+                      [
+                        240,
+                        5.4
+                      ],
+                      [
+                        280,
+                        6.1
+                      ]
+                    ],
+                    "responseSeconds": 0.2,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "DC3-speed",
+                    "source": "DC3.speed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-speed-right",
+                    "source": "mph",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        40,
+                        0.5
+                      ],
+                      [
+                        80,
+                        1.4
+                      ],
+                      [
+                        120,
+                        2.4
+                      ],
+                      [
+                        160,
+                        3.4
+                      ],
+                      [
+                        200,
+                        4.4
+                      ],
+                      [
+                        240,
+                        5.4
+                      ],
+                      [
+                        280,
+                        6.1
+                      ]
+                    ],
+                    "responseSeconds": 0.2,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "DC3-speed-right",
+                    "source": "DC3.speed-right.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-altimeter-0",
+                    "source": "DC3.altimeter-0.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-altimeter-1",
+                    "source": "DC3.altimeter-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-altimeter-2",
+                    "source": "DC3.altimeter-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-altimeter-0",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.006283185307179587,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "DC3-altimeter-1",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "DC3-altimeter-2",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.00006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "DC3-altimeter-right-0",
+                    "source": "DC3.altimeter-right-0.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-altimeter-right-1",
+                    "source": "DC3.altimeter-right-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-altimeter-right-2",
+                    "source": "DC3.altimeter-right-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-altimeter-right-0",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.006283185307179587,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "DC3-altimeter-right-1",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "DC3-altimeter-right-2",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.00006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "DC3-attitude-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "DC3-attitude-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.1365,
+                    "min": -0.039,
+                    "max": 0.039,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "DC3-attitude-bank",
+                    "source": "DC3.attitude-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-attitude-pitch",
+                    "source": "DC3.attitude-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-attitude-right-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "DC3-attitude-right-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.126,
+                    "min": -0.036,
+                    "max": 0.036,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "DC3-attitude-right-bank",
+                    "source": "DC3.attitude-right-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-attitude-right-pitch",
+                    "source": "DC3.attitude-right-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-heading-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "DC3-heading-drum",
+                    "source": "DC3.heading.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-heading-right-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "DC3-heading-right-drum",
+                    "source": "DC3.heading-right.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-vsi",
+                    "source": "verticalFpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -2000,
+                        -2.5
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        2000,
+                        2.5
+                      ]
+                    ],
+                    "responseSeconds": 0.5,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "DC3-vsi",
+                    "source": "DC3.vsi.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-vsi-right",
+                    "source": "verticalFpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -2000,
+                        -2.5
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        2000,
+                        2.5
+                      ]
+                    ],
+                    "responseSeconds": 0.5,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "DC3-vsi-right",
+                    "source": "DC3.vsi-right.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-turn",
+                    "source": "turnDegrees",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -6,
+                        -0.6
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        6,
+                        0.6
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "DC3-turn",
+                    "source": "DC3.turn.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-turn-right",
+                    "source": "turnDegrees",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -6,
+                        -0.6
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        6,
+                        0.6
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "DC3-turn-right",
+                    "source": "DC3.turn-right.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-rpm-left",
+                    "source": "rpm1",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1000,
+                        1.5
+                      ],
+                      [
+                        2000,
+                        3
+                      ],
+                      [
+                        3000,
+                        4.5
+                      ],
+                      [
+                        4000,
+                        6
+                      ]
+                    ],
+                    "responseSeconds": 0.25,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "DC3-rpm-left",
+                    "source": "DC3.rpm-left.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-rpm-right",
+                    "source": "rpm2",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1000,
+                        1.5
+                      ],
+                      [
+                        2000,
+                        3
+                      ],
+                      [
+                        3000,
+                        4.5
+                      ],
+                      [
+                        4000,
+                        6
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "DC3-rpm-right",
+                    "source": "DC3.rpm-right.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-flaps",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        -1.2
+                      ],
+                      [
+                        1,
+                        1.2
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "DC3-flaps",
+                    "source": "DC3.flaps.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-compass-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "DC3-compass-drum",
+                    "source": "DC3.compass.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "DC3-lever-2",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.7
+                  },
+                  {
+                    "node": "DC3-lever-3",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.7
+                  },
+                  {
+                    "node": "DC3-column--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.16
+                  },
+                  {
+                    "node": "DC3-wheel--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -0.75
+                  },
+                  {
+                    "node": "DC3-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.05
+                  },
+                  {
+                    "node": "DC3-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.05
+                  },
+                  {
+                    "node": "DC3-column-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.16
+                  },
+                  {
+                    "node": "DC3-wheel-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -0.75
+                  },
+                  {
+                    "node": "DC3-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.05
+                  },
+                  {
+                    "node": "DC3-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.05
+                  }
+                ]
+              }
+            },
+            "airplane": {
+              "wingPosition": [
+                0,
+                3.3,
+                0
+              ],
+              "wingArea": 91.7,
+              "controlAuthoritySpeed": 80,
+              "maxControlAuthority": 1.8,
+              "pitchAuthority": 0.18,
+              "pitchResponse": 2.5,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 0.55,
+              "rollResponse": 1.3,
+              "rudderAuthority": 1,
+              "groundSteerSpeed": 8,
+              "groundLevelRate": 2,
+              "maxGroundPitch": 0.22,
+              "camberAngle": 0.045,
+              "flapLift": 0.8,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "pitchFrequency": 3.5,
+              "pitchDamping": 0.7,
+              "maxLoadFactor": 3.8,
+              "minLoadFactor": -1.5,
+              "autoTrim": 1,
+              "directionalStability": 4,
+              "yawDamping": 1.2,
+              "dihedralEffect": 2.5,
+              "propellerEffects": 0.08,
+              "stallSpeed": 48,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.027506042106826698,
+              "inducedDrag": 0.04245496377765899,
+              "gearDrag": 0.004,
+              "flapDrag": 0.075,
+              "gearTransitTime": 0,
+              "flapTransitTime": 4,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.85,
+              "maxThrust": 37800,
+              "minPropellerSpeed": 25,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 4,
+              "rollingDeceleration": 0.22,
+              "groundTrackRate": 12,
+              "fixedGear": true,
+              "groundEffect": true,
+              "criticalMach": 0.62,
+              "waveDrag": 0.22,
+              "maxMach": 0.72,
+              "maxEquivalentAirspeed": 111.11999999999999,
+              "flapLimitSpeed": 55.559999999999995
+            },
+            "engines": [
+              {
+                "id": "engine-1",
+                "position": [
+                  2.8194,
+                  2.6045047663973557,
+                  6.007669938952122
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 895000,
+                "idleRpm": 0.18,
+                "spoolRate": 0.25,
+                "rotorAngularSpeed": 246.09142453120046,
+                "maxThrust": 19018.75,
+                "minPropellerSpeed": 25,
+                "propellerEfficiency": 0.85,
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 0.75
+              },
+              {
+                "id": "engine-2",
+                "position": [
+                  -2.8194,
+                  2.6045047663973557,
+                  6.007669938952122
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 895000,
+                "idleRpm": 0.18,
+                "spoolRate": 0.25,
+                "rotorAngularSpeed": 246.09142453120046,
+                "maxThrust": 19018.75,
+                "minPropellerSpeed": 25,
+                "propellerEfficiency": 0.85,
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 0.75
+              }
+            ]
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.56,
+                4.98592820846063,
+                6.472216373220554
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                -0.56,
+                4.98592820846063,
+                6.472216373220554
+              ]
+            }
+          ],
+          "entries": [
+            [
+              2.04,
+              0,
+              6.472216373220554
+            ]
+          ],
+          "exits": [
+            [
+              2.74,
+              0,
+              6.472216373220554
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.83,
+          "width": 11.28,
+          "height": 4.1,
+          "cruise": 90,
+          "weight": 0.35
+        },
+        "model.signals": {
+          "sources": {
+            "trueAirspeed": {
+              "component": "aircraftState",
+              "path": [
+                "airspeed"
+              ]
+            },
+            "altitude": {
+              "component": "transform",
+              "path": [
+                "pos",
+                1
+              ]
+            },
+            "yaw": {
+              "component": "aircraftState",
+              "path": [
+                "yaw"
+              ]
+            },
+            "pitch": {
+              "component": "aircraftState",
+              "path": [
+                "pitch"
+              ]
+            },
+            "roll": {
+              "component": "aircraftState",
+              "path": [
+                "roll"
+              ]
+            },
+            "verticalSpeed": {
+              "component": "aircraftState",
+              "path": [
+                "verticalSpeed"
+              ]
+            },
+            "yawRate": {
+              "component": "aircraftState",
+              "path": [
+                "yawRate"
+              ]
+            },
+            "flapPosition": {
+              "component": "aircraftState",
+              "path": [
+                "flapPosition"
+              ]
+            },
+            "gearPosition": {
+              "component": "aircraftState",
+              "path": [
+                "gearPosition"
+              ]
+            },
+            "engine1": {
+              "component": "aircraftState",
+              "path": [
+                "engines",
+                "engine-1",
+                "rpm"
+              ]
+            },
+            "engine2": {
+              "component": "aircraftState",
+              "path": [
+                "engines",
+                "engine-2",
+                "rpm"
+              ]
+            },
+            "pitchInput": {
+              "component": "aircraftInput",
+              "path": [
+                "pitch"
+              ]
+            },
+            "rollInput": {
+              "component": "aircraftInput",
+              "path": [
+                "roll"
+              ]
+            },
+            "yawInput": {
+              "component": "aircraftInput",
+              "path": [
+                "yaw"
+              ]
+            },
+            "power": {
+              "component": "aircraftInput",
+              "path": [
+                "power"
+              ]
+            }
+          },
+          "derived": {
+            "mph": {
+              "op": "multiply",
+              "args": [
+                "trueAirspeed",
+                2.2369362920544
+              ]
+            },
+            "feet": {
+              "op": "divide",
+              "args": [
+                "altitude",
+                0.3048
+              ]
+            },
+            "verticalFpm": {
+              "op": "multiply",
+              "args": [
+                "verticalSpeed",
+                196.85039370078738
+              ]
+            },
+            "northYaw": {
+              "op": "subtract",
+              "args": [
+                3.141592653589793,
+                "yaw"
+              ]
+            },
+            "trueHeading": {
+              "op": "modulo",
+              "args": [
+                "northYaw",
+                6.283185307179586
+              ]
+            },
+            "rpm1": {
+              "op": "multiply",
+              "args": [
+                "engine1",
+                2350
+              ]
+            },
+            "rpm2": {
+              "op": "multiply",
+              "args": [
+                "engine2",
+                2350
+              ]
+            },
+            "turnDegrees": {
+              "op": "multiply",
+              "args": [
+                "yawRate",
+                57.29577951308232
+              ]
+            },
+            "rollUp": {
+              "op": "max",
+              "args": [
+                "rollInput",
+                0
+              ]
+            },
+            "rollDown": {
+              "op": "min",
+              "args": [
+                "rollInput",
+                0
+              ]
+            },
+            "leftUp": {
+              "op": "multiply",
+              "args": [
+                "rollUp",
+                0.47123889803846897
+              ]
+            },
+            "leftDown": {
+              "op": "multiply",
+              "args": [
+                "rollDown",
+                0.3141592653589793
+              ]
+            },
+            "rightUp": {
+              "op": "multiply",
+              "args": [
+                "rollDown",
+                -0.47123889803846897
+              ]
+            },
+            "rightDown": {
+              "op": "multiply",
+              "args": [
+                "rollUp",
+                -0.3141592653589793
+              ]
+            },
+            "aileronL": {
+              "op": "add",
+              "args": [
+                "leftUp",
+                "leftDown"
+              ]
+            },
+            "aileronR": {
+              "op": "add",
+              "args": [
+                "rightUp",
+                "rightDown"
+              ]
+            },
+            "pitchUp": {
+              "op": "max",
+              "args": [
+                "pitchInput",
+                0
+              ]
+            },
+            "pitchDown": {
+              "op": "min",
+              "args": [
+                "pitchInput",
+                0
+              ]
+            },
+            "elevatorUp": {
+              "op": "multiply",
+              "args": [
+                "pitchUp",
+                0.5235987755982988
+              ]
+            },
+            "elevatorDown": {
+              "op": "multiply",
+              "args": [
+                "pitchDown",
+                0.3490658503988659
+              ]
+            },
+            "elevatorAngle": {
+              "op": "add",
+              "args": [
+                "elevatorUp",
+                "elevatorDown"
+              ]
+            },
+            "DC3.speed.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "mph",
+                -100000000000000000000
+              ]
+            },
+            "DC3.speed.available": {
+              "op": "greater",
+              "args": [
+                "DC3.speed.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.speed-right.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "mph",
+                -100000000000000000000
+              ]
+            },
+            "DC3.speed-right.available": {
+              "op": "greater",
+              "args": [
+                "DC3.speed-right.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-0.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-0.available": {
+              "op": "greater",
+              "args": [
+                "DC3.altimeter-0.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-1.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-1.available": {
+              "op": "greater",
+              "args": [
+                "DC3.altimeter-1.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-2.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-2.available": {
+              "op": "greater",
+              "args": [
+                "DC3.altimeter-2.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-right-0.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-right-0.available": {
+              "op": "greater",
+              "args": [
+                "DC3.altimeter-right-0.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-right-1.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-right-1.available": {
+              "op": "greater",
+              "args": [
+                "DC3.altimeter-right-1.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-right-2.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "DC3.altimeter-right-2.available": {
+              "op": "greater",
+              "args": [
+                "DC3.altimeter-right-2.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.attitude-bank.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "roll",
+                -100000000000000000000
+              ]
+            },
+            "DC3.attitude-bank.available": {
+              "op": "greater",
+              "args": [
+                "DC3.attitude-bank.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.attitude-pitch.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "pitch",
+                -100000000000000000000
+              ]
+            },
+            "DC3.attitude-pitch.available": {
+              "op": "greater",
+              "args": [
+                "DC3.attitude-pitch.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.attitude-right-bank.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "roll",
+                -100000000000000000000
+              ]
+            },
+            "DC3.attitude-right-bank.available": {
+              "op": "greater",
+              "args": [
+                "DC3.attitude-right-bank.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.attitude-right-pitch.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "pitch",
+                -100000000000000000000
+              ]
+            },
+            "DC3.attitude-right-pitch.available": {
+              "op": "greater",
+              "args": [
+                "DC3.attitude-right-pitch.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.heading.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "DC3.heading.available": {
+              "op": "greater",
+              "args": [
+                "DC3.heading.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.heading-right.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "DC3.heading-right.available": {
+              "op": "greater",
+              "args": [
+                "DC3.heading-right.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.vsi.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "verticalFpm",
+                -100000000000000000000
+              ]
+            },
+            "DC3.vsi.available": {
+              "op": "greater",
+              "args": [
+                "DC3.vsi.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.vsi-right.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "verticalFpm",
+                -100000000000000000000
+              ]
+            },
+            "DC3.vsi-right.available": {
+              "op": "greater",
+              "args": [
+                "DC3.vsi-right.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.turn.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "turnDegrees",
+                -100000000000000000000
+              ]
+            },
+            "DC3.turn.available": {
+              "op": "greater",
+              "args": [
+                "DC3.turn.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.turn-right.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "turnDegrees",
+                -100000000000000000000
+              ]
+            },
+            "DC3.turn-right.available": {
+              "op": "greater",
+              "args": [
+                "DC3.turn-right.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.rpm-left.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "rpm1",
+                -100000000000000000000
+              ]
+            },
+            "DC3.rpm-left.available": {
+              "op": "greater",
+              "args": [
+                "DC3.rpm-left.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.rpm-right.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "rpm2",
+                -100000000000000000000
+              ]
+            },
+            "DC3.rpm-right.available": {
+              "op": "greater",
+              "args": [
+                "DC3.rpm-right.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.flaps.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "flapPosition",
+                -100000000000000000000
+              ]
+            },
+            "DC3.flaps.available": {
+              "op": "greater",
+              "args": [
+                "DC3.flaps.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "DC3.compass.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "DC3.compass.available": {
+              "op": "greater",
+              "args": [
+                "DC3.compass.availableValue",
+                -100000000000000000000
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "DC3-speed",
+              "source": "mph",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  40,
+                  0.5
+                ],
+                [
+                  80,
+                  1.4
+                ],
+                [
+                  120,
+                  2.4
+                ],
+                [
+                  160,
+                  3.4
+                ],
+                [
+                  200,
+                  4.4
+                ],
+                [
+                  240,
+                  5.4
+                ],
+                [
+                  280,
+                  6.1
+                ]
+              ],
+              "responseSeconds": 0.2,
+              "missing": "hold"
+            },
+            {
+              "node": "DC3-speed",
+              "source": "DC3.speed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-speed-right",
+              "source": "mph",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  40,
+                  0.5
+                ],
+                [
+                  80,
+                  1.4
+                ],
+                [
+                  120,
+                  2.4
+                ],
+                [
+                  160,
+                  3.4
+                ],
+                [
+                  200,
+                  4.4
+                ],
+                [
+                  240,
+                  5.4
+                ],
+                [
+                  280,
+                  6.1
+                ]
+              ],
+              "responseSeconds": 0.2,
+              "missing": "hold"
+            },
+            {
+              "node": "DC3-speed-right",
+              "source": "DC3.speed-right.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-altimeter-0",
+              "source": "DC3.altimeter-0.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-altimeter-1",
+              "source": "DC3.altimeter-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-altimeter-2",
+              "source": "DC3.altimeter-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-altimeter-0",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.006283185307179587,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "DC3-altimeter-1",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.0006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "DC3-altimeter-2",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.00006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "DC3-altimeter-right-0",
+              "source": "DC3.altimeter-right-0.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-altimeter-right-1",
+              "source": "DC3.altimeter-right-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-altimeter-right-2",
+              "source": "DC3.altimeter-right-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-altimeter-right-0",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.006283185307179587,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "DC3-altimeter-right-1",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.0006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "DC3-altimeter-right-2",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.00006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "DC3-attitude-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "DC3-attitude-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.1365,
+              "min": -0.039,
+              "max": 0.039,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "DC3-attitude-bank",
+              "source": "DC3.attitude-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-attitude-pitch",
+              "source": "DC3.attitude-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-attitude-right-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "DC3-attitude-right-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.126,
+              "min": -0.036,
+              "max": 0.036,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "DC3-attitude-right-bank",
+              "source": "DC3.attitude-right-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-attitude-right-pitch",
+              "source": "DC3.attitude-right-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-heading-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "DC3-heading-drum",
+              "source": "DC3.heading.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-heading-right-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "DC3-heading-right-drum",
+              "source": "DC3.heading-right.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-vsi",
+              "source": "verticalFpm",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -2000,
+                  -2.5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  2000,
+                  2.5
+                ]
+              ],
+              "responseSeconds": 0.5,
+              "missing": "hold"
+            },
+            {
+              "node": "DC3-vsi",
+              "source": "DC3.vsi.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-vsi-right",
+              "source": "verticalFpm",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -2000,
+                  -2.5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  2000,
+                  2.5
+                ]
+              ],
+              "responseSeconds": 0.5,
+              "missing": "hold"
+            },
+            {
+              "node": "DC3-vsi-right",
+              "source": "DC3.vsi-right.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-turn",
+              "source": "turnDegrees",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -6,
+                  -0.6
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  6,
+                  0.6
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "DC3-turn",
+              "source": "DC3.turn.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-turn-right",
+              "source": "turnDegrees",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -6,
+                  -0.6
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  6,
+                  0.6
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "DC3-turn-right",
+              "source": "DC3.turn-right.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-rpm-left",
+              "source": "rpm1",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1000,
+                  1.5
+                ],
+                [
+                  2000,
+                  3
+                ],
+                [
+                  3000,
+                  4.5
+                ],
+                [
+                  4000,
+                  6
+                ]
+              ],
+              "responseSeconds": 0.25,
+              "missing": "hold"
+            },
+            {
+              "node": "DC3-rpm-left",
+              "source": "DC3.rpm-left.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-rpm-right",
+              "source": "rpm2",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1000,
+                  1.5
+                ],
+                [
+                  2000,
+                  3
+                ],
+                [
+                  3000,
+                  4.5
+                ],
+                [
+                  4000,
+                  6
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "DC3-rpm-right",
+              "source": "DC3.rpm-right.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-flaps",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  -1.2
+                ],
+                [
+                  1,
+                  1.2
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "DC3-flaps",
+              "source": "DC3.flaps.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-compass-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "DC3-compass-drum",
+              "source": "DC3.compass.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "DC3-lever-2",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.7
+            },
+            {
+              "node": "DC3-lever-3",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.7
+            },
+            {
+              "node": "DC3-column--1",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.16
+            },
+            {
+              "node": "DC3-wheel--1",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -0.75
+            },
+            {
+              "node": "DC3-pedal--1--1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.05
+            },
+            {
+              "node": "DC3-pedal--1-1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.05
+            },
+            {
+              "node": "DC3-column-1",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.16
+            },
+            {
+              "node": "DC3-wheel-1",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -0.75
+            },
+            {
+              "node": "DC3-pedal-1--1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.05
+            },
+            {
+              "node": "DC3-pedal-1-1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.05
+            },
+            {
+              "node": "DC3-flap--1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.7853981633974483
+            },
+            {
+              "node": "DC3-aileron--1",
+              "source": "aileronR",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "DC3-elevator--1",
+              "source": "elevatorAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "DC3-main-gear--1",
+              "source": "gearPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1.3,
+              "offset": -1.3
+            },
+            {
+              "node": "DC3-flap-1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.7853981633974483
+            },
+            {
+              "node": "DC3-aileron-1",
+              "source": "aileronL",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "DC3-elevator-1",
+              "source": "elevatorAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "DC3-main-gear-1",
+              "source": "gearPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1.3,
+              "offset": -1.3
+            },
+            {
+              "node": "DC3-rudder",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.5235987755982988
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.dc_3"
+      ]
+    }
+  }
+}

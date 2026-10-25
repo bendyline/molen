@@ -17,7 +17,7 @@ import {
 import { tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0159_commerzbank_tower',
+const key = 'commerzbank_tower',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'))),
   parts = partsEvidence(key),

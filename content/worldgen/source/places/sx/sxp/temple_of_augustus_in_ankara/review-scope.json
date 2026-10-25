@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "rubble": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.55
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -1.2881133647875345,
+      43,
+      91.95836429580213
+    ],
+    "lookAt": [
+      0,
+      5,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "whole-open-cella-vestibule-and-steel-supports",
+      "position": [
+        -1.8566980507960373,
+        22,
+        58.022001623075454
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "tall-open-southwest-portal-and-layered-lintel",
+      "position": [
+        -15.032963596158606,
+        9,
+        31.368933764420017
+      ],
+      "lookAt": [
+        -8.341944496679545,
+        6,
+        8.626236839683795
+      ],
+      "fov": 48
+    },
+    {
+      "name": "arched-windows-brick-banded-rear-and-open-frame",
+      "position": [
+        50.09092682478162,
+        18,
+        -7.2040995158571555
+      ],
+      "lookAt": [
+        7.646782455289583,
+        6,
+        -7.907383769710145
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -1.2881133647875345,
+        43,
+        91.95836429580213
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 46,
+      "name": "ankara-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -1.2881133647875345,
+        43,
+        91.95836429580213
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 46,
+      "name": "ankara-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -1.2881133647875345,
+        43,
+        91.95836429580213
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 46,
+      "name": "ankara-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -1.2881133647875345,
+        43,
+        91.95836429580213
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 46,
+      "name": "ankara-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/ankara-model.mjs",
+    "export": "buildAnkaraSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAnkaraDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.55
+          }
+        }
+      },
+      "street": {
+        "export": "buildAnkaraStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.55
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAnkaraCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.55
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      32.858258924,
+      39.944205988
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain pinned standard Protomaps2026-10-14/Mapzen13-14 original6m urban terrain, water and every independent building. Long masonry bottoms and low foundations follow sampled native grade and are buried0.55m; tall wall crests and portal lintel are level/broken picture-led profiles, not a huge maximum-grade podium. Individual drums/blocks have locally sampled buried feet. Keep cella/vestibule native ground open; no flattened archaeological precinct or ground/water/building cutout. Standard coarse urban terrain falls about4m along the site and does not resolve exact excavated floors or thresholds.",
+    "replaceFootprint": false,
+    "bounds": [
+      32.858003087482466,
+      39.94391991584787,
+      32.85862471669,
+      39.94449097981092
+    ],
+    "terrainReference": {
+      "anchor": [
+        32.858258924,
+        39.944205988
+      ],
+      "modelHeight": 0,
+      "basis": "Retain pinned standard Protomaps2026-10-14/Mapzen13-14 original6m urban terrain, water and every independent building. Long masonry bottoms and low foundations follow sampled native grade and are buried0.55m; tall wall crests and portal lintel are level/broken picture-led profiles, not a huge maximum-grade podium. Individual drums/blocks have locally sampled buried feet. Keep cella/vestibule native ground open; no flattened archaeological precinct or ground/water/building cutout. Standard coarse urban terrain falls about4m along the site and does not resolve exact excavated floors or thresholds."
+    },
+    "notes": "Exact-QID Q1640233/way469691342 fixes the approximately59.656x27.054m archaeological-site envelope and named standard PMTiles point35184841780174 corroborates identity. This is an archaeological polygon, not a native building shell. Root heading0, internal architectural angle-0.802151033991rad gives northeast/southwest long axis; the photographed entrance is assigned southwest. Cella, vestibule, rear remnants and bracing are picture-led subdivisions within that envelope, not independently mapped wall surveys. Preserve the separate northwest mosque/native building35184527286414 and all other native buildings; no building replacement mask. Retain pinned standard Protomaps2026-10-14/Mapzen13-14 original6m urban terrain, water and every independent building. Long masonry bottoms and low foundations follow sampled native grade and are buried0.55m; tall wall crests and portal lintel are level/broken picture-led profiles, not a huge maximum-grade podium. Individual drums/blocks have locally sampled buried feet. Keep cella/vestibule native ground open; no flattened archaeological precinct or ground/water/building cutout. Standard coarse urban terrain falls about4m along the site and does not resolve exact excavated floors or thresholds."
+  }
+}

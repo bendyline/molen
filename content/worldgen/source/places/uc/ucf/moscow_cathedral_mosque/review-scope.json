@@ -1,0 +1,367 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stucco",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85,
+      "metallic": 0.1
+    },
+    "gold": {
+      "slot": "roof",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.48,
+      "metallic": 0.7
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.48,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/moscow-model.mjs",
+    "export": "buildMoscowSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMoscowDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.48,
+            "metallic": 0.7
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildMoscowStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.48,
+            "metallic": 0.7
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMoscowCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.48,
+            "metallic": 0.7
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -112,
+      100,
+      137
+    ],
+    "lookAt": [
+      0,
+      27,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-moscow-skyline",
+      "position": [
+        -112,
+        100,
+        137
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-moscow-district",
+      "position": [
+        -112,
+        100,
+        137
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-moscow-street",
+      "position": [
+        -112,
+        100,
+        137
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-moscow-closeup",
+      "position": [
+        -112,
+        100,
+        137
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.continental.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Mapped main outline retained; internal plans, heights and detailed terrain fit approximate.",
+    "anchor": [
+      37.626986748,
+      55.778995625
+    ],
+    "heading": 0.047718020823,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Normal viewer DEM datum 154.03982251882553 m; working floor 0.2785621010920522 m is the median of 92 outside-perimeter samples at 1 m offset plus 0.3 m. 327 raw footprint samples span -0.34857956631719844..0.9389330536048419 m. Adaptive footings follow the actual outline. Preview terrain seats the footprint and 1.5 m margin; the U-shaped indentation stays open for the separate northern building. Model paving covers the raw-outline ground cutout. Precise stairs, thresholds, street retaining walls, ramps, basement/shop levels, paving grades and terrain joins remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -33.32584184994212,
+          -25.297206948366068
+        ],
+        [
+          -33.38857881259454,
+          25.300906550527692
+        ],
+        [
+          33.351399686955084,
+          25.293918236915445
+        ],
+        [
+          33.24640743748766,
+          -25.3121678334837
+        ],
+        [
+          22.99100470115099,
+          -25.297580409752147
+        ],
+        [
+          22.901471842941234,
+          -12.861778478049985
+        ],
+        [
+          13.316978791191053,
+          -12.815150752547805
+        ],
+        [
+          -24.1743465692063,
+          -12.756317731758193
+        ],
+        [
+          -24.252540828837134,
+          -25.20013609029343
+        ]
+      ],
+      "basis": "Normal viewer DEM datum 154.03982251882553 m; working floor 0.2785621010920522 m is the median of 92 outside-perimeter samples at 1 m offset plus 0.3 m. 327 raw footprint samples span -0.34857956631719844..0.9389330536048419 m. Adaptive footings follow the actual outline. Preview terrain seats the footprint and 1.5 m margin; the U-shaped indentation stays open for the separate northern building. Model paving covers the raw-outline ground cutout. Precise stairs, thresholds, street retaining walls, ramps, basement/shop levels, paving grades and terrain joins remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        37.626986748,
+        55.778995625
+      ],
+      "modelHeight": 0,
+      "basis": "Normal viewer DEM datum 154.03982251882553 m; working floor 0.2785621010920522 m is the median of 92 outside-perimeter samples at 1 m offset plus 0.3 m. 327 raw footprint samples span -0.34857956631719844..0.9389330536048419 m. Adaptive footings follow the actual outline. Preview terrain seats the footprint and 1.5 m margin; the U-shaped indentation stays open for the separate northern building. Model paving covers the raw-outline ground cutout. Precise stairs, thresholds, street retaining walls, ramps, basement/shop levels, paving grades and terrain joins remain unverified."
+    },
+    "bounds": [
+      37.619,
+      55.774,
+      37.635,
+      55.784
+    ],
+    "notes": "Retained exact way 128264422 / Q3679864 is current viewer building 35184500353254. Its nine current outer vertices, original anchor and heading remain unchanged. Positive X is approximately east, positive Z approximately south. Pictures from the northwest and south place the two tall minarets on the western side, the main gold dome over the central prayer block, and smaller corner turrets toward the east. Current PMTiles have no height tags or independent roof/tower parts. All internal plans, turret positions, facade divisions and vertical dimensions are picture estimates. The separate northern low building 35184418943116 remains host content; its footprint is preserved rather than absorbed into the main mosque. Normal viewer DEM datum 154.03982251882553 m; working floor 0.2785621010920522 m is the median of 92 outside-perimeter samples at 1 m offset plus 0.3 m. 327 raw footprint samples span -0.34857956631719844..0.9389330536048419 m. Adaptive footings follow the actual outline. Preview terrain seats the footprint and 1.5 m margin; the U-shaped indentation stays open for the separate northern building. Model paving covers the raw-outline ground cutout. Precise stairs, thresholds, street retaining walls, ramps, basement/shop levels, paving grades and terrain joins remain unverified."
+  },
+  "geographicNote": "Normal viewer DEM datum 154.03982251882553 m; working floor 0.2785621010920522 m is the median of 92 outside-perimeter samples at 1 m offset plus 0.3 m. 327 raw footprint samples span -0.34857956631719844..0.9389330536048419 m. Adaptive footings follow the actual outline. Preview terrain seats the footprint and 1.5 m margin; the U-shaped indentation stays open for the separate northern building. Model paving covers the raw-outline ground cutout. Precise stairs, thresholds, street retaining walls, ramps, basement/shop levels, paving grades and terrain joins remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

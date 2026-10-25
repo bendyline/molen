@@ -4,11 +4,15 @@ import type {
   ModelSignalSpec,
 } from '@bendyline/molen-schema';
 import type { Object3D } from 'three';
+import { compileModelSignalExpressions } from './model-signal-expressions';
 
 export type ModelSignals = Readonly<Record<string, number | undefined>>;
 export interface ModelSignalVisual {
   readonly missingNodes: readonly string[];
-  update(signals: ModelSignals): void;
+  /** Unavailable binding sources on the most recent update (including invalid formulas). */
+  readonly missingSignals: readonly string[];
+  /** Absolute simulation time enables responseSeconds; omission applies readings immediately. */
+  update(signals: ModelSignals, timeSeconds?: number): void;
   /** Restore authored transforms before removing or replacing bindings. */
   reset(): void;
 }
@@ -20,6 +24,10 @@ export function readModelSignals(
 ): ModelSignals {
   const signals: Record<string, number | undefined> = Object.create(null);
   for (const [name, source] of Object.entries(sources ?? {})) {
+    // An explicitly bound but unavailable sensor must override a host convenience reading.
+    signals[name] = undefined;
+    // An explicitly bound but unavailable sensor must override a host convenience reading.
+    signals[name] = undefined;
     let value = readComponent(source.component);
     for (const part of source.path) {
       if (value === null || typeof value !== 'object' || !Object.hasOwn(value, part)) {
@@ -57,6 +65,8 @@ export function modelSignalDisplacement(binding: ModelSignalBinding, signal: num
 
 /** Model-agnostic; moves existing geometry without creating a cockpit or changing physics. */
 export function createModelSignalVisual(model: Object3D, spec: ModelSignalSpec): ModelSignalVisual {
+  const derive = compileModelSignalExpressions(spec.derived);
+  let missingSignals: string[] = [];
   const nodes = new Map<string, Object3D[]>();
   model.traverse((node) => {
     const matches = nodes.get(node.name) ?? [];
@@ -69,23 +79,87 @@ export function createModelSignalVisual(model: Object3D, spec: ModelSignalSpec):
   const bindings = spec.bindings.flatMap((binding) =>
     (nodes.get(binding.node) ?? []).map((node) => {
       node.matrixAutoUpdate = true;
-      return { binding, node, rest: node[binding.property][binding.axis] };
+      const rest =
+        binding.property === 'visible'
+          ? Number(node.visible)
+          : node[binding.property][binding.axis ?? 'z'];
+      return {
+        binding,
+        node,
+        rest,
+        current: undefined as number | undefined,
+        time: undefined as number | undefined,
+      };
     }),
   );
   return {
     missingNodes,
-    update(signals) {
-      for (const { binding, node, rest } of bindings) {
+    get missingSignals() {
+      return missingSignals;
+    },
+    update(sources, timeSeconds) {
+      const signals = derive(sources);
+      const missing = new Set<string>();
+      const time =
+        timeSeconds !== undefined && Number.isFinite(timeSeconds) ? timeSeconds : undefined;
+      for (const state of bindings) {
+        const { binding, node, rest } = state;
+        const write = (value: number): void => {
+          if (binding.property === 'visible') node.visible = value > 0;
+          else node[binding.property][binding.axis ?? 'z'] = value;
+        };
         const signal = signals[binding.source];
-        if (signal === undefined || !Number.isFinite(signal)) continue;
-        const value = modelSignalDisplacement(binding, signal);
-        if (!Number.isFinite(value)) continue;
-        node[binding.property][binding.axis] =
-          rest + Math.max(binding.min ?? -Infinity, Math.min(binding.max ?? Infinity, value));
+        const raw = signal === undefined ? NaN : modelSignalDisplacement(binding, signal);
+        if (!Number.isFinite(raw)) {
+          missing.add(binding.source);
+          state.time = undefined;
+          if (binding.missing === 'rest' || binding.missing === 'hide') {
+            write(binding.missing === 'hide' ? 0 : rest);
+            state.current = undefined;
+          } else {
+            write(
+              state.current === undefined
+                ? rest
+                : binding.property === 'visible'
+                  ? state.current
+                  : rest + state.current,
+            );
+          }
+          continue;
+        }
+        let value = Math.max(binding.min ?? -Infinity, Math.min(binding.max ?? Infinity, raw));
+        const period = binding.period;
+        const wrap = (v: number): number =>
+          period === undefined ? v : ((v % period) + period) % period;
+        value = wrap(value);
+        if (
+          binding.responseSeconds &&
+          time !== undefined &&
+          state.time !== undefined &&
+          time >= state.time &&
+          state.current !== undefined
+        ) {
+          let delta = value - state.current;
+          if (period !== undefined)
+            delta = ((((delta + period / 2) % period) + period) % period) - period / 2;
+          value = wrap(
+            state.current + delta * -Math.expm1(-(time - state.time) / binding.responseSeconds),
+          );
+        }
+        state.current = value;
+        state.time = time;
+        write(binding.property === 'visible' ? value : rest + value);
       }
+      missingSignals = [...missing];
     },
     reset() {
-      for (const { binding, node, rest } of bindings) node[binding.property][binding.axis] = rest;
+      for (const state of bindings) {
+        const { binding, node, rest } = state;
+        if (binding.property === 'visible') node.visible = rest > 0;
+        else node[binding.property][binding.axis ?? 'z'] = rest;
+        state.current = state.time = undefined;
+      }
+      missingSignals = [];
     },
   };
 }

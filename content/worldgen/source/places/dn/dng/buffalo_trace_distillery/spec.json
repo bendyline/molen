@@ -1,0 +1,455 @@
+{
+  "planId": "buffalo_trace_distillery",
+  "id": "buffalo_trace_distillery",
+  "assetId": "molen.worldgen.structure.buffalo_trace_distillery",
+  "title": "Buffalo Trace Distillery",
+  "category": "industrial-complex",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -84.86826635,
+    "latitude": 38.2176181
+  },
+  "size": [
+    698.4293823242188,
+    42.810879707336426,
+    514.1048889160156
+  ],
+  "actualBounds": {
+    "min": [
+      -349.2146911621094,
+      -5.608181953430176,
+      -257.0700988769531
+    ],
+    "max": [
+      349.2146911621094,
+      37.20269775390625,
+      257.0347900390625
+    ]
+  },
+  "visualBrief": "Whole contiguous main production and visitor campus, 68 native building footprints/166 native parts: riverside still/mash/fermentation/dryhouse/process blocks, six grain silos, four-leg water tower, historic C/D/I/H/B brick or metal rickhouses, K/L/M/N/O/P/Q/R/S/T/U warehouse groups, distribution centre, freehouse/bottling/visitor/guest/clubhouse/Taylor-house core and small intrinsic sheds. Exterior massing/roof shapes/bays/brickpilasters/stonebasement/industrialglazing/warehouseopenings/overheadlinks. Exclude separately sited remote northernwarehousefarms, unrelated surrounding houses/carshop/church/publicroads/river/landscape/artworks/paintedlogos and allinteriors. Richnativebuildingparts respected; Cstonebasement/three tallarchedbrickwindowrows/pilasters/quoins andtallstairbulkhead; Imanysmallindustrialopenings/cornerstair, Hpaleindustrialmetal/gable, D/Bbrickgables,1960sconcrete/tilewarehousefacadegrids. Greenframes/darkwindowrecesses, subduedbrick/concrete, darkroofs, whitedishedtank/dark4legopenXframe,6concretesilos. Neveruniformgenericboxes/onewatertoweraswholecampus.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Buffalo_Trace_still.jpg",
+    "https://commons.wikimedia.org/wiki/File:Buffalo_Trace_warehouses.jpg",
+    "https://commons.wikimedia.org/wiki/File:Buffalo_Trace_water_tower.jpg",
+    "https://commons.wikimedia.org/wiki/File:OFC_warehouse.jpg"
+  ],
+  "stories": [
+    {
+      "id": "buffalo-trace-distillery-wp",
+      "url": "https://qualla.com/buffalo-trace-distillery/"
+    }
+  ],
+  "referenceInputHash": "b05c9a54394d8d51a05212afa8b80a6955b6912bb5ac0febc55b14081ab48e8d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-buffalo-trace-distillery.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-buffalo-trace-distillery.mjs",
+    "level": "skyline",
+    "export": "buffaloTraceDistillerySkyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.95,
+        "metallic": 0.12
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.05
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buffaloTraceDistilleryDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.95,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buffaloTraceDistilleryStreet",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.95,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buffaloTraceDistilleryCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.95,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native68maincampusbuildingpolygons and166parts/actualwater-towerfootprint fix frame [-84.86826635,38.2176181] heading0/+Xeast/+Zsouth beforeterrain/geometry. Namedlanduseparcel262912712/Q2927641 isidentitycontextonly, not extruded. PublishedAcdixon2017OwnCC0still/warehouse/watertower/OFC-Cphotos supportprimaryforms. PrimaryNationalRegister2000inventory gives87ftstill/80ftmash/58ftdryhouse,6silos, individualwarehousefloor/material/roofclasses. Nativemetricheights preferred forotherparts; building:levels×3m is explicitlyapproximateheightproxy, notsurveyedfloorcount. Partialparts are not treated as wholefloatingbuildings; parentmasses retainunmapped fabric. Nearactualwindowcounts/corebayproportions approximatefromclearphotos/primarydescription; hiddennewwings usehonestnativecontrols. Everybuildingbase samplesunchangedindependentfield atitscentre beforeanyvisualtuning; constructiongrade/providerdatum not survey, actualhostcontactunverified.",
+    "anchor": [
+      -84.86826635,
+      38.2176181
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -84.86815201256202,
+        38.216270633237514
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed open southernmaincampus approach before independentterrain/geometry; provider-relative architecturedatum, notsurveyed slab."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/576865346",
+      "way/576865348",
+      "way/576865351",
+      "way/576865353",
+      "way/576865356",
+      "way/576865360",
+      "way/576865363",
+      "way/576865369",
+      "way/576870116",
+      "way/576870117",
+      "way/576870118",
+      "way/576870120",
+      "way/576870121",
+      "way/576872213",
+      "way/577223653",
+      "way/577223654",
+      "way/577223655",
+      "way/577223656",
+      "way/577223657",
+      "way/577223658",
+      "way/577223659",
+      "way/577223660",
+      "way/577223661",
+      "way/577223662",
+      "way/577225680",
+      "way/577225682",
+      "way/577225683",
+      "way/577225685",
+      "way/578169715",
+      "way/578169992",
+      "way/578169993",
+      "way/580932914",
+      "way/580932916",
+      "way/580932917",
+      "way/580932918",
+      "way/580932919",
+      "way/581301469",
+      "way/581301470",
+      "way/581301471",
+      "way/581301472",
+      "way/581301482",
+      "way/584933023",
+      "way/696485773",
+      "way/922855038",
+      "way/922855043",
+      "way/922855047",
+      "way/923389891",
+      "way/923967963",
+      "way/924404345",
+      "way/924409169",
+      "way/924809560",
+      "way/924820142",
+      "way/924840743",
+      "way/924843829",
+      "way/924843832",
+      "way/926790071",
+      "way/934391311",
+      "way/936415707",
+      "way/947837011",
+      "way/1013906822",
+      "way/1039321568",
+      "way/1040313580",
+      "way/1040313581",
+      "way/1134979558",
+      "way/1165385470",
+      "way/1165385471",
+      "way/1465159484",
+      "way/1552990657"
+    ],
+    "source": "https://www.openstreetmap.org/way/262912712",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d43cb701f794fb6e0a5ab22f15216ad16dbc9205b356dcbb3d0972b8e1a8c91e",
+    "notes": "Whole contiguous main production and visitor campus, 68 native building footprints/166 native parts: riverside still/mash/fermentation/dryhouse/process blocks, six grain silos, four-leg water tower, historic C/D/I/H/B brick or metal rickhouses, K/L/M/N/O/P/Q/R/S/T/U warehouse groups, distribution centre, freehouse/bottling/visitor/guest/clubhouse/Taylor-house core and small intrinsic sheds. Exterior massing/roof shapes/bays/brickpilasters/stonebasement/industrialglazing/warehouseopenings/overheadlinks. Exclude separately sited remote northernwarehousefarms, unrelated surrounding houses/carshop/church/publicroads/river/landscape/artworks/paintedlogos and allinteriors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Native68maincampusbuildingpolygons and166parts/actualwater-towerfootprint fix frame [-84.86826635,38.2176181] heading0/+Xeast/+Zsouth beforeterrain/geometry. Namedlanduseparcel262912712/Q2927641 isidentitycontextonly, not extruded. PublishedAcdixon2017OwnCC0still/warehouse/watertower/OFC-Cphotos supportprimaryforms. PrimaryNationalRegister2000inventory gives87ftstill/80ftmash/58ftdryhouse,6silos, individualwarehousefloor/material/roofclasses. Nativemetricheights preferred forotherparts; building:levels×3m is explicitlyapproximateheightproxy, notsurveyedfloorcount. Partialparts are not treated as wholefloatingbuildings; parentmasses retainunmapped fabric. Nearactualwindowcounts/corebayproportions approximatefromclearphotos/primarydescription; hiddennewwings usehonestnativecontrols.",
+    "Whole contiguous main production/visitor campus: all mapped buildings from riverside still/mash/grain processing through historicbrick/metalrickhouses and concrete/tile warehouses east toU, visitor/guest/clubhouse/Taylor-house core. Excludes separate remote northernwarehouse farms, unrelated surroundinghouses/carshop/oldchurch, publicroads/river/landscape andwholelandownershipparcel. Individual physicalbuildings native, no parcel extrusion. Currentmappedmaincampusshell with primaryhistoricresourceforms; decorative/roof/height details vary inconfidence.",
+    "Whole68nativebuildingmaincampus,166nativeparts near; skyline usesorientedrectangles/mergedparts andomitssmallfacadewindows. Primarytextgivesstructure/material/roofclasses, clearpublishedphotossupportCarchbays/stonelowlevel,Imanysmallwindows/stair/whitefourlegwatertower/stillglazing. Hiddennewblocks/windowcensus/finehardware/roofridges andnativelevels3mheightproxy arearchitecturalestimates,notas-builtsurvey. Partialnativeparts sitoverinsetfullparentmasses toavoidfloatinginfill/omittedunmappedfabric; mainflat/gableridgegeometryapproximate.",
+    "Onewholemodelrepresentsthecontiguousmainproduction/visitorcampus, not allBuffaloTraceownedland/remote northernwarehousefarms. No industriallanduseparcel extrusion, isolatedwatertower substitution, publicroads/river/landscape/artworks/logos/signlettering/interiors/operatingmachinery.",
+    "Four exactpublishedAcdixon2017Own/selfCC0originals individuallyinspected/nativeSHA1bound, unchangedpolicy passes. NativeOSMcontrolsinODbL; primaryNRHP2000inventorytextfacts only. No protectedPDFphotos/plans/ownerpromotionalimages adopted, no Quallamedia/body/category/policy edits, photographictextures/downloadedmesh/generatedbitmap.",
+    "Independent1024m129square8m16641samplefield/fouroriginaltiles frozenbeforegeometry; allvalues/PNG/tilebytes preserved. Everyparentbase is preexistingfieldcentre elevation, not fabricated flatcampus floor. This mayembedcorners oncoarsecomposite terrain; no sourceflattening/fitting/reacquisition. Provider152.1041m fixedapproachdatum/actualhostgrade/footingcontact unverified; ordinarygeographicpreview/replacementdisabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-maincampus-riverside-process-warehouses-and-distribution",
+      "position": [
+        680,
+        510,
+        800
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "warehouse-c-stone-base-three-arched-brick-rows-and-stairtower",
+      "position": [
+        -63,
+        23,
+        165
+      ],
+      "lookAt": [
+        -108,
+        12,
+        89
+      ]
+    },
+    {
+      "name": "stillhouse-industrial-glazing-silos-and-connected-processcore",
+      "position": [
+        -234,
+        35,
+        245
+      ],
+      "lookAt": [
+        -310,
+        18,
+        166
+      ]
+    },
+    {
+      "name": "water-tank-open-fourleg-braced-frame-and-historic-rickhouses",
+      "position": [
+        -74,
+        35,
+        73
+      ],
+      "lookAt": [
+        -111,
+        20,
+        20
+      ]
+    },
+    {
+      "name": "concrete-tile-paired-warehouse-groups-native-campus-plan",
+      "position": [
+        142,
+        100,
+        -233
+      ],
+      "lookAt": [
+        49,
+        17,
+        -70
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 60138,
+    "vertices": 180414,
+    "materials": 6,
+    "bytes": 7220288,
+    "sha256": "sha256:8f679ddeae8c7d2096ee5ca4a8a2a0f630917aefe6e59b0d854cbdd5a2072acf"
+  }
+}

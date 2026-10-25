@@ -1,0 +1,42 @@
+{
+  "format": "molen/terrain@2",
+  "name": "Chambord independent IGN ground and river-surface review",
+  "origin": [
+    -160,
+    -160
+  ],
+  "chunkSize": 320,
+  "tileResolution": 161,
+  "gridSize": [
+    1,
+    1
+  ],
+  "height": {
+    "min": -3,
+    "max": 9
+  },
+  "tiles": {
+    "heightUrl": "terrain-review.height.png"
+  },
+  "layers": [
+    {
+      "name": "review-ground",
+      "color": "#aaa59a",
+      "tiling": 1
+    }
+  ],
+  "lod": {
+    "levels": 1,
+    "distanceBands": [],
+    "skirts": false
+  },
+  "streaming": {
+    "loadRadius": 1,
+    "unloadRadius": 2,
+    "maxConcurrentLoads": 1,
+    "maxResidentTiles": 1
+  },
+  "collision": {
+    "enabled": true
+  }
+}

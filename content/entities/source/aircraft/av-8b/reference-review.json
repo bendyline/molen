@@ -1,0 +1,237 @@
+{
+  "format": "molen/aircraft-reference-review@1",
+  "status": "reviewed-with-limitations",
+  "variant": "AV-8B Harrier II Plus, radar nose, representative MPCD cockpit, clean without external stores",
+  "references": [
+    {
+      "url": "https://jyito.com/Natops.pdf",
+      "title": "NAVAIR A1-AV8BB-NFM-000,1September2011,Fig1-2sheet2 and FO-1",
+      "author": "US Navy",
+      "license": "US government work; public mirror of an unclassified distribution-C manual. Reference only, no manual pages distributed.",
+      "local": ".artifacts/aircraft/references/av8-natops.pdf",
+      "scope": "Exterior dimensions and arrangements PDF58,60,61; single-seat panel and consoles PDF666 inspected."
+    },
+    {
+      "url": "https://www.navair.navy.mil/product/AV-8B-Harrier",
+      "title": "NAVAIR AV-8B facts",
+      "author": "US Navy",
+      "license": "Public factual reference",
+      "scope": "Independent9.25m span and3.55m height. Listed14.12m length is the earlier nose; the Plus drawing specifies47.75ft."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:BAE-McDonnell-Douglas_AV8B_edit5.jpg",
+      "title": "AV-8B II Plus165597 hovering at Oshkosh,2003",
+      "author": "Paul Maritz; edit Fir0002",
+      "license": "CC BY-SA3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "local": ".artifacts/aircraft/references/av8-exterior.jpg",
+      "scope": "Independent exterior photo: intakes, canopy, four nozzles, bicycle gear, wing and fin. Optional stores and pods in photograph omitted."
+    },
+    {
+      "url": "https://www.dvidshub.net/video/885403/ace-spades-provide-close-air-support-during-exercise-southern-strike-2023-cockpit-footage",
+      "title": "USMC cockpit footage,19April2023,public thumbnail",
+      "author": "Cpl Christian Cortez,2nd Marine Aircraft Wing",
+      "license": "US federal government public domain",
+      "local": ".artifacts/aircraft/references/av8-cockpit-photo.jpg",
+      "scope": "Independent pilot-view photo: deep coaming, UFC, two MPCDs, central standby cluster and HUD supports. Display scan artifacts and lower-panel crop limit detail."
+    },
+    {
+      "url": "https://ntrs.nasa.gov/api/citations/19840014464/downloads/19840014464.pdf",
+      "title": "NASA TM85938,1984,Fig18",
+      "author": "W.P.Nelms and S.B.Anderson,NASA Ames",
+      "license": "US federal government work",
+      "local": ".artifacts/aircraft/references/av8-nasa.pdf",
+      "scope": "PDF32 inspected as an independent early AV-8B arrangement; the small raster and earlier nose prevent detailed Plus calibration."
+    }
+  ],
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.36
+    ],
+    "viewHeight": 1.14,
+    "cameraHeight": 5.7
+  },
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      3.12,
+      3.92
+    ],
+    "lookAt": [
+      0,
+      2.44,
+      4.75
+    ],
+    "fov": 78
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "thrustVector": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "thrustVector": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/av8-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 597,
+        "height": 163
+      },
+      "referenceAnchor": [
+        16,
+        158
+      ],
+      "modelAnchor": [
+        -7.2771,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 569,
+        "meters": 14.5542,
+        "description": "Uniform full-body reference scale; drawing side projection47.44ft versus plan47.75ft."
+      },
+      "scope": "Radar nose, canopy, intake, nozzle stations, gear and tail. Published nominal height independently constrained; drawing is illustrative."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/av8-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 500,
+        "height": 235
+      },
+      "referenceAnchor": [
+        249,
+        222
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 480,
+        "meters": 9.25,
+        "description": "Uniform9.25m wingspan;11degree anhedral and2.591m outrigger half-track independently constrained."
+      },
+      "scope": "Wing height/anhedral, body, intake shape, outrigger and fin. The illustrative frontal proportions conflict with the side drawing and nominal height; this overlay is retained as discrepancy evidence, not a claim of contour agreement."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/av8-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 352,
+        "height": 533
+      },
+      "referenceAnchor": [
+        175,
+        526
+      ],
+      "modelAnchor": [
+        0,
+        7.2771
+      ],
+      "scaleControls": {
+        "pixels": 520,
+        "meters": 14.5542,
+        "description": "Uniform47.75ft plan length; span9.25m independently enforced."
+      },
+      "scope": "Wing sweep and chord, LERX, fuselage and tail. Dimensioned diagram has small internal scale discrepancies.",
+      "referencePreparation": "Cropped and rotated180degrees, no contour stretching."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/av8-panel.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1120,
+        "height": 940
+      },
+      "referenceAnchor": [
+        535,
+        400
+      ],
+      "modelAnchor": [
+        0,
+        -2.4
+      ],
+      "scaleControls": {
+        "pixels": 1000,
+        "meters": 0.94,
+        "description": "Uniform estimated cockpit scale; no absolute panel dimensions supplied."
+      },
+      "scope": "Main panel arch, twinMPCDs,UFC/ODU,central standby cluster,offsetVVI,engine display and lower console. Detached manual callouts are excluded from geometric interpretation."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced generic Harrier geometry with a dedicated radar-nose body, canopy aperture, D-shaped intake ducts and auxiliary doors, swept anhedral/incidence wing, LERX, single fin, stabilators, bicycle gear and four elbow nozzles.",
+      "Corrected length to47.75ft/14.5542m for the radar variant; fixed nose/main wheelbase3.481m and outrigger half-track2.591m.",
+      "Overlay iteration moved intake lips forward1m, added the wing chord slope, closed canopy shoulder joins and removed intake-wall penetration into the cockpit.",
+      "Rebuilt the twin-MPCD/UFC/ODU panel, central standby cluster, upper-right engine/nozzle display, offsetVVI, lower gear/flap and V/STOL controls, distinct side consoles, seat harness, center stick and separate throttle/nozzle levers.",
+      "Wired supported attitude,TAS,geometric altitude,true heading,VSI,normalizedRPM,nozzle angle,flaps,gear and controls. Corrected the RPM source path using actual kernel state in the test.",
+      "All four nozzle outlets rotate aft-to-down with the same0–90degree actuator value as the cockpit indication. Oriented flap/stabilator hinges are tested using world-space trailing-edge motion."
+    ],
+    "independentDimensions": {
+      "lengthMeters": 14.5542,
+      "spanMeters": 9.25,
+      "heightMeters": 3.55,
+      "tailSpanMeters": 4.246,
+      "mainToNoseWheelbaseMeters": 3.481,
+      "outriggerHalfTrackMeters": 2.591,
+      "panelScale": "Estimated0.94mm per pixel of the documented crop; no manufacturing panel dimensions available."
+    },
+    "visual": "Personally inspected final-hash side/top/front/panel overlays, four turntable angles, three-quarter/operator/cabin/cabin-wide views and13 additional zero/cruise/limits/negative-altitude/missing/hover/transition/airplane/control/seat/console/detail renders. Compared exterior against Paul Maritz photograph and cockpit coaming/panel against released USMC cockpit-video thumbnail. Main planform and panel layout align; frontal drawing conflicts explicitly retained.",
+    "limitations": [
+      "The Navy manual is an illustrative arrangement, not a manufacturing drawing. Its front view has a different implied height and relative body/wing placement from its side view. No nonuniform image warping was used; printed dimensions and the side/plan/photo evidence take precedence. Detailed frontal contour accuracy remains lower confidence.",
+      "Fuselage transverse sections, intake curvature, nozzle bend radius, wing incidence, canopy section, seat hardware and absolute cockpit dimensions are estimates; no station drawings or cockpit survey were found.",
+      "Nozzles cover the simulator-supported0–90degree range. Actual beyond-vertical travel, automatic flap scheduling, reaction-control plumbing, nozzle asymmetry and real engine thermodynamics are not simulated. Gear travel is a simplified translation/hide animation.",
+      "MPCD flight/heading pages are clearly marked SIM; no navigation/radar page or collimated HUD. TAS substitutes for unmodeled indicated airspeed, geometric altitude for pressure altitude, true for magnetic heading, and normalized engine RPM for actual engine-core RPM. Unsupported fuel,JPT,oil,AOA,radio and hydraulic values remain unavailable.",
+      "Console switch grouping, maintenance markings and selected fasteners are simplified; no full electrical system, canopy opening, speedbrake or weapons. Reference pixels remain local and are not distributed."
+    ]
+  },
+  "sourceHash": "sha256:d5d919b54db64d7ad1627211131661d67b87c9361a62086ac14f0f80134cbe93",
+  "runtimeHash": "sha256:d301f5fce57e957bbf62def06d55b5a6a35e1f1cee971bfa040cb35cc01946b5",
+  "limitations": [
+    "The Navy manual is an illustrative arrangement, not a manufacturing drawing. Its front view has a different implied height and relative body/wing placement from its side view. No nonuniform image warping was used; printed dimensions and the side/plan/photo evidence take precedence. Detailed frontal contour accuracy remains lower confidence.",
+    "Fuselage transverse sections, intake curvature, nozzle bend radius, wing incidence, canopy section, seat hardware and absolute cockpit dimensions are estimates; no station drawings or cockpit survey were found.",
+    "Nozzles cover the simulator-supported0–90degree range. Actual beyond-vertical travel, automatic flap scheduling, reaction-control plumbing, nozzle asymmetry and real engine thermodynamics are not simulated. Gear travel is a simplified translation/hide animation.",
+    "MPCD flight/heading pages are clearly marked SIM; no navigation/radar page or collimated HUD. TAS substitutes for unmodeled indicated airspeed, geometric altitude for pressure altitude, true for magnetic heading, and normalized engine RPM for actual engine-core RPM. Unsupported fuel,JPT,oil,AOA,radio and hydraulic values remain unavailable.",
+    "Console switch grouping, maintenance markings and selected fasteners are simplified; no full electrical system, canopy opening, speedbrake or weapons. Reference pixels remain local and are not distributed."
+  ]
+}

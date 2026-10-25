@@ -82,5 +82,5 @@ describe('world explorer visual scenarios', () => {
       .filter(([name]) => !present.has(name))
       .map(([name, where]) => `${name} (referenced by ${where.join(', ')})`);
     expect(dangling, 'documented scenarios must exist on disk').toEqual([]);
-  });
+  }, 30_000); // Scans repository prose and source files; disk reads can exceed 5 s under load.
 });

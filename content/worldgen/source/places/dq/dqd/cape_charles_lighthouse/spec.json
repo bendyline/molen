@@ -1,0 +1,330 @@
+{
+  "planId": "cape_charles_lighthouse",
+  "id": "cape_charles_lighthouse",
+  "assetId": "molen.worldgen.structure.cape_charles_lighthouse",
+  "title": "Cape Charles Lighthouse",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.9064845,
+    "latitude": 37.1229044
+  },
+  "size": [
+    19.68000030517578,
+    58.216800689697266,
+    19.68000030517578
+  ],
+  "actualBounds": {
+    "min": [
+      -9.84000015258789,
+      0,
+      -9.84000015258789
+    ],
+    "max": [
+      9.84000015258789,
+      58.216800689697266,
+      9.84000015258789
+    ]
+  },
+  "visualBrief": "Whole surviving Cape Charles Lighthouse tower: octagonal tapered eight-leg open cast-iron skeleton/seven brace series, nine-foot central stair cylinder, sockets/struts/tension X-rods, central/eight perimeter footing caps, upper service/watch rooms, two open galleries/rails, sixteen-sided lantern/conical roof/ventilator/lightning terminal and small entry landing/steps. Exclude independent oil house/workshop/keeper ruins/WWII observation towers/island/vegetation/water/fences and interior stairs/elevator/removedFresnel lens. White painted centraltube/eight thin taperingcastiron legs/horizontalstruts/realX-bracing/openairvoids, darkblackservice/watchrooms/galleries/rooftop, pale16facetedlanternframing/darkbluegrayglazing, conicalroof/ventilatingball/finefinial. Leg/socketdimensionsteps andcentral9ftdiameter followprimarytext. Smallconcretefootingcaps only; noentireislanddisc or genericopaqueconicaltower. FarLOD retains all7brace rows andeightleg silhouettes withsimplifiedribbons; actualroundbars/socketcollars/bolts/galleries andshaftbands nearcamera.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:CAPE_CHARLES_LIGHTHOUSE_100_500.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cape-charles-lighthouse-wp",
+      "url": "https://qualla.com/cape-charles-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "fa2ada43ca6e15f24451ed7a90182be4df9f83a320d55eb917e9e72d52032213",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cape-charles-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cape-charles-lighthouse.mjs",
+    "level": "skyline",
+    "export": "capeCharlesLighthouseSkyline",
+    "errorMeters": 0.45,
+    "surfaces": {
+      "white": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.13
+      },
+      "black": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.38,
+        "metallic": 0.06
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "capeCharlesLighthouseDistrict",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "black": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.38,
+            "metallic": 0.06
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "capeCharlesLighthouseStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "black": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.38,
+            "metallic": 0.06
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "capeCharlesLighthouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "black": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.38,
+            "metallic": 0.06
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native named lighthouse identitypoint6538028485/Q5034646 fixes towercentre [-75.9064845,37.1229044]; no mappedtowerfootprint exists. Heading0/+X east/+Z south fixed beforeterrain/geometry, rotationalorientation architecturalestimate. Primary2003NationalRegisterdescription byNPSpreservationarchitects/USLighthouseSociety, reviewed byCoastGuard2002, explicitly specifies eightperimeterpiers pluscentralpier, seven seriesof13inch..7inchcolumns,8inch..5inchstruts/3inch..1inchtensionrods and9ft2.7432mcentralstaircylinder. PrimaryNPS191ft58.2168moverallheight; base18.2mdiameter/sevenequalbraceheights/upperleveldiameters/room heights andentrydetails estimatedfromclearwholephoto, not adoptedfromunverifiedNARAimageor as-builtsurvey.10ftpierthickness intext is buriedfoundationdimension, not3.048mabovegroundpedestals. Independent256m16641samplefield frozenbeforegeometry atfixedexternalapproach. Architecturalpiercaps/toeY0 not surveyedcurrentislandgrade; actualhostcontact unverified.",
+    "anchor": [
+      -75.9064845,
+      37.1229044
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.9064845,
+        37.122796602659
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed external southern tower approach before independentfield; source-relative architecturalground/toeY0, not surveyed footing or currentislandgrade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/6538028485"
+    ],
+    "source": "https://www.openstreetmap.org/node/6538028485",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:965ba63c5ae36671f7f7cd9203559983390d18f8d9dd65c6382021942d2b1323",
+    "notes": "Whole surviving Cape Charles Lighthouse tower: octagonal tapered eight-leg open cast-iron skeleton/seven brace series, nine-foot central stair cylinder, sockets/struts/tension X-rods, central/eight perimeter footing caps, upper service/watch rooms, two open galleries/rails, sixteen-sided lantern/conical roof/ventilator/lightning terminal and small entry landing/steps. Exclude independent oil house/workshop/keeper ruins/WWII observation towers/island/vegetation/water/fences and interior stairs/elevator/removedFresnel lens."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native named lighthouse identitypoint6538028485/Q5034646 fixes towercentre [-75.9064845,37.1229044]; no mappedtowerfootprint exists. Heading0/+X east/+Z south fixed beforeterrain/geometry, rotationalorientation architecturalestimate. Primary2003NationalRegisterdescription byNPSpreservationarchitects/USLighthouseSociety, reviewed byCoastGuard2002, explicitly specifies eightperimeterpiers pluscentralpier, seven seriesof13inch..7inchcolumns,8inch..5inchstruts/3inch..1inchtensionrods and9ft2.7432mcentralstaircylinder. PrimaryNPS191ft58.2168moverallheight; base18.2mdiameter/sevenequalbraceheights/upperleveldiameters/room heights andentrydetails estimatedfromclearwholephoto, not adoptedfromunverifiedNARAimageor as-builtsurvey.10ftpierthickness intext is buriedfoundationdimension, not3.048mabovegroundpedestals.",
+    "Complete8leg/7brace-seriescastironpyramid andcentral9fttube, ninephysicalfootingcaps, service/watchrooms/twoopennear galleries/16facetedglazedlantern/conicalroof/vent/finial/smallentry included. FarLODusesribbons/solidrailbands andmergedshaftbands whilepreservingopenframe/all7series. Nearrealroundbars/socketcollars/bolts/staircylinderflanges/windowframes/galleryrailopenings. Base18.2mdiameter/verticalseries/heights/finejoints andentryarephotographicestimates, not engineeringdrawing reconstruction.",
+    "One exactpublishedSkipWillits1998Own/PD-self500x327original individuallyinspected/nativeSHA1bound; unchangedselectedphotopolicy passes. Lowresolutiondoesnotcertify everyjoint/currentpaintweathering/entryhardware. NARAengineeringimagepixelsunused becausepublishedbasisnotrecorded; no media/category/articlebody/policy repair. PrimaryVirginiaDHR/NPSNationalRegisterarchitecturaldescription textfacts only; no protectedPDFphotos/plans adopted. No photo textures/downloaded mesh/generatedbitmap.",
+    "191ft58.2168moverallheight followsprimaryNPStext. Sevenseries columns13to7inches, struts8to5inches/ties3to1inch and9ftstairtube followNationalRegisterdescription; basewidth/radii androom/sublevelheightsestimated.10ftburiedpierthickness is not10fttallvisiblefooting. OriginalFresnel/removedoutsideelevatorcounterweight/operation/interiorstairs excluded; nativepointdisused meansnoactivebeacon glow.",
+    "Independent256m129square2m16641samples/oneoriginalTerrariumtile frozenbeforegeometry; modeldatum1.6223m/providerrelative, sourcegrid/PNG/tileunchanged, no groundfitting/flattening/reacquisition/islandslab. Smallfoundationcaps atarchitecturalY0; groundcontact andislandmicrogradeunverified. Ordinarygeographicpreview/replacementdisabled.",
+    "Adjacentstationoilhouse/workshop/keeperruins/WWIIobservationtowers/separateboardfence/wholeisland/vegetation/marsh/sea notpartofthissingle namedlighthouse asset. No arbitraryopaquecone or wholehistoricstation substituted."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-eightleg-sevenseries-tower-and-ninefoot-central-cylinder",
+      "position": [
+        51,
+        36,
+        80
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "nine-footings-open-lower-crossbraces-entry-landing-and-steps",
+      "position": [
+        21,
+        10,
+        27
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "tapering-castiron-columns-sockets-tension-rods-and-cylinder-bands",
+      "position": [
+        14,
+        27,
+        21
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ]
+    },
+    {
+      "name": "black-watchrooms-open-galleries-sixteen-sided-lantern-and-finial",
+      "position": [
+        11,
+        56,
+        17
+      ],
+      "lookAt": [
+        0,
+        52.4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22256,
+    "vertices": 66768,
+    "materials": 5,
+    "bytes": 2673976,
+    "sha256": "sha256:1468d4f321aaef2a2d3d259cd35b5123dfeeccc7028ae49bd98c850681afd0b9"
+  }
+}

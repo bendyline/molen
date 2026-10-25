@@ -1,0 +1,403 @@
+{
+  "planId": "atalaya_castle_us",
+  "id": "atalaya_castle_us",
+  "assetId": "molen.worldgen.structure.atalaya_castle_us",
+  "title": "Atalaya Castle",
+  "category": "palace-castle-fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.06753145290895,
+    "latitude": 33.50180843935674
+  },
+  "size": [
+    68.53244018554688,
+    12.312000386416912,
+    64.58918380737305
+  ],
+  "actualBounds": {
+    "min": [
+      -34.27545928955078,
+      -0.11999999731779099,
+      -31.589183807373047
+    ],
+    "max": [
+      34.256980895996094,
+      12.192000389099121,
+      33
+    ]
+  },
+  "visualBrief": "Whole surviving Huntington winter house: four native building components, open north/south courtyards, central covered arched walkway and 40ft brick water tower, west entry/service wings, flat parapet roofs, 25 cowled chimneys, east recessed entry/patio, south studio skylight, projecting green iron window baskets. Exclude Brookgreen Gardens, park retail/restrooms, vegetation, animal sculpture, signs and furnishings. Keep exact four native component control corners and both genuine open courtyards; no full parcel slab. Real openings/reveals, green projecting basket bars/scrollwork, simple flat masonry roofs, round open brick arcade and pierced low lattice, restrained rough brick inner faces/pale stucco outerfaces. Physical east entry recess/patio, south skylight and25 copper-cowled chimneys. Tower square shaft/flat parapet and small vents estimated where no clear photo; exact cowl/profile/window census/hidden rooms not survey. No invented elaborate tower ornament.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Atalaya_back.jpg",
+    "https://commons.wikimedia.org/wiki/File:Atalaya1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Atalaya2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Atalaya4.jpg",
+    "https://commons.wikimedia.org/wiki/File:Atalaya5.jpg",
+    "https://commons.wikimedia.org/wiki/File:Atalaya6.jpg",
+    "https://commons.wikimedia.org/wiki/File:Atalaya7.jpg"
+  ],
+  "stories": [
+    {
+      "id": "atalaya-castle-us-wp",
+      "url": "https://qualla.com/atalaya-castle-us/"
+    }
+  ],
+  "referenceInputHash": "e6742333c4f7ab19672bf55b8f27cf6ed7be40b7ca9f3c229d2ba39b192c9bce",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-atalaya-castle-us.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-atalaya-castle-us.mjs",
+    "level": "skyline",
+    "export": "atalayaCastleSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "green": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.15
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.5
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "atalayaCastleDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.5
+          }
+        }
+      },
+      "street": {
+        "export": "atalayaCastleStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.5
+          }
+        }
+      },
+      "closeup": {
+        "export": "atalayaCastleCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.5
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Four actual outer members of named Atalaya relation20607023/Q4812699 fix whole footprint, anchor [-79.06753145290895,33.50180843935674] and native longwall heading 0.8449372077170864. Local +X north along shore; +Z east/ocean. Main open U plus two west service wings and north projection; no solid parcel fill. Primary nominal200ft square is approximate and does not stretch native geometry. Interior footways1506910393/94/95 locate covered walkway and encircling tower approach, not measured tower footprint. Tower centre[-4.4,.65],4.0x4.5m section, flat top/vent treatment, roof4.2m/parapet4.55m, skylight7.62m and fine openings are architectural estimates. Tower12.192m height/25 cowled chimneys from primary text. No cleared photo shows tower top; simple square tower treatment is an explicit limitation, not an invented elaborate minaret. Independent provider-relative west approach datum, house floor0.1m/foundation-.12m estimate; source field preserved and actual host footing contact unverified.",
+    "anchor": [
+      -79.06753145290895,
+      33.50180843935674
+    ],
+    "heading": 0.8449372077170864,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.0678420616997,
+        33.50199026221828
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed external west entry approach before independent field and geometry; provider-relative datum, not surveyed house floor."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/461957978",
+      "way/119660299",
+      "way/119660302",
+      "way/108704349"
+    ],
+    "source": "https://www.openstreetmap.org/relation/20607023",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ba36713ce89d302afd938603793976a149cbbb14e0cd1e6f63186eee1945cf35",
+    "notes": "Whole surviving Huntington winter house: four native building components, open north/south courtyards, central covered arched walkway and 40ft brick water tower, west entry/service wings, flat parapet roofs, 25 cowled chimneys, east recessed entry/patio, south studio skylight, projecting green iron window baskets. Exclude Brookgreen Gardens, park retail/restrooms, vegetation, animal sculpture, signs and furnishings."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Four actual outer members of named Atalaya relation20607023/Q4812699 fix whole footprint, anchor [-79.06753145290895,33.50180843935674] and native longwall heading 0.8449372077170864. Local +X north along shore; +Z east/ocean. Main open U plus two west service wings and north projection; no solid parcel fill. Primary nominal200ft square is approximate and does not stretch native geometry. Interior footways1506910393/94/95 locate covered walkway and encircling tower approach, not measured tower footprint. Tower centre[-4.4,.65],4.0x4.5m section, flat top/vent treatment, roof4.2m/parapet4.55m, skylight7.62m and fine openings are architectural estimates. Tower12.192m height/25 cowled chimneys from primary text. No cleared photo shows tower top; simple square tower treatment is an explicit limitation, not an invented elaborate minaret.",
+    "Whole four native house components/open courtyards/central covered walkway/water tower are included. Primary nominal200ft not used to stretch mapped outline. Tower12.192m height and25 rotating copper cowls are primary text facts; no cleared image shows tower upper profile. Its4x4.5m rectangular section/plain flat parapet/vents are explicitly restrained architectural estimates, not an observed elaborate minaret.25ft studio skylight height is textual; exact glazed roof profile, windows behind vegetation, grille count, ornaments and hidden rooms approximate.",
+    "Seven exact published Qualla PD originals individually inspected, native SHA1/revision bound, unchanged policy passed. Named photographer Ron Osborne is bound to creator Rono359 by explicit Own/PD-self Atalaya1/2 and exact PD-user-en releases for other images. Primary NHL/owner text facts only; CC/ambiguous supplemental pixels/PDF plans/photos unused. No media/body/category/policy edits, photographic textures, generated bitmaps or downloaded mesh.",
+    "Independent256m129square2m16641sample field/two original Terrarium tiles frozen before geometry; all values/PNG/bytes retained. Provider0.6948m fixed west approach datum is not surveyed floor grade. Source ground not flattened/fitted/reacquired. Actual host footing contact unverified; ordinary geographic preview/replacement disabled.",
+    "L0 retains exact four house parts/open courts/covered arcade/tower and representative cowls; window grilles/individual chimneys/lattice reduced with distance. L3 adds actual window void/reveals/projecting basket bars/scrolls/twisted posts, arched open walkway and pierced low masonry flowerboxes. Lattice/window census/chimney positions/cowl turning angle approximate, not as-built measurement.",
+    "Separate Brookgreen Gardens/park retail and restrooms/portable trailers/trees/animal sculpture/signs/furniture/people are excluded. No whole park slab or distant secondary site placement."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-house-four-native-parts-both-open-courts",
+      "position": [
+        98,
+        72,
+        106
+      ],
+      "lookAt": [
+        -2,
+        4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "west-entry-service-wings-arcade-and-square-water-tower",
+      "position": [
+        -25,
+        17,
+        -62
+      ],
+      "lookAt": [
+        -4,
+        4,
+        -1
+      ]
+    },
+    {
+      "name": "courtyard-open-round-arches-pierced-lattice-tower",
+      "position": [
+        8,
+        5,
+        -16
+      ],
+      "lookAt": [
+        -4.4,
+        2,
+        -7
+      ]
+    },
+    {
+      "name": "east-recessed-facade-projecting-green-basket-grilles",
+      "position": [
+        -6,
+        4.5,
+        39
+      ],
+      "lookAt": [
+        -5,
+        2.1,
+        29.4
+      ]
+    },
+    {
+      "name": "south-studio-skylight-and-copper-chimney-cowls",
+      "position": [
+        -47,
+        12,
+        8
+      ],
+      "lookAt": [
+        -27,
+        4,
+        9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 51561,
+    "vertices": 154683,
+    "materials": 6,
+    "bytes": 6191132,
+    "sha256": "sha256:844c9a6b1f27f06917b744afa6b4e74d61879a2033ac2638587620bb90d9a652"
+  }
+}

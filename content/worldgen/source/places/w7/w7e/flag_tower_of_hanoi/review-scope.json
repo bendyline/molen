@@ -1,0 +1,473 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "trim",
+      "graph": "stucco",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "inset": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "flag": {
+      "slot": "trim",
+      "graph": "fabric_canvas",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "star": {
+      "slot": "trim",
+      "graph": "fabric_canvas",
+      "roughness": 0.98,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      50.748302220254125,
+      32.540579235411414,
+      78.86237428419953
+    ],
+    "lookAt": [
+      0.14214251972449432,
+      18.54057923541141,
+      -0.023724620262039586
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "three-battered-terraces-pierced-parapets-and-supported-access",
+      "position": [
+        30.03450700207906,
+        18.54057923541141,
+        43.016332833859316
+      ],
+      "lookAt": [
+        0.14214251972449432,
+        7.540579235411412,
+        -0.023724620262039586
+      ],
+      "fov": 48
+    },
+    {
+      "name": "tapered-octagonal-shaft-round-rosette-recesses",
+      "position": [
+        12.669647559175031,
+        25.54057923541141,
+        20.690077963680427
+      ],
+      "lookAt": [
+        0.14214251972449432,
+        22.54057923541141,
+        -0.023724620262039586
+      ],
+      "fov": 44
+    },
+    {
+      "name": "open-octagonal-crown-closed-cap-and-vietnamese-flag",
+      "position": [
+        15.398411361292508,
+        38.540579235411414,
+        23.046738336380187
+      ],
+      "lookAt": [
+        1.1344203775515673,
+        34.540579235411414,
+        0.10031026541983203
+      ],
+      "fov": 46
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        50.748302220254125,
+        32.540579235411414,
+        78.86237428419953
+      ],
+      "lookAt": [
+        0.14214251972449432,
+        18.54057923541141,
+        -0.023724620262039586
+      ],
+      "fov": 46,
+      "name": "hanoi-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        50.748302220254125,
+        32.540579235411414,
+        78.86237428419953
+      ],
+      "lookAt": [
+        0.14214251972449432,
+        18.54057923541141,
+        -0.023724620262039586
+      ],
+      "fov": 46,
+      "name": "hanoi-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        50.748302220254125,
+        32.540579235411414,
+        78.86237428419953
+      ],
+      "lookAt": [
+        0.14214251972449432,
+        18.54057923541141,
+        -0.023724620262039586
+      ],
+      "fov": 46,
+      "name": "hanoi-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        50.748302220254125,
+        32.540579235411414,
+        78.86237428419953
+      ],
+      "lookAt": [
+        0.14214251972449432,
+        18.54057923541141,
+        -0.023724620262039586
+      ],
+      "fov": 46,
+      "name": "hanoi-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hanoi-model.mjs",
+    "export": "buildHanoiSkyline",
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHanoiDistrict",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "flag": {
+            "slot": "trim",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "star": {
+            "slot": "trim",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildHanoiStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "flag": {
+            "slot": "trim",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "star": {
+            "slot": "trim",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHanoiCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "flag": {
+            "slot": "trim",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "star": {
+            "slot": "trim",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      105.839823532,
+      21.032590491
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Keep original6m standard terrain, paths/water and every independent neighboring building. Replace only the six corresponding parent/terrace/shaft/crown shells. Lowest terrace footing straddles occupied native rim grades; higher terraces and access flights are supported by lower masonry. No ground/water cutout, square flattening or whole museum platform. Coarse terrain and vegetation-obscured pictures do not establish actual foundation engineering.",
+    "replaceFootprint": false,
+    "bounds": [
+      105.8395348011342,
+      21.032320996414764,
+      105.84011226286579,
+      21.032859985585237
+    ],
+    "terrainReference": {
+      "anchor": [
+        105.839823532,
+        21.032590491
+      ],
+      "modelHeight": 0,
+      "basis": "Keep original6m standard terrain, paths/water and every independent neighboring building. Replace only the six corresponding parent/terrace/shaft/crown shells. Lowest terrace footing straddles occupied native rim grades; higher terraces and access flights are supported by lower masonry. No ground/water cutout, square flattening or whole museum platform. Coarse terrain and vegetation-obscured pictures do not establish actual foundation engineering."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -22.387037353143793,
+          17.996419585894305
+        ],
+        [
+          -17.649315274645208,
+          -22.97093583633711
+        ],
+        [
+          -17.599984131543454,
+          -22.965152192251836
+        ],
+        [
+          -17.59931527464521,
+          -22.97093583633711
+        ],
+        [
+          22.810667159607448,
+          -18.23321963523967
+        ],
+        [
+          22.804671570911857,
+          -18.183922565456093
+        ],
+        [
+          22.810667159607448,
+          -18.183219635239674
+        ],
+        [
+          17.79425554707953,
+          23.062837404634323
+        ],
+        [
+          17.745004299964517,
+          23.056680991128353
+        ],
+        [
+          17.744255547079533,
+          23.062837404634323
+        ],
+        [
+          -22.387037353143793,
+          18.046419585894302
+        ],
+        [
+          -22.38133743623269,
+          17.997132076389672
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -22.387037353143793,
+            17.996419585894305
+          ],
+          [
+            -17.649315274645208,
+            -22.97093583633711
+          ],
+          [
+            -17.599984131543454,
+            -22.965152192251836
+          ],
+          [
+            -17.59931527464521,
+            -22.97093583633711
+          ],
+          [
+            22.810667159607448,
+            -18.23321963523967
+          ],
+          [
+            22.804671570911857,
+            -18.183922565456093
+          ],
+          [
+            22.810667159607448,
+            -18.183219635239674
+          ],
+          [
+            17.79425554707953,
+            23.062837404634323
+          ],
+          [
+            17.745004299964517,
+            23.056680991128353
+          ],
+          [
+            17.744255547079533,
+            23.062837404634323
+          ],
+          [
+            -22.387037353143793,
+            18.046419585894302
+          ],
+          [
+            -22.38133743623269,
+            17.997132076389672
+          ]
+        ]
+      ],
+      "basis": "Keep original6m standard terrain, paths/water and every independent neighboring building. Replace only the six corresponding parent/terrace/shaft/crown shells. Lowest terrace footing straddles occupied native rim grades; higher terraces and access flights are supported by lower masonry. No ground/water cutout, square flattening or whole museum platform. Coarse terrain and vegetation-obscured pictures do not establish actual foundation engineering."
+    },
+    "notes": "Retained exact-QID OSM way184959290 and standard PMTiles parent35184557048122 with three terrace parts35185232061469/470/471, crown35185232061472 and shaft35185465033114 fix the compound, component outlines and undirected plan axes. Native anchor105.839823532,21.032590491; global heading0 with internal east/south rotation from the first mapped lower-terrace edge. Octagonal shaft/crown phases follow their mapped outlines. Fine gate/stair/facade allocation remains picture-led with25degree/3m uncertainty; no directed surveyed entrance is asserted. Keep original6m standard terrain, paths/water and every independent neighboring building. Replace only the six corresponding parent/terrace/shaft/crown shells. Lowest terrace footing straddles occupied native rim grades; higher terraces and access flights are supported by lower masonry. No ground/water cutout, square flattening or whole museum platform. Coarse terrain and vegetation-obscured pictures do not establish actual foundation engineering."
+  }
+}

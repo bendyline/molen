@@ -1,0 +1,322 @@
+{
+  "planId": "amazon_theatre",
+  "id": "amazon_theatre",
+  "assetId": "molen.worldgen.structure.amazon_theatre",
+  "title": "Amazon Theatre",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -60.023408149999995,
+    "latitude": -3.1302694000000004
+  },
+  "size": [
+    44.650001525878906,
+    32.44999846816063,
+    80.5250015258789
+  ],
+  "actualBounds": {
+    "min": [
+      -22.325000762939453,
+      -0.3499999940395355,
+      -39.32500076293945
+    ],
+    "max": [
+      22.325000762939453,
+      32.099998474121094,
+      41.20000076293945
+    ]
+  },
+  "visualBrief": "Complete native pink RenaissanceRevivaltheatre with its small east/front projection, white quoins/cornices, physically recessed tall round-headed shuttered lights, oval attic oculi and rear semicircle attic windows. Separate rear stage roof, real open five-bay upper entrance loggia with columns/balustrade, segmental pediment and bounded original allegorical low relief. Distinctive green/yellow/blue ceramic-patterned drum/shallow dome and crown/finial. Intrinsic bounded raised retaining terrace, pale/pink balustrades and paired access stairs. Heights/dome position/concealed sections/terrace are photographic estimates; complete native main building outline retained.",
+  "nativeAxes": {
+    "x": "north",
+    "y": "up",
+    "z": "east/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Amazon_Theatre,_Teatro_Amazonas._Manaus,_Brazil._02.jpg",
+    "https://commons.wikimedia.org/wiki/File:Largo_de_S%C3%A3o_Sebasti%C3%A3o,_Manaus,_Brazil_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "amazon-theatre-wp",
+      "url": "https://qualla.com/amazon-theatre/"
+    }
+  ],
+  "referenceInputHash": "b5d8c8b41217ee91fdfcca2525018c16c45d5563f1adf3dd44d03c482bdda383",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-amazon-theatre.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-amazon-theatre.mjs",
+    "level": "skyline",
+    "export": "amazonSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.56,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "amazonDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.56,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "amazonStreet",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.56,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named theatrebuildingway794449274/TeatroAmazonas/Q1434444retains the complete signed8-corner native outline including its small east/front projection. Native plan supplies no heights, dome circle/center, internal roof divisions or exterior terrace outline. Those elevations/dome/terrace details are photo-based medium-fi estimates. Native+X points north across the east-facing front; +Zpoints east/front; main body length runs east-west. Fixed east/front approach was chosen before terrain acquisition. Intrinsic raised terrace is architectural geometry; present source relief remains unflattened.",
+    "anchor": [
+      -60.023408149999995,
+      -3.1302694000000004
+    ],
+    "heading": 1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -60.02303029553294,
+        -3.1302694000000004
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed east/front approach beyond the native building and estimated raised terrace, selected before terrain acquisition. Approximate plaza datum only; intrinsic terrace/steps stay bounded and source relief is not flattened."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/794449274"
+    ],
+    "source": "https://www.openstreetmap.org/way/794449274",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:48c2f252e074f897f509c41f103db442c06e399214db55ed20aece82a48d8e83",
+    "notes": "Main front faces EASTtoward LargoSaoSebastiao. Keep neighboring cathedral/courthouse/plaza monument/road/landscape outside the theatre model. Heights/dome and intrinsic terrace boundaries/steps are photographic estimates; original native plan is retained."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named theatrebuildingway794449274/TeatroAmazonas/Q1434444retains the complete signed8-corner native outline including its small east/front projection. Native plan supplies no heights, dome circle/center, internal roof divisions or exterior terrace outline. Those elevations/dome/terrace details are photo-based medium-fi estimates. Native+X points north across the east-facing front; +Zpoints east/front; main body length runs east-west.",
+    "The complete signed native8-corner building plan and small east projection remain fixed. Main facade17.6m, rear attic19.4m, front pediment23.6m, dome30.2m/finial32.1m,10.6mradius/dome position and hidden roof divisions are explicit photographic medium-fi estimates, not surveys. Main front faces east.",
+    "Two exact Qualla-published RidiculopathyCC0exteriors were fully inspected:4608x2592side/rear view and4608x2128east/plaza view. Trees conceal lower front details; five-bay loggia, lower doorway/window rhythms, roof junctions, sculptural relief/fine carving and hidden faces are conservative original interpretations. The similarly named cafe interior/plaza sculpture photos and other sources are unused.",
+    "Pink plaster, pale dressings, muted slate, red-brown stone and ceramic national-color lozenge pattern follow the current photographs. Dome tiles, white ribs, shutters, stone courses, ornament and simplified reclining allegorical figures are original mesh/color details, not photographic pixels or exact reproductions of every tile/portrait/letter. No interior/cafe/auditorium seating, chandelier, detached plaza monument, neighboring cathedral/courthouse, road/paving, vegetation, utilities, people or vehicles.",
+    "The documented intrinsic retaining terrace is estimated44mwide,76mlong and3.6mhigh at the fixed front approach datum. Its boundaries, precise stairs, balustrade repeat and foundation/host-terrain contact remain approximate. Narrow footings extend.35m below datum. This is not a terrain flattening or city-wide platform; original source relief remains unchanged.",
+    "All four LODs retain the complete theatre/dome/entrance/raised terrace silhouette. Curved window recesses, shutter louvres, quoins, balusters, pediment relief, roof/crown trim and ceramic tile subdivisions simplify with distance. Open loggia remains bounded; model is an exterior asset without navigable interior."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "east-open-loggia-segmental-pediment-and-patterned-dome",
+      "position": [
+        3,
+        28,
+        77
+      ],
+      "lookAt": [
+        -1,
+        18,
+        6
+      ]
+    },
+    {
+      "name": "pink-dressed-side-windows-oculi-and-raised-terrace",
+      "position": [
+        -50,
+        17,
+        35
+      ],
+      "lookAt": [
+        -8,
+        10,
+        -3
+      ]
+    },
+    {
+      "name": "rear-attic-lunettes-stage-roof-and-dome",
+      "position": [
+        43,
+        33,
+        -61
+      ],
+      "lookAt": [
+        0,
+        15,
+        -13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 60627,
+    "vertices": 181881,
+    "materials": 6,
+    "bytes": 7278952,
+    "sha256": "sha256:b37328be47b09bdeff941b5183ad1b26dac3a0c05f8140c1f6e9572080d1958a"
+  }
+}

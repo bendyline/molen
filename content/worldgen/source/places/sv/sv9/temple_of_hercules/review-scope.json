@@ -1,0 +1,417 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "column": {
+      "slot": "trim",
+      "graph": "stone_travertine",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_travertine",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "rubble": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "soil": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.99,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      52.4478337408784,
+      30.603292425630542,
+      30.77701635781444
+    ],
+    "lookAt": [
+      0,
+      3.603292425630543,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "two-complete-plain-shafts-four-broken-columns-and-east-portico",
+      "position": [
+        34.243207315558166,
+        7.603292425630543,
+        4.5169406398251155
+      ],
+      "lookAt": [
+        11.108797283932397,
+        5.103292425630543,
+        -4.9592966138855035
+      ],
+      "fov": 49
+    },
+    {
+      "name": "corinthian-capitals-short-broken-lintel-and-drum-joints",
+      "position": [
+        19.19375958418145,
+        10.603292425630544,
+        -21.53136300898396
+      ],
+      "lookAt": [
+        11.993959505737392,
+        9.803292425630543,
+        -8.703156632781676
+      ],
+      "fov": 47
+    },
+    {
+      "name": "interrupted-low-cella-native-ground-and-fallen-drums",
+      "position": [
+        -19.36531747390166,
+        22,
+        28.809451211972075
+      ],
+      "lookAt": [
+        -0.9677308151010795,
+        1.6032924256305432,
+        0.2519862486402787
+      ],
+      "fov": 49
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        52.4478337408784,
+        30.603292425630542,
+        30.77701635781444
+      ],
+      "lookAt": [
+        0,
+        3.603292425630543,
+        0
+      ],
+      "fov": 46,
+      "name": "amman-hercules-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        52.4478337408784,
+        30.603292425630542,
+        30.77701635781444
+      ],
+      "lookAt": [
+        0,
+        3.603292425630543,
+        0
+      ],
+      "fov": 46,
+      "name": "amman-hercules-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        52.4478337408784,
+        30.603292425630542,
+        30.77701635781444
+      ],
+      "lookAt": [
+        0,
+        3.603292425630543,
+        0
+      ],
+      "fov": 46,
+      "name": "amman-hercules-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        52.4478337408784,
+        30.603292425630542,
+        30.77701635781444
+      ],
+      "lookAt": [
+        0,
+        3.603292425630543,
+        0
+      ],
+      "fov": 46,
+      "name": "amman-hercules-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/amman-hercules-model.mjs",
+    "export": "buildAmmanHerculesSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAmmanHerculesDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "column": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "soil": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAmmanHerculesStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "column": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "soil": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAmmanHerculesCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "column": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "soil": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      35.934864492,
+      31.953746126
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original pinned standard6m Mapzen hill terrain, paths/water and every independent building. Occupied column bases share a level floor just above sampled footing maxima with individually buried local masonry feet. Only the actual front portico has an authored earthen mound/graded approach; low cella/perimeter wall bottoms/tops follow native grade. No precinct-wide slab, terrain flattening, ground/water cutout or neighboring museum removal. Coarse DEM varies several meters across the main footprint and cannot resolve archaeological paving/mound sections, so foundation depths/thresholds and wall profiles remain visualization estimates.",
+    "replaceFootprint": false,
+    "bounds": [
+      35.93460173505789,
+      31.953574620284822,
+      35.93513749469777,
+      31.95391989534616
+    ],
+    "terrainReference": {
+      "anchor": [
+        35.934864492,
+        31.953746126
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original pinned standard6m Mapzen hill terrain, paths/water and every independent building. Occupied column bases share a level floor just above sampled footing maxima with individually buried local masonry feet. Only the actual front portico has an authored earthen mound/graded approach; low cella/perimeter wall bottoms/tops follow native grade. No precinct-wide slab, terrain flattening, ground/water cutout or neighboring museum removal. Coarse DEM varies several meters across the main footprint and cannot resolve archaeological paving/mound sections, so foundation depths/thresholds and wall profiles remain visualization estimates."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -23.20628248789492,
+          -7.121833025480077
+        ],
+        [
+          16.821384758966857,
+          -17.508746845528446
+        ],
+        [
+          16.861384758966857,
+          -17.508746845528446
+        ],
+        [
+          22.434857413593182,
+          4.531790163770131
+        ],
+        [
+          22.434857413593182,
+          4.57179016377013
+        ],
+        [
+          19.909007917418666,
+          5.329545376207822
+        ],
+        [
+          20.408140084638156,
+          7.825207820145057
+        ],
+        [
+          20.408140084638156,
+          7.865207820145056
+        ],
+        [
+          -16.832790834910465,
+          17.492127048842054
+        ],
+        [
+          -16.872790834910464,
+          17.492127048842054
+        ],
+        [
+          -23.20628248789492,
+          -7.081833025480078
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -23.20628248789492,
+            -7.121833025480077
+          ],
+          [
+            16.821384758966857,
+            -17.508746845528446
+          ],
+          [
+            16.861384758966857,
+            -17.508746845528446
+          ],
+          [
+            22.434857413593182,
+            4.531790163770131
+          ],
+          [
+            22.434857413593182,
+            4.57179016377013
+          ],
+          [
+            19.909007917418666,
+            5.329545376207822
+          ],
+          [
+            20.408140084638156,
+            7.825207820145057
+          ],
+          [
+            20.408140084638156,
+            7.865207820145056
+          ],
+          [
+            -16.832790834910465,
+            17.492127048842054
+          ],
+          [
+            -16.872790834910464,
+            17.492127048842054
+          ],
+          [
+            -23.20628248789492,
+            -7.081833025480078
+          ]
+        ]
+      ],
+      "basis": "Replace only the corresponding Amman Hercules temple control with two-centimeter numeric tolerance. Preserve all independent buildings and original native ground/water."
+    },
+    "notes": "Exact-QID OSMway245144085/Q20423672 and named PMTilesbuilding/ruinsPOI35184617232917 fix approximately41.2x25.4m footprint. Anchor35.934864492,31.953746126, heading0/native east-south, internal long axis-.254732188921rad points ENE. Ordinary northeast-photo caption/front appearance and mapped museum northwest support approximately east-facing portico. Six standing/broken shaft positions, surviving pair allocation and internal low-wall profiles are picture-led, not individually mapped; retain roughly3m placement/20degree facing uncertainty. Separate hand-of-HerculesPOI17598359951460 lies about42m west, outside the temple control, and is not included. Replace only matching temple shell; preserve museum35184753812386 and other independent inputs. Retain original pinned standard6m Mapzen hill terrain, paths/water and every independent building. Occupied column bases share a level floor just above sampled footing maxima with individually buried local masonry feet. Only the actual front portico has an authored earthen mound/graded approach; low cella/perimeter wall bottoms/tops follow native grade. No precinct-wide slab, terrain flattening, ground/water cutout or neighboring museum removal. Coarse DEM varies several meters across the main footprint and cannot resolve archaeological paving/mound sections, so foundation depths/thresholds and wall profiles remain visualization estimates."
+  }
+}

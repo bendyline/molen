@@ -274,7 +274,7 @@ export const hangar37Model = {
     },
   },
   limitations: [
-    'Original medium-fi exterior from a local Qualla aerial plus individually inspected museum and architect front photographs; no survey accuracy claimed.',
+    'Owner accepted this medium-fi exterior on 2026-10-19. Active imagery is the public-domain Navy80-G-32480historic reference; current entrance details remain approximate. Earlier private imagery is excluded.',
     'Mapped approximately 68.7 by 47.7 m footprint and northeast entrance are retained. Architect project floor area is not assumed to equal the mapped footprint.',
     'Twin shallow gables, cream metal cladding, door tracks, checker canopy and ridge vents follow dated references. Exact heights, rear service door, roof equipment placement and concealed side details are interpretations.',
     'Dated 2008–2017 exterior and Pacific Aviation Museum lettering are represented; later name/signage or renovation changes are not fully documented.',

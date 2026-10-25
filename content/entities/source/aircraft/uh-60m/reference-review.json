@@ -1,0 +1,257 @@
+{
+  "variant": "Sikorsky UH-60M, utility configuration without weapons, auxiliary tanks or external stores",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Sikorsky_UH-60_Black_Hawk_dimensions.png",
+      "title": "H-60 dimensions from Army TM 1-1520-237-10",
+      "author": "U.S. Army; public-domain edits by Casito",
+      "license": "Public domain (U.S. federal government)",
+      "scope": "Common airframe side/front dimensions; A/L depiction with optional stores and older exhausts, not exact M configuration."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Sikorsky_UH-60A_Black_Hawk_3-view_line_drawing.png",
+      "author": "U.S. Army, airdefense.bliss.army.mil / FM 44-80",
+      "license": "Public domain (U.S. federal government)",
+      "scope": "Low-resolution top planform of common A-model airframe; rotor and equipment differ from M."
+    },
+    {
+      "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/black-hawk/sikorsky-UH60M-brochure.pdf",
+      "title": "Sikorsky UH-60M Black Hawk brochure",
+      "author": "Sikorsky / Lockheed Martin",
+      "license": "Copyright Lockheed Martin; local analysis only; no source pixels shipped.",
+      "scope": "Exact M exterior photographs, wide-chord swept blade tips, upward exhaust and cockpit overview."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:16th_CAB_upgrades_Black_Hawk_helicopters_DVIDS815181.jpg",
+      "title": "UH-60M cockpit, 130111-A-9916B-001, 2013-01-11",
+      "author": "Sgt. Adrianna Barnes, U.S. Army",
+      "license": "Public domain (U.S. federal government)",
+      "scope": "Four-display cockpit face, scalloped coaming, flight-director panels, twin FMS keypad console and controls."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:ROCA_UH-60M_908_Display_at_Zuoying_Naval_Base_Ground_Left_View_20151024.jpg",
+      "author": "玄史生",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "revision": 1011449219,
+      "scope": "Exact UH-60M exterior photo; weapons in reference are excluded from model."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Front_View_of_ROCA_UH-60M_908_Display_at_Zuoying_Naval_Base_Ground_20151024.jpg",
+      "author": "玄史生",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "revision": 950544765,
+      "scope": "Exact UH-60M exterior photo; weapons in reference are excluded from model."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.86,
+      1.87
+    ],
+    "lookAt": [
+      0,
+      1.38,
+      3.18
+    ],
+    "fov": 80
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.47
+    ],
+    "viewHeight": 1.45,
+    "cameraHeight": 7.05
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/uh60-dimensions.png",
+      "crop": {
+        "left": 800,
+        "top": 120,
+        "width": 830,
+        "height": 280
+      },
+      "referenceAnchor": [
+        1046,
+        374
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 790,
+        "meters": 16.3576,
+        "description": "Printed main rotor diameter, 53ft 8in."
+      },
+      "scope": "A/L common shell and wheelbase only; older blade chord, exhausts and external tanks intentionally differ."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/uh60-dimensions.png",
+      "crop": {
+        "left": 75,
+        "top": 205,
+        "width": 420,
+        "height": 365
+      },
+      "referenceAnchor": [
+        284,
+        561
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 177,
+        "meters": 2.9464,
+        "description": "Printed width across IR suppressors, 9ft 8in; optional external tanks excluded."
+      },
+      "scope": "A/L front drawing; optional external tanks excluded; M exhaust and cockpit changed."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/uh60-3view-180.png",
+      "crop": {
+        "left": 304,
+        "top": 10,
+        "width": 270,
+        "height": 360
+      },
+      "referenceAnchor": [
+        443,
+        206
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 245,
+        "meters": 15.4305,
+        "description": "Common fuselage length, 50ft 7.5in."
+      },
+      "scope": "Low-resolution Army recognition drawing: broad body/boom/stabilator proportions only, not M rotor planform.",
+      "referencePreparation": {
+        "source": ".artifacts/aircraft/references/uh60-3view.png",
+        "rotation": 180,
+        "stretch": false
+      }
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/uh60m-panel.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1865,
+        "height": 660
+      },
+      "referenceAnchor": [
+        912,
+        230
+      ],
+      "modelAnchor": [
+        0,
+        -1.63
+      ],
+      "scaleControls": {
+        "pixels": 1660,
+        "meters": 1.63,
+        "description": "Assumed main panel width of 1.63m; relative layout only."
+      },
+      "edgeMode": "photo",
+      "scope": "Nearly frontal Army photograph, no lens correction. Screens/case positions are photo-matched; absolute cockpit scale and curved coaming depth are estimates."
+    }
+  ],
+  "status": "reviewed-with-limitations",
+  "reviewNotes": {
+    "corrections": [
+      "Rebuilt long low fuselage, three forward panes, roof and side apertures, sliding doors, T700 nacelles and upturned exhausts, low fixed wheels and folding-style stabilator from Army dimensions and M photos.",
+      "Four wide-chord main blades with swept drooping tips, 3-degree mast tilt and starboard tail rotor with 20-degree cant; no weapons or external tanks.",
+      "Four-display M cockpit, central standby instruments, paired flight director controls, deep scalloped coaming and two FMS keypads on a broad console; armored seats and crew controls.",
+      "Overlay iterations corrected boom height, tail-rotor side and cant, tail station, blade azimuth, coaming closure and windshield interference; widened panel camera to include all four displays."
+    ],
+    "limitations": [
+      "Dimensioned Army drawings depict A/L variants. Shared fuselage dimensions are used; blade chord, exhaust, avionics and optional external stores are resolved from M photographs.",
+      "Top-view recognition drawing is low resolution and schematic. Its body planform is a coarse cross-check, not a detailed M engineering drawing.",
+      "Panel width 1.63m is an estimate. Near-frontal photo supplies relative positions with uncorrected perspective and lens effects; coaming depth and seat installation remain approximate.",
+      "Screens and overhead switch banks are simplified original geometry; detailed electrical systems, mission equipment and all placards are not reproduced.",
+      "Reference photographs are local analysis only; no source pixels shipped."
+    ],
+    "independentDimensions": [
+      {
+        "feature": "main rotor nominal diameter",
+        "referenceMeters": 16.3576,
+        "modelMeters": 16.3576
+      },
+      {
+        "feature": "fuselage nose to tail-fin extremity",
+        "referenceMeters": 15.4305,
+        "modelMeters": 15.4305
+      },
+      {
+        "feature": "wheelbase",
+        "referenceMeters": 8.8392,
+        "modelMeters": 8.8392
+      },
+      {
+        "feature": "fuselage width",
+        "referenceMeters": 2.3622,
+        "modelMeters": 2.3622
+      },
+      {
+        "feature": "main wheel tread",
+        "referenceMeters": 2.70764,
+        "modelMeters": 2.70764
+      },
+      {
+        "feature": "stabilator span",
+        "referenceMeters": 4.3688,
+        "modelMeters": 4.3688
+      },
+      {
+        "feature": "tail rotor cant degrees",
+        "reference": 20,
+        "model": 20
+      }
+    ],
+    "visual": "Inspected four overlays, four turntables, lit three-quarter, pilot forward and close cockpit views and wide cabin against Army/M photos. Rechecked final tail side/cant, parked blade angle and coaming closure."
+  },
+  "sourceHash": "sha256:10b3b5d21cb3ec6db149c213d976eaef0393b9f7848e58d3428945cccd1fb54e",
+  "runtimeHash": "sha256:7d907fed64fccd685bc342afeef3b7bc39446b1c25535512ccf6818b70d25824",
+  "limitations": [
+    "Dimensioned Army drawings depict A/L variants. Shared fuselage dimensions are used; blade chord, exhaust, avionics and optional external stores are resolved from M photographs.",
+    "Top-view recognition drawing is low resolution and schematic. Its body planform is a coarse cross-check, not a detailed M engineering drawing.",
+    "Panel width 1.63m is an estimate. Near-frontal photo supplies relative positions with uncorrected perspective and lens effects; coaming depth and seat installation remain approximate.",
+    "Screens and overhead switch banks are simplified original geometry; detailed electrical systems, mission equipment and all placards are not reproduced.",
+    "Reference photographs are local analysis only; no source pixels shipped."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:d359956ceb65658402788206ebe800131c7d54b3b78db0d045ff14c3980ef30c",
+    "sourceHash": "sha256:10b3b5d21cb3ec6db149c213d976eaef0393b9f7848e58d3428945cccd1fb54e",
+    "runtimeHash": "sha256:7d907fed64fccd685bc342afeef3b7bc39446b1c25535512ccf6818b70d25824",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/uh-60m-pair.png",
+        "sha256": "sha256:3e3fb9f6d326a11648b7b3e1deb780c8ef5f65122ea07dc831dd8d15c69d3080",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

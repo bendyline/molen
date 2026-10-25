@@ -101,7 +101,7 @@ describe('molen entities library', () => {
     const sidecar = JSON.parse(
       await readFile(resolve(root, `assets/molen/entities/vehicle/${kind}/asset.json`), 'utf8'),
     ) as { sourceHash: string };
-    const source = await readFile(resolve(root, `source/vehicles/${kind}/models/source.glb`));
+    const source = await readFile(resolve(root, `source/vehicles/${kind}/models/detailed.glb`));
     expect(`sha256:${createHash('sha256').update(source).digest('hex')}`).toBe(sidecar.sourceHash);
   });
 });

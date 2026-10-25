@@ -1,0 +1,324 @@
+{
+  "planId": "castle_of_good_hope",
+  "id": "castle_of_good_hope",
+  "assetId": "molen.worldgen.structure.castle_of_good_hope",
+  "title": "Castle of Good Hope",
+  "category": "palace-castle-fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 18.42771586939093,
+    "latitude": -33.92587993259876
+  },
+  "size": [
+    227.70784759521484,
+    13.900000005960464,
+    234.0948257446289
+  ],
+  "actualBounds": {
+    "min": [
+      -123.05104064941406,
+      -0.4000000059604645,
+      -120.2960205078125
+    ],
+    "max": [
+      104.65680694580078,
+      13.5,
+      113.7988052368164
+    ]
+  },
+  "visualBrief": "Complete surviving five-point star fort on its original native plan: battered plain stone curtains, five angular bastions and low coping, both large open courtyards and small cross-wing void, the independent island wing, recessed ochre courtyard windows/green shutters, northwest arched gateway/open bell chamber and the curved yellow-and-white Kat courtyard pediment with simplified physical heraldic relief.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Pediment_above_enterance_to_CT_Castle.jpg",
+    "https://commons.wikimedia.org/wiki/File:Cape_Town_dual_gauge_ca_1880.jpg"
+  ],
+  "stories": [
+    {
+      "id": "castle-of-good-hope-wp",
+      "url": "https://qualla.com/castle-of-good-hope/"
+    }
+  ],
+  "referenceInputHash": "e60b0b4fd83fbc4c4c7d5d4bac1ea2ed70ab4b4bb103f60633f03860fa606146",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-castle-of-good-hope.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-castle-of-good-hope.mjs",
+    "level": "skyline",
+    "export": "castleGoodHopeSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_sandstone",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "castleGoodHopeDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "castleGoodHopeStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.35
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named castle relation57263 retains its signed whole fort and courtyard geometry. The original approach gate outside the main entrance defines a fixed approximate dry approach datum before terrain sampling.",
+    "anchor": [
+      18.42771586939093,
+      -33.92587993259876
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        18.4270992,
+        -33.9254685
+      ],
+      "modelHeight": 0,
+      "basis": "Original mapped approach gate immediately outside the named main entrance sets the fixed approximate dry approach datum before terrain acquisition."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/8035421",
+      "way/28912980",
+      "way/28912981",
+      "way/424911893",
+      "way/424950005"
+    ],
+    "source": "https://www.openstreetmap.org/relation/57263",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7b60e3ace2247494ec922fc8cd49198e697aea9dfb39bef2c265bb2f3055cba5",
+    "notes": "Assign inner holes to their containing exterior; do not pass nested courtyard/island holes together as one invalid earcut polygon. Overall native13.5mheight/4levels is a coarse whole-object tag, not uniform rampart height. Battered stone walls, wing roofs, local gateway/cupola and sculptural pediment heights may be medium-fi estimates. No fake crenellations or round tower from the stylized1689engraving."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Original OSM relation57263 and all five named bastion plans control the complete signed star footprint, open courtyard rings, dividing cross-wing and separate island wing. Native bastion8mheight controls the principal wall level; the whole-object13.5mheight is used only as the small gateway/bell maximum. Local wing heights, wall batter, roof/coping thickness and openings are medium-fi estimates, not a measured survey.",
+    "The exact published Qualla2006AndrewMassyn public-domain Kat pediment photograph controls its curved yellow crown, white heraldic shield/flags/drums and flanking seated allegorical figures. Its placement is on the central courtyard wing, not the outer entrance. Sculptural anatomy, inscriptions and hidden carving are simplified; no portrait or textual accuracy is claimed.",
+    "The exact published Qualla circa1880public-domain original controls plain battered stone curtain typology only. Railway, signals, train, people and the rest of the town are excluded. Gateway/cupola sections, courtyard window/shutter rhythm, local roofs and balcony dimensions are bounded architectural estimates. No disputed atlas image, stylized1689round-fort engraving or non-public-domain photograph is used.",
+    "Exterior assembly only; dark recessed portals are closed visual openings, not a traversable interior. Native yards remain genuinely unmeshed voids. Detached city buildings, moat/landscape reconstruction and interiors are excluded. Footings extend.4m below the fixed approach datum; host terrain and yard contact are approximate, with no whole-site platform or source-height fitting."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "native-star-and-open-courtyards",
+      "position": [
+        -140,
+        240,
+        -160
+      ],
+      "lookAt": [
+        -6,
+        0,
+        -2
+      ]
+    },
+    {
+      "name": "main-entrance-and-bell",
+      "position": [
+        -94,
+        18,
+        -82
+      ],
+      "lookAt": [
+        -55,
+        6,
+        -45
+      ]
+    },
+    {
+      "name": "kat-balcony-and-curved-pediment",
+      "position": [
+        -31,
+        14,
+        -35
+      ],
+      "lookAt": [
+        -12.6,
+        8,
+        -5.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 48765,
+    "vertices": 146295,
+    "materials": 6,
+    "bytes": 5855512,
+    "sha256": "sha256:78269a91b54226a49d1a679ca8361b8fe73c4faab9338dd83effd3a256fe448c"
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "accent": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.82,
+      "metallic": 0.15
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.6,
+      "metallic": 0.5
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.5,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/fatih-model.mjs",
+    "export": "buildFatihSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFatihDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.5
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildFatihStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.5
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildFatihCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.5
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -127,
+      91,
+      133
+    ],
+    "lookAt": [
+      1,
+      18,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-fatih-skyline",
+      "position": [
+        -127,
+        91,
+        133
+      ],
+      "lookAt": [
+        1,
+        18,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-fatih-district",
+      "position": [
+        -127,
+        91,
+        133
+      ],
+      "lookAt": [
+        1,
+        18,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-fatih-street",
+      "position": [
+        -127,
+        91,
+        133
+      ],
+      "lookAt": [
+        1,
+        18,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-fatih-closeup",
+      "position": [
+        -127,
+        91,
+        133
+      ],
+      "lookAt": [
+        1,
+        18,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Mapped compound and courtyard; roof semantics, heights and detailed terrain fit remain approximate.",
+    "anchor": [
+      28.9497619,
+      41.0197482
+    ],
+    "heading": -0.925055794608,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Normal viewer DEM datum 67.72154996927203 m; working floor -0.13075789090534046 m is median of 104 outside-perimeter samples at 1 m offset plus 0.3 m. 627 raw footprint samples span -1.6073752357291653..2.284126765777941 m. Adaptive footings follow the mapped outline; preview terrain seats the compound and 1.5 m margin. Full compound ground cutout is covered by paving, with the courtyard open above its floor. Precise stairs, thresholds, paving grades and terrain joins remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -48.263621361516215,
+          28.092333722210487
+        ],
+        [
+          48.56029737890339,
+          27.993885119328894
+        ],
+        [
+          48.235221949074,
+          -28.10063392911332
+        ],
+        [
+          -48.45284207234859,
+          -28.181886668266685
+        ]
+      ],
+      "basis": "Normal viewer DEM datum 67.72154996927203 m; working floor -0.13075789090534046 m is median of 104 outside-perimeter samples at 1 m offset plus 0.3 m. 627 raw footprint samples span -1.6073752357291653..2.284126765777941 m. Adaptive footings follow the mapped outline; preview terrain seats the compound and 1.5 m margin. Full compound ground cutout is covered by paving, with the courtyard open above its floor. Precise stairs, thresholds, paving grades and terrain joins remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        28.9497619,
+        41.0197482
+      ],
+      "modelHeight": 0,
+      "basis": "Normal viewer DEM datum 67.72154996927203 m; working floor -0.13075789090534046 m is median of 104 outside-perimeter samples at 1 m offset plus 0.3 m. 627 raw footprint samples span -1.6073752357291653..2.284126765777941 m. Adaptive footings follow the mapped outline; preview terrain seats the compound and 1.5 m margin. Full compound ground cutout is covered by paving, with the courtyard open above its floor. Precise stairs, thresholds, paving grades and terrain joins remain unverified."
+    },
+    "bounds": [
+      28.942,
+      41.014,
+      28.958,
+      41.026
+    ],
+    "notes": "Exact retained relation 1661399 / Q756189 is current viewer building 52776559794647. Its four outer vertices and four-vertex open courtyard, original anchor and heading remain fixed. Current coarse roof parts 52776562410717/720 retain raw polygons and properties; neither has height tags. Positive X ESE points from the WNW courtyard toward the prayer hall, positive Z WSW across its width. Pictures resolve this signed axis. The circular rear roof control guides one lower roof mass; detailed roof semantics are approximate. Surrounding medreses, tombs, gardens and city remain host content. Normal viewer DEM datum 67.72154996927203 m; working floor -0.13075789090534046 m is median of 104 outside-perimeter samples at 1 m offset plus 0.3 m. 627 raw footprint samples span -1.6073752357291653..2.284126765777941 m. Adaptive footings follow the mapped outline; preview terrain seats the compound and 1.5 m margin. Full compound ground cutout is covered by paving, with the courtyard open above its floor. Precise stairs, thresholds, paving grades and terrain joins remain unverified."
+  },
+  "geographicNote": "Normal viewer DEM datum 67.72154996927203 m; working floor -0.13075789090534046 m is median of 104 outside-perimeter samples at 1 m offset plus 0.3 m. 627 raw footprint samples span -1.6073752357291653..2.284126765777941 m. Adaptive footings follow the mapped outline; preview terrain seats the compound and 1.5 m margin. Full compound ground cutout is covered by paving, with the courtyard open above its floor. Precise stairs, thresholds, paving grades and terrain joins remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

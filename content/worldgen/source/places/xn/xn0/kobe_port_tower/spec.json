@@ -1,0 +1,332 @@
+{
+  "planId": "kobe_port_tower",
+  "id": "kobe_port_tower",
+  "assetId": "molen.worldgen.structure.kobe_port_tower",
+  "title": "Kobe Port Tower",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 135.18672466278076,
+    "latitude": 34.682627545516546
+  },
+  "size": [
+    25.899999618530273,
+    108.64999997615814,
+    25.899999618530273
+  ],
+  "actualBounds": {
+    "min": [
+      -12.949999809265137,
+      -0.6499999761581421,
+      -12.949999809265137
+    ],
+    "max": [
+      12.949999809265137,
+      108,
+      12.949999809265137
+    ]
+  },
+  "visualBrief": "Red32-straight-member hourglass lattice tower, open white central circulation cage, five flaring upper glazed floors, low white three-storey circular entrance base and2024 structural roof/low glass terraces. PORT OF KOBE lettering and lightning tip. Separate Kiss FM building, museum, waterfront fixtures and renovation wrap excluded.",
+  "nativeAxes": {
+    "x": "east toward Meriken Park road",
+    "y": "up",
+    "z": "south toward own dry entrance approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20190901_Kobe_Port_Tower-1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kobe-port-tower-wp",
+      "url": "https://qualla.com/kobe-port-tower/"
+    }
+  ],
+  "referenceInputHash": "429810b04d5bb369139f4ce651dadecaa611241a155f6d341c1b0e05f8e044a5",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-kobe-port-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-kobe-port-tower.mjs",
+    "level": "skyline",
+    "export": "kobePortTowerSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.15
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.15
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.25,
+        "metallic": 0.1
+      },
+      "guard": {
+        "slot": "window",
+        "localRef": "palette:#d7eef0",
+        "roughness": 0.2,
+        "metallic": 0,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.27
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "kobePortTowerDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "guard": {
+            "slot": "window",
+            "localRef": "palette:#d7eef0",
+            "roughness": 0.2,
+            "metallic": 0,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.27
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "kobePortTowerStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "guard": {
+            "slot": "window",
+            "localRef": "palette:#d7eef0",
+            "roughness": 0.2,
+            "metallic": 0,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.27
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dry south approach[0,14.5] establishes independent GSI5A datum1.7483m. All16641 samples are valid original5A interpolation with two retained source tiles;1A unavailable. Native footprint spans-.160..+.078m. Own footing-.65m to cap+.2m and threshold+.32m meet the unchanged grade. Mapped circular anchor and global axes reviewed; precise entry azimuth remains an authored approximation. Bounded preview, footprint replacement disabled.",
+    "anchor": [
+      135.18672466278076,
+      34.682627545516546
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        135.18672466278076,
+        34.68249729039617
+      ],
+      "modelHeight": 0,
+      "basis": "Dry approach immediately south of own circular tower footing, outside the building and waterfront water."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184471546753"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:799e2f27864d31470400f2690518d7f4c1d115bc92ae5b4c00c51b28addac243",
+    "notes": "Primary32 straight pipes in two opposing twisted families,25m bottom/15m top diameters and99.1m eaves guide open hyperboloid. Creator-CC0 renovated exterior photographs independently confirm glass roof crown and low open terrace. Exact gauges/service return/entry azimuth remain estimates; central cage remains visibly open."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Primary25m/15m frame diameters,99.1m eaves,108m lightning tip and32 straight pipes guide scale/geometry. Cleared Qualla2019 CC0 original first, then three verified creator-CC0 waterfront2019/renovated2024/2025 originals control exterior comparison. Earlier CC/operator/aerial imagery is excluded. Temporary lighting/event artwork is not modeled.",
+    "Tube gauges, intermediate rings, cage bracing, window divisions, sign spacing, rooftop service return and entrance azimuth remain authored estimates; no construction survey. Interiors excluded apart from visible structural circulation cage. Transparent guard material is a bounded glass approximation.",
+    "Separate Kiss FM building, museum, pedestrian bridge, waterfront pavement/fixtures, tables/chairs/parasols and branding excluded. No photographic pixels redistributed. Independent native GSI5A ground preserved unchanged; own footing contact reviewed as a bounded preview. Other host terrain remains unverified; footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        54,
+        220
+      ],
+      "lookAt": [
+        0,
+        51,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -16,
+        103,
+        25
+      ],
+      "lookAt": [
+        0,
+        94,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        130,
+        68,
+        -185
+      ],
+      "lookAt": [
+        0,
+        49,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        -22,
+        12,
+        35
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "waist-detail",
+      "position": [
+        -13,
+        52,
+        20
+      ],
+      "lookAt": [
+        0,
+        54,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 44660,
+    "vertices": 133980,
+    "materials": 4,
+    "bytes": 5361872,
+    "sha256": "sha256:3a861f406ac0673bc69257ed988f3780f2d12484d4ad8df45b9b6776f70dabe6"
+  }
+}

@@ -550,7 +550,7 @@ function buildCenter(out, m) {
   crown(out);
 }
 export const centerStudy = {
-  id: 'N0206',
+  id: 'the_center',
   key: 'the_center',
   title: 'The Center',
   wikidataId: 'Q130478',

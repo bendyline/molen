@@ -529,7 +529,7 @@ export function buildMhp(out) {
   roof(out);
 }
 export const mhpStudy = {
-  id: 'N0697',
+  id: 'mhparena',
   key: 'mhparena',
   wikidataId: 'Q152349',
   title: 'MHPArena',

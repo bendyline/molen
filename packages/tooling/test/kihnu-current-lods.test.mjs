@@ -5,7 +5,7 @@ import { kihnuPorts, kihnuRadius } from '../../worldgen/scripts/kihnu-browser-mo
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ud/ud3/n0671_kihnu_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/ud/ud3/kihnu_lighthouse'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );

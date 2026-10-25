@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u0n/n0258_sforza_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u0/u0n/sforza_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1168,7 +1168,7 @@ export function buildSforzaRuntime(out, detail) {
 }
 export const buildSforzaSkyline = (o) => buildSforzaRuntime(o, 'skyline');
 export const sforzaStudy = {
-  id: 'N0258',
+  id: 'sforza_castle',
   key: 'sforza_castle',
   title: 'Sforza Castle',
   category: 'castle',

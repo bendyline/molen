@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u1/u14/n0370_st_bavo_s_cathedral/',
+  '../../../content/worldgen/source/places/u1/u14/st_bavos_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -801,7 +801,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const stBavoStudy = {
-  id: 'N0370',
+  id: 'st_bavos_cathedral',
   key: 'st_bavo_s_cathedral',
   title: "St Bavo's Cathedral",
   category: 'cathedral',

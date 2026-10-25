@@ -99,7 +99,7 @@ describe('structure material coverage', () => {
     ];
     const entries = ['a', 'b'].map((key) => ({
       key,
-      collection: 'next-1000',
+      collection: 'structure-catalog',
       hasModel: true,
       sourcePath: `content/worldgen/source/places/u0/u00/${key}`,
     }));
@@ -107,7 +107,7 @@ describe('structure material coverage', () => {
     expect(summary.models).toBe(2);
     expect(summary.collections).toEqual([
       {
-        collection: 'next-1000',
+        collection: 'structure-catalog',
         models: 2,
         modelsWithSharedSurfaces: 1,
         sharedDefinitions: 1,
@@ -142,7 +142,7 @@ describe('structure material coverage', () => {
     const entries = [
       {
         key: 'a',
-        collection: 'next-1000',
+        collection: 'structure-catalog',
         hasModel: true,
         sourcePath: 'content/worldgen/source/places/u0/u00/a',
       },

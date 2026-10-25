@@ -733,14 +733,14 @@ function sunkenPlaza(out) {
   );
 }
 export function buildCiticorp(out, m) {
-  const parts = partsEvidence('n0198_citigroup_center');
+  const parts = partsEvidence('citigroup_center');
   shaft(out, m, parts);
   market(out, m, parts);
   church(out, m, parts);
   sunkenPlaza(out);
 }
 export const citicorpStudy = {
-  id: 'N0198',
+  id: 'citigroup_center',
   key: 'citigroup_center',
   wikidataId: 'Q391243',
   title: 'Citigroup Center',

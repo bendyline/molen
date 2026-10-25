@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/',
+  '../../../content/worldgen/source/places/63/63k/cathedral_of_the_most_holy_conception/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -848,7 +848,7 @@ export const buildConcepcionSkyline = (o) => build(o, 0),
   buildConcepcionStreet = (o) => build(o, 2),
   buildConcepcionCloseup = (o) => build(o, 3);
 export const concepcionStudy = {
-  id: 'N0343',
+  id: 'cathedral_of_the_most_holy_conception',
   key: 'cathedral_of_the_most_holy_conception',
   title: 'Cathedral of the Most Holy Conception',
   category: 'cathedral',

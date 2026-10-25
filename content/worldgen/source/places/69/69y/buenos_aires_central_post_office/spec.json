@@ -1,0 +1,336 @@
+{
+  "planId": "buenos_aires_central_post_office",
+  "id": "buenos_aires_central_post_office",
+  "assetId": "molen.worldgen.structure.buenos_aires_central_post_office",
+  "title": "Buenos Aires Central Post Office",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.369475,
+    "latitude": -34.6035842
+  },
+  "size": [
+    83,
+    64.60000157356262,
+    120.83174133300781
+  ],
+  "actualBounds": {
+    "min": [
+      -41.70000076293945,
+      -1.2000000476837158,
+      -59.230098724365234
+    ],
+    "max": [
+      41.29999923706055,
+      63.400001525878906,
+      61.60164260864258
+    ]
+  },
+  "visualBrief": "Complete native postal palace envelope: arched entrances, rusticated lower stages, giant columned pavilions, cornices/recessed windows, perimeter mansard/dormers, northern corner cupolas, side cupolas and large south clock/glazed main cupola. Qualla-first exact public-domain originals and current primary operator facts; hidden roof sections and facade census approximate.",
+  "nativeAxes": {
+    "x": "east along exact south front",
+    "y": "up",
+    "z": "south toward Sarmiento entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Centro_Cultural_Bicentenario_(abril_2010).jpg",
+    "https://commons.wikimedia.org/wiki/File:SecretariaComunicacionesAR027.jpg",
+    "https://commons.wikimedia.org/wiki/File:SecretariaComunicaciones055.JPG"
+  ],
+  "stories": [
+    {
+      "id": "buenos-aires-central-post-office-wp",
+      "url": "https://qualla.com/buenos-aires-central-post-office/"
+    }
+  ],
+  "referenceInputHash": "f0700eeca79bb8733ef3fd12d8565dda3f82e5805d6a495677c29f49078c8c8f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-buenos-aires-central-post-office.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-buenos-aires-central-post-office.mjs",
+    "level": "skyline",
+    "export": "buenosAiresPostOfficeSkyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.3,
+        "metallic": 0.12
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.15
+      },
+      "clock": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buenosAiresPostOfficeDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buenosAiresPostOfficeStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5,
+    "groundY": -1.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent raw256mfield frozen at original south dry entrance approach before geometry; street/threshold/basement elevations and native height tag scope approximate. No site slab or terrain fitting.",
+    "anchor": [
+      -58.369475,
+      -34.6035842
+    ],
+    "heading": 0.09292014284827732,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.36941161205619,
+        -34.6041445830766
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed dry south central entrance approach3moutward from original native central facade, chosen before terrain/geometry. No site-pad or terrain fitting."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/17444532"
+    ],
+    "source": "https://www.openstreetmap.org/way/17444532",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dd33e34237ab07ad2542a97e3f2fc64d53c2e6437c9091d69fcdbf99d3e4af46",
+    "notes": "Complete surviving Buenos Aires Central Post Office / Palacio de Correos exterior, now Palacio Libertad: exact original named native perimeter, monumental four-sided pale Beaux-Arts envelope with rusticated lower floors, genuine arched ground openings, repeated recessed windows, giant pilaster/column stages, projecting central pavilions, tiered cornices, perimeter mansard/dormers, two rounded northern corner roof towers, side pavilion cupolas and the large main south cupola with clock dormer and current operator-documented faceted glazed cover. Include own doorway thresholds/short steps only. Exclude adjacent streets/plaza/landscape/neighbor buildings, scaffolds/cranes/construction trailers, signage/logos/roof antennas/people/vehicles and interiors/art installations. Unseen rear/roof census and precise section/finish remain bounded estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original46-vertex named nativeway17444532/Q19960845controls full envelope, south projection, small side offsets and rounded north corners without scaling. Original south edge/bounding midpoint set heading/anchor. Approximate vertical section reaches62m main cupola; native50mheight is ambiguous and retained as original metadata, not presented as a certified full roof bound.",
+    "Exact Qualla2010ElsapucaiPD-user original inspected first; two supplemental2008south/west originals byClaudioElias have exact nativeSHA1and explicit own-workPD-self grants. Photographs establish preserved exterior/roof form, not a current unscaffolded image. Main-cupola faceted glass covering follows primary operator/city tourism restoration text. No non-PDphotograph/drawing/artwork, copied pixels or generated texture.",
+    "Roof layout uses photo-controlled large south main cupola, west central pavilion and rounded north-corner forms; corresponding east/north roof details, counts/precise sections, modern glass tint/panel census and unobserved inner roof/service arrangement are bounded estimates. Main glass follows historic curved truncated roof form; no interior/concert hall/art installation or engineering survey claim.",
+    "Pale Beaux-Arts facade includes true inset glazed apertures, representative arched entrances, rusticated lower stages, central columns/giant pilasters, cornice hierarchy, mansard dormers and clock dormer. Exact ornament/capital/window/baluster census and restored surface color estimated; simplified far levels retain dominant roof/pavilion arrangement and full envelope.",
+    "Fixed dry south approach and raw independent Terrarium field remain unchanged. Composite urban DEM does not certify sidewalk/basement/threshold contact.1.2mdeep base and short own entrance steps are approximate. Exclude whole plaza, street, neighboring buildings, scenery/landscape, construction scaffolds/equipment, lettering/logos, antennas, vehicles and people."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "south-principal-three-bay-pavilion-and-glazed-cupola",
+      "position": [
+        -8,
+        42,
+        139
+      ],
+      "lookAt": [
+        0,
+        31,
+        50
+      ]
+    },
+    {
+      "name": "arched-entry-recesses-rustication-and-colossal-columns",
+      "position": [
+        -25,
+        18,
+        96
+      ],
+      "lookAt": [
+        -1,
+        17,
+        59
+      ]
+    },
+    {
+      "name": "west-long-facade-side-cupola-and-north-corner",
+      "position": [
+        -127,
+        62,
+        -35
+      ],
+      "lookAt": [
+        -27,
+        29,
+        -3
+      ]
+    },
+    {
+      "name": "complete-roof-layout-low-inner-roof-and-clock-dormer",
+      "position": [
+        99,
+        116,
+        146
+      ],
+      "lookAt": [
+        0,
+        34,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 51322,
+    "vertices": 153966,
+    "materials": 6,
+    "bytes": 6162260,
+    "sha256": "sha256:17a406cc2044c33abaa907851a53fd1445ef2d6245dcacf062a3d07af3dcde6f"
+  }
+}

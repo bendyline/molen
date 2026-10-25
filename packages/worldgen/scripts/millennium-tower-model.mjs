@@ -419,7 +419,7 @@ export function buildMillenniumHoodScreens(out) {
 }
 
 export const millenniumTowerStudy = {
-  id: 'N0235',
+  id: 'millennium_tower',
   key: 'millennium_tower',
   title: 'Millennium Tower, Vienna',
   wikidataId: 'Q80495',

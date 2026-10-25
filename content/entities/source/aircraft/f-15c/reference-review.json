@@ -1,0 +1,277 @@
+{
+  "variant": "F-15C MSIP, F100-PW-220, clean configuration; 1989 cockpit and 1992 SAC",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://web.archive.org/web/20111014195242id_/http://alternatewars.com/SAC/F-15C_Eagle_SAC_-_February_1992.pdf",
+      "title": "Standard Aircraft Characteristics F-15C, February 1992",
+      "author": "US Air Force / McDonnell Douglas",
+      "license": "Publicly archived US federal technical publication; local study only",
+      "scope": "PDF2 clean three-view: 63.75ft length,42.81ft wing span,18.58ft fin height,12ft canopy height,17.78ft wheelbase,9.03ft main track,28.25ft tail span. Printed views are not mutually exact scale drawings."
+    },
+    {
+      "url": "https://www.usaf-sig.org/index.php/references/downloads/4-technical-orders/38-type-specific/102-f-15-eagle-strike-eagle?download=451:t-o-1f-15a-1-flight-manual-f-15a-b-c-d-block-7-up-01-07-1989-pdf",
+      "title": "T.O.1F-15A-1,1July1989,selected pages",
+      "author": "US Air Force",
+      "license": "Publicly hosted technical manual excerpt; local study only, no diagram pixels redistributed",
+      "scope": "PDF10 MSIP cockpit FO-3, explicitly F-15C85-0126andup/D86-0181andup;PDF11/12throttles,13stick,18MPCD,22seat. PDF9 early panel excluded from MSIP layout."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F-15C_Eagle_kokpit.jpg",
+      "title": "F-15C canopy and ACES II seat,29August2015",
+      "author": "Andrej-airliner",
+      "license": "CC BY-SA4.0; reference only, no pixels embedded",
+      "scope": "Closed canopy proportions, front bow, rail fasteners, seat and HUD housing."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F-15C_Eagle_cockpit.jpg",
+      "title": "Capt.Kevin Wenger straps into F-15C,9November2004",
+      "author": "SSgt.James Williams,US Air Force",
+      "license": "Public domain US federal government work",
+      "scope": "Oblique cockpit: seat, harness, console, center stick and lower-left display. File retained locally as f-15c.jpg."
+    },
+    {
+      "url": "https://ntrs.nasa.gov/api/citations/19950026589/downloads/19950026589.pdf",
+      "title": "An Overview of Integrated Flight-Propulsion Controls Flight Research on the NASA F-15 Research Airplane",
+      "author": "Frank W.Burcham,Donald Gatlin,James Stewart,NASA Dryden",
+      "license": "NASA public report,local study",
+      "scope": "PDF4 supplementary A-prototype three-view only; test boom and research modifications excluded."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F-15C.jpg",
+      "title": "F-15C breaks away after refueling,4April1999,990404-F-0024F-018",
+      "author": "Tech.Sgt.Brad Fallin,US Air Force",
+      "license": "Public domain US federal government work",
+      "scope": "Oblique exterior photograph: fixed wing, single canopy, twin fins, engine fairings and speed brake. External stores excluded. No pixels embedded."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      3.34,
+      6.55
+    ],
+    "lookAt": [
+      0,
+      2.87,
+      7.42
+    ],
+    "fov": 77
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.94
+    ],
+    "viewHeight": 1.22,
+    "cameraHeight": 3.05
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "angleOfAttack": 0,
+    "loadFactor": 1,
+    "gear": 1,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/f15-sac-normalized.png",
+      "crop": {
+        "left": 590,
+        "top": 1900,
+        "width": 1040,
+        "height": 330
+      },
+      "referenceAnchor": [
+        630,
+        2208
+      ],
+      "modelAnchor": [
+        -11.6,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 960,
+        "meters": 19.431,
+        "description": "63.75ft overall length. Independently model17.78ft wheelbase,12ft canopy height,18.58ft fin height; scan dimensional inconsistency retained."
+      },
+      "scope": "Clean side silhouette and canopy; no externally carried tanks or weapons."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/f15-sac-normalized.png",
+      "crop": {
+        "left": 780,
+        "top": 470,
+        "width": 660,
+        "height": 980
+      },
+      "referenceAnchor": [
+        1104,
+        1424
+      ],
+      "modelAnchor": [
+        0,
+        11.6
+      ],
+      "scaleControls": {
+        "pixels": 600,
+        "meters": 13.048488,
+        "description": "42.81ft wingspan; independently63.75ft length and28.25ft tail span."
+      },
+      "scope": "Fixed wing sweep, intake spacing, tail and canopy. Minor printed longitudinal scale disagreement is not corrected by anisotropic scaling."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/f15-sac-normalized.png",
+      "crop": {
+        "left": 780,
+        "top": 1480,
+        "width": 660,
+        "height": 290
+      },
+      "referenceAnchor": [
+        1102,
+        1760
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 600,
+        "meters": 13.048488,
+        "description": "42.81ft span; independent9.03ft main gear track."
+      },
+      "scope": "Twin vertical fins, narrow gear track, canopy and inlet openings."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/f15-panel-normalized.png",
+      "crop": {
+        "left": 800,
+        "top": 90,
+        "width": 550,
+        "height": 490
+      },
+      "referenceAnchor": [
+        1071,
+        365
+      ],
+      "modelAnchor": [
+        0,
+        -2.94
+      ],
+      "scaleControls": {
+        "pixels": 35.2778,
+        "meters": 0.079375,
+        "description": "Nominal3.125in flight-instrument diameter, reconstructed scale; panel mounting dimensions not provided."
+      },
+      "scope": "FO-3 MSIP instrument positions, main outline, coaming and HUD. Physical arrangement, not operational radar or weapon symbology."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Dedicated F-15C MSIP model replaces generic twin-fin fighter: per-station nose/body, single canopy, separate ramp intakes and twin engine fairings, exposed exhaust actuator rods and complete inward-facing nozzle lining.",
+      "Uniform top overlay exposed forward trailing-edge and leading-edge errors; corrected cropped-delta planform, flap hinge, tail leading edge and wing height. Side/front drawings independently checked against stated dimensions.",
+      "MSIP FO-3 panel rather than early F-15A or F-15E panel: upper-left VSD, lower-left MPCD, central HUD/communications controls, central ADI/HSI, separate standby trio, right paired engine instruments and knee panels.",
+      "Recessed attitude cards through panel apertures. Corrected panel capture depth, cockpit-liner protrusions and seated forward eye clearance. Replaced generic numeric keypad with control groups based on the MSIP foldout.",
+      "TAS, geometric altitude including signed readout, climb, true heading, attitude, AoA in degrees, load factor and standby instruments use shared expressions. Unsupported engine/navigation/radar quantities show dashes/INOP; missing readings and gear lamps hide.",
+      "Animated ailerons, differential stabilators, rudders, flaps, gear, central stick, pedals and paired left throttles. Exported geometry tests check directions and cardinal heading readings.",
+      "Selected geometric seams, canopy fasteners, wing fastener rows and warning stencils. Seat, harness, console groups and footwell modeled without photo textures or external weapons."
+    ],
+    "independentDimensions": [
+      "SAC63.75ft length19.431m,42.81ft wingspan13.048488m,18.58ft fin height5.663184m,12ft canopy height3.6576m; runtime fin-mounted fairing extends height to5.71m.",
+      "Main axle datum;17.78ft wheelbase5.419344m,9.03ft track2.752344m,28.25ft tail span8.6106m. Wing area56.48504832m2 is specified flight-model area, not a claim of exact triangulated planform area.",
+      "Uniform exterior scales use stated length for side and span for top/front. Printed top longitudinal proportions disagree by roughly3–4%; side canopy height and wheelbase also disagree with annotated dimensions. Kept real dimensions and disclosed contour mismatch without stretching reference axes.",
+      "MSIP panel scale from nominal3.125in instrument; panel width/depth and seat installation reconstructed from foldout and oblique photographs, not dimensioned manufacturing drawings."
+    ],
+    "visual": "Inspected four exterior/panel overlays and all eight standard captures. Ten instrument/detail states inspected, with final-hash22captures rechecked in six contact sheets. Full-size canopy/footwell and exhaust close-ups used to correct shell intrusion and inward-surface culling. Compared MSIP foldout plus two cockpit/canopy photos and an independent USAF exterior photograph.",
+    "limitations": [
+      "Polygonal F-15C interpretation combining1989 MSIP cockpit with1992 F100-PW-220 SAC. Printed diagram inconsistencies leave visible canopy, aft-tail and wing-height differences in overlays. Exact airfoil, curvature and small fairings are approximated.",
+      "Instrument positions follow the foldout, while dial calibration, bezels, switch counts, console spacing, seat/harness, gear mechanisms and individual fastener placement remain simplified. No complete rivet, stencil, serial-number or unit-livery reproduction.",
+      "TAS replaces indicated airspeed; altitude is geometric, heading true, AoA degrees. No calibrated pitot/static IAS/Mach, pressure altitude, magnetic variation, flight-director/nav steering or real engine/fuel systems.",
+      "VSD,MPCD and TEWS are inactive; HUD is physical glass without collimated symbology. Engine core RPM,EGT,nozzle schedule,fuel/oil/hydraulic data and clock are unsupported and blank. Static console switches do not implement aircraft systems.",
+      "Shared simplified flight dynamics, visual control mixes and gear retraction. Flight smoke proves basic controllability rather than actual F-15 performance; no external stores or weapons behavior.",
+      "Reference PDFs and photos retained only as local study evidence. Sources and licenses cited; no reference pixels redistributed as model textures."
+    ]
+  },
+  "instrumentReview": {
+    "typeDefinitionHash": "sha256:0ca43e0336ef2767056c0619aae38faaaa215b07e49fab69f39825314a75ba0e",
+    "checks": "15 shared imported instrument tests and targeted F-15C geometry test passed, including cardinal heading, control directions, negative altitude and missing-data lamps.",
+    "captures": {
+      "zero": {
+        "path": ".artifacts/aircraft/f-15c-instruments/zero.png",
+        "sha256": "sha256:170d7411b7917fc438e9c75edad31e2e66d81bc8c9a7882e0bd194312278e197",
+        "inspected": true
+      },
+      "cruise": {
+        "path": ".artifacts/aircraft/f-15c-instruments/cruise.png",
+        "sha256": "sha256:42b0679265b3afae99e65a45f558fa567c5626e7c01efe037a79964c8322a72d",
+        "inspected": true
+      },
+      "limits": {
+        "path": ".artifacts/aircraft/f-15c-instruments/limits.png",
+        "sha256": "sha256:f103ebfde3f778547b1a0d9c7308727958e11e72b587d77c1fdf3c6bfbdc0319",
+        "inspected": true
+      },
+      "below-sea-level": {
+        "path": ".artifacts/aircraft/f-15c-instruments/below-sea-level.png",
+        "sha256": "sha256:8fffc23f1aa5874b49becc41322b7a05c7ffe8544d532a46e03ce19397c85d44",
+        "inspected": true
+      },
+      "missing": {
+        "path": ".artifacts/aircraft/f-15c-instruments/missing.png",
+        "sha256": "sha256:ff2f163d4d135de01c09f065c6ddc64ff3504189b733790be7bb991b5590b5d4",
+        "inspected": true
+      },
+      "controls": {
+        "path": ".artifacts/aircraft/f-15c-instruments/controls.png",
+        "sha256": "sha256:30c565cf557d73e6a8f2100ca18674cd9506bae0b1c92c21812fd6ea4ee749a0",
+        "inspected": true
+      },
+      "close-exterior": {
+        "path": ".artifacts/aircraft/f-15c-instruments/close-exterior.png",
+        "sha256": "sha256:1e167726cd9325438b5ac7d2dc10d7bd6011ed6fd3a3ebdcc21bebe84e22be95",
+        "inspected": true
+      },
+      "clean-flight": {
+        "path": ".artifacts/aircraft/f-15c-instruments/clean-flight.png",
+        "sha256": "sha256:6d6db138e04f9516bb75da8e76e6eeb4354b27284fd304506d3e4ce9a12251f2",
+        "inspected": true
+      },
+      "canopy-side": {
+        "path": ".artifacts/aircraft/f-15c-instruments/canopy-side.png",
+        "sha256": "sha256:f6883d6b96280b9530181bbc901a1b642f3c35ef584e15db57107492c1715d22",
+        "inspected": true
+      },
+      "exhausts": {
+        "path": ".artifacts/aircraft/f-15c-instruments/exhausts.png",
+        "sha256": "sha256:6503dd29fb5dceea32b6fd7d766395612bc1f65c69d8be226211feea3e52a79c",
+        "inspected": true
+      }
+    }
+  },
+  "sourceHash": "sha256:019288b30021b9148f1132e862fb14a959223987ae784adc8aae5a9d9da60e38",
+  "runtimeHash": "sha256:61cde21c6570a8fb6d4257db2cfe24bc494dd6b482251e39a31916357c1926a2",
+  "limitations": [
+    "Polygonal F-15C interpretation combining1989 MSIP cockpit with1992 F100-PW-220 SAC. Printed diagram inconsistencies leave visible canopy, aft-tail and wing-height differences in overlays. Exact airfoil, curvature and small fairings are approximated.",
+    "Instrument positions follow the foldout, while dial calibration, bezels, switch counts, console spacing, seat/harness, gear mechanisms and individual fastener placement remain simplified. No complete rivet, stencil, serial-number or unit-livery reproduction.",
+    "TAS replaces indicated airspeed; altitude is geometric, heading true, AoA degrees. No calibrated pitot/static IAS/Mach, pressure altitude, magnetic variation, flight-director/nav steering or real engine/fuel systems.",
+    "VSD,MPCD and TEWS are inactive; HUD is physical glass without collimated symbology. Engine core RPM,EGT,nozzle schedule,fuel/oil/hydraulic data and clock are unsupported and blank. Static console switches do not implement aircraft systems.",
+    "Shared simplified flight dynamics, visual control mixes and gear retraction. Flight smoke proves basic controllability rather than actual F-15 performance; no external stores or weapons behavior.",
+    "Reference PDFs and photos retained only as local study evidence. Sources and licenses cited; no reference pixels redistributed as model textures."
+  ]
+}

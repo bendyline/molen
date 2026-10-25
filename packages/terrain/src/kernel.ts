@@ -168,6 +168,7 @@ export {
   BRIDGE_SURFACE_LIFT,
   groupTransportationFeatures,
   inferLaneCount,
+  isArterialRoad,
   isPaintedTransport,
   isTransportLink,
   PATH_SURFACE_LIFT,
@@ -197,3 +198,18 @@ export function heightfieldFromPng(descriptor: TerrainDescriptor, png: Uint8Arra
     height: descriptor.height,
   });
 }
+
+export {
+  DEFAULT_ROAD_SIGN_PROFILE,
+  type TerrainRoadSignCatalog,
+  type TerrainRoadSignProfile,
+  terrainRoadSignCatalogSchema,
+  terrainRoadSignProfileSchema,
+  terrainRoadSignProfilesSchema,
+} from './road-sign-styles';
+export {
+  resolveTerrainRouteMarker,
+  type TerrainRouteMarker,
+  type TerrainRouteShieldLibrary,
+  terrainRouteShieldLibrarySchema,
+} from './route-shields';

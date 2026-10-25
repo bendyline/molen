@@ -5,6 +5,19 @@ dist-types/
 coverage/
 .tmp/
 shots/
+# Renamed source bundles retain concise required review records, while captures stay local.
+!content/worldgen/source/places/**/shots/
+content/worldgen/source/places/**/shots/**
+!content/worldgen/source/places/**/shots/grade/
+!content/worldgen/source/places/**/shots/grade/report.json
+!content/worldgen/source/places/**/shots/context/
+!content/worldgen/source/places/**/shots/context/report.json
+!content/worldgen/source/places/**/shots/shared-isolated/
+!content/worldgen/source/places/**/shots/shared-isolated/report.json
+!content/worldgen/source/places/**/shots/terrain-street/
+!content/worldgen/source/places/**/shots/terrain-street/review.json
+!content/worldgen/source/places/**/shots/terrain-closeup/
+!content/worldgen/source/places/**/shots/terrain-closeup/review.json
 # Bulk review captures stay local; builds and CI do not need a screenshot archive.
 # Keep reports, source textures/heightmaps and small preview.png thumbnails in Git.
 **/medium-fi/**/*.png
@@ -15,7 +28,7 @@ test-results/
 .turbo/
 .artifacts/
 # Per-model round notes are transient; retain model QA and batch completion reports.
-/content/worldgen/source/next-1000/rounds/*-n[0-9][0-9][0-9][0-9].md
+/content/worldgen/source/structure-catalog/rounds/*-n[0-9][0-9][0-9][0-9].md
 .pnpm-store/
 debug.log
 .DS_Store
@@ -40,3 +53,6 @@ docs-site/reference/
 docs-site/public/
 docs-site/.vitepress/cache/
 /archive
+
+# Compiled placement regions and local authoring preview; sources live in earth/source/placements.
+/content/earth/structures/placements/

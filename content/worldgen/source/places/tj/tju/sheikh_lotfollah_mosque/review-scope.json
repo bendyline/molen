@@ -1,0 +1,355 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "dome": {
+      "slot": "roof",
+      "graph": "tile_mosaic",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "trim",
+      "graph": "tile_mosaic",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.52,
+      "metallic": 0.01
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/lotf-model.mjs",
+    "export": "buildLotfSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLotfDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.01
+          }
+        }
+      },
+      "street": {
+        "export": "buildLotfStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.01
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildLotfCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.01
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      52,
+      48,
+      71
+    ],
+    "lookAt": [
+      -2,
+      14,
+      3
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-lotf-skyline",
+      "position": [
+        52,
+        48,
+        71
+      ],
+      "lookAt": [
+        -2,
+        14,
+        3
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-lotf-district",
+      "position": [
+        52,
+        48,
+        71
+      ],
+      "lookAt": [
+        -2,
+        14,
+        3
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-lotf-street",
+      "position": [
+        52,
+        48,
+        71
+      ],
+      "lookAt": [
+        -2,
+        14,
+        3
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-lotf-closeup",
+      "position": [
+        52,
+        48,
+        71
+      ],
+      "lookAt": [
+        -2,
+        14,
+        3
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Exact main footprint and rounded roof part retained; total mapped 32 m used; internal divisions and detailed terrain fit approximate.",
+    "anchor": [
+      51.678716706,
+      32.657419862
+    ],
+    "heading": -1.350192875179,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Normal viewer DEM datum 1572.0794094897037 m; working floor -0.37405241159531216 m is the median of 50 outside-perimeter samples at 1 m offset plus 0.3 m. 142 raw main-footprint samples span -2.1642793043172333..1.4588514007439244 m. Adaptive footings follow the mapped outline. Preview terrain seats the footprint and 1.5 m margin; model paving covers the exact main-outline cutout. Exact raised entrance steps, thresholds, street/paving levels, basement levels and terrain joins remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -18.719494619335887,
+          21.580331325250683
+        ],
+        [
+          5.302416008245651,
+          21.299608610469576
+        ],
+        [
+          21.170368678278948,
+          21.766567751945708
+        ],
+        [
+          21.983651690897545,
+          10.09827956951794
+        ],
+        [
+          -4.648423302796924,
+          -21.636371617464846
+        ],
+        [
+          -21.92736360629243,
+          2.5697059803313724
+        ]
+      ],
+      "basis": "Normal viewer DEM datum 1572.0794094897037 m; working floor -0.37405241159531216 m is the median of 50 outside-perimeter samples at 1 m offset plus 0.3 m. 142 raw main-footprint samples span -2.1642793043172333..1.4588514007439244 m. Adaptive footings follow the mapped outline. Preview terrain seats the footprint and 1.5 m margin; model paving covers the exact main-outline cutout. Exact raised entrance steps, thresholds, street/paving levels, basement levels and terrain joins remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        51.678716706,
+        32.657419862
+      ],
+      "modelHeight": 0,
+      "basis": "Normal viewer DEM datum 1572.0794094897037 m; working floor -0.37405241159531216 m is the median of 50 outside-perimeter samples at 1 m offset plus 0.3 m. 142 raw main-footprint samples span -2.1642793043172333..1.4588514007439244 m. Adaptive footings follow the mapped outline. Preview terrain seats the footprint and 1.5 m margin; model paving covers the exact main-outline cutout. Exact raised entrance steps, thresholds, street/paving levels, basement levels and terrain joins remain unverified."
+    },
+    "bounds": [
+      51.673,
+      32.652,
+      51.684,
+      32.663
+    ],
+    "notes": "Retained exact way 244271852 / Q856356 is current viewer building 35184616360684. Its six current outer vertices, original anchor and heading remain fixed. Current rounded building part 35185027499279 / way655410447 has 19 outer vertices and guides the drum/dome plan. Positive Z points approximately west-southwest toward the square and entrance; positive X approximately south-southeast along the frontage. Two pictures guide the signed entrance, dome and blue drum. The entrance is centered approximately at local [-2.55,21.4]. Detailed roof divisions, entrance dimensions and side/rear bays are estimates. Long neighboring bazaar building 35184756945754 and the square remain host content; they are not absorbed into this mosque model. Normal viewer DEM datum 1572.0794094897037 m; working floor -0.37405241159531216 m is the median of 50 outside-perimeter samples at 1 m offset plus 0.3 m. 142 raw main-footprint samples span -2.1642793043172333..1.4588514007439244 m. Adaptive footings follow the mapped outline. Preview terrain seats the footprint and 1.5 m margin; model paving covers the exact main-outline cutout. Exact raised entrance steps, thresholds, street/paving levels, basement levels and terrain joins remain unverified."
+  },
+  "geographicNote": "Normal viewer DEM datum 1572.0794094897037 m; working floor -0.37405241159531216 m is the median of 50 outside-perimeter samples at 1 m offset plus 0.3 m. 142 raw main-footprint samples span -2.1642793043172333..1.4588514007439244 m. Adaptive footings follow the mapped outline. Preview terrain seats the footprint and 1.5 m margin; model paving covers the exact main-outline cutout. Exact raised entrance steps, thresholds, street/paving levels, basement levels and terrain joins remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Seven open stone vaults, unequal main span, humped cobbled walkway and low stone edge.",
+    "exclusions": "Exact bank/riverbed survey, vegetation, shelters and interiors."
+  },
+  "sourceFacts": {
+    "identity": "Exact Q2458142 Arda crossing near Ardino, not the similarly named Belasitsa bridge",
+    "publishedMainSpansMeters": [
+      9,
+      18.2,
+      8.5
+    ],
+    "publishedWidthMeters": 3.55,
+    "publishedPierWidthsMeters": [
+      3.3,
+      3.66
+    ],
+    "publishedParapetHeightMeters": 0.12,
+    "publishedLengthDisagreementMeters": [
+      56,
+      65.7
+    ],
+    "mappedPathLengthMeters": 59.092,
+    "originalMasterHash": "sha256:680c05c0da168a676a954b82224d077cdfa36ecb309e265781efd17f345059a7",
+    "originalMasterRecipe": "packages/worldgen/scripts/dyavolski-most-model.mjs#buildDyavolski",
+    "reviewScope": "Original detailed source preserved; picture and standard PMTiles approximate visualization review."
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "wikidataId": "Q2458142",
+    "featureIds": [
+      "way/58478181"
+    ],
+    "source": "https://www.openstreetmap.org/way/58478181",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8b6062b589b1c2b9a360c7ca188c03d8fdbeb6ba585c8f9e5916d24831378029",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "anchor": [
+      25.11417435,
+      41.62058175
+    ],
+    "heading": -1.300070647748,
+    "elevationMode": "terrain-contact",
+    "notes": "The inspected picture confirms three unequal major vaults, four relief openings, upstream pointed cutwaters, humped cobbled walkway and very low stone edges. Retained mapped59.092m pedestrian axis and the current PMTiles named bridge agree with the centre and south/southeast-facing native+X. The original65.7m reconstructed approaches remain unstretched. Standard PMTiles centre444.0231m is the approximate working base; approach samples differ about20m because coarse gorge terrain does not resolve bridge contacts. The preview grades only a bounded under-bridge/approach corridor to the existing footing profile and retains raw terrain outside it. Viewer ground opening is bounded to the bridge itself. Exact river/tide levels and bank contacts remain approximate, without bespoke survey research.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected picture confirms three unequal major vaults, four relief openings, upstream pointed cutwaters, humped cobbled walkway and very low stone edges. Retained mapped59.092m pedestrian axis and the current PMTiles named bridge agree with the centre and south/southeast-facing native+X. The original65.7m reconstructed approaches remain unstretched. Standard PMTiles centre444.0231m is the approximate working base; approach samples differ about20m because coarse gorge terrain does not resolve bridge contacts. The preview grades only a bounded under-bridge/approach corridor to the existing footing profile and retains raw terrain outside it. Viewer ground opening is bounded to the bridge itself. Exact river/tide levels and bank contacts remain approximate, without bespoke survey research.",
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -32.85,
+          -1.8
+        ],
+        [
+          32.85,
+          -1.8
+        ],
+        [
+          32.85,
+          3.3
+        ],
+        [
+          -32.85,
+          3.3
+        ]
+      ],
+      "basis": "Bounded bridge-only opening prevents coarse gorge terrain burying the arches; approximate contact visualization."
+    }
+  },
+  "geographicNote": "The inspected picture confirms three unequal major vaults, four relief openings, upstream pointed cutwaters, humped cobbled walkway and very low stone edges. Retained mapped59.092m pedestrian axis and the current PMTiles named bridge agree with the centre and south/southeast-facing native+X. The original65.7m reconstructed approaches remain unstretched. Standard PMTiles centre444.0231m is the approximate working base; approach samples differ about20m because coarse gorge terrain does not resolve bridge contacts. The preview grades only a bounded under-bridge/approach corridor to the existing footing profile and retains raw terrain outside it. Viewer ground opening is bounded to the bridge itself. Exact river/tide levels and bank contacts remain approximate, without bespoke survey research.",
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/dyavolski-browser-model.mjs",
+    "export": "buildDyavolskiSkyline",
+    "errorMeters": 1.5,
+    "caps": {},
+    "authoredLevels": {
+      "district": {
+        "export": "buildDyavolskiDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildDyavolskiStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDyavolskiCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-devils-skyline",
+      "position": [
+        32,
+        25,
+        49
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-devils-district",
+      "position": [
+        32,
+        25,
+        49
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-devils-street",
+      "position": [
+        32,
+        25,
+        49
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-devils-closeup",
+      "position": [
+        32,
+        25,
+        49
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Owner picture/PMTiles approximate placement scope; no bespoke survey or source research.",
+    "Original stone-by-stone master remains unchanged and byte-reproduced; one shared granite graph retains metric texture/roughness and vertex tint variations, with zero embedded images.",
+    "All four browser levels use stable independent seven-opening arch bodies; metric shared weathered-stone texture replaces individually modeled stones. Source retains the original granite graph and masonry master. Published56/65.7m vs59.092m map length disagreement stays explicit.",
+    "Coarse PMTiles gorge/approach terrain differs about20m across the crossing. Bounded contact fixture and ground opening prevent obvious burial; exact riverbed, bank fit and modern scenery are unverified approximations. Footprint replacement off; physical-device timing remains pending."
+  ],
+  "sourceDocuments": [
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ]
+}

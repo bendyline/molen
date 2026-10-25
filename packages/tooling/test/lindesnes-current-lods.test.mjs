@@ -9,7 +9,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u4/u4m/n0660_lindesnes_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/u4/u4m/lindesnes_lighthouse'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -121,7 +121,7 @@ it('reproduces the original master mesh and uses mapped main entrance to sign th
   expect(m.triangleCount).toBe(57082);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(p.anchor).toEqual([7.0466733, 57.9824978]);

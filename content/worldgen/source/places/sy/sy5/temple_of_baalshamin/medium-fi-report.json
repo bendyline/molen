@@ -1,0 +1,1005 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.temple_of_baalshamin",
+  "sourceHash": "sha256:f689dbb119bf26cd8488bbcee87077b4b044cb20a205506a92e1d52e35edf178",
+  "runtimeHash": "sha256:c15b67e5726534af3233667dda9ad7f0e12c10305a019413cc72dceae2da73fd",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5312,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:25025efb767fad2251b0667cb6270ba13eaf0168b2a133d3a3eaa3e7b84f57c2",
+      "bytes": 104344,
+      "gzipBytes": 16170,
+      "triangles": 976,
+      "cpuBytes": 102912,
+      "gpuBytes": 102912,
+      "errorMeters": 0.6,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:57237dd1716801cbfcfc43516f4b3d1542d6c26314fca86eab733a9e8aee94c2",
+      "bytes": 303620,
+      "gzipBytes": 82407,
+      "triangles": 2988,
+      "cpuBytes": 299700,
+      "gpuBytes": 299700,
+      "errorMeters": 0.25,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:afff51f615da39f1292e0be123eab075b883f0c23b6f49132a616417b32317ae",
+      "bytes": 795460,
+      "gzipBytes": 224292,
+      "triangles": 7812,
+      "cpuBytes": 791532,
+      "gpuBytes": 791532,
+      "errorMeters": 0.1,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:e31614710b716d2f4fcd887233332e7678723c45214196fa9c7bb2b7c2be546d",
+      "bytes": 888556,
+      "gzipBytes": 256922,
+      "triangles": 8676,
+      "cpuBytes": 884628,
+      "gpuBytes": 884628,
+      "errorMeters": 0.035,
+      "drawCalls": 3
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:7750392e8cdd950e4ea7a90db5a739d3b5bc7c5bdb7f113c48088fd1ee8d0f3e"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:a9115163528d7e6876ce04fa3fac27e50d54004817186de022ad024a5f191414"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:b9b3d76e3ea5c302f16e1e7bfcd80d541b24e77c02ac8dc57b814412e59e9139",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 22694,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          52.35960000000001,
+          32.5214,
+          91.63410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:50fd6d66496a7616ff9f2f7f37708713bbe632933a8bad36b138ad6a5ab1cfb3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 22694,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          52.35960000000001,
+          32.5214,
+          91.63410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:49175c68fb88f875c96c86a9ae083e92f9f703fc8d8bf7f5aed998237ed5a9d5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 22694,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          52.35960000000001,
+          32.5214,
+          91.63410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:4f40af64dfab955a8293e6ad62af8fdb07edb310b721fdec78ed4fff1ac299d7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 22694,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          52.35960000000001,
+          32.5214,
+          91.63410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:eff4406a2d23f93cd4df6d6f00db0a58dec3075e79b2096a9d0feec77d4e4306",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 17006,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          106.2596,
+          72.12140000000001,
+          185.13410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:503c68ed15eb167006e5964571e4a39c3070f24365f3074a7dbaf5de81ad966d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17006,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          106.2596,
+          72.12140000000001,
+          185.13410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:7bd4785a88141e6fb15fc9904b90bd78908218ae0197a2bba0b38d6001fcbb73",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 17006,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          106.2596,
+          72.12140000000001,
+          185.13410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:e0c8c24a0ceac5104e44a53bbda56af1844d7a9e6480febbe79e94f4b02c4d7b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17006,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          106.2596,
+          72.12140000000001,
+          185.13410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:49aba759e141d75d1ce612f9d480f4a80f5417e268e34907616fd6f9ffa1c050",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14994,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          212.9596,
+          113.92140000000002,
+          369.9341
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:da4bff22ca97f1081538ad253d898da434f4d452dfd6e7a23477d8c5c4537e3e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14994,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          212.9596,
+          113.92140000000002,
+          369.9341
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:ed4312b1c86957044b46c1b00d53c13767da6bd1d3e6c7c9efc648360277a9bc",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14994,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          212.9596,
+          113.92140000000002,
+          369.9341
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:79c711fb269e674a38ca7814bd0070d52181d549bbaed43b0c8cafcf6de90a76",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14994,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          212.9596,
+          113.92140000000002,
+          369.9341
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:6732bddfb6be68db6c5ad53cf24ba4cc5fc015d0912a2bda9d43f1ce2a2661f3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9682,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          212.9596,
+          113.92140000000002,
+          369.9341
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/six-column-bracketed-porch-and-gated-door.png",
+      "hash": "sha256:de0308501bb2694dcc74a13633cd77732ef5d51ebe904f377b2b082df04ce42f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 22694,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          16.28029280844353,
+          3.8762116764906684,
+          -6.399380131805103
+        ],
+        "lookAt": [
+          1.8295095190235984,
+          4.176211676490668,
+          -2.37758173777518
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-window-pilasters-and-roofless-cella.png",
+      "hash": "sha256:7b941b4a3daed2535161128ad9378d03f1ee028975aa4aa624bc3ae84d3937fb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 22694,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          -17.376437245946693,
+          10.376211676490668,
+          -2.014802381792453
+        ],
+        "lookAt": [
+          -1.219673012682399,
+          4.3762116764906684,
+          1.5850544918501197
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/corinthian-capitals-and-surviving-stone-beams.png",
+      "hash": "sha256:b7888d887c1ca252abd843b5fe378ff9f2f172f2da2d019d7c7dc7133c9f0299",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 22694,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          14.268092549836073,
+          10.376211676490668,
+          -5.424162146296183
+        ],
+        "lookAt": [
+          3.2318732712898575,
+          6.976211676490668,
+          -2.5602724773590397
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baalshamin-skyline.png",
+      "hash": "sha256:24a7ad018494436dfe4be25cba92bd6a038bf62a90668c74d08a20011d6e99f7",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14994,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          34.083875821147565,
+          17.37621167649067,
+          -6.57946874820397
+        ],
+        "lookAt": [
+          0,
+          3.3762116764906684,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baalshamin-district.png",
+      "hash": "sha256:53cf6e60177f8615291db4daef0bc134de9b31d319dd89851487cbb5ff0f949d",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17006,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          34.083875821147565,
+          17.37621167649067,
+          -6.57946874820397
+        ],
+        "lookAt": [
+          0,
+          3.3762116764906684,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baalshamin-street.png",
+      "hash": "sha256:a51f8ffa640b2ae638c5b3a62ab4fff1e1a11ddb2a4ee2a250f8351212e28e88",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 21830,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          34.083875821147565,
+          17.37621167649067,
+          -6.57946874820397
+        ],
+        "lookAt": [
+          0,
+          3.3762116764906684,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baalshamin-closeup.png",
+      "hash": "sha256:c82b0f73f73061ff4825856a495f7a25c0bdb507db4dd37a7182bce9e06aa4e0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 22694,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          34.083875821147565,
+          17.37621167649067,
+          -6.57946874820397
+        ],
+        "lookAt": [
+          0,
+          3.3762116764906684,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:5e4e98e6e1fa63e62273e25141027372f7f2cb569895332deebbb73e6ef5a5d9",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14994,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          106.2596,
+          72.12140000000001,
+          185.13410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:503c68ed15eb167006e5964571e4a39c3070f24365f3074a7dbaf5de81ad966d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17006,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          106.2596,
+          72.12140000000001,
+          185.13410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:7a31c1dbca1f64471884375b2a28758b94216efa164563b0eda08df9099c9d4c",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 21830,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          106.2596,
+          72.12140000000001,
+          185.13410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:7568ce5f809015969afd96b8e761f1e564cbc2e1c889de883bb24845d7bf29ec",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 22694,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_baalshamin/terrain-review.height.png"
+        },
+        "position": [
+          106.2596,
+          72.12140000000001,
+          185.13410000000002
+        ],
+        "lookAt": [
+          -0.4404,
+          16.0214,
+          0.3341
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

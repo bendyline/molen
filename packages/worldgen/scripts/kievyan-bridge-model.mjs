@@ -535,7 +535,7 @@ export function buildKievyan(out) {
   lamps(out);
 }
 export const kievyanStudy = {
-  id: 'N0024',
+  id: 'great_bridge_of_hrazdan',
   key: 'great_bridge_of_hrazdan',
   title: 'Great Bridge of Hrazdan (Kievyan Bridge)',
   wikidataId: 'Q3114751',

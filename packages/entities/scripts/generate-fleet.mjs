@@ -4,7 +4,11 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { fleetModel } from './fleet-geometry.mjs';
+import { roadVehicleModel } from './road-vehicle-geometry.mjs';
+import { recreationalVehicleModel } from './rv-geometry.mjs';
+import { addCarDetail } from './vehicle-detail.mjs';
 
 globalThis.FileReader = class {
   readAsArrayBuffer(blob) {
@@ -36,11 +40,38 @@ for (const category of ['vehicles', 'cycles', 'watercraft']) {
     const sourcePath = resolve(directory, 'source.json');
     const sourceText = await readFile(sourcePath, 'utf8');
     const source = JSON.parse(sourceText);
-    const pin = source.files.models.find((m) => m.path === 'models/source.glb').sha256;
-    const bytes = Buffer.from(
-      await new GLTFExporter().parseAsync(fleetModel(recipe), { binary: true }),
-    );
-    const path = resolve(directory, 'models/source.glb');
+    const output = recipe.master ? 'models/detailed.glb' : 'models/source.glb';
+    const pin = source.files.models.find((m) => m.path === output).sha256;
+    const definition = JSON.parse(await readFile(resolve(directory, 'entity.types.json'), 'utf8'));
+    const components = definition.types[recipe.id].components;
+    const driverEye = components.vehicle?.spec.driverEye ?? components.boat?.spec.driverEye;
+    let model;
+    if (recipe.master) {
+      const master = await readFile(resolve(directory, 'models', recipe.master));
+      model = (
+        await new GLTFLoader().parseAsync(
+          master.buffer.slice(master.byteOffset, master.byteOffset + master.byteLength),
+          '',
+        )
+      ).scene;
+      model.traverse((node) => {
+        if (node.material?.name === 'vehicle-paint-and-trim') node.material.color.set(recipe.color);
+      });
+      addCarDetail(model, { ...recipe, driverEye }, true);
+    } else {
+      const generate =
+        recipe.family === 'recreational-vehicle'
+          ? recreationalVehicleModel
+          : recipe.family === 'road-vehicle'
+            ? roadVehicleModel
+            : fleetModel;
+      model = generate({
+        ...recipe,
+        driverEye,
+      });
+    }
+    const bytes = Buffer.from(await new GLTFExporter().parseAsync(model, { binary: true }));
+    const path = resolve(directory, output);
     const previous = await readFile(path).catch((e) => {
       if (e.code === 'ENOENT') return undefined;
       throw e;

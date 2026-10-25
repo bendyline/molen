@@ -6,10 +6,16 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const output = resolve(root, 'content/earth/structures/evidence');
 const catalog = JSON.parse(
-  await readFile(resolve(root, 'content/worldgen/source/next-1000/candidates.json'), 'utf8'),
+  await readFile(
+    resolve(root, 'content/worldgen/source/structure-catalog/candidates.json'),
+    'utf8',
+  ),
 );
 const snapshot = JSON.parse(
-  await readFile(resolve(root, 'content/worldgen/source/next-1000/wikidata-snapshot.json'), 'utf8'),
+  await readFile(
+    resolve(root, 'content/worldgen/source/structure-catalog/wikidata-snapshot.json'),
+    'utf8',
+  ),
 );
 const candidates = catalog.candidates;
 const mode = process.argv.includes('--osm-relations')

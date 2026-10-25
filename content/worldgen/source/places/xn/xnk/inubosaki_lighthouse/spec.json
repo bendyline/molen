@@ -1,0 +1,314 @@
+{
+  "planId": "inubosaki_lighthouse",
+  "id": "inubosaki_lighthouse",
+  "assetId": "molen.worldgen.structure.inubosaki_lighthouse",
+  "title": "Inubōsaki Lighthouse",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 140.8685261,
+    "latitude": 35.7079127
+  },
+  "size": [
+    7.2431464195251465,
+    31.299999237060547,
+    7.162853717803955
+  ],
+  "actualBounds": {
+    "min": [
+      -3.6781463623046875,
+      0,
+      -3.565000057220459
+    ],
+    "max": [
+      3.565000057220459,
+      31.299999237060547,
+      3.597853660583496
+    ]
+  },
+  "visualBrief": "Complete white Inubosaki masonry tower: tapered shaft/base, three narrow stone-trimmed stair-window recesses and bounded entrance/pediment, expanding corbelled gallery/solid pale belt/open dark railings, white upper pedestal, diagonally braced polygonal glazed lantern/domed roof/pinnacle, plus bounded side maintenance ladder/two small landings. Operator31.3mstructuralheight, not52msea-to-light. Exact named native point anchors a photographically estimated circular plan; no surveyed footprint or detached station/keeper/museum/mast/compound-wall/landscape geometry.",
+  "nativeAxes": {
+    "x": "south-southeast",
+    "y": "up",
+    "z": "west-southwest/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:250821_Inubosaki_Lighthouse_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:250821_Inubosaki_Lighthouse_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:Inubosaki_Lighthouse_01.JPG"
+  ],
+  "stories": [
+    {
+      "id": "inub-saki-lighthouse-wp",
+      "url": "https://qualla.com/inub-saki-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "c9c624db198700a50179d334ca1aaf75019808c5db2262c72f39a5fbb5a13ba8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-inubosaki-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-inubosaki-lighthouse.mjs",
+    "level": "skyline",
+    "export": "inubosakiSkyline",
+    "errorMeters": 0.45,
+    "surfaces": {
+      "white": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.6,
+        "metallic": 0.08
+      },
+      "iron": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.6,
+        "metallic": 0.08
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.6,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "inubosakiDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.08
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.08
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "inubosakiStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.08
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.08
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.2,
+    "groundY": -0.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named OSMlighthousenode1582440591/Q6059232is the original horizontal identity/position control. No mapped circular tower footprint is supplied by this native extract; nearby4corner buildingways681122781–785/681357784are detached facilities and are excluded. A3.22mbase-radius circle/shaft taper and west-southwest front bearing are bounded estimates from the accepted Qualla originals, not surveyed native polygon vertices. Native point, story coordinate and coarse official sexagesimal position differ by roughly10–20m; horizontal threshold/precise alignment and host contact remain unverified preview estimates. Operator31.3mstructuralheight/CoastGuardabout27mground-to-light and52mwater-to-light are distinct; do not extrude a52m-tall tower. Fixed near-front[0,4.3]/Y0before terrain; bounded base/threshold only, no station/compound/coast slab.",
+    "anchor": [
+      140.8685261,
+      35.7079127
+    ],
+    "heading": -1.13,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        140.86848307666537,
+        35.70789621924924
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed near-front approach just outside the estimated base ring before terrain acquisition. Approximate tower entrance datum; no full station/compound or fitted coastal slab."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/1582440591"
+    ],
+    "source": "https://www.openstreetmap.org/node/1582440591",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cbadebe24da2119cbe4488285f4eaaa61eda13229d09243501c780bbd47c24a0",
+    "notes": "The named tower is complete in scope. Detached keeper/signal/communications/ticket/museum/foghorn structures and white postbox are not part of the masonry tower model. No surveyed footprint/precise horizontal alignment or coastal ground-contact claim."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named OSMlighthousenode1582440591/Q6059232is the original horizontal identity/position control. No mapped circular tower footprint is supplied by this native extract; nearby4corner buildingways681122781–785/681357784are detached facilities and are excluded. A3.22mbase-radius circle/shaft taper and west-southwest front bearing are bounded estimates from the accepted Qualla originals, not surveyed native polygon vertices. Native point, story coordinate and coarse official sexagesimal position differ by roughly10–20m; horizontal threshold/precise alignment and host contact remain unverified preview estimates. Operator31.3mstructuralheight/CoastGuardabout27mground-to-light and52mwater-to-light are distinct; do not extrude a52m-tall tower.",
+    "The complete individual named lighthouse tower is modeled. Detached keeper/signal/communications/ticket/museum/foghorn buildings and masts, compound wall, white postbox, coast/landscape and visitors are separate and excluded. Native map supplies a point only; circular3.22mbase radius/2.94to2.4mshaft taper, WSWfront bearing, window/door sections and collar/gallery/lantern subdivisions are photographic estimates. Native point/story/coarse official coordinates differ roughly10–20m; precise horizontal position/threshold/host contact remain unverified preview estimates.",
+    "Operatorstructuralheight31.3m/JapanCoastGuardabout31m, with lightabout27maboveground/52mabovesea, are distinct. Modeltip31.3m and glass centerabout27m preserve that distinction. Fine masonry thickness/paint, optical apparatus/shutters, lens Fresnel segments, exact railing/mullion counts, dome sections, lettering/plaques and fixtures are medium-fi approximations; no exact interior optics or emissive light beam.",
+    "Two exact4032x2268August2025Aspereown-workCC0exterior originals and2048x1536Abasaaown-workPD-self2013tower view were inspected first from Qualla. Native imageSHA1/primary same-author dedications match local cleared bytes.2013view supports bounded side ladder/two small landings on otherwise less-visible side; their exact current persistence/sections remain approximate. The separate white postbox close-up, other licensed images/museum-lens displays/paintings and nearby station structures are unused. Operator/CoastGuardtext supplies height facts only; no additional image source or photographic texture.",
+    "Three close-detail front windows/door are genuinely recessed; main gallery rails and white diagonally braced lantern frame remain open geometric features. Fine bars/maintenance rungs, roof vents and subdivisions retire progressively with distance. Only a bounded base/threshold is included; raw source relief is retained, without fitted/flattened coastal ground."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "three-stair-window-recesses-and-stone-door-pediment",
+      "position": [
+        13,
+        11,
+        23
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "corbelled-gallery-open-rails-and-braced-glazed-lantern",
+      "position": [
+        10,
+        29,
+        15
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ]
+    },
+    {
+      "name": "complete-tapered-tower-and-bounded-side-maintenance-access",
+      "position": [
+        -16,
+        17,
+        -24
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10515,
+    "vertices": 31545,
+    "materials": 6,
+    "bytes": 1265256,
+    "sha256": "sha256:b1ed32ee4cec2f7786b23a4e27ceada25602c34dce4a9898ba4c9a9a93e18095"
+  }
+}

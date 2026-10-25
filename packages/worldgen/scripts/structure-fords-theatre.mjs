@@ -1,6 +1,6 @@
 /** Original medium-fi exterior recipe for fords_theatre.
  * Theatre and lower south wing are separated inside the generalized map polygon.
- * Local Qualla photos control current facade; HABS controls otherwise unseen roof/rear form.
+ * Public-domain archival and NPS photographs control the facade and ridge ventilators.
  */
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
@@ -95,7 +95,7 @@ export function fords(o, frame) {
       0.42,
       'white',
     );
-  // Three ridge ventilators are documented in the HABS side elevations; front one is visible in Qualla's photo.
+  // All three ridge ventilators are visible in the public-domain 1865 exterior photograph.
   for (const z of [front - 3.0, cz - 0.5, back + 4.2]) {
     B(o, 'stone', cx, 19.95, z, 2.4, 0.75, 2.8, 'cream');
     B(o, 'metal', cx, 20.7, z, 2.5, 1.35, 2.9, 'dark');
@@ -218,9 +218,9 @@ export const fordsModel = {
     'Reviewed front terrain reference at model Y0 and foundation down to -1.25 m; preserved Terrarium footprint samples span -0.773 to 0.376 m relative to this reference. Current source-terrain captures show visible steps and no floating foundations.',
   limitations: [
     'Current five-bay theatre and lower south Star Saloon wing, original medium-fi exterior geometry. No interiors, neighboring taller buildings or borrowed meshes.',
-    'Generalized Protomaps ensemble partition and facade proportions are estimates. Qualla 2014/2016 photographs control the visible front; historical HABS side/rear drawings guide otherwise unseen ventilation and service form.',
+    'Generalized Protomaps ensemble partition and facade proportions are estimates. The public-domain 1865 Qualla photograph confirms the facade and three ridge ventilators; the explicitly public-domain NPS 2007 exterior confirms surviving front details. Hidden rear service forms remain approximate.',
     'Terrarium host samples supply ground evidence, not a survey. The foundation extends 1.25 m below the street reference; terrain-contact placement samples the declared front reference point. Dataset resolution and vertical accuracy remain host-dependent.',
-    'Fine carved window ornament and small hardware are simplified; archival rear openings/roof vents are interpreted where current photographs do not show them. Photographs and drawings are not embedded or redistributed.',
+    'Fine carved window ornament, hardware, rear openings and roof dimensions are simplified estimates. Earlier attribution-licensed photographs and rights-unverified HABS illustrations are excluded from current imagery approval. Reference photographs stay in local caches and are not embedded or redistributed.',
   ],
   build: fords,
 };

@@ -295,7 +295,7 @@ function entrance(out, base) {
     beam(out, 'stainless', roof[i], roof[(i + 1) % 4], 0.13, 0.17, silver);
 }
 export function build3Wtc(out, mapped) {
-  const ev = partsEvidence('n0195_3_world_trade_center'),
+  const ev = partsEvidence('3_world_trade_center'),
     base = cleanPlan(localOutline(mapped));
   // Raw mapped shoulder traces are irregular/overlapping; the architect's typical
   // floor plan confirms four reentrant corners and eight corner offices.
@@ -398,7 +398,7 @@ export function build3Wtc(out, mapped) {
   entrance(out, base);
 }
 export const threeWtcStudy = {
-  id: 'N0195',
+  id: '3_world_trade_center',
   key: '3_world_trade_center',
   wikidataId: 'Q941908',
   title: '3 World Trade Center',

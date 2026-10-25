@@ -10,7 +10,8 @@ import type { JsonValue } from '@bendyline/molen-schema';
 import {
   createTerrainSemanticObject,
   disposeTerrainSemanticObject,
-  setTerrainGroundCutout,
+  setTerrainGroundCutouts,
+  setTerrainWaterCutout,
   TERRAIN_COVERS_GROUND,
   type TerrainLandcoverGenerator,
   type TerrainPyramidTileLayerContext,
@@ -57,7 +58,7 @@ import type { RegionResolver } from '../kernel/region';
 import { regionScatterId } from '../kernel/region';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
 import type { RegionalEnvironment } from '../kernel/regional-environment';
-import type { TileGeometry } from '../kernel/semantic-adapter';
+import type { SemanticAdapterOptions, TileGeometry } from '../kernel/semantic-adapter';
 import { isStructureViewingDate } from '../kernel/structure-date';
 import type { StructureIndex, StructurePlacement } from '../kernel/structure-index';
 import { matchMapStructures, orientMappedStructure } from '../kernel/structure-matching';
@@ -69,8 +70,10 @@ import {
 import type { WorldgenTileOutput } from '../kernel/tile-generate';
 import { type WorldgenTileCache, worldgenTileCacheKey } from './cache';
 import { createInThreadWorldgenGenerator, withWorldgenTileCache } from './generators';
+import { structureBuildingCutouts, withoutBuildingCutouts } from './structure-building-cutout';
 import { resolveStructureElevation, type StructureTerrainSampler } from './structure-elevation';
 import {
+  clipStructureGroundOutlines,
   clipStructureObject,
   footprintCovers,
   footprintOverlapsTile,
@@ -91,6 +94,8 @@ const COMPACT_SCATTER_KEEP = 0.5;
 const FOOTPRINT_SLACK = 12;
 
 export interface WorldgenRendererOptions {
+  /** Opt-in synthetic homes; seed/density are forwarded to either generation path and cache. */
+  buildingInfill?: SemanticAdapterOptions['buildingInfill'];
   atlas?: RegionAtlasDoc;
   regions?: RegionResolver;
   /** Must match a supplied worker's environment; content participates in tile cache keys. */
@@ -299,6 +304,8 @@ export function createWorldgenSemanticRenderers(
               tierOffset: request.tierOffset ?? 0,
               keep: request.keep ?? 1,
               interiors: request.features?.interiors ?? false,
+              buildingInfill: request.buildingInfill ?? false,
+              buildingInfillExclusions: request.buildingInfillExclusions ?? [],
               renderCellsOnly: request.renderCellsOnly ?? false,
               identities: places?.businesses.hash ?? null,
               models: places?.landmarks.hash ?? null,
@@ -322,6 +329,7 @@ export function createWorldgenSemanticRenderers(
     context: TerrainPyramidTileLayerContext,
     features: { buildings: boolean; scatter: boolean },
     preset = quality,
+    buildingInfillExclusions?: TerrainSemanticPolygon[],
   ): Promise<{ output: WorldgenTileOutput; generateMs: number } | undefined> {
     const geom = geometryFor(context, metersPerUnit);
     const started = now();
@@ -329,6 +337,8 @@ export function createWorldgenSemanticRenderers(
       {
         tile,
         geom,
+        ...(options.buildingInfill !== undefined ? { buildingInfill: options.buildingInfill } : {}),
+        ...(buildingInfillExclusions !== undefined ? { buildingInfillExclusions } : {}),
         ground: context.heightfield,
         resolution: context.pyramid.tileResolution,
         renderCellsOnly: options.lodPolicy !== undefined,
@@ -504,7 +514,7 @@ export function createWorldgenSemanticRenderers(
   function structuresForTile(
     tile: TerrainSemanticTile,
     context: TerrainPyramidTileLayerContext,
-  ): StructurePlacement[] {
+  ): StructurePlacement[] | Promise<StructurePlacement[]> {
     if (options.structures === undefined) return [];
     const [west, north] = worldToWgs84(metersPerUnit, context.origin[0], context.origin[1]);
     const [east, south] = worldToWgs84(
@@ -513,27 +523,35 @@ export function createWorldgenSemanticRenderers(
       context.origin[1] + context.tileSize,
     );
     const geometry = geometryFor(context, metersPerUnit);
-    const geographic = options.structures
-      .query([west, south, east, north], viewingDate === undefined ? false : { viewingDate })
-      .flatMap((entry) => {
-        const resolved = orientMappedStructure(entry, tile, geometry);
-        return resolved ? [resolved] : [];
-      })
-      .filter((entry) => {
-        if (context.address.level < (entry.minLevel ?? 11)) return false;
-        if (entry.bounds) return true;
-        const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
-        return (
-          x >= context.origin[0] &&
-          x < context.origin[0] + context.tileSize &&
-          z >= context.origin[1] &&
-          z < context.origin[1] + context.tileSize
-        );
-      });
-    return [
-      ...geographic,
-      ...matchMapStructures(tile, geometry, options.structures.rules, geographic),
-    ];
+    const bounds: [number, number, number, number] = [west, south, east, north];
+    const candidates = options.structures.queryAsync
+      ? options.structures.queryAsync(bounds, {
+          viewingDate,
+          signal: context.signal,
+          level: context.address.level,
+        })
+      : options.structures.query(bounds, viewingDate === undefined ? false : { viewingDate });
+    const rules = options.structures.rules;
+    const select = (entries: StructurePlacement[]): StructurePlacement[] => {
+      const geographic = entries
+        .flatMap((entry) => {
+          const resolved = orientMappedStructure(entry, tile, geometry);
+          return resolved ? [resolved] : [];
+        })
+        .filter((entry) => {
+          if (context.address.level < (entry.minLevel ?? 11)) return false;
+          if (entry.bounds) return true;
+          const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
+          return (
+            x >= context.origin[0] &&
+            x < context.origin[0] + context.tileSize &&
+            z >= context.origin[1] &&
+            z < context.origin[1] + context.tileSize
+          );
+        });
+      return [...geographic, ...matchMapStructures(tile, geometry, rules, geographic)];
+    };
+    return candidates instanceof Promise ? candidates.then(select) : select(candidates);
   }
 
   /**
@@ -551,14 +569,17 @@ export function createWorldgenSemanticRenderers(
       const extent =
         (object.userData.structureExtent as THREE.Vector3 | undefined) ??
         new THREE.Box3().setFromObject(object).getSize(new THREE.Vector3());
-      const footprint = entry.replaceFootprint
-        ? structureFootprint(object, group, context.origin)
-        : undefined;
+      const footprint =
+        entry.replaceFootprint && !entry.buildingCutout
+          ? structureFootprint(object, group, context.origin)
+          : undefined;
+      const buildingCutouts = structureBuildingCutouts(entry, metersPerUnit);
       return [
         {
           entry,
           size: [extent.x, extent.z] as const,
           ...(footprint !== undefined ? { footprint } : {}),
+          ...(buildingCutouts.length ? { buildingCutouts } : {}),
         },
       ];
     });
@@ -572,9 +593,11 @@ export function createWorldgenSemanticRenderers(
    * ring footprint (a stadium bowl, a cloister) holds the anchor in its hole; it goes under the
    * same size test, so a large courtyard block around a smaller landmark stays. In exact data a
    * landmark's own off-centre parts (an observation level, its legs, a grandstand, a parked
-   * roof) contain no anchor, so a polygon lying wholly inside the placed model's extent goes
-   * too, as does one at least half covered by the model's own footprint (`footprint`) or by a
+   * roof) contain no anchor, so a polygon at least half covered by the model's own footprint
+   * (`footprint`) goes too, as does one covered by a
    * landmark a neighbouring tile placed (`nearby`).
+   * The extent fallback applies only when no geometry footprint is available; empty corners
+   * of a rotated or concave landmark's bounding box can contain unrelated buildings.
    */
   function withoutReplacedFootprints(
     tile: TerrainSemanticTile,
@@ -583,11 +606,12 @@ export function createWorldgenSemanticRenderers(
       entry: StructurePlacement;
       size: readonly [number, number];
       footprint?: StructureFootprint;
+      buildingCutouts?: [number, number][][];
     }>,
     nearby: readonly StructureFootprint[] = [],
   ): TerrainSemanticTile {
     const anchors = placed
-      .filter(({ entry }) => entry.replaceFootprint)
+      .filter(({ entry }) => entry.replaceFootprint && !entry.buildingCutout)
       .map(({ entry, size, footprint }) => {
         const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
         const point: [number, number] = [
@@ -597,7 +621,22 @@ export function createWorldgenSemanticRenderers(
         return { point, size, footprint };
       });
     const remote = tile.buildingsGeneralized ? [] : nearby;
-    if (anchors.length === 0 && remote.length === 0) return tile;
+    const cutouts = placed.flatMap((item) =>
+      item.entry.buildingCutout?.minimumCoverage === undefined ? (item.buildingCutouts ?? []) : [],
+    );
+    const wholeBuildings = placed.flatMap((item) => {
+      const minimumCoverage = item.entry.buildingCutout?.minimumCoverage;
+      return minimumCoverage !== undefined && item.buildingCutouts?.length
+        ? [{ outlines: item.buildingCutouts, minimumCoverage }]
+        : [];
+    });
+    if (
+      anchors.length === 0 &&
+      remote.length === 0 &&
+      cutouts.length === 0 &&
+      !wholeBuildings.length
+    )
+      return tile;
     const replaces = (polygon: TerrainSemanticPolygon): boolean =>
       remote.some((footprint) => footprintCovers(footprint, polygon, context)) ||
       anchors.some(({ point, size, footprint }) => {
@@ -607,6 +646,7 @@ export function createWorldgenSemanticRenderers(
           const halfU = (size[0] / 2 + FOOTPRINT_SLACK / 4) / context.tileSize;
           const halfV = (size[1] / 2 + FOOTPRINT_SLACK / 4) / context.tileSize;
           if (
+            footprint === undefined &&
             minU >= point[0] - halfU &&
             maxU <= point[0] + halfU &&
             minV >= point[1] - halfV &&
@@ -627,7 +667,54 @@ export function createWorldgenSemanticRenderers(
         );
       });
     const buildings = tile.buildings.filter((feature) => !feature.polygons.some(replaces));
-    return buildings.length === tile.buildings.length ? tile : { ...tile, buildings };
+    const filtered = buildings.length === tile.buildings.length ? tile : { ...tile, buildings };
+    return withoutBuildingCutouts(filtered, context, cutouts, wholeBuildings);
+  }
+
+  // Landmark replacement removes source polygons from the building batch, not from evidence
+  // of occupied land. Also reserve loaded model extents where the map has no outline at all.
+  function infillExclusions(
+    tile: TerrainSemanticTile,
+    context: TerrainPyramidTileLayerContext,
+    placed: ReturnType<typeof placedStructures>,
+    nearby: readonly StructureFootprint[],
+  ): TerrainSemanticPolygon[] {
+    if (!options.buildingInfill) return [];
+    const rectangles = nearby.map((f) => [
+      f.minX,
+      f.minZ,
+      f.minX + f.size * f.cell,
+      f.minZ + f.size * f.cell,
+    ]);
+    for (const { entry, size, footprint } of placed) {
+      if (footprint) {
+        rectangles.push([
+          footprint.minX,
+          footprint.minZ,
+          footprint.minX + footprint.size * footprint.cell,
+          footprint.minZ + footprint.size * footprint.cell,
+        ]);
+        continue;
+      }
+      const [x, z] = wgs84ToWorld(metersPerUnit, ...entry.anchor);
+      rectangles.push([x - size[0] / 2, z - size[1] / 2, x + size[0] / 2, z + size[1] / 2]);
+    }
+    return [
+      ...tile.buildings.flatMap((f) => f.polygons),
+      ...rectangles.map(
+        ([x0, z0, x1, z1]): TerrainSemanticPolygon => ({
+          outer: [
+            [x0, z0],
+            [x1, z0],
+            [x1, z1],
+            [x0, z1],
+          ].map(([x, z]) => [
+            ((x as number) - context.origin[0]) / context.tileSize,
+            ((z as number) - context.origin[1]) / context.tileSize,
+          ]),
+        }),
+      ),
+    ];
   }
 
   async function placeStructures(
@@ -656,18 +743,37 @@ export function createWorldgenSemanticRenderers(
           mesh.position.set(x - context.origin[0], elevation, z - context.origin[1]);
           mesh.rotation.y = entry.heading ?? 0;
           if (entry.scale !== undefined) mesh.scale.set(...entry.scale);
-          const placed = entry.bounds ? clipStructureObject(mesh, context.tileSize) : mesh;
+          // A clipped sunken floor cannot seal the temporary vertical edge where a neighboring
+          // tile has not loaded yet. Keep ground-opening models and their openings whole.
+          const clipToTile = entry.bounds !== undefined && entry.groundCutout === undefined;
+          const placed = clipToTile ? clipStructureObject(mesh, context.tileSize) : mesh;
           if (entry.groundCutout) {
-            if (entry.bounds) {
-              mesh.updateMatrix();
-              setTerrainGroundCutout(
-                placed,
-                entry.groundCutout.outline.map(([px, pz]) => {
-                  const p = new THREE.Vector3(px, 0, pz).applyMatrix4(mesh.matrix);
-                  return [p.x, p.z];
-                }),
-              );
-            } else setTerrainGroundCutout(placed, entry.groundCutout.outline);
+            const nativeOutlines = entry.groundCutout.outlines ?? [
+              entry.groundCutout.outline,
+              ...(entry.groundCutout.additionalOutlines ?? []),
+            ];
+            mesh.updateMatrix();
+            const outlines = clipToTile
+              ? clipStructureGroundOutlines(nativeOutlines, mesh.matrix, context.tileSize)
+              : nativeOutlines;
+            setTerrainGroundCutouts(placed, outlines);
+          }
+          if (entry.waterCutout) {
+            mesh.updateMatrix();
+            const outlines = clipToTile
+              ? clipStructureGroundOutlines(
+                  entry.waterCutout.outlines,
+                  mesh.matrix,
+                  context.tileSize,
+                )
+              : entry.waterCutout.outlines;
+            for (const [i, outline] of outlines.entries()) {
+              // Separate owners let one structure replace both ground and water independently.
+              const owner = new THREE.Group();
+              owner.name = `structure-water-cutout:${i}`;
+              placed.add(owner);
+              setTerrainWaterCutout(owner, outline);
+            }
           }
           placed.traverse((part) => {
             part.castShadow = true;
@@ -859,7 +965,8 @@ export function createWorldgenSemanticRenderers(
         try {
           replacement = new THREE.Group();
           replacement.name = `${root.name}:architecture`;
-          const structures = structuresForTile(resident.tile, context);
+          const requested = structuresForTile(resident.tile, context);
+          const structures = requested instanceof Promise ? await requested : requested;
           if (structures.length) await placeStructures(replacement, context, structures);
           const placed = placedStructures(replacement, context, structures);
           const mappedTile = withoutReplacedFootprints(
@@ -873,6 +980,7 @@ export function createWorldgenSemanticRenderers(
             context,
             { buildings: true, scatter: false },
             preset,
+            infillExclusions(resident.tile, context, placed, nearbyFootprints(root, context)),
           );
           if (!generated) {
             if (!controller.signal.aborted) resident.quality = preset;
@@ -940,7 +1048,8 @@ export function createWorldgenSemanticRenderers(
       const group = new THREE.Group();
       group.name = `worldgen:${context.address.level}/${context.address.x}/${context.address.z}`;
       try {
-        const structures = structuresForTile(tile, context);
+        const requested = structuresForTile(tile, context);
+        const structures = requested instanceof Promise ? await requested : requested;
         const structureGroup = new THREE.Group();
         group.add(structureGroup);
         const structureTask = placeStructures(structureGroup, context, structures);
@@ -952,13 +1061,19 @@ export function createWorldgenSemanticRenderers(
         const buildingsTask = (async () => {
           // A failed or cancelled asset keeps its procedural fallback. Only confirmed, loaded
           // structures can remove a footprint; unrelated buildings still start immediately.
-          if (structures.some((entry) => entry.replaceFootprint)) {
+          if (structures.some((entry) => entry.replaceFootprint || entry.buildingCutout)) {
             await structureTask;
             placed = placedStructures(structureGroup, context, structures);
           }
           nearby = nearbyFootprints(group, context);
           const mappedTile = withoutReplacedFootprints(tile, context, placed, nearby);
-          return generate(mappedTile, context, { buildings: true, scatter: false }, preset);
+          return generate(
+            mappedTile,
+            context,
+            { buildings: true, scatter: false },
+            preset,
+            infillExclusions(tile, context, placed, nearby),
+          );
         })();
         const roadsTask = (async (): Promise<THREE.Object3D | undefined> => {
           let roadTile = tile;

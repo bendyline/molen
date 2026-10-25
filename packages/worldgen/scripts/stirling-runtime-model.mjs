@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcv/n0262_stirling_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gcv/stirling_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -616,7 +616,7 @@ function smallBuilding(o, id, base, eaves, ridge, d) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcv/n0262_stirling_castle/site-grade.json',
+      '../../../content/worldgen/source/places/gc/gcv/stirling_castle/site-grade.json',
       import.meta.url,
     ),
   ),

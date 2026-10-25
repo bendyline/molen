@@ -1,0 +1,3172 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.brooklyn_museum",
+  "reviewedOn": "2026-10-23",
+  "inputHash": "sha256:4c52e961250df629fc5a0ce53ea585a5e39bad27ee3dbd022e4e4c9237d19cf9",
+  "sourceHash": "sha256:0fd3af5f8577844c45c3f1977ecadd3c7efd015bd8de71ff430771c99555b0c4",
+  "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+  "captureReportHash": "sha256:c197522e27408151df1df0d4f728b5c3d8eeee6b931bdaac7e0918f50744ca54",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/six-column-portico-pediment-dome-and-glass-pavilion.png",
+      "shots/stepped-glass-pavilion-and-recessed-lower-door.png",
+      "shots/rear-open-court-connected-wings-and-skylights.png",
+      "shots/upper-portico-depth-columns-and-door.png"
+    ],
+    "notes": "Connected Brooklyn Museum exterior: long pale stone wings and asymmetric rear ranges, six tapered Ionic columns with abstract volutes and real colonnade depth, supported triangular pediment/original geometric relief, square attic and shallow stone dome, repeated tall window proxies/pilasters/cornices and flat roof skylights. Five descending concentric glass-roof bands form the curved entrance pavilion with metal framing, a real 1.1m lower entrance recess/soffit/threshold and two short approach treads. The picture-led rear court stays open. Moved the frontal camera onto the plaza after procedural buildings across the street obscured it. Ordinary front photograph/aerial and standard PMTiles/Mapzen guided one continuous author/inspect/fix pass. Temporary banners, copied sculptures/inscriptions, terrace gardens/fountains and furnished rooms remain outside scope."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/six-column-portico-pediment-dome-and-glass-pavilion.png",
+      "shots/shared/stepped-glass-pavilion-and-recessed-lower-door.png",
+      "shots/shared/rear-open-court-connected-wings-and-skylights.png",
+      "shots/shared/upper-portico-depth-columns-and-door.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Seven material roles share six existing 256px graphs: stone_limestone (wall/trim tint variants), plaster_lime (court), membrane, storefront (opaque window/glass-roof proxies), metal_painted and brick. Canonical metric UVs, sRGB-to-linear tint and baked graph means for skyline. Seven textured draws/one skyline; no embedded image, private atlas or new graph. Separate vertex streams and equal CPU/GPU accounting. Every used graph reads once, and unloading disposes all model geometry. Native grade-specific bases intersect flat review planes or expose patches; original native terrain supplies geographic fit.",
+    "captureReportHash": "sha256:dcccc965aa30f039e42ae383746934bd358bdd47bc231d13e2a0412d3ca63d28"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/six-column-portico-pediment-dome-and-glass-pavilion.png",
+      "medium-fi/stepped-glass-pavilion-and-recessed-lower-door.png",
+      "medium-fi/rear-open-court-connected-wings-and-skylights.png",
+      "medium-fi/upper-portico-depth-columns-and-door.png",
+      "medium-fi/brooklyn-skyline.png",
+      "medium-fi/brooklyn-district.png",
+      "medium-fi/brooklyn-street.png",
+      "medium-fi/brooklyn-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 826 / 3622 / 10126 / 26486 triangles; initial skyline+district geometry 412376 bytes, closeup 2424296 bytes. Six GLBs zero Khronos errors/warnings, 226 actual mesh/contact probes and five actual PMTiles13/14/15 cases, including two detailed owned records. Inspected52 current source/shared/medium-fi/native frames. Source individual window-frame/mullion geometry is reserved for closeup; street retains all window bays/pilasters and roof framing. Skyline simplifies the stepped pavilion roof to one glass cap while keeping the six-column portico, attic/dome and open rear court. Every LOD keeps both approach treads. Four LODs/failure/unload preserve1326 resident /1864 wider independent buildings, original201x201/6m terrain, roads and9087.535m² water. Failure keeps all1328 original resident buildings. Every run restores ground/water and leaves zero live model geometry. Default synthetic street context frames place the camera inside the rear court and clip a roof underside at the upper edge; custom front/detail frames and the current native exterior views cover the portico, pavilion, entrances, wings and open court.",
+    "captureReportHash": "sha256:c2e67b935b5c8d04301096c9a5cfbc358854c2a82fa895ff8165936a6b75f595"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:ab639e048adba6a9c9115a02d624c462a6f522194f539b46c06c1666a7bbb42e",
+    "mapFrameHash": "sha256:c8c4721d2b108b148cde2e0aa5a4e9d9251e541eeb8d6d70c8ceee54116da630",
+    "notes": "Q632682 and named parent way1432069915/native35185804158747 identify Brooklyn Museum; integral main-body part way250229991/native35184622318823 is also owned. Only these two overlapping records are replaced. The mapped curved pavilion and connected wing outline supply meter scale. Origin is the midpoint of the historic portico front edge; internal +X follows the facade west-northwest and +Z points north-northeast toward Eastern Parkway. Native east/up/south axes are baked with heading 0. The rear court is visible in the ordinary aerial but not opened in this map polygon: its 35x25m rectangle is an explicit picture-led approximation, kept open in geometry and terrain. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201 / 6m ground. Open front provider[0,36] supplies 48.12656157087435m datum. Boundary grades -3.336..+1.678m, floor +0.2m and closed foundation -3.516m. Native views show supported museum/pavilion with low-side plinth exposure and uphill base burial; the rear court and outer approaches retain original ground. Two short reconstructed 0.18m treads bridge the roughly0.4m lower-door threshold above approach ground -0.132m. Exact pavilion/terrace grades, archaeological/historic court paving, thresholds and accessibility remain unverified. No bespoke terrain or flattening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Medium-fi picture-led exterior. The single unqualified 50m map height is not used as a surveyed measurement. Working main roof 26m, upper portico floor 5.1m, six tapered Ionic columns to22.8m, pediment peak30m, square attic31.2m and shallow stone dome to39m above floor. Pavilion uses five descending concentric glass-roof bands approximately6.4..4.4m above floor. Rear court dimensions/placement, heights, bay counts, hidden faces, roof equipment, statue/relief abstractions and roof junctions are approximate. Two current ordinary pictures establish main colors/silhouette; no exhibition banners, copied artworks, furnished galleries or costly transparent/refraction materials. The two reconstructed 0.18m exterior treads are a working fit to the original standard approach, not surveyed historic steps. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201 / 6m ground. Open front provider[0,36] supplies 48.12656157087435m datum. Boundary grades -3.336..+1.678m, floor +0.2m and closed foundation -3.516m. Native views show supported museum/pavilion with low-side plinth exposure and uphill base burial; the rear court and outer approaches retain original ground. Two short reconstructed 0.18m treads bridge the roughly0.4m lower-door threshold above approach ground -0.132m. Exact pavilion/terrace grades, archaeological/historic court paving, thresholds and accessibility remain unverified. No bespoke terrain or flattening. Meets the medium-fi connected-exterior standard. The 35x25m rear court is an explicit picture-led approximation absent from the filled source polygon, rather than a mapped hole. Sculpture/relief ornaments are original schematic blocks/lofts, not copied figures. Glazing/skylights are opaque exterior proxies; no furnished galleries, art/text copies, costly refraction or bespoke ground. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/dr/dr5/brooklyn_museum/models/source.glb\",\"hash\":\"sha256:0fd3af5f8577844c45c3f1977ecadd3c7efd015bd8de71ff430771c99555b0c4\",\"bytes\":3177176,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.glb\",\"hash\":\"sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995\",\"bytes\":3176540,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.skyline.glb\",\"hash\":\"sha256:eb07b0234d8034c161205cec35f14315929a7bb101e9d660edbe72c4e5fa5e8e\",\"bytes\":75148,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.district.glb\",\"hash\":\"sha256:08ddaf905fd3a5db52c980ae90eba8454f890f680981279a306f218585b904fb\",\"bytes\":337228,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.street.glb\",\"hash\":\"sha256:0c86e66b23c155f54907827a52397fc32643fb025c22d203b48e7283109fef6d\",\"bytes\":903916,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.closeup.glb\",\"hash\":\"sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8\",\"bytes\":2424296,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "museum-wings-court-six-column-depth-dome-stepped-pavilion-door-and-treads",
+        "passed": true,
+        "notes": "226 actual mesh/contact probes over six current GLBs: open court/approaches, supported wings/skylights and closed foundations, six actual columns/open intervening gaps, supported attic/dome, five stepped glass bands, real lower entrance recess/soffit/threshold and two supported closed treads in every LOD. Shared refs, finite attributes, hashes, separate vertex streams and LOD caps checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Q632682 and named parent way1432069915/native35185804158747 identify Brooklyn Museum; integral main-body part way250229991/native35184622318823 is also owned. Only these two overlapping records are replaced. The mapped curved pavilion and connected wing outline supply meter scale. Origin is the midpoint of the historic portico front edge; internal +X follows the facade west-northwest and +Z points north-northeast toward Eastern Parkway. Native east/up/south axes are baked with heading 0. The rear court is visible in the ordinary aerial but not opened in this map polygon: its 35x25m rectangle is an explicit picture-led approximation, kept open in geometry and terrain. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201 / 6m ground. Open front provider[0,36] supplies 48.12656157087435m datum. Boundary grades -3.336..+1.678m, floor +0.2m and closed foundation -3.516m. Native views show supported museum/pavilion with low-side plinth exposure and uphill base burial; the rear court and outer approaches retain original ground. Two short reconstructed 0.18m treads bridge the roughly0.4m lower-door threshold above approach ground -0.132m. Exact pavilion/terrace grades, archaeological/historic court paving, thresholds and accessibility remain unverified. No bespoke terrain or flattening."
+    },
+    "inputHash": "sha256:4c52e961250df629fc5a0ce53ea585a5e39bad27ee3dbd022e4e4c9237d19cf9",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:4c52e961250df629fc5a0ce53ea585a5e39bad27ee3dbd022e4e4c9237d19cf9",
+      "reviewedOn": "2026-10-23",
+      "method": "Actually inspected 52 current frames in eleven labeled contact sheets plus full-resolution native front portico/dome/pavilion, lower entrance/treads, open rear court and colonnade. Two ordinary exterior pictures and standard PMTiles/Mapzen guided one continuous author/inspect/fix pass. Moved an occluded front camera onto the plaza, added two short working approach treads and retained them in every LOD. Flat review planes expose some native-grade base patches; unchanged native terrain supplies ground-fit evidence. No bespoke terrain/survey research Default synthetic street context frames place the camera inside the rear court and clip a roof underside at the upper edge; custom front/detail frames and the current native exterior views cover the portico, pavilion, entrances, wings and open court.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/preview.png",
+          "hash": "sha256:9aa60ee78d0cc726e14b9715be8d32acfc4dc2616c524cfce759b2e5b4de7029"
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/turntable/angle_0.png",
+          "hash": "sha256:cb8bc6e8444729ee6c0b4f980440f57f4fe90a3f0964cc0af544b7a3912ec834"
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/turntable/angle_1.png",
+          "hash": "sha256:5a7fea0ec25e325a25c512c72756908e94008965cb8c9c378312903c228ae305"
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/turntable/angle_2.png",
+          "hash": "sha256:b32e4e34630975c3d5ae9c61a7c8eddac15be38e2774dabbc780c9bebae60381"
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/turntable/angle_3.png",
+          "hash": "sha256:f7fae9451b458ce19c3a90f4406a304774665bc79593f7578089a5b9717fbeac"
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/six-column-portico-pediment-dome-and-glass-pavilion.png",
+          "hash": "sha256:6a7a4f5557bdbe239bb1bd6067d005164bbf38a0160bd4aaf6a410808530a9af"
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/stepped-glass-pavilion-and-recessed-lower-door.png",
+          "hash": "sha256:f4897077f51382ce5f343109f7f9c0bb6772af3b8064146c86c21a900e27339b"
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/rear-open-court-connected-wings-and-skylights.png",
+          "hash": "sha256:7366649d3e793e27f0c6a6a6245d0ca64b4af1fc67fb52093031fc2538858969"
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/upper-portico-depth-columns-and-door.png",
+          "hash": "sha256:aabdb75b30ef1f6612495bc624ed5b6e92bfd3d8e9dc3c1f0b9401b23074d3b2"
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/angle-0.png",
+          "hash": "sha256:7d8ea827958f143d30989ad8db6e12de3640e11cf2bdc5aa7ef61cc415d89e0d",
+          "camera": {
+            "name": "angle-0",
+            "angle": 0.6
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.brooklyn_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "brooklyn.museum",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 26486,
+            "bounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "reviewGroundY": 0.2,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "f2adbed1-3cac-4845-a51b-ae69a9ce49f6",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "80df3672-9af2-4d18-9afd-fbe5a599f7a0",
+              "worldgen:matgraph:molen.worldgen.material.membrane": "87c5975e-6753-43fe-ae75-176491437b39",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "5409785d-07fb-4367-b422-b40e7570e742",
+              "worldgen:matgraph:molen.worldgen.material.brick": "a8bd3451-4905-46d6-8f91-1f62d9831da2",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "407a0ba8-fa6b-4b54-84e3-b1d3f44f047d"
+            },
+            "loads": [
+              "molen.worldgen.structure.brooklyn_museum"
+            ],
+            "selectionBounds": [
+              -73.96520120822414,
+              40.67020608379374,
+              -73.96216916121024,
+              40.672505770921035
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "brooklyn.museum",
+                "coordinate": [
+                  -73.96357446138188,
+                  40.67166823650534
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "brooklyn.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 26757
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/angle-1.png",
+          "hash": "sha256:10bbccf0f39c766c8d4ea7e1ec746f0e455f617dd8b8e820a8ba2f850d680ccc",
+          "camera": {
+            "name": "angle-1",
+            "angle": 2.1707963267948966
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.brooklyn_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "brooklyn.museum",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 26486,
+            "bounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "reviewGroundY": 0.2,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "f2adbed1-3cac-4845-a51b-ae69a9ce49f6",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "80df3672-9af2-4d18-9afd-fbe5a599f7a0",
+              "worldgen:matgraph:molen.worldgen.material.membrane": "87c5975e-6753-43fe-ae75-176491437b39",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "5409785d-07fb-4367-b422-b40e7570e742",
+              "worldgen:matgraph:molen.worldgen.material.brick": "a8bd3451-4905-46d6-8f91-1f62d9831da2",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "407a0ba8-fa6b-4b54-84e3-b1d3f44f047d"
+            },
+            "loads": [
+              "molen.worldgen.structure.brooklyn_museum"
+            ],
+            "selectionBounds": [
+              -73.96520120822414,
+              40.67020608379374,
+              -73.96216916121024,
+              40.672505770921035
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "brooklyn.museum",
+                "coordinate": [
+                  -73.96357446138188,
+                  40.67166823650534
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "brooklyn.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 26757
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/angle-2.png",
+          "hash": "sha256:cd895ed29c27610d75eadde36bbb4e845995860d98e6c7e4c358b71cb03557c9",
+          "camera": {
+            "name": "angle-2",
+            "angle": 3.741592653589793
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.brooklyn_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "brooklyn.museum",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 26486,
+            "bounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "reviewGroundY": 0.2,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "f2adbed1-3cac-4845-a51b-ae69a9ce49f6",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "80df3672-9af2-4d18-9afd-fbe5a599f7a0",
+              "worldgen:matgraph:molen.worldgen.material.membrane": "87c5975e-6753-43fe-ae75-176491437b39",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "5409785d-07fb-4367-b422-b40e7570e742",
+              "worldgen:matgraph:molen.worldgen.material.brick": "a8bd3451-4905-46d6-8f91-1f62d9831da2",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "407a0ba8-fa6b-4b54-84e3-b1d3f44f047d"
+            },
+            "loads": [
+              "molen.worldgen.structure.brooklyn_museum"
+            ],
+            "selectionBounds": [
+              -73.96520120822414,
+              40.67020608379374,
+              -73.96216916121024,
+              40.672505770921035
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "brooklyn.museum",
+                "coordinate": [
+                  -73.96357446138188,
+                  40.67166823650534
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "brooklyn.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 26757
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/angle-3.png",
+          "hash": "sha256:ea4ba4727355b549e8b4c683716afc6d4603b4386da5b20b6cbdee09d8517d9b",
+          "camera": {
+            "name": "angle-3",
+            "angle": 5.312388980384689
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.brooklyn_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "brooklyn.museum",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 26486,
+            "bounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "reviewGroundY": 0.2,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "f2adbed1-3cac-4845-a51b-ae69a9ce49f6",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "80df3672-9af2-4d18-9afd-fbe5a599f7a0",
+              "worldgen:matgraph:molen.worldgen.material.membrane": "87c5975e-6753-43fe-ae75-176491437b39",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "5409785d-07fb-4367-b422-b40e7570e742",
+              "worldgen:matgraph:molen.worldgen.material.brick": "a8bd3451-4905-46d6-8f91-1f62d9831da2",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "407a0ba8-fa6b-4b54-84e3-b1d3f44f047d"
+            },
+            "loads": [
+              "molen.worldgen.structure.brooklyn_museum"
+            ],
+            "selectionBounds": [
+              -73.96520120822414,
+              40.67020608379374,
+              -73.96216916121024,
+              40.672505770921035
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "brooklyn.museum",
+                "coordinate": [
+                  -73.96357446138188,
+                  40.67166823650534
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "brooklyn.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 26757
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/six-column-portico-pediment-dome-and-glass-pavilion.png",
+          "hash": "sha256:81f77b2279738855f946d7ce3544804c70b84857ff065501c66972dafc22bb77",
+          "camera": {
+            "name": "six-column-portico-pediment-dome-and-glass-pavilion",
+            "position": [
+              17.658368771819937,
+              36,
+              -65.66720652135596
+            ],
+            "lookAt": [
+              -0.25968189370323436,
+              19,
+              0.9656942135493525
+            ],
+            "fov": 78
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.brooklyn_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "brooklyn.museum",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 26486,
+            "bounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "reviewGroundY": 0.2,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "f2adbed1-3cac-4845-a51b-ae69a9ce49f6",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "80df3672-9af2-4d18-9afd-fbe5a599f7a0",
+              "worldgen:matgraph:molen.worldgen.material.membrane": "87c5975e-6753-43fe-ae75-176491437b39",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "5409785d-07fb-4367-b422-b40e7570e742",
+              "worldgen:matgraph:molen.worldgen.material.brick": "a8bd3451-4905-46d6-8f91-1f62d9831da2",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "407a0ba8-fa6b-4b54-84e3-b1d3f44f047d"
+            },
+            "loads": [
+              "molen.worldgen.structure.brooklyn_museum"
+            ],
+            "selectionBounds": [
+              -73.96520120822414,
+              40.67020608379374,
+              -73.96216916121024,
+              40.672505770921035
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "brooklyn.museum",
+                "coordinate": [
+                  -73.96357446138188,
+                  40.67166823650534
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "brooklyn.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 26757
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/stepped-glass-pavilion-and-recessed-lower-door.png",
+          "hash": "sha256:62ec730cc4142118c7958872e7921795060b1255227f24c9da894f3f3fc1725f",
+          "camera": {
+            "name": "stepped-glass-pavilion-and-recessed-lower-door",
+            "position": [
+              -12.829967186967565,
+              8,
+              -56.26181602100431
+            ],
+            "lookAt": [
+              3.895228405548515,
+              3.5,
+              -14.485413203240288
+            ],
+            "fov": 55
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.brooklyn_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "brooklyn.museum",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 26486,
+            "bounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "reviewGroundY": 0.2,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "f2adbed1-3cac-4845-a51b-ae69a9ce49f6",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "80df3672-9af2-4d18-9afd-fbe5a599f7a0",
+              "worldgen:matgraph:molen.worldgen.material.membrane": "87c5975e-6753-43fe-ae75-176491437b39",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "5409785d-07fb-4367-b422-b40e7570e742",
+              "worldgen:matgraph:molen.worldgen.material.brick": "a8bd3451-4905-46d6-8f91-1f62d9831da2",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "407a0ba8-fa6b-4b54-84e3-b1d3f44f047d"
+            },
+            "loads": [
+              "molen.worldgen.structure.brooklyn_museum"
+            ],
+            "selectionBounds": [
+              -73.96520120822414,
+              40.67020608379374,
+              -73.96216916121024,
+              40.672505770921035
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "brooklyn.museum",
+                "coordinate": [
+                  -73.96357446138188,
+                  40.67166823650534
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "brooklyn.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 26757
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/rear-open-court-connected-wings-and-skylights.png",
+          "hash": "sha256:26bdc88a6e27f879bff134a6522488bf450842e56d8d1a7d6e2c581308a9bcf6",
+          "camera": {
+            "name": "rear-open-court-connected-wings-and-skylights",
+            "position": [
+              97.90848211625828,
+              90,
+              155.7688323436057
+            ],
+            "lookAt": [
+              28.02139271005397,
+              17,
+              61.3824205338054
+            ],
+            "fov": 58
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.brooklyn_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "brooklyn.museum",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 26486,
+            "bounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "reviewGroundY": 0.2,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "f2adbed1-3cac-4845-a51b-ae69a9ce49f6",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "80df3672-9af2-4d18-9afd-fbe5a599f7a0",
+              "worldgen:matgraph:molen.worldgen.material.membrane": "87c5975e-6753-43fe-ae75-176491437b39",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "5409785d-07fb-4367-b422-b40e7570e742",
+              "worldgen:matgraph:molen.worldgen.material.brick": "a8bd3451-4905-46d6-8f91-1f62d9831da2",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "407a0ba8-fa6b-4b54-84e3-b1d3f44f047d"
+            },
+            "loads": [
+              "molen.worldgen.structure.brooklyn_museum"
+            ],
+            "selectionBounds": [
+              -73.96520120822414,
+              40.67020608379374,
+              -73.96216916121024,
+              40.672505770921035
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "brooklyn.museum",
+                "coordinate": [
+                  -73.96357446138188,
+                  40.67166823650534
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "brooklyn.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 26757
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/upper-portico-depth-columns-and-door.png",
+          "hash": "sha256:70bf05e5d5c5b04a5091d03355f6ae384543c788bf2a010c76af97d3c97dac41",
+          "camera": {
+            "name": "upper-portico-depth-columns-and-door",
+            "position": [
+              -11.150130395010718,
+              10,
+              -27.85093521184268
+            ],
+            "lookAt": [
+              -0.5193637874064687,
+              12,
+              1.931388427098705
+            ],
+            "fov": 58
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.brooklyn_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "brooklyn.museum",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 26486,
+            "bounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "reviewGroundY": 0.2,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "f2adbed1-3cac-4845-a51b-ae69a9ce49f6",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "80df3672-9af2-4d18-9afd-fbe5a599f7a0",
+              "worldgen:matgraph:molen.worldgen.material.membrane": "87c5975e-6753-43fe-ae75-176491437b39",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "5409785d-07fb-4367-b422-b40e7570e742",
+              "worldgen:matgraph:molen.worldgen.material.brick": "a8bd3451-4905-46d6-8f91-1f62d9831da2",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "407a0ba8-fa6b-4b54-84e3-b1d3f44f047d"
+            },
+            "loads": [
+              "molen.worldgen.structure.brooklyn_museum"
+            ],
+            "selectionBounds": [
+              -73.96520120822414,
+              40.67020608379374,
+              -73.96216916121024,
+              40.672505770921035
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "brooklyn.museum",
+                "coordinate": [
+                  -73.96357446138188,
+                  40.67166823650534
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "brooklyn.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 26757
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/placement.png",
+          "hash": "sha256:1d812264cc9a188f0b0ebaba0e0161381bbe86231e5bcde24acfe170c8ad9413",
+          "camera": {
+            "name": "placement",
+            "placement": true
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.brooklyn_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "brooklyn.museum",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 26486,
+            "bounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -81.57395935058594,
+                -3.515674591064453,
+                -23.281946182250977
+              ],
+              "max": [
+                79.99297332763672,
+                39.20000076293945,
+                110.22086334228516
+              ]
+            },
+            "reviewGroundY": 0.2,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "f2adbed1-3cac-4845-a51b-ae69a9ce49f6",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "80df3672-9af2-4d18-9afd-fbe5a599f7a0",
+              "worldgen:matgraph:molen.worldgen.material.membrane": "87c5975e-6753-43fe-ae75-176491437b39",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "5409785d-07fb-4367-b422-b40e7570e742",
+              "worldgen:matgraph:molen.worldgen.material.brick": "a8bd3451-4905-46d6-8f91-1f62d9831da2",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "407a0ba8-fa6b-4b54-84e3-b1d3f44f047d"
+            },
+            "loads": [
+              "molen.worldgen.structure.brooklyn_museum"
+            ],
+            "selectionBounds": [
+              -73.96520120822414,
+              40.67020608379374,
+              -73.96216916121024,
+              40.672505770921035
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "brooklyn.museum",
+                "coordinate": [
+                  -73.96357446138188,
+                  40.67166823650534
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "brooklyn.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 9,
+            "renderedTriangles": 26757
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/street-noon-economy.png",
+          "hash": "sha256:bf18d2fe1edde82cd4773903ff13e10120b3659f13bb0ef4c8465d12befb4589",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/street-noon-high.png",
+          "hash": "sha256:70a7f7277b5fee4d9a9f81d649644b6f61a2a645f3d88f047e7107ada2ce79fb",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/street-late-economy.png",
+          "hash": "sha256:d6a6079da9025b835340ef6b345ebd95edf6a299c8df464bd115d5fcdb2558ed",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/street-late-high.png",
+          "hash": "sha256:ff3ef7952ab56e34efb8cdf2b5d28819210f08320be0afb03adfc459ecf46ecb",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/block-noon-economy.png",
+          "hash": "sha256:1f3b74d8f0f9c9ab9f8ad1fd478f00e04cf83519e0711a5b9eb12dd2c0e9e02d",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:08ddaf905fd3a5db52c980ae90eba8454f890f680981279a306f218585b904fb",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 9341,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/block-noon-high.png",
+          "hash": "sha256:514cbf98ae95bc8207545061f58a72ac5d6214df8d686efc9a0bce953cc9c1fb",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:08ddaf905fd3a5db52c980ae90eba8454f890f680981279a306f218585b904fb",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9341,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/block-late-economy.png",
+          "hash": "sha256:4e3da67a539239c66a6cf353b9408f7aeb19b78947f94a2f08f41637ae3cdcc5",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:08ddaf905fd3a5db52c980ae90eba8454f890f680981279a306f218585b904fb",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 9341,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/block-late-high.png",
+          "hash": "sha256:888e04ac61a5c29d5493da57c361c1613fdd3db9d7cd8ad9f74cc8d356ac879d",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:08ddaf905fd3a5db52c980ae90eba8454f890f680981279a306f218585b904fb",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9341,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:80c8b395609f5a31fbe4b78c36351b757a35b6bf968b3707c0b24626c77d9b2e",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:eb07b0234d8034c161205cec35f14315929a7bb101e9d660edbe72c4e5fa5e8e",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6545,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:0885b6255676e69e846fe01f054844b5799a1031839122246ee8ccbdac3cf8e2",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:eb07b0234d8034c161205cec35f14315929a7bb101e9d660edbe72c4e5fa5e8e",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6545,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:1004bc8a39e149178461017edcf9b487c413914c73d2f00ef7e36df5f8d0f61c",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:eb07b0234d8034c161205cec35f14315929a7bb101e9d660edbe72c4e5fa5e8e",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6545,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/skyline-late-high.png",
+          "hash": "sha256:7a2872a80f658f1164f6945c94fa21e5c402766639bd345c51e66d48c42a5715",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:eb07b0234d8034c161205cec35f14315929a7bb101e9d660edbe72c4e5fa5e8e",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6545,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/silhouette.png",
+          "hash": "sha256:e4b22a43a9fec61360bf9dd7b1e10a15dd13b31908c2de784f9ebc2aa4c15968",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:eb07b0234d8034c161205cec35f14315929a7bb101e9d660edbe72c4e5fa5e8e",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 2,
+            "triangles": 849,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/six-column-portico-pediment-dome-and-glass-pavilion.png",
+          "hash": "sha256:d5476a7e13bc8d98ba611bf9fc814535ceb4e28cf2782b8922c56534a84f0b4e",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              17.658368771819937,
+              36,
+              -65.66720652135596
+            ],
+            "lookAt": [
+              -0.25968189370323436,
+              19,
+              0.9656942135493525
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/stepped-glass-pavilion-and-recessed-lower-door.png",
+          "hash": "sha256:a94e2b6f17a146a519fb8a033a30835c9aef5c5de4b4905413fd4463266cdee7",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              -12.829967186967565,
+              8,
+              -56.26181602100431
+            ],
+            "lookAt": [
+              3.895228405548515,
+              3.5,
+              -14.485413203240288
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/rear-open-court-connected-wings-and-skylights.png",
+          "hash": "sha256:f2abc0f72710c4b4969196b7adbe3d3a69f6caecd92fc1e0b9f283fcd8ec72dd",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              97.90848211625828,
+              90,
+              155.7688323436057
+            ],
+            "lookAt": [
+              28.02139271005397,
+              17,
+              61.3824205338054
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/upper-portico-depth-columns-and-door.png",
+          "hash": "sha256:2e5e251f9d5873f70357ab00a6c3cade9caab43ed04cfcd61f0452f419e54c70",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              -11.150130395010718,
+              10,
+              -27.85093521184268
+            ],
+            "lookAt": [
+              -0.5193637874064687,
+              12,
+              1.931388427098705
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/brooklyn-skyline.png",
+          "hash": "sha256:7a890c2fa95900297f9733889d30653aab8c9e14d6edcc91d3a2d93a0228bd06",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:eb07b0234d8034c161205cec35f14315929a7bb101e9d660edbe72c4e5fa5e8e",
+            "level": "skyline",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6545,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              -124.12023182895099,
+              145,
+              -250.83693518046238
+            ],
+            "lookAt": [
+              9.592039032791313,
+              13,
+              33.6451004931388
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/brooklyn-district.png",
+          "hash": "sha256:165af70815de9b7221a4ad18684008f633ecb1786cdc37d4f0d34d9efe403ccf",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:08ddaf905fd3a5db52c980ae90eba8454f890f680981279a306f218585b904fb",
+            "level": "district",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9341,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              -124.12023182895099,
+              145,
+              -250.83693518046238
+            ],
+            "lookAt": [
+              9.592039032791313,
+              13,
+              33.6451004931388
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/brooklyn-street.png",
+          "hash": "sha256:49dc8f855f6182b2e29d3db4d2e767f9bcdd49878f4bdddbc2617f674791b32a",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:0c86e66b23c155f54907827a52397fc32643fb025c22d203b48e7283109fef6d",
+            "level": "street",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 15845,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              -124.12023182895099,
+              145,
+              -250.83693518046238
+            ],
+            "lookAt": [
+              9.592039032791313,
+              13,
+              33.6451004931388
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/brooklyn-closeup.png",
+          "hash": "sha256:e9b7f7b224aa578642c566338742f81b29b226b51574573e503776ffd2f2e2a9",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              -124.12023182895099,
+              145,
+              -250.83693518046238
+            ],
+            "lookAt": [
+              9.592039032791313,
+              13,
+              33.6451004931388
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/transition-skyline.png",
+          "hash": "sha256:e155d4d731db0b1fe0ca30c3dbc3fdf253714839b7f7a2fb10da77e87cb5e6c4",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:eb07b0234d8034c161205cec35f14315929a7bb101e9d660edbe72c4e5fa5e8e",
+            "level": "skyline",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6545,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/transition-district.png",
+          "hash": "sha256:514cbf98ae95bc8207545061f58a72ac5d6214df8d686efc9a0bce953cc9c1fb",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:08ddaf905fd3a5db52c980ae90eba8454f890f680981279a306f218585b904fb",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9341,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/transition-street.png",
+          "hash": "sha256:e9e1335bd9d9730783cba98e0397c76093e58b943c52d04e659aaf1179ca33c4",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:0c86e66b23c155f54907827a52397fc32643fb025c22d203b48e7283109fef6d",
+            "level": "street",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 15845,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/dr/dr5/brooklyn_museum/medium-fi/transition-closeup.png",
+          "hash": "sha256:73c7bc258aad05c39ce9a3cb006bfdd594fe15a351e00cb6e206ed814548dc1b",
+          "state": {
+            "assetId": "molen.worldgen.structure.brooklyn_museum",
+            "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+            "lodHash": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8",
+            "level": "closeup",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 32205,
+            "groundY": 0.2,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 6,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 7,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": ".artifacts/brooklyn-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:354eecbc75397a0cfbd768d9d332c69486cfa83d65c2a853f276ffbf6cb9adde",
+          "state": {
+            "level": "skyline",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 16,
+            "triangles": 568968
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -124.12023182895099,
+              145,
+              -250.83693518046238
+            ],
+            "lookAt": [
+              9.592039032791313,
+              13,
+              33.6451004931388
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": ".artifacts/brooklyn-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:de8361d1c6b09efd76c6ef8225a0ab133d5d9f62a3eccbac5dbe955be3cfbf05",
+          "state": {
+            "level": "district",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 571764
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -124.12023182895099,
+              145,
+              -250.83693518046238
+            ],
+            "lookAt": [
+              9.592039032791313,
+              13,
+              33.6451004931388
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": ".artifacts/brooklyn-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:d0ce288602b916f0e3202565ef14f5c8b86b4958c8745b669904b755b5d29b90",
+          "state": {
+            "level": "street",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 578268
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -124.12023182895099,
+              145,
+              -250.83693518046238
+            ],
+            "lookAt": [
+              9.592039032791313,
+              13,
+              33.6451004931388
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": ".artifacts/brooklyn-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:8d64f43c1a9f1f83dfd1c7ad38ceb5ebd4fc51062e045533b004870910a28bba",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 594628
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -124.12023182895099,
+              145,
+              -250.83693518046238
+            ],
+            "lookAt": [
+              9.592039032791313,
+              13,
+              33.6451004931388
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": ".artifacts/brooklyn-integration/shots/final-closeup-six-column-portico-pediment-dome-and-glass-pavilion.png",
+          "hash": "sha256:1dd07bd959437de082681b8b69d62543047e6a03fe26925c37c99832373a0348",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 594628
+          },
+          "camera": {
+            "name": "six-column-portico-pediment-dome-and-glass-pavilion",
+            "position": [
+              17.658368771819937,
+              36,
+              -65.66720652135596
+            ],
+            "lookAt": [
+              -0.25968189370323436,
+              19,
+              0.9656942135493525
+            ],
+            "fov": 78
+          }
+        },
+        {
+          "path": ".artifacts/brooklyn-integration/shots/final-closeup-stepped-glass-pavilion-and-recessed-lower-door.png",
+          "hash": "sha256:ff19d3a98579e40b6270abf2b59f50066e4fa7816ccb8c37141f660694dfde78",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 594628
+          },
+          "camera": {
+            "name": "stepped-glass-pavilion-and-recessed-lower-door",
+            "position": [
+              -12.829967186967565,
+              8,
+              -56.26181602100431
+            ],
+            "lookAt": [
+              3.895228405548515,
+              3.5,
+              -14.485413203240288
+            ],
+            "fov": 55
+          }
+        },
+        {
+          "path": ".artifacts/brooklyn-integration/shots/final-closeup-rear-open-court-connected-wings-and-skylights.png",
+          "hash": "sha256:fed62bfd36cf446e30e32f0285fba3e5bacf51256287d7edb2c739a85eaf71f7",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 594628
+          },
+          "camera": {
+            "name": "rear-open-court-connected-wings-and-skylights",
+            "position": [
+              97.90848211625828,
+              90,
+              155.7688323436057
+            ],
+            "lookAt": [
+              28.02139271005397,
+              17,
+              61.3824205338054
+            ],
+            "fov": 58
+          }
+        },
+        {
+          "path": ".artifacts/brooklyn-integration/shots/final-closeup-upper-portico-depth-columns-and-door.png",
+          "hash": "sha256:1c69bf6fb003f43e2b5b30dea346b58bd94828411295f4de6eaf661508bd060a",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 594628
+          },
+          "camera": {
+            "name": "upper-portico-depth-columns-and-door",
+            "position": [
+              -11.150130395010718,
+              10,
+              -27.85093521184268
+            ],
+            "lookAt": [
+              -0.5193637874064687,
+              12,
+              1.931388427098705
+            ],
+            "fov": 58
+          }
+        },
+        {
+          "path": ".artifacts/brooklyn-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:acc98bf2ad4189287436841723baa17b577360417d8fda9658cf80204196ce06",
+          "state": {
+            "level": "failure",
+            "mode": "high",
+            "groundCutoutActive": false,
+            "draws": 15,
+            "triangles": 567967
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -124.12023182895099,
+              145,
+              -250.83693518046238
+            ],
+            "lookAt": [
+              9.592039032791313,
+              13,
+              33.6451004931388
+            ],
+            "fov": 53
+          }
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:4c52e961250df629fc5a0ce53ea585a5e39bad27ee3dbd022e4e4c9237d19cf9",
+      "sourceHash": "sha256:0fd3af5f8577844c45c3f1977ecadd3c7efd015bd8de71ff430771c99555b0c4",
+      "runtimeHash": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+      "files": {
+        "content/worldgen/source/places/dr/dr5/brooklyn_museum/models/source.glb": "sha256:0fd3af5f8577844c45c3f1977ecadd3c7efd015bd8de71ff430771c99555b0c4",
+        "content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.glb": "sha256:bae1a6f3a143cf2b7d673bc51b209880dace0c56a6799f128a63318f9bed6995",
+        "content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.skyline.glb": "sha256:eb07b0234d8034c161205cec35f14315929a7bb101e9d660edbe72c4e5fa5e8e",
+        "content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.district.glb": "sha256:08ddaf905fd3a5db52c980ae90eba8454f890f680981279a306f218585b904fb",
+        "content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.street.glb": "sha256:0c86e66b23c155f54907827a52397fc32643fb025c22d203b48e7283109fef6d",
+        "content/worldgen/assets/places/dr/dr5/brooklyn_museum/model.closeup.glb": "sha256:a814296d66a182eb760b6be9c6027cb0543e9804be613487823f9f845b018bd8"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184622318823,
+        35185804158747
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            2412,
+            3081
+          ],
+          "id": 35184613925950,
+          "owned": false,
+          "covered": 0.2579070487125415,
+          "area": 37596.04916147413,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            4825,
+            6162
+          ],
+          "id": 35184613925950,
+          "owned": false,
+          "covered": 0.6870355225713096,
+          "area": 14142.16126596159,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            4825,
+            6162
+          ],
+          "id": 35184622318820,
+          "owned": false,
+          "covered": 0.9371793011352758,
+          "area": 8410.726934934171,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            9651,
+            12325
+          ],
+          "id": 35184622318823,
+          "owned": true,
+          "covered": 0.9999995865007387,
+          "area": 7922.768393935954,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            9651,
+            12325
+          ],
+          "id": 35185804158747,
+          "owned": true,
+          "covered": 0.9999996362713853,
+          "area": 9772.861672851659,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 1326,
+      "widerIndependent": 1864,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 5.189208138745016e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1328,
+          "independentBuildings": 1326,
+          "remainingBuildings": 1326,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.brooklyn_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -24.37706157087435,
+            "max": 12.924538429125647
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9087.535271983885,
+          "remainingWaterArea": 9087.535271983885,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:354eecbc75397a0cfbd768d9d332c69486cfa83d65c2a853f276ffbf6cb9adde",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 568968
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -124.12023182895099,
+                145,
+                -250.83693518046238
+              ],
+              "lookAt": [
+                9.592039032791313,
+                13,
+                33.6451004931388
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 5.189208138745016e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1328,
+          "independentBuildings": 1326,
+          "remainingBuildings": 1326,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.brooklyn_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -24.37706157087435,
+            "max": 12.924538429125647
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9087.535271983885,
+          "remainingWaterArea": 9087.535271983885,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:de8361d1c6b09efd76c6ef8225a0ab133d5d9f62a3eccbac5dbe955be3cfbf05",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 571764
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -124.12023182895099,
+                145,
+                -250.83693518046238
+              ],
+              "lookAt": [
+                9.592039032791313,
+                13,
+                33.6451004931388
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 5.189208138745016e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1328,
+          "independentBuildings": 1326,
+          "remainingBuildings": 1326,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.brooklyn_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -24.37706157087435,
+            "max": 12.924538429125647
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9087.535271983885,
+          "remainingWaterArea": 9087.535271983885,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:d0ce288602b916f0e3202565ef14f5c8b86b4958c8745b669904b755b5d29b90",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 578268
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -124.12023182895099,
+                145,
+                -250.83693518046238
+              ],
+              "lookAt": [
+                9.592039032791313,
+                13,
+                33.6451004931388
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 5.189208138745016e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1328,
+          "independentBuildings": 1326,
+          "remainingBuildings": 1326,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.brooklyn_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -24.37706157087435,
+            "max": 12.924538429125647
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9087.535271983885,
+          "remainingWaterArea": 9087.535271983885,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:8d64f43c1a9f1f83dfd1c7ad38ceb5ebd4fc51062e045533b004870910a28bba",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 594628
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -124.12023182895099,
+                145,
+                -250.83693518046238
+              ],
+              "lookAt": [
+                9.592039032791313,
+                13,
+                33.6451004931388
+              ],
+              "fov": 53
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-six-column-portico-pediment-dome-and-glass-pavilion.png",
+            "hash": "sha256:1dd07bd959437de082681b8b69d62543047e6a03fe26925c37c99832373a0348",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 594628
+            },
+            "camera": {
+              "name": "six-column-portico-pediment-dome-and-glass-pavilion",
+              "position": [
+                17.658368771819937,
+                36,
+                -65.66720652135596
+              ],
+              "lookAt": [
+                -0.25968189370323436,
+                19,
+                0.9656942135493525
+              ],
+              "fov": 78
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-stepped-glass-pavilion-and-recessed-lower-door.png",
+            "hash": "sha256:ff19d3a98579e40b6270abf2b59f50066e4fa7816ccb8c37141f660694dfde78",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 594628
+            },
+            "camera": {
+              "name": "stepped-glass-pavilion-and-recessed-lower-door",
+              "position": [
+                -12.829967186967565,
+                8,
+                -56.26181602100431
+              ],
+              "lookAt": [
+                3.895228405548515,
+                3.5,
+                -14.485413203240288
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-rear-open-court-connected-wings-and-skylights.png",
+            "hash": "sha256:fed62bfd36cf446e30e32f0285fba3e5bacf51256287d7edb2c739a85eaf71f7",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 594628
+            },
+            "camera": {
+              "name": "rear-open-court-connected-wings-and-skylights",
+              "position": [
+                97.90848211625828,
+                90,
+                155.7688323436057
+              ],
+              "lookAt": [
+                28.02139271005397,
+                17,
+                61.3824205338054
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-upper-portico-depth-columns-and-door.png",
+            "hash": "sha256:1c69bf6fb003f43e2b5b30dea346b58bd94828411295f4de6eaf661508bd060a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 594628
+            },
+            "camera": {
+              "name": "upper-portico-depth-columns-and-door",
+              "position": [
+                -11.150130395010718,
+                10,
+                -27.85093521184268
+              ],
+              "lookAt": [
+                -0.5193637874064687,
+                12,
+                1.931388427098705
+              ],
+              "fov": 58
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 1328,
+          "independentBuildings": 1326,
+          "remainingBuildings": 1328,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184622318823,
+              "area": 7922.786209149444
+            },
+            {
+              "id": 35185804158747,
+              "area": 9772.883648202918
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.brooklyn_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -24.37706157087435,
+            "max": 12.924538429125647
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9087.535271983885,
+          "remainingWaterArea": 9087.535271983885,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:acc98bf2ad4189287436841723baa17b577360417d8fda9658cf80204196ce06",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 567967
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -124.12023182895099,
+                145,
+                -250.83693518046238
+              ],
+              "lookAt": [
+                9.592039032791313,
+                13,
+                33.6451004931388
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Connected Brooklyn Museum exterior: exact parent/part footprint, long pale Beaux-Arts wings and rear ranges, picture-led open rear court, six-column Ionic portico/recessed upper doorway, supported triangular pediment and abstract relief/roof ornament, square attic and shallow stone dome, flat roof/skylights and the curved stepped glass entrance pavilion. Pavilion has a real central recessed lower door, soffit and threshold; glass is an opaque reflected exterior proxy. Outer terraced landscape, fountains, garden collections, temporary exhibition banners, freestanding art, furnished rooms and copied sculpture/inscriptions remain outside this model. Two short exterior treads bridge the approximate 0.4m native threshold grade.",
+    "Q632682 and named parent way1432069915/native35185804158747 identify Brooklyn Museum; integral main-body part way250229991/native35184622318823 is also owned. Only these two overlapping records are replaced. The mapped curved pavilion and connected wing outline supply meter scale. Origin is the midpoint of the historic portico front edge; internal +X follows the facade west-northwest and +Z points north-northeast toward Eastern Parkway. Native east/up/south axes are baked with heading 0. The rear court is visible in the ordinary aerial but not opened in this map polygon: its 35x25m rectangle is an explicit picture-led approximation, kept open in geometry and terrain.",
+    "Medium-fi picture-led exterior. The single unqualified 50m map height is not used as a surveyed measurement. Working main roof 26m, upper portico floor 5.1m, six tapered Ionic columns to22.8m, pediment peak30m, square attic31.2m and shallow stone dome to39m above floor. Pavilion uses five descending concentric glass-roof bands approximately6.4..4.4m above floor. Rear court dimensions/placement, heights, bay counts, hidden faces, roof equipment, statue/relief abstractions and roof junctions are approximate. Two current ordinary pictures establish main colors/silhouette; no exhibition banners, copied artworks, furnished galleries or costly transparent/refraction materials. The two reconstructed 0.18m exterior treads are a working fit to the original standard approach, not surveyed historic steps.",
+    "Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201 / 6m ground. Open front provider[0,36] supplies 48.12656157087435m datum. Boundary grades -3.336..+1.678m, floor +0.2m and closed foundation -3.516m. Native views show supported museum/pavilion with low-side plinth exposure and uphill base burial; the rear court and outer approaches retain original ground. Two short reconstructed 0.18m treads bridge the roughly0.4m lower-door threshold above approach ground -0.132m. Exact pavilion/terrace grades, archaeological/historic court paving, thresholds and accessibility remain unverified. No bespoke terrain or flattening.",
+    "Medium-fi picture-led exterior. The single unqualified 50m map height is not used as a surveyed measurement. Working main roof 26m, upper portico floor 5.1m, six tapered Ionic columns to22.8m, pediment peak30m, square attic31.2m and shallow stone dome to39m above floor. Pavilion uses five descending concentric glass-roof bands approximately6.4..4.4m above floor. Rear court dimensions/placement, heights, bay counts, hidden faces, roof equipment, statue/relief abstractions and roof junctions are approximate. Two current ordinary pictures establish main colors/silhouette; no exhibition banners, copied artworks, furnished galleries or costly transparent/refraction materials. The two reconstructed 0.18m exterior treads are a working fit to the original standard approach, not surveyed historic steps. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201 / 6m ground. Open front provider[0,36] supplies 48.12656157087435m datum. Boundary grades -3.336..+1.678m, floor +0.2m and closed foundation -3.516m. Native views show supported museum/pavilion with low-side plinth exposure and uphill base burial; the rear court and outer approaches retain original ground. Two short reconstructed 0.18m treads bridge the roughly0.4m lower-door threshold above approach ground -0.132m. Exact pavilion/terrace grades, archaeological/historic court paving, thresholds and accessibility remain unverified. No bespoke terrain or flattening. Meets the medium-fi connected-exterior standard. The 35x25m rear court is an explicit picture-led approximation absent from the filled source polygon, rather than a mapped hole. Sculpture/relief ornaments are original schematic blocks/lofts, not copied figures. Glazing/skylights are opaque exterior proxies; no furnished galleries, art/text copies, costly refraction or bespoke ground. Physical phone/laptop and dense-city timings remain pending.",
+    "Q632682 and named parent way1432069915/native35185804158747 identify Brooklyn Museum; integral main-body part way250229991/native35184622318823 is also owned. Only these two overlapping records are replaced. The mapped curved pavilion and connected wing outline supply meter scale. Origin is the midpoint of the historic portico front edge; internal +X follows the facade west-northwest and +Z points north-northeast toward Eastern Parkway. Native east/up/south axes are baked with heading 0. The rear court is visible in the ordinary aerial but not opened in this map polygon: its 35x25m rectangle is an explicit picture-led approximation, kept open in geometry and terrain. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201 / 6m ground. Open front provider[0,36] supplies 48.12656157087435m datum. Boundary grades -3.336..+1.678m, floor +0.2m and closed foundation -3.516m. Native views show supported museum/pavilion with low-side plinth exposure and uphill base burial; the rear court and outer approaches retain original ground. Two short reconstructed 0.18m treads bridge the roughly0.4m lower-door threshold above approach ground -0.132m. Exact pavilion/terrace grades, archaeological/historic court paving, thresholds and accessibility remain unverified. No bespoke terrain or flattening."
+  ]
+}

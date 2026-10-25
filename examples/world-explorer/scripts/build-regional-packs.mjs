@@ -1,5 +1,7 @@
 // Keep only one region's payload in memory while building. Source JSON stays in the core so
 // styles, material graphs, catalogs and asset bounds are available before a model is requested.
+import { createHash } from 'node:crypto';
+import { createReadStream } from 'node:fs';
 import { copyFile, mkdir, readFile, rename, stat, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { createPack, describePack, sha256 } from '@bendyline/molen-pack';
@@ -8,6 +10,12 @@ import { encodeStructureGeohash } from '@bendyline/molen-worldgen-earth/kernel';
 
 const MiB = 1024 * 1024;
 const ROUTES = 'model-archives.json';
+
+async function hashModel(path) {
+  const hash = createHash('sha256');
+  for await (const bytes of createReadStream(path)) hash.update(bytes);
+  return `sha256:${hash.digest('hex')}`;
+}
 
 /** Deterministic assignment; a model bundle is never split across archives. */
 export function groupRegionalModels(
@@ -122,6 +130,15 @@ export async function buildRegionalPacks(
     if (sidecar.format !== 'molen/asset@1' || sidecar.kind !== 'model') continue;
     const base = path.includes('/') ? path.slice(0, path.lastIndexOf('/')) : '';
     const main = includedRelative(base, sidecar.files?.main, selected);
+    // Check the starting snapshot before spending minutes compressing regional archives.
+    // The later core check still rejects metadata changed while those archives were built.
+    if (sidecar.hash) {
+      const actual = await hashModel(join(source.dir, main));
+      if (actual !== sidecar.hash)
+        throw new Error(
+          `Stale model metadata before regional build: ${path} (expected ${sidecar.hash}, found ${actual}). Run pnpm assets:build from the repository root or re-import the affected model before packaging.`,
+        );
+    }
     const payload = new Set([main]);
     for (const variant of Object.values(sidecar.files?.variants ?? {}))
       payload.add(includedRelative(base, variant, selected));

@@ -1,0 +1,354 @@
+{
+  "variant": "F-35A CTOL clean exterior;public2010 mock-up panel with non-tactical simulator displays",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-35A_Lightning_II_3-view_drawing.png",
+      "title": "JPO F-35A front,side,top views combined2010",
+      "author": "Joint Strike Fighter Program Office;composite The High Fin Sperm Whale",
+      "license": "Public domain federal source and PD-self composite",
+      "scope": "Gear-up orthographic general arrangement. Non-dimensioned promotional rendering predating production; calibrated to manufacturer dimensions,not engineering loft data."
+    },
+    {
+      "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/F-35/F35FastFacts5_2020.pdf",
+      "title": "F-35 Fast Facts,May2020",
+      "author": "Lockheed Martin",
+      "license": "Copyright manufacturer;factual dimensions only",
+      "scope": "F-35A51.4ft length,35ft span,4.38m height,22.5ft tail span,42.7m2wing area."
+    },
+    {
+      "url": "https://www.mindef.gov.sg/news-and-events/latest-releases/28feb24_fs/",
+      "title": "Fact Sheet:F-35A Fighter Aircraft,28February2024",
+      "author": "Singapore Ministry of Defence",
+      "license": "Public factual reference",
+      "scope": "Independent F-35A dimensions and horizontal-tail span."
+    },
+    {
+      "url": "https://www.jsf.mil/cockpit",
+      "title": "F-35 JPO cockpit tour",
+      "author": "Joint Program Office",
+      "license": "Public government page;image photographer/license not separately identified,local study only",
+      "scope": "Confirms20x8in touchscreen.050.jpg supports tall seat/headbox,side-stick and coaming;f35_technology_cockpit.jpg is a simulator view,not production cockpit geometry."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-35_Lightning_II_mock-up_instrument_panel.JPG",
+      "title": "F-35 mock-up at Canada Aviation and Space Museum,28August2010",
+      "author": "Ahunt",
+      "license": "Public domain author dedication",
+      "scope": "Panoramic face,coaming,lower standby/keypad,console ledges and controls.Explicit mock-up:production block details and functional display software not verified."
+    },
+    {
+      "url": "https://www.dvidshub.net/image/935698/aerial-refueling-f-35-lightning-ii-joint-strike-fighters-eglin-afb-fla",
+      "title": "F-35A58thFS aerial refueling,14May2013,130514-F-BU402-904",
+      "author": "MasterSgtDonaldRAllen,USAF",
+      "license": "Public domain US federal government work",
+      "scope": "Real upper airframe,canopy,intake shoulders,wing/tail planforms and selected RAM borders;no weapons modeled."
+    },
+    {
+      "url": "https://www.gknaerospace.com/media/rw0j51hc/f-35.pdf",
+      "title": "GKN Aerospace F-35 backgrounder,September2018",
+      "author": "GKN Aerospace",
+      "license": "Copyright manufacturer;factual reference only",
+      "scope": "Continuous outer acrylic with framed windshield/canopy;flaperon construction. Internal bow placement checked against USAF exterior photograph."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.94,
+      5.7
+    ],
+    "lookAt": [
+      0,
+      2.42,
+      6.55
+    ],
+    "fov": 78
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.48
+    ],
+    "viewHeight": 1.02,
+    "cameraHeight": 3.7
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/f35-three-view.png",
+      "crop": {
+        "left": 5,
+        "top": 187,
+        "width": 714,
+        "height": 174
+      },
+      "referenceAnchor": [
+        8,
+        388.5
+      ],
+      "modelAnchor": [
+        -9.1,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 706,
+        "meters": 15.667,
+        "description": "Manufacturer51.4ft overall length;vertical datum estimated from4.38m fin height because the drawing has gear retracted."
+      },
+      "scope": "Gear-up profile,canopy,intake and fin stations;grounddatum reconstructed.Independent height andspan checks."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/f35-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 496,
+        "height": 721
+      },
+      "referenceAnchor": [
+        248,
+        714
+      ],
+      "modelAnchor": [
+        0,
+        9.1
+      ],
+      "scaleControls": {
+        "pixels": 707,
+        "meters": 15.667,
+        "description": "Nose to stabilator tail overall length;independent35ft span and22.5ft tail span.Drawing tail appears wider than published value."
+      },
+      "scope": "Wing/body/tail planform and canopy shape.The source top view is nose-up,prepared rotated180degrees for model convention."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/f35-three-view.png",
+      "crop": {
+        "left": 15,
+        "top": 9,
+        "width": 495,
+        "height": 175
+      },
+      "referenceAnchor": [
+        261,
+        213.7
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 485,
+        "meters": 10.668,
+        "description": "35ft wing span;fin height4.38m sets grounddatum independently.The drawing is gear-up."
+      },
+      "scope": "Cant,span,shoulders,canopy and intake aperture.General arrangement rendering,not a section drawing."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/f35-panel-rectified.png",
+      "crop": {
+        "left": 240,
+        "top": 255,
+        "width": 720,
+        "height": 360
+      },
+      "referenceAnchor": [
+        600,
+        420
+      ],
+      "modelAnchor": [
+        0,
+        -2.54
+      ],
+      "scaleControls": {
+        "pixels": 600,
+        "meters": 0.508,
+        "description": "JPO20in active-display width with8in height independently checked;four-corner photo rectification."
+      },
+      "edgeMode": "photo",
+      "scope": "Panoramic display active area and nearby bezel only;console and lower standby atdifferent depths are compared separately."
+    }
+  ],
+  "referencePreparation": {
+    "photoResize": [
+      1824,
+      1368
+    ],
+    "sourceCorners": [
+      [
+        397,
+        317
+      ],
+      [
+        889,
+        157
+      ],
+      [
+        948,
+        397
+      ],
+      [
+        455,
+        611
+      ]
+    ],
+    "targetCorners": [
+      [
+        300,
+        300
+      ],
+      [
+        900,
+        300
+      ],
+      [
+        900,
+        540
+      ],
+      [
+        300,
+        540
+      ]
+    ],
+    "outputSize": [
+      1200,
+      1000
+    ],
+    "method": "One planar perspective transform for the panoramic display;approximate corner picks,no model deformation.",
+    "topView": "Crop(578,7,496,721),white mask(0,180,145,356) removes unrelated adjacent side-view artwork outside the top-view silhouette,then rigid180degree rotation."
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "reviewNotes": {
+    "corrections": [
+      "Replaced the generic stealth-fighter shape with a dedicated F-35A chine nose,hollow cockpit,diverterless intake bumps,open raked ducts,single spine,F135 circular exhaust,aligned wings,all-moving tails and canted fins.",
+      "Uniform exterior overlays corrected spine height,lower-body width,canopy profile,fin sweep and intake shoulder transitions. Used independently published tail span despite a slightly wider tail in the promotional three-view.",
+      "Rebuilt the20x8in panoramic display and its surround from JPO dimensions and the rectified public mock-up photo. Overlay lowered the coaming and raised the standby/keypad module. Added right side-stick,left single throttle,pedals,seat,harness and console ledges.",
+      "Close views found exposed internal lining at intake shoulders and gaps at the spine transition. Reconstructed the cowl around the lip and narrowed the internal throat. Added a full cockpit liner,footwell bulkhead and internal windshield bow;exterior lettering and optical housing no longer show through the cabin.",
+      "Main and standby attitude,heading,true airspeed,geometric altitude and vertical-speed readouts use shared derived variables. Missing data blanks live readings and negative altitude preserves its sign. Unsupported tactical,sensor,engine and fuel fields remain inactive.",
+      "Swept leading-flap,flaperon and rudder mounts keep hinge lines attached. Flaperons combine flap and roll expressions;differential stabilators,gear,stick,throttle and pedals animate. No weapons or external pylons."
+    ],
+    "independentDimensions": [
+      "Manufacturer51.4ft=15.667m rounded length,35ft=10.668m wingspan,4.38m height,22.5ft=6.858m horizontal-tail span and42.7m2nominal wing area. SingaporeMINDEF provides an independent dimensions source.",
+      "The JPO promotional rendering is not dimensioned and shows gear retracted. Side length and front span set uniform scales;4.38m fin height sets the reconstructed grounddatum. Horizontal-tail width differs from the drawing;published span takes precedence without axis stretching.",
+      "Canopy length about2.95m andmaximumheight3.11m reconstructed from the three-view. Wheelbase6.25m,track2.56m,wheel sizes andretraction are approximations because that drawing has no deployed gear.",
+      "JPO20x8in panoramic display gives.508x.2032m active area. Four-corner perspective transform recorded for the public2010 mock-up. Only that display plane is calibrated;standby,consoledepths,seat andcontrolspacing remain photo-based approximations."
+    ],
+    "visual": "Compared the JPO three-view,USAFDonaldAllen upper-airframe photograph,Ahunt mock-up panel andJPOseat/canopy photo. Personally inspected all24 final-hash captures in six contact sheets:four exterior/panel overlays,eight standard views,andtwelve instrument/control/detail states. Final checks include clean gear-up flight,opposite control deflections,missing data,negative altitude,canopy,intake cowl andexhaust.",
+    "limitations": [
+      "Polygonal interpretation,not an engineering replica. Promotional three-view predates production andcontains view-scale discrepancies;compound section curvature,intake internals,gear mechanics,access borders,fasteners,labels andlivery are simplified.",
+      "Cockpit panel uses a publicly identified2010 mock-up,not a verified production-block installation. Known display size anchors its main plane;console/standby depths,switch identities,seat upholstery andharness are approximate. JPO simulator image is not treated as an installed cockpit reference.",
+      "FLIGHT/SIM andSTANDBY/SIM are authored simulator presentations,not operational F-35 avionics. No radar,sensorfusion,tacticalmap,helmet display,pressure altitude,magnetic heading orcalibrated IAS/Mach. Engine/fuel readings remain unavailable.",
+      "Shared assisted physics andsimplified controlmixes are not the F-35 flight-control laws. Fixed neutral exhaust,approximate landing-gear movement with hiding behind closed bays,static canopy andno operating systems switches.",
+      "Reference pixels remain local. JPO images without individual photographic attribution are local study only;public-domain drawing andAhunt photograph retain their source records. No photographic textures orweapons ship."
+    ]
+  },
+  "instrumentReview": {
+    "typeDefinitionHash": "sha256:0331215fefa94ea9baa25221fc51fd997925da9226fb980c26312f08f744d38d",
+    "checks": "18 shared imported-instrument tests and targeted F-35A geometry test passed at final source hash;cardinal heading regression covers15models. Swept hinges stay fixed andflaperon flap/roll mixes agree with imported transforms.",
+    "captures": {
+      "zero": {
+        "path": ".artifacts/aircraft/f-35a-instruments/zero.png",
+        "sha256": "sha256:38472900317069743c02125633a6741a3de50fef7aa4dec6d69ca3fb7045f648",
+        "inspected": true
+      },
+      "cruise": {
+        "path": ".artifacts/aircraft/f-35a-instruments/cruise.png",
+        "sha256": "sha256:4892225a7754450cb7d65685354db0fb7724040bd4ec7c7c095e93adfe58c586",
+        "inspected": true
+      },
+      "limits": {
+        "path": ".artifacts/aircraft/f-35a-instruments/limits.png",
+        "sha256": "sha256:b4a112f803a4a821a7ac65ce9a5f9495619cdfc090f6dc6bb0ed9329c2570986",
+        "inspected": true
+      },
+      "below-sea-level": {
+        "path": ".artifacts/aircraft/f-35a-instruments/below-sea-level.png",
+        "sha256": "sha256:eabc68f8823f3f66d33c657c2a0044fe365b2640866a01e460938ab137505f42",
+        "inspected": true
+      },
+      "missing": {
+        "path": ".artifacts/aircraft/f-35a-instruments/missing.png",
+        "sha256": "sha256:36d3a2a4c2273d34ed2583227236161ba4cb9cec3d899b28f627bda9db7164c5",
+        "inspected": true
+      },
+      "controls": {
+        "path": ".artifacts/aircraft/f-35a-instruments/controls.png",
+        "sha256": "sha256:8263ff9350798568d19ec34f9a34c6a0b6458fb59f0d1396401b8b210a47b176",
+        "inspected": true
+      },
+      "close-exterior": {
+        "path": ".artifacts/aircraft/f-35a-instruments/close-exterior.png",
+        "sha256": "sha256:b8da3f61b1a0864553beab2dc5d0b2307fa6589d6c78af8a00e7ee3514f48dde",
+        "inspected": true
+      },
+      "clean-flight": {
+        "path": ".artifacts/aircraft/f-35a-instruments/clean-flight.png",
+        "sha256": "sha256:75cb2b30247aba386a25d797c0b760f58913d20077989245522ef1bbcfbdfeb5",
+        "inspected": true
+      },
+      "canopy-side": {
+        "path": ".artifacts/aircraft/f-35a-instruments/canopy-side.png",
+        "sha256": "sha256:62145fc119decefefee8e334ba5165b7fcb716d440f288ba67003d3ac34ed851",
+        "inspected": true
+      },
+      "exhausts": {
+        "path": ".artifacts/aircraft/f-35a-instruments/exhausts.png",
+        "sha256": "sha256:6dc081380a1dc2c72efe6c0d8b23e7dc01d65a343b62a67a06028e36a45becc4",
+        "inspected": true
+      },
+      "controls-exterior-positive": {
+        "path": ".artifacts/aircraft/f-35a-instruments/controls-exterior-positive.png",
+        "sha256": "sha256:8c4f9d7ce054c1bcb97eb865f86aa0dd0c08b400ff5d055496da7976c7a19ca3",
+        "inspected": true
+      },
+      "controls-exterior-negative": {
+        "path": ".artifacts/aircraft/f-35a-instruments/controls-exterior-negative.png",
+        "sha256": "sha256:638cd6233a24593f161c15dbc354608ead13d95d3abdcf0c3c2107b4ae4ebd4d",
+        "inspected": true
+      }
+    }
+  },
+  "sourceHash": "sha256:e737dd98c2071070aaf7680658c66b8d607c80f4f127a05aa77fb475e9ee6db5",
+  "runtimeHash": "sha256:97b6366caaf25716a5c60382ae70fde7614ffb86e9b9ae36ffbe7d99451898dd",
+  "limitations": [
+    "Polygonal interpretation,not an engineering replica. Promotional three-view predates production andcontains view-scale discrepancies;compound section curvature,intake internals,gear mechanics,access borders,fasteners,labels andlivery are simplified.",
+    "Cockpit panel uses a publicly identified2010 mock-up,not a verified production-block installation. Known display size anchors its main plane;console/standby depths,switch identities,seat upholstery andharness are approximate. JPO simulator image is not treated as an installed cockpit reference.",
+    "FLIGHT/SIM andSTANDBY/SIM are authored simulator presentations,not operational F-35 avionics. No radar,sensorfusion,tacticalmap,helmet display,pressure altitude,magnetic heading orcalibrated IAS/Mach. Engine/fuel readings remain unavailable.",
+    "Shared assisted physics andsimplified controlmixes are not the F-35 flight-control laws. Fixed neutral exhaust,approximate landing-gear movement with hiding behind closed bays,static canopy andno operating systems switches.",
+    "Reference pixels remain local. JPO images without individual photographic attribution are local study only;public-domain drawing andAhunt photograph retain their source records. No photographic textures orweapons ship."
+  ]
+}

@@ -64,7 +64,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `lifetime` | kernel | Auto-despawn countdown in ticks. |
 | `light` | client | A light source at the entity transform (directional/point/spot). |
 | `localTransform` | kernel/gameplay | Parent-relative transform for entities carrying `parent`. |
-| `model.signals` | client | Bind same-entity simulation fields to named GLB transform channels. Visual only; no physics writes. |
+| `model.signals` | client | Bind same-entity simulation fields and named numeric expressions to GLB transforms and visibility. Supports calibration, cyclic needles and timed response. Visual only; no physics writes. |
 | `mountable` | kernel/vehicles | Mount points in local meters, ordered safe exit candidates, and interaction reach. Seat position is the rider camera anchor. |
 | `mounted` | kernel/vehicles | Rider-to-mount relationship. Occupied seats are exclusive; mounted characters bypass walking physics. |
 | `moveIntent` | kernel/character | Desired planar move direction + jump flag, consumed by the character controller. |
@@ -2421,7 +2421,7 @@ Required: `type`
 
 ### `model.signals`
 
-Bind same-entity simulation fields to named GLB transform channels. Visual only; no physics writes.
+Bind same-entity simulation fields and named numeric expressions to GLB transforms and visibility. Supports calibration, cyclic needles and timed response. Visual only; no physics writes.
 
 Required: `sources`, `bindings`
 
@@ -2435,13 +2435,36 @@ Required: `sources`, `bindings`
       ]
     }
   },
+  "derived": {
+    "speedKmh": {
+      "op": "multiply",
+      "args": [
+        "speed",
+        3.6
+      ]
+    }
+  },
   "bindings": [
     {
       "node": "speed-pointer",
-      "source": "speed",
+      "source": "speedKmh",
       "property": "rotation",
       "axis": "z",
-      "scale": 0.04
+      "keys": [
+        [
+          0,
+          -2
+        ],
+        [
+          60,
+          0
+        ],
+        [
+          180,
+          2
+        ]
+      ],
+      "responseSeconds": 0.2
     }
   ]
 }
@@ -2515,18 +2538,19 @@ Required: `sources`, `bindings`
             "type": "string",
             "enum": [
               "rotation",
-              "position"
+              "position",
+              "visible"
             ],
-            "description": "Local transform channel."
+            "description": "Local transform or visibility channel."
           },
           "axis": {
+            "description": "Required for transforms; omit for visible.",
             "type": "string",
             "enum": [
               "x",
               "y",
               "z"
-            ],
-            "description": "Local transform axis."
+            ]
           },
           "scale": {
             "description": "Multiply the signal by this value. Supply this or keys.",
@@ -2570,17 +2594,98 @@ Required: `sources`, `bindings`
           "max": {
             "description": "Maximum displacement from authored pose.",
             "type": "number"
+          },
+          "period": {
+            "description": "Rotation output wraps to [0, period); smoothing follows the shortest arc. Cannot combine with min/max.",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "responseSeconds": {
+            "description": "First-order response time constant in simulation seconds; default zero. Requires a timestamp from the host.",
+            "type": "number",
+            "minimum": 0
+          },
+          "missing": {
+            "description": "Missing reading: hold last pose (default), restore authored pose, or hide a visible channel.",
+            "type": "string",
+            "enum": [
+              "hold",
+              "rest",
+              "hide"
+            ]
           }
         },
         "required": [
           "node",
           "source",
-          "property",
-          "axis"
+          "property"
         ],
         "additionalProperties": false
       },
       "description": "Per-model node channels and their signal calibration."
+    },
+    "derived": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "add",
+              "subtract",
+              "multiply",
+              "divide",
+              "min",
+              "max",
+              "clamp",
+              "abs",
+              "sqrt",
+              "floor",
+              "modulo",
+              "sin",
+              "cos",
+              "atan2",
+              "less",
+              "greater",
+              "equal",
+              "and",
+              "or",
+              "not",
+              "if",
+              "coalesce"
+            ],
+            "description": "Numeric operation; comparisons/logic return 0 or 1. Angles are radians."
+          },
+          "args": {
+            "minItems": 1,
+            "maxItems": 16,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            },
+            "description": "Finite numeric literals or names of signals, in operand order."
+          }
+        },
+        "required": [
+          "op",
+          "args"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Up to 256 named data-only formulas, evaluated in dependency order. No cycles."
     }
   },
   "required": [
@@ -3892,6 +3997,11 @@ Required: `kind`, `spec`
           "minLength": 1,
           "description": "External label setting."
         },
+        "genericLabel": {
+          "description": "External genericLabel setting.",
+          "type": "string",
+          "minLength": 1
+        },
         "model": {
           "type": "string",
           "enum": [
@@ -3942,6 +4052,60 @@ Required: `kind`, `spec`
           "description": "Single engine, implicitly named main. Supply exactly one of engine or engines.",
           "type": "object",
           "properties": {
+            "propulsion": {
+              "description": "Installed propulsion type; omitted preserves the legacy constant-power model.",
+              "type": "string",
+              "enum": [
+                "propeller",
+                "jet"
+              ]
+            },
+            "dryThrust": {
+              "description": "Sea-level static dry jet thrust in newtons, per engine.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "afterburnerThrust": {
+              "description": "Total sea-level static augmented thrust in newtons, per engine; must exceed dry thrust.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "afterburnerDetent": {
+              "description": "Throttle fraction where reheat starts; default 0.85.",
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.99
+            },
+            "densityExponent": {
+              "description": "Installed power/thrust density lapse exponent.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "highAltitudeDensityRatio": {
+              "description": "Density ratio where upper-altitude engine lapse begins; continuous at this knee.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "highAltitudeExponent": {
+              "description": "Density lapse exponent below highAltitudeDensityRatio; defaults to densityExponent.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "ratedDensityRatio": {
+              "description": "Lowest density ratio retaining flat-rated power or thrust; default 1.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "ramRise": {
+              "description": "Jet net-thrust multiplier per Mach squared, representing inlet ram recovery; default 0.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2
+            },
             "position": {
               "minItems": 3,
               "maxItems": 3,
@@ -3963,7 +4127,7 @@ Required: `kind`, `spec`
             "power": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "Maximum shaft power in watts, for this engine only."
+              "description": "Maximum shaft power in watts, per engine; retained as compatibility metadata for jets."
             },
             "idleRpm": {
               "type": "number",
@@ -3980,6 +4144,10 @@ Required: `kind`, `spec`
               "type": "number",
               "exclusiveMinimum": 0,
               "description": "External rotorAngularSpeed setting."
+            },
+            "vectored": {
+              "description": "Rotate +Z thrust toward +Y with the powered-lift lever.",
+              "type": "boolean"
             },
             "propellerEfficiency": {
               "description": "Per-engine override of airplane.propellerEfficiency.",
@@ -4028,6 +4196,60 @@ Required: `kind`, `spec`
           "items": {
             "type": "object",
             "properties": {
+              "propulsion": {
+                "description": "Installed propulsion type; omitted preserves the legacy constant-power model.",
+                "type": "string",
+                "enum": [
+                  "propeller",
+                  "jet"
+                ]
+              },
+              "dryThrust": {
+                "description": "Sea-level static dry jet thrust in newtons, per engine.",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "afterburnerThrust": {
+                "description": "Total sea-level static augmented thrust in newtons, per engine; must exceed dry thrust.",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "afterburnerDetent": {
+                "description": "Throttle fraction where reheat starts; default 0.85.",
+                "type": "number",
+                "minimum": 0.1,
+                "maximum": 0.99
+              },
+              "densityExponent": {
+                "description": "Installed power/thrust density lapse exponent.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 3
+              },
+              "highAltitudeDensityRatio": {
+                "description": "Density ratio where upper-altitude engine lapse begins; continuous at this knee.",
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              },
+              "highAltitudeExponent": {
+                "description": "Density lapse exponent below highAltitudeDensityRatio; defaults to densityExponent.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 3
+              },
+              "ratedDensityRatio": {
+                "description": "Lowest density ratio retaining flat-rated power or thrust; default 1.",
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              },
+              "ramRise": {
+                "description": "Jet net-thrust multiplier per Mach squared, representing inlet ram recovery; default 0.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 2
+              },
               "position": {
                 "minItems": 3,
                 "maxItems": 3,
@@ -4049,7 +4271,7 @@ Required: `kind`, `spec`
               "power": {
                 "type": "number",
                 "exclusiveMinimum": 0,
-                "description": "Maximum shaft power in watts, for this engine only."
+                "description": "Maximum shaft power in watts, per engine; retained as compatibility metadata for jets."
               },
               "idleRpm": {
                 "type": "number",
@@ -4066,6 +4288,10 @@ Required: `kind`, `spec`
                 "type": "number",
                 "exclusiveMinimum": 0,
                 "description": "External rotorAngularSpeed setting."
+              },
+              "vectored": {
+                "description": "Rotate +Z thrust toward +Y with the powered-lift lever.",
+                "type": "boolean"
               },
               "propellerEfficiency": {
                 "description": "Per-engine override of airplane.propellerEfficiency.",
@@ -4206,6 +4432,96 @@ Required: `kind`, `spec`
               "exclusiveMinimum": 0,
               "description": "External stallAngle setting."
             },
+            "criticalMach": {
+              "description": "Mach at which compressibility wave drag begins; omitted disables wave drag.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "waveDrag": {
+              "description": "Wave drag coefficient at criticalMach + 0.25; default 0.",
+              "type": "number",
+              "minimum": 0
+            },
+            "maxEquivalentAirspeed": {
+              "description": "Airframe operating limit in m/s equivalent airspeed; alert only.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "maxMach": {
+              "description": "Airframe Mach operating limit; alert only.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "gearLimitSpeed": {
+              "description": "Maximum equivalent airspeed with gear extended, m/s; alert only.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "flapLimitSpeed": {
+              "description": "Maximum equivalent airspeed with flaps extended, m/s; alert only.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "groundEffect": {
+              "description": "Reduce wing induced drag near the ground; default false.",
+              "type": "boolean"
+            },
+            "departure": {
+              "description": "External departure setting.",
+              "type": "object",
+              "properties": {
+                "onsetAngle": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1.5707963267948966,
+                  "description": "High-alpha departure onset, radians."
+                },
+                "fullAngle": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 1.5707963267948966,
+                  "description": "Fully developed departure incidence, radians; greater than onsetAngle."
+                },
+                "yawInstability": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Separated-flow yaw growth rate, per second."
+                },
+                "yawSaturationRate": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Autorotation saturation scale, radians per second."
+                },
+                "rudderBlanking": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Fraction of rudder authority lost at full departure."
+                },
+                "pitchBlanking": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Fraction of pitch stability and control lost at full departure."
+                },
+                "aileronReversal": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Aileron reversal: 0 unchanged, 0.5 ineffective, 1 reversed."
+                }
+              },
+              "required": [
+                "onsetAngle",
+                "fullAngle",
+                "yawInstability",
+                "yawSaturationRate",
+                "rudderBlanking",
+                "pitchBlanking",
+                "aileronReversal"
+              ],
+              "additionalProperties": false
+            },
             "stallTransitionAngle": {
               "description": "Radians beyond stallAngle over which flow separates smoothly. Default 0.12.",
               "type": "number",
@@ -4310,6 +4626,10 @@ Required: `kind`, `spec`
               "type": "number",
               "minimum": 0,
               "description": "Drag coefficient of the flaps fully down; scales with the flap position."
+            },
+            "fixedGear": {
+              "description": "Fixed undercarriage stays down regardless of the gear selection.",
+              "type": "boolean"
             },
             "gearTransitTime": {
               "description": "Seconds for a full landing-gear cycle, doors included, either way. The gear holds still with weight on the wheels, and only a locked-down gear can land. Default 0 (instant).",
@@ -4417,6 +4737,37 @@ Required: `kind`, `spec`
               "exclusiveMinimum": 0,
               "description": "External rotorRadius setting."
             },
+            "powerLimitedRotor": {
+              "description": "Govern rotor RPM and limit thrust using installed shaft power and actuator-disc momentum theory.",
+              "type": "boolean"
+            },
+            "rotorEfficiency": {
+              "description": "Rotor induced-power efficiency; default 0.75.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "profilePowerFraction": {
+              "description": "Installed shaft-power fraction spent on rotor profile drag at governed RPM; default 0.12.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "vortexRing": {
+              "description": "Enable estimated powered-descent vortex-ring loss of lift; default false.",
+              "type": "boolean"
+            },
+            "retreatingBladeSpeed": {
+              "description": "Sea-level TAS for estimated retreating-blade onset, m/s; decreases with density and rotor RPM.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "rotorDiscs": {
+              "description": "Effective lifting-disc count, 2 for a tandem rotor; default 1.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2
+            },
             "cyclicTilt": {
               "type": "number",
               "exclusiveMinimum": 0,
@@ -4505,6 +4856,51 @@ Required: `kind`, `spec`
             "horizontalDrag",
             "quadraticDrag",
             "groundDeceleration"
+          ],
+          "additionalProperties": false
+        },
+        "poweredLift": {
+          "description": "Assisted hover controls and 0–90 degree thrust-vector actuator; airplane model only.",
+          "type": "object",
+          "properties": {
+            "transitTime": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Seconds for thrust-vector travel from forward to vertical."
+            },
+            "controlFadeSpeed": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Axial airspeed in m/s at which assisted hover controls fade to zero."
+            },
+            "pitchAuthority": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Full-stick hover pitch angular acceleration in rad/s²."
+            },
+            "rollAuthority": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Full-stick hover roll angular acceleration in rad/s²."
+            },
+            "yawAuthority": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Full-pedal hover yaw angular acceleration in rad/s²."
+            },
+            "damping": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Thrust-dependent hover angular-rate damping in 1/s."
+            }
+          },
+          "required": [
+            "transitTime",
+            "controlFadeSpeed",
+            "pitchAuthority",
+            "rollAuthority",
+            "yawAuthority",
+            "damping"
           ],
           "additionalProperties": false
         },
@@ -4799,18 +5195,19 @@ Required: `kind`, `spec`
                         "type": "string",
                         "enum": [
                           "rotation",
-                          "position"
+                          "position",
+                          "visible"
                         ],
-                        "description": "Local transform channel."
+                        "description": "Local transform or visibility channel."
                       },
                       "axis": {
+                        "description": "Required for transforms; omit for visible.",
                         "type": "string",
                         "enum": [
                           "x",
                           "y",
                           "z"
-                        ],
-                        "description": "Local transform axis."
+                        ]
                       },
                       "scale": {
                         "description": "Multiply the signal by this value. Supply this or keys.",
@@ -4854,17 +5251,98 @@ Required: `kind`, `spec`
                       "max": {
                         "description": "Maximum displacement from authored pose.",
                         "type": "number"
+                      },
+                      "period": {
+                        "description": "Rotation output wraps to [0, period); smoothing follows the shortest arc. Cannot combine with min/max.",
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      },
+                      "responseSeconds": {
+                        "description": "First-order response time constant in simulation seconds; default zero. Requires a timestamp from the host.",
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "missing": {
+                        "description": "Missing reading: hold last pose (default), restore authored pose, or hide a visible channel.",
+                        "type": "string",
+                        "enum": [
+                          "hold",
+                          "rest",
+                          "hide"
+                        ]
                       }
                     },
                     "required": [
                       "node",
                       "source",
-                      "property",
-                      "axis"
+                      "property"
                     ],
                     "additionalProperties": false
                   },
                   "description": "Per-model node channels and their signal calibration."
+                },
+                "derived": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "op": {
+                        "type": "string",
+                        "enum": [
+                          "add",
+                          "subtract",
+                          "multiply",
+                          "divide",
+                          "min",
+                          "max",
+                          "clamp",
+                          "abs",
+                          "sqrt",
+                          "floor",
+                          "modulo",
+                          "sin",
+                          "cos",
+                          "atan2",
+                          "less",
+                          "greater",
+                          "equal",
+                          "and",
+                          "or",
+                          "not",
+                          "if",
+                          "coalesce"
+                        ],
+                        "description": "Numeric operation; comparisons/logic return 0 or 1. Angles are radians."
+                      },
+                      "args": {
+                        "minItems": 1,
+                        "maxItems": 16,
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          ]
+                        },
+                        "description": "Finite numeric literals or names of signals, in operand order."
+                      }
+                    },
+                    "required": [
+                      "op",
+                      "args"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Up to 256 named data-only formulas, evaluated in dependency order. No cycles."
                 }
               },
               "required": [
@@ -4937,18 +5415,19 @@ Required: `kind`, `spec`
                         "type": "string",
                         "enum": [
                           "rotation",
-                          "position"
+                          "position",
+                          "visible"
                         ],
-                        "description": "Local transform channel."
+                        "description": "Local transform or visibility channel."
                       },
                       "axis": {
+                        "description": "Required for transforms; omit for visible.",
                         "type": "string",
                         "enum": [
                           "x",
                           "y",
                           "z"
-                        ],
-                        "description": "Local transform axis."
+                        ]
                       },
                       "scale": {
                         "description": "Multiply the signal by this value. Supply this or keys.",
@@ -4992,17 +5471,98 @@ Required: `kind`, `spec`
                       "max": {
                         "description": "Maximum displacement from authored pose.",
                         "type": "number"
+                      },
+                      "period": {
+                        "description": "Rotation output wraps to [0, period); smoothing follows the shortest arc. Cannot combine with min/max.",
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      },
+                      "responseSeconds": {
+                        "description": "First-order response time constant in simulation seconds; default zero. Requires a timestamp from the host.",
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "missing": {
+                        "description": "Missing reading: hold last pose (default), restore authored pose, or hide a visible channel.",
+                        "type": "string",
+                        "enum": [
+                          "hold",
+                          "rest",
+                          "hide"
+                        ]
                       }
                     },
                     "required": [
                       "node",
                       "source",
-                      "property",
-                      "axis"
+                      "property"
                     ],
                     "additionalProperties": false
                   },
                   "description": "Per-model node channels and their signal calibration."
+                },
+                "derived": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "op": {
+                        "type": "string",
+                        "enum": [
+                          "add",
+                          "subtract",
+                          "multiply",
+                          "divide",
+                          "min",
+                          "max",
+                          "clamp",
+                          "abs",
+                          "sqrt",
+                          "floor",
+                          "modulo",
+                          "sin",
+                          "cos",
+                          "atan2",
+                          "less",
+                          "greater",
+                          "equal",
+                          "and",
+                          "or",
+                          "not",
+                          "if",
+                          "coalesce"
+                        ],
+                        "description": "Numeric operation; comparisons/logic return 0 or 1. Angles are radians."
+                      },
+                      "args": {
+                        "minItems": 1,
+                        "maxItems": 16,
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          ]
+                        },
+                        "description": "Finite numeric literals or names of signals, in operand order."
+                      }
+                    },
+                    "required": [
+                      "op",
+                      "args"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Up to 256 named data-only formulas, evaluated in dependency order. No cycles."
                 }
               },
               "required": [
@@ -5140,8 +5700,23 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
       "description": "Landing gear extended; helicopter skids are fixed."
     },
     "flaps": {
-      "type": "boolean",
-      "description": "Plane landing flaps extended."
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      ],
+      "description": "Plane flap selection: boolean up/down or fraction 0..1."
+    },
+    "thrustVector": {
+      "description": "Powered-lift lever: 0 forward to 1 vertical.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     }
   },
   "required": [
@@ -5199,6 +5774,32 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "mach": {
+      "description": "True airspeed divided by local speed of sound.",
+      "type": "number",
+      "minimum": 0
+    },
+    "equivalentAirspeed": {
+      "description": "Airspeed normalized to standard sea-level density, m/s; not calibrated IAS.",
+      "type": "number",
+      "minimum": 0
+    },
+    "overspeed": {
+      "description": "An airframe, surface or rotor speed limit is exceeded; informational, not a speed clamp.",
+      "type": "boolean"
+    },
+    "departure": {
+      "description": "Developed high-alpha departure fraction.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "vortexRing": {
+      "description": "Rotor vortex-ring severity in powered slow descent.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "velocity": {
       "minItems": 3,
       "maxItems": 3,
@@ -5254,6 +5855,12 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
       "description": "Airplane trimmed angle of attack in radians, flown with the stick centered.",
       "type": "number"
     },
+    "thrustVectorPosition": {
+      "description": "Actual thrust-vector position after actuator travel, 0 forward to 1 vertical.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "sideslip": {
       "description": "Airplane sideslip in radians, positive with the relative wind from the left.",
       "type": "number"
@@ -5283,6 +5890,11 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
           },
           "failed": {
             "type": "boolean"
+          },
+          "afterburner": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
           },
           "thrust": {
             "type": "number",
@@ -5629,18 +6241,19 @@ Required: `kind`, `spec`, `visual`
                     "type": "string",
                     "enum": [
                       "rotation",
-                      "position"
+                      "position",
+                      "visible"
                     ],
-                    "description": "Local transform channel."
+                    "description": "Local transform or visibility channel."
                   },
                   "axis": {
+                    "description": "Required for transforms; omit for visible.",
                     "type": "string",
                     "enum": [
                       "x",
                       "y",
                       "z"
-                    ],
-                    "description": "Local transform axis."
+                    ]
                   },
                   "scale": {
                     "description": "Multiply the signal by this value. Supply this or keys.",
@@ -5684,17 +6297,98 @@ Required: `kind`, `spec`, `visual`
                   "max": {
                     "description": "Maximum displacement from authored pose.",
                     "type": "number"
+                  },
+                  "period": {
+                    "description": "Rotation output wraps to [0, period); smoothing follows the shortest arc. Cannot combine with min/max.",
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "responseSeconds": {
+                    "description": "First-order response time constant in simulation seconds; default zero. Requires a timestamp from the host.",
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "missing": {
+                    "description": "Missing reading: hold last pose (default), restore authored pose, or hide a visible channel.",
+                    "type": "string",
+                    "enum": [
+                      "hold",
+                      "rest",
+                      "hide"
+                    ]
                   }
                 },
                 "required": [
                   "node",
                   "source",
-                  "property",
-                  "axis"
+                  "property"
                 ],
                 "additionalProperties": false
               },
               "description": "Per-model node channels and their signal calibration."
+            },
+            "derived": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "add",
+                      "subtract",
+                      "multiply",
+                      "divide",
+                      "min",
+                      "max",
+                      "clamp",
+                      "abs",
+                      "sqrt",
+                      "floor",
+                      "modulo",
+                      "sin",
+                      "cos",
+                      "atan2",
+                      "less",
+                      "greater",
+                      "equal",
+                      "and",
+                      "or",
+                      "not",
+                      "if",
+                      "coalesce"
+                    ],
+                    "description": "Numeric operation; comparisons/logic return 0 or 1. Angles are radians."
+                  },
+                  "args": {
+                    "minItems": 1,
+                    "maxItems": 16,
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      ]
+                    },
+                    "description": "Finite numeric literals or names of signals, in operand order."
+                  }
+                },
+                "required": [
+                  "op",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Up to 256 named data-only formulas, evaluated in dependency order. No cycles."
             }
           },
           "required": [
@@ -5767,18 +6461,19 @@ Required: `kind`, `spec`, `visual`
                     "type": "string",
                     "enum": [
                       "rotation",
-                      "position"
+                      "position",
+                      "visible"
                     ],
-                    "description": "Local transform channel."
+                    "description": "Local transform or visibility channel."
                   },
                   "axis": {
+                    "description": "Required for transforms; omit for visible.",
                     "type": "string",
                     "enum": [
                       "x",
                       "y",
                       "z"
-                    ],
-                    "description": "Local transform axis."
+                    ]
                   },
                   "scale": {
                     "description": "Multiply the signal by this value. Supply this or keys.",
@@ -5822,17 +6517,98 @@ Required: `kind`, `spec`, `visual`
                   "max": {
                     "description": "Maximum displacement from authored pose.",
                     "type": "number"
+                  },
+                  "period": {
+                    "description": "Rotation output wraps to [0, period); smoothing follows the shortest arc. Cannot combine with min/max.",
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "responseSeconds": {
+                    "description": "First-order response time constant in simulation seconds; default zero. Requires a timestamp from the host.",
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "missing": {
+                    "description": "Missing reading: hold last pose (default), restore authored pose, or hide a visible channel.",
+                    "type": "string",
+                    "enum": [
+                      "hold",
+                      "rest",
+                      "hide"
+                    ]
                   }
                 },
                 "required": [
                   "node",
                   "source",
-                  "property",
-                  "axis"
+                  "property"
                 ],
                 "additionalProperties": false
               },
               "description": "Per-model node channels and their signal calibration."
+            },
+            "derived": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "add",
+                      "subtract",
+                      "multiply",
+                      "divide",
+                      "min",
+                      "max",
+                      "clamp",
+                      "abs",
+                      "sqrt",
+                      "floor",
+                      "modulo",
+                      "sin",
+                      "cos",
+                      "atan2",
+                      "less",
+                      "greater",
+                      "equal",
+                      "and",
+                      "or",
+                      "not",
+                      "if",
+                      "coalesce"
+                    ],
+                    "description": "Numeric operation; comparisons/logic return 0 or 1. Angles are radians."
+                  },
+                  "args": {
+                    "minItems": 1,
+                    "maxItems": 16,
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      ]
+                    },
+                    "description": "Finite numeric literals or names of signals, in operand order."
+                  }
+                },
+                "required": [
+                  "op",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Up to 256 named data-only formulas, evaluated in dependency order. No cycles."
             }
           },
           "required": [
@@ -7063,6 +7839,37 @@ Required: `kind`, `color`, `spec`, `visual`
           "minLength": 1,
           "description": "External label setting."
         },
+        "bodyStyle": {
+          "description": "External bodyStyle setting.",
+          "type": "string",
+          "enum": [
+            "city",
+            "hatchback",
+            "sedan",
+            "fastback",
+            "coupe",
+            "roadster",
+            "wagon",
+            "crossover",
+            "suv",
+            "offroad",
+            "pickup",
+            "van",
+            "cargo-van",
+            "box-truck",
+            "motorhome",
+            "bus",
+            "light-rail",
+            "bicycle",
+            "motorcycle",
+            "scooter"
+          ]
+        },
+        "genericLabel": {
+          "description": "External genericLabel setting.",
+          "type": "string",
+          "minLength": 1
+        },
         "width": {
           "type": "number",
           "exclusiveMinimum": 0,
@@ -7129,7 +7936,7 @@ Required: `kind`, `color`, `spec`, `visual`
         },
         "maxSteer": {
           "type": "number",
-          "exclusiveMinimum": 0,
+          "minimum": 0,
           "description": "External maxSteer setting."
         },
         "grip": {
@@ -7487,18 +8294,19 @@ Required: `kind`, `color`, `spec`, `visual`
                     "type": "string",
                     "enum": [
                       "rotation",
-                      "position"
+                      "position",
+                      "visible"
                     ],
-                    "description": "Local transform channel."
+                    "description": "Local transform or visibility channel."
                   },
                   "axis": {
+                    "description": "Required for transforms; omit for visible.",
                     "type": "string",
                     "enum": [
                       "x",
                       "y",
                       "z"
-                    ],
-                    "description": "Local transform axis."
+                    ]
                   },
                   "scale": {
                     "description": "Multiply the signal by this value. Supply this or keys.",
@@ -7542,17 +8350,98 @@ Required: `kind`, `color`, `spec`, `visual`
                   "max": {
                     "description": "Maximum displacement from authored pose.",
                     "type": "number"
+                  },
+                  "period": {
+                    "description": "Rotation output wraps to [0, period); smoothing follows the shortest arc. Cannot combine with min/max.",
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "responseSeconds": {
+                    "description": "First-order response time constant in simulation seconds; default zero. Requires a timestamp from the host.",
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "missing": {
+                    "description": "Missing reading: hold last pose (default), restore authored pose, or hide a visible channel.",
+                    "type": "string",
+                    "enum": [
+                      "hold",
+                      "rest",
+                      "hide"
+                    ]
                   }
                 },
                 "required": [
                   "node",
                   "source",
-                  "property",
-                  "axis"
+                  "property"
                 ],
                 "additionalProperties": false
               },
               "description": "Per-model node channels and their signal calibration."
+            },
+            "derived": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "add",
+                      "subtract",
+                      "multiply",
+                      "divide",
+                      "min",
+                      "max",
+                      "clamp",
+                      "abs",
+                      "sqrt",
+                      "floor",
+                      "modulo",
+                      "sin",
+                      "cos",
+                      "atan2",
+                      "less",
+                      "greater",
+                      "equal",
+                      "and",
+                      "or",
+                      "not",
+                      "if",
+                      "coalesce"
+                    ],
+                    "description": "Numeric operation; comparisons/logic return 0 or 1. Angles are radians."
+                  },
+                  "args": {
+                    "minItems": 1,
+                    "maxItems": 16,
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      ]
+                    },
+                    "description": "Finite numeric literals or names of signals, in operand order."
+                  }
+                },
+                "required": [
+                  "op",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Up to 256 named data-only formulas, evaluated in dependency order. No cycles."
             }
           },
           "required": [
@@ -7625,18 +8514,19 @@ Required: `kind`, `color`, `spec`, `visual`
                     "type": "string",
                     "enum": [
                       "rotation",
-                      "position"
+                      "position",
+                      "visible"
                     ],
-                    "description": "Local transform channel."
+                    "description": "Local transform or visibility channel."
                   },
                   "axis": {
+                    "description": "Required for transforms; omit for visible.",
                     "type": "string",
                     "enum": [
                       "x",
                       "y",
                       "z"
-                    ],
-                    "description": "Local transform axis."
+                    ]
                   },
                   "scale": {
                     "description": "Multiply the signal by this value. Supply this or keys.",
@@ -7680,17 +8570,98 @@ Required: `kind`, `color`, `spec`, `visual`
                   "max": {
                     "description": "Maximum displacement from authored pose.",
                     "type": "number"
+                  },
+                  "period": {
+                    "description": "Rotation output wraps to [0, period); smoothing follows the shortest arc. Cannot combine with min/max.",
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "responseSeconds": {
+                    "description": "First-order response time constant in simulation seconds; default zero. Requires a timestamp from the host.",
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "missing": {
+                    "description": "Missing reading: hold last pose (default), restore authored pose, or hide a visible channel.",
+                    "type": "string",
+                    "enum": [
+                      "hold",
+                      "rest",
+                      "hide"
+                    ]
                   }
                 },
                 "required": [
                   "node",
                   "source",
-                  "property",
-                  "axis"
+                  "property"
                 ],
                 "additionalProperties": false
               },
               "description": "Per-model node channels and their signal calibration."
+            },
+            "derived": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "add",
+                      "subtract",
+                      "multiply",
+                      "divide",
+                      "min",
+                      "max",
+                      "clamp",
+                      "abs",
+                      "sqrt",
+                      "floor",
+                      "modulo",
+                      "sin",
+                      "cos",
+                      "atan2",
+                      "less",
+                      "greater",
+                      "equal",
+                      "and",
+                      "or",
+                      "not",
+                      "if",
+                      "coalesce"
+                    ],
+                    "description": "Numeric operation; comparisons/logic return 0 or 1. Angles are radians."
+                  },
+                  "args": {
+                    "minItems": 1,
+                    "maxItems": 16,
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      ]
+                    },
+                    "description": "Finite numeric literals or names of signals, in operand order."
+                  }
+                },
+                "required": [
+                  "op",
+                  "args"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Up to 256 named data-only formulas, evaluated in dependency order. No cycles."
             }
           },
           "required": [
@@ -7932,6 +8903,18 @@ Required: none
       "description": "Physical atmospheric state; independent of the visual weather profile.",
       "type": "object",
       "properties": {
+        "model": {
+          "description": "Standard layered Earth lapse rates (default), or a uniform-temperature isothermal atmosphere.",
+          "type": "string",
+          "enum": [
+            "standard",
+            "isothermal"
+          ]
+        },
+        "moistAir": {
+          "description": "Apply water-vapor ideal-gas density correction. Default false (dry reference air).",
+          "type": "boolean"
+        },
         "temperatureK": {
           "description": "Temperature at referenceAltitude in kelvin; default 288.15 (15 °C).",
           "type": "number",

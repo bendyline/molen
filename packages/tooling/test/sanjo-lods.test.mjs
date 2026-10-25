@@ -27,7 +27,7 @@ const near = (a, b) => Math.abs(a - b) < 1e-6;
 const levels = ['skyline', 'district', 'street', 'closeup'];
 
 it('keeps the published deck endpoints, nine spans and fourteen bronze giboshi at every level', () => {
-  expect(sanjoRuntimeCandidateId).toBe('N0021');
+  expect(sanjoRuntimeCandidateId).toBe('sanjo_ohashi_bridge');
   expect(sanjoDeckY(-36.65)).toBeCloseTo(4.55, 8);
   expect(sanjoDeckY(36.65)).toBeCloseTo(4.55, 8);
   expect(sanjoDeckY(0)).toBeCloseTo(5.07, 8);
@@ -96,7 +96,7 @@ it('emits finite noncollapsed faces and winding-consistent normals at runtime Fl
 });
 
 it('ships byte-deterministic four-level derivatives within download, triangle and material budgets', async () => {
-  const id = 'molen.worldgen.structure.n0021_sanjo_ohashi_bridge',
+  const id = 'molen.worldgen.structure.sanjo_ohashi_bridge',
     initial = [];
   for (const [i, cap] of [1000, 4000, 16000, 64000].entries()) {
     const build = () => (i ? authoredDetail(id, levels[i]) : authoredSkyline(id)),

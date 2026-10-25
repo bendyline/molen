@@ -560,7 +560,7 @@ function buildYokohama(out) {
 
 export const lighthouseLatticeStudies = [
   lighthouseStudy({
-    id: 'N0649',
+    id: 'stanislav_adziogol_lighthouse',
     key: 'stanislav_adziogol_lighthouse',
     title: 'Stanislav-Adziogol Lighthouse',
     wikidataId: 'Q380270',
@@ -602,7 +602,7 @@ export const lighthouseLatticeStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0650',
+    id: 'lighthouse_westerheversand',
     key: 'lighthouse_westerheversand',
     title: 'Lighthouse Westerheversand',
     wikidataId: 'Q454681',
@@ -653,7 +653,7 @@ export const lighthouseLatticeStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0651',
+    id: 'yokohama_marine_tower',
     key: 'yokohama_marine_tower',
     title: 'Yokohama Marine Tower',
     wikidataId: 'Q1207989',

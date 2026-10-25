@@ -1,0 +1,1173 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.graz_cathedral",
+  "sourceHash": "sha256:7711825d48b3b7c010735e30892e4e1f9a9614cf09151ac78998ecd83c16dce4",
+  "runtimeHash": "sha256:5b3474333d03a5af7f038d1b50d7c6d0b41dda59164db8d9202efefb4311af0c",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 13320,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:681e54ecfc3c216e1275f3a0fd69145ef022dcf09c5691425e30dfdd825aedb2",
+      "bytes": 69532,
+      "gzipBytes": 12322,
+      "triangles": 744,
+      "cpuBytes": 68112,
+      "gpuBytes": 68112,
+      "errorMeters": 0.9,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:054491db3f23987733189c9c10404c8b14408a6c0fa22eb166395f30579ff488",
+      "bytes": 183716,
+      "gzipBytes": 45437,
+      "triangles": 2171,
+      "cpuBytes": 175284,
+      "gpuBytes": 175284,
+      "errorMeters": 0.4,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:c4fe47d18ad28b44fa8a7bcd9437585787c2611cf0501d63e77d43ac97be3523",
+      "bytes": 471624,
+      "gzipBytes": 106174,
+      "triangles": 5596,
+      "cpuBytes": 463168,
+      "gpuBytes": 463168,
+      "errorMeters": 0.15,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:36919627f52b0ba0e0409d690469a8ff4e0bba78ed22b9b5e75f236d96a19482",
+      "bytes": 777396,
+      "gzipBytes": 172578,
+      "triangles": 9172,
+      "cpuBytes": 768916,
+      "gpuBytes": 768916,
+      "errorMeters": 0.05,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:84605ddd663e4367e5589af42a01949dc5d2a2e3764d5ef968563885035e3e95"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:3d0db3e15b9cd96aa825f09a896be1bf4ee7642e9316598ca64fc585bf3bc857"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:90347beb6f1db0fd24c3354fae2ae6b5a707527f728d5eebbef85e6d0e28653f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          54.614999999999995,
+          49.5271,
+          96.16499999999999
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:d12481f51c351f114cedc2aaf68b26baf49d944690d5911fdac348b124b52b24",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          54.614999999999995,
+          49.5271,
+          96.16499999999999
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:c14be800011b65558b505029db530241fb78b02daa0230ac6d2125335628bb5e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          54.614999999999995,
+          49.5271,
+          96.16499999999999
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:bd74f211c18a0bd2c29ace5017d5aeba70cfad2fb12b46d8115ed05435cd1bd3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          54.614999999999995,
+          49.5271,
+          96.16499999999999
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:88ee8426ac9679777f4453b6bf44fa620531a9e50baa74b3a0ad7d49be6e1511",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 36293,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          110.965,
+          90.9271,
+          193.915
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:6b73dce9b929c378797e33ac9362b5a849b257308dd4cba7f108b81e27de7093",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36293,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          110.965,
+          90.9271,
+          193.915
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:cd488d32e1847912e1402fc7b25a7fae7bce44ce68d9d504a06f7a2c80a8dcb7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 36293,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          110.965,
+          90.9271,
+          193.915
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:b865934302a3a69a0b743c03b6ab8dfed37312d0aba345edc8b7751fa1f042d8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36293,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          110.965,
+          90.9271,
+          193.915
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:3f55ddf6fe6a76f7e8a1e80c7c0c174a9d154674f9ee22f01e004c25ca76d249",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 34866,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          222.515,
+          134.62709999999998,
+          387.11499999999995
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:e3fbb87b778b05f426400430ae6c287b9cb423bd36217b069cff1e80deffb47d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 34866,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          222.515,
+          134.62709999999998,
+          387.11499999999995
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:31d06fc7829d5e4686870a7a01ae4bcdcfa56052cbf7b402dedb3313fa407fda",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 34866,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          222.515,
+          134.62709999999998,
+          387.11499999999995
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:0a0200f636c13eebefb21df0ac27cc6f0c7a287c7d7f97d3e093a50798c651b3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 34866,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          222.515,
+          134.62709999999998,
+          387.11499999999995
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:9b866da230466441739faf12554b667227ed4ab2d3c68781814325d8de60a3f5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21546,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          222.515,
+          134.62709999999998,
+          387.11499999999995
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-gable-round-window-and-portal.png",
+      "hash": "sha256:affcd60e79607ba77c762f1a0af1ba713ff17aaa5aa75fdf6fe992686358d3aa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -63,
+          17,
+          5
+        ],
+        "lookAt": [
+          -30.4,
+          12,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/large-copper-roof-lantern.png",
+      "hash": "sha256:9813bd10090fa3a150f80b54fb4dee636f8ba206f20505a4e16de0a9ed1d59e2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -47,
+          34,
+          25
+        ],
+        "lookAt": [
+          -26.30640217139308,
+          29,
+          -0.4476537942555642
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southern-gothic-bays-and-baroque-chapel.png",
+      "hash": "sha256:b5c5c07863c1f40d0870bd17e0bda86b964ba51d7478569c25ce8a2d1196941b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -1,
+          19,
+          52
+        ],
+        "lookAt": [
+          -8,
+          11,
+          17
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/polygonal-choir-and-small-turret.png",
+      "hash": "sha256:d6ebe023a2c32f4a35d8fc14856d348c0094b540423626601779ab198201ccb9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          62,
+          27,
+          -32
+        ],
+        "lookAt": [
+          20,
+          17,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/lower-ranges-and-northern-bays.png",
+      "hash": "sha256:51fb718dc00c7594431e139be82876e145b000c084cf39bf259a418bdecf099c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          11,
+          24,
+          -51
+        ],
+        "lookAt": [
+          -6,
+          12,
+          -15
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-roof-plan.png",
+      "hash": "sha256:d8ee3a38babcae5880b9135ac9723debd92b0aa4fa8b910e2d27abcecc6be0e7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          112,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-graz-cathedral-skyline.png",
+      "hash": "sha256:7aa17b1ba54ed94b63afdd364dc4e42f45cd294f236489716e5f3f719bff18d5",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 34866,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -90,
+          64,
+          88
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-graz-cathedral-district.png",
+      "hash": "sha256:39acd66e176349754e304f4cdb3da475f969dd4549363722a0db0d0e62089dcf",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36293,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -90,
+          64,
+          88
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-graz-cathedral-street.png",
+      "hash": "sha256:f5d32088d133b7f548ff18b0f86123027ae90b8767351b106c34bb87ac4212e2",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39718,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -90,
+          64,
+          88
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-graz-cathedral-closeup.png",
+      "hash": "sha256:60041860c6bdcaae63614def05cf0a0fd6e87c429c527b78840ec5fc1fa431e4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -90,
+          64,
+          88
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:e48c0744947b85c94ce132d9d5c00b2194b6e7cbbb90b709b152296459d04cdf",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 34866,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          110.965,
+          90.9271,
+          193.915
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:6b73dce9b929c378797e33ac9362b5a849b257308dd4cba7f108b81e27de7093",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36293,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          110.965,
+          90.9271,
+          193.915
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:2d4346cb52787c00469e79c179c1833c4f5cb5b794e98576f076ec5911afab66",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39718,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          110.965,
+          90.9271,
+          193.915
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:4327ebbc3e3ea6087e929a34573252be3012d28bebfed9b7a52dd6e26530832b",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43294,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/graz_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          110.965,
+          90.9271,
+          193.915
+        ],
+        "lookAt": [
+          -0.585,
+          32.2771,
+          0.715
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.15,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

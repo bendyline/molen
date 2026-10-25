@@ -1,0 +1,1232 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.omar_ali_saifuddien_mosque",
+  "sourceHash": "sha256:208fbddcae8748e6e5bb3c7ba171b6b357ab61a0e49125f612c5ac619c180a3a",
+  "runtimeHash": "sha256:3d2312014a12a699917dcce70e02bf6b0a67f1d820e4a076da9dc2feaacd5b2a",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6920,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:0c0157ce60cf5cc0f4a6ae83d4ff7bd28c387a51aa581b30310f764b319e08f3",
+      "bytes": 104288,
+      "gzipBytes": 17434,
+      "triangles": 984,
+      "cpuBytes": 102852,
+      "gpuBytes": 102852,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:113d30b2d2b0ad8b9bad63642d10fde14ab767c787f2d4e1c262c864d5d2f630",
+      "bytes": 365248,
+      "gzipBytes": 93886,
+      "triangles": 3774,
+      "cpuBytes": 356692,
+      "gpuBytes": 356692,
+      "errorMeters": 0.4,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:c7edf1ddb864fce1ae22763d5fbf75a6823fc835ca42aa93a6518149efd5428e",
+      "bytes": 1231664,
+      "gzipBytes": 315059,
+      "triangles": 13189,
+      "cpuBytes": 1223040,
+      "gpuBytes": 1223040,
+      "errorMeters": 0.15,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:a0da11bbf3b62cc30bc1b8bcde70264b818c7897c3557e468e84d43dc92e5293",
+      "bytes": 1858280,
+      "gzipBytes": 530805,
+      "triangles": 19929,
+      "cpuBytes": 1849632,
+      "gpuBytes": 1849632,
+      "errorMeters": 0.07,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:1ce60ab373727c3d4091415804520eaf53f57f7dcc8f711d9d0b238447a37bd1"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:eb9ad334b1ef0a3f5d46c40fe9200d2986c67d2a247b5149bc26457ed0413b76"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-lagoon-water",
+      "components": {
+        "transform": {
+          "pos": [
+            -15,
+            -2.182954627849974,
+            50
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            370,
+            0.12,
+            370
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#52848f",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:f33ef9d8beb3c3e7c4537778c1c6e32b5444c81d151a37858ccefabbccbb847e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 47663,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.0522,
+          51.049099999999996,
+          120.4628
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:9bdbaae23ce071e692daebb48e1260a6bbf91c45e64418ca9c326ccd71a2a6c2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 47663,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.0522,
+          51.049099999999996,
+          120.4628
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:7dcf3f25de0eadf8ed119755f18bc9a805c6ee363a8ba32e23f7a65c2ca00f2d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 47663,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.0522,
+          51.049099999999996,
+          120.4628
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:b8d0912c24b8ff474be75e696564dcf0e81b3874194c93c33aceb3e9f54a706a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 47663,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.0522,
+          51.049099999999996,
+          120.4628
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:ec4755ed49e48d22a917f8c2abe909a136d03f26654f98736f5c35540c73d8a5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 31508,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0522,
+          87.0491,
+          205.46280000000002
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:7ba56871eec0acb4d8099ee3403782e187378217fb2f4bf5bb1cebe8a4eb94b6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 31508,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0522,
+          87.0491,
+          205.46280000000002
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:0cb0d4321459b5661d7a8f6171ff1ef0846b6b8772f59aa8355c5ac722ab99a4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 31508,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0522,
+          87.0491,
+          205.46280000000002
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:9fd50d51fa337beec671dfba8f005b1dcae1e939d78a934c441833afeae38b24",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 31508,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0522,
+          87.0491,
+          205.46280000000002
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:811363ca1c5510ad58c806adccda40fcf62b2f1d887ebfb075142a1cf7d8c713",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 28718,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0522,
+          125.0491,
+          373.4628
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:9bb5b813319f157a10e8ac8fb854e6695d1e4db7bf226d6d9b0002bb63ce2216",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28718,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0522,
+          125.0491,
+          373.4628
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:15dd95a37ceb295c213b413a915cbb825776aa556c162207bb206bada2b05892",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 28718,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0522,
+          125.0491,
+          373.4628
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:11d769a96f652ea2e37d7f34274d652b2730a73b51f37117a0a51e3419188dc8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28718,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0522,
+          125.0491,
+          373.4628
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:f863a4989de7bd722892f670a3825f81e91e4bbe659ad252e7285bb8992e3045",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 21798,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0522,
+          125.0491,
+          373.4628
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/gold-dome-and-square-minaret.png",
+      "hash": "sha256:e9696618f6bb3197ab4b004e4ca98de56cba271ced90de65fdbb89ada3da6aa8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47601,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          75,
+          49,
+          77
+        ],
+        "lookAt": [
+          -4,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/three-open-portal-arches.png",
+      "hash": "sha256:778a9941c599502e793cc57cd9332d63dc0e2246795273e5ef4c361ce657be52",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47601,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -10,
+          10,
+          53
+        ],
+        "lookAt": [
+          -12,
+          7,
+          19
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/slotted-drum-and-gold-bulb.png",
+      "hash": "sha256:0074bad3a838061b11c8d06590fb17c4822d31ca15de1fb94bc70416f4abf6c5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47601,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -57,
+          36,
+          44
+        ],
+        "lookAt": [
+          -20,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/square-minaret-open-belfry.png",
+      "hash": "sha256:a447216e69410ecf92805f362d64f476893628f1005f602bcb72ed59c56fd2ad",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47601,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          52,
+          53,
+          32
+        ],
+        "lookAt": [
+          18,
+          43,
+          -10
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mahligai-three-roof-barge.png",
+      "hash": "sha256:74067dcd96872b95ec0c8161fe7f3c26795984db1d5c1e8629ab571bdb297739",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 47663,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          44,
+          16,
+          126
+        ],
+        "lookAt": [
+          -8,
+          5,
+          91
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/curved-bridge-and-north-up-plan.png",
+      "hash": "sha256:4295838ce4e03c5116d7ff416f7a869de54b05f8b399fd3f5fb8c2fdf61f4e98",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 47663,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          245,
+          45.1
+        ],
+        "lookAt": [
+          0,
+          2,
+          45
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-omar-skyline.png",
+      "hash": "sha256:d8490970f332f7aac9677c83dd00170a316899533a74edcaadacf99b1adb2df4",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28718,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          100,
+          85,
+          172
+        ],
+        "lookAt": [
+          -3,
+          17,
+          30
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-omar-district.png",
+      "hash": "sha256:26250219d1fa58265e2b263da3e3427de1286ed7a4fab532ea380c4af6cf499d",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 31508,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          100,
+          85,
+          172
+        ],
+        "lookAt": [
+          -3,
+          17,
+          30
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-omar-street.png",
+      "hash": "sha256:fa07dd45f38de067378af4a582da08146b2b8574bf0010108e1bd4e607b6c89d",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 40923,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          100,
+          85,
+          172
+        ],
+        "lookAt": [
+          -3,
+          17,
+          30
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-omar-closeup.png",
+      "hash": "sha256:362f9cbee540d8e143b4d1606927d138abfa98c9801f471df2f94d42bf492536",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 47663,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          100,
+          85,
+          172
+        ],
+        "lookAt": [
+          -3,
+          17,
+          30
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:2915014afe0be0dea20dbc6d7818e2660a338cb7b5d89b37d6d49596951bdc94",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28718,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0522,
+          87.0491,
+          205.46280000000002
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:7ba56871eec0acb4d8099ee3403782e187378217fb2f4bf5bb1cebe8a4eb94b6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 31508,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0522,
+          87.0491,
+          205.46280000000002
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:e49956cd7091a1b8fda86d4118a494495cf49f77254e2c586103178d13750c07",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 40923,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0522,
+          87.0491,
+          205.46280000000002
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:e44f53f55ccb0a611d0e723962e0b0a8058842830f38339656a0f3fe229dcdcc",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 47663,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0522,
+          87.0491,
+          205.46280000000002
+        ],
+        "lookAt": [
+          0.0522,
+          36.049099999999996,
+          37.4628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

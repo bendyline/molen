@@ -1,7 +1,7 @@
 import { execFile } from 'node:child_process';
-import { cp, mkdtemp, readFile, realpath, symlink, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, realpath, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 import { describe, expect, it } from 'vitest';
@@ -52,11 +52,19 @@ describe('review F06/F09/F10: external project tooling', () => {
     const dir = await realpath(await mkdtemp(join(tmpdir(), 'molen-review-installed-')));
     const dist = join(dir, 'installed', 'dist');
     await cp(resolve('dist'), dist, { recursive: true });
-    await symlink(
-      resolve('node_modules'),
-      join(dir, 'installed', 'node_modules'),
-      process.platform === 'win32' ? 'junction' : 'dir',
-    );
+    // pnpm 11 uses relative dependency symlinks. A junction to the whole node_modules directory
+    // rebases those links under the temporary install on Windows, where their targets are absent.
+    // Link each dependency's real location instead; the packed-install suite tests real npm installs.
+    const pkg = JSON.parse(await readFile(resolve('package.json'), 'utf8'));
+    for (const name of Object.keys({ ...pkg.dependencies, ...pkg.devDependencies })) {
+      const link = join(dir, 'installed', 'node_modules', name);
+      await mkdir(dirname(link), { recursive: true });
+      await symlink(
+        await realpath(resolve('node_modules', name)),
+        link,
+        process.platform === 'win32' ? 'junction' : 'dir',
+      );
+    }
     const code = `const { searchDocs } = await import(${JSON.stringify(pathToFileURL(join(dist, 'index.mjs')).href)}); console.log(JSON.stringify(await searchDocs({query: 'onCommand'})));`;
     const { stdout } = await exec(process.execPath, ['--input-type=module', '-e', code], {
       cwd: dir,

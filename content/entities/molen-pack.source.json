@@ -5,7 +5,13 @@
   "title": "Molen entities: nature, aircraft, road vehicles, cycles and watercraft",
   "license": "MIT",
   "notice": "NOTICE.md",
-  "include": ["assets/**", "types/*.types.json", "types/generated-scripts/**", "NOTICE.md"],
+  "include": [
+    "assets/**",
+    "types/*.types.json",
+    "types/generated-scripts/**",
+    "NOTICE.md",
+    "fleets/*.json"
+  ],
   "provides": {
     "types": [
       "types/entities.types.json",
@@ -14,6 +20,7 @@
       "types/transit.types.json",
       "types/cycle.types.json",
       "types/watercraft.types.json"
-    ]
+    ],
+    "fleet": ["fleets/road.json"]
   }
 }

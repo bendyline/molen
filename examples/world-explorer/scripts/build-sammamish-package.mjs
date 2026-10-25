@@ -270,6 +270,11 @@ const elevationRelease = argument(
   '--elevation-release',
   'AWS open-data snapshot accessed 2026-08-30',
 );
+const extraElevationAttribution = JSON.parse(argument('--extra-elevation-attribution', '[]'));
+const elevationCredit = [
+  'Mapzen; terrain data courtesy of the U.S. Geological Survey',
+  ...extraElevationAttribution.map((entry) => entry.text),
+].join('; ');
 
 await mkdir(outputDirectory, { recursive: true });
 const vectorPath = resolve(outputDirectory, 'world.pmtiles');
@@ -324,7 +329,7 @@ const elevationArchive = writePmtilesArchive(elevation.entries, {
     bounds: coverageBounds.join(','),
     minzoom: String(minLevel),
     maxzoom: String(elevationMaxLevel),
-    attribution: 'Mapzen; terrain data courtesy of the U.S. Geological Survey',
+    attribution: elevationCredit,
   },
 });
 const elevationPath = resolve(outputDirectory, 'elevation.pmtiles');
@@ -347,7 +352,10 @@ const sourceLock = {
     flattenedSubseaSamples: elevation.flattenedSubseaSamples,
     subseaPolicy:
       'Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.',
-    attribution: 'Mapzen; terrain data courtesy of the U.S. Geological Survey',
+    attribution: elevationCredit,
+    ...(extraElevationAttribution.length > 0
+      ? { additionalSources: extraElevationAttribution }
+      : {}),
     licenseReference: 'https://github.com/tilezen/joerd/blob/master/docs/attribution.md',
   },
   features: {
@@ -401,9 +409,14 @@ const sourceLock = {
 const sourcePath = resolve(outputDirectory, 'SOURCES.json');
 await replaceFile(sourcePath, `${formatJson(sourceLock)}\n`);
 
-// Keep this text and `examples/world-explorer/public/terrain/sammamish/LICENSES.md` identical:
-// the committed package is verified byte-for-byte by `molen validate --verify-files`, so a drift
-// here shows up as a checksum failure rather than as a silent attribution regression.
+// The default notice matches the Sammamish fixture; regional builders supply additional sources.
+// The manifest hashes the emitted notice along with the archives and source lock.
+const extraElevationLicenseText = extraElevationAttribution
+  .map(
+    (entry) =>
+      `- **Additional elevation source**: ${entry.text}. ${entry.license}. [Source terms](${entry.licenseUrl}).\n`,
+  )
+  .join('');
 const licenseText = `# Data attribution
 
 This package redistributes third-party open data. It is **not** covered by the repository's MIT
@@ -412,7 +425,7 @@ The repository root [NOTICE](../../../../../NOTICE.md) carries the full inventor
 
 - **Elevation** (\`elevation.pmtiles\`): Mapzen Terrain Tiles. United States 3DEP, GMTED2010, and
   SRTM terrain data courtesy of the U.S. Geological Survey.
-- **Roads, buildings, water, land use, earth and boundaries** (\`world.pmtiles\`):
+${extraElevationLicenseText}- **Roads, buildings, water, land use, earth and boundaries** (\`world.pmtiles\`):
   © OpenStreetMap contributors, distributed in the Protomaps Basemap under ODbL 1.0. ODbL is a
   share-alike license; a Derivative Database of these tiles must itself be offered under ODbL 1.0.
 - **Landcover, zoom 0-7** (\`world.pmtiles\`, layer \`landcover\`): Daylight Landcover, derived from
@@ -494,6 +507,7 @@ const manifest = {
       license: 'US public domain and source-specific open-data terms',
       licenseUrl: 'https://github.com/tilezen/joerd/blob/master/docs/attribution.md',
     },
+    ...extraElevationAttribution,
     {
       text: '© OpenStreetMap contributors; Protomaps Basemap',
       license: 'ODbL-1.0',

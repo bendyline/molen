@@ -11,7 +11,7 @@ import { warsawStudy } from '../../worldgen/scripts/warsaw-royal-castle-model.mj
 import { warsawGround } from '../../worldgen/scripts/warsaw-runtime-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u3/u3q/n0261_royal_castle_in_warsaw'),
+const source = resolve('../../content/worldgen/source/places/u3/u3q/royal_castle_in_warsaw'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

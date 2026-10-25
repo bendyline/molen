@@ -1,0 +1,392 @@
+{
+  "planId": "handa_red_brick_building",
+  "id": "handa_red_brick_building",
+  "assetId": "molen.worldgen.structure.handa_red_brick_building",
+  "title": "Handa Red Brick Building",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 136.9283461,
+    "latitude": 34.90161445
+  },
+  "size": [
+    55.075218200683594,
+    21.951018599793315,
+    68.5408935546875
+  ],
+  "actualBounds": {
+    "min": [
+      -27.537609100341797,
+      -0.029999999329447746,
+      -34.26546096801758
+    ],
+    "max": [
+      27.537609100341797,
+      21.921018600463867,
+      34.27543258666992
+    ]
+  },
+  "visualBrief": "Whole surviving HandaRedBrickBuilding/Q11407095 connected heritagegroup: native12control stepped outerenvelope, redbrick main industrialbuilding with highgable tower/broad lowergable and narrow sidegable, flatroofstorage, two-storey half-timbered redbrick wing/darkXbraces/shallow grayroof/door and smallpaned window ranks, intrinsic low attachedshop; blindarchedpanels and circulargablevents/pale keystones/coping/bands/brickpilasters and corbelledgable. Exactcomponentpartitions/sections/hiddenfaces/windowcensus original bounded estimates. Exclude separate2022KabutoBeertower, demolishedhistoricfactorywings, neighborhood, museuminteriors/displays/people/landscape/signage/text.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The-Handa-Red-Brick-Building-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:The-Handa-Red-Brick-Building-2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Handa_Red_Brick_Building_20230917_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "handa-red-brick-building-wp",
+      "url": "https://qualla.com/handa-red-brick-building/"
+    }
+  ],
+  "referenceInputHash": "dbbba87647291925835bd1ba8776fa31e4cbf554de1ef97c235f95199deb30e0",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-handa-red-brick-building.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-handa-red-brick-building.mjs",
+    "level": "skyline",
+    "export": "handaSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.64,
+        "metallic": 0.04
+      },
+      "metal": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "handaDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "handaStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "handaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.8,
+    "groundY": -0.16
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual HandaRedBrickBuilding/Q11407095/nativeway627492620: all12 unique connected perimeter controls. Mainbuilding/storage/halftimberedwing modeled together as one connected heritagegroup. Native map establishes whole outergroup, not internal volume boundaries; original bounded component subdivisions/roof sections from three exactQualla exteriororiginals. Fixed native bboxmidpoint/+Xeast/+Zsouth/heading0. No neighboringbuilding, modern2022advertisingtower or demolishedfactorywing substitution. Independent400m129x129/16641samples/one originalrawtile frozen before allfloors/sections/geometry. Flat structuralfloor0 relativefixed9m provider datum unsurveyed; no heightfit. Original bounded interpretation of whole native12control steppedgroup: north west/central/east gabledbrickmasses (12.5/16.2/21.8m maximum), lower flatstorage9.2m, southern highbrickwing14.3m and two-storey half-timbered wing8m. Photos establish material/form/relativeheight vocabulary; componentboundary stations -16/7/6m andzbandbreaks, roofbearings, exacthiddenwalls/windowcensus/plantlayout are original mediumfi estimates, not a measured internalplan. Preserve entire nativewholegroup, no facade-only replacement or advertisingtower. Recesses.22m; darkXbraces/frame/bands/palegablecopings/stonekeystones and bounded vents/roofplant. Precisefooting/threshold/hostcontact unresolved, geographicpreview/replaceFootprintfalse; immutablefield/no siteplate. Low intrinsic west attachedshop3.7m eaves/4.25m ridge, bounded originalestimate; lowerhalftimberrank includes glazed entrydoors.",
+    "anchor": [
+      136.9283461,
+      34.90161445
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        136.9279917353655,
+        34.90126338584166
+      ],
+      "modelHeight": 0,
+      "basis": "FixedSW5m beyond whole outergroup before floors/sections/geometry; unsurveyedreference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/627492620"
+    ],
+    "source": "https://www.openstreetmap.org/way/627492620",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7338413cd7ca5907842d54ad02b87f3a96df9d4585e0b3487ea50f5d98748833",
+    "notes": "Whole surviving HandaRedBrickBuilding/Q11407095 connected heritagegroup: native12control stepped outerenvelope, redbrick main industrialbuilding with highgable tower/broad lowergable and narrow sidegable, flatroofstorage, two-storey half-timbered redbrick wing/darkXbraces/shallow grayroof/door and smallpaned window ranks, intrinsic low attachedshop; blindarchedpanels and circulargablevents/pale keystones/coping/bands/brickpilasters and corbelledgable. Exactcomponentpartitions/sections/hiddenfaces/windowcensus original bounded estimates. Exclude separate2022KabutoBeertower, demolishedhistoricfactorywings, neighborhood, museuminteriors/displays/people/landscape/signage/text."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual HandaRedBrickBuilding/Q11407095/nativeway627492620: all12 unique connected perimeter controls. Mainbuilding/storage/halftimberedwing modeled together as one connected heritagegroup. Native map establishes whole outergroup, not internal volume boundaries; original bounded component subdivisions/roof sections from three exactQualla exteriororiginals. Fixed native bboxmidpoint/+Xeast/+Zsouth/heading0. No neighboringbuilding, modern2022advertisingtower or demolishedfactorywing substitution.",
+    "Independent400m129x129/16641samples/one originalrawtile frozen before allfloors/sections/geometry. Flat structuralfloor0 relativefixed9m provider datum unsurveyed; no heightfit. Original bounded interpretation of whole native12control steppedgroup: north west/central/east gabledbrickmasses (12.5/16.2/21.8m maximum), lower flatstorage9.2m, southern highbrickwing14.3m and two-storey half-timbered wing8m. Photos establish material/form/relativeheight vocabulary; componentboundary stations -16/7/6m andzbandbreaks, roofbearings, exacthiddenwalls/windowcensus/plantlayout are original mediumfi estimates, not a measured internalplan. Preserve entire nativewholegroup, no facade-only replacement or advertisingtower. Recesses.22m; darkXbraces/frame/bands/palegablecopings/stonekeystones and bounded vents/roofplant. Precisefooting/threshold/hostcontact unresolved, geographicpreview/replaceFootprintfalse; immutablefield/no siteplate. Low intrinsic west attachedshop3.7m eaves/4.25m ridge, bounded originalestimate; lowerhalftimberrank includes glazed entrydoors.",
+    "Whole surviving connected heritagegroup retained: all12 nativeoutercontrols, mainredbrick gabledmasses/flatstorage/half-timbered wing, darkwoodXbraces/two windowranks, arched and blindbrickpanels, small circularvents/palekeystones/copings/bands and bounded roofplant. Separate2022replicaadvertisingtower/demolishedfactorywings/museuminteriors/display/people/neighbors/landscape/signage excluded.",
+    "Three exactpublishedQualla Own/selfCC0 exteriororiginals individuallyinspected/nativeSHA1matched. Hero/otherinteriorreferences unselected; no protected or questionable pixels/sourcebody/media/metadata repair, no supplementalphotos or phototextures. Componentboundaries/roofbearings/heights/hiddenwalls/windowcensus/plantlayout are original bounded mediumfi estimates rather than a surveyed brewery plan.",
+    "Independent400m129x129 field/16641samples/one originalrawtile frozen before allfloor/section/geometry choices. Flat referencefloor0 relative9m provider datum unsurveyed. Originalgrid/PNG/rawtile immutable; precisefooting/threshold/gradecontact unresolved, geographicpreview/replaceFootprintfalse. No fittedground or modeled siteplate."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-heritage-group-and-connected-roofs",
+      "position": [
+        -99,
+        57,
+        112
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-north-brick-gable-group-and-blind-panels",
+      "position": [
+        20,
+        23,
+        -100
+      ],
+      "lookAt": [
+        -3,
+        9,
+        -20
+      ]
+    },
+    {
+      "name": "half-timbered-long-frontage-and-window-recesses",
+      "position": [
+        -34,
+        9,
+        27
+      ],
+      "lookAt": [
+        -4,
+        4,
+        18
+      ]
+    },
+    {
+      "name": "high-main-gable-arches-keystones-and-corbelled-coping",
+      "position": [
+        42,
+        23,
+        -52
+      ],
+      "lookAt": [
+        13,
+        16,
+        -29
+      ]
+    },
+    {
+      "name": "whole-connected-group-roof-subdivisions-and-storage",
+      "position": [
+        79,
+        58,
+        74
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12466,
+    "vertices": 37398,
+    "materials": 6,
+    "bytes": 1499532,
+    "sha256": "sha256:22a2a2cc43d1a18a7aaa2a6a87f80ef80e58f49360d427f993d6e12fd5577d1a"
+  }
+}

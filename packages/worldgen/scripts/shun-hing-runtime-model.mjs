@@ -14,7 +14,7 @@ import {
 import { tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0167_shun_hing_square',
+const key = 'shun_hing_square',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json')));
 const settings = {
@@ -292,7 +292,7 @@ function build(out, level) {
   const m = map,
     c = settings[level];
   active = c;
-  const key = 'n0167_shun_hing_square',
+  const key = 'shun_hing_square',
     body = [
       [-23.88, -19.44],
       [-23.88, 19.44],

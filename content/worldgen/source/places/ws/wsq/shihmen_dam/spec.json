@@ -1,0 +1,374 @@
+{
+  "planId": "shihmen_dam",
+  "id": "shihmen_dam",
+  "assetId": "molen.worldgen.structure.shihmen_dam",
+  "title": "Shihmen Dam, Taiwan",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.24416667,
+    "latitude": 24.81055556
+  },
+  "size": [
+    661.5136413574219,
+    135.10000610351562,
+    608.1219787597656
+  ],
+  "actualBounds": {
+    "min": [
+      -365.5678405761719,
+      -133.10000610351562,
+      -334.6620178222656
+    ],
+    "max": [
+      295.94580078125,
+      2,
+      273.4599609375
+    ]
+  },
+  "visualBrief": "Whole principal nominal360m rolled-earth/rockfill Shihmen Dam and intrinsic right-bank six-gate spillway/whole dry chute/crest crossing. Retain original22-node436.61m crest-access road including both landward approaches, original19-node spillway bridge/17-vertex chute area/11-node upper line. Main earthfill uses the central original road nodes3–18/353.50m curved crest as a bounded interpretation of nominal360m core, without stretching geography; approach portions are retained. Broad sloping riprap/green ground-cover faces,11.9m crest, original-engineering maximum520m base/133.1m foundation height, six14x10.61m radial gates within100m weir, hoist piers/crossing and curved concrete chute walls. Exclude reservoir/afterbay water/site floor/whole hills/downstream afterbay weir/independent pink powerhouse/underground tunnels/visitor buildings/trees/people/vehicles/remote roads. Use shallow valley-end taper with broad riprap/ground-cover faces as original maximum-section approximation, not a giant rectangular green block or surveyed natural hill. Do not claim a whole main-dam photo was inspected. Native main curvedcrest353.50m vsnominal360m discrepancy explicitly retained; original whole436.61m road and all approach nodes unchanged. Six curved radial gate leaves/physical piers/hoist beams, original full bridge and dry chute, actual open channels and curved wall/fins; height relative primary crest/gate datum, chute profile/hoists/hidden foundation estimated. No extra water, powerhouse, gardens or reservoir plane. Freeze independent1024m129x129 field at fixed original east approach first; no fit/flatten/reacquire. Host/foundation contact preview only.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%E7%9F%B3%E9%96%80%E6%B0%B4%E5%BA%AB%E5%A4%A7%E5%A3%A9.jpg",
+    "https://commons.wikimedia.org/wiki/File:%E7%9F%B3%E9%96%80%E6%B0%B4%E5%BA%AB%E5%A4%A7%E5%A3%A9%E8%BF%91%E6%99%AF.jpg"
+  ],
+  "stories": [
+    {
+      "id": "shihmen-dam-wp",
+      "url": "https://qualla.com/shihmen-dam/"
+    }
+  ],
+  "referenceInputHash": "bd183414a1df771f6c323ae43f09372e0e49c14d59c7510df7b71184cd91109e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-shihmen-dam.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-shihmen-dam.mjs",
+    "level": "skyline",
+    "export": "shihmenDamSkyline",
+    "errorMeters": 4,
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "grass": {
+        "slot": "foundation",
+        "localRef": "palette:#feffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "gate": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.12
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "shihmenDamDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#feffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "shihmenDamStreet",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#feffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "shihmenDamCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#feffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.15,
+    "groundY": -142
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Whole original native crest-access road548718547/all22nodes (436.61m) and spillway bridge548718553/all19nodes, closed spillway/chute132864629/all17vertices and upper mapped dam line244379008/all11nodes. Fixed story coordinate anchor/+Xeast/+Zsouth before field. Central crest-access nodes3–18/353.50m define original bounded main-crest interpretation (nominal engineering360m), retaining all approach portions separately. Main earthfill ground boundary is not mapped: nominal520m maximum base/133.1m foundation height, valley-end taper/visible slopes and abutment profile are original engineering approximations, not surveyed polygons. Native133.1m height attribute on chute is overall dam height and is not extruded on spillway. Gazette specifies right-bank100m weir/six14x10.61m gates/bottom235m vs crest252.1m. Independent1024m field frozen before geometry unchanged. Composite has implausible deep inland pits, not physical riverbed/foundation controls. Actual live-host bank, structural foundation and provider-to-official crest datum unverified.",
+    "anchor": [
+      121.24416667,
+      24.81055556
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.24479,
+        24.8108511
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed original east crest-access/spillway-crossing junction1430516749 before field/geometry. Main crest modelY0; provider-relative approach datum is not a surveyed agreement with252.1m official crest elevation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/548718547",
+      "way/548718553",
+      "way/132864629",
+      "way/244379008"
+    ],
+    "source": "https://www.openstreetmap.org/way/548718547",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:40f88f29375113579a90b7c10928df6f8f5e774c92d9593880ee6bb8abc64cf3",
+    "notes": "Whole principal nominal360m rolled-earth/rockfill Shihmen Dam and intrinsic right-bank six-gate spillway/whole dry chute/crest crossing. Retain original22-node436.61m crest-access road including both landward approaches, original19-node spillway bridge/17-vertex chute area/11-node upper line. Main earthfill uses the central original road nodes3–18/353.50m curved crest as a bounded interpretation of nominal360m core, without stretching geography; approach portions are retained. Broad sloping riprap/green ground-cover faces,11.9m crest, original-engineering maximum520m base/133.1m foundation height, six14x10.61m radial gates within100m weir, hoist piers/crossing and curved concrete chute walls. Exclude reservoir/afterbay water/site floor/whole hills/downstream afterbay weir/independent pink powerhouse/underground tunnels/visitor buildings/trees/people/vehicles/remote roads."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole original native crest-access road548718547/all22nodes (436.61m) and spillway bridge548718553/all19nodes, closed spillway/chute132864629/all17vertices and upper mapped dam line244379008/all11nodes. Fixed story coordinate anchor/+Xeast/+Zsouth before field. Central crest-access nodes3–18/353.50m define original bounded main-crest interpretation (nominal engineering360m), retaining all approach portions separately. Main earthfill ground boundary is not mapped: nominal520m maximum base/133.1m foundation height, valley-end taper/visible slopes and abutment profile are original engineering approximations, not surveyed polygons. Native133.1m height attribute on chute is overall dam height and is not extruded on spillway. Gazette specifies right-bank100m weir/six14x10.61m gates/bottom235m vs crest252.1m.",
+    "Two exact published2025丘崈ownCC0chute/riprap originals individually inspected/nativeSHA1matched/explicit creator grants bound; Qualla-first30families/zero conflicts and existing published policy pass. Not an inspected whole-embankment photo. Whole main body follows primary engineering dimensions and native crest interpretation with bounded original valley taper/slope/material pattern. Assumed-author Jiang image/museum models/agency images/diagrams unused. No photo textures/generated bitmap/downloaded mesh.",
+    "Native interpreted main crest353.50m vs nominal360m retained without geography scaling; entire436.61m road including approaches and full19-node spillway crossing preserved.133.1m maximum depth and520m maximum base width with sin^0.8 valley taper are original engineering approximations, not a surveyed exposed section or natural-hill mesh. Riprap/green-cover distribution,1100 representative rocks and2000 small irregular ground-cover patches at close detail are bounded; no rectangular grass checkerboard. Mitered road/crossing joints preserve original path centers without cracks. Main crest11.9m width, six14x10.61m radial leaves/100m weir/relative gatebottom-17.1m follow primary dimensions; pier/hoist/bridge7m width and lower chute-112m floor/retaining walls/partition fins are estimates. Underground tunnels/independent powerhouse/downstream weir/visitor buildings/water/site floor omitted.",
+    "Independent1024m129x129/16641values/four original Terrarium tiles frozen before geometry at fixed eastern crest-crossing junction. Provider datum245.9893m, whole absolute[-3793.6964,361.1883]m retained unchanged; implausible deep inland composite pits are not bathymetry/foundation controls. No fit/flatten/reacquire. Primary252.1m official crest and provider-relative datum not surveyed-compatible; model uses crest-relative engineering heights. Portable/shared/context stageY-142m separate. Native preview/replaceFootprint=false; live-host bank/foundation/threshold contact unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-rockfill-embankment-crest-and-six-gate-spillway",
+      "position": [
+        480,
+        300,
+        -600
+      ],
+      "lookAt": [
+        -45,
+        -45,
+        -80
+      ]
+    },
+    {
+      "name": "six-radial-gates-piers-hoists-and-original-crossing",
+      "position": [
+        245,
+        42,
+        30
+      ],
+      "lookAt": [
+        175,
+        -8,
+        -70
+      ]
+    },
+    {
+      "name": "complete-open-dry-chute-curved-walls-and-exit",
+      "position": [
+        390,
+        140,
+        -400
+      ],
+      "lookAt": [
+        165,
+        -55,
+        -205
+      ]
+    },
+    {
+      "name": "riprap-ground-cover-face-and-crest-profile",
+      "position": [
+        -120,
+        6,
+        80
+      ],
+      "lookAt": [
+        -155,
+        -25,
+        40
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 43244,
+    "vertices": 129732,
+    "materials": 5,
+    "bytes": 5192552,
+    "sha256": "sha256:0e1ff8632f2c2c266f582424658091fdf7827622493df5f4401bca7c72cf8990"
+  }
+}

@@ -1,14 +1,14 @@
-/** Next-1,000 production belongs to the other device, independently of readiness. */
+/** structure catalog production belongs to the other device, independently of readiness. */
 import { normalize } from './classify.mjs';
 
-export function next1000Entries(candidates, collections) {
+export function structureCatalogEntries(candidates, collections) {
   return [
     ...candidates.candidates.map((c) => ({ ...c, assetId: c.modelRef })),
     ...collections.collections.flatMap((c) => c.members),
   ];
 }
 
-export function next1000Matches(structure, entries, modelIdentity) {
+export function structureCatalogMatches(structure, entries, modelIdentity) {
   const identities = new Set(
     [
       modelIdentity,
@@ -30,15 +30,15 @@ export function next1000Matches(structure, entries, modelIdentity) {
 }
 
 export function workAssignment(structure, entries) {
-  const matches = next1000Matches(structure, entries);
+  const matches = structureCatalogMatches(structure, entries);
   return {
-    owner: matches.length ? 'next-1000-other-device' : 'qualla-local',
+    owner: matches.length ? 'structure-catalog-other-device' : 'qualla-local',
     localAuthoringAllowed: matches.length === 0,
-    next1000Ids: [...new Set(matches.map((m) => m.id))].sort(),
+    structureCatalogIds: [...new Set(matches.map((m) => m.id))].sort(),
     ...(matches.length
       ? {
           reason:
-            'User reserves all next-1,000 candidates and collection members for a separate device. Possible identity matches also stay out of local production until reconciled.',
+            'User reserves all structure catalog candidates and collection members for a separate device. Possible identity matches also stay out of local production until reconciled.',
         }
       : {}),
   };

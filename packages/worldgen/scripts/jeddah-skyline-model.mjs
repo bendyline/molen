@@ -1,7 +1,7 @@
 /** Deliberate distant silhouette; original detailed lighthouse master remains separate. */
 import { loft, radialRing } from './authored-structure-mesh.mjs';
 
-export const jeddahRuntimeAssetId = 'molen.worldgen.structure.n0644_jeddah_light';
+export const jeddahRuntimeAssetId = 'molen.worldgen.structure.jeddah_light';
 export function buildJeddahSkyline(out) {
   const pale = [0.81, 0.78, 0.66],
     bronze = [0.22, 0.19, 0.12];

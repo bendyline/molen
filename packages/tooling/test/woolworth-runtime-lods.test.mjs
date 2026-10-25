@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineNext } from '../../worldgen/scripts/signature-tower-next-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dr/dr5/n0157_woolworth_building'),
+const source = resolve('../../content/worldgen/source/places/dr/dr5/woolworth_building'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -69,7 +69,7 @@ function nearest(ts, o, d) {
 it('preserves the original master and binds all twelve parts to the signed Broadway frame', async () => {
   const m = (
       await read(resolve('../../content/earth/structures/georeferencing.json'))
-    ).candidates.find((p) => p.candidateId === 'N0157'),
+    ).candidates.find((p) => p.candidateId === 'woolworth_building'),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring({
       cladding: { graph: 'stone_granite', slot: 'wall', roughness: 0.8, metallic: 0 },
@@ -77,7 +77,7 @@ it('preserves the original master and binds all twelve parts to the signed Broad
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineNext.find((p) => p.id === 'N0157').build(a.wrap(b), m);
+  skylineNext.find((p) => p.id === 'woolworth_building').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`),
     f = await read(`${source}/map-frame.json`);
   expect(f.wikidataId).toBe('Q217652');

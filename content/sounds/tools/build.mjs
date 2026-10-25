@@ -20,6 +20,7 @@ const previous = existsSync(join(root, 'sounds.soundbank.json'))
   ? JSON.parse(readFileSync(join(root, 'sounds.soundbank.json'), 'utf8'))
   : undefined;
 const sources = JSON.parse(readFileSync(join(root, 'sources.json'), 'utf8'));
+for (const id of only) if (!sources.sounds[id]) throw new Error(`Unknown sound: ${id}`);
 const stampsPath = join(cache, 'build-stamps.json');
 const stamps = existsSync(stampsPath) ? JSON.parse(readFileSync(stampsPath, 'utf8')) : {};
 
@@ -71,6 +72,7 @@ function shape(sound, clip) {
   if (clip.start !== undefined) input.push('-ss', String(clip.start));
   if (clip.duration !== undefined) input.push('-t', String(clip.duration + x));
   const filters = [];
+  if (clip.highpass !== undefined) filters.push(`highpass=f=${clip.highpass}`);
   if (sound.kind === 'loop' && x > 0) {
     filters.push(
       `asplit=2[s1][s2];[s1]atrim=start=${x},asetpts=PTS-STARTPTS[a];[s2]atrim=end=${x},asetpts=PTS-STARTPTS[b];[a][b]acrossfade=d=${x}:c1=qsin:c2=qsin`,
@@ -179,11 +181,15 @@ for (const [id, sound] of Object.entries(sources.sounds)) {
       clip,
       v: 4,
     });
-    if (force || stamps[rel] !== recipe || !existsSync(dest)) {
+    if (
+      (only.size === 0 || only.has(id)) &&
+      (force || stamps[rel] !== recipe || !existsSync(dest))
+    ) {
       encode(sound, clip, findSource(clip.origin, clip.file), dest);
       stamps[rel] = recipe;
       process.stdout.write(`✓ ${rel}\n`);
     }
+    if (!existsSync(dest)) throw new Error(`${rel} is missing; include ${id} in this build`);
     clips.push(rel);
     first ??= { dest, clip, origin };
     used[clip.origin] ??= new Set();
@@ -195,6 +201,7 @@ for (const [id, sound] of Object.entries(sources.sounds)) {
   if (first.clip.start !== undefined || first.clip.duration !== undefined)
     edits.push(`trimmed from ${first.clip.start ?? 0}s`);
   if (first.clip.crossfade) edits.push(`${first.clip.crossfade}s crossfade loop`);
+  if (first.clip.highpass) edits.push(`${first.clip.highpass} Hz high-pass`);
   edits.push(
     sound.kind === 'oneshot'
       ? 'peak-normalized'
@@ -260,9 +267,18 @@ for (const [id, origin] of Object.entries(sources.origins)) {
 }
 writeFileSync(join(root, 'NOTICE.md'), `${lines.join('\n')}\n`);
 // Match the repository formatter so a rebuild leaves `pnpm lint` clean.
-spawnSync('npx', ['biome', 'format', '--write', join(root, 'sounds.soundbank.json')], {
-  stdio: 'ignore',
-});
+const formatted = spawnSync(
+  process.execPath,
+  [
+    fileURLToPath(import.meta.resolve('@biomejs/biome/bin/biome')),
+    'format',
+    '--write',
+    join(root, 'sounds.soundbank.json'),
+  ],
+  { stdio: 'inherit' },
+);
+if (formatted.status !== 0)
+  throw new Error('Sound-bank formatting failed', { cause: formatted.error });
 const total = Object.values(bank.sounds).reduce((n, s) => n + s.clips.length, 0);
 console.log(
   `${Object.keys(bank.sounds).length} sounds, ${total} clips -> ${relative(process.cwd(), join(root, 'sounds.soundbank.json'))}`,

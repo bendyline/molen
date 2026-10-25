@@ -83,7 +83,9 @@ function anchorFor(point: TerrainSemanticPoint, geometry: TileGeometry): [number
 }
 
 function matches(feature: Feature, rule: StructureMapRule): boolean {
-  const { classes, subclasses, tags } = rule.match;
+  const { classes, subclasses, tags, names } = rule.match;
+  if (names && !names.some((name) => normalized(name) === normalized(feature.name ?? '')))
+    return false;
   if (classes && !classes.some((value) => normalized(value) === normalized(feature.class ?? '')))
     return false;
   if (
@@ -216,9 +218,27 @@ export function matchMapStructures(
         !matches(feature, rule)
       )
         continue;
-      const frame = frameFor(feature, geometry.size, rule.lengthAxis);
+      // An explicitly typed point can identify an otherwise unclassified shell.
+      // Use its sole complete containing footprint for fit; never the nearest house.
+      const containing =
+        rule.fit === 'footprint' && 'point' in feature && !tile.buildingsGeneralized
+          ? tile.buildings.filter((building) =>
+              building.polygons.some((polygon) => pointInPolygon(feature.point, polygon)),
+            )
+          : [];
+      if (containing.length > 1) continue;
+      const shell = containing[0];
+      const frame = frameFor(shell ?? feature, geometry.size, rule.lengthAxis);
       if (!frame || !owned(frame.point)) continue;
       const anchor = anchorFor(frame.point, geometry);
+      if (
+        rule.bounds &&
+        (anchor[0] < rule.bounds[0] ||
+          anchor[0] >= rule.bounds[2] ||
+          anchor[1] < rule.bounds[1] ||
+          anchor[1] >= rule.bounds[3])
+      )
+        continue;
       const world = wgs84ToWorld(geometry.metersPerUnit, ...anchor);
       if (
         occupied.some(
@@ -234,8 +254,9 @@ export function matchMapStructures(
         scale[0] = Math.max(0.2, Math.min(5, frame.width / rule.dimensions[0]));
         scale[2] = Math.max(0.2, Math.min(5, frame.depth / rule.dimensions[2]));
       }
-      if (feature.height) {
-        scale[1] = Math.max(0.2, Math.min(5, feature.height / rule.dimensions[1]));
+      const measuredHeight = feature.height ?? shell?.height;
+      if (measuredHeight) {
+        scale[1] = Math.max(0.2, Math.min(5, measuredHeight / rule.dimensions[1]));
         // Preserve rotor circles, arches and other authored proportions for native models.
         if (rule.fit !== 'footprint') scale[0] = scale[2] = scale[1];
       }

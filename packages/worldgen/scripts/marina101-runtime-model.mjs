@@ -14,7 +14,7 @@ import {
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(readFileSync(structureSourcePath('n0200_marina_101', 'map-frame.json')));
+const frame = JSON.parse(readFileSync(structureSourcePath('marina_101', 'map-frame.json')));
 function render(out, m) {
   const detail = out.detail;
   function grid(out, q, color, dx, dy, width, trim, slot) {
@@ -501,7 +501,7 @@ function render(out, m) {
   function podium(out, m) {
     const plan = partPlan(
       m,
-      partsEvidence('n0200_marina_101').find((p) => p.id === 1074877791),
+      partsEvidence('marina_101').find((p) => p.id === 1074877791),
     );
     mappedSolid(out, 'stone', plan, 0, 12.5, [0.43, 0.415, 0.39]);
     if (detail.podiumWindows)

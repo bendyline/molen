@@ -56,7 +56,7 @@ async function json<T>(path: string): Promise<T> {
 const pack = await resolveStylePackDocuments(await json('worldgen/stylepack.json'), (path) =>
   json(`worldgen/${path}`),
 );
-const catalog = await json<StructureCatalogDoc>('earth/structures/placements.json');
+const catalog = await json<StructureCatalogDoc>('earth/structures/placements/authoring.json');
 const surfaces = createResolvedMaterialSet(
   new MaterialResolver({
     load: async () => {
@@ -255,9 +255,9 @@ async function mount(id: string) {
   const semantic = createEmptyTerrainSemanticTile();
   if (
     reviewRoads &&
-    ((terrainSet === 'gsi' && id === 'N0021') ||
-      (terrainSet === 'gugik' && id === 'N0029') ||
-      (terrainSet === 'wales' && id === 'N0015'))
+    ((terrainSet === 'gsi' && id === 'sanjo_ohashi_bridge') ||
+      (terrainSet === 'gugik' && id === 'poniatowski_bridge') ||
+      (terrainSet === 'wales' && id === 'monnow_bridge'))
   ) {
     const roadEvidence = await json<{
       features: { id: string; tags: Record<string, string>; coordinates: [number, number][] }[];
@@ -267,7 +267,7 @@ async function mount(id: string) {
       // ground segments. Do not turn unrelated bank paths into bridge approaches.
       if (
         !(
-          id === 'N0015'
+          id === 'monnow_bridge'
             ? [
                 '60781949',
                 '60781969',
@@ -280,7 +280,7 @@ async function mount(id: string) {
                 '172233191',
                 '172233201',
               ]
-            : id === 'N0021'
+            : id === 'sanjo_ohashi_bridge'
               ? [
                   '27794392',
                   '27794399',
@@ -330,11 +330,11 @@ async function mount(id: string) {
         layer: Number(road.tags.layer ?? 0),
         width:
           Number(road.tags.width) ||
-          (id === 'N0015' && road.tags.highway === 'pedestrian'
+          (id === 'monnow_bridge' && road.tags.highway === 'pedestrian'
             ? 3.84
             : footway
               ? 2.8
-              : id === 'N0021'
+              : id === 'sanjo_ohashi_bridge'
                 ? 8.8
                 : 7),
         lanes: !footway && Number.isSafeInteger(laneCount) && laneCount > 0 ? laneCount : undefined,
@@ -348,7 +348,10 @@ async function mount(id: string) {
       });
     }
   } else if (reviewRoads) {
-    if (!['N0019', 'N0026', 'N0028'].includes(id) || terrainSet !== 'ign')
+    if (
+      !['pont_de_l_archeveche', 'pont_aval', 'pont_de_tolbiac'].includes(id) ||
+      terrainSet !== 'ign'
+    )
       throw new Error('No reviewed road context for this bridge');
     const roadEvidence = await json<{
       features: {
@@ -365,10 +368,10 @@ async function mount(id: string) {
         road.properties.cpx_toponyme_route_nommee ?? road.properties.nom_collaboratif_gauche;
       if (
         typeof name !== 'string' ||
-        (id === 'N0026'
+        (id === 'pont_aval'
           ? !name.includes('Périphérique') ||
             Number(road.properties.position_par_rapport_au_sol) <= 0
-          : id === 'N0019'
+          : id === 'pont_de_l_archeveche'
             ? ![
                 "PONT DE L'ARCHEVECHE",
                 "QU DE L'ARCHEVECHE",
@@ -389,12 +392,12 @@ async function mount(id: string) {
       semantic.transportation.push({
         id: road.featureId,
         name,
-        class: id === 'N0026' ? 'motorway' : 'primary',
+        class: id === 'pont_aval' ? 'motorway' : 'primary',
         bridge: Number(road.properties.position_par_rapport_au_sol) > 0,
         layer: Number(road.properties.position_par_rapport_au_sol),
         width: Number(road.properties.largeur_de_chaussee) || 14,
-        lanes: Number(road.properties.nombre_de_voies) || (id === 'N0026' ? 4 : 2),
-        oneway: id === 'N0026',
+        lanes: Number(road.properties.nombre_de_voies) || (id === 'pont_aval' ? 4 : 2),
+        oneway: id === 'pont_aval',
         // Only the independently mapped plan is passed to the normal procedural renderer.
         // Source Z is retained in the evidence report, never used to fabricate a flat deck.
         lines: [

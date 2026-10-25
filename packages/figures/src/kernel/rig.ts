@@ -148,7 +148,8 @@ export const QUADRUPED_SOCKET_NAMES: readonly string[] = [
 const IDENTITY: Quat = [0, 0, 0, 1];
 /** Half turn about +Y: a socket whose +Z faces backward. */
 const YAW_180: Quat = [0, 1, 0, 0];
-const A_POSE = (15 * dmath.PI) / 180;
+// A slight clearance at the thigh, rather than a stiff, splayed presentation pose.
+const BIPED_ARM_REST = (5 * dmath.PI) / 180;
 const TAIL_DROOP = (35 * dmath.PI) / 180;
 
 /** The name of the mirrored joint or socket ('.l' ↔ '.r', 'fl' ↔ 'fr', 'hl' ↔ 'hr'). */
@@ -208,8 +209,8 @@ class RigBuilder {
 }
 
 function buildBiped(m: FigureMetrics, b: RigBuilder): void {
-  const s = dmath.sin(A_POSE);
-  const c = dmath.cos(A_POSE);
+  const s = dmath.sin(BIPED_ARM_REST);
+  const c = dmath.cos(BIPED_ARM_REST);
   b.joint('root', null, [0, 0, 0], 0);
   b.joint('hips', 'root', [0, m.hipHeight, 0], m.hipsLen);
   b.joint('spine', 'hips', [0, m.hipsLen, 0], m.spineLen);

@@ -6,7 +6,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/',
+  '../../../content/worldgen/source/places/ud/udt/saint_michaels_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -896,7 +896,7 @@ export function buildSaintMichaelRuntime(o, level = 'closeup') {
 export const buildSaintMichaelSkyline = (o) => buildSaintMichaelRuntime(o, 'skyline');
 const camera = (name, p, look) => ({ name, position: native(p), lookAt: native(look) });
 export const saintMichaelStudy = {
-  id: 'N0300',
+  id: 'saint_michaels_castle',
   key: 'saint_michael_s_castle',
   title: "Saint Michael's Castle",
   category: 'castle',

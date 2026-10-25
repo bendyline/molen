@@ -148,6 +148,14 @@ Roads, railways and paths ambient NPCs move on, for scenes without streamed map 
       "items": {
         "type": "object",
         "properties": {
+          "drivingSide": {
+            "type": "string",
+            "enum": [
+              "right",
+              "left"
+            ],
+            "description": "Overrides the document road driving side."
+          },
           "id": {
             "type": "string",
             "minLength": 1,

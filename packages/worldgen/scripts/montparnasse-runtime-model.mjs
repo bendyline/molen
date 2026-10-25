@@ -5,9 +5,9 @@ import { glazedOutline, localOutline, mappedSolid } from './signature-tower-expa
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-export const montparnasseRuntimeAssetId = 'molen.worldgen.structure.n0151_montparnasse_tower';
+export const montparnasseRuntimeAssetId = 'molen.worldgen.structure.montparnasse_tower';
 const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0151_montparnasse_tower', 'map-frame.json'), 'utf8'),
+  readFileSync(structureSourcePath('montparnasse_tower', 'map-frame.json'), 'utf8'),
 );
 export function buildMontparnasseSkyline(out) {
   const plan = localOutline(frame);

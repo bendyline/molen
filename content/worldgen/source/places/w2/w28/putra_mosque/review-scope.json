@@ -1,0 +1,489 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_marble",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "screen": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.08
+    },
+    "gold": {
+      "slot": "roof",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.55,
+      "metallic": 0.65
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.55,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/putra-model.mjs",
+    "export": "buildPutraSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPutraDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildPutraStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPutraCloseup",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      175,
+      125,
+      155
+    ],
+    "lookAt": [
+      12,
+      30,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-putra-skyline",
+      "position": [
+        175,
+        125,
+        155
+      ],
+      "lookAt": [
+        12,
+        30,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-putra-district",
+      "position": [
+        175,
+        125,
+        155
+      ],
+      "lookAt": [
+        12,
+        30,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-putra-street",
+      "position": [
+        175,
+        125,
+        155
+      ],
+      "lookAt": [
+        12,
+        30,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-putra-closeup",
+      "position": [
+        175,
+        125,
+        155
+      ],
+      "lookAt": [
+        12,
+        30,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained exact identity/axis plus current mapped podium,hall,pavilions,dome and separate minaret;vertical datums and facing remain approximate.",
+    "anchor": [
+      101.689066559,
+      2.936072072
+    ],
+    "heading": -0.391996394873,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0478;datum 44.59826109734036 m. 1035 selected-pad samples span -13.885171013491355 to 14.905460220561409 m. Floor -5.0104090150284195 m is the median of 155 main/minaret edge samples plus0.3 m. The synthetic review terrain seats the pads with an8 m apron and8 m outer blend to prevent coarse3.6 m fixture interpolation from burying the facade;this is an illustrative fixture adjustment,not measured shoreline grading. Two masks cover the complete selected podium and minaret base;independent mapped hall/pavilion parts explain filling the retained relation inner rings. Footings sample grade at<=3 m. Host water and circulation remain separate. Exact waterline,pier depth,stairs,thresholds,retaining levels and foundation engineering are unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          48.985,
+          48.672
+        ],
+        [
+          25.657,
+          48.667
+        ],
+        [
+          -40.628,
+          48.665
+        ],
+        [
+          -48.985,
+          48.674
+        ],
+        [
+          -48.984,
+          36.484
+        ],
+        [
+          -48.939,
+          -36.507
+        ],
+        [
+          -48.923,
+          -38.128
+        ],
+        [
+          -48.946,
+          -48.659
+        ],
+        [
+          -42.672,
+          -48.674
+        ],
+        [
+          48.985,
+          -48.669
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            48.985,
+            48.672
+          ],
+          [
+            25.657,
+            48.667
+          ],
+          [
+            -40.628,
+            48.665
+          ],
+          [
+            -48.985,
+            48.674
+          ],
+          [
+            -48.984,
+            36.484
+          ],
+          [
+            -48.939,
+            -36.507
+          ],
+          [
+            -48.923,
+            -38.128
+          ],
+          [
+            -48.946,
+            -48.659
+          ],
+          [
+            -42.672,
+            -48.674
+          ],
+          [
+            48.985,
+            -48.669
+          ]
+        ],
+        [
+          [
+            74.71131347820965,
+            27.64829997556468
+          ],
+          [
+            77.53321754992838,
+            27.44974663077096
+          ],
+          [
+            79.77469415635638,
+            29.74979189781664
+          ],
+          [
+            81.79916602516519,
+            27.62223413528718
+          ],
+          [
+            84.34549816940826,
+            27.53759964422609
+          ],
+          [
+            84.53643481902121,
+            24.8773478214304
+          ],
+          [
+            86.28533476216741,
+            22.863708917019427
+          ],
+          [
+            84.5472678910458,
+            21.000889001640484
+          ],
+          [
+            84.62428570503577,
+            18.065065241345643
+          ],
+          [
+            81.68846276989359,
+            17.988046581390446
+          ],
+          [
+            79.56090513265151,
+            15.963573574935232
+          ],
+          [
+            77.53643322153769,
+            18.09113123512808
+          ],
+          [
+            74.87618223200192,
+            17.90019376529879
+          ],
+          [
+            74.8569277706478,
+            18.634149686367135
+          ],
+          [
+            74.82844804950382,
+            18.56525667238782
+          ],
+          [
+            74.7991643865854,
+            20.83601744957214
+          ],
+          [
+            72.77469248574566,
+            22.963575134618164
+          ],
+          [
+            74.78833127225582,
+            24.712476167025436
+          ]
+        ]
+      ],
+      "basis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0478;datum 44.59826109734036 m. 1035 selected-pad samples span -13.885171013491355 to 14.905460220561409 m. Floor -5.0104090150284195 m is the median of 155 main/minaret edge samples plus0.3 m. The synthetic review terrain seats the pads with an8 m apron and8 m outer blend to prevent coarse3.6 m fixture interpolation from burying the facade;this is an illustrative fixture adjustment,not measured shoreline grading. Two masks cover the complete selected podium and minaret base;independent mapped hall/pavilion parts explain filling the retained relation inner rings. Footings sample grade at<=3 m. Host water and circulation remain separate. Exact waterline,pier depth,stairs,thresholds,retaining levels and foundation engineering are unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        101.689066559,
+        2.936072072
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0478;datum 44.59826109734036 m. 1035 selected-pad samples span -13.885171013491355 to 14.905460220561409 m. Floor -5.0104090150284195 m is the median of 155 main/minaret edge samples plus0.3 m. The synthetic review terrain seats the pads with an8 m apron and8 m outer blend to prevent coarse3.6 m fixture interpolation from burying the facade;this is an illustrative fixture adjustment,not measured shoreline grading. Two masks cover the complete selected podium and minaret base;independent mapped hall/pavilion parts explain filling the retained relation inner rings. Footings sample grade at<=3 m. Host water and circulation remain separate. Exact waterline,pier depth,stairs,thresholds,retaining levels and foundation engineering are unverified."
+    },
+    "bounds": [
+      101.6883,
+      2.9353,
+      101.6904,
+      2.9369
+    ],
+    "notes": "Retained Q2344561 /relation8518759 identity,anchor,undirected axis,10-vertex outer envelope and all five inner rings remain unchanged in the source record. Current named mosque POI and podium ring share id52776566652007. The large inner ring is occupied by separately mapped hall geometry and the four circular rings by mapped domed pavilions;they are not treated as open courtyards. All current parts fully inside the retained outer envelope,plus three explicit minaret controls,are selected. The minaret sits outside the square podium. Front facing,rooftop roles,arcade/lattice rhythm and exact vertical datums remain approximate. Adjacent circulation/causeway buildings remain host content. Standard Protomaps20261014 /Mapzen-USGS viewer extractN0478;datum 44.59826109734036 m. 1035 selected-pad samples span -13.885171013491355 to 14.905460220561409 m. Floor -5.0104090150284195 m is the median of 155 main/minaret edge samples plus0.3 m. The synthetic review terrain seats the pads with an8 m apron and8 m outer blend to prevent coarse3.6 m fixture interpolation from burying the facade;this is an illustrative fixture adjustment,not measured shoreline grading. Two masks cover the complete selected podium and minaret base;independent mapped hall/pavilion parts explain filling the retained relation inner rings. Footings sample grade at<=3 m. Host water and circulation remain separate. Exact waterline,pier depth,stairs,thresholds,retaining levels and foundation engineering are unverified."
+  },
+  "geographicNote": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0478;datum 44.59826109734036 m. 1035 selected-pad samples span -13.885171013491355 to 14.905460220561409 m. Floor -5.0104090150284195 m is the median of 155 main/minaret edge samples plus0.3 m. The synthetic review terrain seats the pads with an8 m apron and8 m outer blend to prevent coarse3.6 m fixture interpolation from burying the facade;this is an illustrative fixture adjustment,not measured shoreline grading. Two masks cover the complete selected podium and minaret base;independent mapped hall/pavilion parts explain filling the retained relation inner rings. Footings sample grade at<=3 m. Host water and circulation remain separate. Exact waterline,pier depth,stairs,thresholds,retaining levels and foundation engineering are unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

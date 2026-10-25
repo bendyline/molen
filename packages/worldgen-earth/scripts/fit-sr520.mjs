@@ -1,11 +1,11 @@
 /** Fit the authored +X floating section to centerline pairs decoded from the bundled
  * Protomaps 2026-09-25 z15 roads. Run from the repository root. This is a visual fit,
  * not a survey; the roads do not encode the pontoon/approach transition stations. */
-import { readFile, writeFile } from 'node:fs/promises';
-import { wgs84ToWorld, worldToWgs84 } from '@bendyline/molen-terrain/kernel';
 
-const path = 'content/earth/structures/placements.json';
-const doc = JSON.parse(await readFile(path, 'utf8'));
+import { wgs84ToWorld, worldToWgs84 } from '@bendyline/molen-terrain/kernel';
+import { readStructurePlacements, writeStructurePlacement } from './placement-sources.mjs';
+
+const doc = await readStructurePlacements();
 const pairs = [
   [-122.26701736450195, 47.64198615965722, 47.64211446842856],
   [-122.25603103637695, 47.64026209292493, 47.64040667093707],
@@ -53,7 +53,7 @@ Object.assign(
     note: 'Current crossing: +X follows the fitted eastbound direction; north-side trail. 2350 m floating section aligned to the paired carriageways in bundled Protomaps 2026-09-25 z15 roads. Water datum 5.76 m matches the sample elevation plus water offset; deck 6.096 m above it. Extent streams clipped sections, replacing mapped bridge roads inside the span. Approach spans are inferred; end stations and terrain datum are visual approximations, not a survey.',
   },
 );
-await writeFile(path, `${JSON.stringify(doc, null, 2)}\n`);
+await writeStructurePlacement(doc.entries.find((e) => e.id === 'seattle.sr-520-floating-bridge'));
 console.log(
   JSON.stringify(
     {

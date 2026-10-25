@@ -1,0 +1,495 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_marble",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "concrete_plain",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "concrete_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "dome": {
+      "slot": "roof",
+      "graph": "metal_stainless_beadblasted",
+      "roughness": 0.62,
+      "metallic": 0.35
+    },
+    "screen": {
+      "slot": "window",
+      "graph": "metal_perforated_square",
+      "roughness": 0.8,
+      "metallic": 0.2
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "clay_fired",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_stainless_beadblasted",
+      "roughness": 0.6,
+      "metallic": 0.45
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/istiqlal-model.mjs",
+    "export": "buildIstiqlalSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildIstiqlalDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.62,
+            "metallic": 0.35
+          },
+          "screen": {
+            "slot": "window",
+            "graph": "metal_perforated_square",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "clay_fired",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.6,
+            "metallic": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "buildIstiqlalStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.62,
+            "metallic": 0.35
+          },
+          "screen": {
+            "slot": "window",
+            "graph": "metal_perforated_square",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "clay_fired",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.6,
+            "metallic": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildIstiqlalCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.62,
+            "metallic": 0.35
+          },
+          "screen": {
+            "slot": "window",
+            "graph": "metal_perforated_square",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "clay_fired",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.6,
+            "metallic": 0.45
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      225,
+      175,
+      230
+    ],
+    "lookAt": [
+      0,
+      25,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-istiqlal-skyline",
+      "position": [
+        225,
+        175,
+        230
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-istiqlal-district",
+      "position": [
+        225,
+        175,
+        230
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-istiqlal-street",
+      "position": [
+        225,
+        175,
+        230
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-istiqlal-closeup",
+      "position": [
+        225,
+        175,
+        230
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Exact mapped whole/subparts;vertical interpretation and fine exterior remain approximate.",
+    "anchor": [
+      106.831136364,
+      -6.170251873
+    ],
+    "heading": -0.816894039679,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard viewer DEM datum 7.175377200283473m. Floor -2.0039712667455456m is median of 452 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -7.175377200283473..4.1573731929048225m. Raised5m deck is an architectural visualization assumption;not a surveyed court level. Visible-model terrain cutout follows mapped outer boundary;modeled plinth/deck resolve site DEM interference. Preview101² grid is locally seated beneath that boundary;raw161² DEM retained separately. Exact exterior street/approach/threshold joins and vertical datum bias remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -52.702560176874975,
+          83.8524190229808
+        ],
+        [
+          28.122439513689923,
+          76.26564074073151
+        ],
+        [
+          28.983194246455383,
+          83.58888462118097
+        ],
+        [
+          46.99973553424725,
+          82.18119575677522
+        ],
+        [
+          46.34217381718507,
+          74.64154032039029
+        ],
+        [
+          89.68527510367082,
+          70.54578875529849
+        ],
+        [
+          89.64869695312345,
+          70.51144508844838
+        ],
+        [
+          102.24695822900134,
+          69.30996283912668
+        ],
+        [
+          103.08127009198786,
+          75.79399533046966
+        ],
+        [
+          120.88139221517572,
+          74.1831079014041
+        ],
+        [
+          118.8690567952533,
+          50.305337687095985
+        ],
+        [
+          109.23138253152453,
+          51.02901536186381
+        ],
+        [
+          99.04087675163993,
+          -59.11538012589956
+        ],
+        [
+          38.7235931264656,
+          -53.85483209290547
+        ],
+        [
+          37.08139266690422,
+          -65.98370409232301
+        ],
+        [
+          6.706328438054374,
+          -63.556631693507335
+        ],
+        [
+          7.915706383266844,
+          -51.83414197464741
+        ],
+        [
+          -1.5055675672899511,
+          -50.907283435056726
+        ],
+        [
+          -10.414694987655075,
+          -47.056412760476
+        ],
+        [
+          -20.13026559679925,
+          -68.80142904453007
+        ],
+        [
+          -13.915516906242278,
+          -71.51735704674347
+        ],
+        [
+          -18.671708000286394,
+          -82.49807312372316
+        ],
+        [
+          -29.65242009969803,
+          -77.74189478839492
+        ],
+        [
+          -32.138722851545836,
+          -83.33384987697353
+        ],
+        [
+          -60.65536450078318,
+          -70.61085157070869
+        ],
+        [
+          -60.72128259346438,
+          -70.67274286320324
+        ],
+        [
+          -83.29228622228476,
+          -60.51115188423783
+        ],
+        [
+          -93.68355346417552,
+          -83.70497174844304
+        ],
+        [
+          -118.32614468290835,
+          -72.63807584177727
+        ],
+        [
+          -111.51646437312002,
+          -56.471778526993724
+        ],
+        [
+          -120.00599082531672,
+          -52.634131370901116
+        ],
+        [
+          -116.60115150885343,
+          -44.55098350072223
+        ],
+        [
+          -120.94751070076421,
+          -42.52395363578101
+        ],
+        [
+          -86.3821251791353,
+          34.721016129063
+        ],
+        [
+          -93.01647788711959,
+          37.450164786778515
+        ],
+        [
+          -87.81424535393998,
+          49.25686648210316
+        ],
+        [
+          -76.84675614658069,
+          44.0810810840739
+        ],
+        [
+          -74.80650231631614,
+          48.847043528947076
+        ],
+        [
+          -62.17381553962893,
+          43.19877256960107
+        ],
+        [
+          -51.55294764711165,
+          67.01535918454616
+        ],
+        [
+          -54.273766772924006,
+          67.31109279046395
+        ]
+      ],
+      "basis": "Standard viewer DEM datum 7.175377200283473m. Floor -2.0039712667455456m is median of 452 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -7.175377200283473..4.1573731929048225m. Raised5m deck is an architectural visualization assumption;not a surveyed court level. Visible-model terrain cutout follows mapped outer boundary;modeled plinth/deck resolve site DEM interference. Preview101² grid is locally seated beneath that boundary;raw161² DEM retained separately. Exact exterior street/approach/threshold joins and vertical datum bias remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        106.831136364,
+        -6.170251873
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 7.175377200283473m. Floor -2.0039712667455456m is median of 452 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -7.175377200283473..4.1573731929048225m. Raised5m deck is an architectural visualization assumption;not a surveyed court level. Visible-model terrain cutout follows mapped outer boundary;modeled plinth/deck resolve site DEM interference. Preview101² grid is locally seated beneath that boundary;raw161² DEM retained separately. Exact exterior street/approach/threshold joins and vertical datum bias remain unverified."
+    },
+    "bounds": [
+      106.822,
+      -6.179,
+      106.841,
+      -6.161
+    ],
+    "notes": "Retained exact relation/9627236 /Q475379 matches current whole52776567760484 (3*2^44+9627236). Six current building controls retain whole41 outer vertices/two courtyard holes,40-point main mass,8-point inner hall,32-point main dome,16-point smaller dome and8-point minaret. Original anchor[106.831136364,-6.170251873] and heading−0.816894039679rad unchanged. Main hall axes remain angled relative to the long courtyard ranges;no forced global rectangle or horizontal rescale. Current names/tags are retained separately from prior multilingual exact identity. Main/small dome and minaret centers derive from their map bounds. Specific facade rhythm,stairs and vertical partitions are picture-proportioned estimates. Standard viewer DEM datum 7.175377200283473m. Floor -2.0039712667455456m is median of 452 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -7.175377200283473..4.1573731929048225m. Raised5m deck is an architectural visualization assumption;not a surveyed court level. Visible-model terrain cutout follows mapped outer boundary;modeled plinth/deck resolve site DEM interference. Preview101² grid is locally seated beneath that boundary;raw161² DEM retained separately. Exact exterior street/approach/threshold joins and vertical datum bias remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 7.175377200283473m. Floor -2.0039712667455456m is median of 452 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -7.175377200283473..4.1573731929048225m. Raised5m deck is an architectural visualization assumption;not a surveyed court level. Visible-model terrain cutout follows mapped outer boundary;modeled plinth/deck resolve site DEM interference. Preview101² grid is locally seated beneath that boundary;raw161² DEM retained separately. Exact exterior street/approach/threshold joins and vertical datum bias remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

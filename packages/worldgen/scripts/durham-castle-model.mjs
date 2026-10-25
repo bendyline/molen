@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcw/n0256_durham_castle/map-parts.json',
+      '../../../content/worldgen/source/places/gc/gcw/durham_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1059,7 +1059,7 @@ export function buildDurhamRuntime(out, detail) {
 }
 export const buildDurhamSkyline = (o) => buildDurhamRuntime(o, 'skyline');
 export const durhamStudy = {
-  id: 'N0256',
+  id: 'durham_castle',
   key: 'durham_castle',
   title: 'Durham Castle',
   category: 'castle',

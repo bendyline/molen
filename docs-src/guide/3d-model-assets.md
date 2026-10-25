@@ -57,6 +57,11 @@ Before making geometry, decide the points that affect the runtime result:
 Do not invent requirements that materially change the prompt. Record reasonable assumptions in
 the asset README or build report.
 
+For any vehicle, plan exterior **and** interior reference comparisons before constructing
+detail. The [vehicle overlay goal](medium-fi.md#vehicle-reference-overlays) applies to real
+vehicles and generic Bendy designs: use calibrated drawings and matched-camera photographs
+where available, and record missing references and reconstruction assumptions separately.
+
 ## 2. Keep source and runtime artifacts separate
 
 A practical project-local layout follows the [logical source bundle](source-bundles.md) contract:
@@ -115,6 +120,12 @@ World-viewer structures can also bind reusable surfaces through material
 reference contract, metric UV scale, tinting and shared texture lifetime. Keep unique signs,
 murals and facade art as their own materials. Inspect the model in the Earth renderer as well
 as its portable asset preview when it uses these bindings.
+
+The textured `window` slot uses a precolored glass texture and deliberately ignores vertex
+tints. A neutral shared graph such as `metal_painted` will therefore lose a dark palette tint
+in that slot. Use the `trim` slot for tinted painted frames or closed dark inset panels, and
+reserve `window` for a graph that already contains the intended glass color. Check the shared
+material render during construction; the portable GLB preview does not exercise this behavior.
 
 Choose a continuous surface for individually modeled stones: `stone_limestone_raw` has subtle
 pores and mineral mottling with a 1.2 × 1.2 m repeat. `stone_limestone_weathered` uses the same
@@ -258,6 +269,12 @@ Look at every PNG. Check silhouette, scale, origin, camera clipping, UV seams, m
 normal direction, texture repetition, transparent edges, light balance, and cast/contact shadows.
 Iterate until the screenshot—not merely the command exit code—matches the brief.
 
+For vehicles, include the [reference overlay review](medium-fi.md#vehicle-reference-overlays)
+throughout shape iteration: exterior silhouettes, then cabin/panel volumes and the operator's
+view. Inspect discrepancies before adding fine detail. Record calibration and independent
+landmark checks; an attractive overlay with stretched proportions is not evidence of accuracy.
+When a usable view is unavailable, document the gap and the fallback comparison actually made.
+
 ## 8. Host in a browser experience
 
 The default URL provider maps an id like `barn.weathered` to
@@ -327,13 +344,21 @@ still requires actually looking at current renders. In the engine repository, `p
 rejects tracked bulk captures while allowing required source images and summary previews.
 
 For a landmark collection whose buildings occupy separate sites, keep each building as an
-independent asset and geographic placement. The repository's next-1,000 catalog declares
-required members in `content/worldgen/source/next-1000/collections.json`; the authoring/import
+independent asset and geographic placement. The repository's structure catalog catalog declares
+required members in `content/worldgen/source/structure-catalog/collections.json`; the authoring/import
 commands expand a collection ID to its authored members, while readiness requires every
 declared member's own current source, import and inspected render/placement evidence. A
 collection never supplies a composite GLB or centroid placement. Reuse an existing exact
 building identity when one is already registered. Runtime spatial selection still operates on
 individual placements and fetches only the nearby models.
+
+When the site has one shared Wikidata identity but its buildings have no separate Wikidata
+items, a collection may use `identityKind: "osm-members"`. Declare each independent OSM node,
+way or relation in the member's `featureId` and in the attributed membership evidence's
+`featureIds`. Keep the shared site QID; do not invent member QIDs. Each source map frame must
+identify its own declared feature. Placements that share this site QID must retain their
+individual map anchors and disjoint map matching radii; an overlapping or repeated identity
+is rejected. Readiness still requires every member's own model and review.
 
 Keep a concise README or machine-readable build report next to the source. Record:
 

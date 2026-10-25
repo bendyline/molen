@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2f/n0247_karlstejn_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u2/u2f/karlstejn_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1030,7 +1030,7 @@ export function buildKarlstejnSkyline(out) {
     }
 }
 export const karlstejnStudy = {
-  id: 'N0247',
+  id: 'karlstejn_castle',
   key: 'karlstejn_castle',
   title: 'Karlštejn Castle',
   category: 'castle',

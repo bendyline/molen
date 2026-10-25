@@ -20,6 +20,12 @@ export interface AmbientRenderBudget {
   detailedCars: number;
   /** Full vessel models at most (default 4). */
   detailedBoats?: number;
+  /** Idle detailed instances per pool (default 4); active instances have separate caps. */
+  idleVehicleModels?: number;
+  /** Estimated geometry/texture bytes per detail pool, including active and idle (default 32 MiB). */
+  vehicleModelBytes?: number;
+  /** Concurrent detailed model loads per pool (default 2). */
+  vehicleLoads?: number;
   /** Animated (skinned) pedestrians at most. */
   skinnedFigures: number;
   /** Pedestrians beyond this distance (m) are not drawn. */
@@ -115,6 +121,12 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
   const applyBudget = (): void => {
     detail?.setMax(budget.detailedCars);
     boatDetail?.setMax(budget.detailedBoats ?? 4);
+    for (const pool of [detail, boatDetail])
+      pool?.setCacheBudget({
+        ...(budget.idleVehicleModels !== undefined ? { idleModels: budget.idleVehicleModels } : {}),
+        ...(budget.vehicleModelBytes !== undefined ? { modelBytes: budget.vehicleModelBytes } : {}),
+        ...(budget.vehicleLoads !== undefined ? { concurrentLoads: budget.vehicleLoads } : {}),
+      });
     figures.setBudget({
       skinned: budget.skinnedFigures,
       radius: budget.figureRadius,

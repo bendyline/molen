@@ -1,0 +1,351 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.24
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.5,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yeni-model.mjs",
+    "export": "buildYeniSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYeniDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildYeniStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYeniCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -102,
+      76,
+      112
+    ],
+    "lookAt": [
+      0,
+      20,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-yeni-skyline",
+      "position": [
+        -102,
+        76,
+        112
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-yeni-district",
+      "position": [
+        -102,
+        76,
+        112
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-yeni-street",
+      "position": [
+        -102,
+        76,
+        112
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-yeni-closeup",
+      "position": [
+        -102,
+        76,
+        112
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Exact mapped whole/court/fountain;internal and vertical interpretation remain approximate.",
+    "anchor": [
+      28.972061282,
+      41.01697895
+    ],
+    "heading": -0.854377682537,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard viewer DEM datum 4.202828064356562m. Floor 0.609548865798593m is median of 137 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -2.214149109303987..4.536271635757758m. Raised1.2m plinth is a picture-led visualization assumption,not a measured court level. Visible-model terrain cutout follows mapped outer boundary;preview101² grid is locally seated beneath that boundary. Raw161² DEM retained separately. Exact exterior street,step,threshold and ground joins remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -38.791554135726074,
+          22.780812525349557
+        ],
+        [
+          -17.556183123437652,
+          22.750790421825837
+        ],
+        [
+          -17.71453399113111,
+          27.39245489960912
+        ],
+        [
+          38.80731548205987,
+          27.319838677924412
+        ],
+        [
+          38.96101546454341,
+          -14.367378133702632
+        ],
+        [
+          38.54840618431065,
+          -27.2729736311631
+        ],
+        [
+          2.6044128789325036,
+          -27.504189693851224
+        ],
+        [
+          2.5061616855329536,
+          -24.303802314690287
+        ],
+        [
+          -7.390878635861027,
+          -24.258732044390364
+        ],
+        [
+          -7.4174819677414945,
+          -17.710017444999245
+        ],
+        [
+          -38.86768964546965,
+          -17.61292488988972
+        ]
+      ],
+      "basis": "Standard viewer DEM datum 4.202828064356562m. Floor 0.609548865798593m is median of 137 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -2.214149109303987..4.536271635757758m. Raised1.2m plinth is a picture-led visualization assumption,not a measured court level. Visible-model terrain cutout follows mapped outer boundary;preview101² grid is locally seated beneath that boundary. Raw161² DEM retained separately. Exact exterior street,step,threshold and ground joins remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        28.972061282,
+        41.01697895
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 4.202828064356562m. Floor 0.609548865798593m is median of 137 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -2.214149109303987..4.536271635757758m. Raised1.2m plinth is a picture-led visualization assumption,not a measured court level. Visible-model terrain cutout follows mapped outer boundary;preview101² grid is locally seated beneath that boundary. Raw161² DEM retained separately. Exact exterior street,step,threshold and ground joins remain unverified."
+    },
+    "bounds": [
+      28.963,
+      41.011,
+      28.982,
+      41.024
+    ],
+    "notes": "Retained relation/7574356 /Q911720 identifies Yeni Camii in Istanbul. Current whole52776565707604 (3*2^44+7574356) retains11 outer vertices and4-point courtyard hole;courtyard fountain35185556626907 retains11 points. Original anchor[28.972061282,41.01697895] and heading−0.854377682537rad unchanged,no horizontal rescale. Native+X southeast prayer hall,−X northwest courtyard,+Z southwest external gallery. Current map supplies no dome,minaret or internal hall controls;their centers and exterior partitions are explicit picture-proportioned estimates within the whole footprint. Separate royal pavilion/tomb,bazaar,streets and city remain host content. Standard viewer DEM datum 4.202828064356562m. Floor 0.609548865798593m is median of 137 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -2.214149109303987..4.536271635757758m. Raised1.2m plinth is a picture-led visualization assumption,not a measured court level. Visible-model terrain cutout follows mapped outer boundary;preview101² grid is locally seated beneath that boundary. Raw161² DEM retained separately. Exact exterior street,step,threshold and ground joins remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 4.202828064356562m. Floor 0.609548865798593m is median of 137 outside-perimeter samples every2m at1m offset plus0.25m. Whole-site raw DEM range -2.214149109303987..4.536271635757758m. Raised1.2m plinth is a picture-led visualization assumption,not a measured court level. Visible-model terrain cutout follows mapped outer boundary;preview101² grid is locally seated beneath that boundary. Raw161² DEM retained separately. Exact exterior street,step,threshold and ground joins remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

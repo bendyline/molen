@@ -466,7 +466,7 @@ export const buildShanhaiSkyline = (o) =>
     'skyline',
   );
 export const shanhaiStudy = {
-  id: 'N0259',
+  id: 'shanhai_pass',
   key: 'shanhai_pass',
   title: 'Shanhai Pass',
   category: 'castle',

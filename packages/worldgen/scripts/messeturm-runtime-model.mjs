@@ -14,7 +14,7 @@ import {
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0170_messeturm',
+const key = 'messeturm',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json')));
 const settings = {
@@ -129,7 +129,7 @@ function curtainLevel(
 function buildMesseturm(out, m, level) {
   const c = settings[level];
   const curtain = (out, p, lo, hi, opts) => curtainLevel(out, p, lo, hi, c, opts);
-  const key = 'n0170_messeturm',
+  const key = 'messeturm',
     granite = [0.62, 0.32, 0.27],
     dark = [0.2, 0.29, 0.3],
     trim = [0.55, 0.56, 0.53];

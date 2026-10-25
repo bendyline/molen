@@ -1,0 +1,614 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.eanna",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:9cf5ce0716fd93737e601b5ff9987698755494d35854b12f8f149be7990c1203",
+  "sourceHash": "sha256:289b714ba0f09df1f0cdd1253a4074f808ba823e139576a1912c39bf0c8c6975",
+  "runtimeHash": "sha256:6e55664a24bb841db015b61371c9fcf7b9f89f30e087347b3ebb62dc32eaea6f",
+  "captureReportHash": "sha256:eaf9640a0a3768fed418b04421c9cdd89673c8320baca6e6acb6fb8e859c7d87",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/exposed-brick-strata-and-eroded-west-face.png",
+      "shots/broken-shelves-runoff-gullies-and-open-crown.png",
+      "shots/mapped-lower-perimeter-and-separate-core.png"
+    ],
+    "notes": "Inspected all48 final current source/shared/medium-fi/native-site/fallback views. The specific irregular mapped Eanna ziggurat core has broken brick shelves, eroded side notches/runoff grooves and a low uneven open crown. The separate mapped lower perimeter is a low weathered edge around retained native ground. Same-round images led to a broader irregular crown, varied ledges, removal of a continuous slab and redundant internal endcaps that caused repeated seam artifacts. The two ordinary photographs guide exposed-earth/brick appearance; no intact summit shrine or restored ancient staircase is modeled."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/exposed-brick-strata-and-eroded-west-face.png",
+      "shots/shared/broken-shelves-runoff-gullies-and-open-crown.png",
+      "shots/shared/mapped-lower-perimeter-and-separate-core.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Two reused256-square graphs: earth_adobe and brick_longformat. Metric UVs with muted linear ochre/earth tints; both graphs read once through the production material resolver. No embedded images or unique atlas. Four levels682 /1904 /3440 /5472triangles, at most two draws, initial285944bytes. Separate GPU streams and matching CPU/GPU byte accounting; all geometry, draw and initial-download budgets pass. Eviction disposes all model geometry.",
+    "captureReportHash": "sha256:1521153333f8618159ae5b822ed8c36de150c38f7c15c852510134739961d225"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/exposed-brick-strata-and-eroded-west-face.png",
+      "medium-fi/broken-shelves-runoff-gullies-and-open-crown.png",
+      "medium-fi/mapped-lower-perimeter-and-separate-core.png",
+      "medium-fi/eanna-skyline.png",
+      "medium-fi/eanna-district.png",
+      "medium-fi/eanna-street.png",
+      "medium-fi/eanna-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected current noon/late, economy/high, silhouette, three architectural views, all authored levels and transitions. Skyline retains the low irregular core/crown and mapped perimeter; district restores the broken shelf profile and shared brick surfaces. Street/close levels refine the outlines and erosion. Flat stages expose buried lower feet; native site/source terrain views establish contact. The native integration fixture uses green fallback ground and existing procedural buildings, which prove terrain/context preservation rather than actual desert landcover or neighboring facade style.",
+    "captureReportHash": "sha256:62bdf7cf5c26fe22d3a51d68dca98409bb7c8108c5ea9d4a20703f1c8006ea5d"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:46477722abc789691b574733097c06512f4f85dc53859eb36b79b1e6ced2ac4c",
+    "mapFrameHash": "sha256:89e0b1a19820636c9c60133ef26a250a654fc24f2a6c90d47250caca2e92f663",
+    "notes": "Candidate Q706970 denotes the Eanna complex. Its broad reference point is roughly455m southwest of the named mapped ziggurat constituent; the nearby Eanna District point and inspected ordinary Eanna photograph establish the reviewed constituent association. Model only that surviving ziggurat at native controls35185683624247 and35185683624248, preserving their irregular lower/core footprints (about74x70m outer native extent). Native east/south at heading0 with mapped architectural axis about+0.828849rad; no signed doorway orientation claimed. Replace just those two overlapping procedural shells using2cm numeric margin. All six independent native buildings remain byte-equivalent; original six-meter terrain and water stay unchanged. Local buried perimeter/core feet retain grade. Four loaded levels keep six native buildings; failure keeps all eight originals; unloading restores ground/water and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi visualization of the dominant exposed Eanna/Inanna ziggurat constituent from two ordinary photos and standard PMTiles/Mapzen data. The larger Eanna precinct and other temple remains are not reconstructed; unmodeled context remains native terrain. About9.6m core height, shelf survival, low perimeter height/width, individual erosion slots, crown and foot thresholds are explicit visual approximations. The close photograph has a generic Uruk title and supplies surface/profile vocabulary; the explicitly named Eanna view and named map controls establish location. No exact brick inventory, surveyed excavation model, summit temple, ancient staircase, buried room grid or modern summit marker is claimed. Physical-device and dense-city timing measurements remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/tj/tj8/eanna/models/source.glb\",\"hash\":\"sha256:289b714ba0f09df1f0cdd1253a4074f808ba823e139576a1912c39bf0c8c6975\",\"bytes\":658632,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/tj/tj8/eanna/model.glb\",\"hash\":\"sha256:6e55664a24bb841db015b61371c9fcf7b9f89f30e087347b3ebb62dc32eaea6f\",\"bytes\":658356,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/tj/tj8/eanna/model.skyline.glb\",\"hash\":\"sha256:b7ae054147fc537218ee85229b5cd1dcf27466f1e32037c9df9d45da8cd9cf5b\",\"bytes\":76372,\"errors\":0,\"warnings\":0,\"triangles\":682,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/tj/tj8/eanna/model.district.glb\",\"hash\":\"sha256:8ff21cd611c355338a9862adb7f5e8916e07adbcc7e642ad88e5c9a83e7711a3\",\"bytes\":209572,\"errors\":0,\"warnings\":0,\"triangles\":1904,\"draws\":2}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/tj/tj8/eanna/model.street.glb\",\"hash\":\"sha256:0691915c494bbd89a59ea3f04290e4b08e4e1f11bb9b77c9c88a3cac2fe449e5\",\"bytes\":376396,\"errors\":0,\"warnings\":0,\"triangles\":3440,\"draws\":2}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/tj/tj8/eanna/model.closeup.glb\",\"hash\":\"sha256:58e0d916e09bb0d0dfa12302aaef4838827229ac2cfc2a6b8f919eb8148bf85c\",\"bytes\":597284,\"errors\":0,\"warnings\":0,\"triangles\":5472,\"draws\":2}"
+      },
+      {
+        "check": "mapped-low-perimeter-contact-exposed-core-crown-open-surrounding-ground",
+        "passed": true,
+        "notes": "174 actual mesh probes across source/runtime/four levels check the mapped concave lower edge with buried bases, exposed uneven core crown, open surrounding native ground and absence of a restored tall summit structure."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Two reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:289b714ba0f09df1f0cdd1253a4074f808ba823e139576a1912c39bf0c8c6975"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:6e55664a24bb841db015b61371c9fcf7b9f89f30e087347b3ebb62dc32eaea6f"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:b7ae054147fc537218ee85229b5cd1dcf27466f1e32037c9df9d45da8cd9cf5b"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:8ff21cd611c355338a9862adb7f5e8916e07adbcc7e642ad88e5c9a83e7711a3"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:0691915c494bbd89a59ea3f04290e4b08e4e1f11bb9b77c9c88a3cac2fe449e5"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:58e0d916e09bb0d0dfa12302aaef4838827229ac2cfc2a6b8f919eb8148bf85c"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 8,
+          "independentBuildings": 6,
+          "remainingBuildings": 6,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.earth_adobe": 1,
+            "molen.worldgen.material.brick_longformat": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.eanna"
+          ],
+          "rawTerrainRange": {
+            "min": -17.650272292766907,
+            "max": 6.698827707233093
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:2c6906f19589e99fc63dce580f10b7030eaee8e6f0844da8a322dadb74a3dee8",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 3,
+              "triangles": 56672
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -84,
+                40,
+                -91
+              ],
+              "lookAt": [
+                1,
+                4,
+                -16
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-exposed-brick-strata-and-eroded-west-face.png",
+            "hash": "sha256:ddce2d7c215e4d52c522a44c42d3c9070ea2d8f6541a74a3a85fed2ea5dca828",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 3,
+              "triangles": 56672
+            },
+            "camera": {
+              "name": "exposed-brick-strata-and-eroded-west-face",
+              "position": [
+                -42,
+                15,
+                -49
+              ],
+              "lookAt": [
+                -2,
+                4,
+                -17
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-broken-shelves-runoff-gullies-and-open-crown.png",
+            "hash": "sha256:103880e0d6cdd5821333d84c06b8b76f335589e834f1f298852f35ee86820498",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 3,
+              "triangles": 56672
+            },
+            "camera": {
+              "name": "broken-shelves-runoff-gullies-and-open-crown",
+              "position": [
+                36,
+                31,
+                -51
+              ],
+              "lookAt": [
+                3,
+                5,
+                -17
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-lower-perimeter-and-separate-core.png",
+            "hash": "sha256:703e2ce4c63c971234b2ab33b4658bc0699ea787c0382a5a39300274d13e7051",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 3,
+              "triangles": 56672
+            },
+            "camera": {
+              "name": "mapped-lower-perimeter-and-separate-core",
+              "position": [
+                -52,
+                32,
+                39
+              ],
+              "lookAt": [
+                2,
+                3,
+                -14
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 8,
+          "independentBuildings": 6,
+          "remainingBuildings": 6,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.earth_adobe": 1,
+            "molen.worldgen.material.brick_longformat": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.eanna"
+          ],
+          "rawTerrainRange": {
+            "min": -17.650272292766907,
+            "max": 6.698827707233093
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:afac105731e87ad6915684a94b44a2aaa2570f4830b8df697baa1b1d8444b465",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 3,
+              "triangles": 54640
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -84,
+                40,
+                -91
+              ],
+              "lookAt": [
+                1,
+                4,
+                -16
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 8,
+          "independentBuildings": 6,
+          "remainingBuildings": 6,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.earth_adobe": 1,
+            "molen.worldgen.material.brick_longformat": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.eanna"
+          ],
+          "rawTerrainRange": {
+            "min": -17.650272292766907,
+            "max": 6.698827707233093
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:8808ca1e9f0ebb7219ca9bdbb83b301241dafaa4fa1ca22e2e831fcf39c226a1",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 3,
+              "triangles": 53104
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -84,
+                40,
+                -91
+              ],
+              "lookAt": [
+                1,
+                4,
+                -16
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 8,
+          "independentBuildings": 6,
+          "remainingBuildings": 6,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.eanna"
+          ],
+          "rawTerrainRange": {
+            "min": -17.650272292766907,
+            "max": 6.698827707233093
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:8d0a5eb6cefec0c514ac6a54c83a72d0c0aaf5927e3a25054dd21dfe617b8b51",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 2,
+              "triangles": 51882
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -84,
+                40,
+                -91
+              ],
+              "lookAt": [
+                1,
+                4,
+                -16
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 8,
+          "independentBuildings": 6,
+          "remainingBuildings": 8,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185683624247,
+              "area": 2634.6544539592587
+            },
+            {
+              "id": 35185683624248,
+              "area": 1234.2020513761497
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.eanna"
+          ],
+          "rawTerrainRange": {
+            "min": -17.650272292766907,
+            "max": 6.698827707233093
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:ac9c5beee6b304fc22cbc58db249a47c1a5e91895ea4ce8c9bbcd8f02743e346",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 6,
+              "triangles": 58690
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -84,
+                40,
+                -91
+              ],
+              "lookAt": [
+                1,
+                4,
+                -16
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Surviving Eanna/Inanna ziggurat constituent of the named Eanna district: mapped irregular lower perimeter, eroded stepped brick core, broad broken shelves, runoff gullies and uneven open crown. No restored summit temple, intact ancient staircase or invented precinct-room grid. Other Eanna remains stay host terrain.",
+    "Candidate Q706970 is the Eanna temple complex; its broad reference point is about454m southwest of the standard named Eanna District point35185683624246 and Ziggurat of Uruk point35185683624247. Model only that explicitly reviewed Eanna/Inanna ziggurat constituent at the two overlapping building controls35185683624247/248. Their mapped present-day lower/core outlines fix about74x70m native extent. Native east/south at heading0; mapped architectural axis about0.828849rad, without a signed doorway-facing claim. Broader precinct and other temples are not authored.",
+    "About9.6m exposed core above local standard terrain with a low0.85m perimeter remnant. Picture-led height, shelf survival, gully depths, crown level and minor broken ledges are approximate. The model does not restore ancient stages or the vanished summit temple.",
+    "Retain the pinned standard Protomaps2026-10-14/Mapzen13–14 six-meter native grid and independent buildings. Lower perimeter and core feet follow sampled grade with buried bottoms; elevated relief is authored exposed masonry/eroded brick, not a copied DEM-only mound. Preserve ground and water; replace only two corresponding native procedural shells with2cm numeric margin. No flattened precinct or ground/water cutout.",
+    "Models the explicitly reviewed Eanna/Inanna ziggurat constituent at the named Eanna District controls, not the full temple precinct. Height, shelf survival, erosion slots, crown and low perimeter remnant are visual approximations. No summit temple, ancient staircase, exact brick inventory or buried rooms are restored. Native six-meter terrain limits ground fit."
+  ],
+  "sourceBindingMaintenance": {
+    "reviewedOn": "2026-10-19",
+    "status": "carried-existing-acceptance-after-source-equivalence",
+    "previousInputHash": "sha256:4dacabbe8f087bdf0d3d11c61c0161e6c98652c022978847bc0026d6804fc0a5",
+    "inputHash": "sha256:9cf5ce0716fd93737e601b5ff9987698755494d35854b12f8f149be7990c1203",
+    "originalVisualReviewOn": "2026-10-19",
+    "sourceRelease": "assets-3ad02ba96a6d989f",
+    "modelPins": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/tj/tj8/eanna/models/source.glb",
+        "hash": "sha256:289b714ba0f09df1f0cdd1253a4074f808ba823e139576a1912c39bf0c8c6975"
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/tj/tj8/eanna/model.glb",
+        "hash": "sha256:6e55664a24bb841db015b61371c9fcf7b9f89f30e087347b3ebb62dc32eaea6f"
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/tj/tj8/eanna/model.skyline.glb",
+        "hash": "sha256:b7ae054147fc537218ee85229b5cd1dcf27466f1e32037c9df9d45da8cd9cf5b"
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/tj/tj8/eanna/model.district.glb",
+        "hash": "sha256:8ff21cd611c355338a9862adb7f5e8916e07adbcc7e642ad88e5c9a83e7711a3"
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/tj/tj8/eanna/model.street.glb",
+        "hash": "sha256:0691915c494bbd89a59ea3f04290e4b08e4e1f11bb9b77c9c88a3cac2fe449e5"
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/tj/tj8/eanna/model.closeup.glb",
+        "hash": "sha256:58e0d916e09bb0d0dfa12302aaef4838827229ac2cfc2a6b8f919eb8148bf85c"
+      }
+    ],
+    "change": "Exact prior input reconstructed using prior recipe list and preserved helper text. Seven helper edits change only the first comment line, making existing source recipes explicit. All six approved model files are unchanged.",
+    "scope": "Existing inspected images, materials, LODs and placement retained; no new visual inspection is claimed."
+  }
+}

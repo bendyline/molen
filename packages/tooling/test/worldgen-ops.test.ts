@@ -83,7 +83,9 @@ describe('worldgen pack helpers', () => {
     const parsed = validateByKind('worldgen-batch' as never, doc);
     expect(parsed.ok, parsed.ok ? '' : parsed.formatted).toBe(true);
     expect(doc.buildings).toHaveLength(10);
-    const { pack, landmarks } = await loadStylePackFromDisk();
+    const { pack, landmarks, fonts } = await loadStylePackFromDisk();
+    expect(fonts?.roles?.highway).toBe('overpass.semibold');
+    expect(Object.keys(fonts?.fonts ?? {})).toHaveLength(4);
     expect(Object.keys(pack.archstyles).length).toBeGreaterThanOrEqual(8);
     expect(pack.root).toEqual(shippedStyle);
     expect(Object.keys(pack.archstyles).sort()).toEqual(Object.keys(shippedStyle.styles).sort());

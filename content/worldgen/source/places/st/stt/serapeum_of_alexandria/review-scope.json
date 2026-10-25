@@ -1,0 +1,297 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "column": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "statue": {
+      "slot": "trim",
+      "graph": "stone_granite",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "limestone": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "incision": {
+      "slot": "trim",
+      "graph": "stone_granite",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      54.968839626211,
+      29,
+      19.272432906820452
+    ],
+    "lookAt": [
+      -2.2657531351495908,
+      11,
+      5.372742570657913
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "plain-monolith-leafy-capital-and-concave-abacus",
+      "position": [
+        9.565105526736957,
+        27.5,
+        2.9169772474920235
+      ],
+      "lookAt": [
+        0,
+        25.5,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "paired-sphinxes-separate-plinths-and-open-ground",
+      "position": [
+        15.595981482594606,
+        10,
+        33.1928510615549
+      ],
+      "lookAt": [
+        -0.7122584173954305,
+        2.4,
+        9.191990423561666
+      ],
+      "fov": 48
+    },
+    {
+      "name": "worn-sphinx-head-nemes-and-paws",
+      "position": [
+        13.565498428008784,
+        5.1,
+        6.186053055033655
+      ],
+      "lookAt": [
+        8.356915011241371,
+        2.7,
+        1.9421564033024294
+      ],
+      "fov": 46
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "serapeum-skyline",
+      "position": [
+        9.565105526736957,
+        27.5,
+        2.9169772474920235
+      ],
+      "lookAt": [
+        0,
+        25.5,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "serapeum-district",
+      "position": [
+        9.565105526736957,
+        27.5,
+        2.9169772474920235
+      ],
+      "lookAt": [
+        0,
+        25.5,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "district"
+    },
+    {
+      "name": "serapeum-street",
+      "position": [
+        9.565105526736957,
+        27.5,
+        2.9169772474920235
+      ],
+      "lookAt": [
+        0,
+        25.5,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "street"
+    },
+    {
+      "name": "serapeum-closeup",
+      "position": [
+        9.565105526736957,
+        27.5,
+        2.9169772474920235
+      ],
+      "lookAt": [
+        0,
+        25.5,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -1.1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/serapeum-model.mjs",
+    "export": "buildSerapeumSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSerapeumDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "column": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "statue": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "incision": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSerapeumStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "column": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "statue": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "incision": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSerapeumCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "column": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "statue": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "incision": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Serapeum_of_Alexandria_(II).jpg",
+    "anchor": [
+      29.8963925242424,
+      31.182580653236712
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Pinned standard Protomaps2026-10-14 and Mapzen13–14 extract, recentered on the named column point. Retain its original six-meter native grid and water. Column and each sphinx have separate locally sampled level footings with buried bottoms; no continuous fabricated podium spans the precinct. The coarse DEM does not resolve excavation walls or exact restored paving levels. Local foot/plinth heights, spacing and contact are approximate; surrounding low ruins and visitor landscape remain host context. No terrain, water or building cutout.",
+    "replaceFootprint": false,
+    "bounds": [
+      29.89624348075893,
+      31.18241042400458,
+      29.896537045342747,
+      31.18259548643529
+    ],
+    "terrainReference": {
+      "anchor": [
+        29.8963925242424,
+        31.182580653236712
+      ],
+      "modelHeight": 0,
+      "basis": "Pinned standard Protomaps2026-10-14 and Mapzen13–14 extract, recentered on the named column point. Retain its original six-meter native grid and water. Column and each sphinx have separate locally sampled level footings with buried bottoms; no continuous fabricated podium spans the precinct. The coarse DEM does not resolve excavation walls or exact restored paving levels. Local foot/plinth heights, spacing and contact are approximate; surrounding low ruins and visitor landscape remain host context. No terrain, water or building cutout."
+    },
+    "notes": "The candidate is the Serapeum site Q521646. Its reference coordinate is about 88m southeast of the actual named column point. Standard PMTiles monument17593449217372 fixes the component center at29.8963925242424,31.182580653236712; the ordinary OpenStreetMap node1263172956 page confirms Pompei's Pillar and component Q492487. These are deliberately distinct site/component identities. The ordinary site photographs explicitly show this column and paired sphinxes as the Serapeum remains. mappedIdentity records that reviewed constituent association, not an assertion that the node has the site's QID. Native +X east/+Z south, runtime heading0. Approximate southeast-facing sphinx arrangement follows the photographed viewpoint; their spacing and bearing are picture-led estimates, not surveyed plans. Pinned standard Protomaps2026-10-14 and Mapzen13–14 extract, recentered on the named column point. Retain its original six-meter native grid and water. Column and each sphinx have separate locally sampled level footings with buried bottoms; no continuous fabricated podium spans the precinct. The coarse DEM does not resolve excavation walls or exact restored paving levels. Local foot/plinth heights, spacing and contact are approximate; surrounding low ruins and visitor landscape remain host context. No terrain, water or building cutout."
+  }
+}

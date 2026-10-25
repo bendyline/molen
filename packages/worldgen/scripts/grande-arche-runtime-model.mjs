@@ -4,7 +4,7 @@ import { beam } from './authored-structure-mesh.mjs';
 import { face, grid, skylineExpansion, tri } from './signature-tower-expansion-models.mjs';
 import { box } from './structure-mesh.mjs';
 
-export const grandeArcheRuntimeAssetId = 'molen.worldgen.structure.n0147_grande_arche';
+export const grandeArcheRuntimeAssetId = 'molen.worldgen.structure.grande_arche';
 const pale = [0.87, 0.86, 0.82],
   metal = [0.66, 0.7, 0.72];
 const ceiling = [
@@ -15,7 +15,7 @@ const ceiling = [
 ];
 
 export function buildGrandeArcheCurrent(out) {
-  skylineExpansion.find((s) => s.id === 'N0147').build(out);
+  skylineExpansion.find((s) => s.id === 'grande_arche').build(out);
   // Operator photographs show a panelled underside; preserve the original recipe above.
   grid(out, ceiling, [0.28, 0.35, 0.38], 2.8, 2.8, 0.21, [0.69, 0.71, 0.7]);
 }
@@ -38,7 +38,7 @@ export function buildGrandeArcheStreet(out) {
     if (!cloud) out[method](slot, ref, points, normal, uv, color);
   };
   skylineExpansion
-    .find((s) => s.id === 'N0147')
+    .find((s) => s.id === 'grande_arche')
     .build({
       addTriangle: (...args) => relay('addTriangle', ...args),
       addQuad: (...args) => relay('addQuad', ...args),

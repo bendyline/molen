@@ -1,0 +1,411 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_limestone",
+      "roughness": 0.7,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "dome": {
+      "slot": "roof",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.5,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "roughness": 0.46,
+      "metallic": 0,
+      "localRef": "palette:#536575"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/azhar-model.mjs",
+    "export": "buildAzharSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAzharDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.46,
+            "metallic": 0,
+            "localRef": "palette:#536575"
+          }
+        }
+      },
+      "street": {
+        "export": "buildAzharStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.46,
+            "metallic": 0,
+            "localRef": "palette:#536575"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAzharCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.46,
+            "metallic": 0,
+            "localRef": "palette:#536575"
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -160,
+      112,
+      145
+    ],
+    "lookAt": [
+      0,
+      15,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-azhar-skyline",
+      "position": [
+        -160,
+        112,
+        145
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-azhar-district",
+      "position": [
+        -160,
+        112,
+        145
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-azhar-street",
+      "position": [
+        -160,
+        112,
+        145
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-azhar-closeup",
+      "position": [
+        -160,
+        112,
+        145
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.regional.arid.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Exact way and approximate picture-based internal exterior;QA records acceptance separately.",
+    "anchor": [
+      31.262716222,
+      30.045758518
+    ],
+    "heading": -0.608527939809,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard viewer DEM anchor datum 33.06707422096729m. Approximate floor -0.03681852832554m is median of 237 outside-perimeter samples at2m cadence and1m offset plus0.25m. Raw whole-footprint samples -4.148309607953795..4.397781723909979m show building-contaminated DEM. A visible-model ground cutout follows only the mapped outer boundary;modeled paving seats the compound. Preview terrain is locally seated beneath that footprint;raw161x161 grid retained separately. Exact surrounding paving/street/door joins and DEM vertical bias unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -63.201225037681716,
+          50.077716286873724
+        ],
+        [
+          51.13332715772735,
+          52.31957091301064
+        ],
+        [
+          63.00892739898686,
+          44.04548431990036
+        ],
+        [
+          57.5085424311783,
+          -35.284425702704816
+        ],
+        [
+          57.824849109976476,
+          -44.325008460978495
+        ],
+        [
+          50.120966815119864,
+          -45.88763776498123
+        ],
+        [
+          48.57745907065662,
+          -37.252060413325054
+        ],
+        [
+          42.37715238533413,
+          -38.91725526699576
+        ],
+        [
+          40.541506624618,
+          -51.49860671343154
+        ],
+        [
+          26.759015737129673,
+          -52.29114852508073
+        ],
+        [
+          25.773507740736832,
+          -37.42921866564142
+        ],
+        [
+          -35.499361624225024,
+          -39.4694603061452
+        ],
+        [
+          -36.43799769026881,
+          -36.295438468977125
+        ],
+        [
+          -63.135567295095164,
+          -37.53979076186461
+        ]
+      ],
+      "basis": "Standard viewer DEM anchor datum 33.06707422096729m. Approximate floor -0.03681852832554m is median of 237 outside-perimeter samples at2m cadence and1m offset plus0.25m. Raw whole-footprint samples -4.148309607953795..4.397781723909979m show building-contaminated DEM. A visible-model ground cutout follows only the mapped outer boundary;modeled paving seats the compound. Preview terrain is locally seated beneath that footprint;raw161x161 grid retained separately. Exact surrounding paving/street/door joins and DEM vertical bias unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        31.262716222,
+        30.045758518
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM anchor datum 33.06707422096729m. Approximate floor -0.03681852832554m is median of 237 outside-perimeter samples at2m cadence and1m offset plus0.25m. Raw whole-footprint samples -4.148309607953795..4.397781723909979m show building-contaminated DEM. A visible-model ground cutout follows only the mapped outer boundary;modeled paving seats the compound. Preview terrain is locally seated beneath that footprint;raw161x161 grid retained separately. Exact surrounding paving/street/door joins and DEM vertical bias unverified."
+    },
+    "bounds": [
+      31.254,
+      30.039,
+      31.272,
+      30.053
+    ],
+    "notes": "Retained exact way/24749059 and Q312342 match current standard viewer building35184396837891 (2*2^44+24749059),14 outer vertices. Current building properties have no name,height or inner holes;original multilingual QID/name tags remain separately retained. Anchor[31.262716222,30.045758518] and heading -0.608527939809 rad unchanged. Whole footprint remains mapped;court,gallery backs,domes,towers and entrance positions are explicitly picture-proportioned estimates inside it. Main gate faces-X;prayer range lies+X. Precise internal plan and individual tower coordinates have no independent mapped controls. Standard viewer DEM anchor datum 33.06707422096729m. Approximate floor -0.03681852832554m is median of 237 outside-perimeter samples at2m cadence and1m offset plus0.25m. Raw whole-footprint samples -4.148309607953795..4.397781723909979m show building-contaminated DEM. A visible-model ground cutout follows only the mapped outer boundary;modeled paving seats the compound. Preview terrain is locally seated beneath that footprint;raw161x161 grid retained separately. Exact surrounding paving/street/door joins and DEM vertical bias unverified."
+  },
+  "geographicNote": "Standard viewer DEM anchor datum 33.06707422096729m. Approximate floor -0.03681852832554m is median of 237 outside-perimeter samples at2m cadence and1m offset plus0.25m. Raw whole-footprint samples -4.148309607953795..4.397781723909979m show building-contaminated DEM. A visible-model ground cutout follows only the mapped outer boundary;modeled paving seats the compound. Preview terrain is locally seated beneath that footprint;raw161x161 grid retained separately. Exact surrounding paving/street/door joins and DEM vertical bias unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

@@ -1,0 +1,581 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.a_ma_temple",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:9d928f83e2b7f26c46c0ee9b03760926b268c66330f8b964fa0de30a3a4c36e1",
+  "sourceHash": "sha256:5c53b9fc59b05b7d412ff0d52e93c2220df75bbb5679a2f0dd3c3f86de4fb084",
+  "runtimeHash": "sha256:478f9781403601b2e06655f0853a66eca3be89b7af5bbf8455c06fc16566886a",
+  "captureReportHash": "sha256:7af049a5083aa34c0f72042821a2ebcc339ef90d24a0f94751d975f9acbe7cf5",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/northern-granite-gate-green-crest-lanterns-and-lions.png",
+      "shots/red-round-arch-lattice-green-roofs-and-pagoda.png",
+      "shots/separate-hillside-terraces-and-open-inner-courts.png"
+    ],
+    "notes": "Inspected all 48 final current source, shared-material, medium-fi, native-site and failed-load views in this continuous round. The main red hall has a real round arched passage, pale arch trim, open lattice windows, curved green roof and slender red/white tiered pagoda at its south side. Separate ranges rise on hillside terraces around open inner courts. The northern granite gateway has an open red-jamb passage, paired curling ridge forms and central pearl, two red lanterns, stairs, balustrades and simplified seated guardian lions. The rear northern pavilion has an open post-supported porch. Roof subdivisions, terrace engineering and internal allocation are approximate; no exact hidden-room inventory."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/northern-granite-gate-green-crest-lanterns-and-lions.png",
+      "shots/shared/red-round-arch-lattice-green-roofs-and-pagoda.png",
+      "shots/shared/separate-hillside-terraces-and-open-inner-courts.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five reused 256-square material graphs supply granite, lime plaster, plain wood, ceramic tile and polished metal. Metric UVs and linear muted red, green, pale stone and gold tints; every shared graph is read once by the production resolver. No embedded images or unique photo atlas. Four levels contain 976 / 3656 / 6096 / 7824 triangles, at most six draws; initial skyline plus district geometry is 465876 bytes. Separate GPU attribute streams avoid duplicate uploads. Eviction releases all model geometry.",
+    "captureReportHash": "sha256:16d4888e52fac043fee6e10f49b66aea858aace8b10f09df0cb467bea8708d0e"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/northern-granite-gate-green-crest-lanterns-and-lions.png",
+      "medium-fi/red-round-arch-lattice-green-roofs-and-pagoda.png",
+      "medium-fi/separate-hillside-terraces-and-open-inner-courts.png",
+      "medium-fi/ama-skyline.png",
+      "medium-fi/ama-district.png",
+      "medium-fi/ama-street.png",
+      "medium-fi/ama-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected current noon/late, economy/high, whole silhouettes, architectural detail, all four authored levels and transitions. The low grouped roofs and detached northern gate remain readable; skyline simplifies lattice, crests, lions and pagoda tiers while preserving both real doorway voids and the compound layout. Close levels retain curved eaves, roof texture, framed lattice and facade ornaments. Flat library stages expose terrain-relative footings; the retained native six-meter hillside and source terrain views carry contact judgment. Native fixture green fallback ground and procedural neighbors are host context, not claims about actual paving or neighboring facade appearance.",
+    "captureReportHash": "sha256:a013865375a2e5c7cc647e54530fc7cec157c88068f88d6f4813d650fb3d73d1"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e880d8b1eb9815a923e9d87e503e9e154ea82b05c8af0859c8effa35a58203ac",
+    "mapFrameHash": "sha256:134d469cdebdbf7a827668c9a79fc85a893f0487c1cdb79a2e1e707ac865e951",
+    "notes": "Exact-QID way192187333 and main PMTiles building35184564276165 fix the 38.6 by 25.1-meter main compound outline and 8.2-meter height tag. Building35185722933384 about31m north supplies the separate gate/pavilion control. Native east/south at heading0, internal architectural angle+1.472357881276 radians. Ordinary west-side photographs resolve the viewed facade direction toward local+v. Only those two native shells are replaced, with a2cm numeric mask margin; all683 independent in-tile buildings remain byte-equivalent at every loaded level. Preserve native ground and water, using separately sampled buried foundations for each hall/gate/pagoda/lion and open native-grade inner courts. Four loaded levels retain683 native buildings; failed loading retains all685 originals; unloading restores ground/water and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior visualization from three inspected ordinary pictures and standard PMTiles/Mapzen data. Hall allocation and subdivisions inside the broad main outline, court dimensions, roof heights/profiles, pagoda center and seven-tier10.8m form, terrace/threshold engineering, lion anatomy and ridge figures remain explicit visual approximations. Coarse six-meter terrain does not resolve actual paving or low retaining walls; some platforms and approach steps are exaggerated by this grade approximation. Fine lettering, exact inscriptions, furnishings, incense coils, individual ceramic figures, trees and event trussing are omitted. Physical-device and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/we/web/a_ma_temple/models/source.glb\",\"hash\":\"sha256:5c53b9fc59b05b7d412ff0d52e93c2220df75bbb5679a2f0dd3c3f86de4fb084\",\"bytes\":942748,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/we/web/a_ma_temple/model.glb\",\"hash\":\"sha256:478f9781403601b2e06655f0853a66eca3be89b7af5bbf8455c06fc16566886a\",\"bytes\":942168,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/we/web/a_ma_temple/model.skyline.glb\",\"hash\":\"sha256:c8792338350794c5b1bbc05cc0b85bbc8e89b2d6d4c4c2599ab3d7fd0aaeab77\",\"bytes\":102080,\"errors\":0,\"warnings\":0,\"triangles\":976,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/we/web/a_ma_temple/model.district.glb\",\"hash\":\"sha256:d9f6268c15936b0599a7cfd72f7c1d72e8a7953dd5877c67cb677fa0fc6538eb\",\"bytes\":363796,\"errors\":0,\"warnings\":0,\"triangles\":3656,\"draws\":6}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/we/web/a_ma_temple/model.street.glb\",\"hash\":\"sha256:1435a89d3987729f2a659c66c182a723b69e819d09bd58eae8a4ce07bcd70089\",\"bytes\":603844,\"errors\":0,\"warnings\":0,\"triangles\":6096,\"draws\":6}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/we/web/a_ma_temple/model.closeup.glb\",\"hash\":\"sha256:164e2e2eb5d1d5ba094e0479b0de5446f5a0c246306a2f9e31e48deeb990e23b\",\"bytes\":779708,\"errors\":0,\"warnings\":0,\"triangles\":7824,\"draws\":6}"
+      },
+      {
+        "check": "separate-hillside-terraces-open-arches-lattice-guardians-pagoda-open-courts",
+        "passed": true,
+        "notes": "298 actual mesh probes across source/runtime/four levels check separate hillside terrace corners, buried footings, both open entrance passages, curved arch profile, open lattice, paired guardian plinths and bodies, pagoda finial height and open inner courts."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Five reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:5c53b9fc59b05b7d412ff0d52e93c2220df75bbb5679a2f0dd3c3f86de4fb084"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:478f9781403601b2e06655f0853a66eca3be89b7af5bbf8455c06fc16566886a"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:c8792338350794c5b1bbc05cc0b85bbc8e89b2d6d4c4c2599ab3d7fd0aaeab77"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:d9f6268c15936b0599a7cfd72f7c1d72e8a7953dd5877c67cb677fa0fc6538eb"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:1435a89d3987729f2a659c66c182a723b69e819d09bd58eae8a4ce07bcd70089"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:164e2e2eb5d1d5ba094e0479b0de5446f5a0c246306a2f9e31e48deeb990e23b"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 685,
+          "independentBuildings": 683,
+          "remainingBuildings": 683,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_stainless_polished": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.a_ma_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -8.780806547467275,
+            "max": 48.72239345253273
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2126610.741465509,
+          "remainingWaterArea": 2126610.741465509,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:568b10e5a99069497b6b24dce1efb43073c03d4667d7186be267b0fd08ec76b6",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 225976
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -88.48259345091476,
+                43,
+                -61.6021968455682
+              ],
+              "lookAt": [
+                -0.9827954234578807,
+                3,
+                -9.951588473988975
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-northern-granite-gate-green-crest-lanterns-and-lions.png",
+            "hash": "sha256:f20360ff5741fc52617f1c80aee10e69fcf3dd016e8d8abb3125aa421c5a5405",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 225976
+            },
+            "camera": {
+              "name": "northern-granite-gate-green-crest-lanterns-and-lions",
+              "position": [
+                -17.974048523702894,
+                6.424395540871607,
+                -29.375731134179006
+              ],
+              "lookAt": [
+                0.83445369213627,
+                4.124395540871607,
+                -31.2332144845144
+              ],
+              "fov": 47
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-red-round-arch-lattice-green-roofs-and-pagoda.png",
+            "hash": "sha256:082ea6abe9ed6ee553680145247fa600cdc9373cfc3225f64ce06c6082b52391",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 225744
+            },
+            "camera": {
+              "name": "red-round-arch-lattice-green-roofs-and-pagoda",
+              "position": [
+                -35.51851645538193,
+                5.665509033520898,
+                -3.5263279496897004
+              ],
+              "lookAt": [
+                -9.850836246854985,
+                2.465509033520898,
+                -0.032019332410174406
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-separate-hillside-terraces-and-open-inner-courts.png",
+            "hash": "sha256:1d7e76af96b3d40a575c0c660afb15bca2ad8df07c826d1e62af992d1c82331b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 225976
+            },
+            "camera": {
+              "name": "separate-hillside-terraces-and-open-inner-courts",
+              "position": [
+                -21.328544236583053,
+                26,
+                28.23283904867025
+              ],
+              "lookAt": [
+                -0.19655908469157615,
+                3,
+                -1.9903176947977952
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 685,
+          "independentBuildings": 683,
+          "remainingBuildings": 683,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_stainless_polished": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.a_ma_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -8.780806547467275,
+            "max": 48.72239345253273
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2126610.741465509,
+          "remainingWaterArea": 2126610.741465509,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:bbc1f5e0edfa6eee8685ff8fc38f2034666b6b4228fbb42df3ac482004786ed1",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 224248
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -88.48259345091476,
+                43,
+                -61.6021968455682
+              ],
+              "lookAt": [
+                -0.9827954234578807,
+                3,
+                -9.951588473988975
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 685,
+          "independentBuildings": 683,
+          "remainingBuildings": 683,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_stainless_polished": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.a_ma_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -8.780806547467275,
+            "max": 48.72239345253273
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2126610.741465509,
+          "remainingWaterArea": 2126610.741465509,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:9bd8b9566e2145175b2221c02c7c9552e9b185226dd2926a2c370ef735356438",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 221808
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -88.48259345091476,
+                43,
+                -61.6021968455682
+              ],
+              "lookAt": [
+                -0.9827954234578807,
+                3,
+                -9.951588473988975
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 685,
+          "independentBuildings": 683,
+          "remainingBuildings": 683,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.a_ma_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -8.780806547467275,
+            "max": 48.72239345253273
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2126610.741465509,
+          "remainingWaterArea": 2126610.741465509,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:191083327b78b0d0ea8c5e0c1d3b660b734897eac3a6be0a8c12e57fab78e486",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 219128
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -88.48259345091476,
+                43,
+                -61.6021968455682
+              ],
+              "lookAt": [
+                -0.9827954234578807,
+                3,
+                -9.951588473988975
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 685,
+          "independentBuildings": 683,
+          "remainingBuildings": 685,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184564276165,
+              "area": 754.0314189443834
+            },
+            {
+              "id": 35185722933384,
+              "area": 102.58078633331422
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.a_ma_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -8.780806547467275,
+            "max": 48.72239345253273
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2126610.741465509,
+          "remainingWaterArea": 2126610.741465509,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:c7abbcd2c794b03e9a73d358a3999a44942cfb6298c9fdfbdf27807b6c6185d4",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 218168
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -88.48259345091476,
+                43,
+                -61.6021968455682
+              ],
+              "lookAt": [
+                -0.9827954234578807,
+                3,
+                -9.951588473988975
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Two mapped temple controls: main terraced compound with red round-arched front hall, lattice openings, green/grey upturned roof ranges, slender diminishing seven-tier pagoda form and open inner courts; plus the separate northern granite entrance with a genuine open doorway, green tiled cornice, paired ridge ornaments/central pearl, red lanterns, approach steps and simplified guardian lions. Preserve independent buildings and native hillside. Hall allocation, open-court dimensions and terrace/roof subdivision inside the broad mapped compound are picture-led approximations; no exact hidden-room or furnishing inventory.",
+    "Exact-QID way192187333/main PMTiles35184564276165 fixes the main compound outline and8.2m height tag. Separate PMTiles35185722933384 about31m north fits the granite entrance/pavilion component seen from the western plaza. Keep both centers, native east/south at heading0 and internal angle+1.472357881276rad. Viewed entrances face local+v/approximately west; photos including a western camera looking east resolve that sign. Internal hall/court subdivision, pagoda center and exact terrace engineering remain approximate.",
+    "Mapped8.2m height belongs to the main compound shell; apply approximately to the red front hall roof/ridge above its local terrace. Other range/pavilion heights are picture-led estimates. Pagoda form about10.8m with seven diminishing tiers is a visual simplification, not a certified measured tier inventory. Porcelain figures, guardian anatomy, lettering and fine carving are simplified.",
+    "Pinned standard Protomaps2026-10-14/Mapzen13–14 extract. Retain original native six-meter hillside. Use separate locally sampled level hall/gate terraces with buried bases; the north entrance is a shallow lower gate in front of a higher rear pavilion. Open courts keep native grade; short approach steps and balustrades express visible terraces. Coarse DEM does not resolve true paving/retaining walls. No broad flattened podium, terrain/water cutout or neighboring-shell removal.",
+    "Main compound and northern entrance controls are retained; hall/court subdivisions, terrace levels, pagoda tier dimensions and fine carvings are picture-led approximations. Exact lettering, porcelain sculpture, guardian anatomy, dense interior furnishings and temporary event trussing are omitted."
+  ]
+}

@@ -1,0 +1,407 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "brick",
+      "slot": "wall"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "floor": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "ashlar": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "panel": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "void": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "gold": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim"
+    },
+    "column": {
+      "graph": "stone_granite",
+      "slot": "trim"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -10.291425399587808,
+      65,
+      135.3332426392153
+    ],
+    "lookAt": [
+      0,
+      7,
+      0
+    ],
+    "fov": 42
+  },
+  "qaCameras": [
+    {
+      "name": "city-pointed-recess-and-open-vaulted-route",
+      "position": [
+        -33.14284835940521,
+        7.5,
+        34.7210541692713
+      ],
+      "lookAt": [
+        -4.142856044925651,
+        5.5,
+        4.340131771158912
+      ],
+      "fov": 58
+    },
+    {
+      "name": "court-marble-columns-and-neutral-panels",
+      "position": [
+        4.471670853323474,
+        15,
+        -51.02944404732956
+      ],
+      "lookAt": [
+        2.0714280224628254,
+        6,
+        -2.170065885579456
+      ],
+      "fov": 65
+    },
+    {
+      "name": "low-current-profile-and-native-footprint",
+      "position": [
+        58.558921554282165,
+        85,
+        -6.31289999916272
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 58
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -10.291425399587808,
+        65,
+        135.3332426392153
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 42,
+      "name": "imperial-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -10.291425399587808,
+        65,
+        135.3332426392153
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 42,
+      "name": "imperial-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -10.291425399587808,
+        65,
+        135.3332426392153
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 42,
+      "name": "imperial-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -10.291425399587808,
+        65,
+        135.3332426392153
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 42,
+      "name": "imperial-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-imperial-model.mjs",
+    "export": "buildTopkapiImperialSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiImperialDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "ashlar": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "panel": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "void": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiImperialStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "ashlar": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "panel": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "void": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiImperialCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "ashlar": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "panel": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "void": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      28.98148700594902,
+      41.008595879589905
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard PMTiles/Mapzen terrain retained. Existing front path control internal[0,18] supplies nativeY0; rear control[0,-18] supplies only a modest slope for occupied paving and the vaulted passage ceiling. Walls remain vertical and roof/coping level; foundations reach original boundary minima. Ground opening stays tightly inside the occupied parent, while the route through the gate remains open. No precinct slab, neighbouring fountain geometry or terrain flattening. Original native terrain, footprint ownership, facing and open-route fit were visually inspected2026-10-21. Approximate exterior placement is accepted; exact thresholds and host terrain accuracy remain outside scope.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      28.981244869152476,
+      41.00841720827315,
+      28.981729142745564,
+      41.00877455090666
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.98133905196264,
+        41.00847891538875
+      ],
+      "modelHeight": 0,
+      "basis": "Existing standard front path control internal[0,18]; nativeY0. Actual provider ground reference, independent of model-interior roof heights."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -19.880379400000002,
+          -8.87336935
+        ],
+        [
+          -9.7716967,
+          -19.43130025
+        ],
+        [
+          19.880379400000002,
+          8.64830745
+        ],
+        [
+          9.7716967,
+          19.43096215
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Original standard PMTiles/Mapzen terrain retained. Existing front path control internal[0,18] supplies nativeY0; rear control[0,-18] supplies only a modest slope for occupied paving and the vaulted passage ceiling. Walls remain vertical and roof/coping level; foundations reach original boundary minima. Ground opening stays tightly inside the occupied parent, while the route through the gate remains open. No precinct slab, neighbouring fountain geometry or terrain flattening. Original native terrain, footprint ownership, facing and open-route fit were visually inspected2026-10-21. Approximate exterior placement is accepted; exact thresholds and host terrain accuracy remain outside scope."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -19.9402,
+          -8.8999
+        ],
+        [
+          9.8011,
+          19.4896
+        ],
+        [
+          19.9402,
+          8.6745
+        ],
+        [
+          -9.8011,
+          -19.4896
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -19.9402,
+            -8.8999
+          ],
+          [
+            9.8011,
+            19.4896
+          ],
+          [
+            19.9402,
+            8.6745
+          ],
+          [
+            -9.8011,
+            -19.4896
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only named Imperial Gate OSM way335364925/native building35184707453757. All other palace members, independent buildings and native paths remain unchanged."
+    },
+    "notes": "Independent Q21097852/Bab-i Humayun and OSM way335364925, the named Imperial Gate in standard20261020 PMTiles. Its approximately41.1x14.8m four-corner parent lies at the city/First Courtyard entrance, distinct from Gate of Salutation and the separately mapped Sultan Ahmed III fountain. Internal+X follows the front wall southeast; internal+Z faces the city southwest, while internal-Z faces the First Courtyard northeast. World heading0/native east-south. Exact member anchor comes from native footprint bounds. Both ordinary exterior pictures were actually inspected; their gate front/back portal profiles inform the reconstruction. Original standard PMTiles/Mapzen terrain retained. Existing front path control internal[0,18] supplies nativeY0; rear control[0,-18] supplies only a modest slope for occupied paving and the vaulted passage ceiling. Walls remain vertical and roof/coping level; foundations reach original boundary minima. Ground opening stays tightly inside the occupied parent, while the route through the gate remains open. No precinct slab, neighbouring fountain geometry or terrain flattening. Original native terrain, footprint ownership, facing and open-route fit were visually inspected2026-10-21. Approximate exterior placement is accepted; exact thresholds and host terrain accuracy remain outside scope."
+  }
+}

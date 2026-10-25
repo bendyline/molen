@@ -18,13 +18,17 @@ export function sourceLocalFootprint(spec, bytes) {
   assert(frame.anchor?.length === 2 && Number.isFinite(frame.heading));
   assert(frame.anchor.every(Number.isFinite));
   const polygon = frame.geometry?.outline;
+  const polygons = frame.geometry?.polygons;
   const centerlines = frame.geometry?.centerlines;
   const point = frame.geometry?.point;
   assert(
     polygon?.length >= 3 ||
+      (Array.isArray(polygons) &&
+        polygons.length > 0 &&
+        polygons.every((ring) => Array.isArray(ring) && ring.length >= 3)) ||
       (centerlines?.length && centerlines.every((line) => line.length >= 2)) ||
       point?.length === 2,
-    'Source-local evidence needs an outline, open centerlines or an explicit mapped point',
+    'Source-local evidence needs an outline, separate polygons, open centerlines or an explicit mapped point',
   );
   const [longitude, latitude] = frame.anchor;
   const meters = 111319.49079327358;
@@ -40,6 +44,15 @@ export function sourceLocalFootprint(spec, bytes) {
     ];
   };
   if (point) return { point: project(point), hash, label };
+  if (polygons?.length) {
+    // Draw each original boundary independently; joining wings would invent a courtyard footprint.
+    const lines = polygons.map((ring) => {
+      const line = ring.map(project);
+      if (line[0].some((value, i) => value !== line.at(-1)[i])) line.push(line[0]);
+      return line;
+    });
+    return { lines, hash, label };
+  }
   if (!polygon?.length) return { lines: centerlines.map((line) => line.map(project)), hash, label };
   const footprint = polygon.map(project);
   if (footprint[0].some((value, i) => value !== footprint.at(-1)[i])) footprint.push(footprint[0]);

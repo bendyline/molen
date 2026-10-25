@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.aircraft.airliner": {
-      "doc": "38 m narrow-body twin-jet for ambient air traffic (seen from the ground; not flyable).",
+      "doc": "Bendy Small Airliner. Flyable generic twin-engine narrow-body using the assisted airplane solver, with cockpit/chase views, flaps and retractable gear; also serves ambient traffic. The thrust approximation is not a turbofan simulation.",
       "components": {
         "transform": {
           "pos": [
@@ -21,13 +21,17 @@
         },
         "renderable": {
           "kind": "gltf",
-          "ref": "molen.entities.aircraft.airliner"
+          "ref": "molen.entities.aircraft.airliner",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
         },
         "ambientRole": {
           "role": "aircraft",
           "length": 38,
           "width": 35.8,
-          "height": 11.8,
+          "height": 12.2,
           "cruise": 120,
           "weight": 3,
           "visual": {
@@ -47,8 +51,296 @@
             "#b3261e",
             "#1d6f5b"
           ]
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.airliner",
+          "spec": {
+            "label": "Bendy Small Airliner",
+            "genericLabel": "Small twin-jet airliner",
+            "model": "airplane",
+            "mass": 42000,
+            "span": 35.8,
+            "length": 39,
+            "height": 12.2,
+            "centerOfMass": [
+              0,
+              3.8,
+              0
+            ],
+            "pilotEye": [
+              0.55,
+              4.65,
+              15.4
+            ],
+            "engines": [
+              {
+                "id": "left",
+                "position": [
+                  5.8,
+                  2.25,
+                  3.4
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 15000000,
+                "idleRpm": 0.18,
+                "spoolRate": 0.15,
+                "rotorAngularSpeed": 180,
+                "maxThrust": 100000,
+                "minPropellerSpeed": 110,
+                "propellerEfficiency": 0.85,
+                "propulsion": "jet",
+                "densityExponent": 0.85,
+                "dryThrust": 100000,
+                "ramRise": 0.15,
+                "highAltitudeDensityRatio": 0.3105743900625788,
+                "highAltitudeExponent": 1.2
+              },
+              {
+                "id": "right",
+                "position": [
+                  -5.8,
+                  2.25,
+                  3.4
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 15000000,
+                "idleRpm": 0.18,
+                "spoolRate": 0.15,
+                "rotorAngularSpeed": 180,
+                "maxThrust": 100000,
+                "minPropellerSpeed": 110,
+                "propellerEfficiency": 0.85,
+                "propulsion": "jet",
+                "densityExponent": 0.85,
+                "dryThrust": 100000,
+                "ramRise": 0.15,
+                "highAltitudeDensityRatio": 0.3105743900625788,
+                "highAltitudeExponent": 1.2
+              }
+            ],
+            "airplane": {
+              "wingPosition": [
+                0,
+                2.8,
+                2.6
+              ],
+              "wingArea": 122,
+              "controlAuthoritySpeed": 100,
+              "maxControlAuthority": 1.7,
+              "pitchAuthority": 0.18,
+              "pitchResponse": 1.1,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 0.55,
+              "rollResponse": 1.3,
+              "rudderAuthority": 0.15,
+              "groundSteerSpeed": 15,
+              "groundLevelRate": 2,
+              "maxGroundPitch": 0.19,
+              "camberAngle": 0.045,
+              "flapLift": 0.8,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "pitchFrequency": 3.5,
+              "pitchDamping": 0.7,
+              "maxLoadFactor": 2.5,
+              "minLoadFactor": -1,
+              "autoTrim": 1,
+              "directionalStability": 4,
+              "yawDamping": 1.2,
+              "dihedralEffect": 2.5,
+              "propellerEffects": 0,
+              "stallSpeed": 62,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.038550864694230615,
+              "inducedDrag": 0.03695132809489373,
+              "gearDrag": 0.018,
+              "flapDrag": 0.075,
+              "gearTransitTime": 7,
+              "flapTransitTime": 5,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.85,
+              "maxThrust": 120000,
+              "minPropellerSpeed": 110,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 4,
+              "rollingDeceleration": 0.14,
+              "groundTrackRate": 12,
+              "groundEffect": true,
+              "criticalMach": 0.72,
+              "waveDrag": 0.22,
+              "maxMach": 0.82,
+              "maxEquivalentAirspeed": 175,
+              "gearLimitSpeed": 130,
+              "flapLimitSpeed": 115
+            },
+            "hardLandingSpeed": 4,
+            "hardLandingRoll": 0.16,
+            "hardLandingPitch": 0.2,
+            "maxSupportStep": 0.45,
+            "collisionProbes": [
+              [
+                0,
+                3.8,
+                18.5
+              ],
+              [
+                0,
+                3.8,
+                -18
+              ],
+              [
+                17.3,
+                2.8,
+                -4
+              ],
+              [
+                -17.3,
+                2.8,
+                -4
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "fan-left",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "left"
+                },
+                {
+                  "node": "fan-right",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "right"
+                }
+              ],
+              "gearNodes": [
+                "gear-nose",
+                "gear-left",
+                "gear-right"
+              ],
+              "flaps": [
+                {
+                  "node": "flap-left",
+                  "axis": "x",
+                  "multiplier": 0.45
+                },
+                {
+                  "node": "flap-right",
+                  "axis": "x",
+                  "multiplier": 0.45
+                }
+              ],
+              "ailerons": [],
+              "interior": {
+                "nodes": [
+                  "close-detail",
+                  "control-yoke"
+                ],
+                "bindings": [
+                  {
+                    "node": "control-yoke",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.2
+                  },
+                  {
+                    "node": "control-yoke",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.4
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.55,
+                4.65,
+                15.4
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                -0.55,
+                4.65,
+                15.4
+              ]
+            }
+          ],
+          "entries": [
+            [
+              2.2,
+              0,
+              11.5
+            ]
+          ],
+          "exits": [
+            [
+              3,
+              0,
+              11.5
+            ]
+          ],
+          "reach": 4
         }
-      }
+      },
+      "assets": [
+        "molen.entities.aircraft.airliner"
+      ]
     }
   }
 }

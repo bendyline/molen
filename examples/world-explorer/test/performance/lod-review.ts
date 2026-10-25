@@ -8,7 +8,7 @@ declare const __BENCHMARK_ROOT__: string;
 const base = `/@fs/${__BENCHMARK_ROOT__}/`;
 const json = async (path: string) => (await fetch(base + path)).json();
 const pack = await json('content/worldgen/stylepack.json');
-const id = new URLSearchParams(location.search).get('id') ?? 'n0229_istanbul_sapphire';
+const id = new URLSearchParams(location.search).get('id') ?? 'istanbul_sapphire';
 const entry = Object.entries(pack.assets as Record<string, string>).find(([key]) =>
   key.endsWith(id),
 );

@@ -1,0 +1,310 @@
+{
+  "planId": "brasilia_tv_tower",
+  "id": "brasilia_tv_tower",
+  "assetId": "molen.worldgen.structure.brasilia_tv_tower",
+  "title": "Brasília TV Tower",
+  "category": "communications-tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -47.892978666666664,
+    "latitude": -15.790621333333334
+  },
+  "size": [
+    50.88155746459961,
+    224.5,
+    49.53740119934082
+  ],
+  "actualBounds": {
+    "min": [
+      -28.52937889099121,
+      -0.5,
+      -20.07470703125
+    ],
+    "max": [
+      22.3521785736084,
+      224,
+      29.46269416809082
+    ]
+  },
+  "visualBrief": "Whole Brasília TV Tower exterior: three curved V-shaped concrete piers and center access/lift core; full mapped triangular glazed mezzanine with structural floor, sloping soffit and roof; open tapering triangular steel transmission lattice, center lift/stairs, observation deck at 75m and smaller service platform, complete red/white upper mast and needle to 224m. Exclude independent park, plaza, fountain, market, landscaping, paths, detached sculpture/art, barriers, signs, vehicles, people, interiors and exhibits. Antenna fixture census and hidden sections are bounded architectural estimates. Keep real V pier openings and voids between tower braces. All three sides use original native triangular orientation; do not substitute a square lattice or solid shaft. Rebuild curves/diagonals/glazed bays/antenna fixture forms as geometry. No modern sculpture/art copied from the photos.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Torre_de_TV_de_Bras%C3%ADlia_-_DSC00092.JPG",
+    "https://commons.wikimedia.org/wiki/File:Torre_de_TV_de_Bras%C3%ADlia_-_DSC00088.JPG",
+    "https://commons.wikimedia.org/wiki/File:Torre_de_TV_de_Bras%C3%ADlia_-_DSC00219.JPG"
+  ],
+  "stories": [
+    {
+      "id": "brasilia-tv-tower-wp",
+      "url": "https://qualla.com/brasilia-tv-tower/"
+    }
+  ],
+  "referenceInputHash": "0d10ec69fcef55146b3686fdf986f014fb7cb3820c8edb1de940173394d76316",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-brasilia-tv-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-brasilia-tv-tower.mjs",
+    "level": "skyline",
+    "export": "brasiliaTowerSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.81,
+        "metallic": 0.4
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.46,
+        "metallic": 0.07
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.92,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "brasiliaTowerDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.81,
+            "metallic": 0.4
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.46,
+            "metallic": 0.07
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "brasiliaTowerStreet",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.81,
+            "metallic": 0.4
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.46,
+            "metallic": 0.07
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -0.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named Q1270936 way41648342 supplies all three original triangular mezzanine vertices; unrotated east/south frame at original-vertex centroid preserves world positions. Current imported GDF tags height18.09/min_height20 conflict with one another and describe neither whole tower nor a reliable section; retained raw, not adopted. Operator confirms 224m whole tower and 75m mirante. Three CC0 views control V-pier openings, glazed triangular volume and open tapered three-chord lattice. Mezzanine floor25m/roof32m, piers, truss sections and fixtures are bounded photographic estimates, not construction plans. Independent180m terrain frozen at center access approach before geometry. Pier footings and exact compatible host contact remain approximate.",
+    "anchor": [
+      -47.892978666666664,
+      -15.790621333333334
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -47.892978666666664,
+        -15.790642892801534
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed center access-core approach before terrain and geometry. Native upper footprint controls horizontal scale, not ground parcel. No grading or fitted landscape pad."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/41648342"
+    ],
+    "source": "https://www.openstreetmap.org/way/41648342",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6bd79b3d76752b73e91800f1dbba0e2f89f534537c0638f33cd1f007a0087519",
+    "notes": "Whole Brasília TV Tower exterior: three curved V-shaped concrete piers and center access/lift core; full mapped triangular glazed mezzanine with structural floor, sloping soffit and roof; open tapering triangular steel transmission lattice, center lift/stairs, observation deck at 75m and smaller service platform, complete red/white upper mast and needle to 224m. Exclude independent park, plaza, fountain, market, landscaping, paths, detached sculpture/art, barriers, signs, vehicles, people, interiors and exhibits. Antenna fixture census and hidden sections are bounded architectural estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named Q1270936 way41648342 supplies all three original triangular mezzanine vertices; unrotated east/south frame at original-vertex centroid preserves world positions. Current imported GDF tags height18.09/min_height20 conflict with one another and describe neither whole tower nor a reliable section; retained raw, not adopted. Operator confirms 224m whole tower and 75m mirante. Three CC0 views control V-pier openings, glazed triangular volume and open tapered three-chord lattice. Mezzanine floor25m/roof32m, piers, truss sections and fixtures are bounded photographic estimates, not construction plans.",
+    "Three exact2012 Daderot own CC0 originals individually inspected: already published Qualla DSC00092 first, two supplemental originals after bounded native category search. No government bare-PDM, attribution photo, stamps, copied texture or generated image used. Detached modern sculpture/art is excluded. Current structural forms represented with bounded cosmetic/equipment changes.",
+    "Full original native triangle defines mezzanine perimeter/orientation; all three V supports with curved openings, glazed volume/structural soffit/roof, center ground access core, whole open steel lattice, lift/stair cage, observation and service decks, red/white mast and needle retained. Native imported18.09m height/min20m tags conflict; not used as whole-tower height. Operator confirms224m and75m observation deck.",
+    "Mezzanine25..32m section, V curves/foot positions/thickness, main lattice top154m, upper mast199m/224m and service deck85m are photographic estimates. Hidden basement/interiors, exact antenna/dish count and current fixture alterations are not reconstructed. Optical glass is average neutral glazing; no reflected photo environment baked.",
+    "Lower detail levels reduce truss bays, supports curves, mullions and antenna fixtures while preserving triangular body, open base, narrow complete mast and principal decks. No square lattice or opaque cone substitute. Interior maintenance stairs approximate the externally visible switchback pattern.",
+    "Independent180m91x91 Terrariumfield and raw source tiles frozen before geometry; no flattened/fitted whole park ground. Model pier and access-core footings extend0.5m below datum; exact compatible live host terrain/contact unverified. Preview placement only, replaceFootprint=false. No fountain/market/plaza/landscape/paths/people/vehicles/signage/sculpture."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "three-curved-v-piers-and-triangular-glazed-mezzanine",
+      "position": [
+        65,
+        23,
+        78
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "open-lattice-lift-stairs-and-observation-platform",
+      "position": [
+        37,
+        93,
+        47
+      ],
+      "lookAt": [
+        0,
+        78,
+        0
+      ]
+    },
+    {
+      "name": "whole-tower-to-complete-224m-mast",
+      "position": [
+        -240,
+        115,
+        290
+      ],
+      "lookAt": [
+        0,
+        106,
+        0
+      ]
+    },
+    {
+      "name": "red-white-antenna-mast-and-fixtures",
+      "position": [
+        25,
+        198,
+        30
+      ],
+      "lookAt": [
+        0,
+        185,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13141,
+    "vertices": 39423,
+    "materials": 4,
+    "bytes": 1579708,
+    "sha256": "sha256:cc0aed29c6684da9e08ac844030a5831219035f5d4948cf65e3eb9c19f76366e"
+  }
+}

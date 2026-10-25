@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u0v/n0266_eltz_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u0/u0v/eltz_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -632,7 +632,7 @@ function mainCastle(o, d) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u0v/n0266_eltz_castle/site-grade.json',
+      '../../../content/worldgen/source/places/u0/u0v/eltz_castle/site-grade.json',
       import.meta.url,
     ),
   ),

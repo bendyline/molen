@@ -5,10 +5,8 @@ import { face, localOutline, mappedSolid } from './signature-tower-expansion-mod
 import { box as boundsBox } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const scope = JSON.parse(
-    readFileSync(structureSourcePath('n0184_rose_tower', 'review-scope.json')),
-  ),
-  map = JSON.parse(readFileSync(structureSourcePath('n0184_rose_tower', 'map-frame.json')));
+const scope = JSON.parse(readFileSync(structureSourcePath('rose_tower', 'review-scope.json'))),
+  map = JSON.parse(readFileSync(structureSourcePath('rose_tower', 'map-frame.json')));
 const settings = {
   skyline: { n: 12, mult: 0, crown: 8, eye: 0, arcs: 0, ribbon: 8, sphere: [8, 6], mast: 6 },
   district: { n: 32, mult: 10, crown: 4, eye: 8, arcs: 6, ribbon: 20, sphere: [12, 8], mast: 8 },

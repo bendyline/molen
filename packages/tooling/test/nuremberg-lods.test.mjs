@@ -9,7 +9,7 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u0z/n0297_nuremberg_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u0/u0z/nuremberg_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -53,7 +53,7 @@ function rayHit(origin, direction, p) {
 }
 
 it('builds repeatable shared-material levels within all four browser budgets', async () => {
-  const id = 'molen.worldgen.structure.n0297_nuremberg_castle',
+  const id = 'molen.worldgen.structure.nuremberg_castle',
     bytes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

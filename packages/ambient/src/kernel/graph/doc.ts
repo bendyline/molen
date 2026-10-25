@@ -15,6 +15,8 @@ export const TRANSPORT_NETWORK_FORMAT: 'molen/transport-network@1' = 'molen/tran
 export type TransportNetworkPoint = [number, number] | [number, number, number];
 
 export interface TransportNetworkWay {
+  /** Overrides the document's road driving side. */
+  drivingSide?: 'right' | 'left';
   id?: string;
   class: 'road' | 'rail' | 'path' | 'air' | 'water';
   subclass?: string;
@@ -89,6 +91,7 @@ export function wayDraft(way: TransportNetworkWay): EdgeDraft | undefined {
     ? way.points.map((p) => (p as [number, number, number])[1])
     : undefined;
   const common = {
+    ...(way.drivingSide !== undefined ? { drivingSide: way.drivingSide } : {}),
     points,
     ...(heights !== undefined ? { heights } : {}),
     layer: way.layer ?? 0,

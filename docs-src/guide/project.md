@@ -23,6 +23,11 @@ agents can extend without collisions. `molen new <name>` scaffolds all of this.
 Every op discovers the project by walking up from the scene/cwd (or takes `--project`), so
 `molen sim run main --ticks 30` works by scene *name*. `molen project info` prints the summary.
 
+Asset ids use dot-separated lowercase letters, digits and underscores. The first segment starts
+with a letter; later segments may start with a digit, as in `landmark.30_st_mary_axe`.
+The same asset ids work in type asset references and content pack indexes. Type ids, namespace
+reservations and pack ids still require each segment to start with a letter.
+
 ## The type registry (`molen/types@1`)
 
 A types document declares entity types under one dotted namespace: default components, doc

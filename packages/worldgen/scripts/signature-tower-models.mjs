@@ -560,7 +560,7 @@ export const signatureTowers = [
   ...skylineGlobal,
   ...skylineWorld,
   {
-    id: 'N0140',
+    id: 'shanghai_world_financial_center',
     key: 'shanghai_world_financial_center',
     wikidataId: 'Q80852',
     build: buildSWFC,
@@ -617,7 +617,7 @@ export const signatureTowers = [
     ],
   },
   {
-    id: 'N0141',
+    id: 'the_shard',
     key: 'the_shard',
     wikidataId: 'Q18536',
     build: buildMappedShard,
@@ -670,7 +670,7 @@ export const signatureTowers = [
     ],
   },
   {
-    id: 'N0144',
+    id: 'oriental_pearl_tower',
     key: 'oriental_pearl_tower',
     wikidataId: 'Q223207',
     build: buildPearl,

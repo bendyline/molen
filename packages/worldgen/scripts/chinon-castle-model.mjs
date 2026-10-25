@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u0/u02/n0317_chinon_castle/',
+  '../../../content/worldgen/source/places/u0/u02/chinon_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -752,7 +752,7 @@ export const buildChinonDistrict = (out) => build(out, 1);
 export const buildChinonStreet = (out) => build(out, 2);
 export const buildChinonCloseup = (out) => build(out, 3);
 export const chinonStudy = {
-  id: 'N0317',
+  id: 'chinon_castle',
   key: 'chinon_castle',
   title: 'Chinon Castle',
   category: 'castle',

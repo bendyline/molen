@@ -9,7 +9,7 @@ import { structureSourcePath } from '../../../packages/worldgen/scripts/structur
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const output = resolve(root, 'content/earth/structures/evidence/bridge-terrain/gsi');
-const folder = 'n0021_sanjo_ohashi_bridge';
+const folder = 'sanjo_ohashi_bridge';
 const specBytes = await readFile(structureSourcePath(folder, 'spec.json'));
 const spec = JSON.parse(specBytes);
 const inputHash = await modelInputHash(
@@ -110,7 +110,7 @@ const bankReference = {
 };
 const document = {
   format: 'molen/bridge-terrain-evidence@1',
-  candidateId: 'N0021',
+  candidateId: 'sanjo_ohashi_bridge',
   title: spec.title,
   modelFolder: folder,
   inputHash,
@@ -150,7 +150,7 @@ const document = {
 };
 const profile = {
   format: 'molen/bridge-bank-evidence@1',
-  candidateId: 'N0021',
+  candidateId: 'sanjo_ohashi_bridge',
   inputHash,
   sources,
   bankReference,
@@ -163,9 +163,12 @@ const profile = {
     'Legacy TXT elevations stopped updating in October 2024 and are retained only as diagnostic evidence, not authoritative current samples.',
   ],
 };
-await writeFile(resolve(output, 'N0021.json'), `${JSON.stringify(document, null, 2)}\n`);
 await writeFile(
-  resolve(output, 'N0021-bank-profile.json'),
+  resolve(output, 'sanjo_ohashi_bridge.json'),
+  `${JSON.stringify(document, null, 2)}\n`,
+);
+await writeFile(
+  resolve(output, 'sanjo_ohashi_bridge-bank-profile.json'),
   `${JSON.stringify(profile, null, 2)}\n`,
 );
 console.log(

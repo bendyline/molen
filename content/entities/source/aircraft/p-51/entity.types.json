@@ -31,6 +31,7 @@
           "kind": "molen.entities.aircraft.p51d",
           "spec": {
             "label": "P-51D Mustang",
+            "genericLabel": "Single-engine piston fighter",
             "model": "airplane",
             "mass": 4200,
             "span": 11.28,
@@ -62,7 +63,12 @@
               "spoolRate": 0.45,
               "rotorAngularSpeed": 220,
               "propellerRotation": "clockwise",
-              "propellerInertia": 150
+              "propellerInertia": 150,
+              "propulsion": "propeller",
+              "densityExponent": 1,
+              "ratedDensityRatio": 0.55,
+              "propellerEfficiency": 0.83,
+              "maxThrust": 26860
             },
             "airplane": {
               "wingPosition": [
@@ -103,8 +109,8 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.019,
-              "inducedDrag": 0.055,
+              "profileDrag": 0.016498632274193088,
+              "inducedDrag": 0.06659962922100053,
               "gearDrag": 0.018,
               "flapDrag": 0.035,
               "gearTransitTime": 12,
@@ -116,7 +122,14 @@
               "lateralDamping": 0.35,
               "brakeDeceleration": 7,
               "rollingDeceleration": 0.22,
-              "groundTrackRate": 12
+              "groundTrackRate": 12,
+              "groundEffect": true,
+              "criticalMach": 0.62,
+              "waveDrag": 0.22,
+              "maxMach": 0.72,
+              "maxEquivalentAirspeed": 234.58666666666664,
+              "gearLimitSpeed": 127.06777777777778,
+              "flapLimitSpeed": 115
             },
             "hardLandingSpeed": 4.5,
             "hardLandingRoll": 0.3,

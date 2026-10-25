@@ -1,0 +1,574 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.8,
+      "metallic": 0.1
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.5,
+      "metallic": 0.55
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "trim",
+      "graph": "concrete_plain",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.48,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/omar-model.mjs",
+    "export": "buildOmarSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildOmarDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildOmarStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildOmarCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      100,
+      85,
+      172
+    ],
+    "lookAt": [
+      -3,
+      17,
+      30
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-omar-skyline",
+      "position": [
+        100,
+        85,
+        172
+      ],
+      "lookAt": [
+        -3,
+        17,
+        30
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-omar-district",
+      "position": [
+        100,
+        85,
+        172
+      ],
+      "lookAt": [
+        -3,
+        17,
+        30
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-omar-street",
+      "position": [
+        100,
+        85,
+        172
+      ],
+      "lookAt": [
+        -3,
+        17,
+        30
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-omar-closeup",
+      "position": [
+        100,
+        85,
+        172
+      ],
+      "lookAt": [
+        -3,
+        17,
+        30
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "previewEntities": [
+    {
+      "id": "review-lagoon-water",
+      "components": {
+        "transform": {
+          "pos": [
+            -15,
+            -2.182954627849974,
+            50
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            370,
+            0.12,
+            370
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#52848f",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.southeast_asian.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained mosque footprint and named barge/lagoon-hole/bridge controls;vertical and detailed interpretation approximate.",
+    "anchor": [
+      114.939202058,
+      4.889398056
+    ],
+    "heading": -0.247158206414,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard viewer DEM datum7.1119229834868m. Floor0.6210675389262343m is median of119 outside-perimeter samples every2m at1m offset plus0.25m;424 raw footprint samples range-1.087022961185104..0.8990770165131989m. Lagoon preview water-2.122954627849974m is the median of72 raw samples on the lagoon south of the barge;it is a coarse visualization datum,not surveyed tide or bathymetry. Bridge/barge deck is floor+0.35m;foundation follows the retained perimeter. Preview terrain seats the land model and lowers only the mapped lagoon;the water plane is a preview fixture and is absent from runtime model geometry. Exact peninsula,shore,step,bridge and water-level joins remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -33.706371212377505,
+          12.868410845990388
+        ],
+        [
+          -18.337442827238092,
+          12.979220777631664
+        ],
+        [
+          -18.46429277580959,
+          20.988532417420018
+        ],
+        [
+          -6.198262825675609,
+          20.961798702325986
+        ],
+        [
+          -6.144195124625117,
+          12.66403151416233
+        ],
+        [
+          21.706436308737487,
+          12.38687058148082
+        ],
+        [
+          21.833286218993795,
+          4.377558789839109
+        ],
+        [
+          33.81086090363114,
+          4.423606993110095
+        ],
+        [
+          33.71401754132717,
+          -6.904276024443255
+        ],
+        [
+          22.097680327909092,
+          -6.7346507633621675
+        ],
+        [
+          22.081639806742132,
+          -14.094268196216124
+        ],
+        [
+          -6.130228427517446,
+          -14.032778071219868
+        ],
+        [
+          -6.289159546527177,
+          -20.742701804851162
+        ],
+        [
+          -12.763561993512056,
+          -20.866337545768584
+        ],
+        [
+          -12.78341167003699,
+          -20.945007132406726
+        ],
+        [
+          -16.46322053463591,
+          -20.936986540537458
+        ],
+        [
+          -16.377071615930483,
+          -14.515518168149042
+        ],
+        [
+          -33.622295172623396,
+          -14.766544054141207
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -33.706371212377505,
+            12.868410845990388
+          ],
+          [
+            -18.337442827238092,
+            12.979220777631664
+          ],
+          [
+            -18.46429277580959,
+            20.988532417420018
+          ],
+          [
+            -6.198262825675609,
+            20.961798702325986
+          ],
+          [
+            -6.144195124625117,
+            12.66403151416233
+          ],
+          [
+            21.706436308737487,
+            12.38687058148082
+          ],
+          [
+            21.833286218993795,
+            4.377558789839109
+          ],
+          [
+            33.81086090363114,
+            4.423606993110095
+          ],
+          [
+            33.71401754132717,
+            -6.904276024443255
+          ],
+          [
+            22.097680327909092,
+            -6.7346507633621675
+          ],
+          [
+            22.081639806742132,
+            -14.094268196216124
+          ],
+          [
+            -6.130228427517446,
+            -14.032778071219868
+          ],
+          [
+            -6.289159546527177,
+            -20.742701804851162
+          ],
+          [
+            -12.763561993512056,
+            -20.866337545768584
+          ],
+          [
+            -12.78341167003699,
+            -20.945007132406726
+          ],
+          [
+            -16.46322053463591,
+            -20.936986540537458
+          ],
+          [
+            -16.377071615930483,
+            -14.515518168149042
+          ],
+          [
+            -33.622295172623396,
+            -14.766544054141207
+          ]
+        ],
+        [
+          [
+            -23.660348885326155,
+            86.7316969811801
+          ],
+          [
+            -27.046355352224772,
+            89.12014262217538
+          ],
+          [
+            -27.836264973032687,
+            90.85354884432878
+          ],
+          [
+            -27.47235376948561,
+            92.29582645122451
+          ],
+          [
+            -26.097512458242107,
+            94.09666867118648
+          ],
+          [
+            -24.506998174691585,
+            95.53627324341116
+          ],
+          [
+            -21.619772351675607,
+            96.03505596591883
+          ],
+          [
+            -16.929033051185517,
+            96.38560128783946
+          ],
+          [
+            6.230860735432447,
+            95.75790158747364
+          ],
+          [
+            9.331085730698774,
+            94.66884225127275
+          ],
+          [
+            11.129251604576304,
+            92.06739601493824
+          ],
+          [
+            11.415033013511028,
+            90.76800946165655
+          ],
+          [
+            10.255864619617412,
+            88.60592937614749
+          ],
+          [
+            7.581637977753278,
+            86.51930463021029
+          ],
+          [
+            -16.73475023395998,
+            86.21152932480669
+          ]
+        ]
+      ],
+      "basis": "Standard viewer DEM datum7.1119229834868m. Floor0.6210675389262343m is median of119 outside-perimeter samples every2m at1m offset plus0.25m;424 raw footprint samples range-1.087022961185104..0.8990770165131989m. Lagoon preview water-2.122954627849974m is the median of72 raw samples on the lagoon south of the barge;it is a coarse visualization datum,not surveyed tide or bathymetry. Bridge/barge deck is floor+0.35m;foundation follows the retained perimeter. Preview terrain seats the land model and lowers only the mapped lagoon;the water plane is a preview fixture and is absent from runtime model geometry. Exact peninsula,shore,step,bridge and water-level joins remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        114.939202058,
+        4.889398056
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum7.1119229834868m. Floor0.6210675389262343m is median of119 outside-perimeter samples every2m at1m offset plus0.25m;424 raw footprint samples range-1.087022961185104..0.8990770165131989m. Lagoon preview water-2.122954627849974m is the median of72 raw samples on the lagoon south of the barge;it is a coarse visualization datum,not surveyed tide or bathymetry. Bridge/barge deck is floor+0.35m;foundation follows the retained perimeter. Preview terrain seats the land model and lowers only the mapped lagoon;the water plane is a preview fixture and is absent from runtime model geometry. Exact peninsula,shore,step,bridge and water-level joins remain unverified."
+    },
+    "bounds": [
+      114.933,
+      4.883,
+      114.946,
+      4.896
+    ],
+    "notes": "Retained exact way45840473 /Q842921 is current building35184417929305;current POI retains the mosque name while tile building tags omit QID. Its18 raw outline vertices and original anchor/heading remain unchanged. The mapped Mahligai monument point35184417856548 lies in a15-vertex island/hull hole of lagoon water polygon24421813;the tagged footbridge35184406846830 supplies the curved10-point approach. These are map controls for an original picture-proportioned barge,not a new exact-QID building. PositiveX ENE toward the low eastern wing;negativeX WSW dome/prayer-hall block;positiveZ SSE lagoon and barge. No horizontal rescale. Standard viewer DEM datum7.1119229834868m. Floor0.6210675389262343m is median of119 outside-perimeter samples every2m at1m offset plus0.25m;424 raw footprint samples range-1.087022961185104..0.8990770165131989m. Lagoon preview water-2.122954627849974m is the median of72 raw samples on the lagoon south of the barge;it is a coarse visualization datum,not surveyed tide or bathymetry. Bridge/barge deck is floor+0.35m;foundation follows the retained perimeter. Preview terrain seats the land model and lowers only the mapped lagoon;the water plane is a preview fixture and is absent from runtime model geometry. Exact peninsula,shore,step,bridge and water-level joins remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum7.1119229834868m. Floor0.6210675389262343m is median of119 outside-perimeter samples every2m at1m offset plus0.25m;424 raw footprint samples range-1.087022961185104..0.8990770165131989m. Lagoon preview water-2.122954627849974m is the median of72 raw samples on the lagoon south of the barge;it is a coarse visualization datum,not surveyed tide or bathymetry. Bridge/barge deck is floor+0.35m;foundation follows the retained perimeter. Preview terrain seats the land model and lowers only the mapped lagoon;the water plane is a preview fixture and is absent from runtime model geometry. Exact peninsula,shore,step,bridge and water-level joins remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

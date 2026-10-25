@@ -56,6 +56,7 @@ export interface SpawnEnv {
   tick: number;
   tickRate: number;
   types: AmbientTypes;
+  carsAt?: (x: number, z: number) => readonly AmbientVehicleType[];
   templates: Readonly<Record<AmbientKind, AmbientTemplate | null>>;
   seed: number;
   ground: (x: number, z: number) => number;
@@ -316,16 +317,21 @@ function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
     if (lane === undefined) continue;
     const seq = ctx.state.nextSeq;
     const seed = fmix32(seq ^ env.seed);
+    const d = span.d0 + rng.next() * (span.d1 - span.d0);
+    const s = laneCoordinate(lane, edge, d);
+    const sample = sampleLaneBody(lane, edge, s, laneSample());
     const available =
-      kind === 'boat'
-        ? (types as readonly AmbientVehicleType[]).filter(
-            (t) =>
-              (t.waterway ?? 'channel') === edge.kind &&
-              t.width <= edge.width / (edge.oneway ? 1 : 2) &&
-              t.length + 2 < lane.length,
-          )
-        : types;
-    if (kind === 'boat' && available.length === 0) continue;
+      kind === 'car' && env.carsAt
+        ? env.carsAt(sample.x, sample.z)
+        : kind === 'boat'
+          ? (types as readonly AmbientVehicleType[]).filter(
+              (t) =>
+                (t.waterway ?? 'channel') === edge.kind &&
+                t.width <= edge.width / (edge.oneway ? 1 : 2) &&
+                t.length + 2 < lane.length,
+            )
+          : types;
+    if ((kind === 'boat' || kind === 'car') && available.length === 0) continue;
     const vehicle =
       kind === 'pedestrian'
         ? undefined
@@ -334,10 +340,7 @@ function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
     const width = kind === 'pedestrian' ? 0.5 : (vehicle?.width ?? 1.8);
     const cars = kind === 'train' ? dmath.max(1, vehicle?.cars ?? 2) : 1;
     const behind = kind === 'train' ? (cars - 1) * (length + 1) : 0;
-    const d = span.d0 + rng.next() * (span.d1 - span.d0);
-    const s = laneCoordinate(lane, edge, d);
     if (s < behind + length / 2 + 1 || s > lane.length - length / 2 - 1) continue;
-    const sample = sampleLaneBody(lane, edge, s, laneSample());
     const dx = sample.x - observer.x;
     const dz = sample.z - observer.z;
     const distance = dmath.hypot(dx, dz);

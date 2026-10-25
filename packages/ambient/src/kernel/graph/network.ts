@@ -46,6 +46,8 @@ import type {
 
 /** One streamed map tile's transport data. */
 export interface AmbientTileInput {
+  /** Regional road driving side; defaults to the network's traffic setting. */
+  drivingSide?: 'right' | 'left';
   /** Unique tile key, e.g. `terrainPyramidTileKey(address)`. */
   key: string;
   /** World X/Z of the tile's north-west corner, in metres. */
@@ -83,6 +85,7 @@ export interface TransportNetworkStats {
 
 /** A script-added polyline. */
 export interface AmbientPolyline {
+  drivingSide?: 'right' | 'left';
   class: 'road' | 'rail' | 'path' | 'water';
   subclass?: string;
   /** `[x, z]` or `[x, y, z]` points in scene metres. */
@@ -173,17 +176,18 @@ export class TransportNetwork implements GraphStore {
   deleteJunction(id: string): void {
     this.junctions.delete(id);
   }
-  signalNear(x: number, z: number, radius: number): boolean {
-    return this.controlsNear(x, z, radius, 'traffic_signals').length > 0;
+  signalNear(x: number, z: number, radius: number, layer = 0): boolean {
+    return this.controlsNear(x, z, radius, 'traffic_signals', layer).length > 0;
   }
-  giveWayNear(x: number, z: number, radius: number): readonly WorldPoi[] {
-    return this.controlsNear(x, z, radius, 'give_way');
+  giveWayNear(x: number, z: number, radius: number, layer = 0): readonly WorldPoi[] {
+    return this.controlsNear(x, z, radius, 'give_way', layer);
   }
   private controlsNear(
     x: number,
     z: number,
     radius: number,
     kind: 'traffic_signals' | 'give_way',
+    layer: number,
   ): WorldPoi[] {
     const cx = dmath.floor(x / 64);
     const cz = dmath.floor(z / 64);
@@ -191,7 +195,12 @@ export class TransportNetwork implements GraphStore {
     for (let ox = -1; ox <= 1; ox++)
       for (let oz = -1; oz <= 1; oz++)
         for (const poi of this.signalCells.get(`${cx + ox}/${cz + oz}`) ?? [])
-          if (poi.kind === kind && dmath.hypot(poi.x - x, poi.z - z) <= radius) found.push(poi);
+          if (
+            poi.kind === kind &&
+            (poi.layer ?? 0) === layer &&
+            dmath.hypot(poi.x - x, poi.z - z) <= radius
+          )
+            found.push(poi);
     return found;
   }
 
@@ -246,6 +255,7 @@ export class TransportNetwork implements GraphStore {
   registerTile(input: AmbientTileInput): void {
     if (this.tiles.has(input.key)) this.unregisterTile(input.key);
     const { drafts, runways } = featureDrafts(input, { tunnels: this.tunnels });
+    for (const draft of drafts) draft.drivingSide = input.drivingSide ?? this.traffic;
     const pois = tilePois(input.pois, input.origin, input.tileSize);
     const rect: [number, number, number, number] = [
       input.origin[0],
@@ -309,7 +319,10 @@ export class TransportNetwork implements GraphStore {
   /** Add a transport-network document's ways, stations, signals and aerodromes. */
   addDocument(doc: TransportNetworkDocument): void {
     for (const way of doc.ways) {
-      const draft = wayDraft(way);
+      const draft = wayDraft({
+        ...way,
+        drivingSide: way.drivingSide ?? doc.drivingSide ?? this.traffic,
+      });
       if (draft !== undefined) this.docDrafts.push(draft);
     }
     this.docPois.push(...documentPois(doc));
@@ -479,6 +492,7 @@ export class TransportNetwork implements GraphStore {
         tunnel: draft.tunnel,
         link: draft.link,
         oneway: draft.oneway,
+        drivingSide: draft.drivingSide ?? this.traffic,
         lanes: [],
         ...(draft.name !== undefined ? { name: draft.name } : {}),
       };
@@ -518,7 +532,7 @@ export class TransportNetwork implements GraphStore {
   }
 
   private createLanes(edge: TransportEdge, draft: EdgeDraft, sidewalks: boolean): void {
-    const side = this.traffic === 'right' ? 1 : -1;
+    const side = edge.drivingSide === 'right' ? 1 : -1;
     const make = (
       code: string,
       cls: TransportClass,

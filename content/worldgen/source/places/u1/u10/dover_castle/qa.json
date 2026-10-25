@@ -1,0 +1,364 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.dover_castle",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:d7ca0dc9e4f70a1a00bc55f5f7dd0de8492191223df1a54c21f9beb37a880375",
+  "sourceHash": "sha256:828ca564441df5aaf6c59fd6d7ac3e811a648881de370a243a8e505745b7b49b",
+  "runtimeHash": "sha256:bce9d2d0df976e19d0c0eeae644b979f91fe55ede2c12656a2bee31693d09708",
+  "captureReportHash": "sha256:1c1b2eb4b10fae1364a8bd8048b144e3599b44acf164edf4a954b4fced152b3c",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/great-tower-and-concentric-ward.png",
+      "shots/flint-keep-and-forebuilding.png",
+      "shots/roman-pharos-and-saxon-church.png",
+      "shots/western-curtain-and-constable-gate.png",
+      "shots/northern-spur-and-reduced-defenses.png",
+      "shots/later-barracks-and-chalk-hill.png"
+    ],
+    "notes": "Inspected all 11 final portable views after the keep-crown correction. The square banded Great Tower, four raised corner crowns, forebuilding, concentric ward, church/pharos group and selected barracks match the inspected picture at medium-fi scale. The runtime contains architecture; standard PMTiles supplies the surrounding hill."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:c8aeca1c631149d50cd5bf0cf0c3d77cefb8bf318d88d3c4411227204f101b32",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/great-tower-and-concentric-ward.png",
+      "shots/shared/flint-keep-and-forebuilding.png",
+      "shots/shared/roman-pharos-and-saxon-church.png",
+      "shots/shared/western-curtain-and-constable-gate.png",
+      "shots/shared/northern-spur-and-reduced-defenses.png",
+      "shots/shared/later-barracks-and-chalk-hill.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 11 final shared-material views. Five common stone/brick/slate/paving graphs and one explicit recess slot are bound correctly. Map placement retains true east/south orientation inside the cached site boundary. Material-cache reuse and unload checks passed. The shared fixture uses flat ground for materials and orientation; it does not establish hillside fit."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:2d68d4eb39d89b42fe31912ac8065defd647642a263cc39190ecc57a99963734",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/great-tower-and-concentric-ward.png",
+      "medium-fi/flint-keep-and-forebuilding.png",
+      "medium-fi/roman-pharos-and-saxon-church.png",
+      "medium-fi/western-curtain-and-constable-gate.png",
+      "medium-fi/northern-spur-and-reduced-defenses.png",
+      "medium-fi/later-barracks-and-chalk-hill.png",
+      "medium-fi/whole-dover-skyline.png",
+      "medium-fi/whole-dover-district.png",
+      "medium-fi/whole-dover-street.png",
+      "medium-fi/whole-dover-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 27 final medium-fi views on retained PMTiles ground: noon/late lighting, high/economy quality, silhouette, six feature views and four matched tier views. Keep/church floors and outer defenses fit the coarse hill without a second embedded terrain patch; site structure and crown remain readable through LOD transitions."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:546469a5d87f2c8211b17815958f360ebcf02f43120fdb4f11e21e005c5013c4",
+    "mapFrameHash": "sha256:93d3d1ace7c704159237174adfc149002bc555c5fb1818622d95e8c4f6aba893",
+    "notes": "Inspected aerial picture confirms the square Great Tower, concentric mural towers, gatehouses, church/pharos group and later barracks. The retained east/south site frame and standard viewer PMTiles set approximate location, scale and orientation. The derivative omits the embedded hill, uses host PMTiles terrain, reconstructs level keep/church floors above coarse sampled ground and extends their bounded wall bottoms beneath it. Anchor 1.322679734,51.129258466; heading 0; standard PMTiles datum 110.20328505915221m. Floors are reconstructed and foundations extend below the coarse sampled ground."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current exterior and map fit from one inspected picture and standard viewer PMTiles. Internal plan, corner merlons, reconstructed keep/church floors and coarse wall footings are approximations. Earthworks, tunnels, interiors, ground cutouts and survey accuracy are outside this review; footprint replacement stays off. Physical-device timing remains unmeasured."
+  },
+  "legacyFidelityScope": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. Budget spent on real exterior identity and proportion,selected broad courses,windows,gates and coping. Detailed4590-triangle source master retained;no individual joints,thin railings,microbevels,unique textures,buried tunnels,complete interiors or historical lost-building completion. Appearance review does not certify real-site placement.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u1/u10/dover_castle/models/source.glb",
+        "hash": "sha256:828ca564441df5aaf6c59fd6d7ac3e811a648881de370a243a8e505745b7b49b",
+        "bytes": 571596,
+        "triangles": 4732,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -223.20899963378906,
+          -80.96624755859375,
+          -231.39561462402344
+        ],
+        "max": [
+          229.38668823242188,
+          30.54506492614746,
+          292.8298645019531
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u1/u10/dover_castle/model.glb",
+        "hash": "sha256:bce9d2d0df976e19d0c0eeae644b979f91fe55ede2c12656a2bee31693d09708",
+        "bytes": 571040,
+        "triangles": 4732,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -223.20899963378906,
+          -80.96624755859375,
+          -231.39561462402344
+        ],
+        "max": [
+          229.38668823242188,
+          30.54506492614746,
+          292.8298645019531
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u1/u10/dover_castle/model.skyline.glb",
+        "hash": "sha256:5e572ed82099c4bb587f1cd2032f8deca871359eca266ed2025672c0e3e4d869",
+        "bytes": 83480,
+        "triangles": 846,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -223.20899963378906,
+          -40.443336486816406,
+          -231.39561462402344
+        ],
+        "max": [
+          229.38668823242188,
+          30.54506492614746,
+          275.3981018066406
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u1/u10/dover_castle/model.district.glb",
+        "hash": "sha256:e851c6605bc263cd2fc1c9a6a28ddce954b7289f4f1dee80a48a8c1c8ea61328",
+        "bytes": 226508,
+        "triangles": 2836,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -223.20899963378906,
+          -80.96624755859375,
+          -231.39561462402344
+        ],
+        "max": [
+          229.38668823242188,
+          30.54506492614746,
+          292.8298645019531
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u1/u10/dover_castle/model.street.glb",
+        "hash": "sha256:ec845a24a6bf5f78c47014003b0019d5e29cc0a09a01b15d9fa07198150fdaf3",
+        "bytes": 367936,
+        "triangles": 4492,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -223.20899963378906,
+          -80.96624755859375,
+          -231.39561462402344
+        ],
+        "max": [
+          229.38668823242188,
+          30.54506492614746,
+          292.8298645019531
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u1/u10/dover_castle/model.closeup.glb",
+        "hash": "sha256:8913c5e688105ca4029ab0139978068b61d748b81f146c76ca69d1a750d348b0",
+        "bytes": 386656,
+        "triangles": 4732,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -223.20899963378906,
+          -80.96624755859375,
+          -231.39561462402344
+        ],
+        "max": [
+          229.38668823242188,
+          30.54506492614746,
+          292.8298645019531
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed architectural recipe, hash and relative terrain remain preserved. Four tiers contain 846/2836/4492/4732 triangles; initial skyline+district download is 309988 bytes. Separate POSITION/NORMAL streams are retained."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:ad72ee4c942a54ca10c4c871defa32fba4917c25a1f0513ca7f98d594310d42b",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:5e572ed82099c4bb587f1cd2032f8deca871359eca266ed2025672c0e3e4d869",
+        "bytes": 83480,
+        "gzipBytes": 14127,
+        "triangles": 846,
+        "cpuBytes": 82044,
+        "gpuBytes": 82044,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:e851c6605bc263cd2fc1c9a6a28ddce954b7289f4f1dee80a48a8c1c8ea61328",
+        "bytes": 226508,
+        "gzipBytes": 58099,
+        "triangles": 2836,
+        "cpuBytes": 219156,
+        "gpuBytes": 219156,
+        "errorMeters": 0.7,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:ec845a24a6bf5f78c47014003b0019d5e29cc0a09a01b15d9fa07198150fdaf3",
+        "bytes": 367936,
+        "gzipBytes": 87543,
+        "triangles": 4492,
+        "cpuBytes": 360564,
+        "gpuBytes": 360564,
+        "errorMeters": 0.3,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:8913c5e688105ca4029ab0139978068b61d748b81f146c76ca69d1a750d348b0",
+        "bytes": 386656,
+        "gzipBytes": 91583,
+        "triangles": 4732,
+        "cpuBytes": 379284,
+        "gpuBytes": 379284,
+        "errorMeters": 0.1,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 309988,
+    "notes": "skyline: 846 triangles, 83480 bytes, 1 draws; district: 2836 triangles, 226508 bytes, 6 draws; street: 4492 triangles, 367936 bytes, 6 draws; closeup: 4732 triangles, 386656 bytes, 6 draws. Initial skyline+district 309988 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior from one inspected picture and standard viewer PMTiles; no bespoke survey or exact door/threshold review.",
+    "Original master recipe, relative terrain and hash preserved. Runtime derivative contains architecture without a duplicate mountain.",
+    "Keep/church working floor levels are reconstructed; outer walls follow coarse terrain. Internal site plan is approximate; no tunnels, interior, terrain cutouts or lost structures.",
+    "Five shared material graphs plus a local dark recess slot; zero embedded images. Site footprint replacement stays off; physical-device timing remains unmeasured."
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:c5adf006e8c25a724640b5fc0cae2b9444218dfcaafcba7637704e1596c8247b",
+    "inputHash": "sha256:d7ca0dc9e4f70a1a00bc55f5f7dd0de8492191223df1a54c21f9beb37a880375",
+    "previousQaHash": "sha256:8cc6f4e585b9181c82cccc3676ee9088a01d448a3607a20cbe7f21bec1254fde",
+    "sourceHash": "sha256:828ca564441df5aaf6c59fd6d7ac3e811a648881de370a243a8e505745b7b49b",
+    "runtimeHash": "sha256:bce9d2d0df976e19d0c0eeae644b979f91fe55ede2c12656a2bee31693d09708",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:5e572ed82099c4bb587f1cd2032f8deca871359eca266ed2025672c0e3e4d869"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:e851c6605bc263cd2fc1c9a6a28ddce954b7289f4f1dee80a48a8c1c8ea61328"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:ec845a24a6bf5f78c47014003b0019d5e29cc0a09a01b15d9fa07198150fdaf3"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:8913c5e688105ca4029ab0139978068b61d748b81f146c76ca69d1a750d348b0"
+      }
+    ],
+    "sceneHash": "sha256:846dcc4295d921695c7d83bffa48953b9554930ccefbc7e122445f2bb6244538",
+    "qaCamerasHash": "sha256:f3e9591f8bb0a69caaf6d2d7402c59aae43d94a3986505500a4c20152a542404",
+    "placementHash": "sha256:546469a5d87f2c8211b17815958f360ebcf02f43120fdb4f11e21e005c5013c4",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:93d3d1ace7c704159237174adfc149002bc555c5fb1818622d95e8c4f6aba893"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      {
+        "path": "materials/stone_limestone_weathered.matgraph.json",
+        "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:e7a9826f8fa4ad0bcde8bf78d6a7af76d497306415cb66af1b4bfefba5a1c2b4"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:c7c7000a6fee364a1d2c05d191f1d5cf87df59f91ce94fdf3f773018b34a3785"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
+}

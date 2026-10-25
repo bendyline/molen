@@ -1,0 +1,492 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.76,
+      "metallic": 0.3
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.7,
+      "metallic": 0.45
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.65,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/bursa-model.mjs",
+    "export": "buildBursaSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBursaDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.3
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBursaStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.3
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBursaCloseup",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.3
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -130,
+      95,
+      -130
+    ],
+    "lookAt": [
+      0,
+      13,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bursa-skyline",
+      "position": [
+        -130,
+        95,
+        -130
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-bursa-district",
+      "position": [
+        -130,
+        95,
+        -130
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-bursa-street",
+      "position": [
+        -130,
+        95,
+        -130
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-bursa-closeup",
+      "position": [
+        -130,
+        95,
+        -130
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained identity/axis and current named hall;projecting-base/tower association,opposite tower and roof roles are reviewed approximations.",
+    "anchor": [
+      29.0618819,
+      40.18392295
+    ],
+    "heading": 0.113113653842,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0483;datum 231.58724915930597 m. 1106 occupied samples range -7.000136064309828 to 5.558328570713115 m. Floor 0.16937117917186129 m is the median of 133 hall/pad edge samples plus0.25 m. Footings follow sampled grade;the review fixture seats the hall,both pads and two portals with a3 m margin. Public fountains and neighboring buildings remain independent. Finished levels,stairs,thresholds,drainage and structural foundations are not surveyed.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -35.225,
+          -30.335
+        ],
+        [
+          -35.225,
+          -4.108
+        ],
+        [
+          -35.141,
+          23.63
+        ],
+        [
+          -35.104,
+          29.404
+        ],
+        [
+          -35.227,
+          30.343
+        ],
+        [
+          35.225,
+          30.335
+        ],
+        [
+          35.227,
+          -6.759
+        ],
+        [
+          35.227,
+          -30.343
+        ],
+        [
+          2.582,
+          -30.343
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -35.225,
+            -30.335
+          ],
+          [
+            -35.225,
+            -4.108
+          ],
+          [
+            -35.141,
+            23.63
+          ],
+          [
+            -35.104,
+            29.404
+          ],
+          [
+            -35.227,
+            30.343
+          ],
+          [
+            35.225,
+            30.335
+          ],
+          [
+            35.227,
+            -6.759
+          ],
+          [
+            35.227,
+            -30.343
+          ],
+          [
+            2.582,
+            -30.343
+          ]
+        ],
+        [
+          [
+            -41.22374116598031,
+            23.594424309744518
+          ],
+          [
+            -41.18747126196591,
+            29.337994082070555
+          ],
+          [
+            -34.99062001109404,
+            29.35321324627239
+          ],
+          [
+            -35.026889973318426,
+            23.60964398636477
+          ]
+        ],
+        [
+          [
+            -41.2,
+            -29.5
+          ],
+          [
+            -34.8,
+            -29.5
+          ],
+          [
+            -34.8,
+            -23.1
+          ],
+          [
+            -41.2,
+            -23.1
+          ]
+        ],
+        [
+          [
+            -4,
+            -32
+          ],
+          [
+            4,
+            -32
+          ],
+          [
+            4,
+            -27.5
+          ],
+          [
+            -4,
+            -27.5
+          ]
+        ],
+        [
+          [
+            -37,
+            -4
+          ],
+          [
+            -32.5,
+            -4
+          ],
+          [
+            -32.5,
+            4
+          ],
+          [
+            -37,
+            4
+          ]
+        ]
+      ],
+      "basis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0483;datum 231.58724915930597 m. 1106 occupied samples range -7.000136064309828 to 5.558328570713115 m. Floor 0.16937117917186129 m is the median of 133 hall/pad edge samples plus0.25 m. Footings follow sampled grade;the review fixture seats the hall,both pads and two portals with a3 m margin. Public fountains and neighboring buildings remain independent. Finished levels,stairs,thresholds,drainage and structural foundations are not surveyed."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -41.22374116598031,
+          23.594424309744518
+        ],
+        [
+          -35.32050900348169,
+          23.608922848072154
+        ],
+        [
+          -35.322520943774386,
+          -30.374548415611116
+        ],
+        [
+          35.16085195644244,
+          -30.40290351336592
+        ],
+        [
+          35.137370550508166,
+          30.432313238873405
+        ],
+        [
+          -35.320262086831946,
+          30.234078631352062
+        ],
+        [
+          -35.32029494647431,
+          29.352403580722637
+        ],
+        [
+          -41.18747126196591,
+          29.337994082070555
+        ]
+      ],
+      "basis": "Subtract only the associated current hall and west/south projecting base. Preserve public fountain footprints and all independent surrounding map buildings."
+    },
+    "terrainReference": {
+      "anchor": [
+        29.0618819,
+        40.18392295
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0483;datum 231.58724915930597 m. 1106 occupied samples range -7.000136064309828 to 5.558328570713115 m. Floor 0.16937117917186129 m is the median of 133 hall/pad edge samples plus0.25 m. Footings follow sampled grade;the review fixture seats the hall,both pads and two portals with a3 m margin. Public fountains and neighboring buildings remain independent. Finished levels,stairs,thresholds,drainage and structural foundations are not surveyed."
+    },
+    "bounds": [
+      29.0609,
+      40.1832,
+      29.0627,
+      40.1846
+    ],
+    "notes": "Retained Q32339 way/26434413 preserves anchor,undirected heading,9 exterior vertices,original tags and empty dimensional facts. Current ordinary PMTiles supplies the same named4-vertex hall and a4-vertex projecting base at the west/south corner. The latter is associated with a tower from the exterior pictures;it has no name/part tag. The roof overview shows two towers along one side;the opposite west/north base is an estimated6.4 m pad. The other northern polygonal map features align with public fountain points and stay excluded. Internal roof grid,glazed bay location,signed facing and complete current condition remain estimates. Standard Protomaps20261014 and Mapzen/USGS viewer extractN0483;datum 231.58724915930597 m. 1106 occupied samples range -7.000136064309828 to 5.558328570713115 m. Floor 0.16937117917186129 m is the median of 133 hall/pad edge samples plus0.25 m. Footings follow sampled grade;the review fixture seats the hall,both pads and two portals with a3 m margin. Public fountains and neighboring buildings remain independent. Finished levels,stairs,thresholds,drainage and structural foundations are not surveyed."
+  },
+  "geographicNote": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0483;datum 231.58724915930597 m. 1106 occupied samples range -7.000136064309828 to 5.558328570713115 m. Floor 0.16937117917186129 m is the median of 133 hall/pad edge samples plus0.25 m. Footings follow sampled grade;the review fixture seats the hall,both pads and two portals with a3 m margin. Public fountains and neighboring buildings remain independent. Finished levels,stairs,thresholds,drainage and structural foundations are not surveyed.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

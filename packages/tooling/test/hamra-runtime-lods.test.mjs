@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/tj/tj4/n0180_al_hamra_tower'),
+const source = resolve('../../content/worldgen/source/places/tj/tj4/al_hamra_tower'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -87,7 +87,7 @@ it('reproduces the original Al Hamra master and independently verifies signed no
       },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineWorld.find((p) => p.id === 'N0180').build(a.wrap(b), m);
+  skylineWorld.find((p) => p.id === 'al_hamra_tower').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`),
     independent = await read(`${source}/map-parts.json`);
   expect(m.elements).toHaveLength(1);

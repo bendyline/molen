@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/6g/6gy/n0384_sao_paulo_cathedral/',
+  '../../../content/worldgen/source/places/6g/6gy/sao_paulo_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -961,7 +961,7 @@ export const buildSaoPauloCathedralSkyline = (o) => build(o, 0),
   buildSaoPauloCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const saoPauloCathedralStudy = {
-  id: 'N0384',
+  id: 'sao_paulo_cathedral',
   key: 'sao_paulo_cathedral',
   title: 'São Paulo Cathedral',
   category: 'cathedral',

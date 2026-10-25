@@ -1,0 +1,1227 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.gazi_husrev_beg_mosque",
+  "sourceHash": "sha256:bb7c4f7ed8ec06625e97afc5ac726e62ad75d593f2837c5d3654023a09287b09",
+  "runtimeHash": "sha256:c6a2c31bf0b68c1321c885936b84d0e53cffaf1be86eabc1c21b50f867984f2f",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:12c2079f8ffe9fe0658737eed34d7e4fdc6be609146a333c5d921324995e314c",
+      "bytes": 77384,
+      "gzipBytes": 14529,
+      "triangles": 826,
+      "cpuBytes": 75948,
+      "gpuBytes": 75948,
+      "errorMeters": 3,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:b4fe2b46c33e40dc84a0e910f53dccc6eae51cfdbaaba8f1a66879251fab9d6d",
+      "bytes": 194468,
+      "gzipBytes": 50830,
+      "triangles": 2080,
+      "cpuBytes": 185860,
+      "gpuBytes": 185860,
+      "errorMeters": 1.1,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:e17e9d74a456ce9652bb1cedb3a48e3d9c162d9792029c7f9907a1cab1115c2e",
+      "bytes": 552512,
+      "gzipBytes": 158391,
+      "triangles": 5720,
+      "cpuBytes": 543868,
+      "gpuBytes": 543868,
+      "errorMeters": 0.45,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:457c381bc43e936e9e8177c750985e4d68c057a08c947f3b7ca3d2f5042527b3",
+      "bytes": 694028,
+      "gzipBytes": 201297,
+      "triangles": 7118,
+      "cpuBytes": 685384,
+      "gpuBytes": 685384,
+      "errorMeters": 0.22,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:924ff0a275ce5062e32c24b1591cd99423007f2cc6180ada37590f6a5d86319e"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:f09b091a381f429c39abc72afb595a04591d5505f19dd1196db038a11888c26d"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:368d9c325c6ddee677fb6e5c3b0c99211d486c6032a5088fa7bd7553105aa436",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.0197,
+          49.349199999999996,
+          82.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:27d4a0a6394d31367fb44f03389246a8c31ab423fe0f3989bb486b23363bcd34",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.0197,
+          49.349199999999996,
+          82.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:854032e56180c172bb78c287169f4cb7ee67f2854550aaeb9d7bf633c40e8ff5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.0197,
+          49.349199999999996,
+          82.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:65151733d33d1e900d609e67c11fb8addaeba4441bc91df8a23c5c771f75993d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.0197,
+          49.349199999999996,
+          82.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:7a6ddeaeb673e7af9708ac6b64d6682d3dddd3e53f90f07bfc4a3c87cddc1cf7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 28578,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0197,
+          85.3492,
+          167.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:9251119736be2d31dd60ea1796eac2f501c9cc02b0799f2c57e70d215e5eeb45",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 28578,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0197,
+          85.3492,
+          167.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:c12f7648a132b91a831b418d1b7ff78559f56ca0aacc2ec1fe8647bebb0c6034",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 28578,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0197,
+          85.3492,
+          167.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c5f5189a510915d6b79764304b77e625c90f8a8b0c7f7ae5c103dd308823612d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 28578,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0197,
+          85.3492,
+          167.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:df641523df1f50602d7a8d422186001cd61df0d9ff6403b35b368bd02116ee47",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 27324,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0197,
+          123.3492,
+          335.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:75b48947c8f99f757ff0c44c20fc8d41944bac8c1b40443834fecfa8630a080c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27324,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0197,
+          123.3492,
+          335.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:209062a89ef365875efba4f24b4936f21614e59569d74e96cd4a079ab811cc40",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 27324,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0197,
+          123.3492,
+          335.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:6ed0ff6795ad9e83913ef051c5f728d28ea873e21928e6687799baf7ab3f3518",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27324,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0197,
+          123.3492,
+          335.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:a112c277203d0db0c323eca102cf5dbe701d4df3304eb0d22ea56bfd659e179d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21628,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.0197,
+          123.3492,
+          335.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/five-bay-open-porch.png",
+      "hash": "sha256:0f01493f2e3fcae15cce5b6064ccdd8e654750f14f6c2af82ed421bf06a1e307",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          25,
+          9,
+          -36
+        ],
+        "lookAt": [
+          2,
+          5,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/coarse-original-portal.png",
+      "hash": "sha256:60a3317a78c58355a9de3f81092d38b4fc341c006ccc640f9545e1950840dcf5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          2,
+          4,
+          -14
+        ],
+        "lookAt": [
+          2,
+          4.4,
+          -8.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/central-side-and-rear-domes.png",
+      "hash": "sha256:b916111ab94ba99f29763373636c7970a3c0089a3df675fafc78a762a1dc7de9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          30,
+          29,
+          36
+        ],
+        "lookAt": [
+          1,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/stone-minaret-and-open-balcony.png",
+      "hash": "sha256:004bcebffd6882a213f4d71771c3d75f08e4b8120c9919c9ed72d6b7432c88d9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -35,
+          34,
+          -24
+        ],
+        "lookAt": [
+          -16.5,
+          30,
+          -7.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/gray-cone-and-finial.png",
+      "hash": "sha256:e218343b07a59a927902f61a8966af0f22cf40b66f2b76526507af1f2be55f89",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33563,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -30,
+          47,
+          -22
+        ],
+        "lookAt": [
+          -16.5,
+          43,
+          -7.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/retained-stepped-envelope.png",
+      "hash": "sha256:488851fe89871ebe0e4410d0db6acb4c0282dd071e06ba6d9268ce6d7bb08f7a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          150,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gazi-skyline.png",
+      "hash": "sha256:e589a20ba0c904ba0f2739a1dd89f55a387be12ecac44de2534fb3062062fcb5",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27324,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          68,
+          67,
+          -82
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gazi-district.png",
+      "hash": "sha256:48743d3178d7ec82f0adc98c5845308fde6248a1a0b1e50a67c98487aa6f3a7d",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 28578,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          68,
+          67,
+          -82
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gazi-street.png",
+      "hash": "sha256:1bfe27b4af130b52eb85269fbab01f285fefa78928ef08471d87f552cdead093",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 32218,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          68,
+          67,
+          -82
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gazi-closeup.png",
+      "hash": "sha256:b82e4dd7ae1de40ca8da75346451ad02fdc6b95a408ddaeafcf18e22cb863c0d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          68,
+          67,
+          -82
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:78a974c2c9c8d024e0a88d979d4e07503da3f62ac2ebd0f8a86854794b3c4d2f",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27324,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0197,
+          85.3492,
+          167.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:9251119736be2d31dd60ea1796eac2f501c9cc02b0799f2c57e70d215e5eeb45",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 28578,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0197,
+          85.3492,
+          167.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:257c9e5cdffa0a8d3404bedd9e57860defb7e0e0952016353a58e6a8e75ce532",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 32218,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0197,
+          85.3492,
+          167.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:3ca9fb1217f2c600ad2de9a4b81cf21b79f33321971dbf9b5a564c87df10f593",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33616,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.0197,
+          85.3492,
+          167.2641
+        ],
+        "lookAt": [
+          0.0197,
+          34.349199999999996,
+          -0.7359
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

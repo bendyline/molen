@@ -7,7 +7,7 @@ import { buildMiramareRuntime, buildMiramareSkyline } from './miramare-castle-mo
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u2/u21/n0276_miramare_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u2/u21/miramare_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

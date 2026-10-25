@@ -7,7 +7,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u3/u3t/n0243_malbork_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u3/u3t/malbork_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1091,7 +1091,7 @@ export function buildMalborkSkyline(out) {
   buildMalborkRuntime(out, 'skyline');
 }
 export const malborkStudy = {
-  id: 'N0243',
+  id: 'malbork_castle',
   key: 'malbork_castle',
   title: 'Malbork Castle',
   category: 'castle',

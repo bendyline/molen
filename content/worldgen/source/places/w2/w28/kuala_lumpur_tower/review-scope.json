@@ -1,0 +1,410 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kl-tower-runtime-model.mjs",
+    "export": "buildKlTowerReviewedMaster"
+  },
+  "brief": "Complete parabolic ribbed KL Tower with rose scalloped soffit, triangular framed observation glazing, open skydeck/two glass boxes, three transmitter galleries and421m antenna above exact mapped star lobby.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east/southeast in mapped star frame",
+    "front": "+Z southwest arrival sector; exact doorway unverified",
+    "origin": "Ground-contact star-plan center; independent shaft center retained"
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "scale": 2
+  },
+  "appearance": {
+    "identity": "Parabolic pale ribbed shaft, rose soffit, five widening dark glazing bands, triangular exterior frames, white stepped crown and two violet glass boxes.",
+    "scope": "Complete medium-fi tower comprises mapped star lobby, parabolic ribbed shaft, rose scalloped muqarnas soffit, five widening observation bands with triangular exterior frames, open sky deck and two suspended glass boxes, stepped roof, three transmitter galleries and open lattice/red-white antenna to421m. Original91444-triangle detailed recipe remains unchanged and reproducible. CIDB construction publication supplies24.5m ground diameter,13.6m upper diameter at261.6m,317.16m concrete end and86m antenna; observation276m/skydeck300m from current official tourism/operator information. Ring datums, exact facade/soffit pattern, roof profile, rib counts, skybox supports and fine equipment are reconstructed from primary construction and first-hand photographs. Box outward bearings64/196degrees carry6degree uncertainty and are not surveyed landmark centerlines. Ground lobby glazing is original reconstruction; exact tower door position is unverified, independent off-footprint main-entry node provides only southwest arrival-sector context. Separate parking complex, low pedestrian mall, rainforest, interior and basement are outside tower bundle. No copied photographs used as textures. Shared painted-metal rose finish approximates actual painted soffit. Glazing uses opaque PBR for office head and alpha PBR for skybox/guard; exact reflections, panel joints, nighttime lights and signs omitted. Actual hillside grade and physical-device performance unmeasured."
+  },
+  "sourceFacts": {
+    "heightMeters": 421,
+    "observationDeckMeters": 276,
+    "shaftBaseDiameterMeters": 24.5,
+    "shaftUpperDiameterMeters": 13.6,
+    "shaftTaperEndMeters": 261.6,
+    "concreteShaftEndMeters": 317.16,
+    "antennaMeters": 86,
+    "skyDeckMeters": 300,
+    "originalMasterHash": "sha256:d1f77e4dc4ef65c02170b840409c81707d17029e1124fcbb602719c0990298c0",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-next-models.mjs#skylineNext[kuala_lumpur_tower].build",
+    "mappedComponents": 12,
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "metal_stainless": [
+        0.81896,
+        0.822889,
+        0.822889
+      ]
+    }
+  },
+  "reconstruction": {
+    "datum": "CIDB construction account and photographs override coarse mapped head/shaft height tags; exact mapped circular core fixes axis",
+    "head": "Widening circular profile and roof/deck proportions reconstructed from CIDB exterior photograph; muqarnas cells modeled as original geometric approximation",
+    "skyBoxes": "First-hand 2026 visitor and on-site photographer images identify the violet-framed Suria box toward Petronas and the second toward Merdeka. Outward bearings64° and196° are photo-correlated approximations, not surveyed axes; actual landmark centerlines are about57.5° and195.4°. Raised access steps, upper I beams and tension rods are reconstructed from those images.",
+    "muqarnas": "Continuous twelve-lobed rose soffit and fine radial seams reconstructed from actual2026 underside photo; not literal tessellation survey",
+    "facade": "Triangular sloping mullion pairs over five widening window bands reconstruct visible2026 frame motif",
+    "arrival": "SW sector from off-footprint main-entry node; ground lobby panels do not claim exact doors"
+  },
+  "limitations": [
+    "Complete medium-fi tower comprises mapped star lobby, parabolic ribbed shaft, rose scalloped muqarnas soffit, five widening observation bands with triangular exterior frames, open sky deck and two suspended glass boxes, stepped roof, three transmitter galleries and open lattice/red-white antenna to421m. Original91444-triangle detailed recipe remains unchanged and reproducible. CIDB construction publication supplies24.5m ground diameter,13.6m upper diameter at261.6m,317.16m concrete end and86m antenna; observation276m/skydeck300m from current official tourism/operator information. Ring datums, exact facade/soffit pattern, roof profile, rib counts, skybox supports and fine equipment are reconstructed from primary construction and first-hand photographs. Box outward bearings64/196degrees carry6degree uncertainty and are not surveyed landmark centerlines. Ground lobby glazing is original reconstruction; exact tower door position is unverified, independent off-footprint main-entry node provides only southwest arrival-sector context. Separate parking complex, low pedestrian mall, rainforest, interior and basement are outside tower bundle. No copied photographs used as textures. Shared painted-metal rose finish approximates actual painted soffit. Glazing uses opaque PBR for office head and alpha PBR for skybox/guard; exact reflections, panel joints, nighttime lights and signs omitted. Actual hillside grade and physical-device performance unmeasured."
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "foundation",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "pink": {
+      "graph": "metal_painted",
+      "slot": "wall",
+      "roughness": 0.5,
+      "metallic": 0.12
+    },
+    "stainless": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "clear_glass": {
+      "slot": "window",
+      "localRef": "palette:#feffff",
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "opacity": 0.52
+    }
+  },
+  "geographic": {
+    "heading": -0.234247621882,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API2026-10-10 confirms exactQ745016 star-shaped base589740576 and eleven mapped upper controls unchanged. Separate cylindrical core546282150 fixes shaft axis. Retain anchor[101.703755211,3.15285584] and heading-.234247621882rad; native+X east/southeast, +Z south/southwest. Two distinct glass boxes face ENE64degrees toward Petronas and SSW196degrees toward Merdeka, corroborated by first-hand2026 photographs; axes remain photo reconstruction with6degree uncertainty, not surveyed centerlines. Main-entry node13021669495 is off tower footprint near the separate parking complex: use only as southwest arrival-sector context, not an exact tower doorway. Published construction dimensions replace coarse inconsistent mapped height tags. Accept plan2m/1degree; Y0 contact, real hillside grade unmeasured. Footprint replacement disabled.",
+    "evidence": "Fresh public OSM API2026-10-10 confirms exactQ745016 star-shaped base589740576 and eleven mapped upper controls unchanged. Separate cylindrical core546282150 fixes shaft axis. Retain anchor[101.703755211,3.15285584] and heading-.234247621882rad; native+X east/southeast, +Z south/southwest. Two distinct glass boxes face ENE64degrees toward Petronas and SSW196degrees toward Merdeka, corroborated by first-hand2026 photographs; axes remain photo reconstruction with6degree uncertainty, not surveyed centerlines. Main-entry node13021669495 is off tower footprint near the separate parking complex: use only as southwest arrival-sector context, not an exact tower doorway. Published construction dimensions replace coarse inconsistent mapped height tags. Accept plan2m/1degree; Y0 contact, real hillside grade unmeasured. Footprint replacement disabled.",
+    "replaceFootprint": false
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kl-tower-runtime-model.mjs",
+    "export": "buildKlTowerSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKlTowerDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "pink": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0.12
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52
+          }
+        }
+      },
+      "street": {
+        "export": "buildKlTowerStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "pink": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0.12
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKlTowerCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "pink": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0.12
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        400,
+        308,
+        640
+      ],
+      "lookAt": [
+        0,
+        205,
+        0
+      ]
+    },
+    {
+      "name": "triangular-head-and-rose-soffit",
+      "position": [
+        65,
+        253,
+        96
+      ],
+      "lookAt": [
+        0,
+        278,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        400,
+        308,
+        640
+      ],
+      "lookAt": [
+        0,
+        205,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        400,
+        308,
+        640
+      ],
+      "lookAt": [
+        0,
+        205,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        400,
+        308,
+        640
+      ],
+      "lookAt": [
+        0,
+        205,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        400,
+        308,
+        640
+      ],
+      "lookAt": [
+        0,
+        205,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-triangular-head",
+      "position": [
+        72,
+        294,
+        94
+      ],
+      "lookAt": [
+        0,
+        287,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-rose-soffit",
+      "position": [
+        45,
+        249,
+        65
+      ],
+      "lookAt": [
+        0,
+        269,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-skyboxes-and-open-deck",
+      "position": [
+        65,
+        328,
+        84
+      ],
+      "lookAt": [
+        0,
+        302,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

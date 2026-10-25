@@ -1,0 +1,170 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.acura_mdx_2019": {
+      "doc": "2019 Acura MDX, 3.5 SH-AWD; dark gray. Polygonal reference interpretation with period-specific fascia/cabin details, simplified trim and game handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.acura_mdx_2019",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.acura_mdx_2019",
+          "color": "#484c50",
+          "spec": {
+            "label": "2019 Acura MDX",
+            "bodyStyle": "suv",
+            "genericLabel": "Midsize SUV",
+            "width": 2.274,
+            "length": 5.162999999999999,
+            "height": 1.792,
+            "centerOfMass": [
+              0,
+              0.54784,
+              0
+            ],
+            "wheelbase": 2.819,
+            "wheelTrack": 1.69764,
+            "wheelRadius": 0.376,
+            "mass": 1923,
+            "engineForce": 7700,
+            "maxSpeed": 54,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.454,
+              1.442,
+              0.0737
+            ],
+            "drive": "all",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.18,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.454,
+                1.442,
+                0.0737
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.437,
+              0,
+              0.0737
+            ]
+          ],
+          "exits": [
+            [
+              1.537,
+              0,
+              0.0737
+            ],
+            [
+              -1.537,
+              0,
+              0.0737
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1,
+          "colors": [
+            "#484c50"
+          ]
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.acura_mdx_2019"
+      ]
+    }
+  }
+}

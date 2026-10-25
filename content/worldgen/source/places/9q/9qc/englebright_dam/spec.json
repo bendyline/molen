@@ -1,0 +1,246 @@
+{
+  "planId": "englebright_dam",
+  "id": "englebright_dam",
+  "assetId": "molen.worldgen.structure.englebright_dam",
+  "title": "Englebright Dam",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -121.26970405,
+    "latitude": 39.239394000000004
+  },
+  "size": [
+    274.4819030761719,
+    83.52050113677979,
+    103.73478698730469
+  ],
+  "actualBounds": {
+    "min": [
+      -137.24095153808594,
+      -79.24800109863281,
+      -76.74136352539062
+    ],
+    "max": [
+      137.24095153808594,
+      4.272500038146973,
+      26.993423461914062
+    ]
+  },
+  "visualBrief": "Dry concrete arch dam with rounded ungated five-bay overflow crest, four tall intermediate concrete piers, two low end transitions, raised nonoverflow abutment wings, tapered upstream/downstream walls and own end maintenance rails. Original NHD dam envelope controls location/chord/curvature; official348.08mcrest/79.248mheight/6.4008mwidth control bounded section estimates. No river/gorge/water or separate powerhouses/intakes.",
+  "nativeAxes": {
+    "x": "southeast along original endpoint chord from west to east abutment",
+    "y": "up",
+    "z": "southwest downstream; reservoir/upstream arch bulge negative-z"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:USACE_Englebright_Dam_and_Lake.jpg",
+    "https://commons.wikimedia.org/wiki/File:Englebright_Lake_(6218415454).jpg"
+  ],
+  "stories": [
+    {
+      "id": "englebright-dam-wp",
+      "url": "https://qualla.com/englebright-dam/"
+    }
+  ],
+  "referenceInputHash": "bb5d846c249463b99d1a73b0ab1cfc11f0df8e7c492a474df1640f3460a4daf3",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-englebright-dam.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-englebright-dam.mjs",
+    "level": "skyline",
+    "export": "englebrightSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "englebrightDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "englebrightStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3,
+    "groundY": -81
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named Englebright damway92797656/Q5378079/USNIDCA10105and full original32vertexNHDpolygon establish geographic identity and approximate curved envelope. This old NHD area is coarse, not a surveyed crest/top/base: upstream arc measures about302mwhere owner states348.0816mcrest, and nativeheight85mdiffers from official79.248m. Preserve original geometry/evidence but do not claim or rescale a surveyed full dam from it. Original endpoint chord establishes heading/anchor; follow original approximate upstream curve for visible arch with explicit estimated end-wing extension/sections as needed to include full official crest length. Photographs and official dimensions govern shape; no fit to storypoint or terrain. Neighboring powerhouses/intakes and gorge are separate. Fixed dry western bank approach precedes independent raw terrain. CrestY0, maximum foundation-79.248m; actual rock/abutment and crest-MSL/provider-relative datums approximate. No DEM fitting.",
+    "anchor": [
+      -121.26970405,
+      39.239394000000004
+    ],
+    "heading": -0.4646771167139495,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -121.27118639540643,
+        39.23984894048194
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed dry western bank approach beyond original NHD dam endpoint, before terrain/geometry. Crest nominal0; center foundation about-79.248m, end wing/pier tops above crest are estimates. MSLspillway elevation and Terrarium reference are distinct datums; canyon/abutment contact approximate, never fit or flatten DEM."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/92797656"
+    ],
+    "source": "https://www.openstreetmap.org/way/92797656",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:890af4e1a91cdd26a2802c4bf4fce1b0e6dfb0e5543d04b73545f09ea3b9d3ce",
+    "notes": "Complete surviving Englebright concrete arch dam: curved ungated ogee overflow crest and tapered downstream/upstream walls, intrinsic raised nonoverflow end/abutment wings, four main tall intermediate crest piers/low end transitions and own maintenance rails/representative construction joints. Static dry structural exterior only; four tall interior piers divide five visibly overflowing central bays in the2010photo. No moving gates, low-level outlet, modeled water/spray/rainbow, adjacent Narrows I/II powerhouses/intakes, river/rock/forest/boats/roads or landscape. Original native NHD dam polygon identifies approximate curved envelope; exact crest/footing/abutment sections and hidden foundations are not surveyed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named Englebright damway92797656/Q5378079/USNIDCA10105and full original32vertexNHDpolygon establish geographic identity and approximate curved envelope. This old NHD area is coarse, not a surveyed crest/top/base: upstream arc measures about302mwhere owner states348.0816mcrest, and nativeheight85mdiffers from official79.248m. Preserve original geometry/evidence but do not claim or rescale a surveyed full dam from it. Original endpoint chord establishes heading/anchor; follow original approximate upstream curve for visible arch with explicit estimated end-wing extension/sections as needed to include full official crest length. Photographs and official dimensions govern shape; no fit to storypoint or terrain. Neighboring powerhouses/intakes and gorge are separate.",
+    "Original coarse NHDupstream edge302.13m/chord249.90m/sag71.99m is preserved as evidence. A circular arc from original chord/sag interprets the owner-described constant-angle arch; short tangent end-wing extensions supply the remaining nominal348.0816moverall crest. This is an explicit section/wing interpretation, not a claim of exact native crest boundaries or a surveyed length match.",
+    "Owner260ft/79.248mcentral structural height and21ft/6.4008mcrest width bound the dry structure. Lower wall thickening/ogee curvature, rising bank foundations, wing/pier height, rail/joint sections and concealed bedrock contact are estimates; native85mheight is not substituted for owner facts. Spillway crest527ftMSL is separate from frozen provider-relative western-bank reference.",
+    "Two exact published Qualla originals, USACE MichaelNevins aerial and MichaelJ.NevinsJune2010spillway photograph, were inspected at native detail and bound to explicit government-work primary records/nativeSHA1. An omitted generated Qualla category for the latter is resolved with a hash-bound exact primary USACE release/agency/named Army photo credit; Qualla media metadata is untouched. No questionable/attribution image, generated bitmap or copied pixels.",
+    "Four tall intermediate piers divide five ungated central overflow bays, with low end transitions and raised nonoverflow wings/own rails. Flowing water conceals the lower center in the close photo; no guessed outlet, gate, roadway bridge or covered spillway is added. Lower body is a bounded tapered arch estimate; no engineering/hydraulic/interior replica claim.",
+    "Static dry dam only. Narrows I/IIpowerhouses/intakes/operation buildings, canyon/river/lake/rock/forest, access roads, boats/people/water/spray/rainbow and signs are separate and excluded. Raw500mTerrariumfield remains unchanged with fixed dry bank reference; illustrative stage below foundation is not surveyed terrain or certified gorge/abutment contact."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "curved-dry-arch-five-ungated-bays-and-raised-wings",
+      "position": [
+        10,
+        50,
+        230
+      ],
+      "lookAt": [
+        0,
+        -28,
+        -28
+      ]
+    },
+    {
+      "name": "rounded-ogee-crest-and-four-concrete-piers",
+      "position": [
+        35,
+        18,
+        5
+      ],
+      "lookAt": [
+        18,
+        -3,
+        -57
+      ]
+    },
+    {
+      "name": "west-nonoverflow-wing-and-maintenance-rails",
+      "position": [
+        -170,
+        28,
+        50
+      ],
+      "lookAt": [
+        -110,
+        -3,
+        -10
+      ]
+    },
+    {
+      "name": "upstream-face-and-open-crest",
+      "position": [
+        155,
+        80,
+        -260
+      ],
+      "lookAt": [
+        0,
+        -28,
+        -34
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11906,
+    "vertices": 35718,
+    "materials": 2,
+    "bytes": 1430708,
+    "sha256": "sha256:25333853b09f244a141b04e6110b5d55f34dcbb6ec626cdb05715a312bc2115c"
+  }
+}

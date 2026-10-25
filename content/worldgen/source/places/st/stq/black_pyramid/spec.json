@@ -1,0 +1,432 @@
+{
+  "planId": "black_pyramid",
+  "id": "black_pyramid",
+  "assetId": "molen.worldgen.structure.black_pyramid",
+  "title": "Black Pyramid",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 31.223904921874997,
+    "latitude": 29.791736025000002
+  },
+  "size": [
+    113.23098373413086,
+    52.55000001192093,
+    102.53013610839844
+  ],
+  "actualBounds": {
+    "min": [
+      -57.23098373413086,
+      -0.550000011920929,
+      -52.245391845703125
+    ],
+    "max": [
+      56,
+      52,
+      50.28474426269531
+    ]
+  },
+  "visualBrief": "Whole surviving Black Pyramid collapsed mudbrick core and its intrinsic broken shoulders, gullies and talus, with truncated off-center upper crown. Original medium-fi ruin, not a pristine75m reconstructed pyramid, generic cone or sand hill. Exclude detached temple/enclosure/nearby ruins, underground burial rooms, museum pyramidion, desert/roads/tourism props/people/modern city. Sculpt original closed broken clay-masonry mass with off-center broad truncated head, steep exposed uppercliffs, asymmetric stepped rightshoulder/buttresses, two deep weathered frontgullies and sloping intrinsicmudbrick/rubble aprons. Use actual irregular polygon sections/ridged erosion surfaces/canonicaladobe and earth materials. No ideal pyramid cap, fantasy entrance or generic noisy cone. Height52m/whole envelope112x102m and hidden erosion are explicit photo estimates; native180m circle is only identity. Independent field must remain untouched; if it contains the ruined mound, clip only actual model overlap for host review rather than doubling it or fitting/flattening source values.",
+  "nativeAxes": {
+    "x": "south",
+    "y": "up",
+    "z": "west/cleared-photographic-front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:-Pyramid_at_Dahsh%C3%BBr-_MET_DP116367.jpg",
+    "https://commons.wikimedia.org/wiki/File:Giza,_Dahshur_and_Saqqara_-_Giza8255.jpg"
+  ],
+  "stories": [
+    {
+      "id": "black-pyramid-wp",
+      "url": "https://qualla.com/black-pyramid/"
+    }
+  ],
+  "referenceInputHash": "e7a9b1016a351c8994c6da684f3207140e976b4fdf22858723b4bdc405f5f64a",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-black-pyramid.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-black-pyramid.mjs",
+    "level": "skyline",
+    "export": "blackPyramidSkyline",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "core": {
+        "slot": "wall",
+        "graph": "earth_adobe",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "broken": {
+        "slot": "trim",
+        "graph": "earth_rammed",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "talus": {
+        "slot": "roof",
+        "graph": "gravel",
+        "roughness": 0.99,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "blackPyramidDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "core": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "broken": {
+            "slot": "trim",
+            "graph": "earth_rammed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "talus": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "blackPyramidStreet",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "core": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "broken": {
+            "slot": "trim",
+            "graph": "earth_rammed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "talus": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "blackPyramidCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "core": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "broken": {
+            "slot": "trim",
+            "graph": "earth_rammed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "talus": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named original OSMway39918837/Q284794 supplies object identity and reference center. Its32vertex180m-diameter circle is a coarse archaeological symbol/area, not the ruined core footprint or ideal pyramid base; never extrude it. Actual core/debris outline,52mheight, orientation/upper shoulders and all sections are bounded photographic estimates from current/historic cleared originals, not a measured survey. Native circle retained as separate evidence. Nearby anonymous ruins/protected-area boundary are not adopted as pyramid geometry. Independent400m129x129field frozen before geometry; fixed western approach datum. Monument returns/coarse DEM do not establish surveyed base/host contact.",
+    "anchor": [
+      31.223904921874997,
+      29.791736025000002
+    ],
+    "heading": -1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        31.223056127622538,
+        29.791736025000002
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed west approach beyond estimated intrinsic rubble before independent terrain acquisition/geometry; no surveyed base elevation."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          54.32,
+          0
+        ],
+        [
+          51.83219184588206,
+          9.223645597247454
+        ],
+        [
+          47.103336967902344,
+          17.49995340722128
+        ],
+        [
+          44.23849875602023,
+          27.05771195046545
+        ],
+        [
+          45.092624863293906,
+          41.040539154449206
+        ],
+        [
+          30.863636439109893,
+          42.25016282874458
+        ],
+        [
+          19.292714449091477,
+          43.231733060882135
+        ],
+        [
+          9.905172872571093,
+          44.97099983624976
+        ],
+        [
+          3.3975830336304875e-15,
+          48.77620271962687
+        ],
+        [
+          -10.16043095791689,
+          46.80810245348714
+        ],
+        [
+          -19.16433102168741,
+          44.15293822766866
+        ],
+        [
+          -30.146872907483985,
+          41.076069271175086
+        ],
+        [
+          -45.65572938188286,
+          39.557169674084214
+        ],
+        [
+          -45.16368072685416,
+          27.303089742376272
+        ],
+        [
+          -46.25446112577688,
+          18.23907821011883
+        ],
+        [
+          -51.032288271234414,
+          9.344661329323982
+        ],
+        [
+          -55.514052817721684,
+          6.002198319955512e-15
+        ],
+        [
+          -49.837761318654586,
+          -8.934668867441216
+        ],
+        [
+          -46.54297246273635,
+          -17.81096231806833
+        ],
+        [
+          -46.16221171233452,
+          -28.183278792791448
+        ],
+        [
+          -45.13156531595582,
+          -41.22146352694975
+        ],
+        [
+          -29.571435646466806,
+          -40.664044490458124
+        ],
+        [
+          -19.49163156123161,
+          -42.15089186142221
+        ],
+        [
+          -10.308538664171962,
+          -46.12551120498647
+        ],
+        [
+          -9.988573481933944e-15,
+          -50.678030563554294
+        ],
+        [
+          9.810112512820107,
+          -46.60097788456978
+        ],
+        [
+          19.742317675764156,
+          -42.38931205513225
+        ],
+        [
+          30.97101399092413,
+          -40.360173405577086
+        ],
+        [
+          44.03202710689614,
+          -40.8375477049338
+        ],
+        [
+          44.355668000317905,
+          -28.24678584072043
+        ],
+        [
+          48.200518073457964,
+          -18.002257683136133
+        ],
+        [
+          51.39968191217499,
+          -8.96598935425992
+        ]
+      ],
+      "basis": "Only overlap beneath the estimated intrinsic core/talus is clipped for terrain review. Raw independent source field remains unchanged and can include the ruin itself; avoid rendering two copies of the mound. This is not the symbolic native180m circle or a desert parcel opening. Exact live host contact remains unverified."
+    },
+    "featureIds": [
+      "way/39918837"
+    ],
+    "source": "https://www.openstreetmap.org/way/39918837",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:37d0f8476762ea53fc250bb1fb1c3d8d43486896dab9983a46367c99b458f6e7",
+    "notes": "Whole surviving Black Pyramid collapsed mudbrick core and its intrinsic broken shoulders, gullies and talus, with truncated off-center upper crown. Original medium-fi ruin, not a pristine75m reconstructed pyramid, generic cone or sand hill. Exclude detached temple/enclosure/nearby ruins, underground burial rooms, museum pyramidion, desert/roads/tourism props/people/modern city."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_adobe",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.35,
+        0.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Named original OSMway39918837/Q284794 supplies object identity and reference center. Its32vertex180m-diameter circle is a coarse archaeological symbol/area, not the ruined core footprint or ideal pyramid base; never extrude it. Actual core/debris outline,52mheight, orientation/upper shoulders and all sections are bounded photographic estimates from current/historic cleared originals, not a measured survey. Native circle retained as separate evidence. Nearby anonymous ruins/protected-area boundary are not adopted as pyramid geometry.",
+    "Qualla-first ca1857FrancisFrith museumCC0original and supplemental exact lumoplank modern creatorCC0original individually inspected/native-SHA1matched. Modern primary author/creator and transfer bind same NSID/CC0release. Historic detail informs construction only; current major masses confirmed separately. No uncertain copyright source or photographic texture.",
+    "Whole surviving mudbrick core and intrinsic collapsed rubble slopes only. Off-center truncated crown, steep upper cliffs, lower right shoulder and two eroded front gullies are original shaped geometry.52mheight/112x102mcollapse envelope and concealed erosion/courses are explicit photographic medium-fi estimates, not surveyed dimensions or exact current fracture census. No ideal75mcap, limestone casing reconstruction, generic cone or fantasy entrance.",
+    "Native32vertex180m circle is a coarse archaeological identity/area, not the ruin footprint. It is retained separately and never extruded; nearby temples/enclosure/anonymous ruins, burial interiors and museum pyramidion are excluded.",
+    "Independent400m129x129field/16641samples unchanged; composite DEM may include the ruined mound itself. Only intrinsic model overlap is opened for context/shared terrain so the model is not doubled. Isolated portable stage intentionally has flat review ground. No fitted/flattened desert slab; exact base/host-terrain contact unverified/replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-collapsed-core-and-offset-truncated-crown",
+      "position": [
+        0,
+        39,
+        150
+      ],
+      "lookAt": [
+        -4,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "steep-mudbrick-cliff-and-eroded-front-gullies",
+      "position": [
+        14,
+        36,
+        51
+      ],
+      "lookAt": [
+        -2,
+        34,
+        5
+      ]
+    },
+    {
+      "name": "broken-summit-and-asymmetric-shoulders",
+      "position": [
+        -31,
+        75,
+        36
+      ],
+      "lookAt": [
+        -7,
+        38,
+        -1
+      ]
+    },
+    {
+      "name": "rear-ruin-profile-bounded-estimate",
+      "position": [
+        -110,
+        65,
+        -130
+      ],
+      "lookAt": [
+        -3,
+        24,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 50024,
+    "vertices": 150072,
+    "materials": 3,
+    "bytes": 6005284,
+    "sha256": "sha256:d05fd0e2a7715fe0d8f1145723f875f8cd5050ee95c42311edf5d7e4d3185dd1"
+  }
+}

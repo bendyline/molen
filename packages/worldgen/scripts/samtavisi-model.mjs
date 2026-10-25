@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sz/szr/n0388_samtavisi_cathedral/',
+  '../../../content/worldgen/source/places/sz/szr/samtavisi_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -856,7 +856,7 @@ export const buildSamtavisiSkyline = (o) => build(o, 0),
   buildSamtavisiCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const samtavisiStudy = {
-  id: 'N0388',
+  id: 'samtavisi_cathedral',
   key: 'samtavisi_cathedral',
   title: 'Samtavisi Cathedral',
   category: 'cathedral',

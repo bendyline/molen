@@ -1,0 +1,28 @@
+/** Shared model IDs; regional prevalence lives in the entities pack fleet catalog. */
+export const MOLEN_REGIONAL_VEHICLE_ENTITY_IDS = [
+  'molen.entities.vehicle.byd_seagull_2024',
+  'molen.entities.vehicle.byd_qin_plus_2024',
+  'molen.entities.vehicle.wuling_hongguang_mini_ev_2025',
+  'molen.entities.vehicle.geely_monjaro_2024',
+  'molen.entities.vehicle.toyota_yaris_2024',
+  'molen.entities.vehicle.honda_n_box_2024',
+  'molen.entities.vehicle.suzuki_jimny_sierra_2024',
+  'molen.entities.vehicle.toyota_alphard_2024',
+  'molen.entities.vehicle.kia_k5_2024',
+  'molen.entities.vehicle.hyundai_casper_electric_2024',
+  'molen.entities.vehicle.hyundai_staria_2024',
+  'molen.entities.vehicle.genesis_g80_2024',
+  'molen.entities.vehicle.peugeot_208_2024',
+  'molen.entities.vehicle.renault_clio_2024',
+  'molen.entities.vehicle.dacia_duster_2024',
+  'molen.entities.vehicle.skoda_octavia_combi_2024',
+  'molen.entities.vehicle.fiat_strada_2024',
+  'molen.entities.vehicle.volkswagen_polo_2024',
+  'molen.entities.vehicle.chevrolet_onix_2024',
+  'molen.entities.vehicle.renault_kwid_2024',
+  'molen.entities.vehicle.toyota_hilux_2024',
+  'molen.entities.vehicle.toyota_hiace_2024',
+  'molen.entities.vehicle.isuzu_d_max_2024',
+  'molen.entities.vehicle.suzuki_swift_2024',
+] as const;
+export type MolenRegionalVehicleEntityId = (typeof MOLEN_REGIONAL_VEHICLE_ENTITY_IDS)[number];

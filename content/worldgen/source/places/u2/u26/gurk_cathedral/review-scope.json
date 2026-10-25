@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.88,
+      "metallic": 0.12
+    },
+    "cap": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.15
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/gurk-cathedral-model.mjs",
+    "export": "buildGurkSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGurkDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.12
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildGurkStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.12
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGurkCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.12
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -91,
+      69,
+      86
+    ],
+    "lookAt": [
+      0,
+      26,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-gurk-skyline",
+      "position": [
+        -91,
+        69,
+        86
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-gurk-district",
+      "position": [
+        -91,
+        69,
+        86
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-gurk-street",
+      "position": [
+        -91,
+        69,
+        86
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-gurk-closeup",
+      "position": [
+        -91,
+        69,
+        86
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.swiss_chalet",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior; current acceptance recorded separately in QA.",
+    "anchor": [
+      14.293332446,
+      46.874828182
+    ],
+    "heading": 0.510992715917,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention, not exact host-ground contact. Standard viewer DEM datum 662.795152 m; selected raw perimeter -0.36 to 0.56 m. Floor 0.5 m; adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact west parvis, cemetery edge, monastery junction, threshold/base joins, absolute altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        14.293332446,
+        46.874828182
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 662.795152 m; selected raw perimeter -0.36 to 0.56 m. Floor 0.5 m; adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact west parvis, cemetery edge, monastery junction, threshold/base joins, absolute altitude and walking remain unverified."
+    },
+    "bounds": [
+      14.286,
+      46.868,
+      14.301,
+      46.882
+    ],
+    "notes": "Exact retained way/179181268 and Q701301 identify Gurker Dom; current standard viewer whole 35184551270100 and same-ID POI. Preserve all 21 raw outline points/properties plus earlier whole/tags. Anchor [14.293332446,46.874828182] and heading 0.510992715917 rad unchanged. Native +X points east toward three apses, -X west toward twin towers/entrance, +Z south toward cemetery. No horizontal rescale. Monastery relation 52776560524105, its courtyard, detached cemetery chapel, walls, cemetery fixtures and town buildings remain host content. Detailed tower, nave and apse partitions are picture estimates constrained by the church whole. Standard viewer DEM datum 662.795152 m; selected raw perimeter -0.36 to 0.56 m. Floor 0.5 m; adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact west parvis, cemetery edge, monastery junction, threshold/base joins, absolute altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 662.795152 m; selected raw perimeter -0.36 to 0.56 m. Floor 0.5 m; adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact west parvis, cemetery edge, monastery junction, threshold/base joins, absolute altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

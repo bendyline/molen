@@ -1,0 +1,1834 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.pc_6": {
+      "doc": "Pilatus PC-6/B2-H4 Turbo Porter: original polygonal exterior and six-pack cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.pc_6",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.pc_6",
+          "spec": {
+            "label": "Pilatus PC-6/B2-H4 Turbo Porter",
+            "genericLabel": "Civil transport with enclosed cockpit",
+            "model": "airplane",
+            "mass": 2000,
+            "span": 15.87,
+            "length": 10.9,
+            "height": 3.2,
+            "centerOfMass": [
+              0,
+              1.3,
+              0
+            ],
+            "pilotEye": [
+              0.3,
+              2.3493052396395924,
+              1.6884504407894116
+            ],
+            "hardLandingSpeed": 4,
+            "hardLandingRoll": 0.2,
+            "hardLandingPitch": 0.28,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.3,
+                4.687
+              ],
+              [
+                0,
+                1.3,
+                -4.687
+              ],
+              [
+                7.3002,
+                1.3,
+                0
+              ],
+              [
+                -7.3002,
+                1.3,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "Porter-propeller",
+                  "engine": "engine-1",
+                  "axis": "z",
+                  "multiplier": 1
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": [
+                  {
+                    "node": "Porter-flap-inner--1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6632
+                  },
+                  {
+                    "node": "Porter-flap-outer--1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6632
+                  },
+                  {
+                    "node": "Porter-aileron--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.3
+                  },
+                  {
+                    "node": "Porter-elevator--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.45
+                  },
+                  {
+                    "node": "Porter-flap-inner-1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6632
+                  },
+                  {
+                    "node": "Porter-flap-outer-1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6632
+                  },
+                  {
+                    "node": "Porter-aileron-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.3
+                  },
+                  {
+                    "node": "Porter-elevator-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.45
+                  },
+                  {
+                    "node": "Porter-rudder",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.52
+                  }
+                ],
+                "sources": {
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  }
+                }
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "sources": {
+                  "trueAirspeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "airspeed"
+                    ]
+                  },
+                  "altitude": {
+                    "component": "transform",
+                    "path": [
+                      "pos",
+                      1
+                    ]
+                  },
+                  "yaw": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "pitch": {
+                    "component": "aircraftState",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "roll": {
+                    "component": "aircraftState",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "verticalSpeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "verticalSpeed"
+                    ]
+                  },
+                  "yawRate": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yawRate"
+                    ]
+                  },
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "engine1": {
+                    "component": "aircraftState",
+                    "path": [
+                      "engines",
+                      "engine-1",
+                      "rpm"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "power": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "power"
+                    ]
+                  }
+                },
+                "derived": {
+                  "knots": {
+                    "op": "multiply",
+                    "args": [
+                      "trueAirspeed",
+                      1.9438444924406046
+                    ]
+                  },
+                  "feet": {
+                    "op": "divide",
+                    "args": [
+                      "altitude",
+                      0.3048
+                    ]
+                  },
+                  "verticalFpm": {
+                    "op": "multiply",
+                    "args": [
+                      "verticalSpeed",
+                      196.85039370078738
+                    ]
+                  },
+                  "northYaw": {
+                    "op": "subtract",
+                    "args": [
+                      3.141592653589793,
+                      "yaw"
+                    ]
+                  },
+                  "trueHeading": {
+                    "op": "modulo",
+                    "args": [
+                      "northYaw",
+                      6.283185307179586
+                    ]
+                  },
+                  "rpmPercent": {
+                    "op": "multiply",
+                    "args": [
+                      "engine1",
+                      100
+                    ]
+                  },
+                  "turnDegrees": {
+                    "op": "multiply",
+                    "args": [
+                      "yawRate",
+                      57.29577951308232
+                    ]
+                  },
+                  "Porter.speed.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "knots",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.speed.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.speed.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.attitude-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "roll",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.attitude-bank.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.attitude-bank.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.attitude-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "pitch",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.attitude-pitch.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.attitude-pitch.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.altimeter-0.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.altimeter-0.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.altimeter-0.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.altimeter-1.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.altimeter-1.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.altimeter-1.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.altimeter-2.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.altimeter-2.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.altimeter-2.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.heading.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.heading.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.heading.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.vsi.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "verticalFpm",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.vsi.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.vsi.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.turn.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "turnDegrees",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.turn.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.turn.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.standby-attitude-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "roll",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.standby-attitude-bank.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.standby-attitude-bank.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.standby-attitude-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "pitch",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.standby-attitude-pitch.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.standby-attitude-pitch.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.rpm.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "rpmPercent",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.rpm.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.rpm.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.flaps.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "flapPosition",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.flaps.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.flaps.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.compass.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Porter.compass.available": {
+                    "op": "greater",
+                    "args": [
+                      "Porter.compass.availableValue",
+                      -100000000000000000000
+                    ]
+                  }
+                },
+                "bindings": [
+                  {
+                    "node": "Porter-speed",
+                    "source": "knots",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        40,
+                        0.65
+                      ],
+                      [
+                        60,
+                        1.2
+                      ],
+                      [
+                        80,
+                        1.8
+                      ],
+                      [
+                        100,
+                        2.4
+                      ],
+                      [
+                        120,
+                        3
+                      ],
+                      [
+                        140,
+                        3.7
+                      ],
+                      [
+                        160,
+                        4.4
+                      ],
+                      [
+                        200,
+                        5.7
+                      ]
+                    ],
+                    "responseSeconds": 0.2,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Porter-speed",
+                    "source": "Porter.speed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-attitude-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Porter-attitude-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.0966,
+                    "min": -0.0276,
+                    "max": 0.0276,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Porter-attitude-bank",
+                    "source": "Porter.attitude-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-attitude-pitch",
+                    "source": "Porter.attitude-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-altimeter-0",
+                    "source": "Porter.altimeter-0.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-altimeter-1",
+                    "source": "Porter.altimeter-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-altimeter-2",
+                    "source": "Porter.altimeter-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-altimeter-0",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.006283185307179587,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Porter-altimeter-1",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Porter-altimeter-2",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.00006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Porter-heading-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Porter-heading-drum",
+                    "source": "Porter.heading.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-vsi",
+                    "source": "verticalFpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -2000,
+                        -2.5
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        2000,
+                        2.5
+                      ]
+                    ],
+                    "responseSeconds": 0.5,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Porter-vsi",
+                    "source": "Porter.vsi.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-turn",
+                    "source": "turnDegrees",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -6,
+                        -0.6
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        6,
+                        0.6
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Porter-turn",
+                    "source": "Porter.turn.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-standby-attitude-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Porter-standby-attitude-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.07035000000000001,
+                    "min": -0.0201,
+                    "max": 0.0201,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Porter-standby-attitude-bank",
+                    "source": "Porter.standby-attitude-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-standby-attitude-pitch",
+                    "source": "Porter.standby-attitude-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-rpm",
+                    "source": "rpmPercent",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        50,
+                        2.7
+                      ],
+                      [
+                        100,
+                        5.4
+                      ]
+                    ],
+                    "responseSeconds": 0.25,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Porter-rpm",
+                    "source": "Porter.rpm.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-flaps",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        -1
+                      ],
+                      [
+                        1,
+                        1
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Porter-flaps",
+                    "source": "Porter.flaps.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Porter-power-0",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.7
+                  },
+                  {
+                    "node": "Porter-stick-pitch--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.2
+                  },
+                  {
+                    "node": "Porter-stick-roll--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.23
+                  },
+                  {
+                    "node": "Porter-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "Porter-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "Porter-stick-pitch-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.2
+                  },
+                  {
+                    "node": "Porter-stick-roll-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.23
+                  },
+                  {
+                    "node": "Porter-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "Porter-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "Porter-compass-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Porter-compass-drum",
+                    "source": "Porter.compass.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  }
+                ]
+              }
+            },
+            "airplane": {
+              "wingPosition": [
+                0,
+                1.3,
+                0
+              ],
+              "wingArea": 30.15,
+              "controlAuthoritySpeed": 45,
+              "maxControlAuthority": 1.8,
+              "pitchAuthority": 0.18,
+              "pitchResponse": 2.5,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 1.05,
+              "rollResponse": 2,
+              "rudderAuthority": 1,
+              "groundSteerSpeed": 8,
+              "groundLevelRate": 2,
+              "maxGroundPitch": 0.22,
+              "camberAngle": 0.045,
+              "flapLift": 0.8,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "pitchFrequency": 3.5,
+              "pitchDamping": 0.7,
+              "maxLoadFactor": 3.8,
+              "minLoadFactor": -1.5,
+              "autoTrim": 1,
+              "directionalStability": 4,
+              "yawDamping": 1.2,
+              "dihedralEffect": 2.5,
+              "propellerEffects": 0.08,
+              "stallSpeed": 26,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.07692957231717407,
+              "inducedDrag": 0.04646968599659071,
+              "gearDrag": 0.004,
+              "flapDrag": 0.075,
+              "gearTransitTime": 0,
+              "flapTransitTime": 4,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.85,
+              "maxThrust": 8400,
+              "minPropellerSpeed": 25,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 4,
+              "rollingDeceleration": 0.22,
+              "groundTrackRate": 12,
+              "fixedGear": true,
+              "groundEffect": true,
+              "criticalMach": 0.62,
+              "waveDrag": 0.22,
+              "maxMach": 0.72,
+              "maxEquivalentAirspeed": 77.16666666666667,
+              "flapLimitSpeed": 45
+            },
+            "engines": [
+              {
+                "id": "engine-1",
+                "position": [
+                  0,
+                  2.080973253389481,
+                  4.488825048793681
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 410000,
+                "idleRpm": 0.18,
+                "spoolRate": 0.25,
+                "rotorAngularSpeed": 180,
+                "maxThrust": 8712.5,
+                "minPropellerSpeed": 25,
+                "propellerEfficiency": 0.85,
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 0.7
+              }
+            ]
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.3,
+                2.3493052396395924,
+                1.6884504407894116
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                -0.3,
+                2.3493052396395924,
+                1.6884504407894116
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.435,
+              0,
+              1.6884504407894116
+            ]
+          ],
+          "exits": [
+            [
+              2.135,
+              0,
+              1.6884504407894116
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.83,
+          "width": 11.28,
+          "height": 4.1,
+          "cruise": 90,
+          "weight": 0.35
+        },
+        "model.signals": {
+          "sources": {
+            "trueAirspeed": {
+              "component": "aircraftState",
+              "path": [
+                "airspeed"
+              ]
+            },
+            "altitude": {
+              "component": "transform",
+              "path": [
+                "pos",
+                1
+              ]
+            },
+            "yaw": {
+              "component": "aircraftState",
+              "path": [
+                "yaw"
+              ]
+            },
+            "pitch": {
+              "component": "aircraftState",
+              "path": [
+                "pitch"
+              ]
+            },
+            "roll": {
+              "component": "aircraftState",
+              "path": [
+                "roll"
+              ]
+            },
+            "verticalSpeed": {
+              "component": "aircraftState",
+              "path": [
+                "verticalSpeed"
+              ]
+            },
+            "yawRate": {
+              "component": "aircraftState",
+              "path": [
+                "yawRate"
+              ]
+            },
+            "flapPosition": {
+              "component": "aircraftState",
+              "path": [
+                "flapPosition"
+              ]
+            },
+            "engine1": {
+              "component": "aircraftState",
+              "path": [
+                "engines",
+                "engine-1",
+                "rpm"
+              ]
+            },
+            "pitchInput": {
+              "component": "aircraftInput",
+              "path": [
+                "pitch"
+              ]
+            },
+            "rollInput": {
+              "component": "aircraftInput",
+              "path": [
+                "roll"
+              ]
+            },
+            "yawInput": {
+              "component": "aircraftInput",
+              "path": [
+                "yaw"
+              ]
+            },
+            "power": {
+              "component": "aircraftInput",
+              "path": [
+                "power"
+              ]
+            }
+          },
+          "derived": {
+            "knots": {
+              "op": "multiply",
+              "args": [
+                "trueAirspeed",
+                1.9438444924406046
+              ]
+            },
+            "feet": {
+              "op": "divide",
+              "args": [
+                "altitude",
+                0.3048
+              ]
+            },
+            "verticalFpm": {
+              "op": "multiply",
+              "args": [
+                "verticalSpeed",
+                196.85039370078738
+              ]
+            },
+            "northYaw": {
+              "op": "subtract",
+              "args": [
+                3.141592653589793,
+                "yaw"
+              ]
+            },
+            "trueHeading": {
+              "op": "modulo",
+              "args": [
+                "northYaw",
+                6.283185307179586
+              ]
+            },
+            "rpmPercent": {
+              "op": "multiply",
+              "args": [
+                "engine1",
+                100
+              ]
+            },
+            "turnDegrees": {
+              "op": "multiply",
+              "args": [
+                "yawRate",
+                57.29577951308232
+              ]
+            },
+            "Porter.speed.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "knots",
+                -100000000000000000000
+              ]
+            },
+            "Porter.speed.available": {
+              "op": "greater",
+              "args": [
+                "Porter.speed.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.attitude-bank.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "roll",
+                -100000000000000000000
+              ]
+            },
+            "Porter.attitude-bank.available": {
+              "op": "greater",
+              "args": [
+                "Porter.attitude-bank.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.attitude-pitch.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "pitch",
+                -100000000000000000000
+              ]
+            },
+            "Porter.attitude-pitch.available": {
+              "op": "greater",
+              "args": [
+                "Porter.attitude-pitch.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.altimeter-0.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "Porter.altimeter-0.available": {
+              "op": "greater",
+              "args": [
+                "Porter.altimeter-0.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.altimeter-1.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "Porter.altimeter-1.available": {
+              "op": "greater",
+              "args": [
+                "Porter.altimeter-1.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.altimeter-2.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "Porter.altimeter-2.available": {
+              "op": "greater",
+              "args": [
+                "Porter.altimeter-2.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.heading.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "Porter.heading.available": {
+              "op": "greater",
+              "args": [
+                "Porter.heading.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.vsi.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "verticalFpm",
+                -100000000000000000000
+              ]
+            },
+            "Porter.vsi.available": {
+              "op": "greater",
+              "args": [
+                "Porter.vsi.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.turn.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "turnDegrees",
+                -100000000000000000000
+              ]
+            },
+            "Porter.turn.available": {
+              "op": "greater",
+              "args": [
+                "Porter.turn.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.standby-attitude-bank.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "roll",
+                -100000000000000000000
+              ]
+            },
+            "Porter.standby-attitude-bank.available": {
+              "op": "greater",
+              "args": [
+                "Porter.standby-attitude-bank.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.standby-attitude-pitch.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "pitch",
+                -100000000000000000000
+              ]
+            },
+            "Porter.standby-attitude-pitch.available": {
+              "op": "greater",
+              "args": [
+                "Porter.standby-attitude-pitch.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.rpm.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "rpmPercent",
+                -100000000000000000000
+              ]
+            },
+            "Porter.rpm.available": {
+              "op": "greater",
+              "args": [
+                "Porter.rpm.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.flaps.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "flapPosition",
+                -100000000000000000000
+              ]
+            },
+            "Porter.flaps.available": {
+              "op": "greater",
+              "args": [
+                "Porter.flaps.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Porter.compass.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "Porter.compass.available": {
+              "op": "greater",
+              "args": [
+                "Porter.compass.availableValue",
+                -100000000000000000000
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "Porter-speed",
+              "source": "knots",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  40,
+                  0.65
+                ],
+                [
+                  60,
+                  1.2
+                ],
+                [
+                  80,
+                  1.8
+                ],
+                [
+                  100,
+                  2.4
+                ],
+                [
+                  120,
+                  3
+                ],
+                [
+                  140,
+                  3.7
+                ],
+                [
+                  160,
+                  4.4
+                ],
+                [
+                  200,
+                  5.7
+                ]
+              ],
+              "responseSeconds": 0.2,
+              "missing": "hold"
+            },
+            {
+              "node": "Porter-speed",
+              "source": "Porter.speed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-attitude-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Porter-attitude-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.0966,
+              "min": -0.0276,
+              "max": 0.0276,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Porter-attitude-bank",
+              "source": "Porter.attitude-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-attitude-pitch",
+              "source": "Porter.attitude-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-altimeter-0",
+              "source": "Porter.altimeter-0.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-altimeter-1",
+              "source": "Porter.altimeter-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-altimeter-2",
+              "source": "Porter.altimeter-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-altimeter-0",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.006283185307179587,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Porter-altimeter-1",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.0006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Porter-altimeter-2",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.00006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Porter-heading-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Porter-heading-drum",
+              "source": "Porter.heading.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-vsi",
+              "source": "verticalFpm",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -2000,
+                  -2.5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  2000,
+                  2.5
+                ]
+              ],
+              "responseSeconds": 0.5,
+              "missing": "hold"
+            },
+            {
+              "node": "Porter-vsi",
+              "source": "Porter.vsi.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-turn",
+              "source": "turnDegrees",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -6,
+                  -0.6
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  6,
+                  0.6
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Porter-turn",
+              "source": "Porter.turn.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-standby-attitude-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Porter-standby-attitude-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.07035000000000001,
+              "min": -0.0201,
+              "max": 0.0201,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Porter-standby-attitude-bank",
+              "source": "Porter.standby-attitude-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-standby-attitude-pitch",
+              "source": "Porter.standby-attitude-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-rpm",
+              "source": "rpmPercent",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  50,
+                  2.7
+                ],
+                [
+                  100,
+                  5.4
+                ]
+              ],
+              "responseSeconds": 0.25,
+              "missing": "hold"
+            },
+            {
+              "node": "Porter-rpm",
+              "source": "Porter.rpm.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-flaps",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  -1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Porter-flaps",
+              "source": "Porter.flaps.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-power-0",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.7
+            },
+            {
+              "node": "Porter-stick-pitch--1",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.2
+            },
+            {
+              "node": "Porter-stick-roll--1",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.23
+            },
+            {
+              "node": "Porter-pedal--1--1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.04
+            },
+            {
+              "node": "Porter-pedal--1-1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.04
+            },
+            {
+              "node": "Porter-stick-pitch-1",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.2
+            },
+            {
+              "node": "Porter-stick-roll-1",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.23
+            },
+            {
+              "node": "Porter-pedal-1--1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.04
+            },
+            {
+              "node": "Porter-pedal-1-1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.04
+            },
+            {
+              "node": "Porter-compass-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Porter-compass-drum",
+              "source": "Porter.compass.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Porter-flap-inner--1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6632
+            },
+            {
+              "node": "Porter-flap-outer--1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6632
+            },
+            {
+              "node": "Porter-aileron--1",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.3
+            },
+            {
+              "node": "Porter-elevator--1",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.45
+            },
+            {
+              "node": "Porter-flap-inner-1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6632
+            },
+            {
+              "node": "Porter-flap-outer-1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6632
+            },
+            {
+              "node": "Porter-aileron-1",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.3
+            },
+            {
+              "node": "Porter-elevator-1",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.45
+            },
+            {
+              "node": "Porter-rudder",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.52
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.pc_6"
+      ]
+    }
+  }
+}

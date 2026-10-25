@@ -1,0 +1,403 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.87,
+      "metallic": 0.12
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.8,
+      "metallic": 0.1
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.53,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/roma-model.mjs",
+    "export": "buildRomaSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRomaDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.12
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildRomaStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.12
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRomaCloseup",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.12
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -155,
+      115,
+      -170
+    ],
+    "lookAt": [
+      0,
+      11,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-roma-skyline",
+      "position": [
+        -155,
+        115,
+        -170
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-roma-district",
+      "position": [
+        -155,
+        115,
+        -170
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-roma-street",
+      "position": [
+        -155,
+        115,
+        -170
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-roma-closeup",
+      "position": [
+        -155,
+        115,
+        -170
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained exact envelope/axis plus current matching main polygon and named point;all internal and vertical controls estimated.",
+    "anchor": [
+      12.494884689,
+      41.934687965
+    ],
+    "heading": 0.978176417278,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0477;datum 27.654888910252524 m. 808 footprint samples span -3.9580224838881257 to 1.9617079918508615 m. Floor -2.0030297495745017 m is the median of 210 edge samples plus0.25 m. Footings follow standard DEM grade;the exact retained envelope owns a paving slab beneath hall,colonnades and estimated atrium. Exact stairs,retaining levels,thresholds,planting and grade joins are unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -85.26,
+          -39.948
+        ],
+        [
+          85.26,
+          -39.948
+        ],
+        [
+          83.712,
+          -34.613
+        ],
+        [
+          68.159,
+          -28.433
+        ],
+        [
+          29.741,
+          -25.696
+        ],
+        [
+          30.948,
+          -18.801
+        ],
+        [
+          60.329,
+          -17.161
+        ],
+        [
+          79.094,
+          -10.937
+        ],
+        [
+          81.869,
+          -6.816
+        ],
+        [
+          58.02,
+          -5.323
+        ],
+        [
+          58.048,
+          -0.2
+        ],
+        [
+          46.62,
+          0.647
+        ],
+        [
+          47.455,
+          38.421
+        ],
+        [
+          -11.747,
+          39.948
+        ],
+        [
+          -14.102,
+          2.109
+        ],
+        [
+          -31.847,
+          1.209
+        ],
+        [
+          -35.208,
+          -2.528
+        ],
+        [
+          -55.919,
+          -4.007
+        ],
+        [
+          -57.716,
+          -10.504
+        ],
+        [
+          -35.661,
+          -13.365
+        ],
+        [
+          -35.104,
+          -21.447
+        ],
+        [
+          -68.04,
+          -25.835
+        ],
+        [
+          -70.82,
+          -29.964
+        ],
+        [
+          -84.253,
+          -34.626
+        ]
+      ],
+      "basis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0477;datum 27.654888910252524 m. 808 footprint samples span -3.9580224838881257 to 1.9617079918508615 m. Floor -2.0030297495745017 m is the median of 210 edge samples plus0.25 m. Footings follow standard DEM grade;the exact retained envelope owns a paving slab beneath hall,colonnades and estimated atrium. Exact stairs,retaining levels,thresholds,planting and grade joins are unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        12.494884689,
+        41.934687965
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0477;datum 27.654888910252524 m. 808 footprint samples span -3.9580224838881257 to 1.9617079918508615 m. Floor -2.0030297495745017 m is the median of 210 edge samples plus0.25 m. Footings follow standard DEM grade;the exact retained envelope owns a paving slab beneath hall,colonnades and estimated atrium. Exact stairs,retaining levels,thresholds,planting and grade joins are unverified."
+    },
+    "bounds": [
+      12.4935,
+      41.9338,
+      12.4964,
+      41.9357
+    ],
+    "notes": "Retained Q1789776 /way30312316 identity,anchor,undirected axis and 24-vertex outer envelope remain unchanged. Current two-fragment main building has 28 vertices and closely matches that envelope;named mosque POI35184396038432 lies within the complex but has a separate id. Positive Z is assigned to the projecting prayer hall;the long folded negative-Z ranges become a low colonnaded canopy. The central open atrium is an architectural estimate absent from the retained no-hole map outline. Roof partitions,column grid,facing and dome/minaret positions are picture/map-guided estimates. Nearby buildings remain host content. Standard Protomaps20261014 /Mapzen-USGS viewer extractN0477;datum 27.654888910252524 m. 808 footprint samples span -3.9580224838881257 to 1.9617079918508615 m. Floor -2.0030297495745017 m is the median of 210 edge samples plus0.25 m. Footings follow standard DEM grade;the exact retained envelope owns a paving slab beneath hall,colonnades and estimated atrium. Exact stairs,retaining levels,thresholds,planting and grade joins are unverified."
+  },
+  "geographicNote": "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0477;datum 27.654888910252524 m. 808 footprint samples span -3.9580224838881257 to 1.9617079918508615 m. Floor -2.0030297495745017 m is the median of 210 edge samples plus0.25 m. Footings follow standard DEM grade;the exact retained envelope owns a paving slab beneath hall,colonnades and estimated atrium. Exact stairs,retaining levels,thresholds,planting and grade joins are unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

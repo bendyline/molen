@@ -30,6 +30,7 @@ import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { addRivetRows } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
 import { addInterior } from './interior.mjs';
 
 // GLTFExporter uses FileReader only to pack its binary buffer in Node.
@@ -1670,11 +1671,8 @@ function buildMarkings(g, fuselage) {
   );
 }
 
-/**
- * Fuel caps on the upper wing. Panel joints and cowling fasteners (2–4 mm geometry) are not
- * modelled: under the medium-fi style guide detail thinner than a pixel at viewing distance
- * shimmers and costs a draw each, so the bare-metal panelling reads from the painted panel
- * colors alone. (They were 13,000 triangles and four draws.)
+/** Close-view fuel caps; flush fuselage fasteners are added after the skin batches are flushed.
+ * Keep the filled/lacquered laminar-flow wing smooth, rather than riveting it indiscriminately.
  */
 function buildSurfaceDetail(g) {
   for (const side of [-1, 1]) {
@@ -1710,6 +1708,26 @@ function mustang() {
   buildMarkings(g, g.getObjectByName('fuselage').geometry);
   buildSurfaceDetail(g);
   flush();
+  const rows = [];
+  // Transverse skin attachments and cowling fastener rows; an illustrative restoration layout,
+  // not a serial-specific engineering rivet schedule.
+  for (const z of [-4.1, -3.65, -3.2, -2.75, -2.3, -1.85, -1.4, -0.9, 0.7, 1.3, 2, 2.65, 3.1]) {
+    const row = [];
+    for (let k = 0; k < 60; k++) {
+      const a = (k * Math.PI * 2) / 60,
+        point = sectionPoint(station(z), a);
+      if (z > COCKPIT.rear && z < COCKPIT.front && point[1] > SILL - 0.02) continue;
+      row.push({ point, normal: sectionNormal(z, a) });
+    }
+    rows.push(row);
+  }
+  for (const a of [0, Math.PI, -0.5, Math.PI + 0.5]) {
+    const row = [];
+    for (let z = -4.3; z < 3.15; z += 0.065)
+      row.push({ point: sectionPoint(station(z), a), normal: sectionNormal(z, a) });
+    rows.push(row);
+  }
+  addRivetRows(g, [g.getObjectByName('fuselage')], rows);
   addInterior(g, interiorLayout, {
     group,
     box,

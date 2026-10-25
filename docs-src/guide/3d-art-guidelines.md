@@ -10,6 +10,18 @@ These guidelines apply to imported static GLBs, built-in instanced props, and pa
 worldgen buildings. They are authoring targets, not new runtime hard limits. Use the existing
 [model asset workflow](3d-model-assets.md) for import, validation, hashes, hosting, and captures.
 
+Controllable road, rail, air and water vehicles follow the
+[close-view vehicle standard](medium-fi.md#controllable-vehicles-close-view-fidelity), above
+the detail level of ordinary scenery. Preserve polygonal construction while adding the
+panels, fasteners, markings, mechanical fittings and furnished operator views visible at
+driving distance. Generic vehicle display names use the Bendy house brand; identified real
+vehicles retain their actual names.
+
+For all vehicle modeling, aim to verify both exterior and interior proportions with
+[calibrated reference overlays](medium-fi.md#vehicle-reference-overlays). Compare during shape
+construction, record independent landmark checks, and document unavailable views and uncertain
+reconstructions. Surface detail does not compensate for incorrect body or cabin geometry.
+
 ## Recognition and shape
 
 Work from large to small: footprint and height, roof and massing, entrance and facade rhythm,
@@ -67,7 +79,8 @@ model; scene and tile budgets still control total instances and building vertice
 | Ordinary tree | 300–2,000 triangles | Fewer crown clusters, then a faceted crown/cone |
 | Small static building | 1,000–8,000 triangles | Remove furniture and small facade details |
 | Procedural building | Budgeted per outline | Keep measured envelope, main roof and identity where feasible |
-| Figure (human or animal) | 1,000–4,000 triangles, one vertex-color material | 600–900 medium tier; 100–300 rigid distant tier |
+| Human figure | About 7,400 triangles, one vertex-color material | About 2,200 medium tier; 1,100 rigid distant tier |
+| Animal figure | About 4,100–6,500 triangles, one vertex-color material | About 2,100–2,900 medium; 1,100–1,500 rigid distant tier |
 
 Higher budgets need a visible reason and a distance fallback. Repeated street furniture and signs
 should be instanced by model reference. Prefer a shared vertex-color material; do not allocate
@@ -80,13 +93,22 @@ unseeded randomness, or locale-dependent sorting to generate geometry.
 
 ## Figures
 
-Figures ([guide](figures.md)) stay left of the uncanny valley on purpose: a head about one
-sixth of the height for adults and closer to a quarter for children, mitten hands, block shoes or
-hooves, disc eyes and brows with no mouth, nose or teeth, hair as a solid shell, and clothing as
-vertex-color blocks with hard edges at cuffs, hems and collars. Segments are smooth within
-themselves and low in ring count (eight to twelve sides), joints share rings with two bone
-influences, and each figure uses three to five intentional colors from its palette. Animals
-follow the same rules: a barrel body, cone ears, a snout, hooves or paws, and one marking color.
+Human figures ([guide](figures.md)) target early open-world polygonal realism: a shaped jaw,
+cheekbones and nose, inset almond eyes with lids, ears, lips, a shaped hairline, and recognizable
+hands and shoes. Keep adult proportions believable and preserve the larger child head. Clothing
+needs a waist, shoulders, cuffs, a crotch seam and clear garment boundaries; avoid disconnected
+capsule limbs or overlapping pelvis shells. Near hands have four gently curled fingers and a
+tucked thumb; lower levels merge the curved fingers. Resting forearms turn the backs of the
+hands diagonally forward. All of this follows the existing 22-joint biped skeleton.
+
+Use shared palette-driven surfaces, with geometric relief responding to scene lighting rather
+than painted shadows. Keep surface normals and face winding outward. Reserve the extra near
+triangles for features visible in close views and retain the cheaper medium and distant bodies.
+Animals use species-shaped ribcages and bellies, shoulders and haunches that emerge from the
+torso, continuous skull-to-muzzle surfaces, cupped ears, eyelids, rounded paws or split/single
+hooves, and curved tails. Coat markings belong on visible surfaces. Keep eye and ear placement
+readable from the front as well as the side. Strip whiskers, toe divisions and hair strands
+before simplifying the silhouette at distance.
 Review every preset from the front, three-quarter, rear and gameplay distance
 (`molen figure preview --angles review`) beside a door and a bench before accepting a look.
 

@@ -38,8 +38,7 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:HotelMajapahit.jpg",
-    "https://commons.wikimedia.org/wiki/File:2016_Majapahit_hotel_2.jpg"
+    "https://commons.wikimedia.org/wiki/File:Hotel_Majapahit_(Trotoar).jpg"
   ],
   "stories": [
     {
@@ -47,7 +46,7 @@
       "url": "https://qualla.com/hotel-majapahit/"
     }
   ],
-  "referenceInputHash": "84dddb9a8eafda316cb1feb952cb17b730adb204b3f7d1329f7516795bfdc852",
+  "referenceInputHash": "sha256:eff66c35d13748a1b3ac9bc366007f89c66adc5a9bcb5eae2f667532ed592d28",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-hotel-majapahit.mjs"
   },
@@ -172,9 +171,9 @@
   "fidelityStatus": "review-in-qa.json",
   "reviewStatus": "review-in-qa.json",
   "geographicProposal": {
-    "status": "preview-proposal",
+    "status": "preview",
     "groundContactReviewed": true,
-    "groundContactBasis": "Jalan Tunjungan entrance approach [-7,80]; independent terrain evidence.",
+    "groundContactBasis": "Original DeltaDTM v1.1.1 one arcsecond coastal source, independently reproduced across existing320m review extent. Existing dry Jalan Tunjungan approach[-7,80] gives datum3.0098565mEGM2008. Footing, anchor, heading and reference unchanged; rejected Terrarium retained. Subsequent photograph-directed portico roof/ceiling/backwall and curved-baluster repair leaves ground and lower architecture unchanged.5m review spacing interpolates approximately30m source; another host field requires review.",
     "anchor": [
       112.7401,
       -7.25975
@@ -239,10 +238,10 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior based on individually inspected Qualla entrance, courtyard and classical crosswing photographs; interiors excluded.",
-    "Mapped compound and official aerial view control layout; heights, gallery depths, window spacing, roof joins and hidden elevations remain photographic estimates.",
+    "Full historic exterior reviewed with the exact published Qualla FishynilaCC0 entrance original and independent primary architectural field observations, municipal heritage text and current operator balcony description. Earlier private/attribution imagery is excluded; interiors excluded.",
+    "Mapped compound/open gardens retained. Primary architectural text controls Art Deco front, colonnaded curved-beam verandas, two-storey central crosswing, pediment, white balustrades and courtyard balcony. Heights, roof pitches/colour/joins, window spacing, gallery depths, precise ornament and hidden elevations remain medium-fi estimates.",
     "Later eastern pool/service wing excluded by an explicit scope cut. Simplified original relief; no photo textures or exact crests/lettering copied.",
-    "Independent coarse Terrarium ground remains unmodified; local foundations and host terrain compatibility are approximate."
+    "Independent original DeltaDTM v1.1.1 coastal DTM replaces rejected Terrarium after existing geometry. Source one arcsecond(approximately30m);5m review spacing is interpolation, not source resolution or surveyed floor accuracy. Frame,dry reference,footing and lower architecture unchanged;later photo-directed portico roof/ceiling/backwall and curved-baluster repair uses fixed architectural controls. No NODATA filling, flattening, cutout or footprint replacement. Another host field requires contact review."
   ],
   "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
   "qaCameras": [
@@ -271,16 +270,55 @@
         6,
         -30
       ]
+    },
+    {
+      "name": "courtyard-detail",
+      "position": [
+        -21,
+        6,
+        28
+      ],
+      "lookAt": [
+        -28,
+        4.8,
+        15
+      ]
+    },
+    {
+      "name": "portico-detail",
+      "position": [
+        -9,
+        8,
+        -53
+      ],
+      "lookAt": [
+        -5,
+        7,
+        -31
+      ]
+    },
+    {
+      "name": "entrance-detail",
+      "position": [
+        -30,
+        10,
+        95
+      ],
+      "lookAt": [
+        -7,
+        8,
+        63
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 50045,
-    "vertices": 150135,
+    "triangles": 51425,
+    "vertices": 154275,
     "materials": 5,
-    "bytes": 6008584,
-    "sha256": "sha256:2294d609457f9a47bdb801af508a5de2bdf82e181312bd58f4b7b1043f8b4670"
+    "bytes": 6174184,
+    "sha256": "sha256:fa80946f2a03c9ecd74fffd0fe115f962a9e59868416f72d7e0815433b191954"
   }
 }

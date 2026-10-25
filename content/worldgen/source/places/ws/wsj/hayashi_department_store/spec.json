@@ -1,0 +1,394 @@
+{
+  "planId": "hayashi_department_store",
+  "id": "hayashi_department_store",
+  "assetId": "molen.worldgen.structure.hayashi_department_store",
+  "title": "Hayashi Department Store",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 120.20252927487768,
+    "latitude": 22.99172997645874
+  },
+  "size": [
+    24.069026947021484,
+    24.149999260902405,
+    26.03382110595703
+  ],
+  "actualBounds": {
+    "min": [
+      -11.59504222869873,
+      -0.6000000238418579,
+      -13.59892463684082
+    ],
+    "max": [
+      12.473984718322754,
+      23.549999237060547,
+      12.434896469116211
+    ]
+  },
+  "visualBrief": "Native northeast chamfer with rounded porthole shoulders, five primary store floors, two broad horizontal-window street facades and concrete/iron balconies. Sixth-floor corner observation bay with five circular balcony holes and stepped parapet, fifth-floor open terrace, elevator headhouse and stone torii/shrine remains. Buff grooved tile, gray concrete/stone, dark frames and opaque backed glazing; own structure only, excluding neighboring stores, street scenery, temporary signs and interiors.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hayashi_Department_Store_in_Tainan,_Taiwan_(林百貨）.jpg",
+    "https://commons.wikimedia.org/wiki/File:林百貨頂樓神社與電梯井.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hayashi-department-store-wp",
+      "url": "https://qualla.com/hayashi-department-store/"
+    }
+  ],
+  "referenceInputHash": "sha256:b68add575401e5a5af374eef809c86fc6334175e540914fdaa9b388c223f8b16",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hayashi-department-store.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hayashi-department-store.mjs",
+    "level": "skyline",
+    "export": "hayashiDepartmentStoreSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.1
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.04
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hayashiDepartmentStoreDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "hayashiDepartmentStoreStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "medium-fi-exterior-source-preview-reviewed-in-qa",
+  "geographicProposal": {
+    "status": "bounded-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native chamfered polygon and exterior dry threshold datum fixed before independently frozen published third-party NLSC-claimed2024 20mDTM and model geometry. Datum9.2145m; actual17.59m pixels interpolated at1m. Original official raster/private conversion unavailable. Floor.15/base-.6 are photographic architecture, not terrain-fitting controls; original source field retained.",
+    "anchor": [
+      120.20252927487768,
+      22.99172997645874
+    ],
+    "heading": -0.20018092332263543,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        120.20265370897107,
+        22.991805774008352
+      ],
+      "modelHeight": 0,
+      "basis": "Photographic dry entrance footway,1.2m beyond centre of native northeast chamfer; chosen before source ground/geometry. Quantized map does not survey doorway/kerb dimensions."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184576076528"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9643947a632219143d25ef65156baa658fcd071ff6a4fc912509e09877b3f023",
+    "notes": "Native northeast chamfer is a flat diagonal entrance face with rounded shoulders in local photos; do not substitute a cylindrical corner. Four porthole levels flank the corner windows, a small upper observation balcony has five circular rail openings, stepped parapet/coping, two broad street wings with concrete/metal rails and exposed-ground-floor arcade. Rooftop shrine/torii, elevator house and fifth-floor terrace are own-building components; stores/interiors/vehicles/street wires and neighboring bank/shops excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Approximate photographic exterior with bounded source-ground preview. Current source/story completion evidence is bound in qa.json; this is not a surveyed current replacement or navigable interior.",
+    "Quantized native551.25m² polygon and generic15m map height retained as map facts. Photo-directed approximately17.4m street roof and21.7m corner parapet are visualization estimates, not survey dimensions.",
+    "Rounded corner shoulders, terrace/elevator-house/shrine positions, upper/rear fenestration and fine artwork are conservative estimates; interior and neighboring buildings excluded.",
+    "Third-party published NLSC-claimed20mDTM preserved before geometry; original official raster/private conversion unavailable.1m interpolation is not1m accuracy. Compatible source preview only; another host DEM needs contact review.",
+    "Original photo pixels are not model textures; all shared materials use ordinary catalog graphs. No generic footprint replacement or whole-site terrain pad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "corner-entry-arcade",
+      "position": [
+        17,
+        2.2,
+        -19
+      ],
+      "lookAt": [
+        9,
+        1.8,
+        -10
+      ]
+    },
+    {
+      "name": "corner-front",
+      "position": [
+        35,
+        13,
+        -39
+      ],
+      "lookAt": [
+        7,
+        10,
+        -8
+      ]
+    },
+    {
+      "name": "north-balconies",
+      "position": [
+        -13,
+        11,
+        -41
+      ],
+      "lookAt": [
+        -2,
+        9,
+        -11
+      ]
+    },
+    {
+      "name": "east-balconies",
+      "position": [
+        38,
+        12,
+        12
+      ],
+      "lookAt": [
+        11,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "observation-and-portholes",
+      "position": [
+        24,
+        24,
+        -27
+      ],
+      "lookAt": [
+        9,
+        17,
+        -9
+      ]
+    },
+    {
+      "name": "roof-terrace",
+      "position": [
+        -30,
+        35,
+        22
+      ],
+      "lookAt": [
+        -3,
+        15,
+        2
+      ]
+    },
+    {
+      "name": "rooftop-shrine",
+      "position": [
+        15,
+        24,
+        6
+      ],
+      "lookAt": [
+        7,
+        19,
+        5
+      ]
+    },
+    {
+      "name": "rear-elevations",
+      "position": [
+        -35,
+        16,
+        30
+      ],
+      "lookAt": [
+        0,
+        9,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15924,
+    "vertices": 47772,
+    "materials": 6,
+    "bytes": 1914604,
+    "sha256": "sha256:7a12113b7d827820b633587fd3371c5b1a19d04150b2e8c02d2878b066f46984"
+  }
+}

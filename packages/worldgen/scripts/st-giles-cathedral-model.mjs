@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/gc/gcv/n0358_st_giles_cathedral/',
+  '../../../content/worldgen/source/places/gc/gcv/st_giles_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -940,7 +940,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const gilesStudy = {
-  id: 'N0358',
+  id: 'st_giles_cathedral',
   key: 'st_giles_cathedral',
   title: "St Giles' Cathedral",
   category: 'cathedral',

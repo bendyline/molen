@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { normalFor } from './authored-structure-mesh.mjs';
+import { beam, normalFor } from './authored-structure-mesh.mjs';
 import { B, cleanRing, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
@@ -20,13 +20,13 @@ const base = new URL(
   '../../../content/worldgen/source/places/9q/9q5/ennis_house/',
   import.meta.url,
 );
-function facing(o, a, x = 0, z = 0) {
+function facing(o, a, x = 0, z = 0, y = 0) {
   const c = Math.cos(a),
     s = Math.sin(a),
     v = (p) => [c * p[0] + s * p[2], p[1], -s * p[0] + c * p[2]],
     q = (p) => {
       const r = v(p);
-      return [r[0] + x, r[1], r[2] + z];
+      return [r[0] + x, r[1] + y, r[2] + z];
     };
   return {
     addTriangle: (s, r, p, n, u, c) => o.addTriangle(s, r, p.map(q), v(n), u, c),
@@ -259,6 +259,198 @@ function wallRun(o, a, b, lo, hi, d, { pattern = 'border', thick = 0.5 } = {}) {
   if (d) B(q, 'wall', 0, hi - 0.06, 0, len + 0.05, 0.12, thick + 0.09, light);
 }
 const h = (x, y, w, hh, bars = 1, lead = false) => ({ x, y, w, h: hh, bars, lead });
+/** Closed iron sections and cut masonry openings from the original HABS gate sheet. */
+function entryGates(o) {
+  const c = JSON.parse(fs.readFileSync(new URL('gate-construction-controls.json', base))),
+    uv = (p, n) => {
+      const axis = n.map(Math.abs).indexOf(Math.max(...n.map(Math.abs)));
+      return p.map((v) => v.filter((_, i) => i !== axis));
+    },
+    metric = {
+      addQuad: (s, r, p, n, _u, col) => o.addQuad(s, r, p, n, uv(p, n), col),
+      addTriangle: (s, r, p, n, _u, col) => o.addTriangle(s, r, p, n, uv(p, n), col),
+      addConvexPolygon: (s, r, p, n, _u, col) => {
+        const u = uv(p, n);
+        return o.addConvexPolygon(s, r, p, n, (v) => u[p.indexOf(v)], col);
+      },
+    },
+    z = c.ironPlaneZ,
+    rod = (a, b, width = c.barWidth) =>
+      beam(metric, 'gateIron', [a[0], a[1], z], [b[0], b[1], z], c.ironDepth, width, metal),
+    line = (p, width) => {
+      for (let i = 1; i < p.length; i++) rod(p[i - 1], p[i], width);
+    },
+    rect = (x, y, w, ht, width = c.barWidth) =>
+      line(
+        [
+          [x - w / 2, y],
+          [x + w / 2, y],
+          [x + w / 2, y + ht],
+          [x - w / 2, y + ht],
+          [x - w / 2, y],
+        ],
+        width,
+      ),
+    ironBox = (x, y, w, ht) => B(metric, 'gateIron', x, y, z, w, ht, c.ironDepth, metal),
+    stone = (a, b, lo, hi) => {
+      if (b - a > 0.001 && hi - lo > 0.001)
+        B(metric, 'gateWall', (a + b) / 2, lo, 0, b - a, hi - lo, c.wallDepth, buff);
+    },
+    outer = c.outerWidth / 2,
+    inner = outer - c.postWidth,
+    service = c.service,
+    sl = service.center - service.width / 2,
+    sr = service.center + service.width / 2;
+  // Join the retained outer bridge piers, while leaving two actual clear apertures.
+  stone(-c.wallWidth / 2, sl, 0, c.wallHeight);
+  stone(sr, -outer, 0, c.wallHeight);
+  stone(sl, sr, 0, c.bottom);
+  stone(sl, sr, c.bottom + service.height, c.wallHeight);
+  stone(outer, c.wallWidth / 2, 0, c.wallHeight);
+  stone(-outer, outer, c.portalHeight, c.wallHeight);
+  // A repeated elongated rectangular loop, interpreted at medium-fi scale.
+  const spindle = (x, lo, hi) => {
+    rod([x, lo - 0.07], [x, hi + 0.07], 0.018);
+    line(
+      [
+        [x - 0.04, lo],
+        [x - 0.07, lo + 0.12],
+        [x - 0.07, hi - 0.12],
+        [x - 0.04, hi - 0.12],
+        [x - 0.04, hi],
+        [x + 0.04, hi],
+        [x + 0.04, hi - 0.12],
+        [x + 0.07, hi - 0.12],
+        [x + 0.07, lo + 0.12],
+        [x + 0.04, lo + 0.12],
+        [x + 0.04, lo],
+        [x - 0.04, lo],
+      ],
+      0.018,
+    );
+  };
+  // Paired leaves are shown closed; the source drawing depicts one swung open.
+  const leafWidth = inner - 0.01;
+  for (const sign of [-1, 1]) {
+    const center = sign * (leafWidth / 2 + 0.01),
+      left = center - leafWidth / 2,
+      right = center + leafWidth / 2,
+      lo = c.bottom,
+      hi = lo + c.leafHeight;
+    rect(center, lo, leafWidth, c.leafHeight, 0.035);
+    for (let i = 1; i <= 4; i++) spindle(left + (leafWidth * i) / 5, lo + 0.25, hi - 0.25);
+    for (const y of [lo + 0.32, lo + 0.88, hi - 0.32]) rod([left, y], [right, y], 0.028);
+    for (const scale of [1, 0.65])
+      rect(center, lo + 0.68 + (1 - scale) * 0.17, 0.5 * scale, 0.38 * scale, 0.025);
+    for (const x of [left + 0.08, right - 0.08])
+      for (const y of [lo + 0.26, hi - 0.36]) ironBox(x, y, 0.13, 0.13);
+    for (const y of [lo + 0.12, hi - 0.12])
+      for (const sx of [-1, 1]) {
+        const x = center + sx * (leafWidth / 2 - 0.15);
+        line(
+          [
+            [x, y],
+            [x - sx * 0.24, y],
+            [x - sx * 0.24, y + 0.1],
+            [x - sx * 0.09, y + 0.1],
+            [x - sx * 0.09, y + 0.04],
+          ],
+          0.022,
+        );
+      }
+  }
+  // Tall fixed flank panels with simplified closed figure plates and curls.
+  const figure = [
+    [-0.12, 0.3],
+    [0.02, 0.3],
+    [0.01, 0.74],
+    [0.1, 0.72],
+    [0.13, 0.38],
+    [0.23, 0.38],
+    [0.18, 0.92],
+    [0.11, 1.06],
+    [0.15, 1.28],
+    [0.21, 1.38],
+    [0.18, 1.54],
+    [0.09, 1.58],
+    [0.1, 1.72],
+    [0.07, 1.78],
+    [-0.02, 1.8],
+    [-0.08, 1.75],
+    [-0.08, 1.66],
+    [-0.02, 1.6],
+    [-0.09, 1.51],
+    [-0.18, 1.54],
+    [-0.2, 1.43],
+    [-0.12, 1.35],
+    [-0.1, 1.09],
+    [-0.15, 0.97],
+    [-0.06, 0.89],
+  ];
+  const plate = (center, sign) => {
+    const p = figure.map(([x, y]) => [center + sign * x, y * 1.05 + 0.18]),
+      ids = earcut(p.flat()),
+      at = (i, front) => [p[i][0], p[i][1], z + 0.06 + (front ? 1 : -1) * 0.0225];
+    for (const front of [false, true])
+      for (let i = 0; i < ids.length; i += 3) {
+        const q = ids.slice(i, i + 3).map((k) => at(k, front));
+        metric.addTriangle('gateIron', ref, q, [0, 0, front ? 1 : -1], null, metal);
+      }
+    let area = 0;
+    for (let i = 0; i < p.length; i++)
+      area += p[i][0] * p[(i + 1) % p.length][1] - p[(i + 1) % p.length][0] * p[i][1];
+    for (let i = 0; i < p.length; i++) {
+      const j = (i + 1) % p.length,
+        q = [at(i, true), at(i, false), at(j, false), at(j, true)],
+        dx = p[j][0] - p[i][0],
+        dy = p[j][1] - p[i][1],
+        n = area > 0 ? [dy, -dx, 0] : [-dy, dx, 0];
+      metric.addQuad('gateIron', ref, q, n, null, metal);
+    }
+  };
+  for (const sign of [-1, 1]) {
+    const center = sign * (outer - c.postWidth / 2);
+    rect(center, 0.02, c.postWidth - 0.04, c.portalHeight - 0.04, 0.03);
+    for (const y of [0.12, c.portalHeight - 0.43]) ironBox(center, y, 0.37, 0.32);
+    plate(center, -sign);
+    for (const y of [0.87, 2.06]) {
+      const points = Array.from({ length: 7 }, (_, i) => {
+        const a = (i * Math.PI * 1.6) / 6;
+        return [center - sign * (0.09 + 0.085 * Math.cos(a)), y + 0.085 * Math.sin(a)];
+      });
+      line(points, 0.018);
+    }
+  }
+  // Stepped top ironwork bridges the portal without filling the open vehicle space.
+  rod([-inner, c.portalHeight - 0.035], [inner, c.portalHeight - 0.035], 0.035);
+  for (const sign of [-1, 1]) {
+    const pts = [
+      [-inner, 2.39],
+      [-inner + 0.45, 2.39],
+      [-inner + 0.45, 2.18],
+      [-inner + 0.18, 2.18],
+      [-inner + 0.18, 2.32],
+      [-inner + 0.82, 2.32],
+      [-inner + 0.82, 2.49],
+      [-inner + 0.58, 2.49],
+      [-inner + 0.58, 2.37],
+      [-inner + 1.2, 2.37],
+      [-inner + 1.2, 2.57],
+      [-inner + 1.04, 2.57],
+      [-inner + 1.04, 2.48],
+    ];
+    line(
+      pts.map(([x, y]) => [sign * x, y]),
+      0.025,
+    );
+  }
+  // Separate pedestrian leaf inside its cut opening.
+  rect(service.center, c.bottom, service.width - 0.08, service.height - 0.03, 0.03);
+  for (const x of [service.center - 0.15, service.center + 0.15]) spindle(x, 0.35, 1.9);
+  for (const y of [0.3, 1.08, 2.12]) rod([sl + 0.06, y], [sr - 0.06, y], 0.025);
+  for (const scale of [1, 0.65])
+    rect(service.center, 0.87 + (1 - scale) * 0.15, 0.55 * scale, 0.4 * scale, 0.022);
+}
 export function ennis(o, frame, d = 3) {
   if (!frame) frame = JSON.parse(fs.readFileSync(new URL('map-frame.json', base)));
   // Structural foundations and slabs only. The bare-earth review remains independent.
@@ -378,18 +570,60 @@ export function ennis(o, frame, d = 3) {
     east: [h(0, 1.1, 1.3, 1.6, 0)],
     south: [h(0, 1.1, 1.6, 1.4, 1)],
   });
-  B(o, 'wall', -19.7, 3.0, -8.75, 19.5, 0.45, 2.0, buff);
-  for (const x of [-28.7, -10.3]) B(o, 'wall', x, -0.4, -8.75, 0.8, 4.85, 2.0, buff);
-  for (const z of [-9.75, -7.75]) {
-    wallRun(o, [-29.45, z], [-9.95, z], 3.45, 3.95, d, { pattern: 'all', thick: 0.35 });
-    wallRun(o, [-29.45, z], [-9.95, z], 4.55, 4.96, d, { pattern: 'all', thick: 0.35 });
-    for (let x = -29; x < -9.8; x += 2.03) B(o, 'wall', x, 3.95, z, 0.81, 0.6, 0.35, buff);
+  // Published USGS B23 returns locate the broad raised bridge deck, not bare earth.
+  // The adjoining open court remains at the original datum. These are medium-fi
+  // architectural levels; no source-ground samples or whole-house transform change.
+  B(o, 'wall', -19.7, 3.85, -7.65, 19.5, 0.3, 4.9, buff);
+  for (const x of [-28.7, -10.3]) B(o, 'wall', x, -0.4, -7.65, 0.8, 4.85, 4.9, buff);
+  for (const z of [-10.1, -5.2]) {
+    wallRun(o, [-29.45, z], [-9.95, z], 4.15, 4.45, d, { pattern: 'all', thick: 0.35 });
+    wallRun(o, [-29.45, z], [-9.95, z], 4.75, 5.1, d, { pattern: 'all', thick: 0.35 });
+    for (let x = -29; x < -9.8; x += 2.03) B(o, 'wall', x, 4.45, z, 0.81, 0.3, 0.35, buff);
+  }
+  // Solid entrance paving descends from the sloping street through the covered
+  // passage to the motor court. Its footprint also bounds the host ground opening.
+  const apron = [
+    [-12, 1.65],
+    [-10.25, 1.2],
+    [-5.2, 0.6],
+    [-2, 0.14],
+  ];
+  for (let i = 0; i < apron.length - 1; i++) {
+    const [za, ya] = apron[i],
+      [zb, yb] = apron[i + 1];
+    const top = [
+      [-24.2, ya, za],
+      [-24.2, yb, zb],
+      [-15.4, yb, zb],
+      [-15.4, ya, za],
+    ];
+    quad(o, 'wall', top, normalFor(...top.slice(0, 3)), paving);
+    for (const x of [-24.2, -15.4]) {
+      const side = [
+        [x, -1, za],
+        [x, -1, zb],
+        [x, yb, zb],
+        [x, ya, za],
+      ];
+      if (x > -20) side.reverse();
+      quad(o, 'wall', side, normalFor(...side.slice(0, 3)), buff);
+    }
+  }
+  for (const [z, y] of [apron[0], apron.at(-1)]) {
+    const end = [
+      [-24.2, -1, z],
+      [-15.4, -1, z],
+      [-15.4, y, z],
+      [-24.2, y, z],
+    ];
+    if (z < -10) end.reverse();
+    quad(o, 'wall', end, normalFor(...end.slice(0, 3)), buff);
   }
   // Screen/gates under the bridge; no tree or vehicle geometry.
   if (d > 0) {
-    const g = facing(o, Math.PI, -19.8, -9.9);
+    const g = facing(o, Math.PI, -19.8, -10.25, 1.2);
     for (const x of [-4.5, 4.5]) B(g, 'wall', x, 0.0, 0, 0.8, 3.0, 0.65, buff);
-    if (d > 1)
+    if (d > 1 && d < 3)
       for (let x = -4; x <= 4; x += 0.43) {
         face(g, 'metal', x, 0.08, 0.03, 0.035, 2.9, metal);
         if (d > 2)
@@ -398,7 +632,8 @@ export function ennis(o, frame, d = 3) {
             face(g, 'metal', x + 0.14, y, 0.04, 0.035, 0.27, metal);
           }
       }
-    for (const y of [0.1, 1.5, 2.9]) face(g, 'metal', 0, y, 0.05, 8, 0.045, metal);
+    if (d < 3) for (const y of [0.1, 1.5, 2.9]) face(g, 'metal', 0, y, 0.05, 8, 0.045, metal);
+    if (d > 2) entryGates(g);
   }
   // Curving northwest street-side return follows the mapped approach above the garage.
   const approach = [
@@ -505,6 +740,8 @@ const surfaces = {
   metal: { ...landmarkSurfaces.metal, doubleSided: true },
   glass: { ...landmarkSurfaces.glass, localRef: ref },
   pool: { slot: 'window', roughness: 0.24, metallic: 0.14, localRef: 'palette:#feffff' },
+  gateIron: { slot: 'trim', graph: 'metal_painted', roughness: 0.68, metallic: 0.4 },
+  gateWall: { slot: 'wall', graph: 'concrete_plain', roughness: 0.92, metallic: 0 },
 };
 export const ennisModel = {
   id: 'ennis_house',
@@ -519,6 +756,8 @@ export const ennisModel = {
   qaCameras: [
     { name: 'front', position: [60, 23, 98], lookAt: [2, 3, 1] },
     { name: 'back', position: [-65, 25, -76], lookAt: [0, 3, -2] },
+    { name: 'gate-ironwork', position: [-20.8, 3.0, -17.5], lookAt: [-19.8, 2.6, -10.25] },
+    { name: 'service-gate', position: [-16.1, 2.65, -13.25], lookAt: [-16.55, 2.4, -10.25] },
   ],
   build: ennis,
   surfaces,
@@ -526,7 +765,21 @@ export const ennisModel = {
   reviewStatus: 'review-in-qa.json',
   geographicStatus: 'preview-proposal',
   groundContactBasis:
-    'Western motor-court paving at local [-18,2], model Y=0; independent USGS 3DEP ground datum.',
+    'Western motor-court paving at local [-18,2], model Y=0; original USGS datum independently corroborated by B23 ground returns. Raised bridge and sloping covered entrance are separate architectural levels.',
+  portableGroundY: -10.2,
+  mediumFiContext: {
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  groundCutout: {
+    outline: [
+      [-24.15, -11.95],
+      [-15.45, -11.95],
+      [-15.45, -2.05],
+      [-24.15, -2.05],
+    ],
+    basis:
+      'Only the authored sloping entrance paving beneath the bridge and its short street/court transitions. USGS B23 points show the bridge deck incorrectly represented as ground by the interpolated raster. Preserve every original height sample and the whole-house datum; the solid model floor replaces rendered ground triangles in this bounded passage. Approximate floor and registration, not a surveyed threshold.',
+  },
   runtimeLodOverlay: {
     module: 'packages/worldgen/scripts/structure-ennis-house.mjs',
     level: 'skyline',
@@ -539,9 +792,10 @@ export const ennisModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior based on individually inspected Qualla photographs, HABS CA-1942 elevation/description, 1928 Architectural Record plan/perspective and satellite roof context. Room dimensions, roof heights and precise relief are interpreted, not surveyed.',
+    'Original government HABS CA-1942 west elevation and gate detail by Jean Davis,1969, establish the textile-block hierarchy and measured15ft10.75in portal. Gate figures, rods and relief are simplified. Current condition and unseen faces are approximate; earlier attribution/private/satellite imagery is excluded from the current review.',
+    'The retained mapped full compound and HABS exterior are corroborated by public USGS B23 point measurements acquired2023-01-08 through2024-01-07. Court datum is unchanged; bridge depth/height and the raised sloping entrance are corrected as approximate architecture. This derived local registration conservatively allows2m horizontal uncertainty, without an independent epoch/datum correction; inferred under-bridge paving is not an observed navigable survey.',
     'House, linked garage/servant wing, bridge, court, terraces and pool basin included. Interiors, vegetation, neighboring houses, vehicles, temporary scaffolds, furniture and photo pixels excluded.',
-    'Independent USGS CA_LosAngeles_B23 bare-earth evidence is preserved unmodified. Terrain under buildings is source-interpolated, and host datasets may differ; placement remains a preview with footprint replacement disabled.',
+    'Original USGS raster, review grid and source heights remain exact. A bounded rendered-ground opening exists only under the authored solid entrance paving; the original raster interpolates bridge returns across this covered passage. Isolated portable views use a flat floor below the foundations; medium-fi views retain the original ground and exercise the opening. Host datasets may differ; placement remains a preview with footprint replacement disabled.',
     '16-inch block course spacing is retained; ornate block relief and leaded-glass geometry are simplified at medium-fi and progressively omitted at distant detail levels.',
   ],
 };

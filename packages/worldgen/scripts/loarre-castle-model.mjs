@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/ez/ezx/n0318_loarre_castle/',
+  '../../../content/worldgen/source/places/ez/ezx/loarre_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -645,7 +645,7 @@ export const buildLoarreDistrict = (out) => build(out, 1);
 export const buildLoarreStreet = (out) => build(out, 2);
 export const buildLoarreCloseup = (out) => build(out, 3);
 export const loarreStudy = {
-  id: 'N0318',
+  id: 'loarre_castle',
   key: 'loarre_castle',
   title: 'Loarre Castle',
   category: 'castle',

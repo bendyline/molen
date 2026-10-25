@@ -1,0 +1,504 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.uh_1h": {
+      "doc": "Bell UH-1H Huey: original polygonal exterior and analog cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.uh_1h",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.uh_1h",
+          "spec": {
+            "label": "Bell UH-1H Huey",
+            "genericLabel": "Helicopter with enclosed cockpit",
+            "model": "helicopter",
+            "mass": 3200,
+            "span": 14.63,
+            "length": 17.4,
+            "height": 4.48,
+            "centerOfMass": [
+              0,
+              1.24,
+              0
+            ],
+            "pilotEye": [
+              -0.47,
+              1.9,
+              1.65
+            ],
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.35,
+            "hardLandingPitch": 0.4,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.24,
+                7.481999999999999
+              ],
+              [
+                0,
+                1.24,
+                -7.481999999999999
+              ],
+              [
+                6.729800000000001,
+                4.28,
+                0
+              ],
+              [
+                -6.729800000000001,
+                4.28,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "main-rotor",
+                  "axis": "y",
+                  "multiplier": 1
+                },
+                {
+                  "node": "tail-rotor",
+                  "axis": "x",
+                  "multiplier": 5
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": []
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "bindings": [
+                  {
+                    "node": "huey-copilot-speed-pointer",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.043,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-copilot-attitude-pointer",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1,
+                    "offset": 0
+                  },
+                  {
+                    "node": "huey-copilot-altimeter-pointer",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0206,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-copilot-heading-pointer",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-copilot-vsi-pointer",
+                    "source": "verticalSpeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-pilot-speed-pointer",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.043,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-pilot-attitude-pointer",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1,
+                    "offset": 0
+                  },
+                  {
+                    "node": "huey-pilot-altimeter-pointer",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0206,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-pilot-vsi-pointer",
+                    "source": "verticalSpeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-pilot-hsi-pointer",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-pilot-rpm-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-pilot-turn-pointer",
+                    "source": "yaw",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-clock-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-fuel-pressure-pointer",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-fuel-quantity-pointer",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-oil-pressure-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-oil-temperature-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-transmission-pressure-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-transmission-temperature-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-dual-tachometer-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-gas-producer-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-torque-pointer",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-exhaust-temperature-pointer",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-dc-voltage-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-ac-voltage-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.7,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "huey-cyclic--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.13
+                  },
+                  {
+                    "node": "huey-cyclic--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.12
+                  },
+                  {
+                    "node": "huey-collective--1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.35
+                  },
+                  {
+                    "node": "huey-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.045
+                  },
+                  {
+                    "node": "huey-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.045
+                  },
+                  {
+                    "node": "huey-cyclic-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.13
+                  },
+                  {
+                    "node": "huey-cyclic-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.12
+                  },
+                  {
+                    "node": "huey-collective-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.35
+                  },
+                  {
+                    "node": "huey-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.045
+                  },
+                  {
+                    "node": "huey-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.045
+                  }
+                ]
+              }
+            },
+            "engine": {
+              "position": [
+                0,
+                1.24,
+                0
+              ],
+              "thrustAxis": [
+                0,
+                1,
+                0
+              ],
+              "power": 1044000,
+              "idleRpm": 1,
+              "spoolRate": 0.16,
+              "rotorAngularSpeed": 24,
+              "ratedDensityRatio": 0.7,
+              "densityExponent": 1
+            },
+            "helicopter": {
+              "rotorPosition": [
+                0,
+                3.98,
+                0
+              ],
+              "rotorRadius": 7.315,
+              "cyclicTilt": 0.5,
+              "cyclicResponse": 4,
+              "cyclicDamping": 2.4,
+              "groundLevelRate": 1,
+              "maxTilt": 0.65,
+              "yawRate": 0.85,
+              "liftMultiplier": 2.05,
+              "groundEffect": 0.12,
+              "translationalLift": 0.1,
+              "translationalLiftSpeed": 18,
+              "verticalDrag": 576,
+              "horizontalDrag": 51.19948733678756,
+              "quadraticDrag": 1.1788976380639462,
+              "groundDeceleration": 9,
+              "vortexRing": true,
+              "retreatingBladeSpeed": 63.9453892,
+              "rotorDiscs": 1,
+              "powerLimitedRotor": true,
+              "rotorEfficiency": 0.75,
+              "profilePowerFraction": 0.12
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.47,
+                1.9,
+                1.65
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                0.47,
+                1.9,
+                1.65
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.875,
+              0,
+              2.05
+            ]
+          ],
+          "exits": [
+            [
+              2.575,
+              0,
+              2.05
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.2,
+          "width": 8.03,
+          "height": 2.5,
+          "cruise": 45,
+          "weight": 0.35
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.uh_1h"
+      ]
+    }
+  }
+}

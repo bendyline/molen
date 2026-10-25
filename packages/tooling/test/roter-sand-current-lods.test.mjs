@@ -9,7 +9,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u1/u1t/n1007_roter_sand'),
+const source = resolve('../../content/worldgen/source/places/u1/u1t/roter_sand'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -111,7 +111,7 @@ it('preserves the exact original master separately from the surveyed caisson/bay
   smoothMeshNormals(m, ['trim', 'foundation'], 32);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(p.anchor).toEqual([8.0821686, 53.8531662]);

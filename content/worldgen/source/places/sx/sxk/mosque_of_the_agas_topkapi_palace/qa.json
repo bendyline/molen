@@ -1,0 +1,833 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.mosque_of_the_agas_topkapi_palace",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:aeacbbf5b2756970bb7ff5d95e128daa106a7149e4eac8274a908bc9cee0e9c9",
+  "sourceHash": "sha256:8236de3f0f301528fc61003fd827059a37bb5bd7467cf61f4e23c51db35d323c",
+  "runtimeHash": "sha256:a470dc4b6eabace20803b51897087d54958efb3c64b039967cc182da45e75d36",
+  "captureReportHash": "sha256:90752a667df08ae109847ec803808d0ebda603f662d65bf12ce45e770d93c376",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/striped-courtyard-front-and-barrel-roof.png",
+      "shots/pointed-upper-and-round-lower-window-backs.png",
+      "shots/open-entrance-hood-and-short-stair.png"
+    ],
+    "notes": "Inspected 48 final source/shared/medium-fi/native views in one continuous author/build/inspect/fix pass. Named striped stone/brick hall, six working courtyard bays, pale upper grilles, pointed upper heads, lower round pale surrounds and pointed brick relieving arches. True open entrance has wood reveals, a closed lead hood with visible underside/thin diagonal braces, and a short occupied stair. Shallow barrel roof with hipped ends, transverse bands, dentilled brick eaves and a small turned spindle finial. Corrected exterior-face classification that hid the brick courses, replaced the blocky finial, closed the initially one-sided entrance hood and changed district lower screens to opaque panes. Coarse brick courses/window rows retain the distant identity. All nine earlier palace members retain current input/source/runtime pins. Native fixture renders this member against native context, not a combined ten-model scene."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/striped-courtyard-front-and-barrel-roof.png",
+      "shots/shared/pointed-upper-and-round-lower-window-backs.png",
+      "shots/shared/open-entrance-hood-and-short-stair.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Seven existing256px graphs: stone_limestone_raw, brick, metal_standing_seam, stone_marble, metal_painted, metal_rosette_screen and wood_plain. Eleven roles merge to eight near material draws, seven district draws and one skyline draw; only six graphs are requested by district. Exterior masonry faces use stone and brick bands; hidden interior wall faces stay plain stone. Metric wall/brick/roof UVs apply to both quads and clipped triangles. Existing rosette graph substitutes for bespoke lower ironwork. Every requested graph read once; no new graph/private atlas/embedded image. Separate POSITION/NORMAL streams and equal CPU/GPU accounting.",
+    "captureReportHash": "sha256:fc6afdd49e7b7fe51d0ed05ca3cbc1ddd276205d4b7043d4441d23d8bc423440"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/striped-courtyard-front-and-barrel-roof.png",
+      "medium-fi/pointed-upper-and-round-lower-window-backs.png",
+      "medium-fi/open-entrance-hood-and-short-stair.png",
+      "medium-fi/agas-skyline.png",
+      "medium-fi/agas-district.png",
+      "medium-fi/agas-street.png",
+      "medium-fi/agas-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored levels481/2086/12865/20355 triangles; initial skyline plus district248140bytes. Skyline retains mapped hall, shallow barrel/hip profile, representative window rows/brick courses, door and approach. District restores upper grids/coarser stone-brick courses and roof bands while using opaque dark lower panes. Street/closeup restore actual recessed windows/opaque backs, shared lower screens, curved arch surrounds, more brick courses/dentils, closed entrance hood/braces and finer barrel/spindle profiles. All four satisfy triangle/download/draw/layout budgets. Physical ordinary-laptop/phone/tablet and dense-city timings remain pending.",
+    "captureReportHash": "sha256:931b9a9b2ffa89f0e0a13b6d4a46fbfbfe5ee2b8b1e9154806083eab7c3f205f"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:4d0a726b8563e55a498e1205ff6f75ba51f990b6a4ef4c8b35fa8546285b2833",
+    "mapFrameHash": "sha256:0b360deebb9cabdbdb69d4e99d3ca4faab19c6f0eeab5fc72aaf316606ec7006",
+    "notes": "Independent Ağalar Mosque Q133475725 within Topkapi Q170495; Commons category directly records OSM way32396236/native35184404485068. Original five-corner parent with two detailed PMTiles fragments retained. Internal+X follows the courtyard elevation northeast; internal+Z faces southeast into Third Courtyard toward the Library. World heading0/+X east/+Z south. Low attached ranges visible in photos remain independent native buildings. Existing standard PMTiles/Mapzen grid retained. Provider control internal[0,10] is outside every original native building footprint, verified before authoring; it supplies nativeY0. Level occupied floor is .18m above the highest original boundary sample, with bounded protective foundations and a short front entry stair. Only the actual body/stair footprint cuts terrain. Coarse ground falls below rear/east parts and may expose foundation; this does not verify historical basement/retaining-wall heights. No precinct flattening or custom terrain; historical thresholds/accessibility unverified. Only Mosque main hall way32396236/native35184404485068 replaced. The original five-corner body and entry stair alone open terrain. All 258 independent resident records of 259 and 572 wider records of 573 remain unchanged, including the low attached range. Ten overlapping PMTiles cases at levels13/14/15 pass, including both detailed parent fragments. Original161x161/6m terrain/roads/3400906.0006393427 square metres water unchanged. Provider control is outside all573 native building records and original terrain remains there in every LOD. Failure keeps259 originals; every unload restores ground/water/zero live geometry. Native approximate exterior fit/facing accepted. The uncovered court control internal[0,10] was checked before building; source datum50.51033051660131m is not an asserted survey height. FloorY0.6489649213325495 is .18m above the highest original boundary sample. Existing grade exposes foundation on lower sides; its depth and the entry stairs accommodate coarse terrain and do not verify historic basement/threshold heights. Independent ranges remain native context. No precinct slab/flattening or bespoke terrain."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Two ordinary Amaury Laporte exterior photos from2014 were actually viewed: close corner and whole courtyard elevation. Commons category records independent Q133475725 and the exact OSM way32396236. Existing PMTiles supplies the named five-corner parent and courtyard-facing axis. No qualified native height. Picture-led main eaves10.9m in the authored source frame, shallow barrel rise2.4m and floor just above the highest original boundary sample. Six front window bays, representative lower entrance position, rear/end openings, roof bands and small finial are visualization controls, not a surveyed inventory. Hidden interior arrangements, exact profiles and architectural heights remain approximate. Generic shared rosette ironwork, a representative spindle finial and simplified masonry/arched surrounds replace fine detail. No invented minaret/dome, copied calligraphy or inscriptions, trees/visitors, manuscripts or furnished prayer/library room. The low attached range is an independent retained map building. This completes one main-hall member; the palace remains incomplete."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxk/mosque_of_the_agas_topkapi_palace/models/source.glb\",\"hash\":\"sha256:8236de3f0f301528fc61003fd827059a37bb5bd7467cf61f4e23c51db35d323c\",\"bytes\":2049360,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.glb\",\"hash\":\"sha256:a470dc4b6eabace20803b51897087d54958efb3c64b039967cc182da45e75d36\",\"bytes\":2048640,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.skyline.glb\",\"hash\":\"sha256:82f417848da9d500fa236f4dc27ddef2e9c1926695091fc426b17c207ed61a97\",\"bytes\":48136,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.district.glb\",\"hash\":\"sha256:4e6aa9678f46c65deeed42d984728acffa3fdfeef1290bf02eaba58c2493f9b1\",\"bytes\":200004,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.street.glb\",\"hash\":\"sha256:587cc1c4dac2722428785fad50c5ecb6118ae4ff2f9b40553a2e11889b8cbae8\",\"bytes\":1121844,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.closeup.glb\",\"hash\":\"sha256:6c4bd672088599c574614335664a26b188afb22351b1fcc1af6711c45c782dec\",\"bytes\":1700772,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "closed-barrel-and-hood-real-entry-opaque-backs-brick-stone-courses-stairs-and-cutout-seals",
+        "passed": true,
+        "notes": "305 actual mesh/contact probes across six files. Closed barrel/room ceiling, actual open entry, hood underside visible, opaque near windows from both sides, district dark lower pane, real shared brick/stone bands, occupied stair treads and terrain-opening coverage verified."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:aeacbbf5b2756970bb7ff5d95e128daa106a7149e4eac8274a908bc9cee0e9c9",
+    "sceneInputs": {
+      "inputHash": "sha256:aeacbbf5b2756970bb7ff5d95e128daa106a7149e4eac8274a908bc9cee0e9c9",
+      "sourceHash": "sha256:8236de3f0f301528fc61003fd827059a37bb5bd7467cf61f4e23c51db35d323c",
+      "runtimeHash": "sha256:a470dc4b6eabace20803b51897087d54958efb3c64b039967cc182da45e75d36",
+      "files": {
+        "content/worldgen/source/places/sx/sxk/mosque_of_the_agas_topkapi_palace/models/source.glb": "sha256:8236de3f0f301528fc61003fd827059a37bb5bd7467cf61f4e23c51db35d323c",
+        "content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.glb": "sha256:a470dc4b6eabace20803b51897087d54958efb3c64b039967cc182da45e75d36",
+        "content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.skyline.glb": "sha256:82f417848da9d500fa236f4dc27ddef2e9c1926695091fc426b17c207ed61a97",
+        "content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.district.glb": "sha256:4e6aa9678f46c65deeed42d984728acffa3fdfeef1290bf02eaba58c2493f9b1",
+        "content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.street.glb": "sha256:587cc1c4dac2722428785fad50c5ecb6118ae4ff2f9b40553a2e11889b8cbae8",
+        "content/worldgen/assets/places/sx/sxk/mosque_of_the_agas_topkapi_palace/model.closeup.glb": "sha256:6c4bd672088599c574614335664a26b188afb22351b1fcc1af6711c45c782dec"
+      }
+    },
+    "preservedMembers": [
+      {
+        "asset": "molen.worldgen.structure.gate_of_salutation_topkapi_palace",
+        "inputHash": "sha256:0a52b9af3b571a54e4fd83b157c6a072d5bd3e725554b55c9d5191a7ea98b044",
+        "sourceHash": "sha256:531f1f4b806f391653269bec502d96e6abf7647823f7a0bf395f5225c79ecdfe",
+        "runtimeHash": "sha256:92bca0aacb504f346d048aeb42dd68f499eb1800bdda2573f7f14568841bb00d"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_gate_topkapi_palace",
+        "inputHash": "sha256:e5ecd840eac8634c6a2f3c82871f3243bfc10845705f5b617a69e67cfc0800de",
+        "sourceHash": "sha256:7a56eaa1398cf42a46442536dbe45b6834596d9b3ed15429dd25f56c414c1c09",
+        "runtimeHash": "sha256:0ac29d303f82f04c2c8450f8cbd53f58ad967daa02ac4a6b634eaab32c91ebce"
+      },
+      {
+        "asset": "molen.worldgen.structure.gate_of_felicity_topkapi_palace",
+        "inputHash": "sha256:60916dfdfb785c016abbf3c096b41a22563f5109507bff69083f006b1daa0001",
+        "sourceHash": "sha256:337e05137e257792295fd557f29463ff21ba5a6e4e515eb0c9ef5c6d6f693143",
+        "runtimeHash": "sha256:b98b68a9ed89a363706253dff8a894f3a2fdc80cad028eaa3810e0b0e49f88b9"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_council_hall_topkapi_palace",
+        "inputHash": "sha256:58f0bce402de4a05f12950a109b87543f1c936a960fdbf4756b928237b946fc0",
+        "sourceHash": "sha256:2225c439d3cdabe44790b10d7abe72d7a361f9ea71719515fac54a4878a232ad",
+        "runtimeHash": "sha256:2c3d1cce002ff939daa4ef152b4488b43f327c9e5eabad5f1c2eca8d8562d383"
+      },
+      {
+        "asset": "molen.worldgen.structure.tower_of_justice_topkapi_palace",
+        "inputHash": "sha256:219a1a343cf2a993979c5af59c734dbd14a39782e5ba088ee584ef92aed3f290",
+        "sourceHash": "sha256:dfdc0d06990acc65f05893e24e4a6f5b292661ad97b0b9f404e2300791e418f4",
+        "runtimeHash": "sha256:d7bff441bfbaff86a4578a449c1280e9ddf814a0de190865c98237ae3b86755c"
+      },
+      {
+        "asset": "molen.worldgen.structure.palace_kitchens_topkapi_palace",
+        "inputHash": "sha256:edbc800a3fd69705a9e78f7f98e45b4722190b464a7f03ad4aa6c0894a4b296f",
+        "sourceHash": "sha256:ad2bc7e06bef640a001ef60d029936252d91f74f94e4032c6dae671aa5bdbd92",
+        "runtimeHash": "sha256:693b3acba3c158ad3e1b0c388a3d4aa7edc088dfbc0ab9e82dd6074b9e51cccd"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_harem_topkapi_palace",
+        "inputHash": "sha256:df97e03dbb3cbeecd512e47fef57d635500b4fb349b02a1af695421bdb647b52",
+        "sourceHash": "sha256:7e22c6fd6761ff86e4e35320732d357294434a10ba565c39012ce12babe2d622",
+        "runtimeHash": "sha256:72359c535333df60842bd02efbdb60a4de86d29ed51ab00ab5434da47f359d96"
+      },
+      {
+        "asset": "molen.worldgen.structure.audience_chamber_topkapi_palace",
+        "inputHash": "sha256:f0ae33ae6fbe3c28af23699d003252595d6107771bb4cbd1820940e90734a4e4",
+        "sourceHash": "sha256:277459ee2d0e5178232fb43b261ff3ad035de68784f66ea72797afc60d16fdaa",
+        "runtimeHash": "sha256:1d3b436a3c5173dc569e41417e5db7e0f3bac8b7d459ae084e79a903a988e4d2"
+      },
+      {
+        "asset": "molen.worldgen.structure.library_of_ahmed_iii_topkapi_palace",
+        "inputHash": "sha256:83475e26b415302771dc9af96679cc98c6766f4c412646242e38dd2cfaa9b974",
+        "sourceHash": "sha256:210616d3e0c9c2cc40bd5168adaf2dffe4107eece9b41a20e979d01c4e046989",
+        "runtimeHash": "sha256:37c2231aafde4d9694dbb769870338a4b89b5ae1c1f64614242aadcd19f39b72"
+      }
+    ],
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:aeacbbf5b2756970bb7ff5d95e128daa106a7149e4eac8274a908bc9cee0e9c9",
+      "ownerRemainder": 0,
+      "footprintQuantizationMeters": 0.0001,
+      "groundBoundaryRounding": {
+        "outsideArea": 3.111999546945299e-11,
+        "maxDistanceMeters": 3.8565276008593856e-7
+      },
+      "independentBuildingsUnchanged": 258,
+      "widerIndependentBuildingsUnchanged": 572,
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3070
+          ],
+          "id": 35184396323800,
+          "owned": false,
+          "covered": 0.00000540717999906353,
+          "area": 67259.91413595251,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3071
+          ],
+          "id": 35184475996630,
+          "owned": false,
+          "covered": 0.00004775253861187485,
+          "area": 7616.065512467083,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6141
+          ],
+          "id": 35184404484940,
+          "owned": false,
+          "covered": 0.00364025493504538,
+          "area": 100453.06619800805,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6141
+          ],
+          "id": 35184475996630,
+          "owned": false,
+          "covered": 0.005037634423036209,
+          "area": 1186.3391341487068,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.005634266999619323,
+          "area": 64901.92424186602,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184475996630,
+          "owned": false,
+          "covered": 0.00249983882362494,
+          "area": 2390.6912730143076,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 35184404485068,
+          "owned": true,
+          "covered": 0.9999993785076409,
+          "area": 375.23744621534587,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 35184475996636,
+          "owned": false,
+          "covered": 0.00023227328142297609,
+          "area": 1182.5829661864523,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184404485068,
+          "owned": true,
+          "covered": 0.9999996411776289,
+          "area": 368.20733408962695,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184475996636,
+          "owned": false,
+          "covered": 0.005276052728455087,
+          "area": 157.4041796805211,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "providerAttachment": {
+        "internal": [
+          0,
+          10
+        ],
+        "modelLocal": [
+          6.336834645689336,
+          7.735924422665419
+        ],
+        "absoluteGroundMeters": 50.51033051660131,
+        "modelHeight": 0,
+        "buildingsContainingControl": []
+      },
+      "method": "Only Mosque main hall way32396236/native35184404485068 replaced. The original five-corner body and entry stair alone open terrain. All 258 independent resident records of 259 and 572 wider records of 573 remain unchanged, including the low attached range. Ten overlapping PMTiles cases at levels13/14/15 pass, including both detailed parent fragments. Original161x161/6m terrain/roads/3400906.0006393427 square metres water unchanged. Provider control is outside all573 native building records and original terrain remains there in every LOD. Failure keeps259 originals; every unload restores ground/water/zero live geometry."
+    },
+    "frameReview": {
+      "pixelIdenticalPreviouslyInspected": 14,
+      "changedFrames": 34,
+      "changedPaths": [
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\preview.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\turntable\\angle_0.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\turntable\\angle_1.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\striped-courtyard-front-and-barrel-roof.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\open-entrance-hood-and-short-stair.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\shared\\angle-0.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\shared\\angle-1.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\shared\\angle-2.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\shared\\angle-3.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\shared\\striped-courtyard-front-and-barrel-roof.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\shared\\pointed-upper-and-round-lower-window-backs.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\shared\\open-entrance-hood-and-short-stair.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\shots\\shared\\placement.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\street-noon-economy.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\street-noon-high.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\street-late-economy.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\street-late-high.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\block-noon-economy.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\block-noon-high.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\block-late-economy.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\block-late-high.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\striped-courtyard-front-and-barrel-roof.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\open-entrance-hood-and-short-stair.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\agas-district.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\agas-street.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\agas-closeup.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\transition-district.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\transition-street.png",
+        "content\\worldgen\\source\\places\\sx\\sxk\\mosque_of_the_agas_topkapi_palace\\medium-fi\\transition-closeup.png",
+        ".artifacts\\topkapi-agas-integration\\shots\\final-district-whole-site.png",
+        ".artifacts\\topkapi-agas-integration\\shots\\final-street-whole-site.png",
+        ".artifacts\\topkapi-agas-integration\\shots\\final-closeup-whole-site.png",
+        ".artifacts\\topkapi-agas-integration\\shots\\final-closeup-striped-courtyard-front-and-barrel-roof.png",
+        ".artifacts\\topkapi-agas-integration\\shots\\final-closeup-open-entrance-hood-and-short-stair.png"
+      ]
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "modelWorldY": -0.000001243443065845895,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.mosque_of_the_agas_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -51.257230516601304,
+            "max": 4.956169483398696
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:8010e7547056d65381592f71d838b85c2bf53c1b4c0c5886ebe4d40a1b1b5a83",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 311339
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -9.892234382189258,
+                28,
+                49.46861327071775
+              ],
+              "lookAt": [
+                0,
+                5.5,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "modelWorldY": -0.000001243443065845895,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.mosque_of_the_agas_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -51.257230516601304,
+            "max": 4.956169483398696
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:1982227edbd841c2f168499bdf5ef3cc08a7cbac658538f4ce32e25f5ba6715f",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 312944
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -9.892234382189258,
+                28,
+                49.46861327071775
+              ],
+              "lookAt": [
+                0,
+                5.5,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "modelWorldY": -0.000001243443065845895,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.mosque_of_the_agas_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -51.257230516601304,
+            "max": 4.956169483398696
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:58ef92c1b84c2a27bf3ca03804bee7226f84bb6cd753593a8d207035c3b113bb",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 323723
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -9.892234382189258,
+                28,
+                49.46861327071775
+              ],
+              "lookAt": [
+                0,
+                5.5,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "modelWorldY": -0.000001243443065845895,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.mosque_of_the_agas_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -51.257230516601304,
+            "max": 4.956169483398696
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:f2c4ebf1078c2cb7dc53a247bd5dca8c0a2b921fecd991b62e632f02f619ec39",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 331213
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -9.892234382189258,
+                28,
+                49.46861327071775
+              ],
+              "lookAt": [
+                0,
+                5.5,
+                0
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-striped-courtyard-front-and-barrel-roof.png",
+            "hash": "sha256:c671646327ab48efa216aa825bab5340aae98c773f6b869fcc5a4f880d306352",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 331213
+            },
+            "camera": {
+              "name": "striped-courtyard-front-and-barrel-roof",
+              "position": [
+                -5.472822389925508,
+                14,
+                26.45842427447882
+              ],
+              "lookAt": [
+                0,
+                5.5,
+                0
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-pointed-upper-and-round-lower-window-backs.png",
+            "hash": "sha256:10c69048bbd17fbf7d476ea75692c1cca2ea2bf761ecf67024ff9c061d048efc",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 330377
+            },
+            "camera": {
+              "name": "pointed-upper-and-round-lower-window-backs",
+              "position": [
+                0.25261753433723744,
+                3.2,
+                11.039301806787662
+              ],
+              "lookAt": [
+                -1.3949594735419897,
+                4.2,
+                9.027961456894655
+              ],
+              "fov": 76
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-entrance-hood-and-short-stair.png",
+            "hash": "sha256:6a7d8c31cacebb2a85d85791429aede15957293d16ba470eb8e0c28c4c2f282c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 330401
+            },
+            "camera": {
+              "name": "open-entrance-hood-and-short-stair",
+              "position": [
+                7.799255530617915,
+                2.9,
+                5.891656233023601
+              ],
+              "lookAt": [
+                5.581363404626648,
+                2.7,
+                3.1840826850907042
+              ],
+              "fov": 78
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 259,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184404485068,
+              "area": 375.24006294514294
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.mosque_of_the_agas_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -51.257230516601304,
+            "max": 4.956169483398696
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:2c7cd9fed4fa4adffc98d3b9fcd524b1db89297ad9a36417776a9fc7347feed3",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 310776
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -9.892234382189258,
+                28,
+                49.46861327071775
+              ],
+              "lookAt": [
+                0,
+                5.5,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Mosque of the Agas/Ağalar Camii main hall on way32396236: striped pale stone and narrow red-brick courses, tall pointed upper windows/pale grilles, round lower screened windows with pale surrounds/pointed brick relieving arches, an open front entrance with small lead hood/steps, and a shallow lead barrel roof with hipped ends/transverse bands and a representative finial. Preserve the independent low attached range and other palace members. No invented minaret/dome, copied inscriptions, historic manuscripts, plants or furnished prayer/library interior.",
+    "Independent Ağalar Mosque Q133475725 within Topkapi Q170495; Commons category directly records OSM way32396236/native35184404485068. Original five-corner parent with two detailed PMTiles fragments retained. Internal+X follows the courtyard elevation northeast; internal+Z faces southeast into Third Courtyard toward the Library. World heading0/+X east/+Z south. Low attached ranges visible in photos remain independent native buildings.",
+    "No qualified native height. Picture-led main eaves10.9m in the authored source frame, shallow barrel rise2.4m and floor just above the highest original boundary sample. Six front window bays, representative lower entrance position, rear/end openings, roof bands and small finial are visualization controls, not a surveyed inventory. Hidden interior arrangements, exact profiles and architectural heights remain approximate.",
+    "Existing standard PMTiles/Mapzen grid retained. Provider control internal[0,10] is outside every original native building footprint, verified before authoring; it supplies nativeY0. Level occupied floor is .18m above the highest original boundary sample, with bounded protective foundations and a short front entry stair. Only the actual body/stair footprint cuts terrain. Coarse ground falls below rear/east parts and may expose foundation; this does not verify historical basement/retaining-wall heights. No precinct flattening or custom terrain; historical thresholds/accessibility unverified."
+  ]
+}

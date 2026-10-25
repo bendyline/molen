@@ -1,0 +1,545 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "foot": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "earth": {
+      "slot": "trim",
+      "graph": "stucco",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      39,
+      29.023529226736127,
+      -46
+    ],
+    "lookAt": [
+      0,
+      3.1235292267361277,
+      -2
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "eastern-ring-northeast-open-passage-and-stairs",
+      "position": [
+        21,
+        7.823529226736127,
+        -24
+      ],
+      "lookAt": [
+        9,
+        3.9235292267361275,
+        -10
+      ],
+      "fov": 48
+    },
+    {
+      "name": "roofless-court-broken-lip-and-recessed-pit",
+      "position": [
+        -16,
+        23.023529226736127,
+        20
+      ],
+      "lookAt": [
+        0,
+        2.6235292267361277,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "surviving-low-interior-wall-and-plaster-fragments",
+      "position": [
+        -1,
+        5.223529226736128,
+        7
+      ],
+      "lookAt": [
+        8,
+        3.9235292267361275,
+        -10
+      ],
+      "fov": 62
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        39,
+        29.023529226736127,
+        -46
+      ],
+      "lookAt": [
+        0,
+        3.1235292267361277,
+        -2
+      ],
+      "fov": 45,
+      "name": "maneckji-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        39,
+        29.023529226736127,
+        -46
+      ],
+      "lookAt": [
+        0,
+        3.1235292267361277,
+        -2
+      ],
+      "fov": 45,
+      "name": "maneckji-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        39,
+        29.023529226736127,
+        -46
+      ],
+      "lookAt": [
+        0,
+        3.1235292267361277,
+        -2
+      ],
+      "fov": 45,
+      "name": "maneckji-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        39,
+        29.023529226736127,
+        -46
+      ],
+      "lookAt": [
+        0,
+        3.1235292267361277,
+        -2
+      ],
+      "fov": 45,
+      "name": "maneckji-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yazd-east-model.mjs",
+    "export": "buildYazdEastSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYazdEastDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "foot": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildYazdEastStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "foot": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYazdEastCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "foot": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      54.357023376,
+      31.821894613
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Keep the original6m standard Mapzen hill, native roads/water and every independent building including the western tower and lower precinct. Replace only this eastern native circle. Court/pit floor is bounded to the mapped circle and seated above occupied coarse-ground maxima; pit remains truly recessed without cutting native ground. A bounded battered raw-stone contact surface within the mapped footprint supports the court above coarse grade; its profile is a visual approximation of the rocky tower seat, not newly surveyed hill terrain. Buried feet and narrow supported stairs meet coarse grade. This visualization contact estimate does not claim a surveyed hill profile, excavation or foundation engineering; no whole-hill mesh, broad slab, ground/water cutout or valley flattening.",
+    "replaceFootprint": false,
+    "bounds": [
+      54.35662163030418,
+      31.82158020265056,
+      54.35742512169582,
+      31.82225393911365
+    ],
+    "terrainReference": {
+      "anchor": [
+        54.357023376,
+        31.821894613
+      ],
+      "modelHeight": 0,
+      "basis": "Keep the original6m standard Mapzen hill, native roads/water and every independent building including the western tower and lower precinct. Replace only this eastern native circle. Court/pit floor is bounded to the mapped circle and seated above occupied coarse-ground maxima; pit remains truly recessed without cutting native ground. A bounded battered raw-stone contact surface within the mapped footprint supports the court above coarse grade; its profile is a visual approximation of the rocky tower seat, not newly surveyed hill terrain. Buried feet and narrow supported stairs meet coarse grade. This visualization contact estimate does not claim a surveyed hill profile, excavation or foundation engineering; no whole-hill mesh, broad slab, ground/water cutout or valley flattening."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -14.273482479256007,
+          -2.095218894490966
+        ],
+        [
+          -13.766077204595526,
+          -6.661864432468348
+        ],
+        [
+          -11.482753468623361,
+          -10.213698446479485
+        ],
+        [
+          -7.677213908669749,
+          -13.004424314246704
+        ],
+        [
+          -2.8568637993951738,
+          -14.52663810251543
+        ],
+        [
+          1.9634863098794002,
+          -15.034042647982762
+        ],
+        [
+          1.9772267675032313,
+          -15.030225859533552
+        ],
+        [
+          2.0134863098794002,
+          -15.034042647982762
+        ],
+        [
+          6.580133781823734,
+          -13.765531234483161
+        ],
+        [
+          10.893078616437826,
+          -10.721103207091351
+        ],
+        [
+          14.191212901730957,
+          -6.91556690215418
+        ],
+        [
+          15.967131363042643,
+          -3.3637317491425627
+        ],
+        [
+          16.22083400037288,
+          1.7103206028114388
+        ],
+        [
+          16.218591847854846,
+          1.7154775559385587
+        ],
+        [
+          16.22083400037288,
+          1.7603206028114387
+        ],
+        [
+          13.683807627070475,
+          7.595483904216095
+        ],
+        [
+          9.370862792456382,
+          12.415838692096052
+        ],
+        [
+          4.550512683181808,
+          15.460274463109178
+        ],
+        [
+          -1.030945338083489,
+          16.2213835458646
+        ],
+        [
+          -1.046570338463054,
+          16.216696038705873
+        ],
+        [
+          -1.0809453380834888,
+          16.2213835458646
+        ],
+        [
+          -6.154998084688304,
+          14.699165434139887
+        ],
+        [
+          -10.214240281972156,
+          11.147324056174261
+        ],
+        [
+          -12.751266655274563,
+          7.088078268788582
+        ],
+        [
+          -14.019779841925768,
+          2.7751313721898647
+        ],
+        [
+          -14.273482479256007,
+          -2.0452188944909664
+        ],
+        [
+          -14.271696764766782,
+          -2.0612903180877695
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -14.273482479256007,
+            -2.095218894490966
+          ],
+          [
+            -13.766077204595526,
+            -6.661864432468348
+          ],
+          [
+            -11.482753468623361,
+            -10.213698446479485
+          ],
+          [
+            -7.677213908669749,
+            -13.004424314246704
+          ],
+          [
+            -2.8568637993951738,
+            -14.52663810251543
+          ],
+          [
+            1.9634863098794002,
+            -15.034042647982762
+          ],
+          [
+            1.9772267675032313,
+            -15.030225859533552
+          ],
+          [
+            2.0134863098794002,
+            -15.034042647982762
+          ],
+          [
+            6.580133781823734,
+            -13.765531234483161
+          ],
+          [
+            10.893078616437826,
+            -10.721103207091351
+          ],
+          [
+            14.191212901730957,
+            -6.91556690215418
+          ],
+          [
+            15.967131363042643,
+            -3.3637317491425627
+          ],
+          [
+            16.22083400037288,
+            1.7103206028114388
+          ],
+          [
+            16.218591847854846,
+            1.7154775559385587
+          ],
+          [
+            16.22083400037288,
+            1.7603206028114387
+          ],
+          [
+            13.683807627070475,
+            7.595483904216095
+          ],
+          [
+            9.370862792456382,
+            12.415838692096052
+          ],
+          [
+            4.550512683181808,
+            15.460274463109178
+          ],
+          [
+            -1.030945338083489,
+            16.2213835458646
+          ],
+          [
+            -1.046570338463054,
+            16.216696038705873
+          ],
+          [
+            -1.0809453380834888,
+            16.2213835458646
+          ],
+          [
+            -6.154998084688304,
+            14.699165434139887
+          ],
+          [
+            -10.214240281972156,
+            11.147324056174261
+          ],
+          [
+            -12.751266655274563,
+            7.088078268788582
+          ],
+          [
+            -14.019779841925768,
+            2.7751313721898647
+          ],
+          [
+            -14.273482479256007,
+            -2.0452188944909664
+          ],
+          [
+            -14.271696764766782,
+            -2.0612903180877695
+          ]
+        ]
+      ],
+      "basis": "Keep the original6m standard Mapzen hill, native roads/water and every independent building including the western tower and lower precinct. Replace only this eastern native circle. Court/pit floor is bounded to the mapped circle and seated above occupied coarse-ground maxima; pit remains truly recessed without cutting native ground. A bounded battered raw-stone contact surface within the mapped footprint supports the court above coarse grade; its profile is a visual approximation of the rocky tower seat, not newly surveyed hill terrain. Buried feet and narrow supported stairs meet coarse grade. This visualization contact estimate does not claim a surveyed hill profile, excavation or foundation engineering; no whole-hill mesh, broad slab, ground/water cutout or valley flattening."
+    },
+    "notes": "Q27702877 identifies the two-tower site, not an invented independent member QID. This independent eastern member is OSMway239508111, matching native circle35184611596943 and its cemetery POI. Use its own anchor54.357023376,31.821894613, heading0/native east-south. Native nineteen-vertex outline fixes the roughly30.44x31.21m base; upper ring is inset0.8m to form the bounded battered rocky contact. Native approach35184755387040 crosses the northeastern rim, giving an internal entrance phase near-0.8rad; fine portal/damage/pit inventory retains20degree/2m approximation. Western Golestan is a separate required member and placement about240m away. Keep the original6m standard Mapzen hill, native roads/water and every independent building including the western tower and lower precinct. Replace only this eastern native circle. Court/pit floor is bounded to the mapped circle and seated above occupied coarse-ground maxima; pit remains truly recessed without cutting native ground. A bounded battered raw-stone contact surface within the mapped footprint supports the court above coarse grade; its profile is a visual approximation of the rocky tower seat, not newly surveyed hill terrain. Buried feet and narrow supported stairs meet coarse grade. This visualization contact estimate does not claim a surveyed hill profile, excavation or foundation engineering; no whole-hill mesh, broad slab, ground/water cutout or valley flattening."
+  }
+}

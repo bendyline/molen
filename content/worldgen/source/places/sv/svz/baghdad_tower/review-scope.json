@@ -1,0 +1,587 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "shaft": {
+      "slot": "wall",
+      "graph": "concrete_panel",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "paint": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.16
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.16
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.16
+    },
+    "glass": {
+      "slot": "window",
+      "roughness": 0.18,
+      "metallic": 0.22,
+      "localRef": "palette:#ffffff",
+      "name": "blue-tower-glass"
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      260.048769415091,
+      128.1425416779719,
+      325.0304737157955
+    ],
+    "lookAt": [
+      0.04876941509099453,
+      102.1425416779719,
+      0.030473715795521272
+    ],
+    "fov": 42
+  },
+  "qaCameras": [
+    {
+      "name": "three-base-tiers-blue-arches-and-seated-footing",
+      "position": [
+        50.048769415090995,
+        24.142541677971906,
+        50.03047371579552
+      ],
+      "lookAt": [
+        0.04876941509099453,
+        7.142541677971904,
+        0.030473715795521272
+      ],
+      "fov": 48
+    },
+    {
+      "name": "service-collars-and-panelled-shaft",
+      "position": [
+        45.048769415090995,
+        91.1425416779719,
+        50.03047371579552
+      ],
+      "lookAt": [
+        0.04876941509099453,
+        86.1425416779719,
+        0.030473715795521272
+      ],
+      "fov": 48
+    },
+    {
+      "name": "blue-head-and-twelve-radial-crown-sectors",
+      "position": [
+        38.048769415090995,
+        124.1425416779719,
+        43.03047371579552
+      ],
+      "lookAt": [
+        0.04876941509099453,
+        117.1425416779719,
+        0.030473715795521272
+      ],
+      "fov": 45
+    },
+    {
+      "name": "complete-segmented-mast-and-warning-bands",
+      "position": [
+        100.04876941509099,
+        181.1425416779719,
+        120.03047371579552
+      ],
+      "lookAt": [
+        0.04876941509099453,
+        168.1425416779719,
+        0.030473715795521272
+      ],
+      "fov": 42
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        260.048769415091,
+        128.1425416779719,
+        325.0304737157955
+      ],
+      "lookAt": [
+        0.04876941509099453,
+        102.1425416779719,
+        0.030473715795521272
+      ],
+      "fov": 42,
+      "name": "baghdad-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        260.048769415091,
+        128.1425416779719,
+        325.0304737157955
+      ],
+      "lookAt": [
+        0.04876941509099453,
+        102.1425416779719,
+        0.030473715795521272
+      ],
+      "fov": 42,
+      "name": "baghdad-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        260.048769415091,
+        128.1425416779719,
+        325.0304737157955
+      ],
+      "lookAt": [
+        0.04876941509099453,
+        102.1425416779719,
+        0.030473715795521272
+      ],
+      "fov": 42,
+      "name": "baghdad-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        260.048769415091,
+        128.1425416779719,
+        325.0304737157955
+      ],
+      "lookAt": [
+        0.04876941509099453,
+        102.1425416779719,
+        0.030473715795521272
+      ],
+      "fov": 42,
+      "name": "baghdad-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/baghdad-model.mjs",
+    "export": "buildBaghdadSkyline",
+    "errorMeters": 3.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBaghdadDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "shaft": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.18,
+            "metallic": 0.22,
+            "localRef": "palette:#ffffff",
+            "name": "blue-tower-glass"
+          }
+        }
+      },
+      "street": {
+        "export": "buildBaghdadStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "shaft": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.18,
+            "metallic": 0.22,
+            "localRef": "palette:#ffffff",
+            "name": "blue-tower-glass"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBaghdadCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "shaft": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.18,
+            "metallic": 0.22,
+            "localRef": "palette:#ffffff",
+            "name": "blue-tower-glass"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      44.354264361,
+      33.303258825
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Preserve original6m standard Mapzen terrain, native roads/water and every independent neighboring building including the54m Ma'mun Centre west of the tower. Replace only the121 corresponding tower/plinth/part shells. A bounded level occupied footing is set above the highest sampled plinth edge with buried sides below the lowest; no whole-precinct platform or ground/water cutout. Coarse DEM, floor and foundation engineering remain explicit visualization estimates. Building replacement uses the bounded convex envelope of the same121 tower parts with5cm radial clearance, covering tiny reentrant plinth corners and avoiding numerical shell slivers. It does not cut terrain or water; native integration must preserve every independent building.",
+    "replaceFootprint": false,
+    "bounds": [
+      44.354006926554874,
+      33.303042955581766,
+      44.354522843819424,
+      33.30347414691814
+    ],
+    "terrainReference": {
+      "anchor": [
+        44.354264361,
+        33.303258825
+      ],
+      "modelHeight": 0,
+      "basis": "Preserve original6m standard Mapzen terrain, native roads/water and every independent neighboring building including the54m Ma'mun Centre west of the tower. Replace only the121 corresponding tower/plinth/part shells. A bounded level occupied footing is set above the highest sampled plinth edge with buried sides below the lowest; no whole-precinct platform or ground/water cutout. Coarse DEM, floor and foundation engineering remain explicit visualization estimates. Building replacement uses the bounded convex envelope of the same121 tower parts with5cm radial clearance, covering tiny reentrant plinth corners and avoiding numerical shell slivers. It does not cut terrain or water; native integration must preserve every independent building."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -17.594200986896325,
+          1.406859777757675
+        ],
+        [
+          -17.34479297758202,
+          -0.3449428929879371
+        ],
+        [
+          -16.09226661801725,
+          -7.602122232237904
+        ],
+        [
+          -10.086378104812228,
+          -14.609188837464893
+        ],
+        [
+          -3.079554297553348,
+          -17.112741176675854
+        ],
+        [
+          -1.577881925446532,
+          -17.612437034811393
+        ],
+        [
+          0.42417004226109306,
+          -17.363089180935013
+        ],
+        [
+          7.68135234926141,
+          -16.110564982696324
+        ],
+        [
+          14.688426939260289,
+          -10.104684543447908
+        ],
+        [
+          17.191983355160275,
+          -3.0978654915799737
+        ],
+        [
+          17.69168010468213,
+          -1.5961934812392051
+        ],
+        [
+          17.442342156499866,
+          0.15559134778593664
+        ],
+        [
+          16.190074239864206,
+          7.412917796957159
+        ],
+        [
+          14.93980337670542,
+          8.915028293018093
+        ],
+        [
+          10.184248727350521,
+          14.420346443868832
+        ],
+        [
+          8.432842388091064,
+          15.171855066703115
+        ],
+        [
+          1.4251713610613244,
+          17.673444171227203
+        ],
+        [
+          -0.32663121213497476,
+          17.424035713980032
+        ],
+        [
+          -5.832489618374408,
+          16.422916971658836
+        ],
+        [
+          -7.584087427298209,
+          15.921828436022968
+        ],
+        [
+          -9.085871204501641,
+          14.9211846919121
+        ],
+        [
+          -13.340127569074877,
+          11.417283355195297
+        ],
+        [
+          -14.590888137229781,
+          10.165610573370875
+        ],
+        [
+          -17.094444540671848,
+          3.1587819544378717
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -17.594200986896325,
+            1.406859777757675
+          ],
+          [
+            -17.34479297758202,
+            -0.3449428929879371
+          ],
+          [
+            -16.09226661801725,
+            -7.602122232237904
+          ],
+          [
+            -10.086378104812228,
+            -14.609188837464893
+          ],
+          [
+            -3.079554297553348,
+            -17.112741176675854
+          ],
+          [
+            -1.577881925446532,
+            -17.612437034811393
+          ],
+          [
+            0.42417004226109306,
+            -17.363089180935013
+          ],
+          [
+            7.68135234926141,
+            -16.110564982696324
+          ],
+          [
+            14.688426939260289,
+            -10.104684543447908
+          ],
+          [
+            17.191983355160275,
+            -3.0978654915799737
+          ],
+          [
+            17.69168010468213,
+            -1.5961934812392051
+          ],
+          [
+            17.442342156499866,
+            0.15559134778593664
+          ],
+          [
+            16.190074239864206,
+            7.412917796957159
+          ],
+          [
+            14.93980337670542,
+            8.915028293018093
+          ],
+          [
+            10.184248727350521,
+            14.420346443868832
+          ],
+          [
+            8.432842388091064,
+            15.171855066703115
+          ],
+          [
+            1.4251713610613244,
+            17.673444171227203
+          ],
+          [
+            -0.32663121213497476,
+            17.424035713980032
+          ],
+          [
+            -5.832489618374408,
+            16.422916971658836
+          ],
+          [
+            -7.584087427298209,
+            15.921828436022968
+          ],
+          [
+            -9.085871204501641,
+            14.9211846919121
+          ],
+          [
+            -13.340127569074877,
+            11.417283355195297
+          ],
+          [
+            -14.590888137229781,
+            10.165610573370875
+          ],
+          [
+            -17.094444540671848,
+            3.1587819544378717
+          ]
+        ]
+      ],
+      "basis": "Preserve original6m standard Mapzen terrain, native roads/water and every independent neighboring building including the54m Ma'mun Centre west of the tower. Replace only the121 corresponding tower/plinth/part shells. A bounded level occupied footing is set above the highest sampled plinth edge with buried sides below the lowest; no whole-precinct platform or ground/water cutout. Coarse DEM, floor and foundation engineering remain explicit visualization estimates. Building replacement uses the bounded convex envelope of the same121 tower parts with5cm radial clearance, covering tiny reentrant plinth corners and avoiding numerical shell slivers. It does not cut terrain or water; native integration must preserve every independent building."
+    },
+    "notes": "Exact-QID OSMway1091808365/PMTiles35185463897197 is the lowest0.44m plinth. Its120 associated native building parts form the same tower up to205m;0.44m is not the total tower height. Their common center[0.04876941509099453,0.030473715795521272]m, profiles/collars/crown radial sectors and antenna intervals fix native placement relative to anchor44.354264361,33.303258825, heading0/east-south axes. The dodecagonal crown gives internal phase3.0594266204088822rad. Generic window/entrance inventory and signed facing remain photo-led30degree/2m approximations; no surveyed facade or datum accuracy is claimed. Preserve original6m standard Mapzen terrain, native roads/water and every independent neighboring building including the54m Ma'mun Centre west of the tower. Replace only the121 corresponding tower/plinth/part shells. A bounded level occupied footing is set above the highest sampled plinth edge with buried sides below the lowest; no whole-precinct platform or ground/water cutout. Coarse DEM, floor and foundation engineering remain explicit visualization estimates. Building replacement uses the bounded convex envelope of the same121 tower parts with5cm radial clearance, covering tiny reentrant plinth corners and avoiding numerical shell slivers. It does not cut terrain or water; native integration must preserve every independent building."
+  }
+}

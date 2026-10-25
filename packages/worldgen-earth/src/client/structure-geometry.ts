@@ -11,6 +11,7 @@ import {
   polygonBounds,
   wgs84ToWorld,
 } from '@bendyline/molen-terrain/kernel';
+import polygonClipping from 'polygon-clipping';
 import * as THREE from 'three';
 import type { StructurePlacement } from '../kernel/structure-index';
 
@@ -154,6 +155,36 @@ export function clipStructureObject(source: THREE.Object3D, size: number): THREE
     });
     throw error;
   }
+}
+
+/** Ground openings follow only the resident piece of an extended model. */
+export function clipStructureGroundOutlines(
+  outlines: readonly (readonly [number, number][])[],
+  matrix: THREE.Matrix4,
+  size: number,
+): [number, number][][] {
+  const tile: [number, number][] = [
+    [0, 0],
+    [size, 0],
+    [size, size],
+    [0, size],
+  ];
+  return outlines.flatMap((outline) => {
+    const points: [number, number][] = outline.map(([x, z]) => {
+      const p = new THREE.Vector3(x, 0, z).applyMatrix4(matrix);
+      return [p.x, p.z];
+    });
+    return polygonClipping.intersection([points], [tile]).flatMap((polygon) => {
+      const ring = (polygon[0] ?? []).slice(0, -1);
+      if (ring.length < 3) return [];
+      if (ring.length <= 512) return [ring];
+      // Clipping can add boundary vertices to a ring already at the registration limit.
+      return THREE.ShapeUtils.triangulateShape(
+        ring.map((p) => new THREE.Vector2(...p)),
+        [],
+      ).map((triangle) => triangle.map((i) => ring[i] as [number, number]));
+    });
+  });
 }
 
 /** Parametric crossings of a segment with a simple polygon, including collinear edges. */
@@ -509,6 +540,9 @@ export function structureFootprint(
   const column = (value: number, min: number): number =>
     Math.max(0, Math.min(FOOTPRINT_GRID - 1, Math.floor((value - min) / cell)));
   const corners = [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()] as const;
+  // Reuse the separating-axis workspace across triangles. Most triangles project onto cells
+  // already claimed by earlier faces, so prepare axes only when an empty cell needs testing.
+  const axes = new Float64Array(18);
   for (const { geometry, matrix } of meshes) {
     const position = geometry.getAttribute('position');
     const index = geometry.index;
@@ -520,11 +554,55 @@ export function structureFootprint(
         corner.applyMatrix4(matrix);
       });
       const [a, b, c] = corners;
+      // Test projected triangles against each cell, rather than painting their entire AABBs.
+      // Long roofs and rotated walls otherwise claim empty ground beside the landmark.
+      // Separating axes also retain vertical faces, whose ground projection is a line.
+      let axisCount = -1;
       const x1 = column(Math.max(a.x, b.x, c.x), bounds.min.x);
       const z1 = column(Math.max(a.z, b.z, c.z), bounds.min.z);
       for (let z = column(Math.min(a.z, b.z, c.z), bounds.min.z); z <= z1; z++)
-        for (let x = column(Math.min(a.x, b.x, c.x), bounds.min.x); x <= x1; x++)
-          footprint.cells[z * FOOTPRINT_GRID + x] = 1;
+        for (let x = column(Math.min(a.x, b.x, c.x), bounds.min.x); x <= x1; x++) {
+          const index = z * FOOTPRINT_GRID + x;
+          if (footprint.cells[index]) continue;
+          if (axisCount === -1) {
+            axisCount = 0;
+            for (let i = 0; i < 3; i++) {
+              const p = corners[i] as THREE.Vector3,
+                q = corners[(i + 1) % 3] as THREE.Vector3,
+                nx = p.z - q.z,
+                nz = q.x - p.x;
+              if (Math.abs(nx) + Math.abs(nz) < 1e-10) continue;
+              const pa = a.x * nx + a.z * nz,
+                pb = b.x * nx + b.z * nz,
+                pc = c.x * nx + c.z * nz,
+                radius = ((Math.abs(nx) + Math.abs(nz)) * cell) / 2,
+                k = axisCount++ * 6;
+              axes[k] = nx;
+              axes[k + 1] = nz;
+              axes[k + 2] = Math.min(pa, pb, pc);
+              axes[k + 3] = Math.max(pa, pb, pc);
+              axes[k + 4] = radius;
+              axes[k + 5] = radius * 2e-7;
+            }
+          }
+          const cx = bounds.min.x + (x + 0.5) * cell,
+            cz = bounds.min.z + (z + 0.5) * cell;
+          let covered = true;
+          for (let i = 0; i < axisCount; i++) {
+            const k = i * 6,
+              center = cx * (axes[k] as number) + cz * (axes[k + 1] as number),
+              radius = axes[k + 4] as number,
+              epsilon = axes[k + 5] as number;
+            if (
+              center + radius < (axes[k + 2] as number) - epsilon ||
+              center - radius > (axes[k + 3] as number) + epsilon
+            ) {
+              covered = false;
+              break;
+            }
+          }
+          if (covered) footprint.cells[index] = 1;
+        }
     }
   }
   return footprint;

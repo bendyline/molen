@@ -1,0 +1,337 @@
+{
+  "planId": "atsuta_shrine",
+  "id": "atsuta_shrine",
+  "assetId": "molen.worldgen.structure.atsuta_shrine",
+  "title": "Atsuta Shrine",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 136.90868191250001,
+    "latitude": 35.12736290625
+  },
+  "size": [
+    62.70537567138672,
+    13.02332317084074,
+    107.72904968261719
+  ],
+  "actualBounds": {
+    "min": [
+      -31.099077224731445,
+      -0.11999999731779099,
+      -24.059600830078125
+    ],
+    "max": [
+      31.606298446655273,
+      12.90332317352295,
+      83.66944885253906
+    ]
+  },
+  "visualBrief": "Whole principal Hongu sanctuary ensemble: all16 vertices of main building57008547, both separate6-point inner gate roofs57008548/57008551 and whole24-point outer worship hall373238591. Preserve the main building, flanking low sections and south spur, two inner roofed gates and full outer hall/wings with open passages. Original four wood-palisade traces remain thin intrinsic architectural fences with their native gaps. Steep copper-gray Shinmei gables, exposed wood posts/boards/brackets, projecting ridge ends, forked chigi and cylindrical gold-ended katsuogi. Exclude the separate Kagura-den, Doyoden, treasure hall, other shrines, whole wooded religious parcel, natural ground/trees/people/flags/signs/crest art/sacred interiors. Keep all16/6/6/24 original physical plan vertices; retain native gaps/open yards and thin fence traces, no whole precinct or courtyard slab. Original main16 partitions: central taller steep gable, two flanking lower sections and south spur; exact partitions/heights bounded. Inner gates are distinct steep gables with genuine open passages under the roof, not opaque box doors covering the whole opening. Outer24 worshiphall has complete wings and projecting central roof/passage, bounded hidden front details. Use muted dark copper roof/layered fascia, warm weathered unpainted timber boards/round posts/trusses/visible gable overhang/ridge/paired forked chigi/cylindrical katsuogi with small gold ends. Fence rows coarsen at distance while retaining native trace/gaps. Do not copy Kamon/letters or infer main architecture from published Kagura/Doyoden images. Freeze independent384m129x129field at fixed south approach before geometry; no flatten/fitting/reacquisition, actual forest/urban approach contact unverified.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Atsuta-jinguu_shaden.JPG"
+  ],
+  "stories": [
+    {
+      "id": "atsuta-shrine-wp",
+      "url": "https://qualla.com/atsuta-shrine/"
+    }
+  ],
+  "referenceInputHash": "9c64b3144c49f18a96d5c7220f48fe86a2332967a0bbdfe71da0bd4c248a40f1",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-atsuta-shrine.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-atsuta-shrine.mjs",
+    "level": "skyline",
+    "export": "atsutaShrineSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#fefefe",
+        "roughness": 0.71,
+        "metallic": 0.3
+      },
+      "gold": {
+        "slot": "trim",
+        "localRef": "palette:#fffeff",
+        "roughness": 0.51,
+        "metallic": 0.64
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "atsutaShrineDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.71,
+            "metallic": 0.3
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#fffeff",
+            "roughness": 0.51,
+            "metallic": 0.64
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "atsutaShrineStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.71,
+            "metallic": 0.3
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#fffeff",
+            "roughness": 0.51,
+            "metallic": 0.64
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "atsutaShrineCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.71,
+            "metallic": 0.3
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#fffeff",
+            "roughness": 0.51,
+            "metallic": 0.64
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.14
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Four distinct original physical plans: main Hongu buildingway57008547/all16 vertices, middle inner roofway57008548/all6, front inner roofway57008551/all6 and outer worshiphallway373238591/all24. Four wood-fence traces57016851/53/54/55 retain all original points and open ends. Mean original16-point main building anchor and native edge7to8 east-axis fixed before terrain and geometry. Native religious landuse relation8453890/Q482065 is identity only, never a building envelope. Main16-point roof partitions and all heights/roof profiles/facade detail are bounded original photographic interpretations; native outlines do not supply an engineering roof/height survey. Independent384m raw field frozen before geometry;15.3161m provider south approach datum is not a surveyed threshold. Actual forest/urban host contact unverified.",
+    "anchor": [
+      136.90868191250001,
+      35.12736290625
+    ],
+    "heading": 0.005524103538434085,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        136.90876086404134,
+        35.12657000215187
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed original southmost outer worshiphall vertex6m outboard into public approach before terrain/geometry; true threshold/approach grade not surveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/57008547",
+      "way/57008548",
+      "way/57008551",
+      "way/373238591",
+      "way/57016851",
+      "way/57016853",
+      "way/57016854",
+      "way/57016855"
+    ],
+    "source": "https://www.openstreetmap.org/way/57008547",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:755bd5bc262cb795cbc9af2a655debeef718416e53ae2511d64aa9fe0e2d19b8",
+    "notes": "Whole principal Hongu sanctuary ensemble: all16 vertices of main building57008547, both separate6-point inner gate roofs57008548/57008551 and whole24-point outer worship hall373238591. Preserve the main building, flanking low sections and south spur, two inner roofed gates and full outer hall/wings with open passages. Original four wood-palisade traces remain thin intrinsic architectural fences with their native gaps. Steep copper-gray Shinmei gables, exposed wood posts/boards/brackets, projecting ridge ends, forked chigi and cylindrical gold-ended katsuogi. Exclude the separate Kagura-den, Doyoden, treasure hall, other shrines, whole wooded religious parcel, natural ground/trees/people/flags/signs/crest art/sacred interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Four distinct original physical plans: main Hongu buildingway57008547/all16 vertices, middle inner roofway57008548/all6, front inner roofway57008551/all6 and outer worshiphallway373238591/all24. Four wood-fence traces57016851/53/54/55 retain all original points and open ends. Mean original16-point main building anchor and native edge7to8 east-axis fixed before terrain and geometry. Native religious landuse relation8453890/Q482065 is identity only, never a building envelope. Main16-point roof partitions and all heights/roof profiles/facade detail are bounded original photographic interpretations; native outlines do not supply an engineering roof/height survey.",
+    "Whole main16-point sanctuary/two6-point inner gates/24-point outer worshiphall and all4original open palisade traces retained. No whole religious parcel/yard/natural-ground slab. Precise roof subdivisions and main10.2m/flank6.7m/middle7.2m/front8.4m/worship9.5m ridges, chigi tips, wall/platform/fence/section dimensions and current patina are bounded photo estimates, not native engineering measurements.",
+    "Qualla-first51families/zero conflicts. Two exact creator-CC0 published originals inspected but unused: named Kagura-den and Doyoden are separate buildings. One supplemental exact4804x2830SaigenJiro main Hongu original inspected, own-work self-CC0 grant/nativeSHA1/revision bound; unchanged inventory policy passed. No attribution-only pixels, official map/photos, postcard reconstruction or media-metadata/policy changes.",
+    "Steep dark copper-gray gables, wood post/panel/eave/gable framing, projecting ridges/paired chigi/cylindrical gold-ended katsuogi, open inner gate passages/complete worship wings/thin wood palisades. Native outer worshiphall front/rear and exact roof split/fence/ornament census are bounded; near detail coarsens at distance. Plain doors/metal fittings omit crests/letters and sacred interior contents. Separate Kagura-den/Doyoden/other shrines/treasure hall/park/trees/people/torii elsewhere excluded.",
+    "Independent384m129x129field/all16641values/two raw Terrarium tiles frozen before geometry unchanged without fit/flatten/reacquisition.15.3161m provider-relative south approach and0.2277..23.1913m absolute field are not surveyed building/forest/street grades. Native placement is preview/replaceFootprint=false; actual host contact unverified. Portable/shared/context flat fixtures separate."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-four-hongu-structures-and-native-palisades",
+      "position": [
+        -87,
+        80,
+        128
+      ],
+      "lookAt": [
+        0,
+        3,
+        30
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "main-sanctuary-steep-gables-chigi-and-gold-ended-katsuogi",
+      "position": [
+        -33,
+        18,
+        27
+      ],
+      "lookAt": [
+        0,
+        6,
+        -2
+      ]
+    },
+    {
+      "name": "open-front-and-middle-inner-gates-native-gaps",
+      "position": [
+        -12,
+        5,
+        52
+      ],
+      "lookAt": [
+        0,
+        4,
+        22
+      ]
+    },
+    {
+      "name": "complete-outer-worship-hall-and-wings",
+      "position": [
+        -42,
+        18,
+        106
+      ],
+      "lookAt": [
+        0,
+        4,
+        70
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 45430,
+    "vertices": 136290,
+    "materials": 5,
+    "bytes": 5454624,
+    "sha256": "sha256:ae141a2c85f17321bffb0aa53b7e825ef8f2c8da66b29bb291c084d46a7b97cc"
+  }
+}

@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
-import { buildKsiazStable } from '../../worldgen/scripts/ksiaz-stable-model.mjs';
+import { buildKsiazStable } from '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/ksiaz-stable-model.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 it('keeps the stable ensemble deterministic and within browser budgets using shared materials', async () => {

@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0326_church_of_the_holy_sepulchre/',
+    '../../../content/worldgen/source/places/sv/sv9/church_of_the_holy_sepulchre/',
     import.meta.url,
   ),
   read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -877,7 +877,7 @@ export const buildHolySepulchreDistrict = (out) => build(out, 1);
 export const buildHolySepulchreStreet = (out) => build(out, 2);
 export const buildHolySepulchreCloseup = (out) => build(out, 3);
 export const holySepulchreStudy = {
-  id: 'N0326',
+  id: 'church_of_the_holy_sepulchre',
   key: 'church_of_the_holy_sepulchre',
   title: 'Church of the Holy Sepulchre',
   category: 'church',

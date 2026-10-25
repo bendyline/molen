@@ -1,0 +1,3329 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.neues_museum",
+  "reviewedOn": "2026-10-23",
+  "inputHash": "sha256:6c4a8ed03d867e116025f065f55cf663e42a8dc50b43e7ddef86241cdf87bd94",
+  "sourceHash": "sha256:9d7b58df41a9f449edfd72abf09798d2772b6a7accca801aeb6c9a3bf1666f26",
+  "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+  "captureReportHash": "sha256:2e57b9d741b4ac62f1607472c404593745144b8d16cab8c2c198c4495396d437",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/east-pediment-window-orders-and-ground-colonnade.png",
+      "shots/two-covered-court-roofs-central-hall-and-domes.png",
+      "shots/west-stone-brick-wings-and-pediment.png",
+      "shots/ground-colonnade-depth-and-lower-entrance.png"
+    ],
+    "notes": "Connected Neues Museum exterior and shared Kolonnadenhof colonnade: exact parent outline, three stone/brick facade levels, two central pediments/grouped tall window bays, raised gabled hall, two large mapped blue-green glazed court roofs, mapped low corner domes/skylights and small roof lantern proxies. The complete mapped U-shaped outdoor colonnade replaces its solid generic proxy with 124 open supports and a thin roof. Its floor retains original garden ground and paths. Lower central entrance has an actual 1.2m recess, closed soffit and threshold. Ordinary east/west/aerial pictures plus cached standard PMTiles/Mapzen guided one continuous author/inspect/fix pass. Neighboring museum buildings remain separate; reliefs are original schematic blocks, with no copied figures/text, banners, furnished galleries or art collections."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/east-pediment-window-orders-and-ground-colonnade.png",
+      "shots/shared/two-covered-court-roofs-central-hall-and-domes.png",
+      "shots/shared/west-stone-brick-wings-and-pediment.png",
+      "shots/shared/ground-colonnade-depth-and-lower-entrance.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six material roles share five existing 256px graphs: stone_limestone (wall/trim variants), brick, metal_standing_seam, storefront and metal_painted. Canonical metric UVs, sRGB-to-linear tint and baked graph means for skyline. Six textured draws/one skyline; no embedded image, private atlas or new graph. Separate POSITION/NORMAL streams and equal CPU/GPU geometry accounting. Each used graph reads once and unloading disposes all geometry. Flat portable/shared/synthetic planes intersect native-grade foundations and bury much of the distant colonnade; turntables without a plane and original native terrain show the complete geometry.",
+    "captureReportHash": "sha256:4de5ec221e938615ef6b4229768b10b86b8a64cd7353ec4c4eaea646840292e9"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/east-pediment-window-orders-and-ground-colonnade.png",
+      "medium-fi/two-covered-court-roofs-central-hall-and-domes.png",
+      "medium-fi/west-stone-brick-wings-and-pediment.png",
+      "medium-fi/ground-colonnade-depth-and-lower-entrance.png",
+      "medium-fi/neues-skyline.png",
+      "medium-fi/neues-district.png",
+      "medium-fi/neues-street.png",
+      "medium-fi/neues-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 454 / 3902 / 15058 / 25632 triangles; initial skyline+district geometry 437528 bytes, closeup 2336268 bytes. Six GLBs zero Khronos errors/warnings, 1,440 actual mesh/contact probes and 16 PMTiles13/14/15 cases including nine detailed owned records. Inspected 52 current source/shared/medium-fi/native frames. Street uses planar window jambs with projecting sills; closeup carries individual frames and support pads. Four LODs/failure/unload preserve 986 resident/1318 wider independent buildings, original 201x201/6m ground/roads and 134,371.781m² water. Failure keeps all 995 resident originals. Every run restores ground/water with zero live model geometry. Default synthetic street framing covers one wing rather than the entire enlarged ensemble, and arbitrary synthetic neighbors may overlap its wide footprint. Custom views cover the museum; native views establish geography. The west native detail is partly occluded by the retained independent James-Simon-Galerie proxy. Flat review planes hide parts of the terrain-following outdoor colonnade; they do not establish ground fit.",
+    "captureReportHash": "sha256:392f8ce1339b0f6afa16c18c3b9cc1bd219b856e7aead300c5cdd988adaea762"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:8b6dd37f6258204a524fe05e18013ef3dba6d78d89b34a72383eda623d0a63b4",
+    "mapFrameHash": "sha256:032fd61d195baffea76a3b484bba7b6955926b43fe14b67e6e9cd3103c5cb3da",
+    "notes": "Q157316 and OpenStreetMap way18578139/native35184390666971 identify Neues Museum. Reused the existing standard pergamon_museum Berlin extract; the parent and seven integral overlapping body/roof records are replaced. Detailed parts identify the central hall, both glazed court roofs, two corner domes and two wing relations; they are museum parts, not neighboring buildings. The exact 12-vertex outline supplies meter scale. Origin is the center of the mapped eastern central risalit front edge; internal X south-southeast along the long facade, Z east-northeast toward Kolonnadenhof. Native east/up/south geometry is baked, heading0. Adjacent James-Simon-Galerie, Pergamon and Alte Nationalgalerie building records remain independent. The shared exterior Kolonnadenhof colonnade way133885752/native35184505974584 is a ninth owned record: the complete U-shaped roof and open supports are modeled together, rather than deleting only its front segment. It is separate from all neighboring museum buildings and garden ground remains untouched. Original standard Protomaps20261020/Mapzen201x201/6m grid retained from the Berlin pergamon_museum extract. Open front provider[0,8] supplies36.67228538201867m datum. Boundary grades-1.480..0.747m; working floor+.15m, closed foundation-1.660m. Only occupied museum footprint is ground-masked; outside forecourt/approaches and independent buildings/roads/water remain original. Exact threshold/accessibility remain approximate; no bespoke terrain, survey lookup or flattening. Outdoor colonnade posts follow the original terrain individually with bases0.15m below local ground. Its mapped U-shaped roof is triangulated through support centers at5.2m above original ground and edge controls, retaining actual ground/paths underneath. Skyline keeps the whole roof and selected end supports. This is an explicit coarse-DEM fit approximation to historic roof levels; no ground samples are edited. Qualified approximate native exterior fit accepted after inspecting the current complete site, east facade, covered roof courts/domes and exposed lower entrance/colonnade. Low-side plinth exposure and uphill burial remain. The west native view is partly occluded by the retained independent James-Simon-Galerie proxy; full source/shared renders cover the hidden facade. Exact threshold/accessibility and historic colonnade roof levels remain unverified."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Picture-led medium-fi exterior from the inspected 2021 east facade, 2019 west context and official2019 roof aerial. The unqualified14m map height is not a survey. Working main cornice19.7m, central hall eaves23m/ridge26.2m, 5.2m shared outdoor colonnade, two glazed court barrel roofs19.9..22.1m, corner domes20.1..23.1m. Glazed roof polygons and corner dome plan centers/radii follow actual detailed map parts; glazed roof curvature, outdoor colonnade support spacing/count, bay counts, shallow restoration patches, relief abstractions and entrance thresholds are explicit approximations. Courts are glass-covered exterior roof proxies; no rooms, archaeological collections, copied sculpture/text or costly transparency. Original standard Protomaps20261020/Mapzen201x201/6m grid retained from the Berlin pergamon_museum extract. Open front provider[0,8] supplies36.67228538201867m datum. Boundary grades-1.480..0.747m; working floor+.15m, closed foundation-1.660m. Only occupied museum footprint is ground-masked; outside forecourt/approaches and independent buildings/roads/water remain original. Exact threshold/accessibility remain approximate; no bespoke terrain, survey lookup or flattening. Outdoor colonnade posts follow the original terrain individually with bases0.15m below local ground. Its mapped U-shaped roof is triangulated through support centers at5.2m above original ground and edge controls, retaining actual ground/paths underneath. Skyline keeps the whole roof and selected end supports. This is an explicit coarse-DEM fit approximation to historic roof levels; no ground samples are edited. Qualified approximate native exterior fit accepted after inspecting the current complete site, east facade, covered roof courts/domes and exposed lower entrance/colonnade. Low-side plinth exposure and uphill burial remain. The west native view is partly occluded by the retained independent James-Simon-Galerie proxy; full source/shared renders cover the hidden facade. Exact threshold/accessibility and historic colonnade roof levels remain unverified. Meets the medium-fi connected-exterior standard. The full shared U-shaped roof uses its actual map outline, 124 approximate supports and terrain-aware roof joints; its coarse-DEM levels are an explicit visualization approximation. Small support-center offsets avoid collinear roof triangulation losing roof/post contacts. Skyline keeps the whole roof with selected end supports; district keeps all supports as four-sided columns. Glazing is opaque reflected exterior proxy, not furnished court interiors. Exact facade/relief details, preservation, doorway/threshold/accessibility and historic roof elevations remain unverified. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u3/u33/neues_museum/models/source.glb\",\"hash\":\"sha256:9d7b58df41a9f449edfd72abf09798d2772b6a7accca801aeb6c9a3bf1666f26\",\"bytes\":3053572,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/u3/u33/neues_museum/model.glb\",\"hash\":\"sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea\",\"bytes\":3053012,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u3/u33/neues_museum/model.skyline.glb\",\"hash\":\"sha256:a18b0bd90348f0cf2091caaca0a4b0b9044d97618cb801f3ab6955a9af72d1c6\",\"bytes\":45372,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u3/u33/neues_museum/model.district.glb\",\"hash\":\"sha256:14e1e4ea57dd5cb752cb9c3b8d15d3842a024b00f791b663bef4dfc3eb3b0659\",\"bytes\":392156,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u3/u33/neues_museum/model.street.glb\",\"hash\":\"sha256:a18dbc9605320eacfcfa699293c1130d4256d7c49c1c5dc9483197606b9080b3\",\"bytes\":1373308,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u3/u33/neues_museum/model.closeup.glb\",\"hash\":\"sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f\",\"bytes\":2336268,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "museum-hall-mapped-glazed-roofs-domes-recess-and-shared-outdoor-colonnade",
+        "passed": true,
+        "notes": "1440 actual mesh/contact probes across six current GLBs: original open garden/approaches, covered main wings and closed foundations, central hall ridge, two mapped glazed court roofs/domes, actual lower entrance recess/soffit/threshold and shared colonnade roof/post/base contacts. All124 supports checked in textured levels; selected skyline end supports checked separately. Shared refs, finite attributes, hashes, separate streams and caps checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Q157316 and OpenStreetMap way18578139/native35184390666971 identify Neues Museum. Reused the existing standard pergamon_museum Berlin extract; the parent and seven integral overlapping body/roof records are replaced. Detailed parts identify the central hall, both glazed court roofs, two corner domes and two wing relations; they are museum parts, not neighboring buildings. The exact 12-vertex outline supplies meter scale. Origin is the center of the mapped eastern central risalit front edge; internal X south-southeast along the long facade, Z east-northeast toward Kolonnadenhof. Native east/up/south geometry is baked, heading0. Adjacent James-Simon-Galerie, Pergamon and Alte Nationalgalerie building records remain independent. The shared exterior Kolonnadenhof colonnade way133885752/native35184505974584 is a ninth owned record: the complete U-shaped roof and open supports are modeled together, rather than deleting only its front segment. It is separate from all neighboring museum buildings and garden ground remains untouched. Original standard Protomaps20261020/Mapzen201x201/6m grid retained from the Berlin pergamon_museum extract. Open front provider[0,8] supplies36.67228538201867m datum. Boundary grades-1.480..0.747m; working floor+.15m, closed foundation-1.660m. Only occupied museum footprint is ground-masked; outside forecourt/approaches and independent buildings/roads/water remain original. Exact threshold/accessibility remain approximate; no bespoke terrain, survey lookup or flattening. Outdoor colonnade posts follow the original terrain individually with bases0.15m below local ground. Its mapped U-shaped roof is triangulated through support centers at5.2m above original ground and edge controls, retaining actual ground/paths underneath. Skyline keeps the whole roof and selected end supports. This is an explicit coarse-DEM fit approximation to historic roof levels; no ground samples are edited. Qualified approximate native exterior fit accepted after inspecting the current complete site, east facade, covered roof courts/domes and exposed lower entrance/colonnade. Low-side plinth exposure and uphill burial remain. The west native view is partly occluded by the retained independent James-Simon-Galerie proxy; full source/shared renders cover the hidden facade. Exact threshold/accessibility and historic colonnade roof levels remain unverified."
+    },
+    "inputHash": "sha256:6c4a8ed03d867e116025f065f55cf663e42a8dc50b43e7ddef86241cdf87bd94",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:6c4a8ed03d867e116025f065f55cf663e42a8dc50b43e7ddef86241cdf87bd94",
+      "reviewedOn": "2026-10-23",
+      "method": "Actually inspected52 current frames in eleven labeled contact sheets plus full-resolution current-geometry native entrance, east/west facade, roof and complete-site views. Three ordinary exterior pictures plus cached standard PMTiles/Mapzen guided one continuous author/inspect/fix pass. Corrected integral roof-part ownership, replaced the entire shared outdoor colonnade solid proxy with open supports, used mapped roof polygons/dome centers and fixed lower-door depth and collinear roof joints. Flat review planes hide distant grade-specific colonnade sections; unchanged native terrain supplies fit evidence. West native facade is partly hidden by the retained independent modern-gallery proxy. No bespoke terrain/survey research",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/preview.png",
+          "hash": "sha256:7e94ef22fffa12158c135832a5c768969c086e2038222d3c1ace40c1babf86e6"
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/turntable/angle_0.png",
+          "hash": "sha256:50fbe654979c98deca018a687c6ba36fb8eaca37a59ec5f9fa8e92ae156005cf"
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/turntable/angle_1.png",
+          "hash": "sha256:4e2ca86ace6bdd1d1715cb72997ee8a6decdb6744e251499e2f6dbd3976160c7"
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/turntable/angle_2.png",
+          "hash": "sha256:4c4dbd2671a80d462b20bf650a030404514a16b132d9dc9797e4d6872fd0824c"
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/turntable/angle_3.png",
+          "hash": "sha256:668475e512a8918d2a94e7e7be64ecbf859a66d84aa14de3799cda8c80a6e0bd"
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/east-pediment-window-orders-and-ground-colonnade.png",
+          "hash": "sha256:4d195c028afcbd1c6b470a49ce46f84d9c80ebdb9708d6ee721a12d055b96751"
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/two-covered-court-roofs-central-hall-and-domes.png",
+          "hash": "sha256:37c1868657171acd3cc6cd2edab4638a69223066af04d55454ae834d5db06439"
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/west-stone-brick-wings-and-pediment.png",
+          "hash": "sha256:755c23ca0cbb0c84cf8c30cf7e6be8f767310afb11626123f9ceed256c63703f"
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/ground-colonnade-depth-and-lower-entrance.png",
+          "hash": "sha256:e7d43ed25fc75c94161e27719e407005046ea70468f927a89ca085b4da95de8e"
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/angle-0.png",
+          "hash": "sha256:ace720183d5d9926928a5c6c4135ce0fc3e0f2972da88f2899b604cba424bc56",
+          "camera": {
+            "name": "angle-0",
+            "angle": 0.6
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.neues_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "neues.museum",
+            "position": [
+              0,
+              0,
+              4.656612873077393e-10
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 25632,
+            "bounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203078434
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.94931793259457
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203125
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.9493179321289
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "00537e72-877f-45ff-99cb-4506c8efaec2",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2af52334-5f01-463b-bc2f-5ba2e85a11b6",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "f23477a1-3255-4539-ba29-bd12425f7442",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4bf02e0-7144-4d4b-bf90-0462a68ea1dd",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "01ec47f1-6139-41dc-8d5f-d3e92dc1883c"
+            },
+            "loads": [
+              "molen.worldgen.structure.neues_museum"
+            ],
+            "selectionBounds": [
+              13.396003164965167,
+              52.51908445612254,
+              13.399948857110486,
+              52.52148533290437
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "neues.museum",
+                "coordinate": [
+                  13.398067670495577,
+                  52.52033023292496
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "neues.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 25685
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/angle-1.png",
+          "hash": "sha256:dbc8968818d8aaceb6e6a4c7e3086b7a532840d814ba9a850baaec32c5ee8cf8",
+          "camera": {
+            "name": "angle-1",
+            "angle": 2.1707963267948966
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.neues_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "neues.museum",
+            "position": [
+              0,
+              0,
+              4.656612873077393e-10
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 25632,
+            "bounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203078434
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.94931793259457
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203125
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.9493179321289
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "00537e72-877f-45ff-99cb-4506c8efaec2",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2af52334-5f01-463b-bc2f-5ba2e85a11b6",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "f23477a1-3255-4539-ba29-bd12425f7442",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4bf02e0-7144-4d4b-bf90-0462a68ea1dd",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "01ec47f1-6139-41dc-8d5f-d3e92dc1883c"
+            },
+            "loads": [
+              "molen.worldgen.structure.neues_museum"
+            ],
+            "selectionBounds": [
+              13.396003164965167,
+              52.51908445612254,
+              13.399948857110486,
+              52.52148533290437
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "neues.museum",
+                "coordinate": [
+                  13.398067670495577,
+                  52.52033023292496
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "neues.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 25685
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/angle-2.png",
+          "hash": "sha256:184e81f8eb7639c697fbd0cfff4d2dbf01420d8eb7dc3a387687c8d51892fcc6",
+          "camera": {
+            "name": "angle-2",
+            "angle": 3.741592653589793
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.neues_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "neues.museum",
+            "position": [
+              0,
+              0,
+              4.656612873077393e-10
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 25632,
+            "bounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203078434
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.94931793259457
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203125
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.9493179321289
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "00537e72-877f-45ff-99cb-4506c8efaec2",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2af52334-5f01-463b-bc2f-5ba2e85a11b6",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "f23477a1-3255-4539-ba29-bd12425f7442",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4bf02e0-7144-4d4b-bf90-0462a68ea1dd",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "01ec47f1-6139-41dc-8d5f-d3e92dc1883c"
+            },
+            "loads": [
+              "molen.worldgen.structure.neues_museum"
+            ],
+            "selectionBounds": [
+              13.396003164965167,
+              52.51908445612254,
+              13.399948857110486,
+              52.52148533290437
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "neues.museum",
+                "coordinate": [
+                  13.398067670495577,
+                  52.52033023292496
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "neues.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 25685
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/angle-3.png",
+          "hash": "sha256:011c1f3a785bd0b58fcf8374997aef24b3ae4e5354ed1f78592c16542c8fefe7",
+          "camera": {
+            "name": "angle-3",
+            "angle": 5.312388980384689
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.neues_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "neues.museum",
+            "position": [
+              0,
+              0,
+              4.656612873077393e-10
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 25632,
+            "bounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203078434
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.94931793259457
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203125
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.9493179321289
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "00537e72-877f-45ff-99cb-4506c8efaec2",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2af52334-5f01-463b-bc2f-5ba2e85a11b6",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "f23477a1-3255-4539-ba29-bd12425f7442",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4bf02e0-7144-4d4b-bf90-0462a68ea1dd",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "01ec47f1-6139-41dc-8d5f-d3e92dc1883c"
+            },
+            "loads": [
+              "molen.worldgen.structure.neues_museum"
+            ],
+            "selectionBounds": [
+              13.396003164965167,
+              52.51908445612254,
+              13.399948857110486,
+              52.52148533290437
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "neues.museum",
+                "coordinate": [
+                  13.398067670495577,
+                  52.52033023292496
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "neues.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 25685
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/east-pediment-window-orders-and-ground-colonnade.png",
+          "hash": "sha256:4475dd60186240b522d565bcf34efc2745cf9c414ae22c4f37578b8c551d3a76",
+          "camera": {
+            "name": "east-pediment-window-orders-and-ground-colonnade",
+            "position": [
+              48.410057874332736,
+              18,
+              -0.6828591390289098
+            ],
+            "lookAt": [
+              -1.5521300555066355,
+              12,
+              1.2613057879804443
+            ],
+            "fov": 66
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.neues_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "neues.museum",
+            "position": [
+              0,
+              0,
+              4.656612873077393e-10
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 25632,
+            "bounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203078434
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.94931793259457
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203125
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.9493179321289
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "00537e72-877f-45ff-99cb-4506c8efaec2",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2af52334-5f01-463b-bc2f-5ba2e85a11b6",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "f23477a1-3255-4539-ba29-bd12425f7442",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4bf02e0-7144-4d4b-bf90-0462a68ea1dd",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "01ec47f1-6139-41dc-8d5f-d3e92dc1883c"
+            },
+            "loads": [
+              "molen.worldgen.structure.neues_museum"
+            ],
+            "selectionBounds": [
+              13.396003164965167,
+              52.51908445612254,
+              13.399948857110486,
+              52.52148533290437
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "neues.museum",
+                "coordinate": [
+                  13.398067670495577,
+                  52.52033023292496
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "neues.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 25685
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/two-covered-court-roofs-central-hall-and-domes.png",
+          "hash": "sha256:f404b79d81c623bfcf15b9bd7c7ea1044dd8ddf6eb3bc7bcca9af286727a8e11",
+          "camera": {
+            "name": "two-covered-court-roofs-central-hall-and-domes",
+            "position": [
+              25.45512812379384,
+              82,
+              -143.09799597548962
+            ],
+            "lookAt": [
+              -15.521300555066356,
+              18,
+              12.613057879804444
+            ],
+            "fov": 55
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.neues_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "neues.museum",
+            "position": [
+              0,
+              0,
+              4.656612873077393e-10
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 25632,
+            "bounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203078434
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.94931793259457
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203125
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.9493179321289
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "00537e72-877f-45ff-99cb-4506c8efaec2",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2af52334-5f01-463b-bc2f-5ba2e85a11b6",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "f23477a1-3255-4539-ba29-bd12425f7442",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4bf02e0-7144-4d4b-bf90-0462a68ea1dd",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "01ec47f1-6139-41dc-8d5f-d3e92dc1883c"
+            },
+            "loads": [
+              "molen.worldgen.structure.neues_museum"
+            ],
+            "selectionBounds": [
+              13.396003164965167,
+              52.51908445612254,
+              13.399948857110486,
+              52.52148533290437
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "neues.museum",
+                "coordinate": [
+                  13.398067670495577,
+                  52.52033023292496
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "neues.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 25685
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/west-stone-brick-wings-and-pediment.png",
+          "hash": "sha256:0710a1645d661659b64f86e6ef4f6fff80655b129d620663156713d444f29486",
+          "camera": {
+            "name": "west-stone-brick-wings-and-pediment",
+            "position": [
+              -129.22363230770475,
+              42,
+              -8.381697513220857
+            ],
+            "lookAt": [
+              -19.401625693832944,
+              12,
+              15.766322349755555
+            ],
+            "fov": 60
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.neues_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "neues.museum",
+            "position": [
+              0,
+              0,
+              4.656612873077393e-10
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 25632,
+            "bounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203078434
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.94931793259457
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203125
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.9493179321289
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "00537e72-877f-45ff-99cb-4506c8efaec2",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2af52334-5f01-463b-bc2f-5ba2e85a11b6",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "f23477a1-3255-4539-ba29-bd12425f7442",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4bf02e0-7144-4d4b-bf90-0462a68ea1dd",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "01ec47f1-6139-41dc-8d5f-d3e92dc1883c"
+            },
+            "loads": [
+              "molen.worldgen.structure.neues_museum"
+            ],
+            "selectionBounds": [
+              13.396003164965167,
+              52.51908445612254,
+              13.399948857110486,
+              52.52148533290437
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "neues.museum",
+                "coordinate": [
+                  13.398067670495577,
+                  52.52033023292496
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "neues.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 25685
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/ground-colonnade-depth-and-lower-entrance.png",
+          "hash": "sha256:7f15136f9f117156a93ea49b87f66eb9b87a80dbf4f5c9d0f830ea183cc46ba8",
+          "camera": {
+            "name": "ground-colonnade-depth-and-lower-entrance",
+            "position": [
+              12.029808401701636,
+              3.2,
+              0.5326441761145428
+            ],
+            "lookAt": [
+              -1.5521300555066355,
+              2.5,
+              1.2613057879804443
+            ],
+            "fov": 67
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.neues_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "neues.museum",
+            "position": [
+              0,
+              0,
+              4.656612873077393e-10
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 25632,
+            "bounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203078434
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.94931793259457
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203125
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.9493179321289
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "00537e72-877f-45ff-99cb-4506c8efaec2",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2af52334-5f01-463b-bc2f-5ba2e85a11b6",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "f23477a1-3255-4539-ba29-bd12425f7442",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4bf02e0-7144-4d4b-bf90-0462a68ea1dd",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "01ec47f1-6139-41dc-8d5f-d3e92dc1883c"
+            },
+            "loads": [
+              "molen.worldgen.structure.neues_museum"
+            ],
+            "selectionBounds": [
+              13.396003164965167,
+              52.51908445612254,
+              13.399948857110486,
+              52.52148533290437
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "neues.museum",
+                "coordinate": [
+                  13.398067670495577,
+                  52.52033023292496
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "neues.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 25685
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/placement.png",
+          "hash": "sha256:9ce884df9e0db1727e50799ca9fd48bc5cbb2f88526d01115c3022853a4faf5e",
+          "camera": {
+            "name": "placement",
+            "placement": true
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.neues_museum",
+            "mode": "geographic-flat-terrain",
+            "placementId": "neues.museum",
+            "position": [
+              0,
+              0,
+              4.656612873077393e-10
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 25632,
+            "bounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203078434
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.94931793259457
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -67.67522430419922,
+                -8.296512603759766,
+                -112.27783203125
+              ],
+              "max": [
+                123.63218688964844,
+                26.643293380737305,
+                67.9493179321289
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "00537e72-877f-45ff-99cb-4506c8efaec2",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2af52334-5f01-463b-bc2f-5ba2e85a11b6",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "f23477a1-3255-4539-ba29-bd12425f7442",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4bf02e0-7144-4d4b-bf90-0462a68ea1dd",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "01ec47f1-6139-41dc-8d5f-d3e92dc1883c"
+            },
+            "loads": [
+              "molen.worldgen.structure.neues_museum"
+            ],
+            "selectionBounds": [
+              13.396003164965167,
+              52.51908445612254,
+              13.399948857110486,
+              52.52148533290437
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "neues.museum",
+                "coordinate": [
+                  13.398067670495577,
+                  52.52033023292496
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "neues.museum"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 25685
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/street-noon-economy.png",
+          "hash": "sha256:67acbeadfa21bf1f584b39c27d669b61a243c813f2b12edd7fc22169ea655a91",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/street-noon-high.png",
+          "hash": "sha256:6e93e1abd127aca9b0e8fd0fc3c4f1d908103bd23a888bcf48fd89a8f0e22cfe",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/street-late-economy.png",
+          "hash": "sha256:d95af79a73eace6f2505abd2801522d109c0941a8c6dbf06c478ff60f5efe769",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/street-late-high.png",
+          "hash": "sha256:679eb7a8f96bf135680e7b6ada457281239cc50567422865c4a9f311f3b11239",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/block-noon-economy.png",
+          "hash": "sha256:8f15e09dd1d43c723f00176b284dab79d6df05b172d02bd6a7c7a615d27e0a4c",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:14e1e4ea57dd5cb752cb9c3b8d15d3842a024b00f791b663bef4dfc3eb3b0659",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 9647,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/block-noon-high.png",
+          "hash": "sha256:ed813bee0b0dcce2236579bc64af9bef92f3edda99548d2b554711a6a4f19edf",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:14e1e4ea57dd5cb752cb9c3b8d15d3842a024b00f791b663bef4dfc3eb3b0659",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9647,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/block-late-economy.png",
+          "hash": "sha256:de36ac50e56705b7da0ca3b82b878cc5fed0ae3f7cae88873b6182097a1844f2",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:14e1e4ea57dd5cb752cb9c3b8d15d3842a024b00f791b663bef4dfc3eb3b0659",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 9647,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/block-late-high.png",
+          "hash": "sha256:412a38335aa735f5c525f7de6b8968833c348cc83ab07d4209faa640c7243874",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:14e1e4ea57dd5cb752cb9c3b8d15d3842a024b00f791b663bef4dfc3eb3b0659",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9647,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:32af3e53a4f6b14f4eee193b11c58036cb7b2be622a7eefe737cb6de8caf749d",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:a18b0bd90348f0cf2091caaca0a4b0b9044d97618cb801f3ab6955a9af72d1c6",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6199,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:48c2479231d5f3cef8c987ba9d8180e7e5083fca097f0df1613a7f74c5701d05",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:a18b0bd90348f0cf2091caaca0a4b0b9044d97618cb801f3ab6955a9af72d1c6",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6199,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:b417e40795b8e49557afaa5104f59092d4d48e2e1c89dc85c9ba8e0cb0aa1e23",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:a18b0bd90348f0cf2091caaca0a4b0b9044d97618cb801f3ab6955a9af72d1c6",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6199,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/skyline-late-high.png",
+          "hash": "sha256:20e743403f4f55b3bafb578636a30c0a8d7bd45b72ac112c45a9f6cb779797a9",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:a18b0bd90348f0cf2091caaca0a4b0b9044d97618cb801f3ab6955a9af72d1c6",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6199,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/silhouette.png",
+          "hash": "sha256:2672ecc8e36eb959217df4b8ebcb89f3709fb0f2a85aafdc6c618efde7de3a38",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:a18b0bd90348f0cf2091caaca0a4b0b9044d97618cb801f3ab6955a9af72d1c6",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 2,
+            "triangles": 503,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/east-pediment-window-orders-and-ground-colonnade.png",
+          "hash": "sha256:a13a30ae07adaf583c236faaf6cbe9b55da35301a186654cdeb45b7115015c1e",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              48.410057874332736,
+              18,
+              -0.6828591390289098
+            ],
+            "lookAt": [
+              -1.5521300555066355,
+              12,
+              1.2613057879804443
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/two-covered-court-roofs-central-hall-and-domes.png",
+          "hash": "sha256:a76f0b4f0c8322e945f184104ce9a10bb89cf5d5be06381734ac6a193570f44c",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              25.45512812379384,
+              82,
+              -143.09799597548962
+            ],
+            "lookAt": [
+              -15.521300555066356,
+              18,
+              12.613057879804444
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/west-stone-brick-wings-and-pediment.png",
+          "hash": "sha256:a9cc5a0c355239bbe229b8b572ff3ca140fe7d340ea8658570248832421bf8cc",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              -129.22363230770475,
+              42,
+              -8.381697513220857
+            ],
+            "lookAt": [
+              -19.401625693832944,
+              12,
+              15.766322349755555
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/ground-colonnade-depth-and-lower-entrance.png",
+          "hash": "sha256:6543c62836fdc41deba0042c084b5cfd3076bab60e6060f49df88429114f2309",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              12.029808401701636,
+              3.2,
+              0.5326441761145428
+            ],
+            "lookAt": [
+              -1.5521300555066355,
+              2.5,
+              1.2613057879804443
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/neues-skyline.png",
+          "hash": "sha256:0d28533d0b18d2483746035aba9f65751253f46d24337c597bb1f450711ec5f6",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:a18b0bd90348f0cf2091caaca0a4b0b9044d97618cb801f3ab6955a9af72d1c6",
+            "level": "skyline",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6199,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              285.70594836160086,
+              170,
+              -13.119110899687087
+            ],
+            "lookAt": [
+              19.401625693832944,
+              10,
+              -15.766322349755555
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/neues-district.png",
+          "hash": "sha256:a5ff7a74d645a4eacb3f44d69b62fa3e078d937bef0e5f45bbba29a9e250d469",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:14e1e4ea57dd5cb752cb9c3b8d15d3842a024b00f791b663bef4dfc3eb3b0659",
+            "level": "district",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9647,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              285.70594836160086,
+              170,
+              -13.119110899687087
+            ],
+            "lookAt": [
+              19.401625693832944,
+              10,
+              -15.766322349755555
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/neues-street.png",
+          "hash": "sha256:c53da6c4473c7a340ba9a340563a350b1605c13e05024316e4230e36044aa4f0",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:a18dbc9605320eacfcfa699293c1130d4256d7c49c1c5dc9483197606b9080b3",
+            "level": "street",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 20803,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              285.70594836160086,
+              170,
+              -13.119110899687087
+            ],
+            "lookAt": [
+              19.401625693832944,
+              10,
+              -15.766322349755555
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/neues-closeup.png",
+          "hash": "sha256:c6934ea8d8aa2b55695bb0cd03c647f26b5464b83c0e27a5776ddcba6318676a",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              285.70594836160086,
+              170,
+              -13.119110899687087
+            ],
+            "lookAt": [
+              19.401625693832944,
+              10,
+              -15.766322349755555
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/transition-skyline.png",
+          "hash": "sha256:5bb726e80c3fe2a69a4d45980814942ebdf424f34a23387f0a337fad58290dd4",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:a18b0bd90348f0cf2091caaca0a4b0b9044d97618cb801f3ab6955a9af72d1c6",
+            "level": "skyline",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6199,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/transition-district.png",
+          "hash": "sha256:ed813bee0b0dcce2236579bc64af9bef92f3edda99548d2b554711a6a4f19edf",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:14e1e4ea57dd5cb752cb9c3b8d15d3842a024b00f791b663bef4dfc3eb3b0659",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9647,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/transition-street.png",
+          "hash": "sha256:d857d27805a2fa5a21c1d8cfeab97fc14745d0705970181b2e54a06b03ae4094",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:a18dbc9605320eacfcfa699293c1130d4256d7c49c1c5dc9483197606b9080b3",
+            "level": "street",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 20803,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u3/u33/neues_museum/medium-fi/transition-closeup.png",
+          "hash": "sha256:3c11ff354d1250de9dc77b23f4255e14b735df6d347a508901e88c5972c4f662",
+          "state": {
+            "assetId": "molen.worldgen.structure.neues_museum",
+            "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+            "lodHash": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f",
+            "level": "closeup",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 31377,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 12,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 6,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": ".artifacts/neues-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:81023a4eef2ae410cce34ac6387f4f8a984741cf413cf401f5af04c25d402365",
+          "state": {
+            "level": "skyline",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 17,
+            "triangles": 651219
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              285.70594836160086,
+              170,
+              -13.119110899687087
+            ],
+            "lookAt": [
+              19.401625693832944,
+              10,
+              -15.766322349755555
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/neues-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:a2bb12c40ad5de24e7c0629802fb621287c1e54d636708dfeb8b51f90d898d56",
+          "state": {
+            "level": "district",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 654667
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              285.70594836160086,
+              170,
+              -13.119110899687087
+            ],
+            "lookAt": [
+              19.401625693832944,
+              10,
+              -15.766322349755555
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/neues-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:c4877e68feccd54a53daaec62013e8901b5acd93b08a126a0cb9486c9cf9076b",
+          "state": {
+            "level": "street",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 665823
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              285.70594836160086,
+              170,
+              -13.119110899687087
+            ],
+            "lookAt": [
+              19.401625693832944,
+              10,
+              -15.766322349755555
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/neues-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:e40c138ca8e40d4f0f98d48800775d3124e96ce99a4b23c741a7947900c1adff",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 676397
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              285.70594836160086,
+              170,
+              -13.119110899687087
+            ],
+            "lookAt": [
+              19.401625693832944,
+              10,
+              -15.766322349755555
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/neues-integration/shots/final-closeup-east-pediment-window-orders-and-ground-colonnade.png",
+          "hash": "sha256:8819a1e20c683d3b877b4db601b8181c5c3d01ebc4a17c0ab46724d829fdc7a7",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 676397
+          },
+          "camera": {
+            "name": "east-pediment-window-orders-and-ground-colonnade",
+            "position": [
+              48.410057874332736,
+              18,
+              -0.6828591390289098
+            ],
+            "lookAt": [
+              -1.5521300555066355,
+              12,
+              1.2613057879804443
+            ],
+            "fov": 66
+          }
+        },
+        {
+          "path": ".artifacts/neues-integration/shots/final-closeup-two-covered-court-roofs-central-hall-and-domes.png",
+          "hash": "sha256:31f2dab938ebf93ccf7654175b164326d977778b9448e4983473c1c62e1abe0c",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 676397
+          },
+          "camera": {
+            "name": "two-covered-court-roofs-central-hall-and-domes",
+            "position": [
+              25.45512812379384,
+              82,
+              -143.09799597548962
+            ],
+            "lookAt": [
+              -15.521300555066356,
+              18,
+              12.613057879804444
+            ],
+            "fov": 55
+          }
+        },
+        {
+          "path": ".artifacts/neues-integration/shots/final-closeup-west-stone-brick-wings-and-pediment.png",
+          "hash": "sha256:18798a9709167a896324b45452a3d8aa33f489442d6da01f8a52ca67b949a13d",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 676397
+          },
+          "camera": {
+            "name": "west-stone-brick-wings-and-pediment",
+            "position": [
+              -129.22363230770475,
+              42,
+              -8.381697513220857
+            ],
+            "lookAt": [
+              -19.401625693832944,
+              12,
+              15.766322349755555
+            ],
+            "fov": 60
+          }
+        },
+        {
+          "path": ".artifacts/neues-integration/shots/final-closeup-ground-colonnade-depth-and-lower-entrance.png",
+          "hash": "sha256:6ef0e10a4f45b764be0fd0efc11ed993df9f349e0be663a8e5e2675b64648893",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 676397
+          },
+          "camera": {
+            "name": "ground-colonnade-depth-and-lower-entrance",
+            "position": [
+              12.029808401701636,
+              3.2,
+              0.5326441761145428
+            ],
+            "lookAt": [
+              -1.5521300555066355,
+              2.5,
+              1.2613057879804443
+            ],
+            "fov": 67
+          }
+        },
+        {
+          "path": ".artifacts/neues-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:67ccb653c4a998636d135e0348c75fa5e2faf2dd911e5de3ac387276ec6e61d5",
+          "state": {
+            "level": "failure",
+            "mode": "high",
+            "groundCutoutActive": false,
+            "draws": 16,
+            "triangles": 650789
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              285.70594836160086,
+              170,
+              -13.119110899687087
+            ],
+            "lookAt": [
+              19.401625693832944,
+              10,
+              -15.766322349755555
+            ],
+            "fov": 54
+          }
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:6c4a8ed03d867e116025f065f55cf663e42a8dc50b43e7ddef86241cdf87bd94",
+      "sourceHash": "sha256:9d7b58df41a9f449edfd72abf09798d2772b6a7accca801aeb6c9a3bf1666f26",
+      "runtimeHash": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+      "files": {
+        "content/worldgen/source/places/u3/u33/neues_museum/models/source.glb": "sha256:9d7b58df41a9f449edfd72abf09798d2772b6a7accca801aeb6c9a3bf1666f26",
+        "content/worldgen/assets/places/u3/u33/neues_museum/model.glb": "sha256:0fca77ed1ce0878c48aa2241e118f855a4f7a5330b0638f3c7a2caf7793d31ea",
+        "content/worldgen/assets/places/u3/u33/neues_museum/model.skyline.glb": "sha256:a18b0bd90348f0cf2091caaca0a4b0b9044d97618cb801f3ab6955a9af72d1c6",
+        "content/worldgen/assets/places/u3/u33/neues_museum/model.district.glb": "sha256:14e1e4ea57dd5cb752cb9c3b8d15d3842a024b00f791b663bef4dfc3eb3b0659",
+        "content/worldgen/assets/places/u3/u33/neues_museum/model.street.glb": "sha256:a18dbc9605320eacfcfa699293c1130d4256d7c49c1c5dc9483197606b9080b3",
+        "content/worldgen/assets/places/u3/u33/neues_museum/model.closeup.glb": "sha256:5a604d621c93a1b76343fa88f94e6a6e72297f9277ccb15cbb01d8b70d5a5c9f"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184390666971,
+        35185935589805,
+        35185935589806,
+        35185935589808,
+        35185935589810,
+        35185935589811,
+        52776579590723,
+        52776579590724,
+        35184505974584
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4400,
+            2686
+          ],
+          "id": 35184383431810,
+          "owned": false,
+          "covered": 0.007394095149906868,
+          "area": 547672.8402899696,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4400,
+            2686
+          ],
+          "id": 35184398034030,
+          "owned": false,
+          "covered": 0.1626499408316191,
+          "area": 16271.822536699263,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8801,
+            5373
+          ],
+          "id": 35184383777610,
+          "owned": false,
+          "covered": 0.016487755314883577,
+          "area": 245447.4366394005,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8801,
+            5373
+          ],
+          "id": 35184396336550,
+          "owned": false,
+          "covered": 0.0941564255438374,
+          "area": 42987.759009305744,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8801,
+            5373
+          ],
+          "id": 35184398034030,
+          "owned": false,
+          "covered": 0.345847905906443,
+          "area": 7551.204055111213,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 35184390666971,
+          "owned": true,
+          "covered": 0.9999899737870075,
+          "area": 4051.352572219346,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 35184505974584,
+          "owned": true,
+          "covered": 0.9998997163187526,
+          "area": 2722.213130082878,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 35184505976243,
+          "owned": false,
+          "covered": 3.062621843426012e-8,
+          "area": 426.4380760365543,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 35185814787730,
+          "owned": false,
+          "covered": 9.864106041617369e-8,
+          "area": 674.6932243822289,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 35185935589805,
+          "owned": true,
+          "covered": 0.9999999833354384,
+          "area": 771.8146411212808,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 35185935589806,
+          "owned": true,
+          "covered": 0.9999999927745369,
+          "area": 85.77110309468526,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 35185935589808,
+          "owned": true,
+          "covered": 0.999999982849981,
+          "area": 364.8907293361659,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 35185935589810,
+          "owned": true,
+          "covered": 0.999999987208762,
+          "area": 362.2310343233663,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 35185935589811,
+          "owned": true,
+          "covered": 0.9999999818529308,
+          "area": 81.95989732810222,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 52776579590723,
+          "owned": true,
+          "covered": 0.9999999084743014,
+          "area": 1295.1207977944725,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17603,
+            10746
+          ],
+          "id": 52776579590724,
+          "owned": true,
+          "covered": 0.9999999972426173,
+          "area": 1250.0444723880526,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 986,
+      "widerIndependent": 1318,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000004631221717232847,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 995,
+          "independentBuildings": 986,
+          "remainingBuildings": 986,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.neues_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -9.129785382018671,
+            "max": 15.895114617981328
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 134371.78066902887,
+          "remainingWaterArea": 134371.78066902887,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:81023a4eef2ae410cce34ac6387f4f8a984741cf413cf401f5af04c25d402365",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 651219
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                285.70594836160086,
+                170,
+                -13.119110899687087
+              ],
+              "lookAt": [
+                19.401625693832944,
+                10,
+                -15.766322349755555
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000004631221717232847,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 995,
+          "independentBuildings": 986,
+          "remainingBuildings": 986,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.neues_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -9.129785382018671,
+            "max": 15.895114617981328
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 134371.78066902887,
+          "remainingWaterArea": 134371.78066902887,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:a2bb12c40ad5de24e7c0629802fb621287c1e54d636708dfeb8b51f90d898d56",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 654667
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                285.70594836160086,
+                170,
+                -13.119110899687087
+              ],
+              "lookAt": [
+                19.401625693832944,
+                10,
+                -15.766322349755555
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000004631221717232847,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 995,
+          "independentBuildings": 986,
+          "remainingBuildings": 986,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.neues_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -9.129785382018671,
+            "max": 15.895114617981328
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 134371.78066902887,
+          "remainingWaterArea": 134371.78066902887,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:c4877e68feccd54a53daaec62013e8901b5acd93b08a126a0cb9486c9cf9076b",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 665823
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                285.70594836160086,
+                170,
+                -13.119110899687087
+              ],
+              "lookAt": [
+                19.401625693832944,
+                10,
+                -15.766322349755555
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000004631221717232847,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 995,
+          "independentBuildings": 986,
+          "remainingBuildings": 986,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.neues_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -9.129785382018671,
+            "max": 15.895114617981328
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 134371.78066902887,
+          "remainingWaterArea": 134371.78066902887,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:e40c138ca8e40d4f0f98d48800775d3124e96ce99a4b23c741a7947900c1adff",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 676397
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                285.70594836160086,
+                170,
+                -13.119110899687087
+              ],
+              "lookAt": [
+                19.401625693832944,
+                10,
+                -15.766322349755555
+              ],
+              "fov": 54
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-east-pediment-window-orders-and-ground-colonnade.png",
+            "hash": "sha256:8819a1e20c683d3b877b4db601b8181c5c3d01ebc4a17c0ab46724d829fdc7a7",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 676397
+            },
+            "camera": {
+              "name": "east-pediment-window-orders-and-ground-colonnade",
+              "position": [
+                48.410057874332736,
+                18,
+                -0.6828591390289098
+              ],
+              "lookAt": [
+                -1.5521300555066355,
+                12,
+                1.2613057879804443
+              ],
+              "fov": 66
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-two-covered-court-roofs-central-hall-and-domes.png",
+            "hash": "sha256:31f2dab938ebf93ccf7654175b164326d977778b9448e4983473c1c62e1abe0c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 676397
+            },
+            "camera": {
+              "name": "two-covered-court-roofs-central-hall-and-domes",
+              "position": [
+                25.45512812379384,
+                82,
+                -143.09799597548962
+              ],
+              "lookAt": [
+                -15.521300555066356,
+                18,
+                12.613057879804444
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-west-stone-brick-wings-and-pediment.png",
+            "hash": "sha256:18798a9709167a896324b45452a3d8aa33f489442d6da01f8a52ca67b949a13d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 676397
+            },
+            "camera": {
+              "name": "west-stone-brick-wings-and-pediment",
+              "position": [
+                -129.22363230770475,
+                42,
+                -8.381697513220857
+              ],
+              "lookAt": [
+                -19.401625693832944,
+                12,
+                15.766322349755555
+              ],
+              "fov": 60
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-ground-colonnade-depth-and-lower-entrance.png",
+            "hash": "sha256:6ef0e10a4f45b764be0fd0efc11ed993df9f349e0be663a8e5e2675b64648893",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 676397
+            },
+            "camera": {
+              "name": "ground-colonnade-depth-and-lower-entrance",
+              "position": [
+                12.029808401701636,
+                3.2,
+                0.5326441761145428
+              ],
+              "lookAt": [
+                -1.5521300555066355,
+                2.5,
+                1.2613057879804443
+              ],
+              "fov": 67
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 995,
+          "independentBuildings": 986,
+          "remainingBuildings": 995,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184390666971,
+              "area": 4051.286627875115
+            },
+            {
+              "id": 35184505974584,
+              "area": 2722.1688202982673
+            },
+            {
+              "id": 35185935589805,
+              "area": 771.8020782032297
+            },
+            {
+              "id": 35185935589806,
+              "area": 85.7697069882235
+            },
+            {
+              "id": 35185935589808,
+              "area": 364.8847899667196
+            },
+            {
+              "id": 35185935589810,
+              "area": 362.2251382460595
+            },
+            {
+              "id": 35185935589811,
+              "area": 81.95856325722062
+            },
+            {
+              "id": 52776579590723,
+              "area": 1295.0997169602997
+            },
+            {
+              "id": 52776579590724,
+              "area": 1250.02412526654
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.neues_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -9.129785382018671,
+            "max": 15.895114617981328
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 134371.78066902887,
+          "remainingWaterArea": 134371.78066902887,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:67ccb653c4a998636d135e0348c75fa5e2faf2dd911e5de3ac387276ec6e61d5",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 16,
+              "triangles": 650789
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                285.70594836160086,
+                170,
+                -13.119110899687087
+              ],
+              "lookAt": [
+                19.401625693832944,
+                10,
+                -15.766322349755555
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Neues Museum connected exterior on its exact PMTiles footprint: warm pale stone and restrained restored brick, three facade levels, central east/west pediments and tall grouped window bays, shared mapped U-shaped outdoor colonnade with open gaps and original terrain under its roof, dark shallow wing roofs, two broad blue-green glazed court roofs, raised central gabled hall and two low corner dome/skylight forms. Covered courts remain covered; no invented open courtyard, copied relief figures/inscriptions, banners, furnished galleries or neighboring James-Simon-Galerie/Alte Nationalgalerie/Pergamon geometry.",
+    "Q157316 and OpenStreetMap way18578139/native35184390666971 identify Neues Museum. Reused the existing standard pergamon_museum Berlin extract; the parent and seven integral overlapping body/roof records are replaced. Detailed parts identify the central hall, both glazed court roofs, two corner domes and two wing relations; they are museum parts, not neighboring buildings. The exact 12-vertex outline supplies meter scale. Origin is the center of the mapped eastern central risalit front edge; internal X south-southeast along the long facade, Z east-northeast toward Kolonnadenhof. Native east/up/south geometry is baked, heading0. Adjacent James-Simon-Galerie, Pergamon and Alte Nationalgalerie building records remain independent. The shared exterior Kolonnadenhof colonnade way133885752/native35184505974584 is a ninth owned record: the complete U-shaped roof and open supports are modeled together, rather than deleting only its front segment. It is separate from all neighboring museum buildings and garden ground remains untouched.",
+    "Picture-led medium-fi exterior from the inspected 2021 east facade, 2019 west context and official2019 roof aerial. The unqualified14m map height is not a survey. Working main cornice19.7m, central hall eaves23m/ridge26.2m, 5.2m shared outdoor colonnade, two glazed court barrel roofs19.9..22.1m, corner domes20.1..23.1m. Glazed roof polygons and corner dome plan centers/radii follow actual detailed map parts; glazed roof curvature, outdoor colonnade support spacing/count, bay counts, shallow restoration patches, relief abstractions and entrance thresholds are explicit approximations. Courts are glass-covered exterior roof proxies; no rooms, archaeological collections, copied sculpture/text or costly transparency.",
+    "Original standard Protomaps20261020/Mapzen201x201/6m grid retained from the Berlin pergamon_museum extract. Open front provider[0,8] supplies36.67228538201867m datum. Boundary grades-1.480..0.747m; working floor+.15m, closed foundation-1.660m. Only occupied museum footprint is ground-masked; outside forecourt/approaches and independent buildings/roads/water remain original. Exact threshold/accessibility remain approximate; no bespoke terrain, survey lookup or flattening. Outdoor colonnade posts follow the original terrain individually with bases0.15m below local ground. Its mapped U-shaped roof is triangulated through support centers at5.2m above original ground and edge controls, retaining actual ground/paths underneath. Skyline keeps the whole roof and selected end supports. This is an explicit coarse-DEM fit approximation to historic roof levels; no ground samples are edited. Qualified approximate native exterior fit accepted after inspecting the current complete site, east facade, covered roof courts/domes and exposed lower entrance/colonnade. Low-side plinth exposure and uphill burial remain. The west native view is partly occluded by the retained independent James-Simon-Galerie proxy; full source/shared renders cover the hidden facade. Exact threshold/accessibility and historic colonnade roof levels remain unverified.",
+    "Picture-led medium-fi exterior from the inspected 2021 east facade, 2019 west context and official2019 roof aerial. The unqualified14m map height is not a survey. Working main cornice19.7m, central hall eaves23m/ridge26.2m, 5.2m shared outdoor colonnade, two glazed court barrel roofs19.9..22.1m, corner domes20.1..23.1m. Glazed roof polygons and corner dome plan centers/radii follow actual detailed map parts; glazed roof curvature, outdoor colonnade support spacing/count, bay counts, shallow restoration patches, relief abstractions and entrance thresholds are explicit approximations. Courts are glass-covered exterior roof proxies; no rooms, archaeological collections, copied sculpture/text or costly transparency. Original standard Protomaps20261020/Mapzen201x201/6m grid retained from the Berlin pergamon_museum extract. Open front provider[0,8] supplies36.67228538201867m datum. Boundary grades-1.480..0.747m; working floor+.15m, closed foundation-1.660m. Only occupied museum footprint is ground-masked; outside forecourt/approaches and independent buildings/roads/water remain original. Exact threshold/accessibility remain approximate; no bespoke terrain, survey lookup or flattening. Outdoor colonnade posts follow the original terrain individually with bases0.15m below local ground. Its mapped U-shaped roof is triangulated through support centers at5.2m above original ground and edge controls, retaining actual ground/paths underneath. Skyline keeps the whole roof and selected end supports. This is an explicit coarse-DEM fit approximation to historic roof levels; no ground samples are edited. Qualified approximate native exterior fit accepted after inspecting the current complete site, east facade, covered roof courts/domes and exposed lower entrance/colonnade. Low-side plinth exposure and uphill burial remain. The west native view is partly occluded by the retained independent James-Simon-Galerie proxy; full source/shared renders cover the hidden facade. Exact threshold/accessibility and historic colonnade roof levels remain unverified. Meets the medium-fi connected-exterior standard. The full shared U-shaped roof uses its actual map outline, 124 approximate supports and terrain-aware roof joints; its coarse-DEM levels are an explicit visualization approximation. Small support-center offsets avoid collinear roof triangulation losing roof/post contacts. Skyline keeps the whole roof with selected end supports; district keeps all supports as four-sided columns. Glazing is opaque reflected exterior proxy, not furnished court interiors. Exact facade/relief details, preservation, doorway/threshold/accessibility and historic roof elevations remain unverified. Physical phone/laptop and dense-city timings remain pending.",
+    "Q157316 and OpenStreetMap way18578139/native35184390666971 identify Neues Museum. Reused the existing standard pergamon_museum Berlin extract; the parent and seven integral overlapping body/roof records are replaced. Detailed parts identify the central hall, both glazed court roofs, two corner domes and two wing relations; they are museum parts, not neighboring buildings. The exact 12-vertex outline supplies meter scale. Origin is the center of the mapped eastern central risalit front edge; internal X south-southeast along the long facade, Z east-northeast toward Kolonnadenhof. Native east/up/south geometry is baked, heading0. Adjacent James-Simon-Galerie, Pergamon and Alte Nationalgalerie building records remain independent. The shared exterior Kolonnadenhof colonnade way133885752/native35184505974584 is a ninth owned record: the complete U-shaped roof and open supports are modeled together, rather than deleting only its front segment. It is separate from all neighboring museum buildings and garden ground remains untouched. Original standard Protomaps20261020/Mapzen201x201/6m grid retained from the Berlin pergamon_museum extract. Open front provider[0,8] supplies36.67228538201867m datum. Boundary grades-1.480..0.747m; working floor+.15m, closed foundation-1.660m. Only occupied museum footprint is ground-masked; outside forecourt/approaches and independent buildings/roads/water remain original. Exact threshold/accessibility remain approximate; no bespoke terrain, survey lookup or flattening. Outdoor colonnade posts follow the original terrain individually with bases0.15m below local ground. Its mapped U-shaped roof is triangulated through support centers at5.2m above original ground and edge controls, retaining actual ground/paths underneath. Skyline keeps the whole roof and selected end supports. This is an explicit coarse-DEM fit approximation to historic roof levels; no ground samples are edited. Qualified approximate native exterior fit accepted after inspecting the current complete site, east facade, covered roof courts/domes and exposed lower entrance/colonnade. Low-side plinth exposure and uphill burial remain. The west native view is partly occluded by the retained independent James-Simon-Galerie proxy; full source/shared renders cover the hidden facade. Exact threshold/accessibility and historic colonnade roof levels remain unverified."
+  ]
+}

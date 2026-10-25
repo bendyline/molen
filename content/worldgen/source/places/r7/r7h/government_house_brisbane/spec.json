@@ -1,0 +1,410 @@
+{
+  "planId": "government_house_brisbane",
+  "id": "government_house_brisbane",
+  "assetId": "molen.worldgen.structure.government_house_brisbane",
+  "title": "Government House, Brisbane",
+  "category": "residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 152.9900648,
+    "latitude": -27.4625333
+  },
+  "size": [
+    45.23258876800537,
+    22.070000410079956,
+    36.76426339149475
+  ],
+  "actualBounds": {
+    "min": [
+      -13.104720115661621,
+      -2.799999952316284,
+      -3.6600000858306885
+    ],
+    "max": [
+      32.12786865234375,
+      19.270000457763672,
+      33.10426330566406
+    ]
+  },
+  "visualBrief": "Whole connected Government House/Fernberg mansion exterior:1888 north Italianate reception block/faceted bays/square open-loggia tower, original1865 southern guest wing/raised slate hip and paired-arch clerestory, connected1937 eastern wing, surviving verandahs/balconies/semicircular piazza ends, bounded1950 western covered connection/porte cochere and rear court. Exclude separate estate residences/administration cottage/garages/guardhouse, grounds/gates/fountain/pool/vegetation, interiors, exact stained-glass figures/crests and flags.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Government-House-Queensland-Bardon.jpg",
+    "https://commons.wikimedia.org/wiki/File:Government-House-grounds.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dusk_sky_Government_House_Fernberg_Rd_Paddington_L1210456.jpg",
+    "https://commons.wikimedia.org/wiki/File:Jacaranda_mimosifolia_after_storm_Government_House_Fernberg_Rd_Paddington_L1210384.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ground_Floor_Plan_of_Government_House,_Brisbane,_c_1940.jpg",
+    "https://commons.wikimedia.org/wiki/File:First_Floor_Plan_of_Government_House,_Brisbane,_c_1940.jpg"
+  ],
+  "stories": [
+    {
+      "id": "government-house-brisbane-wp",
+      "url": "https://qualla.com/government-house-brisbane/"
+    }
+  ],
+  "referenceInputHash": "51f3bbc03ca0b2cdbf7a323faacbe835ceafa14b3754117b586d18462e843c91",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-government-house-brisbane.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-government-house-brisbane.mjs",
+    "level": "skyline",
+    "export": "brisbaneGovernmentHouseSkyline",
+    "errorMeters": 0.85,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.35,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "brisbaneGovernmentHouseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "brisbaneGovernmentHouseStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "brisbaneGovernmentHouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual named GovernmentHouse way541465821/Q494360 (BrisbaneCityCouncil source2018, current native version2025) supplies whole connected41-corner footprint; north tower projection supplies local bearing. +X east-southeast along north front; +Z south-southwest toward original wing. Historic government plans establish rear courtyard/balcony topology; footprint has no interior ring, so exact current court boundary/covering cannot be certified. Current2022 creatorCC0 exterior and2005 named creatorPD exterior establish surviving volume/white Italianate finish; detailed heights/court/roof joins remain bounded estimates. Fixed northwest exterior contact source datum63.8869m, north court near+0.113m and eastern/southern perimeter down to-2.403m. Main finished floor+0.45m and basement foundation down to-2.8m are architectural estimates chosen before geometry, exposing a bounded basement on the downhill side. Original terrain16641values/raw tile/PNG fixed unchanged, no flattening/roof-fitting/reacquisition. Exact basement/terrace contacts not surveyed, geographic preview/replacementfalse.",
+    "anchor": [
+      152.9900648,
+      -27.4625333
+    ],
+    "heading": -0.2027294230977838,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        152.9900091017091,
+        -27.462550653970595
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exterior northwestern forecourt contact selected before terrain/geometry, not a surveyed finished-floor elevation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/541465821"
+    ],
+    "source": "https://www.openstreetmap.org/way/541465821",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0a824f16c13be4cc07e07f5d821300cb2153c0efcff9aa9a4932e42f08f25447",
+    "notes": "Whole connected Government House/Fernberg mansion exterior:1888 north Italianate reception block/faceted bays/square open-loggia tower, original1865 southern guest wing/raised slate hip and paired-arch clerestory, connected1937 eastern wing, surviving verandahs/balconies/semicircular piazza ends, bounded1950 western covered connection/porte cochere and rear court. Exclude separate estate residences/administration cottage/garages/guardhouse, grounds/gates/fountain/pool/vegetation, interiors, exact stained-glass figures/crests and flags."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named GovernmentHouse way541465821/Q494360 (BrisbaneCityCouncil source2018, current native version2025) supplies whole connected41-corner footprint; north tower projection supplies local bearing. +X east-southeast along north front; +Z south-southwest toward original wing. Historic government plans establish rear courtyard/balcony topology; footprint has no interior ring, so exact current court boundary/covering cannot be certified. Current2022 creatorCC0 exterior and2005 named creatorPD exterior establish surviving volume/white Italianate finish; detailed heights/court/roof joins remain bounded estimates.",
+    "Fixed northwest exterior contact source datum63.8869m, north court near+0.113m and eastern/southern perimeter down to-2.403m. Main finished floor+0.45m and basement foundation down to-2.8m are architectural estimates chosen before geometry, exposing a bounded basement on the downhill side. Original terrain16641values/raw tile/PNG fixed unchanged, no flattening/roof-fitting/reacquisition. Exact basement/terrace contacts not surveyed, geographic preview/replacementfalse.",
+    "Whole connected native mansion perimeter, with original southern wing/1888 north reception block and prominent square tower/1937 east wing/integral western covered connection. Separate estate buildings, grounds/gates/statues/fountain/pool/vegetation, interiors, flags and figured crests/stained-glass imagery excluded.",
+    "Four exact cleared published exterior originals (Figaro2005 named public-domain release and McPherson2022 ownCC0), plus two exact native circa1940 QueenslandStateArchives government architectural drawings/explicit PD-AustraliaGov grant. Missing local plan-category evidence is bound independently to exact native archive items without changing article/media metadata. No generated bitmap, doubtful photograph, licensed pixel or borrowed mesh.",
+    "White stucco/quoins/cornice/balustraded parapet, faceted bays/awning balcony ends, segmental sash openings, genuine open upper tower loggia and veranda/porte-cochere supports; six actual canonical slots/five shared graphs. Slate roof topology/fine pitches, exact sash/baluster/vent census and hidden facade details are bounded medium-fi interpretations, not measured survey.",
+    "Historic plans establish an open rear court, retained instead of inventing a solid roof across it. Current mapped perimeter has no court ring; exact current inner court dimensions/later covering/roof joins remain unverified. Roof strips and raised paired-arched guest-wing clerestory follow photographs and historical topology with estimated dimensions.",
+    "Fixed independent16641value field/raw tile/heightPNG frozen before geometry and unchanged. Floor/basement contacts estimated, geographic preview only/replacementfalse; no flattening/fitting of source terrain or certified construction contact. Full architecture/four LODs/current material/context/native-outline views reviewed in same pass."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-connected-mansion-north-tower-verandahs-bays-and-rear-wings",
+      "position": [
+        -44,
+        27,
+        -43
+      ],
+      "lookAt": [
+        8,
+        6,
+        14
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "north-faceted-bays-classical-tower-loggia-and-balustraded-parapet",
+      "position": [
+        18,
+        11,
+        -24
+      ],
+      "lookAt": [
+        10,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "western-open-veranda-and-covered-porte-cochere",
+      "position": [
+        -24,
+        7,
+        5
+      ],
+      "lookAt": [
+        -2,
+        3,
+        12
+      ]
+    },
+    {
+      "name": "southern-original-wing-slate-hip-clerestory-and-open-court",
+      "position": [
+        15,
+        27,
+        49
+      ],
+      "lookAt": [
+        10,
+        7,
+        23
+      ]
+    },
+    {
+      "name": "eastern-1937-wing-bay-and-bracketed-white-stucco",
+      "position": [
+        47,
+        13,
+        -8
+      ],
+      "lookAt": [
+        23,
+        5,
+        7
+      ]
+    },
+    {
+      "name": "open-upper-tower-loggia-arched-openings-and-shallow-hip",
+      "position": [
+        17,
+        17,
+        -13
+      ],
+      "lookAt": [
+        8,
+        14,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22147,
+    "vertices": 66441,
+    "materials": 6,
+    "bytes": 2661364,
+    "sha256": "sha256:10a15484c2df85ee76bf4291c24594328508412be963eaaea6b3c7f32bf9466c"
+  }
+}

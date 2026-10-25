@@ -12,7 +12,7 @@ import {
 } from './signature-tower-expansion-models.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0164_citic_plaza',
+const key = 'citic_plaza',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'))),
   white = [0.83, 0.85, 0.81],

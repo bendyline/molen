@@ -55,6 +55,29 @@ export function inspectStructureAssetPaths(entries, projectAssets, packAssets, b
   return issues;
 }
 
+/** Missing generated GLBs need restoration, not a change to their registered paths. */
+export async function validateStructureModelFiles(directory, document) {
+  validateStructureAssetId(document.id);
+  const missing = [];
+  for (const file of [document.files.main, ...Object.values(document.files.variants ?? {})]) {
+    const target = sourcePathWithin(directory, file);
+    const info = await stat(target).catch((error) => {
+      if (error.code === 'ENOENT') return undefined;
+      throw error;
+    });
+    if (!info) missing.push(file);
+    else if (!info.isFile()) throw new Error(`Not a runtime model file: ${target}`);
+  }
+  if (missing.length) {
+    const repair = missing.includes(document.files.main)
+      ? ''
+      : `\nTo regenerate this structure's detail levels from its existing master, run from the repository root:\nnode packages/tooling/scripts/generate-landmark-lods.mjs --ids=${document.id}`;
+    throw new Error(
+      `${document.id}: missing generated runtime model files in ${directory}: ${missing.join(', ')}.\nRestore build outputs with pnpm assets:fetch (or pnpm assets:build) from the repository root.${repair}`,
+    );
+  }
+}
+
 export async function validateStructureAssetPaths() {
   const packRoot = structureAssetPackRoot;
   const readJson = async (path) => JSON.parse(await readFile(path, 'utf8'));
@@ -70,10 +93,7 @@ export async function validateStructureAssetPaths() {
     const document = await readJson(absolute);
     bundles.push({ id: document.id, path: plainPath(relative(packRoot, absolute)) });
     if (!document.id.startsWith(prefix)) continue;
-    for (const file of [document.files.main, ...Object.values(document.files.variants ?? {})]) {
-      const target = sourcePathWithin(dirname(absolute), file);
-      if (!(await stat(target)).isFile()) throw new Error(`Not a runtime model file: ${target}`);
-    }
+    await validateStructureModelFiles(dirname(absolute), document);
   }
   const issues = inspectStructureAssetPaths(entries, project.assets, pack.assets, bundles);
   for (const entry of entries.filter((entry) => entry.hasModel)) {

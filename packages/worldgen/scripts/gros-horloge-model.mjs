@@ -22,9 +22,7 @@ const stone = [0.76, 0.73, 0.63],
   gold = [0.91, 0.62, 0.2],
   navy = [0.025, 0.045, 0.09],
   dark = [0.065, 0.068, 0.064];
-const map = JSON.parse(
-  readFileSync(structureSourcePath('n0612_gros_horloge', 'map-frame.json'), 'utf8'),
-);
+const map = JSON.parse(readFileSync(structureSourcePath('gros_horloge', 'map-frame.json'), 'utf8'));
 function tube(out, slot, points, r, color) {
   for (let i = 1; i < points.length; i++) beam(out, slot, points[i - 1], points[i], r, r, color);
 }
@@ -792,8 +790,8 @@ function build(out) {
   workshop(out);
 }
 export const grosHorloge = {
-  id: 'n0612_gros_horloge',
-  planId: 'N0612',
+  id: 'gros_horloge',
+  planId: 'gros_horloge',
   title: 'Gros-Horloge',
   wikidata: 'Q3116957',
   authoringFile: 'gros-horloge-model.mjs',

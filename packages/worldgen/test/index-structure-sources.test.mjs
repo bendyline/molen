@@ -6,7 +6,7 @@ import {
 } from '../scripts/index-structure-sources.mjs';
 import { encodeSourceGeohash } from '../scripts/structure-source-paths.mjs';
 
-const key = 'n0999_new_landmark';
+const key = 'new_landmark';
 const seattle = [-122.3318, 47.60209];
 const paris = [2.2945, 48.8584];
 const london = [-0.1246, 51.5007];
@@ -168,7 +168,7 @@ describe('new structure source registration', () => {
   it('preserves legacy migration routing from the best available coordinate', () => {
     const result = resolvePlaceSourceLocation({
       key,
-      actualPath: `content/worldgen/source/next-1000/models/${key}`,
+      actualPath: `content/worldgen/source/structure-catalog/models/${key}`,
       frameAnchor: paris,
       catalogReference: reference(seattle),
       includeLegacy: true,
@@ -181,12 +181,15 @@ describe('new structure source registration', () => {
 
 describe('source candidate identities', () => {
   it('uses member IDs while preserving initial-catalog plan IDs and reference exceptions', () => {
-    expect(structureSourceCandidateId('n0208_msu', { id: 'N0208_MSU', planId: 'N0208' })).toBe(
-      'N0208_MSU',
-    );
     expect(
-      structureSourceCandidateId('n0001_stari_most', { id: 'N0001', planId: 'old-plan' }),
-    ).toBe('N0001');
+      structureSourceCandidateId('msu_main_building', {
+        id: 'msu_main_building',
+        planId: 'seven_sisters',
+      }),
+    ).toBe('msu_main_building');
+    expect(structureSourceCandidateId('stari_most', { id: 'stari_most', planId: 'old-plan' })).toBe(
+      'stari_most',
+    );
     expect(
       structureSourceCandidateId('a02_smith_tower', {
         id: 'molen.worldgen.structure.a02_smith_tower',
@@ -196,6 +199,8 @@ describe('source candidate identities', () => {
     expect(
       structureSourceCandidateId('space-needle', { id: 'molen.worldgen.structure.space_needle' }),
     ).toBe('A01');
-    expect(structureSourceCandidateId(key, undefined, { candidateId: 'N0999' })).toBe('N0999');
+    expect(
+      structureSourceCandidateId(key, undefined, { candidateId: 'salamanca_new_cathedral' }),
+    ).toBe('salamanca_new_cathedral');
   });
 });

@@ -1,0 +1,50 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.c_ur_defense",
+  "inputHash": "sha256:19a3e7b8918ee080e85f935320b2164f357880e6c80157914ae25fcaaeaab4a0",
+  "captureReportHash": "sha256:7ea5bf09af4ee07c834b9dcaa822af74a153969fc42e1f0326e78283b0fb647d",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Complete detailed world-viewer exterior reconstruction",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/esplanade-entrances.png",
+      "shots/twin-blades.png",
+      "shots/atrium.png",
+      "shots/rounded-roof.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Every standard frame inspected: both staggered rounded blades, three lower fingers, lift link, glazed atrium, entrance canopy, white floor bands and roof screens are present without missing wall/roof faces."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ced951af60ce06ad1697290d2422f31ba30a0ad4615d64779566a1e6939549df",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/esplanade-entrances.png",
+      "shots/shared/twin-blades.png",
+      "shots/shared/atrium.png",
+      "shots/shared/rounded-roof.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Every shared frame inspected, including roof detail, atrium, all angles and north-up placement. Shared painted metal and concrete resolve; tinted glass and deterministic sun blinds retain their fallback material. No per-model photographic textures are required."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:1b03c9feabeee40a5634fadcf875730844f9e1fd0ca390bd2323572b6ecdf33d",
+    "notes": "The two tall blade polygons retain their exact mapped QIDs and positions. The footprint overlay represents the 1 m ground platform, so northwest upper projections correctly extend beyond it rather than being moved into the platform. The three lower round ends and atrium preserve the asymmetric esplanade-facing orientation."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "Passed for the detailed complete exterior reconstruction at world-viewer scale. Published engineer heights/floor counts, separate tall-blade footprints and the photographed white-ribbon glazing rhythm are represented. Blind positions and small roof equipment are reconstructed rather than claimed as permanent measured details."
+  }
+}

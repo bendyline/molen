@@ -1,0 +1,356 @@
+{
+  "planId": "bruichladdich_distillery",
+  "id": "bruichladdich_distillery",
+  "assetId": "molen.worldgen.structure.bruichladdich_distillery",
+  "title": "Bruichladdich Distillery",
+  "category": "distillery",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -6.361483,
+    "latitude": 55.76615735
+  },
+  "size": [
+    130.2465591430664,
+    20.100000381469727,
+    241.15898847579956
+  ],
+  "actualBounds": {
+    "min": [
+      -67.45286560058594,
+      -1,
+      -239.25698852539062
+    ],
+    "max": [
+      62.79369354248047,
+      19.100000381469727,
+      1.9019999504089355
+    ]
+  },
+  "visualBrief": "Complete22building Bruichladdich compound on original plans and approximate uphill floor terraces: whitewash/greenframeproduction and long hipped-slate visitor front/dormers, highpyramidkilnwithgenuinelyopenventcupola, chimneys/flues, separate gabled/roundroofwarehouses and opencourts; intrinsic copper swan-neck still and turquoise-ended barrel display. No villagebuildings, naturalshore/water/groundslab, people/vehicles/lettering or interiors.",
+  "nativeAxes": {
+    "x": "north-northeast along visitor-centre sea-facing front",
+    "y": "up",
+    "z": "east-southeast outward toward road/Loch Indaal"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Distilleryview2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Distilleryview.jpg",
+    "https://commons.wikimedia.org/wiki/File:Distilleryreflection.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bruichladdich-distillery-wp",
+      "url": "https://qualla.com/bruichladdich-distillery/"
+    }
+  ],
+  "referenceInputHash": "52cdb380098a916b3db13890ac2205e6f7b886fadd4ffec2bff67947a94d8554",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bruichladdich-distillery.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bruichladdich-distillery.mjs",
+    "level": "skyline",
+    "export": "bruichladdichSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "trim",
+        "localRef": "palette:#feffff",
+        "roughness": 0.32,
+        "metallic": 0.04
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.43,
+        "metallic": 0.78
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bruichladdichDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.32,
+            "metallic": 0.04
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.43,
+            "metallic": 0.78
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "bruichladdichStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.32,
+            "metallic": 0.04
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.43,
+            "metallic": 0.78
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.05,
+    "groundY": -1.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original dry visitor pavement datum and complete raw field frozen before geometry. Explicit approximate per-building floor terraces retain inland rise; no source terrain flattening or fitted replacement surface. Provider pixels may blend structures/vegetation, and exact foundations/host terrain/shore contact remain unverified.",
+    "anchor": [
+      -6.361483,
+      55.76615735
+    ],
+    "heading": 0.9522846698516989,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -6.361430960979656,
+        55.76613651553406
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed dry pavement4moutside original named visitor-centre seaward facade midpoint before any terrain acquisition. Compound floor grades/thresholds and host shore/road datum remain approximate, no terrain flattening/fitting."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/366391920",
+      "way/366391922",
+      "way/366391923",
+      "way/366391924",
+      "way/366391925",
+      "way/366391926",
+      "way/366391927",
+      "way/366391928",
+      "way/366391931",
+      "way/851279653",
+      "way/1107706947",
+      "way/1107706948",
+      "way/1107706949",
+      "way/1107706950",
+      "way/1107706951",
+      "way/1107706952",
+      "way/1107706953",
+      "way/1107706954",
+      "way/1355280623",
+      "way/1355280624",
+      "way/1355280625",
+      "way/1355280626",
+      "way/1355357924"
+    ],
+    "source": "https://www.openstreetmap.org/way/366391920",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:de1795de89e3e2f89112f1a6f7832cace5e1c43435acdf36304288f01b84bb1a",
+    "notes": "Complete intrinsic Bruichladdich distillery compound using original individual buildings inside named industrialsite366391920/Q51908: white limewashed production/visitor wings, green framed windows/doors, dark slate hipped/gabled roofs and pyramid kiln/cupola, bounded chimneys/service stacks, attached rear production roofs and separate native warehouses with recorded gabled/round/hipped roof forms. Open working courts remain open. Include iconic outdoor copper still as intrinsic display with explicitly estimated courtyard registration; simple bounded barrel row may omit lettering. Exclude outside village houses/hall/shop, natural shore/sea/rockscape, people/vehicles, pavement/park/whole-site slab and interiors/stillhouse equipment."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named industrialsite366391920/Q51908 establishes Bruichladdich identity and bounded compound, not a single roof/building to extrude.22originalindividualbuildingperimeters inside it carry all actual near/master building plans. Named visitorcentre366391925east-southeast facade edge fixes signed native frame, original hipped/gabled/round roof tags and1/2/3level metadata retained. Outside villagehouses/hall/shop and every structureCatalogcandidate/member excluded. Sitecourts remain open; hidden roofpartitions/section heights and unmapped outdoorstill registration are explicit photo/nativebased estimates.",
+    "Original dry visitor pavement datum and complete raw field frozen before geometry. Explicit approximate per-building floor terraces retain inland rise; no source terrain flattening or fitted replacement surface. Provider pixels may blend structures/vegetation, and exact foundations/host terrain/shore contact remain unverified.",
+    "Three exact already-published QuallaLaddie09own-workPDselforiginals inspected and nativeSHA1matched, pinned primary creator releases bound.2008wholefront/courtyard and2002widecoastalroofline control original medium-fi geometry. Unrelated/caskcloseup/otherlicensed imagery unused; no supplemental or generated bitmap, copied photograph texture or lettering.",
+    "All22individualbuilding master perimeters retained, native1/2/3level and gabled/hipped/round roof tags respected. Historic frontage roof partition, kiln/cupola detail, concealed new warehouse doors/windows, section heights and small modern equipment are photographic/native estimates. Named industrial parcel is identity only, never a solid roof or ground slab; working courts stay open.",
+    "Explicit approximate floor terraces use photographed connected-front thresholds and the independently frozen coarse provider field for concealed uphill warehouse estimates. Provider pixels may blend structures/vegetation; exact individual floor/footing/hostshore contact remains unverified. Original raw terrain is not flattened or fitted. Flat stageY-1.1shows architecture, not certified hillside contact.",
+    "Outdoor copper still and barrel display are intrinsic photographed exterior features, with approximate courtyard registration/scale; no interior stillhouseequipment. Copper exit mouth and kiln vent cupola are real openings, other windows/doors closed behind frames. Representative simplified machinery/repeat census and unlettered turquoise barrel ends; no trademarks/signage, village buildings or natural shoreline."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "complete-native-compound-and-uphill-warehouse-roofs",
+      "position": [
+        180,
+        190,
+        160
+      ],
+      "lookAt": [
+        -8,
+        8,
+        -105
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "white-seaward-visitor-front-green-casements-and-pyramid-kiln",
+      "position": [
+        -45,
+        25,
+        88
+      ],
+      "lookAt": [
+        -20,
+        6,
+        -20
+      ]
+    },
+    {
+      "name": "open-copper-swan-neck-still-and-native-courtyard",
+      "position": [
+        61,
+        15,
+        38
+      ],
+      "lookAt": [
+        27,
+        4,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26006,
+    "vertices": 78018,
+    "materials": 6,
+    "bytes": 3124404,
+    "sha256": "sha256:d630b2e941def91b019798a9286fd26e50b54195a58663d0497bb086069158fe"
+  }
+}

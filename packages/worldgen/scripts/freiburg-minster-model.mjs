@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u0/u0t/n0367_freiburg_minster/',
+  '../../../content/worldgen/source/places/u0/u0t/freiburg_minster/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1115,7 +1115,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const freiburgMinsterStudy = {
-  id: 'N0367',
+  id: 'freiburg_minster',
   key: 'freiburg_minster',
   title: 'Freiburg Minster',
   category: 'cathedral',

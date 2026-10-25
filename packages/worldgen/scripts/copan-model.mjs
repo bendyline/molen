@@ -7,7 +7,7 @@ import { transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frameBytes = readFileSync(structureSourcePath('n0223_edificio_copan', 'map-frame.json'));
+const frameBytes = readFileSync(structureSourcePath('edificio_copan', 'map-frame.json'));
 const frame = JSON.parse(frameBytes),
   p = frame.geometry.outline;
 const white = [0.85, 0.84, 0.8],
@@ -375,8 +375,8 @@ const parts = [
 ];
 
 export const copan = {
-  id: 'n0223_edificio_copan',
-  planId: 'N0223',
+  id: 'edificio_copan',
+  planId: 'edificio_copan',
   category: 'skyscraper',
   title: 'Edifício Copan',
   wikidata: 'Q632566',

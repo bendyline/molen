@@ -81,11 +81,13 @@ export async function buildPlaceGallery() {
       geohash2: entry.geohash2,
       geohash3: entry.geohash3,
       review:
-        reviewed?.readiness === 'ready'
-          ? 'Exterior, rendering and placement reviewed'
-          : reviewed?.geographic?.activePlacement
-            ? 'World-viewer preview · further review pending'
-            : 'Imported model · review pending',
+        reviewed?.geographic?.placementKind === 'map-category'
+          ? 'Reusable map type · rendering and rule integration reviewed'
+          : reviewed?.readiness === 'ready'
+            ? 'Exterior, rendering and placement reviewed'
+            : reviewed?.geographic?.activePlacement
+              ? 'World-viewer preview · further review pending'
+              : 'Imported model · review pending',
       preview: link(
         reviewed?.sharedSurfaceQa?.hashBoundReviewPassed
           ? 'shots/shared/angle-0.png'

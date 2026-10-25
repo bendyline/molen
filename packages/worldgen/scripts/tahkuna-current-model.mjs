@@ -10,7 +10,7 @@ import { buildTahkuna } from './lighthouse-final-coastal-models.mjs';
 import { lathe, panel, transformed } from './lighthouse-models.mjs';
 import { quad } from './structure-mesh.mjs';
 
-export const tahkunaCurrentAssetId = 'molen.worldgen.structure.n0661_tahkuna_lighthouse';
+export const tahkunaCurrentAssetId = 'molen.worldgen.structure.tahkuna_lighthouse';
 export const tahkunaHeightScale = 45.2 / 42.6;
 export function buildTahkunaCurrent(out) {
   const mapped = Object.fromEntries(

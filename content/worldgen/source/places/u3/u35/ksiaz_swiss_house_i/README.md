@@ -4,7 +4,7 @@
 
 Own five-vertex plaster pavilion with pink blind panels, a red hipped mansard roof, central curved dormer with an oval window, cream cornices and a brick chimney.
 
-Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
 
 ## Sources and reconstruction
 
@@ -19,7 +19,7 @@ Own map footprint; native Y0 is estimated local ground contact. Heights, roof pr
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-swiss-houses.mjs --ids=KSI_S02 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/generate-ksiaz-swiss-houses.mjs --ids=KSI_S02 (or --check).
 
 933 triangles;115612 source bytes;6 merged material groups;no embedded images. Five existing shared plaster, tile, rubble, brick and timber graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs.
 

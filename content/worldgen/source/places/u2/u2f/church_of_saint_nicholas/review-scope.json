@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.8,
+      "metallic": 0.2
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    },
+    "gold": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.55,
+      "metallic": 0.45
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/prague-nicholas-model.mjs",
+    "export": "buildPragueNicholasSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPragueNicholasDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "buildPragueNicholasStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPragueNicholasCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.45
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      61,
+      43,
+      69
+    ],
+    "lookAt": [
+      0,
+      18,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-old-town-nicholas-skyline",
+      "position": [
+        61,
+        43,
+        69
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-old-town-nicholas-district",
+      "position": [
+        61,
+        43,
+        69
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-old-town-nicholas-street",
+      "position": [
+        61,
+        43,
+        69
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-old-town-nicholas-closeup",
+      "position": [
+        61,
+        43,
+        69
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      14.419905274,
+      50.08790284
+    ],
+    "heading": 0.190715332884,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention,not exact host-ground contact. Standard viewer DEM datum203.248140m;selected perimeter-0.35 to0.72m relative to it. Floor0.5m;adaptive footings crossY=0 and extend below retained samples. No flattening,cutout or road replacement. Exact square/pavement,threshold/curved-stair/base and adjoining-house joins,altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        14.419905274,
+        50.08790284
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum203.248140m;selected perimeter-0.35 to0.72m relative to it. Floor0.5m;adaptive footings crossY=0 and extend below retained samples. No flattening,cutout or road replacement. Exact square/pavement,threshold/curved-stair/base and adjoining-house joins,altitude and walking remain unverified."
+    },
+    "bounds": [
+      14.414,
+      50.083,
+      14.426,
+      50.093
+    ],
+    "notes": "Exact retained way/27859115 and Q2595999 identify Saint Nicholas in Prague Old Town,not the other Prague Saint Nicholas church. Current standard viewer whole35184399947947 and six tower/dome/lantern parts35184834500034–39 retain83 raw outline points and all properties,with the earlier whole/multilingual tags and same-ID Saint Nicholas POI. Anchor[14.419905274,50.08790284] and heading0.190715332884rad unchanged;no horizontal rescale. Native+X east rounded apse,−X west secondary portal,+Z south ornate twin-tower frontage/Old Town Square. Named square and south-front/east-apse pictures resolve the undirected axis;facing approximate3°. Neighboring houses to north/west and the southwest square-edge buildings remain host content. Standard viewer DEM datum203.248140m;selected perimeter-0.35 to0.72m relative to it. Floor0.5m;adaptive footings crossY=0 and extend below retained samples. No flattening,cutout or road replacement. Exact square/pavement,threshold/curved-stair/base and adjoining-house joins,altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum203.248140m;selected perimeter-0.35 to0.72m relative to it. Floor0.5m;adaptive footings crossY=0 and extend below retained samples. No flattening,cutout or road replacement. Exact square/pavement,threshold/curved-stair/base and adjoining-house joins,altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

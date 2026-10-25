@@ -4,8 +4,10 @@ import { join } from 'node:path';
 import { decodeCollisionTrimesh, validate } from '@bendyline/molen-schema';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import {
+  buildContentPack,
   importAsset,
   inspectAsset,
+  inspectContentPack,
   listAssets,
   scaffoldExperience,
   stageAssets,
@@ -22,6 +24,45 @@ beforeAll(async () => {
 });
 
 describe('asset import (glTF -> asset@1 sidecar)', () => {
+  it('imports and verifies assets when the project already contains numeric name segments', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'molen-asset-numeric-id-'));
+    const projectPath = join(root, 'project.json');
+    const id = 'molen.worldgen.structure.30_st_mary_axe';
+    const assetDir = join(root, 'assets/30_st_mary_axe');
+    await writeFile(
+      projectPath,
+      JSON.stringify({
+        format: 'molen/project@1',
+        name: 'landmarks',
+        assets: { [id]: 'assets/30_st_mary_axe/asset.json' },
+      }),
+    );
+    const imported = await importAsset({ path: glbPath, id, assetDir, projectPath });
+    expect(imported.ok, imported.error).toBe(true);
+    expect(imported.registered).toBe(true);
+    expect(imported.sidecar?.id).toBe(id);
+    expect((await inspectAsset({ ref: id, projectPath, verify: true })).ok).toBe(true);
+    // An unrelated import must also be able to read and update this shared project.
+    const other = await importAsset({ path: glbPath, id: 'landmark.other', projectPath });
+    expect(other.ok, other.error).toBe(true);
+    expect(other.registered).toBe(true);
+    expect((await inspectAsset({ ref: id, projectPath, verify: true })).ok).toBe(true);
+    await writeFile(
+      join(root, 'molen-pack.source.json'),
+      JSON.stringify({
+        format: 'molen/pack-source@1',
+        id: 'landmarks',
+        version: '1',
+        include: ['assets/**'],
+      }),
+    );
+    const packed = await buildContentPack({ sourceDir: root, outDir: join(root, 'packs') });
+    expect(packed.ok, packed.error).toBe(true);
+    const inspected = await inspectContentPack({ source: packed.path as string });
+    expect(inspected.ok).toBe(true);
+    expect(inspected.ids?.[id]).toBe('assets/30_st_mary_axe/model.glb');
+  });
+
   it('verifies runtime LOD source bindings, variant declarations and payload hashes', async () => {
     const root = await mkdtemp(join(tmpdir(), 'molen-asset-lods-'));
     const imported = await importAsset({ path: glbPath, id: 'landmark.lods', outDir: root });

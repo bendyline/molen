@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gf/gfn/n0323_dunnottar_castle/',
+    '../../../content/worldgen/source/places/gf/gfn/dunnottar_castle/',
     import.meta.url,
   ),
   read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -676,7 +676,7 @@ export const buildDunnottarDistrict = (out) => build(out, 1);
 export const buildDunnottarStreet = (out) => build(out, 2);
 export const buildDunnottarCloseup = (out) => build(out, 3);
 export const dunnottarStudy = {
-  id: 'N0323',
+  id: 'dunnottar_castle',
   key: 'dunnottar_castle',
   title: 'Dunnottar Castle',
   category: 'castle',

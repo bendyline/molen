@@ -1,6 +1,9 @@
 export {
   markTerrainGroundSurface,
+  markTerrainWaterSurface,
   setTerrainGroundCutout,
+  setTerrainGroundCutouts,
+  setTerrainWaterCutout,
   subtractTerrainGroundGeometry,
   TerrainGroundCutoutController,
   type TerrainGroundOutline,
@@ -291,3 +294,25 @@ export {
   createTerrainElevationWorkerSource,
   installTerrainElevationWorker,
 } from './elevation-worker';
+
+export {
+  TERRAIN_ROAD_SIGN_PATTERNS,
+  type TerrainRoadSignPattern,
+  type TerrainRoadSignPatternId,
+} from './road-sign-patterns';
+export {
+  DEFAULT_ROAD_SIGN_PROFILE,
+  type TerrainRoadSignCatalog,
+  type TerrainRoadSignProfile,
+  terrainRoadSignCatalogSchema,
+  terrainRoadSignProfileSchema,
+  terrainRoadSignProfilesSchema,
+} from './road-sign-styles';
+export { createTerrainRoadSignObject } from './road-signs';
+export {
+  resolveTerrainRouteMarker,
+  type TerrainRouteMarker,
+  type TerrainRouteShieldLibrary,
+  terrainRouteShieldLibrarySchema,
+} from './route-shields';
+export type { SurfaceSign } from './surface-sign-mesh';

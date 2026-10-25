@@ -1,0 +1,363 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stucco",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "membrane",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "band": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0.02
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.6,
+      "metallic": 0.4
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.58,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/baitul-model.mjs",
+    "export": "buildBaitulSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBaitulDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "band": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.02
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.4
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBaitulStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "band": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.02
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.4
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBaitulCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "band": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.02
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.4
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      124,
+      94,
+      143
+    ],
+    "lookAt": [
+      0,
+      15,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-baitul-skyline",
+      "position": [
+        124,
+        94,
+        143
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-baitul-district",
+      "position": [
+        124,
+        94,
+        143
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-baitul-street",
+      "position": [
+        124,
+        94,
+        143
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-baitul-closeup",
+      "position": [
+        124,
+        94,
+        143
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Mapped compound retained; internal layout, heights and detailed terrain fit remain approximate.",
+    "anchor": [
+      90.412617,
+      23.7294861
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Normal viewer DEM datum 15.382844477257734 m; working floor -1.2254615064178107 m is the median of 132 outside-perimeter samples at 1 m offset plus 0.3 m. 820 raw footprint samples span -3.7082444772577343..0.6391555227422643 m. Adaptive outline footings seat the compound; preview terrain seats the paving and a 1.5 m margin. Ground cutout follows the full raw outline, covered by model paving. Exact elevated-deck construction, stairs, thresholds, shop levels, paving grades and terrain joins remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -53.78415285931495,
+          20.552686331990003
+        ],
+        [
+          -22.62354116659501,
+          20.552686331990003
+        ],
+        [
+          -22.62354116659501,
+          41.87315072307684
+        ],
+        [
+          53.637955870851165,
+          41.87315072307684
+        ],
+        [
+          53.637955870851165,
+          -42.04182939897362
+        ],
+        [
+          -22.076863768477114,
+          -42.04182939897362
+        ],
+        [
+          -22.076863768477114,
+          -17.4413969112132
+        ],
+        [
+          -53.78415285931495,
+          -17.4413969112132
+        ]
+      ],
+      "basis": "Normal viewer DEM datum 15.382844477257734 m; working floor -1.2254615064178107 m is the median of 132 outside-perimeter samples at 1 m offset plus 0.3 m. 820 raw footprint samples span -3.7082444772577343..0.6391555227422643 m. Adaptive outline footings seat the compound; preview terrain seats the paving and a 1.5 m margin. Ground cutout follows the full raw outline, covered by model paving. Exact elevated-deck construction, stairs, thresholds, shop levels, paving grades and terrain joins remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        90.412617,
+        23.7294861
+      ],
+      "modelHeight": 0,
+      "basis": "Normal viewer DEM datum 15.382844477257734 m; working floor -1.2254615064178107 m is the median of 132 outside-perimeter samples at 1 m offset plus 0.3 m. 820 raw footprint samples span -3.7082444772577343..0.6391555227422643 m. Adaptive outline footings seat the compound; preview terrain seats the paving and a 1.5 m margin. Ground cutout follows the full raw outline, covered by model paving. Exact elevated-deck construction, stairs, thresholds, shop levels, paving grades and terrain joins remain unverified."
+    },
+    "bounds": [
+      90.406,
+      23.724,
+      90.419,
+      23.735
+    ],
+    "notes": "Retained exact way 186664126 / Q804009 is current viewer building 35184558752958. Its eight-vertex T-shaped outline, original anchor [90.412617,23.7294861] and heading zero remain fixed. Positive X east points from the western cubic prayer hall toward the open forecourt and east gate; positive Z is south. Pictures guide that signed layout. Current PMTiles have no height tags, courtyard holes or independent roof/minaret parts. The court, cubic hall partitions, gate and southeastern tower position are explicit picture-led approximations within the mapped compound. Adjacent shops, streets and city buildings remain host content. Normal viewer DEM datum 15.382844477257734 m; working floor -1.2254615064178107 m is the median of 132 outside-perimeter samples at 1 m offset plus 0.3 m. 820 raw footprint samples span -3.7082444772577343..0.6391555227422643 m. Adaptive outline footings seat the compound; preview terrain seats the paving and a 1.5 m margin. Ground cutout follows the full raw outline, covered by model paving. Exact elevated-deck construction, stairs, thresholds, shop levels, paving grades and terrain joins remain unverified."
+  },
+  "geographicNote": "Normal viewer DEM datum 15.382844477257734 m; working floor -1.2254615064178107 m is the median of 132 outside-perimeter samples at 1 m offset plus 0.3 m. 820 raw footprint samples span -3.7082444772577343..0.6391555227422643 m. Adaptive outline footings seat the compound; preview terrain seats the paving and a 1.5 m margin. Ground cutout follows the full raw outline, covered by model paving. Exact elevated-deck construction, stairs, thresholds, shop levels, paving grades and terrain joins remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ud/ud9/n0263_toompea_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/ud9/toompea_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -736,7 +736,7 @@ function north(o, d) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ud/ud9/n0263_toompea_castle/site-grade.json',
+      '../../../content/worldgen/source/places/ud/ud9/toompea_castle/site-grade.json',
       import.meta.url,
     ),
   ),

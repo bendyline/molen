@@ -8,7 +8,7 @@ import {
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/',
+  '../../../content/worldgen/source/places/u2/u26/hochosterwitz_castle/',
   import.meta.url,
 );
 const read = (p) => JSON.parse(readFileSync(new URL(p, root)));
@@ -38,7 +38,7 @@ function hit(origin, d, p) {
   return u < -1e-5 || v < -1e-5 || u + v > 1.00001 ? null : dot(e2, cross(q, e1)) / det;
 }
 it('rebuilds four bounded browser levels with five shared graphs and no embedded images', async () => {
-  const id = 'molen.worldgen.structure.n0301_hochosterwitz_castle',
+  const id = 'molen.worldgen.structure.hochosterwitz_castle',
     bytes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

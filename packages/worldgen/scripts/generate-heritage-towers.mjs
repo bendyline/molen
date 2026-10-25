@@ -57,7 +57,9 @@ import { wiesghaTower } from './wiesgha-tower-model.mjs';
 import { yserTower } from './yser-tower-model.mjs';
 
 const check = process.argv.includes('--check');
-const filter = process.argv.find((arg) => /^N\d{4}$/.test(arg));
+const filter = process.argv
+  .slice(2)
+  .find((arg) => /^(?=.*[a-z])[a-z0-9]+(?:_[a-z0-9]+)*$/.test(arg));
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const surfaces = {
   mosaic: { graph: 'tile_mosaic', slot: 'wall', roughness: 0.38 },

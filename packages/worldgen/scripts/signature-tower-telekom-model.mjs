@@ -551,7 +551,7 @@ export function buildTelekom(out) {
   antenna(out);
 }
 export const telekomStudy = {
-  id: 'N0201',
+  id: 'telekom_tower',
   key: 'telekom_tower',
   title: 'Telekom Tower',
   wikidataId: 'Q118214',

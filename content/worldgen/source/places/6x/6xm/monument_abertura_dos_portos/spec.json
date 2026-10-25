@@ -1,0 +1,348 @@
+{
+  "planId": "monument_abertura_dos_portos",
+  "id": "monument_abertura_dos_portos",
+  "assetId": "molen.worldgen.structure.monument_abertura_dos_portos",
+  "title": "Opening of the Ports Monument, Manaus",
+  "category": "memorial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -60.02251705,
+    "latitude": -3.13032085
+  },
+  "size": [
+    9.414691925048828,
+    12.5,
+    9.072538375854492
+  ],
+  "actualBounds": {
+    "min": [
+      -4.707345962524414,
+      0,
+      -4.536269187927246
+    ],
+    "max": [
+      4.707345962524414,
+      12.5,
+      4.536269187927246
+    ]
+  },
+  "visualBrief": "Whole surviving Monumento a Abertura dos Portos/Manaus Q10332121: all11native basecontrols/intrinsic steppedfooting, lower quadrangular granite pedestal with four projecting bronze ship bows and seated boys/continent attributes, eight corner columns around central shield panels, overhanging marble cornices and whole upper bronze Amazon-woman/torch plus lower Mercury sculpture. Marble/graygranite/darkbronze palette from primary1899 contract, original sculptural profiles/anatomy/hiddenattributes/sections not a scan. No surrounding wave-paved plaza, theatre/church, people/trees/bollards/lettering/privateinterior.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Monumento_Abertura_dos_Portos_na_Pra%C3%A7a_S%C3%A3o_Sebasti%C3%A3o_em_Manaus.jpg"
+  ],
+  "stories": [
+    {
+      "id": "monument-abertura-dos-portos-wp",
+      "url": "https://qualla.com/monument-abertura-dos-portos/"
+    }
+  ],
+  "referenceInputHash": "1b1b64fbedeef4b51940c20209d2d496101c7c1eb6e3e1b8509e8952af0c4307",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-opening-of-the-ports-monument.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-opening-of-the-ports-monument.mjs",
+    "level": "skyline",
+    "export": "openingPortsSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "sienna": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.82,
+        "metallic": 0.55
+      },
+      "recess": {
+        "slot": "trim",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "openingPortsDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "sienna": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0.55
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "openingPortsStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "sienna": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0.55
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "openingPortsCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "sienna": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0.55
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Whole monument at nativeway1155910709 in LargoSaoSebastiao,11 unique original controls of broad intrinsic stepped base. Native generic name Sebastiao resolved by exactlocation/scale at Qualla/WikipediaQ10332121 coordinates, distinct nearby churchway794449845 and TeneiroAranha7833502612. Preserve all11base stations in original +Xeast/+Zsouth/heading0 frame; no park/plaza/TeatroAmazonas extrusion. Original1899 government constructioncontract supplies12.5m total height, eight columns and lower/central/upper material/figure roles. Interiorsections, upperpedestalrectangles, sculpturebody/boatprofiles and compassorientation of allegorical groups are original bounded interpretations. Independent300m129x129/16641sample field andtwo originalrawtiles frozen before allfloors/sections/geometry. Structuralfloor0 relativefixed37.7936m provider datum is an unsurveyed reference, not derived fitting to the monument plaza. Original1899contract12.5moverall/eightcolumns/materialroles retained. Originalfour .22msteps/lowerbody3.55/cornice4.05/centralbody6.95/uppercornice7.6/sculptureplatform8.1/toppair to12.5m estimated from exact1903PDphoto proportions; fourprojecting shipbows/children andcontinentattributes, drapedstandingwomanwithraisedrighttorch/lowerMercury anatomies originalmediumfiinterpretations, not reproduction ofascannedmesh. Native11controlbase unchanged; compassorientation ofsculptural groups and hiddenanatomy unsurveyed. Exactgradecontact unresolved, no fieldfit/flatten/reacquire. Geographicpreview/replaceFootprintfalse.",
+    "anchor": [
+      -60.02251705,
+      -3.13032085
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -60.02259718525484,
+        -3.1303993288829486
+      ],
+      "modelHeight": 0,
+      "basis": "FixedSW4m beyond whole monument base before floors/sections/geometry; unsurveyed reference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1155910709"
+    ],
+    "source": "https://www.openstreetmap.org/way/1155910709",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bb01aa93505c0d955493fa4fcf0510fb0ff45ccea40880c85ad8b54dc83adabe",
+    "notes": "Whole surviving Monumento a Abertura dos Portos/Manaus Q10332121: all11native basecontrols/intrinsic steppedfooting, lower quadrangular granite pedestal with four projecting bronze ship bows and seated boys/continent attributes, eight corner columns around central shield panels, overhanging marble cornices and whole upper bronze Amazon-woman/torch plus lower Mercury sculpture. Marble/graygranite/darkbronze palette from primary1899 contract, original sculptural profiles/anatomy/hiddenattributes/sections not a scan. No surrounding wave-paved plaza, theatre/church, people/trees/bollards/lettering/privateinterior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole monument at nativeway1155910709 in LargoSaoSebastiao,11 unique original controls of broad intrinsic stepped base. Native generic name Sebastiao resolved by exactlocation/scale at Qualla/WikipediaQ10332121 coordinates, distinct nearby churchway794449845 and TeneiroAranha7833502612. Preserve all11base stations in original +Xeast/+Zsouth/heading0 frame; no park/plaza/TeatroAmazonas extrusion. Original1899 government constructioncontract supplies12.5m total height, eight columns and lower/central/upper material/figure roles. Interiorsections, upperpedestalrectangles, sculpturebody/boatprofiles and compassorientation of allegorical groups are original bounded interpretations.",
+    "Independent300m129x129/16641sample field andtwo originalrawtiles frozen before allfloors/sections/geometry. Structuralfloor0 relativefixed37.7936m provider datum is an unsurveyed reference, not derived fitting to the monument plaza. Original1899contract12.5moverall/eightcolumns/materialroles retained. Originalfour .22msteps/lowerbody3.55/cornice4.05/centralbody6.95/uppercornice7.6/sculptureplatform8.1/toppair to12.5m estimated from exact1903PDphoto proportions; fourprojecting shipbows/children andcontinentattributes, drapedstandingwomanwithraisedrighttorch/lowerMercury anatomies originalmediumfiinterpretations, not reproduction ofascannedmesh. Native11controlbase unchanged; compassorientation ofsculptural groups and hiddenanatomy unsurveyed. Exactgradecontact unresolved, no fieldfit/flatten/reacquire. Geographicpreview/replaceFootprintfalse.",
+    "Whole original11-control intrinsic base/four steps/lowergranitebody/four physical shipbows withseated boys/continent emblems/eight columns/real .09m centralpanel recesses/cornices/two summit bronze figures, womanraisedrighttorch/lowerMercury. Physicalsculpture profiles/anatomy/folds/emblem sections andcompass order are original medium-fi estimates, not photogrammetry or exact portrait. Skyline simplifies anatomical/attribute/column sections but retains whole component vocabulary.",
+    "Exact published1208x1696 1903 PDbookphoto only/nativeSHA1matched and personallyinspected. NativePD-scan/PD-1923 plus sourcebookPD-old-auto/death1935/BrownUniversityLibrary1903 NOT_IN_COPYRIGHT record. No modernBY/SA/AIcolorized/ambiguous later photograph pixels, copiedmesh/generatedbitmap/photographictextures. Graygranite/creamtravertine/yellowSienamarble/darkbronze palette from primary1899 constructioncontract; restorationfinish unsurveyed.",
+    "Independent300m129x129/16641sourcevalues/two rawTerrariumtiles frozen before floors/geometry. Fixed37.7936m datum/floor0 unsurveyedstructural reference. No groundfit/flatten/reacquire; exactstep/plazacontact unresolved, geographicpreview/replaceFootprintfalse. Diagnosticflatground separate; surroundingplaza/theatre/church/people/vegetation/lettering/privateinteriors excluded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-monument-four-ship-groups-eight-columns-two-summit-figures",
+      "position": [
+        17,
+        13,
+        21
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "amazon-raised-torch-and-lower-mercury-whole-sculpture",
+      "position": [
+        5.6,
+        11.1,
+        7.5
+      ],
+      "lookAt": [
+        0,
+        10.2,
+        0.05
+      ]
+    },
+    {
+      "name": "central-eight-columns-physical-inset-shield-and-cornices",
+      "position": [
+        6,
+        7,
+        8
+      ],
+      "lookAt": [
+        0,
+        5.7,
+        0
+      ]
+    },
+    {
+      "name": "africa-and-europe-ships-seated-boys-and-emblems",
+      "position": [
+        7,
+        4.5,
+        9
+      ],
+      "lookAt": [
+        1,
+        2.6,
+        1.5
+      ]
+    },
+    {
+      "name": "asia-americas-ships-and-all-eleven-native-base-stations",
+      "position": [
+        -11,
+        6,
+        -12
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 49572,
+    "vertices": 148716,
+    "materials": 4,
+    "bytes": 5951308,
+    "sha256": "sha256:de0242ca11cdffaf23c6bdb17819c84f2f0460e6c12d73c84402a23cc2c5396b"
+  }
+}

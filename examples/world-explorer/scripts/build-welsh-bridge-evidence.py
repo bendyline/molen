@@ -27,7 +27,7 @@ group = TransformerGroup(4326, 27700, always_xy=True,
 if not group.best_available:
     raise RuntimeError('Install the recorded OSTN15 grid; do not fall back to a Helmert transform')
 transform = group.transformers[0]
-source = Path('content/worldgen/source/places/gc/gcn/n0015_monnow_bridge')
+source = Path('content/worldgen/source/places/gc/gcn/monnow_bridge')
 spec = json.loads((source / 'spec.json').read_text())
 anchor = spec['geographicProposal']['anchor']
 heading = spec['geographicProposal']['heading']
@@ -72,8 +72,8 @@ origin = [cx - size/2, cz - size/2]
 heights = [sample('dtm', origin[0] + col, origin[1] + row)
     for row in range(resolution) for col in range(resolution)]
 valid = [h for h in heights if h is not None]
-document = {'format':'molen/bridge-terrain-evidence@1', 'candidateId':'N0015',
-    'title':spec['title'], 'modelFolder':'n0015_monnow_bridge', 'specHash':sha(source/'spec.json'),
+document = {'format':'molen/bridge-terrain-evidence@1', 'candidateId':'monnow_bridge',
+    'title':spec['title'], 'modelFolder':'monnow_bridge', 'specHash':sha(source/'spec.json'),
     'anchor':anchor, 'heading':heading, 'factor':factor, 'worldCenter':[cx,cz], 'worldOrigin':origin,
     'size':size, 'resolution':resolution, 'sourcePixelGroundSpacing':1,
     'heightRange':[min(valid),max(valid)], 'anchorElevation':sample('dtm',cx,cz),
@@ -97,10 +97,10 @@ document = {'format':'molen/bridge-terrain-evidence@1', 'candidateId':'N0015',
     'reviewProbePoints':[[-23.8,0],[-18,0],[-10,0],[-5,0],[0,0],[10,0],[16,0],[22.8,0]],
     'reviewProbeBasis':'End probes are inside the authored approach caps near their bank joins; intermediate probes measure bridge clearance above the unmodified filtered DTM.'}
 write = lambda path, data: Path(path).write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
-write(output/'N0015.json', document)
+write(output/'monnow_bridge.json', document)
 stations = [{'x':x, 'samples':[{'z':z, **{kind:sample(kind,*point(x,z)) for kind in grids}}
     for z in [-8,-6,-4,-2,0,2,4,6,8]]} for x in range(-35,36)]
-write(output/'N0015-deck-profile.json', {'format':'molen/bridge-deck-evidence@1', 'candidateId':'N0015',
+write(output/'monnow_bridge-deck-profile.json', {'format':'molen/bridge-deck-evidence@1', 'candidateId':'monnow_bridge',
     'anchor':anchor, 'heading':heading, 'sources':sources, 'stations':stations,
     'method':'Independent DTM/DSM cross sections in the native bridge frame. Cubic deck reconstruction uses DSM medians at Z 0 and 2, X -18 through 0 and 10 through 16; X 1–9 is hidden by the gatehouse. No terrain samples are edited.',
     'reconstructedDeckPolynomialDescending':[-0.0000584435023917965,-0.0024805789789153422,0.01839900828785006,19.193598698869433],
@@ -123,10 +123,10 @@ for way in tree.findall('way'):
             math.sin(heading)*east+math.cos(heading)*south])
     if any(abs(x)<65 and abs(z)<45 for x,z in points):
         features.append({'id':way.attrib['id'],'tags':tags,'coordinates':coordinates,'localPoints':points})
-write(output/'N0015-road-profile.json', {'format':'molen/bridge-road-evidence@1', 'candidateId':'N0015',
+write(output/'monnow_bridge-road-profile.json', {'format':'molen/bridge-road-evidence@1', 'candidateId':'monnow_bridge',
     'source':'https://api.openstreetmap.org/api/0.6/map?bbox=-2.7211,51.8083,-2.7191,51.8096',
     'rawHash':sha(xml), 'attribution':'© OpenStreetMap contributors', 'license':'ODbL-1.0', 'features':features})
-print(f'N0015: {len(heights)} terrain samples, {len(stations)} cross sections, {len(features)} mapped roads')
+print(f'monnow_bridge: {len(heights)} terrain samples, {len(stations)} cross sections, {len(features)} mapped roads')
 
 # Preserve the measured slope samples behind the approximate roof reconstruction.
 # Pixel-center heights are kept separate from fitted/extrapolated dimensions.
@@ -152,8 +152,8 @@ if any(len(points) < 4 for points in roof_samples):
     raise RuntimeError('Insufficient roof-slope pixels in the recorded source window')
 fits = [np.polyfit([p[0] for p in points], [p[2] for p in points], 1) for points in roof_samples]
 ridge_x = (fits[1][1] - fits[0][1]) / (fits[0][0] - fits[1][0])
-write(output/'N0015-roof-profile.json', {'format':'molen/bridge-roof-evidence@1',
-    'candidateId':'N0015', 'sources':sources, 'samples':roof_samples,
+write(output/'monnow_bridge-roof-profile.json', {'format':'molen/bridge-roof-evidence@1',
+    'candidateId':'monnow_bridge', 'sources':sources, 'samples':roof_samples,
     'slopeFits':[fit.tolist() for fit in fits],
     'extrapolatedRidge':[float(ridge_x),float(np.polyval(fits[0],ridge_x))],
     'method':'Native-frame central roof pixels at X 3–4.2 and 5.9–7, abs(Z)<2, from the original 1 m DSM. Separate least-squares slope lines intersect near the unsampled ridge.',
@@ -172,7 +172,7 @@ for way in tree.findall('way'):
             math.sin(heading)*ex+math.cos(heading)*sz])
     walls[way.attrib['id']] = {'coordinates':coordinates,'localPoints':points}
 write(source/'site-approaches.json', {'format':'molen/structure-site-approaches@1',
-    'candidateId':'N0015', 'originHeight':13.4, 'walls':walls,
+    'candidateId':'monnow_bridge', 'originHeight':13.4, 'walls':walls,
     'roadHeights':[[s['x'],float(np.median([p['dsm'] for p in s['samples'] if p['z'] in [0,2]]))]
         for s in stations if s['x'] <= -18 or s['x'] >= 16],
     'sources':sources, 'mapSource':'https://api.openstreetmap.org/api/0.6/map?bbox=-2.7211,51.8083,-2.7191,51.8096',

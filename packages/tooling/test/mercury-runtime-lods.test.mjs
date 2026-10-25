@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineGlobal } from '../../worldgen/scripts/signature-tower-global-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/uc/ucf/n0169_mercury_city_tower'),
+const source = resolve('../../content/worldgen/source/places/uc/ucf/mercury_city_tower'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -74,7 +74,7 @@ it('reproduces Mercury detailed master and eight independent signed map ways', a
       metal: { graph: 'metal_painted', slot: 'trim', roughness: 0.48, metallic: 0.24 },
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
     });
-  skylineGlobal.find((p) => p.id === 'N0169').build(a.wrap(b), m);
+  skylineGlobal.find((p) => p.id === 'mercury_city_tower').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`);
   expect(m.elements).toHaveLength(8);
   expect(m.elements.find((p) => p.id === 52929368).tags.wikidata).toBe('Q59483');

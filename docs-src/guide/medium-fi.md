@@ -145,7 +145,7 @@ Budgets are per model and per level of detail. The scene and tile budgets in
 | Procedural building | Style tier 0: roof, windows, trim, dormers, props | Tier 1: roof and windows, no trim or props | Tier 2 or an instanced stand-in box |
 | Landmark or authored structure | Closeup ≤ 64,000 | Street ≤ 16,000, district ≤ 4,000 | Skyline ≤ 1,000 |
 | Small static building | 1,000–8,000 | 500–2,000 | Box or silhouette ≤ 200 |
-| Hero vehicle (player car, aircraft) | 10,000–60,000 | 5,000–15,000 | ≤ 2,000 |
+| Controllable vehicle (road, rail, aircraft or boat) | Up to 60,000; use the close-view standard below | 5,000–15,000 or a simpler silhouette | ≤ 2,000; instanced proxy for traffic |
 | Ambient car or bus | ≤ 2,000 drawn | — | Proxy ≤ 160 |
 | Tree | 240–450 | 120–140 | 12–20 |
 | Street furniture (lamp, bench, rack) | 50–500 | 50–150 | 36–72 or none |
@@ -164,13 +164,174 @@ Geometry rules:
   least a pixel or two wide. Cables, mullions, railings, guy wires and lattice members that fall
   below that move into a texture, merge into a solid panel, or drop out of that level. Sub-pixel
   geometry shimmers and costs as much as solid geometry.
-- **No micro-bevels.** Chamfer only the largest edges of a hero model, and only once.
+- **No micro-bevels on scenery.** Controllable vehicles may use small edge breaks where they
+  visibly explain construction at the driver's eye; remove them from distance representations.
 - **One draw per material.** Merge a model's parts by material. Two to five materials is
   typical; more than eight needs a reason.
 - **Instance repeats.** Seats, windows, bollards, lamps and trees are instanced or merged, never
   thousands of separate meshes.
 - **Ground contact.** The base sits at Y=0, or on a declared attachment plane, with no floating
   gap and no deep embedding.
+
+## Controllable vehicles: close-view fidelity
+
+Every vehicle the player can drive, ride, fly or helm is a close-view subject. This includes
+cars, pickups, motorcycles, bicycles, buses, rail vehicles, aircraft, small boats and ships.
+The distant world remains medium-fi, but the player's vehicle must hold up from the seat and
+when walking alongside it. Do not remove useful cockpit or mechanical detail merely to meet
+an ambient traffic triangle budget. An ambient-only prototype should acquire controls, seats,
+collision and a usable operator view as it becomes a finished vehicle.
+
+Keep the inherently polygonal style: deliberate planes, clean curves with finite segments,
+coherent paint colors and believable material response. Increase fidelity through shape and
+construction, not a blanket of photographic textures or exaggerated dirt. A model should still
+read correctly with textures disabled. Model the parts a nearby player can understand:
+
+- **Road and rail:** proportioned body panels, real window openings and pillars, door and hood
+  gaps, wheel wells, tires with shoulders, rims, lug hardware, brake discs/calipers where visible,
+  lamps with housings, mirrors and stalks, wipers, grilles, handles, badges and plates. Bicycles
+  and motorcycles also need brake levers, grips, drivetrain, fork and suspension detail,
+  cooling fins, footrests and correct rider contact points. Rail wheels have steel treads and
+  flanges, not car tires.
+- **Cabins and controls:** a clear forward view at the declared eye position, seats and
+  headrests, panel/coaming depth, bezels, gauge marks, display frames, pedals, switches and
+  readable nearby labels. Live steering wheels, yokes, levers and instrument needles retain
+  stable named pivots. Decorative instruments must not be described as live telemetry.
+  Calibrate live needles and their face markings from the same measured scale. Use named
+  component signals and derived expressions with explicit units, local pivot axes, wraparound,
+  response and missing-data behavior; see [instrument wiring](vehicle-interiors.md#named-variables-and-expressions).
+  Verify zero, intermediate and maximum readings, heading wraparound, bank/pitch independently,
+  and unavailable data from the seated view. Also check both directions of cockpit/control-surface
+  movement in the imported hierarchy: actual grip, pedal and trailing-edge travel. Neutral
+  overlays do not reveal reversed pivots. Record measurement approximations (for example,
+  geometric altitude versus pressure altitude) and leave unsupported systems visibly inactive.
+  Give each vehicle an authored cabin profile: match the model generation's instrument
+  placement, vent shapes, screen arrangement, selector and steering-wheel form before adding
+  small controls. Vary upholstery, door cards, storage, stitching and hardware where references
+  support it. A central speedometer must not become a later generation's infotainment circle;
+  a car with driver-only instrumentation must not receive a generic center screen. Generic
+  Bendy models need purpose-specific controls too: yacht binnacles, workboat radios, ship radar
+  consoles, bus door switches and rail traction desks. Record citable photo sources, authors,
+  exact licenses, model/trim mismatches and gaps; prefer public domain/CC0, then appropriately
+  attributed CC references. The image's license is separate from the code's license. Review
+  a wide cabin/detail view in addition to the forward operator view.
+- **Aircraft:** correct silhouette and airfoil/control-surface relationships first, then
+  skin panel boundaries, access covers, cowling fasteners, rivet rows following structural
+  attachments, hinges, intakes, exhausts, landing-gear joints, lights and antennas. Markings,
+  warning stencils, serials and decals should conform to the actual skin without floating or
+  z-fighting. Use references for the relevant variant: do not add a uniform rivet grid, rivet
+  transparent glazing, or expose rivets over filled/painted laminar-flow wing surfaces.
+  Record approximate fastener placement as approximate, not an engineering-accurate rivet map.
+- **Boats:** a credible hull, sheer, transom and waterline, deck and cabin openings, glazing,
+  rails and stanchions, cleats/fairleads, mooring fittings, hatches, navigation lights, life
+  rings, propulsion hardware and a furnished helm. Sailboats add mast fittings and plausible
+  standing/running rigging. Large ships need useful bridge detail even when the whole hull is
+  distant from the camera.
+
+Use small geometry or an authored decal/normal atlas for millimeter-scale details according
+to their visibility. Flush rivets should stay nearly flush; do not turn them into oversized
+bolts. Consolidate repeated fasteners and lettering by material, preserving articulated
+groups. A thousand rivets must not mean a thousand draws. Small neutral authored atlases are
+allowed; photographs, baked lighting and unnecessary unique 4K maps are not the default.
+
+The 60,000-triangle near budget is a ceiling for an ordinary complete vehicle, not a quota.
+A good 6,000-triangle road vehicle can be better than a noisy 60,000-triangle one. Larger ships
+or complex flight decks may justify more with measured draw, memory and frame-time evidence.
+Keep most static detail within roughly eight material batches; glass, lights, animated parts
+and specialist cockpit materials can justify additional batches.
+
+At medium distance, remove tiny fasteners, fine lettering, seat stitching and small fittings
+first; retain windows, wheel proportions, control surfaces and recognizable livery. At far
+distance use the existing instanced traffic/parking proxies or an authored simpler model.
+Model-owned detail must not disappear while occupied. Record which distance fallback the host
+actually uses; authoring a high-detail GLB alone does not install an LOD system.
+
+Review the current model in neutral daylight with reflections and shadows: front/side/rear,
+three-quarter, operator-eye, a close detail and normal chase/traffic distance. Check opacity,
+outward normals, clear sight lines, wheel/propeller/rotor pivots, steering or gear travel,
+rider/seat fit, boarding and scale. Validate and drive the same registered type headlessly.
+Keep bulk captures local under `shots/` or `.artifacts/`, with concise hash-bound evidence and
+one or two small summary previews.
+
+### Vehicle reference overlays
+
+**Authoring goal: use calibrated drawing/photo overlays to verify the exterior and interior
+of every vehicle.** This applies to road, rail, air and water vehicles, including Bendy models,
+new assets and revisions. Aim for front, side and top exterior comparisons, plus the dashboard,
+cockpit or helm and the surrounding cabin. Make comparisons during shape construction and
+repeat affected views after corrections; a final decorative comparison sheet is insufficient.
+For Bendy designs, use a documented design drawing or suitable real-world exemplars to check
+plausible proportions and ergonomics, without claiming an exact make or variant match.
+
+Suitable references will not always exist. This is a strong default authoring goal, not a
+requirement to invent evidence or block all work on an undocumented vehicle. Record which
+views were sought, which were usable, and why a particular overlay could not be made. Use
+published dimensions, multiple photographs and explicit reconstruction assumptions for the
+remaining work. Mark exterior and interior confidence separately; an unavailable cockpit
+drawing does not invalidate a supported exterior comparison or establish cockpit accuracy.
+
+For an identified real vehicle, the review must compare the actual geometry with references:
+
+1. Establish the exact variant and configuration. Gather useful exterior views and an
+   unobscured cabin view, plus a dimensioned drawing when available. A licensed photo of a
+   seat, canopy or exterior does not establish an instrument layout. Record missing views.
+2. Overlay front, side and top orthographic renders with suitable drawings. For photographs,
+   match camera position, orientation and field of view before comparing. Check major
+   landmarks in meters: axles, rotor
+   mast, wing roots, glazing corners, roof breaks, intakes and tail junctions. Distinguish
+   body length from overall length including rotors, propellers or appendages. Record the
+   measurements and discrepancies; do not claim an overlay comparison if none was made.
+3. Correct the silhouette, cross sections, openings and major panel shapes before adding
+   rivets, lettering or small controls. Shared generators may supply construction utilities;
+   a generic body scaled to published dimensions is not an aircraft-specific airframe.
+4. Compare the operator view and wide cabin with the correct variant's references. Aim for
+   overlays of the panel face and cabin sections where drawings exist, and matched-camera
+   overlays for photographs. Verify panel outline, depth and tilt, instrument positions and
+   sizes, seat/pedal relationships, console position and windshield framing. A frontal panel
+   image cannot establish cabin depth; review an additional angle or section. A repeated
+   six-pack or a different display count is insufficient.
+5. Establish a convincing representative model before expanding a family, then review every
+   member individually. Record visual acceptance separately from geometry validity, flight
+   tests and resource budgets. Unresolved silhouette or cabin mismatches leave the model a
+   prototype; successful rendering, triangle counts and reference citations do not pass it.
+
+Use these rules to make an overlay meaningful:
+
+- **Calibrate before judging.** Identify the reference variant, source/page, projection,
+  units and configuration (gear, steering, rotor azimuth, control surfaces). Set scale from
+  published dimensions or measured controls and align a fixed datum. Check additional
+  landmarks that were not used to align the images. Do not fit each body part independently.
+- **Preserve proportions.** Normally use uniform scale, translation and rotation. Never
+  stretch or locally warp a drawing or render to make the model agree. Correct scan distortion
+  only when independent reference measurements establish it; record the original image,
+  controls and correction. Photo perspective and lens distortion require a documented camera
+  match or correction, not an arbitrary affine fit of a three-dimensional vehicle.
+- **Keep disagreement visible.** Use a contrasting transparent outline, opacity toggle or
+  difference view alongside the unmodified reference and render. Inspect the actual overlay
+  at useful resolution. Note landmark offsets, missing volumes and uncertain boundaries;
+  do not treat a global pixel score as a fidelity verdict. Choose tolerances appropriate to
+  reference resolution, vehicle scale and the player's viewing distance, and record them.
+- **Review both inside and outside.** Exterior bounds do not validate the cabin. Check glazing
+  and panel openings, coaming and console volumes, seat/eye/control relationships and clearance,
+  not just instrument count. Preserve a clear seated view while matching the reference.
+- **Retain reproducible evidence.** Record source/author/license, reference image hash or
+  revision, model source/runtime hashes, camera/projection, crop, scale, alignment controls,
+  measurements, inspected views, corrections and unresolved gaps. Distinguish a measured
+  overlay, a qualitative photo comparison and an unsupported assumption. Keep bulk references,
+  overlays and iteration captures local under `shots/` or `.artifacts/`; retain concise reports
+  and one or two small summary previews under the normal model-review image policy. Required
+  authored source inputs remain in the source bundle. A saved citation alone is not a review.
+
+### Bendy house brand
+
+Generic vehicles use **Bendy** display names: Bendy Sedan, Bendy Pickup, Bendy Motorcycle,
+Bendy Bus, Bendy Light Rail and Bendy Small Airliner, as well as Bendy names for boats and
+bicycles. Apply the name to source titles, runtime labels, documentation and visible badges.
+Keep stable asset/type IDs so existing scenes and saved references continue to resolve.
+
+Identified real vehicles retain their actual identities: **P-51D Mustang** and **OH-6** are
+the first examples. Future models such as a 2024 Ford Mustang require variant-specific
+reference and proportion work; Bendy styling is not a substitute for the real vehicle.
 
 ## Textures and materials
 
@@ -307,9 +468,9 @@ instead of ending on a ruled line: grass blades and tufts of lawn over cast pavi
 
 ## Vehicles, aircraft, trees and figures
 
-- **Hero entities get more.** The car or aircraft the player controls may use the high end of
-  its budget, smooth hulls where the real object is curved, and an interior. Ambient copies of
-  the same type use a lower level of detail and a proxy at distance.
+- **Controllable vehicles require close detail.** Follow the close-view vehicle standard above:
+  readable controls, fittings and interiors are part of the model. Ambient copies retain a
+  simple silhouette and use the host's distance proxy where available.
 - **Vehicles are chunky but true.** Wheel arches, glasshouse and stance carry the type. Paint is
   one shared material with per-instance color from a palette of real car colors. Glass is one
   dark material.
@@ -357,8 +518,9 @@ instead of ending on a ruled line: grass blades and tufts of lawn over cast pavi
   compact scene (`compact` on the semantic renderers): 320,000 building vertices and half the
   plant scatter. The regional shop
   and civic styles put a full-size rooftop unit on about every 150 m² of flat roof (2–14 a roof).
-- **Figures stay stylized.** Mitten hands, disc eyes and block shoes keep them out of the uncanny
-  valley; see [figures](figures.md).
+- **Humans use polygonal realism.** Model facial relief, shaped hands and footwear, and clear
+  garment construction on the shared animated skeleton. Spend close-view triangles on these
+  features and retain cheaper crowd tiers; see [figures](figures.md).
 
 ## Rendering modes
 
@@ -380,6 +542,11 @@ keep roofs darker than walls and to avoid baked shading. Hosts choose a fixed mo
 
 Run this review for every new or changed model, style or palette. A successful build is not a
 visual approval.
+
+Perform these checks during the same continuous pass that builds the model. Reuse the brief,
+reference pictures and map fit already established; do not restart research in a separate
+validation phase. Choose views that cover several checks together, fix observed defects and
+record the completed result once. Revisit it when a defect or relevant change warrants it.
 
 1. **Silhouette.** Render with textures off and flat shading. Name the object from the
    silhouette alone, at skyline distance.

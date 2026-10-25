@@ -1,0 +1,317 @@
+{
+  "variant": "F-14D with later PTID-equipped RIO panel; clean configuration",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://web.archive.org/web/20230101005424/http://www.alternatewars.com/SAC/F-14D_Tomcat_SAC_-_July_1985_(Partially_Declas).pdf",
+      "title": "NAVAIR00-110AF14-2, Standard Aircraft Characteristics F-14D, July1985, declassified sheets",
+      "author": "US Navy",
+      "license": "US federal publication, declassified cover endorsement; local study",
+      "scope": "PDF2 descriptive arrangement, wing spans, main gear track, wheelbase and height. Preservice drawing checked against later D photographs and manual."
+    },
+    {
+      "url": "https://server.3rd-wing.net/public/Bureau_VF31/Docs%20F-14%20r%C3%A9el/F-14D%20Flight%20Manual.pdf",
+      "title": "NAVAIR01-F14AAD-1, 15January2004, changes through15October2006",
+      "author": "US Navy / Grumman",
+      "license": "Publicly hosted copy carries distribution/reproduction restrictions; local study only, no diagram pixels distributed",
+      "scope": "PDF82 dimensions, PDF1021/1022 separate D pilot and RIO panel foldouts. No weapons implementation."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F-14D_VF-2_Cockpit.JPG",
+      "title": "F-14D VF-2 cockpit, 11May2003",
+      "author": "VF-2, US Navy",
+      "license": "Public domain, US federal government work",
+      "scope": "Both cockpit coamings, DD/PTID and MFD housing depths. No pixels embedded."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F-14D_VF-124_In_Flight_2.jpg",
+      "title": "F-14D VF-124 in flight,1August1991",
+      "author": "Lt.K.K.Campbell,US Navy",
+      "license": "Public domain, US federal government work",
+      "scope": "Canopy, separate engine bodies, swept wing and D dual chin sensors; external stores excluded."
+    },
+    {
+      "url": "https://ntrs.nasa.gov/api/citations/19850015391/downloads/19850015391.pdf",
+      "title": "NASA CR172559, F-14A Aircraft High-Speed Flow Simulations,1985",
+      "author": "C.W.Boppe/B.S.Rosen,Grumman forNASA",
+      "license": "Public NASA contractor report; local study",
+      "scope": "Independent swept-wing/body photographic-form check; not D cockpit reference."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      3.33,
+      7.58
+    ],
+    "lookAt": [
+      0,
+      2.82,
+      8.28
+    ],
+    "fov": 78
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.94
+    ],
+    "viewHeight": 1.35,
+    "cameraHeight": 2.1
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "angleOfAttack": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/f14-side-drawing.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1147,
+        "height": 400
+      },
+      "referenceAnchor": [
+        684,
+        324
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 365,
+        "meters": 7.01929,
+        "description": "23ft0.35in wheelbase; independent16ft tail height. Scan rigidly rotated2degrees to horizontal ground."
+      },
+      "scope": "SAC side silhouette; earlier nose probe length differs from later D."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/f14-top-drawing.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1100,
+        "height": 1090
+      },
+      "referenceAnchor": [
+        565,
+        1048
+      ],
+      "modelAnchor": [
+        0,
+        12.07
+      ],
+      "scaleControls": {
+        "pixels": 1000,
+        "meters": 19.5463,
+        "description": "64ft1.5in extended wingspan; independently checked length. Minor drawing-axis inconsistency remains."
+      },
+      "scope": "Extended20degree wing, fixed glove, intakes and stabilators. Glove vanes and stores excluded."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/f14-front-drawing.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1090,
+        "height": 355
+      },
+      "referenceAnchor": [
+        550,
+        309
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1000,
+        "meters": 19.5463,
+        "description": "Extended span; independently16ft5in main track."
+      },
+      "scope": "Twin nacelle spacing, rectangular intake openings, gear, fin cant and wing height."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/f14d-panel-normalized-1021.png",
+      "crop": {
+        "left": 480,
+        "top": 150,
+        "width": 520,
+        "height": 435
+      },
+      "referenceAnchor": [
+        754,
+        400
+      ],
+      "modelAnchor": [
+        0,
+        -2.94
+      ],
+      "scaleControls": {
+        "pixels": 40,
+        "meters": 0.072,
+        "description": "Approximate72mm small flight instrument; overall cabin width is reconstructed, not dimensioned."
+      },
+      "scope": "D pilot panel outline, left standby instruments, twin MFDs, HUD and knee panels."
+    },
+    {
+      "view": "rear-panel",
+      "reference": ".artifacts/aircraft/references/f14d-panel-normalized-1022.png",
+      "crop": {
+        "left": 620,
+        "top": 155,
+        "width": 490,
+        "height": 480
+      },
+      "referenceAnchor": [
+        862,
+        420
+      ],
+      "modelAnchor": [
+        0,
+        -2.78
+      ],
+      "scaleControls": {
+        "pixels": 40,
+        "meters": 0.08,
+        "description": "Approximate80mm small instrument; reconstructed cabin dimensions."
+      },
+      "scope": "Separate RIO DD, PTID, right MFD, left standby cluster and hand-controller; no rear flight controls."
+    },
+    {
+      "view": "top-swept",
+      "reference": ".artifacts/aircraft/references/f14-top-drawing.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1100,
+        "height": 1090
+      },
+      "referenceAnchor": [
+        565,
+        1048
+      ],
+      "modelAnchor": [
+        0,
+        12.07
+      ],
+      "scaleControls": {
+        "pixels": 1000,
+        "meters": 19.5463,
+        "description": "64ft1.5in extended wingspan; independently checked length. Minor drawing-axis inconsistency remains."
+      },
+      "scope": "68degree flight-sweep wing outline shown as dashed lines in the SAC; 75degree parking oversweep is not modeled."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Dedicated D-model loft, tandem canopy, fixed glove and pivoted wings, separated chamfered nacelles with raked open intake ducts, F110 nozzle petals and correctly rear-facing exhaust interiors.",
+      "Repositioned wing plane and intake mouths against orthographic drawings; removed oversized aft glove and floating nacelle seam outlines. Separate rudders no longer overlap the fixed fin.",
+      "Distinct D pilot twin-MFD panel and later RIO DD/PTID/right-MFD arrangement, individual standby clusters, HUD glass and housing, knee panels, seats, harnesses and labeled console groups.",
+      "Recessed moving horizon cards behind actual panel apertures after seated renders exposed mask occlusion. Live TAS, geometric altitude, signed readout, climb, attitude, true heading and pilot AoA/sweep pointers; unavailable values blank.",
+      "Shared expressions drive mirrored wing sweep, differential stabilators, roll spoilers, flaps, stick, throttles, pedals, gear lamps and gear. Main gear folds inward; nose launch bar folds during retraction and no longer enters the footwell.",
+      "Selected geometric fastener rows, access seams and rescue/danger stencils; no external stores. RIO has display hand-controller rather than duplicated pilot controls."
+    ],
+    "independentDimensions": [
+      "D manual length62ft8.5in (19.1135m); extended span64ft1.5in (19.5463m), height16ft (4.8768m). Runtime bounds include small seam thickness and canted fin effects.",
+      "SAC wheelbase276.35in (7.01929m) and main track197in (5.0038m). Wing movement checked from20degrees to68degrees against dashed planform and approximately38ft2.4in swept span.",
+      "Uniform cockpit scale from approximately72mm pilot and80mm rear small instrument faces. Interior width, depth and seat positions are reconstructed. SAC top length is about2% inconsistent with span scale; diagram not stretched."
+    ],
+    "visual": "Inspected current-hash side/top/front/68degree-sweep overlays and separate pilot/RIO panel overlays; eight standard exterior/operator/cabin renders; ten instrument/detail states. Final captures were re-inspected in six contact sheets after exhaust normal and launch-bar corrections, following full-resolution inspection of previous iterations.",
+    "limitations": [
+      "Polygonal F-14D interpretation combining July1985 preservice SAC exterior dimensions with later D photographs and PTID-equipped RIO foldout. Small planform and canopy contour discrepancies remain; uniform overlays disclose them.",
+      "Panel positions follow the foldouts, but display symbology, dial scales, switch counts, side-console spacing, seat details, gear mechanisms and selected fastener/seam positions remain approximations. Not a complete rivet or systems reproduction.",
+      "Airspeed is TAS, altitude geometric and heading true. No pitot/static IAS/Mach/pressure altimetry or magnetic navigation. Engine core RPM, temperature, oil, fuel, radar altitude, navigation and radar data are unavailable and blank/INOP.",
+      "HUD is physical glass without collimated symbology. RIO display hand-controller and console switches are static; no weapons functions.",
+      "20–68degree sweep is an illustrative TAS-based visual schedule with smoothing, not the real Mach-based air-data computer; kernel aerodynamics do not change with span. No75degree parking oversweep or sweep/flap interlock.",
+      "Simplified shared flight dynamics and gear retraction; flight smoke demonstrates controllability, not real F-14 performance. No external stores.",
+      "Publicly hosted D flight manual carries reproduction restrictions: reference pixels are local study evidence only. Public-domain Navy photos are cited but not embedded as textures."
+    ]
+  },
+  "instrumentReview": {
+    "typeDefinitionHash": "sha256:d3ac71063035f69b0cadccd3a2e4d589881ad57e62202cb11c0a41e9572e06c9",
+    "checks": "34 shared imported instrument/control tests and targeted F-14 geometry check passed; four-cardinal test covers both F-14 heading cards.",
+    "captures": {
+      "zero": {
+        "path": ".artifacts/aircraft/f-14d-instruments/zero.png",
+        "sha256": "sha256:83e93961992cdfcb12a8eaa1b103336c5963e5ba7d52b13756a3b64e06888bdf",
+        "inspected": true
+      },
+      "cruise": {
+        "path": ".artifacts/aircraft/f-14d-instruments/cruise.png",
+        "sha256": "sha256:ceeeebe8ac555da92e69b55d520401b3ab71f6b183d9cb54cf2444b0f963f6b9",
+        "inspected": true
+      },
+      "limits": {
+        "path": ".artifacts/aircraft/f-14d-instruments/limits.png",
+        "sha256": "sha256:66098b97f89a4ebca127c42c5fc65b41231f23a9d9e478d73fe77b5c690c8e58",
+        "inspected": true
+      },
+      "below-sea-level": {
+        "path": ".artifacts/aircraft/f-14d-instruments/below-sea-level.png",
+        "sha256": "sha256:554645bfd22e8aa0f192006c60beff358269993ae427059d6e8c2e5c767ce5c5",
+        "inspected": true
+      },
+      "missing": {
+        "path": ".artifacts/aircraft/f-14d-instruments/missing.png",
+        "sha256": "sha256:7b1413ea9585757873ec4dc86ac54b8c0cb6c2f9ced44ebea389578ce35b3a78",
+        "inspected": true
+      },
+      "rear": {
+        "path": ".artifacts/aircraft/f-14d-instruments/rear.png",
+        "sha256": "sha256:c7cb0aa0c863fe9219b5bf350a58cf8781f2fcfc22f0cf5d0bb86f462933d973",
+        "inspected": true
+      },
+      "controls": {
+        "path": ".artifacts/aircraft/f-14d-instruments/controls.png",
+        "sha256": "sha256:8757c320d93ff4327efdd6afb08f16f279eb6c8db4b271ed8a6c41b12ff2c9ee",
+        "inspected": true
+      },
+      "close-exterior": {
+        "path": ".artifacts/aircraft/f-14d-instruments/close-exterior.png",
+        "sha256": "sha256:d84cd76176a119b11f71f30fe6256c615dc9c69ac78776c6e8609613626fdb21",
+        "inspected": true
+      },
+      "swept": {
+        "path": ".artifacts/aircraft/f-14d-instruments/swept.png",
+        "sha256": "sha256:87efd9a30318bacaa8086c9fce9fac74a55df2521e1f48c63e6b52b733b0bf68",
+        "inspected": true
+      },
+      "canopy-side": {
+        "path": ".artifacts/aircraft/f-14d-instruments/canopy-side.png",
+        "sha256": "sha256:7b6ba4e8025b42a2effb6d913200eef4f69537838fc3294ba25d2ff462cf8fa1",
+        "inspected": true
+      }
+    }
+  },
+  "sourceHash": "sha256:92f18812f0640d893c297a63a73f8cef15842ffcb810db17e44cef0ea472ba71",
+  "runtimeHash": "sha256:595398426c8209f79d2ea26a6daa02cabab8d5225b7e4939c20348da729fb601",
+  "limitations": [
+    "Polygonal F-14D interpretation combining July1985 preservice SAC exterior dimensions with later D photographs and PTID-equipped RIO foldout. Small planform and canopy contour discrepancies remain; uniform overlays disclose them.",
+    "Panel positions follow the foldouts, but display symbology, dial scales, switch counts, side-console spacing, seat details, gear mechanisms and selected fastener/seam positions remain approximations. Not a complete rivet or systems reproduction.",
+    "Airspeed is TAS, altitude geometric and heading true. No pitot/static IAS/Mach/pressure altimetry or magnetic navigation. Engine core RPM, temperature, oil, fuel, radar altitude, navigation and radar data are unavailable and blank/INOP.",
+    "HUD is physical glass without collimated symbology. RIO display hand-controller and console switches are static; no weapons functions.",
+    "20–68degree sweep is an illustrative TAS-based visual schedule with smoothing, not the real Mach-based air-data computer; kernel aerodynamics do not change with span. No75degree parking oversweep or sweep/flap interlock.",
+    "Simplified shared flight dynamics and gear retraction; flight smoke demonstrates controllability, not real F-14 performance. No external stores.",
+    "Publicly hosted D flight manual carries reproduction restrictions: reference pixels are local study evidence only. Public-domain Navy photos are cited but not embedded as textures."
+  ]
+}

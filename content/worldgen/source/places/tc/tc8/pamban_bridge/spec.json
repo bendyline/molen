@@ -1,0 +1,334 @@
+{
+  "planId": "pamban_bridge",
+  "id": "pamban_bridge",
+  "assetId": "molen.worldgen.structure.pamban_bridge",
+  "title": "Pamban Bridge",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 79.20025659999999,
+    "latitude": 9.282916799999999
+  },
+  "size": [
+    2060.733154296875,
+    18.670000076293945,
+    25.37400245666504
+  ],
+  "actualBounds": {
+    "min": [
+      -1030.3665771484375,
+      -3.119999885559082,
+      -16.887222290039062
+    ],
+    "max": [
+      1030.3665771484375,
+      15.550000190734863,
+      8.486780166625977
+    ]
+  },
+  "visualBrief": "Whole original Pamban railway bridge, full approximately2.06km native three-way alignment from mainland to island, low paired plate girders/single broad-gauge track, repeated narrow concrete piers/caps, maintenance refuges, complete closed double-leaf Scherzer rolling-bascule section with open through trusses, curved rear rolling sectors/counterweights and small attached operating hut. Dated2015-03-08 appearance. Exclude separate parallel road bridge, replacement2025vertical-lift bridge, coast/railapproaches beyond original ends, publicground/sea slab, detachedfenders, boats, vegetation, signs, people, vehicles and interior equipment. Preserve realvoidbetweenpiers/undertrack/throughtrusses, curvedsteelsaddleandcounterweightreturns. DirectgeometryfromclearCC0photoandnativecentrelines; identicalhiddenoppositeside/sectiondimensions/piercensus/footings approximate. No overheadwire/electrification/newlift towers. Datedhistoricalcatalogplacementonly.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2015-03-08",
+    "validFrom": "2015-03-08",
+    "validUntil": "2015-03-09",
+    "basis": "Exactdated2015-03-08publishedownCC0original. Closedoriginalrollingdouble-leafbridge; no currentmodel claim or replacementvertical-liftgeometry.",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%27Pamban_road_%26_rail_bridge%27.JPG"
+  ],
+  "stories": [
+    {
+      "id": "pamban-bridge-wp",
+      "url": "https://qualla.com/pamban-bridge/"
+    }
+  ],
+  "referenceInputHash": "8d61c8ecffb5dd3e709569f4512935d01bc0607375d31c55567bbffabb80762f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-pamban-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-pamban-bridge.mjs",
+    "level": "skyline",
+    "export": "pambanBridgeSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "rust": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.93,
+        "metallic": 0.2
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.18
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.84,
+        "metallic": 0.35
+      },
+      "hut": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.92,
+        "metallic": 0.1
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.49,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "pambanBridgeDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rust": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.93,
+            "metallic": 0.2
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.84,
+            "metallic": 0.35
+          },
+          "hut": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.49,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "pambanBridgeStreet",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rust": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.93,
+            "metallic": 0.2
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.84,
+            "metallic": 0.35
+          },
+          "hut": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.49,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 8,
+    "groundY": -3.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "ExactoldQ1854285threewaynativealignment157361873/475485286/475485287, fulloriginalnodes. Oldmovable90.6moverallmappedextent includesrearrolling/counterweightportions, distinctfromTYPSA66.5mclearopening; original12.2mclearfixedspantextisnotpiercenterpitch. Fullmainland/islandendpointsretained; no storycoordinatecenterlineguess/newbridge substitution. Nativeplanprovidesnoactualpierpositions, girder/railheights, trussprofileorgaugeofstructuralsections. Repeatcount145smallspans, split113west/32east andnominal13.5mpierpitch estimatedwithinthe nativeendpoints; photosections/counterweights/refuges/operatorhutpositionsbounded. Independent2400m121x121coastalfield and4rawtilesfrozenbeforegeometry. Historicalwaterstage/seabed/pierfootingcontactunverified; no oceanorlandpad.",
+    "anchor": [
+      79.20025659999999,
+      9.282916799999999
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        79.2096244,
+        9.2829638
+      ],
+      "modelHeight": 0,
+      "basis": "Exactoldeasternbridgeendpoint beforeterrainandgeometry; independentcurrentcoastalfielddoesnotcertify2015waterstageorbathymetry. No fittedseafloororcoast."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/157361873",
+      "way/475485286",
+      "way/475485287"
+    ],
+    "source": "https://www.openstreetmap.org/relation/9196966",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:79cc1ba44f6855547170dd1348a8cf465e7385b9957132a58692cfa306e92a76",
+    "notes": "Whole original Pamban railway bridge, full approximately2.06km native three-way alignment from mainland to island, low paired plate girders/single broad-gauge track, repeated narrow concrete piers/caps, maintenance refuges, complete closed double-leaf Scherzer rolling-bascule section with open through trusses, curved rear rolling sectors/counterweights and small attached operating hut. Dated2015-03-08 appearance. Exclude separate parallel road bridge, replacement2025vertical-lift bridge, coast/railapproaches beyond original ends, publicground/sea slab, detachedfenders, boats, vegetation, signs, people, vehicles and interior equipment."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "ExactoldQ1854285threewaynativealignment157361873/475485286/475485287, fulloriginalnodes. Oldmovable90.6moverallmappedextent includesrearrolling/counterweightportions, distinctfromTYPSA66.5mclearopening; original12.2mclearfixedspantextisnotpiercenterpitch. Fullmainland/islandendpointsretained; no storycoordinatecenterlineguess/newbridge substitution. Nativeplanprovidesnoactualpierpositions, girder/railheights, trussprofileorgaugeofstructuralsections. Repeatcount145smallspans, split113west/32east andnominal13.5mpierpitch estimatedwithinthe nativeendpoints; photosections/counterweights/refuges/operatorhutpositionsbounded.",
+    "Wholehistoric2015-03-08oldrailwaybridgefromexactpublishedRudolph.A.furtadoownCC0original. NativeSHA1matches4608x3456bytes. Questionableassumed-creatorPDimagesandallattributionimagesunused; no newphotos/generated/copiedtextures. Ordinarygeographicasset/foldername.",
+    "Fulloldnative2.06kmalignment, repeatedlowpiersandpairedgirders/single1676mmtrack, maintenancecantileverrefuges, closedtwo-leafScherzerthroughtrusses, curvingrearrollingsectors, counterweightsandattachedsmallturquoisehut. Distinct2025vertical-liftandparallelroadbridgesexcluded. No trains/boats/signs/coastslab/fenders/vegetation.",
+    "145smallspanallocation/individualpierlocationsandheightsestimatedinsidenativefixedendpoints; primary12.2mclearspanisnotpierpitch. Mapped90.6moverallmovablesectionincludesrollingtails; primary66.5mclearopeningretainedseparately. Trussrisesections/backcurves/counterweights/oppositefaces/refugecensus/underwaterfootingsareboundedphotographicestimates, notengineeringsurvey.",
+    "Skylinepreservesfullalignment/allpierpositions/fullclosedbasculewiththinreversiblepierfaces; highlevelsclosedvolumetricpiers/caps/feet, girderflanges, rails, sleepers/refugesandbraces. Exactgirdersection/connectionhardwareandmechanicalmotionnotmodeled; staticcloseddatedappearanceonly.",
+    "Independent20mreviewgriddoesnotimply20maccuracy or2015bathymetry; rawcurrentcoastalfieldand4originaltilesretainedunchanged. Footingto-3.1m/deckrail3.15mrelativetoapproachdatumestimated. FlatQAgroundforgeometryonly, exact livehistoricalwater/groundcontactuncertified. DatedhistoricalplacementwithreplaceFootprint=false,currentWorldEligible=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-original-low-railway-from-mainland-to-island",
+      "position": [
+        0,
+        900,
+        1750
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "closed-double-leaf-rolling-bascule-and-counterweights",
+      "position": [
+        501.32167247973234,
+        31,
+        75
+      ],
+      "lookAt": [
+        549.3216724797323,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "piers-twin-girders-sleepers-and-refuges",
+      "position": [
+        850,
+        14,
+        35
+      ],
+      "lookAt": [
+        830,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "rolling-sector-open-through-truss-and-operator-hut",
+      "position": [
+        482.03649950333187,
+        16,
+        -30
+      ],
+      "lookAt": [
+        512.0364995033319,
+        7,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 57912,
+    "vertices": 173736,
+    "materials": 5,
+    "bytes": 6952736,
+    "sha256": "sha256:3107599630fcbf66b446cd63d8d69116286f9a2a77e448d1aef4f21f18e88f7e"
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.ford_bronco_2025": {
+      "doc": "2025 Ford Bronco, Big Bend four-door hardtop. Polygonal reference interpretation with a complete driving cabin; dimensions rounded for authoring and handling tuned for play.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.ford_bronco_2025",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.ford_bronco_2025",
+          "color": "#568b9b",
+          "spec": {
+            "label": "2025 Ford Bronco",
+            "bodyStyle": "offroad",
+            "genericLabel": "Off-road SUV",
+            "width": 2.158,
+            "length": 5.061,
+            "height": 1.854,
+            "centerOfMass": [
+              0,
+              0.63036,
+              0
+            ],
+            "wheelbase": 2.95,
+            "wheelTrack": 1.65808,
+            "wheelRadius": 0.396,
+            "mass": 1800,
+            "engineForce": 5800,
+            "maxSpeed": 50,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.4434,
+              1.534,
+              0.2946
+            ],
+            "drive": "front",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.28,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4434,
+                1.534,
+                0.2946
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.414,
+              0,
+              0.2946
+            ]
+          ],
+          "exits": [
+            [
+              1.514,
+              0,
+              0.2946
+            ],
+            [
+              -1.514,
+              0,
+              0.2946
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.ford_bronco_2025"
+      ]
+    }
+  }
+}

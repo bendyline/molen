@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u6/u6r/n0272_kuressaare_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u6/u6r/kuressaare_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -452,7 +452,7 @@ export const buildKuressaareSkyline = (o) =>
     'skyline',
   );
 export const kuressaareStudy = {
-  id: 'N0272',
+  id: 'kuressaare_castle',
   key: 'kuressaare_castle',
   title: 'Kuressaare Castle',
   category: 'castle',

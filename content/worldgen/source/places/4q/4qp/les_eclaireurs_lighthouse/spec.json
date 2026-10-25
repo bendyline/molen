@@ -1,0 +1,417 @@
+{
+  "id": "les_eclaireurs_lighthouse",
+  "key": "les_eclaireurs_lighthouse",
+  "title": "Les Éclaireurs Lighthouse",
+  "wikidataId": "Q3378140",
+  "size": [
+    3.06,
+    11,
+    3.06
+  ],
+  "smoothNormalSlots": [
+    "trim",
+    "foundation",
+    "wall"
+  ],
+  "visualBrief": "Small isolated rough-masonry lighthouse with a red-white-red taper, low recessed wooden door, projecting red gallery lip, delicate black two-rail gallery, black lantern pedestal and domed roof, metal astragals and paired tilted solar panels.",
+  "sourceFacts": {
+    "heightMeters": 11,
+    "baseDiameterApproxMeters": 3,
+    "year": 1920,
+    "basis": "Provincial tourism publishes11m height. National Argentina tourism photograph supplies the three bands, door, gallery, lantern and small inclined panels. Base diameter and component dimensions are photograph-scaled; mapped exact-QID node8127284556 fixes position.",
+    "originalMasterHash": "sha256:738d6fada7a6d09478850bb02aa34b5013a70907662f19fd4865b9ceceddd074",
+    "originalMasterRecipe": "packages/worldgen/scripts/eclaireurs-browser-model.mjs#buildEclaireursMaster"
+  },
+  "referencePages": [
+    "https://tierradelfuego.tur.ar/es/actividades/s/7",
+    "https://turismoushuaia.com/actividad/faro-les-eclaireurs/",
+    "https://www.argentina.gob.ar/jefatura/turismo/viaja-por-argentina/navegar-por-el-canal-de-beagle",
+    "https://www.argentina.gob.ar/sites/default/files/ushuaia_108.jpg",
+    "https://www.openstreetmap.org/node/8127284556"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      -68.0832452,
+      -54.8715452
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/8127284556",
+    "notes": "The inspected picture supports the red/white/red tapered tower, low door, open black gallery/lantern and bounded rock under its base. Retained mapped node supplies location. Heading0 is an explicitly approximate south-facing doorway and north-facing panels, not a measured bearing. Standard viewer PMTiles are zero at this very small islet and do not resolve its rock. Browser tiers therefore include a bounded roughly10m rock footing rising1.1m above that datum and retain the11m tower height. This is an approximate visual footing, not the complete island or a surveyed tide/focal-height datum.",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected picture supports the red/white/red tapered tower, low door, open black gallery/lantern and bounded rock under its base. Retained mapped node supplies location. Heading0 is an explicitly approximate south-facing doorway and north-facing panels, not a measured bearing. Standard viewer PMTiles are zero at this very small islet and do not resolve its rock. Browser tiers therefore include a bounded roughly10m rock footing rising1.1m above that datum and retain the11m tower height. This is an approximate visual footing, not the complete island or a surveyed tide/focal-height datum.",
+    "orientationPolicy": "approximate-visualization",
+    "orientationConfidence": "explicitly approximate door/panel phase",
+    "evidence": "The inspected picture supports the red/white/red tapered tower, low door, open black gallery/lantern and bounded rock under its base. Retained mapped node supplies location. Heading0 is an explicitly approximate south-facing doorway and north-facing panels, not a measured bearing. Standard viewer PMTiles are zero at this very small islet and do not resolve its rock. Browser tiers therefore include a bounded roughly10m rock footing rising1.1m above that datum and retain the11m tower height. This is an approximate visual footing, not the complete island or a surveyed tide/focal-height datum.",
+    "reviewStatus": "Picture and PMTiles approximate lighthouse/islet fit",
+    "terrainReference": {
+      "anchor": [
+        -68.0832452,
+        -54.8715452
+      ],
+      "modelHeight": 0,
+      "basis": "Standard PMTiles zero datum; bounded reconstructed rock footing."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:11789470a558fad55b28c1c068ad149fe70930d6f555dfd358ae9e773ed08963",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "limitations": [
+    "Approximate current exterior/facing from the inspected picture and standard viewer PMTiles. A mapped point cannot determine exact door/panel phase; heading0 is explicitly approximate.",
+    "Original8320-triangle detailed tower master preserved. Browser derivatives retain tower details and add a bounded roughly10m rock footing because coarse PMTiles do not resolve this small islet.",
+    "Four common lime-plaster/painted-metal/wood/weathered-limestone graphs across tiers, plus local glass color. Zero embedded images. Rock extent/base height are interpreted, not complete island reconstruction.",
+    "No tide/focal-height datum, bespoke survey, interiors/collision or physical-device timing claim. Footprint replacement remains off."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lantern",
+      "position": [
+        3.5,
+        11.7,
+        4.7
+      ],
+      "lookAt": [
+        0,
+        10.1,
+        0
+      ]
+    },
+    {
+      "name": "near-panels",
+      "position": [
+        3.5,
+        10.7,
+        -4.8
+      ],
+      "lookAt": [
+        0,
+        9.5,
+        -0.3
+      ]
+    },
+    {
+      "name": "near-door",
+      "position": [
+        4,
+        2.3,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.2,
+        0.7
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        14,
+        8,
+        19
+      ],
+      "lookAt": [
+        0,
+        5.2,
+        0
+      ]
+    },
+    {
+      "name": "gallery-overhead",
+      "position": [
+        3,
+        14,
+        -4
+      ],
+      "lookAt": [
+        0,
+        9.5,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z doorway approximately south; exact door/panel compass phase is not claimed.",
+    "origin": "Mapped lighthouse anchor; Y0 standard viewer PMTiles zero datum."
+  },
+  "assetId": "molen.worldgen.structure.les_eclaireurs_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.23,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "appearance": {
+    "identity": "Compact11m red-white-red taper with recessed low wooden door, open gallery, small black pedestal/lantern, domed roof and paired inclined panels.",
+    "master": "Original8320-triangle source preserved exactly in an isolated leaf. Shared parent recipe remains unchanged.",
+    "browser": "Far levels retain the full taper, real door recess, gallery, lantern and two panel racks; regular circular subdivisions and rail pickets are reduced. Street/closeup preserve the entire master.",
+    "exclusions": "Exact doorway/panel phase, entire rocky islet, birds, tide survey, individual weathering and interiors are excluded. A bounded rock footing is an approximate visualization of the base."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/eclaireurs-browser-model.mjs",
+    "export": "buildEclaireursMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/eclaireurs-fit-model.mjs",
+    "export": "buildEclaireursFitSkyline",
+    "errorMeters": 0.12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEclaireursFitDistrict",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildEclaireursFitStreet",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEclaireursFitCloseup",
+        "errorMeters": 0.005,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "door-district",
+      "position": [
+        4,
+        2.3,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.2,
+        0.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "panels-district",
+      "position": [
+        3.5,
+        10.7,
+        -4.8
+      ],
+      "lookAt": [
+        0,
+        9.5,
+        -0.3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-eclaireurs-skyline",
+      "position": [
+        16,
+        11,
+        20
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-eclaireurs-district",
+      "position": [
+        16,
+        11,
+        20
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-eclaireurs-street",
+      "position": [
+        16,
+        11,
+        20
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-eclaireurs-closeup",
+      "position": [
+        16,
+        11,
+        20
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "actualBounds": {
+    "min": [
+      -1.5299999713897705,
+      0,
+      -1.5299999713897705
+    ],
+    "max": [
+      1.5299999713897705,
+      11,
+      1.5229089260101318
+    ]
+  },
+  "mesh": {
+    "triangles": 8320,
+    "vertices": 15728,
+    "materials": 4,
+    "bytes": 668840,
+    "sha256": "sha256:738d6fada7a6d09478850bb02aa34b5013a70907662f19fd4865b9ceceddd074"
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

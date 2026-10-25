@@ -1,0 +1,331 @@
+{
+  "planId": "phoenix_shot_tower",
+  "id": "phoenix_shot_tower",
+  "assetId": "molen.worldgen.structure.phoenix_shot_tower",
+  "title": "Phoenix Shot Tower",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -76.60547634488658,
+    "latitude": 39.29072863128037
+  },
+  "size": [
+    12.4399995803833,
+    67.08879697322845,
+    13.224999904632568
+  ],
+  "actualBounds": {
+    "min": [
+      -6.21999979019165,
+      -0.8999999761581421,
+      -6.21999979019165
+    ],
+    "max": [
+      6.21999979019165,
+      66.18879699707031,
+      7.005000114440918
+    ]
+  },
+  "visualBrief": "Tall tapering red brick shot tower, four aligned west windows and sparse secondary openings, deep segmental arched iron entrance, subtle repair bands, surveyed ten-battlement concrete crown with a muted red painted appearance and flat roof deck, lightning conductors and narrow own footing/entry tread. Neighboring buildings, park monuments and flag fixtures excluded.",
+  "nativeAxes": {
+    "x": "south-southeast along North Front Street",
+    "y": "up",
+    "z": "west-southwest toward the main arched entrance and street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/md0141/"
+  ],
+  "stories": [
+    {
+      "id": "phoenix-shot-tower-wp",
+      "url": "https://qualla.com/phoenix-shot-tower/"
+    }
+  ],
+  "referenceInputHash": "sha256:672921bc71e4ed9564eec5695983259403e977b3d339e731522feb6ca177e72f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-phoenix-shot-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-phoenix-shot-tower.mjs",
+    "level": "skyline",
+    "export": "phoenixShotTowerSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "crown": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "phoenixShotTowerDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "crown": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "phoenixShotTowerStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "crown": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dry main entrance approach[0,7.2] gives datum4.1156m in preserved unmodified Terrarium. Mapped ground varies about-.130..+.128m across the tower, with foundations reaching-.85m and a shallow own entry tread/threshold meeting the street-side grade. Current source contact and signed orientation reviewed as a bounded preview; coarse urban terrain and other host datasets remain limitations. Footprint replacement disabled.",
+    "anchor": [
+      -76.60547634488658,
+      39.29072863128037
+    ],
+    "heading": -1.24,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -76.60555538407245,
+        39.290707623974875
+      ],
+      "modelHeight": 0,
+      "basis": "Dry main entrance approach immediately outside the tower narrow footing, toward North Front Street; independent native host-ground reference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184688252157"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0bf8ebe02a0dacf1e5e8432163982a7a597af4b724250881c83239ae464965b1",
+    "notes": "HABS MD-21controls40ft1inbase,20ft4intop,215ft9inabovefirstfloor,8infloor/grade difference and10battlements. Native rounded72mheight/coarse13.4mmapcircle remain raw map properties, not adopted survey measurements. Native coordinates, heading, feature/rings and terrain contact are unchanged. Current hidden details/repairs are approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "HABS MD-21 government1936floor plans/section/west elevation now control the whole exterior:40ft1inbase,20ft4intop,215ft9inabovefirstfloor,8infirstfloor/grade difference,ten battlements and four aligned west windows. Crown peak65.9638maboveapproach; lightning conductors extend0.225mfurther. Earlier71m/16merlon interpretation and attribution/aerial imagery are excluded. Dimensions on the original sheets take precedence over coarse72m/13.4m map attributes and popular234ftfigures. Sheet measurements are a historical survey of the standing shell, not certification of every current repair.",
+    "Flat roof deck, ten elongated rounded battlements and closed bent-plate segmental iron entrance retained. Fine crown profiles, red painted finish, lightning conductors, patching, door hardware and unseen secondary openings remain original medium-fi approximations; the drawings do not establish exact present paint/repairs. The south low aperture remains a conservative closed opening, not a second certified entrance. Interiors, neighboring pavilion/buildings, park sculptures/fences/signs, tour banners and flag fixtures excluded; no photographic pixels redistributed.",
+    "Independent native terrain retained unchanged. Foundation/entrance and signed orientation reviewed as a bounded preview. Coarse urban ground and other host terrain compatibility remain limitations; footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        35,
+        150
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -10,
+        69,
+        17
+      ],
+      "lookAt": [
+        0,
+        64.8,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        82,
+        48,
+        -125
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        -12,
+        8,
+        19
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4289,
+    "vertices": 12867,
+    "materials": 6,
+    "bytes": 518368,
+    "sha256": "sha256:194f34f849b65f82788240060d993915b8f5a6ff09c40d5b92f4294ef981a194"
+  }
+}

@@ -1,0 +1,408 @@
+{
+  "planId": "nagoya_castle",
+  "id": "nagoya_castle",
+  "assetId": "molen.worldgen.structure.nagoya_castle",
+  "title": "Nagoya Castle",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 136.89908511936665,
+    "latitude": 35.18558152332453
+  },
+  "size": [
+    55.97490882873535,
+    57.42100143432617,
+    89.92205238342285
+  ],
+  "actualBounds": {
+    "min": [
+      -23.09990882873535,
+      -9.5,
+      -24.83677101135254
+    ],
+    "max": [
+      32.875,
+      47.92100143432617,
+      65.08528137207031
+    ]
+  },
+  "visualBrief": "Present main and offset small keeps with curved fan stone bases, five white main tiers, green copper roofs with curved eaves and varied dark gables, paired gold north/south shachi, two gray tiled small-keep roofs, raised stone connection with white parapets, recessed entrances, narrow exterior dogleg stairs and attached modern east access tower. Separate Honmaru Palace and castle enclosure excluded.",
+  "nativeAxes": {
+    "x": "east-northeast across keep",
+    "y": "up from independent dry courtyard datum",
+    "z": "south-southeast along main ridge toward offset small keep"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Nagoya_Castle_(23700).jpg"
+  ],
+  "stories": [
+    {
+      "id": "nagoya-castle-wp",
+      "url": "https://qualla.com/nagoya-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:30c7da87846cf7bf9d53a844633d6f9bb7516eeda8ef253f43ee6b2bafc042c0",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-nagoya-castle.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-nagoya-castle.mjs",
+    "level": "skyline",
+    "export": "nagoyaCastleSkyline",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.85,
+        "metallic": 0.08
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.2
+      },
+      "wood": {
+        "slot": "door",
+        "localRef": "palette:#fefefe",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.06
+      },
+      "gold": {
+        "slot": "trim",
+        "localRef": "palette:#fffefe",
+        "roughness": 0.42,
+        "metallic": 0.72
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "nagoyaCastleDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.85,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.06
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#fffefe",
+            "roughness": 0.42,
+            "metallic": 0.72
+          }
+        }
+      },
+      "street": {
+        "export": "nagoyaCastleStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.85,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.06
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#fffefe",
+            "roughness": 0.42,
+            "metallic": 0.72
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent original GSI5A/10m fallback frozen before geometry,25921 valid samples; dry east court[34,10] datum14.825m. Native stone caps and inferred lower batter remain distinct from ground. Own bridge floor7.6m and bottom exterior stair approach.16m clear the held-fixed field after bounded geometric correction; these thresholds and inferred foundation toes are engineering approximations. Default Earth terrain is not certified.",
+    "anchor": [
+      136.89908511936665,
+      35.18558152332453
+    ],
+    "heading": 0.09232934611412752,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        136.89946736702242,
+        35.18552023454277
+      ],
+      "modelHeight": 0,
+      "basis": "Open dry Honmaru courtyard east of main stone base, south of modern access tower and north of separate Honmaru Palace. This controls courtyard datum, not lower moat or upper stone cap."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184417111097",
+      "buildings/35184635242099",
+      "buildings/35184635242098",
+      "buildings/35184635242097",
+      "buildings/35184635566799",
+      "buildings/35184634899206",
+      "buildings/35184417111099",
+      "buildings/35184952176272"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:62e22c4b94e4c65c62c7362c47fa7f80b4fac6d69ada34670a2902db41d098b1",
+    "notes": "Main stone-cap outline and five stacked tier controls are separate from inferred lower batter/toe. Distinct offset small keep retains own slightly rotated native stone-cap footprint. Main two lowest story parts have the same native footprint and are not duplicated solid extrusions. Connection is an exposed raised stone bridge with white parapets, not a roofed room. Modern attached east access tower included from dated photographs; separate Palace/turrets/gardens excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Nine actually inspected dated local originals2011–2025 control the present1959 concrete keeps, not the proposed future wooden rebuild. Source photographs/owner illustrations are not redistributed. Palace, detached turrets, gardens, temporary stalls/trees/signs and interiors are excluded.",
+    "Native main stone-cap and five tier polygons guide plan and12.48/16.71/23.57/31.07/37.96/41.9m vertical sequence. Approximate48m main/24m small operator visitor figures and2.621m north/2.579m south gold ornaments constrain silhouette.55.6m including stone wall has unspecified endpoints; it is not a terrain-fitting instruction. Lower stone toe, wall/floor offsets, gables, bay counts, stair engineering and unseen details remain authored estimates.",
+    "Original GSI elevation PNGs retained unchanged;25663 fine-layer and258 coarse-fallback samples.1m review grid oversamples approximately3.9m/7.8m native pixels. Foundation/hidden-ground classification and epoch are unspecified; no survey accuracy or geodetic transformation claimed. Compatible host terrain is required; default coarse Earth terrain not certified. Footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        110,
+        44,
+        110
+      ],
+      "lookAt": [
+        6,
+        21,
+        22
+      ]
+    },
+    {
+      "name": "main-east-detail",
+      "position": [
+        62,
+        28,
+        12
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -87,
+        40,
+        -106
+      ],
+      "lookAt": [
+        0,
+        21,
+        7
+      ]
+    },
+    {
+      "name": "small-keep-entry",
+      "position": [
+        52,
+        15,
+        68
+      ],
+      "lookAt": [
+        22,
+        11,
+        48
+      ]
+    },
+    {
+      "name": "connection",
+      "position": [
+        48,
+        19,
+        30
+      ],
+      "lookAt": [
+        8,
+        9,
+        29
+      ]
+    },
+    {
+      "name": "roof-and-gold",
+      "position": [
+        32,
+        49,
+        30
+      ],
+      "lookAt": [
+        0,
+        40,
+        0
+      ]
+    },
+    {
+      "name": "stone-moat",
+      "position": [
+        -36,
+        -1,
+        -48
+      ],
+      "lookAt": [
+        -6,
+        10,
+        -6
+      ]
+    },
+    {
+      "name": "overhead",
+      "position": [
+        60,
+        112,
+        105
+      ],
+      "lookAt": [
+        4,
+        7,
+        23
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 56741,
+    "vertices": 170223,
+    "materials": 7,
+    "bytes": 6812844,
+    "sha256": "sha256:ff414de7203a37a38cb6ff9d59f96ee98870d2128aae3fa4438cacc3a0217c5c"
+  }
+}

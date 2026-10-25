@@ -599,7 +599,7 @@ export function buildRostov(out) {
   approaches(out);
 }
 export const rostovStudy = {
-  id: 'N0694',
+  id: 'rostov_arena',
   key: 'rostov_arena',
   wikidataId: 'Q4439101',
   title: 'Rostov Arena',

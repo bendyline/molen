@@ -1,0 +1,411 @@
+{
+  "planId": "acrocorinth",
+  "id": "acrocorinth",
+  "assetId": "molen.worldgen.structure.acrocorinth",
+  "title": "Acrocorinth",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q420810",
+  "referenceCoordinate": {
+    "latitude": 37.89142,
+    "longitude": 22.870921
+  },
+  "visualBrief": "Fortified twin ridge with three successive western gates,surviving terrain-following curtains,inner towers,rectangular Ottoman summit keep,citadel,cistern terrace and selected roofless remains. A relative terrain study,not a flat site-boundary extrusion.",
+  "mediumFiContext": {
+    "groundY": -320,
+    "scale": 12,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo"
+  },
+  "size": [
+    833.3388977050781,
+    215.59943389892578,
+    526.4548950195312
+  ],
+  "actualBounds": {
+    "min": [
+      -428.8485412597656,
+      -151.07919311523438,
+      -260.02099609375
+    ],
+    "max": [
+      404.4903564453125,
+      64.5202407836914,
+      266.43389892578125
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X approximately east along the ridge",
+    "lateral": "+Z approximately south toward the Ottoman keep",
+    "origin": "Site anchor; Y0 standard viewer PMTiles anchor datum. Original terrain patch omitted from runtime."
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/146863144 exact Q420810 archaeological site,not a curtain footprint",
+    "documentedWallLengthMeters": 3000,
+    "documentedAreaHectares": 24,
+    "archaeologicalSurveyRecords": 192,
+    "archaeologicalSurveyParts": 209,
+    "terrainGridSamples": 425,
+    "terrainGridSpacingMeters": 40,
+    "originalMasterHash": "sha256:49eeb61fed8d0796fb0d4aebf8f8a0c21f644a923795e184bf09df32215adafb",
+    "originalMasterRecipe": "packages/worldgen/scripts/acrocorinth-model.mjs#buildAcrocorinthRuntime",
+    "runtimeTerrain": "Standard viewer PMTiles; original relative terrain remains in preserved master."
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#c8bea6",
+      "infill": "#cfb88f",
+      "rock": "#b7ae9a",
+      "grass": "#8ca164",
+      "paving": "#aaa59a",
+      "recess": "#4d6178"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Twin rocky ridge with surviving terrain-following curtains",
+      "Three successive western entrances with open passages and a broad blind arch",
+      "Small rectangular southwest Ottoman keep within its own citadel"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "referencePages": [
+    "https://castleroute.culture.gov.gr/en/acrocorinth/",
+    "https://www.ascsa.edu.gr/excavations/ancient-corinth/digital-corinth/maps-gis-data-and-archaeological-data-for-corinth-and-greece",
+    "https://github.com/tilezen/joerd/blob/master/docs/data-sources.md",
+    "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+    "https://www.openstreetmap.org/way/146863144"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "anchor": [
+      22.873283683,
+      37.891346465
+    ],
+    "heading": -0.026117351143,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/146863144",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/146863144"
+    ],
+    "wikidataId": "Q420810",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ec392e63c7254d33e5d8124cbc116d96d77677f57853c8a7f542ce277ac20dd9",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms the twin rocky ridge, terrain-following curtains, three successive western gates and small southwest keep. Standard viewer PMTiles set approximate ridge fit in the retained site frame. The runtime derivative omits the embedded research terrain mesh and samples its architectural footing functions directly from standard viewer PMTiles, using a0.7m working clearance. The old relative258.37m datum remains only in the preserved source master. The broad site ring is contextual; footprint replacement stays off. Anchor 22.873283683,37.891346465; heading -0.026117351143; standard PMTiles datum 510.43219632278726m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected aerial picture confirms the twin rocky ridge, terrain-following curtains, three successive western gates and small southwest keep. Standard viewer PMTiles set approximate ridge fit in the retained site frame. The runtime derivative omits the embedded research terrain mesh and samples its architectural footing functions directly from standard viewer PMTiles, using a0.7m working clearance. The old relative258.37m datum remains only in the preserved source master. The broad site ring is contextual; footprint replacement stays off. Anchor 22.873283683,37.891346465; heading -0.026117351143; standard PMTiles datum 510.43219632278726m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        22.873283683,
+        37.891346465
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "scaleBasis": "Meter-scale ASCSA line plan in ellipsoidal orthographic CRS. Relative terrain from40m bilinear samples of approximately30m source DEM;258.37m datum. Architectural heights/openings are photo estimates.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Acrocorinth model geometry and adapted ASCSA wall data:CC-BY-SA-4.0,James A.Herbst/Corinth Excavations/ASCSA. Generator code remains under repository license. OSM identity/frame:ODbL-1.0. Copernicus/EU-DEM terrain attribution retained.",
+  "dataAttribution": "James A.Herbst,Corinth Excavations,American School of Classical Studies at Athens;© OpenStreetMap contributors;Hellenic Ministry of Culture;Mapzen/Terrain Tiles;produced using Copernicus data and information funded by the European Union - EU-DEM layers.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Approximate current surviving exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Original detailed master and adapted ASCSA wall data preserved with their CC-BY-SA attribution. Independent derivative uses viewer terrain for footing and omits embedded hill mesh.",
+    "Twin ridge curtains, successive gates, inner towers, Ottoman keep/citadel, cistern terrace and selected roofless remains retain identity. Architectural heights and thresholds reconstructed.",
+    "Site boundary is context, not a wall footprint; replacement remains off. Selected surviving walls and remains do not imply archaeological completeness.",
+    "Host provides ridge terrain. Modern roads, vegetation, fixtures, interiors, buried remains and lost roofs excluded.",
+    "Two common material graphs and local recess color; no embedded images. Physical-device timing pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "ridge-and-western-gates",
+      "position": [
+        -950,
+        387.93780367721274,
+        580
+      ],
+      "lookAt": [
+        -120,
+        -52.06219632278726,
+        40
+      ]
+    },
+    {
+      "name": "surviving-wall-plan",
+      "position": [
+        0,
+        1247.9378036772127,
+        1
+      ],
+      "lookAt": [
+        0,
+        -132.06219632278726,
+        0
+      ]
+    },
+    {
+      "name": "outer-arched-passage",
+      "position": [
+        -461,
+        -107.06219632278726,
+        114
+      ],
+      "lookAt": [
+        -399,
+        -117.06219632278726,
+        80
+      ]
+    },
+    {
+      "name": "three-successive-gates",
+      "position": [
+        -545,
+        -2.0621963227872584,
+        195
+      ],
+      "lookAt": [
+        -300,
+        -77.06219632278726,
+        77
+      ]
+    },
+    {
+      "name": "ottoman-keep-and-citadel",
+      "position": [
+        -219,
+        35.93780367721274,
+        270
+      ],
+      "lookAt": [
+        -160,
+        -4.062196322787258,
+        200
+      ]
+    },
+    {
+      "name": "inner-gate-blind-arch",
+      "position": [
+        -315,
+        -38.06219632278726,
+        105
+      ],
+      "lookAt": [
+        -234,
+        -51.06219632278726,
+        74
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/acrocorinth-runtime-model.mjs",
+    "export": "buildAcrocorinthReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/acrocorinth-runtime-model.mjs",
+    "export": "buildAcrocorinthReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAcrocorinthReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAcrocorinthReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAcrocorinthReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-acrocorinth-skyline",
+      "position": [
+        -850,
+        430,
+        690
+      ],
+      "lookAt": [
+        -30,
+        -55,
+        20
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-acrocorinth-district",
+      "position": [
+        -850,
+        430,
+        690
+      ],
+      "lookAt": [
+        -30,
+        -55,
+        20
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-acrocorinth-street",
+      "position": [
+        -850,
+        430,
+        690
+      ],
+      "lookAt": [
+        -30,
+        -55,
+        20
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-acrocorinth-closeup",
+      "position": [
+        -850,
+        430,
+        690
+      ],
+      "lookAt": [
+        -30,
+        -55,
+        20
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve Acrocorinth ridge,successive gate hierarchy and open ruins with shared materials and independent compact detail levels.",
+  "mesh": {
+    "triangles": 5422,
+    "vertices": 16266,
+    "materials": 4,
+    "bytes": 653328,
+    "sha256": "sha256:3cac2e543c7a1151aa6e1a70030536982b5fa2c3929f5d628b1e8d246410f0d9"
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "tile_mosaic",
+      "roughness": 0.72,
+      "metallic": 0
+    },
+    "panel": {
+      "slot": "wall",
+      "graph": "tile_mosaic",
+      "roughness": 0.72,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "dome": {
+      "slot": "roof",
+      "graph": "tile_mosaic",
+      "roughness": 0.68,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.75,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.45,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.46,
+      "metallic": 0.04
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/mazar-model.mjs",
+    "export": "buildMazarSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMazarDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "tile_mosaic",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.45,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "buildMazarStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "tile_mosaic",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.45,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMazarCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "tile_mosaic",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.45,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      75,
+      60,
+      82
+    ],
+    "lookAt": [
+      0,
+      12,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-mazar-skyline",
+      "position": [
+        75,
+        60,
+        82
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-mazar-district",
+      "position": [
+        75,
+        60,
+        82
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-mazar-street",
+      "position": [
+        75,
+        60,
+        82
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-mazar-closeup",
+      "position": [
+        75,
+        60,
+        82
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.regional.south_asian.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Exact way and approximate exterior/map-axis fit;QA records acceptance/limits.",
+    "anchor": [
+      67.110913037,
+      36.708960274
+    ],
+    "heading": -1.38091036602,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and approximate working plane. Standard viewer DEM datum 361.442559 m. Working floor 1.862 m is maximum whole-footprint bilinear sample at1 m spacing plus0.25 m,not surveyed paving. Relative footprint DEM -1.63..1.61 m. Raw DEM retained without cutout/flattening;footings adapt below it and cross Y=0. Exact plaza/threshold/terrace/terrain contacts and walking unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        67.110913037,
+        36.708960274
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 361.442559 m. Working floor 1.862 m is maximum whole-footprint bilinear sample at1 m spacing plus0.25 m,not surveyed paving. Relative footprint DEM -1.63..1.61 m. Raw DEM retained without cutout/flattening;footings adapt below it and cross Y=0. Exact plaza/threshold/terrace/terrain contacts and walking unverified."
+    },
+    "bounds": [
+      67.105,
+      36.704,
+      67.117,
+      36.714
+    ],
+    "notes": "Retained exact way/633376524 / Q138388 matches current whole35185005465356 (2*2^44+633376524) and named Blue Mosque POI on the same encoded way. Original anchor[67.110913037,36.708960274] and heading-1.38091036602 rad unchanged. Current27-point outline closely matches the retained27-point closed source control;no horizontal rescale or courtyard parcel. Main and secondary chamber forms follow the two projecting portions of the plan. Two opposite central portal faces follow selected current polygon edges;which doorway corresponds to each picture and precise handedness remain approximate. The tall foreground clock tower,other mosque ranges,plaza fences/garden/pavilions and surrounding buildings are separate context,not part of this footprint. Standard viewer DEM datum 361.442559 m. Working floor 1.862 m is maximum whole-footprint bilinear sample at1 m spacing plus0.25 m,not surveyed paving. Relative footprint DEM -1.63..1.61 m. Raw DEM retained without cutout/flattening;footings adapt below it and cross Y=0. Exact plaza/threshold/terrace/terrain contacts and walking unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 361.442559 m. Working floor 1.862 m is maximum whole-footprint bilinear sample at1 m spacing plus0.25 m,not surveyed paving. Relative footprint DEM -1.63..1.61 m. Raw DEM retained without cutout/flattening;footings adapt below it and cross Y=0. Exact plaza/threshold/terrace/terrain contacts and walking unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

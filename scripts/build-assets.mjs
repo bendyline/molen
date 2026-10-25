@@ -4,12 +4,16 @@
 // GLBs. The result is stamped with the key of those inputs (scripts/asset-inputs.mjs), never
 // compared with bytes built elsewhere. CI runs exactly this when no bundle exists for its inputs.
 import { spawn, spawnSync } from 'node:child_process';
+import { createWriteStream } from 'node:fs';
 import { copyFile, lstat, mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { availableParallelism, totalmem } from 'node:os';
 import { dirname, join, relative, resolve, sep } from 'node:path';
+import { createInterface } from 'node:readline';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { isDeepStrictEqual, parseArgs } from 'node:util';
+import { createAssetFileCache } from './asset-file-cache.mjs';
 import { assetInputs, changedInputs } from './asset-inputs.mjs';
+import { createJobCache } from './asset-job-cache.mjs';
 import {
   ASSET_ROOTS,
   bundleFiles,
@@ -76,6 +80,17 @@ export function validatePlan(plan) {
       !args.every((arg) => typeof arg === 'string')
     )
       throw new Error(`Generator ${job.id} must run a repository script with node or python.`);
+    if (
+      job.outputs !== undefined &&
+      (!Array.isArray(job.outputs) ||
+        !job.outputs.every(
+          (path) =>
+            typeof path === 'string' &&
+            /^(assets|content|examples)\//.test(path) &&
+            !path.split('/').some((part) => !part || part === '..' || /[\\:]/.test(part)),
+        ))
+    )
+      throw new Error(`Generator ${job.id} has invalid output directories.`);
   }
   for (const path of plan.masters) safePath(path);
   return plan;
@@ -308,7 +323,7 @@ export async function preparePython(
   return local;
 }
 
-function run(command, { root, log, label, python }) {
+function run(command, { root, log, label, python, trace, progress }) {
   const [program, ...args] = command;
   const executable = program === 'node' ? process.execPath : python;
   const heap = /--max-old-space-size/.test(process.env.NODE_OPTIONS ?? '')
@@ -317,6 +332,9 @@ function run(command, { root, log, label, python }) {
   // Every Node process a build starts, and each one they start, computes with the same Math on
   // any CPU (packages/worldgen/scripts/deterministic-math.mjs).
   const math = ` --import=${pathToFileURL(join(root, DETERMINISTIC_MATH)).href}`;
+  const tracking = trace
+    ? ` --import=${new URL('./trace-asset-job.mjs', import.meta.url).href}`
+    : '';
   return new Promise((done, fail) => {
     const started = Date.now();
     const child = spawn(executable, args, {
@@ -325,20 +343,29 @@ function run(command, { root, log, label, python }) {
       windowsHide: true,
       env: {
         ...process.env,
-        NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''}${heap}${math}`.trim(),
+        NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''}${heap}${tracking}${math}`.trim(),
+        ...(trace ? { MOLEN_ASSET_TRACE_ROOT: root, MOLEN_ASSET_TRACE_DIRECTORY: trace } : {}),
       },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
     const output = [];
-    child.stdout.on('data', (bytes) => output.push(bytes));
-    child.stderr.on('data', (bytes) => output.push(bytes));
+    const file = createWriteStream(log);
+    file.on('error', fail);
+    for (const stream of [child.stdout, child.stderr]) {
+      stream.on('data', (bytes) => {
+        output.push(bytes);
+        file.write(bytes);
+      });
+      if (progress) createInterface({ input: stream, crlfDelay: Infinity }).on('line', progress);
+    }
     child.on('error', fail);
-    child.on('close', async (code) => {
-      const text = Buffer.concat(output).toString('utf8');
-      await writeFile(log, text);
-      const seconds = Math.round((Date.now() - started) / 1000);
-      if (code === 0) done(seconds);
-      else fail(new Error(`${label} failed (exit ${code}); log: ${log}\n${text.slice(-4000)}`));
+    child.on('close', (code) => {
+      file.end(() => {
+        const text = Buffer.concat(output).toString('utf8');
+        const seconds = Math.round((Date.now() - started) / 1000);
+        if (code === 0) done(seconds);
+        else fail(new Error(`${label} failed (exit ${code}); log: ${log}\n${text.slice(-4000)}`));
+      });
     });
   });
 }
@@ -403,13 +430,14 @@ async function biomeFormat(root, text) {
 }
 
 /**
- * A verifying build leaves committed text as it found it and reports what the generators would
- * change; `accept` keeps real changes, laid out as the committed file was.
+ * Preserve authored text, but keep successful runtime sidecars with the GLBs they describe.
+ * Failed builds restore all text. Semantically unchanged documents retain their original bytes.
  */
-async function reconcileText(root, before, accept) {
+async function reconcileText(root, before, { keepRuntimeAssets = false } = {}) {
   const after = await readText(root);
   const changed = [];
   const added = [];
+  const updated = [];
   for (const [path, now] of after) {
     const old = before.get(path);
     if (!old) {
@@ -417,12 +445,14 @@ async function reconcileText(root, before, accept) {
       continue;
     }
     if (old.equals(now)) continue;
-    if (sameContent(old, now) || !accept) {
+    const runtimeAsset =
+      keepRuntimeAssets && /(?:^|\/)assets\/.*\/asset\.json$/.test(posix(root, path));
+    if (sameContent(old, now) || !runtimeAsset) {
       if (!sameContent(old, now)) changed.push(posix(root, path));
       await writeSettled(path, old);
       continue;
     }
-    changed.push(posix(root, path));
+    updated.push(posix(root, path));
     // Keep a document in the compact layout it was committed in, so its diff is the change.
     if (path.endsWith('.json')) {
       const oldText = old.toString('utf8').replaceAll('\r\n', '\n');
@@ -433,7 +463,7 @@ async function reconcileText(root, before, accept) {
       if (formattedOld === oldText && formattedNow) await writeSettled(path, formattedNow);
     }
   }
-  return { changed: changed.sort(), added: added.sort() };
+  return { changed: changed.sort(), added: added.sort(), updated: updated.sort() };
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -457,21 +487,15 @@ async function copyModel(root, entry) {
   const output = resolve(root, entry.output);
   const info = await fileInfo(source);
   const sidecarPath = resolve(root, entry.sidecar);
-  const text = await readFile(sidecarPath, 'utf8');
-  const sidecar = JSON.parse(text);
+  const sidecar = await readJson(sidecarPath);
   await mkdir(dirname(output), { recursive: true });
   await copyFile(source, output);
   if (sidecar.hash === sha(info)) return;
   if (sidecar.stats?.sizeBytes === undefined)
     throw new Error(`${entry.sidecar}: copied model sidecar has no size to update.`);
-  await writeFile(
-    sidecarPath,
-    text
-      .replace(`"hash": "${sidecar.hash}"`, `"hash": "${sha(info)}"`)
-      .replace(`"sizeBytes": ${sidecar.stats.sizeBytes}`, `"sizeBytes": ${info.size}`),
-  );
-  if ((await readJson(sidecarPath)).hash !== sha(info))
-    throw new Error(`${entry.sidecar}: could not update the copied model hash.`);
+  sidecar.hash = sha(info);
+  sidecar.stats.sizeBytes = info.size;
+  await writeFile(sidecarPath, `${JSON.stringify(sidecar, null, 2)}\n`);
 }
 
 async function importCurrent(root, entry) {
@@ -527,13 +551,20 @@ async function restoreMoved(root, moved, backup, keep) {
   }
 }
 
-// Windows refuses to rewrite a file while an indexer or scanner has it mapped (EUNKNOWN). The
-// jobs are idempotent, so one rerun separates that from a real failure.
-async function withWindowsRetry(work) {
+// Retry individual imports only for transient Windows file locks. A failed batch (especially
+// the LOD pass) must report its error rather than silently rerunning every successful model.
+async function withWindowsRetry(work, log) {
   try {
     return await work();
   } catch (error) {
-    if (process.platform !== 'win32') throw error;
+    if (
+      process.platform !== 'win32' ||
+      !/\b(?:EBUSY|EPERM|EACCES|EUNKNOWN|UNKNOWN): (?:resource busy or locked|operation not permitted|permission denied|unknown error), (?:open|read|write|rename|unlink|copyfile)\b/i.test(
+        error.message,
+      )
+    )
+      throw error;
+    log('  Import hit a Windows file lock; retrying once in 2 seconds.');
     await new Promise((done) => setTimeout(done, 2000));
     return work();
   }
@@ -556,15 +587,23 @@ export async function buildAssetsFromSource({
     throw new Error(
       `Asset builds use Node ${plan.node} (${PLAN} "node"); this is Node ${process.versions.node}. Switch Node major, or use pnpm assets:fetch.`,
     );
+  const masters = await readMasters(root);
+  const fileCache = await createAssetFileCache(root, { force });
+  // The bundle is named by the inputs the build starts from; until it finishes, none is installed.
+  const inputs = await assetInputs(root, { fileCache });
+  const previous = await readStamp(root);
+  const cache = await createJobCache(root, plan, { force, inputs: inputs.inputs, fileCache });
+  const current = new Set();
+  for (const job of generate ? plan.generators : [])
+    if (await cache.current(job)) current.add(job.id);
+  // Keep derived files during incremental generation. Recheck their dependencies after imports.
+  for (const job of plan.afterImport ?? []) await cache.current(job);
+  const jobs = generate ? plan.generators.filter((job) => !current.has(job.id)) : [];
   const python = await preparePython(
     root,
-    [...(generate ? plan.generators : []), ...(plan.afterImport ?? [])],
+    [...jobs, ...(plan.afterImport ?? []).filter((job) => job.command[0] === 'python')],
     { log },
   );
-  const masters = await readMasters(root);
-  // The bundle is named by the inputs the build starts from; until it finishes, none is installed.
-  const inputs = await assetInputs(root);
-  const previous = await readStamp(root);
   await clearStamp(root);
   const out = join(root, OUT);
   const logs = join(out, 'logs');
@@ -579,41 +618,51 @@ export async function buildAssetsFromSource({
   const importOutputs = new Set(imports.map((entry) => entry.output));
   const report = {
     format: 'molen/asset-build-report@1',
-    generators: [],
+    generators: [...current].map((id) => ({ id, cached: true })),
     imports: { run: 0, current: 0 },
-    metadata: { changed: [], added: [] },
+    metadata: { changed: [], added: [], updated: [] },
   };
   const text = await readText(root);
 
   if (generate) {
-    // Everything except masters and import outputs is written by a generator. Moving those GLBs
-    // aside makes every build a clean build: generator guards never see a stale output.
+    // Only uncached jobs start clean. Preserving current sources and derived LODs is necessary
+    // for the import and LOD stages to reuse unchanged models too.
     const generated = new Set([
       ...(await inventory(root)),
       ...(previous?.files.map((f) => f.path) ?? []),
     ]);
     for (const path of [...masters, ...importOutputs]) generated.delete(path);
+    if (!force)
+      for (const job of [
+        ...plan.generators.filter((job) => current.has(job.id)),
+        ...(plan.afterImport ?? []),
+      ])
+        for (const path of cache.outputs(job)) generated.delete(path);
     const backup = join(out, 'previous');
     const moved = await stageAside(root, [...generated], backup);
     const owned = new Set(previous?.files.map((f) => f.path));
-    log(`Running ${plan.generators.length} generators (${concurrency} at a time).`);
+    log(`Running ${jobs.length} generators (${current.size} cached; ${concurrency} at a time).`);
     try {
-      await pool(plan.generators, concurrency, async (job) => {
-        const seconds = await withWindowsRetry(() =>
-          run(job.command, {
-            root,
-            python,
-            log: join(logs, `${job.id}.log`),
-            label: `Generator ${job.id}`,
-          }),
-        );
+      for (const job of plan.generators.filter((job) => current.has(job.id)))
+        await cache.restore(job);
+      await pool(jobs, concurrency, async (job) => {
+        const trace = await cache.begin(job);
+        const seconds = await run(job.command, {
+          root,
+          python,
+          log: join(logs, `${job.id}.log`),
+          label: `Generator ${job.id}`,
+          trace,
+        });
+        await cache.complete(job, trace);
         report.generators.push({ id: job.id, seconds });
         log(`  ${job.id}: ${seconds}s`);
       });
     } catch (error) {
       // Leave the checkout as it was: every GLB that was not rebuilt, and every committed file.
       await restoreMoved(root, moved, backup, () => true);
-      await reconcileText(root, text, false);
+      await reconcileText(root, text);
+      await cache.save();
       throw error;
     }
     // A moved GLB the last build or fetch did not place, and no generator rebuilt, is someone's
@@ -622,59 +671,91 @@ export async function buildAssetsFromSource({
   }
 
   const pending = [];
-  for (const entry of imports) {
-    if (!(await exists(resolve(root, entry.source))))
-      throw new Error(`${entry.source}: no generator produced this source model.`);
-    if (!force && (await importCurrent(root, entry))) report.imports.current++;
-    else pending.push(entry);
-  }
-  log(`Importing ${pending.length} models (${report.imports.current} already current).`);
+  const imported = new Map();
   let finished = 0;
   try {
+    for (const entry of imports) {
+      if (!(await exists(resolve(root, entry.source))))
+        throw new Error(`${entry.source}: no generator produced this source model.`);
+      const job = {
+        id: `import-${entry.id}`,
+        command: ['node', 'scripts/build-assets.mjs', JSON.stringify(entry)],
+      };
+      const cached = await cache.current(job);
+      const record = cache.record(
+        job,
+        [entry.source, 'scripts/build-assets.mjs'],
+        [entry.output],
+        [entry.sidecar],
+      );
+      if (!force && (cached || (!cache.known(job) && (await importCurrent(root, entry))))) {
+        if (cached) await cache.restore(job);
+        report.imports.current++;
+        await record();
+      } else {
+        pending.push(entry);
+        imported.set(entry.id, record);
+      }
+    }
+    log(`Importing ${pending.length} models (${report.imports.current} already current).`);
     await pool(pending, concurrency, async (entry) => {
       if (entry.pipeline === 'copy') await copyModel(root, entry);
       else {
         // One process per import bounds the importer's memory on the largest stadiums.
         const encoded = Buffer.from(JSON.stringify({ ...entry, root })).toString('base64url');
-        await withWindowsRetry(() =>
-          run(['node', 'scripts/build-assets.mjs', '--import-one', encoded], {
-            root,
-            log: join(logs, `import-${entry.id}.log`),
-            label: `Import ${entry.id}`,
-          }),
+        await withWindowsRetry(
+          () =>
+            run(['node', 'scripts/build-assets.mjs', '--import-one', encoded], {
+              root,
+              log: join(logs, `import-${entry.id}.log`),
+              label: `Import ${entry.id}`,
+            }),
+          log,
         );
       }
+      await imported.get(entry.id)();
       report.imports.run++;
       if (++finished % 25 === 0) log(`  imported ${finished}/${pending.length}`);
     });
     for (const job of plan.afterImport ?? []) {
-      const seconds = await withWindowsRetry(() =>
-        run(job.command, {
-          root,
-          python,
-          log: join(logs, `${job.id}.log`),
-          label: `After-import ${job.id}`,
-        }),
-      );
+      if (await cache.current(job)) {
+        await cache.restore(job);
+        log(`  ${job.id}: cached`);
+        continue;
+      }
+      const trace = await cache.begin(job);
+      log(`Running ${job.id} (log: ${join(logs, `${job.id}.log`)}).`);
+      const seconds = await run(job.command, {
+        root,
+        python,
+        log: join(logs, `${job.id}.log`),
+        label: `After-import ${job.id}`,
+        trace,
+        progress: (line) => log(`  ${line}`),
+      });
+      await cache.complete(job, trace);
       log(`  ${job.id}: ${seconds}s`);
     }
   } catch (error) {
-    await reconcileText(root, text, false);
+    await reconcileText(root, text);
+    await cache.save();
     throw error;
   }
-  report.metadata = await reconcileText(root, text, false);
+  report.metadata = await reconcileText(root, text, { keepRuntimeAssets: true });
+  await cache.save();
 
-  const built = await bundleFiles(root);
+  const built = await bundleFiles(root, { fileCache });
   await writeStamp(root, { ...inputs, from: 'build', prefix: '', files: built });
   Object.assign(report, {
     files: built.length,
     seconds: Math.round((Date.now() - started) / 1000),
     bundle: { release: inputs.release, key: inputs.key },
   });
-  await writeFile(join(out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   await rm(join(out, 'previous'), { recursive: true, force: true });
 
   const annotate = process.env.GITHUB_ACTIONS === 'true';
+  if (report.metadata.updated.length)
+    log(`Updated ${report.metadata.updated.length} runtime asset sidecars to match built GLBs.`);
   if (report.metadata.changed.length || report.metadata.added.length) {
     log(
       `Generators would change ${report.metadata.changed.length} committed metadata files (kept as committed) and added ${report.metadata.added.length}:`,
@@ -682,7 +763,10 @@ export async function buildAssetsFromSource({
     for (const path of [...report.metadata.changed, ...report.metadata.added].slice(0, 200))
       log(annotate ? `::warning file=${path}::Regenerated metadata differs from Git` : `  ${path}`);
   }
-  const after = await assetInputs(root);
+  const after = await assetInputs(root, { fileCache });
+  await fileCache.save();
+  report.hashes = { ...fileCache.stats };
+  await writeFile(join(out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   if (after.key !== inputs.key)
     log(
       `Warning: the build changed its own inputs, so this checkout now names ${after.release}, not ${inputs.release}. Commit the changes and rebuild:\n${changedInputs(inputs.inputs, after.inputs).slice(0, 20).join('\n')}`,

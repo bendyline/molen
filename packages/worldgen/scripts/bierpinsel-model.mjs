@@ -7,7 +7,7 @@ import { face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapBytes = readFileSync(structureSourcePath('n0614_bierpinsel', 'map-frame.json'));
+const mapBytes = readFileSync(structureSourcePath('bierpinsel', 'map-frame.json'));
 const map = JSON.parse(mapBytes);
 const pale = [0.76, 0.75, 0.67],
   white = [0.84, 0.84, 0.77],
@@ -570,8 +570,8 @@ function buildBierpinsel(out) {
 }
 
 export const bierpinsel = {
-  id: 'n0614_bierpinsel',
-  planId: 'N0614',
+  id: 'bierpinsel',
+  planId: 'bierpinsel',
   title: 'Bierpinsel',
   wikidata: 'Q520281',
   build: buildBierpinsel,

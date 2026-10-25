@@ -7,7 +7,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcp/n0239_windsor_castle/map-parts.json',
+      '../../../content/worldgen/source/places/gc/gcp/windsor_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -956,7 +956,7 @@ function _precinct(o) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcp/n0239_windsor_castle/site-grade.json',
+      '../../../content/worldgen/source/places/gc/gcp/windsor_castle/site-grade.json',
       import.meta.url,
     ),
   ),

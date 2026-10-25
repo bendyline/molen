@@ -14,7 +14,7 @@ import {
 } from '../../worldgen/scripts/stirling-runtime-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/gc/gcv/n0262_stirling_castle'),
+const source = resolve('../../content/worldgen/source/places/gc/gcv/stirling_castle'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

@@ -1,0 +1,542 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "rubble": {
+      "graph": "stone_drywall",
+      "slot": "wall",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "broken": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "foundation": {
+      "graph": "stone_limestone_raw",
+      "slot": "foundation",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      -30.70684895545833,
+      22,
+      35.399003195382036
+    ],
+    "lookAt": [
+      -2.999411999586753,
+      1,
+      -0.05939407996590008
+    ],
+    "fov": 54
+  },
+  "qaCameras": [
+    {
+      "name": "three-open-passages-and-four-broken-piers",
+      "position": [
+        -2.4351645861411026,
+        5.2,
+        21.956091943658922
+      ],
+      "lookAt": [
+        -2.999411999586753,
+        1.3,
+        -0.05939407996590008
+      ],
+      "fov": 62
+    },
+    {
+      "name": "central-pier-rubble-and-fractured-top",
+      "position": [
+        -5.197000265864255,
+        4.5,
+        9.89904986534601
+      ],
+      "lookAt": [
+        0,
+        1.1,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "tall-eastern-remnant-and-closed-base",
+      "position": [
+        21.77790970376122,
+        7,
+        11.433400584901362
+      ],
+      "lookAt": [
+        8.392414190846317,
+        2,
+        0.46624462386319554
+      ],
+      "fov": 52
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -30.70684895545833,
+        22,
+        35.399003195382036
+      ],
+      "lookAt": [
+        -2.999411999586753,
+        1,
+        -0.05939407996590008
+      ],
+      "fov": 54,
+      "name": "entrance-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -30.70684895545833,
+        22,
+        35.399003195382036
+      ],
+      "lookAt": [
+        -2.999411999586753,
+        1,
+        -0.05939407996590008
+      ],
+      "fov": 54,
+      "name": "entrance-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -30.70684895545833,
+        22,
+        35.399003195382036
+      ],
+      "lookAt": [
+        -2.999411999586753,
+        1,
+        -0.05939407996590008
+      ],
+      "fov": 54,
+      "name": "entrance-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -30.70684895545833,
+        22,
+        35.399003195382036
+      ],
+      "lookAt": [
+        -2.999411999586753,
+        1,
+        -0.05939407996590008
+      ],
+      "fov": 54,
+      "name": "entrance-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/casale-entry-model.mjs",
+    "export": "buildCasaleEntrySkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCasaleEntryDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "rubble": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "broken": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCasaleEntryStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "rubble": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "broken": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCasaleEntryCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "rubble": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "broken": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      14.334378093481064,
+      37.36455610586755
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m ground. Open front provider[-4,7] supplies542.9866028097036m datum. Four-pier boundary grades -0.640..+0.678m relative; individual closed footings sit0.16m below their own boundary minima and rubble bases follow local center ground+0.06m. Current native views show supported broken piers with minor base exposure/burial, three clear passages and unchanged lawn/path approaches. Only the four occupied footprints are masked; all39 resident /40 wider independent buildings, original ground/roads and empty water layer remain. Exact archaeological heights, fractures, stone inventories, thresholds/paving and accessibility are unverified. No intact arch reconstruction, bespoke terrain or flattening.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 5
+    },
+    "bounds": [
+      14.334158346122237,
+      37.36449656958053,
+      14.334514692360429,
+      37.364592192417454
+    ],
+    "terrainReference": {
+      "anchor": [
+        14.334331325979651,
+        37.36449394751735
+      ],
+      "modelHeight": 0,
+      "basis": "Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m ground. Open front provider[-4,7] supplies542.9866028097036m datum. Four-pier boundary grades -0.640..+0.678m relative; individual closed footings sit0.16m below their own boundary minima and rubble bases follow local center ground+0.06m. Current native views show supported broken piers with minor base exposure/burial, three clear passages and unchanged lawn/path approaches. Only the four occupied footprints are masked; all39 resident /40 wider independent buildings, original ground/roads and empty water layer remain. Exact archaeological heights, fractures, stone inventories, thresholds/paving and accessibility are unverified. No intact arch reconstruction, bespoke terrain or flattening."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -17.442370754449456,
+          1.067895543029195
+        ],
+        [
+          -17.20505958772225,
+          3.4409977840013113
+        ],
+        [
+          -13.408080920086991,
+          3.2036875260504725
+        ],
+        [
+          -13.645392086814198,
+          0.5932751774123091
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -17.442370754449456,
+            1.067895543029195
+          ],
+          [
+            -17.20505958772225,
+            3.4409977840013113
+          ],
+          [
+            -13.408080920086991,
+            3.2036875260504725
+          ],
+          [
+            -13.645392086814198,
+            0.5932751774123091
+          ]
+        ],
+        [
+          [
+            -10.085724585906142,
+            2.7290670386238105
+          ],
+          [
+            -6.051434751543681,
+            2.4917568044021507
+          ],
+          [
+            -6.288745918270891,
+            -0.11865532118175537
+          ],
+          [
+            -6.763368251725296,
+            0.11865483868848509
+          ],
+          [
+            -7.2379905851797,
+            -1.0678958942210173
+          ],
+          [
+            -8.899168752270127,
+            -1.3052060208704075
+          ],
+          [
+            -9.61110225245174,
+            -0.35596547630616016
+          ],
+          [
+            -9.61110225245174,
+            0.11865483868848514
+          ],
+          [
+            -10.085724585906142,
+            0.3559650048865065
+          ]
+        ],
+        [
+          [
+            -2.017144917181227,
+            -0.35596547630616016
+          ],
+          [
+            -1.7798337504540243,
+            2.0171363596880094
+          ],
+          [
+            2.0171449171812337,
+            1.779826146031631
+          ],
+          [
+            1.7798337504540311,
+            -0.830585762825791
+          ],
+          [
+            1.3052114169996256,
+            -0.5932756219388935
+          ],
+          [
+            0.8305890835452132,
+            -1.7798262536039076
+          ],
+          [
+            -0.830589083545206,
+            -2.017136359688017
+          ],
+          [
+            -1.5425225837268142,
+            -1.0678958942210173
+          ],
+          [
+            -1.5425225837268144,
+            -0.5932756219388935
+          ]
+        ],
+        [
+          [
+            7.000679418452506,
+            0.5932751774123091
+          ],
+          [
+            7.237990585179716,
+            4.627549154434693
+          ],
+          [
+            10.085724585906156,
+            4.390238866426897
+          ],
+          [
+            9.848413419178954,
+            0.3559650048865066
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared site Q505617 identifies this ancient entrance within park way304804695. Four integral piers are independently mapped as ways304818582,304818577,304818576 and304818580/native35184676907414,35184676907409,35184676907408 and35184676907412. Anchor uses the inner eastern pier way304818576; the other three retain their exact offsets. Internal +X follows the outer-pier row east/slightly south and +Z points south/slightly west across the approach. Native east/up/south axes are baked with heading0. Only the four pier records are replaced; all three passages and every other mapped building remain."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -17.442370754449456,
+          1.067895543029195
+        ],
+        [
+          -17.20505958772225,
+          3.4409977840013113
+        ],
+        [
+          -13.408080920086991,
+          3.2036875260504725
+        ],
+        [
+          -13.645392086814198,
+          0.5932751774123091
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -17.442370754449456,
+            1.067895543029195
+          ],
+          [
+            -17.20505958772225,
+            3.4409977840013113
+          ],
+          [
+            -13.408080920086991,
+            3.2036875260504725
+          ],
+          [
+            -13.645392086814198,
+            0.5932751774123091
+          ]
+        ],
+        [
+          [
+            -10.085724585906142,
+            2.7290670386238105
+          ],
+          [
+            -6.051434751543681,
+            2.4917568044021507
+          ],
+          [
+            -6.288745918270891,
+            -0.11865532118175537
+          ],
+          [
+            -6.763368251725296,
+            0.11865483868848509
+          ],
+          [
+            -7.2379905851797,
+            -1.0678958942210173
+          ],
+          [
+            -8.899168752270127,
+            -1.3052060208704075
+          ],
+          [
+            -9.61110225245174,
+            -0.35596547630616016
+          ],
+          [
+            -9.61110225245174,
+            0.11865483868848514
+          ],
+          [
+            -10.085724585906142,
+            0.3559650048865065
+          ]
+        ],
+        [
+          [
+            -2.017144917181227,
+            -0.35596547630616016
+          ],
+          [
+            -1.7798337504540243,
+            2.0171363596880094
+          ],
+          [
+            2.0171449171812337,
+            1.779826146031631
+          ],
+          [
+            1.7798337504540311,
+            -0.830585762825791
+          ],
+          [
+            1.3052114169996256,
+            -0.5932756219388935
+          ],
+          [
+            0.8305890835452132,
+            -1.7798262536039076
+          ],
+          [
+            -0.830589083545206,
+            -2.017136359688017
+          ],
+          [
+            -1.5425225837268142,
+            -1.0678958942210173
+          ],
+          [
+            -1.5425225837268144,
+            -0.5932756219388935
+          ]
+        ],
+        [
+          [
+            7.000679418452506,
+            0.5932751774123091
+          ],
+          [
+            7.237990585179716,
+            4.627549154434693
+          ],
+          [
+            10.085724585906156,
+            4.390238866426897
+          ],
+          [
+            9.848413419178954,
+            0.3559650048865066
+          ]
+        ]
+      ],
+      "basis": "Four exact occupied pier footprints only; no mask spans a passage, lawn or approach."
+    },
+    "notes": "Shared site Q505617 identifies this ancient entrance within park way304804695. Four integral piers are independently mapped as ways304818582,304818577,304818576 and304818580/native35184676907414,35184676907409,35184676907408 and35184676907412. Anchor uses the inner eastern pier way304818576; the other three retain their exact offsets. Internal +X follows the outer-pier row east/slightly south and +Z points south/slightly west across the approach. Native east/up/south axes are baked with heading0. Only the four pier records are replaced; all three passages and every other mapped building remain. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m ground. Open front provider[-4,7] supplies542.9866028097036m datum. Four-pier boundary grades -0.640..+0.678m relative; individual closed footings sit0.16m below their own boundary minima and rubble bases follow local center ground+0.06m. Current native views show supported broken piers with minor base exposure/burial, three clear passages and unchanged lawn/path approaches. Only the four occupied footprints are masked; all39 resident /40 wider independent buildings, original ground/roads and empty water layer remain. Exact archaeological heights, fractures, stone inventories, thresholds/paving and accessibility are unverified. No intact arch reconstruction, bespoke terrain or flattening."
+  }
+}

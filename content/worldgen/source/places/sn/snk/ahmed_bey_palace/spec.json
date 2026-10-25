@@ -1,0 +1,336 @@
+{
+  "planId": "ahmed_bey_palace",
+  "id": "ahmed_bey_palace",
+  "assetId": "molen.worldgen.structure.ahmed_bey_palace",
+  "title": "Ahmed Bey Palace",
+  "category": "palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 6.611565960817034,
+    "latitude": 36.367827869552855
+  },
+  "size": [
+    87.45947647094727,
+    15.179999738931656,
+    59.007150650024414
+  ],
+  "actualBounds": {
+    "min": [
+      -43.729671478271484,
+      -0.4000000059604645,
+      -29.502716064453125
+    ],
+    "max": [
+      43.72980499267578,
+      14.779999732971191,
+      29.50443458557129
+    ]
+  },
+  "visualBrief": "Complete intrinsic Constantine palace within original named irregular boundary, three genuinely open measured principal courts/raised marble galleries/two levels of pointed arcades/straight-octagonal-spiral shafts/wood ties/balustrades and centralKiosque, original blue-cream-ochre tilebands/representativeunletteredmuralpanels/cedardoor-grillebays; graycurvedtilehiproofsurfaces/plainhighouterwalls/modestcurvedmarblegate and marblebasins. Courtyard sizes/baycounts text-measured, registration/grade/roofsections explicitlyestimated. No adjacentmosque/siteplaza/naturalground/trees/exhibits/people or copiedphototexture.",
+  "nativeAxes": {
+    "x": "along original long plaza-facing palace edge toward east-southeast",
+    "y": "up",
+    "z": "outward toward southwest approach/place"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Gandouras_constantinoises.jpg",
+    "https://commons.wikimedia.org/wiki/File:Constantine._Ancien_Palais_d%27Ahmed-Bey_2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ahmed-bey-palace-wp",
+      "url": "https://qualla.com/ahmed-bey-palace/"
+    }
+  ],
+  "referenceInputHash": "ee39641ba9ff1f855b4f1048d9620abea52a98a7a1c14ccb05627e8845f97225",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ahmed-bey-palace.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ahmed-bey-palace.mjs",
+    "level": "skyline",
+    "export": "ahmedBeySkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "trim",
+        "graph": "tile_mosaic",
+        "roughness": 0.78,
+        "metallic": 0
+      },
+      "accent": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0.02
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ahmedBeyDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "ahmedBeyStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -0.58
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named palaceway312325317/historiccastle/PalaisduBey identifies the actual irregular palace boundary, not a solidroof. Its unchanged12vertex perimeter defines the bounded exterior envelope; adjacent mosque699368575and unrelated nearbybuildingways remain separate. Three actual principal court voids,20x18m8by7orange garden,20x25mlarge garden and12mpavedcourt, their sequence separatedbytheKiosque, two-level pointed arcades/raised marble galleries, and mostly plain high exterior are explicitly documented in original1867Feraudtext. Court sizes/baycontrols are textual measurements; their localcentres/axes/galleryoffsets within the native boundary are architectural estimates, NOT native surveyed courtyard rings or a measured present-day plan. Complete intrinsic architecture has real court and arcade openings; whole named boundary is never filled by one roof. Southwest approach[-24,19.5]fixed before independent rawterrain; interiorplateau/gardenfloor/storeys/footings and exact hostattachment remain approximate.",
+    "anchor": [
+      6.611565960817034,
+      36.367827869552855
+    ],
+    "heading": -0.36399498092022364,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        6.611238311642857,
+        36.36774092962888
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest plaza-facing entrance approach before terrain acquisition. Raised interior plateau/storeys and footings remain approximate; no terrain flattening or courtyard surveying claim."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/312325317",
+      "orange-garden",
+      "large-garden",
+      "paved-court"
+    ],
+    "source": "https://www.openstreetmap.org/way/312325317",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4929cef4ab55ad5eeb3fdcdf28839dfb38b5944132613e7728c6c110783be7f0",
+    "notes": "Complete intrinsic surviving Ahmed Bey Palace at the named Constantine palace boundary: irregular high plain exterior/curved-tile roof ranges, modest marble entrance, three genuinely open principal courts, two-story pointed-arch marble colonnades/raised galleries and carved cedar doors/grilled windows, central Kiosque between20x18morange and20x25mlarge garden courts,12mpavedcourt, intrinsic marble basins/fountains. Original blue/cream/ochre tile bands and representative unlettered painted panels. Courtyard sizes/bay counts come from original1867text, placement within boundary is explicitly inferred, not a surveyed floorplan. Exclude mosque/neighbors/publicplaza/naturalground/trees/gardenvegetation/exhibits/people/furnishings/interiors and copied lettering."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_mosaic",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.6,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named palaceway312325317/historiccastle/PalaisduBey identifies the actual irregular palace boundary, not a solidroof. Its unchanged12vertex perimeter defines the bounded exterior envelope; adjacent mosque699368575and unrelated nearbybuildingways remain separate. Three actual principal court voids,20x18m8by7orange garden,20x25mlarge garden and12mpavedcourt, their sequence separatedbytheKiosque, two-level pointed arcades/raised marble galleries, and mostly plain high exterior are explicitly documented in original1867Feraudtext. Court sizes/baycontrols are textual measurements; their localcentres/axes/galleryoffsets within the native boundary are architectural estimates, NOT native surveyed courtyard rings or a measured present-day plan. Complete intrinsic architecture has real court and arcade openings; whole named boundary is never filled by one roof.",
+    "Two native published Qualla originals only: ND217gallery photograph verified to pinned Commons nativeSHA1and primary RijksmuseumRP-F-F01088-AF/200344370namedcreatorÉtienneNeurdein/publisherJ.Kühn/1880-90date/explicitPublicdomain; Waran18creatorCC0native2023photo used only for blue/cream/ochrearchitectural tile color. Costumes/mannequins/exhibits/people/furnishings not modeled. Unknown engravedcourtyard/blogCC0/otherlicensedphotos not used. No external image, generatedbitmap or copiedphotographictexture.",
+    "Original1867Feraud text-only measurements checked on native PDF/title and printedpp65/74/87:20x18m/8by7orangegallery,20x25m/10longfacearcades and12mpavedcourt; twolevels,2.5mmaxshafts,varied15-25cmdiameters,raisedsurface,centralKiosque/triplecolonnade/plainhighwalls/graycurvedtile. Courtyard centres/shortface repeats/roofplanes/pavilion footprint and room census inside the unchanged native boundary are inferred, not an archaeological or present-day measured survey. Historical5609m²site description includes a broader scope than native3771m²boundary; no unrelated parcels added.",
+    "Complete exposed intrinsic forms include realcourt/arcadeopenings, variedstraight/octagonal/spiralmarblecolumns,balustrades/woodties/beams,cedar/grillebays,tilewainscot/originalunletteredmuralinterpretations and two gardenbasins/smallcourtvasque. Representative exterior repeats; 260historic/266storytotalcolumncensus includes rooms/dependencies and is not claimed exact. Hidden interiors/ceilings in rooms/exhibits, natural vegetation/soil/plaza/mosque/neighbors excluded.",
+    "Estimated interiorgalleryplateau3.8m/upper7.6m,roofeave11.4m/hiprises13.2m and lowfoundation-.4mare not surveyed elevations. Intrinsic enclosedcisterncover/courtdecks remain1.15mbelowgallery; they are construction inside the palace, not a surrounding terrain slab. Bookrecords raisedgalleries/cisterns and roughly15mfrontprofile; exact concealedsections,currentconservation/groundcontact remain unverified.",
+    "Independent180mcurrentTerrariumfield frozenbeforegeometry, not flattened/fitted. Nativeanchor is actualpalaceenvelopecentre; originalstorypoint lies on the externalapproach. Fixedsouthwestentrancedatum remainsapproximate; flatstageY-.58showsstructure ratherthan certifying hillsidefit. Arches/columns/balustrades/roofdetail simplifywithdistance while allthreecourtvoids persist."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-envelope-three-open-courts-and-roof-ranges",
+      "position": [
+        -76,
+        97,
+        103
+      ],
+      "lookAt": [
+        -1,
+        6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "pointed-arcades-spiral-marble-shafts-tile-and-cedar",
+      "position": [
+        -24,
+        8.8,
+        3
+      ],
+      "lookAt": [
+        -32,
+        7,
+        -9
+      ]
+    },
+    {
+      "name": "plain-high-palace-front-and-curved-marble-entrance",
+      "position": [
+        -30,
+        7.5,
+        43
+      ],
+      "lookAt": [
+        -24,
+        5.3,
+        16.9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62591,
+    "vertices": 187773,
+    "materials": 6,
+    "bytes": 7514632,
+    "sha256": "sha256:9035e7bdbf3db057dedc0c747f257c76ca1d6b7e37cbb352adb08fd5c7d02343"
+  }
+}

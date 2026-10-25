@@ -11,7 +11,7 @@ import { chinaWorldTowerStudy } from '../../worldgen/scripts/china-world-tower-m
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve(
-    '../../content/worldgen/source/places/wx/wx4/n0233_china_world_trade_center_tower_iii',
+    '../../content/worldgen/source/places/wx/wx4/china_world_trade_center_tower_iii',
   ),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
@@ -122,7 +122,11 @@ it('reconstitutes the original large instanced master and independently reprojec
   expect(bytes.byteLength).toBe(40771324);
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=N0233', '--check'],
+    [
+      'packages/worldgen/scripts/generate-signature-towers.mjs',
+      '--ids=china_world_trade_center_tower_iii',
+      '--check',
+    ],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const spec = await read(`${source}/spec.json`);

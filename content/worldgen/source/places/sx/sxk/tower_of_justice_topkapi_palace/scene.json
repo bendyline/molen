@@ -1,0 +1,77 @@
+{
+  "format": "molen/scene@3",
+  "name": "Tower of Justice, Topkapi Palace asset preview",
+  "seed": "tower_of_justice_topkapi_palace",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.tower_of_justice_topkapi_palace",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      73.9542631837963,
+      32,
+      -15.708817808536423
+    ],
+    "lookAt": [
+      0,
+      19,
+      0
+    ],
+    "fov": 42
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

@@ -1,0 +1,509 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.55,
+      "metallic": 0.2
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.52,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/nuri-model.mjs",
+    "export": "buildNuriSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildNuriDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildNuriStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildNuriCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      115,
+      95,
+      -145
+    ],
+    "lookAt": [
+      0,
+      12,
+      -30
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-nuri-skyline",
+      "position": [
+        115,
+        95,
+        -145
+      ],
+      "lookAt": [
+        0,
+        12,
+        -30
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-nuri-district",
+      "position": [
+        115,
+        95,
+        -145
+      ],
+      "lookAt": [
+        0,
+        12,
+        -30
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-nuri-street",
+      "position": [
+        115,
+        95,
+        -145
+      ],
+      "lookAt": [
+        0,
+        12,
+        -30
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-nuri-closeup",
+      "position": [
+        115,
+        95,
+        -145
+      ],
+      "lookAt": [
+        0,
+        12,
+        -30
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.levantine_stone",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained hall plan and current named POIs/garden; pictured rebuilt exterior overrides stale ruins appearance. Site extension, stage heights and lean remain approximate.",
+    "anchor": [
+      43.126768234,
+      36.342740215
+    ],
+    "heading": -0.096841454998,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Normal viewer DEM datum 231.67538504646745 m. Working floor 0.6233996862299194 m is the median of 66 outside hall/minaret perimeter samples at1 m offset plus.3 m. 335 raw samples under modeled masks span -0.6537850464674477..2.5059655799239238 m. Adaptive foundations sample outlines at<=2.5 m stations. Ground cutouts follow the hall, arcade strips, minaret base and narrow paths; garden ground between them is preserved. Preview terrain seats only these masks with1.5 m margin. Exact modern courtyard grade and thresholds are unverified; this coarse DEM is a visualization fixture.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          26.785,
+          -12.566
+        ],
+        [
+          -23.977,
+          -12.533
+        ],
+        [
+          -25.025,
+          9.132
+        ],
+        [
+          -26.785,
+          9.661
+        ],
+        [
+          -26.675,
+          12.279
+        ],
+        [
+          26.785,
+          12.566
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            26.785,
+            -12.566
+          ],
+          [
+            -23.977,
+            -12.533
+          ],
+          [
+            -25.025,
+            9.132
+          ],
+          [
+            -26.785,
+            9.661
+          ],
+          [
+            -26.675,
+            12.279
+          ],
+          [
+            26.785,
+            12.566
+          ]
+        ],
+        [
+          [
+            -38.5,
+            -67
+          ],
+          [
+            -32.5,
+            -67
+          ],
+          [
+            -32.5,
+            -13
+          ],
+          [
+            -38.5,
+            -13
+          ]
+        ],
+        [
+          [
+            38.8,
+            -68
+          ],
+          [
+            41.2,
+            -68
+          ],
+          [
+            41.2,
+            -17
+          ],
+          [
+            38.8,
+            -17
+          ]
+        ],
+        [
+          [
+            -40.5811989170203,
+            -75.9911008586867
+          ],
+          [
+            -31.581198917020302,
+            -75.9911008586867
+          ],
+          [
+            -31.581198917020302,
+            -66.9911008586867
+          ],
+          [
+            -40.5811989170203,
+            -66.9911008586867
+          ]
+        ],
+        [
+          [
+            -29.5,
+            -16.5
+          ],
+          [
+            29.5,
+            -16.5
+          ],
+          [
+            29.5,
+            -12.5
+          ],
+          [
+            -29.5,
+            -12.5
+          ]
+        ],
+        [
+          [
+            0,
+            -76
+          ],
+          [
+            5,
+            -76
+          ],
+          [
+            5,
+            -12
+          ],
+          [
+            0,
+            -12
+          ]
+        ],
+        [
+          [
+            -32,
+            -45
+          ],
+          [
+            38,
+            -45
+          ],
+          [
+            38,
+            -41
+          ],
+          [
+            -32,
+            -41
+          ]
+        ],
+        [
+          [
+            -29.5,
+            -71
+          ],
+          [
+            35.5,
+            -71
+          ],
+          [
+            35.5,
+            -67
+          ],
+          [
+            -29.5,
+            -67
+          ]
+        ]
+      ],
+      "basis": "Normal viewer DEM datum 231.67538504646745 m. Working floor 0.6233996862299194 m is the median of 66 outside hall/minaret perimeter samples at1 m offset plus.3 m. 335 raw samples under modeled masks span -0.6537850464674477..2.5059655799239238 m. Adaptive foundations sample outlines at<=2.5 m stations. Ground cutouts follow the hall, arcade strips, minaret base and narrow paths; garden ground between them is preserved. Preview terrain seats only these masks with1.5 m margin. Exact modern courtyard grade and thresholds are unverified; this coarse DEM is a visualization fixture."
+    },
+    "terrainReference": {
+      "anchor": [
+        43.126768234,
+        36.342740215
+      ],
+      "modelHeight": 0,
+      "basis": "Normal viewer DEM datum 231.67538504646745 m. Working floor 0.6233996862299194 m is the median of 66 outside hall/minaret perimeter samples at1 m offset plus.3 m. 335 raw samples under modeled masks span -0.6537850464674477..2.5059655799239238 m. Adaptive foundations sample outlines at<=2.5 m stations. Ground cutouts follow the hall, arcade strips, minaret base and narrow paths; garden ground between them is preserved. Preview terrain seats only these masks with1.5 m margin. Exact modern courtyard grade and thresholds are unverified; this coarse DEM is a visualization fixture."
+    },
+    "bounds": [
+      43.1261,
+      36.3424,
+      43.1275,
+      36.3436
+    ],
+    "notes": "Retained Q5599605 / way468118902 anchor [43.126768234,36.342740215] and heading -0.096841454998 rad remain unchanged. The six-vertex hall plan is the retained map-axis outline, not a newly extracted current building polygon. Current named mosque POI35184840207734 still says ruins; the inspected2025 pictures show rebuilt architecture. Current named Al-Hadba POI17596477684205 supplies the northwest minaret point [-36.0811989170203,-71.4911008586867]. A second Arabic minaret marker17597058803445 lies near the court center; it conflicts with the northwestern tower seen beside the hall and is retained as excluded ambiguity, not a second tall minaret. Current four-vertex garden35184869293474 constrains the east garden; courtyard arcades and narrow paths are inferred around it. Positive X east-northeast along the hall; positive Z south-southeast; the court/front faces negative Z. Site extension and lean bearing are approximations. Normal viewer DEM datum 231.67538504646745 m. Working floor 0.6233996862299194 m is the median of 66 outside hall/minaret perimeter samples at1 m offset plus.3 m. 335 raw samples under modeled masks span -0.6537850464674477..2.5059655799239238 m. Adaptive foundations sample outlines at<=2.5 m stations. Ground cutouts follow the hall, arcade strips, minaret base and narrow paths; garden ground between them is preserved. Preview terrain seats only these masks with1.5 m margin. Exact modern courtyard grade and thresholds are unverified; this coarse DEM is a visualization fixture."
+  },
+  "geographicNote": "Normal viewer DEM datum 231.67538504646745 m. Working floor 0.6233996862299194 m is the median of 66 outside hall/minaret perimeter samples at1 m offset plus.3 m. 335 raw samples under modeled masks span -0.6537850464674477..2.5059655799239238 m. Adaptive foundations sample outlines at<=2.5 m stations. Ground cutouts follow the hall, arcade strips, minaret base and narrow paths; garden ground between them is preserved. Preview terrain seats only these masks with1.5 m margin. Exact modern courtyard grade and thresholds are unverified; this coarse DEM is a visualization fixture.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

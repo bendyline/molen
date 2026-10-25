@@ -51,6 +51,49 @@ function fixture(edit = () => {}) {
 it('accepts inspected, current medium-fi evidence', async () => {
   expect(await reviewedMediumFi(fixture())).toBe(true);
 });
+it('requires per-frame asset and byte identity for version 2 captures', async () => {
+  const v2 = (r) => {
+    r.captureVersion = 2;
+    r.renderedAsset = { assetId: 'model', runtimeHash: 'runtime' };
+    for (const f of r.frames)
+      f.state = {
+        ...f.state,
+        assetId: 'model',
+        runtimeHash: 'runtime',
+        level: 'street',
+        lodHash: 'street',
+      };
+  };
+  expect(await reviewedMediumFi(fixture(v2))).toBe(true);
+  for (const change of [
+    (r) => {
+      r.frames[0].state.assetId = 'other';
+    },
+    (r) => {
+      r.frames[0].state.runtimeHash = 'stale';
+    },
+    (r) => {
+      r.frames[0].state.lodHash = 'stale';
+    },
+    (r) => {
+      delete r.frames[0].state;
+    },
+    (r) => {
+      r.renderedAsset.assetId = 'other';
+    },
+    (r) => {
+      r.captureVersion = 3;
+    },
+  ])
+    expect(
+      await reviewedMediumFi(
+        fixture((r) => {
+          v2(r);
+          change(r);
+        }),
+      ),
+    ).toBe(false);
+});
 it('rejects stale shipped LODs and changed image bytes', async () => {
   const input = fixture();
   input.sidecar.runtimeLods.levels = structuredClone(input.sidecar.runtimeLods.levels);

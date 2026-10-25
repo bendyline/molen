@@ -6,7 +6,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u2/u2y/n0299_wawel_castle/',
+  '../../../content/worldgen/source/places/u2/u2y/wawel_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -685,7 +685,7 @@ export function buildWawelRuntime(o, level = 'closeup') {
 }
 export const buildWawelSkyline = (o) => buildWawelRuntime(o, 'skyline');
 export const wawelStudy = {
-  id: 'N0299',
+  id: 'wawel_castle',
   key: 'wawel_castle',
   title: 'Wawel Castle',
   category: 'castle',

@@ -44,28 +44,46 @@
       "command": ["node", "packages/worldgen/scripts/generate-additional-landmarks.mjs"]
     },
     {
-      "id": "worldgen-ksiaz-entrances",
-      "command": ["node", "packages/worldgen/scripts/generate-ksiaz-entrances.mjs"]
+      "id": "worldgen-place-u35-ksiaz-entrances",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u3/u35/ksiaz-entrances/models/generate-ksiaz-entrances.mjs"
+      ]
     },
     {
-      "id": "worldgen-ksiaz-park-structures",
-      "command": ["node", "packages/worldgen/scripts/generate-ksiaz-park-structures.mjs"]
+      "id": "worldgen-place-u35-ksiaz-park-structures",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/generate-ksiaz-park-structures.mjs"
+      ]
     },
     {
-      "id": "worldgen-ksiaz-service-structures",
-      "command": ["node", "packages/worldgen/scripts/generate-ksiaz-service-structures.mjs"]
+      "id": "worldgen-place-u35-ksiaz-service-structures",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/generate-ksiaz-service-structures.mjs"
+      ]
     },
     {
-      "id": "worldgen-ksiaz-swiss-houses",
-      "command": ["node", "packages/worldgen/scripts/generate-ksiaz-swiss-houses.mjs"]
+      "id": "worldgen-place-u35-ksiaz-swiss-houses",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/generate-ksiaz-swiss-houses.mjs"
+      ]
     },
     {
-      "id": "worldgen-old-ksiaz",
-      "command": ["node", "packages/worldgen/scripts/generate-old-ksiaz.mjs"]
+      "id": "worldgen-place-u35-old-ksiaz",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u3/u35/old_ksiaz_ruins/models/generate-old-ksiaz.mjs"
+      ]
     },
     {
-      "id": "worldgen-ksiaz-park-gates",
-      "command": ["node", "packages/worldgen/scripts/generate-ksiaz-park-gates.mjs"]
+      "id": "worldgen-place-u35-ksiaz-park-gates",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/generate-ksiaz-park-gates.mjs"
+      ]
     },
     {
       "id": "worldgen-researched-bridges",
@@ -84,24 +102,36 @@
       "command": ["node", "packages/worldgen/scripts/generate-lighthouse-models.mjs"]
     },
     {
-      "id": "worldgen-willis-tower",
-      "command": ["node", "packages/worldgen/scripts/generate-willis-tower.mjs"]
+      "id": "worldgen-place-dp3-willis-tower",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dp/dp3/willis_tower/models/generate-willis-tower.mjs"
+      ]
     },
     {
-      "id": "worldgen-next-1000",
-      "command": ["node", "packages/worldgen/scripts/generate-next-1000-models.mjs"]
+      "id": "worldgen-landmarks",
+      "command": ["node", "packages/worldgen/scripts/generate-landmark-models.mjs"]
     },
     {
-      "id": "worldgen-galata-tower",
-      "command": ["node", "packages/worldgen/scripts/generate-galata-tower.mjs"]
+      "id": "worldgen-place-sxk-galata-tower",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sx/sxk/galata_tower/models/generate-galata-tower.mjs"
+      ]
     },
     {
-      "id": "worldgen-gamla-bron",
-      "command": ["node", "packages/worldgen/scripts/generate-gamla-bron.mjs"]
+      "id": "worldgen-place-u7q-gamla-bron",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u7/u7q/gamla_bron/models/generate-gamla-bron.mjs"
+      ]
     },
     {
-      "id": "worldgen-severn-bridge",
-      "command": ["node", "packages/worldgen/scripts/generate-severn-bridge.mjs"]
+      "id": "worldgen-place-gcn-severn-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/gc/gcn/severn_bridge/models/generate-severn-bridge.mjs"
+      ]
     },
     {
       "id": "worldgen-site-structures",
@@ -128,6 +158,10 @@
       "command": ["node", "content/entities/source/aircraft/airliner/models/generate.mjs"]
     },
     {
+      "id": "entities-aircraft-expansion",
+      "command": ["node", "packages/entities/scripts/generate-aircraft.mjs"]
+    },
+    {
       "id": "entities-transit-bus",
       "command": ["node", "content/entities/source/transit/bus/models/generate.mjs"]
     },
@@ -149,19 +183,29 @@
     },
     {
       "id": "lantern-dungeon",
+      "outputs": ["examples/lantern-dungeon/asset-src"],
       "command": ["python", "examples/lantern-dungeon/tools/generate-assets.py"]
     },
     {
-      "id": "worldgen-ksiaz-stables",
-      "command": ["node", "packages/worldgen/scripts/generate-ksiaz-stables.mjs"]
+      "id": "worldgen-place-u35-ksiaz-stables",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/generate-ksiaz-stables.mjs"
+      ]
     },
     {
-      "id": "worldgen-ksiaz-palm-house",
-      "command": ["node", "packages/worldgen/scripts/generate-ksiaz-palm-house.mjs"]
+      "id": "worldgen-place-u35-ksiaz-palm-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/generate-ksiaz-palm-house.mjs"
+      ]
     },
     {
-      "id": "worldgen-ksiaz-palm-services",
-      "command": ["node", "packages/worldgen/scripts/generate-ksiaz-palm-services.mjs"]
+      "id": "worldgen-place-u35-ksiaz-palm-services",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/generate-ksiaz-palm-services.mjs"
+      ]
     },
     {
       "id": "worldgen-authored-places",

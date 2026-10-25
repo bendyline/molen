@@ -1,0 +1,325 @@
+{
+  "planId": "ambassador_hotel_los_angeles",
+  "id": "ambassador_hotel_los_angeles",
+  "assetId": "molen.worldgen.structure.ambassador_hotel_los_angeles",
+  "title": "Ambassador Hotel, Los Angeles",
+  "category": "hotel-commercial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.29702766836178,
+    "latitude": 34.05962687983219
+  },
+  "size": [
+    140.25716018676758,
+    32.200000047683716,
+    125.27152633666992
+  ],
+  "actualBounds": {
+    "min": [
+      -46.42818832397461,
+      -1.2000000476837158,
+      -75.73181915283203
+    ],
+    "max": [
+      93.82897186279297,
+      31,
+      49.53970718383789
+    ]
+  },
+  "visualBrief": "Opening-year1921historical Ambassador Hotel: complete H-shaped six-storey stucco guest block/four splayed arms/open courts, overhanging intersecting dark hipped roofs/terminal ridges and roof service stacks, traced larger lower casino/base, attached lower north dining/cafe block, rear kitchen/service projection and east indoor terrace/own open entrance canopy/threshold. Original period plans/aerial guide topology; exact upper floor/roof/window/section and street registration estimates. Historical-only1921; no modern hotel or current school model.",
+  "nativeAxes": {
+    "x": "north along original drawing rightward",
+    "y": "up",
+    "z": "east along original drawing downward"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1921",
+    "validFrom": "1921-01-01",
+    "validUntil": "1922-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ambassador_aerial_view_1921.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ambassador_Hotel_block_plan.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ambassador_Hotel_floor_plan_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ambassador_Hotel_floor_plan_2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ambassador-hotel-los-angeles-wp",
+      "url": "https://qualla.com/ambassador-hotel-los-angeles/"
+    }
+  ],
+  "referenceInputHash": "bac2f35c6acff1551e443c00ee260748f7feb35c8d4a2ca7a26e1bf78d3ee935",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ambassador-hotel-los-angeles.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ambassador-hotel-los-angeles.mjs",
+    "level": "skyline",
+    "export": "ambassadorSkyline",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.36,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ambassadorDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "ambassadorStreet",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.9,
+    "groundY": -1.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Former Ambassador Hotel reconstructed only for representative1921historical viewing. No surviving hotel roof polygon exists: current campus/park and modern named AmbassadorHotelmarker10933394774are not adopted as its plan/anchor. Exact native Catalina/Wilshirejunction123138044and Catalina/Eighthjunction123384153supply present-day street context. Approximate printed plot street-centre controls[1250,745]/[215,745]fit original north-right/east-down drawing to those retained intersections, giving about0.4343m/px. Original signed plot/footprints remain historic image evidence, not a modern survey. Main Hbase/casino trace and upper guest mass/roof inferred separately from actual1921aerial; original1405x660ftproperty text is a reasonableness control only, not a whole-site model. Changed street widths/paper reproduction and old building corners are unmeasured; registration/upper-floor sections remain bounded estimates. Independent modern terrain frozen at historical east entry before geometry. Old foundations/threshold/grade and changed school grading remain approximate; no flattening or parcel platform.",
+    "anchor": [
+      -118.29702766836178,
+      34.05962687983219
+    ],
+    "heading": 1.5689909695014796,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.29678740276583,
+        34.05966553606283
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed historical east main-entry approach outside the traced terrace/porch, before raw modern terrain/geometry. Modern school grading and old foundations/threshold remain unverified. No terrain fitting or full-site platform."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "historic-main-h-base-trace-1921"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Ambassador_Hotel_block_plan.jpg",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a56a75c47906546b2031da69188e3fb43cad39cb1ae0138b18d60dee2d2ad8f3",
+    "notes": "Historical1921Ambassador Hotel central connected building exterior: whole six-storey H-shaped guest block with four splayed end arms/open east and west courts, overhanging dark hipped tile roofs/end ridges, pale stucco/darker sash windows, central rear kitchen/service projection, intrinsic attached lower north dining/cafe/Cocoanut Grove casino volume and east indoor-terrace/entry porch/porte-cochere. Period plans control base topology and relative sections; upper guest-block footprint/sections interpreted from1921aerial. Exclude detached staff/garage ranges and cottages, parcel tennis/landscape/roads/gardens, interiors/grove murals/artwork/lettering/signs/traffic/people, later renovations/ambassador signage and modern Robert F.Kennedy campus. Former hotel demolished; explicit historical-only1921appearance, never default current-world."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Former Ambassador Hotel reconstructed only for representative1921historical viewing. No surviving hotel roof polygon exists: current campus/park and modern named AmbassadorHotelmarker10933394774are not adopted as its plan/anchor. Exact native Catalina/Wilshirejunction123138044and Catalina/Eighthjunction123384153supply present-day street context. Approximate printed plot street-centre controls[1250,745]/[215,745]fit original north-right/east-down drawing to those retained intersections, giving about0.4343m/px. Original signed plot/footprints remain historic image evidence, not a modern survey. Main Hbase/casino trace and upper guest mass/roof inferred separately from actual1921aerial; original1405x660ftproperty text is a reasonableness control only, not a whole-site model. Changed street widths/paper reproduction and old building corners are unmeasured; registration/upper-floor sections remain bounded estimates.",
+    "Historical-only representative opening-year1921appearance, with explicit1921-01-01through1922-01-01viewing range. Photographs/plans were published in June/November1921; no exact exposure day, invariant later appearance or current surviving hotel is claimed. Modern school/park/marker are not substituted for former building geometry.",
+    "Four exact native Qualla originals were inspected:1921Comstockaerial and casino/base/basement plans, plus November1921BuildingReviewplot signed MyronHunt. Exact nativeSHA1/pinned publisher/date/archival plate/PD-US records qualify; omitted generated category for the plot is resolved by hash-bound primary dated-publication proof, with Qualla media metadata untouched. No later postcard/2004facade/interior/portrait, generated bitmap or copied pixels.",
+    "Whole central connected hotel assembly: six-storey Hguest block/four splayed arms and open courts, traced larger lower casino/base, low north dining/cafe/CocoanutGrove volume, rear kitchen/service and east indoor terrace/own open entrance canopy/threshold. Separate employee/garage ranges, detached resort cottages, gardens/tennis/roads/landscape, signage/artwork/interiors and modern campus excluded.",
+    "The lower plans are not surveyed upper guest-floor plans. Upper Hunion,22.8meaves/28.2mridges/31mservice stacks, roof intersections, sash/window census, low-block sections/roof shape and entrance/hidden construction are bounded interpretations of the aerial and historic base/block plans. Pale warm stucco and dark tile/wood/glass are medium-fi material estimates from monochrome sources; no exact historic color survey or engineering replica claim.",
+    "Native street junctions establish an approximate plot registration and metric scale, not original hotel corner surveys; changed road widths/paper reproduction introduce uncertainty. Raw300mcurrentTerrariumfield remains unchanged at fixed east entry.1921ground and modern campus grading differ; old footprint/threshold/bedrock/host contact remain unverified. No authored courtyard pavement or generic site slab."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "east-h-shaped-guest-wings-open-court-and-entry",
+      "position": [
+        98,
+        37,
+        130
+      ],
+      "lookAt": [
+        3,
+        12,
+        2
+      ]
+    },
+    {
+      "name": "splayed-wing-hipped-roof-eaves-and-sash-windows",
+      "position": [
+        -77,
+        40,
+        77
+      ],
+      "lookAt": [
+        -34,
+        19,
+        27
+      ]
+    },
+    {
+      "name": "rear-service-block-and-west-open-court",
+      "position": [
+        -95,
+        62,
+        -135
+      ],
+      "lookAt": [
+        0,
+        13,
+        -42
+      ]
+    },
+    {
+      "name": "north-attached-dining-block-and-terrace-canopy",
+      "position": [
+        135,
+        30,
+        64
+      ],
+      "lookAt": [
+        58,
+        6,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 46184,
+    "vertices": 138552,
+    "materials": 5,
+    "bytes": 5545324,
+    "sha256": "sha256:168be796261c69b7e46036c5a1c239f06b45252842cf8cc3de210f4306a5b636"
+  }
+}

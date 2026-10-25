@@ -10,7 +10,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { windsorStudy } from '../../worldgen/scripts/windsor-castle-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/gc/gcp/n0239_windsor_castle'),
+const source = resolve('../../content/worldgen/source/places/gc/gcp/windsor_castle'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
@@ -115,7 +115,7 @@ it('reproduces the original detailed Windsor and independently verifies signed f
   expect(m.triangleCount).toBe(385417);
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=N0239', '--check'],
+    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=windsor_castle', '--check'],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const spec = await read(`${source}/spec.json`),

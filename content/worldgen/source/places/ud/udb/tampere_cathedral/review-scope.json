@@ -1,0 +1,349 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_granite",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.8,
+      "metallic": 0.35
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "louver": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tampere-cathedral-model.mjs",
+    "export": "buildTampereCathedralSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTampereCathedralDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "louver": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildTampereCathedralStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "louver": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTampereCathedralCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "louver": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -94,
+      66,
+      110
+    ],
+    "lookAt": [
+      -1,
+      25,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tampere-cathedral-skyline",
+      "position": [
+        -94,
+        66,
+        110
+      ],
+      "lookAt": [
+        -1,
+        25,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tampere-cathedral-district",
+      "position": [
+        -94,
+        66,
+        110
+      ],
+      "lookAt": [
+        -1,
+        25,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tampere-cathedral-street",
+      "position": [
+        -94,
+        66,
+        110
+      ],
+      "lookAt": [
+        -1,
+        25,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tampere-cathedral-closeup",
+      "position": [
+        -94,
+        66,
+        110
+      ],
+      "lookAt": [
+        -1,
+        25,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-cutout.terrain.json",
+    "heightmap": "terrain-cutout.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.finnish_log_cabin",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      23.769840877,
+      61.502489582
+    ],
+    "heading": 0.150597742317,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Reviewed Y=0 attachment convention,not exact host terrain contact. Standard viewer DEM datum 112.765598 m at the western approach reference; church-center sample 124.958456 m is retained separately. Raw selected-control perimeter -0.65..10.26 m. Estimated floor0.4 m; footings crossY=0 and extend below samples. No terrain flattening or road replacement. Exact park,pavement,gate/door joins,base clipping,absolute altitude and walking remain unverified. The standard DEM church-center sample124.958456 m stands about12 m above the western approach reference. Use that retained approach reference as the terrain attachment datum. A bounded64x53 m reversible ground opening covers the authored church,gatehouses and reconstructed inner apron. A completeY=0 floor and a perimeter apron fitted to retained DEM samples cover the opening. Raw standard heights stay intact;terrain restores when the model hides/unloads. Grade,wall wings and exact park/gate/door/host joins remain reconstructed and unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        23.769207975677983,
+        61.50244375902157
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 112.765598 m at the western approach reference; church-center sample 124.958456 m is retained separately. Raw selected-control perimeter -0.65..10.26 m. Estimated floor0.4 m; footings crossY=0 and extend below samples. No terrain flattening or road replacement. Exact park,pavement,gate/door joins,base clipping,absolute altitude and walking remain unverified."
+    },
+    "bounds": [
+      23.756,
+      61.496,
+      23.784,
+      61.509
+    ],
+    "notes": "Exact retained way/88874701 and Q1236638 match current whole 35184460963533 and its same-ID multilingual Tampere Cathedral/Tampereen tuomiokirkko POI. All eight selected whole/part/gatehouse controls and their raw points/properties remain source inputs, alongside the earlier 23-point whole outline. Anchor and heading0.150597742317 rad are unchanged. The tall southwest tower, lower northwest tower and west rose/portal in inspected photographs sign the -X front; the south transverse gable and third northeast spire agree with the plan. No horizontal rescale. Standard viewer DEM datum 112.765598 m at the western approach reference; church-center sample 124.958456 m is retained separately. Raw selected-control perimeter -0.65..10.26 m. Estimated floor0.4 m; footings crossY=0 and extend below samples. No terrain flattening or road replacement. Exact park,pavement,gate/door joins,base clipping,absolute altitude and walking remain unverified. The standard DEM church-center sample124.958456 m stands about12 m above the western approach reference. Use that retained approach reference as the terrain attachment datum. A bounded64x53 m reversible ground opening covers the authored church,gatehouses and reconstructed inner apron. A completeY=0 floor and a perimeter apron fitted to retained DEM samples cover the opening. Raw standard heights stay intact;terrain restores when the model hides/unloads. Grade,wall wings and exact park/gate/door/host joins remain reconstructed and unverified.",
+    "groundCutout": {
+      "outline": [
+        [
+          -38,
+          -22
+        ],
+        [
+          26,
+          -22
+        ],
+        [
+          26,
+          31
+        ],
+        [
+          -38,
+          31
+        ]
+      ],
+      "basis": "The standard DEM church-center sample124.958456 m stands about12 m above the western approach reference. Use that retained approach reference as the terrain attachment datum. A bounded64x53 m reversible ground opening covers the authored church,gatehouses and reconstructed inner apron. A completeY=0 floor and a perimeter apron fitted to retained DEM samples cover the opening. Raw standard heights stay intact;terrain restores when the model hides/unloads. Grade,wall wings and exact park/gate/door/host joins remain reconstructed and unverified."
+    }
+  },
+  "geographicNote": "Standard viewer DEM datum 112.765598 m at the western approach reference; church-center sample 124.958456 m is retained separately. Raw selected-control perimeter -0.65..10.26 m. Estimated floor0.4 m; footings crossY=0 and extend below samples. No terrain flattening or road replacement. Exact park,pavement,gate/door joins,base clipping,absolute altitude and walking remain unverified. The standard DEM church-center sample124.958456 m stands about12 m above the western approach reference. Use that retained approach reference as the terrain attachment datum. A bounded64x53 m reversible ground opening covers the authored church,gatehouses and reconstructed inner apron. A completeY=0 floor and a perimeter apron fitted to retained DEM samples cover the opening. Raw standard heights stay intact;terrain restores when the model hides/unloads. Grade,wall wings and exact park/gate/door/host joins remain reconstructed and unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-cutout.terrain.json",
+    "terrain-cutout.height.png"
+  ]
+}

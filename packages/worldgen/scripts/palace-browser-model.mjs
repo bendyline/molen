@@ -19,7 +19,7 @@ import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
 const map = JSON.parse(
-    readFileSync(structureSourcePath('n0146_palace_of_culture_and_science', 'map-frame.json')),
+    readFileSync(structureSourcePath('palace_of_culture_and_science', 'map-frame.json')),
   ),
   MEANS = {
     cladding: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],

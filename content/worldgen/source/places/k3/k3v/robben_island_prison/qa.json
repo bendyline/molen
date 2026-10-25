@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.robben_island_prison",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:9daf19593cf623e3269a61e6f2122eab7ce928e87fdfe071ed7fd3d0d7465498",
-  "sourceHash": "sha256:b92ec0729bf31c833168bea630d2b4e845b472373102c64b3714ec174fd5fcb2",
-  "runtimeHash": "sha256:153275e73e8ccea8ac8a28cc20095be2a10c5d3c76cbca757e78235af5ef3ab5",
-  "captureReportHash": "sha256:61b2d055c4fb820392506759387aedff3cd2cfaec3069fa58f96ef520febd0f2",
+  "inputHash": "sha256:2fc8450d2f3f20c98705c55326ec2e52ad00b2eec3759bcb0de01a13f6358f58",
+  "sourceHash": "sha256:6bf2befe6d33fb346d90ccb9be42646a91bca881af66b4bb8c72db590411b146",
+  "runtimeHash": "sha256:adbef0b6001970a45a2fded1966c11e8765cb715de30e98925b7543f379cb622",
+  "captureReportHash": "sha256:a1a3b714c2c6fa30fd42eb764726cf5188a75f348e6b05b02f8b244b46a4e965",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:a1a3b714c2c6fa30fd42eb764726cf5188a75f348e6b05b02f8b244b46a4e965",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/courtyard-windows.png",
+      "shots/window-sill.png"
     ],
-    "notes": "Inspected all seven current portable views and the full entrance close view against individually inspected Qualla entrance, B-section, watchtower and roof photographs. The four H-blocks, open main courts, kitchen and dining buildings remain separate; entrance now has four windows left and seven right of its door, irregular blue-stone cladding and pale corrugated gable."
+    "notes": "All nine current portable frames inspected, including both new courtyard window/sill cameras. Projecting red sills have visible slope/thickness; close security bars stand forward of the opaque glazing and leave open gaps. Existing compound/courtyard/tower/roof masses and source-native terrain retained. Exact B-section-to-mapped-court identification is not asserted."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:d6c6a2dbd772f295126d244665d3d447d67f6b687bdccf8d08894564c83083a0",
+    "captureReportHash": "sha256:c0e1bc0d88696ff7304d553ea3ec5d0e8c69fe2cd89d7c543db68dedc68c3ef7",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,37 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/courtyard-windows.png",
+      "shots/shared/window-sill.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views, including the north-up individual-footprint overlay. Shared basalt, lime plaster, matte corrugation, concrete and painted metal retain metric-scale bindings. The flat-ground material fixture does not represent site elevation; the portable scene independently shows the preserved terrain."
+    "notes": "All nine current shared-material frames inspected, including both detail cameras and mapped overlay. Basalt/plaster, pale matte corrugation and metal/red sills bind with metric repeats; actual bar/sill depth remains legible. Original placement/transform and unload pass. Flat material fixture clips some inferred lower foundations and cannot establish surveyed ground fit; source-native portable/medium-fi views carry original relief context.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.stone_basalt": {
+        "path": "materials/stone_basalt.matgraph.json",
+        "hash": "sha256:41efa6ad89840fdf50772224f4eabb544099dc0cafa791c3a85f916b44b9bf8c"
+      },
+      "matgraph:molen.worldgen.material.metal_corrugated": {
+        "path": "materials/metal_corrugated.matgraph.json",
+        "hash": "sha256:f2d0648da95df58305679176365fd55b9656f3666312eea610394737e1c5001f"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:653301dfcde18f6af2c96e2d65d2970d27599229288772b6f5473028d5dcc056",
+    "captureReportHash": "sha256:1dee7059c134810e1ce97e07956a853dbb3bdb3ac58d104d8027342728f5f9cf",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +80,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/courtyard-windows.png",
+      "medium-fi/window-sill.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected nineteen current frames across light, quality and all four forced levels. Four H-blocks, open courts and five watchtowers remain recognizable at skyline; openings, fences, barred windows, irregular stone and roof detail return progressively. Synthetic surrounding buildings are style fixtures. No physical-device frame-rate measurement is claimed."
+    "notes": "All21current version-2 frames inspected across light/quality, native source terrain, front/back, both courtyard details and all forced levels. Solid sloping sills persist district onward; close bars have actual depth, while lower levels use planar grids. Four H-blocks, open courts, service roofs and five towers retain silhouette. Synthetic neighbors are style context."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +106,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00012252655029243442
     },
-    "notes": "Mapped building outlines and five tower positions establish the compound independently of the island story coordinate. Anchor [18.371111111111112,-33.80027777777778], heading 2.12; +X northwest along the entrance and +Z northeast toward the approach. Independent Terrarium data remains unmodified; datum is 6 m at entrance contact [-38,151]. Whole blocks use fixed local floor elevations, fences follow the slope, and foundations extend 1.5 m below floors. Coarse terrain and inferred levels are not a survey; other host DEMs can differ. Footprint replacement is off."
+    "notes": "Original mapped anchor[18.371111111111112,-33.80027777777778],heading2.12,+X northwest/+Z northeast, building/tower layout and placement retained. Original map and all three terrain files remain byte-identical; provider datum6m and original source-derived whole-block floors/fence slopes unchanged. Changed courtyard block retains its original inferred floorY0.59499876m; no ground fitting or artificial court surface added. Source-native and overlay views inspected. Heights and block floors remain coarse photographic/source-relative estimates, not a site survey or guarantee on another host DEM."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Surviving maximum-security prison compound exterior; Kramat, other prisons, graveyard, interiors and vegetation excluded.",
-    "notes": "Original medium-fi surviving prison exterior from individually inspected local 2010–2018 photographs, mapped footprints and the official museum description. Four H-blocks, main open courts, blue-stone entrance, services, five towers and perimeter are retained. Heights, hidden openings, court partitions, fine fence wire and roof joins are photographic interpretations. Matte corrugation depicts pale cement sheets without asserting the original roof is metal. No reference pixels or interiors are embedded."
+    "scope": "Surviving mapped maximum-security prison compound exterior, with new physical B-section window treatment on one retained courtyard facade. Harbor gateway, lighthouse and other outlying buildings excluded.",
+    "notes": "Started with cleared Qualla public-domain media metadata. Exact2009 B-section original already listed in Qualla was retrieved and individually inspected at3264x2448; local native bytes were absent. Named photographer Rq88187 explicitly released the self-taken photograph into public domain. Primary PD-user-en dedication, original account/filename/upload-log dimensions and byte size, clean no-attribution/no-restrictions metadata and original SHA-1/SHA-256 bound. Cleared harbor gateway photograph was also inspected and excluded because it is outside this compound. Prior attribution-licensed photos excluded as current controls. Nine windows on one retained mapped courtyard facade now have physical sloping projecting red sills and close-range solid security bars with actual open air ahead of opaque glazing. Exact photograph-to-court/window identity, current condition, section sizes and metric spacing remain estimates. Other facade details, main roofs, fences, elevations and fine stonework remain inherited mapped approximations; only this visible window treatment is resolved by current imagery. Existing compound plan, four H-blocks, open courts, five towers, original terrain-derived whole-block floor and three source-ground files retained. No copied image pixels, interior, optical/civil/engineering certification or approval of another host terrain field."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:72315668958f95d67115380f00334f457056d0d19d1d54729db419f2ec9e56b9",
+    "recipeHash": "sha256:09eda87b07b83cccd654790dd0869ea8a266e161085af6858c7928ae81e6eb6e",
     "levels": [
       {
         "name": "skyline",
@@ -104,56 +133,1377 @@
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:e6442cb7b805fbd31feb3f58db651ace8fdca91aad788eb053054773999f31d0",
-        "bytes": 292084,
-        "gzipBytes": 52925,
-        "triangles": 3688,
-        "cpuBytes": 284712,
-        "gpuBytes": 284712,
+        "hash": "sha256:97ef697b9a84b400cd26617f6b9cc6b0b6be0ba8202a4208780439e06b141d4e",
+        "bytes": 311744,
+        "gzipBytes": 55671,
+        "triangles": 3940,
+        "cpuBytes": 304368,
+        "gpuBytes": 304368,
         "errorMeters": 0.65,
         "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:bc62d78696d9da8d1ee8f4b8d077abf30d6e21d6ff1221acc94b6dbd09fa8963",
-        "bytes": 1228832,
-        "gzipBytes": 241845,
-        "triangles": 15756,
-        "cpuBytes": 1221408,
-        "gpuBytes": 1221408,
+        "hash": "sha256:f957265ab6da0e533c1cf559ea734ec52e5a6b63dd0d96b701f9a43d4c6b5ca9",
+        "bytes": 1244276,
+        "gzipBytes": 245168,
+        "triangles": 15954,
+        "cpuBytes": 1236852,
+        "gpuBytes": 1236852,
         "errorMeters": 0.2,
         "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:7d10c3df0b7f0082603d04ab6dabedb269f083745bad5f8520c60e2c056ca6d8",
-        "bytes": 7597028,
-        "gzipBytes": 1411929,
-        "triangles": 63280,
-        "cpuBytes": 7593600,
-        "gpuBytes": 7593600,
+        "hash": "sha256:ea32fda1946aee01eee41d6cbf4f3637247cf2a8fe3bf6ff997dfeff15267e7e",
+        "bytes": 7672628,
+        "gzipBytes": 1422058,
+        "triangles": 63910,
+        "cpuBytes": 7669200,
+        "gpuBytes": 7669200,
         "errorMeters": 0,
         "drawCalls": 6
       }
     ],
-    "notes": "All four current levels were visually inspected and pass geometry/draw budgets: 912 skyline, 3688 district, 15756 street and 63280 closeup triangles. Skyline preserves the compound layout and tower silhouette; district adds principal openings and perimeter, street restores window/fence cues, closeup adds stone, bars and corrugation. Error values are authoring budgets, not measured mesh deviations."
+    "notes": "912/3940/15954/63910 triangles and1/6/6/6 draws pass strict budgets. Nine physical sloping sills exist district onward; close level has four solid vertical/two solid transverse bars per changed window, while district/street grids simplify to faces. Coarse compound and all unrelated geometry retained; declared errors remain authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 63280,
+    "sourceTriangles": 63910,
     "sourceMaterials": 6,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 912,
+        "drawCalls": 1,
+        "controls": 2,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "retained courtyard remains open",
+            "pass": true
+          },
+          {
+            "name": "retained mapped courtyard block roof",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 3940,
+        "drawCalls": 6,
+        "controls": 29,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "retained courtyard remains open",
+            "pass": true
+          },
+          {
+            "name": "retained mapped courtyard block roof",
+            "pass": true
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 0,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 0,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 0
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 1,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 1,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 1
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 2,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 2,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 2
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 3,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 3,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 3
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 4,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 4,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 4
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 5,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 5,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 5
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 6,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 6,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 6
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 7,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 7,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 7
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 8,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 8,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 8
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 15954,
+        "drawCalls": 6,
+        "controls": 29,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "retained courtyard remains open",
+            "pass": true
+          },
+          {
+            "name": "retained mapped courtyard block roof",
+            "pass": true
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 0,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 0,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 0
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 1,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 1,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 1
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 2,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 2,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 2
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 3,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 3,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 3
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 4,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 4,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 4
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 5,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 5,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 5
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 6,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 6,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 6
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 7,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 7,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 7
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 8,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 8,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 8
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 63910,
+        "drawCalls": 6,
+        "controls": 137,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "retained courtyard remains open",
+            "pass": true
+          },
+          {
+            "name": "retained mapped courtyard block roof",
+            "pass": true
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 0,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 0,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 0
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 0,
+            "bar": 1,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 0,
+            "bar": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 0,
+            "bar": 2,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 0,
+            "bar": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 0,
+            "bar": 3,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 0,
+            "bar": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 0,
+            "bar": 4,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 0,
+            "bar": 4
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 0,
+            "fraction": 0.34
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 0,
+            "fraction": 0.68
+          },
+          {
+            "name": "open exterior gap between security bars",
+            "pass": true,
+            "window": 0
+          },
+          {
+            "name": "opaque window boundary behind bars",
+            "pass": true,
+            "window": 0,
+            "x": -34.4900016784668
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 1,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 1,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 1,
+            "bar": 1,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 1,
+            "bar": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 1,
+            "bar": 2,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 1,
+            "bar": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 1,
+            "bar": 3,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 1,
+            "bar": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 1,
+            "bar": 4,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 1,
+            "bar": 4
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 1,
+            "fraction": 0.34
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 1,
+            "fraction": 0.68
+          },
+          {
+            "name": "open exterior gap between security bars",
+            "pass": true,
+            "window": 1
+          },
+          {
+            "name": "opaque window boundary behind bars",
+            "pass": true,
+            "window": 1,
+            "x": -34.4900016784668
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 2,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 2,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 2,
+            "bar": 1,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 2,
+            "bar": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 2,
+            "bar": 2,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 2,
+            "bar": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 2,
+            "bar": 3,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 2,
+            "bar": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 2,
+            "bar": 4,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 2,
+            "bar": 4
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 2,
+            "fraction": 0.34
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 2,
+            "fraction": 0.68
+          },
+          {
+            "name": "open exterior gap between security bars",
+            "pass": true,
+            "window": 2
+          },
+          {
+            "name": "opaque window boundary behind bars",
+            "pass": true,
+            "window": 2,
+            "x": -34.4900016784668
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 3,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 3,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 3,
+            "bar": 1,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 3,
+            "bar": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 3,
+            "bar": 2,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 3,
+            "bar": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 3,
+            "bar": 3,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 3,
+            "bar": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 3,
+            "bar": 4,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 3,
+            "bar": 4
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 3,
+            "fraction": 0.34
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 3,
+            "fraction": 0.68
+          },
+          {
+            "name": "open exterior gap between security bars",
+            "pass": true,
+            "window": 3
+          },
+          {
+            "name": "opaque window boundary behind bars",
+            "pass": true,
+            "window": 3,
+            "x": -34.4900016784668
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 4,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 4,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 4
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 4,
+            "bar": 1,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 4,
+            "bar": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 4,
+            "bar": 2,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 4,
+            "bar": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 4,
+            "bar": 3,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 4,
+            "bar": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 4,
+            "bar": 4,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 4,
+            "bar": 4
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 4,
+            "fraction": 0.34
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 4,
+            "fraction": 0.68
+          },
+          {
+            "name": "open exterior gap between security bars",
+            "pass": true,
+            "window": 4
+          },
+          {
+            "name": "opaque window boundary behind bars",
+            "pass": true,
+            "window": 4,
+            "x": -34.4900016784668
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 5,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 5,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 5
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 5,
+            "bar": 1,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 5,
+            "bar": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 5,
+            "bar": 2,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 5,
+            "bar": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 5,
+            "bar": 3,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 5,
+            "bar": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 5,
+            "bar": 4,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 5,
+            "bar": 4
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 5,
+            "fraction": 0.34
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 5,
+            "fraction": 0.68
+          },
+          {
+            "name": "open exterior gap between security bars",
+            "pass": true,
+            "window": 5
+          },
+          {
+            "name": "opaque window boundary behind bars",
+            "pass": true,
+            "window": 5,
+            "x": -34.4900016784668
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 6,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 6,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 6
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 6,
+            "bar": 1,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 6,
+            "bar": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 6,
+            "bar": 2,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 6,
+            "bar": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 6,
+            "bar": 3,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 6,
+            "bar": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 6,
+            "bar": 4,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 6,
+            "bar": 4
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 6,
+            "fraction": 0.34
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 6,
+            "fraction": 0.68
+          },
+          {
+            "name": "open exterior gap between security bars",
+            "pass": true,
+            "window": 6
+          },
+          {
+            "name": "opaque window boundary behind bars",
+            "pass": true,
+            "window": 6,
+            "x": -34.4900016784668
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 7,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 7,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 7
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 7,
+            "bar": 1,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 7,
+            "bar": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 7,
+            "bar": 2,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 7,
+            "bar": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 7,
+            "bar": 3,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 7,
+            "bar": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 7,
+            "bar": 4,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 7,
+            "bar": 4
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 7,
+            "fraction": 0.34
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 7,
+            "fraction": 0.68
+          },
+          {
+            "name": "open exterior gap between security bars",
+            "pass": true,
+            "window": 7
+          },
+          {
+            "name": "opaque window boundary behind bars",
+            "pass": true,
+            "window": 7,
+            "x": -34.4900016784668
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 8,
+            "z": 3.23,
+            "y": 1.9972210454348631,
+            "expected": 1.997220982222222
+          },
+          {
+            "name": "projecting solid sill has sloping top",
+            "pass": true,
+            "window": 8,
+            "z": 3.4,
+            "y": 1.9499989483085964,
+            "expected": 1.94999876
+          },
+          {
+            "name": "sill has physical front thickness",
+            "pass": true,
+            "window": 8
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 8,
+            "bar": 1,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 8,
+            "bar": 1
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 8,
+            "bar": 2,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 8,
+            "bar": 2
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 8,
+            "bar": 3,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 8,
+            "bar": 3
+          },
+          {
+            "name": "solid vertical security bar front",
+            "pass": true,
+            "window": 8,
+            "bar": 4,
+            "x": -34.369998931884766
+          },
+          {
+            "name": "vertical security bar inward side",
+            "pass": true,
+            "window": 8,
+            "bar": 4
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 8,
+            "fraction": 0.34
+          },
+          {
+            "name": "solid transverse security bar",
+            "pass": true,
+            "window": 8,
+            "fraction": 0.68
+          },
+          {
+            "name": "open exterior gap between security bars",
+            "pass": true,
+            "window": 8
+          },
+          {
+            "name": "opaque window boundary behind bars",
+            "pass": true,
+            "window": 8,
+            "x": -34.4900016784668
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/k3/k3v/robben_island_prison/verify-windows.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration, asset integrity, strict LOD/material budgets and source/imported normals/winding/UVs pass. Imported controls verify nine sloping sill tops at two depths, solid front thickness, all close vertical bar fronts/inward sides, transverse bars, air between bars and opaque glazing behind them. Retained court remains open and original mapped roof remains present. Controls2/29/29/137 pass. Original map/terrain hashes retained; no unchanged finished model regenerated or blanket revalidated."
   },
   "limitations": [
-    "Original medium-fi surviving museum exterior, based on individually inspected 2010–2018 Qualla photographs and mapped footprints; not a site survey.",
+    "Original medium-fi surviving compound exterior. Current window construction uses the exact2009 B-section native original already cleared as public domain in Qualla, with the named creator release and original upload log verified. Earlier attribution-licensed imagery is excluded as current control; other compound elevations remain inherited mapped approximations.",
+    "Nine windows on one retained mapped courtyard facade now have solid security bars at close range and physical sloping red sills from district onward. The B-section photograph controls visible treatment; exact photo-to-court/window identity, metric sections, spacing and present condition remain estimates. Other facades retain generalized window geometry.",
     "Four H-blocks, main open courtyards, service buildings and five watchtowers retain their mapped layout. Main roof segmentation, smaller courtyard walls and hidden facade details are interpretations.",
     "Heights, window spacing beyond the photographed entrance and B-section, fence bays and rooftop equipment are photographic estimates. Irregular blue-stone cladding is generalized using authored polygons and shared basalt.",
     "Roof uses a matte corrugated shared surface to represent the observed pale cement sheets; it is not evidence that the original roof is metal.",
@@ -163,6 +1513,81 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:9bf8756a56bebbc4288451f22dbe75426b42eafb04bfc66df1966dcf9003bde4",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:2fc8450d2f3f20c98705c55326ec2e52ad00b2eec3759bcb0de01a13f6358f58",
+    "referenceInputHash": "c0cf7e15d60d676440293655426df0c42a100c586dfd297476844e20dc31e66b",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/b-section-2009.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:f4922dc175a87cb341496d1e01616e14ca7fb3ea573db6aa2460f4a9d42dda36",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/k/3/v/p/robben-island-prison-wp/hero.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Maximum_Security_Prison,_Robben_Island_(01).jpg",
+        "reason": "Earlier attribution-licensed photograph excluded as current construction control."
+      },
+      {
+        "path": "_m/k/3/v/p/robben-island-prison-wp/place-unesco-world-her-1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:B-Section,_Maximum_Security_Prison,_Robben_Island_(01).jpg",
+        "reason": "Earlier attribution-licensed photograph excluded as current construction control."
+      },
+      {
+        "path": ".artifacts/reference-photos/harbor-sign-2016.jpg",
+        "reason": "Individually inspected cleared public-domain photograph is an outlying harbor gateway/sign, outside this prison compound model; excluded from current construction controls."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Qualla cleared metadata first. Exact native named-creator public-domain B-section photograph supplies current window treatment. Explicit creator dedication, original source account/filename/upload-log dimensions and bytes, primary transfer record and image SHA-1/SHA-256 verified. Harbor gateway inspected but excluded; older attribution-licensed exteriors excluded. No new external photograph discovery. Source checker now recognizes this exact named English-Wikipedia original-upload grant with strict file/account/byte binding;18targeted policy tests pass, including attribution/restriction/wrong-author/wrong-file rejection."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "robben_island_prison",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:2fc8450d2f3f20c98705c55326ec2e52ad00b2eec3759bcb0de01a13f6358f58",
+    "sourceHash": "sha256:6bf2befe6d33fb346d90ccb9be42646a91bca881af66b4bb8c72db590411b146",
+    "runtimeHash": "sha256:adbef0b6001970a45a2fded1966c11e8765cb715de30e98925b7543f379cb622",
+    "built": [
+      "Nine projecting sloped red window sills with physical thickness",
+      "Four solid vertical security bars per close window",
+      "Two solid transverse bars per close window",
+      "Open exterior air between bars ahead of opaque window boundary"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 2,
+    "triangles": [
+      912,
+      3940,
+      15954,
+      63910
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      6
+    ],
+    "limits": "Started with cleared Qualla public-domain media metadata. Exact2009 B-section original already listed in Qualla was retrieved and individually inspected at3264x2448; local native bytes were absent. Named photographer Rq88187 explicitly released the self-taken photograph into public domain. Primary PD-user-en dedication, original account/filename/upload-log dimensions and byte size, clean no-attribution/no-restrictions metadata and original SHA-1/SHA-256 bound. Cleared harbor gateway photograph was also inspected and excluded because it is outside this compound. Prior attribution-licensed photos excluded as current controls. Nine windows on one retained mapped courtyard facade now have physical sloping projecting red sills and close-range solid security bars with actual open air ahead of opaque glazing. Exact photograph-to-court/window identity, current condition, section sizes and metric spacing remain estimates. Other facade details, main roofs, fences, elevations and fine stonework remain inherited mapped approximations; only this visible window treatment is resolved by current imagery. Existing compound plan, four H-blocks, open courts, five towers, original terrain-derived whole-block floor and three source-ground files retained. No copied image pixels, interior, optical/civil/engineering certification or approval of another host terrain field.",
+    "publicDomainOriginals": 1,
+    "changedCourtyardWindows": 9,
+    "rightsPolicyTestsPassed": 18,
+    "completedStorySync": {
+      "linkedStories": 2,
+      "writtenArticles": 2,
+      "repeatChanges": 0
+    }
   }
 }

@@ -1,0 +1,165 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.toyota_alphard_2024": {
+      "doc": "2024 Toyota Alphard; Japan-market configuration. Original polygonal reference interpretation, simplified trim and game handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.toyota_alphard_2024",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.toyota_alphard_2024",
+          "color": "#e4e2d9",
+          "spec": {
+            "label": "2024 Toyota Alphard",
+            "bodyStyle": "van",
+            "genericLabel": "Minivan",
+            "width": 2.15,
+            "length": 5.175,
+            "height": 2.015,
+            "centerOfMass": [
+              0,
+              0.5805,
+              0
+            ],
+            "wheelbase": 3,
+            "wheelTrack": 1.591,
+            "wheelRadius": 0.35,
+            "mass": 1877,
+            "engineForce": 6381.8,
+            "maxSpeed": 38,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              -0.4255,
+              1.665,
+              0.699
+            ],
+            "drive": "front",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.17,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.4255,
+                1.665,
+                0.699
+              ]
+            }
+          ],
+          "entries": [
+            [
+              -1.375,
+              0,
+              0.699
+            ]
+          ],
+          "exits": [
+            [
+              -1.475,
+              0,
+              0.699
+            ],
+            [
+              1.475,
+              0,
+              0.699
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1,
+          "colors": [
+            "#e4e2d9",
+            "#deded7",
+            "#555c63",
+            "#a8adb0",
+            "#314852"
+          ]
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.toyota_alphard_2024"
+      ]
+    }
+  }
+}

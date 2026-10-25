@@ -1,0 +1,221 @@
+{
+  "variant": "Airbus H145 D3, five-blade rotor, standard low skids and eight-seat passenger cabin",
+  "references": [
+    {
+      "url": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/3061-S-00-rev1%20%282%29.pdf",
+      "title": "Ground Rescue Booklet H145/H145M, 3061-S-00 revision 1, 2021-06-09",
+      "author": "Airbus Helicopters",
+      "license": "Copyright Airbus; local analysis only, no source pixels shipped.",
+      "scope": "Page 4/21 dimensioned D3 views; page 16/21 Helionix cockpit; rear doors and crew-seat details."
+    },
+    {
+      "url": "https://mediaassets.airbus.com/pm_38_379_379528-yay86tech1.pdf?fileName=brochure-h145.pdf",
+      "title": "Airbus H145 brochure",
+      "author": "Airbus Helicopters",
+      "license": "Copyright Airbus; local analysis only.",
+      "scope": "Five-blade D3 three-quarter exterior and full Helionix cockpit photographs."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.04,
+      0.68
+    ],
+    "lookAt": [
+      0,
+      1.55,
+      2.12
+    ],
+    "fov": 82
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.53
+    ],
+    "viewHeight": 1.02,
+    "cameraHeight": 8.3
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/h145-dimensions-large.png",
+      "crop": {
+        "left": 1190,
+        "top": 2040,
+        "width": 1150,
+        "height": 430
+      },
+      "referenceAnchor": [
+        1590,
+        2396
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 966,
+        "meters": 11.69,
+        "description": "Printed 11.69m nose to tail length."
+      },
+      "scope": "Manufacturer line drawing of D3; rotor azimuth and blade droop differ."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/h145-dimensions-large.png",
+      "crop": {
+        "left": 1150,
+        "top": 2480,
+        "width": 1200,
+        "height": 650
+      },
+      "referenceAnchor": [
+        1583,
+        2860
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 966,
+        "meters": 11.69,
+        "description": "Printed 11.69m nose to tail length."
+      },
+      "rotate": 270,
+      "scope": "Manufacturer line drawing of D3; rotor azimuth and blade droop differ."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/h145-dimensions-large.png",
+      "crop": {
+        "left": 1450,
+        "top": 3150,
+        "width": 400,
+        "height": 470
+      },
+      "referenceAnchor": [
+        1632,
+        3484
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 200,
+        "meters": 2.4,
+        "description": "Printed 2.40m outside skid span."
+      },
+      "scope": "Manufacturer line drawing of D3; rotor azimuth and blade droop differ."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/h145-cockpit-layout.png",
+      "crop": {
+        "left": 248,
+        "top": 791,
+        "width": 1183,
+        "height": 649
+      },
+      "referenceAnchor": [
+        845.8202247191011,
+        814.0224719101125
+      ],
+      "modelAnchor": [
+        0,
+        -1.85
+      ],
+      "scaleControls": {
+        "pixels": 1157.4382022471912,
+        "meters": 1.16,
+        "description": "Assumed 1.16m overall panel width; relative layout only, no claim of measured interior scale."
+      },
+      "edgeMode": "photo",
+      "scope": "Nearly frontal cockpit photo, with perspective uncorrected; flat panel positions and contour compared. Callout labels are ignored."
+    }
+  ],
+  "status": "reviewed-with-limitations",
+  "reviewNotes": {
+    "corrections": [
+      "Own D3 airframe from dimensioned projections, five main rotor blades, ten visible Fenestron blades and true through-duct, twin engine cowling, low skids and rear clamshell seams.",
+      "Helionix three-screen and standby layout traced from Airbus frontal cockpit photograph; engine controls, paired lower screens, console, overhead and eight individual seats.",
+      "Overlay iterations extended the forward glazing, adjusted stabilizer height and parked blade angle, corrected pedestal interference and its attachment, and fixed one-sided tail fan blades."
+    ],
+    "limitations": [
+      "Cabin and engine-fairing compound curves are deliberately faceted; the drawing projections differ slightly in vertical proportions. Printed dimensions govern.",
+      "Panel width of 1.16m is an explicit estimate: the nearly frontal source photo supplies relative positions, not a measured cockpit installation. Perspective, coaming depth and seat dimensions remain approximate.",
+      "Manufacturer photo shows more equipment detail than the simplified original display graphics and modeled overhead switches. Optional mission fittings and liveries vary.",
+      "Reference pictures remain local research material; no source pixels are distributed."
+    ],
+    "independentDimensions": [
+      {
+        "feature": "nose to tail",
+        "referenceMeters": 11.69,
+        "modelMeters": 11.69
+      },
+      {
+        "feature": "cabin body length",
+        "referenceMeters": 6.17,
+        "modelMeters": 6.17
+      },
+      {
+        "feature": "body width",
+        "referenceMeters": 1.73,
+        "modelMeters": 1.73
+      },
+      {
+        "feature": "outside skid span",
+        "referenceMeters": 2.4,
+        "modelMeters": 2.4
+      },
+      {
+        "feature": "main rotor diameter",
+        "referenceMeters": 10.8,
+        "modelMeters": 10.8
+      },
+      {
+        "feature": "Fenestron duct diameter",
+        "referenceMeters": 1.15,
+        "modelMeters": 1.15
+      },
+      {
+        "feature": "stabilizer outside span",
+        "referenceMeters": 2.71,
+        "modelMeters": 2.71
+      }
+    ],
+    "visual": "Inspected all four overlays, four turntables, lit three-quarter, pilot operator, close cockpit and cabin-wide renders. Corrected geometry from comparisons and rechecked the final fan and pedestal attachment."
+  },
+  "sourceHash": "sha256:b9a6371a912289be3305c9ec0ba55f9517f71f82990c6c44f684d2a31492d95e",
+  "runtimeHash": "sha256:d1e9b9dc6c8a9cdd93a5f3bc3e2d6a203e3b11bdbfbaa29e5001f90aad6a40c4",
+  "limitations": [
+    "Cabin and engine-fairing compound curves are deliberately faceted; the drawing projections differ slightly in vertical proportions. Printed dimensions govern.",
+    "Panel width of 1.16m is an explicit estimate: the nearly frontal source photo supplies relative positions, not a measured cockpit installation. Perspective, coaming depth and seat dimensions remain approximate.",
+    "Manufacturer photo shows more equipment detail than the simplified original display graphics and modeled overhead switches. Optional mission fittings and liveries vary.",
+    "Reference pictures remain local research material; no source pixels are distributed."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:26c7f8b0561f586f52c4eb8bafa15ff86dc53b46451c62e9c817fd3943d3b2a7",
+    "sourceHash": "sha256:b9a6371a912289be3305c9ec0ba55f9517f71f82990c6c44f684d2a31492d95e",
+    "runtimeHash": "sha256:d1e9b9dc6c8a9cdd93a5f3bc3e2d6a203e3b11bdbfbaa29e5001f90aad6a40c4",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/airbus-h145-pair.png",
+        "sha256": "sha256:edee7cefc4ca366cf69d89a41431017b526cd6a2ef2f64bcd1de88236c61e82e",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

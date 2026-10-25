@@ -1,0 +1,288 @@
+{
+  "planId": "ruins_of_saint_paul_s",
+  "id": "ruins_of_saint_paul_s",
+  "assetId": "molen.worldgen.structure.ruins_of_saint_paul_s",
+  "title": "Ruins of Saint Paul's",
+  "category": "archaeological",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 113.54085937142372,
+    "latitude": 22.197457007367163
+  },
+  "size": [
+    21.799999237060547,
+    26.450000762939453,
+    4.752265214920044
+  ],
+  "actualBounds": {
+    "min": [
+      -10.899999618530273,
+      -0.25,
+      -2.5999999046325684
+    ],
+    "max": [
+      10.899999618530273,
+      26.200000762939453,
+      2.1522653102874756
+    ]
+  },
+  "visualBrief": "Complete surviving five-tier granite facade with3real open portals/upper lights, bronze saints in deep shell niches, layered paired columns/capitals/entablatures, carved ship/dragon/skeleton/hourglass/angel/scroll relief, triangular dove/sun/star pediment, pin finials/cross and bounded threshold stairs/low rear remnants. No burned church or long public stairway reconstruction. Complete compiled-native thin facade extent; elevation detail and concealed rear supports are photographic estimates.",
+  "nativeAxes": {
+    "x": "east/slightly-north",
+    "y": "up",
+    "z": "south/slightly-east/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%E5%A4%A7%E4%B8%89%E5%B7%B4%E7%89%8C%E5%9D%8A.jpg",
+    "https://commons.wikimedia.org/wiki/File:Na_Tcha_Temple_and_the_Ruins_of_St._Paul's.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ruins-of-saint-paul-s-wp",
+      "url": "https://qualla.com/ruins-of-saint-paul-s/"
+    }
+  ],
+  "referenceInputHash": "75a31c0a03377a13b440143766a2d20bc19b8790e4295adb4a143f5d6b5a120f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ruins-of-saint-pauls.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c",
+    "trevi-sculpture-anatomy.mjs": "sha256:8bf01ff4b4097572de1b62930cb9bb0e732f873944c25995e42875032873e603"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ruins-of-saint-pauls.mjs",
+    "level": "skyline",
+    "export": "saintPaulsSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.82,
+        "metallic": 0.25
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "repair": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "saintPaulsDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "repair": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "saintPaulsStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "repair": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4,
+    "cameraYaw": 0
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named facade building/POIidentity35184564272017 compiled from OSMway192183185 in Protomaps20261019archive. Complete thin four-corner polygon retained in its native signed frame. Compiled tile coordinates are quantized at maxzoom15and are not survey/original-node precision. Height26.2m is the compiled native height attribute; facade sections/detail and rear thickness/supports remain photographic estimates. Nearby college-ruins POI35185373884295 is a separate site identity and must not become an invented standing church. Original OSMAPI/Overpassretrieval was rate-limited/unavailable; no unverified original payload is claimed. Fixed short front approach chosen before terrain; bounded threshold stairs only.",
+    "anchor": [
+      113.54085937142372,
+      22.197457007367163
+    ],
+    "heading": 0.025968188707647912,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        113.54086050506072,
+        22.19741659699342
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed short front threshold approach selected before terrain sampling. The long public stairway/site plaza is excluded; local intrinsic steps/footings only, with no whole-site ground flattening."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184564272017"
+    ],
+    "source": "https://build.protomaps.com/20261019.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e4a5f0725142181032762459f4b435ff49ff4a51d7e12d04a3e931e3a88cbd0f",
+    "notes": "Retain surviving south-facing native facade frame; the Qualla prose claims east-facing, which disagrees with the signed compiled map orientation and is not used as a bearing control. No replacement church body/roof or unrelated college/temple/city-wall geometry. Concealed back/support sections are explicit estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named facade building/POIidentity35184564272017 compiled from OSMway192183185 in Protomaps20261019archive. Complete thin four-corner polygon retained in its native signed frame. Compiled tile coordinates are quantized at maxzoom15and are not survey/original-node precision. Height26.2m is the compiled native height attribute; facade sections/detail and rear thickness/supports remain photographic estimates. Nearby college-ruins POI35185373884295 is a separate site identity and must not become an invented standing church. Original OSMAPI/Overpassretrieval was rate-limited/unavailable; no unverified original payload is claimed.",
+    "The surviving church facade is the structure in scope: complete five-tier front/back and three portal/upper-light openings. Burned1835church/roof, separate college/museum/crypt/temple/city wall and public plaza are excluded. The68-step public approach lacks a complete accepted image/native footprint here and is not invented; only short intrinsic threshold stairs are modeled.",
+    "One exact published QuallaGG001213CC0front original2017and one explicitly self-dedicatedMx.GrangerCC0column/joint/detail original2018were inspected. The Colegiofile is a crop of the same Qualla photo and not an independent reference. No attribution/share-alike/unknown-author image or photographic texture used.",
+    "Compiled native facade width21.29m/thickness1.93m/height26.2m controls scale. Exact elevation tier heights, sculptural projections, repair plaster, small thresholds and rear support/remnant sections are medium-fi photographic estimates, not a survey. Signed native outline faces south/slightly east; contradictory east-facing story prose is not used as a bearing control.",
+    "Six patinated saints use statically baked public Molen figure anatomy under original long robes/attributes. Carved ship/dragon/skeleton/hourglass, angel figures, sun/star/dove, scrolls and capitals are bounded original relief; fine faces, exact iconographic identities, inscription fonts, Chinese characters and erosion are approximated or omitted. MATERDEIis the visible bounded Latin entrance inscription; other detailed writing is not invented.",
+    "Fixed front point[0,4.5]is defined before terrain acquisition. Intrinsic footings extend.25m below datum; model/host-terrain contact and precise thresholds remain unverified. No whole-site slab or ground flattening."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "open-portals-shell-niches-bronze-saints-and-paired-columns",
+      "position": [
+        14,
+        12,
+        33
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "asian-christian-relief-scrolls-and-dove-pediment",
+      "position": [
+        8,
+        20,
+        23
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "complete-freestanding-rear-and-open-wall-depth",
+      "position": [
+        -24,
+        20,
+        -36
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 58227,
+    "vertices": 174681,
+    "materials": 4,
+    "bytes": 6990032,
+    "sha256": "sha256:d6910f1205e851930ca34fa5d0a96d4c142c4953d087fe91757df114e68e5de4"
+  }
+}

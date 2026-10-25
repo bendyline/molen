@@ -1,0 +1,417 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.ljubljana_castle",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:1af9b821c832d650d8404c84fa0900b4e044eff9625ceffcb175793577f5b161",
+  "sourceHash": "sha256:7c682e98659078dbd19ccdbbf63445db4885efb41be546a90bf12ab931092474",
+  "runtimeHash": "sha256:e1667c6223dece1eab5a56ede792444cc315e3191ab5fae2d15e4fdee2f3e064",
+  "captureReportHash": "sha256:a7f389002672869d144f1c0aea8272464030e698e801a32ebcf00f7363dddf64",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/southwest-clock-and-bays.png",
+      "shots/northwest-roofed-wings.png",
+      "shots/eastern-bridge-and-passage.png",
+      "shots/courtyard-arcade-and-glazing.png",
+      "shots/open-clock-terrace.png",
+      "shots/mapped-courtyard-overhead.png"
+    ],
+    "notes": "Inspected all11 final portable views against the exterior picture. Irregular roofed castle ring, open courtyard, white clock tower and viewing terrace, brown roofs, rounded/pentagonal towers, projecting bays and modern glazed halls remain readable. Eastern passage and court arcade are retained in the source geometry."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:aa8d3755359e00ae587b1b860177cce12c518a7a9851bfb9468486f650ce6f61",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/southwest-clock-and-bays.png",
+      "shots/shared/northwest-roofed-wings.png",
+      "shots/shared/eastern-bridge-and-passage.png",
+      "shots/shared/courtyard-arcade-and-glazing.png",
+      "shots/shared/open-clock-terrace.png",
+      "shots/shared/mapped-courtyard-overhead.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all11 final shared-material views. Six common weathered-limestone/lime-plaster/tile/painted-metal/wood/aggregate graphs plus explicit glass and flag colors are reused. Map plan and heading0 retain the actual component arrangement. Cache reuse and unload passed. Flat shared fixture is a material/orientation check, not hillside verification."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:9a7c94e770b625083f1ec19a16fb9e5f0f30c5638a70a05c49baf1914beee335",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/southwest-clock-and-bays.png",
+      "medium-fi/northwest-roofed-wings.png",
+      "medium-fi/eastern-bridge-and-passage.png",
+      "medium-fi/courtyard-arcade-and-glazing.png",
+      "medium-fi/open-clock-terrace.png",
+      "medium-fi/mapped-courtyard-overhead.png",
+      "medium-fi/whole-ljubljana-skyline.png",
+      "medium-fi/whole-ljubljana-district.png",
+      "medium-fi/whole-ljubljana-street.png",
+      "medium-fi/whole-ljubljana-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all27 final medium-fi views across light, quality, identity, silhouette and four matched levels. Architecture rises2m to keep the reconstructed court above the coarse crest. Bounded foundation toes meet retained PMTiles; main clock, tower, roof and court masses remain consistent."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:810c320e1bc38d363388a608b5504c027ca31bd057a7b6db7e33bdabdd8dc4d8",
+    "mapFrameHash": "sha256:ae3d2e97bdab2129bf706b463bd0719430b06c1e5c1e63340d1963ec39225720",
+    "notes": "The inspected exterior picture supports the irregular roofed castle ring, open court, white clock/viewing tower, brown pitched roofs, rounded towers and modern glazed court additions. Retained mapped components and east passage set approximate scale and heading0. Standard viewer PMTiles supply the surrounding hill. Architecture rises2m so its reconstructed courtyard remains above the coarse crest; bounded foundation toes meet the sampled ground. Anchor 14.508474674,46.048810087; heading 0; standard PMTiles datum 356.4304543632578m. Floors are reconstructed and foundations extend below the coarse sampled ground."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current exterior and hill fit from the inspected picture and standard viewer PMTiles. Fine masonry, flags, restoration fixtures and floors are interpreted. Broad hill, city, vegetation, interiors and collision are host or excluded. No surveyed altitude or physical-device timing claim; footprint replacement remains off."
+  },
+  "legacyFidelityScope": {
+    "status": "pending",
+    "target": "medium-fi",
+    "notes": "Castle-operator current exterior and tower photographs, published component descriptions and isometric diagram guide original geometry of the complete exterior ring, viewing/clock terrace, Archers/Erasmus/Frederick/Pipers/Pentagonal towers, chapel, four projecting bays, glazed halls and east gateway/bridge. Fifteen component footprints and tagged heights are separately attributed OSM evidence. Pitches, clock hands, opening rhythm, bay sections, parapet/flags, common ground section and modern facade fit remain photographic estimates awaiting site review. No copied mesh, plan or photograph redistributed. Interiors/exhibits, heraldry, furniture, vegetation, natural hill, city, funicular rail/vehicle and surveyed bridge piers are excluded or separate.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u2/u24/ljubljana_castle/models/source.glb",
+        "hash": "sha256:7c682e98659078dbd19ccdbbf63445db4885efb41be546a90bf12ab931092474",
+        "bytes": 687480,
+        "triangles": 5691,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -47.17300033569336,
+          -13.470287322998047,
+          -57.41999816894531
+        ],
+        "max": [
+          70.51000213623047,
+          45,
+          44.180999755859375
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.glb",
+        "hash": "sha256:e1667c6223dece1eab5a56ede792444cc315e3191ab5fae2d15e4fdee2f3e064",
+        "bytes": 686780,
+        "triangles": 5691,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -47.17300033569336,
+          -13.470287322998047,
+          -57.41999816894531
+        ],
+        "max": [
+          70.51000213623047,
+          45,
+          44.180999755859375
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.skyline.glb",
+        "hash": "sha256:a7f2ea29f8124351457c19dc09c0d3ae80f32715ad6a7f1d4c5261c965745bf4",
+        "bytes": 94708,
+        "triangles": 932,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -46.99729919433594,
+          -13.00241470336914,
+          -53.055999755859375
+        ],
+        "max": [
+          70.51000213623047,
+          45,
+          44.180999755859375
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.district.glb",
+        "hash": "sha256:37543369726610b28602e9e20f326f2fe4f3f4a6a9e164893a048f5db5535c9a",
+        "bytes": 206852,
+        "triangles": 2206,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -47.17300033569336,
+          -13.470287322998047,
+          -57.41999816894531
+        ],
+        "max": [
+          70.51000213623047,
+          45,
+          44.180999755859375
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.street.glb",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a",
+        "bytes": 539428,
+        "triangles": 5691,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -47.17300033569336,
+          -13.470287322998047,
+          -57.41999816894531
+        ],
+        "max": [
+          70.51000213623047,
+          45,
+          44.180999755859375
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.closeup.glb",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a",
+        "bytes": 539428,
+        "triangles": 5691,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -47.17300033569336,
+          -13.470287322998047,
+          -57.41999816894531
+        ],
+        "max": [
+          70.51000213623047,
+          45,
+          44.180999755859375
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Levels contain932/2206/5691/5691 triangles; initial skyline+district download totals301560 bytes. Separate POSITION/NORMAL streams retained. Far colors replace original baked means with the current shared graph means without double multiplication."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:f5fc3586c141f7bbeb3d48c163cfd543b75fdc8a5f67515e08c07d2154e73d7f",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:a7f2ea29f8124351457c19dc09c0d3ae80f32715ad6a7f1d4c5261c965745bf4",
+        "bytes": 94708,
+        "gzipBytes": 17179,
+        "triangles": 932,
+        "cpuBytes": 93288,
+        "gpuBytes": 93288,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:37543369726610b28602e9e20f326f2fe4f3f4a6a9e164893a048f5db5535c9a",
+        "bytes": 206852,
+        "gzipBytes": 61890,
+        "triangles": 2206,
+        "cpuBytes": 198496,
+        "gpuBytes": 198496,
+        "errorMeters": 0.7,
+        "drawCalls": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a",
+        "bytes": 539428,
+        "gzipBytes": 148780,
+        "triangles": 5691,
+        "cpuBytes": 529872,
+        "gpuBytes": 529872,
+        "errorMeters": 0.3,
+        "drawCalls": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a",
+        "bytes": 539428,
+        "gzipBytes": 148780,
+        "triangles": 5691,
+        "cpuBytes": 529872,
+        "gpuBytes": 529872,
+        "errorMeters": 0.1,
+        "drawCalls": 8
+      }
+    ],
+    "initialBytes": 301560,
+    "notes": "skyline: 932 triangles, 94708 bytes, 1 draws; district: 2206 triangles, 206852 bytes, 7 draws; street: 5691 triangles, 539428 bytes, 8 draws; closeup: 5691 triangles, 539428 bytes, 8 draws. Initial skyline+district 301560 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate exterior and hill fit from an inspected picture and standard viewer PMTiles; no bespoke survey or exact height claims.",
+    "Original detailed master/hash/recipe retained. Fifteen castle parts, tower terrace, flags, real entrance passage and arcade are retained; ornament and restored fixtures are interpreted.",
+    "Six common limestone/lime-plaster/tile/painted-metal/wood/aggregate graphs plus explicit glass and flag colors; no embedded images or broad duplicate hill.",
+    "Interiors, collision and physical-device timing excluded; footprint replacement remains off."
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:1ac302aff0e6198080a409db8b290e1248da37fab06d6ef254a0018188690abf",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:e63ffd52f5c0bead3ff54a3881604d36fb3c3441ce0db59c6bed53e937df8e59",
+    "previousSharedCaptureReportHash": "sha256:fdf8490e128bb5bc0eb91ae4c7fd3b657b1d68e4b12f7d2304449850e47c0d34",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/ljubljana-runtime-model.mjs",
+        "beforeHash": "sha256:1333f10e37d504257384df6f0011724a0ad3471302449edc190f1be03a12476d",
+        "afterHash": "sha256:2d35caf3cdc7ec60594b2b0212920fdd6f8a8f44ebce4d0aa56a46158ac021e7",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/u2/u24/ljubljana_castle/models/source.glb",
+        "hash": "sha256:7c682e98659078dbd19ccdbbf63445db4885efb41be546a90bf12ab931092474",
+        "bytes": 687480
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.glb",
+        "hash": "sha256:e1667c6223dece1eab5a56ede792444cc315e3191ab5fae2d15e4fdee2f3e064",
+        "bytes": 686780
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.skyline.glb",
+        "hash": "sha256:a7f2ea29f8124351457c19dc09c0d3ae80f32715ad6a7f1d4c5261c965745bf4",
+        "bytes": 94708
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.district.glb",
+        "hash": "sha256:37543369726610b28602e9e20f326f2fe4f3f4a6a9e164893a048f5db5535c9a",
+        "bytes": 206852
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.street.glb",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a",
+        "bytes": 539428
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/ljubljana_castle/model.closeup.glb",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a",
+        "bytes": 539428
+      }
+    ],
+    "retainedInspectedImageCount": 49
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:ab91613966ad42b1706dd3f274378605eb2ed787485f48e61ba869c08db63b14",
+    "inputHash": "sha256:1af9b821c832d650d8404c84fa0900b4e044eff9625ceffcb175793577f5b161",
+    "previousQaHash": "sha256:eea9ceffd585fea3f790f471f4a50c65478f4f61ac892601d8f375447b0aac11",
+    "sourceHash": "sha256:7c682e98659078dbd19ccdbbf63445db4885efb41be546a90bf12ab931092474",
+    "runtimeHash": "sha256:e1667c6223dece1eab5a56ede792444cc315e3191ab5fae2d15e4fdee2f3e064",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:a7f2ea29f8124351457c19dc09c0d3ae80f32715ad6a7f1d4c5261c965745bf4"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:37543369726610b28602e9e20f326f2fe4f3f4a6a9e164893a048f5db5535c9a"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a"
+      }
+    ],
+    "sceneHash": "sha256:0079981c9db5c6fff3f6fc402648db56edc0c5e8bc0c6e028f4c1450d2163538",
+    "qaCamerasHash": "sha256:168514391137b4319a3b75733cc8011eed93044777b9ac45137bdc9d9d017fcd",
+    "placementHash": "sha256:810c320e1bc38d363388a608b5504c027ca31bd057a7b6db7e33bdabdd8dc4d8",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:ae3d2e97bdab2129bf706b463bd0719430b06c1e5c1e63340d1963ec39225720"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_limestone_weathered.matgraph.json",
+        "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:5cd4e3cf7c2a60e98fb816053e08f05e30c902038e8902fef023a2bf2f7af06c"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:31757b64053782af245859d5dfecb9e25b857b234b6628af0c0e1ca59bf1807c"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
+}

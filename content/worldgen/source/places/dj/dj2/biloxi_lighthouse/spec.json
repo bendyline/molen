@@ -1,0 +1,246 @@
+{
+  "planId": "biloxi_lighthouse",
+  "id": "biloxi_lighthouse",
+  "assetId": "molen.worldgen.structure.biloxi_lighthouse",
+  "title": "Biloxi Lighthouse",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -88.9012186601758,
+    "latitude": 30.3944169382724
+  },
+  "size": [
+    4.5,
+    19.650000005960464,
+    4.5
+  ],
+  "actualBounds": {
+    "min": [
+      -2.25,
+      -0.15000000596046448,
+      -2.25
+    ],
+    "max": [
+      2.25,
+      19.5,
+      2.25
+    ]
+  },
+  "visualBrief": "Surviving white tapered cast-iron lighthouse with horizontal panel seams, recessed base door and narrow upper light, flared projecting catwalk, black open iron rails/brackets, twelve-sided glazed lantern, pale rounded metal roof, ventilator and weathervane. Tower and own footing only; demolished keeper house, median roads, site fencing, visitors center and temporary maintenance works excluded.",
+  "nativeAxes": "+X east; +Z south; +Y up.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:USCGBiloxiLighthouse_photo_300.jpg",
+    "https://commons.wikimedia.org/wiki/File:USCGBiloxiLighthouse_drawing_300.jpg",
+    "https://commons.wikimedia.org/wiki/File:USCGBiloxiLighthouse.jpg"
+  ],
+  "stories": [
+    {
+      "id": "biloxi-lighthouse-wp",
+      "url": "https://qualla.com/biloxi-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "6bcee332d072f6f2bbb7f83fbb0cbcda5ca62be3eb762c6d600277cb591711c8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-biloxi-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-biloxi-lighthouse.mjs",
+    "level": "skyline",
+    "export": "biloxiLighthouseSkyline",
+    "errorMeters": 0.35,
+    "surfaces": {
+      "iron": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.12
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.18
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.33,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "biloxiLighthouseDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "iron": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.18
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.33,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "biloxiLighthouseStreet",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "iron": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.18
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.33,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native named tower polygon fixes centroid; unmodified viewer Terrarium ground uses dry median reference3.5m east of shaft. Geographic preview and approximate footing, not a surveyed contact.",
+    "anchor": [
+      -88.9012186601758,
+      30.3944169382724
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -88.9011822096301,
+        30.3944169382724
+      ],
+      "modelHeight": 0,
+      "basis": "Dry median point east of own tower footprint; fixed before terrain and geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184707134836"
+    ],
+    "source": "https://build.protomaps.com/20261019.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d07e475839b3a8182c64693a107d534a5c3a720323bab465d24d3ccdc4b315d7",
+    "notes": "Native polygon retained; source story point is about34m northwest of actual lighthouse. Doorway facing is approximate; no surveyed ground or road reconstruction."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Approximate19.5m overall height and photographic proportions; source heights vary with measurement convention. USCG historic tower photos/drawing control surviving iron silhouette, not every restored fitting. Hidden openings, pane count, doorway facing and weathervane are medium-fi interpretations.",
+    "Native quantized footprint supplies location, not a survey. Coastal host terrain is approximate; no terrain fitting or neighborhood reconstruction. Demolished keeper house, roads, fence and temporary restoration works excluded.",
+    "Original geometry; public-domain Coast Guard references remain in Qualla and are not used as textures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "door-and-iron-seams",
+      "position": [
+        6,
+        5,
+        11
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "gallery-and-lantern",
+      "position": [
+        7,
+        17,
+        9
+      ],
+      "lookAt": [
+        0,
+        16.4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6324,
+    "vertices": 18972,
+    "materials": 4,
+    "bytes": 761604,
+    "sha256": "sha256:182bc01b6a3341d661e44fe8494f3bebebd6ed0b49d4e2f9429ebe7b24933e00"
+  }
+}

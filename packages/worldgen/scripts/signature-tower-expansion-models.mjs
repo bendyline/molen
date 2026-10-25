@@ -933,7 +933,7 @@ const axes = {
 };
 export const skylineExpansion = [
   {
-    id: 'N0147',
+    id: 'grande_arche',
     key: 'grande_arche',
     wikidataId: 'Q216357',
     title: 'Grande Arche',
@@ -984,7 +984,7 @@ export const skylineExpansion = [
     ],
   },
   {
-    id: 'N0149',
+    id: '30_st_mary_axe',
     key: '30_st_mary_axe',
     wikidataId: 'Q191161',
     title: '30 St Mary Axe',
@@ -1025,7 +1025,7 @@ export const skylineExpansion = [
     ],
   },
   {
-    id: 'N0151',
+    id: 'montparnasse_tower',
     key: 'montparnasse_tower',
     wikidataId: 'Q323767',
     title: 'Montparnasse Tower',
@@ -1073,7 +1073,7 @@ export const skylineExpansion = [
 
 skylineExpansion.push(
   {
-    id: 'N0138',
+    id: 'mirante_do_vale',
     key: 'mirante_do_vale',
     wikidataId: 'Q42258',
     title: 'Mirante do Vale',
@@ -1112,7 +1112,7 @@ skylineExpansion.push(
     ],
   },
   {
-    id: 'N0148',
+    id: 'edificio_altino_arantes',
     key: 'edificio_altino_arantes',
     wikidataId: 'Q169420',
     title: 'Edifício Altino Arantes',
@@ -1158,7 +1158,7 @@ skylineExpansion.push(
     ],
   },
   {
-    id: 'N0150',
+    id: 'edificio_italia',
     key: 'edificio_italia',
     wikidataId: 'Q170610',
     title: 'Edifício Itália',
@@ -1250,7 +1250,7 @@ function buildAbraj(out, m) {
     mappedCap(out, 'cladding', p, 76, [0.76, 0.71, 0.61]);
     for (let y = 7; y < 76; y += 9) bandPlan(out, p, y, 0.6, 0.65, [0.74, 0.68, 0.56], 'cladding');
   }
-  for (const part of partsEvidence('n0142_abraj_al_bait').filter((p) => p.id !== 958867174)) {
+  for (const part of partsEvidence('abraj_al_bait').filter((p) => p.id !== 958867174)) {
     const p = partPlan(m, part),
       top = Number(part.tags.height),
       bottom = Math.max(76, Number(part.tags.min_height));
@@ -1616,7 +1616,7 @@ function buildPalace(out, m) {
 
 skylineExpansion.push(
   {
-    id: 'N0142',
+    id: 'abraj_al_bait',
     key: 'abraj_al_bait',
     wikidataId: 'Q189476',
     title: 'Abraj Al Bait',
@@ -1675,7 +1675,7 @@ skylineExpansion.push(
     ],
   },
   {
-    id: 'N0146',
+    id: 'palace_of_culture_and_science',
     key: 'palace_of_culture_and_science',
     wikidataId: 'Q167566',
     title: 'Palace of Culture and Science',
@@ -1729,7 +1729,7 @@ function buildAbeno(out, m) {
   const plan = localOutline(m);
   const towerPlan = partPlan(
     m,
-    partsEvidence('n0139_abeno_harukas').find((p) => p.id === 488467176),
+    partsEvidence('abeno_harukas').find((p) => p.id === 488467176),
   );
   mappedSolid(out, 'foundation', plan, 0, 0.5, [0.5, 0.52, 0.51]);
   for (let i = 0; i < plan.length; i++) {
@@ -1879,7 +1879,7 @@ function buildRyugyong(out, m) {
   mappedSolid(out, 'stone', podium, 0, 0.5, [0.58, 0.59, 0.56]);
   glazedOutline(out, podium, 0.5, 11.8, 5.9, [0.24, 0.34, 0.38], [0.58, 0.63, 0.65], 0.12);
   mappedCap(out, 'concrete', podium, 11.8, [0.52, 0.56, 0.57]);
-  for (const part of partsEvidence('n0143_ryugyong_hotel')) {
+  for (const part of partsEvidence('ryugyong_hotel')) {
     const plan = partPlan(m, part),
       height = +part.tags.height,
       rise = +(part.tags['roof:height'] ?? 0),
@@ -1973,7 +1973,7 @@ function buildRyugyong(out, m) {
 
 skylineExpansion.push(
   {
-    id: 'N0139',
+    id: 'abeno_harukas',
     key: 'abeno_harukas',
     wikidataId: 'Q16318627',
     title: 'Abeno Harukas',
@@ -2028,7 +2028,7 @@ skylineExpansion.push(
     ],
   },
   {
-    id: 'N0143',
+    id: 'ryugyong_hotel',
     key: 'ryugyong_hotel',
     wikidataId: 'Q29272',
     title: 'Ryugyong Hotel',
@@ -2276,7 +2276,7 @@ function buildJinMao(out, m) {
 
 skylineExpansion.push(
   {
-    id: 'N0137',
+    id: 'mode_gakuen_cocoon_tower',
     key: 'mode_gakuen_cocoon_tower',
     wikidataId: 'Q1030463',
     title: 'Mode Gakuen Cocoon Tower',
@@ -2320,7 +2320,7 @@ skylineExpansion.push(
     ],
   },
   {
-    id: 'N0145',
+    id: 'jin_mao_tower',
     key: 'jin_mao_tower',
     wikidataId: 'Q80813',
     title: 'Jin Mao Tower',

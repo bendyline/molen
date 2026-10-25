@@ -7,7 +7,7 @@ import { kalmarParts, kalmarPlanPoint } from './kalmar-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u6/u65/n0296_kalmar_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u6/u65/kalmar_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

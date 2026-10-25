@@ -1,0 +1,23 @@
+# Atalaya Castle
+
+Whole surviving Huntington winter house: four native building components, open north/south courtyards, central covered arched walkway and 40ft brick water tower, west entry/service wings, flat parapet roofs, 25 cowled chimneys, east recessed entry/patio, south studio skylight, projecting green iron window baskets. Exclude Brookgreen Gardens, park retail/restrooms, vegetation, animal sculpture, signs and furnishings. Keep exact four native component control corners and both genuine open courtyards; no full parcel slab. Real openings/reveals, green projecting basket bars/scrollwork, simple flat masonry roofs, round open brick arcade and pierced low lattice, restrained rough brick inner faces/pale stucco outerfaces. Physical east entry recess/patio, south skylight and25 copper-cowled chimneys. Tower square shaft/flat parapet and small vents estimated where no clear photo; exact cowl/profile/window census/hidden rooms not survey. No invented elaborate tower ornament.
+
+![Molen preview](preview.png)
+
+Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.json](qa.json) and the [completion ledger](../../../../qualla-structures/batches/qualla-002.PROGRESS.md).
+
+- [Atalaya Castle](https://qualla.com/atalaya-castle-us/)
+
+Four actual outer members of named Atalaya relation20607023/Q4812699 fix whole footprint, anchor [-79.06753145290895,33.50180843935674] and native longwall heading 0.8449372077170864. Local +X north along shore; +Z east/ocean. Main open U plus two west service wings and north projection; no solid parcel fill. Primary nominal200ft square is approximate and does not stretch native geometry. Interior footways1506910393/94/95 locate covered walkway and encircling tower approach, not measured tower footprint. Tower centre[-4.4,.65],4.0x4.5m section, flat top/vent treatment, roof4.2m/parapet4.55m, skylight7.62m and fine openings are architectural estimates. Tower12.192m height/25 cowled chimneys from primary text. No cleared photo shows tower top; simple square tower treatment is an explicit limitation, not an invented elaborate minaret.
+
+Whole four native house components/open courtyards/central covered walkway/water tower are included. Primary nominal200ft not used to stretch mapped outline. Tower12.192m height and25 rotating copper cowls are primary text facts; no cleared image shows tower upper profile. Its4x4.5m rectangular section/plain flat parapet/vents are explicitly restrained architectural estimates, not an observed elaborate minaret.25ft studio skylight height is textual; exact glazed roof profile, windows behind vegetation, grille count, ornaments and hidden rooms approximate.
+
+Seven exact published Qualla PD originals individually inspected, native SHA1/revision bound, unchanged policy passed. Named photographer Ron Osborne is bound to creator Rono359 by explicit Own/PD-self Atalaya1/2 and exact PD-user-en releases for other images. Primary NHL/owner text facts only; CC/ambiguous supplemental pixels/PDF plans/photos unused. No media/body/category/policy edits, photographic textures, generated bitmaps or downloaded mesh.
+
+Independent256m129square2m16641sample field/two original Terrarium tiles frozen before geometry; all values/PNG/bytes retained. Provider0.6948m fixed west approach datum is not surveyed floor grade. Source ground not flattened/fitted/reacquired. Actual host footing contact unverified; ordinary geographic preview/replacement disabled.
+
+L0 retains exact four house parts/open courts/covered arcade/tower and representative cowls; window grilles/individual chimneys/lattice reduced with distance. L3 adds actual window void/reveals/projecting basket bars/scrolls/twisted posts, arched open walkway and pierced low masonry flowerboxes. Lattice/window census/chimney positions/cowl turning angle approximate, not as-built measurement.
+
+Separate Brookgreen Gardens/park retail and restrooms/portable trailers/trees/animal sculpture/signs/furniture/people are excluded. No whole park slab or distant secondary site placement.
+
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=atalaya_castle_us`. Add `--check` to verify exact regeneration. 51561 triangles; 6 materials; no embedded photographs.

@@ -1,0 +1,432 @@
+{
+  "planId": "basilica_of_the_eternal_father_trindade",
+  "id": "basilica_of_the_eternal_father_trindade",
+  "assetId": "molen.worldgen.structure.basilica_of_the_eternal_father_trindade",
+  "title": "Basilica of the Eternal Father, Trindade",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -49.4853965,
+    "latitude": -16.66070945
+  },
+  "size": [
+    195.96095275878906,
+    28.820000380277634,
+    85.48705673217773
+  ],
+  "actualBounds": {
+    "min": [
+      -157.59095764160156,
+      -0.2199999988079071,
+      -42.42195129394531
+    ],
+    "max": [
+      38.3699951171875,
+      28.600000381469727,
+      43.06510543823242
+    ]
+  },
+  "visualBrief": "Whole surviving1974/1994 existing Basilica of the Eternal Father/Q10368270 exterior on actual cruciform13-corner buildingway131382347, tall modernist nave/shallow barrel end/vertical recessed window and pier bays/transept arms/central gilded dome-drum/cross. Include intrinsic branching elevated west approach ramp486368471 with open structural underside/concrete flared piers/simple rails, short elevated connector998582092 and four mapped approach/flanking stair centerlines. These are integral photo-visible entrance structures; retain full native approach extent and whole basilica, no facade-only or plain cross box. Exclude whole plaza/streets/landscape/independent kiosks/cars/trees/people/interior rooms/pictorial sacred art/old sanctuary and separate new immense temple outside this site. Hidden current roof/rear/height/ramp sections/census and exact foundation contacts remain bounded original estimates.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Trindade_sant_novo.JPG"
+  ],
+  "stories": [
+    {
+      "id": "basilica-of-the-eternal-father-trindade-wp",
+      "url": "https://qualla.com/basilica-of-the-eternal-father-trindade/"
+    }
+  ],
+  "referenceInputHash": "d0bf5583126da84ab114e63ff938e74c8932622ccd8e51f110b1afd0f44d6d63",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-basilica-eternal-father-trindade.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-basilica-eternal-father-trindade.mjs",
+    "level": "skyline",
+    "export": "eternalFatherSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stucco",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.4,
+        "metallic": 0.14
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "eternalFatherDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.14
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "eternalFatherStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.14
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "eternalFatherCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.14
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.25,
+    "groundY": -0.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All architectural sections selected after immutable400m/16641-value original terrain freeze. Main raised floor+6.2/base-.18, whole cruciform body17.4/nave eaves18.2+2.5 shallow barrel, drum18.8..21.8/radius5.7/gilded dome+4.7/cross to28.6; upper glazing10.8..16.65. Full native26-control west access deck6m wide/.34m slab from inner+6.2 to independent outer+.18, open flared piers/1.02m rails, four mapped stairs and entry connector; widths/gradients/piers/short side landing links are bounded original estimates. Geographic heading0/+Xeast/+Zsouth; working .0147rad building axis transformed back. Original field/raw tile/PNG unchanged, source under-building urban artifacts disagree with thresholds. Flat appearance plus separate original field evidence; precise host/terrain foundation contact unresolved/replacementfalse.",
+    "anchor": [
+      -49.4853965,
+      -16.66070945
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -49.486991491066284,
+        -16.661185978807158
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSW point5m beyond full acquisition-margin envelope of church/intrinsic approach before terrain/floors/geometry; not a surveyed threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/131382347",
+      "way/486368471",
+      "way/998582092",
+      "way/706063599",
+      "way/998582085",
+      "way/708237483",
+      "way/708243926"
+    ],
+    "source": "https://www.openstreetmap.org/way/131382347",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:25f99b9d2eddf57feedd6cc36c94f7a92f6c5f4c141a48b27fd707ed3b718c7e",
+    "notes": "Whole surviving1974/1994 existing Basilica of the Eternal Father/Q10368270 exterior on actual cruciform13-corner buildingway131382347, tall modernist nave/shallow barrel end/vertical recessed window and pier bays/transept arms/central gilded dome-drum/cross. Include intrinsic branching elevated west approach ramp486368471 with open structural underside/concrete flared piers/simple rails, short elevated connector998582092 and four mapped approach/flanking stair centerlines. These are integral photo-visible entrance structures; retain full native approach extent and whole basilica, no facade-only or plain cross box. Exclude whole plaza/streets/landscape/independent kiosks/cars/trees/people/interior rooms/pictorial sacred art/old sanctuary and separate new immense temple outside this site. Hidden current roof/rear/height/ramp sections/census and exact foundation contacts remain bounded original estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole named surviving1974/1994 basilica/Q10368270 uses actual13-corner cruciform bodyway131382347 plus complete26-control branching elevated west ramp486368471, short entry bridge998582092 and all four bounded mapped stair centerlines with original short side landing links. Nave shallow barrel/vertical upper window-pier bays/transept roofs/gilded central dome-drum/cross and concrete approach with real undersides/open flared pier supports/rails; no facade-only or plain cross box.",
+    "Exact3216x2280 AdelanoLazaro2010 Own/PD-self published Qualla exterior individually inspected/nativeSHA1matched. Unrelated duplicate attribution-only path/interiors/ambiguous creator exterior/uncertain unknown-author historical photographs excluded without pixels/metadata repair. Abstract muted glazing only, no copied religious pictorial artwork. No supplemental imagery/borrowed mesh/generated bitmap/photo texture/policy-verifier changes.",
+    "All dimensions/roof/rear facade sections/dome placement-opening census/access widths/independent grades/piers/rail census/short side landing links are original bounded medium-fi estimates from one west-approach photo and current whole native outline/centerlines; current hidden finishes/private interior/structural survey/as-built stair thresholds unverified. Native arch shallow roof/gilded dome/cross and full entrance system retained at all four detail levels.",
+    "Original400m/129x129/16641-value independent field/one raw tile/PNG frozen before geometry/floor/architectural sections unchanged. Main floor+6.2/outer ramp+.18 independent; urban field artifacts/grade disagree with foundations/thresholds/pier footings. Isolated/shared-flat appearance with separate unchanged source-field evidence; exact source/host contact unresolved/replacementfalse. No source flattening/fitting/reacquisition/full-plaza pad, separate old sanctuary/new temple/kiosks/city/trees/people/cars/text/interior sacred sculptures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-cruciform-basilica-dome-and-full-native-branching-ramp",
+      "position": [
+        -187.7692784485679,
+        105,
+        152.78317338929764
+      ],
+      "lookAt": [
+        -47.99478955382051,
+        10,
+        0.7072309979642633
+      ]
+    },
+    {
+      "name": "opposite-whole-basilica-transepts-and-branching-entrance",
+      "position": [
+        -152.41482391119126,
+        95,
+        -162.7719922226197
+      ],
+      "lookAt": [
+        -44.99511520670673,
+        10,
+        0.6630290605914968
+      ]
+    },
+    {
+      "name": "front-barrel-end-five-upper-panes-and-raised-entrance",
+      "position": [
+        -94.75394399261502,
+        21,
+        17.39799120141111
+      ],
+      "lookAt": [
+        -30.996634920175747,
+        13,
+        0.45675335285192
+      ]
+    },
+    {
+      "name": "gilded-dome-drum-cross-and-whole-rear-cross-wings",
+      "position": [
+        70.95011007573152,
+        48,
+        63.9615656487674
+      ],
+      "lookAt": [
+        9.998914490379274,
+        16,
+        -0.14733979124255484
+      ]
+    },
+    {
+      "name": "long-elevated-approach-railing-and-open-undersides",
+      "position": [
+        -113.02991654724713,
+        10,
+        66.6726178076304
+      ],
+      "lookAt": [
+        -64.6245947093589,
+        5,
+        25.95499486902479
+      ]
+    },
+    {
+      "name": "flared-concrete-piers-and-visible-ramp-soffit",
+      "position": [
+        -70.24085994635581,
+        2,
+        52.04057641875644
+      ],
+      "lookAt": [
+        -57.43381283747808,
+        4,
+        38.85044585264806
+      ]
+    },
+    {
+      "name": "paired-native-main-stairs-and-short-door-connector",
+      "position": [
+        -93.66564866883155,
+        13,
+        23.382605916514418
+      ],
+      "lookAt": [
+        -54.994029697086006,
+        5,
+        0.8103688518340516
+      ]
+    },
+    {
+      "name": "upper-glazing-pier-bays-and-shallow-barrel-roof",
+      "position": [
+        -46.55489786246637,
+        23,
+        -37.31811202372549
+      ],
+      "lookAt": [
+        -18.1601198530495,
+        15,
+        -10.733594315180602
+      ]
+    },
+    {
+      "name": "whole-native-cruciform-and-access-centerline-footprints",
+      "position": [
+        -44.87724337371269,
+        180,
+        8.662160652894915
+      ],
+      "lookAt": [
+        -44.99511520670673,
+        7,
+        0.6630290605914968
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28851,
+    "vertices": 86553,
+    "materials": 6,
+    "bytes": 3465840,
+    "sha256": "sha256:e245e0e2fec3c90783ba33a23eb64e73d3a81090797004095ff7c15e57997173"
+  }
+}

@@ -7,7 +7,7 @@ import { buildPembrokeRuntime } from './pembroke-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/gc/gch/n0295_pembroke_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/gc/gch/pembroke_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

@@ -1,0 +1,350 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.68,
+      "metallic": 0.32
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.75,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.5,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.46,
+      "metallic": 0.04
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/chora-model.mjs",
+    "export": "buildChoraSkyline",
+    "errorMeters": 0.55,
+    "authoredLevels": {
+      "district": {
+        "export": "buildChoraDistrict",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "buildChoraStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildChoraCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      58,
+      39,
+      58
+    ],
+    "lookAt": [
+      0,
+      11,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-chora-skyline",
+      "position": [
+        58,
+        39,
+        58
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-chora-district",
+      "position": [
+        58,
+        39,
+        58
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-chora-street",
+      "position": [
+        58,
+        39,
+        58
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-chora-closeup",
+      "position": [
+        58,
+        39,
+        58
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.regional.south_asian.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Exact relation and approximate asymmetric exterior/map fit;QA records limits.",
+    "anchor": [
+      28.939057828,
+      41.031194722
+    ],
+    "heading": -0.254041634454,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor;approximate whole-site working plane. Standard viewer DEM datum 61.491654 m;working floor 2.949098 m from maximum whole-footprint1 m bilinear sample plus0.25 m. Relative sample range -2.391..2.699 m. Terrain is unflattened;wall footings adapt below it and cross Y=0. Precise terraces,thresholds,ground joins and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        28.939057828,
+        41.031194722
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 61.491654 m;working floor 2.949098 m from maximum whole-footprint1 m bilinear sample plus0.25 m. Relative sample range -2.391..2.699 m. Terrain is unflattened;wall footings adapt below it and cross Y=0. Precise terraces,thresholds,ground joins and walking remain unverified."
+    },
+    "bounds": [
+      28.933,
+      41.026,
+      28.946,
+      41.037
+    ],
+    "notes": "Retained exact relation/7614527 / Q849489 matches current whole52776565747775 (3*2^44+7614527) and named The Chora/Kariye Camii POI. Original anchor[28.939057828,41.031194722] and heading-0.254041634454 rad retained. Current26-point outer shell,four circular roof boundaries (8/8/8/16 points) and the separate four-point southwest minaret-base part are preserved. These circular boundaries are interpreted as mapped domed roofs,not open courtyards;source retains their original geometry. Apses project toward positiveX/east-northeast;the minaret occupies the mapped negativeX/positiveZ southwest corner. The asymmetric plan and southeast-side pictures support this assignment within about15 degrees of visual uncertainty,not a surveyed facade bearing. Exact doorway position and unseen western/northern fabric remain approximate. Standard viewer DEM datum 61.491654 m;working floor 2.949098 m from maximum whole-footprint1 m bilinear sample plus0.25 m. Relative sample range -2.391..2.699 m. Terrain is unflattened;wall footings adapt below it and cross Y=0. Precise terraces,thresholds,ground joins and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 61.491654 m;working floor 2.949098 m from maximum whole-footprint1 m bilinear sample plus0.25 m. Relative sample range -2.391..2.699 m. Terrain is unflattened;wall footings adapt below it and cross Y=0. Precise terraces,thresholds,ground joins and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

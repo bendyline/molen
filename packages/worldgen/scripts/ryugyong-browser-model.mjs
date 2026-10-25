@@ -19,7 +19,7 @@ import {
 import { tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const map = JSON.parse(readFileSync(structureSourcePath('n0143_ryugyong_hotel', 'map-frame.json'))),
+const map = JSON.parse(readFileSync(structureSourcePath('ryugyong_hotel', 'map-frame.json'))),
   MEANS = {
     stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],
     concrete: [0.7108161524542215, 0.7108161524542215, 0.6819278525713045],
@@ -151,7 +151,7 @@ function build(target, tier) {
   mappedSolid(out, 'stone', podium, 0, 0.5, [0.58, 0.59, 0.56]);
   glazedOutline(out, podium, 0.5, 11.8, 5.9, [0.24, 0.34, 0.38], [0.58, 0.63, 0.65], 0.12);
   mappedCap(out, 'concrete', podium, 11.8, [0.52, 0.56, 0.57]);
-  for (const part of partsEvidence('n0143_ryugyong_hotel')) {
+  for (const part of partsEvidence('ryugyong_hotel')) {
     const plan = partPlan(m, part),
       height = +part.tags.height,
       rise = +(part.tags['roof:height'] ?? 0),

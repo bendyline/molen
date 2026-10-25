@@ -1,0 +1,1081 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.abraj_al_bait",
+  "sourceHash": "sha256:ac5a34e3d1894ecb3f0e75342de0e1af0deff72c9c66336b13905c0e271eb00b",
+  "runtimeHash": "sha256:44e7d29e99031ee91132e7d9f3f54c316e28cd3a8599c5d5b165e7bb78e0b1f8",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:8e2f85a0db18f76de31b77c6d50d75e1c8ccfd7384a804c638f3c86e534deb68",
+      "bytes": 106120,
+      "gzipBytes": 21092,
+      "triangles": 1000,
+      "cpuBytes": 104712,
+      "gpuBytes": 104712,
+      "errorMeters": 3,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ab6bf2b71e9ea3c607de036f91c3e23d9efd9ddfa4bba20a6b24f2ea03389428",
+      "bytes": 376468,
+      "gzipBytes": 102191,
+      "triangles": 3934,
+      "cpuBytes": 369276,
+      "gpuBytes": 369276,
+      "errorMeters": 1.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:7a5bf4207c02bc44ee4ecd205021a4d2080789cadafb94e4020c0c849e6d0e42",
+      "bytes": 1493924,
+      "gzipBytes": 385884,
+      "triangles": 15486,
+      "cpuBytes": 1486692,
+      "gpuBytes": 1486692,
+      "errorMeters": 0.65,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:a60da3c2cd3f37fbc355a1af5434664beeddfca2b7212fd733b9a897cda50251",
+      "bytes": 6006144,
+      "gzipBytes": 1423337,
+      "triangles": 63274,
+      "cpuBytes": 5998872,
+      "gpuBytes": 5998872,
+      "errorMeters": 0.3,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-fit.terrain.json",
+      "hash": "sha256:7622eecd43a7f14aae2089ef7b9bd046b69883356013c2e5c68bdf43a7951442"
+    },
+    "heightmap": {
+      "path": "terrain-fit.height.png",
+      "hash": "sha256:93cde3897affb82a9342ad8e8b436af65f5fe3e5d6db86f9e9196d09ed935193"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:0786a2448a5b1fe847ee0facadba27ae424e1b47edab1f0ae46f98be060eea90",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 150144,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          48.007,
+          326.5,
+          83.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:ff97d3ac5fe42fcc79afffbe1fe9459a3f6ece7a05f38c6042d33d78956e2cf2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 150144,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          48.007,
+          326.5,
+          83.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:aa46484cb1654b7fffb6ade33bb023b2f05843cc6b62ff57d277f504333ee5c2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 150144,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          48.007,
+          326.5,
+          83.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:b959bfb648c618ac459a4c107ceda969c1c5a4df0159ccfab2e2aa21f3218d5f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 150144,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          48.007,
+          326.5,
+          83.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:4bf17a18e90dbff1905508e1ac23c2f2464650d639299afc6bfc010f22d45878",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 91168,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          97.007,
+          362.5,
+          168.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:b4a4c460d1afe3d3ddab46c1f003fe4c421956b2bde098d5f040bb174dbfdeeb",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 91168,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          97.007,
+          362.5,
+          168.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:8e3b81888fae76855b0f317975fe044d8da6b220944d32189f592f368a20a986",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 91168,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          97.007,
+          362.5,
+          168.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:66f39c6ded2fc5f9a24a20a43681bcfd960e8f407b73545593b5fa27013b0f96",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 91168,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          97.007,
+          362.5,
+          168.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:33c3d1b02afcef305b5fcbfe15ca6e9129ca18292bdca2dd837482e5330e9ed1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 88298,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          194.007,
+          400.5,
+          336.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:15cd312765b836eba0aeaa58e954eefb0fb3a7ff711e160dcc34e12530efc8bb",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 88298,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          194.007,
+          400.5,
+          336.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:f3522f20654858a98ed5dc3898d5b75689f4e9daba6a8fabf4ebc04a0ee2ad67",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 88298,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          194.007,
+          400.5,
+          336.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:53bd0a6234c4060f67d43f71aa3b52a33655ad73364d6f3146bccb1c3ff3382d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 88298,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          194.007,
+          400.5,
+          336.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:56973f7dd0ace0aaa49262e63bf4c6cfc89b0de164cc41a34069491660f295d6",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 82602,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          194.007,
+          400.5,
+          336.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/four-clock-faces.png",
+      "hash": "sha256:f096df44790415f60b7868b936e7c9740ef1fa4d09f6a2151cb58fcfbf7904fd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 6,
+        "triangles": 63040,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          141,
+          455,
+          191
+        ],
+        "lookAt": [
+          8,
+          438,
+          72
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/jewel-crescent.png",
+      "hash": "sha256:551b80852f3eeefcbc21118045a075a1910d907463f635768af78841cd81db26",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 6,
+        "triangles": 63040,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          128,
+          602,
+          186
+        ],
+        "lookAt": [
+          8,
+          551,
+          72
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/tent-roofs.png",
+      "hash": "sha256:44259b0ff4779cd98d19c32c06df7f9ccbbb0ca521677c4e11e172f3af2dfb86",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 150380,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          -241,
+          282,
+          288
+        ],
+        "lookAt": [
+          -77,
+          229,
+          35
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/hotel-podium.png",
+      "hash": "sha256:9a0132c99acc241b38bb4ae1dbc5299f323c3f8c8c4b0c8ff06e6ab379195a0d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 150380,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          223,
+          99,
+          312
+        ],
+        "lookAt": [
+          0,
+          77,
+          33
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/far-silhouette.png",
+      "hash": "sha256:92a6f19b6c4e9c06299e294de91d5404e6e4607b781f2172df5808f416266cee",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 150572,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          -639,
+          444,
+          1034
+        ],
+        "lookAt": [
+          0,
+          287,
+          30
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-abraj_al_bait-skyline.png",
+      "hash": "sha256:c6e8ba530ab231eff3fbaeb4cfd9239b25f0d0b597e583d0d1bfb8439bb083cc",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 88298,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          770,
+          470,
+          940
+        ],
+        "lookAt": [
+          0,
+          260,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-abraj_al_bait-district.png",
+      "hash": "sha256:a34426b505264f74ba24e794ec493b844fdb8ca8c8df700f870ed3181b2f87ac",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 91232,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          770,
+          470,
+          940
+        ],
+        "lookAt": [
+          0,
+          260,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-abraj_al_bait-street.png",
+      "hash": "sha256:5a49fa46b1ee62b343914b4f21324ccaf6feebdb047bbb1d1867b9945512eecb",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 102784,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          770,
+          470,
+          940
+        ],
+        "lookAt": [
+          0,
+          260,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-abraj_al_bait-closeup.png",
+      "hash": "sha256:8eaf0108a39e0d2536b0386cbe5bc72f48b4ced2384f17d5dc962faeb9eb68d3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 150572,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          770,
+          470,
+          940
+        ],
+        "lookAt": [
+          0,
+          260,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:2e15056d78f58fad9b10a01718ffda82b94fd49a4c85ae59e5dec3a1571317c1",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 88298,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          97.007,
+          362.5,
+          168.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:b4a4c460d1afe3d3ddab46c1f003fe4c421956b2bde098d5f040bb174dbfdeeb",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 91168,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          97.007,
+          362.5,
+          168.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:ecbe302f5f8a97e96f81e3e3c7410f33a4f18fb6c34fa5fc5f64d3af71c8ef42",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 102656,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          97.007,
+          362.5,
+          168.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:64276e185ef177e623534d480111bfab2b0858e06d7a40171e93c7a2e2f6646e",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 150380,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/sg/sgu/abraj_al_bait/terrain-fit.height.png"
+        },
+        "position": [
+          97.007,
+          362.5,
+          168.1178
+        ],
+        "lookAt": [
+          0.007,
+          311.5,
+          0.1178
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

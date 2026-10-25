@@ -1,0 +1,692 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 508 compliance - meta description 4.2.2025 -->
+    <title>NPGallery Asset Detail</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover and explore a comprehensive library of National Park Service images, video, audio, maps, presentations, documents, and more.">
+
+    <link href="/Content/images/favicon.ico" rel="shortcut icon">
+
+
+
+
+
+
+
+
+
+    <!--/ /-->
+
+    <link href="/Content/css/General?v=7-KokiIcfWp_EeSsm5l-oGPKWIbFa-7KD8R-fjaHC6w1" type="text/css" rel="stylesheet"/>
+
+
+    
+    <link rel="stylesheet" type="text/css" href="/Content/css/bar-ratings-stars.css" />
+
+        <style type="text/css">
+
+    /* For use with Smooth Zoom tool. BML - 07/11/2016 */
+    .smooth_zoom_preloader
+    {
+        background-image: url('/Content/images/preloader.gif');
+        background-position:center center;
+        background-repeat:no-repeat
+    }
+
+    .smooth_zoom_icons
+    {
+        background-image: url('/Content/images/icons.png');
+    }
+        </style>
+
+
+
+
+    <script type="text/javascript" src="/Scripts/General?v=fxxdGWoD5aq1uw9cXzJ_1xbf0_KVU7pdip-rmuNwRpc1"></script>
+
+
+    
+    <script src="/Scripts/jquery.barrating.js" type="text/javascript"></script>
+    <!--<script src="~/Scripts/google-analytics.js"></script>-->
+
+
+        <script src="/Scripts/jquery.smoothZoom.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            ga('send', 'event', 'Image Selected', 'Title', 'IMG_2228.JPG');
+            ga('send', 'event', 'Image Selected', 'Category', 'Scenic');
+            ga('send', 'event', 'Image Selected', 'AssetId', '0f01d68a-47ee-475c-b918-e72d0d0e34be');
+            ga('send', 'event', 'Image Selected', 'Branding', 'NPGallery Main Search');
+        </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".slidingDiv").show();
+            $(".show_hide_next").show();
+            $(".show_hide_parent").show();
+
+            $('.show_hide_next').each(function () {
+                $(this).click(function () {
+                    $(this).next('.slidingDiv').slideToggle();
+                });
+            });
+            $('.show_hide_parent').each(function () {
+                $(this).click(function () {
+                    $(this).closest('.slidingDiv').slideToggle();
+                });
+            });
+        });
+    </script>
+
+
+<!-- NPS.gov Google Analytics -->
+<script src="https://www.nps.gov/common/commonspot/templates/js/federated-analytics-uav1.js?ver=true&agency=DOI&subagency=NPS&exts=rtf,odt,ods,odp&dclink=true&enhlink=true" id="_fed_an_ua_tag"></script>
+
+
+
+    <script type="text/javascript" src="/Scripts/NPGallery/layout.js?v=1.2"></script>
+</head>
+    <body id="body">
+        <!-- Google Tag Manager (noscript)
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N77MPPP"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+
+        <nav name="mobile-nav" class="navbar navbar-inverse">
+            <div class="container" style="position:relative;">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="https://www.nps.gov">
+                    <img src="/Content/images/logo.png" alt="National Park Service logo" style="display:inline-block;height:35px; width: 30px;" />
+                            <div style="display:inline-block">National Park Service</div>
+                    </a>
+                    <button style="float: right;" id="buttonMenu" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+
+
+<div class="col-sm-8 col-md-8 col-lg-8 pull-right">
+    <form id="searchControlWithDropdownForm" style="margin-top: 20px" role="search" action="/SearchResults" method="get">
+        <div class="input-group">
+            <div class="input-group-btn search-panel">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span id="search_concept">Search NPGallery</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#NPGallery">Search NPGallery</a></li>                    
+                    <li class="divider"></li>
+                    <li><a href="#NPS">Explore NPS.gov</a></li>
+                </ul>
+            </div>
+            <input type="hidden" name="search_param" value="all" id="search_param">
+            <input id="allFields" name="allFields" type="text" class="form-control" placeholder="Search NPGallery" required>
+            <span class="input-group-btn">
+                <button id="searchControlSearchButton" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+        </div>
+        <input type="hidden" name="view" value="grid" />
+        <input type="hidden" name="allFieldsFormat" value="AllWords" />
+        <input type="hidden" name="PageSize" value="60" />        
+        <input type="hidden" name="filters" value="default" />
+    </form>
+</div>
+
+<script>
+
+    //SearchControl With Dropdown Javascript
+    $(document).ready(function (e) {
+        $('.search-panel .dropdown-menu').find('a').click(function (e) {            
+            e.preventDefault();
+            var param = $(this).attr("href").replace("#", "");
+            var concept = $(this).text();
+            
+            setSearchInputPlaceHolder(param);            
+            $('.search-panel span#search_concept').text(concept);
+            $('.input-group #search_param').val(param);
+        });
+    
+        $("#searchControlSearchButton").click(function () {            
+            var anchorSelected = $('#search_concept').text();            
+            if (anchorSelected === "Explore NPS.gov") {
+                var searchTerm = $("#allFields").val();                
+                window.open("https://www.nps.gov/search/?affiliate=nps&query=" + searchTerm, "_blank")
+            } else if(anchorSelected ==="Search NPGallery" || anchorSelected === "Search this site") {                                                
+                $("#searchControlWithDropdownForm").submit();
+            }
+        });
+
+        $("#searchControlWithDropdownForm").submit(function (e) {
+            var searchTerm = $("#allFields").val();
+            var anchorSelected = $('#search_concept').text();                        
+            if (searchTerm === "") {
+                e.preventDefault();
+            } else if (anchorSelected === "Explore NPS.gov") {                
+                var searchTerm = $("#allFields").val();                                
+                window.open("https://www.nps.gov/search/?affiliate=nps&query=" + searchTerm, "_blank")
+                e.preventDefault();                
+            } else {                                
+                return true;
+            }
+        });
+
+    });
+
+    function setSearchInputPlaceHolder(param) {
+        if (param === "NPGallery") {
+            $('.input-group #allFields').attr("placeholder","Search NPGallery");
+        } else if (param === "NPGalleryCollections") {
+            $('.input-group #allFields').attr("placeholder", "Search NPGallery Collections");
+        } else if (param === "NPGalleryPortals") {
+            $('.input-group #allFields').attr("placeholder", "Search NPGallery Portals");
+        } else if (param === "NPGalleryState") {
+            $('.input-group #allFields').attr("placeholder", "Search NPGallery States");
+        } else if (param === "NPGalleryParks") {
+            $('.input-group #allFields').attr("placeholder", "Search NPGallery Parks");
+        } else if (param === "NPS") {
+            $('.input-group #allFields').attr("placeholder", "Search National Park Service - NPS");
+        }
+    }
+</script>
+
+                </div>
+                <div name="header-menu" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg"></ul>
+                </div>
+            </div>
+        </nav >
+
+        <div name="jumbotron" class="jumbotron container-fluid" style="position:relative;">
+           <div name="banner" style="height: 150px; background-position:50% 50%; background-repeat: no-repeat; background-size:cover;"></div>
+           <div class="hero-banner" style="width:100%;">
+             <div class="container">
+               <div class="row">
+                 <div class="col-sm-12">
+                   <span name="hero-title" class="hero-title" style="white-space:nowrap"></span>
+                   <span name="hero-subtitle" class="hero-subtitle" style="white-space:nowrap"></span>
+                   <span name="hero-subtitle-right" class="hero-subtitle hero-textRight" style="white-space:nowrap;"></span>                    
+                 </div>
+               </div>
+             </div>
+           </div>
+        </div>
+        
+        <nav name="wide-menu" class="navbar navbar-inverse hidden-xs">
+            <div class="container">
+                <ul name="left" class="nav navbar-nav"></ul>
+                <ul name="right" class="nav navbar-nav navbar-right"></ul>
+            </div>
+        </nav>
+
+        
+
+        <div class="container body-content">
+
+            
+
+
+
+
+        
+<script>    
+    function copyrightModalDisplay(str_copyright) {
+        $('#copyright-text').html(str_copyright);
+        $("#copyrightModal").attr("z-index",9999);
+        $("#copyrightModal").modal();
+    }
+</script>
+
+<style>
+    .modalCenter {
+        top:50%;
+        right:50%; 
+        width: 100%;
+        height: 100%;
+    }
+
+    body.modal-open {
+        overflow: hidden;
+        /*position: fixed;*/
+    }
+
+    /*.modal-backdrop {
+         z-index: -1;
+    }*/
+
+</style>
+
+
+<div class="modal fade modalCenter" id="copyrightModal" role="dialog" style="z-index: 9999;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">    
+                <button type="button" class="close" data-dismiss="modal">&times;</button>            
+                <h4>Copyright Information:</h4>
+            </div>
+            <div class="modal-body">                
+                <div class="form-group">
+                    <p id="copyright-text"></p>
+                </div>                    
+            </div>            
+        </div>
+    </div>
+</div>
+
+        <div class="assetdetail">
+
+
+
+<!-- Preview (Top) Section -->
+    <div class="show_hide_next"><a>DIGITAL ASSET</a></div>
+    <div class="slidingDiv">
+
+
+
+
+<!--  class="img-responsive" jgoodmann 7.2018 center jgoodmann 12.2019 -->
+<img class="img-responsive center-block" id="Zoom-0f01d68a-47ee-475c-b918-e72d0d0e34be" src="/GetAsset/0f01d68a-47ee-475c-b918-e72d0d0e34be/proxyhires?" alt="Faneuil Hall is a three story, brick building with a triangular pediment on top, an A-Frame roof, and a white wooden cupola of the top of the building on the other side. At the top of the cupola is a gold colored grasshopper weather vane. In front of the building is a statue of Samuel Adams that is set on a pedestal. To the right of Faneuil Hall is the Custom House, a historic tower shaped building with a tall and pointed top." />
+<!-- For use with Smooth Zoom tool. BML - 07/11/2016* -->
+<!-- original height: '500', max_HEIGHT: '',  change so original height is actual height or max of 500 jgoodmann 7.2018 -->
+<script>
+            jQuery(function ($) {
+                $('#Zoom-0f01d68a-47ee-475c-b918-e72d0d0e34be').smoothZoom({
+                    width: '100%',
+                    height: 1728,
+                    responsive: true,
+                    responsive_maintain_ratio: true,
+                    max_WIDTH: '',
+                    max_HEIGHT: 500,
+                    zoom_MAX: 400,
+                    animation_SPEED_ZOOM: 1,
+                    touch_DRAG: false,
+                });
+            });
+</script>
+
+
+
+
+
+
+<div class="row" style="margin-top: 10px;">
+    <div class="col-md-3 text-right">
+    </div>
+    <div class="col-md-9">
+        <span class="text-left">Select Item below to DOWNLOAD  -  Once item is selected, right click and choose 'save as'</span>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 5px;">
+    <div class="col-lg-6 col-md-6 col-sm-6 ">
+        <div class="row">
+            <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right"><u>Images</u></label>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+        </div>
+                <div class="row">
+                    <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">Original  jpg Version</label>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <a href="/GetAsset/0f01d68a-47ee-475c-b918-e72d0d0e34be/original.jpg?">6.8 MB, 5184x3456</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">Large  jpg Version</label>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <a href="/GetAsset/0f01d68a-47ee-475c-b918-e72d0d0e34be/proxyhires.jpg?">1.1 MB, 2592x1728</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">Medium  jpg Version</label>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <a href="/GetAsset/0f01d68a-47ee-475c-b918-e72d0d0e34be/proxymdres.jpg?">344.2 KB, 1296x864</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">Small  jpg Version</label>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <a href="/GetAsset/0f01d68a-47ee-475c-b918-e72d0d0e34be/proxylores.jpg?">114.5 KB, 648x432</a>
+                    </div>
+                </div>
+    </div>
+    <!-- some asset types do not want Thumbnails to show: Audio, HFC Cart, HFC Brochures -->
+    <!-- if (asset.PrimaryType != "audio") -->
+    <div class="col-lg-6 col-md-6 col-sm-6 ">
+            <div class="row">
+                <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right"><u>Thumbnails</u></label>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+            </div>
+                    <div class="row">
+                        <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">XLarge  png</label>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <a href="/GetAsset/0f01d68a-47ee-475c-b918-e72d0d0e34be/thumbxlarge.png?">85.5 KB, 200x133</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">Large  png</label>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <a href="/GetAsset/0f01d68a-47ee-475c-b918-e72d0d0e34be/thumblarge.png?">54.9 KB, 135x90</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">Medium  png</label>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <a href="/GetAsset/0f01d68a-47ee-475c-b918-e72d0d0e34be/thumbmedium.png?">42.6 KB, 100x66</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">Small  png</label>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <a href="/GetAsset/0f01d68a-47ee-475c-b918-e72d0d0e34be/thumbsmall.png?">36.3 KB, 75x50</a>
+                        </div>
+                    </div>
+    </div>
+    <!-- change 508 statement 8.2020 - Note: Contact us at  NPGallery@nps.gov  to get 508 compliant versions of these .PDFs. -->
+</div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-2 show_hide_parent"><a style="cursor:pointer">HIDE ASSET</a></div>
+
+            <div class="col-xs-12 col-sm-2 col-sm-offset-3">
+            </div>
+
+            <div class="col-xs-12 col-sm-2 col-sm-offset-3">
+                <a href="#" id="copyrightLink" onclick="copyrightModalDisplay('Permission must be secured from the individual copyright owners to reproduce any copyrighted materials contained within this website. Digital assets without any copyright restrictions are public domain.');">Copyright</a>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- getting error ? 6.2.2021 jgoodmann -->
+        
+<!-- Metadata (Middle) Section  -->
+
+<div class="show_hide_next"><a>ASSET METADATA</a></div>
+<div class="slidingDiv">
+
+                <!-- - change: 2.2023 hfc brochures -- 7.2021 LONG -- 6.2021 Museum -- 2.2020 Guidance -- 7.2019 MAWA  -->
+
+
+<style>
+    .text-left {
+        margin-bottom: 5px;
+    }
+</style>
+<div class="row">
+    <label class="col-md-3 col-sm-3 text-right">Asset ID:</label>
+    <div class="col-md-7 col-sm-7 text-left">
+        0f01d68a-47ee-475c-b918-e72d0d0e34be
+    </div>
+</div>
+
+
+
+
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Title:</label>
+        <div class="col-md-7 col-sm-7 text-left">Faneuil Hall and the Custom House</div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">AltText:</label>
+        <div class="col-md-7 col-sm-7 text-left">
+            <span>Faneuil Hall is a three story, brick building with a triangular pediment on top, an A-Frame roof, and a white wooden cupola of the top of the building on the other side. At the top of the cupola is a gold colored grasshopper weather vane. In front of the building is a statue of Samuel Adams that is set on a pedestal. To the right of Faneuil Hall is the Custom House, a historic tower shaped building with a tall and pointed top.</span><br />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Description:</label>
+        <div class="col-md-7 col-sm-7 text-left">The exterior of Faneuil Hall in dowtown Boston.</div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Copyright:</label>
+        <div class="col-md-7 col-sm-7 text-left">Permission must be secured from the individual copyright owners to reproduce any copyrighted materials contained within this website. Digital assets without any copyright restrictions are public domain.</div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">PhotoCredit:</label>
+        <div class="col-md-7 col-sm-7 col-sm-7 text-left">NPS Photo</div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Constraints Information:</label>
+        <div class="col-md-7 col-sm-7 col-sm-7 text-left">Public domain:Full Granting Rights</div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Keywords:</label>
+        <div class="col-md-7 col-sm-7 col-sm-7 text-left text-capitalize">
+            <text>
+                    <a href="/SearchResults?pagesize=60&keyword=faneuil hall" target="_blank">faneuil hall </a>
+                        ,
+                    <a href="/SearchResults?pagesize=60&keyword=freedom trail" target="_blank">freedom trail </a>
+                        ,
+                    <a href="/SearchResults?pagesize=60&keyword=boston national historical park" target="_blank">boston national historical park </a>
+                        ,
+                    <a href="/SearchResults?pagesize=60&keyword=boston" target="_blank">boston </a>
+            </text>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Resource Type:</label>
+        <div class="col-md-7 col-sm-7 col-sm-7 text-left">Image</div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">NPS Units:</label>
+        <div class="col-md-7 col-sm-7 text-left">
+                Boston National Historical Park, Code: BOST<br />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3  text-right">Locations:</label>
+        <div class="col-md-7 col-sm-7 text-left">
+                Boston National Historical Park, Suffolk County, Massachusetts<br />Latitude: 42.3734016418457, Longitude: -71.0557022094727<br /><br />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Related Collections:</label>
+        <div class="col-md-7 col-sm-7 text-left">
+               <a href="/SearchResults?pagesize=60&collection=NPS.gov Collection" target="_blank">NPS.gov Collection</a><br />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Create Date:</label>
+        <div class="col-md-7 col-sm-7 text-left">12/20/2017</div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Content Dates:</label>
+        <div class="col-md-7 col-sm-7 text-left">
+                12/20/2017<br />
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Access Constraints:</label>
+        <div class="col-md-7 col-sm-7 text-left">
+                    Public Can View
+                <br />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Time Submitted:</label>
+        <div class="col-md-7 col-sm-7 text-left">Wednesday, June 24, 2020 2:56:26 PM</div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Last Edited:</label>
+        <div class="col-md-7 col-sm-7 text-left">Wednesday, June 24, 2020 2:56:26 PM</div>
+    </div>
+<div class="row">
+    <label class="col-md-3 col-sm-3 text-right">Original File Name:</label>
+    <div class="col-md-7 col-sm-7 text-left">IMG_2228.JPG</div>
+</div>
+        <div class="row">
+            <label class="col-md-3 col-sm-3 text-right">Camera Information:</label>
+            <div class="col-md-7 col-sm-7 text-left">Canon Canon, Canon EOS REBEL T3i </div>
+        </div>
+        <div class="row">
+            <label class="col-md-3 col-sm-3 text-right">Exposure:</label>
+            <div class="col-md-7 col-sm-7 text-left">1/125 sec at f / 7.1</div>
+        </div>
+        <div class="row">
+            <label class="col-md-3 col-sm-3 text-right">Focal Length:</label>
+            <div class="col-md-7 col-sm-7 text-left">18 mm</div>
+        </div>
+        <div class="row">
+            <label class="col-md-3 col-sm-3 text-right">ISO Speed:</label>
+            <div class="col-md-7 col-sm-7 text-left">ISO 100</div>
+        </div>
+        <div class="row">
+            <label class="col-md-3 col-sm-3 text-right">Embedded Timestamp:</label>
+            <div class="col-md-7 col-sm-7 text-left">Wednesday, December 20, 2017 4:26:02 PM</div>
+        </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Resource Format:</label>
+        <div class="col-md-7 col-sm-7 text-left">jpg</div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">File Size (bytes):</label>
+        <div class="col-md-7 col-sm-7 text-left">7.1 MB</div>
+    </div>
+        <div class="row">
+            <label class="col-md-3 col-sm-3 text-right">XmpMetadataDate:</label>
+            <div class="col-md-7 col-sm-7 text-left">
+                <text>2020-06-24T16:30:58-04:00</text>
+            </div>
+        </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Rating:</label>
+        <div class="br-wrapper br-theme-css-stars">
+            <div class="col-md-7 col-sm-7 text-left">
+                <div class="br-widget">
+                            <a class="br-selected" href="#"></a>
+                            <a href="#"></a>
+                            <a href="#"></a>
+                            <a href="#"></a>
+                            <a href="#"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-md-3 col-sm-3 text-right">Categories:</label>
+        <div class="col-md-7 col-sm-7 text-left">
+
+                Scenic
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-2 show_hide_parent"><a style="cursor:pointer">HIDE METADATA</a></div>
+
+        <div class="col-xs-12 col-sm-2 col-sm-offset-3">
+        </div>
+
+        <div class="col-xs-12 col-sm-2 col-sm-offset-3">
+            <a href="#" id="copyrightLink" onclick="copyrightModalDisplay('Permission must be secured from the individual copyright owners to reproduce any copyrighted materials contained within this website. Digital assets without any copyright restrictions are public domain.');">Copyright</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Groups Section -->
+    <div show_hide_next"><a>ALBUMS IN WHICH THIS ASSET APPEARS</a></div>
+    <div class="slidingDiv">
+
+        <a href="/SearchResults/albumid/faaf4b53-f0dd-498c-9c02-6668abfdb922?" target="_blank">
+            <div style="vertical-align:top;display:inline-block;border:1px solid black;background-color:antiquewhite;padding:5px;margin:5px">
+                <img style="vertical-align:top;max-width:500px" src="/GetAsset/75a98514-bf01-4a21-b9c1-1d9dd219f4b3//proxylores?" alt="Busy square area in front of a four-story federal-style brick building known as Faneuil Hall. The building has rows of arched windows on each floor and is topped by a pediment with two circular windows on either side of a half-circle window. The building is topped by a cupola with a grasshopper weathervane." title="Faneuil Hall" />
+                <p style="font-size:small" data-toggle="tooltip" data-placement="left" title="Faneuil Hall">
+                    Album - <b>14</b> Photos<br />Faneuil Hall
+                </p>
+            </div>
+        </a>
+
+        <br />
+        <div class="show_hide_parent"><a>HIDE ALBUMS</a></div>
+    </div>
+
+
+
+            <input type="hidden" name="filters" value="default" />
+        </div>
+
+        </div>
+
+
+
+<footer class="GlobalFooter">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <img style="max-width: 250px; width:100%" src="/Content/images/nps-footer-slogan.png" srcset="/Content/images/nps-footer-slogan.png 1x, /Content/images/nps-footer-slogan.png") 2x" alt="Experience Your America">
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-12 col-md-4 order-md-2">
+                <div class="GlobalFooter-nps-logo">
+                    <div class="GlobalFooter-nps-logo-text">
+                        <a href="//www.nps.gov">National Park Service</a>
+                        <a href="//www.doi.gov">U.S. Department of the Interior</a>
+                    </div>
+                    <div class="GlobalFooter-nps-logo-image">
+                        <a href="//www.nps.gov">
+                            <img src="/Content/images/logo.png" height="50" alt="National Park Service Logo" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 order-md-1">
+                <ul class="GlobalFooter-generalLinks">
+                    <li><a href="//www.nps.gov/aboutus/accessibility.htm">ACCESSIBILITY</a></li>
+                    <li><a href="//www.nps.gov/aboutus/privacy.htm">PRIVACY POLICY</a></li>
+                    <li><a href="//www.nps.gov/aboutus/foia/index.htm ">FOIA</a></li>
+                    <li><a href="//www.nps.gov/aboutus/notices.htm">NOTICES</a></li>
+                    <li><a href="//www.nps.gov/aboutus/disclaimer.htm">DISCLAIMER</a> </li>
+                </ul>
+                <ul class="GlobalFooter-generalLinks">
+                    <li><a href="//www.nps.gov/aboutus/faqs.htm">FAQ</a></li>
+                    <li><a href="//www.doi.gov/pmb/eeo/no-fear-act">NO FEAR ACT</a></li>
+                    <li><a href="//www.nps.gov/aboutus/contactus.htm">CONTACT US</a></li>
+                    <li><a href="//www.usa.gov">USA.GOV</a></li>
+                </ul>
+
+                <ul class="GlobalFooter-socialLinks">
+                    <li><a href="//www.facebook.com/nationalparkservice" onclick="return confirm('You are leaving the National Park site, do you want to continue?')" target="_blank"> <i class="fa fa-facebook"></i> FACEBOOK</a></li>
+                    <li><a href="//www.youtube.com/nationalparkservice" onclick="return confirm('You are leaving the National Park site, do you want to continue?')" target="_blank"> <i class="fa fa-youtube"></i> YOUTUBE</a></li>
+                    <li><a href="//www.twitter.com/natlparkservice" onclick="return confirm('You are leaving the National Park site, do you want to continue?')" target="_blank"> <i class="fa fa-twitter"></i> TWITTER</a></li>
+                    <li><a href="//www.instagram.com/nationalparkservice/" onclick="return confirm('You are leaving the National Park site, do you want to continue?')" target="_blank"> <i class="fa fa-instagram"></i> INSTAGRAM</a></li>
+                    <li><a href="//www.flickr.com/photos/nationalparkservice" onclick="return confirm('You are leaving the National Park site, do you want to continue?')" target="_blank"> <i class="fa fa-flickr"></i> FLICKR</a></li>
+                    <li><a href="//itunes.apple.com/WebObjects/MZStore.woa/wa/viewArtistLegacy?cc=us&amp;id=216751324" onclick="return confirm('You are leaving the National Park site, do you want to continue?')" target="_blank"> <i class="fa fa-apple"></i> ITUNES</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+        <script type="text/javascript">
+            console.log("portal layout 1");
+            var view_name = 'AssetDetail';
+            var branding_name = 'MAIN';
+            var layout_options = {"MenuItemsLeft":[{"DisplayName":"Discover and Explore Digital Assets","Target":null,"Link":"/","AttributeName":"Search"},{"DisplayName":"NPS Users","Target":null,"Link":"https://npgallery.nps.gov/inside","AttributeName":"Inside"}],"MenuItemsRight":[{"DisplayName":"About","Target":null,"Link":"/About","AttributeName":"About"},{"DisplayName":"Contact","Target":null,"Link":"/Contact","AttributeName":"Contact"}],"HeroTitle":"NPGallery","HeroSubtitle":"Digital Asset Management System","HeroSubtitleRight":null,"HeroSubtitleRightLink":null,"BannerHeight":70,"BannerImage":null,"GoogleAnalyticsID":null};
+
+            window.name = "_NPGallery_Search";
+
+            //Google Analytics for portals only
+            if (branding_name !== 'MAIN' && layout_options.GoogleAnalyticsID !== null) {
+               ga('send', 'event', 'Branding', 'Portal', layout_options.GoogleAnalyticsID);
+            }
+        </script>
+
+        
+    </body>
+</html>
+
+
+

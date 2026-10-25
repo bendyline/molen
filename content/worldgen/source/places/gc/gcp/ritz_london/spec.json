@@ -38,8 +38,8 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Fa%C3%A7ade_Ritz_Londres.jpg",
-    "https://commons.wikimedia.org/wiki/File:2017_The_Ritz_London.jpg"
+    "https://commons.wikimedia.org/wiki/File:Ritz_elevation_plate_XXV.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ritz_London_Architectural_Record_November_1914.jpg"
   ],
   "stories": [
     {
@@ -47,7 +47,7 @@
       "url": "https://qualla.com/the-ritz-hotel-london/"
     }
   ],
-  "referenceInputHash": "32f527d3b67d8ebe5709f89231ecec913ddb5b0c7523bb03dc688f5d705b2142",
+  "referenceInputHash": "sha256:5b54f679e53326a19a95afa97e2244f735591999c8a821b2cd5ae758e9cade8d",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-ritz-london.mjs"
   },
@@ -293,7 +293,9 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior of the historic main Ritz hotel, based on individually inspected local 2015–2017 photographs, original plans/elevations and Purcell 2021 condition survey. Later 22 Arlington extension and William Kent House are excluded.",
+    "Historic main Ritz hotel. New close-range arcade rustication follows the cleared Qualla1907Piccadilly/GreenPark elevations; seven recessed joints on all16piers. Later22Arlington extension and William Kent House remain excluded.",
+    "Earlier massing, canopy and roof details inherited from prior work. Modern attribution photographs and private2021survey imagery are excluded as current controls. Full historic-main-hotel fidelity remains pending adequate public-domain review of all retained details.",
+    "Joint spacing follows the existing course rhythm;18mm height and25mm depth are authoring estimates. The1907plate does not establish current condition or exact profiles. Close-only construction keeps the three lower geometry levels unchanged.",
     "Dated model scope does not claim to reproduce all current roof/construction changes. No temporary scaffolding, crowds, Christmas decorations or interiors.",
     "Footprint is mapped; vertical dimensions, upper court geometry, rear windows, equipment and fine sculptural profiles are approximations. Main arcade remains open and rear court is not filled to full height.",
     "Original simplified ironwork, stone balustrades and roof ornament; no copied photograph textures, hotel crest or exact lettering.",
@@ -326,16 +328,42 @@
         14,
         3
       ]
+    },
+    {
+      "name": "arcade-joints",
+      "position": [
+        -27,
+        2.2,
+        29
+      ],
+      "lookAt": [
+        -29,
+        2,
+        24.13
+      ]
+    },
+    {
+      "name": "arcade-depth",
+      "position": [
+        -29,
+        3,
+        27.8
+      ],
+      "lookAt": [
+        -26,
+        2.8,
+        22.4
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 54267,
-    "vertices": 162801,
+    "triangles": 55849,
+    "vertices": 167547,
     "materials": 7,
-    "bytes": 6516212,
-    "sha256": "sha256:2cfffb531492dd64b2cff8710749e22438c76cafa82671b569f49e4366a44d27"
+    "bytes": 6706052,
+    "sha256": "sha256:d4f0b28453cc0cdc32a6f6b8f693a1ebd18dc34947efed08f0d1fa5ef3105754"
   }
 }

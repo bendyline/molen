@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u3/u32/n0355_cathedral_of_magdeburg/',
+  '../../../content/worldgen/source/places/u3/u32/cathedral_of_magdeburg/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1057,7 +1057,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const magdeburgStudy = {
-  id: 'N0355',
+  id: 'cathedral_of_magdeburg',
   key: 'cathedral_of_magdeburg',
   title: 'Cathedral of Magdeburg',
   category: 'cathedral',

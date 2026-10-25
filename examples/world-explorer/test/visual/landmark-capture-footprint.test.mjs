@@ -3,6 +3,80 @@ import { createHash } from 'node:crypto';
 import { test } from 'node:test';
 import { sourceLocalFootprint } from './landmark-capture-footprint.mjs';
 
+test('separate wing polygons retain two closed boundaries without filling their courtyard', () => {
+  const frame = {
+    sourceUrl: 'https://www.openstreetmap.org/way/385175774',
+    anchor: [-59.6141, 13.0973],
+    heading: 0,
+    geometry: {
+      polygons: [
+        [
+          [-20, 0],
+          [-10, 0],
+          [-10, 40],
+          [-20, 40],
+        ],
+        [
+          [10, -10],
+          [20, -10],
+          [20, 30],
+          [10, 30],
+        ],
+      ],
+    },
+  };
+  const check = (value) => {
+    const bytes = Buffer.from(JSON.stringify(value));
+    return sourceLocalFootprint(
+      {
+        geographicProposal: {
+          mapGeometrySource: 'map-frame.json',
+          mapGeometryHash: `sha256:${createHash('sha256').update(bytes).digest('hex')}`,
+        },
+      },
+      bytes,
+    );
+  };
+  const result = check(frame);
+  assert.equal(result.footprint, undefined);
+  assert.equal(result.lines.length, 2);
+  assert(result.lines.every((line) => line.length === 5));
+  assert(result.lines[0].every((p) => p[0] < frame.anchor[0]));
+  assert(result.lines[1].every((p) => p[0] > frame.anchor[0]));
+  assert(result.lines.every((line) => JSON.stringify(line[0]) === JSON.stringify(line.at(-1))));
+  assert.throws(
+    () =>
+      check({
+        ...frame,
+        geometry: {
+          polygons: [
+            [
+              [0, 0],
+              [1, 0],
+            ],
+          ],
+        },
+      }),
+    /needs an outline/,
+  );
+  assert.throws(
+    () =>
+      check({
+        ...frame,
+        geometry: {
+          polygons: [
+            [
+              [0, 0],
+              [1, null],
+              [1, 1],
+            ],
+          ],
+        },
+      }),
+    /Invalid source-local footprint point/,
+  );
+});
+
 test('source-local signed frame overrides unrelated global footprint without moving its anchor', () => {
   const frame = {
     sourceUrl: 'https://www.openstreetmap.org/way/64891750',
@@ -20,7 +94,7 @@ test('source-local signed frame overrides unrelated global footprint without mov
   const bytes = Buffer.from(JSON.stringify(frame, null, 2));
   const hash = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
   const spec = {
-    id: 'N0189',
+    id: 'yokohama_landmark_tower',
     geographicProposal: { mapGeometrySource: 'map-frame.json', mapGeometryHash: hash },
   };
   const result = sourceLocalFootprint(spec, bytes);
@@ -39,7 +113,7 @@ test('source-local signed frame overrides unrelated global footprint without mov
 });
 
 test('global evidence capture path remains unchanged for ordinary placements', () => {
-  assert.equal(sourceLocalFootprint({ id: 'N0188' }, undefined), undefined);
+  assert.equal(sourceLocalFootprint({ id: '70_pine_street' }, undefined), undefined);
   assert.equal(
     sourceLocalFootprint(
       { geographicProposal: { mapGeometrySource: 'content/earth/structures/georeferencing.json' } },

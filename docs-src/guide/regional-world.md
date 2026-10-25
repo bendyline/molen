@@ -187,7 +187,7 @@ at high latitudes. Tropical locations stay leaf-on; evergreen plants do not beco
 does not infer local weather, snow, tropical wet/dry seasons, crop harvest dates, or climate change.
 Remount with another month to change appearance.
 
-The ordinary architectural catalog supplies 273 recipes across 13 construction families and seven
+The ordinary architectural catalog supplies 294 recipes across 14 construction families and seven
 uses: detached homes, attached homes, apartments, commercial, civic, industrial, and farm
 buildings. Mapped use wins over neighborhood inference. Taller measured residential buildings
 select compatible apartment recipes; source footprint, height, and levels still control the
@@ -198,6 +198,12 @@ Each family/use has three weighted recipes: base, compact facade, and open facad
 identity selects their window/bay rhythm, roof weighting, eaves, parapets and supported facade
 details. The facade names do not resize the mapped building. Explicit original recipe IDs remain
 available, and identity-free selection keeps the base recipe.
+
+For inferred vacant lots, regional `lotPlans` weights select cottages, L-shaped ranches,
+courtyards, compact homes, attached-garage plans or commercial shopfronts. The US Southwest has
+its own stucco-and-ceramic-tile family; Washington uses the North American siding-and-shingle
+family. Each inferred lot reserves a path or driveway to its frontage street. Mapped land use
+selects residential versus commercial pools; see [building infill](worldgen.md#inferred-buildings-where-outlines-are-missing).
 
 Near-detail ordinary facades include a bounded single, double, or service entrance. The inferred
 entrance fits an eligible exterior wall, reserves a ground-floor window bay, and yields to known
@@ -335,10 +341,15 @@ dispose with the terrain stream. Tiny animals disappear at short distances.
 
 An explicit vegetation month also suppresses the generic insect/lizard groups in the coarse
 cold season and changes the arctic-fox coat. It does not simulate migration or actual weather.
-Existing generic birdsong and cricket recordings are gated by regional habitat and season, then
-by weather, daylight and height above ground. They are not recordings of the named visual taxa.
-Hosts composing their own view can supply `EarthAudioFrame.regionalAmbience` or use
-`EarthWildlife.ambience`; omission preserves the legacy generic soundscape.
+Birdsong uses the sound pack's curated regional catalog when present: location, observed habitat,
+the sky's calendar month and local sunlight select the recordings. The initial eight CC0
+recordings cover conservative areas in North America, Europe, Japan, Australia, the Amazon,
+South Africa and Mauritius; uncovered places stay quiet. Monthly gains are authored activity
+priors, not a migration simulation. They are independent of the named visual mammal taxa.
+Crickets still use the generic recording gated by regional habitat and season. Both retain
+weather, height and vehicle suppression. Composing hosts supply `EarthAudioFrame.location`
+and `regionalAmbience` from `EarthWildlife.ambience`; older packs without a birdsong catalog
+retain the generic bird soundscape. See [Sound and music](audio.md).
 
 ## Authoring and verification in this repository
 

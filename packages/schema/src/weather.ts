@@ -7,6 +7,8 @@ const vector = z.array(finite).length(3) as unknown as z.ZodType<[number, number
 /** Independent atmospheric, cloud and precipitation parameters, in SI units. */
 export type WeatherData = {
   atmosphere?: {
+    model?: 'standard' | 'isothermal';
+    moistAir?: boolean;
     temperatureK?: number;
     pressurePa?: number;
     relativeHumidity?: number;
@@ -37,6 +39,18 @@ export type WeatherData = {
 export const weatherSchema: z.ZodType<WeatherData> = z.strictObject({
   atmosphere: z
     .strictObject({
+      model: z
+        .enum(['standard', 'isothermal'])
+        .optional()
+        .describe(
+          'Standard layered Earth lapse rates (default), or a uniform-temperature isothermal atmosphere.',
+        ),
+      moistAir: z
+        .boolean()
+        .optional()
+        .describe(
+          'Apply water-vapor ideal-gas density correction. Default false (dry reference air).',
+        ),
       temperatureK: finite
         .positive()
         .optional()
@@ -168,6 +182,8 @@ export function resolveWeather(data: WeatherData = {}): ResolvedWeather {
   return {
     atmosphere: {
       temperatureK: 288.15,
+      model: 'standard',
+      moistAir: false,
       pressurePa: 101325,
       relativeHumidity: 0.5,
       referenceAltitude: 0,

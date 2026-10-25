@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u3/u31/n0319_moritzburg_castle/',
+  '../../../content/worldgen/source/places/u3/u31/moritzburg_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -654,7 +654,7 @@ export const buildMoritzburgDistrict = (out) => build(out, 1);
 export const buildMoritzburgStreet = (out) => build(out, 2);
 export const buildMoritzburgCloseup = (out) => build(out, 3);
 export const moritzburgStudy = {
-  id: 'N0319',
+  id: 'moritzburg_castle',
   key: 'moritzburg_castle',
   title: 'Moritzburg Castle',
   category: 'castle',

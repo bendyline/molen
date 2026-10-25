@@ -4,7 +4,7 @@ import { beam, chamferedRectangle, loft } from './authored-structure-mesh.mjs';
 import { box, colors, quad, tube } from './structure-mesh.mjs';
 
 export const normandieStudy = {
-  id: 'N0002',
+  id: 'pont_de_normandie',
   key: 'pont_de_normandie',
   size: [2141.25, 214, 47],
   brief:

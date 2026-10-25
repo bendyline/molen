@@ -15,6 +15,18 @@ import {
 } from '../src/kernel';
 
 describe('canonical rigs', () => {
+  it('keeps the rigid biped rest pose close to the sides', () => {
+    const rig = deriveRig(resolveFigureDescriptor({ preset: 'human.adult' }));
+    const bind = rigBindModel(rig);
+    for (const side of ['l', 'r']) {
+      const upper = (rig.index[`upperArm.${side}`] as number) * 7;
+      const hand = (rig.index[`hand.${side}`] as number) * 7;
+      expect(Math.abs((bind[hand] as number) - (bind[upper] as number))).toBeLessThan(
+        rig.height * 0.035,
+      );
+    }
+  });
+
   for (const preset of FIGURE_PRESET_IDS) {
     describe(preset, () => {
       const descriptor = resolveFigureDescriptor({ preset });

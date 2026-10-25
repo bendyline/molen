@@ -1,0 +1,2703 @@
+{
+  "date": "2026-10-20",
+  "scope": "40 additional polygonal reference vehicles, two per year from 2005–2024",
+  "generator": "packages/entities/scripts/road-vehicle-geometry.mjs",
+  "generatorHash": "sha256:4572ac969c13bd486ed25f071bc642bb3ca89d47f6e5231201c1d9972d27edb4",
+  "checks": {
+    "modelCount": 40,
+    "entityTests": 366,
+    "earthTests": 136,
+    "assetInspection": "All 40 imported and inspectAsset({verify:true}) passed",
+    "reproducibility": "generate-fleet.mjs --check passed for the entire fleet, including previous Bendy and recent reference models",
+    "captures": "Four exterior angles, neutral-lit scene and exact driverEye per model; bulk images local"
+  },
+  "limitations": [
+    "Stylized reference interpretations with rounded dimensions and simplified trim/cabins",
+    "Game handling, not manufacturer performance simulation",
+    "Analog speed and steering are bound where present; screen graphics are illustrative",
+    "No door, roof, tailgate or cargo-access animation",
+    "Near-view masters use host distance/proxy policies; no separate authored GLB LOD chain"
+  ],
+  "models": [
+    {
+      "id": "molen.entities.vehicle.ford_gt_2005",
+      "slug": "ford-gt-2005",
+      "label": "2005 Ford GT",
+      "year": 2005,
+      "trim": "First generation coupe",
+      "bodyStyle": "coupe",
+      "sourceHash": "sha256:f850d99cabd74bcd0ca1e86482c715a0444d629cbf0841a1190f6346e1ce731a",
+      "runtimeHash": "sha256:7bfbe6189591ad5a87c3429d9c1ee7c53cbb53067b626b333543ed0ac9913c62",
+      "recipeHash": "sha256:abc6b405df288e4ff88f9153c056ec6ffb53e3b68ea5efcf239213f2ea6884ad",
+      "stats": {
+        "triangles": 18956,
+        "vertices": 27353,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 574448
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.1165, -0.0035, -2.39],
+          "max": [1.1165, 1.125, 2.393]
+        },
+        "sphere": {
+          "center": [0, 0.5608, 0.0015],
+          "radius": 2.4896
+        }
+      },
+      "camera": {
+        "position": [3.8263999999999996, 2.56961, 4.543849999999999],
+        "lookAt": [0, 0.56075, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4492, 0.855, 0.0689],
+        "lookAt": [0.4492, 0.695, 1.0689],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/ford-gt-2005/shots/angle_0.png",
+          "sha256": "sha256:e39d328cdd05641703ea8ea12c2233c13b1903cef169330b790aa2223fb4c82b"
+        },
+        {
+          "path": "source/vehicles/ford-gt-2005/shots/angle_1.png",
+          "sha256": "sha256:a16b689d87f0441d54f8c9f56e2bbdd1315e8654e4ca3a7002e714fe425ea89e"
+        },
+        {
+          "path": "source/vehicles/ford-gt-2005/shots/angle_2.png",
+          "sha256": "sha256:315a497b88977a3087d294bd631299b1a1f02aaa3a86eaaa7f20888bb1ef6450"
+        },
+        {
+          "path": "source/vehicles/ford-gt-2005/shots/angle_3.png",
+          "sha256": "sha256:5b5e5d934545d86fc8f25557f9aa8a5370e40d6d26f2764f32fd45d279e758f4"
+        },
+        {
+          "path": "source/vehicles/ford-gt-2005/shots/three-quarter.png",
+          "sha256": "sha256:1b6b8146d836535392c246cc2ba31a5511ba07e4d8fd12c9aaba157a74447038"
+        },
+        {
+          "path": "source/vehicles/ford-gt-2005/shots/operator.png",
+          "sha256": "sha256:d449dc19a6ec04456af63026b2e5acbb80d583a96da32e0822324715d31c8360"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.chevrolet_ssr_2005",
+      "slug": "chevrolet-ssr-2005",
+      "label": "2005 Chevrolet SSR",
+      "year": 2005,
+      "trim": "LS roadster pickup, roof lowered",
+      "bodyStyle": "pickup",
+      "sourceHash": "sha256:8d40873c496fd426ca572c2686df9948b848425718eeb1309fc4f29696f0e239",
+      "runtimeHash": "sha256:04e8c0bc679440d2379ea1a9abd603c4823faf8c1e0de523df3482a20d12be81",
+      "recipeHash": "sha256:84af0564d04bb6bfec6256dbc783d97ddb4ffbbb9b2395d6bf8ca2b13f5dd296",
+      "stats": {
+        "triangles": 17503,
+        "vertices": 23701,
+        "meshes": 26,
+        "primitives": 26,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 506280
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.1381, -0.0035, -2.4995],
+          "max": [1.1381, 1.6268, 2.4995]
+        },
+        "sphere": {
+          "center": [0, 0.8117, 0],
+          "radius": 2.6188
+        }
+      },
+      "camera": {
+        "position": [3.9992, 2.9112299999999998, 4.7490499999999995],
+        "lookAt": [0, 0.81165, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4591, 1.361, 0.1517],
+        "lookAt": [0.4591, 1.201, 1.1517],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/chevrolet-ssr-2005/shots/angle_0.png",
+          "sha256": "sha256:3fdb47be8f466e9d243f556e6695073517b891bbffbb2efe867994803bdc3c3e"
+        },
+        {
+          "path": "source/vehicles/chevrolet-ssr-2005/shots/angle_1.png",
+          "sha256": "sha256:40e155c571e766593c0214f76b245a4b3c9c28d14bf97b359dcca33ce1327db5"
+        },
+        {
+          "path": "source/vehicles/chevrolet-ssr-2005/shots/angle_2.png",
+          "sha256": "sha256:cf901ab9e8d5f991c7c1b270164253dd0b825cb2e9b894599434c8a15a9dbe5e"
+        },
+        {
+          "path": "source/vehicles/chevrolet-ssr-2005/shots/angle_3.png",
+          "sha256": "sha256:7934c76b31c19249f43a54b6d315fcfc559817aa091a1dd601c1b7c15257f964"
+        },
+        {
+          "path": "source/vehicles/chevrolet-ssr-2005/shots/three-quarter.png",
+          "sha256": "sha256:c4aa1c2a929ea97f4fb3a10869101206881885515a8001b617ea4206830998e8"
+        },
+        {
+          "path": "source/vehicles/chevrolet-ssr-2005/shots/operator.png",
+          "sha256": "sha256:71ec70f47c40a5a07cda33b8b57201233d3a03cd7dc40f8f271398108e4b89e9"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.chrysler_pt_cruiser_2006",
+      "slug": "chrysler-pt-cruiser-2006",
+      "label": "2006 Chrysler PT Cruiser",
+      "year": 2006,
+      "trim": "Touring five-door",
+      "bodyStyle": "hatchback",
+      "sourceHash": "sha256:55ba72fec2533bf26354654f2860a013a9249c5218a8e97f65258b3078e96671",
+      "runtimeHash": "sha256:0da9ea70b6bfb34f6fe96783a0b7ebfa55485a1ea23b0198ab180612d911f775",
+      "recipeHash": "sha256:ace3e25dbe5c616a2c5cb8a54c49ab1e772fb6a02fc769c784359f4a3abf2c40",
+      "stats": {
+        "triangles": 19860,
+        "vertices": 28503,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 598692
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9926, -0.0035, -2.2135],
+          "max": [0.9926, 1.6011, 2.2135]
+        },
+        "sphere": {
+          "center": [0, 0.7988, 0],
+          "radius": 2.3544
+        }
+      },
+      "camera": {
+        "position": [3.5416, 2.6581399999999995, 4.2056499999999994],
+        "lookAt": [0, 0.7988, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3922, 1.331, -0.0542],
+        "lookAt": [0.3922, 1.171, 0.9458],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/chrysler-pt-cruiser-2006/shots/angle_0.png",
+          "sha256": "sha256:e95f451df01c5aa62991847e49b0d136b17ff9e51a85f086192eb568a3bd6496"
+        },
+        {
+          "path": "source/vehicles/chrysler-pt-cruiser-2006/shots/angle_1.png",
+          "sha256": "sha256:22262b0f338232cec4b56c774e801f7a94bbe4a91701ad11f542d0dc6bb8c3fd"
+        },
+        {
+          "path": "source/vehicles/chrysler-pt-cruiser-2006/shots/angle_2.png",
+          "sha256": "sha256:7b06c4f51f8f643ad12a648f3d4072a787afcede425d6b4adfee4cdf014db980"
+        },
+        {
+          "path": "source/vehicles/chrysler-pt-cruiser-2006/shots/angle_3.png",
+          "sha256": "sha256:e40ca7fa7860dfc83b2e738b0bbf281283f4eaf441bc6fda3147e5e13863c420"
+        },
+        {
+          "path": "source/vehicles/chrysler-pt-cruiser-2006/shots/three-quarter.png",
+          "sha256": "sha256:cefd509ec376a0d964ecea923e6fa5c6e3462fce47b5cda877109934eb661799"
+        },
+        {
+          "path": "source/vehicles/chrysler-pt-cruiser-2006/shots/operator.png",
+          "sha256": "sha256:7c5a79c81ecfcb9e7104f34c6fbb2e695cd26d07a42b5b8fea01fcd74f275258"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.scion_xb_2006",
+      "slug": "scion-xb-2006",
+      "label": "2006 Scion xB",
+      "year": 2006,
+      "trim": "First generation five-door",
+      "bodyStyle": "hatchback",
+      "sourceHash": "sha256:8797a8b842bc32fee6745525f1af4659109bb21d09f23acbcde016c85864a626",
+      "runtimeHash": "sha256:ff6b0ee0e76a1d82f747129843ec990f724dfd54f8606d54cfe854e574ad3932",
+      "recipeHash": "sha256:69f5abd7905a5f1d4bdd2784255da52c76d6645f1005811c8393be6bc4e67d38",
+      "stats": {
+        "triangles": 17672,
+        "vertices": 25328,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 534884
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.985, -0.0035, -2.041],
+          "max": [0.985, 1.6458, 2.041]
+        },
+        "sphere": {
+          "center": [0, 0.8212, 0],
+          "radius": 2.2023
+        }
+      },
+      "camera": {
+        "position": [3.2656, 2.53559, 3.8778999999999995],
+        "lookAt": [0, 0.8211499999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3887, 1.37, 0.3235],
+        "lookAt": [0.3887, 1.2100000000000002, 1.3235000000000001],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/scion-xb-2006/shots/angle_0.png",
+          "sha256": "sha256:081d1b5d18eeb99780f230b668a75827daf399826a678e233c5b93bd597390bd"
+        },
+        {
+          "path": "source/vehicles/scion-xb-2006/shots/angle_1.png",
+          "sha256": "sha256:8345ce00bf5271c1ef6b135eac0c784370c4bc45948b9d6b09f819c323559dfb"
+        },
+        {
+          "path": "source/vehicles/scion-xb-2006/shots/angle_2.png",
+          "sha256": "sha256:2252e5ceb531d23a70b8fcca12017e44c0cccafb7c5754b6f6ead1848961fe60"
+        },
+        {
+          "path": "source/vehicles/scion-xb-2006/shots/angle_3.png",
+          "sha256": "sha256:c49ca8576207699bb0f3711ebafe73f636d15d38a436f40b6371a34051d6c862"
+        },
+        {
+          "path": "source/vehicles/scion-xb-2006/shots/three-quarter.png",
+          "sha256": "sha256:01892397ed2995701814fcbc9dd3d431aa893f0a5eab216dac668f3c881a4d02"
+        },
+        {
+          "path": "source/vehicles/scion-xb-2006/shots/operator.png",
+          "sha256": "sha256:68eb8181b1cc5114b6ec827f1e7b5884dbdcb0ce9a3bb9f996d9598b32b46b87"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.pontiac_solstice_2007",
+      "slug": "pontiac-solstice-2007",
+      "label": "2007 Pontiac Solstice",
+      "year": 2007,
+      "trim": "GXP roadster, roof lowered",
+      "bodyStyle": "roadster",
+      "sourceHash": "sha256:d0345edba73d72bb417da7dbaf91cc1d0cbfd24b64aebf767649e35e4b21f45c",
+      "runtimeHash": "sha256:908fe65b3f01717a85d602686e5ef316d2fd5e174612180141abe445cc1211a6",
+      "recipeHash": "sha256:d914ae27b3c0ef7fce74dcd67091d0b5961312c95a54af0767f8862efa8d3d5e",
+      "stats": {
+        "triangles": 17896,
+        "vertices": 24936,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 528776
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0449, -0.0035, -2.065],
+          "max": [1.0449, 1.2337, 2.065]
+        },
+        "sphere": {
+          "center": [0, 0.6151, 0],
+          "radius": 2.179
+        }
+      },
+      "camera": {
+        "position": [3.3040000000000003, 2.3497, 3.9234999999999998],
+        "lookAt": [0, 0.6151, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4163, 1.003, -0.2199],
+        "lookAt": [0.4163, 0.8429999999999999, 0.7801],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/pontiac-solstice-2007/shots/angle_0.png",
+          "sha256": "sha256:dc5a9b91500ca53f75a95a18d2c6be0f232e4db1c66cdf1c3ab848c9653ebbbb"
+        },
+        {
+          "path": "source/vehicles/pontiac-solstice-2007/shots/angle_1.png",
+          "sha256": "sha256:81644abd7086ae43ce308b8eb2a3de171fb34af3e7cdb39c989dd84d660467d4"
+        },
+        {
+          "path": "source/vehicles/pontiac-solstice-2007/shots/angle_2.png",
+          "sha256": "sha256:3a3fe2cee08d8388891a8b379ab7b3a0ec4c94616461b24df71843cee4f26c24"
+        },
+        {
+          "path": "source/vehicles/pontiac-solstice-2007/shots/angle_3.png",
+          "sha256": "sha256:e69c2405607a49d08d4f66791be0d768ef40d9e6d30ac1641dfab863cacda13d"
+        },
+        {
+          "path": "source/vehicles/pontiac-solstice-2007/shots/three-quarter.png",
+          "sha256": "sha256:6af40dc4f645d51b1eae6d09867ed003f62e5cad72fc54bdc5a920378198029e"
+        },
+        {
+          "path": "source/vehicles/pontiac-solstice-2007/shots/operator.png",
+          "sha256": "sha256:89cf9750f6e591ef0e35514cbad8afe7c1b6dc19190d32b71cd3941c10e5f2ad"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.hummer_h3_2007",
+      "slug": "hummer-h3-2007",
+      "label": "2007 Hummer H3",
+      "year": 2007,
+      "trim": "Base SUV",
+      "bodyStyle": "offroad",
+      "sourceHash": "sha256:58ac8e9b7f8b01283302b9215090a14b442eca4c7ee801ac6e17c0c9353eedb0",
+      "runtimeHash": "sha256:edc14eeb96343700d56b865989eea2e4078d4534072ac9fa2db75158098cbc8e",
+      "recipeHash": "sha256:924229c5ab1e57d61f7684dc723e80181796f774e54253b61d77afd7d341a871",
+      "stats": {
+        "triangles": 18896,
+        "vertices": 26056,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 554372
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0885, -0.0035, -2.4469],
+          "max": [1.0885, 1.9489, 2.3135]
+        },
+        "sphere": {
+          "center": [0, 0.9727, -0.0667],
+          "radius": 2.5125
+        }
+      },
+      "camera": {
+        "position": [3.80832, 2.9720679999999997, 4.522379999999999],
+        "lookAt": [0, 0.9727, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4363, 1.602, 0.2176],
+        "lookAt": [0.4363, 1.4420000000000002, 1.2176],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/hummer-h3-2007/shots/angle_0.png",
+          "sha256": "sha256:59e75aa165ebdc3e6d1f5095ff65b3d6c77dcbcd3a4daa43ea14c4434fad6206"
+        },
+        {
+          "path": "source/vehicles/hummer-h3-2007/shots/angle_1.png",
+          "sha256": "sha256:155476b3d6db38c20dcff087eefa95dd18c173ec85c0887a6adecd4e875f0719"
+        },
+        {
+          "path": "source/vehicles/hummer-h3-2007/shots/angle_2.png",
+          "sha256": "sha256:3ee2962c75770ac55390f3539068faa24cd6435b1ba5c24ec58a8392961c7501"
+        },
+        {
+          "path": "source/vehicles/hummer-h3-2007/shots/angle_3.png",
+          "sha256": "sha256:b8ecab6ee6217d1426d8906abf913a9f4d7d41b32c4049a72bf911fa9533d55a"
+        },
+        {
+          "path": "source/vehicles/hummer-h3-2007/shots/three-quarter.png",
+          "sha256": "sha256:3d9979dce49cb932cc7c7110b6a498389f2c8ffa8407f316152bb9b03f3a6995"
+        },
+        {
+          "path": "source/vehicles/hummer-h3-2007/shots/operator.png",
+          "sha256": "sha256:41ec0ece223d45421b703a63c3a3b888521a66a38b7f9e0be2d9cf479c12f93e"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.honda_element_2008",
+      "slug": "honda-element-2008",
+      "label": "2008 Honda Element",
+      "year": 2008,
+      "trim": "EX four-door",
+      "bodyStyle": "suv",
+      "sourceHash": "sha256:4abb37f970c71983e04a39c6cc402eafa101739c981f98ac1f3ec5ec25841e07",
+      "runtimeHash": "sha256:93969528f65e7646d2fed1e1362d476973ea9d09855541791adc5889973382ad",
+      "recipeHash": "sha256:5e1537d56537a503b8092c3436d3b60c6bce334a336cc99ad7bad5567ee96a7e",
+      "stats": {
+        "triangles": 18175,
+        "vertices": 26341,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 553372
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.048, -0.0035, -2.2315],
+          "max": [1.048, 1.7881, 2.2315]
+        },
+        "sphere": {
+          "center": [0, 0.8923, 0],
+          "radius": 2.4019
+        }
+      },
+      "camera": {
+        "position": [3.5704000000000002, 2.76676, 4.23985],
+        "lookAt": [0, 0.8923, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4177, 1.518, 0.3945],
+        "lookAt": [0.4177, 1.358, 1.3945],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/honda-element-2008/shots/angle_0.png",
+          "sha256": "sha256:31925921db8d826bd364e4251d66b5aee4f9c9b751838a85d88a2f2dc1132f44"
+        },
+        {
+          "path": "source/vehicles/honda-element-2008/shots/angle_1.png",
+          "sha256": "sha256:713df682160b4eb6d82a68638f93b48ff50a7dc0a520c4714564dffa975cebf4"
+        },
+        {
+          "path": "source/vehicles/honda-element-2008/shots/angle_2.png",
+          "sha256": "sha256:6e40548f14bba21e40d27fe31239dd9bc87c16b32c2b219d5265f96eda9870d7"
+        },
+        {
+          "path": "source/vehicles/honda-element-2008/shots/angle_3.png",
+          "sha256": "sha256:c9173989b05a1f329bce87a9c42227a4257623715520f9d115a1cf45b52e007a"
+        },
+        {
+          "path": "source/vehicles/honda-element-2008/shots/three-quarter.png",
+          "sha256": "sha256:3f766d78093992975a5597586f2b933f9cf1ce25d75aaa120093618afe8b21cc"
+        },
+        {
+          "path": "source/vehicles/honda-element-2008/shots/operator.png",
+          "sha256": "sha256:74a8fec0ba186c7f37ffa650cf627fa22459fe18d0400f4d365b80263dfd1e32"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.volvo_v70_2008",
+      "slug": "volvo-v70-2008",
+      "label": "2008 Volvo V70",
+      "year": 2008,
+      "trim": "3.2 wagon",
+      "bodyStyle": "wagon",
+      "sourceHash": "sha256:83eb7598e723fbd64651c00e7006d0beb7b46b9b25766fa0242adf172c5db55d",
+      "runtimeHash": "sha256:d2ba6527d6deebb300d31d1386d5729a609fa5f3bc2ec332a0a39fff2f61afda",
+      "recipeHash": "sha256:8492bc3089fdda3475ca844f639b26db29b47aca8e386fe02dc798a61758eaeb",
+      "stats": {
+        "triangles": 18311,
+        "vertices": 26295,
+        "meshes": 30,
+        "primitives": 30,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 554908
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0704, -0.0035, -2.48],
+          "max": [1.0704, 1.6239, 2.48]
+        },
+        "sphere": {
+          "center": [0, 0.8102, 0],
+          "radius": 2.6177
+        }
+      },
+      "camera": {
+        "position": [3.968, 2.8933999999999997, 4.712],
+        "lookAt": [0, 0.8101999999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.428, 1.277, 0.1494],
+        "lookAt": [0.428, 1.117, 1.1494],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/volvo-v70-2008/shots/angle_0.png",
+          "sha256": "sha256:e9434fbb30880768edd9eab7e5c65b6eaaa80a8597e8b98f5a9c64c4dce6d6d6"
+        },
+        {
+          "path": "source/vehicles/volvo-v70-2008/shots/angle_1.png",
+          "sha256": "sha256:b66ab2293bb44917c0201f4525cea5daf3c4ed340b803eb746efc51fbbd04c01"
+        },
+        {
+          "path": "source/vehicles/volvo-v70-2008/shots/angle_2.png",
+          "sha256": "sha256:cbd36fa1428e9095fd596f374b0c7f8e4cebff925496ffcdb18ee6f845f6786a"
+        },
+        {
+          "path": "source/vehicles/volvo-v70-2008/shots/angle_3.png",
+          "sha256": "sha256:4f91439e72a2df1b0fc159d52c72913ba57b169c6d01893f06d6201a1d247b62"
+        },
+        {
+          "path": "source/vehicles/volvo-v70-2008/shots/three-quarter.png",
+          "sha256": "sha256:08a861c1ece9731bfc43351864aba73678e174a519725bfdeaa8761b63ee17d2"
+        },
+        {
+          "path": "source/vehicles/volvo-v70-2008/shots/operator.png",
+          "sha256": "sha256:d2a2f1a6bf0ed75852b68dfa39492fcb1fad999b0480842205f92cf244bb6d81"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.smart_fortwo_2009",
+      "slug": "smart-fortwo-2009",
+      "label": "2009 Smart fortwo",
+      "year": 2009,
+      "trim": "Passion coupe, second generation",
+      "bodyStyle": "city",
+      "sourceHash": "sha256:b7c7bb9b972fe6927ee5239230dcca3edaf56dc4d81355f3cb2d55302372fb52",
+      "runtimeHash": "sha256:1d5b47e5923c56e74eb325551c984b00a58c4839502cb850fb517261fcfbed99",
+      "recipeHash": "sha256:709613346e5621bf47a14862b855075b56f428f755e91c52017adf23bea1c08f",
+      "stats": {
+        "triangles": 19546,
+        "vertices": 27664,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 584300
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9195, -0.0035, -1.416],
+          "max": [0.9195, 1.542, 1.416]
+        },
+        "sphere": {
+          "center": [0, 0.7692, 0],
+          "radius": 1.616
+        }
+      },
+      "camera": {
+        "position": [2.2656, 1.9586899999999998, 2.6904],
+        "lookAt": [0, 0.76925, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3586, 1.272, 0.1911],
+        "lookAt": [0.3586, 1.112, 1.1911],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/smart-fortwo-2009/shots/angle_0.png",
+          "sha256": "sha256:185afbe00c4f931540e3a01369f42f2b6164867935f8c13fe0f0ea514215d011"
+        },
+        {
+          "path": "source/vehicles/smart-fortwo-2009/shots/angle_1.png",
+          "sha256": "sha256:6e594fee9bec70674f6eaf1240b2cb4ede3992c89f84bf8671e51f705ee01932"
+        },
+        {
+          "path": "source/vehicles/smart-fortwo-2009/shots/angle_2.png",
+          "sha256": "sha256:a5a030a59e97b3272c7f8a0b3e74c5e76bb611a158cab74a64fe0618ea61e60b"
+        },
+        {
+          "path": "source/vehicles/smart-fortwo-2009/shots/angle_3.png",
+          "sha256": "sha256:92286330b0c446303d139d6fde61e020b748bff769f2d581921a44abdb8f88ad"
+        },
+        {
+          "path": "source/vehicles/smart-fortwo-2009/shots/three-quarter.png",
+          "sha256": "sha256:30d0de7d9079502ef148fe0883aabf2c49aec1c1a399d4a06080ee9312f00b96"
+        },
+        {
+          "path": "source/vehicles/smart-fortwo-2009/shots/operator.png",
+          "sha256": "sha256:ad3c7b51a810c78737363ecc7752c9f5e1626a284fc5bfbd1a0f26cce450e492"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.nissan_370z_2009",
+      "slug": "nissan-370z-2009",
+      "label": "2009 Nissan 370Z",
+      "year": 2009,
+      "trim": "Touring coupe",
+      "bodyStyle": "coupe",
+      "sourceHash": "sha256:1844b147958a560894e8b4bb63d7006d7e6419d0a1ec49ddb05d06832b08b182",
+      "runtimeHash": "sha256:3ba6bb220e53b10b4da25fed96a6367077122cef21f355e45cec623306e4a9e7",
+      "recipeHash": "sha256:e21c35dd0062ce1d6cd59deacaa413595110a509b3dc53fd205558c3dd61ec0f",
+      "stats": {
+        "triangles": 18178,
+        "vertices": 27330,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 568760
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0625, -0.0035, -2.191],
+          "max": [1.0625, 1.3149, 2.191]
+        },
+        "sphere": {
+          "center": [0, 0.6557, 0],
+          "radius": 2.3081
+        }
+      },
+      "camera": {
+        "position": [3.5056, 2.4961399999999996, 4.1629],
+        "lookAt": [0, 0.6557, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4244, 1.045, -0.2037],
+        "lookAt": [0.4244, 0.8849999999999999, 0.7963],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/nissan-370z-2009/shots/angle_0.png",
+          "sha256": "sha256:3ea4a144c79bc99f9b1e71b9c378a8a0d0dedefe13e5ceaf11bf688796d1622a"
+        },
+        {
+          "path": "source/vehicles/nissan-370z-2009/shots/angle_1.png",
+          "sha256": "sha256:69ba8cfe991aa025f5ca44dfd03d8bcb83b7ca11c0d6e93139c322699582879e"
+        },
+        {
+          "path": "source/vehicles/nissan-370z-2009/shots/angle_2.png",
+          "sha256": "sha256:9adec281fb6c3789a60fbdbc16a8bd1755aecc050554068ee3fdc6458e5312a0"
+        },
+        {
+          "path": "source/vehicles/nissan-370z-2009/shots/angle_3.png",
+          "sha256": "sha256:79445b3da4fabd205d95d414629ec86dc932cf6a9b94e0adff8aa81a5c939926"
+        },
+        {
+          "path": "source/vehicles/nissan-370z-2009/shots/three-quarter.png",
+          "sha256": "sha256:3aaf909cf771faa6b2d30f78db038dd7036f6c7884136c0a22202699281bad95"
+        },
+        {
+          "path": "source/vehicles/nissan-370z-2009/shots/operator.png",
+          "sha256": "sha256:e673e918493b53601a70d57e32dc210a61a32bfb2e3ac042e9a03677b36aaf74"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.toyota_fj_cruiser_2010",
+      "slug": "toyota-fj-cruiser-2010",
+      "label": "2010 Toyota FJ Cruiser",
+      "year": 2010,
+      "trim": "4x4, white roof",
+      "bodyStyle": "offroad",
+      "sourceHash": "sha256:34d195b4c1d6dec0a2ce8a657dee5e2b3aab3afd7aeac4bb8ac45c82cd56e226",
+      "runtimeHash": "sha256:a82890ffcec91b6088ca024cfb2cf65779ca26c1511756b8172a3a48e90fd2a2",
+      "recipeHash": "sha256:3547dae5f162d268d3b6a9c9859a549f2ea643d54229eb703d712c8b95ccb53a",
+      "stats": {
+        "triangles": 19292,
+        "vertices": 26638,
+        "meshes": 30,
+        "primitives": 30,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 566964
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0926, -0.0035, -2.4229],
+          "max": [1.0926, 1.8297, 2.2915]
+        },
+        "sphere": {
+          "center": [0, 0.9131, -0.0657],
+          "radius": 2.4606
+        }
+      },
+      "camera": {
+        "position": [3.7715199999999998, 2.893148, 4.478679999999999],
+        "lookAt": [0, 0.9131, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4382, 1.559, 0.25],
+        "lookAt": [0.4382, 1.399, 1.25],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/toyota-fj-cruiser-2010/shots/angle_0.png",
+          "sha256": "sha256:dcab59f917f2537f55797e2320dc7ad8236a092e5c1d256949c6afee0879c108"
+        },
+        {
+          "path": "source/vehicles/toyota-fj-cruiser-2010/shots/angle_1.png",
+          "sha256": "sha256:b42ddc3b133b599dfa38a8363a0f2c68624ee61da17f1b12b28d9d20e951537a"
+        },
+        {
+          "path": "source/vehicles/toyota-fj-cruiser-2010/shots/angle_2.png",
+          "sha256": "sha256:25841f54281a2f8ed7d59c1a56ef4ccdec9b939e2b1e75fe736c266452810347"
+        },
+        {
+          "path": "source/vehicles/toyota-fj-cruiser-2010/shots/angle_3.png",
+          "sha256": "sha256:fa0039880c2d816cd2cc2619e6ab828f908fa36713f0b2dd4a0d41fad6419daa"
+        },
+        {
+          "path": "source/vehicles/toyota-fj-cruiser-2010/shots/three-quarter.png",
+          "sha256": "sha256:7fd5534119bb65cca334a24668b762eff41cfd0bdf992d93bba7094373c3f2b6"
+        },
+        {
+          "path": "source/vehicles/toyota-fj-cruiser-2010/shots/operator.png",
+          "sha256": "sha256:b1f59c24ac0e2ac69ad3e09b91aff715f313dd7995a3492adb1a7abf16f130c0"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.cadillac_cts_2010",
+      "slug": "cadillac-cts-2010",
+      "label": "2010 Cadillac CTS",
+      "year": 2010,
+      "trim": "3.6 sedan",
+      "bodyStyle": "sedan",
+      "sourceHash": "sha256:15ad2e074cf4db736a92829790e2a1c0e22d243dc48a7f7df261532bd51fbc76",
+      "runtimeHash": "sha256:67d9fb0b3536c4981fc8a2fa1473d50202eeaea416a6bb356dffd6399058b8d9",
+      "recipeHash": "sha256:faab4cc2bc26c2495522025f2ad6a17d83bffb7081a445055c266f3495629dd2",
+      "stats": {
+        "triangles": 18454,
+        "vertices": 27530,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 573796
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0606, -0.0035, -2.502],
+          "max": [1.0606, 1.4729, 2.502]
+        },
+        "sphere": {
+          "center": [0, 0.7347, 0],
+          "radius": 2.6186
+        }
+      },
+      "camera": {
+        "position": [4.0032, 2.8363799999999997, 4.753799999999999],
+        "lookAt": [0, 0.7347, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4234, 1.203, -0.067],
+        "lookAt": [0.4234, 1.0430000000000001, 0.933],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/cadillac-cts-2010/shots/angle_0.png",
+          "sha256": "sha256:1d8eec349a4f369db7d0b5b64634c6d1bdf3df22a9d58197c3f3eaeb47589a93"
+        },
+        {
+          "path": "source/vehicles/cadillac-cts-2010/shots/angle_1.png",
+          "sha256": "sha256:3f77a9733450241cdfd38752151bee3c4b8dfcd0c35cdf9c8bf874e094c2adc0"
+        },
+        {
+          "path": "source/vehicles/cadillac-cts-2010/shots/angle_2.png",
+          "sha256": "sha256:e7734fdc88a757305e7f45d733aacb4f06119f04f50c5eefb435a3054e859dc0"
+        },
+        {
+          "path": "source/vehicles/cadillac-cts-2010/shots/angle_3.png",
+          "sha256": "sha256:18144cc4f772caf56c28a39d5dcd4e17a47d95f71ec1da4f27ce8d5b4b4fbafc"
+        },
+        {
+          "path": "source/vehicles/cadillac-cts-2010/shots/three-quarter.png",
+          "sha256": "sha256:dba76fa3758ef4cbd61b1a0a5e44afd0a202981f4cc2b10df1bc9abc9126dcd0"
+        },
+        {
+          "path": "source/vehicles/cadillac-cts-2010/shots/operator.png",
+          "sha256": "sha256:fd62d9fd1a814c41472c325961f6a2676b827515bbd7ad5feba5246401c29c20"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.chevrolet_volt_2011",
+      "slug": "chevrolet-volt-2011",
+      "label": "2011 Chevrolet Volt",
+      "year": 2011,
+      "trim": "First generation liftback",
+      "bodyStyle": "fastback",
+      "sourceHash": "sha256:fee6152147feb0fd7476b92af8bb87b79c769a7c15737fd4398f366c2a9cce24",
+      "runtimeHash": "sha256:2577999beff214876d986a140204c17c74c6512198e481ae851cd5aabbd488c7",
+      "recipeHash": "sha256:540605a106d5f2de5f7c394cf56e47731d6b90e9ce8453ba7ac9de3b0b306e26",
+      "stats": {
+        "triangles": 15846,
+        "vertices": 23582,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 12,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 495384
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.034, -0.0035, -2.3175],
+          "max": [1.034, 1.43, 2.3175]
+        },
+        "sphere": {
+          "center": [0, 0.7133, 0],
+          "radius": 2.4365
+        }
+      },
+      "camera": {
+        "position": [3.708, 2.65995, 4.40325],
+        "lookAt": [0, 0.7132499999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4112, 1.16, 0.0399],
+        "lookAt": [0.4112, 0.9999999999999999, 1.0399],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/chevrolet-volt-2011/shots/angle_0.png",
+          "sha256": "sha256:5a1a28be0770edd8fc685bfb3793adfe6e247f79022bb3431f79943738bdae33"
+        },
+        {
+          "path": "source/vehicles/chevrolet-volt-2011/shots/angle_1.png",
+          "sha256": "sha256:de13da0d9f36529cdee4e48a2c9db873f3bd9671755832a0b9210072afe51fd1"
+        },
+        {
+          "path": "source/vehicles/chevrolet-volt-2011/shots/angle_2.png",
+          "sha256": "sha256:bdd97cba107b9037579c3457e201cc8a92cc8a0bd39fbff36748245c76f8d034"
+        },
+        {
+          "path": "source/vehicles/chevrolet-volt-2011/shots/angle_3.png",
+          "sha256": "sha256:17ab81d6b0fe901338ec35030e840e5895c9a8da00c753f00e8b1eeabecbe142"
+        },
+        {
+          "path": "source/vehicles/chevrolet-volt-2011/shots/three-quarter.png",
+          "sha256": "sha256:b8aa23d7375ba9e3eb072b3ec70350b7138e326aeb9f43a4c9eafc4203fb585f"
+        },
+        {
+          "path": "source/vehicles/chevrolet-volt-2011/shots/operator.png",
+          "sha256": "sha256:3e5b386c254216a06ffad2a5a7ae9f836795a2d7088ebb64ad23fbef39cd4c13"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.saab_9_3_sportcombi_2011",
+      "slug": "saab-9-3-sportcombi-2011",
+      "label": "2011 Saab 9-3 SportCombi",
+      "year": 2011,
+      "trim": "2.0T wagon",
+      "bodyStyle": "wagon",
+      "sourceHash": "sha256:ee08faf8f8808ac03382f27ae696367b446341c3da7b1cf755cf3aff3f3466d0",
+      "runtimeHash": "sha256:ccef5b66265656607ad74df8e5e1cd052ed30d6020708c77f896beca8d7a79c1",
+      "recipeHash": "sha256:1c7c97bbeae53debdf820229ae7e26f5aaa957261504ae1636247bc02568bcea",
+      "stats": {
+        "triangles": 18291,
+        "vertices": 26325,
+        "meshes": 30,
+        "primitives": 30,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 553812
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0399, -0.0035, -2.4035],
+          "max": [1.0399, 1.5749, 2.4035]
+        },
+        "sphere": {
+          "center": [0, 0.7857, 0],
+          "radius": 2.5354
+        }
+      },
+      "camera": {
+        "position": [3.8456000000000006, 2.80464, 4.56665],
+        "lookAt": [0, 0.7857, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.414, 1.228, 0.0234],
+        "lookAt": [0.414, 1.068, 1.0234],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/saab-9-3-sportcombi-2011/shots/angle_0.png",
+          "sha256": "sha256:5a3cef833a481d4f2d635be1d39b818fad17f7bf0f209a62927c1ff4f5d48d0a"
+        },
+        {
+          "path": "source/vehicles/saab-9-3-sportcombi-2011/shots/angle_1.png",
+          "sha256": "sha256:ba1eb24b782e6f31519cfe545804b5d57eede5ee1b6985821fa8731aec7c45c9"
+        },
+        {
+          "path": "source/vehicles/saab-9-3-sportcombi-2011/shots/angle_2.png",
+          "sha256": "sha256:87bdce7c1a43bd673632c9559da2b1e25eb9129b80526a32c7eca94399f96337"
+        },
+        {
+          "path": "source/vehicles/saab-9-3-sportcombi-2011/shots/angle_3.png",
+          "sha256": "sha256:c0cf27fe825b958cd4c75076c9e5f5be87a1ad17f17b5a647bb40feabf5d05ac"
+        },
+        {
+          "path": "source/vehicles/saab-9-3-sportcombi-2011/shots/three-quarter.png",
+          "sha256": "sha256:8f29929206de137e15bbd438c2712cca4e238188a1b5e172e52f297a30e07b63"
+        },
+        {
+          "path": "source/vehicles/saab-9-3-sportcombi-2011/shots/operator.png",
+          "sha256": "sha256:75cd410cbfe2f7eb4d5b3b4f3c6dc4b1d718564c0aeab9c205078605f34d2114"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.fiat_500_2012",
+      "slug": "fiat-500-2012",
+      "label": "2012 Fiat 500",
+      "year": 2012,
+      "trim": "Lounge hatchback",
+      "bodyStyle": "city",
+      "sourceHash": "sha256:ceaa0e99f8e5d8840e0ef59a3610ef59caf057f4c8d40ecac367dc8c046a8c1a",
+      "runtimeHash": "sha256:e07785c32cf835cfdf6082c7fa4d53ff32647df6dcb41c2eb35a44d6e207edbb",
+      "recipeHash": "sha256:e475181081ea15a4e4c0b43f99bd8b5c857c06ca39f26ff018d4faa32d101226",
+      "stats": {
+        "triangles": 17370,
+        "vertices": 24014,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 511888
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9536, -0.0035, -1.8415],
+          "max": [0.9536, 1.5189, 1.8415]
+        },
+        "sphere": {
+          "center": [0, 0.7577, 0],
+          "radius": 1.9972
+        }
+      },
+      "camera": {
+        "position": [2.9464, 2.30456, 3.4988499999999996],
+        "lookAt": [0, 0.7576999999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3742, 1.249, 0.2747],
+        "lookAt": [0.3742, 1.0890000000000002, 1.2747],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/fiat-500-2012/shots/angle_0.png",
+          "sha256": "sha256:76e39fe757c14885bb4d338ae5ba7392d3790912ced4200d702011bb67b51007"
+        },
+        {
+          "path": "source/vehicles/fiat-500-2012/shots/angle_1.png",
+          "sha256": "sha256:982e4f696f368652944dc2e1c711ec6417e23afa6a7feb5c2e5520ea3924ee5a"
+        },
+        {
+          "path": "source/vehicles/fiat-500-2012/shots/angle_2.png",
+          "sha256": "sha256:02ba198d256f696f667905e79640536fddef783e7742bcd149b41adaff69b6db"
+        },
+        {
+          "path": "source/vehicles/fiat-500-2012/shots/angle_3.png",
+          "sha256": "sha256:4534620baa6d802dfa0184259e4d5656fef8dd28309ece9cc29cf35c7d593035"
+        },
+        {
+          "path": "source/vehicles/fiat-500-2012/shots/three-quarter.png",
+          "sha256": "sha256:ea370f7d763aa93b25c5da3c63b79a1451c1a6de8e73baf7a3dd2f310e6a4b68"
+        },
+        {
+          "path": "source/vehicles/fiat-500-2012/shots/operator.png",
+          "sha256": "sha256:4631a70d7c09ddb4008a4e6701b75251138e27d7099c20c1a27d40d0eda9d5a0"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.nissan_leaf_2012",
+      "slug": "nissan-leaf-2012",
+      "label": "2012 Nissan Leaf",
+      "year": 2012,
+      "trim": "SL, first generation",
+      "bodyStyle": "hatchback",
+      "sourceHash": "sha256:ec4be64ce985ccc16e7e9376bd0da10c867cd1c00493b65e37a22952f19eb0f6",
+      "runtimeHash": "sha256:5a1727af0a04f4ab01fc229dc07db2491cc0f3c50f96082e77cd972a7e30dce5",
+      "recipeHash": "sha256:0bf6655c7d711302683a748e5e155eedf9f54113a52d5f3a6a38da9c5f9e7713",
+      "stats": {
+        "triangles": 17568,
+        "vertices": 25069,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 530120
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0249, -0.0035, -2.291],
+          "max": [1.0249, 1.5501, 2.291]
+        },
+        "sphere": {
+          "center": [0, 0.7733, 0],
+          "radius": 2.3559
+        }
+      },
+      "camera": {
+        "position": [3.6656, 2.69774, 4.3529],
+        "lookAt": [0, 0.7733, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4071, 1.28, 0.1267],
+        "lookAt": [0.4071, 1.12, 1.1267],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/nissan-leaf-2012/shots/angle_0.png",
+          "sha256": "sha256:2a7ceab8949986cb484424f879fc1688c0b8d22cf463b4dc061c228b536ac357"
+        },
+        {
+          "path": "source/vehicles/nissan-leaf-2012/shots/angle_1.png",
+          "sha256": "sha256:566161dbc5eb8169b542cbbdb3ba6d8f48a4259ea509ae2ba964b55155419e01"
+        },
+        {
+          "path": "source/vehicles/nissan-leaf-2012/shots/angle_2.png",
+          "sha256": "sha256:2477cb06a0226ca0a887bd969617c889bece08ca9b712607dcceaa5b0602e665"
+        },
+        {
+          "path": "source/vehicles/nissan-leaf-2012/shots/angle_3.png",
+          "sha256": "sha256:f2d9b4bae04cd84e158926d8cf3590443d5e9ada1834b828e01eb579002e8a24"
+        },
+        {
+          "path": "source/vehicles/nissan-leaf-2012/shots/three-quarter.png",
+          "sha256": "sha256:9afce5c75b8a583830943330899487ad49e10debd76c93a0100972ec218db1c0"
+        },
+        {
+          "path": "source/vehicles/nissan-leaf-2012/shots/operator.png",
+          "sha256": "sha256:03929e7a7bcfdd33ac56d7630841e8be9b48a8631ad58d5741a2fb379f571406"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.mini_cooper_2013",
+      "slug": "mini-cooper-2013",
+      "label": "2013 MINI Cooper",
+      "year": 2013,
+      "trim": "Hardtop, R56",
+      "bodyStyle": "hatchback",
+      "sourceHash": "sha256:d89c75ef560c82c14f4467e1de155e2a9fa7e5925da09ac0d34d785258c114a4",
+      "runtimeHash": "sha256:d57cdd0b0f8c6218d54b1ac8f5d3789f2d01006db51d317eb61d07991fc672fe",
+      "recipeHash": "sha256:d228c55e6d0dee60c657451ffbcb0bc2237f5c829d2a50ce8b9153ac447b0d0b",
+      "stats": {
+        "triangles": 19998,
+        "vertices": 29961,
+        "meshes": 31,
+        "primitives": 31,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 625048
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9815, -0.0035, -1.93],
+          "max": [0.9815, 1.407, 1.93]
+        },
+        "sphere": {
+          "center": [0, 0.7017, 0],
+          "radius": 2.0659
+        }
+      },
+      "camera": {
+        "position": [3.088, 2.32295, 3.667],
+        "lookAt": [0, 0.70175, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3871, 1.137, 0.1452],
+        "lookAt": [0.3871, 0.977, 1.1452],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/mini-cooper-2013/shots/angle_0.png",
+          "sha256": "sha256:99faefd1c26edbe702474b89d4c5c44dba10abfe04051b1220c3d567a65e84f9"
+        },
+        {
+          "path": "source/vehicles/mini-cooper-2013/shots/angle_1.png",
+          "sha256": "sha256:345932203dbeed357a01503e835fd6ef4a3a942b891ff3be3b7d051cfb1a258f"
+        },
+        {
+          "path": "source/vehicles/mini-cooper-2013/shots/angle_2.png",
+          "sha256": "sha256:3a50eec2497cffb4582028a1203e26a09fe5f4a2c4ae1c9c8bcbd89890de713f"
+        },
+        {
+          "path": "source/vehicles/mini-cooper-2013/shots/angle_3.png",
+          "sha256": "sha256:0464ec7eb5e572e87e78a86c4bb3c101b1ab5fecc656c6bad8b6e6d5d4e79f83"
+        },
+        {
+          "path": "source/vehicles/mini-cooper-2013/shots/three-quarter.png",
+          "sha256": "sha256:0c6e22252ddb1d4327b185cedb0cfb9743df366fe6013bea316d836c8df88d94"
+        },
+        {
+          "path": "source/vehicles/mini-cooper-2013/shots/operator.png",
+          "sha256": "sha256:f61c1b83e07ca0ec3089be743eceb85fd95c294999eb63d36aa292e58eac98b4"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.acura_tl_2013",
+      "slug": "acura-tl-2013",
+      "label": "2013 Acura TL",
+      "year": 2013,
+      "trim": "3.5 Technology sedan",
+      "bodyStyle": "sedan",
+      "sourceHash": "sha256:9d591873b837f931561229541cec356efb866666470cc4443283fb57eb6ae9d1",
+      "runtimeHash": "sha256:9930b6236ffa084cc3d9f4641f541076b3c11d479938e3cd05c5c579ce2ef6c8",
+      "recipeHash": "sha256:4827b4f6d42120f909869c0fc8008a0a7eb0b537e50f3aef228466627404a2ee",
+      "stats": {
+        "triangles": 17298,
+        "vertices": 25961,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 543052
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.08, -0.0035, -2.5325],
+          "max": [1.08, 1.4529, 2.5419]
+        },
+        "sphere": {
+          "center": [0, 0.7247, 0.0047],
+          "radius": 2.6529
+        }
+      },
+      "camera": {
+        "position": [4.059520000000001, 2.855948, 4.82068],
+        "lookAt": [0, 0.7247, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4324, 1.183, -0.0414],
+        "lookAt": [0.4324, 1.0230000000000001, 0.9586],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/acura-tl-2013/shots/angle_0.png",
+          "sha256": "sha256:e73414177155eac6cb86ad0e3078c36c5d704f67defce3250057c738b1227cac"
+        },
+        {
+          "path": "source/vehicles/acura-tl-2013/shots/angle_1.png",
+          "sha256": "sha256:b14ce531955699cee0bdcd1f40c0ff23f1165cb9a58b45ea4b066ee35fb809a5"
+        },
+        {
+          "path": "source/vehicles/acura-tl-2013/shots/angle_2.png",
+          "sha256": "sha256:1c07c0c9cde507689548a13fbd73fdcc628bf0b9f830e40dea855e23687f3f7d"
+        },
+        {
+          "path": "source/vehicles/acura-tl-2013/shots/angle_3.png",
+          "sha256": "sha256:6a032a56537b2d918eca4a3d725d3498f65cc1de2a8fa5afeb8a787afa3fa028"
+        },
+        {
+          "path": "source/vehicles/acura-tl-2013/shots/three-quarter.png",
+          "sha256": "sha256:6530b0800fa0fe34e8fdbf3f12a0e41ce499f1be1994e6c0cfb368ebfbae4f71"
+        },
+        {
+          "path": "source/vehicles/acura-tl-2013/shots/operator.png",
+          "sha256": "sha256:a59fc19dd0abe700e421971082e8ada44a733d943137a1cbdcf7d027619390b5"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.chevrolet_corvette_2014",
+      "slug": "chevrolet-corvette-2014",
+      "label": "2014 Chevrolet Corvette",
+      "year": 2014,
+      "trim": "Stingray coupe, C7",
+      "bodyStyle": "coupe",
+      "sourceHash": "sha256:3f7b6d385d83f8befc8e4b953e0ddaa872d1daa3e14a4dd68492156ea252188c",
+      "runtimeHash": "sha256:72c64a5b1105cc439485b5d2dd244f83cd8ca4ed1224e269e6c4f537dfe139de",
+      "recipeHash": "sha256:490b86ea359e659d1766dd545404d822e958145bb9757fe4d234b5407c7a9f8f",
+      "stats": {
+        "triangles": 16609,
+        "vertices": 26055,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 538832
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0786, -0.0035, -2.315],
+          "max": [1.0786, 1.239, 2.315]
+        },
+        "sphere": {
+          "center": [0, 0.6178, 0],
+          "radius": 2.4201
+        }
+      },
+      "camera": {
+        "position": [3.704, 2.56235, 4.398499999999999],
+        "lookAt": [0, 0.61775, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4317, 0.969, -0.3197],
+        "lookAt": [0.4317, 0.8089999999999999, 0.6803],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/chevrolet-corvette-2014/shots/angle_0.png",
+          "sha256": "sha256:978dd299483b518c044a109c1a11bb953412e4cbd831dacd3297ea3da27bc5af"
+        },
+        {
+          "path": "source/vehicles/chevrolet-corvette-2014/shots/angle_1.png",
+          "sha256": "sha256:3cc019de7065bd0e92f6eb038327f7fbb1a6d639aa347e2a72ffba5f018ab51c"
+        },
+        {
+          "path": "source/vehicles/chevrolet-corvette-2014/shots/angle_2.png",
+          "sha256": "sha256:5b057cc624f8bf65928eb7c39d1a6b3671cbe8754f5905462da103cd27be4aee"
+        },
+        {
+          "path": "source/vehicles/chevrolet-corvette-2014/shots/angle_3.png",
+          "sha256": "sha256:f08fc843277f494906950c1185afcdff24b8bec7a867b67eeb1dccd254f0e5a7"
+        },
+        {
+          "path": "source/vehicles/chevrolet-corvette-2014/shots/three-quarter.png",
+          "sha256": "sha256:e6172707ff9d6c32570cc4f1659d26ed980028b35335e72c556116c42da56977"
+        },
+        {
+          "path": "source/vehicles/chevrolet-corvette-2014/shots/operator.png",
+          "sha256": "sha256:f02da4829e281ff368ac378c2a022d658e7d3e9f5f590898d00c18d8a2bbccaf"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.subaru_brz_2014",
+      "slug": "subaru-brz-2014",
+      "label": "2014 Subaru BRZ",
+      "year": 2014,
+      "trim": "Limited coupe",
+      "bodyStyle": "coupe",
+      "sourceHash": "sha256:b94168917fb317be3aa03902df263d9d1150c5079018fa542178a6a67f2986ae",
+      "runtimeHash": "sha256:689a8434885e6ded9c4b8363a3222ad0f8dccbd7037be5003d1ecfb67225acd8",
+      "recipeHash": "sha256:cdc23a81c8f9c11020afe8d5b0f23fa3f78ef98a5d5c14fd9759a08318df3d46",
+      "stats": {
+        "triangles": 18732,
+        "vertices": 27584,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 577568
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0276, -0.0035, -2.1885],
+          "max": [1.0276, 1.2849, 2.1885]
+        },
+        "sphere": {
+          "center": [0, 0.6407, 0],
+          "radius": 2.2988
+        }
+      },
+      "camera": {
+        "position": [3.5016, 2.47904, 4.15815],
+        "lookAt": [0, 0.6406999999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4083, 1.015, -0.0764],
+        "lookAt": [0.4083, 0.8549999999999999, 0.9236],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/subaru-brz-2014/shots/angle_0.png",
+          "sha256": "sha256:f6db2875954563077734edaf3951eba36c02e7c6eff8128104b1e1b1b37a6f04"
+        },
+        {
+          "path": "source/vehicles/subaru-brz-2014/shots/angle_1.png",
+          "sha256": "sha256:4d5d9dccb6a0d0963d877e2c389ebd33ddd20c41b99fdf074239997119ed218f"
+        },
+        {
+          "path": "source/vehicles/subaru-brz-2014/shots/angle_2.png",
+          "sha256": "sha256:bcdddeb7f422c27d92d76d3fbb4bce0f65f765c04ba985f8418a3249a4c65db5"
+        },
+        {
+          "path": "source/vehicles/subaru-brz-2014/shots/angle_3.png",
+          "sha256": "sha256:c211d70aa42c13e41adda57cafef438bf00ea3ab514ef63c0a1f78fd65dbaf6d"
+        },
+        {
+          "path": "source/vehicles/subaru-brz-2014/shots/three-quarter.png",
+          "sha256": "sha256:ee79cc46d78fdf80d83fa074427b9453dd32d0bd15139187c14bbf3faa772bd1"
+        },
+        {
+          "path": "source/vehicles/subaru-brz-2014/shots/operator.png",
+          "sha256": "sha256:bfd40a4b6634dd7733114610be061f6207ed27e28a1a307dc78f707270845543"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.kia_soul_2015",
+      "slug": "kia-soul-2015",
+      "label": "2015 Kia Soul",
+      "year": 2015,
+      "trim": "Plus five-door",
+      "bodyStyle": "hatchback",
+      "sourceHash": "sha256:de8fc44290a2c1fa5f9a69b9976f5c2ceacabcc54b3e90899bac00dbd2debe31",
+      "runtimeHash": "sha256:775dec146d83947c88f15333c1bce19db06dc1cbfb1d682bc0b5ad6619918752",
+      "recipeHash": "sha256:8e6c33cede5029d4a884a9d290244495a2d7c7ad36a4453beb3b60f11af4e533",
+      "stats": {
+        "triangles": 17267,
+        "vertices": 25158,
+        "meshes": 30,
+        "primitives": 30,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 530376
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.04, -0.0035, -2.1385],
+          "max": [1.04, 1.5999, 2.1385]
+        },
+        "sphere": {
+          "center": [0, 0.7982, 0],
+          "radius": 2.2914
+        }
+      },
+      "camera": {
+        "position": [3.4216, 2.5945400000000003, 4.06315],
+        "lookAt": [0, 0.7982, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.414, 1.33, 0.2992],
+        "lookAt": [0.414, 1.1700000000000002, 1.2992],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/kia-soul-2015/shots/angle_0.png",
+          "sha256": "sha256:feca340a95b1d6e097ed880789969dc9c324ee7f5755b33f8c6ae6d975e3e82c"
+        },
+        {
+          "path": "source/vehicles/kia-soul-2015/shots/angle_1.png",
+          "sha256": "sha256:162ca41b3e1d8fe7cfd865f93d08da08ceee9370fb86953a7359cd110e6237da"
+        },
+        {
+          "path": "source/vehicles/kia-soul-2015/shots/angle_2.png",
+          "sha256": "sha256:c9f95386816a02cc4281c7e0efba3b19b5a4daa83954f803afbce4cf90250bab"
+        },
+        {
+          "path": "source/vehicles/kia-soul-2015/shots/angle_3.png",
+          "sha256": "sha256:994a647f9c62b53605a3b479fafd7243d4aca11bfc9f33064ae5a09c9be4dad3"
+        },
+        {
+          "path": "source/vehicles/kia-soul-2015/shots/three-quarter.png",
+          "sha256": "sha256:c73ab0ce115f25c5a056931bbecdf701c3a558cf665e91260c8d2449f6c39c4e"
+        },
+        {
+          "path": "source/vehicles/kia-soul-2015/shots/operator.png",
+          "sha256": "sha256:0ae8c13a022def852abf624391f39f75eef6e4f7c4bbd86f96e1a66685ff1176"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.chrysler_300_2015",
+      "slug": "chrysler-300-2015",
+      "label": "2015 Chrysler 300",
+      "year": 2015,
+      "trim": "300C sedan",
+      "bodyStyle": "sedan",
+      "sourceHash": "sha256:7f56547df63c5df20e103d829036863df9a60fd0d60b9d48ee65df1bc68fa95d",
+      "runtimeHash": "sha256:32a38fd74dd9385981ddb55f7ce3f352fca301abd890a66a2fbee76141ec6f98",
+      "recipeHash": "sha256:c42a44283f43ec3c6a2abdb9e68050873f7f1861890e98f8ecc716fcb2b53d3e",
+      "stats": {
+        "triangles": 17983,
+        "vertices": 26604,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 557172
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0911, -0.0035, -2.5905],
+          "max": [1.0911, 1.4829, 2.5905]
+        },
+        "sphere": {
+          "center": [0, 0.7397, 0],
+          "radius": 2.7066
+        }
+      },
+      "camera": {
+        "position": [4.1448, 2.91572, 4.92195],
+        "lookAt": [0, 0.7397, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4375, 1.213, 0.0365],
+        "lookAt": [0.4375, 1.0530000000000002, 1.0365],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/chrysler-300-2015/shots/angle_0.png",
+          "sha256": "sha256:941841b5c9e98b56f9d2bfaef173b01cb9b55df2306705f018fe7622bb3b11d1"
+        },
+        {
+          "path": "source/vehicles/chrysler-300-2015/shots/angle_1.png",
+          "sha256": "sha256:5c1a00c27788a489690162da12ff400c02a2d4b184f70f4ee56f505b5d894e23"
+        },
+        {
+          "path": "source/vehicles/chrysler-300-2015/shots/angle_2.png",
+          "sha256": "sha256:1a574985a58c11e1b74d2fbfed0b29a2d626e2ec10440db756ad1dd07a409e80"
+        },
+        {
+          "path": "source/vehicles/chrysler-300-2015/shots/angle_3.png",
+          "sha256": "sha256:3279b221d587b63da9d1868a5cc30f0ef4e4cd6d512842d29ab14f3aa8153fd5"
+        },
+        {
+          "path": "source/vehicles/chrysler-300-2015/shots/three-quarter.png",
+          "sha256": "sha256:605eeedd71b6f5728e23116a36bc5b46a774904bd810ec6bc8140c4309ca9f12"
+        },
+        {
+          "path": "source/vehicles/chrysler-300-2015/shots/operator.png",
+          "sha256": "sha256:10d03e50cdf510358cf8996f495cbead0e5ba52ad73ddc8304c8ae8d3117b1c0"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.mazda_mx_5_miata_2016",
+      "slug": "mazda-mx-5-miata-2016",
+      "label": "2016 Mazda MX-5 Miata",
+      "year": 2016,
+      "trim": "Club roadster, roof lowered",
+      "bodyStyle": "roadster",
+      "sourceHash": "sha256:12829ea743145f1eb9705e2be75dcfa57a99648650523148fcb32509f7e74cca",
+      "runtimeHash": "sha256:30b9ca05789de02bf78cfd398dfc6ed45359d846dd014a63cb0678a590aac1ca",
+      "recipeHash": "sha256:601950becca6f00e227c324c49d82b7a8bd0d76d4df0bdc72453e9b379308707",
+      "stats": {
+        "triangles": 18624,
+        "vertices": 29817,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 612696
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0074, -0.0035, -2.0255],
+          "max": [1.0074, 1.1947, 2.0255]
+        },
+        "sphere": {
+          "center": [0, 0.5956, 0],
+          "radius": 2.1334
+        }
+      },
+      "camera": {
+        "position": [3.2408, 2.29702, 3.84845],
+        "lookAt": [0, 0.5956, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3991, 0.964, -0.1596],
+        "lookAt": [0.3991, 0.8039999999999999, 0.8404],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/mazda-mx-5-miata-2016/shots/angle_0.png",
+          "sha256": "sha256:fb0e37bbc36c68524902f19709f70515eeccd9362b09c814791edc2221f0526b"
+        },
+        {
+          "path": "source/vehicles/mazda-mx-5-miata-2016/shots/angle_1.png",
+          "sha256": "sha256:8f76559905378e10ca789a09ad8496d646aed70c130f218b67606dd0727603cc"
+        },
+        {
+          "path": "source/vehicles/mazda-mx-5-miata-2016/shots/angle_2.png",
+          "sha256": "sha256:0fe6b6422df71fcedf0d40e455353d70fbc8f3dd71df2ae6d2a51f2c6c03bb87"
+        },
+        {
+          "path": "source/vehicles/mazda-mx-5-miata-2016/shots/angle_3.png",
+          "sha256": "sha256:600cdc839143e526afdeb7f066512f75a574868314cd19c628e88acad58aa69a"
+        },
+        {
+          "path": "source/vehicles/mazda-mx-5-miata-2016/shots/three-quarter.png",
+          "sha256": "sha256:2f2bbe7c6a7df502430ed687d5996e43d2b8ce9594523d38bb51e9f13f8f01ad"
+        },
+        {
+          "path": "source/vehicles/mazda-mx-5-miata-2016/shots/operator.png",
+          "sha256": "sha256:4fcbd5912d0810a372da390269cc869347f3fd4376eb4d954c0fc97093a93157"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.volkswagen_golf_gti_2016",
+      "slug": "volkswagen-golf-gti-2016",
+      "label": "2016 Volkswagen Golf GTI",
+      "year": 2016,
+      "trim": "SE five-door, Mk7",
+      "bodyStyle": "hatchback",
+      "sourceHash": "sha256:7d45d39976523ab366e512d870bd633e1dd8660abe6884894810e8670069cb61",
+      "runtimeHash": "sha256:59a4e9b4b39e98bf02711c564dc4f7e1edec1573f6024fcf1501b93dc6f166c8",
+      "recipeHash": "sha256:4d4fe9b9c3a194bab7427ed86860a9f90ac63344d860d5e3cff1e51f5cdf5ccd",
+      "stats": {
+        "triangles": 18411,
+        "vertices": 27316,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 571384
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0394, -0.0035, -2.2025],
+          "max": [1.0394, 1.4429, 2.2025]
+        },
+        "sphere": {
+          "center": [0, 0.7197, 0],
+          "radius": 2.3316
+        }
+      },
+      "camera": {
+        "position": [3.5240000000000005, 2.5698, 4.18475],
+        "lookAt": [0, 0.7197, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4138, 1.173, 0.2655],
+        "lookAt": [0.4138, 1.0130000000000001, 1.2655],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/volkswagen-golf-gti-2016/shots/angle_0.png",
+          "sha256": "sha256:31e7c0a84c9c12e64246602beb5cf709bb19ad3821764d132d6fcb2f973d915a"
+        },
+        {
+          "path": "source/vehicles/volkswagen-golf-gti-2016/shots/angle_1.png",
+          "sha256": "sha256:3e9351bdb053c1fec6a6fea55c1bbd9b5558861347d9437ed2612c7769996cdb"
+        },
+        {
+          "path": "source/vehicles/volkswagen-golf-gti-2016/shots/angle_2.png",
+          "sha256": "sha256:be27477f4163bde389cabcf20363fc22f2c4d282d1b354963c6f1a630ddd7fa8"
+        },
+        {
+          "path": "source/vehicles/volkswagen-golf-gti-2016/shots/angle_3.png",
+          "sha256": "sha256:08b4132490f6b2df3e2e31e5c62fe2300ee1b0cd3d967f44de6e64574efbcaf6"
+        },
+        {
+          "path": "source/vehicles/volkswagen-golf-gti-2016/shots/three-quarter.png",
+          "sha256": "sha256:c63e53617ae24d3d3ada0ab9b259932be06a4a8e4ed0cd434a0fd90270b81fe6"
+        },
+        {
+          "path": "source/vehicles/volkswagen-golf-gti-2016/shots/operator.png",
+          "sha256": "sha256:6b64fb0135405b848ef99a7b578aefacc1347f12f3c68e4ed843c58b33e84d57"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.porsche_911_2017",
+      "slug": "porsche-911-2017",
+      "label": "2017 Porsche 911",
+      "year": 2017,
+      "trim": "Carrera coupe, 991.2",
+      "bodyStyle": "coupe",
+      "sourceHash": "sha256:c4cf5896bb68d1684e87e007c7e2426bf565ca7dfa97fef4f52961ff0836ed51",
+      "runtimeHash": "sha256:2a44de57809daf8dfa601231980f917605a4bba598ec9f781a42d698a7966dd7",
+      "recipeHash": "sha256:fc3c45d990a8e2fb3b490ca0d89da037bb690ebeace8fd93ba176ad6c1c63632",
+      "stats": {
+        "triangles": 18528,
+        "vertices": 26099,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 552624
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.044, -0.0035, -2.318],
+          "max": [1.044, 1.2941, 2.318]
+        },
+        "sphere": {
+          "center": [0, 0.6453, 0],
+          "radius": 2.4226
+        }
+      },
+      "camera": {
+        "position": [3.7088, 2.5924199999999997, 4.4042],
+        "lookAt": [0, 0.6453, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4158, 1.024, 0.0175],
+        "lookAt": [0.4158, 0.864, 1.0175],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/porsche-911-2017/shots/angle_0.png",
+          "sha256": "sha256:2b958a7f97ac135d3d48a4711a343987a8d636c0fb21f88563471002cb3d1ee8"
+        },
+        {
+          "path": "source/vehicles/porsche-911-2017/shots/angle_1.png",
+          "sha256": "sha256:7940f1969002391071d1a2f7fad3b6fd5c345d709a03d668b9ba35d3a4d351c8"
+        },
+        {
+          "path": "source/vehicles/porsche-911-2017/shots/angle_2.png",
+          "sha256": "sha256:af0a490579f5ee8e5041e84d4af5642e62f5624a584da1acaee109ef06376dec"
+        },
+        {
+          "path": "source/vehicles/porsche-911-2017/shots/angle_3.png",
+          "sha256": "sha256:e85b77f3ef0953fe17251ad772478529403542cca3d368555c973c18a4d15e56"
+        },
+        {
+          "path": "source/vehicles/porsche-911-2017/shots/three-quarter.png",
+          "sha256": "sha256:356551c974609203beaec47dfc6b2ab697732b19c88757a02ca74791dd298021"
+        },
+        {
+          "path": "source/vehicles/porsche-911-2017/shots/operator.png",
+          "sha256": "sha256:db64cb3c4223bde07f4f0d3bc70921d2f8dc0dd07eb8f906d1aea61257ce01d9"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.bmw_i3_2017",
+      "slug": "bmw-i3-2017",
+      "label": "2017 BMW i3",
+      "year": 2017,
+      "trim": "94 Ah battery electric",
+      "bodyStyle": "city",
+      "sourceHash": "sha256:3c52054866b0a939b9d66a3a2951fe4c60c1822bdc1dccba978baf903ffc98ba",
+      "runtimeHash": "sha256:ba86cb12f33f2bb6181fd39c6bfbb479d87d1a0c336c6daead17a641dc8550f7",
+      "recipeHash": "sha256:9c16a9fb715de5db1a1eb498e3c28d84a431373da75e207039a995fb82e86f6e",
+      "stats": {
+        "triangles": 14745,
+        "vertices": 21907,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 459276
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0276, -0.0035, -2.068],
+          "max": [1.0276, 1.578, 2.068]
+        },
+        "sphere": {
+          "center": [0, 0.7873, 0],
+          "radius": 2.1461
+        }
+      },
+      "camera": {
+        "position": [3.3088, 2.5243700000000002, 3.9292],
+        "lookAt": [0, 0.78725, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4083, 1.308, 0.3799],
+        "lookAt": [0.4083, 1.1480000000000001, 1.3799000000000001],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/bmw-i3-2017/shots/angle_0.png",
+          "sha256": "sha256:49d839379ae697cab53b4bb6a7b5a7c1c22aec051ce306e61a740e1091e5d214"
+        },
+        {
+          "path": "source/vehicles/bmw-i3-2017/shots/angle_1.png",
+          "sha256": "sha256:df632aaad22ad7b54b948590913f9d54db1d90c2d21610dc93203a94362e53e7"
+        },
+        {
+          "path": "source/vehicles/bmw-i3-2017/shots/angle_2.png",
+          "sha256": "sha256:b59a236169e202aaa5be6c4a813854262672b4e5bc66747d5eeccf74e1903ea3"
+        },
+        {
+          "path": "source/vehicles/bmw-i3-2017/shots/angle_3.png",
+          "sha256": "sha256:ab4513bd128e3236c4ac0bdf2241bc68316c5da6ad5c6ef711e13bbaffac5231"
+        },
+        {
+          "path": "source/vehicles/bmw-i3-2017/shots/three-quarter.png",
+          "sha256": "sha256:2ff128684971df63f5832f0388ae7a8e79bda23dfcf91b5c9dea15330cea9bf8"
+        },
+        {
+          "path": "source/vehicles/bmw-i3-2017/shots/operator.png",
+          "sha256": "sha256:777603b23dc4406036ab03710ae90246876382f6f0505caf806dc405367a3c9d"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.dodge_challenger_2018",
+      "slug": "dodge-challenger-2018",
+      "label": "2018 Dodge Challenger",
+      "year": 2018,
+      "trim": "R/T coupe",
+      "bodyStyle": "coupe",
+      "sourceHash": "sha256:5e81391dc0845fc1c636affd07288fcf52232cae8425378019d7a10e43f7b96a",
+      "runtimeHash": "sha256:3ea62d55797620a645bbf47ff4e9ccb1c5d23fb5426269e5160c4f04a5c35792",
+      "recipeHash": "sha256:8e9eed66579655722d23c02d76de9212bd601f7811f2d979185ea93a80261669",
+      "stats": {
+        "triangles": 20538,
+        "vertices": 29759,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 623032
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.1017, -0.0035, -2.582],
+          "max": [1.1017, 1.4599, 2.582]
+        },
+        "sphere": {
+          "center": [0, 0.7282, 0],
+          "radius": 2.6971
+        }
+      },
+      "camera": {
+        "position": [4.1312, 2.89708, 4.905799999999999],
+        "lookAt": [0, 0.7282, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4423, 1.19, -0.2908],
+        "lookAt": [0.4423, 1.03, 0.7092],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/dodge-challenger-2018/shots/angle_0.png",
+          "sha256": "sha256:4977cb8c63375066746660e20791090fabfe7aace7ddaa4235f4aede95d62d40"
+        },
+        {
+          "path": "source/vehicles/dodge-challenger-2018/shots/angle_1.png",
+          "sha256": "sha256:f50716ce1ae2e5d2fbf383c0208e7240c25197e9ac0f9d0609bcd2c5cd3d1add"
+        },
+        {
+          "path": "source/vehicles/dodge-challenger-2018/shots/angle_2.png",
+          "sha256": "sha256:69168aa8d30382542d2ce819253d2ca526855ea1db41a657a974a6d85082df20"
+        },
+        {
+          "path": "source/vehicles/dodge-challenger-2018/shots/angle_3.png",
+          "sha256": "sha256:edba8e36cda4996ef0ed7344e732c9b21a3615c2d355cfe02a9744117c9b5d0c"
+        },
+        {
+          "path": "source/vehicles/dodge-challenger-2018/shots/three-quarter.png",
+          "sha256": "sha256:0366df3ded8a4910ed94ae0bda9aa7db30ad3f343f8da78bb53a0167930c6f26"
+        },
+        {
+          "path": "source/vehicles/dodge-challenger-2018/shots/operator.png",
+          "sha256": "sha256:96e98f9fbac54d025959230e29615f1ac15cb1e412a7f3fc15cbf7c2711e7650"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.alfa_romeo_giulia_2018",
+      "slug": "alfa-romeo-giulia-2018",
+      "label": "2018 Alfa Romeo Giulia",
+      "year": 2018,
+      "trim": "Ti sedan",
+      "bodyStyle": "sedan",
+      "sourceHash": "sha256:bf66782cb7b068b6d9c1c917d9b3f9b7f502e9508c4ab6afc8e8ac856bcb715d",
+      "runtimeHash": "sha256:130ea86abaaf605e9a31bd170d3dd4cbb9e8c5ca3f83224925d2c18e6c0de501",
+      "recipeHash": "sha256:207439b8ad757c484b83f1a32258ca59370a7232425eefdb910bd28b3dbed77c",
+      "stats": {
+        "triangles": 17230,
+        "vertices": 25567,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 536352
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.07, -0.0035, -2.388],
+          "max": [1.07, 1.4379, 2.388]
+        },
+        "sphere": {
+          "center": [0, 0.7172, 0],
+          "radius": 2.5089
+        }
+      },
+      "camera": {
+        "position": [3.8208, 2.7231199999999998, 4.5371999999999995],
+        "lookAt": [0, 0.7172, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4278, 1.168, -0.0704],
+        "lookAt": [0.4278, 1.008, 0.9296],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/alfa-romeo-giulia-2018/shots/angle_0.png",
+          "sha256": "sha256:572513e6acdb63f0019acd4ebb024e27e5c3bf838b6de42c322160b9b2f807da"
+        },
+        {
+          "path": "source/vehicles/alfa-romeo-giulia-2018/shots/angle_1.png",
+          "sha256": "sha256:270f605da77829b9ad6d2381ae96a520397a98b1604b2377bf0c3b7a22324017"
+        },
+        {
+          "path": "source/vehicles/alfa-romeo-giulia-2018/shots/angle_2.png",
+          "sha256": "sha256:e234d09689cb6049089c4d559608ea82d44e77d1d684f2ea6f5fcca749dc8555"
+        },
+        {
+          "path": "source/vehicles/alfa-romeo-giulia-2018/shots/angle_3.png",
+          "sha256": "sha256:46b7204cb284fa3fbbb7bfcf06739769f291848bb3e812b7adb39706dd756095"
+        },
+        {
+          "path": "source/vehicles/alfa-romeo-giulia-2018/shots/three-quarter.png",
+          "sha256": "sha256:1915a4167b209de7d5c64cc3841b2d932e973ca843c7c5e43898aa0bc6fe1798"
+        },
+        {
+          "path": "source/vehicles/alfa-romeo-giulia-2018/shots/operator.png",
+          "sha256": "sha256:e4041c82530ce3dc1fb5d8e3238006ee5c196497e14a3f7cf0055b67de833c31"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.mercedes_benz_sprinter_2019",
+      "slug": "mercedes-benz-sprinter-2019",
+      "label": "2019 Mercedes-Benz Sprinter",
+      "year": 2019,
+      "trim": "2500 cargo, 144-inch wheelbase, high roof",
+      "bodyStyle": "cargo-van",
+      "sourceHash": "sha256:36144618008f1bd68be9a99e49b828c9bc4b00c09ad95a25880954419b5134c4",
+      "runtimeHash": "sha256:4ec238381094d6ea11252a03102322b4d565b51207ae2d8596077c45065e1e51",
+      "recipeHash": "sha256:c2f928b0323bbb834296fdfc2e774af80e32c9f3e0113d1376f8179b4aa3466b",
+      "stats": {
+        "triangles": 18628,
+        "vertices": 27815,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 579008
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.1499, -0.0035, -3.0344],
+          "max": [1.1499, 2.6419, 3.0345]
+        },
+        "sphere": {
+          "center": [0, 1.3192, 0],
+          "radius": 3.2914
+        }
+      },
+      "camera": {
+        "position": [4.85512, 3.868138, 5.765455],
+        "lookAt": [0, 1.3192000000000002, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4646, 1.7, 1.1057],
+        "lookAt": [0.4646, 1.54, 2.1056999999999997],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/mercedes-benz-sprinter-2019/shots/angle_0.png",
+          "sha256": "sha256:2a31569ffa73dd1cf6845255176c4c1c2601aa623f4effbe7c9257b6ddd72bc4"
+        },
+        {
+          "path": "source/vehicles/mercedes-benz-sprinter-2019/shots/angle_1.png",
+          "sha256": "sha256:f00fc02b10eee36eefea61f9f4455994c9e132cc99d283f157d408484a3e0d37"
+        },
+        {
+          "path": "source/vehicles/mercedes-benz-sprinter-2019/shots/angle_2.png",
+          "sha256": "sha256:94a540806533377a8ee42c6608120b2f70fcaf6fc63f35815932d1dfffc431e9"
+        },
+        {
+          "path": "source/vehicles/mercedes-benz-sprinter-2019/shots/angle_3.png",
+          "sha256": "sha256:11e406cc5d2833c2766ff4e012ebfd0b9c793403f8f609072b038dd72114aba0"
+        },
+        {
+          "path": "source/vehicles/mercedes-benz-sprinter-2019/shots/three-quarter.png",
+          "sha256": "sha256:9dd535af1c4cd22eaa317e6e8a4d425c8f2ea489222fb758e30aaad74dfe9a7b"
+        },
+        {
+          "path": "source/vehicles/mercedes-benz-sprinter-2019/shots/operator.png",
+          "sha256": "sha256:3292ff015f1a956a9775e7022f656a42ff2ddadc02c81208e57000086b05ade2"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.jaguar_i_pace_2019",
+      "slug": "jaguar-i-pace-2019",
+      "label": "2019 Jaguar I-PACE",
+      "year": 2019,
+      "trim": "SE battery electric",
+      "bodyStyle": "suv",
+      "sourceHash": "sha256:79f41d9be9a65df83ba0540edbf7f0d0c0f742a5a1fcfa8c3e3f1b7d69d2e8c3",
+      "runtimeHash": "sha256:07a7cb1f621aca3a01d4076d4ad21f613fe91ab95659e0dc3fb890aab2a253c4",
+      "recipeHash": "sha256:9b9a960402ce8c5df8c98d789affc9687e0b59cd4fa29bb989af13821eeec897",
+      "stats": {
+        "triangles": 16713,
+        "vertices": 25650,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 532300
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0875, -0.0035, -2.4095],
+          "max": [1.0875, 1.565, 2.4095]
+        },
+        "sphere": {
+          "center": [0, 0.7808, 0],
+          "radius": 2.4708
+        }
+      },
+      "camera": {
+        "position": [3.8552, 2.8047299999999997, 4.57805],
+        "lookAt": [0, 0.7807499999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4359, 1.295, 0.2346],
+        "lookAt": [0.4359, 1.135, 1.2346],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/jaguar-i-pace-2019/shots/angle_0.png",
+          "sha256": "sha256:955bf817cda7bdbdaf68238993c52579eb8f22656a939252f81b4b57a159799d"
+        },
+        {
+          "path": "source/vehicles/jaguar-i-pace-2019/shots/angle_1.png",
+          "sha256": "sha256:d15bb37a6370ba30a31754bc9e5bef1c7c0cd5893ddf4fe9f170cb86e34a8607"
+        },
+        {
+          "path": "source/vehicles/jaguar-i-pace-2019/shots/angle_2.png",
+          "sha256": "sha256:0c752828fb1cee690e8a60b15ab4eca1b39113662f1543dc5fb308c67b5b4c08"
+        },
+        {
+          "path": "source/vehicles/jaguar-i-pace-2019/shots/angle_3.png",
+          "sha256": "sha256:8e34ddc4391ab0f1036d89cfb157da368466823118ab6915fe0c08cf4fb254e5"
+        },
+        {
+          "path": "source/vehicles/jaguar-i-pace-2019/shots/three-quarter.png",
+          "sha256": "sha256:1c705f0fc3a06222717481de69911754327a69469a23eac3432f937cbade466d"
+        },
+        {
+          "path": "source/vehicles/jaguar-i-pace-2019/shots/operator.png",
+          "sha256": "sha256:72b6bfb62e58f81ab48f6190c49c826cf1f0bd6481888b3e481d7a44f7b26134"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.lincoln_continental_2020",
+      "slug": "lincoln-continental-2020",
+      "label": "2020 Lincoln Continental",
+      "year": 2020,
+      "trim": "Reserve sedan",
+      "bodyStyle": "sedan",
+      "sourceHash": "sha256:e535cdad50443d0d6e389da498167c3769e12364489f4cea0354c18d5d396a42",
+      "runtimeHash": "sha256:5ddc2d8cc559d81412a03181ad382394e8ad3c137b6a6175cb7e15ee12de546f",
+      "recipeHash": "sha256:d9244408d44de103161e1def004f0a30580c75b7828818dec88c1bc4e60b3ac1",
+      "stats": {
+        "triangles": 19251,
+        "vertices": 29108,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 605076
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0966, -0.0035, -2.6265],
+          "max": [1.0966, 1.4871, 2.6264]
+        },
+        "sphere": {
+          "center": [0, 0.7418, 0],
+          "radius": 2.7416
+        }
+      },
+      "camera": {
+        "position": [4.20232, 2.9480180000000002, 4.990255],
+        "lookAt": [0, 0.7418, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.44, 1.217, 0.0646],
+        "lookAt": [0.44, 1.0570000000000002, 1.0646],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/lincoln-continental-2020/shots/angle_0.png",
+          "sha256": "sha256:e2ec33b8aa5035fce65f36e334e4a61c5e5e2a3bdb9589dde442a2a0a216ac1b"
+        },
+        {
+          "path": "source/vehicles/lincoln-continental-2020/shots/angle_1.png",
+          "sha256": "sha256:d2fbb974e873641558de4ae2cb3d0e02f3cc489f96102a297758bb3ada0d28ad"
+        },
+        {
+          "path": "source/vehicles/lincoln-continental-2020/shots/angle_2.png",
+          "sha256": "sha256:e66d77ee1e40cfc1728a6bf1ab108be127b1feb913e58b5740ffab85c98bde7e"
+        },
+        {
+          "path": "source/vehicles/lincoln-continental-2020/shots/angle_3.png",
+          "sha256": "sha256:4afa74c4a81efabcd078b6746b0ff30c310ae28477a0d39d45677c192ab8ea6c"
+        },
+        {
+          "path": "source/vehicles/lincoln-continental-2020/shots/three-quarter.png",
+          "sha256": "sha256:2319e9d0bb490b3521031893d37ee249ee3f2f7eb0181b805f1fa5ba8b519d02"
+        },
+        {
+          "path": "source/vehicles/lincoln-continental-2020/shots/operator.png",
+          "sha256": "sha256:dd9315ed0f92f5a004a6b6b95527ac56fec9f8cf4b0312846060eaf35f225827"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.hyundai_veloster_2020",
+      "slug": "hyundai-veloster-2020",
+      "label": "2020 Hyundai Veloster",
+      "year": 2020,
+      "trim": "Turbo asymmetric three-door",
+      "bodyStyle": "hatchback",
+      "sourceHash": "sha256:93ac06819f79289caa036038bc9bdd0fde44f27a5af209b8b92647a5709205fa",
+      "runtimeHash": "sha256:2b39880b4588a1661f4d7de621de683b65099d9aa96fc6df70b8fd071453fddc",
+      "recipeHash": "sha256:6efeb759434d8a16b870786ce70dee74a6e032ddfd8fe3478248f41c356d3f6d",
+      "stats": {
+        "triangles": 19129,
+        "vertices": 30102,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 620240
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0399, -0.0035, -2.1885],
+          "max": [1.0399, 1.395, 2.1885]
+        },
+        "sphere": {
+          "center": [0, 0.6957, 0],
+          "radius": 2.3128
+        }
+      },
+      "camera": {
+        "position": [3.5016, 2.53409, 4.15815],
+        "lookAt": [0, 0.69575, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.414, 1.125, 0.1144],
+        "lookAt": [0.414, 0.965, 1.1144],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/hyundai-veloster-2020/shots/angle_0.png",
+          "sha256": "sha256:3500ed2bc6287198843a86381d8daf51447f5b66b275f7b659ee7544a07d58ed"
+        },
+        {
+          "path": "source/vehicles/hyundai-veloster-2020/shots/angle_1.png",
+          "sha256": "sha256:732b1ff48281c25b6684b1f1634c0fdb87e139e45eeadf242e05e970dd79ee9b"
+        },
+        {
+          "path": "source/vehicles/hyundai-veloster-2020/shots/angle_2.png",
+          "sha256": "sha256:18383465eb96e2d601c0b5f182b1ce0ca07b1314c4bf5207e9d71af9c4f7f3d4"
+        },
+        {
+          "path": "source/vehicles/hyundai-veloster-2020/shots/angle_3.png",
+          "sha256": "sha256:3db2ab4b65efbde0c8147a471b5741f9073075457c89d627e252fd9d24e084eb"
+        },
+        {
+          "path": "source/vehicles/hyundai-veloster-2020/shots/three-quarter.png",
+          "sha256": "sha256:5b21a6b49f44ebf54c6e18f7145f8a2b3eb4fe0ca4d95013713a94f09bb4fd70"
+        },
+        {
+          "path": "source/vehicles/hyundai-veloster-2020/shots/operator.png",
+          "sha256": "sha256:88e03cdb1109465150f98a146d8a14c7bcb470a4b4df1c2fd356f4fbe55f23e2"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.ford_transit_2021",
+      "slug": "ford-transit-2021",
+      "label": "2021 Ford Transit",
+      "year": 2021,
+      "trim": "T-250 cargo, regular length, medium roof",
+      "bodyStyle": "cargo-van",
+      "sourceHash": "sha256:7b9887d25d1153e79be62bbd2ff84fdb590828d024d99fb0dd627c192084959e",
+      "runtimeHash": "sha256:adec953a17f6b2f11dc3aef32542b0b1f86d77848c2dd56a21739385217ff0e5",
+      "recipeHash": "sha256:9632744958c5a2a219306b18a737454935fe8df185ceff669ee0da1e81230af5",
+      "stats": {
+        "triangles": 18798,
+        "vertices": 28598,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 592572
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.1726, -0.0035, -2.861],
+          "max": [1.1726, 2.55, 2.864]
+        },
+        "sphere": {
+          "center": [0, 1.2733, 0.0015],
+          "radius": 3.1212
+        }
+      },
+      "camera": {
+        "position": [4.58, 3.6777499999999996, 5.43875],
+        "lookAt": [0, 1.27325, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4749, 1.66, 0.977],
+        "lookAt": [0.4749, 1.5, 1.9769999999999999],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/ford-transit-2021/shots/angle_0.png",
+          "sha256": "sha256:0de445890dae8dd480524f9784de206e7987d807d63811bdb03c2f0ba8fcaaf2"
+        },
+        {
+          "path": "source/vehicles/ford-transit-2021/shots/angle_1.png",
+          "sha256": "sha256:ab4f4100366e1e2ba96497f3cc7a1ad2aa64438b2977958f6677a325cf1624b2"
+        },
+        {
+          "path": "source/vehicles/ford-transit-2021/shots/angle_2.png",
+          "sha256": "sha256:ee2de33d942e7b68a19991d1eeab013ed419eac80ffb71b7bcc6be71ce41551f"
+        },
+        {
+          "path": "source/vehicles/ford-transit-2021/shots/angle_3.png",
+          "sha256": "sha256:2447108219ea9c615a412ca7abc7208327454d2f3b7e775c8b90553e959ad7cf"
+        },
+        {
+          "path": "source/vehicles/ford-transit-2021/shots/three-quarter.png",
+          "sha256": "sha256:0a14bf212e1fc4591d933f2e101cabf2e2a1b46b192b0cbb42112a5228337601"
+        },
+        {
+          "path": "source/vehicles/ford-transit-2021/shots/operator.png",
+          "sha256": "sha256:74a16ddf041f9c2eb4c5873fe7a9fea214070dfe1dd1ee782de8ed15cf2c736e"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.audi_tt_2021",
+      "slug": "audi-tt-2021",
+      "label": "2021 Audi TT",
+      "year": 2021,
+      "trim": "45 TFSI quattro coupe",
+      "bodyStyle": "coupe",
+      "sourceHash": "sha256:a3f4334f976d786c9c647c87a02697b66b0142ad925ba54d881f8822c3499199",
+      "runtimeHash": "sha256:b3cce890e12b27db873ce092d1737d035f2c7c87098ef290b246f49cf97425a6",
+      "recipeHash": "sha256:6eb8f688d3d71b190d21dd3bbf39540122c3e8e278f5f5571b7914acd8858b44",
+      "stats": {
+        "triangles": 16753,
+        "vertices": 26293,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 543492
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.056, -0.0035, -2.164],
+          "max": [1.056, 1.3531, 2.164]
+        },
+        "sphere": {
+          "center": [0, 0.6748, 0],
+          "radius": 2.2866
+        }
+      },
+      "camera": {
+        "position": [3.4624000000000006, 2.49256, 4.1116],
+        "lookAt": [0, 0.6748, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4214, 1.083, 0.0067],
+        "lookAt": [0.4214, 0.9229999999999999, 1.0067],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/audi-tt-2021/shots/angle_0.png",
+          "sha256": "sha256:fa6bffa45c0458715076b38631d6d9a002122f998526c7d7b32afc6e2b534327"
+        },
+        {
+          "path": "source/vehicles/audi-tt-2021/shots/angle_1.png",
+          "sha256": "sha256:178bace736c690bf256fbc19e119af55938f4aed797fb3d1e146333e65fa48bd"
+        },
+        {
+          "path": "source/vehicles/audi-tt-2021/shots/angle_2.png",
+          "sha256": "sha256:dd8dbf2589bab0cbe7967623a0d7813717826295a6be3eab0d9e43b0a6fc9b12"
+        },
+        {
+          "path": "source/vehicles/audi-tt-2021/shots/angle_3.png",
+          "sha256": "sha256:9a7ce8edf16c2604b5c87df7bf01a7892e8f5c1b7741fec036007ab2a6d3621f"
+        },
+        {
+          "path": "source/vehicles/audi-tt-2021/shots/three-quarter.png",
+          "sha256": "sha256:a762911b3f88fca2c8427b3e00a5a9132729e9931109b4fff6c8bbb7b2397b39"
+        },
+        {
+          "path": "source/vehicles/audi-tt-2021/shots/operator.png",
+          "sha256": "sha256:a0fef460326b93e5a5be3b94a97de41b8659556134b2bde9873ad0fd055640ee"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.hyundai_ioniq_5_2022",
+      "slug": "hyundai-ioniq-5-2022",
+      "label": "2022 Hyundai IONIQ 5",
+      "year": 2022,
+      "trim": "SEL battery electric",
+      "bodyStyle": "hatchback",
+      "sourceHash": "sha256:3826c976cdd6cec7fcd8b55a46844d973cbe29a71ca62feb65ea49d461571da2",
+      "runtimeHash": "sha256:4b0b82e3082870b5c94efd05a7ffaa75e3518d58be97cbd0e733ce62b497ad1e",
+      "recipeHash": "sha256:a7b23b0b9a2147df5f3142bc5649dd4c08fb5afc9f77792d44609a4ef09e27ac",
+      "stats": {
+        "triangles": 16101,
+        "vertices": 24707,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 513488
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0851, -0.0035, -2.386],
+          "max": [1.0851, 1.6051, 2.386]
+        },
+        "sphere": {
+          "center": [0, 0.8008, 0],
+          "radius": 2.4651
+        }
+      },
+      "camera": {
+        "position": [3.8176000000000005, 2.80504, 4.5334],
+        "lookAt": [0, 0.8008, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4347, 1.335, 0.1613],
+        "lookAt": [0.4347, 1.175, 1.1613],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/hyundai-ioniq-5-2022/shots/angle_0.png",
+          "sha256": "sha256:34e0559cc4102df6642fec33a751fe8f03e62e0b20639df4b81f10b1e0a8eccd"
+        },
+        {
+          "path": "source/vehicles/hyundai-ioniq-5-2022/shots/angle_1.png",
+          "sha256": "sha256:e802296b12076a50c51bd6b912dec3415d9dc279c11bee3694d51269a1c000d5"
+        },
+        {
+          "path": "source/vehicles/hyundai-ioniq-5-2022/shots/angle_2.png",
+          "sha256": "sha256:612454925b8328acc0e0b3b014f0c6aff89bcae4ef01ee40ae3dff80f001f592"
+        },
+        {
+          "path": "source/vehicles/hyundai-ioniq-5-2022/shots/angle_3.png",
+          "sha256": "sha256:d80ee9e44ebeef57cedd7b57b85059a0c4a6658515ed9139e9209a4b988a4ff2"
+        },
+        {
+          "path": "source/vehicles/hyundai-ioniq-5-2022/shots/three-quarter.png",
+          "sha256": "sha256:165b1c4672f4d67f1df7ac28be86ecc15b3afef0c1af97eba6a554f8ee339abb"
+        },
+        {
+          "path": "source/vehicles/hyundai-ioniq-5-2022/shots/operator.png",
+          "sha256": "sha256:fb1b0c445bdc5f1b310b6bd2d1c5a556912571b603862dc1f503b61293e61091"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.lucid_air_2022",
+      "slug": "lucid-air-2022",
+      "label": "2022 Lucid Air",
+      "year": 2022,
+      "trim": "Grand Touring sedan",
+      "bodyStyle": "sedan",
+      "sourceHash": "sha256:9a5437b704c6a3c1551acc393775e8e08ef6e8bfbab2d6bf97587c3ce7f89488",
+      "runtimeHash": "sha256:f36765e17312f82d2492ee2338aa61705ce25a059a44816c2f974d496ed68c88",
+      "recipeHash": "sha256:f331804c0c098fa57d4310e41181c742987b5712702079cea4e5d76ce25cb49d",
+      "stats": {
+        "triangles": 15269,
+        "vertices": 23377,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 12,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 488124
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.1096, -0.0035, -2.556],
+          "max": [1.1096, 1.41, 2.5563]
+        },
+        "sphere": {
+          "center": [0, 0.7032, 0.0001],
+          "radius": 2.5984
+        }
+      },
+      "camera": {
+        "position": [4.08984, 2.850415999999999, 4.856684999999999],
+        "lookAt": [0, 0.7032499999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.446, 1.14, 0.1087],
+        "lookAt": [0.446, 0.9799999999999999, 1.1087],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/lucid-air-2022/shots/angle_0.png",
+          "sha256": "sha256:c73af930ae31389f30499241f24cb0c8a15be1572e4e561957e21f1c3ad3407b"
+        },
+        {
+          "path": "source/vehicles/lucid-air-2022/shots/angle_1.png",
+          "sha256": "sha256:bc822995c21d9006a17564f556b10e0a8586c79bf18683b70bbb7cfcd0a89a16"
+        },
+        {
+          "path": "source/vehicles/lucid-air-2022/shots/angle_2.png",
+          "sha256": "sha256:c3c8dad6e84fcf7cde8a0c4517865ef7acb89b16fd0e7aea9ee5457d0850ea8a"
+        },
+        {
+          "path": "source/vehicles/lucid-air-2022/shots/angle_3.png",
+          "sha256": "sha256:2f84b689b12ca690b1a2469dd8ace77d1a5601ba121a33cfb3ba65caa7159d45"
+        },
+        {
+          "path": "source/vehicles/lucid-air-2022/shots/three-quarter.png",
+          "sha256": "sha256:da73969709dd2551b7de4ed2dba026d2e54e17029473c66f79edb931f3f9adf9"
+        },
+        {
+          "path": "source/vehicles/lucid-air-2022/shots/operator.png",
+          "sha256": "sha256:b1151666058094a60a03ada98b1b06c6cf20e72126c22b396cde5153f3085a11"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.rivian_r1t_2023",
+      "slug": "rivian-r1t-2023",
+      "label": "2023 Rivian R1T",
+      "year": 2023,
+      "trim": "Adventure pickup",
+      "bodyStyle": "pickup",
+      "sourceHash": "sha256:9a522c0f543beb3ad3e7a62620fc54a467e10fbaac45c52e04d587397fc5ab45",
+      "runtimeHash": "sha256:2b122b47e1bd25b623e8eeeaddee4baa47b897f4ed364d4f9a7dd5d49cf4bb28",
+      "recipeHash": "sha256:b4c6120ddfa16507076e1e50472bf3fc82461146b7473fc0f57b10e00c895cfe",
+      "stats": {
+        "triangles": 19460,
+        "vertices": 27193,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 575064
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.147, -0.0035, -2.8255],
+          "max": [1.147, 1.986, 2.8255]
+        },
+        "sphere": {
+          "center": [0, 0.9913, 0],
+          "radius": 2.9285
+        }
+      },
+      "camera": {
+        "position": [4.5208, 3.36467, 5.368449999999999],
+        "lookAt": [0, 0.99125, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4632, 1.716, 0.5217],
+        "lookAt": [0.4632, 1.556, 1.5217],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/rivian-r1t-2023/shots/angle_0.png",
+          "sha256": "sha256:382550fa3c1f764fe3a82e949bab3e32bdcb346eea896481deff638ff58fe9de"
+        },
+        {
+          "path": "source/vehicles/rivian-r1t-2023/shots/angle_1.png",
+          "sha256": "sha256:cbec748aa0d2256e7c46b65bcd9f5f9a656f61a446592cf724224d5496300803"
+        },
+        {
+          "path": "source/vehicles/rivian-r1t-2023/shots/angle_2.png",
+          "sha256": "sha256:9c26127644d89f30dccc538309db203ed6f6158ce281909fa28bed7fa1862dce"
+        },
+        {
+          "path": "source/vehicles/rivian-r1t-2023/shots/angle_3.png",
+          "sha256": "sha256:94f3ba11485178efd9fb8b101e0b39653fba0f03977e9124b24fc70736a0b2b8"
+        },
+        {
+          "path": "source/vehicles/rivian-r1t-2023/shots/three-quarter.png",
+          "sha256": "sha256:3a54a1395cd7b9cc4d9a62de73dd9e4230d2bd970716aec564c5ea2263ce1f41"
+        },
+        {
+          "path": "source/vehicles/rivian-r1t-2023/shots/operator.png",
+          "sha256": "sha256:3239a16521f6a675e82dd40d8ff813dd5e61d1baf24290fd8798ceab091a4826"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.land_rover_defender_90_2023",
+      "slug": "land-rover-defender-90-2023",
+      "label": "2023 Land Rover Defender 90",
+      "year": 2023,
+      "trim": "S short-wheelbase three-door",
+      "bodyStyle": "offroad",
+      "sourceHash": "sha256:3219dc40eee2ab3ecb3325ae7fa277bb6006a8978ec5dda81747966831493f8f",
+      "runtimeHash": "sha256:0148234b09c23accc305e62a6ea9e5e225334233194d9f4999f9e87ac60bb21b",
+      "recipeHash": "sha256:23c0ce4e19fd0c614594dec352fd6d978941317892b118bcf706e2e8db7d17a5",
+      "stats": {
+        "triangles": 19848,
+        "vertices": 28819,
+        "meshes": 30,
+        "primitives": 30,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 605260
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.138, -0.0035, -2.3665],
+          "max": [1.138, 1.974, 2.2299]
+        },
+        "sphere": {
+          "center": [0, 0.9852, -0.0683],
+          "radius": 2.4155
+        }
+      },
+      "camera": {
+        "position": [3.6771200000000004, 2.915738, 4.36658],
+        "lookAt": [0, 0.98525, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4591, 1.704, 0.264],
+        "lookAt": [0.4591, 1.544, 1.264],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/land-rover-defender-90-2023/shots/angle_0.png",
+          "sha256": "sha256:31818e01519c257636139841052b5ced5a19d4af0f325be8c1e5d0de65d923c0"
+        },
+        {
+          "path": "source/vehicles/land-rover-defender-90-2023/shots/angle_1.png",
+          "sha256": "sha256:221dd6037a59fffbc2e249e6e1d20384fa5fa6883c0e86d2915b2608a9f8e8fd"
+        },
+        {
+          "path": "source/vehicles/land-rover-defender-90-2023/shots/angle_2.png",
+          "sha256": "sha256:97306d6874db37c1ee3813eb7aa88c5eca34934db4b31a3abe5c50de375b7d4f"
+        },
+        {
+          "path": "source/vehicles/land-rover-defender-90-2023/shots/angle_3.png",
+          "sha256": "sha256:3c85bcc7c5837c9bd4f17ac5c08416a5c0949f6f0da84b9a4f8bdb8d22589c06"
+        },
+        {
+          "path": "source/vehicles/land-rover-defender-90-2023/shots/three-quarter.png",
+          "sha256": "sha256:1ff61091e70031d490feef7814b1b625fc8b1ebaf95015aeca2c516ecb015941"
+        },
+        {
+          "path": "source/vehicles/land-rover-defender-90-2023/shots/operator.png",
+          "sha256": "sha256:20d1bfe9a5b4c2cf156c7c3ef6b84ee92d9938153a290f3a3080b73afa27ee1d"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.gmc_hummer_ev_suv_2024",
+      "slug": "gmc-hummer-ev-suv-2024",
+      "label": "2024 GMC Hummer EV SUV",
+      "year": 2024,
+      "trim": "3X battery electric SUV",
+      "bodyStyle": "offroad",
+      "sourceHash": "sha256:fca4707e50f2ac064c8169fdeb4051028edf5da27cafbc9a06e73b89ec611927",
+      "runtimeHash": "sha256:abb677ef9af7b171efc9f9613c1d06ee257950d9d245407508f1a1e8e13b95e7",
+      "recipeHash": "sha256:24ec55c4d752b334a0140e7a8d5c7254d9b47b49e60dfff35bd38e98b459d421",
+      "stats": {
+        "triangles": 17479,
+        "vertices": 26621,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 553068
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.2381, -0.0035, -2.7108],
+          "max": [1.2381, 1.9769, 2.568]
+        },
+        "sphere": {
+          "center": [0, 0.9867, -0.0714],
+          "radius": 2.7758
+        }
+      },
+      "camera": {
+        "position": [4.22304, 3.203796, 5.0148600000000005],
+        "lookAt": [0, 0.9867, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.5051, 1.706, 0.4397],
+        "lookAt": [0.5051, 1.546, 1.4397],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/gmc-hummer-ev-suv-2024/shots/angle_0.png",
+          "sha256": "sha256:aa56edb5c573d565a29c30dedf2259f7a76c322dfc87fad4839c68cf6e7c0963"
+        },
+        {
+          "path": "source/vehicles/gmc-hummer-ev-suv-2024/shots/angle_1.png",
+          "sha256": "sha256:a4733d824fc727f1c317e0afd7f9c184492572b7ee5ca69a82378c637d279f3e"
+        },
+        {
+          "path": "source/vehicles/gmc-hummer-ev-suv-2024/shots/angle_2.png",
+          "sha256": "sha256:d588444ca6b88e0df3da0b30a72919463255819bae947a3fa62ab179fa896d59"
+        },
+        {
+          "path": "source/vehicles/gmc-hummer-ev-suv-2024/shots/angle_3.png",
+          "sha256": "sha256:84efdb44c61eee8e72fd0a1c1d77e8f4e23d7c91bfb4b9ae6e5ac09965e51735"
+        },
+        {
+          "path": "source/vehicles/gmc-hummer-ev-suv-2024/shots/three-quarter.png",
+          "sha256": "sha256:270e8f9f8c21ca58f13ce165522ba7d6995138783f5f8ada1632485cb1b9fc7b"
+        },
+        {
+          "path": "source/vehicles/gmc-hummer-ev-suv-2024/shots/operator.png",
+          "sha256": "sha256:7b7ff5077f85b9eb6b7158913c3339efa9760735746caf69d030180ae034580b"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.toyota_gr_supra_2024",
+      "slug": "toyota-gr-supra-2024",
+      "label": "2024 Toyota GR Supra",
+      "year": 2024,
+      "trim": "3.0 Premium coupe",
+      "bodyStyle": "coupe",
+      "sourceHash": "sha256:ae21e0b6f507c9df98ea4b431aa15dacf47926c2fe58d70e18c2201c24cc4892",
+      "runtimeHash": "sha256:a0387f22399b263044e56417fc6d6740c2772d70c0f506c44ba28c408d9a8e99",
+      "recipeHash": "sha256:861e3c104c73166953a796de12b3a0b07a5f193a6e63ac88138af40eebcc5a12",
+      "stats": {
+        "triangles": 17723,
+        "vertices": 26824,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 557920
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.067, -0.0035, -2.258],
+          "max": [1.067, 1.294, 2.261]
+        },
+        "sphere": {
+          "center": [0, 0.6452, 0.0015],
+          "radius": 2.371
+        }
+      },
+      "camera": {
+        "position": [3.6152, 2.54323, 4.29305],
+        "lookAt": [0, 0.64525, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4264, 1.024, -0.2495],
+        "lookAt": [0.4264, 0.864, 0.7505],
+        "fov": 70
+      },
+      "localCaptures": [
+        {
+          "path": "source/vehicles/toyota-gr-supra-2024/shots/angle_0.png",
+          "sha256": "sha256:4a84baf62384ebab912b6720da0d05f03f8bb161294cfb5da60b3feddf5a846d"
+        },
+        {
+          "path": "source/vehicles/toyota-gr-supra-2024/shots/angle_1.png",
+          "sha256": "sha256:3cfd960438d6de9612edf221c3632f9fadb618f6d76d05b477071b1a24980432"
+        },
+        {
+          "path": "source/vehicles/toyota-gr-supra-2024/shots/angle_2.png",
+          "sha256": "sha256:bc33076d1487359d208d13fd978b4da140b2a2672ccfca4542fe9106e3e2b4ba"
+        },
+        {
+          "path": "source/vehicles/toyota-gr-supra-2024/shots/angle_3.png",
+          "sha256": "sha256:a175233201c94ffc51f7f3077830d53a5c27584dc7f421ef3dc3829c7c7a5635"
+        },
+        {
+          "path": "source/vehicles/toyota-gr-supra-2024/shots/three-quarter.png",
+          "sha256": "sha256:28a0a9279025b06cf9e77090ea2f03ab924e867261d89ee74bcc2accac6ad3d4"
+        },
+        {
+          "path": "source/vehicles/toyota-gr-supra-2024/shots/operator.png",
+          "sha256": "sha256:5133385290ccd0a7b0712ab4c1b9ab707741ddd3a330ba7e72542d589e3cdf9a"
+        }
+      ]
+    }
+  ]
+}

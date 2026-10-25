@@ -1,0 +1,348 @@
+{
+  "planId": "andersonville_prison",
+  "id": "andersonville_prison",
+  "assetId": "molen.worldgen.structure.andersonville_prison",
+  "title": "Andersonville Prison",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -84.12865242639396,
+    "latitude": 32.19546764916732
+  },
+  "size": [
+    329.93089294433594,
+    19.675402879714966,
+    159.6734161376953
+  ],
+  "actualBounds": {
+    "min": [
+      -164.9664764404297,
+      -1.7510387897491455,
+      -79.90470886230469
+    ],
+    "max": [
+      164.96441650390625,
+      17.92436408996582,
+      79.76870727539062
+    ]
+  },
+  "visualBrief": "Present physical reconstructions of Andersonville Prison: both short stockade sections (northgate with rectangular two-gate sallyport and northeast L-corner), their roofed sentry platforms, diagonal-board gate leaves/wicket and short low deadline rail. No invented standing 1864 whole enclosure, barracks or prisoner tents. Separate museum/cemetery/monuments/Providence Spring shelter/Star Fort and general park landscape are excluded. Tall weathered gray pine logs with irregular individual crowns, warm worn endgrain, real faceted cylindrical/hewn profiles, horizontal timber binders, open post-and-rail sentry platforms/lean-to plank roofs on long external posts, two closed diagonal plank gates/black iron straps/pedestrian wicket. Preserve independent site grade. Do not fill field with an invented prison, add a summit-like fort/museum or flatten/reacquire terrain.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:17_35_046_andersonville.jpg",
+    "https://commons.wikimedia.org/wiki/File:17_35_039_andersonville.jpg",
+    "https://commons.wikimedia.org/wiki/File:21-01-081-stockade.jpg",
+    "https://commons.wikimedia.org/wiki/File:20-03-197-fort.jpg",
+    "https://commons.wikimedia.org/wiki/File:24-01-165-north-gate.jpg"
+  ],
+  "stories": [
+    {
+      "id": "andersonville-prison-wp",
+      "url": "https://qualla.com/andersonville-prison/"
+    }
+  ],
+  "referenceInputHash": "3bb5a2b53c74c411373941e5c9aac80f66b2e0cd776441ccaa8a6bfc4a48bef5",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-andersonville-prison.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-andersonville-prison.mjs",
+    "level": "skyline",
+    "export": "andersonvillePrisonSkyline",
+    "errorMeters": 0.5,
+    "surfaces": {
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "end": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "pale": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "roof",
+        "graph": "wood_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.16
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "andersonvillePrisonDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "end": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "pale": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.16
+          }
+        }
+      },
+      "street": {
+        "export": "andersonvillePrisonStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "end": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "pale": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.16
+          }
+        }
+      },
+      "closeup": {
+        "export": "andersonvillePrisonCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "end": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "pale": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.16
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All three native OSM fenceway1346210253 vertices bind the northeast reconstructed corner. Exact brown reconstruction paths extracted from federal NPS Harpers Ferry Center ANDEmap1.pdf (2018), whose own asset record explicitly states government-produced public domain, register the northgate wall and rectangular sallyport by affine transformation from those same three corner points. These are visitor-map controls, approximately3m per PDFpoint, not a measured building survey. Whole reconstruction midpoint anchor [-84.12865242639396,32.19546764916732],heading0, +X east/+Z south fixed before terrain/geometry. Mainwall about31m, corner arms about31m; sallyport approximately12x9m. Wallheight4.57m, door/wicket/sentry-platform dimensions, log census and deadline extent are photographic architectural estimates. All timber toes follow bilinear samples from independently frozen512m field; source-relative preview only, actual host contact unverified.",
+    "anchor": [
+      -84.12865242639396,
+      32.19546764916732
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -84.13025387718825,
+        32.19482806909288
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed northgate east threshold source point before independent field; provider-relative model datum, not a surveyed threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1346210253",
+      "nps-northgate-mainwall",
+      "nps-northgate-sallyport"
+    ],
+    "source": "https://www.openstreetmap.org/way/1346210253",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0f05d88ba0a6dc99aec7184703b850549194e45ae0da3aa09d6d050ff1a59f6a",
+    "notes": "Present physical reconstructions of Andersonville Prison: both short stockade sections (northgate with rectangular two-gate sallyport and northeast L-corner), their roofed sentry platforms, diagonal-board gate leaves/wicket and short low deadline rail. No invented standing 1864 whole enclosure, barracks or prisoner tents. Separate museum/cemetery/monuments/Providence Spring shelter/Star Fort and general park landscape are excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "All three native OSM fenceway1346210253 vertices bind the northeast reconstructed corner. Exact brown reconstruction paths extracted from federal NPS Harpers Ferry Center ANDEmap1.pdf (2018), whose own asset record explicitly states government-produced public domain, register the northgate wall and rectangular sallyport by affine transformation from those same three corner points. These are visitor-map controls, approximately3m per PDFpoint, not a measured building survey. Whole reconstruction midpoint anchor [-84.12865242639396,32.19546764916732],heading0, +X east/+Z south fixed before terrain/geometry. Mainwall about31m, corner arms about31m; sallyport approximately12x9m. Wallheight4.57m, door/wicket/sentry-platform dimensions, log census and deadline extent are photographic architectural estimates.",
+    "Both current reconstructed stockades included; deliberately no full1864standingpalisade or prison interior. Gates are closed physical double leaves with shallow diagonal plank relief/iron straps and closed wicket, not operable doors. Three roofed sentry platforms follow clearphoto evidence; hidden structural joinery/log census and short deadline extent approximate. Rounded timber profiles, uneven crowns and grain are modeled geometry with shared wood material; no photograph texture or generated bitmap.",
+    "Two exactpublishedDsdugan2017ownCC0Quallaoverviews and three supplemental Dsdugan2020/2021/2024 ownCC0closeoriginals individuallyinspected/nativeSHA1bound. No uncertain, Panoramio/attribution-only or historicalcamp photo used. ExactassetNPS2018map explicitlygovernmentPD; map registration/census are visitorcartography, not survey. Source/media/category/articlebody/imagerypolicy unchanged.",
+    "Independent512m129square4m16641samplefield and two originalTerrariumtiles frozen beforegeometry; modeldatum109.6561m/provider-relative. Timber toes bilinearly follow that unchangedfield; no fitting/flattening/reacquisition/ground slab. Composite DEM does not certify archaeological microrelief or exact thresholds. Ordinary geographic preview/replacementdisabled; actualhostcontact unverified.",
+    "Separate nationalPOWmuseum/cemetery/monuments/ProvidenceSpringwellhouse/StarFort/earthenbatteries/wholepark whiteboundaryposts and natural landscape excluded. Asset represents the prison’s two reconstructed architectural fragments today, not the entire26.5acre historic enclosure or a complete1864reconstruction."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "both-reconstructed-stockades-and-their-actual-separation",
+      "position": [
+        -245,
+        220,
+        360
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "northgate-projecting-sallyport-two-gates-and-sentry-platforms",
+      "position": [
+        -188,
+        24,
+        105
+      ],
+      "lookAt": [
+        -153,
+        3.3,
+        69
+      ]
+    },
+    {
+      "name": "sallyport-diagonal-double-doors-wicket-and-timber-wall-above",
+      "position": [
+        -161,
+        3,
+        68
+      ],
+      "lookAt": [
+        -151,
+        1.8,
+        70
+      ]
+    },
+    {
+      "name": "northeast-real-corner-and-short-deadline-rail",
+      "position": [
+        119,
+        23,
+        -33
+      ],
+      "lookAt": [
+        152,
+        14,
+        -64
+      ]
+    },
+    {
+      "name": "rounded-weathered-logs-open-sentry-platform-and-support-posts",
+      "position": [
+        179,
+        18,
+        -39
+      ],
+      "lookAt": [
+        159,
+        16.5,
+        -51
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21060,
+    "vertices": 63180,
+    "materials": 5,
+    "bytes": 2530556,
+    "sha256": "sha256:602f2cda1687f9d518451e95d14df6cc8361b4f7e18c686bbfed60ce8814e6ba"
+  }
+}

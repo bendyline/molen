@@ -10,6 +10,7 @@ import { MeshoptSimplifier } from 'meshoptimizer';
 import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { validateAuthoredMesh } from '../../worldgen/scripts/authored-structure-mesh.mjs';
+import { embedGraphFallbacks } from '../../worldgen/scripts/embed-graph-fallbacks.mjs';
 import { hashEvidenceText } from '../../worldgen/scripts/evidence-text-hash.mjs';
 import {
   readOptionalJson,
@@ -23,6 +24,15 @@ import {
 } from './authored-landmark-lods.mjs';
 
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
+const withGraphFallbacks = (bytes, definition) =>
+  embedGraphFallbacks(
+    Buffer.from(bytes),
+    (definition.embeddedCanonicalGraphs ?? []).map((name) => ({
+      ref: `matgraph:molen.worldgen.material.${name}`,
+      graphPath: resolve(root, `content/worldgen/materials/${name}.matgraph.json`),
+    })),
+    root,
+  );
 const implementation = hashEvidenceText(await readFile(new URL(import.meta.url)));
 async function overlay(id) {
   const entry = knownSourceEntries().find((e) => e.assetId === id);
@@ -78,7 +88,10 @@ async function authoredDerivative(path, level, definition, module) {
     throw new Error(`${level.name}: authored derivative exceeds its triangle ceiling`);
   const io = new NodeIO().setVertexLayout(VertexLayout.SEPARATE);
   const document = await io.readBinary(
-    encodeGlb(mesh, authoring.materials(mesh.groups), `source-${level.name}`),
+    await withGraphFallbacks(
+      encodeGlb(mesh, authoring.materials(mesh.groups), `source-${level.name}`),
+      definition,
+    ),
   );
   await document.transform(weld({ tolerance: 0 }), prune({ keepAttributes: true }));
   const bytes = Buffer.from(await io.writeBinary(document));
@@ -190,6 +203,9 @@ export async function buildModelLandmarkLods(sidecarPath, options = {}) {
   await buildBase(sidecarPath, options);
   const sidecar = JSON.parse(await readFile(sidecarPath));
   const builder = new MeshBufferBuilder();
+  const authoring = data.definition.surfaces
+    ? createArchitecturalSurfaceAuthoring(data.definition.surfaces)
+    : undefined;
   const mapped = Object.fromEntries(
     ['addQuad', 'addTriangle', 'addConvexPolygon'].map((name) => [
       name,
@@ -199,13 +215,22 @@ export async function buildModelLandmarkLods(sidecarPath, options = {}) {
   const module = await import(pathToFileURL(data.path).href);
   const build = module[data.definition.export];
   if (typeof build !== 'function') throw new Error(`${before.id}: missing runtime overlay export`);
-  build(mapped);
+  build(authoring ? authoring.wrap(builder) : mapped);
   const mesh = builder.finalize();
   validateAuthoredMesh(mesh, `${before.id}/source-skyline`);
   if (mesh.triangleCount > 1000) throw new Error(`${before.id}: skyline exceeds1000triangles`);
   const io = new NodeIO().setVertexLayout(VertexLayout.SEPARATE);
   const document = await io.readBinary(
-    encodeGlb(mesh, [{ name: 'source-skyline', roughness: 0.85, metallic: 0 }], before.id),
+    await withGraphFallbacks(
+      encodeGlb(
+        mesh,
+        authoring
+          ? authoring.materials(mesh.groups)
+          : [{ name: 'source-skyline', roughness: 0.85, metallic: 0 }],
+        before.id,
+      ),
+      data.definition,
+    ),
   );
   await document.transform(weld({ tolerance: 0 }), prune({ keepAttributes: true }));
   const bytes = Buffer.from(await io.writeBinary(document));
@@ -224,7 +249,7 @@ export async function buildModelLandmarkLods(sidecarPath, options = {}) {
     cpuBytes: memory,
     gpuBytes: memory,
     errorMeters: data.definition.errorMeters,
-    drawCalls: 1,
+    drawCalls: mesh.groups.length,
   };
   for (const [name, detail] of Object.entries(data.definition.authoredLevels ?? {})) {
     const index = sidecar.runtimeLods.levels.findIndex((l) => l.name === name);

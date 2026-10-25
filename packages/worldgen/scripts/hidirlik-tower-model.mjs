@@ -7,7 +7,7 @@ import { face, transform } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapBytes = readFileSync(structureSourcePath('n0610_hidirlik_tower', 'map-frame.json'));
+const mapBytes = readFileSync(structureSourcePath('hidirlik_tower', 'map-frame.json'));
 const map = JSON.parse(mapBytes),
   tau = Math.PI * 2;
 const stone = [0.65, 0.59, 0.46],
@@ -505,8 +505,8 @@ function build(out) {
 }
 
 export const hidirlikTower = {
-  id: 'n0610_hidirlik_tower',
-  planId: 'N0610',
+  id: 'hidirlik_tower',
+  planId: 'hidirlik_tower',
   title: 'Hıdırlık Tower',
   wikidata: 'Q218118',
   authoringFile: 'hidirlik-tower-model.mjs',

@@ -1,0 +1,295 @@
+{
+  "planId": "toghrol_tower",
+  "id": "toghrol_tower",
+  "assetId": "molen.worldgen.structure.toghrol_tower",
+  "title": "Toghrol Tower",
+  "category": "tower-monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 51.445610742105266,
+    "latitude": 35.600654184210526
+  },
+  "size": [
+    17.065868377685547,
+    20.474999248981476,
+    17.391072273254395
+  ],
+  "actualBounds": {
+    "min": [
+      -8.532934188842773,
+      -0.42500001192092896,
+      -8.532934188842773
+    ],
+    "max": [
+      8.532934188842773,
+      20.049999237060547,
+      8.858138084411621
+    ]
+  },
+  "visualBrief": "Surviving20mroofless brick tomb tower at the original named native envelope:24sharp angled buttresses around a thick hollow circular chamber, open top with visible inner wall/annular rim, restrained pointed entry surround and two layered rows of physical pointed niches/corbel edging at the crown. No conjectural dome, lost calligraphy or surrounding garden structures.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:-RAYY,_Tower_of_Toghrul,_1139.-_MET_DP202956.jpg",
+    "https://commons.wikimedia.org/wiki/File:Details_of_the_tower_built_of_brick,_Ruins_of_Rei_by_Pascal_Coste.jpg"
+  ],
+  "stories": [
+    {
+      "id": "toghrol-tower-wp",
+      "url": "https://qualla.com/toghrol-tower/"
+    }
+  ],
+  "referenceInputHash": "4af1f62370a64d2e632c76b0361118a079b1a4b898c9d39959833068f177eec3",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-toghrol-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-toghrol-tower.mjs",
+    "level": "skyline",
+    "export": "toghrolSkyline",
+    "errorMeters": 0.75,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "toghrolDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "toghrolStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named ruined brick tower relation8048810defines the actual outer envelope/inner chamber and explicit20mheight. A fixed open southern approach outside that envelope defines approximate groundY0 before terrain sampling; portal facing/phase remains approximate.",
+    "anchor": [
+      51.445610742105266,
+      35.600654184210526
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        51.445610742105266,
+        35.600546386869524
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed open approach12m south of the native tower center, outside its outer envelope, sets an approximate dry-ground datum before terrain acquisition. No native portal direction or surveyed attachment is claimed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/563594145",
+      "way/563594148"
+    ],
+    "source": "https://www.openstreetmap.org/relation/8048810",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fd00c02ab23e386179ea3dc38ea1e5cdd8621772ecfc0ca1976d575b61c3c1d0",
+    "notes": "Native20mheight controls surviving roofless shell. Upper restoration/calligraphy and portal orientation/sections remain medium-fi approximations. Do not reproduce conjectural restored dome, vanished inscriptions or19thcentury eroded earth piles. Open top/chamber stays physically unmeshed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact OSM relation8048810/Q3437688, outer way563594145and inner way563594148control the native anchor, outer envelope, hollow chamber and20mheight.24angled buttresses follow the local story and inspected historical plan;19native sampling vertices are not treated as the buttress count. Root depth, phase and portal facing are medium-fi estimates within that envelope.",
+    "Exact published Qualla Pesce/METCC0recto and1840CostePD-oldplan/details control persistent fluted shell, thick circular chamber, pointed entry and layered pointed-niche/corbel character. Native inner diameter~10.46m is consistent with the historical10.70mannotation at medium-fi precision. Sources predate later restorations: current crown and portal sections are approximate, not an exact re-creation of lostKufictext, historic erosion or either historical state.",
+    "CosteTOUR RESTAUREEconjectural dome/elevation is excluded; the surviving top/chamber is genuinely open. The similarly titled second METfile is an annotated blank verso, not a second architecture photograph, and is excluded. FlandinYezid/Rheyviews, modern attribution/share-alike photographs and supplemental imagery are unused. Brick palette is an authored warm earth tone, not a claimed true-color reading of sepia paper.",
+    "Exterior shell only: the pointed portal is a closed dark visual recess; no traversable doorway, tomb/burial furnishings, room interiors, legible historic inscriptions, adjacent graves, garden, earth piles or cultural-center reconstruction. Small marble-like entry plates are blank and approximate. Niche depth/frames, corbel courses and fine rim detail simplify with distance.",
+    "Footings extend.4m below a fixed dry point12m south of the native center. Exact local foundation and chamber floor/terrain contact remain approximate; unmodified source terrain is retained without a whole-garden platform or blanket ground opening."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "pointed-entry-and-24-buttresses",
+      "position": [
+        17,
+        10,
+        25
+      ],
+      "lookAt": [
+        0,
+        6,
+        6
+      ]
+    },
+    {
+      "name": "open-chamber-and-annular-rim",
+      "position": [
+        16,
+        32,
+        17
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "layered-crown-and-brickwork",
+      "position": [
+        13,
+        24,
+        -12
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8194,
+    "vertices": 24582,
+    "materials": 4,
+    "bytes": 986084,
+    "sha256": "sha256:bae373efea195e5cbb236fa9fee8ac24ce328bf0088b0c7b1852c274ffb16e04"
+  }
+}

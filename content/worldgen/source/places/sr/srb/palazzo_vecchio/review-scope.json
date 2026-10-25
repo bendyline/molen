@@ -1,0 +1,970 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stone_sandstone",
+      "slot": "wall",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "stone": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "tile_ceramic",
+      "slot": "roof",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.35,
+      "metallic": 0.1
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.68,
+      "metallic": 0.1
+    },
+    "gold": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.4,
+      "metallic": 0.6
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      -131.77496724824488,
+      105,
+      -129.07500922612397
+    ],
+    "lookAt": [
+      34.28778044417817,
+      30,
+      7.024821151590462
+    ],
+    "fov": 52
+  },
+  "qaCameras": [
+    {
+      "name": "piazza-facade-paired-windows-and-clock-tower",
+      "position": [
+        -104.23006464896257,
+        42,
+        -64.22689174538246
+      ],
+      "lookAt": [
+        0.6021275272791825,
+        40,
+        -2.938952609500986
+      ],
+      "fov": 58
+    },
+    {
+      "name": "front-portal-recess-soffit-and-threshold",
+      "position": [
+        -18.66115654476953,
+        3.1,
+        6.384452710421252
+      ],
+      "lookAt": [
+        -4.946044367098262,
+        3,
+        9.194381171057437
+      ],
+      "fov": 55
+    },
+    {
+      "name": "open-arnolfo-belfry-corbelled-terrace-and-crown",
+      "position": [
+        -34.98548800731726,
+        88,
+        16.309985557622674
+      ],
+      "lookAt": [
+        0,
+        80,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "connected-roofscape-and-four-courtyard-openings",
+      "position": [
+        50.22503946013149,
+        145,
+        -45.85243081046231
+      ],
+      "lookAt": [
+        39.18603479334648,
+        22,
+        8.0283670303891
+      ],
+      "fov": 58
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -131.77496724824488,
+        105,
+        -129.07500922612397
+      ],
+      "lookAt": [
+        34.28778044417817,
+        30,
+        7.024821151590462
+      ],
+      "fov": 52,
+      "name": "vecchio-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -131.77496724824488,
+        105,
+        -129.07500922612397
+      ],
+      "lookAt": [
+        34.28778044417817,
+        30,
+        7.024821151590462
+      ],
+      "fov": 52,
+      "name": "vecchio-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -131.77496724824488,
+        105,
+        -129.07500922612397
+      ],
+      "lookAt": [
+        34.28778044417817,
+        30,
+        7.024821151590462
+      ],
+      "fov": 52,
+      "name": "vecchio-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -131.77496724824488,
+        105,
+        -129.07500922612397
+      ],
+      "lookAt": [
+        34.28778044417817,
+        30,
+        7.024821151590462
+      ],
+      "fov": 52,
+      "name": "vecchio-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.2,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/vecchio-model.mjs",
+    "export": "buildVecchioSkyline",
+    "errorMeters": 5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildVecchioDistrict",
+        "errorMeters": 3,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_sandstone",
+            "slot": "wall",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.35,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.68,
+            "metallic": 0.1
+          },
+          "gold": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.4,
+            "metallic": 0.6
+          }
+        }
+      },
+      "street": {
+        "export": "buildVecchioStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_sandstone",
+            "slot": "wall",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.35,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.68,
+            "metallic": 0.1
+          },
+          "gold": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.4,
+            "metallic": 0.6
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildVecchioCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_sandstone",
+            "slot": "wall",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.35,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.68,
+            "metallic": 0.1
+          },
+          "gold": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.4,
+            "metallic": 0.6
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      11.2559974193573,
+      43.769293974512934
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. Uncovered Piazza datum 64.24965730435895m, working floor +0.2m and foundation -1.837m. Boundary grades -1.687..0.502m expose downhill foundation and leave minor uphill base burial. Main portal reveal/threshold remain exposed; some low exterior treads meet the original path/ground. Exact Piazza paving, thresholds, stairs and accessibility are unverified. All four courtyard holes, Piazza, original heights/roads and 243798.838m² water remain. Five owned records are replaced, preserving 2698 resident / 3351 wider independent buildings. No bespoke terrain or flattening.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 12
+    },
+    "bounds": [
+      11.255874269331287,
+      43.76871936227206,
+      11.257507271444013,
+      43.769571268623885
+    ],
+    "terrainReference": {
+      "anchor": [
+        11.255802433109412,
+        43.769322822532175
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard Protomaps20261020/Mapzen 201x201/6m terrain; uncovered Piazza provider internal[0,16] gives datum 64.24965730435895m, floor +0.2m and closed foundation -1.837m. Boundary grades -1.687..0.502m. Actual native exterior fit remains draft pending inspection. Four court holes and the Piazza retain original ground. No bespoke terrain, flattening or altered heights; exact paving, stair grades and accessibility unverified."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.899695504497771,
+          16.33288729208104
+        ],
+        [
+          -4.514752201836339,
+          4.69210518975604
+        ],
+        [
+          -4.527925174826663,
+          4.689635255878866
+        ],
+        [
+          -2.371770329671108,
+          -6.091135515878262
+        ],
+        [
+          -2.3083431193932515,
+          -6.077260827729105
+        ],
+        [
+          2.156154845155555,
+          -27.868239231111243
+        ],
+        [
+          30.186167832177738,
+          -21.615414758608168
+        ],
+        [
+          43.550425598505974,
+          -21.38095489672078
+        ],
+        [
+          43.55432787214217,
+          -21.399800018853423
+        ],
+        [
+          67.0564156843377,
+          -20.968570514032805
+        ],
+        [
+          118.37290099903984,
+          -14.06889464972636
+        ],
+        [
+          94.0083512487821,
+          38.75698562526382
+        ],
+        [
+          76.75911248753768,
+          60.965542057772524
+        ],
+        [
+          53.472640159857704,
+          42.42247041540337
+        ],
+        [
+          34.49847752248884,
+          34.66026971355575
+        ],
+        [
+          23.616210754119013,
+          29.498146140791686
+        ],
+        [
+          20.267855544462194,
+          27.976159694244572
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.899695504497771,
+            16.33288729208104
+          ],
+          [
+            -4.514752201836339,
+            4.69210518975604
+          ],
+          [
+            -4.527925174826663,
+            4.689635255878866
+          ],
+          [
+            -2.371770329671108,
+            -6.091135515878262
+          ],
+          [
+            -2.3083431193932515,
+            -6.077260827729105
+          ],
+          [
+            2.156154845155555,
+            -27.868239231111243
+          ],
+          [
+            30.186167832177738,
+            -21.615414758608168
+          ],
+          [
+            43.550425598505974,
+            -21.38095489672078
+          ],
+          [
+            43.55432787214217,
+            -21.399800018853423
+          ],
+          [
+            67.0564156843377,
+            -20.968570514032805
+          ],
+          [
+            118.37290099903984,
+            -14.06889464972636
+          ],
+          [
+            94.0083512487821,
+            38.75698562526382
+          ],
+          [
+            76.75911248753768,
+            60.965542057772524
+          ],
+          [
+            53.472640159857704,
+            42.42247041540337
+          ],
+          [
+            34.49847752248884,
+            34.66026971355575
+          ],
+          [
+            23.616210754119013,
+            29.498146140791686
+          ],
+          [
+            20.267855544462194,
+            27.976159694244572
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Q271928 and relation1461712/native52776559594960 identify Palazzo Vecchio. Three integral mapped sections and tower way361442653/native35184733531485 give five owned records. Current parent supplies exact occupied plan and four court holes; part heights/roof subdivisions remain approximate. Origin is the mapped tower footing center. Internal +X south-southwest along the Piazza facade, +Z west-northwest into Piazza della Signoria. Native east/up/south axes are baked, heading 0. Only the five owned records are replaced; independent buildings remain."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          33.85145379844287,
+          5.552281488891568
+        ],
+        [
+          31.91085940341995,
+          12.66757645073297
+        ],
+        [
+          27.167466329015408,
+          11.804980866643284
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            33.85145379844287,
+            5.552281488891568
+          ],
+          [
+            31.91085940341995,
+            12.66757645073297
+          ],
+          [
+            27.167466329015408,
+            11.804980866643284
+          ]
+        ],
+        [
+          [
+            31.264026005281046,
+            17.19487769485756
+          ],
+          [
+            31.91085940341995,
+            12.66757645073297
+          ],
+          [
+            33.85145379844287,
+            5.552281488891568
+          ]
+        ],
+        [
+          [
+            29.539227649755485,
+            -0.26969400423589907
+          ],
+          [
+            67.05618711498953,
+            -20.968906971979017
+          ],
+          [
+            118.37252258017645,
+            -14.06883715896993
+          ]
+        ],
+        [
+          [
+            118.37252258017645,
+            -14.06883715896993
+          ],
+          [
+            88.83341506397775,
+            5.551652823353477
+          ],
+          [
+            67.70338270266201,
+            1.6706871690672678
+          ]
+        ],
+        [
+          [
+            78.48431597739538,
+            27.76042282747796
+          ],
+          [
+            88.83341506397775,
+            5.551652823353477
+          ],
+          [
+            118.37252258017645,
+            -14.06883715896993
+          ]
+        ],
+        [
+          [
+            78.48431597739538,
+            27.76042282747796
+          ],
+          [
+            118.37252258017645,
+            -14.06883715896993
+          ],
+          [
+            94.00810571675636,
+            38.75695983364997
+          ]
+        ],
+        [
+          [
+            78.48431597739538,
+            27.76042282747796
+          ],
+          [
+            94.00810571675636,
+            38.75695983364997
+          ],
+          [
+            76.75858454167121,
+            60.96575226435832
+          ]
+        ],
+        [
+          [
+            78.48431597739538,
+            27.76042282747796
+          ],
+          [
+            76.75858454167121,
+            60.96575226435832
+          ],
+          [
+            53.47249656085506,
+            42.42268545895395
+          ]
+        ],
+        [
+          [
+            78.48431597739538,
+            27.76042282747796
+          ],
+          [
+            53.47249656085506,
+            42.42268545895395
+          ],
+          [
+            34.49834216837003,
+            34.66044370220989
+          ]
+        ],
+        [
+          [
+            78.48431597739538,
+            27.76042282747796
+          ],
+          [
+            34.49834216837003,
+            34.66044370220989
+          ],
+          [
+            17.680342134760114,
+            26.68257406993984
+          ]
+        ],
+        [
+          [
+            78.48431597739538,
+            27.76042282747796
+          ],
+          [
+            17.680342134760114,
+            26.68257406993984
+          ],
+          [
+            -6.89949369847384,
+            16.332561731238602
+          ]
+        ],
+        [
+          [
+            16.818393326784772,
+            1.2398354348708986
+          ],
+          [
+            2.156303602629306,
+            -27.868305864786397
+          ],
+          [
+            30.185644091153215,
+            -21.615317157104748
+          ]
+        ],
+        [
+          [
+            16.818393326784772,
+            1.2398354348708986
+          ],
+          [
+            30.185644091153215,
+            -21.615317157104748
+          ],
+          [
+            67.05618711498953,
+            -20.968906971979017
+          ]
+        ],
+        [
+          [
+            16.818393326784772,
+            1.2398354348708986
+          ],
+          [
+            67.05618711498953,
+            -20.968906971979017
+          ],
+          [
+            29.539227649755485,
+            -0.26969400423589907
+          ]
+        ],
+        [
+          [
+            16.818393326784772,
+            1.2398354348708986
+          ],
+          [
+            29.539227649755485,
+            -0.26969400423589907
+          ],
+          [
+            28.46109452839747,
+            4.47445407235602
+          ]
+        ],
+        [
+          [
+            34.71404938253255,
+            0.8088884144870265
+          ],
+          [
+            29.539227649755485,
+            -0.26969400423589907
+          ],
+          [
+            118.37252258017645,
+            -14.06883715896993
+          ]
+        ],
+        [
+          [
+            34.71404938253255,
+            0.8088884144870265
+          ],
+          [
+            118.37252258017645,
+            -14.06883715896993
+          ],
+          [
+            67.70338270266201,
+            1.6706871690672678
+          ]
+        ],
+        [
+          [
+            34.71404938253255,
+            0.8088884144870265
+          ],
+          [
+            67.70338270266201,
+            1.6706871690672678
+          ],
+          [
+            64.68493157632547,
+            17.195778434432427
+          ]
+        ],
+        [
+          [
+            34.71404938253255,
+            0.8088884144870265
+          ],
+          [
+            64.68493157632547,
+            17.195778434432427
+          ],
+          [
+            78.48431597739538,
+            27.76042282747796
+          ]
+        ],
+        [
+          [
+            2.156303602629306,
+            -27.868305864786397
+          ],
+          [
+            16.818393326784772,
+            1.2398354348708986
+          ],
+          [
+            7.331181820117471,
+            -0.269039254346066
+          ]
+        ],
+        [
+          [
+            2.156303602629306,
+            -27.868305864786397
+          ],
+          [
+            7.331181820117471,
+            -0.269039254346066
+          ],
+          [
+            5.390309522127328,
+            10.29538674628901
+          ]
+        ],
+        [
+          [
+            14.015098352025458,
+            12.451332626793535
+          ],
+          [
+            16.818393326784772,
+            1.2398354348708986
+          ],
+          [
+            28.46109452839747,
+            4.47445407235602
+          ]
+        ],
+        [
+          [
+            33.85145379844287,
+            5.552281488891568
+          ],
+          [
+            34.71404938253255,
+            0.8088884144870265
+          ],
+          [
+            78.48431597739538,
+            27.76042282747796
+          ]
+        ],
+        [
+          [
+            -6.89949369847384,
+            16.332561731238602
+          ],
+          [
+            2.156303602629306,
+            -27.868305864786397
+          ],
+          [
+            5.390309522127328,
+            10.29538674628901
+          ]
+        ],
+        [
+          [
+            -6.89949369847384,
+            16.332561731238602
+          ],
+          [
+            5.390309522127328,
+            10.29538674628901
+          ],
+          [
+            14.015098352025458,
+            12.451332626793535
+          ]
+        ],
+        [
+          [
+            14.015098352025458,
+            12.451332626793535
+          ],
+          [
+            28.46109452839747,
+            4.47445407235602
+          ],
+          [
+            33.85145379844287,
+            5.552281488891568
+          ]
+        ],
+        [
+          [
+            14.015098352025458,
+            12.451332626793535
+          ],
+          [
+            33.85145379844287,
+            5.552281488891568
+          ],
+          [
+            27.167466329015408,
+            11.804980866643284
+          ]
+        ],
+        [
+          [
+            14.015098352025458,
+            12.451332626793535
+          ],
+          [
+            27.167466329015408,
+            11.804980866643284
+          ],
+          [
+            26.305095393608173,
+            16.333037112955253
+          ]
+        ],
+        [
+          [
+            31.264026005281046,
+            17.19487769485756
+          ],
+          [
+            33.85145379844287,
+            5.552281488891568
+          ],
+          [
+            78.48431597739538,
+            27.76042282747796
+          ]
+        ],
+        [
+          [
+            31.264026005281046,
+            17.19487769485756
+          ],
+          [
+            78.48431597739538,
+            27.76042282747796
+          ],
+          [
+            -6.89949369847384,
+            16.332561731238602
+          ]
+        ],
+        [
+          [
+            -6.89949369847384,
+            16.332561731238602
+          ],
+          [
+            14.015098352025458,
+            12.451332626793535
+          ],
+          [
+            26.305095393608173,
+            16.333037112955253
+          ]
+        ],
+        [
+          [
+            -6.89949369847384,
+            16.332561731238602
+          ],
+          [
+            26.305095393608173,
+            16.333037112955253
+          ],
+          [
+            31.264026005281046,
+            17.19487769485756
+          ]
+        ]
+      ],
+      "basis": "Occupied palace bases only; the four courtyard holes, Piazza and all independent map context retain original ground."
+    },
+    "notes": "Q271928 and relation1461712/native52776559594960 identify Palazzo Vecchio. Three integral mapped sections and tower way361442653/native35184733531485 give five owned records. Current parent supplies exact occupied plan and four court holes; part heights/roof subdivisions remain approximate. Origin is the mapped tower footing center. Internal +X south-southwest along the Piazza facade, +Z west-northwest into Piazza della Signoria. Native east/up/south axes are baked, heading 0. Only the five owned records are replaced; independent buildings remain. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. Uncovered Piazza datum 64.24965730435895m, working floor +0.2m and foundation -1.837m. Boundary grades -1.687..0.502m expose downhill foundation and leave minor uphill base burial. Main portal reveal/threshold remain exposed; some low exterior treads meet the original path/ground. Exact Piazza paving, thresholds, stairs and accessibility are unverified. All four courtyard holes, Piazza, original heights/roads and 243798.838m² water remain. Five owned records are replaced, preserving 2698 resident / 3351 wider independent buildings. No bespoke terrain or flattening."
+  }
+}

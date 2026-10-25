@@ -1,4 +1,6 @@
-# Coastal sailboat
+# Bendy Sailboat
+
+![Molen preview](preview.png)
 
 Original brief: add diverse cars, motorcycles, bicycles, boats, cargo ships and ferries to Molen.
 

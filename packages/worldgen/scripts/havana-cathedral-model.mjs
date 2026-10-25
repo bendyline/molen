@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/dh/dhj/n0390_havana_cathedral/',
+  '../../../content/worldgen/source/places/dh/dhj/havana_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1117,7 +1117,7 @@ export const buildHavanaCathedralSkyline = (o) => build(o, 0),
   buildHavanaCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const havanaCathedralStudy = {
-  id: 'N0390',
+  id: 'havana_cathedral',
   key: 'havana_cathedral',
   title: 'Havana Cathedral',
   category: 'cathedral',

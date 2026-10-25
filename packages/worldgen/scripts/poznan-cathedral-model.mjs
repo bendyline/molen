@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u3/u3k/n0386_archcathedral_basilica_of_st_peter_and_st_paul/',
+  '../../../content/worldgen/source/places/u3/u3k/archcathedral_basilica_of_st_peter_and_st_paul/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1013,7 +1013,7 @@ export const buildPoznanCathedralSkyline = (o) => build(o, 0),
   buildPoznanCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const poznanCathedralStudy = {
-  id: 'N0386',
+  id: 'archcathedral_basilica_of_st_peter_and_st_paul',
   key: 'archcathedral_basilica_of_st_peter_and_st_paul',
   title: 'Archcathedral Basilica of St. Peter and St. Paul',
   category: 'cathedral',

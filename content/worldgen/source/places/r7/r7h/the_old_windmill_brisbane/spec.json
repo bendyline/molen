@@ -1,0 +1,371 @@
+{
+  "planId": "the_old_windmill_brisbane",
+  "id": "the_old_windmill_brisbane",
+  "assetId": "molen.worldgen.structure.the_old_windmill_brisbane",
+  "title": "The Old Windmill, Brisbane",
+  "category": "historic-windmill",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.0230686,
+    "latitude": -27.465744678571426
+  },
+  "size": [
+    8.248814105987549,
+    20,
+    8.294480085372925
+  ],
+  "actualBounds": {
+    "min": [
+      -4.067706108093262,
+      0,
+      -4.525396347045898
+    ],
+    "max": [
+      4.181107997894287,
+      20,
+      3.7690837383270264
+    ]
+  },
+  "visualBrief": "Surviving rendered tapered windmill/signal tower on its full native base; real casement and entrance recesses/drip moulds, six framed upper apertures, circular cantilevered balcony/timber corbels/open loop iron railing, offset hexagonal glazed cabin/low metal roof, patinated copper time ball and mast. No historical sails, treadmill or neighboring park structures.",
+  "nativeAxes": {
+    "x": "along chosen street-facing frame",
+    "y": "up from fixed exterior approach",
+    "z": "outward toward Wickham Terrace"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Old-Windmill.jpg",
+    "https://commons.wikimedia.org/wiki/File:The-Windmill-1.JPG"
+  ],
+  "stories": [
+    {
+      "id": "the-old-windmill-brisbane-wp",
+      "url": "https://qualla.com/the-old-windmill-brisbane/"
+    }
+  ],
+  "referenceInputHash": "8959b6785c5f4364e4b617defe13dd4bbf09e6aab965a5769c30eb6801c68e92",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-old-windmill-brisbane.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-old-windmill-brisbane.mjs",
+    "level": "skyline",
+    "export": "oldWindmillSkyline",
+    "errorMeters": 0.75,
+    "surfaces": {
+      "render": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.15
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.88,
+        "metallic": 0.2
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.85,
+        "metallic": 0.5
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.7,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "oldWindmillDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.2
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.85,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "oldWindmillStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.2
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.85,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.7,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named Old Windmill way1384456307 retains all14 nonduplicate node positions. Anchor is exact original vertex mean[153.0230686,-27.465744678571426]. Nearby Wickham Terrace way9628273 fixes northward street relationship; chosen street-facing visualization heading3.1165965808316516rad is approximate, not a measured doorway azimuth. Native base remains unsimplified; upper taper and architectural heights derive from photographs/text, not map survey. Fixed street-side approach[0,6.4] before terrain and geometry; exact floors/steps/host terrain contact unverified. Independent64m terrain frozen before geometry; exact wall foot/floor/threshold/host contact unverified.",
+    "anchor": [
+      153.0230686,
+      -27.465744678571426
+    ],
+    "heading": 3.1165965808316516,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.02307021945668,
+        -27.46568720461587
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed street-side approach6.4m from native anchor before independent terrain and geometry; floors/threshold/steps/host contact approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1384456307"
+    ],
+    "source": "https://www.openstreetmap.org/way/1384456307",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:047947e97abb37eed7ec5965909b087f1569ecf5e7bdfe3e7b6cd4f844091b0a",
+    "notes": "Complete surviving rendered tapering windmill/signal tower, full original native14-vertex base plan; plinth and reefing lip, five casement recesses, closed double entrance door and drip moulds, six small upper apertures in recessed framed band, cantilevered circular observation balcony and timber corbels, open wrought-iron loop railing, offset hexagonal glazed timber cabin and metal hip roof, copper time ball and mast/rope. No historical sails/treadmill, demolished cottages, flagstaff/park/site walls/archway, reservoirs, hotel, street, cars, trees, people or interior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named Old Windmill way1384456307 retains all14 nonduplicate node positions. Anchor is exact original vertex mean[153.0230686,-27.465744678571426]. Nearby Wickham Terrace way9628273 fixes northward street relationship; chosen street-facing visualization heading3.1165965808316516rad is approximate, not a measured doorway azimuth. Native base remains unsimplified; upper taper and architectural heights derive from photographs/text, not map survey. Fixed street-side approach[0,6.4] before terrain and geometry; exact floors/steps/host terrain contact unverified.",
+    "Complete surviving masonry tower and signal-station crown only. Full native14-vertex base retained; upper taper, minor panel dimensions and hidden aperture positions are estimates. No lost sails/treadmill, demolished cottages, reconstructed flagstaff/site wall/archway, reservoir roofs, nearby hotel, roads, cars, trees or interior.",
+    "Two exact already-published Figaro2005 public-domain originals only, native SHA1/photographer and PD-user-en grant matched;28 source families inventoried. Historical/unknown-author/attribution/unrelated images unused, no supplemental photos/copied pixels/generated bitmap. Architectural text only supplies approximate16m roof height excluding ball/mast,8.4m base/4.5m top and five casements/six small upper windows/hexagonal offset cabin.",
+    "Pale rendered mock ashlar masonry/reefing lip, closed double door and casements, small recessed upper lights, cantilevered platform/carved timber corbels/open red-brown iron loop railing, offset pale glazed cabin/chamferboards/metal hip roof and copper time ball/mast retained. Exact finish after2005, aperture angles, small roof facets, cabin offset, iron/corbel census, time-ball raised state and height are bounded exterior estimates; no surveyed interiors.",
+    "Chosen street-facing entrance is an approximate visualization bearing, angular uncertainty60degrees, not a measured doorway azimuth. Original native tower/street positions remain. Fixed north/street-side approach[0,6.4] before independent64m129x129at0.5m field; provider59.8753m, full relative field[-12.3966,3.0033] retained without flattening/fitting. Exact host ground contact, threshold, steps and floors unverified; geographicpreview/replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-surviving-tower-and-time-ball",
+      "position": [
+        18,
+        17,
+        26
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "recessed-double-door-casement-and-reefing-lip",
+      "position": [
+        5,
+        4.7,
+        12
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        2.3
+      ]
+    },
+    {
+      "name": "framed-upper-apertures-corbelled-balcony-open-loop-iron",
+      "position": [
+        8,
+        12.4,
+        10
+      ],
+      "lookAt": [
+        0,
+        12.8,
+        0
+      ]
+    },
+    {
+      "name": "hexagonal-glazed-cabin-copper-time-ball-and-mast",
+      "position": [
+        7,
+        17.7,
+        9
+      ],
+      "lookAt": [
+        0,
+        16.1,
+        -0.4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9540,
+    "vertices": 28620,
+    "materials": 7,
+    "bytes": 1148964,
+    "sha256": "sha256:cc1b95f64289ac0817bae775b45f40eeb1f999a8f6ca08090f49574d6b41001f"
+  }
+}

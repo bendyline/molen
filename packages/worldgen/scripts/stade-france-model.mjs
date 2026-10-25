@@ -737,7 +737,7 @@ export function buildStadeFrance(out) {
   roof(out);
 }
 export const stadeFranceStudy = {
-  id: 'N0685',
+  id: 'stade_de_france',
   key: 'stade_de_france',
   title: 'Stade de France',
   wikidataId: 'Q13205',

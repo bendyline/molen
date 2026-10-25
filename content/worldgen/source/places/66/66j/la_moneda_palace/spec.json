@@ -1,0 +1,440 @@
+{
+  "planId": "la_moneda_palace",
+  "id": "la_moneda_palace",
+  "assetId": "molen.worldgen.structure.la_moneda_palace",
+  "title": "La Moneda Palace",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -70.6538588,
+    "latitude": -33.4428199
+  },
+  "size": [
+    117.36307525634766,
+    16.600000202655792,
+    124.27832794189453
+  ],
+  "actualBounds": {
+    "min": [
+      -58.681236267089844,
+      -0.800000011920929,
+      -62.139137268066406
+    ],
+    "max": [
+      58.68183898925781,
+      15.800000190734863,
+      62.139190673828125
+    ]
+  },
+  "visualBrief": "Whole surviving LaMoneda presidential palace exterior in actual relation394238/Q1146881: full208-node outer envelope with native front/side/rear setbacks and all four mapped open inner courts, pale neoclassical facade/pilaster rhythm/paired central entrance/belts/cornice/pierced roof balustrade and bounded finial silhouettes, lower roof and courtyard-wing masses. Preserve each actual inner void; no single closed full-block box or north-facade-only replacement. Exclude whole Constitution/Citizenship plazas, independent monuments/flagpole, underground cultural center/other neighboring offices, trees/people/protest props/text/interior rooms. Precise roof partitions/heights/current hidden finishes and detailed courts are bounded original interpretations from mapped plan and cleared2007 facade character.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Acto_en_favor_de_la_ley_contra_el_femicidio.jpg"
+  ],
+  "stories": [
+    {
+      "id": "la-moneda-palace-wp",
+      "url": "https://qualla.com/la-moneda-palace/"
+    }
+  ],
+  "referenceInputHash": "830e418b1cec995102fb00b97d647449d9223524d67425c74d0cde35440c7833",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-la-moneda-palace.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-la-moneda-palace.mjs",
+    "level": "skyline",
+    "export": "monedaSkyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stucco",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.4,
+        "metallic": 0.14
+      },
+      "door": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "monedaDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.14
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "monedaStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.14
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "monedaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.14
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.3,
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All sections selected after independent terrain freeze and before geometry: whole actual207-unique-vertex palace envelope/four court holes and six separately mapped entrance nodes. Internal authoring axis0.13302rad aligns actual street fronts; geographic frame remains heading0. North two tall storeys versus south three shorter storeys,15/17 broad facade divisions supported by primary2022 architectural study and government heritage description, text only. Uniform approximate body12.15m/cornice13.05/pierced parapet14.55/finials15.8 selected from the cleared2007 facade proportions, not surveyed dimensions; internal roofs/hidden facades/window census and north-south tunnel sections are bounded original medium-fi estimates. Actual entrance pairs define three covered public passages, not private room plans. Roof ridges/tunnel heights/baluster/vase detail estimated, not copies of protected plans. Floor+.05 independent of urban source artifacts; original400m/16641values/two raw tiles/PNG already frozen unchanged. Default isolated/flat appearance and separate original-field evidence; exact host contact unresolved, no terrain fitting/flattening/reacquisition or full-plaza floor.",
+    "anchor": [
+      -70.6538588,
+      -33.4428199
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -70.6538588,
+        -33.442219986979964
+      ],
+      "modelHeight": 0,
+      "basis": "Exterior point5m north of complete palace envelope selected before terrain or geometry/floor decisions; not a surveyed entrance threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/394238",
+      "way/272676904",
+      "way/293257594",
+      "way/293257595",
+      "way/293257791",
+      "way/293257792"
+    ],
+    "source": "https://www.openstreetmap.org/relation/394238",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fcf785ef57b10f8780a72a50fe6e1720146b3d863b6940ab488f0ecbe520f295",
+    "notes": "Whole surviving LaMoneda presidential palace exterior in actual relation394238/Q1146881: full208-node outer envelope with native front/side/rear setbacks and all four mapped open inner courts, pale neoclassical facade/pilaster rhythm/paired central entrance/belts/cornice/pierced roof balustrade and bounded finial silhouettes, lower roof and courtyard-wing masses. Preserve each actual inner void; no single closed full-block box or north-facade-only replacement. Exclude whole Constitution/Citizenship plazas, independent monuments/flagpole, underground cultural center/other neighboring offices, trees/people/protest props/text/interior rooms. Precise roof partitions/heights/current hidden finishes and detailed courts are bounded original interpretations from mapped plan and cleared2007 facade character."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole surviving palace uses actual207-unique-vertex outer native envelope/four true open inner courts, all exterior/court wings, two-storey north and three-storey south rhythm, repeated native pilaster projections/belts/cornice/pierced roof balustrade/original vase finials and three covered axial passages from six actual entrance nodes. No facade-only or closed full-block substitute.",
+    "Exact640x480 cleared Qualla TomasVivanco2007 own/PD-self facade original individually inspected/nativeSHA1matched; primary government/2022 original architectural study text only. No attribution-only/uncertain imagery, protected figure/plan/photo-gallery pixels, generated bitmap/borrowed mesh or licensing-policy changes. Foreground event and neighboring buildings excluded.",
+    "Body/cornice/parapet/finial sections, low hidden hipped roof ridges/materials, facade window/rail/vase census, courtyard-side details and portal/vault widths/heights are bounded original medium-fi estimates. Current hidden maintenance details/precise private rooms/structural survey not claimed. Actual native door positions and four courtyard voids retained; no public-gallery/room interior reconstruction.",
+    "Original400m/16641-value independent urban field/two raw tiles/PNG frozen before floor/geometry, unchanged. Floor+.05 independent; building/urban source artifacts may disagree with threshold/court/foundation levels. Default isolated/shared-flat appearance and separate unchanged source-field evidence; exact host contact unverified/replacementfalse. No terrain fitting/flattening/reacquisition, full-plaza floor, independent monuments/61mflagpole/underground cultural center/city/trees/events/people/text."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-palace-north-front-pierced-parapets-and-all-four-courts",
+      "position": [
+        134.050348588639,
+        105,
+        -204.586177546931
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "opposite-south-three-storey-front-and-native-side-wings",
+      "position": [
+        -134.7134889077874,
+        85,
+        199.63034815952068
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "north-front-tall-two-storey-pilasters-windows-and-open-main-portal",
+      "position": [
+        -10.631512713817912,
+        9,
+        -124.69150306823607
+      ],
+      "lookAt": [
+        -7.161915446802848,
+        7,
+        -53.52295738403145
+      ]
+    },
+    {
+      "name": "south-front-three-window-storeys-and-covered-exit",
+      "position": [
+        26.490166753530936,
+        10,
+        122.56945404696116
+      ],
+      "lookAt": [
+        7.29454351063253,
+        7,
+        54.51412326151351
+      ]
+    },
+    {
+      "name": "whole-large-courtyard-and-both-intrinsic-north-projecting-wing-masses",
+      "position": [
+        77.35347365848763,
+        60,
+        80.45147676062672
+      ],
+      "lookAt": [
+        2.3873051489342827,
+        3,
+        17.84098579467715
+      ]
+    },
+    {
+      "name": "central-court-and-both-smaller-side-courtyard-voids",
+      "position": [
+        -77.33929525352542,
+        75,
+        -50.18598818084607
+      ],
+      "lookAt": [
+        -3.315701595742059,
+        5,
+        -24.779146937051596
+      ]
+    },
+    {
+      "name": "covered-main-axis-passage-under-genuine-vault",
+      "position": [
+        -8.620824148929353,
+        1.8,
+        -64.42578203633416
+      ],
+      "lookAt": [
+        -3.978841914890471,
+        2.1,
+        -29.734976324461915
+      ]
+    },
+    {
+      "name": "east-native-wall-setbacks-and-pilaster-capital-details",
+      "position": [
+        92.03870933952115,
+        15,
+        -28.45832010353285
+      ],
+      "lookAt": [
+        42.61304352924764,
+        8,
+        -20.835751034566663
+      ]
+    },
+    {
+      "name": "pierced-roof-balusters-original-vases-and-low-roofs",
+      "position": [
+        6.574689571635256,
+        24,
+        -71.50366044501939
+      ],
+      "lookAt": [
+        -6.896659319143483,
+        13,
+        -51.54062562906732
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 55771,
+    "vertices": 167313,
+    "materials": 6,
+    "bytes": 6696220,
+    "sha256": "sha256:cea78a306be4b013fa741997fcc01a87a6b6a7051941a40524faf4dc01fbe917"
+  }
+}

@@ -1,0 +1,374 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "floor": {
+      "graph": "stone_limestone",
+      "slot": "trim"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "stone": {
+      "graph": "stone_ashlar",
+      "slot": "wall"
+    },
+    "roof": {
+      "graph": "metal_bronze_cast",
+      "slot": "roof"
+    },
+    "gold": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim"
+    },
+    "column": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "soffit": {
+      "graph": "wood_plain",
+      "slot": "trim"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      1.5051896295485836,
+      5.499142346193806,
+      9.784395953716274
+    ],
+    "lookAt": [
+      0,
+      1.9991423461938065,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "six-open-posts-platform-and-baluster-guards",
+      "position": [
+        0.2687364794443554,
+        1.5991423461938066,
+        6.397482372356789
+      ],
+      "lookAt": [
+        0,
+        1.3491423461938066,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "curved-gilded-roof-corner-bulbs-and-center-spindle",
+      "position": [
+        5.591083402123585,
+        4.399142346193806,
+        -0.8601083597420476
+      ],
+      "lookAt": [
+        0,
+        2.9991423461938065,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "dark-soffit-beaded-eaves-and-open-crest",
+      "position": [
+        2.419196910699612,
+        1.9991423461938065,
+        1.7741156408930765
+      ],
+      "lookAt": [
+        0,
+        2.9991423461938065,
+        0
+      ],
+      "fov": 60
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        1.5051896295485836,
+        5.499142346193806,
+        9.784395953716274
+      ],
+      "lookAt": [
+        0,
+        1.9991423461938065,
+        0
+      ],
+      "fov": 46,
+      "name": "iftar-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        1.5051896295485836,
+        5.499142346193806,
+        9.784395953716274
+      ],
+      "lookAt": [
+        0,
+        1.9991423461938065,
+        0
+      ],
+      "fov": 46,
+      "name": "iftar-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        1.5051896295485836,
+        5.499142346193806,
+        9.784395953716274
+      ],
+      "lookAt": [
+        0,
+        1.9991423461938065,
+        0
+      ],
+      "fov": 46,
+      "name": "iftar-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        1.5051896295485836,
+        5.499142346193806,
+        9.784395953716274
+      ],
+      "lookAt": [
+        0,
+        1.9991423461938065,
+        0
+      ],
+      "fov": 46,
+      "name": "iftar-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -0.0008576538061936256,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-iftar-model.mjs",
+    "export": "buildTopkapiIftarSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiIftarDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "stone": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_bronze_cast",
+            "slot": "roof"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "soffit": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiIftarStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "stone": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_bronze_cast",
+            "slot": "roof"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "soffit": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiIftarCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "stone": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_bronze_cast",
+            "slot": "roof"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "soffit": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      28.984284549951553,
+      41.01404432934538
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,3] is outside all573 native building records. Low platform top0.14m above highest canopy boundary; protective footing down to lowest boundary. Only occupied platform ground cut and sealed by floor; original surroundings retained. Historical terrace grade/accessibility unverified; no bespoke terrain or precinct flattening. Native four-view draft inspected: the low platform meets original terrain with only modest base exposure, all six posts seat on the floor and the three-sided white guards/open garden bays remain intact. Approximate native fit accepted; historical terrace elevation and access remain unverified.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      28.984254607487575,
+      41.01401971280796,
+      28.984314492415532,
+      41.014068945882805
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.984313351292435,
+        41.014028392193424
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,3] is outside all573 native building records. Low platform top0.14m above highest canopy boundary; protective footing down to lowest boundary. Only occupied platform ground cut and sealed by floor; original surroundings retained. Historical terrace grade/accessibility unverified; no bespoke terrain or precinct flattening."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -1.9150466659361531,
+          1.0138262695680282
+        ],
+        [
+          -0.5632490193929865,
+          2.1403004111045902
+        ],
+        [
+          1.9150466659361545,
+          -1.239121497791018
+        ],
+        [
+          0.5632490193929865,
+          -2.1403004111045614
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -1.9150466659361531,
+            1.0138262695680282
+          ],
+          [
+            -0.5632490193929865,
+            2.1403004111045902
+          ],
+          [
+            1.9150466659361545,
+            -1.239121497791018
+          ],
+          [
+            0.5632490193929865,
+            -2.1403004111045614
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Named Topkapi site Q170495 member OSM way1272157518 v1/native35185644246350, layer1 independent pavilion canopy. Exact four-corner roof retained. Internal+X northeast follows the long roof; internal+Z southeast faces the garden entry, with the city-view edge at internal-Z. Independent surrounding terrace rails/palace buildings remain native context."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -1.62778966604573,
+          0.8533037580744629
+        ],
+        [
+          -0.4787616664840385,
+          1.8108067783805404
+        ],
+        [
+          1.6277896660457314,
+          -1.0617018441807264
+        ],
+        [
+          0.47876166648403873,
+          -1.8277039204972385
+        ]
+      ],
+      "basis": "Only occupied platform; original surrounding court/terrace remains."
+    },
+    "notes": "Named Topkapi site Q170495 member OSM way1272157518 v1/native35185644246350, layer1 independent pavilion canopy. Exact four-corner roof retained. Internal+X northeast follows the long roof; internal+Z southeast faces the garden entry, with the city-view edge at internal-Z. Independent surrounding terrace rails/palace buildings remain native context. Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,3] is outside all573 native building records. Low platform top0.14m above highest canopy boundary; protective footing down to lowest boundary. Only occupied platform ground cut and sealed by floor; original surroundings retained. Historical terrace grade/accessibility unverified; no bespoke terrain or precinct flattening."
+  }
+}

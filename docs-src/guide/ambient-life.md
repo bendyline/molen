@@ -70,14 +70,15 @@ is the road surface height.
 | `stations[]` | `id`, `at: [x, z]`, `kind` (`rail`, `bus` or `ferry`), `dwell` in seconds. Trains stop at the rail station nearest their track |
 | `signals[]` | `at: [x, z]` and `kind`. A `light` signalises the junction nearest the point. A `stop` or `yield` sign makes the arm it stands on give way |
 | `aerodromes[]` | `id`, `at: [x, z]`, `heading`, `length`. Some aircraft fly its approach and departure |
-| `drivingSide` | `right` (default) or `left` |
+| `drivingSide` | `right` (default) or `left`; individual `ways[].drivingSide` can override it |
 | `sidewalks` | Infer walk lanes along streets that have no mapped path nearby (default false) |
 
 The network is built into a lane graph when it is added:
 
 - **Lanes.** A way carries `lanes` in total, split between directions (all forward when `oneway`).
   Without `lanes`, the count follows the width. Lanes sit to the right of travel for right-hand
-  traffic.
+  traffic and to the left for left-hand traffic. One-way point order is unchanged; only lateral
+  lane order and turn permissions mirror. Mixed-side networks retain each road's rule on export.
 - **Junctions.** Ways that share a point, cross, or end on another way at the same `layer` are
   joined. Different layers, and bridges over roads, never connect mid-way. Each lane gets a curved
   connector to every exit it may take, and movements that cross each other take turns.
@@ -305,7 +306,13 @@ const view = await mountEarthView({
 trafficButton.onclick = () => view.setAmbientEnabled(!view.ambientEnabled);
 ```
 
-`density` scales how busy the streets are, from 0 to 1. `cars`, `pedestrians`, `rail`, `aircraft` and `boats` switch classes, and `drivingSide` sets the side of the road. `ambient: false` turns the
+`density` scales how busy the streets are, from 0 to 1. `cars`, `pedestrians`, `rail`, `aircraft` and `boats` switch classes.
+Earth resolves driving side from its road-sign country atlas at each terrain tile's centre,
+including Japan, Australia and other left-driving regions. The same rule places road markings,
+signals and signs. `drivingSide` explicitly overrides this selection; missing geographic content
+defaults to right. Custom hosts pass `drivingSideAt` to `EarthAmbient`, or `drivingSide` on each
+`AmbientTileInput` to a streamed network. Water traffic still keeps starboard.
+`ambient: false` turns the
 layer off entirely. `stats().ambient` reports the counts on screen and the tiles in use.
 
 The quality tier caps the numbers:

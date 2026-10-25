@@ -1,0 +1,390 @@
+{
+  "planId": "cardiff_bay_barrage",
+  "id": "cardiff_bay_barrage",
+  "assetId": "molen.worldgen.structure.cardiff_bay_barrage",
+  "title": "Cardiff Bay Barrage",
+  "category": "tidal-barrage",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -3.1665719,
+    "latitude": 51.44650372857143
+  },
+  "size": [
+    974.0367431640625,
+    27.03200340270996,
+    445.34556579589844
+  ],
+  "actualBounds": {
+    "min": [
+      -158.4166259765625,
+      -12.600000381469727,
+      -197.7200927734375
+    ],
+    "max": [
+      815.6201171875,
+      14.432003021240234,
+      247.62547302246094
+    ]
+  },
+  "visualBrief": "Complete mapped waterworks and curved engineered embankment:3open lock chambers/sector gates, pale green bascule arms/counterweights with middle bridge raised, genuine holed support frames, cantilevered glazed control room/open gantry,5sluice throats and separate fish-pass pools, bounded guide arms and angular laid-rock revetments/asphalt crest. No natural sea/landscape, neighboring dock locks, town, boats or lettering.",
+  "nativeAxes": {
+    "x": "northeast along three bascule bridges toward sluices and north embankment",
+    "y": "up",
+    "z": "southeast/seaward across lock chambers"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cardiff_Barrage_Entrance.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kardifski_zaljev%2C_Wales_13._srpnja_2024.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kardifski_zaljev%2C_Wales_srpnja_2024.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cardiff-bay-barrage-wp",
+      "url": "https://qualla.com/cardiff-bay-barrage/"
+    }
+  ],
+  "referenceInputHash": "7dabd9ab35d652b29aea6b184116b18372edcaffa67a550afed6d2af430f6fff",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cardiff-bay-barrage.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cardiff-bay-barrage.mjs",
+    "level": "skyline",
+    "export": "cardiffBarrageSkyline",
+    "errorMeters": 6,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "asphalt": {
+        "slot": "roof",
+        "graph": "gravel",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "trim",
+        "localRef": "palette:#feffff",
+        "roughness": 0.3,
+        "metallic": 0.04
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cardiffBarrageDistrict",
+        "errorMeters": 3.5,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "asphalt": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.3,
+            "metallic": 0.04
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "cardiffBarrageStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "asphalt": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.3,
+            "metallic": 0.04
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.05,
+    "groundY": -14
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fixed original dry Penarth approach node10857143707before terrain acquisition; exact lock-floor/tide/host attachment and concealed structural levels are approximate. No terrain flattening/fitting.",
+    "anchor": [
+      -3.1665719,
+      51.44650372857143
+    ],
+    "heading": 1.0335568164087545,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -3.1671445,
+        51.4459439
+      ],
+      "modelHeight": 0,
+      "basis": "Original Penarth dry approach road node10857143707fixed before terrain acquisition, just before the bridge sequence. Lock footings/waterlines and dam crests remain independent approximate architectural levels; no terrain flattening/fitting."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1287683082",
+      "way/1287683083",
+      "way/1287683084",
+      "way/1287683043",
+      "way/1287683056",
+      "way/1287683059",
+      "way/1287683047",
+      "way/1287683048",
+      "way/1287683057",
+      "way/1287683058",
+      "way/1287683060",
+      "way/1287683061",
+      "way/389100442",
+      "way/389100443",
+      "way/389100444",
+      "way/389100446",
+      "way/389100447",
+      "way/1287683052",
+      "way/1287683051",
+      "way/1287683054",
+      "way/1287683055",
+      "way/1287683066",
+      "way/1287683068",
+      "way/1287683069",
+      "way/1287700755",
+      "way/389100450",
+      "way/389100451",
+      "way/389100452",
+      "way/389100453",
+      "way/389100454",
+      "way/389925649",
+      "way/389632439",
+      "way/303780785",
+      "way/90271495",
+      "way/1287683072",
+      "way/1287683073",
+      "way/1287683074",
+      "way/1287683075",
+      "way/1287683064",
+      "way/1287683070",
+      "way/1287683071",
+      "way/389632989",
+      "way/389787368",
+      "way/389268991",
+      "way/389918277",
+      "way/24033067",
+      "way/1167461539",
+      "way/1287683085",
+      "way/90311536",
+      "way/90311549",
+      "way/90311550",
+      "way/90311528",
+      "way/90311529",
+      "way/90311525",
+      "way/90311548",
+      "way/589606678",
+      "way/1167460832",
+      "way/90311540",
+      "way/90271464",
+      "way/389268997",
+      "way/389268998",
+      "way/94399145",
+      "way/301638980",
+      "way/301695130",
+      "way/3270437"
+    ],
+    "source": "https://www.openstreetmap.org/way/1287700755",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:864eddf8faf37c7d0ed6b0fe4fdc49ec7259a3a3bba6d05b4ccf04390b906c1b",
+    "notes": "Complete intrinsic Cardiff Bay Barrage waterworks and engineered embankment:three genuine40mlock chambers with sector gates, native bascule bridge footprints and holed support frames/pale lifting arms/counterweights, cantilevered control building; five sluice openings/gates, fish-pass channels and native guide arms; curving artificial embankment crest and paired laid-rock revetments. Keep native individual geometry and all functional openings. Exclude separate Alexandra Dock/Penarth Marina locks, Sailing Centre, outer historic town/buildings, park/playground/art/sign lettering, boats/people and natural water/sea/cliffs/mudflat/whole-site terrain slab. Outer-harbour guide breakwaters retained only where intrinsic to barrage approaches; no general docks build-out."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original native waterway=dam1287700755 and three named bascule bridge area ways1287683082/83/84 identify Cardiff Bay Barrage, with complete holed support multipolygons17649458/59/60, six sector-gate lines, original harbour-master control building90271495and holed gantry17649463. Full original individual vertices preserved. Extended curving crest road90311540and paired angular laid-rock revetment polygons389268997/998are the intrinsic artificial embankment. Native park parcels/coastlines are context only, never solid building meshes. Separate Alexandra Dock/Penarth Marina lock-gates are excluded.",
+    "Three exact supplemental own-workPD/CC0originals actually inspected after local Qualla-first74candidate coverage check. KevinPowellnative lock-entrance photograph has original named creatorPD-user-enrelease; two AugustDominus2024CC0photos control curved asphalt crest and laid-rock revetments. All exactSHA1matched and pinned creator releases bound; unrelated/other-licensed images unused. No photographic texture or generated bitmap.",
+    "The five sluice throats lie between native dam pier notches across local X77..139. Native small water rectangles at X105..140show only three named throat portions; areas at X144..152and Z-8..13are fish-pass/adjacent channel subdivisions, not extra sluice gates. Do not treat the six area records as six identical gates or punch only three main openings.",
+    "Original native component plans and individual near perimeter vertices retained. Nominal40musable chambers/8/8/10.5mclear widths and5gates9x7.5mcome from official harbour text, while sector-gate centre separations, wall thicknesses, waterline/footing levels, bridge-leaf angle/hinge subdivision and hidden section heights are photographic medium-fi estimates. Three gateways genuinely open, native support/gantry inner rings retained; middle leaf shown35degreesraised as a representative operating state.",
+    "Control room upper cantilever/continuous glazing and grey service podium follow inspected photograph, but exact hidden upper-floor partition/height and all fine machinery fittings are estimates. Original angular rock relief approximates engineered revetment stone scale/census. Wide park parcels, natural sea/cliff/mudflats, sailing/recreation buildings and separate AlexandraDock/PenarthMarina locks are excluded.",
+    "Unmodified independent1600mcoastal grid frozen before geometry, origin[-350,-800], step6.25,res257, fixed Penarth approach datum11m. Provider full grid contains offshore/deep-water artifacts down to-686.7588m; preserve originals, do not fit architecture to these samples or certify host sea/bed contact. Use approximate independent architectural deck/footing levels and flat inspection stage.",
+    "Dry approachY0/crestY1and lockfloorY-13are independent approximate architectural levels; flat inspection stageY-14shows the waterworks, without claiming certified tide/water/host terrain contact. FartherLODs simplify bounded native fine vertices within declared errors."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "complete-curved-barrage-and-original-engineered-embankment",
+      "position": [
+        550,
+        650,
+        900
+      ],
+      "lookAt": [
+        360,
+        0,
+        -20
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "three-open-lock-chambers-green-bascule-arms-and-control-room",
+      "position": [
+        -90,
+        70,
+        160
+      ],
+      "lookAt": [
+        10,
+        2,
+        25
+      ]
+    },
+    {
+      "name": "five-sluice-throats-open-gantry-and-separate-fish-pass",
+      "position": [
+        180,
+        55,
+        105
+      ],
+      "lookAt": [
+        112,
+        0,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 34523,
+    "vertices": 103569,
+    "materials": 6,
+    "bytes": 4146360,
+    "sha256": "sha256:8e5b54ee1b7c98bbfeff0b646c34b0397c517a6a63c54dc509b1c6c14515665e"
+  }
+}

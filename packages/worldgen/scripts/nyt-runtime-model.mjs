@@ -17,7 +17,7 @@ import { skylineNext } from './signature-tower-next-models.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0155_new_york_times_building',
+const key = 'new_york_times_building',
   frame = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'), 'utf8')),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'), 'utf8')),
   parts = partsEvidence(key),
@@ -142,7 +142,7 @@ function originalWithoutLowSideRods(out, m, omitRods = false) {
       }
       out[method](component, ref, points, normal, uv, color);
     };
-  skylineNext.find((p) => p.id === 'N0155').build(wrapped, m);
+  skylineNext.find((p) => p.id === 'new_york_times_building').build(wrapped, m);
 }
 
 function screens(out, m, level, rodsOnly = false) {

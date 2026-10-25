@@ -1,4 +1,7 @@
-/** node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=N0637,N0641 */
+/** node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=tower_of_hercules,kopu_lighthouse
+ * Optional --target-only reviews selected placements without loading other-device neighbors.
+ * Optional --turntable-padding=1.2 gives elongated groups extra room in the four whole views.
+ */
 import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
@@ -37,7 +40,7 @@ if (viewingDate !== undefined && !isStructureViewingDate(viewingDate))
   throw new Error('--viewing-date needs a valid YYYY-MM-DD calendar date');
 if (outputIndex >= 0 && !outputDirectory) throw new Error('--out-dir needs a directory');
 const placements = await readOptionalJson(
-  resolve(root, 'content/earth/structures/placements.json'),
+  resolve(root, 'content/earth/structures/placements/authoring.json'),
 );
 const geography = await readOptionalJson(
   resolve(root, 'content/earth/structures/georeferencing.json'),
@@ -99,6 +102,14 @@ const zeroReviewDatumFixtureHash =
 const clippingMode = process.argv.includes('--adaptive-clipping') ? 'bounds' : 'legacy';
 const reflectionMode = process.argv.includes('--reflections') ? 'sky-pmrem' : 'none';
 const reviewBoundedPlacement = process.argv.includes('--bounded-placement');
+const targetOnly = process.argv.includes('--target-only');
+const turntablePadding = Number(
+  process.argv.find((arg) => arg.startsWith('--turntable-padding='))?.split('=')[1] ?? 1,
+);
+assert(
+  Number.isFinite(turntablePadding) && turntablePadding >= 1 && turntablePadding <= 4,
+  '--turntable-padding must be a finite number between 1 and 4',
+);
 const selected = await authoredModels();
 const server = await createServer({
   configFile: false,
@@ -121,6 +132,18 @@ try {
     viewport: { width: 1440, height: 1080 },
     deviceScaleFactor: 1,
   });
+  if (targetOnly) {
+    const assets = new Set(selected.map(({ spec }) => spec.assetId));
+    await page.route('**/earth/structures/placements/authoring.json', (route) =>
+      route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({
+          ...placements,
+          entries: placements.entries.filter((entry) => assets.has(entry.asset)),
+        }),
+      }),
+    );
+  }
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(message.text());
@@ -166,6 +189,7 @@ try {
       'Invalid review ground datum',
     );
     let current =
+      (prior?.targetOnly ?? false) === targetOnly &&
       (prior?.reviewBoundedPlacement ?? false) === reviewBoundedPlacement &&
       (prior?.footprintLabel ?? null) === (localFootprint?.label ?? null) &&
       (!localFootprint || matchesEvidenceText(sourceFrameBytes, prior?.footprintEvidenceHash)) &&
@@ -267,6 +291,11 @@ try {
     );
     assert(mounted.loads.includes(spec.assetId), 'The requested landmark must be loaded');
     assert.equal(new Set(mounted.loads).size, mounted.loads.length, 'Each model loads only once');
+    if (targetOnly)
+      assert(
+        mounted.loads.every((asset) => selected.some(({ spec }) => spec.assetId === asset)),
+        'Target-only review cannot load an unselected neighbor',
+      );
     if (mounted.mode === 'geographic-flat-terrain') {
       const [west, south, east, north] = mounted.selectionBounds;
       assert(west < east && south < north);
@@ -373,10 +402,25 @@ try {
       ? spec.qaCameras
       : Object.entries(spec.qaCameras ?? {}).map(([name, camera]) => ({ name, ...camera }));
     const views = [
-      ...[0.6, 0.6 + Math.PI / 2, 0.6 + Math.PI, 0.6 + (3 * Math.PI) / 2].map((angle, i) => ({
-        name: `angle-${i}`,
-        angle,
-      })),
+      ...[0.6, 0.6 + Math.PI / 2, 0.6 + Math.PI, 0.6 + (3 * Math.PI) / 2].map((angle, i) => {
+        const view = { name: `angle-${i}`, angle };
+        if (turntablePadding === 1) return view;
+        // Explicit native-frame poses use the existing fixture path and are recorded in
+        // each frame. Default poses and the rendering fixture remain unchanged.
+        const { min, max } = spec.actualBounds;
+        const target = min.map((value, axis) => (value + max[axis]) / 2);
+        const radius =
+          Math.max(...max.map((value, axis) => value - min[axis])) * 1.9 * turntablePadding;
+        return {
+          ...view,
+          position: [
+            target[0] + Math.sin(angle) * radius,
+            target[1] + radius * 0.3,
+            target[2] + Math.cos(angle) * radius,
+          ],
+          lookAt: target,
+        };
+      }),
       ...cameras,
       ...(mounted.mode === 'geographic-flat-terrain'
         ? [{ name: 'placement', placement: true }]
@@ -454,6 +498,7 @@ try {
       reflectionMode,
       clippingMode,
       ...(reviewBoundedPlacement ? { reviewBoundedPlacement } : {}),
+      ...(targetOnly ? { targetOnly } : {}),
       placementHash,
       materialGraphs,
       frames,

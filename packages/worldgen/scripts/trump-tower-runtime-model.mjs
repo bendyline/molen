@@ -16,10 +16,10 @@ import { skylineNext } from './signature-tower-next-models.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0152_trump_tower',
+const key = 'trump_tower',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'), 'utf8')),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'), 'utf8')),
-  original = skylineNext.find((m) => m.id === 'N0152').build,
+  original = skylineNext.find((m) => m.id === 'trump_tower').build,
   bronze = [0.2, 0.18, 0.145],
   glass = [0.14, 0.135, 0.12],
   gold = [0.67, 0.48, 0.19];

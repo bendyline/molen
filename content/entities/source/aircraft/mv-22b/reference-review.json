@@ -1,0 +1,230 @@
+{
+  "format": "molen/aircraft-reference-review@1",
+  "status": "reviewed-with-limitations",
+  "variant": "MV-22B, representative early-service four-MFD cockpit; no weapons",
+  "references": [
+    {
+      "url": "https://0x4d.net/files/AF1/R11%20Segment%2013.pdf",
+      "title": "USAF T.O.00-105E-9, 1 February2006, V-22 pages1,11,12",
+      "author": "US Air Force",
+      "license": "US federal government public domain",
+      "local": ".artifacts/aircraft/references/mv22-rescue.pdf",
+      "scope": "Dimensioned side/front arrangement, overhead and center control layout, seats; PDF pages29,39,40 inspected."
+    },
+    {
+      "url": "https://www.boeing.com/defense/military-rotorcraft/v-22-osprey",
+      "title": "Boeing V-22 facts",
+      "author": "Boeing",
+      "license": "Manufacturer facts; no imagery distributed",
+      "scope": "Independent17.47m fuselage,25.8m rotor span,11.6m rotor diameter,6.7m vertical-nacelle height."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_Boeing_MV-22_Osprey_line_drawing.svg",
+      "title": "MV-22 flight configurations",
+      "author": "Alexander Gaudreau / Jetijones; line adjustment Curioushavedape",
+      "license": "CC BY3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "local": ".artifacts/aircraft/references/mv22-threeview.svg",
+      "scope": "Illustrative planform and nacelle configurations; not a manufacturing drawing."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:MV-22_Osprey_cockpit.jpg",
+      "title": "MV-22 cockpit at Andrews Air Show,21May2011",
+      "author": "Nicolas STAMBACH / Nicostamb; levels Hohum",
+      "license": "CC BY-SA3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "local": ".artifacts/aircraft/references/mv22-cockpit.jpg",
+      "scope": "Main panel, lower display, twin keypads, cyclic/thrust controls and overhead. Helmet obscures central upper controller; right screen partially cropped. No absolute dimensions."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:MV-22B_Osprey_in_flight.jpg",
+      "title": "VMM263 MV-22B hovering over USS Bataan,7August2009",
+      "author": "US Navy MC2 Kelvin Edwards",
+      "license": "US federal government public domain",
+      "local": ".artifacts/aircraft/references/mv22-exterior.jpg",
+      "scope": "Independent frontal exterior, nacelles, sponsons, windshield and six-wheel arrangement."
+    }
+  ],
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2
+    ],
+    "viewHeight": 1.65,
+    "cameraHeight": 4.1
+  },
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.62,
+      4.95
+    ],
+    "lookAt": [
+      0,
+      1.95,
+      6.65
+    ],
+    "fov": 80
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "thrustVector": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0,
+    "engine2": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "thrustVector": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0,
+    "engine2": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/mv22-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1270,
+        "height": 450
+      },
+      "referenceAnchor": [
+        28,
+        432
+      ],
+      "modelAnchor": [
+        -8.74,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1222,
+        "meters": 17.48,
+        "description": "Uniform fuselage length; published nominal17.47–17.48m."
+      },
+      "scope": "Body, nose, sponson, gear and twin-fin stations. Manual omits nacelles and rotors in this side illustration.",
+      "referencePreparation": "Manual raster uniformly resized to1780×1376, crop(290,730)-(1560,1180). No contour warping."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/mv22-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1335,
+        "height": 360
+      },
+      "referenceAnchor": [
+        659,
+        353
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1300,
+        "meters": 25.78,
+        "description": "Overall rotor span; drawn blade phase is illustrative."
+      },
+      "scope": "Height, dihedral, engine span, nose, sponson and gear layout."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/mv22-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 905,
+        "height": 630
+      },
+      "referenceAnchor": [
+        457,
+        600
+      ],
+      "modelAnchor": [
+        0,
+        8.74
+      ],
+      "scaleControls": {
+        "pixels": 570,
+        "meters": 17.48,
+        "description": "Uniform fuselage length; rotor centers and diameter independently constrained."
+      },
+      "scope": "Wing, tail and body planform; rotor phase is approximate.",
+      "referencePreparation": "CCBY3 drawing rasterized to1600px wide, crop(940,880)-(1570,1785), rotated90degrees counterclockwise to nose-down."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/mv22-panel.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1265,
+        "height": 550
+      },
+      "referenceAnchor": [
+        670,
+        210
+      ],
+      "modelAnchor": [
+        0,
+        -1.95
+      ],
+      "scaleControls": {
+        "pixels": 1310,
+        "meters": 2.1,
+        "description": "Estimated full panel width2.1m; the photo crops the right edge. Qualitative perspective comparison."
+      },
+      "edgeMode": "photo",
+      "scope": "Four main screens, standby cluster, autoflight and radio units, lower central display and twin keypads; helmet and perspective limit exact alignment."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Dedicated MV-22B body sections, cockpit aperture, forward-swept wing, twin-fin tail, wing fairing, tapered fuel/gear sponsons and six wheels replace the generic shape. Exterior overlays corrected tail span, main-gear track, sponson width and an unclosed side-window patch. Nacelles have intake/exhaust details and independent three-blade proprotors.",
+      "Four main displays, offset standby instruments, upper autoflight/radio housings, lower central display, paired keypads, cyclics, two thrust levers with nacelle thumbwheels and distinct overhead lighting/APU/engine groups follow the photo/manual. Overhead was lowered to remove roof clipping.",
+      "Live TAS, geometric altitude, true heading, vertical speed, attitude, independent normalized engine RPM and nacelle-angle indicators use named variables. Gear, flaperons, elevators, rudders and controls animate; unsupported navigation and system readouts stay blank. The hover flaperon schedule is an explicit visual approximation.",
+      "Added actual imported-model checks for hover/transition/airplane axes, rotor rotation, trailing-edge motion, missing data and both model/Earth renderer paths. Corrected a nacelle-gauge/assembly name collision. Generator now carries exterior animation variable dependencies into the separate Earth animation evaluator."
+    ],
+    "independentDimensions": "Manufacturer17.47m fuselage,25.8m span and11.6m rotor diameter corroborate the manual. Model uses17.48m,25.78m and11.6m, with14.18m rotor-center spacing. Tail span corrected to5.54m from independent frontal/plan references. Nominal6.73m height excludes small hub details; geometry reaches6.79m. The side illustration draws a taller fin than the independent frontal height; model uses5.47m fin height. Cockpit width2.1m and cabin dimensions remain estimated.",
+    "visual": "Personally inspected all four final-hash overlays, eight standard views and15 close/state views: zero, cruise, limits, below-sea-level, missing readings, console, overhead, front detail, hover, half conversion, airplane configuration, tail, both control extremes and seats. Geometry/sightline validation,25 instrument tests including the MV-22 dual-renderer test, and byte-identical candidate regeneration passed.",
+    "limitations": [
+      "General arrangements and the CC drawing are illustrative, with inconsistent side/front fin proportions and rotor phase. Cross-sections, airfoils, glazing, nacelle ducts and sponsons remain approximations rather than production station data. The exterior photo supports the frontal appearance, but is not a metrically calibrated view.",
+      "Cockpit dimensions are estimated. The photo has perspective, a helmet obscuring the autoflight unit, and a cropped right display. Main layout is reference-based; screen pages and labels are original simulator adaptations. Side panels, seats, belts, wiring and upholstery remain simplified. The overhead is lowered slightly for clearance within the reconstructed roof.",
+      "Speed is TAS, altitude geometric, heading true, RPM normalized simulator shaft speed and nozzle angle0–90degrees. These are not certified V-22 avionics. Electrical power, fuel, temperature, torque, navigation, radio, warning systems and autopilot are unsupported and do not show invented readings. The engine model does not simulate the real interconnecting drive shaft.",
+      "Gear uses translation/hiding without full linkage sequencing. Conversion is0–90degrees; aft-of-vertical nacelle travel, blade folding, wing stow, flapping/coning and cargo-ramp motion are not implemented. Hover flaperon scheduling is a visual approximation. The cargo cabin is unfurnished. Selective seams/fasteners are not a manufacturing rivet schedule. Assisted flight checks do not establish real aircraft performance."
+    ]
+  },
+  "sourceHash": "sha256:3afcbaa142c673a182fc63542160f3523162edfeb9017d1b3eebc9544683f50d",
+  "runtimeHash": "sha256:93e06979dd3a085fb0a81ac2886a6af128c3aea65b6e3585e30a5e2867e4272d",
+  "limitations": [
+    "General arrangements and the CC drawing are illustrative, with inconsistent side/front fin proportions and rotor phase. Cross-sections, airfoils, glazing, nacelle ducts and sponsons remain approximations rather than production station data. The exterior photo supports the frontal appearance, but is not a metrically calibrated view.",
+    "Cockpit dimensions are estimated. The photo has perspective, a helmet obscuring the autoflight unit, and a cropped right display. Main layout is reference-based; screen pages and labels are original simulator adaptations. Side panels, seats, belts, wiring and upholstery remain simplified. The overhead is lowered slightly for clearance within the reconstructed roof.",
+    "Speed is TAS, altitude geometric, heading true, RPM normalized simulator shaft speed and nozzle angle0–90degrees. These are not certified V-22 avionics. Electrical power, fuel, temperature, torque, navigation, radio, warning systems and autopilot are unsupported and do not show invented readings. The engine model does not simulate the real interconnecting drive shaft.",
+    "Gear uses translation/hiding without full linkage sequencing. Conversion is0–90degrees; aft-of-vertical nacelle travel, blade folding, wing stow, flapping/coning and cargo-ramp motion are not implemented. Hover flaperon scheduling is a visual approximation. The cargo cabin is unfurnished. Selective seams/fasteners are not a manufacturing rivet schedule. Assisted flight checks do not establish real aircraft performance."
+  ]
+}

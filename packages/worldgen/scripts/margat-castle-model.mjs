@@ -4,10 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
-const source = new URL(
-  '../../../content/worldgen/source/places/sy/sy1/n0310_margat/',
-  import.meta.url,
-);
+const source = new URL('../../../content/worldgen/source/places/sy/sy1/margat/', import.meta.url);
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
 const frame = read('map-frame.json'),
   fit = read('pmtiles-fit.json'),
@@ -586,7 +583,7 @@ export const buildMargatDistrict = (out) => build(out, 1);
 export const buildMargatStreet = (out) => build(out, 2);
 export const buildMargatCloseup = (out) => build(out, 3);
 export const margatStudy = {
-  id: 'N0310',
+  id: 'margat',
   generationCommand: 'node packages/worldgen/scripts/generate-additional-landmarks.mjs',
   key: 'margat',
   title: 'Margat',

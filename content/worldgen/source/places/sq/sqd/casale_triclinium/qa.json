@@ -1,0 +1,3104 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.casale_triclinium",
+  "reviewedOn": "2026-10-23",
+  "inputHash": "sha256:3da2a1bb87e68be71de8322d51468ed17cd3094340158281ed03d16e1cb32d8f",
+  "sourceHash": "sha256:d973727fefcb2eb85e12eb6a0a768859dcf3dc3102bc306993bb3920c312ad51",
+  "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+  "captureReportHash": "sha256:365be87a8098f72730a748a510e394483f05da828d259b7ed3c0cd821411a758",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/three-apses-and-pale-framed-roof.png",
+      "shots/west-recessed-entry-and-short-treads.png",
+      "shots/eastern-apse-frame-and-low-base.png"
+    ],
+    "notes": "Detached Triclinium conservation shelter: exact mapped triapsidal footprint, pale central hipped roof/three radial apse caps, raised roof ribs and perimeter frame posts, low stone ruin base and opaque glazing proxies. Real west0.7m door recess with closed soffit/threshold and three short exterior treads. Two ordinary aerials, one inspected again this round, plus standard PMTiles/Mapzen guide the exterior. Revised the eastern detail camera after the first north view was inside a procedural context neighbor. No copied mosaics or furnished rooms. Combined native view loads this model and the already completed main complex together; Xystus/gate/latrines remain procedural pending unique models."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/three-apses-and-pale-framed-roof.png",
+      "shots/shared/west-recessed-entry-and-short-treads.png",
+      "shots/shared/eastern-apse-frame-and-low-base.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five material roles share four existing256px graphs: stone_limestone_raw, glass_frit_triangular (roof/window slots with pale/cool tint variants), metal_painted and tile_mosaic. Canonical metric UV repeats and sRGB-to-linear vertex tint; baked graph means retain skyline tone. Pale opaque glazing/roof is a low-cost proxy for the photographed translucent shelter, without literal refraction or a copied image. No embedded images, private atlas or new graph. Five textured draws/one skyline; separate vertex streams and equal CPU/GPU bytes. Each graph reads once. The two-model native scene shares eight total graphs; each reads once.",
+    "captureReportHash": "sha256:b01ef86cf7e7b457067f3dde53d8791504059995271eaae6f8ca3f34851e1738"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/three-apses-and-pale-framed-roof.png",
+      "medium-fi/west-recessed-entry-and-short-treads.png",
+      "medium-fi/eastern-apse-frame-and-low-base.png",
+      "medium-fi/triclinium-skyline.png",
+      "medium-fi/triclinium-district.png",
+      "medium-fi/triclinium-street.png",
+      "medium-fi/triclinium-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 235 / 1641 / 2085 / 2265 triangles; initial skyline+district geometry 154492 bytes, closeup 181720 bytes. Six GLBs zero Khronos errors/warnings;132 actual mesh/contact probes; three actual PMTiles13/14/15 cases, one detailed owned parent. Inspected49 current portable/shared/medium-fi/native frames including one two-model native overview. Every individual LOD/failure/unload retains42 resident /43 wider independent buildings and original201x201/6m terrain/roads/empty water layer. Failed loading keeps all43 original resident buildings. Combined main+Triclinium loading preserves all41 other resident buildings, original map data and one read per shared graph. Both scenes restore ground/water on unload and leave zero live geometry.",
+    "captureReportHash": "sha256:c3dab8b01e97189bbab86712367bb6d931b29f4658c8797e057e5bc9b410f5b7"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e72adb3fb3259eb047a9c2f350cbeaf222811a9e9fdcd168a8f64528821cdaab",
+    "mapFrameHash": "sha256:0d421e960b048fcf4d0f041279cc8601fcb8af9f1841eb43271825ea1412df76",
+    "notes": "Shared site Q505617 and unique building way304818579/native35184676907411 identify this detached Triclinium, not the whole archaeological park. Its 31-vertex triapsidal outline sets meter scale. +X follows the west wall normal east/slightly north toward the eastern apse; +Z follows the west wall south/slightly east. Native east/up/south axes are baked, heading0. Only this footprint is replaced; all other site structures remain independent. Qualified approximate native conservation exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. South outside-building provider [0,18] supplies 546.7807650290389m datum. Boundary grades -1.108..+1.518m, working floor -0.665m and closed foundation -1.258m relative. The west recessed threshold and three short treads remain exposed and meet the original approach; rising eastern ground partly buries the low stone/cladding base (up to about2.18m above the floor). The shelter remains seated without native ground holes. Occupied building/stair masks retain original surrounding ground, roads, empty water layer and all 42 resident / 43 wider independent buildings. Excavated floor, doorway/stair reconstruction, exact paving and accessibility are unverified. No bespoke terrain, flattening or invented surrounding structures."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Photo-led medium-fi conservation exterior. Ordinary aerial shows a pale translucent framed central shelter and three radial apse caps. No qualified mapped heights. Working floor 546.116m absolute follows the native west threshold plus0.36m. Ruin base1.0m, canopy eave5.2m, central peak7.6m and apse peaks7.4m above the floor are reconstructed. Opaque pale glazing/roof proxies retain simple reflections without costly refraction. Frame spacing, doorway/stairs, roof junctions, unseen elevations, actual floor/mosaic state and accessibility are unverified. Qualified approximate native conservation exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. South outside-building provider [0,18] supplies 546.7807650290389m datum. Boundary grades -1.108..+1.518m, working floor -0.665m and closed foundation -1.258m relative. The west recessed threshold and three short treads remain exposed and meet the original approach; rising eastern ground partly buries the low stone/cladding base (up to about2.18m above the floor). The shelter remains seated without native ground holes. Occupied building/stair masks retain original surrounding ground, roads, empty water layer and all 42 resident / 43 wider independent buildings. Excavated floor, doorway/stair reconstruction, exact paving and accessibility are unverified. No bespoke terrain, flattening or invented surrounding structures. Meets the current medium-fi exterior standard. Three roof caps and the frame are modeled; glazing is deliberately opaque. Modern cladding transmission, exact roof junctions/frame spacing, low ruin inventories, entrance/stair form, excavated floors/mosaics and accessibility remain approximate or unverified. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sq/sqd/casale_triclinium/models/source.glb\",\"hash\":\"sha256:d973727fefcb2eb85e12eb6a0a768859dcf3dc3102bc306993bb3920c312ad51\",\"bytes\":202072,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_triclinium/model.glb\",\"hash\":\"sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b\",\"bytes\":201532,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_triclinium/model.skyline.glb\",\"hash\":\"sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8\",\"bytes\":21448,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_triclinium/model.district.glb\",\"hash\":\"sha256:86d72850997732d5841f7bc2f052387ff9ab7f8ba51a78595e76ee2a4c7617d9\",\"bytes\":133044,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_triclinium/model.street.glb\",\"hash\":\"sha256:fe2a4d78ec7452311eebe54a7941ceee5a83e3c07872e65ecfb2844dd2e23027\",\"bytes\":167680,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_triclinium/model.closeup.glb\",\"hash\":\"sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9\",\"bytes\":181720,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "three-radial-apse-roofs-supported-frame-and-recessed-entrance",
+        "passed": true,
+        "notes": "132 actual mesh/contact probes over six current GLBs: three separate radial apse peaks and central hip peak, genuine0.7m door recess/closed soffit/threshold, three actual treads/closed footings, closed shelter underside, supported perimeter frame and unoccupied outside ground. Current shared material references, hashes, finite vertex attributes, separate vertex streams and LOD caps checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Shared site Q505617 and unique building way304818579/native35184676907411 identify this detached Triclinium, not the whole archaeological park. Its 31-vertex triapsidal outline sets meter scale. +X follows the west wall normal east/slightly north toward the eastern apse; +Z follows the west wall south/slightly east. Native east/up/south axes are baked, heading0. Only this footprint is replaced; all other site structures remain independent. Qualified approximate native conservation exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. South outside-building provider [0,18] supplies 546.7807650290389m datum. Boundary grades -1.108..+1.518m, working floor -0.665m and closed foundation -1.258m relative. The west recessed threshold and three short treads remain exposed and meet the original approach; rising eastern ground partly buries the low stone/cladding base (up to about2.18m above the floor). The shelter remains seated without native ground holes. Occupied building/stair masks retain original surrounding ground, roads, empty water layer and all 42 resident / 43 wider independent buildings. Excavated floor, doorway/stair reconstruction, exact paving and accessibility are unverified. No bespoke terrain, flattening or invented surrounding structures."
+    },
+    "inputHash": "sha256:3da2a1bb87e68be71de8322d51468ed17cd3094340158281ed03d16e1cb32d8f",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:3da2a1bb87e68be71de8322d51468ed17cd3094340158281ed03d16e1cb32d8f",
+      "reviewedOn": "2026-10-23",
+      "method": "Actually inspected49 current frames in ten labeled contact sheets plus full-resolution native two-model overview, east-apse ground contact and west door/treads. Ordinary aerials and standard PMTiles/Mapzen guided one continuous author/inspect/fix pass; revised an occluded detail camera. No bespoke research. Remaining four collection models are not approved",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/preview.png",
+          "hash": "sha256:da3f1cb3fdfdd801c15e56e02097793fa15268e4d30aa8666ae9f95d7f517692"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/turntable/angle_0.png",
+          "hash": "sha256:7401f31c112ded053c34b1012345431e79a8dd2c6293bdd33562063b133ff264"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/turntable/angle_1.png",
+          "hash": "sha256:1b1cbf3f1e400ba67c967b751e5772d5445343bbedc67ffda50d6cd799e738a4"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/turntable/angle_2.png",
+          "hash": "sha256:846ad27f792510eb43d5a43a541c1959d1b7fbee1af1da33b8e766919780091b"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/turntable/angle_3.png",
+          "hash": "sha256:9deeabdeef0c42afdfec164dc494259c27cdd9bb2c60b3ec0ab5f6ee97ee38d8"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/three-apses-and-pale-framed-roof.png",
+          "hash": "sha256:fc2496e68ca83e03983fa9f9a3f7e05dc6841101e5a770dd3f9919a8d00ab53d"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/west-recessed-entry-and-short-treads.png",
+          "hash": "sha256:e9b466f8213199e6483021cc6f3c10f85766047f02eaa0a76a7c6c83a88d63a1"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/eastern-apse-frame-and-low-base.png",
+          "hash": "sha256:e9858f002f3957de640d4392fdcc67225595db6bd0dabbda42fedd412882fbcc"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/shared/angle-0.png",
+          "hash": "sha256:90663140e63d51d95b542c15d23db3857278e73f2cfac4acc4b2d61a20b93049",
+          "camera": {
+            "name": "angle-0",
+            "angle": 0.6
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_triclinium",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.triclinium",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 2265,
+            "bounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "reviewGroundY": -0.6652407415670177,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5df6c7a1-e24f-4acd-9f9b-635af84a009f",
+              "worldgen:matgraph:molen.worldgen.material.glass_frit_triangular": "278e79c0-0296-4511-9ed9-995ce376b04c",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "ff92fc67-d8b4-46e0-af25-e7f76332358b",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "39cf465b-e2d9-4130-a296-b3575c392237"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main",
+              "molen.worldgen.structure.casale_triclinium"
+            ],
+            "selectionBounds": [
+              14.334247499562142,
+              37.36389431121966,
+              14.335694223784573,
+              37.365044154783334
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "casale.triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.triclinium"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 2422
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/shared/angle-1.png",
+          "hash": "sha256:8860bc3abea436d880f6c88a3e8fd9dce72bc84e08f97ce24cf87983295bb920",
+          "camera": {
+            "name": "angle-1",
+            "angle": 2.1707963267948966
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_triclinium",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.triclinium",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 2265,
+            "bounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "reviewGroundY": -0.6652407415670177,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5df6c7a1-e24f-4acd-9f9b-635af84a009f",
+              "worldgen:matgraph:molen.worldgen.material.glass_frit_triangular": "278e79c0-0296-4511-9ed9-995ce376b04c",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "ff92fc67-d8b4-46e0-af25-e7f76332358b",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "39cf465b-e2d9-4130-a296-b3575c392237"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main",
+              "molen.worldgen.structure.casale_triclinium"
+            ],
+            "selectionBounds": [
+              14.334247499562142,
+              37.36389431121966,
+              14.335694223784573,
+              37.365044154783334
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "casale.triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.triclinium"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 2422
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/shared/angle-2.png",
+          "hash": "sha256:ba1e0786c6468a201cdb1eeec130e31240c712df9d633aa7191cc4be6d481c31",
+          "camera": {
+            "name": "angle-2",
+            "angle": 3.741592653589793
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_triclinium",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.triclinium",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 2265,
+            "bounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "reviewGroundY": -0.6652407415670177,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5df6c7a1-e24f-4acd-9f9b-635af84a009f",
+              "worldgen:matgraph:molen.worldgen.material.glass_frit_triangular": "278e79c0-0296-4511-9ed9-995ce376b04c",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "ff92fc67-d8b4-46e0-af25-e7f76332358b",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "39cf465b-e2d9-4130-a296-b3575c392237"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main",
+              "molen.worldgen.structure.casale_triclinium"
+            ],
+            "selectionBounds": [
+              14.334247499562142,
+              37.36389431121966,
+              14.335694223784573,
+              37.365044154783334
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "casale.triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.triclinium"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 2422
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/shared/angle-3.png",
+          "hash": "sha256:9d478ce1eb3a5851ffdcae9dac8143a9d7711ad8da461b8fc088fa9e65ef0f3a",
+          "camera": {
+            "name": "angle-3",
+            "angle": 5.312388980384689
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_triclinium",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.triclinium",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 2265,
+            "bounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "reviewGroundY": -0.6652407415670177,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5df6c7a1-e24f-4acd-9f9b-635af84a009f",
+              "worldgen:matgraph:molen.worldgen.material.glass_frit_triangular": "278e79c0-0296-4511-9ed9-995ce376b04c",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "ff92fc67-d8b4-46e0-af25-e7f76332358b",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "39cf465b-e2d9-4130-a296-b3575c392237"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main",
+              "molen.worldgen.structure.casale_triclinium"
+            ],
+            "selectionBounds": [
+              14.334247499562142,
+              37.36389431121966,
+              14.335694223784573,
+              37.365044154783334
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "casale.triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.triclinium"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 2422
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/shared/three-apses-and-pale-framed-roof.png",
+          "hash": "sha256:9084869937424e0cbd08354e866f0829c7b962e99978bfb1cb31744a5d87ecb7",
+          "camera": {
+            "name": "three-apses-and-pale-framed-roof",
+            "position": [
+              30.902443256785585,
+              26,
+              25.88511156555341
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "fov": 54
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_triclinium",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.triclinium",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 2265,
+            "bounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "reviewGroundY": -0.6652407415670177,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5df6c7a1-e24f-4acd-9f9b-635af84a009f",
+              "worldgen:matgraph:molen.worldgen.material.glass_frit_triangular": "278e79c0-0296-4511-9ed9-995ce376b04c",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "ff92fc67-d8b4-46e0-af25-e7f76332358b",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "39cf465b-e2d9-4130-a296-b3575c392237"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main",
+              "molen.worldgen.structure.casale_triclinium"
+            ],
+            "selectionBounds": [
+              14.334247499562142,
+              37.36389431121966,
+              14.335694223784573,
+              37.365044154783334
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "casale.triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.triclinium"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 2422
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/shared/west-recessed-entry-and-short-treads.png",
+          "hash": "sha256:3fd288a3a7c32118069a963cb3f01a050840578f39a53ffb93a013f26a4bbe7b",
+          "camera": {
+            "name": "west-recessed-entry-and-short-treads",
+            "position": [
+              -23.127855633172974,
+              2.9347592584329822,
+              9.492222806651196
+            ],
+            "lookAt": [
+              -8.306833060650396,
+              1.1347592584329824,
+              0.8810303732111475
+            ],
+            "fov": 52
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_triclinium",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.triclinium",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 2265,
+            "bounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "reviewGroundY": -0.6652407415670177,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5df6c7a1-e24f-4acd-9f9b-635af84a009f",
+              "worldgen:matgraph:molen.worldgen.material.glass_frit_triangular": "278e79c0-0296-4511-9ed9-995ce376b04c",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "ff92fc67-d8b4-46e0-af25-e7f76332358b",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "39cf465b-e2d9-4130-a296-b3575c392237"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main",
+              "molen.worldgen.structure.casale_triclinium"
+            ],
+            "selectionBounds": [
+              14.334247499562142,
+              37.36389431121966,
+              14.335694223784573,
+              37.365044154783334
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "casale.triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.triclinium"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 2422
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/shared/eastern-apse-frame-and-low-base.png",
+          "hash": "sha256:6e9e2a89b0350d0001a6335df0125d35633edb40f66b8c8f74efdd8cadd10a50",
+          "camera": {
+            "name": "eastern-apse-frame-and-low-base",
+            "position": [
+              30.887370279288753,
+              8.334759258432982,
+              6.780144336967298
+            ],
+            "lookAt": [
+              8.029208974865393,
+              2.0347592584329823,
+              -0.14765919524711435
+            ],
+            "fov": 52
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_triclinium",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.triclinium",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 2265,
+            "bounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "reviewGroundY": -0.6652407415670177,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5df6c7a1-e24f-4acd-9f9b-635af84a009f",
+              "worldgen:matgraph:molen.worldgen.material.glass_frit_triangular": "278e79c0-0296-4511-9ed9-995ce376b04c",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "ff92fc67-d8b4-46e0-af25-e7f76332358b",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "39cf465b-e2d9-4130-a296-b3575c392237"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main",
+              "molen.worldgen.structure.casale_triclinium"
+            ],
+            "selectionBounds": [
+              14.334247499562142,
+              37.36389431121966,
+              14.335694223784573,
+              37.365044154783334
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "casale.triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.triclinium"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 2422
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/shots/shared/placement.png",
+          "hash": "sha256:f0ff662dc5816b18510391a489eb5a655362b18abda61c954770cccdb0ed403e",
+          "camera": {
+            "name": "placement",
+            "placement": true
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_triclinium",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.triclinium",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 2265,
+            "bounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -9.668890953063965,
+                -1.258416771888733,
+                -13.177388191223145
+              ],
+              "max": [
+                13.948697090148926,
+                7.043583869934082,
+                13.058746337890625
+              ]
+            },
+            "reviewGroundY": -0.6652407415670177,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5df6c7a1-e24f-4acd-9f9b-635af84a009f",
+              "worldgen:matgraph:molen.worldgen.material.glass_frit_triangular": "278e79c0-0296-4511-9ed9-995ce376b04c",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "ff92fc67-d8b4-46e0-af25-e7f76332358b",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "39cf465b-e2d9-4130-a296-b3575c392237"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main",
+              "molen.worldgen.structure.casale_triclinium"
+            ],
+            "selectionBounds": [
+              14.334247499562142,
+              37.36389431121966,
+              14.335694223784573,
+              37.365044154783334
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "casale.triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.triclinium"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 2422
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/street-noon-economy.png",
+          "hash": "sha256:0b53560f2aeae8dcd5ed01d7b48b8ffefd97c485b8df7d21d39acff81276a54a",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 10,
+            "triangles": 8111,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/street-noon-high.png",
+          "hash": "sha256:fd6629810a783578637527dff746193e3f182041e93e805d7d1e08d221be84c7",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8111,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/street-late-economy.png",
+          "hash": "sha256:90e0639a2fc2cabd8edb8738c29364626bf3f43011267c64e7431e93eb7d4a61",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 10,
+            "triangles": 8111,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/street-late-high.png",
+          "hash": "sha256:1c1b929b6c9216b328ce4b4645831e0e4e7d6959247799f6062f5f35e6974ba0",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8111,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/block-noon-economy.png",
+          "hash": "sha256:9597874c214e8fab6120caac79d443293223ba6b549419954d0b7f8e1411150c",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:86d72850997732d5841f7bc2f052387ff9ab7f8ba51a78595e76ee2a4c7617d9",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 10,
+            "triangles": 7487,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/block-noon-high.png",
+          "hash": "sha256:4337df58d4de96baf3fa5b4d52a2c05786b6dfa5b0c3ad1ba8068afb7854f5e2",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:86d72850997732d5841f7bc2f052387ff9ab7f8ba51a78595e76ee2a4c7617d9",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 7487,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/block-late-economy.png",
+          "hash": "sha256:f02359c62414a919de30e258bd02b56dd4bb548a0de6be01c7c9aadf4ed2d1ce",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:86d72850997732d5841f7bc2f052387ff9ab7f8ba51a78595e76ee2a4c7617d9",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 10,
+            "triangles": 7487,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/block-late-high.png",
+          "hash": "sha256:7b0417a9c76165983617072136e547424391f2785002f0ff40f097e03557781d",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:86d72850997732d5841f7bc2f052387ff9ab7f8ba51a78595e76ee2a4c7617d9",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 7487,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:551831af4d00924bd86ed1472bb834aadb5b19c312158556a41c2e53a820fcc1",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6081,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:0e59a46d46e65adec0fdda066f4ef0ad3f0a1b16b22c9c496fa5e9b44b085c62",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6081,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:3af17f06eb5a8fe70d2816b64fad42e7b369c679e9efbc44bf3e0413aaf0f730",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6081,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/skyline-late-high.png",
+          "hash": "sha256:8d8365f10b9b81ccf1479d1bbf7f3e050377ee5088122eef764ffea7a56b23da",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6081,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/silhouette.png",
+          "hash": "sha256:c8257e8e5865700c4faa247169f333af1def3004f92835771e4cd0a0956adde9",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 2,
+            "triangles": 385,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/three-apses-and-pale-framed-roof.png",
+          "hash": "sha256:13576700698243832551cfe0bbc25b83f5a35daa3764e15304823249f6ca0b37",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8111,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              30.902443256785585,
+              26,
+              25.88511156555341
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/west-recessed-entry-and-short-treads.png",
+          "hash": "sha256:2414c3044ddfca3a563629e723a9f735425e7ea6d266280391c401f9f5e8d6cf",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8111,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              -23.127855633172974,
+              2.9347592584329822,
+              9.492222806651196
+            ],
+            "lookAt": [
+              -8.306833060650396,
+              1.1347592584329824,
+              0.8810303732111475
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/eastern-apse-frame-and-low-base.png",
+          "hash": "sha256:d96e071bc2912627e6d9a950c64482a13d7b60c513e5690dc04a909322aa01d9",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8111,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              30.887370279288753,
+              8.334759258432982,
+              6.780144336967298
+            ],
+            "lookAt": [
+              8.029208974865393,
+              2.0347592584329823,
+              -0.14765919524711435
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/triclinium-skyline.png",
+          "hash": "sha256:6fc64f0d410489711758a4581091639896fa63d0e3001606e91940a508c241dd",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8",
+            "level": "skyline",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6081,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              -36.91415602997213,
+              30,
+              50.17315103314592
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/triclinium-district.png",
+          "hash": "sha256:7ca2cfd831e6c1fda4a70b7370585141fe5a948a247265c9f8710892f6e03e53",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:86d72850997732d5841f7bc2f052387ff9ab7f8ba51a78595e76ee2a4c7617d9",
+            "level": "district",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 7487,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              -36.91415602997213,
+              30,
+              50.17315103314592
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/triclinium-street.png",
+          "hash": "sha256:ec780992bd3c90129d8bbea35f612c629a89cdda341a71cdbf527ee9fcfc4c90",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:fe2a4d78ec7452311eebe54a7941ceee5a83e3c07872e65ecfb2844dd2e23027",
+            "level": "street",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 7931,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              -36.91415602997213,
+              30,
+              50.17315103314592
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/triclinium-closeup.png",
+          "hash": "sha256:e8feb64b28408891e2f131623d44375a536caec67ec8b2a9ce27c778b63e04cf",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8111,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              -36.91415602997213,
+              30,
+              50.17315103314592
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/transition-skyline.png",
+          "hash": "sha256:b27e56ad6314e2ba9167f7b30bffcef37e47ba787b4b0b93b5e6927a26360c9b",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8",
+            "level": "skyline",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6081,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/transition-district.png",
+          "hash": "sha256:4337df58d4de96baf3fa5b4d52a2c05786b6dfa5b0c3ad1ba8068afb7854f5e2",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:86d72850997732d5841f7bc2f052387ff9ab7f8ba51a78595e76ee2a4c7617d9",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 7487,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/transition-street.png",
+          "hash": "sha256:ea4072411d216efd81829337d51ac57eef57234d1e83f9469228973df925e939",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:fe2a4d78ec7452311eebe54a7941ceee5a83e3c07872e65ecfb2844dd2e23027",
+            "level": "street",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 7931,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_triclinium/medium-fi/transition-closeup.png",
+          "hash": "sha256:6ee20bd5fe46f11c142df50eac203176eac4273d15cd2ed1eed24e92310bdfdf",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_triclinium",
+            "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+            "lodHash": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+            "level": "closeup",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8111,
+            "groundY": -0.6652407415670177,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 31,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": ".artifacts/casale-triclinium-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:a9020bd7afa251ace8c29dc6ff674a272a5623ae4f47708bd5192043472f215e",
+          "state": {
+            "level": "skyline",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 11,
+            "triangles": 156256
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -36.91415602997213,
+              30,
+              50.17315103314592
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-triclinium-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:d781b823c07581a658b9ddff36887c12a4818da2ba9487d4c40abce5358de775",
+          "state": {
+            "level": "district",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 15,
+            "triangles": 157662
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -36.91415602997213,
+              30,
+              50.17315103314592
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-triclinium-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:744f8de0ff718f348a8a7dd4f80cb218a1afca55581709e8b2aaf6de2e57d186",
+          "state": {
+            "level": "street",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 15,
+            "triangles": 158106
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -36.91415602997213,
+              30,
+              50.17315103314592
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-triclinium-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:bede9ee80a687fdbcbd552d0bbf675bafbfa72d68db0ad0a7b2d230b4aca5bd6",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 15,
+            "triangles": 158286
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -36.91415602997213,
+              30,
+              50.17315103314592
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-triclinium-integration/shots/final-closeup-three-apses-and-pale-framed-roof.png",
+          "hash": "sha256:053aac8cad7a66b46dbc94b4b1af81ec674a52f2aaf83875b6dc9d789535b70e",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 15,
+            "triangles": 158286
+          },
+          "camera": {
+            "name": "three-apses-and-pale-framed-roof",
+            "position": [
+              30.902443256785585,
+              26,
+              25.88511156555341
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-triclinium-integration/shots/final-closeup-west-recessed-entry-and-short-treads.png",
+          "hash": "sha256:95e75873b854ee5e7d30524dc6594bda0c113ee4f05ef13c046fb7a65cac712b",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 13,
+            "triangles": 155366
+          },
+          "camera": {
+            "name": "west-recessed-entry-and-short-treads",
+            "position": [
+              -23.127855633172974,
+              2.9347592584329822,
+              9.492222806651196
+            ],
+            "lookAt": [
+              -8.306833060650396,
+              1.1347592584329824,
+              0.8810303732111475
+            ],
+            "fov": 52
+          }
+        },
+        {
+          "path": ".artifacts/casale-triclinium-integration/shots/final-closeup-eastern-apse-frame-and-low-base.png",
+          "hash": "sha256:d63c93b0ab54c5e7a7efd9456393b7598225952a47d077f3b8ca5e74e52dd0e7",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 15,
+            "triangles": 158286
+          },
+          "camera": {
+            "name": "eastern-apse-frame-and-low-base",
+            "position": [
+              30.887370279288753,
+              8.334759258432982,
+              6.780144336967298
+            ],
+            "lookAt": [
+              8.029208974865393,
+              2.0347592584329823,
+              -0.14765919524711435
+            ],
+            "fov": 52
+          }
+        },
+        {
+          "path": ".artifacts/casale-triclinium-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:8d7c31578387a50a7b9dbc5cbd57fbda595794f7c8b0da0e8fa77a0e023e56c7",
+          "state": {
+            "level": "failure",
+            "mode": "high",
+            "groundCutoutActive": false,
+            "draws": 10,
+            "triangles": 156709
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -36.91415602997213,
+              30,
+              50.17315103314592
+            ],
+            "lookAt": [
+              0.9944225517483356,
+              3,
+              -0.10546937268386865
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-triclinium-integration/shots/ensemble-closeup-two-authored-shelters-in-native-context.png",
+          "hash": "sha256:db9ee61ce2f2551c41d648f8200a79b3fecac425384f9c95f4f4a8223c34781a",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 166319
+          },
+          "camera": {
+            "name": "two-authored-shelters-in-native-context",
+            "position": [
+              -64.0347541127383,
+              78,
+              107.35245812612371
+            ],
+            "lookAt": [
+              -20.43087087588289,
+              5,
+              -21.967692533650418
+            ],
+            "fov": 54
+          }
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:3da2a1bb87e68be71de8322d51468ed17cd3094340158281ed03d16e1cb32d8f",
+      "sourceHash": "sha256:d973727fefcb2eb85e12eb6a0a768859dcf3dc3102bc306993bb3920c312ad51",
+      "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+      "files": {
+        "content/worldgen/source/places/sq/sqd/casale_triclinium/models/source.glb": "sha256:d973727fefcb2eb85e12eb6a0a768859dcf3dc3102bc306993bb3920c312ad51",
+        "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.glb": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+        "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.skyline.glb": "sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8",
+        "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.district.glb": "sha256:86d72850997732d5841f7bc2f052387ff9ab7f8ba51a78595e76ee2a4c7617d9",
+        "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.street.glb": "sha256:fe2a4d78ec7452311eebe54a7941ceee5a83e3c07872e65ecfb2844dd2e23027",
+        "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.closeup.glb": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184676907411
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4422,
+            3178
+          ],
+          "id": 35184676888120,
+          "owned": false,
+          "covered": 0.048579442409964486,
+          "area": 7877.860518711769,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8844,
+            6356
+          ],
+          "id": 35184589838920,
+          "owned": false,
+          "covered": 0.041479301241375964,
+          "area": 8170.716269806427,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17688,
+            12712
+          ],
+          "id": 35184676907411,
+          "owned": true,
+          "covered": 0.9999999707460034,
+          "area": 391.70762589714616,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 42,
+      "widerIndependent": 43,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -3.63158914495898e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.casale_triclinium"
+          ],
+          "rawTerrainRange": {
+            "min": -28.04496502903885,
+            "max": 142.69243497096113
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:a9020bd7afa251ace8c29dc6ff674a272a5623ae4f47708bd5192043472f215e",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 11,
+              "triangles": 156256
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -36.91415602997213,
+                30,
+                50.17315103314592
+              ],
+              "lookAt": [
+                0.9944225517483356,
+                3,
+                -0.10546937268386865
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -3.63158914495898e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.glass_frit_triangular": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.tile_mosaic": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.casale_triclinium"
+          ],
+          "rawTerrainRange": {
+            "min": -28.04496502903885,
+            "max": 142.69243497096113
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:d781b823c07581a658b9ddff36887c12a4818da2ba9487d4c40abce5358de775",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 157662
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -36.91415602997213,
+                30,
+                50.17315103314592
+              ],
+              "lookAt": [
+                0.9944225517483356,
+                3,
+                -0.10546937268386865
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -3.63158914495898e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.glass_frit_triangular": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.tile_mosaic": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.casale_triclinium"
+          ],
+          "rawTerrainRange": {
+            "min": -28.04496502903885,
+            "max": 142.69243497096113
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:744f8de0ff718f348a8a7dd4f80cb218a1afca55581709e8b2aaf6de2e57d186",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 158106
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -36.91415602997213,
+                30,
+                50.17315103314592
+              ],
+              "lookAt": [
+                0.9944225517483356,
+                3,
+                -0.10546937268386865
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -3.63158914495898e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.glass_frit_triangular": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.tile_mosaic": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.casale_triclinium"
+          ],
+          "rawTerrainRange": {
+            "min": -28.04496502903885,
+            "max": 142.69243497096113
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:bede9ee80a687fdbcbd552d0bbf675bafbfa72d68db0ad0a7b2d230b4aca5bd6",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 158286
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -36.91415602997213,
+                30,
+                50.17315103314592
+              ],
+              "lookAt": [
+                0.9944225517483356,
+                3,
+                -0.10546937268386865
+              ],
+              "fov": 54
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-three-apses-and-pale-framed-roof.png",
+            "hash": "sha256:053aac8cad7a66b46dbc94b4b1af81ec674a52f2aaf83875b6dc9d789535b70e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 158286
+            },
+            "camera": {
+              "name": "three-apses-and-pale-framed-roof",
+              "position": [
+                30.902443256785585,
+                26,
+                25.88511156555341
+              ],
+              "lookAt": [
+                0.9944225517483356,
+                3,
+                -0.10546937268386865
+              ],
+              "fov": 54
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-west-recessed-entry-and-short-treads.png",
+            "hash": "sha256:95e75873b854ee5e7d30524dc6594bda0c113ee4f05ef13c046fb7a65cac712b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 155366
+            },
+            "camera": {
+              "name": "west-recessed-entry-and-short-treads",
+              "position": [
+                -23.127855633172974,
+                2.9347592584329822,
+                9.492222806651196
+              ],
+              "lookAt": [
+                -8.306833060650396,
+                1.1347592584329824,
+                0.8810303732111475
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-eastern-apse-frame-and-low-base.png",
+            "hash": "sha256:d63c93b0ab54c5e7a7efd9456393b7598225952a47d077f3b8ca5e74e52dd0e7",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 158286
+            },
+            "camera": {
+              "name": "eastern-apse-frame-and-low-base",
+              "position": [
+                30.887370279288753,
+                8.334759258432982,
+                6.780144336967298
+              ],
+              "lookAt": [
+                8.029208974865393,
+                2.0347592584329823,
+                -0.14765919524711435
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 43,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184676907411,
+              "area": 391.70883443011564
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.casale_triclinium"
+          ],
+          "rawTerrainRange": {
+            "min": -28.04496502903885,
+            "max": 142.69243497096113
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:8d7c31578387a50a7b9dbc5cbd57fbda595794f7c8b0da0e8fa77a0e023e56c7",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 156709
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -36.91415602997213,
+                30,
+                50.17315103314592
+              ],
+              "lookAt": [
+                0.9944225517483356,
+                3,
+                -0.10546937268386865
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ],
+    "ensembleReview": {
+      "status": "passed",
+      "sceneInputs": {
+        "inputHash": "sha256:3da2a1bb87e68be71de8322d51468ed17cd3094340158281ed03d16e1cb32d8f",
+        "sourceHash": "sha256:d973727fefcb2eb85e12eb6a0a768859dcf3dc3102bc306993bb3920c312ad51",
+        "runtimeHash": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+        "files": {
+          "content/worldgen/source/places/sq/sqd/casale_triclinium/models/source.glb": "sha256:d973727fefcb2eb85e12eb6a0a768859dcf3dc3102bc306993bb3920c312ad51",
+          "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.glb": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+          "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.skyline.glb": "sha256:bb05b52e583d10fcf7f37af87779a2f14778a9d067ba05887ddced6dac62f0f8",
+          "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.district.glb": "sha256:86d72850997732d5841f7bc2f052387ff9ab7f8ba51a78595e76ee2a4c7617d9",
+          "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.street.glb": "sha256:fe2a4d78ec7452311eebe54a7941ceee5a83e3c07872e65ecfb2844dd2e23027",
+          "content/worldgen/assets/places/sq/sqd/casale_triclinium/model.closeup.glb": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9",
+          "content/worldgen/source/places/sq/sqd/casale_main/models/source.glb": "sha256:9438959e6e82b460a05bf7f43a3e06bcd8533b35f93fc7bc157eaec3d8a0f5a5",
+          "content/worldgen/assets/places/sq/sqd/casale_main/model.glb": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+          "content/worldgen/assets/places/sq/sqd/casale_main/model.closeup.glb": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053"
+        },
+        "context": {
+          "assetId": "molen.worldgen.structure.casale_main",
+          "inputHash": "sha256:db6787208ed29a0d8c963fc18b4bf27155bd8134a098d78dd3ad3d92e7cbee2d"
+        }
+      },
+      "reports": [
+        {
+          "level": "closeup",
+          "state": {
+            "ensemble": true,
+            "terrainAtAllCourtyards": true,
+            "terrainAtForecourtApproaches": [
+              true,
+              true
+            ],
+            "terrainAtUnderCanopy": true,
+            "terrainAtCourtyard": true,
+            "terrainAtPortico": true,
+            "terrainAtNorthApproach": true,
+            "terrainAtCoreFloor": false,
+            "terrainAtCoreCenter": false,
+            "modelWorldY": -3.63158914495898e-7,
+            "terrainAtAttachment": true,
+            "nativeRoadInputsUnchanged": true,
+            "level": "closeup",
+            "partial": false,
+            "groundOutsideResidentTile": true,
+            "terrainAtMapAnchor": false,
+            "failedLoad": false,
+            "sourceBuildings": 43,
+            "independentBuildings": 41,
+            "remainingBuildings": 41,
+            "changedIndependent": [],
+            "remainingAuthored": [],
+            "groundCutoutActive": true,
+            "modelLoaded": true,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_triclinium",
+              "molen.worldgen.structure.casale_main"
+            ],
+            "rawTerrainRange": {
+              "min": -28.04496502903885,
+              "max": 142.69243497096113
+            },
+            "sourceGridModified": false,
+            "waterCutoutActive": false,
+            "sourceWaterArea": 0,
+            "remainingWaterArea": 0,
+            "nativeWaterUnchanged": true
+          },
+          "frames": [
+            {
+              "path": "shots/site-integration/ensemble-closeup-two-authored-shelters-in-native-context.png",
+              "hash": "sha256:db9ee61ce2f2551c41d648f8200a79b3fecac425384f9c95f4f4a8223c34781a",
+              "state": {
+                "level": "closeup",
+                "mode": "high",
+                "groundCutoutActive": true,
+                "draws": 22,
+                "triangles": 166319
+              },
+              "camera": {
+                "name": "two-authored-shelters-in-native-context",
+                "position": [
+                  -64.0347541127383,
+                  78,
+                  107.35245812612371
+                ],
+                "lookAt": [
+                  -20.43087087588289,
+                  5,
+                  -21.967692533650418
+                ],
+                "fov": 54
+              }
+            }
+          ],
+          "unloaded": {
+            "groundRestored": true,
+            "waterRestored": true,
+            "liveGeometries": 0
+          },
+          "errors": []
+        }
+      ],
+      "notes": "Two independently placed authored models,41 other resident buildings retained, eight shared graphs read once, original terrain/roads/water retained, all geometry disposed on unload."
+    }
+  },
+  "limitations": [
+    "Detached triapsidal Triclinium conservation shelter only. Exact mapped west rectangle and three rounded apses, low stone ruin plinth, glazed exterior proxies between slim frame posts, pale faceted hipped central roof/three radial apse caps, raised roof ribs and diagonal bracing. West entrance has a shallow recess, soffit, threshold and three short reconstructed treads. Main villa/baths, Xystus court, gate piers and two latrines remain independent. Generic interior floor is not a reproduction of figurative mosaics; no copied artwork, furniture or archaeological room inventory.",
+    "Shared site Q505617 and unique building way304818579/native35184676907411 identify this detached Triclinium, not the whole archaeological park. Its 31-vertex triapsidal outline sets meter scale. +X follows the west wall normal east/slightly north toward the eastern apse; +Z follows the west wall south/slightly east. Native east/up/south axes are baked, heading0. Only this footprint is replaced; all other site structures remain independent.",
+    "Photo-led medium-fi conservation exterior. Ordinary aerial shows a pale translucent framed central shelter and three radial apse caps. No qualified mapped heights. Working floor 546.116m absolute follows the native west threshold plus0.36m. Ruin base1.0m, canopy eave5.2m, central peak7.6m and apse peaks7.4m above the floor are reconstructed. Opaque pale glazing/roof proxies retain simple reflections without costly refraction. Frame spacing, doorway/stairs, roof junctions, unseen elevations, actual floor/mosaic state and accessibility are unverified.",
+    "Qualified approximate native conservation exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. South outside-building provider [0,18] supplies 546.7807650290389m datum. Boundary grades -1.108..+1.518m, working floor -0.665m and closed foundation -1.258m relative. The west recessed threshold and three short treads remain exposed and meet the original approach; rising eastern ground partly buries the low stone/cladding base (up to about2.18m above the floor). The shelter remains seated without native ground holes. Occupied building/stair masks retain original surrounding ground, roads, empty water layer and all 42 resident / 43 wider independent buildings. Excavated floor, doorway/stair reconstruction, exact paving and accessibility are unverified. No bespoke terrain, flattening or invented surrounding structures.",
+    "Photo-led medium-fi conservation exterior. Ordinary aerial shows a pale translucent framed central shelter and three radial apse caps. No qualified mapped heights. Working floor 546.116m absolute follows the native west threshold plus0.36m. Ruin base1.0m, canopy eave5.2m, central peak7.6m and apse peaks7.4m above the floor are reconstructed. Opaque pale glazing/roof proxies retain simple reflections without costly refraction. Frame spacing, doorway/stairs, roof junctions, unseen elevations, actual floor/mosaic state and accessibility are unverified. Qualified approximate native conservation exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. South outside-building provider [0,18] supplies 546.7807650290389m datum. Boundary grades -1.108..+1.518m, working floor -0.665m and closed foundation -1.258m relative. The west recessed threshold and three short treads remain exposed and meet the original approach; rising eastern ground partly buries the low stone/cladding base (up to about2.18m above the floor). The shelter remains seated without native ground holes. Occupied building/stair masks retain original surrounding ground, roads, empty water layer and all 42 resident / 43 wider independent buildings. Excavated floor, doorway/stair reconstruction, exact paving and accessibility are unverified. No bespoke terrain, flattening or invented surrounding structures. Meets the current medium-fi exterior standard. Three roof caps and the frame are modeled; glazing is deliberately opaque. Modern cladding transmission, exact roof junctions/frame spacing, low ruin inventories, entrance/stair form, excavated floors/mosaics and accessibility remain approximate or unverified. Physical phone/laptop and dense-city timings remain pending.",
+    "Shared site Q505617 and unique building way304818579/native35184676907411 identify this detached Triclinium, not the whole archaeological park. Its 31-vertex triapsidal outline sets meter scale. +X follows the west wall normal east/slightly north toward the eastern apse; +Z follows the west wall south/slightly east. Native east/up/south axes are baked, heading0. Only this footprint is replaced; all other site structures remain independent. Qualified approximate native conservation exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. South outside-building provider [0,18] supplies 546.7807650290389m datum. Boundary grades -1.108..+1.518m, working floor -0.665m and closed foundation -1.258m relative. The west recessed threshold and three short treads remain exposed and meet the original approach; rising eastern ground partly buries the low stone/cladding base (up to about2.18m above the floor). The shelter remains seated without native ground holes. Occupied building/stair masks retain original surrounding ground, roads, empty water layer and all 42 resident / 43 wider independent buildings. Excavated floor, doorway/stair reconstruction, exact paving and accessibility are unverified. No bespoke terrain, flattening or invented surrounding structures."
+  ]
+}

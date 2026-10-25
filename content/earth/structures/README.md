@@ -1,9 +1,12 @@
 # Geographic structures
 
-`placements.json` is the Earth pack's catalog of authored, geographically anchored models.
-Its coordinates are WGS84 `[longitude, latitude]`; `asset` is an ID in the worldgen style
-pack. The runtime indexes each entry by three-character geohash, queries only cells crossing
-the current terrain tile, then tests the anchor or extended bounds against the tile bounds.
+Authored, geographically anchored models live in individual
+[`source/placements/<gh2>/<gh3>/<placement-id>.json`](../source/placements/README.md) files.
+Their coordinates are WGS84 `[longitude, latitude]`; `asset` is an ID in the worldgen style
+pack. The build generates `placements/index.json` and compact `placements/cells/*.json` runtime
+regions, excluding source notes and basis explanations. The runtime loads regions intersecting
+the current terrain tile, then indexes each loaded entry by three-character geohash and tests
+the anchor or extended bounds against the tile bounds.
 Point structures are owned by one tile. Extended models are clipped to resident tiles, which
 share the prepared asset and release their own clipped geometry on eviction.
 
@@ -13,7 +16,7 @@ active set covers the Space Needle, downtown towers and library, Seattle Center 
 Pike Place Market, the waterfront wheel, both stadiums, Suzzallo Library, and SR-520.
 The Ballard Locks remains a draft.
 
-The next-1,000 batch adds eight ground-contact previews: Shanghai World Financial Center,
+The structure catalog batch adds eight ground-contact previews: Shanghai World Financial Center,
 The Shard, Oriental Pearl Tower, Maiden Tower, Gonbad-e Qabus, Ka'ba-ye Zartosht, Tower of
 Hercules and Kõpu Lighthouse. Their metadata records directed footprints or explicit facing
 approximations. Kiipsaare Lighthouse remains an offshore draft. Their authored geometry uses

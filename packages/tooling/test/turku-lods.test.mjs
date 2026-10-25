@@ -8,7 +8,7 @@ import {
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u6/u6x/n0305_turku_castle/',
+  '../../../content/worldgen/source/places/u6/u6x/turku_castle/',
   import.meta.url,
 );
 const frame = JSON.parse(readFileSync(new URL('map-frame.json', root))),
@@ -69,7 +69,7 @@ function distance(q, p) {
   return min;
 }
 it('rebuilds four deterministic browser levels under the medium-fi and phone budgets', async () => {
-  const id = 'molen.worldgen.structure.n0305_turku_castle',
+  const id = 'molen.worldgen.structure.turku_castle',
     sizes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

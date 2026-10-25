@@ -1,12 +1,12 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.watergate_complex",
-  "reviewedOn": "2026-10-14",
+  "reviewedOn": "2026-10-17",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:765d1f66b21a024ffb68ad2e37f6d174cdcd479703813ac6383c20e26e1436d3",
-  "sourceHash": "sha256:f82d7bd8d2c1e7e5a8ccadb2a1c482753fd744a59e9f3bef22e5bfd78384e801",
-  "runtimeHash": "sha256:0fc3f96d399e424ae48d0af3dccb7022ef38cbd8cace52c399503b6a09db8091",
-  "captureReportHash": "sha256:731a5b478ea11fabffb9067febe617de48694a64fcca40aceae499ca199ef621",
+  "inputHash": "sha256:725c9f2bde1ad77474eeb57ed1f6cba9f545b1b5eac4b8c081ad813ff2398c54",
+  "sourceHash": "sha256:b4041278a8a87c27d3f428f51d4f10f662541794d114992764095734f7aa262e",
+  "runtimeHash": "sha256:37e04eb05a902c5e4eb4fcc3dcf7f1884979245aab61c8833914c8fced6adf2c",
+  "captureReportHash": "sha256:edf711becb21e0baaf19dced8d5695842ebf8c18d2b79ae01b0f827e35ab40da",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -18,11 +18,11 @@
       "shots/front.png",
       "shots/back.png"
     ],
-    "notes": "Inspected seven final portable frames and the full shared aerial view. Mapped West, East and South residential blocks, northern office/hotel and southern office retain their separate curved plans and courtyard gaps. Projecting residential balcony edges and balustrade rhythm differ from office spandrels; the hotel wing has an arrival canopy. Rounded rooftop pods and the mapped T-shaped rooftop volume are present. Exact rooftop equipment, podium and terrace connections remain documented interpretations."
+    "notes": "Actually inspected all seven final portable frames after the bounded outline simplifier repair. Separate curved residential, hotel and office blocks, rooftop pods, strip glazing and projecting balcony bands remain legible. Courtyard gaps remain open. The public-domain aerials confirm the coordinated exterior; fine bay counts, equipment and low court details are generalized."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5f6800a347d5a1b0ebe78486c6e5a023db612197777b1ed90a9fec3b8c32a5f8",
+    "captureReportHash": "sha256:28583e1a0098e26cf4c93b0c597b59fed20ae4e9451e1da150b0a462bd7f33b1",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -32,11 +32,11 @@
       "shots/shared/back.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared viewer frames including the north-up map overlay. Concrete and painted-metal shared graphs use metric UVs; dark strip glazing remains a portable material. Roof caps use a mineral surface rather than reflective window material. The mapped curved footprints line up without neighboring Howard Johnson hotel. Fixed north-up transform and unload assertions pass. Flat fixture shows transforms; separate portable/context views preserve the independent source terrain."
+    "notes": "Actually inspected all seven final shared-material frames, including the north-up mapped placement overlay. Mineral concrete and painted-metal shared bindings preserve the cream horizontal rhythm; dark glazing is a portable material. All principal blocks retain their mapped alignment. Unload assertion passes. Flat placement fixture tests the transform; separate terrain views preserve the unchanged independent ground."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:eb9a26ee8e065e20da1d6cd6d9238c07987020082b0a593ad714db743f2dc53e",
+    "captureReportHash": "sha256:7369d90acc8ceb039da632121d4ea5b8fa9e684e94525a4bb8f39262620f68b8",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -58,12 +58,12 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected nineteen final views: twelve light/distance/mode combinations, front/back, silhouette and four forced detail levels. Rejected the first pale skyline for visible color discontinuity, and corrected it to dark glazing with six broader pale floor bands. Rejected the initial default camera placement inside the 313 m complex; final context scale 3.4 shows the whole asset at increasing distances. Authored district/street versions preserve the coordinated curved silhouette and facade rhythm; fine railings resolve in closeup. Context buildings are synthetic style fixtures, not Washington parcels. No physical-device frame rate is claimed."
+    "notes": "Actually inspected all nineteen final frames: twelve lighting/distance/mode views, front/back, silhouette and four forced detail transitions. All nineteen report the current asset and actual runtime/LOD hashes. The corrected skyline preserves the curved plan within its declared simplification tolerance; dark glazing and pale bands remain consistent across transitions. Synthetic context buildings are style fixtures, not Washington parcels."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:16c6d40b29376a1264a55e2cf56cc13e3476fae5d3ad78b6c316419a229ce818",
-    "mapGeometryHash": "sha256:646ac1b7295db110623963374270c0fb9bf4a19ce0e55f06969568b8d36ed91c",
+    "mapGeometryHash": "sha256:e2595fde59594606037d036d99544a629240b4aba86daa44f8a9fb971d981ab5",
     "terrain": {
       "path": "terrain-grid.json",
       "hash": "sha256:405b4925c0c8cdf3a1a53e468aee06bec0cdcb6dbbfa105854e75fc05ee8f9c5",
@@ -77,60 +77,60 @@
       ],
       "maxPngEncodingErrorMeters": 0.00013768672943115234
     },
-    "notes": "The local labeled Qualla plan resolves three residences, the hotel with adjoining northern office, and the southern office. Main mapped features and low podium are retained; rounded T-shaped part 35184818078673 is interpreted as a rooftop volume above the hotel/office body, not another full tower. Anchor [-77.05534279346466,38.89892378334336] and heading zero preserve +X east and +Z south. Central court [0,0] defines the 10.4144 m host datum. Preserved 4225 Terrarium samples cover 512 m at 8 m review spacing; mapped site relief is approximately -5.993462..0.468684 m, with lower closures extending to -6.8 m. These are coarse host elevations, not surveyed entrance, pool or terrace levels. Exact ground-floor continuity is outside scope and footprint suppression stays off."
+    "notes": "The inspected public-domain Tim1965 schematic plan identifies three residences, the hotel with adjoining northern office, and the southern office. It supplies identity, not geodetic dimensions. The independent mapped features, frame coordinates, anchor, heading, dry reference, terrain and lower closure depths are unchanged. Native mapped high-volume solid/void controls pass at all four actual imported detail levels (1631 each, buffered 3 m from polygon edges). Rounded mapped part 35184818078673 is a rooftop volume. Ground remains the preserved coarse Terrarium field: 4225 samples over 512 m, courtyard datum 10.4144 m, mapped relief -5.993462..0.468684 m and lower closure -6.8 m. Entrance, pool and terrace levels are not surveyed; footprint suppression stays off."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Coordinated Watergate hotel, offices and three residential blocks; exterior only, with interpreted roof and low courtyard structures.",
-    "notes": "Accepted original medium-fi coordinated exterior based on two inspected local Qualla aerial/street photographs and the local labeled plan. The complex is recognizable through its distinct curved bodies, alternating residential balcony treatment, office strip glazing, northern hotel wing and rounded rooftop forms. Individual bay counts, balustrade spacing, rooftop appliances, entrances and low court details are interpreted. Landscaping, pools, interiors and measured accessibility/terrace joins are omitted. Reference images are not embedded or redistributed."
+    "scope": "Coordinated Watergate hotel, offices and three residential blocks; exterior with generalized rooftop and low court structures.",
+    "notes": "Fresh comparison of all 33 final renders against the inspected Alfred Twu CC0 whole-complex aerial, Indutiomarus public-domain closer aerial and Tim1965 public-domain labeled plan. Distinct curved blocks, courtyard gaps, pale balcony/spandrel bands, dark strip glazing and rounded roof forms are recognizable. Fine balustrade/bay spacing, appliances and low court structures remain original medium-fi estimates; pools, landscaping, interiors and exact terrace joins are omitted. No current imagery approval relies on the excluded historical images. References are never embedded as textures."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:16947100961a1be09a90f699bc29ff121f0cd731c9d78ce7b97a8e22b2970317",
+    "recipeHash": "sha256:06d0a81f9d975f80a7cc165b74d6aafa2f54eabe9a8973c6773029685ee12662",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:aca1a250293c2e2b0cdb0f46dade5560c9054a26580508a95bcd4f8f68aaf825",
-        "bytes": 66604,
-        "gzipBytes": 13149,
-        "triangles": 868,
-        "cpuBytes": 65184,
-        "gpuBytes": 65184,
+        "hash": "sha256:0ffba0e756f323fa79dcbd7e51f702ec5eb4fbde1c7bb77156e527ee6283a119",
+        "bytes": 76032,
+        "gzipBytes": 15082,
+        "triangles": 1000,
+        "cpuBytes": 74616,
+        "gpuBytes": 74616,
         "errorMeters": 2.2,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:6d81cc433a6c16e15d82d30bc0a51ef399e50aaeb7c8c5729969e2f9c979e3be",
-        "bytes": 260948,
-        "gzipBytes": 64520,
-        "triangles": 3562,
-        "cpuBytes": 258324,
-        "gpuBytes": 258324,
+        "hash": "sha256:f40c5eefbc0eeeed9fb985be0f5463cae0ad0d1fdde52ce252ade86059f977dd",
+        "bytes": 267560,
+        "gzipBytes": 66375,
+        "triangles": 3656,
+        "cpuBytes": 264936,
+        "gpuBytes": 264936,
         "errorMeters": 1.3,
         "drawCalls": 2
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:3c0c6bef5c472f11a60b0bf9931630d1010793693294a240f305defeeb6243a9",
-        "bytes": 1047224,
-        "gzipBytes": 225313,
-        "triangles": 14468,
-        "cpuBytes": 1043400,
-        "gpuBytes": 1043400,
+        "hash": "sha256:9b4a2a28d1951ad135160e52ceb2cd471e246e1a3e1d06e94f96fff9fee23cdd",
+        "bytes": 1052804,
+        "gzipBytes": 226121,
+        "triangles": 14546,
+        "cpuBytes": 1048980,
+        "gpuBytes": 1048980,
         "errorMeters": 0.85,
         "drawCalls": 3
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:3bc14f1b8eba1c260ad8d6400cfc1a2c98794ae2b9b7967e5649ac799f9deb52",
+        "hash": "sha256:3080dbd9c106e88db3002acb4fd5a9630660d69cd961bf902fd84ac6302e58dd",
         "bytes": 5998892,
-        "gzipBytes": 1014710,
+        "gzipBytes": 1014697,
         "triangles": 49972,
         "cpuBytes": 5996640,
         "gpuBytes": 5996640,
@@ -138,7 +138,7 @@
         "drawCalls": 3
       }
     ],
-    "notes": "All four current hash-bound levels pass strict triangle/material/download budgets and were inspected: skyline 868, district 3562, street 14468 and closeup 49972 triangles. The first three are explicitly authored, retaining mapped plan geometry with progressively simpler floor bands and details. Declared authoring error budgets are not claimed as independently measured mesh distances."
+    "notes": "Four current levels pass strict geometry/material budgets and were actually inspected: 1000/3656/14546/49972 triangles, 1/2/3/3 draw calls. Iterative simplification now bounds replacement chords against every original vertex on the removed arc, preventing cumulative outline drift. Actual Float32 imported meshes pass all 6524 mapped solid/void probes. The sample proof is not a global mesh-distance measurement."
   },
   "geometryValidation": {
     "status": "passed",
@@ -150,7 +150,20 @@
     "runtimeLodsVerified": 4,
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current-LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass. Terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "notes": "Exact scoped source regeneration, normal import verification, four current-LOD checks, strict medium-fi audit, source/scene/terrain/placement schemas, six runtime pack members and repeated 30-tick state hashes pass. Raw and actual imported meshes pass geometry validation and 1631 mapped solid/void controls at each detail level. Ground, scene, map coordinates and cameras retain their pre-repair identities. No independent Khronos certificate is claimed.",
+    "mappedOccupancy": {
+      "controlsPerLevel": 1631,
+      "solid": 291,
+      "void": 1340,
+      "levels": 4,
+      "failures": 0,
+      "edgeBufferMeters": 3
+    },
+    "integration": {
+      "runtimePackMembers": 6,
+      "repeatTicks": 30,
+      "stateHash": "sha256:01311a6fb73ab3eef92cfe1a883cbd603c76c8b0a11fd9fa6be45e6958fda3bb"
+    }
   },
   "limitations": [
     "Original medium-fi exterior of the coordinated Watergate complex; mapped outlines and photographic proportions are generalized, not surveyed.",
@@ -163,5 +176,34 @@
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:44d2fdbe98aa15de95bf5b738c5ad857069bce8b60f4e74068fe0dce09ea4da2",
     "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-17",
+    "inputHash": "sha256:725c9f2bde1ad77474eeb57ed1f6cba9f545b1b5eac4b8c081ad813ff2398c54",
+    "referenceInputHash": "ca76a834297e09a0735e53cf18b438fb10d0baaecb5a7731d35ce248c988df97",
+    "acceptedReferencePaths": [
+      "_m/d/q/c/j/watergate-complex-wp/imag2636-dc-watergate.jpg",
+      "_m/d/q/c/j/watergate-complex-wp/photo-watergate-comple.jpg"
+    ],
+    "auxiliaryReferencePaths": [
+      "_m/d/q/c/j/watergate-complex-wp/map-watergate-complex.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:81b589e4ced04eafe928c389970bf577d67c3393088cfd83f021a692a15a4b98",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/d/q/c/j/watergate-complex-wp/hero.jpg",
+        "license": "CC BY-SA 4.0",
+        "reason": "Attribution license; excluded by public-domain-only policy."
+      },
+      {
+        "path": "_m/d/q/c/j/watergate-complex-wp/watergate-building-complex-fro.jpg",
+        "license": "Public domain",
+        "reason": "Public-domain label lacks a positive rights basis in original metadata; excluded as uncertain."
+      }
+    ],
+    "notes": "All imagery used for this review was actually inspected and passes exact-byte, original-metadata and matching published-Qualla provenance checks. The two selected aerials and auxiliary labeled plan are public domain (CC0 or PD-self). Earlier attribution-licensed or uncertain photographs are excluded. The current model was regenerated and all 33 fresh renders inspected, with current version-2 render identities and geometry validation. The plan confirms building identities only; mapped coordinates and terrain retain their independent provenance."
   }
 }

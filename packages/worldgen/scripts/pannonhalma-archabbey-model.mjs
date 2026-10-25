@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2k/n0338_pannonhalma_archabbey/',
+  '../../../content/worldgen/source/places/u2/u2k/pannonhalma_archabbey/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -738,7 +738,7 @@ export const buildPannonhalmaDistrict = (o) => build(o, 1);
 export const buildPannonhalmaStreet = (o) => build(o, 2);
 export const buildPannonhalmaCloseup = (o) => build(o, 3);
 export const pannonhalmaStudy = {
-  id: 'N0338',
+  id: 'pannonhalma_archabbey',
   key: 'pannonhalma_archabbey',
   title: 'Pannonhalma Archabbey',
   category: 'monastery',

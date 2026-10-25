@@ -1,0 +1,232 @@
+{
+  "variant": "Single-seat JAS 39C, clean airframe with RM12 and portrait color displays; simulator flight pages",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://www.saab.com/globalassets/products/aeronautics/gripen-c-series/gripen_c_factsheet.pdf",
+      "title": "Gripen C factsheet, March 2016",
+      "author": "Saab",
+      "license": "Manufacturer publication; copyrighted, local study only",
+      "scope": "14.9m overall length, 8.4m span; exterior, three views and component locations."
+    },
+    {
+      "url": "https://www.saab.com/globalassets/products/aeronautics/gripen-c-series/gripen_c-foldout.pdf",
+      "title": "Gripen C-series foldout",
+      "author": "Saab",
+      "license": "Manufacturer publication; copyrighted, local study only",
+      "scope": "Intake photograph and cutaway. Lists 14.1m length and 4.5m height; length differs from overall-length factsheet. Model uses 14.1m body plus 0.8m nose pitot, consistent with drawing, but that convention is inferred."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Saab_JAS_39_Gripen_3-view.svg",
+      "title": "JAS 39 three-view, 2010/revised 2013",
+      "author": "Kaboldy",
+      "license": "CC BY-SA 3.0; https://creativecommons.org/licenses/by-sa/3.0/",
+      "scope": "Airframe silhouettes and panel arrangement, not engineering drawings. All weapons, pylons, tanks and detached gear cartoons excluded."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Jas_39_Gripen_C.jpg",
+      "title": "Gripen C 39215 landing, 23 April 2025",
+      "author": "Hallstaspotter",
+      "license": "CC BY 4.0; https://creativecommons.org/licenses/by/4.0/",
+      "scope": "C airframe, canopy, intakes, gear and fin/nozzle. External stores excluded."
+    },
+    {
+      "url": "https://icas.org/icas_archive/ICAS2000/PAPERS/ICA0664.PDF",
+      "title": "System safety of the ordinary and emergency flight data display on the Gripen color displays",
+      "author": "Jan Palmqvist and Rolf Santesson, Saab AB, ICAS 2000",
+      "license": "Research publication; copyrighted, local study only",
+      "scope": "6.2x8.3in color displays and removal of mechanical standby instruments; figure 2.2 cockpit arrangement. Development-era illustration, cross-checked against C display exhibit."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Saab_JAS-39C_Gripen_MFD_at_ADAS_2018.jpg",
+      "title": "Gripen C MFD exhibit, ADAS 2018",
+      "author": "Rhk111",
+      "license": "CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/",
+      "scope": "Three portrait screens, raised input unit and lower central display; exhibit and perspective limit metric accuracy."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:View_from_the_pilot's_seat_of_a_Czech_Air_Force_Saab_Gripen.jpg",
+      "title": "Czech Gripen HUD in flight, 24 November 2014",
+      "author": "Milan Nykodym",
+      "license": "CC BY-SA 2.0; https://creativecommons.org/licenses/by-sa/2.0/",
+      "scope": "HUD combiner shape and support placement only. Does not show the full instrument panel."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.48,
+      2.9
+    ],
+    "lookAt": [
+      0,
+      2.03,
+      3.85
+    ],
+    "fov": 74
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.05
+    ],
+    "viewHeight": 0.86,
+    "cameraHeight": 6.5
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/gripen-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1345,
+        "height": 345
+      },
+      "referenceAnchor": [
+        86,
+        414
+      ],
+      "modelAnchor": [
+        -7.1,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1247,
+        "meters": 14.1,
+        "description": "Uniform body length excluding pitot; independent 4.5m fin height anchors ground. Detached landing-gear cartoons excluded."
+      },
+      "scope": "Body, canopy, fin, canard and nozzle outline. Weapons/store silhouettes are not fit targets."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/gripen-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 785,
+        "height": 1345
+      },
+      "referenceAnchor": [
+        389,
+        1258
+      ],
+      "modelAnchor": [
+        0,
+        7.1
+      ],
+      "scaleControls": {
+        "pixels": 1247,
+        "meters": 14.1,
+        "description": "Uniform body length. Independent wing span uses the wing edges, not the attached missile outlines."
+      },
+      "scope": "Delta wing, canards, single engine body and canopy; all stores excluded."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/gripen-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 785,
+        "height": 420
+      },
+      "referenceAnchor": [
+        389,
+        407
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 744,
+        "meters": 8.4,
+        "description": "Published span at wing tips, excluding drawn missiles; ground datum from independent fin height."
+      },
+      "scope": "Intake and body cross-section, wing/canard height. Detached gear cartoons excluded."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/gripen-panel.png",
+      "crop": {
+        "left": 80,
+        "top": 15,
+        "width": 750,
+        "height": 418
+      },
+      "referenceAnchor": [
+        455,
+        294
+      ],
+      "modelAnchor": [
+        0,
+        -1.93
+      ],
+      "scaleControls": {
+        "pixels": 180,
+        "meters": 0.15748,
+        "description": "Center 6.2in active display width from Saab ICAS paper; photo perspective means this is a local scale, not a metrological whole-panel fit."
+      },
+      "edgeMode": "photo",
+      "scope": "Portrait screen proportions, stagger and raised input unit. HUD cropped from this exhibit photograph and checked separately."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced the shared delta prototype with the C forebody and single-seat canopy, split rectangular intake lips, single-engine body, delta wing, close-coupled canards, single fin and petal nozzle.",
+      "Uniform drawing overlays distinguish actual wing edges from attached missile outlines. Published overall length and body-length values are recorded separately, with the pitot interpretation explicitly identified as inference.",
+      "Corrected cockpit from landscape screens to three 6.2x8.3in portrait displays, with the center display lower than the lateral pair, raised input panel, wide HUD, short center stick and single left throttle.",
+      "Visual iterations closed missing intake roof facets, wing-root gaps and a fin/body gap. Lowered the panel and pilot eye, and moved the combiner forward beneath the windscreen; pilot sightline geometry now passes.",
+      "Working TAS, geometric altitude, attitude, true heading and vertical speed use shared expressions. Signed altitude and unavailable-data blanking are verified. Canards, two-part mixed elevons, swept slats, rudder, gear, stick, throttle and pedals have live bindings."
+    ],
+    "independentDimensions": "Saab factsheet: 14.9m overall length and 8.4m span. Saab foldout: 14.1m length and 4.5m height. Model uses 14.1m body plus 0.8m pitot, an inferred convention supported by the drawing. Saab ICAS paper identifies 6.2x8.3in active display areas; the exhibit photograph is only locally scaled because of perspective.",
+    "visual": "Personally inspected all four final overlays, eight standard views and twelve cockpit/control/exterior state views at source 625827a6d88d3449517bc62f558b62c1b896bc74f1092f8c43a5bf25c7bdca18. Compared to C exterior photograph, manufacturer intake photograph, display exhibit, installed HUD photograph and Saab cockpit layout. Verified closed airframe joins, unobstructed pilot view, missing readings, negative altitude, opposite control inputs and gear-up appearance.",
+    "limitations": [
+      "Illustrator three-view is not an engineering drawing. Canard attitude and detached gear sketches are not an exact neutral/ground configuration reference; detailed cross-sections and retraction paths remain simplified.",
+      "Cockpit combines an early development layout with a C-series display exhibit and an installed HUD photograph. Display scale is supported by the Saab paper, but exact cockpit depths, console switch positions, seat dimensions and production-block details are not independently measured.",
+      "Flight pages are labeled simulator substitutes; no authentic Gripen mission software, collimated HUD, pitot/static system or flight-control law is claimed. Engine, fuel, sensor and map data are explicitly unavailable.",
+      "Selected skin boundaries, fasteners, warning/roundel geometry and mechanical details are present, but maintenance-level skin structure, engine internals, every stencil and all cockpit switches are not reproduced."
+    ]
+  },
+  "sourceHash": "sha256:625827a6d88d3449517bc62f558b62c1b896bc74f1092f8c43a5bf25c7bdca18",
+  "runtimeHash": "sha256:7c6388cc759b2a15ba9ce542fb28a182da55865a7f300c53cad50c6ef418ea46",
+  "limitations": [
+    "Illustrator three-view is not an engineering drawing. Canard attitude and detached gear sketches are not an exact neutral/ground configuration reference; detailed cross-sections and retraction paths remain simplified.",
+    "Cockpit combines an early development layout with a C-series display exhibit and an installed HUD photograph. Display scale is supported by the Saab paper, but exact cockpit depths, console switch positions, seat dimensions and production-block details are not independently measured.",
+    "Flight pages are labeled simulator substitutes; no authentic Gripen mission software, collimated HUD, pitot/static system or flight-control law is claimed. Engine, fuel, sensor and map data are explicitly unavailable.",
+    "Selected skin boundaries, fasteners, warning/roundel geometry and mechanical details are present, but maintenance-level skin structure, engine internals, every stencil and all cockpit switches are not reproduced."
+  ]
+}

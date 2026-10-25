@@ -1,0 +1,1185 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.temple_of_bel",
+  "sourceHash": "sha256:8eed10c5b52758af9d52869040ea7b5c853f9cd2f886b29e43014d640f7c04ba",
+  "runtimeHash": "sha256:fb457c9a742bba0927a0a43efc64b09b2677e8fe4e13389e6090c969285bd438",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:fc0680f6e8d1ac90c1bbdfb2dbad32511eb1fee00bc387d11d0d5279d44db7e6",
+      "bytes": 62156,
+      "gzipBytes": 11433,
+      "triangles": 586,
+      "cpuBytes": 60720,
+      "gpuBytes": 60720,
+      "errorMeters": 1.6,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:fc2b80d6bdd91e0c966a8a48fe3dfe93223f55191c91858a7b2abda3894f9228",
+      "bytes": 363984,
+      "gzipBytes": 105258,
+      "triangles": 3738,
+      "cpuBytes": 360144,
+      "gpuBytes": 360144,
+      "errorMeters": 0.8,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:0739bedc88e6fcd54fc905e318559d33182faf19b06d6208fdaae85a038f9dbf",
+      "bytes": 888444,
+      "gzipBytes": 255862,
+      "triangles": 9414,
+      "cpuBytes": 884592,
+      "gpuBytes": 884592,
+      "errorMeters": 0.3,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:c5a662a6fe60c43a22cf27dd14bfc066958e0190410309f94f3c6eb52d04a582",
+      "bytes": 1018336,
+      "gzipBytes": 297620,
+      "triangles": 10734,
+      "cpuBytes": 1014480,
+      "gpuBytes": 1014480,
+      "errorMeters": 0.08,
+      "drawCalls": 3
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:0d4651b4b0bd96dc1df1a611908009e2f3fbe4661047debc94e9bbaf6fe2c1f4"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:f8ce952a7aaf7363086e05519dd0abcb3a0b494a00d60fb8e49e532b6d606c92"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:e2bc801fb62829e0e2552cecd9a4f451075a6c97cb469fc4be0446ad501337ce",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          80.45200000000001,
+          46.4101,
+          133.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:a98052359920fa89ff32d99742a322cbe69aae34f66094d3acc77d325b85e984",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          80.45200000000001,
+          46.4101,
+          133.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:bc065085d7374066a89e79ea05a28ada6a3164a7d77feb46fc94a22f6d1bb5b2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          80.45200000000001,
+          46.4101,
+          133.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:bddfc249f0fe94029fd9c8c592482d3c6af4360a56a0be0cb6cd9f6b0531dd6f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          80.45200000000001,
+          46.4101,
+          133.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:55387bff9f6bb0223d55cc5e8be698ab21419eb9c27ed10e67d24182983a83ba",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 61916,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          158.852,
+          104.01010000000001,
+          269.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:b3723860be2a10c8de1b24cab6726a32bdb138299c99d4809c393f8dda3525f1",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 61916,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          158.852,
+          104.01010000000001,
+          269.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:e5501b394ea2927792bd95ebb1070408cb19bf20c317bf0c7a656d3bf4f3c6d2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 61916,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          158.852,
+          104.01010000000001,
+          269.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:caaa9b87a49d06c6fee3de4a121674e01eb6df21bb8536b8128781171bb026f1",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 61916,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          158.852,
+          104.01010000000001,
+          269.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:cbdfb71fd7cb448355e9eb2fe0f4990be799500d00cfd8625c8865f6f93f6711",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 58764,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          314.052,
+          164.8101,
+          538.0869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:1c86faf0241a43af80231454b32c793a6d90d1164271cc3b2939e292ee411102",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58764,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          314.052,
+          164.8101,
+          538.0869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:7711d350d1aeec1b687a4a014e23db19c17088ec4f9c9de6dcc8ca1b075d85ad",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 58764,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          314.052,
+          164.8101,
+          538.0869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:55eab6426707ad03a7aca89769338dd2aab967c5bab19c9b30fa2efe296ffb78",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58764,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          314.052,
+          164.8101,
+          538.0869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:1e45d68eb4ecd8db2fc3a582665d869d26d5d97e0b3c7a4977de7cbb87c680c1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 53068,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          314.052,
+          164.8101,
+          538.0869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-temenos-and-west-gate.png",
+      "hash": "sha256:57d36a401b6c44f6e66d5b2d9373747e8bf59ce10bf908a43748141dba48dfd5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          -234.31261270983615,
+          180,
+          231.99698171547476
+        ],
+        "lookAt": [
+          5,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/standing-cella-doorway.png",
+      "hash": "sha256:d9d7772da15a6002f1480391adf8ffa0e0d1329c6bcd32d75337a55f3f02bb05",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          -7.01680818500761,
+          13.412192734098152,
+          16.99458227993204
+        ],
+        "lookAt": [
+          16.46906097283703,
+          9.412192734098152,
+          2.503759325365179
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/doorway-cornice-and-horns.png",
+      "hash": "sha256:d78992ef666e9f853f0dd0424a927c65618d6f0b024e7a9a2b49289ecef3957e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          3.3281812795074788,
+          20.412192734098152,
+          8.393350218240423
+        ],
+        "lookAt": [
+          16.46906097283703,
+          13.412192734098152,
+          2.503759325365179
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/fortified-west-gate.png",
+      "hash": "sha256:607b81bb46067f33559d7a4f1a0c7c934adf9984192387b6501765b7364ef6f2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          -146.6153611702877,
+          9,
+          14.315581333151856
+        ],
+        "lookAt": [
+          -106.67298851874413,
+          5,
+          -8.361430528317527
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/destroyed-cella-rubble.png",
+      "hash": "sha256:c8dd24e69b98739da36595594fb6493d068ba3e9c3b7103d697891cc898025b4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          61.146485458923394,
+          26.412192734098152,
+          39.68302426282798
+        ],
+        "lookAt": [
+          23.508748057552268,
+          5.412192734098153,
+          4.180901462839959
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/surviving-perimeter-remains.png",
+      "hash": "sha256:326716b4a2db14e0d61a3c15ccde4918c991d7f9e7096b737780fc40a6550d63",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          10.975059159005653,
+          17,
+          113.24110594857471
+        ],
+        "lookAt": [
+          3.0073008798698915,
+          4,
+          87.52117538869057
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-complete-plan.png",
+      "hash": "sha256:714cfa3091e9dfdccb7dc4fc6c1806d1e77a27215e4bf45f15208f7674b07b22",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          360,
+          0.01
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ruins-skyline.png",
+      "hash": "sha256:9bf22ce672ed6325dea1f29aecfdbc33f8fd741de2adf9ab976695ba7a8d3dfe",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58764,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          -234.31261270983615,
+          180,
+          231.99698171547476
+        ],
+        "lookAt": [
+          5,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ruins-district.png",
+      "hash": "sha256:5dacd6ad673e049d2c83e31b9a7a3e5a48731a1756d3a7468a4beaea4fd2a87f",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 61916,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          -234.31261270983615,
+          180,
+          231.99698171547476
+        ],
+        "lookAt": [
+          5,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ruins-street.png",
+      "hash": "sha256:be46c2ed808c81a6d6142e1f1809204e5a83bb095f14b9f10ba860ff764d7376",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 67592,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          -234.31261270983615,
+          180,
+          231.99698171547476
+        ],
+        "lookAt": [
+          5,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ruins-closeup.png",
+      "hash": "sha256:57d36a401b6c44f6e66d5b2d9373747e8bf59ce10bf908a43748141dba48dfd5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          -234.31261270983615,
+          180,
+          231.99698171547476
+        ],
+        "lookAt": [
+          5,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:da864133240f3f72c220295854593200ac95b8d8bb0384c35547c265af6c227c",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58764,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          158.852,
+          104.01010000000001,
+          269.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:b3723860be2a10c8de1b24cab6726a32bdb138299c99d4809c393f8dda3525f1",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 61916,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          158.852,
+          104.01010000000001,
+          269.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:146c44e0944c624f4ebc63090b10c9f34cbb5c1eebfc2c310cd66c02fd06f303",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 67592,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          158.852,
+          104.01010000000001,
+          269.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:b8d7d958ec7629eea060176fb6d0f9d8408a49d10c987e00599967ca75c9e4eb",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 68912,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy5/temple_of_bel/terrain-review.height.png"
+        },
+        "position": [
+          158.852,
+          104.01010000000001,
+          269.2869
+        ],
+        "lookAt": [
+          3.652,
+          22.4101,
+          0.4869
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

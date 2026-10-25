@@ -308,8 +308,8 @@ function buildConti(out) {
 }
 
 export const torreDeiConti = {
-  id: 'n0584_torre_dei_conti',
-  planId: 'N0584',
+  id: 'torre_dei_conti',
+  planId: 'torre_dei_conti',
   title: 'Torre dei Conti',
   wikidata: 'Q605721',
   build: buildConti,

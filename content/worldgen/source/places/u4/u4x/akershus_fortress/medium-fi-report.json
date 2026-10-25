@@ -1,0 +1,1173 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.akershus_fortress",
+  "sourceHash": "sha256:e98101005da11a113bf5b3a6382024eae71d55a5f019b8adcf2a7c6939308d7d",
+  "runtimeHash": "sha256:be5aafecbf635bf63fb420737184bfc4d1a517273a052e53bf168a30bb81b617",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:c8afb802b6489445f4a021dcd0788c96ba2b8898613736b2c4558cb75c02a6c3",
+      "bytes": 92460,
+      "gzipBytes": 16325,
+      "triangles": 911,
+      "cpuBytes": 91040,
+      "gpuBytes": 91040,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:0d1e449fbb5156174b26858d64e9abd3b06848efa54d6c9194c50894e4392894",
+      "bytes": 185432,
+      "gzipBytes": 43950,
+      "triangles": 2023,
+      "cpuBytes": 176156,
+      "gpuBytes": 176156,
+      "errorMeters": 0.7,
+      "drawCalls": 8
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:e34c3cb8d002445b7a0a30ce03d8440052fbbca1d228017cc97e16df04bfb893",
+      "bytes": 334908,
+      "gzipBytes": 70022,
+      "triangles": 3661,
+      "cpuBytes": 325556,
+      "gpuBytes": 325556,
+      "errorMeters": 0.3,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:08581d7d67629efbbc6bec190b03069ffd883e864bc0bf9180453eb33b941e2a",
+      "bytes": 342876,
+      "gzipBytes": 71897,
+      "triangles": 3765,
+      "cpuBytes": 333524,
+      "gpuBytes": 333524,
+      "errorMeters": 0.1,
+      "drawCalls": 8
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:dab7e97028f40bd627887b5999dec04d31d50100863ca9805a09e595d538b5a4"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:c85aa14f90f71e8aad9737b231fd863515fc049af275345ae5d4e08a36127d3a"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:78f84f8cca973227652a92739f2cadc8db1135ac0c9f91906695cb2800fb29b0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          135.67469999999997,
+          74.023,
+          96.66569999999999
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:285c77d97bb745a7891648c22c817e05e7bdbe4af450e06f0de6e6c95ab350ab",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          135.67469999999997,
+          74.023,
+          96.66569999999999
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:e82c028aba8350c6872b00cc1cf837e2f5ae417efcefb9c70d3f190778843360",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          135.67469999999997,
+          74.023,
+          96.66569999999999
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:a90bd950b0cae5dcbd1b6039991c9a8ab7ac37454d59eb6eaa6d5536a07b28f2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          135.67469999999997,
+          74.023,
+          96.66569999999999
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:39b754a1354137c18fc4542db69517f3f183b9bb03db16e4fb406375633e112b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 59061,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          253.2747,
+          160.42299999999997,
+          300.6657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:01eb3e12be04eab94b27a497d5137cdf5ba29b0e634062ffde484696bfbd2e7b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 59061,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          253.2747,
+          160.42299999999997,
+          300.6657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:6f5e4c91b23b0226298f231bca79be720e8efad2055c4a07bd1e106ce3a8c1c7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 59061,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          253.2747,
+          160.42299999999997,
+          300.6657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:204879277f5bd63135f53dbd82e94a23bb20e4597525cb348cd18e467793b842",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 59061,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          253.2747,
+          160.42299999999997,
+          300.6657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:32e5ba174fb29d398cbb3dcec102278e715d48c7a5a14f81f5113b6b5c1272d4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 57949,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          486.07469999999995,
+          251.623,
+          703.8657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:5befd8434c4b3efba6f7366cc415cb9b9fe1f8c95a41cf18181fb238fd12fcbc",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 57949,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          486.07469999999995,
+          251.623,
+          703.8657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:5fd38003c6ce3e7c31253e8b44c71ac42be5a3bc91d46f6a508d0c63f3d59f9b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 57949,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          486.07469999999995,
+          251.623,
+          703.8657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:af513cd8f5bbb41516a8839b8f9b612c21d29962beddf45e027d8d1637a6ba41",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 57949,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          486.07469999999995,
+          251.623,
+          703.8657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:e158b1a97adaa61b7f21c167cd957777eaa09df1e18a48e97c947050762815c1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 53393,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          486.07469999999995,
+          251.623,
+          703.8657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/castle-two-clock-spires.png",
+      "hash": "sha256:366534cfb8bad7a263a2d6ea78dafeebe8d6f0096b06f8afe4ffe936a01456b2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          -165,
+          61,
+          105
+        ],
+        "lookAt": [
+          -3,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-court-and-roof-hierarchy.png",
+      "hash": "sha256:b7c65f5383772ebd6b4919451f4d4d6701ae83beacb6b8363a4d65b4a21a148c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          172,
+          0
+        ],
+        "lookAt": [
+          0,
+          4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northern-entry-vault.png",
+      "hash": "sha256:1ba218209e538216a366e2a079442b4c2f6060e31d2f229ef31407cc530d5630",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          -3.5,
+          9,
+          -69
+        ],
+        "lookAt": [
+          -3.5,
+          8,
+          -30
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/stepped-gables-and-clock-lantern.png",
+      "hash": "sha256:295ebbf34789e16b6ef2755c051480412fc4f18cead0b2ab8f669900b5fb6955",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          -45,
+          37,
+          -70
+        ],
+        "lookAt": [
+          -13,
+          25,
+          -28
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/resistance-museum-guardhouse.png",
+      "hash": "sha256:a0149eecf190cb62df1565c150db7fe2721a8a18035fcbe4c23ad27cffb4be76",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          -140,
+          39,
+          -172
+        ],
+        "lookAt": [
+          -38,
+          7,
+          -115
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northern-magazine-bastions.png",
+      "hash": "sha256:f7cc4c5c260d7365c962fb6568c3c3c65e81f1a8b145493086fbc568e3016f8d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          50,
+          77,
+          -389
+        ],
+        "lookAt": [
+          14,
+          2,
+          -245
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-akershus-skyline.png",
+      "hash": "sha256:5e41be651961a2fd3f6d7095a427bf1a5d41f78576a2d666368d6719aa79252c",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 57949,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          360,
+          230,
+          370
+        ],
+        "lookAt": [
+          5,
+          8,
+          -95
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-akershus-district.png",
+      "hash": "sha256:9f0b0c9b9e2ff0fac767f48965044ec0da130c4ea4d2e5b8d6d26d3815b43791",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 59061,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          360,
+          230,
+          370
+        ],
+        "lookAt": [
+          5,
+          8,
+          -95
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-akershus-street.png",
+      "hash": "sha256:0bbf119be864832fb2bead170305b493887929d4e010830db070d607d7c1182f",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60699,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          360,
+          230,
+          370
+        ],
+        "lookAt": [
+          5,
+          8,
+          -95
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-akershus-closeup.png",
+      "hash": "sha256:6550a9540e808012f7d32dde7a798c61b7e5c678d527cec619f723cec8ce6303",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          360,
+          230,
+          370
+        ],
+        "lookAt": [
+          5,
+          8,
+          -95
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:a696621b1f8882ed57d8990b6197986cbf239c77f7e452872a14ade0133ec075",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 57949,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          253.2747,
+          160.42299999999997,
+          300.6657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:01eb3e12be04eab94b27a497d5137cdf5ba29b0e634062ffde484696bfbd2e7b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 59061,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          253.2747,
+          160.42299999999997,
+          300.6657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:ab03b4a408d051582e0f9a0b05f7ba5dbb49d8f788c1d6a83309f554fb24203c",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60699,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          253.2747,
+          160.42299999999997,
+          300.6657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:1c2ae5b17276a9b7daefa84c95f22b5e4ecb2b88406de137f31015e58a41dc22",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60803,
+        "groundY": -23,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u4/u4x/akershus_fortress/terrain-review.height.png"
+        },
+        "position": [
+          253.2747,
+          160.42299999999997,
+          300.6657
+        ],
+        "lookAt": [
+          20.4747,
+          38.022999999999996,
+          -102.5343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2.4,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

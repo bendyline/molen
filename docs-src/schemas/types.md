@@ -113,7 +113,7 @@ Namespaced entity types with doc strings, default components, inheritance, and a
             "type": "array",
             "items": {
               "type": "string",
-              "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+              "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9][a-z0-9_]*)*$"
             },
             "description": "Project asset ids this type references (e.g. its gltf model)."
           },

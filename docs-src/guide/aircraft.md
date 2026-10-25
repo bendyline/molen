@@ -1,17 +1,28 @@
 # Aircraft in the world explorer
 
-The world explorer includes a P-51D Mustang and OH-6 interpretation, each with an editable
-GLB, reusable entity type, flight physics, an instrumented cockpit and a chase camera.
+The world explorer includes 53 aircraft: the P-51D Mustang, OH-6 interpretation, Bendy Small Airliner
+and fifty additional real-type interpretations. Each has an editable GLB, reusable entity type,
+flight physics, an instrumented cockpit and a chase camera. The additions include ten helicopters,
+ten general aviation aircraft, ten fighters, five cargo transports, the MV-22B Osprey, AV-8B Harrier
+and thirteen utility, regional, historic and business aircraft. All use clean configurations without
+external weapons.
 
-Use the **P-51 Mustang** or **OH-6** buttons to visit the practice airfield, then press **E** to
+Use the **P-51 Mustang**, **OH-6** or **Bendy Small Airliner** buttons to visit the practice airfield, then press **E** to
 board. The aircraft buttons also work from the example hub's world view. A direct link can use
-`?aircraft=p51d` or `?aircraft=oh6`. See [Vehicle interiors and instruments](vehicle-interiors.md)
+`?aircraft=p51d`, `?aircraft=oh6` or `?aircraft=airliner`. The **Aircraft catalog** selector visits
+the additional models; direct links also accept suffixes such as `?aircraft=uh_1h`,
+`?aircraft=f_16b`, `?aircraft=c_17a` and `?aircraft=mv_22b`.
+The three original practice models load initially. Additional GLBs load on selection, with one
+additional request in flight and intermediate selections coalesced. Replacing a selection releases
+its model and ECS entity; an occupied aircraft is retained. The host's content-pack byte cache
+still follows its own cache budget. The catalog does not download all fifty new models on entry.
+See [Vehicle interiors and instruments](vehicle-interiors.md)
 for cockpit source files, per-model instrument bindings and the shared exterior/seated GLB
 contract.
 
-The practice airfield is a raised 900-meter runway and helipad near the initial camera position.
+The practice airfield is a raised 4,500-meter runway and helipad near the initial camera position.
 Its foundation clears streamed buildings; it is a fictional practice location, not a mapped airport.
-Both aircraft stay in the ECS and retain their position throughout the session, across terrain
+The aircraft stay in the ECS and retain their position throughout the session, across terrain
 streaming and floating-origin changes. Reloading starts a fresh session.
 
 ## Controls
@@ -20,13 +31,14 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | --- | --- |
 | E | Board, or exit after landing, stopping and engine shutdown |
 | I | Start/stop engine; allow the propeller or rotor to spool |
-| Shift / Ctrl | Increase/decrease throttle (Mustang) or collective (OH-6); holds its setting on release |
+| Shift / Ctrl | Increase/decrease throttle or helicopter collective; fighter afterburners engage above 85% throttle |
 | W / S | Nose down / nose up |
 | A / D | Bank left / right; helicopter cyclic |
 | Q / Z | Left / right rudder or anti-torque pedals; ground steering in the Mustang |
 | Space | Wheel brakes |
-| G | Retract/extend Mustang gear while airborne |
-| F | Toggle Mustang flaps |
+| G | Retract/extend airplane gear while airborne |
+| F | Toggle airplane flaps |
+| J | Cycle powered-lift lever: forward, 22.5°, 45°, 67.5°, vertical; Osprey/Harrier only |
 | V | Cockpit / chase |
 | Mouse | Look around the cockpit |
 | R | Recover at the airfield after an impact |
@@ -56,9 +68,28 @@ cyclic inputs tilt rotor thrust to travel. Lower collective gently to land. Swit
 and wait for the rotor to stop before exiting. An aircraft cannot be exited or switched to free
 flight while airborne. After an impact, R resets its aircraft state and places it on the airfield.
 
+Bendy Small Airliner: the generic 39-meter twin uses the same airplane controls, with slower
+responses and a lower load-factor limit than the Mustang. Its two independently named engines
+use the jet thrust model, calibrated to a representative Mach 0.78 cruise. It is a fictional
+aircraft. The flight deck has an animated yoke; its display
+markings are decorative, while live flight readings come from the HUD. Board at the forward
+entry point. Its larger footprint needs substantially more runway and clearance.
+
+Osprey and Harrier: use J to select vertical thrust (the parked Osprey starts there), allow the nacelles/nozzles to
+reach 90°, start the engine and increase power smoothly. W/S, A/D and Q/Z provide powered pitch,
+roll and yaw control in a hover. Transition toward forward thrust gradually while gaining airspeed;
+the nacelles take 12 seconds for full travel and Harrier nozzles take 3. These are simplified
+powered-lift dynamics, with finite travel, vertical thrust, engine-dependent hover authority and
+airspeed blending. They do not simulate a real conversion corridor, transmission cross-shaft,
+vortex-ring state, hot-gas ingestion or a certified nozzle schedule. Fixed landing gear remains
+down regardless of G. Cargo aircraft have larger clearance and runway requirements.
+
 Cockpit needles show airspeed, altitude, heading, vertical speed and RPM; the artificial horizon
 banks with the aircraft. The HUD supplies precise knot/feet/feet-per-minute readings, AGL height,
-g load, power, engine/gear/flap state, stall alerts and terrain waiting status. Propellers, both helicopter
+g load, power, engine/gear/flap state, stall alerts and terrain waiting status. It distinguishes
+KTAS from equivalent airspeed (KEAS), shows local Mach and afterburner percentage, and flags
+airframe/surface overspeed and developed departures. KEAS is not calibrated indicated airspeed.
+Propellers, both helicopter
 rotors, controls, gear, flaps, ailerons, elevators and rudder animate from simulation state. The
 Mustang's gear takes 12 seconds: its inner wheel doors open, each main leg swings inboard into a
 well in the wing root, the tail wheel folds forward into the fuselage, and the doors close behind
@@ -66,11 +97,12 @@ them. Its flaps take 13 seconds to run down to 50°.
 
 ## Reuse in another experience
 
-Both aircraft ship in the `molen.entities` content pack, with their type documents and models.
+All 53 aircraft are registered in the `molen.entities` content pack, with their type documents and models.
 `npx molen pack fetch https://molen.dev/packs/index.json molen.entities` downloads it and lists it
 in your project.json `packs`, and the CLI then resolves the types; in a browser, open it with `openPack` from `@bendyline/molen-pack` and pass
 `createPackSet([pack]).assetProvider()` as the client's asset provider. The entity type IDs and
-glTF refs are `molen.entities.aircraft.p51d` and `molen.entities.aircraft.oh6`. Fly both in
+glTF refs are `molen.entities.aircraft.p51d`, `molen.entities.aircraft.oh6` and
+`molen.entities.aircraft.airliner`. Fly them in
 [World Explorer](https://molen.dev/play/world-explorer/) to see the finished integration.
 
 These are not kernel presets. Each type document contains the concrete aircraft's mass and center
@@ -106,11 +138,20 @@ ownership of a loaded GLB and animates the nodes named by `spec.visual` from air
 exterior moving parts as [model-signal bindings](vehicle-interiors.md#exterior-animation), with
 keyframed curves so one gear position can sequence doors and legs.
 
+For powered lift, declare `spec.poweredLift` with positive `transitTime`, `controlFadeSpeed`,
+`pitchAuthority`, `rollAuthority`, `yawAuthority` and `damping`, and mark the participating
+forward-facing engine installations `vectored: true`. `aircraftInput.thrustVector` is 0–1;
+`aircraftState.thrustVectorPosition` is its actual actuator position. The model signal
+`thrustVector` follows that position, so visuals and forces remain synchronized. Thrust rotates
+from local +Z to +Y; off-center engines generate moments. Hover controls require available
+engine thrust and fade with axial airspeed. `spec.airplane.fixedGear` keeps fixed undercarriage
+extended independently of the pilot's selection.
+
 The deterministic airplane solver is a six-degree-of-freedom rigid body. The transform's
 quaternion is the attitude, with no pitch or bank stops, so loops, rolls, inverted flight and
 spins follow from the forces; `aircraftState.yaw`, `pitch` and `roll` report that attitude (roll
 is ±π inverted). Forces are lift, induced/profile/gear/flap drag, side force, propeller thrust
-and gravity at the center of mass, from wind-relative airflow and air density. Moments are
+or jet thrust and gravity at the center of mass, from wind-relative airflow and air density. Moments are
 angle-of-attack (pitch) and weathercock (yaw) stability, roll, pitch and yaw damping, dihedral
 effect, roll from yaw rate, inertia coupling, asymmetric thrust, and, scaled by
 `propellerEffects`, propeller torque, P-factor and slipstream yaw, and gyroscopic precession.
@@ -120,7 +161,68 @@ Stall depends on wing incidence, including camber, rather than a fixed true-airs
 Separated flow progressively loses lift and control authority, adds drag, breaks the nose toward
 attached flow, and loses roll damping so yaw drops a wing. Lift remains perpendicular to airflow.
 Elevator and rudder retain limited propwash authority at low speed. Throttle controls shaft
-power with a transient RPM spool limit, avoiding a second steady power penalty from RPM.
+power for propellers and dry/reheat thrust for jets, with a transient RPM spool limit.
+
+### Propulsion, altitude and performance
+
+All 53 shipped aircraft have separate performance profiles. `engine.propulsion: 'propeller'`
+uses shaft power, propeller efficiency and an altitude lapse, with `ratedDensityRatio` representing
+supercharging or flat rating. `'jet'` uses `dryThrust` in newtons, density lapse and a Mach-dependent
+ram term. `afterburnerThrust` is total augmented thrust per engine. The last 15% of throttle
+commands reheat by default (`afterburnerDetent: 0.85`); it takes 0.6 seconds to light fully after
+the engine reaches operating RPM. Engine failure or cutoff extinguishes it. Ordinary turbofans
+and the Harrier have no afterburner. Omitting `propulsion` retains legacy constant-power behavior.
+
+The atmosphere has standard temperature lapse layers, including the tropopause; sound speed
+therefore changes with altitude. Wind-relative TAS drives forces; `equivalentAirspeed` is
+`TAS * sqrt(density / 1.225)` and `mach` uses local sound speed. `criticalMach` and `waveDrag`
+add a continuous transonic drag rise. Ground effect reduces induced drag near the surface.
+`maxMach`, `maxEquivalentAirspeed`, `gearLimitSpeed` and `flapLimitSpeed` set overspeed alerts;
+they do not impose a velocity cap or silently break the airframe. Surface limits are EAS
+approximations, not exact POH calibrated-airspeed limits. Flap input can be a boolean or a
+fraction from 0 to 1, allowing intermediate settings through commands.
+
+The F-14 profile has an empirical high-alpha departure model: directional stability fades,
+rudder/elevator authority is blanked, aileron response can reverse, and yaw autorotation can
+sustain a flat spin. A symmetric stall does not receive an arbitrary spin direction. The
+torque-free angular integrator preserves rotational energy through rapid rotations. NASA's
+[F-14 model research](https://www.nasa.gov/pdf/601262main_ModelingFlight-ebook.pdf), especially
+printed pages 126–127, supports these mechanisms; it does not supply a validated F-14D
+coefficient set. This model does not reproduce the F-14A's TF30 compressor stalls, the later
+digital flight-control system, or automatic variable wing sweep aerodynamics.
+
+Helicopters retain assisted cyclic and collective controls. An actuator-disc power budget limits
+lift by installed shaft power, induced power, rotor profile losses and parasitic drag power;
+increasing payload cannot create extra engine power. Their calibrated parasitic drag,
+density-dependent lift, ground effect and translational lift are supplemented by optional
+vortex-ring lift loss in powered, slow descent and retreating-blade lift loss above an authored
+equivalent speed. These are qualitative approximations, not blade-element models or an
+autorotation training model. Powered-lift conversion has the separate limitations described above.
+
+### Headless fleet experiments
+
+In the engine repository, build the packages before running the graphics-free harness:
+
+```sh
+pnpm aircraft:bench --flight --check --out=.artifacts/aircraft-performance.json
+pnpm aircraft:bench --id=f-14d --json
+```
+
+The harness uses the production kernel. It solves steady lift/thrust/drag balance, sweeps five
+altitudes, and runs three-minute controlled flights from 85% of each reference speed. It reports
+multiple equilibrium branches rather than assuming a supersonic branch can always be reached.
+The fleet unit suite also checks a withheld DA42 cruise point, F-22 dry supercruise, dirty
+configuration, hot air, uniform-wind invariance and timestep convergence. Kernel tests exercise
+spin symmetry, energy conservation, engine failures and reheat transients.
+
+Reference conditions and provenance live in the
+[performance ledger](https://github.com/bendyline/molen/blob/main/content/entities/source/aircraft-performance.json).
+Published cruise, maximum and operating speeds are different quantities. Where a source does
+not specify weight, altitude or throttle, the test condition is explicitly estimated. Some
+aircraft still have engineering-estimate anchors. Passing a fitted anchor establishes internal
+consistency, not independent real-world validation. All polar, lapse and high-alpha coefficients
+remain approximations. Fuel burn, stores, changing mass/CG, detailed engine maps, icing,
+structural failures and certified flight-control laws are not modeled.
 
 Flight assistance is limited to the pitch axis, so a keyboard can fly it. The stick moves an
 elevator (deflecting at `pitchResponse` per second and springing back four times faster) that
@@ -257,8 +359,8 @@ setAircraftEngineFailed(world, 'twin', 'left', false); // explicit repair
 `setAircraftEngineFailed` returns false for an unknown aircraft or engine. A failure immediately
 removes powered thrust and lets that propeller spool down; pilot throttle/switch input cannot
 repair it. Failure triggers belong to the experience (for example a damage or training command).
-The shipped world explorer still has its two single-engine aircraft and common controls; this
-API does not add a twin-engine model, failure key or automatic random failures.
+The world explorer supplies common engine controls; failure scenarios are authored through
+this API, without automatic random failures.
 
 `aircraftState.engines[id]` stores `rpm`, `rotorAngle`, `failed` and current `thrust` in newtons.
 The solver initializes missing engine state from the legacy RPM/phase, then the per-engine state
@@ -267,9 +369,9 @@ follows the first engine. Set `visual.rotors[].engine` to animate independent pr
 bindings retain the common phase. Body rates, trim, all engine state and input overrides survive
 keyframes/replay and pause at terrain gaps. Boarding and exit checks consider every engine.
 
-This extension models propeller thrust imbalance as a yaw moment. It does not add pitch or roll
-moments from the thrust line, feathering, windmilling drag or a calibrated minimum-control-speed
-envelope; propeller torque, P-factor and precession come from `propellerEffects` above. Helicopters continue to use
+This extension models thrust imbalance and, for vectored engines, pitch and roll moments from
+the thrust line. Feathering, windmilling drag and a calibrated minimum-control-speed envelope
+are not included; propeller torque, P-factor and precession come from `propellerEffects` above. Helicopters continue to use
 one `engine` driving the shared rotor; multiple turbines feeding a common gearbox require a
 different shaft-power model and are not represented by independent propeller engines.
 
@@ -289,7 +391,7 @@ collides with terrain. Do not add a second physics body that also writes the air
 
 This is a game flight model with recognizable polygonal aircraft, not a full aircraft systems
 simulation or a calibrated replica of any airplane's handling. Rotor blade-element aerodynamics,
-autorotation, vortex-ring state, a calibrated spin model, fuel, automatic engine damage, detailed
+autorotation, a quantitatively validated spin model, fuel, automatic engine damage, detailed
 avionics and weapons are outside this implementation. Cockpit switches and pedals are visual details; the listed input
 controls operate the simulated systems. Collision uses coarse airframe probes and resident world
 geometry; it does not model deformation or distant unloaded obstacles.
@@ -307,11 +409,9 @@ power, configuration drag, stall recovery from either bank direction, coordinate
 unpowered energy loss, wind equivalence and 30/60/120 Hz consistency.
 `packages/kernel/test/aircraft-dynamics.test.ts` covers full rolls, loops and the load-factor
 limit, flight-path hold, trimmed launches, propeller swing and crosswind on the takeoff roll,
-and turbulence that matches across host rates and keyframes. In calm air at 1,000 m,
-starting at 60 m/s and using a test pilot to hold altitude for 120 seconds, the tuned Mustang
-reaches approximately 311 knots at full throttle, 262 knots at 65% throttle, and 203 knots with
-gear and flaps extended. These are simulation regression targets, not a certified performance
-chart or an altitude-hold feature available to the player.
+and turbulence that matches across host rates and keyframes. Current fleet calibration targets
+and their evidence are recorded in the performance ledger above. The test pilot's altitude
+hold is a harness feature, not a player control or a certified performance chart.
 
 `packages/kernel/test/aircraft-engines.test.ts` covers symmetric two/four-engine layouts,
 mirrored engine failures, counter-rudder, thrust moment arms, independent switches/spool,

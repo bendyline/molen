@@ -10,10 +10,20 @@ From the repository root, install once:
 
 ```sh
 pnpm install
+pnpm dev:prepare  # restore/generate assets and package content once
+pnpm dev          # start the gallery with the prepared content
 ```
 
 Each launch command builds its engine dependencies automatically. The games use the runtime
 assets already in the repo; playing requires no art-generation step or Python installation.
+
+Normal `pnpm dev` compiles engine code and reuses the prepared content packs, even when asset sources have changed.
+It does not fetch or regenerate models or rebuild content archives. After a targeted model rebuild
+and import, run `pnpm dev:content` to refresh the browser's packs. `pnpm dev:prepare` is the
+explicit first-time setup: `assets:fetch` may build models when the current source bundle has
+not been published. Production builds and CI continue to prepare and verify current content.
+The `dev` and `dev:packages` commands compile with `tsdown` directly so unfinished content
+authoring does not run the full model-library validation during app development.
 
 | Game | Launch | Authoring guide |
 |---|---|---|

@@ -9,7 +9,7 @@ import { buildStonehengeReviewed } from '../../worldgen/scripts/stonehenge-detai
 import { colors, prism } from '../../worldgen/scripts/structure-mesh.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/gc/gcn/n0946_stonehenge'),
+const source = resolve('../../content/worldgen/source/places/gc/gcn/stonehenge'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -69,7 +69,7 @@ function nearest(ts, o, d) {
 }
 
 it('reproduces the preserved original draft and the current authored master from checked-in recipes', async () => {
-  const gen = await readFile('../worldgen/scripts/generate-next-1000-models.mjs', 'utf8');
+  const gen = await readFile('../worldgen/scripts/generate-landmark-models.mjs', 'utf8');
   const build = Function(
     'prism',
     'C',
@@ -135,7 +135,7 @@ it('keeps the open inner trilithons, current gaps, fallen groups, four outliers 
 it('binds signed outlying controls and exact identity, and deterministically stays within browser budgets', async () => {
   const s = await read(`${source}/spec.json`),
     f = await read(`${source}/map-frame.json`),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(f.mappedIdentity.wikidataId).toBe('Q39671');

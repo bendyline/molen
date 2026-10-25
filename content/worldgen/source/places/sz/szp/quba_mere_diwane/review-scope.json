@@ -1,0 +1,505 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_marble",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "stone_marble",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.68,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.35,
+      "metallic": 0.9
+    },
+    "window": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.32,
+      "metallic": 0.25
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      35.14094903400057,
+      33,
+      57.81537145027115
+    ],
+    "lookAt": [
+      7.265873884594191,
+      10,
+      -0.390987183601028
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "central-ribbed-cone-seven-turrets-and-gold-finials",
+      "position": [
+        21.003727670096204,
+        25,
+        33.31763743040789
+      ],
+      "lookAt": [
+        6.3,
+        16,
+        -0.65
+      ],
+      "fov": 49
+    },
+    {
+      "name": "stone-fans-recessed-window-and-timber-door",
+      "position": [
+        4.017365325803133,
+        7.5,
+        19.444516141080733
+      ],
+      "lookAt": [
+        3.9429833707693547,
+        5,
+        8.139452349807136
+      ],
+      "fov": 49
+    },
+    {
+      "name": "open-east-portico-posts-beam-and-steps",
+      "position": [
+        29.78846672005343,
+        10,
+        16.00208488871415
+      ],
+      "lookAt": [
+        17.89048661513029,
+        4.5,
+        2.458153796787664
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        35.14094903400057,
+        33,
+        57.81537145027115
+      ],
+      "lookAt": [
+        7.265873884594191,
+        10,
+        -0.390987183601028
+      ],
+      "fov": 45,
+      "name": "quba-diwane-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        35.14094903400057,
+        33,
+        57.81537145027115
+      ],
+      "lookAt": [
+        7.265873884594191,
+        10,
+        -0.390987183601028
+      ],
+      "fov": 45,
+      "name": "quba-diwane-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        35.14094903400057,
+        33,
+        57.81537145027115
+      ],
+      "lookAt": [
+        7.265873884594191,
+        10,
+        -0.390987183601028
+      ],
+      "fov": 45,
+      "name": "quba-diwane-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        35.14094903400057,
+        33,
+        57.81537145027115
+      ],
+      "lookAt": [
+        7.265873884594191,
+        10,
+        -0.390987183601028
+      ],
+      "fov": 45,
+      "name": "quba-diwane-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/quba-diwane-model.mjs",
+    "export": "buildQubaDiwaneSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildQubaDiwaneDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.35,
+            "metallic": 0.9
+          },
+          "window": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.32,
+            "metallic": 0.25
+          }
+        }
+      },
+      "street": {
+        "export": "buildQubaDiwaneStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.35,
+            "metallic": 0.9
+          },
+          "window": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.32,
+            "metallic": 0.25
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildQubaDiwaneCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.35,
+            "metallic": 0.9
+          },
+          "window": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.32,
+            "metallic": 0.25
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      44.1618,
+      40.1402
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original standard6m Mapzen terrain and water. Body/portico share a small locally level plinth with bottom edges buried into sampled grade; short door/portico stairs descend toward local ground. No entire-precinct slab, flattening or ground/water cutout. Coarse DEM and native map do not resolve paving, exact doorway thresholds or plinth steps.",
+    "replaceFootprint": false,
+    "bounds": [
+      44.16172078615898,
+      40.14009126053528,
+      44.162072923119126,
+      40.14031944908238
+    ],
+    "terrainReference": {
+      "anchor": [
+        44.1618,
+        40.1402
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original standard6m Mapzen terrain and water. Body/portico share a small locally level plinth with bottom edges buried into sampled grade; short door/portico stairs descend toward local ground. No entire-precinct slab, flattening or ground/water cutout. Coarse DEM and native map do not resolve paving, exact doorway thresholds or plinth steps."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -3.7611240985476697,
+          0.18279822623734687
+        ],
+        [
+          -3.304610348036352,
+          -4.610594760828795
+        ],
+        [
+          -0.5655278449684483,
+          -8.262701667618016
+        ],
+        [
+          2.8583252838664315,
+          -9.860497884075565
+        ],
+        [
+          5.597407786934336,
+          -10.317011025951901
+        ],
+        [
+          5.637407786934335,
+          -10.317011025951901
+        ],
+        [
+          10.887315917814483,
+          -9.860497884075565
+        ],
+        [
+          14.539425921905021,
+          -6.43664843569572
+        ],
+        [
+          16.137224048694634,
+          -3.0127974370096684
+        ],
+        [
+          20.24584780329649,
+          -1.8715134259169504
+        ],
+        [
+          20.24584780329649,
+          -1.8315134259169503
+        ],
+        [
+          17.735022175484243,
+          7.52702195861163
+        ],
+        [
+          17.695022175484244,
+          7.52702195861163
+        ],
+        [
+          12.474475747565208,
+          6.392119521178028
+        ],
+        [
+          7.919976539490921,
+          9.124821842017946
+        ],
+        [
+          7.879976539490922,
+          9.124821842017946
+        ],
+        [
+          3.3148390343777487,
+          8.668307557977238
+        ],
+        [
+          -1.478555345991083,
+          5.016194256965882
+        ],
+        [
+          -3.7611240985476697,
+          0.22279822623734685
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -3.7611240985476697,
+            0.18279822623734687
+          ],
+          [
+            -3.304610348036352,
+            -4.610594760828795
+          ],
+          [
+            -0.5655278449684483,
+            -8.262701667618016
+          ],
+          [
+            2.8583252838664315,
+            -9.860497884075565
+          ],
+          [
+            5.597407786934336,
+            -10.317011025951901
+          ],
+          [
+            5.637407786934335,
+            -10.317011025951901
+          ],
+          [
+            10.887315917814483,
+            -9.860497884075565
+          ],
+          [
+            14.539425921905021,
+            -6.43664843569572
+          ],
+          [
+            16.137224048694634,
+            -3.0127974370096684
+          ],
+          [
+            20.24584780329649,
+            -1.8715134259169504
+          ],
+          [
+            20.24584780329649,
+            -1.8315134259169503
+          ],
+          [
+            17.735022175484243,
+            7.52702195861163
+          ],
+          [
+            17.695022175484244,
+            7.52702195861163
+          ],
+          [
+            12.474475747565208,
+            6.392119521178028
+          ],
+          [
+            7.919976539490921,
+            9.124821842017946
+          ],
+          [
+            7.879976539490922,
+            9.124821842017946
+          ],
+          [
+            3.3148390343777487,
+            8.668307557977238
+          ],
+          [
+            -1.478555345991083,
+            5.016194256965882
+          ],
+          [
+            -3.7611240985476697,
+            0.22279822623734685
+          ]
+        ]
+      ],
+      "basis": "Replace only the one named Quba Mere Diwane shell with a two-centimeter numeric tolerance to prevent zero-area native edge slivers. Preserve the separate Ziarat temple, independent buildings, native courtyard ground and water."
+    },
+    "notes": "Standard Protomaps2026-10-14 building/POI35185101801767 names Quba Mere Diwane at the candidate location. The same mapped shell includes the octagonal body and projecting east/southeast portico; root heading0, internal angle+.262rad from native east toward south, body center[6.3,-.65]m relative to the candidate anchor. The southern/other doorway positions and seven turret allocations are picture-led approximations. The separately named Ziarat temple35185555948588 about45m west remains independent. Retain original standard6m Mapzen terrain and water. Body/portico share a small locally level plinth with bottom edges buried into sampled grade; short door/portico stairs descend toward local ground. No entire-precinct slab, flattening or ground/water cutout. Coarse DEM and native map do not resolve paving, exact doorway thresholds or plinth steps."
+  }
+}

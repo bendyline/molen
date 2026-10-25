@@ -1,5 +1,6 @@
 /** Getty Villa: two open peristyles, individual museum ranges and hillside terrace arcade. */
 import './install-deterministic-math.mjs';
+import fs from 'node:fs';
 import earcut from 'earcut';
 import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { B, cleanRing, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
@@ -391,44 +392,140 @@ function pool(o, x, z, w, len, d) {
         b = ring[j],
         c = inner[j],
         e = inner[i];
-      quad(
-        o,
-        'marble',
-        [
-          [a[0], floor + 0.38, a[1]],
-          [b[0], floor + 0.38, b[1]],
-          [c[0], floor + 0.38, c[1]],
-          [e[0], floor + 0.38, e[1]],
-        ],
-        [0, 1, 0],
-        marble,
-      );
-      for (const [l, r, sign] of [
-        [a, b, 1],
-        [e, c, -1],
-      ])
+      if (!(d > 2 && w > 8))
         quad(
           o,
           'marble',
           [
-            [l[0], floor + 0.02, l[1]],
-            [r[0], floor + 0.02, r[1]],
-            [r[0], floor + 0.38, r[1]],
-            [l[0], floor + 0.38, l[1]],
+            [a[0], floor + 0.38, a[1]],
+            [b[0], floor + 0.38, b[1]],
+            [c[0], floor + 0.38, c[1]],
+            [e[0], floor + 0.38, e[1]],
           ],
-          [sign * (r[1] - l[1]), 0, sign * (l[0] - r[0])],
+          [0, 1, 0],
           marble,
         );
+      for (const [l, r, sign] of [
+        [a, b, 1],
+        [e, c, -1],
+      ])
+        if (!(d > 2 && w > 8 && sign === 1 && (i < 12 || (i >= 15 && i < 27))))
+          quad(
+            o,
+            'marble',
+            [
+              [l[0], floor + 0.02, l[1]],
+              [r[0], floor + 0.02, r[1]],
+              [r[0], floor + 0.38, r[1]],
+              [l[0], floor + 0.38, l[1]],
+            ],
+            [sign * (r[1] - l[1]), 0, sign * (l[0] - r[0])],
+            marble,
+          );
     }
+    if (d > 2 && w > 8) poolCoping(o, ring, inner, x, z);
     cap(o, inner, floor + 0.23, 'pool', rgb('68a9b2'));
   }
-  if (d > 1) {
+  if (d > 1 && !(d > 2 && w > 8)) {
     for (let i = 0; i < ring.length; i++) {
       const a = ring[i],
         b = ring[(i + 1) % ring.length];
       beam(o, 'marble', [a[0], floor + 0.42, a[1]], [b[0], floor + 0.42, b[1]], 0.18, 0.13, marble);
     }
   }
+}
+/** Continuous beveled slab and real recessed joints around the two curved pool ends. */
+function poolCoping(o, outer, inner, x, z) {
+  const c = JSON.parse(
+      fs.readFileSync(
+        new URL(
+          '../../../content/worldgen/source/places/9q/9q5/getty_villa/pool-construction-controls.json',
+          import.meta.url,
+        ),
+      ),
+    ),
+    uv = (p, n) => {
+      const axis = n.map(Math.abs).indexOf(Math.max(...n.map(Math.abs)));
+      return p.map((v) => v.filter((_, i) => i !== axis));
+    },
+    metric = {
+      addQuad: (s, r, p, n, _u, color) => o.addQuad(s, r, p, n, uv(p, n), color),
+      addConvexPolygon: (s, r, p, n, _u, color) => {
+        const u = uv(p, n);
+        return o.addConvexPolygon(s, r, p, n, (v) => u[p.indexOf(v)], color);
+      },
+    },
+    ring = (r, y, [sx, sz] = [1, 1]) => r.map((p) => [x + (p[0] - x) * sx, y, z + (p[1] - z) * sz]),
+    join = (a, b, kind) => {
+      for (let i = 0; i < a.length; i++) {
+        const j = (i + 1) % a.length,
+          p = [a[i], a[j], b[j], b[i]],
+          n = normalFor(...p),
+          radial = n[0] * (a[i][0] + a[j][0] - 2 * x) + n[2] * (a[i][2] + a[j][2] - 2 * z);
+        if (
+          (kind === 'up' ? n[1] : kind === 'down' ? -n[1] : kind === 'inner' ? -radial : radial) < 0
+        )
+          p.reverse();
+        metric.addQuad('poolStone', ref, p, normalFor(...p), null, marble);
+      }
+    },
+    lower = ring(outer, c.cap.bottom, c.cap.lowerScale),
+    edge = ring(outer, c.cap.bevel, c.cap.lowerScale),
+    top = ring(outer, c.cap.top, c.cap.topScale),
+    innerBottom = ring(inner, c.cap.bottom),
+    innerEdge = ring(inner, c.cap.bevel),
+    innerTop = ring(inner, c.cap.top, c.cap.innerTopScale);
+  join(lower, edge, 'outer');
+  join(edge, top, 'outer');
+  join(top, innerTop, 'up');
+  join(innerTop, innerEdge, 'inner');
+  join(innerEdge, innerBottom, 'inner');
+  join(innerBottom, lower, 'down');
+  for (const [start, end] of c.endPanels.edgeRanges)
+    for (let i = start; i < end; i++) {
+      const a = outer[i],
+        b = outer[(i + 1) % outer.length],
+        dx = b[0] - a[0],
+        dz = b[1] - a[1],
+        len = Math.hypot(dx, dz),
+        n = [dz / len, -dx / len],
+        t = c.endPanels.jointWidth / (2 * len),
+        ap = [a[0] + dx * t, a[1] + dz * t],
+        bp = [b[0] - dx * t, b[1] - dz * t],
+        back = (p) => [p[0] - n[0] * c.endPanels.depth, p[1] - n[1] * c.endPanels.depth],
+        p = [ap, bp, back(bp), back(ap)];
+      if (
+        p.reduce(
+          (s, v, j) => s + v[0] * p[(j + 1) % p.length][1] - p[(j + 1) % p.length][0] * v[1],
+          0,
+        ) > 0
+      )
+        p.reverse();
+      loft(
+        metric,
+        'poolStone',
+        [
+          p.map((v) => [v[0], c.endPanels.bottom, v[1]]),
+          p.map((v) => [v[0], c.endPanels.top, v[1]]),
+        ],
+        marble,
+      );
+      const aa = [a[0] - n[0] * c.endPanels.backingRecess, a[1] - n[1] * c.endPanels.backingRecess],
+        bb = [b[0] - n[0] * c.endPanels.backingRecess, b[1] - n[1] * c.endPanels.backingRecess];
+      metric.addQuad(
+        'poolStone',
+        ref,
+        [
+          [bb[0], c.endPanels.bottom, bb[1]],
+          [aa[0], c.endPanels.bottom, aa[1]],
+          [aa[0], c.endPanels.top, aa[1]],
+          [bb[0], c.endPanels.top, bb[1]],
+        ],
+        [n[0], 0, n[1]],
+        null,
+        marble,
+      );
+    }
 }
 function arch(o, x, w, d) {
   const r = w / 2,
@@ -771,6 +868,7 @@ const surfaces = {
   brick: { slot: 'wall', graph: 'brick', roughness: 0.9, metallic: 0 },
   glass: { ...landmarkSurfaces.glass, localRef: ref },
   pool: { slot: 'window', localRef: 'palette:#feffff', roughness: 0.2, metallic: 0.12 },
+  poolStone: { slot: 'trim', graph: 'concrete_plain', roughness: 0.87, metallic: 0 },
 };
 export const gettyModel = {
   id: 'getty_villa',
@@ -785,6 +883,8 @@ export const gettyModel = {
   qaCameras: [
     { name: 'front', position: [-37, 38, 190], lookAt: [-3, 5, 10] },
     { name: 'back', position: [-115, 77, -126], lookAt: [-8, 5, -26] },
+    { name: 'pool-coping', position: [-1.2, 3.8, -11], lookAt: [-1.2, 1.3, -4.5] },
+    { name: 'pool-profile', position: [-7.8, 2.6, -8.8], lookAt: [-2.3, 1.2, -4.8] },
   ],
   build: getty,
   surfaces,
@@ -805,7 +905,7 @@ export const gettyModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior from six individually inspected local Qualla photographs, official Getty visitor plans/axonometric and aerial roof context. Hidden joins, gallery depths, heights and fine ornament are estimates, not surveyed geometry.',
+    'New outer-pool broad beveled coping and24jointed curved-end panels from native cleared Qualla CC0aerial and two exact native Highsmith photographer-public-domain pool views/detail. Original basin footprint/water/inner walls/straight sides and all other original geometry retained; three lower levels exact. Full fixed museum/both peristyles/roofs/pools/attached terrace retained pending broader cleared exterior review. Earlier attribution/private visitor-plan/satellite controls excluded; hidden joins, gallery depths, heights, stone profiles/panel dimensions and fine ornament remain medium-fi estimates, not surveyed geometry.',
     'Main villa, peristyles, pools and attached viewing terrace only. Modern theater, entry pavilion, cafe, auditorium, parking and separate campus buildings excluded. No artworks, vegetation, people, interiors or photographic pixels copied.',
     'Independent unmodified USGS CA_LosAngeles_B23 raster 114605 retained. Bare-earth ground under structures is interpolated by the source; host terrain may differ. Footprint replacement remains disabled.',
     'Column capitals/fluting, painted wall panels, roof tiles, balusters and brick arcade details are simplified progressively with distance. No physical-device frame-rate measurement claimed.',

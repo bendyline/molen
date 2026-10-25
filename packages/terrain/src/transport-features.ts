@@ -30,6 +30,13 @@ export function isTransportLink(feature: TerrainTransportationFeature): boolean 
   return feature.link === true || /(?:_link|ramp)$/.test(feature.subclass ?? '');
 }
 
+/** Conservative arterial cue for decorative junction controls; local tags beat broad classes. */
+export function isArterialRoad(category: string, width: number): boolean {
+  if (/^(residential|living_street|living|service|tertiary|unclassified)$/.test(category))
+    return false;
+  return /^(primary|secondary|trunk)$/.test(category) || width >= 10;
+}
+
 /**
  * Merge features whose properties are identical (ignoring `id`), concatenating their lines.
  * Protomaps splits one road into many features; grouping lets fragments join end to end.

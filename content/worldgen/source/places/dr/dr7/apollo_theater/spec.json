@@ -1,0 +1,375 @@
+{
+  "planId": "apollo_theater",
+  "id": "apollo_theater",
+  "assetId": "molen.worldgen.structure.apollo_theater",
+  "title": "Apollo Theater",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.95013600587845,
+    "latitude": 40.809894266817764
+  },
+  "size": [
+    35.48567008972168,
+    28.204999923706055,
+    66.06689929962158
+  ],
+  "actualBounds": {
+    "min": [
+      -9.859640121459961,
+      -3,
+      -61.35689926147461
+    ],
+    "max": [
+      25.62602996826172,
+      25.204999923706055,
+      4.710000038146973
+    ]
+  },
+  "visualBrief": "Dated2013–2019 Harlem Apollo: four-bay glazed white terracotta front/five colossal pilasters, two square/transomed window tiers and fluted shield/meander spandrels, deep modillion cornice/open baluster parapet. Recessed western entrance/four doors under half-width projecting marquee with blue bands, pale display panels, warm soffit bulbs and two short-side APOLLO caps. Eastern glazed shop/yellow APOLLO fascia belongs to same frontage. Two-sided pale-yellow APOLLO blade with original geometric red letters/counters/neon strokes, open three-tier black steel trestle/V bracket. Exact native L-shaped stepped auditorium roof envelope; neighboring buildings/new Victoria spaces excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/2018701088/"
+  ],
+  "stories": [
+    {
+      "id": "apollo-theater-wp",
+      "url": "https://qualla.com/apollo-theater/"
+    }
+  ],
+  "referenceInputHash": "sha256:7eff66fed13846e6f843f0e8f4c240e8ef4e5c32e90d850cb967d40ad41a4f6a",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-apollo-theater.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-apollo-theater.mjs",
+    "level": "skyline",
+    "export": "apolloTheaterSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.7,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62,
+        "metallic": 0.25,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.12
+      },
+      "sign": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.5,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "apolloTheaterDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.25,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "sign": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "apolloTheaterStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.25,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "sign": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One unchanged original Terrarium tile/2m review grid, dry eastern125thStreet sidewalk[5.4,2.4] datum8.7256m. Fixed foundation-3m/internal floor.4m clears native broad footprint relief. No terrain flattening; unmeasured threshold/pavement remains proportional and host dataset compatibility is conditional.",
+    "anchor": [
+      -73.95013600587845,
+      40.809894266817764
+    ],
+    "heading": -0.5429511404183183,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.95009584954137,
+        40.809850745067735
+      ],
+      "modelHeight": 0,
+      "basis": "Dry125thStreet sidewalk outside eastern historic front, clear of western marquee/entry and road carriageway."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184643887746"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3043bdcc9f6d3ae6767797329c6afa9914340f9c08dd27688f533481f4f86f11"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Dated2013–2019 facade/marquee/blade, with2007/2010sign details. Owner confirms ongoing2025–2027restoration and2026relighting; future lobby/sign updates are not claimed as surveyed current appearance.",
+    "Native L-shaped historic envelope retained. Database20mheight is an approximate rear mass control; front cornice/parapet, roof steps, sign height, recesses and fine relief are photo-proportioned, not measured drawings.",
+    "2024LPCpresentation PDF was discovered but web read was too large and direct request403; not inspected or used.1983exterior description and local originals/aerial provide the actual inputs.",
+    "No auditorium interior/pews/stage, adjacent newer Victoria spaces, Banana Republic/GameStop/Cinderella stores, street furniture/crowds/vehicles, event advertising, original pavement art or photo pixels. Independent original terrain remains unchanged.",
+    "Cornice/parapet17.38m, blade25.2m and rear roof20m are photo/aerial-proportioned estimates, not measured elevation drawings. Shared concrete graph approximates glazed terracotta; original opaque palette glazing/sign colors and geometric typography; event content omitted. Fine shield/anthemion/neon profiles, hidden roof equipment/side/rear walls and exact marquee curves are simplified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -22,
+        19,
+        35
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        7,
+        12,
+        21
+      ],
+      "lookAt": [
+        1.8,
+        10,
+        0.1
+      ]
+    },
+    {
+      "name": "entry-detail",
+      "position": [
+        -1,
+        2.5,
+        10
+      ],
+      "lookAt": [
+        -3.77,
+        1.9,
+        -0.8
+      ]
+    },
+    {
+      "name": "marquee-detail",
+      "position": [
+        6,
+        5.5,
+        8
+      ],
+      "lookAt": [
+        -2.5,
+        4.7,
+        2
+      ]
+    },
+    {
+      "name": "sign-east-detail",
+      "position": [
+        9,
+        20,
+        7
+      ],
+      "lookAt": [
+        -3.65,
+        19,
+        1.25
+      ]
+    },
+    {
+      "name": "sign-west-detail",
+      "position": [
+        -15,
+        19,
+        6
+      ],
+      "lookAt": [
+        -3.65,
+        19,
+        1.25
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -28,
+        40,
+        -17
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -24
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        45,
+        28,
+        -78
+      ],
+      "lookAt": [
+        10,
+        10,
+        -48
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15818,
+    "vertices": 47454,
+    "materials": 6,
+    "bytes": 1901716,
+    "sha256": "sha256:6b3fbf912df7afaa5906ee34d0f6d24a55b73f4c6f3c5695d7400b0676fbf971"
+  }
+}

@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/9q/9q5/n0176_u_s_bank_tower'),
+const source = resolve('../../content/worldgen/source/places/9q/9q5/us_bank_tower'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -76,7 +76,7 @@ it('reproduces U.S. Bank Tower original master and verifies twelve signed map ou
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineWorld.find((p) => p.id === 'N0176').build(a.wrap(b), m);
+  skylineWorld.find((p) => p.id === 'us_bank_tower').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`),
     independent = await read(`${source}/map-parts.json`);
   expect(m.elements).toHaveLength(12);

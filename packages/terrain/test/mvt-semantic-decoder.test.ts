@@ -110,6 +110,107 @@ function encodeTile(layers: TestLayer[]): Uint8Array {
   return pbf.finish();
 }
 
+it('retains signage cues and normalizes reverse and implicit motorway travel', () => {
+  const tile = createProtomapsTerrainMvtDecoder().decode(
+    encodeTile([
+      {
+        name: 'roads',
+        features: [
+          {
+            id: 501,
+            type: 2,
+            properties: {
+              kind: 'highway',
+              kind_detail: 'motorway_link',
+              oneway: '-1',
+              ref: 'I 90',
+              'junction:ref': '17B',
+              destination: 'Lake City;Downtown',
+              'destination:ref': 'WA 900',
+              'destination:colour': 'green;brown',
+              maxspeed: '60 mph',
+            },
+            geometry: [
+              [
+                { x: 0, y: 1024 },
+                { x: 4096, y: 1024 },
+              ],
+            ],
+          },
+          {
+            id: 502,
+            type: 2,
+            properties: {
+              kind: 'highway',
+              kind_detail: 'motorway',
+              shield_text: '90',
+              network: 'US:I',
+            },
+            geometry: [
+              [
+                { x: 0, y: 2048 },
+                { x: 4096, y: 2048 },
+              ],
+            ],
+          },
+        ],
+      },
+      {
+        name: 'pois',
+        features: [
+          {
+            id: 503,
+            type: 1,
+            properties: { highway: 'motorway_junction', ref: 17, exit_to: 'Riverside', layer: 1 },
+            geometry: [[{ x: 2048, y: 1024 }]],
+          },
+          {
+            id: 504,
+            type: 1,
+            properties: { highway: 'stop', stop: 'all' },
+            geometry: [[{ x: 2048, y: 2048 }]],
+          },
+        ],
+      },
+    ]),
+    {
+      address: { level: 15, x: 0, z: 0 },
+      content: 'all',
+      encoding: 'mvt',
+      layers: ['transportation', 'poi'],
+    },
+  );
+  expect(tile.transportation[0]).toMatchObject({
+    oneway: true,
+    ref: 'I 90',
+    junctionRef: '17B',
+    destination: 'Lake City;Downtown',
+    destinationRef: 'WA 900',
+    destinationColour: 'green;brown',
+    maxspeed: '60 mph',
+    lines: [
+      [
+        [1, 0.25],
+        [0, 0.25],
+      ],
+    ],
+  });
+  expect(tile.transportation[1]).toMatchObject({
+    oneway: true,
+    ref: '90',
+    shieldText: '90',
+    network: 'US:I',
+  });
+  expect(tile.transportation[1]?.junctionRef).toBeUndefined();
+  expect(tile.pois?.[0]).toMatchObject({
+    class: 'motorway_junction',
+    ref: '17',
+    exitTo: 'Riverside',
+    layer: 1,
+  });
+  expect(tile.pois?.[1]).toMatchObject({ class: 'stop', stop: 'all' });
+});
+
 const outer: TestPoint[] = [
   { x: 0, y: 0 },
   { x: 4096, y: 0 },

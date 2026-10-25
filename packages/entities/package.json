@@ -38,7 +38,7 @@
   ],
   "scripts": {
     "generate": "node scripts/generate-models.mjs",
-    "build": "tsdown && node scripts/generate-models.mjs --check",
+    "build": "tsdown && node scripts/update-aircraft-performance.mjs --check && node scripts/generate-models.mjs --check",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "biome check src scripts test package.json",
     "test:unit": "vitest run --passWithNoTests"

@@ -1,0 +1,9 @@
+# Ennis House — core exterior finalization
+
+Full fixed textile-block house, bridge-linked garage/servants wing, motor court, terraces, pool and retaining walls retained. Exact native original1969 government HABS CA-1942 west elevation and gate detail by Jean Davis establish the stepped buff massing, recessed windows, block courses and measured4.84505mportal group. Only this cleared public-domain drawing is active imagery after Qualla-first search; earlier attribution/private/satellite imagery is excluded from this review. Independent public USGS B23 point measurements acquired2023-01-08 through2024-01-07 corroborate court datum and broad raised bridge. Corrected entrance floor1.2m, short sloping apron and4.9mdeep bridge with4.15mdeck. Original whole-house transform and every raster/grid/heightfield sample remain exact. Bounded rendered-ground opening only under solid entrance paving resolves bridge returns interpolated as ground. Inferred underpass floor, modern restoration, hidden roof joins, room heights and relief remain approximate medium-fi exterior reconstruction; registration allows2m horizontal uncertainty and architectural levels about0.4m. No measured navigable threshold/collision or exact current-condition claim.
+
+39current rendered views actually inspected; final frozen-input images are byte-identical to the inspected iterations.113actual imported geometry controls pass. Four levels:900/2086/11396/58598triangles. Every original triangle outside the bounded entrance correction remains exact. Ground-opening activation/hide/unload restoration pass without changing original source values. Portable isolated view is geometry evidence; source-ground medium-fi views establish the approximate terrain review.
+
+Source: sha256:cc95f51402fd150a43b2b654a2217284901ff4ff30b434e7dd49f07a0b0ac996
+
+Runtime: sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e

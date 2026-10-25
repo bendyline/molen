@@ -21,7 +21,7 @@ const point = (a, r, y) => [r * Math.sin(a), y, r * Math.cos(a)],
 const fit = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/th/ths/n0691_lusail_stadium/pmtiles-fit.json',
+      '../../../content/worldgen/source/places/th/ths/lusail_stadium/pmtiles-fit.json',
       import.meta.url,
     ),
   ),

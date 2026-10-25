@@ -1,0 +1,1218 @@
+{
+  "format": "molen/aircraft-performance@1",
+  "checked": "2026-10-24",
+  "description": "Representative clean-configuration calibration anchors, not certified performance charts. Authored mass held constant. All drag, lapse, engine dry ratings where not explicitly sourced, stability, surface limits and rotor coefficients are estimates. Published cruise speeds are not hard maximums. No source prose, images, tables or third-party model code redistributed.",
+  "sources": {
+    "cj4": {
+      "url": "https://cessna.txtav.com/en/citation/cj4-gen2",
+      "rights": "Manufacturer; facts only",
+      "supports": "CJ4 family 451 KTAS, 16.11 kN engines, 30.66 m2 wing and Mach 0.77 limit; altitude representative."
+    },
+    "p51": {
+      "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196263/north-american-p-51d-mustang/",
+      "rights": "US government",
+      "supports": "437 mph maximum; test altitude estimated."
+    },
+    "piper": {
+      "url": "https://data.ntsb.gov/Docket/Document/docBLOB?FileExtension=.PDF&FileName=Piper+Cruise+Performance+Chart+from+the+Airplane+Flight+Manual-Master.PDF&ID=40375538",
+      "rights": "Manufacturer manual in NTSB docket",
+      "supports": "PA-28-180 cruise chart; approximate representative condition."
+    },
+    "caravan": {
+      "url": "https://cessna.txtav.com/-/media/cessna/files/product-cards/turboprop/grand_caravan_ex_product_card.pdf",
+      "rights": "Manufacturer; facts only",
+      "supports": "185 KTAS maximum cruise; test altitude and throttle estimated."
+    },
+    "baron": {
+      "url": "https://txtav.com/-/media/textron-aviation/images/demo-downloads/baron/baron-g58-specification-and-description.ashx",
+      "rights": "Manufacturer; facts only",
+      "supports": "202 KTAS maximum cruise."
+    },
+    "kingair": {
+      "url": "https://beechcraft.txtav.com/king-air",
+      "rights": "Manufacturer; facts only",
+      "supports": "312 KTAS family reference; 350i rather than current 360 avionics."
+    },
+    "sr22": {
+      "url": "https://cirrusaircraft.com/wp-content/uploads/2021/11/2022-SR22T-International-v4.pdf",
+      "rights": "Manufacturer; facts only",
+      "supports": "213 KTAS maximum cruise."
+    },
+    "da42": {
+      "url": "https://www.diamondaircraft.com/en/private-owners/aircraft/da42/tech-specs/",
+      "rights": "Manufacturer; facts only",
+      "supports": "190 KTAS at 16000 ft MCP; 175 KTAS at 75%; 2 x 168 hp."
+    },
+    "pc12": {
+      "url": "https://www.pilatus-aircraft.com/en/configurator/pc-12",
+      "rights": "Manufacturer; facts only",
+      "supports": "290 KTAS current PRO family reference; NGX approximation."
+    },
+    "f16": {
+      "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196735/general-dynamics-f-16a-fighting-falcon/",
+      "rights": "US government",
+      "supports": "F-16A F100-PW-200 family reference, 23830 lbf augmented; B two-seat variant estimated."
+    },
+    "f14": {
+      "url": "https://www.history.navy.mil/content/history/museums/nnam/explore/collections/aircraft/f/f-14d-tomcat.html",
+      "rights": "US government",
+      "supports": "F-14D: 1544 mph at 40000 ft, 27800 lbf per F110-GE-400 with afterburner. Dry thrust and low-altitude anchor estimated. Spin mechanism separately supported by NASA Modeling Flight."
+    },
+    "f15": {
+      "url": "https://www.142wg.ang.af.mil/Portals/38/documents/safety/AFD-140610-026.pdf",
+      "rights": "US government",
+      "supports": "Mach 2.5; 23500 lbf per engine."
+    },
+    "f18": {
+      "url": "https://www.midway.org/visit/aircraft-gallery/fa-18-hornet",
+      "rights": "Museum collection; facts only",
+      "supports": "Mach 1.8; F404-GE-402 49/79 kN dry/augmented."
+    },
+    "f22": {
+      "url": "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104506/f-22-raptor/",
+      "rights": "US government",
+      "supports": "Mach 2 class and supercruise; exact dry thrust estimated."
+    },
+    "f35": {
+      "url": "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/478441/f-35a-lightning-ii-conventional-takeoff-and-landing-variant/",
+      "rights": "US government",
+      "supports": "Mach 1.6 and 43000 lbf augmented thrust."
+    },
+    "typhoon": {
+      "url": "https://world.eurofighter.com/the-aircraft/performance",
+      "rights": "Manufacturer; facts only",
+      "supports": "Mach 2 class; dry/augmented EJ200 ratings approximated."
+    },
+    "rafale": {
+      "url": "https://www.dassault-aviation.com/en/defense/rafale/design-and-optimise/",
+      "rights": "Manufacturer; facts only",
+      "supports": "M88-2 dry 10971 lbf / augmented 16620 lbf; Mach target estimated."
+    },
+    "gripen": {
+      "url": "https://www.saab.com/globalassets/products/aeronautics/gripen-c-series/gripen_c_factsheet.pdf",
+      "rights": "Manufacturer; facts only",
+      "supports": "Gripen C: Mach 2 at altitude, 80.5 kN maximum thrust."
+    },
+    "c130": {
+      "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/C-130J/C130JSOF_Brochure_Final_Website.pdf",
+      "rights": "Manufacturer; facts only",
+      "supports": "355 KTAS maximum cruise, related J configuration."
+    },
+    "c17": {
+      "url": "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/1529726/c-17-globemaster-iii/",
+      "rights": "US government",
+      "supports": "450 knots at 28000 ft."
+    },
+    "a400": {
+      "url": "https://cloud.contactad.airbus.com/en-a400m",
+      "rights": "Manufacturer; facts only",
+      "supports": "Mach 0.72; 37000 ft reference from Airbus brochure."
+    },
+    "c5": {
+      "url": "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104492/c-5m-super-galaxy/",
+      "rights": "US government",
+      "supports": "518 mph, F138 51250 lbf/engine."
+    },
+    "an124": {
+      "url": "https://www.antonov.com/en/history/an-124-ruslan",
+      "rights": "Manufacturer; facts only",
+      "supports": "800-850 km/h cruise; mass and altitude are representative estimates."
+    },
+    "v22": {
+      "url": "https://www.aviation.marines.mil/portals/11/2018%20avplan%20.pdf",
+      "rights": "US government",
+      "supports": "266/280 knots cruise/max. Plane-mode test only; conversion uses assisted model."
+    },
+    "harrier": {
+      "url": "https://www.history.navy.mil/content/history/museums/nnam/explore/collections/aircraft/a/av-8c-harrier0.html",
+      "rights": "US government",
+      "supports": "AV-8B family thrust comparison; Plus installation/performance estimated. No afterburner."
+    },
+    "otter": {
+      "url": "https://dehavilland.com/twin-otter/",
+      "rights": "Manufacturer; facts only",
+      "supports": "Series 400 cruise at 10000 ft; representative 182 KTAS."
+    },
+    "e175": {
+      "url": "https://www.embraercommercialaviation.com/wp-content/uploads/2017/06/E175-APM_APM_175-1.pdf",
+      "rights": "Manufacturer; facts only",
+      "supports": "E175 airport planning manual Mach 0.78 cruise."
+    },
+    "g650": {
+      "url": "https://investorrelations.gd.com/news/press-release-details/2019/Gulfstream-G650ER-Sprints-From-Singapore-To-San-Francisco-In-High-Speed-Ultralong-Range-Demonstration/default.aspx",
+      "rights": "Manufacturer; facts only",
+      "supports": "Mach 0.85 long range, 0.925 operating limit; 0.90 high-speed cruise approximation."
+    },
+    "huey": {
+      "url": "https://safety.army.mil/Portals/0/Documents/ON-DUTY/AVIATION/FLIGHTFAX/Standard/Combined_Year/1985_Flightfax_Combined.pdf",
+      "rights": "US government",
+      "supports": "UH-1H approximately 115 knots maximum-range example; 110 knot representative cruise."
+    },
+    "bell407": {
+      "url": "https://news.bellflight.com/en-US/236161-louisiana-state-police-signs-purchase-agreement-for-two-bell-407gxis/",
+      "rights": "Manufacturer; facts only",
+      "supports": "133 knot GXi cruise; GX family approximation."
+    },
+    "r44": {
+      "url": "https://www.robinsonheli.com/helicopters/r44-raven-ii-clipper-ii",
+      "rights": "Manufacturer; facts only",
+      "supports": "Raven II wheels/skids configuration; representative cruise estimate."
+    },
+    "h125": {
+      "url": "https://www.airbus.com/en/products-services/helicopters/civil-helicopters/h125/h125-technical-information",
+      "rights": "Manufacturer; facts only",
+      "supports": "136 knots fast cruise at MTOW. Authored lighter mass retained."
+    },
+    "h145": {
+      "url": "https://www.airbus.com/en/products-services/helicopters/civil-helicopters/h145",
+      "rights": "Manufacturer; facts only",
+      "supports": "H145 family; 130 knot representative cruise estimate."
+    },
+    "uh60": {
+      "url": "https://sustainability.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/black-hawk/sikorsky-UH60M-brochure.pdf",
+      "rights": "Manufacturer; facts only",
+      "supports": "UH-60M representative cruise approximation, not a hot/high chart reproduction."
+    },
+    "ch47": {
+      "url": "https://www.army.mil/article/137584/CH_47_CHINOOK_HELICOPTER/",
+      "rights": "US government",
+      "supports": "160 knots maximum cruise. Tandem discs."
+    },
+    "aw139": {
+      "url": "https://helicopters.leonardo.com/documents/16114711/18078725/AW139%2BExecutive%2Band%2BPrivate%2Btransport%2Bbrochure_Gen2020.pdf/edf5ec64-b470-98af-8ac8-10c88c6f01a5?t=1580230422573",
+      "rights": "Manufacturer; facts only",
+      "supports": "165 knots SL MCP."
+    },
+    "generic": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/00-80T-80.pdf",
+      "rights": "US government",
+      "supports": "General aerodynamic relationships only; numerical airframe anchors are estimates pending variant-specific charts."
+    },
+    "ga-estimate": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/00-80T-80.pdf",
+      "rights": "US government",
+      "supports": "General aerodynamic relationships only; numerical airframe anchors are estimates pending variant-specific charts."
+    },
+    "utility-estimate": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/00-80T-80.pdf",
+      "rights": "US government",
+      "supports": "General aerodynamic relationships only; numerical airframe anchors are estimates pending variant-specific charts."
+    },
+    "regional-estimate": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/00-80T-80.pdf",
+      "rights": "US government",
+      "supports": "General aerodynamic relationships only; numerical airframe anchors are estimates pending variant-specific charts."
+    },
+    "transport-estimate": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/00-80T-80.pdf",
+      "rights": "US government",
+      "supports": "General aerodynamic relationships only; numerical airframe anchors are estimates pending variant-specific charts."
+    },
+    "business-estimate": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/00-80T-80.pdf",
+      "rights": "US government",
+      "supports": "General aerodynamic relationships only; numerical airframe anchors are estimates pending variant-specific charts."
+    },
+    "heli-estimate": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/00-80T-80.pdf",
+      "rights": "US government",
+      "supports": "General aerodynamic relationships only; numerical airframe anchors are estimates pending variant-specific charts."
+    },
+    "mig": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/00-80T-80.pdf",
+      "rights": "US government",
+      "supports": "General aerodynamic relationships only; numerical airframe anchors are estimates pending variant-specific charts."
+    },
+    "skyhawk": {
+      "url": "https://cessna.txtav.com/en/piston/cessna-skyhawk",
+      "rights": "Manufacturer; facts only",
+      "supports": "124 KTAS maximum cruise; 180 hp. Altitude/throttle and authored mass are representative."
+    },
+    "skylane": {
+      "url": "https://cessna.txtav.com/piston/cessna-skylane",
+      "rights": "Manufacturer; facts only",
+      "supports": "145 KTAS maximum cruise; reference condition estimated."
+    },
+    "atr72": {
+      "url": "https://www.atr-aircraft.com/wp-content/uploads/2020/07/Factsheets_-_ATR_72-600.pdf",
+      "rights": "Manufacturer; facts only",
+      "supports": "275 KTAS maximum cruise, 95% MTOW ISA optimum FL. Authored mass is lighter; altitude is a representative estimate."
+    },
+    "q400": {
+      "url": "https://dehavilland.com/wp-content/uploads/2025/03/DHC_Dash8_Spec-Sheet_v10_DIGITAL.pdf",
+      "rights": "Manufacturer; facts only",
+      "supports": "360 knots maximum cruise; reference altitude/throttle estimated."
+    },
+    "faa-helicopter": {
+      "url": "https://www.faa.gov/sites/faa.gov/files/helicopter_flying_handbook.pdf",
+      "rights": "US government",
+      "supports": "Qualitative rotor power, vortex-ring and retreating-blade behavior, including worsening high-density-altitude and low-RPM margin; no aircraft-specific coefficient fit."
+    }
+  },
+  "aircraft": [
+    {
+      "id": "molen.entities.aircraft.p51d",
+      "slug": "p-51",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "maximum",
+        "ktas": 380,
+        "altitudeM": 7620,
+        "throttle": 1,
+        "massKg": 4200,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "p51"
+      },
+      "shaftPowerW": 1264000,
+      "ratedDensityRatio": 0.55,
+      "wingAreaM2": 21.83
+    },
+    {
+      "id": "molen.entities.aircraft.airliner",
+      "slug": "airliner",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "cruise",
+        "mach": 0.78,
+        "altitudeM": 10668,
+        "throttle": 0.85,
+        "massKg": 42000,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "generic"
+      },
+      "dryThrustN": 100000,
+      "wingAreaM2": 122
+    },
+    {
+      "id": "molen.entities.aircraft.pa_28_180",
+      "slug": "pa-28-180",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 124,
+        "altitudeM": 2438,
+        "throttle": 0.75,
+        "massKg": 950,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "piper"
+      },
+      "shaftPowerW": 134200,
+      "ratedDensityRatio": 1,
+      "wingAreaM2": 14.86
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_172s",
+      "slug": "cessna-172s",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 124,
+        "altitudeM": 2438,
+        "throttle": 0.75,
+        "massKg": 1020,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "skyhawk"
+      },
+      "shaftPowerW": 134200,
+      "ratedDensityRatio": 1,
+      "wingAreaM2": 16.2
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_208b",
+      "slug": "cessna-208b",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 185,
+        "altitudeM": 3048,
+        "throttle": 0.9,
+        "massKg": 3300,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "caravan"
+      },
+      "shaftPowerW": 647000,
+      "ratedDensityRatio": 0.68,
+      "wingAreaM2": 25.96
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_182t",
+      "slug": "cessna-182t",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 145,
+        "altitudeM": 2438,
+        "throttle": 0.8,
+        "massKg": 1250,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "skylane"
+      },
+      "shaftPowerW": 171500,
+      "ratedDensityRatio": 1,
+      "wingAreaM2": 16.2
+    },
+    {
+      "id": "molen.entities.aircraft.bonanza_g36",
+      "slug": "bonanza-g36",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 176,
+        "altitudeM": 2438,
+        "throttle": 0.75,
+        "massKg": 1500,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "ga-estimate"
+      },
+      "shaftPowerW": 223700,
+      "ratedDensityRatio": 1,
+      "wingAreaM2": 16.8
+    },
+    {
+      "id": "molen.entities.aircraft.baron_g58",
+      "slug": "baron-g58",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 202,
+        "altitudeM": 2134,
+        "throttle": 0.85,
+        "massKg": 2200,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "baron"
+      },
+      "shaftPowerW": 223700,
+      "ratedDensityRatio": 1,
+      "wingAreaM2": 18.5
+    },
+    {
+      "id": "molen.entities.aircraft.king_air_350i",
+      "slug": "king-air-350i",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 312,
+        "altitudeM": 7620,
+        "throttle": 1,
+        "massKg": 6000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "kingair"
+      },
+      "shaftPowerW": 783000,
+      "ratedDensityRatio": 0.5,
+      "wingAreaM2": 28.8
+    },
+    {
+      "id": "molen.entities.aircraft.cirrus_sr22t",
+      "slug": "cirrus-sr22t",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 213,
+        "altitudeM": 7620,
+        "throttle": 0.85,
+        "massKg": 1450,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "sr22"
+      },
+      "shaftPowerW": 234900,
+      "ratedDensityRatio": 0.44,
+      "wingAreaM2": 13.49
+    },
+    {
+      "id": "molen.entities.aircraft.diamond_da42",
+      "slug": "diamond-da42",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 190,
+        "altitudeM": 4877,
+        "throttle": 1,
+        "massKg": 1650,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "da42"
+      },
+      "shaftPowerW": 125300,
+      "ratedDensityRatio": 0.61,
+      "wingAreaM2": 16.29
+    },
+    {
+      "id": "molen.entities.aircraft.pilatus_pc12",
+      "slug": "pilatus-pc12",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 290,
+        "altitudeM": 8534,
+        "throttle": 1,
+        "massKg": 4000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "pc12"
+      },
+      "shaftPowerW": 895000,
+      "ratedDensityRatio": 0.45,
+      "wingAreaM2": 25.81
+    },
+    {
+      "id": "molen.entities.aircraft.f_16b",
+      "slug": "f-16b",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 2,
+        "altitudeM": 11000,
+        "throttle": 1,
+        "massKg": 10500,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "f16"
+      },
+      "dryThrustN": 64900.00000000001,
+      "afterburnerThrustN": 106000,
+      "seaLevelMach": 1.2,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 27.87
+    },
+    {
+      "id": "molen.entities.aircraft.f_14d",
+      "slug": "f-14d",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "altitudeM": 12192,
+        "throttle": 1,
+        "massKg": 22000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "f14",
+        "ktas": 1341.6993174946003
+      },
+      "dryThrustN": 74000,
+      "afterburnerThrustN": 123660.56090533998,
+      "seaLevelMach": 1.21,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 52.49,
+      "maxMach": 2.34
+    },
+    {
+      "id": "molen.entities.aircraft.f_15c",
+      "slug": "f-15c",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 2.5,
+        "altitudeM": 11000,
+        "throttle": 1,
+        "massKg": 17500,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "f15"
+      },
+      "dryThrustN": 65200,
+      "afterburnerThrustN": 105700,
+      "seaLevelMach": 1.2,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 56.5
+    },
+    {
+      "id": "molen.entities.aircraft.fa_18c",
+      "slug": "fa-18c",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 1.8,
+        "altitudeM": 11000,
+        "throttle": 1,
+        "massKg": 14500,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "f18"
+      },
+      "dryThrustN": 49000,
+      "afterburnerThrustN": 79000,
+      "seaLevelMach": 1.05,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 37.16
+    },
+    {
+      "id": "molen.entities.aircraft.f_22a",
+      "slug": "f-22a",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 2,
+        "altitudeM": 11000,
+        "throttle": 1,
+        "massKg": 24000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "f22"
+      },
+      "dryThrustN": 116000,
+      "afterburnerThrustN": 156000,
+      "seaLevelMach": 1.21,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 78.04
+    },
+    {
+      "id": "molen.entities.aircraft.f_35a",
+      "slug": "f-35a",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 1.6,
+        "altitudeM": 11000,
+        "throttle": 1,
+        "massKg": 18000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "f35"
+      },
+      "dryThrustN": 128000,
+      "afterburnerThrustN": 191000,
+      "seaLevelMach": 1.06,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 42.7
+    },
+    {
+      "id": "molen.entities.aircraft.typhoon",
+      "slug": "typhoon",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 2,
+        "altitudeM": 11000,
+        "throttle": 1,
+        "massKg": 14500,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "typhoon"
+      },
+      "dryThrustN": 60000,
+      "afterburnerThrustN": 90000,
+      "seaLevelMach": 1.25,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 51.2
+    },
+    {
+      "id": "molen.entities.aircraft.rafale_c",
+      "slug": "rafale-c",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 1.8,
+        "altitudeM": 11000,
+        "throttle": 1,
+        "massKg": 13500,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "rafale"
+      },
+      "dryThrustN": 48800,
+      "afterburnerThrustN": 73900,
+      "seaLevelMach": 1.14,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 45.7
+    },
+    {
+      "id": "molen.entities.aircraft.gripen_c",
+      "slug": "gripen-c",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 2,
+        "altitudeM": 11000,
+        "throttle": 1,
+        "massKg": 10000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "gripen"
+      },
+      "dryThrustN": 54000,
+      "afterburnerThrustN": 80500,
+      "seaLevelMach": 1.14,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 30
+    },
+    {
+      "id": "molen.entities.aircraft.mig_29a",
+      "slug": "mig-29a",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 2.25,
+        "altitudeM": 11000,
+        "throttle": 1,
+        "massKg": 14500,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "mig"
+      },
+      "dryThrustN": 49400,
+      "afterburnerThrustN": 81300,
+      "seaLevelMach": 1.23,
+      "seaLevelEvidence": "Engineering estimate of clean low-altitude envelope; not an independent validation point.",
+      "wingAreaM2": 38
+    },
+    {
+      "id": "molen.entities.aircraft.c_130j",
+      "slug": "c-130j",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 355,
+        "altitudeM": 6706,
+        "throttle": 1,
+        "massKg": 52000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "c130"
+      },
+      "shaftPowerW": 3425000,
+      "ratedDensityRatio": 0.56,
+      "wingAreaM2": 162.1
+    },
+    {
+      "id": "molen.entities.aircraft.c_17a",
+      "slug": "c-17a",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 450,
+        "altitudeM": 8534,
+        "throttle": 0.85,
+        "massKg": 180000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "c17"
+      },
+      "dryThrustN": 180000,
+      "wingAreaM2": 353
+    },
+    {
+      "id": "molen.entities.aircraft.a400m",
+      "slug": "a400m",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "mach": 0.72,
+        "altitudeM": 11278,
+        "throttle": 1,
+        "massKg": 110000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "a400"
+      },
+      "shaftPowerW": 8200000,
+      "ratedDensityRatio": 0.4,
+      "wingAreaM2": 221.5
+    },
+    {
+      "id": "molen.entities.aircraft.c_5m",
+      "slug": "c-5m",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 450,
+        "altitudeM": 10058,
+        "throttle": 0.85,
+        "massKg": 280000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "c5"
+      },
+      "dryThrustN": 228000,
+      "wingAreaM2": 576
+    },
+    {
+      "id": "molen.entities.aircraft.an_124",
+      "slug": "an-124",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 445,
+        "altitudeM": 10000,
+        "throttle": 0.85,
+        "massKg": 250000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "an124"
+      },
+      "dryThrustN": 229800,
+      "wingAreaM2": 628
+    },
+    {
+      "id": "molen.entities.aircraft.mv_22b",
+      "slug": "mv-22b",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 266,
+        "altitudeM": 3048,
+        "throttle": 0.9,
+        "massKg": 20500,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "v22"
+      },
+      "shaftPowerW": 4586000,
+      "ratedDensityRatio": 0.7,
+      "wingAreaM2": 28
+    },
+    {
+      "id": "molen.entities.aircraft.av_8b",
+      "slug": "av-8b",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "maximum",
+        "mach": 0.9,
+        "altitudeM": 1000,
+        "throttle": 1,
+        "massKg": 8000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "harrier"
+      },
+      "dryThrustN": 105000,
+      "wingAreaM2": 22.61
+    },
+    {
+      "id": "molen.entities.aircraft.dhc_6",
+      "slug": "dhc-6",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 182,
+        "altitudeM": 3048,
+        "throttle": 1,
+        "massKg": 4500,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "otter"
+      },
+      "shaftPowerW": 559000,
+      "ratedDensityRatio": 0.7,
+      "wingAreaM2": 39.02
+    },
+    {
+      "id": "molen.entities.aircraft.dhc_2",
+      "slug": "dhc-2",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 124,
+        "altitudeM": 1524,
+        "throttle": 0.75,
+        "massKg": 1800,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "utility-estimate"
+      },
+      "shaftPowerW": 335600,
+      "ratedDensityRatio": 1,
+      "wingAreaM2": 23.23
+    },
+    {
+      "id": "molen.entities.aircraft.pc_6",
+      "slug": "pc-6",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 125,
+        "altitudeM": 3048,
+        "throttle": 0.9,
+        "massKg": 2000,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "utility-estimate"
+      },
+      "shaftPowerW": 410000,
+      "ratedDensityRatio": 0.7,
+      "wingAreaM2": 30.15
+    },
+    {
+      "id": "molen.entities.aircraft.beech_18",
+      "slug": "beech-18",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 185,
+        "altitudeM": 3048,
+        "throttle": 0.75,
+        "massKg": 3500,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "utility-estimate"
+      },
+      "shaftPowerW": 335600,
+      "ratedDensityRatio": 0.8,
+      "wingAreaM2": 32.42
+    },
+    {
+      "id": "molen.entities.aircraft.dc_3",
+      "slug": "dc-3",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 180,
+        "altitudeM": 3048,
+        "throttle": 0.75,
+        "massKg": 9000,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "utility-estimate"
+      },
+      "shaftPowerW": 895000,
+      "ratedDensityRatio": 0.75,
+      "wingAreaM2": 91.7
+    },
+    {
+      "id": "molen.entities.aircraft.atr_72_600",
+      "slug": "atr-72-600",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 275,
+        "altitudeM": 6096,
+        "throttle": 1,
+        "massKg": 18000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "atr72"
+      },
+      "shaftPowerW": 2051000,
+      "ratedDensityRatio": 0.55,
+      "wingAreaM2": 61
+    },
+    {
+      "id": "molen.entities.aircraft.dash_8_q400",
+      "slug": "dash-8-q400",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 360,
+        "altitudeM": 6096,
+        "throttle": 1,
+        "massKg": 23000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "q400"
+      },
+      "shaftPowerW": 3782000,
+      "ratedDensityRatio": 0.55,
+      "wingAreaM2": 63.1
+    },
+    {
+      "id": "molen.entities.aircraft.embraer_e175",
+      "slug": "embraer-e175",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "cruise",
+        "mach": 0.78,
+        "altitudeM": 10668,
+        "throttle": 0.85,
+        "massKg": 30000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "e175"
+      },
+      "dryThrustN": 62300,
+      "wingAreaM2": 72.72
+    },
+    {
+      "id": "molen.entities.aircraft.a220_300",
+      "slug": "a220-300",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "cruise",
+        "mach": 0.78,
+        "altitudeM": 10668,
+        "throttle": 0.85,
+        "massKg": 55000,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "transport-estimate"
+      },
+      "dryThrustN": 104500,
+      "wingAreaM2": 112.3
+    },
+    {
+      "id": "molen.entities.aircraft.boeing_737_800",
+      "slug": "boeing-737-800",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "cruise",
+        "mach": 0.785,
+        "altitudeM": 10668,
+        "throttle": 0.85,
+        "massKg": 60000,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "transport-estimate"
+      },
+      "dryThrustN": 121400,
+      "wingAreaM2": 124.6
+    },
+    {
+      "id": "molen.entities.aircraft.airbus_a320neo",
+      "slug": "airbus-a320neo",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "cruise",
+        "mach": 0.78,
+        "altitudeM": 10668,
+        "throttle": 0.85,
+        "massKg": 60000,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "transport-estimate"
+      },
+      "dryThrustN": 120600,
+      "wingAreaM2": 122.6
+    },
+    {
+      "id": "molen.entities.aircraft.gulfstream_g650er",
+      "slug": "gulfstream-g650er",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "high-speed-cruise",
+        "mach": 0.9,
+        "altitudeM": 12497,
+        "throttle": 0.9,
+        "massKg": 35000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "g650"
+      },
+      "dryThrustN": 71600,
+      "wingAreaM2": 119.2
+    },
+    {
+      "id": "molen.entities.aircraft.citation_cj4",
+      "slug": "citation-cj4",
+      "propulsion": "jet",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 451,
+        "altitudeM": 8534,
+        "throttle": 0.9,
+        "massKg": 6500,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "cj4"
+      },
+      "dryThrustN": 16100.000000000002,
+      "wingAreaM2": 30.66
+    },
+    {
+      "id": "molen.entities.aircraft.oh6",
+      "slug": "oh-6",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 120,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 1150,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "heli-estimate"
+      },
+      "shaftPowerW": 235000,
+      "retreatingBladeSpeed": 69.75860639999999,
+      "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.uh_1h",
+      "slug": "uh-1h",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 110,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 3200,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "huey"
+      },
+      "shaftPowerW": 1044000,
+      "retreatingBladeSpeed": 63.9453892,
+      "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.bell_206b",
+      "slug": "bell-206b",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 110,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 1200,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "heli-estimate"
+      },
+      "shaftPowerW": 236000,
+      "retreatingBladeSpeed": 63.9453892,
+      "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.bell_407",
+      "slug": "bell-407",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 133,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 1900,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "bell407"
+      },
+      "shaftPowerW": 606000,
+      "retreatingBladeSpeed": 77.31578875999999,
+      "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.bell_412ep",
+      "slug": "bell-412ep",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 122,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 4300,
+        "tolerance": 0.12,
+        "evidence": "engineering-estimate",
+        "source": "heli-estimate"
+      },
+      "shaftPowerW": 1342000,
+      "retreatingBladeSpeed": 70.92124984,
+      "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.robinson_r44",
+      "slug": "robinson-r44",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 109,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 950,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "r44"
+      },
+      "shaftPowerW": 153000,
+      "retreatingBladeSpeed": 63.364067479999996,
+      "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.airbus_h125",
+      "slug": "airbus-h125",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "fast-cruise",
+        "ktas": 136,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 1700,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "h125"
+      },
+      "shaftPowerW": 632000,
+      "retreatingBladeSpeed": 79.05975391999999,
+      "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.airbus_h145",
+      "slug": "airbus-h145",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 130,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 2700,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "h145"
+      },
+      "shaftPowerW": 1334000,
+      "retreatingBladeSpeed": 75.57182359999999,
+      "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.uh_60m",
+      "slug": "uh-60m",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "cruise",
+        "ktas": 151,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 7800,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "uh60"
+      },
+      "shaftPowerW": 2982000,
+      "retreatingBladeSpeed": 87.77957971999999,
+      "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.ch_47f",
+      "slug": "ch-47f",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 160,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 15000,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "ch47"
+      },
+      "shaftPowerW": 7058000,
+      "retreatingBladeSpeed": 93.01147519999999,
+      "rotorDiscs": 2
+    },
+    {
+      "id": "molen.entities.aircraft.aw139",
+      "slug": "aw139",
+      "propulsion": "helicopter",
+      "reference": {
+        "kind": "max-cruise",
+        "ktas": 165,
+        "altitudeM": 0,
+        "throttle": 0.85,
+        "massKg": 5100,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "aw139"
+      },
+      "shaftPowerW": 2284000,
+      "retreatingBladeSpeed": 95.9180838,
+      "rotorDiscs": 1
+    }
+  ]
+}

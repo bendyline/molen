@@ -9,7 +9,7 @@ import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-model
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve(
-    '../../content/worldgen/source/places/ws/ws0/n0186_guangzhou_international_finance_center',
+    '../../content/worldgen/source/places/ws/ws0/guangzhou_international_finance_center',
   ),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
@@ -90,7 +90,7 @@ it('reproduces the unchanged Guangzhou master and verifies the fresh signed tria
       metal: { graph: 'metal_painted', slot: 'trim', roughness: 0.48, metallic: 0.24 },
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
     });
-  skylineWorld.find((p) => p.id === 'N0186').build(a.wrap(b), m);
+  skylineWorld.find((p) => p.id === 'guangzhou_international_finance_center').build(a.wrap(b), m);
   const baseline = await read(`${source}/georeferencing-baseline.json`),
     spec = await read(`${source}/spec.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');

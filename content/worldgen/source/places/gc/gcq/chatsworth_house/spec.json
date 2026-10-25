@@ -38,8 +38,7 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Chatsworth_House_-_geograph.org.uk_-_2191619.jpg",
-    "https://commons.wikimedia.org/wiki/File:Chatsworth_House_201307_138.JPG"
+    "https://commons.wikimedia.org/wiki/File:South_front_-_Chatsworth_House_-_Derbyshire,_England_-_DSC03562.jpg"
   ],
   "stories": [
     {
@@ -47,7 +46,7 @@
       "url": "https://qualla.com/chatsworth-house/"
     }
   ],
-  "referenceInputHash": "a8aa3931e977dc4ae5feacd44b97af26cac30aebfd161c270db7e4791dc8d070",
+  "referenceInputHash": "sha256:38e7d2eeef46794530edaf55677969b7aa6205af04a18f8ee72d8cc9cd0abfab",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-chatsworth-house.mjs"
   },
@@ -62,6 +61,24 @@
     "export": "chatsworthSkyline",
     "errorMeters": 0.55,
     "surfaces": {
+      "windowStone": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "windowWood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "windowGlass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
       "stone": {
         "slot": "wall",
         "graph": "stone_sandstone",
@@ -92,6 +109,24 @@
         "export": "chatsworthDistrict",
         "errorMeters": 0.25,
         "surfaces": {
+          "windowStone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "windowWood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "windowGlass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
           "stone": {
             "slot": "wall",
             "graph": "stone_sandstone",
@@ -122,6 +157,24 @@
         "export": "chatsworthStreet",
         "errorMeters": 0.1,
         "surfaces": {
+          "windowStone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "windowWood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "windowGlass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
           "stone": {
             "slot": "wall",
             "graph": "stone_sandstone",
@@ -202,6 +255,15 @@
       ]
     },
     {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
       "ref": "matgraph:molen.worldgen.material.metal_painted",
       "slot": "roof",
       "uv": "repeats",
@@ -212,7 +274,7 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior from six individually inspected local Qualla photographs, four-page official visitor plan, Historic England architectural description and aerial/map context. Dimensions, hidden roof joins and fine ornament remain estimates; visitor plan is not a measured survey.",
+    "Current construction uses exact native photographer-CC0 south front after Qualla-first search, replacing twelve south-end windows with real pockets and closed stone/wood joinery. Earlier attribution/private-plan/aerial controls are historical and excluded. Full main house/connected north wing scope retained pending broader cleared exterior review. Dimensions, recess depths, molding profiles, hidden roof joins and current condition remain estimates.",
     "Main house, courtyard, attached north wing, orangery, belvedere and west-return gateway only. Separate stables, gardens, sculpture, interiors, furnishings, vegetation and photographic pixels excluded.",
     "Independent unmodified Terrarium elevations retained. Elevations beneath structures are interpolated evidence, not a building survey; footprint replacement remains disabled.",
     "Carved capitals, pediment relief, urn ornament, window surrounds and balusters are simplified progressively with distance; no physical-device performance measurement claimed."
@@ -244,16 +306,42 @@
         10,
         -75
       ]
+    },
+    {
+      "name": "south-window-architraves",
+      "position": [
+        31,
+        17,
+        44
+      ],
+      "lookAt": [
+        21,
+        11,
+        27
+      ]
+    },
+    {
+      "name": "south-window-recess",
+      "position": [
+        -28,
+        9,
+        36
+      ],
+      "lookAt": [
+        -25.68,
+        7.6,
+        27
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 62060,
-    "vertices": 186180,
-    "materials": 4,
-    "bytes": 7450008,
-    "sha256": "sha256:e5e837b3947d727fa47f106e663fe159ba594792746bd92dc0a09fc4f02f5292"
+    "triangles": 63988,
+    "vertices": 191964,
+    "materials": 5,
+    "bytes": 7681832,
+    "sha256": "sha256:1e2a8d8d222002a9e4b8d13586c7e5022675d9222591afcfa938b86ff088325b"
   }
 }

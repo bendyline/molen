@@ -12,6 +12,7 @@ import { access, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { buildPack } from '@bendyline/molen-pack/node';
 import { buildRegionalPacks } from '../../examples/world-explorer/scripts/build-regional-packs.mjs';
+import { parseStructureDirectory } from '../../packages/worldgen-earth/dist/kernel.mjs';
 
 const MODEL_ARCHIVE = /\.models\.(?:g_[0-9a-z]{2}|shared)\.p\d+$/;
 
@@ -45,7 +46,12 @@ export async function stageContentPacks(
   const provided = earth?.provides?.structures ?? [];
   for (const path of Array.isArray(provided) ? provided : [provided]) {
     const doc = JSON.parse(await readFile(join(contentDir, 'earth', path), 'utf8'));
-    placements.push(...doc.entries);
+    if (doc.format === 'molen/structure-placement-index@1') {
+      for (const shard of Object.values(parseStructureDirectory(doc).shards)) {
+        const region = JSON.parse(await readFile(join(contentDir, 'earth', shard.path), 'utf8'));
+        placements.push(...region.entries);
+      }
+    } else placements.push(...doc.entries);
   }
   const packs = [];
   const directories = (await readdir(contentDir, { withFileTypes: true }))

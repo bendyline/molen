@@ -442,7 +442,7 @@ export const buildKhotynSkyline = (o) =>
     'skyline',
   );
 export const khotynStudy = {
-  id: 'N0260',
+  id: 'khotyn_fortress',
   key: 'khotyn_fortress',
   title: 'Khotyn Fortress',
   category: 'castle',

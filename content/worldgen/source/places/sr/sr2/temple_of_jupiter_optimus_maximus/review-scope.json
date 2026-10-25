@@ -1,0 +1,232 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "surface-means.json",
+    "pmtiles-fit.json",
+    "museum-placement.json"
+  ],
+  "surfaceOverrides": {
+    "tuff": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.98,
+      "metallic": 0
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      -33,
+      23,
+      35
+    ],
+    "lookAt": [
+      0,
+      3.8,
+      -1.2
+    ],
+    "fov": 44
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/jupiter-model.mjs",
+    "export": "buildJupiterSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildJupiterDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "tuff": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildJupiterStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "tuff": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildJupiterCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "tuff": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "long-coursed-foundation",
+      "position": [
+        -29,
+        10,
+        23
+      ],
+      "lookAt": [
+        0,
+        4,
+        1.4
+      ],
+      "fov": 44
+    },
+    {
+      "name": "broken-top-and-parallel-remnants",
+      "position": [
+        23,
+        22,
+        -23
+      ],
+      "lookAt": [
+        0,
+        3,
+        -2.4
+      ],
+      "fov": 44
+    },
+    {
+      "name": "tufa-course-detail",
+      "position": [
+        5,
+        6.5,
+        10
+      ],
+      "lookAt": [
+        4,
+        5,
+        3.7
+      ],
+      "fov": 44
+    },
+    {
+      "name": "foundation-plan-draft",
+      "position": [
+        0,
+        60,
+        0.01
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 44
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-foundation-skyline",
+      "position": [
+        -33,
+        23,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        -1.2
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-foundation-district",
+      "position": [
+        -33,
+        23,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        -1.2
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-foundation-street",
+      "position": [
+        -33,
+        23,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        -1.2
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-foundation-closeup",
+      "position": [
+        -33,
+        23,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        -1.2
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.8,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "draft",
+    "anchor": [
+      12.482268244687624,
+      41.892642123947745
+    ],
+    "heading": 0.45316101061196945,
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "orientationPolicy": "approximate-visualization",
+    "replaceFootprint": false,
+    "groundContactReviewed": false,
+    "terrainReference": {
+      "anchor": [
+        12.482051027929765,
+        41.89276788808752
+      ],
+      "modelHeight": 8.982000160217286,
+      "basis": "Approximate current buried-foundation placement inside the mapped Esedra, not a reconstruction of the lost temple. The long wall follows the museum envelope axis; its exposed face points south-southeast toward the approximate2024 photographic camera location. Exact ancient wall coordinates and excavation levels are not mapped. The entire model envelope fits inside the retained museum part. The minimum native DEM vertex covering that envelope supplies a conservative overburden reference: modelY8.982m attaches there, leaving the highest modeled stone at least0.3m below the unchanged terrain. This preserves the modern surface and museum; it is an approximate burial envelope, not a measured excavation floor. SourceY0 is the displayed foundation base. No terrain/building/water removal. The normal above-ground world should not expose this basement wall; below-grade or isolated inspection is needed. Exact museum interior, excavation shape and buried masonry beyond the photographed visible remnants are not modeled."
+    },
+    "bounds": [
+      12.482070037106107,
+      41.892556415551134,
+      12.48243950738274,
+      41.8927690223023
+    ],
+    "notes": "Approximate current buried-foundation placement inside the mapped Esedra, not a reconstruction of the lost temple. The long wall follows the museum envelope axis; its exposed face points south-southeast toward the approximate2024 photographic camera location. Exact ancient wall coordinates and excavation levels are not mapped. The entire model envelope fits inside the retained museum part. The minimum native DEM vertex covering that envelope supplies a conservative overburden reference: modelY8.982m attaches there, leaving the highest modeled stone at least0.3m below the unchanged terrain. This preserves the modern surface and museum; it is an approximate burial envelope, not a measured excavation floor. SourceY0 is the displayed foundation base. No terrain/building/water removal. The normal above-ground world should not expose this basement wall; below-grade or isolated inspection is needed. Exact museum interior, excavation shape and buried masonry beyond the photographed visible remnants are not modeled."
+  }
+}

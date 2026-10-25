@@ -618,7 +618,7 @@ function geographic(map) {
   };
 }
 export const pontAvalStudy = {
-  id: 'N0026',
+  id: 'pont_aval',
   key: 'pont_aval',
   title: 'Pont Aval',
   wikidataId: 'Q2073282',

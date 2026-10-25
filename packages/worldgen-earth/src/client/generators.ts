@@ -46,6 +46,12 @@ export function createInThreadWorldgenGenerator(
       const steps = generateWorldgenTileSteps(
         {
           tile: request.tile,
+          ...(request.buildingInfill !== undefined
+            ? { buildingInfill: request.buildingInfill }
+            : {}),
+          ...(request.buildingInfillExclusions !== undefined
+            ? { buildingInfillExclusions: request.buildingInfillExclusions }
+            : {}),
           geom: request.geom,
           ground: createHeightSampler(grid),
           pack,

@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineNext } from '../../worldgen/scripts/signature-tower-next-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dr/dr5/n0152_trump_tower'),
+const source = resolve('../../content/worldgen/source/places/dr/dr5/trump_tower'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -69,7 +69,7 @@ function nearest(ts, o, d) {
 it('reproduces the original master and reconciles independently mapped Fifth Avenue entrance and seven parts', async () => {
   const m = (
       await read(resolve('../../content/earth/structures/georeferencing.json'))
-    ).candidates.find((p) => p.candidateId === 'N0152'),
+    ).candidates.find((p) => p.candidateId === 'trump_tower'),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring({
       stone: { graph: 'stone_granite', slot: 'foundation', roughness: 0.85, metallic: 0 },
@@ -78,7 +78,7 @@ it('reproduces the original master and reconciles independently mapped Fifth Ave
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineNext.find((p) => p.id === 'N0152').build(a.wrap(b), m);
+  skylineNext.find((p) => p.id === 'trump_tower').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`),
     f = await read(`${source}/map-frame.json`);
   expect(f.wikidataId).toBe('Q868772');

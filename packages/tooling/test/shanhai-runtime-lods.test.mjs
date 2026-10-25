@@ -11,7 +11,7 @@ import { shanhaiStudy } from '../../worldgen/scripts/shanhai-pass-model.mjs';
 import { shanhaiGround } from '../../worldgen/scripts/shanhai-runtime-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/wx/wxj/n0259_shanhai_pass'),
+const source = resolve('../../content/worldgen/source/places/wx/wxj/shanhai_pass'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

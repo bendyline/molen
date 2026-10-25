@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u4/u4x/n0282_akershus_fortress/';
+const root = '../../../content/worldgen/source/places/u4/u4x/akershus_fortress/';
 const frame = JSON.parse(readFileSync(new URL(`${root}map-frame.json`, import.meta.url)));
 const references = JSON.parse(
   readFileSync(new URL(`${root}reference-metadata.json`, import.meta.url)),
@@ -882,7 +882,7 @@ export const buildAkershusSkyline = (o) =>
     0,
   );
 export const akershusStudy = {
-  id: 'N0282',
+  id: 'akershus_fortress',
   key: 'akershus_fortress',
   title: 'Akershus Fortress',
   category: 'castle',

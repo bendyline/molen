@@ -1,0 +1,1822 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.ahmad_bin_ali_stadium",
+  "reviewedOn": "2026-10-20",
+  "inputHash": "sha256:96fe942c5a1306627ee8467d6275f16efcae605fd59146fc6e91d2920823d252",
+  "sourceHash": "sha256:49cb962570eba5c6de80e94bf1c1b390b0809a97b7a5126ddb9464a8d2c9f0c6",
+  "runtimeHash": "sha256:f65e109b5ccbd2fa9e35bf7dafb39573f66a1559b79895e536b819aea452fd61",
+  "captureReportHash": "sha256:88a83fdd7b8fcbddd1ab4db4c2ccccf81246525155cef6d50855d26e71350b69",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/open-rosette-screen-stand-off-frame-and-service-core.png",
+      "shots/red-dark-two-tier-bowl-and-flying-roof-truss.png",
+      "shots/native-dune-pavilion-roof-and-projected-core.png"
+    ],
+    "notes": "Inspected48 current views: source turntable/details, shared-surface placement, noon/late economy/high, all four LODs, native placement and failed load. Specific Ahmad bin Ali envelope, pale closed canopy/flying inner truss/radial frames and stays, open warm rosette screen/stand-off frame/recessed glazing/galleries, red-dark two-tier bowl/closed hospitality band/pale aisles/neutral football field/supported displays, eight native service cores/rooftop wells/concourse links and eight separate crescent dune pavilions. Corrected the initial radial-fill assumption for concave crescents, hidden repeated caps, camera obstruction/duplicate camera labels, roof-to-upper-bank clearance and display hanger connection within this one author/build/inspect pass. The broad canopy shelters much of the upper bank in close ground views; whole/native views and actual mesh checks establish both bands. Under-roof color and glazing are shared-material approximations, not photograph-exact optical matching."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/open-rosette-screen-stand-off-frame-and-service-core.png",
+      "shots/shared/red-dark-two-tier-bowl-and-flying-roof-truss.png",
+      "shots/shared/native-dune-pavilion-roof-and-projected-core.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six shared256px graphs: concrete_plain, metal_painted, membrane, fabric_canvas, window_grid and new reusable metal_rosette_screen. No embedded images or unique atlas. The original analytic2m circular/eight-point rosette with100mm working strips uses actual alpha apertures/filtered coverage; baked mean alpha0.3267788756127457, transparent center/corners and opaque ring checks pass. All70 previous graph files remain byte-identical. Runtime binds each required graph once; six near draws/one skyline draw. Separate position/normal streams and equal CPU/GPU accounting avoid duplicate uploads.",
+    "captureReportHash": "sha256:9c527d15db0b14b329856b735422e2602d8a3f7e1c687d4b2defb31fbde667cd"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/open-rosette-screen-stand-off-frame-and-service-core.png",
+      "medium-fi/red-dark-two-tier-bowl-and-flying-roof-truss.png",
+      "medium-fi/native-dune-pavilion-roof-and-projected-core.png",
+      "medium-fi/rayyan-skyline.png",
+      "medium-fi/rayyan-district.png",
+      "medium-fi/rayyan-street.png",
+      "medium-fi/rayyan-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four LODs retain the own roof aperture, flying ring, screen/body, two-tier bowl, eight service cores and eight crescent dune footprints. Far levels merge repeated rows/framing and omit hidden dune floors, small rooftop equipment and roof undersides. Initial skyline plus district416048 bytes is below3MB phone/6MB laptop targets. This establishes asset budgets and repeatable automated browser renders; physical laptop/phone/tablet and dense-city performance measurements remain pending. Levels928/3582/14894/49678 triangles; at most six draws.",
+    "captureReportHash": "sha256:5c1575916bfbd74bcfa1336b7727425ad21f6ad23aa7444d94f85a7f5b361729"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:f8777a950311ad9a68ac67e484daa451e5091bc451b75e0e3c5e7ca4a2b30842",
+    "mapFrameHash": "sha256:9b3e914ba0b4389da862d15457bf4e5bf0c3c97ceaab5976133ff1274fa522b5",
+    "notes": "RetainedQ401643, named native stadiumPOI35184527125656, own parent52776560216314 and pitch35185393982237 establish identity. Own anchor[51.34232461452484,25.329593544582735]/heading0/native east-south/internal X[0.16516299613578334,-0.9862662848883416]/Z[0.9862662848883416,0.16516299613578334] follows the measured114.500589x72.806638m field surround. Retained reference is about148m away and is not the placement origin. Only17 main/core/dune records are replaced using17 whole-feature outlines with99.5percent coverage. All70 independent resident inputs of87 originals/all165 wider independent inputs remain unchanged. Original6m grid/native roads/172.84078433783725m2 water unchanged; the bounded main-floor opening preserves outside terrain and native component contacts. Actual PMTiles13/14 generalized complexes use bounded area clipping;15 removes all17 owned parents. All19 map-level cases pass. Failure retains87 originals/original ground; every unload restores ground/water/zero live geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Three structural pictures actually viewed on the architect gallery: exterior aerial, bowl panorama and external rosette closeup. A fourth furnished hospitality interior is supplemental context only; hidden furnished rooms are excluded. No pixels, seat lettering, event art or temporary pitch rigs copied. Native29-point outer/eight-point roof aperture and individual core/crescent footprints control the particular forms. Field4m below original anchor datum, facade/roof34.5/38.5m and flying ring48.5m above field, two-tier heights/rows/core equipment and crescent roof curves are picture-led estimates. Raised canopy clearance is verified at sampled upper-row triangles; no engineering/access certification is implied. One reusable rosette motif approximates the more varied photographed screen, rather than reproducing its entire motif inventory. Native datum/contacts remain original; dune plinths stay within individual footprints. Completed-reference era and fine20degree/2m facing are approximate; media upload timestamps do not establish exposure dates or current condition."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/th/ths/ahmad_bin_ali_stadium/models/source.glb\",\"hash\":\"sha256:49cb962570eba5c6de80e94bf1c1b390b0809a97b7a5126ddb9464a8d2c9f0c6\",\"bytes\":5965252,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/th/ths/ahmad_bin_ali_stadium/model.glb\",\"hash\":\"sha256:f65e109b5ccbd2fa9e35bf7dafb39573f66a1559b79895e536b819aea452fd61\",\"bytes\":5964676,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/th/ths/ahmad_bin_ali_stadium/model.skyline.glb\",\"hash\":\"sha256:80a92e6d18a82d52fa341755dbb60a2e4ea69cbf4b819550427169d95480da43\",\"bytes\":83792,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/th/ths/ahmad_bin_ali_stadium/model.district.glb\",\"hash\":\"sha256:10b5e728068a83585749eecfb7dae22e6b5a36ca7c7722d220752672fe8cd912\",\"bytes\":332256,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/th/ths/ahmad_bin_ali_stadium/model.street.glb\",\"hash\":\"sha256:e4d29b3b3999f9522c33a383ebadcc4d86089a15663474dabb69aea9b332140a\",\"bytes\":1342372,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/th/ths/ahmad_bin_ali_stadium/model.closeup.glb\",\"hash\":\"sha256:3ef2c3f75fcf85a884596cceb076601083cb860e28c151e5baf575897b9a4260\",\"bytes\":4626616,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "rayyan-own-canopy-flying-truss-open-screen-two-tiers-eight-cores-eight-crescents-and-native-contacts",
+        "passed": true,
+        "notes": "16053 actual mesh/material/contact checks across six GLBs verify complete neutral football floor; canopy top and matching0.25m undersides; flying top ring/columns/diagonals/radial carriers/stays meeting actual roof; two tier treads/matching undersides and actual canopy clearance exceeding3.5m above sampled upper-row triangles; closed hospitality fascia/stand-off screen; all eight native core roofs/near concourse links; eight original crescent roof strips with matching0.2m undersides, supported display hangers and occupied main retaining floor beneath the bounded opening. Skyline/district simplify repeated framing and hidden floors while preserving the individual envelope/component footprints."
+      },
+      {
+        "check": "owned-native-replacement",
+        "passed": true,
+        "notes": "Actual renderer retains70 independent resident inputs of87 originals; only17 owned stadium/core/dune records are removed. All165 wider independent inputs remain the same objects in the production helper. Original6m samples/native roads/172.84078433783725m2 water remain unchanged. PMTiles13/14 generalized complexes use bounded area clipping;15 removes the17 owned parents without trimming independent context. Failure retains87 originals; every level unload restores ground/water/zero live model geometry."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Six shared256px graphs: concrete_plain, metal_painted, membrane, fabric_canvas, window_grid and new reusable metal_rosette_screen. No embedded images or unique atlas. The original analytic2m circular/eight-point rosette with100mm working strips uses actual alpha apertures/filtered coverage; baked mean alpha0.3267788756127457, transparent center/corners and opaque ring checks pass. All70 previous graph files remain byte-identical. Runtime binds each required graph once; six near draws/one skyline draw. Separate position/normal streams and equal CPU/GPU accounting avoid duplicate uploads. Four LODs retain the own roof aperture, flying ring, screen/body, two-tier bowl, eight service cores and eight crescent dune footprints. Far levels merge repeated rows/framing and omit hidden dune floors, small rooftop equipment and roof undersides. Initial skyline plus district416048 bytes is below3MB phone/6MB laptop targets. This establishes asset budgets and repeatable automated browser renders; physical laptop/phone/tablet and dense-city performance measurements remain pending. Levels928/3582/14894/49678 triangles; at most six draws."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:96fe942c5a1306627ee8467d6275f16efcae605fd59146fc6e91d2920823d252",
+      "ownerRemainder": 0,
+      "independentBuildingsUnchanged": 70,
+      "widerIndependentBuildingsUnchanged": 165,
+      "coverage": [
+        {
+          "id": 35185257969344,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185257969348,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185257969349,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185257969350,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454554,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454555,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804715552,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804715553,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053488,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071686594,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071686625,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071686753,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071686845,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071686907,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687049,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687052,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687066,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687113,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687124,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687458,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687481,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687517,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687580,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687635,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687665,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687732,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687742,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687753,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185071687792,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168519029,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168519030,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168519031,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523869,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523870,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523871,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523872,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523873,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523874,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523875,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523876,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523877,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523878,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523879,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523880,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523881,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523882,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523883,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523884,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523885,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523886,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523887,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523888,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523889,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523890,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523891,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523892,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523893,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523894,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523902,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523903,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540872,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540873,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540874,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540875,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540876,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540877,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540878,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540879,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540880,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540881,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540886,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540888,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540890,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454496,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053498,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053499,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053500,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053501,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184527125659,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184527125661,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184835786256,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185056587558,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523895,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523896,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523897,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523898,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523899,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523900,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185168523901,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540882,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540883,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540884,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540885,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540887,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540892,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540893,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540894,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540895,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540896,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540897,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540902,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540903,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540904,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540905,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540906,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540907,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185257969341,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185257969351,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185257969355,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185257969356,
+          "owned": true,
+          "coverage": 0.9999999669099106
+        },
+        {
+          "id": 35185257969357,
+          "owned": true,
+          "coverage": 0.9999999741842424
+        },
+        {
+          "id": 35185257969358,
+          "owned": true,
+          "coverage": 0.9999999632017477
+        },
+        {
+          "id": 35185257969359,
+          "owned": true,
+          "coverage": 0.9999999824846998
+        },
+        {
+          "id": 35185257969360,
+          "owned": true,
+          "coverage": 0.9999999610864703
+        },
+        {
+          "id": 35185257969361,
+          "owned": true,
+          "coverage": 0.9999999867811867
+        },
+        {
+          "id": 35185257969362,
+          "owned": true,
+          "coverage": 0.9999999418001829
+        },
+        {
+          "id": 35185257969363,
+          "owned": true,
+          "coverage": 0.9999999651219251
+        },
+        {
+          "id": 35185257969364,
+          "owned": true,
+          "coverage": 0.9999999741015714
+        },
+        {
+          "id": 35185257969365,
+          "owned": true,
+          "coverage": 0.9999999865536616
+        },
+        {
+          "id": 35185257969366,
+          "owned": true,
+          "coverage": 0.999999985812667
+        },
+        {
+          "id": 35185257969367,
+          "owned": true,
+          "coverage": 0.999999988836602
+        },
+        {
+          "id": 35185257969368,
+          "owned": true,
+          "coverage": 0.9999999844204129
+        },
+        {
+          "id": 35185257969369,
+          "owned": true,
+          "coverage": 0.99999998729975
+        },
+        {
+          "id": 35185257969370,
+          "owned": true,
+          "coverage": 0.9999999754071405
+        },
+        {
+          "id": 35185257969371,
+          "owned": true,
+          "coverage": 0.999999986066282
+        },
+        {
+          "id": 35185257969375,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185257969389,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454497,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454504,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454505,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454506,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454507,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454508,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454509,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454510,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454511,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454512,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454513,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454514,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454515,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454518,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454519,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454543,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454544,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454545,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454550,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454553,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454556,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454557,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454558,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804454559,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804715551,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185804715554,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053487,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053489,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053490,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053491,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053492,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053493,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053494,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053495,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053496,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808053497,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808054282,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808054283,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185808054284,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 52776560216314,
+          "owned": true,
+          "coverage": 0.9999999979518124
+        },
+        {
+          "id": 35185170540889,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540891,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540924,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540925,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540926,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540927,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540928,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540898,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540899,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540900,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540901,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540908,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540909,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540910,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185170540911,
+          "owned": false,
+          "coverage": 0
+        }
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            5264,
+            3499
+          ],
+          "id": 35184527125650,
+          "owned": false,
+          "covered": 0.15084564413982096,
+          "area": 247867.71175289046,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            10528,
+            6999
+          ],
+          "id": 35184527125650,
+          "owned": false,
+          "covered": 0.18806961101125688,
+          "area": 217387.79687171066,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969356,
+          "owned": true,
+          "covered": 0.9999999669099097,
+          "area": 479.6080231080364,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969357,
+          "owned": true,
+          "covered": 0.9999999741842406,
+          "area": 254.26270007982157,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969358,
+          "owned": true,
+          "covered": 0.9999999632017477,
+          "area": 277.1664494902534,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969359,
+          "owned": true,
+          "covered": 0.9999999824846998,
+          "area": 266.71421254824327,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969360,
+          "owned": true,
+          "covered": 0.9999999610864686,
+          "area": 259.03008011951897,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969361,
+          "owned": true,
+          "covered": 0.9999999867811867,
+          "area": 345.23022212347087,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969362,
+          "owned": true,
+          "covered": 0.9999999418001829,
+          "area": 340.57154252107557,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969363,
+          "owned": true,
+          "covered": 0.9999999651219248,
+          "area": 284.7092013022633,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969364,
+          "owned": true,
+          "covered": 0.9999999741015745,
+          "area": 286.5297407557018,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969365,
+          "owned": true,
+          "covered": 0.9999999865536627,
+          "area": 946.5721661625253,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969366,
+          "owned": true,
+          "covered": 0.999999985812667,
+          "area": 965.8028133380822,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969367,
+          "owned": true,
+          "covered": 0.999999988836601,
+          "area": 906.5873224367979,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969368,
+          "owned": true,
+          "covered": 0.9999999844204135,
+          "area": 903.1423130421304,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969369,
+          "owned": true,
+          "covered": 0.9999999872997472,
+          "area": 952.0529575594592,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969370,
+          "owned": true,
+          "covered": 0.9999999754071424,
+          "area": 936.9767001816699,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 35185257969371,
+          "owned": true,
+          "covered": 0.9999999860662825,
+          "area": 1040.3196862437057,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            21057,
+            13999
+          ],
+          "id": 52776560216314,
+          "owned": true,
+          "covered": 0.9999999979518125,
+          "area": 31658.893943969204,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "method": "Actual renderer retains70 independent resident inputs of87 originals; only17 owned stadium/core/dune records are removed. All165 wider independent inputs remain the same objects in the production helper. Original6m samples/native roads/172.84078433783725m2 water remain unchanged. PMTiles13/14 generalized complexes use bounded area clipping;15 removes the17 owned parents without trimming independent context. Failure retains87 originals; every level unload restores ground/water/zero live model geometry."
+    },
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:49cb962570eba5c6de80e94bf1c1b390b0809a97b7a5126ddb9464a8d2c9f0c6"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:f65e109b5ccbd2fa9e35bf7dafb39573f66a1559b79895e536b819aea452fd61"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:80a92e6d18a82d52fa341755dbb60a2e4ea69cbf4b819550427169d95480da43"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:10b5e728068a83585749eecfb7dae22e6b5a36ca7c7722d220752672fe8cd912"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:e4d29b3b3999f9522c33a383ebadcc4d86089a15663474dabb69aea9b332140a"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:3ef2c3f75fcf85a884596cceb076601083cb860e28c151e5baf575897b9a4260"
+      }
+    ],
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 87,
+          "independentBuildings": 70,
+          "remainingBuildings": 70,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.ahmad_bin_ali_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -8.98270361792348,
+            "max": 4.526496382076523
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 172.84078433783725,
+          "remainingWaterArea": 172.84078433783725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:d8cafee30ec98bbdce1b79c4af43d84ea430b7df3aa04c1a2b2df83f8fe47eaa",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 294814
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -360.24633704019436,
+                246,
+                274.2673452110599
+              ],
+              "lookAt": [
+                0,
+                15,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 87,
+          "independentBuildings": 70,
+          "remainingBuildings": 70,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.ahmad_bin_ali_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -8.98270361792348,
+            "max": 4.526496382076523
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 172.84078433783725,
+          "remainingWaterArea": 172.84078433783725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:bb5afc792d0993116ba4ff51835c907182d96068172494158f76ec54a61b366b",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 297468
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -360.24633704019436,
+                246,
+                274.2673452110599
+              ],
+              "lookAt": [
+                0,
+                15,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 87,
+          "independentBuildings": 70,
+          "remainingBuildings": 70,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.ahmad_bin_ali_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -8.98270361792348,
+            "max": 4.526496382076523
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 172.84078433783725,
+          "remainingWaterArea": 172.84078433783725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:929d6bb52538653e614117b659dc7241efbac60434e4da365525d4d4ee2d6215",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 308780
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -360.24633704019436,
+                246,
+                274.2673452110599
+              ],
+              "lookAt": [
+                0,
+                15,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 87,
+          "independentBuildings": 70,
+          "remainingBuildings": 70,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.ahmad_bin_ali_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -8.98270361792348,
+            "max": 4.526496382076523
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 172.84078433783725,
+          "remainingWaterArea": 172.84078433783725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:e7b55d7fe8f8bdff764e6439e4e6dc36848c513e902bc9868665a39052d8efb2",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 343564
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -360.24633704019436,
+                246,
+                274.2673452110599
+              ],
+              "lookAt": [
+                0,
+                15,
+                0
+              ],
+              "fov": 43
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-rosette-screen-stand-off-frame-and-service-core.png",
+            "hash": "sha256:f874682bf1c70a48dd408858a91a683a7cb89a162887cc9174389e01c552e1aa",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 343564
+            },
+            "camera": {
+              "name": "open-rosette-screen-stand-off-frame-and-service-core",
+              "position": [
+                -27.25189436240425,
+                16,
+                162.73393700657635
+              ],
+              "lookAt": [
+                -17.34211459425725,
+                17,
+                103.55795991327587
+              ],
+              "fov": 72
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-red-dark-two-tier-bowl-and-flying-roof-truss.png",
+            "hash": "sha256:6d21f6fd9a3c4274e2a4507d8db17fd5b95cd6ce36e40e8825f827b71c9e2b60",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 343564
+            },
+            "camera": {
+              "name": "red-dark-two-tier-bowl-and-flying-roof-truss",
+              "position": [
+                0,
+                5,
+                0
+              ],
+              "lookAt": [
+                -76.92877022129065,
+                18,
+                -12.8827136985911
+              ],
+              "fov": 90
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-native-dune-pavilion-roof-and-projected-core.png",
+            "hash": "sha256:a60fc74ef4b6c2a00b70233d3401930256cf850793dba1df4bdb273d49fa99eb",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 343564
+            },
+            "camera": {
+              "name": "native-dune-pavilion-roof-and-projected-core",
+              "position": [
+                -194.58683680115075,
+                12,
+                132.6836950937165
+              ],
+              "lookAt": [
+                -114.49169950172207,
+                1,
+                90.33078514663411
+              ],
+              "fov": 69
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 87,
+          "independentBuildings": 70,
+          "remainingBuildings": 87,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185257969356,
+              "area": 479.6080231080296
+            },
+            {
+              "id": 35185257969357,
+              "area": 254.2627000797964
+            },
+            {
+              "id": 35185257969358,
+              "area": 277.16644949024385
+            },
+            {
+              "id": 35185257969359,
+              "area": 266.7142125482485
+            },
+            {
+              "id": 35185257969360,
+              "area": 259.03008011951414
+            },
+            {
+              "id": 35185257969361,
+              "area": 345.2302221234959
+            },
+            {
+              "id": 35185257969362,
+              "area": 340.5715425210758
+            },
+            {
+              "id": 35185257969363,
+              "area": 284.70920130226034
+            },
+            {
+              "id": 35185257969364,
+              "area": 286.5297407556966
+            },
+            {
+              "id": 35185257969365,
+              "area": 946.5721661625395
+            },
+            {
+              "id": 35185257969366,
+              "area": 965.8028133380483
+            },
+            {
+              "id": 35185257969367,
+              "area": 906.5873224368232
+            },
+            {
+              "id": 35185257969368,
+              "area": 903.1423130421288
+            },
+            {
+              "id": 35185257969369,
+              "area": 952.0529575594082
+            },
+            {
+              "id": 35185257969370,
+              "area": 936.9767001817166
+            },
+            {
+              "id": 35185257969371,
+              "area": 1040.3196862436687
+            },
+            {
+              "id": 52776560216314,
+              "area": 31658.893943969255
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.ahmad_bin_ali_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -8.98270361792348,
+            "max": 4.526496382076523
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 172.84078433783725,
+          "remainingWaterArea": 172.84078433783725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:bbc7e3c42e69db425ca5acb59e2b614bd39cf2c3bc0e12ac3bb8bdb12ba4a77e",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 321751
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -360.24633704019436,
+                246,
+                274.2673452110599
+              ],
+              "lookAt": [
+                0,
+                15,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific completed-reference Ahmad bin Ali Stadium: own mapped rounded envelope/central roof aperture, warm open circular/eight-point star rosette enclosure with real shared alpha apertures/stand-off frames/recessed glazing and concrete galleries, closed pale canopy/deep flying inner truss/radial beams and stays/upper ring, two red-dark seating tiers/closed hospitality belt/pale aisles/neutral sunken football field/goals/supported displays, eight individually mapped projecting service cores/rooftop wells/concourse links and eight native-footprint curved dune pavilions. Six shared graphs including reusable analytic rosette screen; no private facade atlas/copied seat lettering/event imagery/hidden furnished rooms/whole precinct slab.",
+    "RetainedQ401643 and named stadiumPOI35184527125656 identify native main parent52776560216314; separate pitch35185393982237 supplies114.500589x72.806638m own field-surround axis. Retained reference51.341279,25.330538 is about148m from the native field center and is not used as the model origin. Own anchor[51.34232461452484,25.329593544582735]/heading0/native east-south/internal X[0.16516299613578334,-0.9862662848883416]/Z[0.9862662848883416,0.16516299613578334]. Main29-point outer/eight-point roof hole are retained, approximately228x201m/125x86m; working lower opening is93percent roof aperture and neutral105x68m field remains separate. Eight rectangular mapped service cores35185257969357..364 and eight distinct native dune pavilions35185257969356/365..371 match the ordinary aerial. No exact-QID field in PMTiles; named point/own geometry/retained identity are the stated basis. Fine20degree/2m facing and component inventory remain approximate.",
+    "No qualified native architectural height. Working field4m below original anchor datum is a visualization allocation; outer canopy34.5m/inner canopy38.5m/flying ring48.5m above field, two tiers1.4..13m/18..28m and closed belt13..18m/galleries7/16/26m/core tops34.7..36m above field are picture-led. Dune plinths retain their own footprints and extend below original minimum sample; roof eaves1.3m/rounded crest6.8m above highest boundary sample avoid terrain piercing. Rosette2m pitch/100mm strips and single eight-point motif approximate the more varied photographed facade. Structural counts/profiles/core equipment/bridges/optical transmission/current condition/hidden furnished hospitality rooms are not survey or engineering claims. Completed2020-reference era is modeled; upload timestamps are not photo dates.",
+    "Original standard6m Mapzen grid/native roads/water and independent surrounding building inputs remain intact. Original datum38.77580361792348m defines modelY0; field is4m below it. Main-floor retaining base reaches below minimum original grade and a bounded opening stays inside the main body/all-level occupied floor. Core and dune foundations retain only their own footprints/individual original contacts, with no precinct-wide platform or terrain edits. Only17 owned main/core/dune records are replaced using99.5percent whole-feature coverage; generalized lower-zoom complexes use bounded area clipping. Failure/unload retains or restores original ground/native context."
+  ]
+}

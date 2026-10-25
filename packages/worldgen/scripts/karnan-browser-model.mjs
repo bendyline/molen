@@ -1,12 +1,12 @@
-/** N0620 browser derivatives. Detailed historic/current source karnan-model.mjs is preserved. */
+/** karnan browser derivatives. Detailed historic/current source karnan-model.mjs is preserved. */
 import { readFileSync } from 'node:fs';
 import { beam } from './authored-structure-mesh.mjs';
 import { face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box, tube as sourceTube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const outline = JSON.parse(readFileSync(structureSourcePath('n0620_karnan', 'map-frame.json')))
-    .geometry.outline,
+const outline = JSON.parse(readFileSync(structureSourcePath('karnan', 'map-frame.json'))).geometry
+    .outline,
   stone = [0.8, 0.76, 0.65],
   dark = [0.075, 0.085, 0.085];
 const means = {

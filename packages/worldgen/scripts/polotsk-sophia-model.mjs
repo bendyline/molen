@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u9/u9u/n0379_saint_sophia_cathedral_in_polotsk/',
+  '../../../content/worldgen/source/places/u9/u9u/saint_sophia_cathedral_in_polotsk/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -993,7 +993,7 @@ export const buildPolotskSophiaSkyline = (o) => build(o, 0),
   buildPolotskSophiaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const polotskSophiaStudy = {
-  id: 'N0379',
+  id: 'saint_sophia_cathedral_in_polotsk',
   key: 'saint_sophia_cathedral_in_polotsk',
   title: 'Saint Sophia Cathedral in Polotsk',
   category: 'cathedral',

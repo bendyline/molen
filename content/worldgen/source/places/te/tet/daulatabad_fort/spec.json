@@ -1,0 +1,1072 @@
+{
+  "planId": "daulatabad_fort",
+  "id": "daulatabad_fort",
+  "assetId": "molen.worldgen.structure.daulatabad_fort",
+  "title": "Daulatabad Fort",
+  "category": "fortress",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 75.217434,
+    "latitude": 19.9444468
+  },
+  "size": [
+    1506.77587890625,
+    165.9058132171631,
+    2185.534912109375
+  ],
+  "actualBounds": {
+    "min": [
+      -761.2068481445312,
+      -16.068090438842773,
+      -997.5975341796875
+    ],
+    "max": [
+      745.5690307617188,
+      149.8377227783203,
+      1187.9373779296875
+    ]
+  },
+  "visualBrief": "Whole surviving Daulatabad architectural ensemble: all twelve selected native castle/city-defense wall traces and upper-citadel perimeter, their intrinsic bastions/crenellations and mapped gates; complete three-balcony red Chand Minar; summit Baradari white open gallery/dark flanking blocks; Chini Mahal palace-prison gateway; Bharat Mata/Jami Masjid courtyard colonnade and intrinsic Hathi Houz tank; artificial moat retaining/cut-rock edges and its own short crossing. Natural monolith is supplied by an independent frozen terrain field, not a generic cone or invented site slab. Exclude modern town buildings, unrelated temples, standalone cannons/exhibits, vegetation/paths/public landscape, signs/people/vehicles and reconstructed demolished historic wings. Retain full native wall courses/bastion protrusions instead of invented repeating round towers. Real openings at mapped gate points, pointed gate surrounds and dark basalt ramparts. Three balcony minaret with flared supports, serrated parapets and domed crown/finial. Real open pointed arches on projecting white Baradari gallery; ornate Chini gateway with true lower passage and surviving asymmetric crown towers. Open temple courtyard/colonnades and tank/moat voids. Freeze independent whole-site terrain first; natural hill comes from that raw field, never a generic cone. Concealed sections/census/provisional pavilion-palace positions bounded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aurangabad_-_Daulatabad_Fort_(95).JPG",
+    "https://commons.wikimedia.org/wiki/File:Aurangabad_-_Daulatabad_Fort_(75).JPG",
+    "https://commons.wikimedia.org/wiki/File:Daulatabad_fort21.jpeg",
+    "https://commons.wikimedia.org/wiki/File:Aurangabad_-_Daulatabad_Fort_(30).JPG",
+    "https://commons.wikimedia.org/wiki/File:Aurangabad_-_Daulatabad_Fort_(69).JPG",
+    "https://commons.wikimedia.org/wiki/File:Chand_minar21.jpeg",
+    "https://commons.wikimedia.org/wiki/File:DaulatabadFORT_Khandak.jpg",
+    "https://commons.wikimedia.org/wiki/File:DaulatabadFort.JPG",
+    "https://commons.wikimedia.org/wiki/File:DautlatabadFortGate.JPG",
+    "https://commons.wikimedia.org/wiki/File:DaulatabadPrison.JPG"
+  ],
+  "stories": [
+    {
+      "id": "daulatabad-fort-wp",
+      "url": "https://qualla.com/daulatabad-fort/"
+    }
+  ],
+  "referenceInputHash": "c8eb7c40a46ba07d337959785e9304b8469d6bc0084edb0c91e2eb9bdaf21669",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-daulatabad-fort.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-daulatabad-fort.mjs",
+    "level": "skyline",
+    "export": "daulatabadSkyline",
+    "errorMeters": 110,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "lime": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "red": {
+        "slot": "wall",
+        "graph": "plaster_tadelakt",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "trim",
+        "graph": "tile_ceramic",
+        "roughness": 0.75,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "daulatabadDistrict",
+        "errorMeters": 22,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "lime": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "wall",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "daulatabadStreet",
+        "errorMeters": 4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "lime": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "wall",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "daulatabadCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "lime": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "wall",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 8,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named native Daulatabad Fort way1246827867/Q88667786 identifies only the upper citadel. Full ensemble also retains twelve mapped historic defensive wall paths, named minaret node3306484871, original moat relation7842082 inner/outer lines, temple courtyard323874969 and Hathi Houz323874974, four exact gate points and short intrinsic crossing549229790. Original axes remain east/south at the named minaret. Baradari and Chini Mahal shapes/registrations are explicit bounded photo/native-path/enclosure inferences, not falsely named exact building polygons. Unrelated town/unnamed buildings and ambiguous Landsat wall670314738 are not adopted. Independent2800m129x129 field/16641 samples frozen before geometry. All building/wall bases sample that unchanged field; urban returns/hidden foundations and live compatible host contact remain approximate.",
+    "anchor": [
+      75.217434,
+      19.9444468
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        75.2202769,
+        19.9437733
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exact native lower historic-gate point before independent terrain acquisition and geometry. Not a surveyed threshold or moat water datum; no source fitting/flattening."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -483.9445590003749,
+          402.8114200001943
+        ],
+        [
+          -445.1658799838691,
+          374.88555856488466
+        ],
+        [
+          -430.8971436574198,
+          387.69726784578114
+        ],
+        [
+          -476.08531318345285,
+          422.6912781878868
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            -445.1658799838691,
+            374.88555856488466
+          ],
+          [
+            -409.5309950750586,
+            341.812685261983
+          ],
+          [
+            -397.35503505506017,
+            358.96540831003915
+          ],
+          [
+            -430.8971436574198,
+            387.69726784578114
+          ]
+        ],
+        [
+          [
+            -409.5309950750586,
+            341.812685261983
+          ],
+          [
+            -374.5619327160795,
+            307.91285637975136
+          ],
+          [
+            -360.6895255529904,
+            316.5665434494328
+          ],
+          [
+            -397.35503505506017,
+            358.96540831003915
+          ]
+        ],
+        [
+          [
+            -374.5619327160795,
+            307.91285637975136
+          ],
+          [
+            -346.5664507921134,
+            267.9348562349643
+          ],
+          [
+            -326.38045592615316,
+            276.3137726968673
+          ],
+          [
+            -360.6895255529904,
+            316.5665434494328
+          ]
+        ],
+        [
+          [
+            -346.5664507921134,
+            267.9348562349643
+          ],
+          [
+            -316.31949436908036,
+            229.8893111926157
+          ],
+          [
+            -300.1362744722531,
+            239.17694816731466
+          ],
+          [
+            -326.38045592615316,
+            276.3137726968673
+          ]
+        ],
+        [
+          [
+            -316.31949436908036,
+            229.8893111926157
+          ],
+          [
+            -289.59500155095054,
+            189.36403776267267
+          ],
+          [
+            -278.4064732998663,
+            190.22391738230618
+          ],
+          [
+            -300.1362744722531,
+            239.17694816731466
+          ]
+        ],
+        [
+          [
+            -289.59500155095054,
+            189.36403776267267
+          ],
+          [
+            -291.62881593816616,
+            141.5136135785898
+          ],
+          [
+            -279.7105181211134,
+            139.88787148313168
+          ],
+          [
+            -278.4064732998663,
+            190.22391738230618
+          ]
+        ],
+        [
+          [
+            -291.62881593816616,
+            141.5136135785898
+          ],
+          [
+            -312.7616071729319,
+            99.50113708844344
+          ],
+          [
+            -301.08216367392595,
+            96.72357897650396
+          ],
+          [
+            -279.7105181211134,
+            139.88787148313168
+          ]
+        ],
+        [
+          [
+            -312.7616071729319,
+            99.50113708844344
+          ],
+          [
+            -329.398951121133,
+            54.03773496871826
+          ],
+          [
+            -315.6183667132039,
+            51.22892209542952
+          ],
+          [
+            -301.08216367392595,
+            96.72357897650396
+          ]
+        ],
+        [
+          [
+            -329.398951121133,
+            54.03773496871826
+          ],
+          [
+            -314.1383879787543,
+            14.517691352298277
+          ],
+          [
+            -303.9865535506294,
+            14.428247547399744
+          ],
+          [
+            -315.6183667132039,
+            51.22892209542952
+          ]
+        ],
+        [
+          [
+            -314.1383879787543,
+            14.517691352298277
+          ],
+          [
+            -304.1043273974315,
+            -22.202990696050403
+          ],
+          [
+            -301.6479181013768,
+            -13.960937369929889
+          ],
+          [
+            -303.9865535506294,
+            14.428247547399744
+          ]
+        ],
+        [
+          [
+            -304.1043273974315,
+            -22.202990696050403
+          ],
+          [
+            -278.1181752322761,
+            -53.432801561289466
+          ],
+          [
+            -269.4362141742907,
+            -53.068697916204144
+          ],
+          [
+            -301.6479181013768,
+            -13.960937369929889
+          ]
+        ],
+        [
+          [
+            -278.1181752322761,
+            -53.432801561289466
+          ],
+          [
+            -313.9831021410299,
+            -68.7934344915383
+          ],
+          [
+            -313.77431497158045,
+            -77.63320594831133
+          ],
+          [
+            -269.4362141742907,
+            -53.068697916204144
+          ]
+        ],
+        [
+          [
+            -313.9831021410299,
+            -68.7934344915383
+          ],
+          [
+            -335.82361869720324,
+            -32.43193527236913
+          ],
+          [
+            -352.17102364560907,
+            -39.43591913672898
+          ],
+          [
+            -313.77431497158045,
+            -77.63320594831133
+          ]
+        ],
+        [
+          [
+            -335.82361869720324,
+            -32.43193527236913
+          ],
+          [
+            -348.96718942393096,
+            -8.648466641385532
+          ],
+          [
+            -364.82560229523204,
+            -24.337753469429448
+          ],
+          [
+            -352.17102364560907,
+            -39.43591913672898
+          ]
+        ],
+        [
+          [
+            -348.96718942393096,
+            -8.648466641385532
+          ],
+          [
+            -384.41302752212925,
+            23.21331664351048
+          ],
+          [
+            -398.14097730504847,
+            4.3999020238791715
+          ],
+          [
+            -364.82560229523204,
+            -24.337753469429448
+          ]
+        ],
+        [
+          [
+            -384.41302752212925,
+            23.21331664351048
+          ],
+          [
+            -428.12244991151255,
+            44.63876600186113
+          ],
+          [
+            -437.14400083636434,
+            28.703548899426906
+          ],
+          [
+            -398.14097730504847,
+            4.3999020238791715
+          ]
+        ],
+        [
+          [
+            -428.12244991151255,
+            44.63876600186113
+          ],
+          [
+            -469.7253982851977,
+            70.22288448999288
+          ],
+          [
+            -466.4691030035393,
+            53.61171200005856
+          ],
+          [
+            -437.14400083636434,
+            28.703548899426906
+          ]
+        ],
+        [
+          [
+            -469.7253982851977,
+            70.22288448999288
+          ],
+          [
+            -512.014173969145,
+            94.2723255411137
+          ],
+          [
+            -516.1433482857949,
+            80.84058400028539
+          ],
+          [
+            -466.4691030035393,
+            53.61171200005856
+          ]
+        ],
+        [
+          [
+            -512.014173969145,
+            94.2723255411137
+          ],
+          [
+            -547.334509283472,
+            127.05027920342755
+          ],
+          [
+            -563.6305820684536,
+            110.27265953671807
+          ],
+          [
+            -516.1433482857949,
+            80.84058400028539
+          ]
+        ],
+        [
+          [
+            -547.334509283472,
+            127.05027920342755
+          ],
+          [
+            -590.9866360876325,
+            148.71196692889015
+          ],
+          [
+            -603.5844992016908,
+            136.8062122984476
+          ],
+          [
+            -563.6305820684536,
+            110.27265953671807
+          ]
+        ],
+        [
+          [
+            -590.9866360876325,
+            148.71196692889015
+          ],
+          [
+            -632.1272160602796,
+            174.4204580193539
+          ],
+          [
+            -652.3867341799497,
+            157.87416451560938
+          ],
+          [
+            -603.5844992016908,
+            136.8062122984476
+          ]
+        ],
+        [
+          [
+            -632.1272160602796,
+            174.4204580193539
+          ],
+          [
+            -665.782467365092,
+            207.459221064326
+          ],
+          [
+            -670.5133643817755,
+            185.5259120000082
+          ],
+          [
+            -652.3867341799497,
+            157.87416451560938
+          ]
+        ],
+        [
+          [
+            -665.782467365092,
+            207.459221064326
+          ],
+          [
+            -710.1674419101793,
+            227.55942047527375
+          ],
+          [
+            -721.6216124780741,
+            211.68400688843195
+          ],
+          [
+            -670.5133643817755,
+            185.5259120000082
+          ]
+        ],
+        [
+          [
+            -710.1674419101793,
+            227.55942047527375
+          ],
+          [
+            -738.2759931772189,
+            264.43217317667165
+          ],
+          [
+            -757.4755719459158,
+            253.30883079872766
+          ],
+          [
+            -721.6216124780741,
+            211.68400688843195
+          ]
+        ],
+        [
+          [
+            -738.2759931772189,
+            264.43217317667165
+          ],
+          [
+            -726.9751058304702,
+            309.1553578651709
+          ],
+          [
+            -743.0903106229383,
+            324.15610936808747
+          ],
+          [
+            -757.4755719459158,
+            253.30883079872766
+          ]
+        ],
+        [
+          [
+            -726.9751058304702,
+            309.1553578651709
+          ],
+          [
+            -691.5898945129707,
+            342.7242736585955
+          ],
+          [
+            -709.9219917740226,
+            359.78860756447693
+          ],
+          [
+            -743.0903106229383,
+            324.15610936808747
+          ]
+        ],
+        [
+          [
+            -691.5898945129707,
+            342.7242736585955
+          ],
+          [
+            -654.098800854399,
+            373.540389548806
+          ],
+          [
+            -667.8833572050439,
+            398.5300269027848
+          ],
+          [
+            -709.9219917740226,
+            359.78860756447693
+          ]
+        ],
+        [
+          [
+            -654.098800854399,
+            373.540389548806
+          ],
+          [
+            -610.2042658268942,
+            394.80206184394507
+          ],
+          [
+            -627.8488713473314,
+            420.76631021969513
+          ],
+          [
+            -667.8833572050439,
+            398.5300269027848
+          ]
+        ],
+        [
+          [
+            -610.2042658268942,
+            394.80206184394507
+          ],
+          [
+            -574.2858757945426,
+            423.32545259484795
+          ],
+          [
+            -581.8114852173434,
+            446.4564513597701
+          ],
+          [
+            -627.8488713473314,
+            420.76631021969513
+          ]
+        ],
+        [
+          [
+            -574.2858757945426,
+            423.32545259484795
+          ],
+          [
+            -529.1067031961321,
+            421.228747901389
+          ],
+          [
+            -521.4069137747592,
+            437.26496000021484
+          ],
+          [
+            -581.8114852173434,
+            446.4564513597701
+          ]
+        ],
+        [
+          [
+            -529.1067031961321,
+            421.228747901389
+          ],
+          [
+            -483.9445590003749,
+            402.8114200001943
+          ],
+          [
+            -476.08531318345285,
+            422.6912781878868
+          ],
+          [
+            -521.4069137747592,
+            437.26496000021484
+          ]
+        ],
+        [
+          [
+            144.84746222914754,
+            51.00682400007017
+          ],
+          [
+            139.30135942805936,
+            96.98198400026754
+          ],
+          [
+            93.03849058581373,
+            91.39372000021808
+          ],
+          [
+            98.58459338690191,
+            45.418560000020705
+          ]
+        ]
+      ],
+      "basis": "Only the authored native moat strips and named Hathi Houz tank open the source terrain for their intrinsic retaining walls and pit floor. Original independent grid/heightmap values are unchanged.32strip approximation does not certify exact cut-rock/water levels; no hill/whole-fort parcel opening."
+    },
+    "featureIds": [
+      "way/1246827867",
+      "way/60175813",
+      "way/549229775",
+      "way/549229780",
+      "way/549229781",
+      "way/549229786",
+      "way/1292545256",
+      "way/1292545257",
+      "way/1292545258",
+      "way/1028089775",
+      "way/1444729596",
+      "way/1444729598",
+      "way/1028089778",
+      "node/3306484871",
+      "relation/7842082",
+      "way/323874969",
+      "way/323874974",
+      "estimated-chini-mahal-facade-on-native-wall1028089778",
+      "estimated-baradari-within-native-upper-citadel",
+      "node/13256186785",
+      "node/13256186795",
+      "node/13256194213",
+      "node/13256194216"
+    ],
+    "source": "https://www.openstreetmap.org/way/1246827867",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:df5cbdf439b9d7fd1656ab8e1fc5d6661b4f9a39ff8222fe1f159ab976e4eb53",
+    "notes": "Whole surviving Daulatabad architectural ensemble: all twelve selected native castle/city-defense wall traces and upper-citadel perimeter, their intrinsic bastions/crenellations and mapped gates; complete three-balcony red Chand Minar; summit Baradari white open gallery/dark flanking blocks; Chini Mahal palace-prison gateway; Bharat Mata/Jami Masjid courtyard colonnade and intrinsic Hathi Houz tank; artificial moat retaining/cut-rock edges and its own short crossing. Natural monolith is supplied by an independent frozen terrain field, not a generic cone or invented site slab. Exclude modern town buildings, unrelated temples, standalone cannons/exhibits, vegetation/paths/public landscape, signs/people/vehicles and reconstructed demolished historic wings."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_tadelakt",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Named native Daulatabad Fort way1246827867/Q88667786 identifies only the upper citadel. Full ensemble also retains twelve mapped historic defensive wall paths, named minaret node3306484871, original moat relation7842082 inner/outer lines, temple courtyard323874969 and Hathi Houz323874974, four exact gate points and short intrinsic crossing549229790. Original axes remain east/south at the named minaret. Baradari and Chini Mahal shapes/registrations are explicit bounded photo/native-path/enclosure inferences, not falsely named exact building polygons. Unrelated town/unnamed buildings and ambiguous Landsat wall670314738 are not adopted.",
+    "Ten exact published Qualla public-domain originals individually inspected and native-SHA1 matched. Two omitted PD categories recovered by exact existing primary-grant binding. No attribution photo pixels, engineering diagram, AI image or photographic texture used.",
+    "Full selected native defensive traces/upper citadel, named minaret, temple courtyard/tank and moat retained. Source plans do not measure vertical wall/census/corbel sections. Gate surrounds and bastion drums, crenellation/column counts, hidden rooms, roofs/ruin edges and current cosmetic changes are bounded photo reconstructions.",
+    "Chini Mahal facade is a small estimated registration on actual palace enclosure wall1028089778; unnamed building670314739 is not misidentified as the palace. Baradari footprint is an explicit estimated registration beside native summit path within upper citadel, not a falsely exact building polygon.",
+    "Minaret64m is a chosen approximate interpretation from native/current official63/64m statements; other tourism text gives30m or30ft. Shape and three flared balcony/dome proportions follow the cleared full-height photograph; no surveyed engineering height claim. Natural hill shape/height comes only from the independent raw field, never a generic cone fitted to the200m tourism statement.",
+    "Source/runtime GLBs contain architecture and intrinsic moat/tank/crossing only. Natural hill is supplied by the independent terrain review descriptor, not embedded landscape. No modern town/standalone cannon/vegetation/people/signs or interiors. Source portable terrain does not apply Earth-owned openings; shared/context terrain cutout views must establish visible intrinsic moat/tank voids.",
+    "Independent2800m129x129 field/16641samples/12rawTerrariumtiles unchanged. Output pixels4.49m and21.875m grid do not imply native survey resolution; urban/vegetation returns and deep cut-rock/moat depth are approximate. Preview replaceFootprint=false; actual compatible live host terrain and threshold contact unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-surviving-fort-defenses-and-real-monolith",
+      "position": [
+        1500,
+        1100,
+        1800
+      ],
+      "lookAt": [
+        -100,
+        70,
+        150
+      ]
+    },
+    {
+      "name": "chand-minar-three-flared-balconies-and-domed-crown",
+      "position": [
+        85,
+        56.921299999999974,
+        115
+      ],
+      "lookAt": [
+        0,
+        43.921299999999974,
+        0
+      ]
+    },
+    {
+      "name": "summit-baradari-open-white-pointed-arch-gallery",
+      "position": [
+        -430.7320051137265,
+        152.3377196538422,
+        276.1517760000901
+      ],
+      "lookAt": [
+        -480.7320051137265,
+        145.3377196538422,
+        211.15177600009005
+      ]
+    },
+    {
+      "name": "chini-mahal-palace-prison-open-passage-and-asymmetric-crown",
+      "position": [
+        -193.802901432002,
+        38.72794660455861,
+        -61.1151239998959
+      ],
+      "lookAt": [
+        -228.802901432002,
+        33.72794660455861,
+        -79.1151239998959
+      ]
+    },
+    {
+      "name": "native-mapped-lower-bastioned-gates-and-ramparts",
+      "position": [
+        352.49086141506075,
+        17.73443554506207,
+        114.97402000014759
+      ],
+      "lookAt": [
+        297.49086141506075,
+        3.7344355450620697,
+        74.97402000014759
+      ]
+    },
+    {
+      "name": "native-artificial-moat-cut-rock-edges-and-short-crossing",
+      "position": [
+        -228.82051323040923,
+        101.24741639920842,
+        -21.34461799996103
+      ],
+      "lookAt": [
+        -273.82051323040923,
+        32.24741639920842,
+        -56.34461799996103
+      ]
+    },
+    {
+      "name": "open-bharat-mata-courtyard-colonnades",
+      "position": [
+        127.37340784199118,
+        68.76188175517905,
+        212.5201540001271
+      ],
+      "lookAt": [
+        37.37340784199118,
+        10.761881755179047,
+        102.52015400012709
+      ]
+    },
+    {
+      "name": "hathi-houz-intrinsic-masonry-tank",
+      "position": [
+        163.94297640748064,
+        33.48050431014099,
+        126.20027200014412
+      ],
+      "lookAt": [
+        118.94297640748064,
+        3.4805043101409865,
+        71.20027200014412
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62416,
+    "vertices": 187248,
+    "materials": 5,
+    "bytes": 7493304,
+    "sha256": "sha256:655a71f7e7756d60caec985852899497a454386c2241ae838aa649ba8b88e822"
+  }
+}

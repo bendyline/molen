@@ -1,0 +1,664 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "concrete_panel",
+      "slot": "wall",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.15
+    },
+    "roof": {
+      "graph": "concrete_plain",
+      "slot": "roof",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.3,
+      "metallic": 0.12
+    },
+    "frame": {
+      "graph": "metal_stainless_beadblasted",
+      "slot": "trim",
+      "roughness": 0.5,
+      "metallic": 0.55
+    },
+    "white": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.15
+    },
+    "floor": {
+      "graph": "concrete_plain",
+      "slot": "trim",
+      "roughness": 0.92,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -213.24980052278985,
+      112.06720095066277,
+      76.9709203335282
+    ],
+    "lookAt": [
+      -4.384487017034851,
+      22.067200950662762,
+      -2.4033879415218915
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "53rd-street-canopy-recess-and-moma-blade",
+      "position": [
+        -70.33427562890199,
+        10.067200950662762,
+        49.25535170677033
+      ],
+      "lookAt": [
+        -27.5737887002359,
+        10.067200950662762,
+        19.09675827764343
+      ],
+      "fov": 52
+    },
+    {
+      "name": "garden-glazing-and-stepped-gallery-roofs",
+      "position": [
+        109.32023181439403,
+        45.067200950662766,
+        8.607375677124175
+      ],
+      "lookAt": [
+        22.344723951183187,
+        20.067200950662762,
+        0.8445777320178642
+      ],
+      "fov": 52
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -213.24980052278985,
+        112.06720095066277,
+        76.9709203335282
+      ],
+      "lookAt": [
+        -4.384487017034851,
+        22.067200950662762,
+        -2.4033879415218915
+      ],
+      "fov": 45,
+      "name": "moma-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -213.24980052278985,
+        112.06720095066277,
+        76.9709203335282
+      ],
+      "lookAt": [
+        -4.384487017034851,
+        22.067200950662762,
+        -2.4033879415218915
+      ],
+      "fov": 45,
+      "name": "moma-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -213.24980052278985,
+        112.06720095066277,
+        76.9709203335282
+      ],
+      "lookAt": [
+        -4.384487017034851,
+        22.067200950662762,
+        -2.4033879415218915
+      ],
+      "fov": 45,
+      "name": "moma-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -213.24980052278985,
+        112.06720095066277,
+        76.9709203335282
+      ],
+      "lookAt": [
+        -4.384487017034851,
+        22.067200950662762,
+        -2.4033879415218915
+      ],
+      "fov": 45,
+      "name": "moma-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.06720095066276244,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/moma-model.mjs",
+    "export": "buildMomaSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMomaDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_panel",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "roof": {
+            "graph": "concrete_plain",
+            "slot": "roof",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "frame": {
+            "graph": "metal_stainless_beadblasted",
+            "slot": "trim",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "white": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildMomaStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_panel",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "roof": {
+            "graph": "concrete_plain",
+            "slot": "roof",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "frame": {
+            "graph": "metal_stainless_beadblasted",
+            "slot": "trim",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "white": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMomaCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_panel",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "roof": {
+            "graph": "concrete_plain",
+            "slot": "roof",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "frame": {
+            "graph": "metal_stainless_beadblasted",
+            "slot": "trim",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "white": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -73.977584889,
+      40.76156429
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard Protomaps20261020 and Mapzen201x201/6m terrain remain unchanged. Uncovered front sidewalk provider internal[-20,34], datum19.332799049337236m. Occupied museum floor19.4m absolute seals the exact parent/part ground opening; footing reaches below original boundary grades. Ground beneath the entry canopy and western cladding remains original. No broad block slab, custom terrain or removal of adjacent towers. Current native street, garden, west-front and overhead views inspected. Main entrance floor sits0.067m above uncovered front-sidewalk datum; boundary footing exposure is modest on the retained grid. Recessed glazing and thin canopy fit without broad terrain edits. Independent Museum Tower/53W53 and all2918 resident neighbours remain intact. Approximate exterior fit accepted; exact thresholds/accessibility and unqualified mapped heights are not certified.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 15
+    },
+    "bounds": [
+      -73.97856783459726,
+      40.7612414258196,
+      -73.97693056267477,
+      40.761982003089265
+    ],
+    "terrainReference": {
+      "anchor": [
+        -73.97798671726493,
+        40.76138282168923
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard Protomaps20261020 and Mapzen201x201/6m terrain remain unchanged. Uncovered front sidewalk provider internal[-20,34], datum19.332799049337236m. Occupied museum floor19.4m absolute seals the exact parent/part ground opening; footing reaches below original boundary grades. Ground beneath the entry canopy and western cladding remains original. No broad block slab, custom terrain or removal of adjacent towers."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -45.30236485632615,
+          9.873094070314897
+        ],
+        [
+          -43.493116593751786,
+          6.2545936004779445
+        ],
+        [
+          -37.61305974038511,
+          -4.600897187853442
+        ],
+        [
+          -27.88835032904793,
+          -22.241035751762016
+        ],
+        [
+          -34.673031313701784,
+          -25.859520512884018
+        ],
+        [
+          -32.18531495266203,
+          -30.382623981423674
+        ],
+        [
+          -25.361281958431174,
+          -26.610342809098867
+        ],
+        [
+          -18.38979695053254,
+          -39.428822616455044
+        ],
+        [
+          -16.12823662231459,
+          -43.499608394435135
+        ],
+        [
+          52.17088528986751,
+          -6.183988262685062
+        ],
+        [
+          39.50614745184699,
+          17.110100315832703
+        ],
+        [
+          25.484473416895696,
+          9.6469377387459
+        ],
+        [
+          19.60441656352903,
+          6.2545936004779445
+        ],
+        [
+          15.75976400555851,
+          12.813127003998247
+        ],
+        [
+          9.653551119370047,
+          9.420781416668571
+        ],
+        [
+          4.210447269145014,
+          19.352087045883763
+        ],
+        [
+          -1.428094488897911,
+          29.7748782775009
+        ],
+        [
+          -3.2373427514722715,
+          32.94107615802632
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -45.30236485632615,
+            9.873094070314897
+          ],
+          [
+            -43.493116593751786,
+            6.2545936004779445
+          ],
+          [
+            -37.61305974038511,
+            -4.600897187853442
+          ],
+          [
+            -27.88835032904793,
+            -22.241035751762016
+          ],
+          [
+            -34.673031313701784,
+            -25.859520512884018
+          ],
+          [
+            -32.18531495266203,
+            -30.382623981423674
+          ],
+          [
+            -25.361281958431174,
+            -26.610342809098867
+          ],
+          [
+            -18.38979695053254,
+            -39.428822616455044
+          ],
+          [
+            -16.12823662231459,
+            -43.499608394435135
+          ],
+          [
+            52.17088528986751,
+            -6.183988262685062
+          ],
+          [
+            39.50614745184699,
+            17.110100315832703
+          ],
+          [
+            25.484473416895696,
+            9.6469377387459
+          ],
+          [
+            19.60441656352903,
+            6.2545936004779445
+          ],
+          [
+            15.75976400555851,
+            12.813127003998247
+          ],
+          [
+            9.653551119370047,
+            9.420781416668571
+          ],
+          [
+            4.210447269145014,
+            19.352087045883763
+          ],
+          [
+            -1.428094488897911,
+            29.7748782775009
+          ],
+          [
+            -3.2373427514722715,
+            32.94107615802632
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Q188740 and named MoMA OSM way278346578v43/native35184650435410. Five mapped25/35m gallery roof parts and relation2100751v5 member way148251196 supply integrated museum geometry. Keep independent Museum Tower ways148251193/194/195 and53W53 way261504062, plus every unrelated building. Internal+X follows53rd Street east-southeast; internal+Z points toward53rd Street/front sidewalk. World heading0 with this orientation baked into geometry; west facade skin is at the mapped53W53 street boundary, without removing that independent building."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -45.30236485632615,
+          9.873094070314897
+        ],
+        [
+          -43.493116593751786,
+          6.2545936004779445
+        ],
+        [
+          -37.61305974038511,
+          -4.600897187853442
+        ],
+        [
+          -27.88835032904793,
+          -22.241035751762016
+        ],
+        [
+          -34.673031313701784,
+          -25.859520512884018
+        ],
+        [
+          -32.18531495266203,
+          -30.382623981423674
+        ],
+        [
+          -25.361281958431174,
+          -26.610342809098867
+        ],
+        [
+          -18.38979695053254,
+          -39.428822616455044
+        ],
+        [
+          -16.12823662231459,
+          -43.499608394435135
+        ],
+        [
+          52.17088528986751,
+          -6.183988262685062
+        ],
+        [
+          39.50614745184699,
+          17.110100315832703
+        ],
+        [
+          25.484473416895696,
+          9.6469377387459
+        ],
+        [
+          19.60441656352903,
+          6.2545936004779445
+        ],
+        [
+          15.75976400555851,
+          12.813127003998247
+        ],
+        [
+          9.653551119370047,
+          9.420781416668571
+        ],
+        [
+          4.210447269145014,
+          19.352087045883763
+        ],
+        [
+          -1.428094488897911,
+          29.7748782775009
+        ],
+        [
+          -3.2373427514722715,
+          32.94107615802632
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -45.30236485632615,
+            9.873094070314897
+          ],
+          [
+            -43.493116593751786,
+            6.2545936004779445
+          ],
+          [
+            -37.61305974038511,
+            -4.600897187853442
+          ],
+          [
+            -27.88835032904793,
+            -22.241035751762016
+          ],
+          [
+            -34.673031313701784,
+            -25.859520512884018
+          ],
+          [
+            -32.18531495266203,
+            -30.382623981423674
+          ],
+          [
+            -25.361281958431174,
+            -26.610342809098867
+          ],
+          [
+            -18.38979695053254,
+            -39.428822616455044
+          ],
+          [
+            -16.12823662231459,
+            -43.499608394435135
+          ],
+          [
+            52.17088528986751,
+            -6.183988262685062
+          ],
+          [
+            39.50614745184699,
+            17.110100315832703
+          ],
+          [
+            25.484473416895696,
+            9.6469377387459
+          ],
+          [
+            19.60441656352903,
+            6.2545936004779445
+          ],
+          [
+            15.75976400555851,
+            12.813127003998247
+          ],
+          [
+            9.653551119370047,
+            9.420781416668571
+          ],
+          [
+            4.210447269145014,
+            19.352087045883763
+          ],
+          [
+            -1.428094488897911,
+            29.7748782775009
+          ],
+          [
+            -3.2373427514722715,
+            32.94107615802632
+          ]
+        ]
+      ],
+      "basis": "Only exact occupied museum core and integral parts; preserve garden, front sidewalk/canopy and ground beneath independent towers."
+    },
+    "notes": "Q188740 and named MoMA OSM way278346578v43/native35184650435410. Five mapped25/35m gallery roof parts and relation2100751v5 member way148251196 supply integrated museum geometry. Keep independent Museum Tower ways148251193/194/195 and53W53 way261504062, plus every unrelated building. Internal+X follows53rd Street east-southeast; internal+Z points toward53rd Street/front sidewalk. World heading0 with this orientation baked into geometry; west facade skin is at the mapped53W53 street boundary, without removing that independent building. Original standard Protomaps20261020 and Mapzen201x201/6m terrain remain unchanged. Uncovered front sidewalk provider internal[-20,34], datum19.332799049337236m. Occupied museum floor19.4m absolute seals the exact parent/part ground opening; footing reaches below original boundary grades. Ground beneath the entry canopy and western cladding remains original. No broad block slab, custom terrain or removal of adjacent towers. Current native street, garden, west-front and overhead views inspected. Main entrance floor sits0.067m above uncovered front-sidewalk datum; boundary footing exposure is modest on the retained grid. Recessed glazing and thin canopy fit without broad terrain edits. Independent Museum Tower/53W53 and all2918 resident neighbours remain intact. Approximate exterior fit accepted; exact thresholds/accessibility and unqualified mapped heights are not certified."
+  }
+}

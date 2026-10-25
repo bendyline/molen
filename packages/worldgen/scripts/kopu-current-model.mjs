@@ -4,11 +4,11 @@ import { beam, cross, normalFor } from './authored-structure-mesh.mjs';
 import { ring } from './lighthouse-expansion-models.mjs';
 import { buildKopu, lathe } from './lighthouse-models.mjs';
 import { box } from './structure-mesh.mjs';
-export const kopuRuntimeAssetId = 'molen.worldgen.structure.n0641_kopu_lighthouse';
+export const kopuRuntimeAssetId = 'molen.worldgen.structure.kopu_lighthouse';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u6/u6r/n0641_kopu_lighthouse/map-frame.json',
+      '../../../content/worldgen/source/places/u6/u6r/kopu_lighthouse/map-frame.json',
       import.meta.url,
     ),
     'utf8',

@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/',
+  '../../../content/worldgen/source/places/u2/u23/salzburg_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1087,7 +1087,7 @@ export const buildSalzburgSkyline = (o) => build(o, 0),
   buildSalzburgStreet = (o) => build(o, 2),
   buildSalzburgCloseup = (o) => build(o, 3);
 export const salzburgStudy = {
-  id: 'N0345',
+  id: 'salzburg_cathedral',
   key: 'salzburg_cathedral',
   title: 'Salzburg Cathedral',
   category: 'cathedral',

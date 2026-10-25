@@ -1,0 +1,340 @@
+{
+  "planId": "cellular_jail",
+  "id": "cellular_jail",
+  "assetId": "molen.worldgen.structure.cellular_jail",
+  "title": "Cellular Jail",
+  "category": "historic-prison",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 92.7479426,
+    "latitude": 11.6751086
+  },
+  "size": [
+    139.59071350097656,
+    16.650000751018524,
+    181.1404070854187
+  ],
+  "actualBounds": {
+    "min": [
+      -65.19209289550781,
+      -0.44999998807907104,
+      -7.004741191864014
+    ],
+    "max": [
+      74.39862060546875,
+      16.200000762939453,
+      174.1356658935547
+    ]
+  },
+  "visualBrief": "Surviving Cellular Jail architectural ensemble: all three original three-storey radial cell wings and central watchtower, full original entrance/library-museum block with two round flared-crown towers and upper gallery, intrinsic native long workshed and gallows shell. Keep genuine open arched wing corridors/rails and clear entrance passage. Exclude demolished four wings, adjacent G.B.PantHospital, detached modern museum/service structures, parcel/perimeter/landscape/path/ground meshes, sculptures/memorialflame/plaques/signs/flags/vehicles/people, exhibits/interiortortureequipment. Threefulllengthradialwingsfromoriginalnativeoutline, frontfacesonconsistentclockwiseside; otherfacehascellventilators/awnings. Rebuilddarkbrickarcadeswithgenuinevoids/whitegroundpiersandcapsandgreenrailbars, deepcellrowbehind. No flatarcheddecals. Centralgreenopenwatchgallery/redpyramidalroof andochreentrancewithflaredroundcrowns/realmainarch. Survivingexterioronly, notsevenwinghistoricrecreation. Hiddenrear/section/censusbounded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cellular_Jail_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Cellular_Jail_2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Cellular_jail_enterance.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cellular-jail-wp",
+      "url": "https://qualla.com/cellular-jail/"
+    }
+  ],
+  "referenceInputHash": "80eebf4e99f548599c3cea952270ee23f801b1b51d268194f394bf57473cedc9",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cellular-jail.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cellular-jail.mjs",
+    "level": "skyline",
+    "export": "cellularJailSkyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "ochre": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.89,
+        "metallic": 0.13
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.68,
+        "metallic": 0.04
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cellularJailDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "ochre": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.13
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.68,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "cellularJailStreet",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "ochre": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.13
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.68,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "groundY": -0.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "ExactCellularJailsiterelation14659654andnamedQ3345501monument1101216326establishidentity. Three-wing/hubwholebuildingway410790247all24originalvertices, fullentrance364631327all10corners, intrinsicWorkshed410790259/Gallows1540295126andwatchtowernode10077716718retained. Unrotatedeast/southnativeframeatwatchtowerpoint. Namedmonumentparcelisnotbuildingfootprint. Currentnativeentrancelevels3tagdoesnotagreewithphotographstwooccupiablefrontlevelsandtallcylindertowers; photo-basedsectionkeptdistinct. No measuredheight/pier/arcadecountmaptags. PrimaryUNESCO/Ministryconfirms3remainingthree-storeywings/centralwatchtower, sevenhistoricwingsnotreconstructed. Threewingpartition/corewidth/arcadepitch/roofheights/towerrounds/entrancepositionsandhiddenrearestimatedfromthreeclearedoriginals. Entrance gallery registered to actual collinear native facade edge3–5, with intermediatevertex4. Original independent approach/terrain remains unchanged. Independent360m91x91coastalfield/4rawtilesfrozenbeforegeometryatunchangedinitialentranceregistrationpoint,subsequentlylocated1.16mbehindactualfacade. Originalacquisitionprosecorrectedindurablerecord; rawgrid/datumunchanged. Coastalbathymetry/urbanreturnsandthresholdcontactuncertified, nogroundfitting.",
+    "anchor": [
+      92.7479426,
+      11.6751086
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        92.74762067361898,
+        11.673626091622735
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed initial native-plan entrance registration point chosen before terrain and geometry. Correct collinear facade edge3–5 subsequently locates this unchanged point1.16m behind the facade plane; not a surveyed exterior approach or threshold. Frozen terrain datum/grid/heights/source bytes remain unchanged; no grading/fit."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/410790247",
+      "way/364631327",
+      "way/410790259",
+      "way/1540295126"
+    ],
+    "source": "https://www.openstreetmap.org/relation/14659654",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:17ef3428a7b4f1781a0cfb3c4ee309e25a8fadfa2a5283e046b08ba76ff7cdd3",
+    "notes": "Surviving Cellular Jail architectural ensemble: all three original three-storey radial cell wings and central watchtower, full original entrance/library-museum block with two round flared-crown towers and upper gallery, intrinsic native long workshed and gallows shell. Keep genuine open arched wing corridors/rails and clear entrance passage. Exclude demolished four wings, adjacent G.B.PantHospital, detached modern museum/service structures, parcel/perimeter/landscape/path/ground meshes, sculptures/memorialflame/plaques/signs/flags/vehicles/people, exhibits/interiortortureequipment."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "ExactCellularJailsiterelation14659654andnamedQ3345501monument1101216326establishidentity. Three-wing/hubwholebuildingway410790247all24originalvertices, fullentrance364631327all10corners, intrinsicWorkshed410790259/Gallows1540295126andwatchtowernode10077716718retained. Unrotatedeast/southnativeframeatwatchtowerpoint. Namedmonumentparcelisnotbuildingfootprint. Currentnativeentrancelevels3tagdoesnotagreewithphotographstwooccupiablefrontlevelsandtallcylindertowers; photo-basedsectionkeptdistinct. No measuredheight/pier/arcadecountmaptags. PrimaryUNESCO/Ministryconfirms3remainingthree-storeywings/centralwatchtower, sevenhistoricwingsnotreconstructed. Threewingpartition/corewidth/arcadepitch/roofheights/towerrounds/entrancepositionsandhiddenrearestimatedfromthreeclearedoriginals. Entrance gallery registered to actual collinear native facade edge3–5, with intermediatevertex4. Original independent approach/terrain remains unchanged.",
+    "Quallafirst55families/0conflicts. TwoexactAmbujSaxena2003-12-12publishedselfphotographedPDselfwholeoriginalsplusoneexact2010-04-05PramukhownPDself2288x1712entranceoriginalindividuallyinspected/nativeSHA1matched. Supplementfoundin14-filegatesubcategoryafterbounded200-filemaininventory. QuallaCC0courtesy-nameconflictandtransferredPDuserphotographnotadopted. Allattributionimages/unrelatedregionalimages/modernsculptures/signsunused; no generated/copiedbitmaptextures.",
+    "Entirethreewingoriginalnativeoutline/watchtower,originalfullentranceblock,Workshed/Gallowspolygonsretained. Radialwingbodiesaredeepcellrowswithrealopenarchedgalleries,whitegroundpiers/caps,darkbrickbands,thinrailsandrearventilatorhoods. Centralopenwatchgallery/redpyramidalroof,ochreentrance/tworoundflaredcrowns/uppergallery/realmaingateway,ownredshedroofsincluded. Destroyedfourwingsandhospitalnotinvented.",
+    "Floorpitch3.4m/wingroof10.42m/central15.3m/gatebody9.7m/towers16.2m,wingpartition/cellcount/archpitch,roundtowercenters±13.8mandradius2.6m, crown/bracket/rail/ventilatorcensusandrearentrancesectionsestimatedfromthreephotographs, notsurveyed. Native3levelentrancetagnotblindlyapplied; phototwofrontoccupiablefloorsandtallroundtowersgovern.",
+    "LowerLODsgroupwingarchesandomitfinebars/vents/battlementswhilepreservingallthreefulllengthwings/threefloors/openfrontgalleries/centralwatchtower/entiregatewayandtwoturrets/ownworkbuildings. Nofullhistoricalsevenwingrestoration/interiorexhibits/modernmuseumserviceblocks/parcelwalls/landscape/grounds/paths/art/people/signs/vehicles.",
+    "Independent360m91x91/8281heightsand4rawsourceTerrariumtilesretainedunchanged. Fieldextendsintoverydeepcoastalwaterandcontainsurbanreturns; notsurveyedprisonfloorlevels. Allintrinsicfloor/footingsmodeldatumapproximate,flatQAgroundonly; currentlivehostthresholdcontactunverified. PreviewreplaceFootprint=false,nogradingorwholeparcelpad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-three-surviving-wings-watchtower-and-entrance",
+      "position": [
+        -180,
+        145,
+        280
+      ],
+      "lookAt": [
+        0,
+        5,
+        75
+      ]
+    },
+    {
+      "name": "ochre-gateway-two-flared-round-towers-and-upper-gallery",
+      "position": [
+        -48.52017917122491,
+        14,
+        228.79590907387927
+      ],
+      "lookAt": [
+        -34.874499941531745,
+        7,
+        166.26755199998584
+      ]
+    },
+    {
+      "name": "real-three-level-arched-corridors-railings-and-cell-doors",
+      "position": [
+        3.3062232364340147,
+        8,
+        82.68870752829568
+      ],
+      "lookAt": [
+        17.311469330663662,
+        5,
+        67.59390438813962
+      ]
+    },
+    {
+      "name": "rear-cell-ventilators-and-intrinsic-workshed-gallows",
+      "position": [
+        -65,
+        18,
+        115
+      ],
+      "lookAt": [
+        12,
+        4,
+        94
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63130,
+    "vertices": 189390,
+    "materials": 6,
+    "bytes": 7579308,
+    "sha256": "sha256:9a13085bcf6b1af4b1c7eac8f70435056b4574c38b41523bdd6f0d9ec7c8341e"
+  }
+}

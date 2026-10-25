@@ -1,0 +1,301 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.torre_glories",
+  "reviewedOn": "2026-10-10",
+  "inputHash": "sha256:02cb054069b311c11b7a62fb7d752642127405946f3db43683335b13fd113e9a",
+  "sourceHash": "sha256:5de47f5859d6d792c9e421a6e14f0ef145d251a0be60e82800562802b4d2d786",
+  "runtimeHash": "sha256:8d742c76b6fa35725165f2fb6cfa049822881809f78fa373793d1920a27b3551",
+  "captureReportHash": "sha256:4b9d8c7516f4ed7182525025954a6805184dc913d0c872746f4313a62dc2c219",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/red-pixels-and-louvres.png",
+      "shots/blue-facade.png",
+      "shots/glazed-crown.png",
+      "shots/ground-contact.png",
+      "shots/far-silhouette.png",
+      "shots/whole-reviewed-tower.png",
+      "shots/closed-crown-oculus.png",
+      "shots/lower-pixel-window-veil.png"
+    ],
+    "notes": "Actually inspected all 59 final frames: 13 portable, 13 shared and 33 medium-fi. Turntables and whole-tower cameras show the complete oval shaft, warm red lower field, cooler blue upper pixels and rounded pale glass crown. Close views show irregular window cells, fine tilted veil strips, horizontal service rails and dome meridians/parallels. No missing main wall, open pole or inverted roof was observed. The pale crown remains distinct under both portable reflections and shared world lighting. Ground contact and the north-up overlay fit the mapped ellipse. Exact doorway, external pavilion and terrain slope are outside this tower-shell review."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:83760c68474bb8e1c61dcc1cbfbe4500f33a78106a6bf321d9f696c998514857",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/red-pixels-and-louvres.png",
+      "shots/shared/blue-facade.png",
+      "shots/shared/glazed-crown.png",
+      "shots/shared/ground-contact.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/whole-reviewed-tower.png",
+      "shots/shared/closed-crown-oculus.png",
+      "shots/shared/lower-pixel-window-veil.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Two canonical shared 256 px concrete_plain and metal_painted graphs supply foundation and colored panels/trim. Metal wall and trim bindings share the same graph texture. Glazing uses an opaque palette; all six GLBs contain zero embedded images. Each graph is read once in the fixture, and unloading leaves zero live model geometry. Near models use four draw groups; skyline combines graph means into one palette. The combined daylight veil avoids a second complete transparent facade and its sorting/overdraw costs."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:a855315f0079dbaa70a35445e997de0a65edf7aa72fb8d1ec8e0dcd334945cb4",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/red-pixels-and-louvres.png",
+      "medium-fi/blue-facade.png",
+      "medium-fi/glazed-crown.png",
+      "medium-fi/ground-contact.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/whole-reviewed-tower.png",
+      "medium-fi/closed-crown-oculus.png",
+      "medium-fi/lower-pixel-window-veil.png",
+      "medium-fi/whole-tower-skyline.png",
+      "medium-fi/whole-tower-district.png",
+      "medium-fi/whole-tower-street.png",
+      "medium-fi/whole-tower-closeup.png",
+      "medium-fi/district-pixel-composition.png",
+      "medium-fi/street-louvres-and-windows.png",
+      "medium-fi/close-pixel-window-skin.png",
+      "medium-fi/close-framed-dome.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Actually inspected economy/high quality at noon and late afternoon, the texture-free silhouette, eight feature cameras, eight explicit LOD views and four transition views. All levels retain the 144.4 m closed oval profile, red-to-blue composition and separate pale dome. Skyline and district visibly aggregate the facade pixels; street and close-up restore individual window cells, fine veil strips and crown framing. The skyline foundation follows its 24-sided shaft; near foundations retain the mapped outline. Synthetic cottages are test context, not Barcelona neighbours. The renders establish visual continuity and explicitly reduced distant detail; physical-device frame rates remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:7948a6447aef14f5b9df44ed1828fdbd6973c5f097969b0d49d33314874a497f",
+    "mapFrameHash": "sha256:c659c771564a391776bf91cfd2cb97f7753157e5f8e1a843a6b1d7e65023c0b0",
+    "notes": "Fresh OSM API on 2026-10-10 confirms unchanged exact Q336246 ellipse 44213122. Native +X east/slightly north, +Z south/slightly west; signed long axis and center retained, ground Y=0. The symmetric tower has no claimed surveyed front; reconstructed pixel and louvre phase is not an as-built panel schedule. Exterior height 144.4 m follows the coating supplier; owner/supplier summaries round to 144 m and original architect program says 142 m. Approximate entry, external pavilion, underground auditorium and terrain grade are excluded. Accepted plan 2 m/1 degree; replacement disabled. Actually inspected the final north-up placement overlay, all shared turntable views and ground contact. Fresh map way 44213122 and exact Q336246 identity are unchanged. Rounded outline projection residual is 0.000599 m. The symmetric shell has no claimed surveyed entrance or panel phase."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "The original 142044-triangle, 16046604-byte detailed master reproduces exact sha256:73e27f0eb39b8aba789897e6c66cb7dfc1a1d8e4682805f15e8270bad2cb0165 from the unchanged global recipe. Read the architect, coating supplier, structural engineer, operator and facade supplier references. Actually inspected four distinct architect exterior photographs showing the complete silhouette and close red/blue facade skin, plus one engineer interior-dome photograph showing meridians, parallels and the oculus. Four cached architect files are copies of the same four photographs, not additional references. The reviewed source closes the continuous skin and retains the daylight composition without a second transparent shell. Original 142044-triangle/16046604-byte master remains exactly reproducible from the unchanged global recipe, including 4,500 original reconstructed window cells and alpha louvres. Reviewed source/browser levels preserve the oval lower shaft, continuous rounded crown, irregular warm-red to cool-blue pixel composition and pale glazed dome with meridian/parallel framing. Opaque combined skin averages the visual contribution of the layered glass instead of submitting a second full transparent facade. Near levels retain tilted pale louvre strips and representative window pixels; distant levels average window coverage and remove small slats. Source dimensions and ellipse use map evidence. Crown profile with vertical-to-curved transition at 76.4 m, colored shell ending115 m, 25 tint families, pixel/windows/slat phase, oculus size and member pitches remain reconstruction, not surveyed fabrication dimensions. Supplier gives 25 colors versus current operator 26; supplier gives 144.4 m while rounded summaries give 144 m and original architect program 142 m. Pedelta webpage dome 32 m radius 35 m is inconsistent with mapped tower width; its radius is not used. Two shared 256px concrete/painted-metal graphs, opaque palette glazing, no embedded images or copied facade photo. The source master preserves 4,500 cells; reduced browser derivatives deliberately aggregate them and do not claim an exact opening count or schedule. Night LED show, observation interiors, external pavilion, underground auditorium, exact doorway and terrain slope excluded. Physical phone/laptop and dense-city timing remain unmeasured."
+  },
+  "legacyFidelityScope": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed exterior world-viewer representation with stated reconstruction limits.",
+    "notes": "Detailed exterior accepted for world-viewer use:144.4 m continuous oval tower,4500 recessed openings,25 tint families, individually tilted louvres and modeled dome meridians. Precise panel schedule, individual louvre tilt and maintenance hardware are reconstructed from architect and facade-supplier photos.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sp/sp3/torre_glories/models/source.glb",
+        "hash": "sha256:5de47f5859d6d792c9e421a6e14f0ef145d251a0be60e82800562802b4d2d786",
+        "bytes": 5958320,
+        "triangles": 49662,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.045499801635742,
+          0,
+          -18.52899932861328
+        ],
+        "max": [
+          20.045499801635742,
+          144.39999389648438,
+          18.52899932861328
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sp/sp3/torre_glories/model.glb",
+        "hash": "sha256:8d742c76b6fa35725165f2fb6cfa049822881809f78fa373793d1920a27b3551",
+        "bytes": 5957888,
+        "triangles": 49662,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.045499801635742,
+          0,
+          -18.52899932861328
+        ],
+        "max": [
+          20.045499801635742,
+          144.39999389648438,
+          18.52899932861328
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sp/sp3/torre_glories/model.skyline.glb",
+        "hash": "sha256:c759dac2722d18c16bae06e3696217a2b12aebbcab326636f1e834127a88ac1c",
+        "bytes": 95412,
+        "triangles": 978,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -20.00550079345703,
+          0,
+          -18.48900032043457
+        ],
+        "max": [
+          20.00550079345703,
+          144.39999389648438,
+          18.48900032043457
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sp/sp3/torre_glories/model.district.glb",
+        "hash": "sha256:b1bf1afec448746627a19ec72885b214e1edd961830d712ea81f9261d6996761",
+        "bytes": 263984,
+        "triangles": 3030,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.00550079345703,
+          0,
+          -18.48900032043457
+        ],
+        "max": [
+          20.00550079345703,
+          144.39999389648438,
+          18.48900032043457
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sp/sp3/torre_glories/model.street.glb",
+        "hash": "sha256:bcb9bc8d54c73075fcaa81ff1df49365def56f21a808acb37ecd5d6e98baa1e8",
+        "bytes": 1411724,
+        "triangles": 15322,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.045499801635742,
+          0,
+          -18.52899932861328
+        ],
+        "max": [
+          20.045499801635742,
+          144.39999389648438,
+          18.52899932861328
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sp/sp3/torre_glories/model.closeup.glb",
+        "hash": "sha256:fed7e6a3e927891176483ec57b0f110d44e3d88c15cfd9d928762a397b36f392",
+        "bytes": 4501028,
+        "triangles": 49662,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.045499801635742,
+          0,
+          -18.52899932861328
+        ],
+        "max": [
+          20.045499801635742,
+          144.39999389648438,
+          18.52899932861328
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/glories-runtime-lods.test.mjs --maxWorkers=1",
+      "passed": 3
+    },
+    "notes": "Three focused tests pass: exact original-master reproduction, current source/runtime hashes and independent signed ellipse identity; 12 radial rays at nine shaft/crown heights plus 25 central roof probes compare all four levels with the reviewed master within 1.4 / 0.65 / 0.25 / 0.1 m along-ray allowances. Independent published-height, ground-contact and mapped-radius assertions pass. These finite samples do not prove a global surface-error bound. Every level rebuilds deterministically, meets triangle/download/draw limits, uses opaque materials and separate 12-byte POSITION/NORMAL streams, and contains zero images. All six GLBs pass Khronos validation with zero errors or warnings. Source reproduction, strict medium-fi and LOD integrity checks pass."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:fbc24a7afacab310122551e9fdfb075459233de4fa18888fb614df87f7b21376",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:c759dac2722d18c16bae06e3696217a2b12aebbcab326636f1e834127a88ac1c",
+        "bytes": 95412,
+        "gzipBytes": 15214,
+        "triangles": 978,
+        "cpuBytes": 93996,
+        "gpuBytes": 93996,
+        "errorMeters": 1.4,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:b1bf1afec448746627a19ec72885b214e1edd961830d712ea81f9261d6996761",
+        "bytes": 263984,
+        "gzipBytes": 58902,
+        "triangles": 3030,
+        "cpuBytes": 259020,
+        "gpuBytes": 259020,
+        "errorMeters": 0.65,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:bcb9bc8d54c73075fcaa81ff1df49365def56f21a808acb37ecd5d6e98baa1e8",
+        "bytes": 1411724,
+        "gzipBytes": 331440,
+        "triangles": 15322,
+        "cpuBytes": 1406724,
+        "gpuBytes": 1406724,
+        "errorMeters": 0.25,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:fed7e6a3e927891176483ec57b0f110d44e3d88c15cfd9d928762a397b36f392",
+        "bytes": 4501028,
+        "gzipBytes": 1141834,
+        "triangles": 49662,
+        "cpuBytes": 4496004,
+        "gpuBytes": 4496004,
+        "errorMeters": 0.1,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 359396,
+    "notes": "Skyline: 978 triangles, 95 KB, one draw. District: 3030 triangles, 264 KB, four draws. Street: 15322 triangles, 1412 KB, four draws. Close-up: 49662 triangles, 4501 KB, four draws. Initial skyline plus district downloads total 359396 bytes, within the 3 MB phone and 6 MB laptop limits. Reviewed source is 5958320 bytes; the original 16 MB master remains exactly reproducible. The initial distant pair avoids downloading the close-up until needed. Declared error budgets are 1.4 / 0.65 / 0.25 / 0.1 m. Phone/laptop and dense-city workload timings remain unmeasured."
+  },
+  "limitations": [
+    "Original 142044-triangle/16046604-byte master remains exactly reproducible from the unchanged global recipe, including 4,500 original reconstructed window cells and alpha louvres. Reviewed source/browser levels preserve the oval lower shaft, continuous rounded crown, irregular warm-red to cool-blue pixel composition and pale glazed dome with meridian/parallel framing. Opaque combined skin averages the visual contribution of the layered glass instead of submitting a second full transparent facade. Near levels retain tilted pale louvre strips and representative window pixels; distant levels average window coverage and remove small slats. Source dimensions and ellipse use map evidence. Crown profile with vertical-to-curved transition at 76.4 m, colored shell ending115 m, 25 tint families, pixel/windows/slat phase, oculus size and member pitches remain reconstruction, not surveyed fabrication dimensions. Supplier gives 25 colors versus current operator 26; supplier gives 144.4 m while rounded summaries give 144 m and original architect program 142 m. Pedelta webpage dome 32 m radius 35 m is inconsistent with mapped tower width; its radius is not used. Two shared 256px concrete/painted-metal graphs, opaque palette glazing, no embedded images or copied facade photo. The source master preserves 4,500 cells; reduced browser derivatives deliberately aggregate them and do not claim an exact opening count or schedule. Night LED show, observation interiors, external pavilion, underground auditorium, exact doorway and terrain slope excluded. Physical phone/laptop and dense-city timing remain unmeasured."
+  ]
+}

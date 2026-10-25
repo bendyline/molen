@@ -626,7 +626,7 @@ export function buildPrincess(out) {
   crown(out);
 }
 export const princessStudy = {
-  id: 'N0196',
+  id: 'princess_tower',
   key: 'princess_tower',
   wikidataId: 'Q19492',
   title: 'Princess Tower',

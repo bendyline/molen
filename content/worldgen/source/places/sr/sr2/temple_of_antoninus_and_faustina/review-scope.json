@@ -1,0 +1,676 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "body": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "wall",
+      "graph": "window_grid",
+      "roughness": 0.4,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.7,
+      "metallic": 0.8
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/antoninus-model.mjs",
+    "export": "buildAntoninusSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAntoninusDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "body": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.8
+          }
+        }
+      },
+      "street": {
+        "export": "buildAntoninusStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "body": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.8
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAntoninusCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "body": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.8
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      2.301522365194284,
+      32.24136228477147,
+      62.38351540914083
+    ],
+    "lookAt": [
+      6.554053623107501,
+      14.241362284771466,
+      -10.052083421133723
+    ],
+    "fov": 44
+  },
+  "qaCameras": [
+    {
+      "name": "southwest-temple-and-church",
+      "position": [
+        -38.92865409316214,
+        16.241362284771466,
+        17.594314152445122
+      ],
+      "lookAt": [
+        3.823197946812709,
+        16.241362284771466,
+        -5.8637153289946715
+      ],
+      "fov": 44
+    },
+    {
+      "name": "corinthian-and-dedication",
+      "position": [
+        2.114185044339452,
+        24.241362284771466,
+        16.897639527410075
+      ],
+      "lookAt": [
+        0.5461711352589584,
+        18.241362284771466,
+        -0.8376736184278102
+      ],
+      "fov": 44
+    },
+    {
+      "name": "raised-doorway",
+      "position": [
+        -3.6958636207676556,
+        10.241362284771466,
+        4.752956142937382
+      ],
+      "lookAt": [
+        4.3693690820716675,
+        10.241362284771466,
+        -6.7013889474224815
+      ],
+      "fov": 44
+    },
+    {
+      "name": "west-buttresses-and-roof",
+      "position": [
+        -16.75664053401731,
+        29.241362284771466,
+        -38.38248295790318
+      ],
+      "lookAt": [
+        7.535894400389182,
+        17.241362284771466,
+        -22.543520035393385
+      ],
+      "fov": 44
+    },
+    {
+      "name": "split-pediment-and-cross",
+      "position": [
+        -4.295701419914177,
+        35.24136228477147,
+        13.912115199025177
+      ],
+      "lookAt": [
+        4.3693690820716675,
+        29.241362284771466,
+        -6.7013889474224815
+      ],
+      "fov": 44
+    },
+    {
+      "name": "mapped-complete-plan",
+      "position": [
+        0,
+        110,
+        0.01
+      ],
+      "lookAt": [
+        0,
+        0,
+        -10
+      ],
+      "fov": 44
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-temple-and-church-skyline",
+      "position": [
+        2.301522365194284,
+        32.24136228477147,
+        62.38351540914083
+      ],
+      "lookAt": [
+        6.554053623107501,
+        14.241362284771466,
+        -10.052083421133723
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-temple-and-church-district",
+      "position": [
+        2.301522365194284,
+        32.24136228477147,
+        62.38351540914083
+      ],
+      "lookAt": [
+        6.554053623107501,
+        14.241362284771466,
+        -10.052083421133723
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-temple-and-church-street",
+      "position": [
+        2.301522365194284,
+        32.24136228477147,
+        62.38351540914083
+      ],
+      "lookAt": [
+        6.554053623107501,
+        14.241362284771466,
+        -10.052083421133723
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-temple-and-church-closeup",
+      "position": [
+        2.301522365194284,
+        32.24136228477147,
+        62.38351540914083
+      ],
+      "lookAt": [
+        6.554053623107501,
+        14.241362284771466,
+        -10.052083421133723
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.7,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      12.486629159,
+      41.892073443
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "bounds": [
+      12.486512495746613,
+      41.891991114282774,
+      12.486983106861114,
+      41.89242042605588
+    ],
+    "terrainReference": {
+      "anchor": [
+        12.486629159,
+        41.892073443
+      ],
+      "modelHeight": 0,
+      "basis": "The original161-square/6m standard Mapzen/USGS grid is retained at the new anchor. A high occupied floor covers the church/porch and a separate low floor covers the mapped stair base. Both opaque floors clear the relevant original grid cells; their retaining sides continue below the lowest coarse grade. Treads descend to the low stair pocket. No terrain or water opening is proposed. Exact thresholds and archaeological ground levels remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.858828239928716,
+          2.25268305940187
+        ],
+        [
+          -8.849869803966822,
+          2.25268305940187
+        ],
+        [
+          -5.091312556709173,
+          -3.7167896026014846
+        ],
+        [
+          -8.622314919654755,
+          -5.931146443618048
+        ],
+        [
+          -8.636562520166747,
+          -5.931146443618048
+        ],
+        [
+          -8.636562520166747,
+          -5.971146443618047
+        ],
+        [
+          -8.627083121996307,
+          -5.971146443618047
+        ],
+        [
+          -3.7467166854034106,
+          -13.069851769149555
+        ],
+        [
+          -3.7467166854034106,
+          -13.08363996623467
+        ],
+        [
+          -3.737780285105685,
+          -13.08363996623467
+        ],
+        [
+          11.589617978172507,
+          -37.51853580116547
+        ],
+        [
+          11.589617978172507,
+          -37.532782185754904
+        ],
+        [
+          11.629617978172506,
+          -37.532782185754904
+        ],
+        [
+          11.629617978172506,
+          -37.523805586136795
+        ],
+        [
+          28.50759966636199,
+          -26.86407592155957
+        ],
+        [
+          28.521812680082213,
+          -26.86407592155957
+        ],
+        [
+          28.521812680082213,
+          -26.824075921559572
+        ],
+        [
+          28.513119309693625,
+          -26.824075921559572
+        ],
+        [
+          13.407743736268264,
+          -1.7225463567307433
+        ],
+        [
+          13.407743736268264,
+          -1.7081000496683052
+        ],
+        [
+          13.398943297633323,
+          -1.7081000496683052
+        ],
+        [
+          9.184695060790839,
+          5.167780312862002
+        ],
+        [
+          9.184695060790839,
+          5.1821389267335425
+        ],
+        [
+          9.14469506079084,
+          5.1821389267335425
+        ],
+        [
+          9.14469506079084,
+          5.173280045639981
+        ],
+        [
+          4.503177123639036,
+          2.2999579158869796
+        ],
+        [
+          0.7385977098359857,
+          8.05755414286173
+        ],
+        [
+          0.7385977098359857,
+          8.071595971032378
+        ],
+        [
+          0.6985977098359857,
+          8.071595971032378
+        ],
+        [
+          0.6985977098359857,
+          8.06809616571108
+        ],
+        [
+          -6.173557294102678,
+          6.738000265126016
+        ],
+        [
+          -6.191639602785077,
+          6.738000265126016
+        ],
+        [
+          -6.191639602785077,
+          6.72353994142172
+        ],
+        [
+          -8.850152051191532,
+          2.29268305940187
+        ],
+        [
+          -8.858828239928716,
+          2.29268305940187
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.858828239928716,
+            2.25268305940187
+          ],
+          [
+            -8.849869803966822,
+            2.25268305940187
+          ],
+          [
+            -5.091312556709173,
+            -3.7167896026014846
+          ],
+          [
+            -8.622314919654755,
+            -5.931146443618048
+          ],
+          [
+            -8.636562520166747,
+            -5.931146443618048
+          ],
+          [
+            -8.636562520166747,
+            -5.971146443618047
+          ],
+          [
+            -8.627083121996307,
+            -5.971146443618047
+          ],
+          [
+            -3.7467166854034106,
+            -13.069851769149555
+          ],
+          [
+            -3.7467166854034106,
+            -13.08363996623467
+          ],
+          [
+            -3.737780285105685,
+            -13.08363996623467
+          ],
+          [
+            11.589617978172507,
+            -37.51853580116547
+          ],
+          [
+            11.589617978172507,
+            -37.532782185754904
+          ],
+          [
+            11.629617978172506,
+            -37.532782185754904
+          ],
+          [
+            11.629617978172506,
+            -37.523805586136795
+          ],
+          [
+            28.50759966636199,
+            -26.86407592155957
+          ],
+          [
+            28.521812680082213,
+            -26.86407592155957
+          ],
+          [
+            28.521812680082213,
+            -26.824075921559572
+          ],
+          [
+            28.513119309693625,
+            -26.824075921559572
+          ],
+          [
+            13.407743736268264,
+            -1.7225463567307433
+          ],
+          [
+            13.407743736268264,
+            -1.7081000496683052
+          ],
+          [
+            13.398943297633323,
+            -1.7081000496683052
+          ],
+          [
+            9.184695060790839,
+            5.167780312862002
+          ],
+          [
+            9.184695060790839,
+            5.1821389267335425
+          ],
+          [
+            9.14469506079084,
+            5.1821389267335425
+          ],
+          [
+            9.14469506079084,
+            5.173280045639981
+          ],
+          [
+            4.503177123639036,
+            2.2999579158869796
+          ],
+          [
+            0.7385977098359857,
+            8.05755414286173
+          ],
+          [
+            0.7385977098359857,
+            8.071595971032378
+          ],
+          [
+            0.6985977098359857,
+            8.071595971032378
+          ],
+          [
+            0.6985977098359857,
+            8.06809616571108
+          ],
+          [
+            -6.173557294102678,
+            6.738000265126016
+          ],
+          [
+            -6.191639602785077,
+            6.738000265126016
+          ],
+          [
+            -6.191639602785077,
+            6.72353994142172
+          ],
+          [
+            -8.850152051191532,
+            2.29268305940187
+          ],
+          [
+            -8.858828239928716,
+            2.29268305940187
+          ]
+        ]
+      ],
+      "basis": "The occupied podium envelope contains all4 original mapped components, with a0.02m building-only numerical margin. Independent buildings remain outside; all original control vertices and terrain remain unchanged."
+    },
+    "notes": "Q752555/relation1841090 identifies the temple porch. Four PMTiles component footprints also include the main32m church body, stair projection and surviving porch beam. Their raw east/south vertices remain intact. The southwest stair and front/west photographs establish the signed front. Ten column positions (six front plus two returns behind each end) are picture-guided within the mapped porch beam, not individually mapped or surveyed control points. Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Four mapped component footprints retain29 original vertices and include the complete church/cella body, temple porch, beam and stair projection. Ten picture-guided column positions fit the mapped beam (six front and two returns behind each end); they are not separately mapped controls. The southwest stair and front/west photos establish the signed front. Geometry uses raw east/south coordinates at heading0 with a33.1047-degree internal rotation. The church/porch floor and lower stair pocket cover their original grade: all88 vertices of the rendered grid cells intersecting their bounds were checked, leaving at least0.200000m clearance. Retaining faces continue below the coarse grade, and treads connect to the low pocket. No ground or water opening is needed. Full-site loading replaces4 authored records and preserves2042 independent tile buildings exactly; all2768 independent records in the retained extract remain outside the replacement envelope. Source retains465 nearby records including the four controls. Nine native water features retain127658.69298314617 square metres. Failed loads preserve all2046 native tile buildings; eviction frees geometry. Synthetic10m partial residency clips the church body, facade, roof, returns and outer porch while keeping original terrain under and outside the remaining columns/stairs. Full architecture requires surrounding tiles; partial architectural completeness is not claimed. Neighboring unmodeled Forum ruins retain generic procedural shells and their historical appearance is not approved. Height, exact stonework, column positions, raised threshold and roof pitch remain approximate.",
+    "groundContactBasis": "Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Four mapped component footprints retain29 original vertices and include the complete church/cella body, temple porch, beam and stair projection. Ten picture-guided column positions fit the mapped beam (six front and two returns behind each end); they are not separately mapped controls. The southwest stair and front/west photos establish the signed front. Geometry uses raw east/south coordinates at heading0 with a33.1047-degree internal rotation. The church/porch floor and lower stair pocket cover their original grade: all88 vertices of the rendered grid cells intersecting their bounds were checked, leaving at least0.200000m clearance. Retaining faces continue below the coarse grade, and treads connect to the low pocket. No ground or water opening is needed. Full-site loading replaces4 authored records and preserves2042 independent tile buildings exactly; all2768 independent records in the retained extract remain outside the replacement envelope. Source retains465 nearby records including the four controls. Nine native water features retain127658.69298314617 square metres. Failed loads preserve all2046 native tile buildings; eviction frees geometry. Synthetic10m partial residency clips the church body, facade, roof, returns and outer porch while keeping original terrain under and outside the remaining columns/stairs. Full architecture requires surrounding tiles; partial architectural completeness is not claimed. Neighboring unmodeled Forum ruins retain generic procedural shells and their historical appearance is not approved. Height, exact stonework, column positions, raised threshold and roof pitch remain approximate."
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

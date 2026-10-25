@@ -7,7 +7,7 @@ import { box } from './structure-mesh.mjs';
 const fit = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/6x/6xw/n0621_amazon_tall_tower_observatory/pmtiles-fit.json',
+      '../../../content/worldgen/source/places/6x/6xw/amazon_tall_tower_observatory/pmtiles-fit.json',
       import.meta.url,
     ),
   ),

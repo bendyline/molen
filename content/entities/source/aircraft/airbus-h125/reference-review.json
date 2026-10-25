@@ -1,0 +1,287 @@
+{
+  "variant": "Airbus H125 / AS350 B3e, high skids, six seats and current TXi/VEMD instrument fit",
+  "references": [
+    {
+      "url": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-07/TD-H125-20-01E.pdf",
+      "title": "H125 Technical Description 2020, printed page 8",
+      "author": "Airbus Helicopters",
+      "license": "Copyright Airbus; local analysis only; no reference pixels shipped.",
+      "scope": "Dimensioned front, side and top views."
+    },
+    {
+      "url": "https://mediaassets.airbus.com/pm_38_379_379561-fmldw2vvut.pdf?fileName=airbus-h125-technical-description.pdf",
+      "title": "H125 Technical Description 2025",
+      "author": "Airbus Helicopters",
+      "license": "Copyright Airbus; local research only.",
+      "scope": "Current baseline equipment and six-seat arrangement."
+    },
+    {
+      "url": "https://www.airbus.com/en/products-services/helicopters/civil-helicopters/h125",
+      "title": "Airbus H125 cockpit",
+      "author": "Airbus Helicopters",
+      "license": "Copyright Airbus; local research only.",
+      "scope": "TXi/VEMD panel face, coaming, controls and pedestal."
+    },
+    {
+      "url": "https://static.garmin.com/pumac/190-01717-10_h.pdf",
+      "title": "G500(H)/G600/G700 TXi Pilot Guide, revision H, page 1-3",
+      "author": "Garmin",
+      "license": "Copyright Garmin; local dimensional reference only.",
+      "scope": "GDU 1060 active screen 9.07 by 5.44 inches used to rectify and scale the cockpit photograph."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Southern_Lakes_Helicopters_ZK-IRM_AS350_B3_Mt_Allan_fire,_NZ_2010.jpg",
+      "author": "Benchill",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "revision": 1120537595,
+      "scope": "AS350 B3 exterior family reference; engine version and mission equipment differ."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.98,
+      0.65
+    ],
+    "lookAt": [
+      0,
+      1.55,
+      2
+    ],
+    "fov": 78
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0.02,
+      -1.7
+    ],
+    "viewHeight": 0.72,
+    "cameraHeight": 8.4
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/h125-dimensions.png",
+      "crop": {
+        "left": 210,
+        "top": 379,
+        "width": 1061,
+        "height": 303
+      },
+      "referenceAnchor": [
+        645.0284857571214,
+        659.0254872563718
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 858.4827586206897,
+        "meters": 10.93,
+        "description": "Printed nose to aft tail-guard length."
+      },
+      "edgeMode": "photo",
+      "scope": "Manufacturer rendered orthographic dimension sheet; rotor azimuth differs."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/h125-dimensions.png",
+      "crop": {
+        "left": 332,
+        "top": 1225,
+        "width": 367,
+        "height": 292
+      },
+      "referenceAnchor": [
+        517.8890554722639,
+        1497.6791604197902
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 169.1304347826087,
+        "meters": 2.28,
+        "description": "Printed skid outside span."
+      },
+      "edgeMode": "photo",
+      "scope": "Manufacturer rendered orthographic dimension sheet; rotor azimuth differs."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/h125-dimensions.png",
+      "crop": {
+        "left": 210,
+        "top": 793,
+        "width": 1050,
+        "height": 397
+      },
+      "referenceAnchor": [
+        641.5292353823088,
+        978.623688155922
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 858.4827586206897,
+        "meters": 10.93,
+        "description": "Printed nose to aft tail-guard length."
+      },
+      "rotate": 270,
+      "edgeMode": "photo",
+      "scope": "Manufacturer rendered orthographic dimension sheet; rotor azimuth differs."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/h125-official-cockpit-rectified.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1650,
+        "height": 990
+      },
+      "referenceAnchor": [
+        800,
+        200
+      ],
+      "modelAnchor": [
+        0,
+        -1.9
+      ],
+      "scaleControls": {
+        "pixels": 480,
+        "meters": 0.230378,
+        "description": "GDU 1060 active screen width, 9.07 inches from Garmin pilot guide."
+      },
+      "edgeMode": "photo",
+      "scope": "Planar instrument positions and known display dimensions; curved coaming and lens distortion not corrected."
+    }
+  ],
+  "panelRectification": {
+    "source": ".artifacts/aircraft/references/h125-official-cockpit.jpg",
+    "sourceQuad": [
+      [
+        1218,
+        454
+      ],
+      [
+        1681,
+        469
+      ],
+      [
+        1669,
+        748
+      ],
+      [
+        1209,
+        714
+      ]
+    ],
+    "coordinateImageWidth": 1920,
+    "output": [
+      1800,
+      1100
+    ],
+    "targetScreenCorners": [
+      [
+        950,
+        500
+      ],
+      [
+        1430,
+        500
+      ],
+      [
+        1430,
+        788
+      ],
+      [
+        950,
+        788
+      ]
+    ],
+    "method": "Projective rectification from screen corners to the documented 9.07:5.44 aspect ratio, followed by uniform meter calibration. Wide-angle lens distortion and curved coaming remain."
+  },
+  "status": "reviewed-with-limitations",
+  "reviewNotes": {
+    "corrections": [
+      "Individual dimensioned H125 shell, curved windscreen and lower observation glazing, real roof apertures, asymmetric access layout, high skids and steps.",
+      "Arriel cowling and exhaust, three-blade Starflex-style head, tapering boom and swept fin built against exterior reference projections.",
+      "TXi/VEMD cockpit layout placed from rectified Airbus photograph using documented GDU 1060 screen dimensions; paired engine screens, round standby, warning matrix, console, controls and six seats.",
+      "Overlay and cockpit iterations corrected front skid support position, windshield/panel interference, unsupported console and opaque skylight placeholders."
+    ],
+    "limitations": [
+      "Airbus dimension sheet uses rendered views with small front/side scale differences and different rotor azimuth. Printed dimensions take precedence; body curvature remains polygonal.",
+      "Panel rectification assumes a flat instrument face and identified GDU 1060 screen. Wide-angle lens distortion, curved coaming depth and absolute cabin installation remain approximate.",
+      "Cockpit follows the current TXi equipment fit; 2020 dimension sheet and related AS350 B3 exterior photo corroborate the shell. Optional avionics and mission fittings vary.",
+      "Displays are original simplified geometry and assisted-flight indicators, not certified avionics. Source images are research-only and are not distributed."
+    ],
+    "independentDimensions": [
+      {
+        "feature": "main rotor diameter",
+        "referenceMeters": 10.69,
+        "modelMeters": 10.69
+      },
+      {
+        "feature": "outside skid span",
+        "referenceMeters": 2.28,
+        "modelMeters": 2.28
+      },
+      {
+        "feature": "body width",
+        "referenceMeters": 1.87,
+        "modelMeters": 1.87
+      },
+      {
+        "feature": "nose to tail guard",
+        "referenceMeters": 10.93,
+        "modelMeters": 10.93
+      },
+      {
+        "feature": "tail rotor diameter",
+        "referenceMeters": 1.86,
+        "modelMeters": 1.86
+      },
+      {
+        "feature": "GDU active screen width",
+        "referenceMeters": 0.230378,
+        "modelMeters": 0.230378
+      }
+    ],
+    "visual": "Inspected current four overlays, lit three-quarter, operator, close and wide cockpit and four turntables. Exterior photo comparison and revised roof glazing checked. Known perspective and equipment-fit limitations retained."
+  },
+  "sourceHash": "sha256:53530998122f130ccf5948c99766dc6bde35062b3ea91739945bf73a72e00dfe",
+  "runtimeHash": "sha256:ab9d69d89f733ddb643263a47c77ed31a21d5787e45adefead641a888af04308",
+  "limitations": [
+    "Airbus dimension sheet uses rendered views with small front/side scale differences and different rotor azimuth. Printed dimensions take precedence; body curvature remains polygonal.",
+    "Panel rectification assumes a flat instrument face and identified GDU 1060 screen. Wide-angle lens distortion, curved coaming depth and absolute cabin installation remain approximate.",
+    "Cockpit follows the current TXi equipment fit; 2020 dimension sheet and related AS350 B3 exterior photo corroborate the shell. Optional avionics and mission fittings vary.",
+    "Displays are original simplified geometry and assisted-flight indicators, not certified avionics. Source images are research-only and are not distributed."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:fb6773bfad493e35da918ee79cb04d8ff0a44453c4185966c33a7c599e9c2fb9",
+    "sourceHash": "sha256:53530998122f130ccf5948c99766dc6bde35062b3ea91739945bf73a72e00dfe",
+    "runtimeHash": "sha256:ab9d69d89f733ddb643263a47c77ed31a21d5787e45adefead641a888af04308",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/airbus-h125-pair.png",
+        "sha256": "sha256:42777c0ceeb5771d926514350a5648a438aff76ac6c5d9b41a52d8d04626d8f2",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

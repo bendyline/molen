@@ -1,4 +1,4 @@
-/** Shared analytic bridge patterns. N0021 uses original hemp-leaf geometry, never photography. */
+/** Shared analytic bridge patterns. sanjo_ohashi_bridge uses original hemp-leaf geometry, never photography. */
 import './install-deterministic-math.mjs';
 
 const r = 0.16,

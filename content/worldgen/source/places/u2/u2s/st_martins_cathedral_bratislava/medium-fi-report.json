@@ -1,0 +1,1119 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.st_martins_cathedral_bratislava",
+  "sourceHash": "sha256:728551c4796c709d4f699a2526c252a1de9c2d9042d1fb1158452c5868bbf74f",
+  "runtimeHash": "sha256:0fef05d96e556755a45799191a77fb364e5265754be5ed21a98eb0f7dcb37f2a",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 9870,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:c10649c3e537962c9c9c3dfcc2a5219630e792b9bc5e913aa2862508132c3756",
+      "bytes": 97984,
+      "gzipBytes": 16926,
+      "triangles": 947,
+      "cpuBytes": 96548,
+      "gpuBytes": 96548,
+      "errorMeters": 1.25,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:5ed02a0bebeaced331416e4bf425ebd80b1a1cceac47e9e5b9105ba8b20fef05",
+      "bytes": 219992,
+      "gzipBytes": 52789,
+      "triangles": 2381,
+      "cpuBytes": 211460,
+      "gpuBytes": 211460,
+      "errorMeters": 0.5,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:cea0247f97f0ef1a919c07a3923c4fd173a0842499b9ff85b3651fa10fc5e42b",
+      "bytes": 525996,
+      "gzipBytes": 138457,
+      "triangles": 5888,
+      "cpuBytes": 517444,
+      "gpuBytes": 517444,
+      "errorMeters": 0.15,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:15b4350b27d9994479a2dc713cb1b6df3b16ed53f5fbbc642f99d53f4327777a",
+      "bytes": 750812,
+      "gzipBytes": 199940,
+      "triangles": 8280,
+      "cpuBytes": 742252,
+      "gpuBytes": 742252,
+      "errorMeters": 0.06,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:85738bc53249b366208b841b17ea46591d6143f9723f4ebfc16f5031d64b4ecd"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:4d6c35f5fddbb5f26c240c33e2eaddc2e712c4d4d52dcb40675afea1fd1d61cb"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:915ea473a45860f2e336fd65137be556521af83b0332a792726c0b7c83eb458f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 38952,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          50.42340000000001,
+          69.4193,
+          87.2111
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:ca7a2a7962261905eb0af0129e4fcbe41d32255caa0a67950f0798b718e1f5b6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 38952,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          50.42340000000001,
+          69.4193,
+          87.2111
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:861c652bb0c13d22740e18cb2b705bf9b258b99d080ce89877f71df5db5fb384",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 38952,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          50.42340000000001,
+          69.4193,
+          87.2111
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:3aef14b0faf4513aa4f9943ac2cf27151505d333a8b9d720c4289733b29ff584",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 38952,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          50.42340000000001,
+          69.4193,
+          87.2111
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:88e2b9abe2053081e6dc4e1adf9dbbbc045074f7f52c814f1e500559ce8e0fe0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 33053,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          101.8734,
+          107.2193,
+          176.46110000000002
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:8d682c9cd398716c2722db177bf4c487b7516ec253b9d01be8a384e2670ab5e2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33053,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          101.8734,
+          107.2193,
+          176.46110000000002
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:4d771333092c8d327ce03c316dec8c74f2e705d584dca95eba51f2dba95041f1",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 33053,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          101.8734,
+          107.2193,
+          176.46110000000002
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:419abb70aeabb413921a70652d1a99ed09dd638d42f87f9b5e8be63e43812d38",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33053,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          101.8734,
+          107.2193,
+          176.46110000000002
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:38bd381a29d7f8a4ff1b16fecc9d48668cc68d4c1e1c2fd2de2d566e366141bc",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 31619,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          203.72340000000003,
+          147.1193,
+          352.8611
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:220b2d9f0f2ea575b890da88312b9142fc6512f969741e75d80ec1e8c5e9c311",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31619,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          203.72340000000003,
+          147.1193,
+          352.8611
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:cdd2afcfc15e4cf392180ba01e3a8fb8b412bf4bc5fdc8e054ca8fb55532e3b6",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 31619,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          203.72340000000003,
+          147.1193,
+          352.8611
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:0fb970191add38b498fba6bfefc6c9b51988d559e47a2e8044edd76da3187447",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31619,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          203.72340000000003,
+          147.1193,
+          352.8611
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:4ed14acd8796e1cfe6731f62ac5bf03dc2323490121df2eb0add684e1dfaacdd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21749,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          203.72340000000003,
+          147.1193,
+          352.8611
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-gable-and-embedded-tower.png",
+      "hash": "sha256:550a1eb48165b57ab94d292daa27481f371c533da928e31ab5954787f8ccf716",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 38952,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          -94,
+          46.4,
+          14
+        ],
+        "lookAt": [
+          -19,
+          29.4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-belfry-copper-lantern-and-crown.png",
+      "hash": "sha256:92a15e7fa0c36322f9435c758e53c3355b87bae6c539de89f2a8cb0c298c531a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 38952,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          -78,
+          73.4,
+          43
+        ],
+        "lookAt": [
+          -32,
+          63.4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-vestibule-closed-recessed-portal.png",
+      "hash": "sha256:379f1cd9dfc80cd751defe9f5091020bb158eed2acafa509fe1456ea5e47b363",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35050,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          -45,
+          20.4,
+          40
+        ],
+        "lookAt": [
+          -10,
+          10.4,
+          17
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/nave-lancets-and-stepped-buttresses.png",
+      "hash": "sha256:a62ff4b34cffb76d5560d654cbdf0660c3bcf6607278dd893f22a2ac5dab4c47",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35050,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          -7,
+          31.4,
+          51
+        ],
+        "lookAt": [
+          -8,
+          21.4,
+          11
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/lower-polygonal-eastern-chancel.png",
+      "hash": "sha256:ae0cbdc1e91f36bd795154025f18c5fa94f9edb965c5d926745eb40ae78e3d64",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 37630,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          74,
+          33.4,
+          37
+        ],
+        "lookAt": [
+          24,
+          21.4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northern-chapels-and-roof-stages.png",
+      "hash": "sha256:a1ee0e81d17e7ea18c4181b5cf8c5417d372f12f7d22532b1aff79846d15f0c4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35050,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          -1,
+          29.4,
+          -43
+        ],
+        "lookAt": [
+          1,
+          14.4,
+          -11
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bratislava-skyline.png",
+      "hash": "sha256:c02ecda560cd710d218ba1f375ba156ae2681778ba4bddd25325687e44dbe66a",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31619,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          -130,
+          94,
+          115
+        ],
+        "lookAt": [
+          0,
+          33,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bratislava-district.png",
+      "hash": "sha256:598d76e263758f71fff2f436d7f8ebc53757ee09e089942e51e84f6bcdd50336",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33053,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          -130,
+          94,
+          115
+        ],
+        "lookAt": [
+          0,
+          33,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bratislava-street.png",
+      "hash": "sha256:63d15640d6b8dfbcda87c2db14bdc3c0ff526c64eb0afdff8e581525742ca964",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36560,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          -130,
+          94,
+          115
+        ],
+        "lookAt": [
+          0,
+          33,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bratislava-closeup.png",
+      "hash": "sha256:38f42145a1bc72816fc7ba1b666d55d6c17040432a53522f9150a1548a83a945",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 38952,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          -130,
+          94,
+          115
+        ],
+        "lookAt": [
+          0,
+          33,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:1708d9405299431e3cc87c463951e3b1ad236d37aeedeaa7847dddb3d4d8dc4c",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31619,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          101.8734,
+          107.2193,
+          176.46110000000002
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:8d682c9cd398716c2722db177bf4c487b7516ec253b9d01be8a384e2670ab5e2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33053,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          101.8734,
+          107.2193,
+          176.46110000000002
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:523546e011a0aafd1203fd8546023e75533d6b96f3d0510679f7a62490cbb5ef",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36560,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          101.8734,
+          107.2193,
+          176.46110000000002
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:a728ccbb5472c4bfa35de05dfd174acbf251e419b8ad3a33f925797bee128b80",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 38952,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/st_martins_cathedral_bratislava/terrain-review.height.png"
+        },
+        "position": [
+          101.8734,
+          107.2193,
+          176.46110000000002
+        ],
+        "lookAt": [
+          0.0234,
+          53.66930000000001,
+          0.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

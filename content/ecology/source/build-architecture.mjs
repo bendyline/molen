@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { architectureFamilies } from './architecture-families.mjs';
+import { architectureLotPlans } from './architecture-lots.mjs';
 import { architectureVariants } from './architecture-variants.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../worldgen');
@@ -80,6 +81,7 @@ for (const family of architectureFamilies) {
     const home = type === 'detached' || type === 'attached';
     const shed = type === 'industrial' || type === 'farm';
     style.id = id(family.id, type);
+    style.lotPlans = architectureLotPlans(family.id, type);
     style.title = `${family.title}: ${type}`;
     style.doc =
       'Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.';

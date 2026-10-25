@@ -1,0 +1,865 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "back": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "goal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.2
+    },
+    "seat": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.3,
+      "metallic": 0.1
+    },
+    "turf": {
+      "slot": "wall",
+      "graph": "fabric_canvas",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "mark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "screen": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -387.1564044244207,
+      246.31826107644955,
+      -254.23398378886012
+    ],
+    "lookAt": [
+      0,
+      21.31826107644955,
+      0
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "open-three-tier-bowl-field-and-four-corner-boards",
+      "position": [
+        -27.075753876008637,
+        93.31826107644955,
+        26.285044265623814
+      ],
+      "lookAt": [
+        43.99271448069794,
+        24.31826107644955,
+        -9.467896948097275
+      ],
+      "fov": 65
+    },
+    {
+      "name": "silver-louvers-recessed-entry-and-glazed-base",
+      "position": [
+        -184.01490295890173,
+        18.31826107644955,
+        24.25933818194504
+      ],
+      "lookAt": [
+        -104.60489887632622,
+        23.31826107644955,
+        22.512554965475744
+      ],
+      "fov": 55
+    },
+    {
+      "name": "upper-tiers-corner-screen-and-open-lighting-rim",
+      "position": [
+        48.01181324115893,
+        77.31826107644955,
+        -123.87439521263495
+      ],
+      "lookAt": [
+        -30.429396927970597,
+        37.318261076449545,
+        24.96100564079928
+      ],
+      "fov": 65
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -387.1564044244207,
+        246.31826107644955,
+        -254.23398378886012
+      ],
+      "lookAt": [
+        0,
+        21.31826107644955,
+        0
+      ],
+      "fov": 43,
+      "name": "metlife-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -387.1564044244207,
+        246.31826107644955,
+        -254.23398378886012
+      ],
+      "lookAt": [
+        0,
+        21.31826107644955,
+        0
+      ],
+      "fov": 43,
+      "name": "metlife-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -387.1564044244207,
+        246.31826107644955,
+        -254.23398378886012
+      ],
+      "lookAt": [
+        0,
+        21.31826107644955,
+        0
+      ],
+      "fov": 43,
+      "name": "metlife-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -387.1564044244207,
+        246.31826107644955,
+        -254.23398378886012
+      ],
+      "lookAt": [
+        0,
+        21.31826107644955,
+        0
+      ],
+      "fov": 43,
+      "name": "metlife-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/metlife-model.mjs",
+    "export": "buildMetlifeSkyline",
+    "errorMeters": 6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMetlifeDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "back": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "goal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "turf": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildMetlifeStreet",
+        "errorMeters": 1.6,
+        "surfaces": {
+          "back": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "goal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "turf": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMetlifeCloseup",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "back": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "goal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "turf": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -74.074346839,
+      40.813524037
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original6m standard Mapzen terrain/native roads/water and all independent buildings/parking context. Replace only the native stadium parent shell and137 wholly contained grandstand parts. Bounded feet under the occupied shell and an internal stadium floor meet coarse native grade; no entire-complex slab, outside parking mesh, terrain flattening or ground/water cutout. Nearby venues/road structures remain native. Contact/field elevation are visualization fits, not surveyed foundations or drainage/flood measurements.",
+    "replaceFootprint": false,
+    "bounds": [
+      -74.0764239624101,
+      40.81195198525279,
+      -74.0722697155899,
+      40.81509608874721
+    ],
+    "terrainReference": {
+      "anchor": [
+        -74.074346839,
+        40.813524037
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original6m standard Mapzen terrain/native roads/water and all independent buildings/parking context. Replace only the native stadium parent shell and137 wholly contained grandstand parts. Bounded feet under the occupied shell and an internal stadium floor meet coarse native grade; no entire-complex slab, outside parking mesh, terrain flattening or ground/water cutout. Nearby venues/road structures remain native. Contact/field elevation are visualization fits, not surveyed foundations or drainage/flood measurements."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -119.98489144958046,
+          -46.23519205915583
+        ],
+        [
+          -119.96183230282405,
+          -46.23519205915583
+        ],
+        [
+          -118.85499571174421,
+          -78.77591401836993
+        ],
+        [
+          -105.74820515284345,
+          -93.69036366879256
+        ],
+        [
+          -91.96347715124097,
+          -106.79697637191131
+        ],
+        [
+          -75.91895767396592,
+          -118.77368833597549
+        ],
+        [
+          -62.36020881993068,
+          -126.45685181710857
+        ],
+        [
+          -48.12352252319368,
+          -133.68805720911686
+        ],
+        [
+          -31.17508645564962,
+          -137.75560713102874
+        ],
+        [
+          -16.034483568643598,
+          -140.24133097735282
+        ],
+        [
+          1.3659107940349633,
+          -140.69328067900463
+        ],
+        [
+          1.3809107933979128,
+          -140.69237160536434
+        ],
+        [
+          1.4159107940349631,
+          -140.69328067900463
+        ],
+        [
+          23.787846403193114,
+          -139.33743149178804
+        ],
+        [
+          37.1206161096611,
+          -135.9478074416961
+        ],
+        [
+          55.87688535774319,
+          -128.71660426441096
+        ],
+        [
+          72.37336313015275,
+          -118.77368833597549
+        ],
+        [
+          83.67232050851544,
+          -100.2436729263851
+        ],
+        [
+          98.81292339552148,
+          -67.47706847662845
+        ],
+        [
+          103.78446464200107,
+          -53.2404984799174
+        ],
+        [
+          105.93126552620146,
+          -46.23519205915583
+        ],
+        [
+          106.0442561176736,
+          -46.23519205915583
+        ],
+        [
+          108.07806844577888,
+          -39.2298789942248
+        ],
+        [
+          111.9197139544222,
+          -25.21923292869045
+        ],
+        [
+          115.08342202036376,
+          -9.626708478971278
+        ],
+        [
+          117.3432134960363,
+          5.06193162439783
+        ],
+        [
+          118.9250675290071,
+          19.524621191437383
+        ],
+        [
+          119.8289841192761,
+          32.17949779029705
+        ],
+        [
+          119.8289841192761,
+          60.47706842971953
+        ],
+        [
+          119.15104667657432,
+          77.19968115492226
+        ],
+        [
+          108.53002674091339,
+          90.08063839244127
+        ],
+        [
+          97.2310693625507,
+          102.28367123251319
+        ],
+        [
+          84.12427880364996,
+          113.13082846688516
+        ],
+        [
+          70.56552994961471,
+          122.1701383257711
+        ],
+        [
+          56.3288436528777,
+          129.40159418082098
+        ],
+        [
+          42.5441156512752,
+          134.59920744992536
+        ],
+        [
+          28.533408502105452,
+          138.2149405788858
+        ],
+        [
+          12.488889024830412,
+          140.47477467986704
+        ],
+        [
+          -6.04140107568442,
+          140.92674158358997
+        ],
+        [
+          -6.049795910597412,
+          140.92572680413744
+        ],
+        [
+          -6.091401075684421,
+          140.92674158358997
+        ],
+        [
+          -26.65550350430454,
+          138.44092395639586
+        ],
+        [
+          -44.28187701455035,
+          134.37322418631533
+        ],
+        [
+          -62.58618796749793,
+          127.1417634652023
+        ],
+        [
+          -75.46699937883142,
+          117.6504820137081
+        ],
+        [
+          -85.63606101935785,
+          97.53804495467078
+        ],
+        [
+          -94.22326862691351,
+          78.10360724247602
+        ],
+        [
+          -100.77666390636386,
+          62.058935578930175
+        ],
+        [
+          -105.74820515284345,
+          47.59616281739726
+        ],
+        [
+          -110.71974639932306,
+          31.099597215764764
+        ],
+        [
+          -114.10943361283185,
+          14.6030684576339
+        ],
+        [
+          -117.04716253120615,
+          -1.2154861540400281
+        ],
+        [
+          -118.85499571174421,
+          -15.226177659365733
+        ],
+        [
+          -119.53293315444597,
+          -29.46282083685759
+        ],
+        [
+          -119.98489144958046,
+          -45.507258831291125
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -119.98489144958046,
+            -46.23519205915583
+          ],
+          [
+            -119.96183230282405,
+            -46.23519205915583
+          ],
+          [
+            -118.85499571174421,
+            -78.77591401836993
+          ],
+          [
+            -105.74820515284345,
+            -93.69036366879256
+          ],
+          [
+            -91.96347715124097,
+            -106.79697637191131
+          ],
+          [
+            -75.91895767396592,
+            -118.77368833597549
+          ],
+          [
+            -62.36020881993068,
+            -126.45685181710857
+          ],
+          [
+            -48.12352252319368,
+            -133.68805720911686
+          ],
+          [
+            -31.17508645564962,
+            -137.75560713102874
+          ],
+          [
+            -16.034483568643598,
+            -140.24133097735282
+          ],
+          [
+            1.3659107940349633,
+            -140.69328067900463
+          ],
+          [
+            1.3809107933979128,
+            -140.69237160536434
+          ],
+          [
+            1.4159107940349631,
+            -140.69328067900463
+          ],
+          [
+            23.787846403193114,
+            -139.33743149178804
+          ],
+          [
+            37.1206161096611,
+            -135.9478074416961
+          ],
+          [
+            55.87688535774319,
+            -128.71660426441096
+          ],
+          [
+            72.37336313015275,
+            -118.77368833597549
+          ],
+          [
+            83.67232050851544,
+            -100.2436729263851
+          ],
+          [
+            98.81292339552148,
+            -67.47706847662845
+          ],
+          [
+            103.78446464200107,
+            -53.2404984799174
+          ],
+          [
+            105.93126552620146,
+            -46.23519205915583
+          ],
+          [
+            106.0442561176736,
+            -46.23519205915583
+          ],
+          [
+            108.07806844577888,
+            -39.2298789942248
+          ],
+          [
+            111.9197139544222,
+            -25.21923292869045
+          ],
+          [
+            115.08342202036376,
+            -9.626708478971278
+          ],
+          [
+            117.3432134960363,
+            5.06193162439783
+          ],
+          [
+            118.9250675290071,
+            19.524621191437383
+          ],
+          [
+            119.8289841192761,
+            32.17949779029705
+          ],
+          [
+            119.8289841192761,
+            60.47706842971953
+          ],
+          [
+            119.15104667657432,
+            77.19968115492226
+          ],
+          [
+            108.53002674091339,
+            90.08063839244127
+          ],
+          [
+            97.2310693625507,
+            102.28367123251319
+          ],
+          [
+            84.12427880364996,
+            113.13082846688516
+          ],
+          [
+            70.56552994961471,
+            122.1701383257711
+          ],
+          [
+            56.3288436528777,
+            129.40159418082098
+          ],
+          [
+            42.5441156512752,
+            134.59920744992536
+          ],
+          [
+            28.533408502105452,
+            138.2149405788858
+          ],
+          [
+            12.488889024830412,
+            140.47477467986704
+          ],
+          [
+            -6.04140107568442,
+            140.92674158358997
+          ],
+          [
+            -6.049795910597412,
+            140.92572680413744
+          ],
+          [
+            -6.091401075684421,
+            140.92674158358997
+          ],
+          [
+            -26.65550350430454,
+            138.44092395639586
+          ],
+          [
+            -44.28187701455035,
+            134.37322418631533
+          ],
+          [
+            -62.58618796749793,
+            127.1417634652023
+          ],
+          [
+            -75.46699937883142,
+            117.6504820137081
+          ],
+          [
+            -85.63606101935785,
+            97.53804495467078
+          ],
+          [
+            -94.22326862691351,
+            78.10360724247602
+          ],
+          [
+            -100.77666390636386,
+            62.058935578930175
+          ],
+          [
+            -105.74820515284345,
+            47.59616281739726
+          ],
+          [
+            -110.71974639932306,
+            31.099597215764764
+          ],
+          [
+            -114.10943361283185,
+            14.6030684576339
+          ],
+          [
+            -117.04716253120615,
+            -1.2154861540400281
+          ],
+          [
+            -118.85499571174421,
+            -15.226177659365733
+          ],
+          [
+            -119.53293315444597,
+            -29.46282083685759
+          ],
+          [
+            -119.98489144958046,
+            -45.507258831291125
+          ]
+        ]
+      ],
+      "basis": "Replace the stadium parent shell and137 contained grandstand parts only; retain independent surroundings/roads/terrain/water."
+    },
+    "notes": "Retained exact-QID OSMway24221553 and parent native52776566924878 with137 mapped grandstand parts identify the complete stadium. Own anchor-74.074346839,40.813524037/global heading0/native east-south. Retained282.174x229.412m outer outline and mapped parent field hole control the asymmetric shell/bowl; internal X[0.21039770995771723,0.9776158773488431]/Z[-0.9776158773488431,0.21039770995771723] retain the long football-field direction. Field/end-zone allocation and fine portal/screen/aisle layout retain20degree/2m approximation; no surveyed interior orientation or precise section-number inventory is claimed. Retain original6m standard Mapzen terrain/native roads/water and all independent buildings/parking context. Replace only the native stadium parent shell and137 wholly contained grandstand parts. Bounded feet under the occupied shell and an internal stadium floor meet coarse native grade; no entire-complex slab, outside parking mesh, terrain flattening or ground/water cutout. Nearby venues/road structures remain native. Contact/field elevation are visualization fits, not surveyed foundations or drainage/flood measurements."
+  }
+}

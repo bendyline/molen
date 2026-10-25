@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/sw/sw8/n0281_acrocorinth/';
+const root = '../../../content/worldgen/source/places/sw/sw8/acrocorinth/';
 const read = (name) => JSON.parse(readFileSync(new URL(root + name, import.meta.url)));
 const frame = read('map-frame.json'),
   relief = read('relief-grid.json'),
@@ -499,7 +499,7 @@ export const buildAcrocorinthSkyline = (o) =>
     0,
   );
 export const acrocorinthStudy = {
-  id: 'N0281',
+  id: 'acrocorinth',
   key: 'acrocorinth',
   title: 'Acrocorinth',
   category: 'castle',

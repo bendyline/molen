@@ -1,0 +1,267 @@
+{
+  "variant": "Piper PA-28-180 Cherokee C, 1960s constant-chord wing, original handbook analog instrument option fit",
+  "references": [
+    {
+      "url": "https://www.nehemiahaviation.com/files/pa28poh.pdf",
+      "title": "Piper Cherokee C Owners Handbook, publication 753 683, issued August 1964, revised February 2 1979; printed pages 1, 3, 4 and 12",
+      "author": "Piper Aircraft Corporation",
+      "license": "Copyright Piper; local analysis only, no source pixels distributed.",
+      "scope": "Dimensions, 76-inch PA-28-180 propeller, original instrument panel drawing and cabin controls."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Piper_PA-28-150_Cherokee_C_3-view_line_drawing.png",
+      "title": "Piper Cherokee C three-view, April 1968 manual",
+      "author": "Piper Publications",
+      "license": "Commons identifies public domain in the US due defective copyright notice; worldwide status not established. Local study only.",
+      "scope": "Common Cherokee C family dimensions and planform; drawing distinguishes 76-inch PA-28-180 propeller from 74-inch 150/160 propeller."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:G-AVBG_Piper_PA-28-180_Cherokee_C_(9686910646).jpg",
+      "author": "Aeroprints.com",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "revision": 1183914803,
+      "scope": "Exact 180C exterior: rounded cowl, windscreen, cabin windows, wing root, wheel pants and tail."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.55,
+      -0.13
+    ],
+    "lookAt": [
+      0,
+      1.2,
+      1.04
+    ],
+    "fov": 82
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.21
+    ],
+    "viewHeight": 0.85,
+    "cameraHeight": 9.18
+  },
+  "overlays": [
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/cherokee-dimensions.png",
+      "crop": {
+        "left": 0,
+        "top": 15,
+        "width": 1142,
+        "height": 885
+      },
+      "referenceAnchor": [
+        571,
+        570
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1117,
+        "meters": 9.144,
+        "description": "360-inch full wingspan."
+      },
+      "scope": "C-series three-view, 150/160 cowl drawing shared with 180; 180 propeller is 76 inches."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/cherokee-dimensions.png",
+      "crop": {
+        "left": 0,
+        "top": 937,
+        "width": 1145,
+        "height": 367
+      },
+      "referenceAnchor": [
+        574,
+        1295
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 375,
+        "meters": 3.048,
+        "description": "120-inch main landing gear center spacing."
+      },
+      "scope": "Front drawing uses flight datum, not static ground attitude. Camera rotates 5.17 degrees about model X to match the side drawing ground-line inclination; no geometry stretch."
+    },
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/cherokee-side-level.png",
+      "crop": {
+        "left": 20,
+        "top": 76,
+        "width": 1010,
+        "height": 305
+      },
+      "referenceAnchor": [
+        395,
+        374
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 233,
+        "meters": 1.896,
+        "description": "74 21/32-inch wheelbase, uniformly scaled."
+      },
+      "preparation": {
+        "source": "cherokee-dimensions.png",
+        "crop": {
+          "left": 80,
+          "top": 1300,
+          "width": 1040,
+          "height": 400
+        },
+        "rotateDegreesClockwise": 5.17
+      },
+      "scope": "Original side drawing ground line leveled by rigid rotation only; scan and ground-attitude tolerances remain."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/cherokee-panel-drawing.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1510,
+        "height": 660
+      },
+      "referenceAnchor": [
+        750,
+        100
+      ],
+      "modelAnchor": [
+        0,
+        -1.38
+      ],
+      "scaleControls": {
+        "pixels": 110,
+        "meters": 0.079375,
+        "description": "Nominal 3 1/8-inch round instrument aperture. Drawing itself has no absolute panel scale; scale is approximate."
+      },
+      "scope": "Original Piper handbook page 12 orthographic panel, rotated 90 degrees; optional radio/instrument fit, not a current modified aircraft."
+    }
+  ],
+  "status": "reviewed-with-limitations",
+  "viewRotations": {
+    "front": [
+      0.09023352232810683,
+      0,
+      0
+    ]
+  },
+  "reviewNotes": {
+    "corrections": [
+      "Replaced generic airframe with Cherokee C cowl, sloping windshield, two side-window apertures, tapering rear body, fixed tricycle gear and wheel pants. Removed extra side window after drawing comparison.",
+      "Authored constant-chord 30-foot wing with 5.5-degree dihedral, distinct flap and aileron pivots, wing-skin rivet rows, 10-foot all-moving stabilator, swept fin and separate rudder. Moved stabilator aft and increased airfoil thickness after overlays.",
+      "Rebuilt original Piper handbook panel: left flight instruments, raised central radio installation, right engine strip gauges, blank instrument positions, lower electrical row, dual open yokes, push-pull controls, roof trim crank, manual flap lever and four seats. Raised panel/coaming and closed its forward deck after cockpit inspection.",
+      "Improved the comparison harness to fit the full wingspan in frontal captures and allow recorded rigid rotations when a reference uses a different attitude datum.",
+      "Corrected right-side window contour interpolation and rechecked both side sightlines in the imported model. Tightened the forward glare-shield contour to match the cowling cross-section.",
+      "Replaced placeholder gauges with calibrated live MPH, three-pointer altitude, vertical speed, propeller RPM, separate pitch/bank horizon and rotating cylindrical heading cards. Turn needle reads yaw rate rather than bank; unmodeled radio, vacuum, clock and engine-system values remain blank or INOP. Shared named expressions drive ordinary scene and Earth adapters."
+    ],
+    "independentDimensions": {
+      "spanM": 9.144,
+      "wingChordM": 1.6002,
+      "stabilatorSpanM": 3.048,
+      "stabilatorChordM": 0.762,
+      "wheelTrackM": 3.048,
+      "wheelbaseM": 1.896,
+      "propellerDiameterM": 1.9304,
+      "lengthM": 7.1628,
+      "maximumPropRpm": 2700,
+      "wingAreaM2": 14.8644864
+    },
+    "visual": "Inspected front, side and top drawing overlays, orthographic panel overlay, four turntable angles, three-quarter ground view, pilot view, cabin and centered wide cockpit. Inspected final rerenders after window, stabilator, wing thickness and coaming corrections. Repeated all captures and four reference overlays after the window/instrument changes; inspected zero, cruise (120 MPH/3500 ft/2400 RPM), upper-range, negative-altitude and missing-reading cases, including opposite bank and pitch.",
+    "limitations": [
+      "C-family drawing labels 150/160 and distinguishes the 180 propeller; body contours are compared with an exact 180C photograph. Scan line widths, static-ground versus flight-datum attitude and small front-view outline differences limit measurement precision.",
+      "Panel scale uses a nominal 3 1/8-inch gauge aperture because no dimensioned panel drawing was found; optional 1960s avionics fit differs from restored/current aircraft. Drawing establishes instrument placement more strongly than panel depth and upholstery.",
+      "Wing and fuselage cross-sections, wheel pants and cabin fittings remain faceted approximations. Fastener rows follow visible skin divisions but are not a manufacturing rivet map.",
+      "Source photographs/drawings remain local analysis inputs; no source pixels or photorealistic textures are shipped.",
+      "The low-resolution handbook does not resolve exact dial graduation angles. Authored MPH/RPM/climb scales are coherent approximations, using identical calibration for face marks and pointers. Speed is TAS, altitude is geometric world elevation (GEO FT), and heading is true; pressure altitude, magnetic compass errors, directional-gyro drift, vacuum/electrical behavior, fuel/oil systems and navigation receivers are not simulated. The YAW needle is body yaw rate, not a full gyroscopic turn-and-bank model; the slip-ball window is unavailable. Unsupported readings show INOP or dashes."
+    ]
+  },
+  "sourceHash": "sha256:f88fe61dfc9e8d1a488d01822b5e54fc0fb48cd711bd7c745617f27ab7fa6600",
+  "runtimeHash": "sha256:eeeaf028c7855cb388ddd40ca280f316454efc0a939a86b12f54d936a0637fdb",
+  "limitations": [
+    "C-family drawing labels 150/160 and distinguishes the 180 propeller; body contours are compared with an exact 180C photograph. Scan line widths, static-ground versus flight-datum attitude and small front-view outline differences limit measurement precision.",
+    "Panel scale uses a nominal 3 1/8-inch gauge aperture because no dimensioned panel drawing was found; optional 1960s avionics fit differs from restored/current aircraft. Drawing establishes instrument placement more strongly than panel depth and upholstery.",
+    "Wing and fuselage cross-sections, wheel pants and cabin fittings remain faceted approximations. Fastener rows follow visible skin divisions but are not a manufacturing rivet map.",
+    "Source photographs/drawings remain local analysis inputs; no source pixels or photorealistic textures are shipped.",
+    "The low-resolution handbook does not resolve exact dial graduation angles. Authored MPH/RPM/climb scales are coherent approximations, using identical calibration for face marks and pointers. Speed is TAS, altitude is geometric world elevation (GEO FT), and heading is true; pressure altitude, magnetic compass errors, directional-gyro drift, vacuum/electrical behavior, fuel/oil systems and navigation receivers are not simulated. The YAW needle is body yaw rate, not a full gyroscopic turn-and-bank model; the slip-ball window is unavailable. Unsupported readings show INOP or dashes."
+  ],
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "yawRate": 0,
+    "propNormalized": 0,
+    "verticalSpeed": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "true airspeed m/s to MPH",
+      "altitude": "world elevation meters to feet",
+      "heading": "true north clockwise from yaw",
+      "rpm": "normalized engine-1 speed scaled to 2700 RPM",
+      "climb": "vertical speed m/s to hundreds of ft/min",
+      "turn": "body yaw rad/s to right-positive degrees/s"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/cherokee-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true
+  },
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:80fa7b6d6e54062310b79748f228021d9f87f667457976e19b432d96ab344197",
+    "sourceHash": "sha256:f88fe61dfc9e8d1a488d01822b5e54fc0fb48cd711bd7c745617f27ab7fa6600",
+    "runtimeHash": "sha256:eeeaf028c7855cb388ddd40ca280f316454efc0a939a86b12f54d936a0637fdb",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/pa-28-180-pair.png",
+        "sha256": "sha256:72b299578e131efe2bda9571b9ba76d3f92e607fe1a44562abd9934045f8906b",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/pa-28-180-exterior-pair.png",
+        "sha256": "sha256:7504adcde4a8cf325c806c4fad4a904b62b7998f159f7463a765edbfb28b7786",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

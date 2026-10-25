@@ -6,7 +6,7 @@
 //   node packages/tooling/scripts/generate-schema-docs.mjs          # write (pnpm docs:gen)
 //   node packages/tooling/scripts/generate-schema-docs.mjs --check  # verify committed output
 //                                                                   # (pnpm docs:check; CI)
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 // Importing these registers every schema kind into the shared registry.
@@ -207,7 +207,16 @@ if (check) {
       if (error.code !== 'ENOENT') throw error;
       return undefined;
     });
-    if (current !== content) await writeFile(path, content);
+    if (current !== content) {
+      // Editors may memory-map this reference on Windows; atomically replace the live file.
+      const temporary = `${path}.${process.pid}.tmp`;
+      try {
+        await writeFile(temporary, content);
+        await rename(temporary, path);
+      } finally {
+        await rm(temporary, { force: true });
+      }
+    }
   }
   console.log(
     `generated schema docs for ${kinds.length} kinds + ${listComponents().length} components -> docs-src/schemas/`,

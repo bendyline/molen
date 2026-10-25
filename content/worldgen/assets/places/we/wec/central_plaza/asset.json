@@ -1,0 +1,179 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.central_plaza",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
+  },
+  "hash": "sha256:d236e6c171711b3a3b1b3b11dcfaa82511c503fa4424b16a0157d6d86a914453",
+  "sourceHash": "sha256:84ec97ae5d6992449e047e59b7348b1f2dd6d25a81a515254c28f8ceb3104a72",
+  "bounds": {
+    "aabb": {
+      "min": [
+        -31.8704,
+        0,
+        -27.4863
+      ],
+      "max": [
+        31.8703,
+        374.3,
+        28.0569
+      ]
+    },
+    "sphere": {
+      "center": [
+        0,
+        187.15,
+        0.2853
+      ],
+      "radius": 190.6499
+    }
+  },
+  "stats": {
+    "triangles": 23293,
+    "vertices": 50487,
+    "meshes": 1,
+    "primitives": 4,
+    "materials": 4,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 2099392
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 23293
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "stone_granite-wall",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "metal_painted-trim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "window-window",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "window-window",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -31.8704,
+          0,
+          -27.4863,
+          -31.8704,
+          0,
+          28.0569,
+          -31.8704,
+          374.3,
+          -27.4863,
+          -31.8704,
+          374.3,
+          28.0569,
+          31.8703,
+          0,
+          -27.4863,
+          31.8703,
+          0,
+          28.0569,
+          31.8703,
+          374.3,
+          -27.4863,
+          31.8703,
+          374.3,
+          28.0569
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:8d8e861910a1e98bd2c09c9a4a717895008b346caf5f2a8abae8ad09945bcad8",
+    "masterHash": "sha256:d236e6c171711b3a3b1b3b11dcfaa82511c503fa4424b16a0157d6d86a914453",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:1e9b50398d87c260fb3e5e0265aa72c3a545f26dd8b093c4d81f3f70e7248612",
+        "bytes": 78556,
+        "gzipBytes": 13940,
+        "triangles": 928,
+        "cpuBytes": 77136,
+        "gpuBytes": 77136,
+        "errorMeters": 1.5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:72faa292c3f0b67cfa6d21cbbf9d92eede2c8e09d47bf6811b55090610645c56",
+        "bytes": 250308,
+        "gzipBytes": 55337,
+        "triangles": 3397,
+        "cpuBytes": 245348,
+        "gpuBytes": 245348,
+        "errorMeters": 0.75,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:827b180422a66990dfc23f00d357bd168e0c403ddfbc5e414dfa75ef1db90876",
+        "bytes": 934660,
+        "gzipBytes": 204176,
+        "triangles": 12297,
+        "cpuBytes": 929684,
+        "gpuBytes": 929684,
+        "errorMeters": 0.3,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:b2b4a95034e52d0e724f84c7c80314038840ee3910bc7942258fadaf4eae0acd",
+        "bytes": 1762920,
+        "gzipBytes": 385698,
+        "triangles": 23293,
+        "cpuBytes": 1757924,
+        "gpuBytes": 1757924,
+        "errorMeters": 0.1,
+        "drawCalls": 4
+      }
+    ]
+  }
+}

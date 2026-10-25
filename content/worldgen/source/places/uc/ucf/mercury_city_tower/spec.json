@@ -1,0 +1,449 @@
+{
+  "planId": "mercury_city_tower",
+  "id": "mercury_city_tower",
+  "assetId": "molen.worldgen.structure.mercury_city_tower",
+  "title": "Mercury City Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q59483",
+  "referenceCoordinate": {
+    "latitude": 55.750555555,
+    "longitude": 37.539444444
+  },
+  "visualBrief": "Moscow’s copper-gold stepped tower with seven individually mapped sloped volumes, white folded edge bands, dense unitized glass, upper media screens and its pointed street entrance.",
+  "size": [
+    94.42571258544922,
+    338.885009765625,
+    44.53647041320801
+  ],
+  "actualBounds": {
+    "min": [
+      -47.185916900634766,
+      0,
+      -22.263229370117188
+    ],
+    "max": [
+      47.23979568481445,
+      338.885009765625,
+      22.27324104309082
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X southeast toward pointed low nose",
+    "front": "+Z southwest",
+    "origin": "Exact-QID mapped ground-contact footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 338.824,
+    "floors": 75,
+    "facadeAreaSquareMeters": 75000,
+    "facadeFabricator": "Shenyang Yuanda",
+    "architect": "Frank Williams with Mikhail Posokhin",
+    "metalFinish": "RAL9016 PVDF aluminum",
+    "mediaFacadeFloors": [
+      67,
+      68
+    ],
+    "mediaFacadeAreaSquareMeters": 1350,
+    "originalMasterHash": "sha256:176eade9ffaa175109c569101acbdcd7b4434a8fc7849f9d1172cd8acc028c9a",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-global-models.mjs#skylineGlobal[mercury_city_tower].build",
+    "surfaceMeans": {
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    }
+  },
+  "reconstruction": {
+    "plan": "Seven unchanged independent mapped volumes retain the southeast low nose and northwest crown",
+    "facade": "Copper facets with aggregate dark strips, white folded edge bands and neutral dark media screens",
+    "roof": "Mapped opposing330/150-degree slopes; physical roof equipment excluded"
+  },
+  "referencePages": [
+    "https://www.mercury-city.com/en/about/architecture/",
+    "https://www.mercury-city.com/en/mediafacade/",
+    "https://www.yuandacn.com/index.php/en/projects-cn-2/146-overseas/europe/russia/337-mercury-city-tower-2.html",
+    "https://www.skyscrapercenter.com/building/wd/265",
+    "https://www.openstreetmap.org/way/52929368"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "anchor": [
+      37.539420413,
+      55.750474394
+    ],
+    "heading": -1.029057019662,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/52929368",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/52929368",
+      "way/547413252",
+      "way/547413253",
+      "way/547413254",
+      "way/547413255",
+      "way/1279791779",
+      "way/1279791780",
+      "way/1279799703"
+    ],
+    "wikidataId": "Q59483",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ff1594e4ad84afc20f86c4b2fa809ff69e73a8037148a510c018a5fcd80def39",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API2026-10-10 confirms unchanged exactQ59483 outline52929368 and seven independent building parts547413252/253/254/255,1279791779/1780/9703. Native+X southeast points toward the low pointed nose1279791780; native-X northwest points toward the tall crown547413255. Native+Z southwest. Mapped opposing roof directions330/150 degrees fix each slope and signed phase; earlier east/west wording was imprecise. Owner photographs corroborate descending white folded setbacks and pointed entrance. GroundY0contact; published338.824m top, tiny frame proud of roof yields338.885m envelope. Terrain slope unmeasured; accepted plan2m/1degree, footprint replacement disabled.",
+    "evidence": "Fresh public OSM API2026-10-10 confirms unchanged exactQ59483 outline52929368 and seven independent building parts547413252/253/254/255,1279791779/1780/9703. Native+X southeast points toward the low pointed nose1279791780; native-X northwest points toward the tall crown547413255. Native+Z southwest. Mapped opposing roof directions330/150 degrees fix each slope and signed phase; earlier east/west wording was imprecise. Owner photographs corroborate descending white folded setbacks and pointed entrance. GroundY0contact; published338.824m top, tiny frame proud of roof yields338.885m envelope. Terrain slope unmeasured; accepted plan2m/1degree, footprint replacement disabled.",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Original16573-triangle/1989968byte detailed master remains reproducible from unchanged global recipe. Seven independently mapped volumes, opposing sloped roofs, copper glazing, white folded aluminum bands, dark media faces and pointed low entrance retained.338.824m fabricator/338.8m CVU,75floors/2013; tiny raised frame reaches338.885m. Facade75000m2 contractor refers to curtain wall, owner180000m2 refers to building area. Glass pitch1.42m/4.05m, white band width1.2m, corner stripe2.5percent of edge and media datum294–304.5m are photo reconstructions, not surveyed dimensions. Owner media1350m2/floors67–68/four faces informs neutral dark bands; advertisements excluded. Exact roof mechanical equipment, doors, interiors and temporary decorations excluded. Two canonical256px concrete/paintedmetal graphs shared; opaque copper glass palette; zero embedded images and no photographic facade texture. Terrain slope and physical device/dense-city performance unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "copper-glazing",
+      "position": [
+        87,
+        142,
+        111
+      ],
+      "lookAt": [
+        6,
+        120,
+        0
+      ]
+    },
+    {
+      "name": "sloped-setbacks",
+      "position": [
+        -112,
+        227,
+        129
+      ],
+      "lookAt": [
+        -18,
+        176,
+        0
+      ]
+    },
+    {
+      "name": "crown-and-media",
+      "position": [
+        89,
+        344,
+        103
+      ],
+      "lookAt": [
+        15,
+        307,
+        0
+      ]
+    },
+    {
+      "name": "pointed-entrance",
+      "position": [
+        94,
+        18,
+        44
+      ],
+      "lookAt": [
+        40,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -351,
+        300,
+        601
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ]
+    },
+    {
+      "name": "whole-reviewed-complex",
+      "position": [
+        290,
+        224,
+        394
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ]
+    },
+    {
+      "name": "rear-tall-crown",
+      "position": [
+        -140,
+        332,
+        -130
+      ],
+      "lookAt": [
+        -25,
+        293,
+        0
+      ]
+    },
+    {
+      "name": "southeast-pointed-nose",
+      "position": [
+        115,
+        31,
+        -81
+      ],
+      "lookAt": [
+        37,
+        15,
+        0
+      ]
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/mercury-runtime-model.mjs",
+    "export": "buildMercurySkyline",
+    "errorMeters": 0.15,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMercuryDistrict",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildMercuryStreet",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMercuryCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-complex-skyline",
+      "position": [
+        290,
+        224,
+        394
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-complex-district",
+      "position": [
+        290,
+        224,
+        394
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-complex-street",
+      "position": [
+        290,
+        224,
+        394
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-complex-closeup",
+      "position": [
+        290,
+        224,
+        394
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-copper-setbacks",
+      "position": [
+        -145,
+        184,
+        137
+      ],
+      "lookAt": [
+        -9,
+        153,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-white-folded-bands",
+      "position": [
+        124,
+        167,
+        149
+      ],
+      "lookAt": [
+        9,
+        130,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-media-crown",
+      "position": [
+        -114,
+        339,
+        96
+      ],
+      "lookAt": [
+        -27,
+        309,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-low-pointed-nose",
+      "position": [
+        97,
+        19,
+        -52
+      ],
+      "lookAt": [
+        40,
+        7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 16573,
+    "vertices": 49687,
+    "materials": 3,
+    "bytes": 1989968,
+    "sha256": "sha256:176eade9ffaa175109c569101acbdcd7b4434a8fc7849f9d1172cd8acc028c9a"
+  }
+}

@@ -13,7 +13,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/gb/gbu/n0646_eddystone_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/gb/gbu/eddystone_lighthouse'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -121,7 +121,7 @@ it('preserves a byte-reproducible original master recipe and an explicitly recon
   smoothMeshNormals(m, ['trim', 'foundation'], 32);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(f.anchor).toEqual([-4.2680422, 50.1837523]);

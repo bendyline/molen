@@ -1,0 +1,526 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "joint": {
+      "graph": "stone_basalt_raw",
+      "slot": "wall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "stone0": {
+      "graph": "stone_basalt_raw",
+      "slot": "wall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "stone1": {
+      "graph": "stone_basalt_raw",
+      "slot": "wall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "stone2": {
+      "graph": "stone_basalt_raw",
+      "slot": "wall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "stone3": {
+      "graph": "stone_basalt_raw",
+      "slot": "wall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "concrete_plain",
+      "slot": "roof",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "floor": {
+      "graph": "concrete_plain",
+      "slot": "trim",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.65,
+      "metallic": 0.2
+    },
+    "bronze": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim",
+      "roughness": 0.65,
+      "metallic": 0.55
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -16.37487853974923,
+      28.06,
+      59.336863354987514
+    ],
+    "lookAt": [
+      0,
+      3.06,
+      0
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "fieldstone-base-and-recessed-west-entry",
+      "position": [
+        -7.794656430681993,
+        7.06,
+        39.05436379110057
+      ],
+      "lookAt": [
+        0.6244110691504936,
+        3.06,
+        9.829044247368222
+      ],
+      "fov": 55
+    },
+    {
+      "name": "thick-fascia-and-depressed-inner-roof",
+      "position": [
+        38.75226194041957,
+        27.06,
+        15.851252143004604
+      ],
+      "lookAt": [
+        0,
+        4.06,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "rear-stone-base-and-shadow-gap",
+      "position": [
+        5.599240088029324,
+        8.06,
+        -36.77837014383053
+      ],
+      "lookAt": [
+        -4.632564599157456,
+        3.06,
+        -8.862242675228043
+      ],
+      "fov": 55
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -16.37487853974923,
+        28.06,
+        59.336863354987514
+      ],
+      "lookAt": [
+        0,
+        3.06,
+        0
+      ],
+      "fov": 45,
+      "name": "yad-remembrance-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -16.37487853974923,
+        28.06,
+        59.336863354987514
+      ],
+      "lookAt": [
+        0,
+        3.06,
+        0
+      ],
+      "fov": 45,
+      "name": "yad-remembrance-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -16.37487853974923,
+        28.06,
+        59.336863354987514
+      ],
+      "lookAt": [
+        0,
+        3.06,
+        0
+      ],
+      "fov": 45,
+      "name": "yad-remembrance-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -16.37487853974923,
+        28.06,
+        59.336863354987514
+      ],
+      "lookAt": [
+        0,
+        3.06,
+        0
+      ],
+      "fov": 45,
+      "name": "yad-remembrance-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.06,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yad-remembrance-model.mjs",
+    "export": "buildYadRemembranceSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYadRemembranceDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "joint": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone0": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone1": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone2": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone3": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "concrete_plain",
+            "slot": "roof",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "bronze": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.55
+          }
+        }
+      },
+      "street": {
+        "export": "buildYadRemembranceStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "joint": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone0": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone1": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone2": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone3": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "concrete_plain",
+            "slot": "roof",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "bronze": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.55
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYadRemembranceCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "joint": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone0": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone1": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone2": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone3": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "concrete_plain",
+            "slot": "roof",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "bronze": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.55
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      35.1749812066555,
+      31.773948428462983
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Reuse original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered forecourt provider internal[-8,14.2], datum805.5107922282233m. Occupied floor sits0.06m above it. Cut ground only within the inset occupied base, seal it with the floor, and preserve original grade beneath the roof overhang and surrounding forecourt. A local footing meets the coarse uphill/downhill boundary; no terrace flattening, broad slab or custom terrain. Corrected native front/rear/roof/whole-site views inspected during this authoring pass. Approximate exterior fit accepted: forecourt control remains exposed and the working entry floor is0.06m above it; no broad slab, floating entrance or large exposed footing. Original coarse slope partly buries uphill lower fieldstones (boundary ground reaches2.09m above datum), so buried base portions and exact threshold/accessibility levels are not certified. Distinct History Museum and every other independent building remain unchanged. Fixed the erroneously offset roof spacer and refined stone coverage before accepting these views.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      35.174776503696336,
+      31.773772123735093,
+      35.175188591823684,
+      31.77412017262123
+    ],
+    "terrainReference": {
+      "anchor": [
+        35.174975801170255,
+        31.773802088984045
+      ],
+      "modelHeight": 0,
+      "basis": "Reuse original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered forecourt provider internal[-8,14.2], datum805.5107922282233m. Occupied floor sits0.06m above it. Cut ground only within the inset occupied base, seal it with the floor, and preserve original grade beneath the roof overhang and surrounding forecourt. A local footing meets the coarse uphill/downhill boundary; no terrace flattening, broad slab or custom terrain."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -16.372227865032386,
+          -5.457443050797949
+        ],
+        [
+          -5.711242278499668,
+          16.626152533308357
+        ],
+        [
+          16.626060855187944,
+          4.949762760433238
+        ],
+        [
+          5.457409288344138,
+          -16.118472242943668
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -16.372227865032386,
+            -5.457443050797949
+          ],
+          [
+            -5.711242278499668,
+            16.626152533308357
+          ],
+          [
+            16.626060855187944,
+            4.949762760433238
+          ],
+          [
+            5.457409288344138,
+            -16.118472242943668
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Independent Ohel Yizkor Q6826871 is identified by the Commons photograph structured-data link; distinct named PMTiles way74078348/native35184446167180 fixes the four roof corners. Internal+X follows the southeast front edge east-northeast; internal+Z faces the forecourt south-southeast. The southwest exterior picture fixes the off-centre entrance at the west end of that front edge. Heading0 with signed axes baked into east/south model coordinates; do not substitute the campus centroid or remove the nearby History Museum."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -15.226171914480117,
+          -5.075422037242093
+        ],
+        [
+          -5.311455319004689,
+          15.462321855976768
+        ],
+        [
+          15.462236595324786,
+          4.60327936720291
+        ],
+        [
+          5.075390638160049,
+          -14.990179185937606
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -15.226171914480117,
+            -5.075422037242093
+          ],
+          [
+            -5.311455319004689,
+            15.462321855976768
+          ],
+          [
+            15.462236595324786,
+            4.60327936720291
+          ],
+          [
+            5.075390638160049,
+            -14.990179185937606
+          ]
+        ]
+      ],
+      "basis": "Inset occupied stone base only; preserve original ground beneath the concrete overhang and surrounding forecourt."
+    },
+    "notes": "Independent Ohel Yizkor Q6826871 is identified by the Commons photograph structured-data link; distinct named PMTiles way74078348/native35184446167180 fixes the four roof corners. Internal+X follows the southeast front edge east-northeast; internal+Z faces the forecourt south-southeast. The southwest exterior picture fixes the off-centre entrance at the west end of that front edge. Heading0 with signed axes baked into east/south model coordinates; do not substitute the campus centroid or remove the nearby History Museum. Reuse original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered forecourt provider internal[-8,14.2], datum805.5107922282233m. Occupied floor sits0.06m above it. Cut ground only within the inset occupied base, seal it with the floor, and preserve original grade beneath the roof overhang and surrounding forecourt. A local footing meets the coarse uphill/downhill boundary; no terrace flattening, broad slab or custom terrain. Corrected native front/rear/roof/whole-site views inspected during this authoring pass. Approximate exterior fit accepted: forecourt control remains exposed and the working entry floor is0.06m above it; no broad slab, floating entrance or large exposed footing. Original coarse slope partly buries uphill lower fieldstones (boundary ground reaches2.09m above datum), so buried base portions and exact threshold/accessibility levels are not certified. Distinct History Museum and every other independent building remain unchanged. Fixed the erroneously offset roof spacer and refined stone coverage before accepting these views."
+  }
+}

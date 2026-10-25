@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/',
+  '../../../content/worldgen/source/places/sz/szp/etchmiadzin_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -696,7 +696,7 @@ export const buildEtchmiadzinDistrict = (out) => build(out, 1);
 export const buildEtchmiadzinStreet = (out) => build(out, 2);
 export const buildEtchmiadzinCloseup = (out) => build(out, 3);
 export const etchmiadzinStudy = {
-  id: 'N0331',
+  id: 'etchmiadzin_cathedral',
   key: 'etchmiadzin_cathedral',
   title: 'Etchmiadzin Cathedral',
   category: 'cathedral',

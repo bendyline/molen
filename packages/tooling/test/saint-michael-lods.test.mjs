@@ -9,7 +9,7 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/udt/saint_michaels_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -52,7 +52,7 @@ const roofHits = (x, z, t) => {
     .map((v) => 100 - v);
 };
 it('builds deterministic browser levels within budgets with six reusable graphs and consistent GPU layout', async () => {
-  const id = 'molen.worldgen.structure.n0300_saint_michael_s_castle',
+  const id = 'molen.worldgen.structure.saint_michaels_castle',
     sizes = [];
   for (const [level, limit] of Object.entries({
     skyline: 1000,

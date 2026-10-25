@@ -130,7 +130,7 @@ stainless steel and correct). `.artifacts/medium-fi/report.json` holds the per-m
 - The seven suspension bridges now carry their documented paint.
 - Landmark GLBs store linear `COLOR_0`; after the color-space fix they sit in the same space as
   procedural buildings, so a landmark and its neighbors compare honestly.
-- The next-1000 surfaces come from shared material graphs and look coherent.
+- The structure-catalog surfaces come from shared material graphs and look coherent.
 
 ### Seattle
 

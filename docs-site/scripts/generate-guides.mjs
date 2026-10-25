@@ -98,6 +98,7 @@ const GUIDE_ORDER = [
   'ambient-life',
   'dioramas',
   'materials',
+  'typography',
   '3d-model-assets',
   'source-bundles',
   '3d-art-guidelines',

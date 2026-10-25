@@ -1,4 +1,4 @@
-/** Individually researched tower exteriors, candidates N0580–N0591. Dimensions are metres. */
+/** Individually researched tower exteriors, candidates aon_center_los_angeles–k_z_l_kule. Dimensions are metres. */
 
 import { readFileSync } from 'node:fs';
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
@@ -74,7 +74,7 @@ function buildMunt(out) {
   const angle = 0.4307,
     rr = 2.89,
     parts = JSON.parse(
-      readFileSync(structureSourcePath('n0585_munttoren', 'reference-metadata.json'), 'utf8'),
+      readFileSync(structureSourcePath('munttoren', 'reference-metadata.json'), 'utf8'),
     ).parts;
   // Round medieval lower shaft with actual recessed openings between the pale stone courses.
   const windows = [
@@ -592,8 +592,8 @@ function buildKizil(out) {
 
 export const heritageTowers580 = [
   {
-    id: 'n0591_k_z_l_kule',
-    planId: 'N0591',
+    id: 'k_z_l_kule',
+    planId: 'k_z_l_kule',
     title: 'Kızıl Kule',
     wikidata: 'Q2470666',
     build: buildKizil,
@@ -647,8 +647,8 @@ export const heritageTowers580 = [
     ],
   },
   {
-    id: 'n0585_munttoren',
-    planId: 'N0585',
+    id: 'munttoren',
+    planId: 'munttoren',
     title: 'Munttoren',
     wikidata: 'Q1429748',
     build: buildMunt,

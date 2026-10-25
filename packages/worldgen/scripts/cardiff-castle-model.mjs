@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcj/n0325_cardiff_castle/',
+    '../../../content/worldgen/source/places/gc/gcj/cardiff_castle/',
     import.meta.url,
   ),
   read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -886,7 +886,7 @@ export const buildCardiffDistrict = (out) => build(out, 1);
 export const buildCardiffStreet = (out) => build(out, 2);
 export const buildCardiffCloseup = (out) => build(out, 3);
 export const cardiffStudy = {
-  id: 'N0325',
+  id: 'cardiff_castle',
   key: 'cardiff_castle',
   title: 'Cardiff Castle',
   category: 'castle',

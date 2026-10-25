@@ -27,7 +27,8 @@ export function createInteriorSite(
       [...(request.interiorLabels ?? []), ...request.labels, request.context ?? ''],
       catalog,
     ).algorithm === 'residential';
-  const anchor = request.storefronts?.[0]?.at;
+  if (request.access?.garage) return undefined;
+  const anchor = request.access?.to ?? request.storefronts?.[0]?.at;
   let best: { edge: number; length: number; score: number } | undefined;
   for (let edge = 0; edge < outline.length; edge++) {
     if (seams?.has(edge)) continue;

@@ -34,10 +34,13 @@ const selection = process.argv
   .split(',');
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const catalog = JSON.parse(
-  await readFile(resolve(root, 'content/worldgen/source/next-1000/candidates.json'), 'utf8'),
+  await readFile(
+    resolve(root, 'content/worldgen/source/structure-catalog/candidates.json'),
+    'utf8',
+  ),
 );
 const collections = await readStructureCollections(
-  resolve(root, 'content/worldgen/source/next-1000/collections.json'),
+  resolve(root, 'content/worldgen/source/structure-catalog/collections.json'),
   catalog.candidates,
 );
 const expandedSelection = selectedStructureIds(selection, collections);
@@ -179,14 +182,14 @@ function geographicProposal(study, mapped) {
     mapGeometryLicense: 'ODbL-1.0',
     attribution: '© OpenStreetMap contributors',
   };
-  if (study.id === 'N0140') {
+  if (study.id === 'shanghai_world_financial_center') {
     proposal.heading += Math.PI / 4;
     proposal.notes =
       'Native X follows one diagonal of the exact-QID square footprint. Heading adds 45 degrees to the cached square frame. Opposite diagonal differs by 90 degrees; chosen roof axis is explicitly provisional pending roof/imagery evidence. Native 58 m structural side is not stretched to the 60 m map envelope.';
-  } else if (study.id === 'N0141') {
+  } else if (study.id === 'the_shard') {
     proposal.notes =
       'Authored body, apex offset and eastern podium use the cached local footprint coordinates, so its signed frame is retained. The tower center is not the outer-envelope bounding-box center. Eight reconstructed facade planes require visual site-fit verification.';
-  } else if (study.id === 'N0144') {
+  } else if (study.id === 'oriental_pearl_tower') {
     const outline = mapped.geometry.outline;
     const samples = [
       [24.318, 17.451],
@@ -231,7 +234,7 @@ for (let study of signatureTowers.filter(
     throw new Error(
       `${study.id}: independent collection member needs its own attributed map frame`,
     );
-  const key = member?.sourceKey ?? `${study.id.toLowerCase()}_${study.key}`;
+  const key = member?.sourceKey ?? study.id;
   const assetId = `molen.worldgen.structure.${key}`;
   const dir = structureSourceDirectory(key);
   const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
@@ -284,9 +287,17 @@ for (let study of signatureTowers.filter(
     if (member && frame.wikidataId !== member.wikidataId)
       throw new Error(`${study.id}: source-local frame has a different member identity`);
     if (
+      member?.featureId &&
+      (!frame.elements?.some((p) => `${p.type}/${p.id}` === member.featureId) ||
+        frame.sourceUrl !== `https://www.openstreetmap.org/${member.featureId}`)
+    )
+      throw new Error(`${study.id}: source-local frame needs its own declared map member`);
+    if (
       !frame.anchor?.every(Number.isFinite) ||
       !Number.isFinite(frame.heading) ||
-      !frame.geometry?.outline?.length ||
+      (!frame.geometry?.outline?.length &&
+        !frame.geometry?.centerlines?.some((line) => line.length >= 2) &&
+        !(frame.geometry?.point?.length === 2 && frame.geometry.point.every(Number.isFinite))) ||
       !frame.sourceUrl
     )
       throw new Error(`${study.id}: incomplete source-local geographic frame`);
@@ -325,7 +336,7 @@ for (let study of signatureTowers.filter(
   }
   build(mappedBuilder(out, used, study.surfaceOverrides), mapped);
   const mesh = out.finalize();
-  if (study.id === 'N0144') smoothMeshNormals(mesh, ['wall'], 30);
+  if (study.id === 'oriental_pearl_tower') smoothMeshNormals(mesh, ['wall'], 30);
   if (study.smoothSlots) smoothMeshNormals(mesh, study.smoothSlots, 30);
   validateAuthoredMesh(mesh, study.id);
   const min = [Infinity, Infinity, Infinity],
@@ -402,14 +413,19 @@ for (let study of signatureTowers.filter(
     planId: study.id,
     id: study.id,
     ...(member
-      ? { collectionId: collections.find((entry) => entry.members.includes(member)).id }
+      ? {
+          collectionId: collections.find((entry) => entry.members.includes(member)).id,
+          ...(member.featureId ? { mapFeatureId: member.featureId } : {}),
+        }
       : {}),
     assetId,
     title: study.title,
     category: study.category ?? 'skyscraper',
     quality: 'detailed',
     wikidataId: study.wikidataId,
-    referenceCoordinate: candidate.referenceCoordinate,
+    ...(study.reusableMapRules
+      ? { usage: { kind: 'map-category', rules: study.reusableMapRules } }
+      : { referenceCoordinate: candidate.referenceCoordinate }),
     visualBrief: study.brief,
     ...(study.mediumFiContext ? { mediumFiContext: study.mediumFiContext } : {}),
     size,
@@ -437,7 +453,7 @@ for (let study of signatureTowers.filter(
     ...(study.appearance ? { appearance: study.appearance } : {}),
     reconstruction: study.reconstruction,
     referencePages: study.refs,
-    geographicProposal: geographicProposal(study, mapped),
+    ...(study.reusableMapRules ? {} : { geographicProposal: geographicProposal(study, mapped) }),
     scaleBasis:
       study.scaleBasis ??
       'Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.',

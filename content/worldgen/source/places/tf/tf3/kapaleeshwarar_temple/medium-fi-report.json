@@ -1,0 +1,1118 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.kapaleeshwarar_temple",
+  "sourceHash": "sha256:ec992d6e8496846f5279e79c435811b4dc5ad1f3013e3f02c8afd58ac298dd3c",
+  "runtimeHash": "sha256:b2cfa26e3cb6a3e5efaa5224e76d6a31a96e689e314ea53db2abef864c0a9534",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:38af18e294d0c10c410a798545029f999347d1f0c2b11ed5462869980263028f",
+      "bytes": 104684,
+      "gzipBytes": 19739,
+      "triangles": 990,
+      "cpuBytes": 103248,
+      "gpuBytes": 103248,
+      "errorMeters": 0.7,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:1fe581e78e010d2a1a7782189a6a0e0cc694c148283af0b1bb3595454a3baf79",
+      "bytes": 385428,
+      "gzipBytes": 98736,
+      "triangles": 3960,
+      "cpuBytes": 379152,
+      "gpuBytes": 379152,
+      "errorMeters": 0.35,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:1e26c7ea45357b4c7ee6fe491534c5d3730f6c016a01ca00a98771f6f53d11c3",
+      "bytes": 1527420,
+      "gzipBytes": 406745,
+      "triangles": 15836,
+      "cpuBytes": 1521120,
+      "gpuBytes": 1521120,
+      "errorMeters": 0.12,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:8d9be7c89a265cb7f59b276411e0f777301c5da99d3e29ef2a2694c82c2adbb8",
+      "bytes": 5427856,
+      "gzipBytes": 1442689,
+      "triangles": 52892,
+      "cpuBytes": 5421516,
+      "gpuBytes": 5421516,
+      "errorMeters": 0.04,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:2ec272f1c9b1a0a063e7a2c823459d2c6d437b1e5c01e7dd7839829a50da6bf0"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:d6f678792eb87c3534fb118db9d7508e3195b1f56c10d60c5a8af62907416eb3"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:875234460b9ad642e2afb9dbe4609c32bccecbcbd352149acd9a5ee9d46d7549",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          77.5238,
+          49.8634,
+          111.66109999999999
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:07bddbb9c1ae1a36e61b8194f07f7374fd1da032432d18b58dea71c50c5171c2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          77.5238,
+          49.8634,
+          111.66109999999999
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:1770605e11bb770d2f11f15ae45479623367ad5f1a4a9e673f6ea001a55fe4ea",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          77.5238,
+          49.8634,
+          111.66109999999999
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:f0dc3087efaec51ae98671b8592fb402282da1efb2b051bbd82a1f1204571107",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          77.5238,
+          49.8634,
+          111.66109999999999
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:c9d4f7bce3fc34580466616f3ecca7ec3f34c93f819eca9cb1c5a077e9409196",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 142778,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          136.3238,
+          93.06339999999999,
+          213.6611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:c328662f0a1d302d5f482ade73555b0cbb384a7094a30e29a9389386d8e4c6f5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 142778,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          136.3238,
+          93.06339999999999,
+          213.6611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:5e13f520e2dbb1018744af386badaeb2449ae46a9faad702c9cc9ba392c6e062",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 142778,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          136.3238,
+          93.06339999999999,
+          213.6611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:0e1ce877283e6308c093b4fd210e0a17314a35076ff3924aed16c2d606ec53b7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 142778,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          136.3238,
+          93.06339999999999,
+          213.6611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:1e1c391d66f8bdb126efcb9b4ec14af3679f7ab230622a856d48470a6d52bddd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 139808,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          252.72379999999998,
+          138.6634,
+          415.2611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:6e1841636145e34eaaf9862a841951b00dd357a0a2736f0f316ea00aaf6a37c7",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139808,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          252.72379999999998,
+          138.6634,
+          415.2611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:5f51fc31a29a86772421239926dcc27f8943b3bf77061ab3bba2a3e635413493",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 139808,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          252.72379999999998,
+          138.6634,
+          415.2611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:4fffce765c1f43889f26b7c699a01f90ff144d79258ff78488b100ad19506ee4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139808,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          252.72379999999998,
+          138.6634,
+          415.2611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:88df324e8d5b5fab61fc6260a7301ddaa83e948cb51bbbdce3ff73c00482895e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 134112,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          252.72379999999998,
+          138.6634,
+          415.2611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-seven-tier-gopuram-and-real-passage.png",
+      "hash": "sha256:e9eb6a5d5135d179e7bc686dcaaa874ce77eb2f567f72c2efabff0a0b1bf137b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          108.6791081843241,
+          22,
+          51.80792839189749
+        ],
+        "lookAt": [
+          54.83648664834284,
+          20,
+          38.34605236613174
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-mandapa-shrines-and-flagstaff.png",
+      "hash": "sha256:3140fa13191cdad5f988796c275b7feca0baddd0a30a18675a76dfb2760d9f51",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          39.77422273697161,
+          24,
+          75.91449931119728
+        ],
+        "lookAt": [
+          11.641296002945014,
+          7,
+          19.40309839617932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-gopuram-passage-and-perimeter-colonnade.png",
+      "hash": "sha256:81498ba9680007fa70c80b2d7dec7ffa3d52b22d055a7705afb254cc138d352f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          -50.98111670983851,
+          6,
+          6.013795724650505
+        ],
+        "lookAt": [
+          -20.32477724070323,
+          6,
+          13.678575587969384
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-gateway-eye-level-through-passage.png",
+      "hash": "sha256:537a7f0b9b1d394a56ebe820e2b429a3dc01aa9b099e40f5ac4d34700ad8e8f9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          79.56528618215349,
+          5.1,
+          44.57004414123924
+        ],
+        "lookAt": [
+          54.8267843953513,
+          5.1,
+          38.38485785913065
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/kapali-skyline.png",
+      "hash": "sha256:7136128418b8c52cf7a71d751ed5484ef80061e6e28860ce437e7ca16d38d7de",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139808,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          93.37274839998537,
+          95,
+          162.50086109382016
+        ],
+        "lookAt": [
+          18.67481360254203,
+          10,
+          20.13085534472669
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/kapali-district.png",
+      "hash": "sha256:2e52f947abad7034cb2ca4acd95f42a94c1cea2215db910b6c2768608fd05657",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 142778,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          93.37274839998537,
+          95,
+          162.50086109382016
+        ],
+        "lookAt": [
+          18.67481360254203,
+          10,
+          20.13085534472669
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/kapali-street.png",
+      "hash": "sha256:43560716b298d4050ed890e28dc80355feb46ef402360b6ac8031faccd6ef21e",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 154654,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          93.37274839998537,
+          95,
+          162.50086109382016
+        ],
+        "lookAt": [
+          18.67481360254203,
+          10,
+          20.13085534472669
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/kapali-closeup.png",
+      "hash": "sha256:1578240628e26ce10b3a927031b3ce48bf42be33eb288f3200a40ce3bd1dcd94",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          93.37274839998537,
+          95,
+          162.50086109382016
+        ],
+        "lookAt": [
+          18.67481360254203,
+          10,
+          20.13085534472669
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:c6818787b812a9fb534e876010315994742a7188df6d2311b44916d2e92496e5",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139808,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          136.3238,
+          93.06339999999999,
+          213.6611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:c328662f0a1d302d5f482ade73555b0cbb384a7094a30e29a9389386d8e4c6f5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 142778,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          136.3238,
+          93.06339999999999,
+          213.6611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:6ccec66a65952e6da23da15c95ff410d76080b53b186901b019c01b0d2bf57e9",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 154654,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          136.3238,
+          93.06339999999999,
+          213.6611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:f40726a730df096a7b11c91cd73888600e0d58ab5b9d40ab607676fbe1d57b7f",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 191710,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/terrain-review.height.png"
+        },
+        "position": [
+          136.3238,
+          93.06339999999999,
+          213.6611
+        ],
+        "lookAt": [
+          19.9238,
+          31.8634,
+          12.0611
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

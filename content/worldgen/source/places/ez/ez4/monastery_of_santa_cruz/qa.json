@@ -1,0 +1,643 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.monastery_of_santa_cruz",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:07a1958502cedc640badc94fa970f398f9ccd82e004d2e14547747833539e023",
+  "sourceHash": "sha256:720d2b24252d60f142d46afdf9ebd1a3bf2cb9fdc4c5346aac3ff3dd0f145709",
+  "runtimeHash": "sha256:bebdc6c810624f74a8550967f80f6cc5782af421ae1544510416531c66a88e81",
+  "captureReportHash": "sha256:556e705789ed75bb5d5bc27be2cda99c9a1f0b578718ee086d6eb02724381552",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/west-stone-front-portal-window-pinnacles.png",
+      "shots/open-cloister-arches-tracery-and-fountain.png",
+      "shots/cloister-court-and-surrounding-roofs.png"
+    ],
+    "notes": "Inspected48 current source/shared/medium-fi/native/fallback views during one continuous ordinary-picture/map brief, build and correction round. Specific mapped Santa Cruz church with massive stone west screen, twin faceted stepped pinnacles/crosses, pierced central crest, true recessed arched entrance, tall grilled window and raised pale sculptural screen with original simplified figures/niches/scrolls. White nave/tiled roof and mapped monastery wings surround an actual open cloister court with pointed paired arcades, upper glazed register/pinnacles and original tiered fountain. Initial roof polygon closing the court, insufficiently distinct facade screen and adjacent-building clipping were corrected in this round. No copied readable text, narrative tile images or sculpture inventory."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/west-stone-front-portal-window-pinnacles.png",
+      "shots/shared/open-cloister-arches-tracery-and-fountain.png",
+      "shots/shared/cloister-court-and-surrounding-roofs.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six existing shared256-square graphs: stone_ashlar for warm masonry, stone_limestone for pale carved trim/fountain, plaster_lime for white ranges, tile_ceramic for terracotta roofs and abstract blue tile band, metal_painted for tinted recessed dark glazing and wood_plain for timber entrance leaves. Seven roles/at most seven draws; each graph read once in the production resolver. Metric UVs/linear tints, no embedded images or unique atlas, separate GPU streams and matching CPU/GPU accounting. Four levels966/3756/11827/11827triangles; initial geometry459,924bytes. Eviction releases all model geometry.",
+    "captureReportHash": "sha256:6c8bd5e53f882163b8afb274ab3d5b62d131ecc5baf10925d55f1eb5e2cd2a64"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/west-stone-front-portal-window-pinnacles.png",
+      "medium-fi/open-cloister-arches-tracery-and-fountain.png",
+      "medium-fi/cloister-court-and-surrounding-roofs.png",
+      "medium-fi/santacruz-skyline.png",
+      "medium-fi/santacruz-district.png",
+      "medium-fi/santacruz-street.png",
+      "medium-fi/santacruz-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected noon/late, economy/high, whole silhouette, west screen, cloister/fountain, open-court overhead view, all four levels and transitions. Skyline retains the facade/pinnacles, nave and open courtyard with sparse post/lintel lower arcade. District adds selected windows, frame mouldings and pointed arcade massing; street/close adds the pale sculptural screen, layered arch bands, simple figures/niches, paired tracery columns, pinnacles and tile bands. Street and closeup use the same bounded geometry because this medium-fi asset needs no additional close-up inventory. Detail crops can cut the tops of crosses/fountain; whole/turntable views carry full silhouette judgment. Flat shared stages expose terrain-relative bases. Green native fixture ground, surrounding facades and paths are host context rather than exact court/plaza paving.",
+    "captureReportHash": "sha256:5295be1c9618bc905f57e58ba94cbc2189d6c2a6fc81d566e400f62126916262"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:085d0dd5c2059d51759d921a7b995933bff987ed381d1bac95fd048735ff8bc3",
+    "mapFrameHash": "sha256:4f419f3582a33b5732f2000b14ff4010f01d92b053a793e9784246c9ddf8b761",
+    "notes": "Named standard PMTiles church building/POI35184576280912 and monastery building/POI52776561095808 correlate two actual mapped controls and the court hole. Named monastery relation2962560 is identified; no exact-QID footprint claim. Anchor-8.428761,40.210945; heading0, internal angle-.154600686944rad, west entrance local-x. All2703 independent in-tile building records, including Town Hall35184576280911 and Cafe Santa Cruz35184595417581, remain byte-equivalent. A2cm control-mask pad subtracts independent footprints plus1mm protection. Overlapping original authored-map fragments4.855377m²/church and.326032m²/monastery are retained entirely within protected independent envelopes plus1.1mm numerical tolerance; outside-protected area0. Loaded levels2705 native records comprise2703 independents and these two protected fragments; failed load2705 full originals. Original6m ground/native water245800.603275m² unchanged. Local buried footings and short entrance steps; no broad slab, flattening or ground/water cutout. Unload releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi standing church and mapped monastery/cloister from four inspected ordinary front/court/passage pictures and standard PMTiles/Mapzen. The cropped night facade and passage image each left a concrete silhouette/roof-arcade coverage gap, filled with the complete2026 front and2019 court views. Heights, rear ranges/roof subdivisions, bay counts, ornament, fountain proportions, grille inventory, weathering and exact thresholds are explicit visualization approximations; no survey or bespoke archive campaign. Shared regular masonry and abstract ceramic band approximate the material vocabulary. No full ritual interior or copied text/narrative tile/stone inventory. Town Hall, cafe, plaza fountain, separate Manga monument, independent buildings and native court/plaza ground remain host context. Coarse urban DEM cannot resolve paved floors/stairs or absolute architectural elevations. Physical-device/dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/models/source.glb\",\"hash\":\"sha256:720d2b24252d60f142d46afdf9ebd1a3bf2cb9fdc4c5346aac3ff3dd0f145709\",\"bytes\":1423572,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/ez/ez4/monastery_of_santa_cruz/model.glb\",\"hash\":\"sha256:bebdc6c810624f74a8550967f80f6cc5782af421ae1544510416531c66a88e81\",\"bytes\":1422932,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/ez/ez4/monastery_of_santa_cruz/model.skyline.glb\",\"hash\":\"sha256:032e0fcbae0f50a9f81a11ebb32de0ea8d00f153eca32848c1963db9d3453710\",\"bytes\":101516,\"errors\":0,\"warnings\":0,\"triangles\":966,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/ez/ez4/monastery_of_santa_cruz/model.district.glb\",\"hash\":\"sha256:3a6ec64a644d3bc913ad4b22329654c9b805078a45996b8fae822853ad71ad1f\",\"bytes\":358408,\"errors\":0,\"warnings\":0,\"triangles\":3756,\"draws\":6}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/ez/ez4/monastery_of_santa_cruz/model.street.glb\",\"hash\":\"sha256:caf44c0856829990c0113066af8b89e5bd9a3168016a6081e855869d397906d4\",\"bytes\":1172292,\"errors\":0,\"warnings\":0,\"triangles\":11827,\"draws\":7}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/ez/ez4/monastery_of_santa_cruz/model.closeup.glb\",\"hash\":\"sha256:caf44c0856829990c0113066af8b89e5bd9a3168016a6081e855869d397906d4\",\"bytes\":1172292,\"errors\":0,\"warnings\":0,\"triangles\":11827,\"draws\":7}"
+      },
+      {
+        "check": "mapped-nave-facade-pinnacles-recessed-portal-and-window-open-court-and-arcades-buried-footings",
+        "passed": true,
+        "notes": "398 actual mesh probes across source/runtime/four levels verify the specific nave ridge, twin tower pinnacles/crosses, recessed west portal/window, open courtyard sky, all20 open lower cloister bays, central fountain and buried mapped church/monastery footing edges."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Six reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:720d2b24252d60f142d46afdf9ebd1a3bf2cb9fdc4c5346aac3ff3dd0f145709"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:bebdc6c810624f74a8550967f80f6cc5782af421ae1544510416531c66a88e81"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:032e0fcbae0f50a9f81a11ebb32de0ea8d00f153eca32848c1963db9d3453710"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:3a6ec64a644d3bc913ad4b22329654c9b805078a45996b8fae822853ad71ad1f"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:caf44c0856829990c0113066af8b89e5bd9a3168016a6081e855869d397906d4"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:caf44c0856829990c0113066af8b89e5bd9a3168016a6081e855869d397906d4"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2705,
+          "independentBuildings": 2703,
+          "remainingBuildings": 2705,
+          "changedIndependent": [],
+          "changedIndependentDetails": [],
+          "remainingAuthored": [
+            {
+              "id": 35184576280912,
+              "area": 4.855376968437497
+            },
+            {
+              "id": 52776561095808,
+              "area": 0.32603177201195876
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.monastery_of_santa_cruz"
+          ],
+          "rawTerrainRange": {
+            "min": -20.63986461072013,
+            "max": 75.07523538927987
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 245800.60327503236,
+          "remainingWaterArea": 245800.60327503236,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:e102f963194a027689cd41e8e1c7600f6b99c9f92f08eb67f76ed83091bb7f12",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 16,
+              "triangles": 266208
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -74.74707966391492,
+                65,
+                72.3731585721969
+              ],
+              "lookAt": [
+                16.681750738037394,
+                10,
+                -22.841173181646973
+              ],
+              "fov": 45
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-west-stone-front-portal-window-pinnacles.png",
+            "hash": "sha256:26ce5d7e0022c061605fab28cd10ec43d9a40dadfe03363cf237a4bc5b37ffdb",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 16,
+              "triangles": 266208
+            },
+            "camera": {
+              "name": "west-stone-front-portal-window-pinnacles",
+              "position": [
+                -56.23034075591065,
+                17,
+                15.84767422917865
+              ],
+              "lookAt": [
+                -15.662883284838019,
+                14,
+                3.4024384205363343
+              ],
+              "fov": 47
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-cloister-arches-tracery-and-fountain.png",
+            "hash": "sha256:5044c711ae76288bfa7bfd7bad0acf8f60c251735fbcb172fbd50f2d763e17bd",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 266184
+            },
+            "camera": {
+              "name": "open-cloister-arches-tracery-and-fountain",
+              "position": [
+                29.064744328664098,
+                5,
+                -27.807204769796414
+              ],
+              "lookAt": [
+                41.29375235820056,
+                4.8,
+                -33.76130945593796
+              ],
+              "fov": 68
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-cloister-court-and-surrounding-roofs.png",
+            "hash": "sha256:9bb2b320c5a41b9bae2a4936c847b133d58745195be277bdccd39193574bc6eb",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 266184
+            },
+            "camera": {
+              "name": "cloister-court-and-surrounding-roofs",
+              "position": [
+                31.413021378279467,
+                46,
+                -32.22145384503557
+              ],
+              "lookAt": [
+                31.413021378279467,
+                0,
+                -32.22145384503557
+              ],
+              "fov": 58
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2705,
+          "independentBuildings": 2703,
+          "remainingBuildings": 2705,
+          "changedIndependent": [],
+          "changedIndependentDetails": [],
+          "remainingAuthored": [
+            {
+              "id": 35184576280912,
+              "area": 4.855376968437497
+            },
+            {
+              "id": 52776561095808,
+              "area": 0.32603177201195876
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.monastery_of_santa_cruz"
+          ],
+          "rawTerrainRange": {
+            "min": -20.63986461072013,
+            "max": 75.07523538927987
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 245800.60327503236,
+          "remainingWaterArea": 245800.60327503236,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:e102f963194a027689cd41e8e1c7600f6b99c9f92f08eb67f76ed83091bb7f12",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 16,
+              "triangles": 266208
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -74.74707966391492,
+                65,
+                72.3731585721969
+              ],
+              "lookAt": [
+                16.681750738037394,
+                10,
+                -22.841173181646973
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2705,
+          "independentBuildings": 2703,
+          "remainingBuildings": 2705,
+          "changedIndependent": [],
+          "changedIndependentDetails": [],
+          "remainingAuthored": [
+            {
+              "id": 35184576280912,
+              "area": 4.855376968437497
+            },
+            {
+              "id": 52776561095808,
+              "area": 0.32603177201195876
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.monastery_of_santa_cruz"
+          ],
+          "rawTerrainRange": {
+            "min": -20.63986461072013,
+            "max": 75.07523538927987
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 245800.60327503236,
+          "remainingWaterArea": 245800.60327503236,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:26a42801eab0d932e64ef025f11a5c7510c9d4f4208ba62b519b157a2fc53444",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 258137
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -74.74707966391492,
+                65,
+                72.3731585721969
+              ],
+              "lookAt": [
+                16.681750738037394,
+                10,
+                -22.841173181646973
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2705,
+          "independentBuildings": 2703,
+          "remainingBuildings": 2705,
+          "changedIndependent": [],
+          "changedIndependentDetails": [],
+          "remainingAuthored": [
+            {
+              "id": 35184576280912,
+              "area": 4.855376968437497
+            },
+            {
+              "id": 52776561095808,
+              "area": 0.32603177201195876
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.monastery_of_santa_cruz"
+          ],
+          "rawTerrainRange": {
+            "min": -20.63986461072013,
+            "max": 75.07523538927987
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 245800.60327503236,
+          "remainingWaterArea": 245800.60327503236,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:eaf4aff45bf959cd1bd745f9b260b5cfc6ebe69e58a044f99dc9bc36b8647373",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 255347
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -74.74707966391492,
+                65,
+                72.3731585721969
+              ],
+              "lookAt": [
+                16.681750738037394,
+                10,
+                -22.841173181646973
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 2705,
+          "independentBuildings": 2703,
+          "remainingBuildings": 2705,
+          "changedIndependent": [],
+          "changedIndependentDetails": [],
+          "remainingAuthored": [
+            {
+              "id": 35184576280912,
+              "area": 553.8780675253647
+            },
+            {
+              "id": 52776561095808,
+              "area": 2218.569111399998
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.monastery_of_santa_cruz"
+          ],
+          "rawTerrainRange": {
+            "min": -20.63986461072013,
+            "max": 75.07523538927987
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 245800.60327503236,
+          "remainingWaterArea": 245800.60327503236,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:7c8ec9609f531f956d03d2fde98918d1066858858b68f7374da4bcbe5a23ab6f",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 254420
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -74.74707966391492,
+                65,
+                72.3731585721969
+              ],
+              "lookAt": [
+                16.681750738037394,
+                10,
+                -22.841173181646973
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ],
+    "sharedEdgeProtection": {
+      "candidateId": "monastery_of_santa_cruz",
+      "status": "passed-protected-map-overlap",
+      "toleranceMeters": 0.0011,
+      "controls": [
+        {
+          "id": 35184576280912,
+          "remainingArea": 4.855376964549883,
+          "outsideProtectedArea": 0
+        },
+        {
+          "id": 52776561095808,
+          "remainingArea": 0.3260317708410838,
+          "outsideProtectedArea": 0
+        }
+      ],
+      "notes": "Remaining fragments of the two authored map records are entirely inside original independent native building envelopes plus1.1mm numerical tolerance. They preserve shared map overlap edges behind neighboring native buildings; no independent input geometry or terrain is modified."
+    }
+  },
+  "limitations": [
+    "Specific standing Santa Cruz church and mapped monastery/cloister envelope in Coimbra: heavy western stone facade/twin faceted towers and ornate pinnacles, central pierced crest/cross, layered arched portal and tall recessed grilled window, white nave with terracotta roof, open pointed/traceried cloister arcades, upper dark windows/tile roofs, white outer ranges and original simplified central fountain. Shared stone/plaster/tile/wood/metal material graphs and original figure/foliage/spiral-shaft vocabulary; no copied narrative tile images, readable text or full church interior. Preserve Town Hall, Cafe Santa Cruz, other buildings, plaza and separate Manga monument.",
+    "Named standard PMTiles church building/POI35184576280912 and monastery building/POI52776561095808, correlated with ordinary facade/cloister pictures, establish the two authored controls. Named monastery point corresponds to mapped relation2962560; no exact-QID footprint attribution claimed. Anchor-8.428761,40.210945; heading0, internal local+x angle-.154600686944rad, west entrance local-x. The mapped courtyard hole is retained. Town Hall35184576280911 and Cafe Santa Cruz35184595417581 remain independent native buildings.",
+    "Ordinary-picture/map visualization estimates, not surveyed dimensions: approximately38.9m church length/18.5m west-front width, nave19m eaves/22m tile ridge, western stone screen24.2m, tower pinnacles29m/cross30m, center cross29m. Cloister lower arcade5m, upper glazed arcade/eaves9m, higher white outer ranges12m/terracotta ridges14m. Specific sculpture, bay subdivisions, concealed roofs and exact floor/stair levels remain approximate.",
+    "Original standard6m Mapzen ground/water and all independent buildings retained. Each mapped structure has a small grade-buried local plinth; cloister courts stay native ground, entrance has short descending steps. No broad monastery/plaza slab, flattening or ground/water cutout. Coarse urban DEM does not resolve actual paved court/plaza floors or thresholds; absolute heights and approaches remain approximate.",
+    "Heights, hidden roofs, cloister bay counts/upper window grids, sculptural screen inventory, fountain details and exact thresholds are ordinary-picture/map approximations. No full ritual interior, copied inscription or narrative tile pictures. Town Hall, Cafe Santa Cruz, independent buildings, plaza fountain, separate Manga monument and native court/plaza ground remain host context."
+  ]
+}

@@ -66,6 +66,8 @@ export interface TransportEdge {
   readonly tunnel: boolean;
   readonly link: boolean;
   readonly oneway: boolean;
+  /** Regional road traffic rule, retained through junction rebuilds and export. */
+  readonly drivingSide: 'right' | 'left';
   readonly lanes: string[];
   /** Source feature name, when mapped. */
   readonly name?: string;
@@ -78,7 +80,7 @@ export interface TransportLane {
   readonly class: TransportClass;
   /** 1 travels the edge path forward (from → to), -1 backward. */
   readonly dir: 1 | -1;
-  /** 0 = innermost (nearest the centreline for two-way roads, leftmost for one-way). */
+  /** 0 = innermost (leftmost for right-hand one-way roads, rightmost for left-hand). */
   readonly index: number;
   /** Signed lateral offset from the centreline, positive to the right of travel. */
   readonly offset: number;

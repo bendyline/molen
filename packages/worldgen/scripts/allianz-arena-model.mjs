@@ -608,7 +608,7 @@ export function buildAllianz(out) {
   facadeSign(out);
 }
 export const allianzStudy = {
-  id: 'N0683',
+  id: 'allianz_arena',
   key: 'allianz_arena',
   title: 'Allianz Arena',
   wikidataId: 'Q127429',

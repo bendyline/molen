@@ -1,0 +1,331 @@
+{
+  "planId": "wire_opera_house",
+  "id": "wire_opera_house",
+  "assetId": "molen.worldgen.structure.wire_opera_house",
+  "title": "Wire Opera House",
+  "category": "performance-sport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -49.27615436865,
+    "latitude": -25.38456707587
+  },
+  "size": [
+    37.62922286987305,
+    19.66986608505249,
+    97.89001846313477
+  ],
+  "actualBounds": {
+    "min": [
+      -18.814611434936523,
+      -7.349999904632568,
+      -33.644161224365234
+    ],
+    "max": [
+      18.814611434936523,
+      12.319866180419922,
+      64.24585723876953
+    ]
+  },
+  "visualBrief": "Whole Wire Opera House exterior, circular three-level tubular steel auditorium/annular open walkways, shallow translucent polycarbonate radial roof, intrinsic north attached stage/service projection and south narrow steel-grated entry bridge with native bridge and connector centreline. Rebuild branching column bundles, repeated open arches, rail circles and lattice as medium-fi geometry. Exclude quarry/lake/waterfall/trees/park paths/parcel orground slab, detachedPedreiraPauloLeminski/musicstage/gates/artworks/statues, people/vehicles/banners/signage/interiorperformance/seating/exhibits. Keepopenarches/voids/bundledtubes ratherthanopaqueoutercylinder. Centraldarkauditoriumhasboundedactualfloor/roof,threeannularwalkwaylevels andownbridge. Rearstagewingnativefootprint; concealedtopology/roofsectionapproximate. Polycarbonateexpressedbyneutralpaleproceduralmattepanelswithradialsteelribs; photoreflectionsandgreenvegetationnotbaked. Exterioronly.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Curitiba_opera_arame2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Curitiba-opera-de-arame3.jpg",
+    "https://commons.wikimedia.org/wiki/File:Curitiba-opera-de-arame.jpg",
+    "https://commons.wikimedia.org/wiki/File:Curitiba_-_%C3%93pera_de_Arame_-_Ala.jpg"
+  ],
+  "stories": [
+    {
+      "id": "wire-opera-house-wp",
+      "url": "https://qualla.com/wire-opera-house/"
+    }
+  ],
+  "referenceInputHash": "268ce88c69f1e348f1d6d0abb67d1fe95e0efcce5ced3006d62dc77fb5befdac",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-wire-opera-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-wire-opera-house.mjs",
+    "level": "skyline",
+    "export": "wireOperaSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.15
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.15
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.62,
+        "metallic": 0.04
+      },
+      "core": {
+        "slot": "wall",
+        "localRef": "palette:#feffff",
+        "roughness": 0.78,
+        "metallic": 0.03
+      },
+      "deck": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.86,
+        "metallic": 0.2
+      },
+      "foot": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "wireOperaDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.15
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.62,
+            "metallic": 0.04
+          },
+          "core": {
+            "slot": "wall",
+            "localRef": "palette:#feffff",
+            "roughness": 0.78,
+            "metallic": 0.03
+          },
+          "deck": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "foot": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "wireOperaStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.15
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.62,
+            "metallic": 0.04
+          },
+          "core": {
+            "slot": "wall",
+            "localRef": "palette:#feffff",
+            "roughness": 0.78,
+            "metallic": 0.03
+          },
+          "deck": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "foot": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": -7.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "ExactoriginalnamedQ2719464way31204368all18vertices including northattachedstage; full bridgeway150298928andconnector150298906originalnodes. Mainroundbody16pointleast-squarescirclecenteranchor,maximumresidual0.018m, heading0east/southpreservesnativepositions. Photo-basedroundbody18.4632347473mradius interpolatescoarsepolygon, northwingfollowsnativefourcorners. Nativeplanhasnoheighttags:3levels/bundledcolumns/arches/shallowpolycarbonateroof/railpatterns estimatedfrom4clearedviews; stagebacksection/hiddencore/foundationsunverified. Nativebridgecentreline length45.3m retained, width4.2mestimated. Noallparcelorquarryextrusion. Independent200mrawterrain fixedbeforegeometryatnativeouterbridgeendpoint; quarry/water/footingcontactnotcertified.",
+    "anchor": [
+      -49.27615436865,
+      -25.38456707587
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -49.2761297,
+        -25.3851429
+      ],
+      "modelHeight": 0,
+      "basis": "Exactnativeouterbridgeendpoint beforeterrainandgeometry; wholewaterfieldnotflattened. Structuralfloor/waterbed/footingcontactapproximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/31204368",
+      "way/150298928",
+      "way/150298906"
+    ],
+    "source": "https://www.openstreetmap.org/way/31204368",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cfb0db399d6c112a35e8b4e3537989695ff2c8b76cbfdf67e3433b9924953cb7",
+    "notes": "Whole Wire Opera House exterior, circular three-level tubular steel auditorium/annular open walkways, shallow translucent polycarbonate radial roof, intrinsic north attached stage/service projection and south narrow steel-grated entry bridge with native bridge and connector centreline. Rebuild branching column bundles, repeated open arches, rail circles and lattice as medium-fi geometry. Exclude quarry/lake/waterfall/trees/park paths/parcel orground slab, detachedPedreiraPauloLeminski/musicstage/gates/artworks/statues, people/vehicles/banners/signage/interiorperformance/seating/exhibits."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "ExactoriginalnamedQ2719464way31204368all18vertices including northattachedstage; full bridgeway150298928andconnector150298906originalnodes. Mainroundbody16pointleast-squarescirclecenteranchor,maximumresidual0.018m, heading0east/southpreservesnativepositions. Photo-basedroundbody18.4632347473mradius interpolatescoarsepolygon, northwingfollowsnativefourcorners. Nativeplanhasnoheighttags:3levels/bundledcolumns/arches/shallowpolycarbonateroof/railpatterns estimatedfrom4clearedviews; stagebacksection/hiddencore/foundationsunverified. Nativebridgecentreline length45.3m retained, width4.2mestimated. Noallparcelorquarryextrusion.",
+    "FourexactpublishedQuallaownPDselforiginals individuallyinspected/nativeSHA1matched; noquestionableimage used, no generated/copiedbitmaptexture. Currentpreservedexteriorforms follow1997/2006views; currentpaint/rearroof/renovationsunverified.",
+    "LowerLODsreducecolumn/arch/rail/gratingdensity; skyline/district12bays andstreet/closeup24bays, errorsboundedfortypicaldistance. Maincircleleast-squaresfit16nativevertices residualunder0.018m,radius18.4632347473m. Native18pointwholefootprintincludesattachednorthstage. Allnativebridge/connectornodesretained andintrinsicshortjointtogalleryadded; width4.2mestimated. Structuralbaycount24/threelevels/columnbundle/archsection andconcealedrearstagevolumeestimates,notconstructiondrawings.",
+    "Wholeopenoutercolonnade/annulargalleries andcentraldarkauditoriumshellat13.8mradius, shallowradialroof,lowerownfloor andstairs. PolycarbonatehasneutralopaqueaveragepanelshadingforexteriorconsistentLODs; opticaltransmission/interiorseating/performancedevicesnotreconstructed. No exterioropaqueinfillsubstituteforopenarcade.",
+    "Bridgeintrinsiccircles/lowarches/railmotifanddecklatticefollowclearedviews; tinygratingaveragedontosolidthinloadbearingdecksurface toavoidmoiredensegeometry. Backstagehiddenwalls/roofsection/doorplacementsandfootingsapproximate; no inventedflytower.",
+    "Independent200m101x101Terrariumfield/10201values/2rawtiles fixedbeforegeometry. SourceDEMblursquarryvegetation/waterbedandisnotlakebathymetry; no sourceflattening/fitting/grounds slab. Modelhasa bounded-7.1munderstructurefromphotographicsection. Compatiblehostwater/terrain/ownfootingsnotcertified; previewonly,replaceFootprintfalse."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "round-steel-theatre-and-native-entrance-bridge",
+      "position": [
+        -55,
+        17,
+        84
+      ],
+      "lookAt": [
+        0,
+        1,
+        17
+      ]
+    },
+    {
+      "name": "open-three-level-arcade-and-branching-tube-columns",
+      "position": [
+        -26,
+        1,
+        27
+      ],
+      "lookAt": [
+        -5,
+        2,
+        5
+      ]
+    },
+    {
+      "name": "attached-north-stage-and-radial-shallow-roof",
+      "position": [
+        38,
+        25,
+        -50
+      ],
+      "lookAt": [
+        0,
+        4,
+        -9
+      ]
+    },
+    {
+      "name": "entry-bridge-circle-lattice-and-grating",
+      "position": [
+        -13,
+        -1,
+        46
+      ],
+      "lookAt": [
+        1,
+        -1,
+        35
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 52544,
+    "vertices": 157632,
+    "materials": 5,
+    "bytes": 6308464,
+    "sha256": "sha256:b7f872143b1a97e6ed1602b29e85463e5aaf72cacd3901df2f8119d669a2ff6e"
+  }
+}

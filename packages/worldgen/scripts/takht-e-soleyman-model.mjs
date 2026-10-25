@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/tn/tn9/n0246_takht_e_soleyman/map-parts.json',
+      '../../../content/worldgen/source/places/tn/tn9/takht_e_soleyman/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -909,7 +909,7 @@ export function buildTakhtSkyline(out) {
   buildTakhtRuntime(out, 'skyline');
 }
 export const takhtStudy = {
-  id: 'N0246',
+  id: 'takht_e_soleyman',
   key: 'takht_e_soleyman',
   title: 'Takht-e Soleyman',
   category: 'castle',

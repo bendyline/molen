@@ -1,3 +1,6 @@
+/** Bounded precincts may contain many separate floors without opening intervening terrain. */
+export const MAX_STRUCTURE_GROUND_OUTLINES = 64;
+
 /** Reject self-crossing or degenerate local ground-opening rings before placement. */
 export function validGroundOutline(input: [number, number][]): boolean {
   const p = input.slice();

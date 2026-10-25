@@ -410,7 +410,7 @@ export function buildRostec(out) {
   roof(out);
 }
 export const rostecStudy = {
-  id: 'N0700',
+  id: 'rostec_arena',
   key: 'rostec_arena',
   wikidataId: 'Q4439098',
   title: 'Rostec Arena',

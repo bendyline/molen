@@ -1,0 +1,1173 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.matthias_church",
+  "sourceHash": "sha256:c7a96c46173df0285265f3ea2b180df27bb653b738169809103e1e7d84df1896",
+  "runtimeHash": "sha256:d87aaccf03405d8d7de3ffaeb2f45c62980b1fe07d88b22f8750efdb2e06c45b",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:606db9df724c853ae4f5f9820a3cadab00f02ef51126dd19a5dccd2765974d33",
+      "bytes": 94472,
+      "gzipBytes": 20642,
+      "triangles": 986,
+      "cpuBytes": 93036,
+      "gpuBytes": 93036,
+      "errorMeters": 1.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:5f97be221cbd20bcc2f350fd6ead8a8248dfc36c42cb5c77d4e0bb0d0f7014fa",
+      "bytes": 229824,
+      "gzipBytes": 64820,
+      "triangles": 2479,
+      "cpuBytes": 221200,
+      "gpuBytes": 221200,
+      "errorMeters": 0.6,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:805d068859ea183bece17b93563015239f2b49489556cbaa7ddd027b5cace997",
+      "bytes": 712912,
+      "gzipBytes": 189793,
+      "triangles": 7574,
+      "cpuBytes": 704248,
+      "gpuBytes": 704248,
+      "errorMeters": 0.17,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:c176e09a6e7465d65e3efc9e0b4eebda9aee58afbcbef968bad41d1d70399b23",
+      "bytes": 893676,
+      "gzipBytes": 224721,
+      "triangles": 9363,
+      "cpuBytes": 885012,
+      "gpuBytes": 885012,
+      "errorMeters": 0.07,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:500b1ef75997e6be3f8bfc28679d4637cdef47a4fad039a1e3429a656a1dc8cf"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:d73bee454538a3b7fcd77f1aad6ed8f6445ef17dfb1f1c3c7fa80dedfb2c918c"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:e4bc9cc78dc25b458f413d32f8992918b694f910d1f9e3af83a371ba1d2ac68d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          52.6287,
+          65.0788,
+          91.22500000000001
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:92beffbd8f8f1e6684c0f868b8bb93264030e542bb965e2ceb2977b994642172",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          52.6287,
+          65.0788,
+          91.22500000000001
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:0e39eb29c4f63e95c7ca7f9c2564f947138cbaf918b344585c5a06c684d3612a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          52.6287,
+          65.0788,
+          91.22500000000001
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:0e61dd21dfa3b38e1ca4ca7796a08e91f045ebbd7176f82aaadd49cec78ffba7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          52.6287,
+          65.0788,
+          91.22500000000001
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:fb1ea098829746b33c698ef51e38342449924a0aec939b22646f6058bc444a19",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 27837,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          106.5287,
+          104.6788,
+          184.72500000000002
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:f0ae55d90a8795d72a8cce3f59b580727e1525352d02635f95d465de48d46606",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 27837,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          106.5287,
+          104.6788,
+          184.72500000000002
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:6329a361c437052e10954f37acd380c78965dea528644eef93675e40233d7a8f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 27837,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          106.5287,
+          104.6788,
+          184.72500000000002
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:2b9a23f31d3fe2fdcbfa3662edf0f736335d23fdecb194d6702e7f88d7fe5486",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 27837,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          106.5287,
+          104.6788,
+          184.72500000000002
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:478c21697e47620e19ea56f7adbce7222e79f5238338909a841c0c77f276cddc",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 26344,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          213.2287,
+          146.4788,
+          369.52500000000003
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:a0ae1149892b8b48cfc4f85e329ba600e6f415644ad1d2456d037347c6d8fe16",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26344,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          213.2287,
+          146.4788,
+          369.52500000000003
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:693204c4ac1a093356be2e274554645130a19f02c270b6dc502c4c2f6e2796a1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 26344,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          213.2287,
+          146.4788,
+          369.52500000000003
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:eea10e27e7529d8d9ef9df065bb463bbff240101f2459675c174789cc37840cb",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26344,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          213.2287,
+          146.4788,
+          369.52500000000003
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:e4970125123ec3e8bbf2babc7f5f79505664b1b6efafd2cc1e80ec9b019c7bce",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21788,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          213.2287,
+          146.4788,
+          369.52500000000003
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/unequal-western-towers-and-rose.png",
+      "hash": "sha256:d747af09e2aac085c07b2befd950737385fe551143d3e09954b5b7601e48b6ce",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          -143,
+          71,
+          23
+        ],
+        "lookAt": [
+          -27,
+          38,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-rose-and-recessed-portal.png",
+      "hash": "sha256:19c14b061518fcf7c18584826990c4d78760a543c4192b0e2c9451dbe88e248c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          -56,
+          17,
+          0.5
+        ],
+        "lookAt": [
+          -29,
+          10,
+          0.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southern-octagonal-belfry-and-open-spire.png",
+      "hash": "sha256:894cd551486cbefb0810689bdf10762fcba4d7935e2d8e0e36a703d71806e173",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          -70,
+          75,
+          57
+        ],
+        "lookAt": [
+          -25,
+          54,
+          10
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/patterned-cross-gables-and-south-porch.png",
+      "hash": "sha256:838e92524b66d020dac48387c76c04419497e90857dc0976ae751175f59cfc0b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          -7,
+          42,
+          74
+        ],
+        "lookAt": [
+          -4,
+          15,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/eastern-apse-and-central-ridge-spire.png",
+      "hash": "sha256:95070ffd6d4f8129343f60e91d379a9029863dd932ab6f883735455d394aaa1d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          77,
+          44,
+          34
+        ],
+        "lookAt": [
+          16,
+          16,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/lower-bela-crown-and-northern-chapels.png",
+      "hash": "sha256:b03f9f2b8a62dfb76caf61c285013d3834d64a8f0764fea67ad8075954c1e34a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          -47,
+          42,
+          -72
+        ],
+        "lookAt": [
+          -9,
+          17,
+          -8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-matthias-skyline.png",
+      "hash": "sha256:9843e7ca6f68260c731b43b9f4e618c12063c9b9c9a3f38b46519e199a2cbb09",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26344,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          -108,
+          87,
+          109
+        ],
+        "lookAt": [
+          0,
+          32,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-matthias-district.png",
+      "hash": "sha256:4f9a9fa0c74746f7cf2bc76da298748da5fbca7abfd930a69c192c07974a6e15",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 27837,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          -108,
+          87,
+          109
+        ],
+        "lookAt": [
+          0,
+          32,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-matthias-street.png",
+      "hash": "sha256:80f715f0b22d435d46ceea9aed88436956872517ca414c32284fb7e2629d8812",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 32932,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          -108,
+          87,
+          109
+        ],
+        "lookAt": [
+          0,
+          32,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-matthias-closeup.png",
+      "hash": "sha256:76819962ddf868a9215aae5b2036c60d784ff15fb234386978e582dd42df5e37",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          -108,
+          87,
+          109
+        ],
+        "lookAt": [
+          0,
+          32,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:2f4d2d2e27486e496986012c0330a6a3436f9aab96e8abd4f558a0d602331be0",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26344,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          106.5287,
+          104.6788,
+          184.72500000000002
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:f0ae55d90a8795d72a8cce3f59b580727e1525352d02635f95d465de48d46606",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 27837,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          106.5287,
+          104.6788,
+          184.72500000000002
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:476817ccdea9c00b5ebbe34dbd158650fa8e60eabba7bc14c27d1e964f9fdaed",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 32932,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          106.5287,
+          104.6788,
+          184.72500000000002
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:dc57c064bc86663dad22b51b0f44bf4eb3235c6b8db8febe0a4384ab826be4dc",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34721,
+        "groundY": -33,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2m/matthias_church/terrain-review.height.png"
+        },
+        "position": [
+          106.5287,
+          104.6788,
+          184.72500000000002
+        ],
+        "lookAt": [
+          -0.1713,
+          48.5788,
+          -0.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

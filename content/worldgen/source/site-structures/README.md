@@ -10,7 +10,7 @@ This directory retains the original catalog's [preview gallery](gallery.html) an
 folders for named places and semantic folders for reusable buildings and infrastructure.
 The [combined gallery](../places/gallery.html), [layout guide](../places/README.md) and
 [source index](../structure-index.json) cover both this collection and authored models from
-the [next 1,000 candidate catalog](../next-1000/README.md).
+the [structure catalog candidate catalog](../structure-catalog/README.md).
 
 | Plan ID | Reference model | Current source |
 | --- | --- | --- |

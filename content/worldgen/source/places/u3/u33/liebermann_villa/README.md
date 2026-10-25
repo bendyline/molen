@@ -8,9 +8,9 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Liebermann Villa](https://qualla.com/liebermann-villa/)
 
-Original medium-fi restored villa exterior from individually inspected Qualla street and lake photographs; not a measured survey.
+Original medium-fi restored villa exterior reviewed against the public-domain 1918 painting already published on Qualla and factual descriptions by Berlin heritage authorities, the restoring architects and the museum. Earlier attribution-only photos are excluded from the current review; this is not a measured survey.
 
-Mapped rectangle controls main building width and depth. Roof height, curved dormer, terrace depth, hidden side openings and Ionic capitals are photographic approximations.
+Mapped rectangle controls main building width and depth. Roof pitch and eyebrow curve, paint shades, terrace depth, side openings, small side entrance/pergola and Ionic capitals are approximate; the painting does not establish every elevation or current paint colour.
 
 Street columns, lake pediment and southwest open loggia are distinct. Wider garden, separate garden house, interiors, furniture and vegetation are excluded.
 

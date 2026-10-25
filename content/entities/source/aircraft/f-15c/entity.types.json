@@ -1,0 +1,6021 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.f_15c": {
+      "doc": "McDonnell Douglas F-15C Eagle: original polygonal exterior and f15 cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.f_15c",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.f_15c",
+          "spec": {
+            "label": "McDonnell Douglas F-15C Eagle",
+            "genericLabel": "Military jet with enclosed cockpit",
+            "model": "airplane",
+            "mass": 17500,
+            "span": 13.048488,
+            "length": 19.431,
+            "height": 5.663184,
+            "centerOfMass": [
+              0,
+              2.3,
+              0
+            ],
+            "pilotEye": [
+              0,
+              3.34,
+              6.55
+            ],
+            "hardLandingSpeed": 4,
+            "hardLandingRoll": 0.2,
+            "hardLandingPitch": 0.28,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                2.3,
+                8.35533
+              ],
+              [
+                0,
+                2.3,
+                -8.35533
+              ],
+              [
+                6.00230448,
+                2.3,
+                0
+              ],
+              [
+                -6.00230448,
+                2.3,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": [
+                  {
+                    "node": "F15-flap--1-0",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.5
+                  },
+                  {
+                    "node": "F15-flap--1-1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.5
+                  },
+                  {
+                    "node": "F15-aileron--1-2",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.32
+                  },
+                  {
+                    "node": "F15-stabilator--1",
+                    "source": "tailRight",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "F15-rudder--1",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.4
+                  },
+                  {
+                    "node": "F15-flap-1-0",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.5
+                  },
+                  {
+                    "node": "F15-flap-1-1",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.5
+                  },
+                  {
+                    "node": "F15-aileron-1-2",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.32
+                  },
+                  {
+                    "node": "F15-stabilator-1",
+                    "source": "tailLeft",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "F15-rudder-1",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.4
+                  },
+                  {
+                    "node": "F15-gear-nose",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1.5707963267948966,
+                    "offset": -1.5707963267948966
+                  },
+                  {
+                    "node": "F15-gear-left",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1.5707963267948966,
+                    "offset": -1.5707963267948966
+                  },
+                  {
+                    "node": "F15-gear-right",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1.5707963267948966,
+                    "offset": -1.5707963267948966
+                  }
+                ]
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "sources": {
+                  "trueAirspeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "airspeed"
+                    ]
+                  },
+                  "pitch": {
+                    "component": "aircraftState",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "roll": {
+                    "component": "aircraftState",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "yaw": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "verticalSpeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "verticalSpeed"
+                    ]
+                  },
+                  "angleOfAttack": {
+                    "component": "aircraftState",
+                    "path": [
+                      "angleOfAttack"
+                    ]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  },
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "loadFactor": {
+                    "component": "aircraftState",
+                    "path": [
+                      "loadFactor"
+                    ]
+                  },
+                  "altitude": {
+                    "component": "transform",
+                    "path": [
+                      "pos",
+                      1
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "power": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "power"
+                    ]
+                  }
+                },
+                "derived": {
+                  "knots": {
+                    "op": "multiply",
+                    "args": [
+                      "trueAirspeed",
+                      1.9438444924406
+                    ]
+                  },
+                  "feet": {
+                    "op": "multiply",
+                    "args": [
+                      "altitude",
+                      3.2808398950131
+                    ]
+                  },
+                  "altitudeHundreds": {
+                    "op": "modulo",
+                    "args": [
+                      "feet",
+                      1000
+                    ]
+                  },
+                  "verticalFpm": {
+                    "op": "multiply",
+                    "args": [
+                      "verticalSpeed",
+                      196.85039370079
+                    ]
+                  },
+                  "headingRaw": {
+                    "op": "subtract",
+                    "args": [
+                      3.141592653589793,
+                      "yaw"
+                    ]
+                  },
+                  "trueHeading": {
+                    "op": "modulo",
+                    "args": [
+                      "headingRaw",
+                      6.283185307179586
+                    ]
+                  },
+                  "aoaDegrees": {
+                    "op": "multiply",
+                    "args": [
+                      "angleOfAttack",
+                      57.29577951308232
+                    ]
+                  },
+                  "gearDown": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.999
+                    ]
+                  },
+                  "F15.ADI-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "roll",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.ADI-bank.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.ADI-bank.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.ADI-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "pitch",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.ADI-pitch.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.ADI-pitch.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "roll",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-bank.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.standby-bank.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "pitch",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-pitch.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.standby-pitch.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.airspeed.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "knots",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.airspeed.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.airspeed.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.altimeter.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "altitudeHundreds",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.altimeter.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.altimeter.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.altitude.magnitude": {
+                    "op": "abs",
+                    "args": [
+                      "feet"
+                    ]
+                  },
+                  "F15.altitude.negative": {
+                    "op": "less",
+                    "args": [
+                      "feet",
+                      0
+                    ]
+                  },
+                  "F15.altitude.rounded": {
+                    "op": "add",
+                    "args": [
+                      "F15.altitude.magnitude",
+                      0.5
+                    ]
+                  },
+                  "F15.altitude.whole": {
+                    "op": "floor",
+                    "args": [
+                      "F15.altitude.rounded"
+                    ]
+                  },
+                  "F15.altitude.positive": {
+                    "op": "greater",
+                    "args": [
+                      "F15.altitude.whole",
+                      -1
+                    ]
+                  },
+                  "F15.altitude.inRange": {
+                    "op": "less",
+                    "args": [
+                      "F15.altitude.whole",
+                      100000
+                    ]
+                  },
+                  "F15.altitude.valid": {
+                    "op": "and",
+                    "args": [
+                      "F15.altitude.positive",
+                      "F15.altitude.inRange"
+                    ]
+                  },
+                  "F15.altitude.0.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "F15.altitude.whole",
+                      10000
+                    ]
+                  },
+                  "F15.altitude.0.integer": {
+                    "op": "floor",
+                    "args": [
+                      "F15.altitude.0.quotient"
+                    ]
+                  },
+                  "F15.altitude.0.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "F15.altitude.0.integer",
+                      10
+                    ]
+                  },
+                  "F15.altitude.0.display": {
+                    "op": "if",
+                    "args": [
+                      "F15.altitude.valid",
+                      "F15.altitude.0.digit",
+                      -1
+                    ]
+                  },
+                  "F15.altitude.1.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "F15.altitude.whole",
+                      1000
+                    ]
+                  },
+                  "F15.altitude.1.integer": {
+                    "op": "floor",
+                    "args": [
+                      "F15.altitude.1.quotient"
+                    ]
+                  },
+                  "F15.altitude.1.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "F15.altitude.1.integer",
+                      10
+                    ]
+                  },
+                  "F15.altitude.1.display": {
+                    "op": "if",
+                    "args": [
+                      "F15.altitude.valid",
+                      "F15.altitude.1.digit",
+                      -1
+                    ]
+                  },
+                  "F15.altitude.2.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "F15.altitude.whole",
+                      100
+                    ]
+                  },
+                  "F15.altitude.2.integer": {
+                    "op": "floor",
+                    "args": [
+                      "F15.altitude.2.quotient"
+                    ]
+                  },
+                  "F15.altitude.2.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "F15.altitude.2.integer",
+                      10
+                    ]
+                  },
+                  "F15.altitude.2.display": {
+                    "op": "if",
+                    "args": [
+                      "F15.altitude.valid",
+                      "F15.altitude.2.digit",
+                      -1
+                    ]
+                  },
+                  "F15.altitude.3.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "F15.altitude.whole",
+                      10
+                    ]
+                  },
+                  "F15.altitude.3.integer": {
+                    "op": "floor",
+                    "args": [
+                      "F15.altitude.3.quotient"
+                    ]
+                  },
+                  "F15.altitude.3.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "F15.altitude.3.integer",
+                      10
+                    ]
+                  },
+                  "F15.altitude.3.display": {
+                    "op": "if",
+                    "args": [
+                      "F15.altitude.valid",
+                      "F15.altitude.3.digit",
+                      -1
+                    ]
+                  },
+                  "F15.altitude.4.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "F15.altitude.whole",
+                      1
+                    ]
+                  },
+                  "F15.altitude.4.integer": {
+                    "op": "floor",
+                    "args": [
+                      "F15.altitude.4.quotient"
+                    ]
+                  },
+                  "F15.altitude.4.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "F15.altitude.4.integer",
+                      10
+                    ]
+                  },
+                  "F15.altitude.4.display": {
+                    "op": "if",
+                    "args": [
+                      "F15.altitude.valid",
+                      "F15.altitude.4.digit",
+                      -1
+                    ]
+                  },
+                  "F15.vertical-speed.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "verticalFpm",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.vertical-speed.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.vertical-speed.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.AOA.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "aoaDegrees",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.AOA.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.AOA.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.G.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "loadFactor",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.G.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.G.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.heading.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.heading.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.heading.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-speed.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "knots",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-speed.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.standby-speed.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-altitude-0.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-altitude-0.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.standby-altitude-0.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-altitude-1.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-altitude-1.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.standby-altitude-1.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-altitude-2.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "F15.standby-altitude-2.available": {
+                    "op": "greater",
+                    "args": [
+                      "F15.standby-altitude-2.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "pitchDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "pitchInput",
+                      0.3
+                    ]
+                  },
+                  "rollDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      0.12
+                    ]
+                  },
+                  "tailLeft": {
+                    "op": "subtract",
+                    "args": [
+                      "pitchDeflection",
+                      "rollDeflection"
+                    ]
+                  },
+                  "tailRight": {
+                    "op": "add",
+                    "args": [
+                      "pitchDeflection",
+                      "rollDeflection"
+                    ]
+                  }
+                },
+                "bindings": [
+                  {
+                    "node": "F15-ADI-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "F15-ADI-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.11025,
+                    "min": -0.0315,
+                    "max": 0.0315,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "F15-ADI-bank",
+                    "source": "F15.ADI-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-ADI-pitch",
+                    "source": "F15.ADI-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-standby-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "F15-standby-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.05775,
+                    "min": -0.0165,
+                    "max": 0.0165,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "F15-standby-bank",
+                    "source": "F15.standby-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-standby-pitch",
+                    "source": "F15.standby-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-airspeed",
+                    "source": "knots",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        100,
+                        0.6
+                      ],
+                      [
+                        200,
+                        1.45
+                      ],
+                      [
+                        300,
+                        2.6
+                      ],
+                      [
+                        400,
+                        3.6
+                      ],
+                      [
+                        600,
+                        4.7
+                      ],
+                      [
+                        800,
+                        5.6
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "F15-airspeed",
+                    "source": "F15.airspeed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-altimeter",
+                    "source": "altitudeHundreds",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1000,
+                        6.283185307179586
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "period": 6.283185307179586,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "F15-altimeter",
+                    "source": "F15.altimeter.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-altitude-minus",
+                    "source": "F15.altitude.negative",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-altitude-0-0",
+                    "source": "F15.altitude.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-0-1",
+                    "source": "F15.altitude.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-0-2",
+                    "source": "F15.altitude.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-0-3",
+                    "source": "F15.altitude.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-0-4",
+                    "source": "F15.altitude.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-0-5",
+                    "source": "F15.altitude.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-0-6",
+                    "source": "F15.altitude.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-1-0",
+                    "source": "F15.altitude.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-1-1",
+                    "source": "F15.altitude.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-1-2",
+                    "source": "F15.altitude.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-1-3",
+                    "source": "F15.altitude.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-1-4",
+                    "source": "F15.altitude.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-1-5",
+                    "source": "F15.altitude.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-1-6",
+                    "source": "F15.altitude.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-2-0",
+                    "source": "F15.altitude.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-2-1",
+                    "source": "F15.altitude.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-2-2",
+                    "source": "F15.altitude.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-2-3",
+                    "source": "F15.altitude.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-2-4",
+                    "source": "F15.altitude.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-2-5",
+                    "source": "F15.altitude.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-2-6",
+                    "source": "F15.altitude.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-3-0",
+                    "source": "F15.altitude.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-3-1",
+                    "source": "F15.altitude.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-3-2",
+                    "source": "F15.altitude.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-3-3",
+                    "source": "F15.altitude.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-3-4",
+                    "source": "F15.altitude.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-3-5",
+                    "source": "F15.altitude.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-3-6",
+                    "source": "F15.altitude.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-4-0",
+                    "source": "F15.altitude.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-4-1",
+                    "source": "F15.altitude.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-4-2",
+                    "source": "F15.altitude.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-4-3",
+                    "source": "F15.altitude.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-4-4",
+                    "source": "F15.altitude.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-4-5",
+                    "source": "F15.altitude.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-altitude-4-6",
+                    "source": "F15.altitude.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "F15-vertical-speed",
+                    "source": "verticalFpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -6000,
+                        -1.5707963267948966
+                      ],
+                      [
+                        0,
+                        1.5707963267948966
+                      ],
+                      [
+                        6000,
+                        4.71238898038469
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "F15-vertical-speed",
+                    "source": "F15.vertical-speed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-AOA",
+                    "source": "aoaDegrees",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -10,
+                        -1
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        40,
+                        4.8
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "F15-AOA",
+                    "source": "F15.AOA.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-G",
+                    "source": "loadFactor",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -5,
+                        -2
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        10,
+                        4
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "F15-G",
+                    "source": "F15.G.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-heading",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586
+                  },
+                  {
+                    "node": "F15-heading",
+                    "source": "F15.heading.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-standby-speed",
+                    "source": "knots",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        100,
+                        0.6
+                      ],
+                      [
+                        200,
+                        1.45
+                      ],
+                      [
+                        400,
+                        3.6
+                      ],
+                      [
+                        800,
+                        5.6
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "F15-standby-speed",
+                    "source": "F15.standby-speed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-standby-altitude-0",
+                    "source": "F15.standby-altitude-0.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-standby-altitude-1",
+                    "source": "F15.standby-altitude-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-standby-altitude-2",
+                    "source": "F15.standby-altitude-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-standby-altitude-0",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.006283185307179587,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "F15-standby-altitude-1",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "F15-standby-altitude-2",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.00006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "F15-gear-lamp-0",
+                    "source": "gearDown",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-gear-lamp-1",
+                    "source": "gearDown",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-gear-lamp-2",
+                    "source": "gearDown",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "F15-stick",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.23
+                  },
+                  {
+                    "node": "F15-stick",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.24
+                  },
+                  {
+                    "node": "F15-pedal--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.06
+                  },
+                  {
+                    "node": "F15-pedal-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.06
+                  },
+                  {
+                    "node": "F15-throttle-0",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.6,
+                    "offset": -0.3
+                  },
+                  {
+                    "node": "F15-throttle-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.6,
+                    "offset": -0.3
+                  }
+                ]
+              }
+            },
+            "airplane": {
+              "wingPosition": [
+                0,
+                2.3,
+                0
+              ],
+              "wingArea": 56.5,
+              "controlAuthoritySpeed": 120,
+              "maxControlAuthority": 1.8,
+              "pitchAuthority": 0.25,
+              "pitchResponse": 2.5,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 1.8,
+              "rollResponse": 2,
+              "rudderAuthority": 1,
+              "groundSteerSpeed": 8,
+              "groundLevelRate": 2,
+              "maxGroundPitch": 0.22,
+              "camberAngle": 0.045,
+              "flapLift": 0.6,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "pitchFrequency": 3.5,
+              "pitchDamping": 0.7,
+              "maxLoadFactor": 9,
+              "minLoadFactor": -3,
+              "autoTrim": 1,
+              "directionalStability": 4,
+              "yawDamping": 1.2,
+              "dihedralEffect": 2.5,
+              "propellerEffects": 0,
+              "stallSpeed": 60,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.018,
+              "inducedDrag": 0.14670526415017707,
+              "gearDrag": 0.018,
+              "flapDrag": 0.065,
+              "gearTransitTime": 6,
+              "flapTransitTime": 4,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.85,
+              "maxThrust": 110250,
+              "minPropellerSpeed": 160,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 4,
+              "rollingDeceleration": 0.22,
+              "groundTrackRate": 12,
+              "groundEffect": true,
+              "criticalMach": 0.85,
+              "waveDrag": 0.02765987029507632,
+              "maxMach": 2.5,
+              "maxEquivalentAirspeed": 408.3507442383324,
+              "gearLimitSpeed": 130,
+              "flapLimitSpeed": 125
+            },
+            "engines": [
+              {
+                "id": "engine-1",
+                "position": [
+                  1.03,
+                  2.18,
+                  -5.5
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 11673529.411764706,
+                "idleRpm": 0.18,
+                "spoolRate": 0.2,
+                "rotorAngularSpeed": 150,
+                "maxThrust": 105700,
+                "minPropellerSpeed": 160,
+                "propellerEfficiency": 0.85,
+                "propulsion": "jet",
+                "densityExponent": 0.22551641153528124,
+                "dryThrust": 65200,
+                "ramRise": 0.2,
+                "afterburnerThrust": 105700,
+                "afterburnerDetent": 0.85,
+                "highAltitudeDensityRatio": 0.29779561455293435,
+                "highAltitudeExponent": 1.2
+              },
+              {
+                "id": "engine-2",
+                "position": [
+                  -1.03,
+                  2.18,
+                  -5.5
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 11673529.411764706,
+                "idleRpm": 0.18,
+                "spoolRate": 0.2,
+                "rotorAngularSpeed": 150,
+                "maxThrust": 105700,
+                "minPropellerSpeed": 160,
+                "propellerEfficiency": 0.85,
+                "propulsion": "jet",
+                "densityExponent": 0.22551641153528124,
+                "dryThrust": 65200,
+                "ramRise": 0.2,
+                "afterburnerThrust": 105700,
+                "afterburnerDetent": 0.85,
+                "highAltitudeDensityRatio": 0.29779561455293435,
+                "highAltitudeExponent": 1.2
+              }
+            ]
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                3.34,
+                6.55
+              ]
+            }
+          ],
+          "entries": [
+            [
+              2.51,
+              0,
+              6.55
+            ]
+          ],
+          "exits": [
+            [
+              3.21,
+              0,
+              6.55
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.83,
+          "width": 11.28,
+          "height": 4.1,
+          "cruise": 90,
+          "weight": 0.35
+        },
+        "model.signals": {
+          "sources": {
+            "trueAirspeed": {
+              "component": "aircraftState",
+              "path": [
+                "airspeed"
+              ]
+            },
+            "pitch": {
+              "component": "aircraftState",
+              "path": [
+                "pitch"
+              ]
+            },
+            "roll": {
+              "component": "aircraftState",
+              "path": [
+                "roll"
+              ]
+            },
+            "yaw": {
+              "component": "aircraftState",
+              "path": [
+                "yaw"
+              ]
+            },
+            "verticalSpeed": {
+              "component": "aircraftState",
+              "path": [
+                "verticalSpeed"
+              ]
+            },
+            "angleOfAttack": {
+              "component": "aircraftState",
+              "path": [
+                "angleOfAttack"
+              ]
+            },
+            "gear": {
+              "component": "aircraftState",
+              "path": [
+                "gearPosition"
+              ]
+            },
+            "flapPosition": {
+              "component": "aircraftState",
+              "path": [
+                "flapPosition"
+              ]
+            },
+            "loadFactor": {
+              "component": "aircraftState",
+              "path": [
+                "loadFactor"
+              ]
+            },
+            "altitude": {
+              "component": "transform",
+              "path": [
+                "pos",
+                1
+              ]
+            },
+            "pitchInput": {
+              "component": "aircraftInput",
+              "path": [
+                "pitch"
+              ]
+            },
+            "rollInput": {
+              "component": "aircraftInput",
+              "path": [
+                "roll"
+              ]
+            },
+            "yawInput": {
+              "component": "aircraftInput",
+              "path": [
+                "yaw"
+              ]
+            },
+            "power": {
+              "component": "aircraftInput",
+              "path": [
+                "power"
+              ]
+            }
+          },
+          "derived": {
+            "knots": {
+              "op": "multiply",
+              "args": [
+                "trueAirspeed",
+                1.9438444924406
+              ]
+            },
+            "feet": {
+              "op": "multiply",
+              "args": [
+                "altitude",
+                3.2808398950131
+              ]
+            },
+            "altitudeHundreds": {
+              "op": "modulo",
+              "args": [
+                "feet",
+                1000
+              ]
+            },
+            "verticalFpm": {
+              "op": "multiply",
+              "args": [
+                "verticalSpeed",
+                196.85039370079
+              ]
+            },
+            "headingRaw": {
+              "op": "subtract",
+              "args": [
+                3.141592653589793,
+                "yaw"
+              ]
+            },
+            "trueHeading": {
+              "op": "modulo",
+              "args": [
+                "headingRaw",
+                6.283185307179586
+              ]
+            },
+            "aoaDegrees": {
+              "op": "multiply",
+              "args": [
+                "angleOfAttack",
+                57.29577951308232
+              ]
+            },
+            "gearDown": {
+              "op": "greater",
+              "args": [
+                "gear",
+                0.999
+              ]
+            },
+            "F15.ADI-bank.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "roll",
+                -100000000000000000000
+              ]
+            },
+            "F15.ADI-bank.available": {
+              "op": "greater",
+              "args": [
+                "F15.ADI-bank.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.ADI-pitch.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "pitch",
+                -100000000000000000000
+              ]
+            },
+            "F15.ADI-pitch.available": {
+              "op": "greater",
+              "args": [
+                "F15.ADI-pitch.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-bank.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "roll",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-bank.available": {
+              "op": "greater",
+              "args": [
+                "F15.standby-bank.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-pitch.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "pitch",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-pitch.available": {
+              "op": "greater",
+              "args": [
+                "F15.standby-pitch.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.airspeed.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "knots",
+                -100000000000000000000
+              ]
+            },
+            "F15.airspeed.available": {
+              "op": "greater",
+              "args": [
+                "F15.airspeed.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.altimeter.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "altitudeHundreds",
+                -100000000000000000000
+              ]
+            },
+            "F15.altimeter.available": {
+              "op": "greater",
+              "args": [
+                "F15.altimeter.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.altitude.magnitude": {
+              "op": "abs",
+              "args": [
+                "feet"
+              ]
+            },
+            "F15.altitude.negative": {
+              "op": "less",
+              "args": [
+                "feet",
+                0
+              ]
+            },
+            "F15.altitude.rounded": {
+              "op": "add",
+              "args": [
+                "F15.altitude.magnitude",
+                0.5
+              ]
+            },
+            "F15.altitude.whole": {
+              "op": "floor",
+              "args": [
+                "F15.altitude.rounded"
+              ]
+            },
+            "F15.altitude.positive": {
+              "op": "greater",
+              "args": [
+                "F15.altitude.whole",
+                -1
+              ]
+            },
+            "F15.altitude.inRange": {
+              "op": "less",
+              "args": [
+                "F15.altitude.whole",
+                100000
+              ]
+            },
+            "F15.altitude.valid": {
+              "op": "and",
+              "args": [
+                "F15.altitude.positive",
+                "F15.altitude.inRange"
+              ]
+            },
+            "F15.altitude.0.quotient": {
+              "op": "divide",
+              "args": [
+                "F15.altitude.whole",
+                10000
+              ]
+            },
+            "F15.altitude.0.integer": {
+              "op": "floor",
+              "args": [
+                "F15.altitude.0.quotient"
+              ]
+            },
+            "F15.altitude.0.digit": {
+              "op": "modulo",
+              "args": [
+                "F15.altitude.0.integer",
+                10
+              ]
+            },
+            "F15.altitude.0.display": {
+              "op": "if",
+              "args": [
+                "F15.altitude.valid",
+                "F15.altitude.0.digit",
+                -1
+              ]
+            },
+            "F15.altitude.1.quotient": {
+              "op": "divide",
+              "args": [
+                "F15.altitude.whole",
+                1000
+              ]
+            },
+            "F15.altitude.1.integer": {
+              "op": "floor",
+              "args": [
+                "F15.altitude.1.quotient"
+              ]
+            },
+            "F15.altitude.1.digit": {
+              "op": "modulo",
+              "args": [
+                "F15.altitude.1.integer",
+                10
+              ]
+            },
+            "F15.altitude.1.display": {
+              "op": "if",
+              "args": [
+                "F15.altitude.valid",
+                "F15.altitude.1.digit",
+                -1
+              ]
+            },
+            "F15.altitude.2.quotient": {
+              "op": "divide",
+              "args": [
+                "F15.altitude.whole",
+                100
+              ]
+            },
+            "F15.altitude.2.integer": {
+              "op": "floor",
+              "args": [
+                "F15.altitude.2.quotient"
+              ]
+            },
+            "F15.altitude.2.digit": {
+              "op": "modulo",
+              "args": [
+                "F15.altitude.2.integer",
+                10
+              ]
+            },
+            "F15.altitude.2.display": {
+              "op": "if",
+              "args": [
+                "F15.altitude.valid",
+                "F15.altitude.2.digit",
+                -1
+              ]
+            },
+            "F15.altitude.3.quotient": {
+              "op": "divide",
+              "args": [
+                "F15.altitude.whole",
+                10
+              ]
+            },
+            "F15.altitude.3.integer": {
+              "op": "floor",
+              "args": [
+                "F15.altitude.3.quotient"
+              ]
+            },
+            "F15.altitude.3.digit": {
+              "op": "modulo",
+              "args": [
+                "F15.altitude.3.integer",
+                10
+              ]
+            },
+            "F15.altitude.3.display": {
+              "op": "if",
+              "args": [
+                "F15.altitude.valid",
+                "F15.altitude.3.digit",
+                -1
+              ]
+            },
+            "F15.altitude.4.quotient": {
+              "op": "divide",
+              "args": [
+                "F15.altitude.whole",
+                1
+              ]
+            },
+            "F15.altitude.4.integer": {
+              "op": "floor",
+              "args": [
+                "F15.altitude.4.quotient"
+              ]
+            },
+            "F15.altitude.4.digit": {
+              "op": "modulo",
+              "args": [
+                "F15.altitude.4.integer",
+                10
+              ]
+            },
+            "F15.altitude.4.display": {
+              "op": "if",
+              "args": [
+                "F15.altitude.valid",
+                "F15.altitude.4.digit",
+                -1
+              ]
+            },
+            "F15.vertical-speed.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "verticalFpm",
+                -100000000000000000000
+              ]
+            },
+            "F15.vertical-speed.available": {
+              "op": "greater",
+              "args": [
+                "F15.vertical-speed.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.AOA.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "aoaDegrees",
+                -100000000000000000000
+              ]
+            },
+            "F15.AOA.available": {
+              "op": "greater",
+              "args": [
+                "F15.AOA.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.G.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "loadFactor",
+                -100000000000000000000
+              ]
+            },
+            "F15.G.available": {
+              "op": "greater",
+              "args": [
+                "F15.G.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.heading.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "F15.heading.available": {
+              "op": "greater",
+              "args": [
+                "F15.heading.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-speed.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "knots",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-speed.available": {
+              "op": "greater",
+              "args": [
+                "F15.standby-speed.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-altitude-0.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-altitude-0.available": {
+              "op": "greater",
+              "args": [
+                "F15.standby-altitude-0.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-altitude-1.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-altitude-1.available": {
+              "op": "greater",
+              "args": [
+                "F15.standby-altitude-1.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-altitude-2.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "F15.standby-altitude-2.available": {
+              "op": "greater",
+              "args": [
+                "F15.standby-altitude-2.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "pitchDeflection": {
+              "op": "multiply",
+              "args": [
+                "pitchInput",
+                0.3
+              ]
+            },
+            "rollDeflection": {
+              "op": "multiply",
+              "args": [
+                "rollInput",
+                0.12
+              ]
+            },
+            "tailLeft": {
+              "op": "subtract",
+              "args": [
+                "pitchDeflection",
+                "rollDeflection"
+              ]
+            },
+            "tailRight": {
+              "op": "add",
+              "args": [
+                "pitchDeflection",
+                "rollDeflection"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "F15-ADI-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "F15-ADI-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.11025,
+              "min": -0.0315,
+              "max": 0.0315,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "F15-ADI-bank",
+              "source": "F15.ADI-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-ADI-pitch",
+              "source": "F15.ADI-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-standby-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "F15-standby-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.05775,
+              "min": -0.0165,
+              "max": 0.0165,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "F15-standby-bank",
+              "source": "F15.standby-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-standby-pitch",
+              "source": "F15.standby-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-airspeed",
+              "source": "knots",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  100,
+                  0.6
+                ],
+                [
+                  200,
+                  1.45
+                ],
+                [
+                  300,
+                  2.6
+                ],
+                [
+                  400,
+                  3.6
+                ],
+                [
+                  600,
+                  4.7
+                ],
+                [
+                  800,
+                  5.6
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "F15-airspeed",
+              "source": "F15.airspeed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-altimeter",
+              "source": "altitudeHundreds",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1000,
+                  6.283185307179586
+                ]
+              ],
+              "responseSeconds": 0,
+              "period": 6.283185307179586,
+              "missing": "hold"
+            },
+            {
+              "node": "F15-altimeter",
+              "source": "F15.altimeter.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-altitude-minus",
+              "source": "F15.altitude.negative",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-altitude-0-0",
+              "source": "F15.altitude.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-0-1",
+              "source": "F15.altitude.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-0-2",
+              "source": "F15.altitude.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-0-3",
+              "source": "F15.altitude.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-0-4",
+              "source": "F15.altitude.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-0-5",
+              "source": "F15.altitude.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-0-6",
+              "source": "F15.altitude.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-1-0",
+              "source": "F15.altitude.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-1-1",
+              "source": "F15.altitude.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-1-2",
+              "source": "F15.altitude.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-1-3",
+              "source": "F15.altitude.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-1-4",
+              "source": "F15.altitude.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-1-5",
+              "source": "F15.altitude.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-1-6",
+              "source": "F15.altitude.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-2-0",
+              "source": "F15.altitude.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-2-1",
+              "source": "F15.altitude.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-2-2",
+              "source": "F15.altitude.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-2-3",
+              "source": "F15.altitude.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-2-4",
+              "source": "F15.altitude.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-2-5",
+              "source": "F15.altitude.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-2-6",
+              "source": "F15.altitude.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-3-0",
+              "source": "F15.altitude.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-3-1",
+              "source": "F15.altitude.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-3-2",
+              "source": "F15.altitude.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-3-3",
+              "source": "F15.altitude.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-3-4",
+              "source": "F15.altitude.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-3-5",
+              "source": "F15.altitude.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-3-6",
+              "source": "F15.altitude.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-4-0",
+              "source": "F15.altitude.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-4-1",
+              "source": "F15.altitude.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-4-2",
+              "source": "F15.altitude.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-4-3",
+              "source": "F15.altitude.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-4-4",
+              "source": "F15.altitude.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-4-5",
+              "source": "F15.altitude.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-altitude-4-6",
+              "source": "F15.altitude.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "F15-vertical-speed",
+              "source": "verticalFpm",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -6000,
+                  -1.5707963267948966
+                ],
+                [
+                  0,
+                  1.5707963267948966
+                ],
+                [
+                  6000,
+                  4.71238898038469
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "F15-vertical-speed",
+              "source": "F15.vertical-speed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-AOA",
+              "source": "aoaDegrees",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -10,
+                  -1
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  40,
+                  4.8
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "F15-AOA",
+              "source": "F15.AOA.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-G",
+              "source": "loadFactor",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -5,
+                  -2
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  10,
+                  4
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "F15-G",
+              "source": "F15.G.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-heading",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586
+            },
+            {
+              "node": "F15-heading",
+              "source": "F15.heading.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-standby-speed",
+              "source": "knots",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  100,
+                  0.6
+                ],
+                [
+                  200,
+                  1.45
+                ],
+                [
+                  400,
+                  3.6
+                ],
+                [
+                  800,
+                  5.6
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "F15-standby-speed",
+              "source": "F15.standby-speed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-standby-altitude-0",
+              "source": "F15.standby-altitude-0.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-standby-altitude-1",
+              "source": "F15.standby-altitude-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-standby-altitude-2",
+              "source": "F15.standby-altitude-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-standby-altitude-0",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.006283185307179587,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "F15-standby-altitude-1",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.0006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "F15-standby-altitude-2",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.00006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "F15-gear-lamp-0",
+              "source": "gearDown",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-gear-lamp-1",
+              "source": "gearDown",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-gear-lamp-2",
+              "source": "gearDown",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "F15-stick",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.23
+            },
+            {
+              "node": "F15-stick",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.24
+            },
+            {
+              "node": "F15-pedal--1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.06
+            },
+            {
+              "node": "F15-pedal-1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.06
+            },
+            {
+              "node": "F15-throttle-0",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.6,
+              "offset": -0.3
+            },
+            {
+              "node": "F15-throttle-1",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.6,
+              "offset": -0.3
+            },
+            {
+              "node": "F15-flap--1-0",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.5
+            },
+            {
+              "node": "F15-flap--1-1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.5
+            },
+            {
+              "node": "F15-aileron--1-2",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.32
+            },
+            {
+              "node": "F15-stabilator--1",
+              "source": "tailRight",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "F15-rudder--1",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.4
+            },
+            {
+              "node": "F15-flap-1-0",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.5
+            },
+            {
+              "node": "F15-flap-1-1",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.5
+            },
+            {
+              "node": "F15-aileron-1-2",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.32
+            },
+            {
+              "node": "F15-stabilator-1",
+              "source": "tailLeft",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "F15-rudder-1",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.4
+            },
+            {
+              "node": "F15-gear-nose",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1.5707963267948966,
+              "offset": -1.5707963267948966
+            },
+            {
+              "node": "F15-gear-left",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1.5707963267948966,
+              "offset": -1.5707963267948966
+            },
+            {
+              "node": "F15-gear-right",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1.5707963267948966,
+              "offset": -1.5707963267948966
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.f_15c"
+      ]
+    }
+  }
+}

@@ -1,0 +1,766 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "plinth": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.25
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.3,
+      "metallic": 0.1
+    },
+    "frame": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "ball": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      29.073605350609068,
+      30.25,
+      -69.36660199200358
+    ],
+    "lookAt": [
+      -0.45205605842708296,
+      7.25,
+      -1.9482415969379592
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "north-turrets-time-ball-and-window-rhythm",
+      "position": [
+        -9.213142500509488,
+        15.25,
+        -57.40311842805498
+      ],
+      "lookAt": [
+        -1.5821962044947904,
+        10.75,
+        -6.818845589282857
+      ],
+      "fov": 54
+    },
+    {
+      "name": "court-octagon-room-and-recessed-east-entry",
+      "position": [
+        38.91082524151347,
+        6.25,
+        8.42304452228516
+      ],
+      "lookAt": [
+        5.6186967616003365,
+        6.25,
+        -2.3302889737502284
+      ],
+      "fov": 55
+    },
+    {
+      "name": "south-range-and-canted-roof",
+      "position": [
+        -15.46791814078156,
+        24.25,
+        39.51890064753928
+      ],
+      "lookAt": [
+        0,
+        5.25,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        29.073605350609068,
+        30.25,
+        -69.36660199200358
+      ],
+      "lookAt": [
+        -0.45205605842708296,
+        7.25,
+        -1.9482415969379592
+      ],
+      "fov": 46,
+      "name": "flamsteed-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        29.073605350609068,
+        30.25,
+        -69.36660199200358
+      ],
+      "lookAt": [
+        -0.45205605842708296,
+        7.25,
+        -1.9482415969379592
+      ],
+      "fov": 46,
+      "name": "flamsteed-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        29.073605350609068,
+        30.25,
+        -69.36660199200358
+      ],
+      "lookAt": [
+        -0.45205605842708296,
+        7.25,
+        -1.9482415969379592
+      ],
+      "fov": 46,
+      "name": "flamsteed-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        29.073605350609068,
+        30.25,
+        -69.36660199200358
+      ],
+      "lookAt": [
+        -0.45205605842708296,
+        7.25,
+        -1.9482415969379592
+      ],
+      "fov": 46,
+      "name": "flamsteed-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.25,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/flamsteed-model.mjs",
+    "export": "buildFlamsteedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFlamsteedDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "ball": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "buildFlamsteedStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "ball": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildFlamsteedCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "ball": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -0.0019658245675457297,
+      51.477950113986935
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard Protomaps20261020/Mapzen201x201 at6m, no custom terrain or broad flattening. Provider in uncovered eastern court at internal[16,1], absolute datum 46.95540996716767m; main floor0.25m above control. Brick closed substructure follows the original minimum boundary grade; only occupied house footprint cuts terrain. Uncovered terrace, provider, roads/water and every other building remain original. Approximate exterior native fit reviewed on2026-10-22 from the north, court and southern range. Original boundary grades span -2.47 to+0.18m relative to the eastern court; the brick substructure seats the house on the hill without flattening the surrounding terrace. Exact historic retaining walls, threshold/accessibility and pedestrian circulation remain approximate.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 7
+    },
+    "bounds": [
+      -0.0022292705931412256,
+      51.47781456889153,
+      -0.0017189410782737808,
+      51.478082294649056
+    ],
+    "terrainReference": {
+      "anchor": [
+        -0.0017377621077247006,
+        51.47797385042024
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard Protomaps20261020/Mapzen201x201 at6m, no custom terrain or broad flattening. Provider in uncovered eastern court at internal[16,1], absolute datum 46.95540996716767m; main floor0.25m above control. Brick closed substructure follows the original minimum boundary grade; only occupied house footprint cuts terrain. Uncovered terrace, provider, roads/water and every other building remain original. Approximate exterior native fit reviewed on2026-10-22 from the north, court and southern range. Original boundary grades span -2.47 to+0.18m relative to the eastern court; the brick substructure seats the house on the hill without flattening the surrounding terrace. Exact historic retaining walls, threshold/accessibility and pedestrian circulation remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -15.265164,
+          -10.412555
+        ],
+        [
+          -14.149391,
+          -5.763521
+        ],
+        [
+          -13.777467,
+          -5.763521
+        ],
+        [
+          -9.500337,
+          12.088811
+        ],
+        [
+          14.116855,
+          6.50995
+        ],
+        [
+          11.699347,
+          -3.346021
+        ],
+        [
+          7.980104,
+          -2.416213
+        ],
+        [
+          7.794142,
+          -3.16006
+        ],
+        [
+          8.166066,
+          -4.275829
+        ],
+        [
+          7.422218,
+          -7.065251
+        ],
+        [
+          10.025688,
+          -7.623135
+        ],
+        [
+          9.095877,
+          -11.714284
+        ],
+        [
+          6.306445,
+          -11.1564
+        ],
+        [
+          6.120483,
+          -11.714284
+        ],
+        [
+          1.843353,
+          -10.598516
+        ],
+        [
+          1.657391,
+          -10.970439
+        ],
+        [
+          -1.132041,
+          -10.226594
+        ],
+        [
+          -1.132041,
+          -9.854671
+        ],
+        [
+          -5.40917,
+          -8.924864
+        ],
+        [
+          -5.223208,
+          -8.36698
+        ],
+        [
+          -9.686299,
+          -7.251212
+        ],
+        [
+          -10.61611,
+          -11.528322
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -15.265164,
+            -10.412555
+          ],
+          [
+            -14.149391,
+            -5.763521
+          ],
+          [
+            -13.777467,
+            -5.763521
+          ],
+          [
+            -9.500337,
+            12.088811
+          ],
+          [
+            14.116855,
+            6.50995
+          ],
+          [
+            11.699347,
+            -3.346021
+          ],
+          [
+            7.980104,
+            -2.416213
+          ],
+          [
+            7.794142,
+            -3.16006
+          ],
+          [
+            8.166066,
+            -4.275829
+          ],
+          [
+            7.422218,
+            -7.065251
+          ],
+          [
+            10.025688,
+            -7.623135
+          ],
+          [
+            9.095877,
+            -11.714284
+          ],
+          [
+            6.306445,
+            -11.1564
+          ],
+          [
+            6.120483,
+            -11.714284
+          ],
+          [
+            1.843353,
+            -10.598516
+          ],
+          [
+            1.657391,
+            -10.970439
+          ],
+          [
+            -1.132041,
+            -10.226594
+          ],
+          [
+            -1.132041,
+            -9.854671
+          ],
+          [
+            -5.40917,
+            -8.924864
+          ],
+          [
+            -5.223208,
+            -8.36698
+          ],
+          [
+            -9.686299,
+            -7.251212
+          ],
+          [
+            -10.61611,
+            -11.528322
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared Royal Observatory Q192988 and unique way268533444/native35184640622276 identify this independent building. The mapped Time Ball point node9362574562/native17601548618978 lies on its northeast turret. Use the building map anchor, not the campus POI. InternalX follows the mapped east-northeast wall axis; internalZ south-southeast. Heading0, orientation baked into native east/south geometry. Retain every independent Observatory building and nearby pavilion."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -15.265164,
+          -10.412555
+        ],
+        [
+          -14.149391,
+          -5.763521
+        ],
+        [
+          -13.777467,
+          -5.763521
+        ],
+        [
+          -9.500337,
+          12.088811
+        ],
+        [
+          14.116855,
+          6.50995
+        ],
+        [
+          11.699347,
+          -3.346021
+        ],
+        [
+          7.980104,
+          -2.416213
+        ],
+        [
+          7.794142,
+          -3.16006
+        ],
+        [
+          8.166066,
+          -4.275829
+        ],
+        [
+          7.422218,
+          -7.065251
+        ],
+        [
+          10.025688,
+          -7.623135
+        ],
+        [
+          9.095877,
+          -11.714284
+        ],
+        [
+          6.306445,
+          -11.1564
+        ],
+        [
+          6.120483,
+          -11.714284
+        ],
+        [
+          1.843353,
+          -10.598516
+        ],
+        [
+          1.657391,
+          -10.970439
+        ],
+        [
+          -1.132041,
+          -10.226594
+        ],
+        [
+          -1.132041,
+          -9.854671
+        ],
+        [
+          -5.40917,
+          -8.924864
+        ],
+        [
+          -5.223208,
+          -8.36698
+        ],
+        [
+          -9.686299,
+          -7.251212
+        ],
+        [
+          -10.61611,
+          -11.528322
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -15.265164,
+            -10.412555
+          ],
+          [
+            -14.149391,
+            -5.763521
+          ],
+          [
+            -13.777467,
+            -5.763521
+          ],
+          [
+            -9.500337,
+            12.088811
+          ],
+          [
+            14.116855,
+            6.50995
+          ],
+          [
+            11.699347,
+            -3.346021
+          ],
+          [
+            7.980104,
+            -2.416213
+          ],
+          [
+            7.794142,
+            -3.16006
+          ],
+          [
+            8.166066,
+            -4.275829
+          ],
+          [
+            7.422218,
+            -7.065251
+          ],
+          [
+            10.025688,
+            -7.623135
+          ],
+          [
+            9.095877,
+            -11.714284
+          ],
+          [
+            6.306445,
+            -11.1564
+          ],
+          [
+            6.120483,
+            -11.714284
+          ],
+          [
+            1.843353,
+            -10.598516
+          ],
+          [
+            1.657391,
+            -10.970439
+          ],
+          [
+            -1.132041,
+            -10.226594
+          ],
+          [
+            -1.132041,
+            -9.854671
+          ],
+          [
+            -5.40917,
+            -8.924864
+          ],
+          [
+            -5.223208,
+            -8.36698
+          ],
+          [
+            -9.686299,
+            -7.251212
+          ],
+          [
+            -10.61611,
+            -11.528322
+          ]
+        ]
+      ],
+      "basis": "Occupied house only; retain original court and detached buildings."
+    },
+    "notes": "Shared Royal Observatory Q192988 and unique way268533444/native35184640622276 identify this independent building. The mapped Time Ball point node9362574562/native17601548618978 lies on its northeast turret. Use the building map anchor, not the campus POI. InternalX follows the mapped east-northeast wall axis; internalZ south-southeast. Heading0, orientation baked into native east/south geometry. Retain every independent Observatory building and nearby pavilion. Original standard Protomaps20261020/Mapzen201x201 at6m, no custom terrain or broad flattening. Provider in uncovered eastern court at internal[16,1], absolute datum 46.95540996716767m; main floor0.25m above control. Brick closed substructure follows the original minimum boundary grade; only occupied house footprint cuts terrain. Uncovered terrace, provider, roads/water and every other building remain original. Approximate exterior native fit reviewed on2026-10-22 from the north, court and southern range. Original boundary grades span -2.47 to+0.18m relative to the eastern court; the brick substructure seats the house on the hill without flattening the surrounding terrace. Exact historic retaining walls, threshold/accessibility and pedestrian circulation remain approximate."
+  }
+}

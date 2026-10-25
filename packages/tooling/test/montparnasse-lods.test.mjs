@@ -14,9 +14,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 it('retains the signed native perimeter against the attributed raw map coordinates', async () => {
   const frame = JSON.parse(
     await readFile(
-      resolve(
-        '../../content/worldgen/source/places/u0/u09/n0151_montparnasse_tower/map-frame.json',
-      ),
+      resolve('../../content/worldgen/source/places/u0/u09/montparnasse_tower/map-frame.json'),
     ),
   );
   const native = frame.elements[0].geometry.map((p) => localGeographic(frame, p.lon, p.lat));
@@ -54,7 +52,7 @@ it('keeps the full height and an open district observation terrace within the st
 
 it('reproduces four derivatives while preserving the exact original detailed source hash', async () => {
   const path = await runtimeLodFixture(
-    resolve('../../content/worldgen/assets/places/u0/u09/n0151_montparnasse_tower/asset.json'),
+    resolve('../../content/worldgen/assets/places/u0/u09/montparnasse_tower/asset.json'),
   );
   const asset = JSON.parse(await readFile(path)),
     master = await readFile(resolve(path, '../model.glb'));

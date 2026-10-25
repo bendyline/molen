@@ -152,7 +152,7 @@ function edges(plan) {
     .filter((e) => e.len > 0.05);
 }
 function northernTowers(out, m) {
-  const parts = partsEvidence('n0204_luxor_resort_casino'),
+  const parts = partsEvidence('luxor_resort_casino'),
     base = parts.find((p) => p.id === 136520122),
     plan = out.detail.level === 'skyline' ? coarsePlan(partPlan(m, base)) : partPlan(m, base),
     baseHeight = 7.2,
@@ -929,8 +929,7 @@ function build(out, m, name) {
     };
   detailed(
     t,
-    m ??
-      JSON.parse(readFileSync(structureSourcePath('n0204_luxor_resort_casino', 'map-frame.json'))),
+    m ?? JSON.parse(readFileSync(structureSourcePath('luxor_resort_casino', 'map-frame.json'))),
   );
 }
 export const buildLuxorReviewedMaster = (out, m) => build(out, m, 'closeup');

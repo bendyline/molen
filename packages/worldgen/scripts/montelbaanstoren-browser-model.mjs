@@ -1,4 +1,4 @@
-/** N0622 source-local browser derivatives. */
+/** montelbaanstoren source-local browser derivatives. */
 import { readFileSync } from 'node:fs';
 import { beam, loft, radialRing, sphere as sourceSphere } from './authored-structure-mesh.mjs';
 import { face, transform } from './heritage-tower-detail-mesh.mjs';
@@ -12,7 +12,7 @@ export {
 } from './montelbaanstoren-detail-model.mjs';
 
 const footprint = JSON.parse(
-    readFileSync(structureSourcePath('n0622_montelbaanstoren', 'map-frame.json')),
+    readFileSync(structureSourcePath('montelbaanstoren', 'map-frame.json')),
   ).geometry.outline,
   means = {
     brick: [0.620345, 0.549823, 0.504963],

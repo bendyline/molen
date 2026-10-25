@@ -7,7 +7,7 @@ import { buildConwyRuntime } from './conwy-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/gc/gcm/n0270_conwy_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/gc/gcm/conwy_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

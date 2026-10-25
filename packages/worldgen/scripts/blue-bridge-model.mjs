@@ -601,7 +601,7 @@ export function buildBlueBridge(out) {
   for (const x of [-9.2, 9.2]) nameSign(out, x, -51.2);
 }
 export const blueBridgeStudy = {
-  id: 'N0027',
+  id: 'blue_bridge',
   key: 'blue_bridge',
   title: 'Blue Bridge',
   wikidataId: 'Q2618925',

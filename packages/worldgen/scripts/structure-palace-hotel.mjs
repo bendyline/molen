@@ -50,7 +50,7 @@ function face(o, s, x, y, z, w, h, c) {
     c,
   );
 }
-function prism(o, loops, low, high, color = stone, slot = 'stone') {
+function prism(o, loops, low, high, color = stone, slot = 'stone', entranceCut = false) {
   const rings = loops.map((r, i) => {
     r = cleanRing(r);
     if (r[0][0] === r.at(-1)[0] && r[0][1] === r.at(-1)[1]) r.pop();
@@ -88,6 +88,8 @@ function prism(o, loops, low, high, color = stone, slot = 'stone') {
     for (let i = 0; i < r.length; i++) {
       const a = r[i],
         b = r[(i + 1) % r.length];
+      if (entranceCut && Math.abs(a[0] + 39.46) < 0.0001 && Math.abs(b[0] + 39.46) < 0.0001)
+        continue;
       quad(
         o,
         slot,
@@ -434,18 +436,135 @@ function canopy(o, x, z, w, d) {
       }
 }
 
+/** Cut the three portal voids into the actual ground-floor wall plane. */
+function entranceWall(o, c) {
+  const points = [[-51.2, 0]];
+  for (const [x, w] of c.portals) {
+    const rise = w * c.archRiseFactor,
+      spring = c.top - rise;
+    points.push([x - w / 2, 0], [x - w / 2, spring]);
+    for (let i = 1; i <= c.archSegments; i++) {
+      const a = Math.PI - (i * Math.PI) / c.archSegments;
+      points.push([x + (Math.cos(a) * w) / 2, spring + Math.sin(a) * rise]);
+    }
+    points.push([x + w / 2, 0]);
+  }
+  points.push([48.8, 0], [48.8, 6.2], [-51.2, 6.2]);
+  const ids = earcut(points.flat());
+  for (let i = 0; i < ids.length; i += 3) {
+    const p = ids.slice(i, i + 3).map((j) => [...points[j], 0]);
+    o.addTriangle(
+      'stone',
+      ref,
+      p,
+      [0, 0, 1],
+      p.map((v) => [v[0], v[1]]),
+      stone,
+    );
+  }
+}
+function entrancePortal(o, x, w, c) {
+  const rise = w * c.archRiseFactor,
+    spring = c.top - rise,
+    arc = Array.from({ length: c.archSegments + 1 }, (_, i) => {
+      const a = Math.PI - (i * Math.PI) / c.archSegments;
+      return [x + (Math.cos(a) * w) / 2, spring + Math.sin(a) * rise];
+    }),
+    pane = [
+      [x - w / 2, 0, -c.depth],
+      [x + w / 2, 0, -c.depth],
+      ...arc.toReversed().map((p) => [...p, -c.depth]),
+    ];
+  o.addConvexPolygon('glass', ref, pane, [0, 0, 1], (p) => [p[0], p[1]], glass);
+  for (const sg of [-1, 1]) {
+    const xx = x + (sg * w) / 2;
+    quad(
+      o,
+      'stone',
+      [
+        [xx, 0, 0],
+        [xx, spring, 0],
+        [xx, spring, -c.depth],
+        [xx, 0, -c.depth],
+      ],
+      [-sg, 0, 0],
+      stone,
+    );
+    B(
+      o,
+      'iron',
+      x + sg * (w / 2 - 0.075),
+      0,
+      -c.depth + c.doorFrameDepth / 2,
+      0.15,
+      spring,
+      c.doorFrameDepth,
+      iron,
+    );
+  }
+  for (let i = 0; i < arc.length - 1; i++) {
+    const a = arc[i],
+      b = arc[i + 1],
+      mid = Math.PI - ((i + 0.5) * Math.PI) / c.archSegments;
+    quad(
+      o,
+      'stone',
+      [
+        [...a, 0],
+        [...b, 0],
+        [...b, -c.depth],
+        [...a, -c.depth],
+      ],
+      [-Math.cos(mid) / (w / 2), -Math.sin(mid) / rise, 0],
+      stone,
+    );
+    for (const drop of [0, c.transomDrop])
+      beam(
+        o,
+        'iron',
+        [a[0], a[1] - drop, -c.depth + c.doorFrameDepth / 2],
+        [b[0], b[1] - drop, -c.depth + c.doorFrameDepth / 2],
+        0.12,
+        c.doorFrameDepth,
+        iron,
+      );
+  }
+  // A bowed transom above paired glazed leaves; exact historic sculpture is omitted.
+  B(
+    o,
+    'iron',
+    x,
+    0,
+    -c.depth + c.doorFrameDepth / 2,
+    0.1,
+    c.top - c.transomDrop,
+    c.doorFrameDepth,
+    iron,
+  );
+  for (const u of [-0.25, 0.25]) {
+    const h = spring - c.transomDrop + Math.sqrt(1 - 4 * u * u) * rise;
+    B(o, 'iron', x + u * w, 0, -c.depth + c.doorFrameDepth / 2, 0.07, h, c.doorFrameDepth, iron);
+  }
+  for (const y of [1.1, 2.15])
+    B(o, 'iron', x, y, -c.depth + c.doorFrameDepth / 2, w - 0.15, 0.09, c.doorFrameDepth, iron);
+}
 function entrance(o, d) {
+  const controls =
+    d > 2 ? JSON.parse(fs.readFileSync(new URL('portal-construction-controls.json', base))) : null;
+  if (controls) entranceWall(o, controls);
   for (const [x, w] of [
     [-5.7, 4.6],
     [0, 5.2],
     [5.7, 4.6],
   ]) {
-    arch(o, x, -0.2, 0.07, w, 5.6, d, 'glass', dark);
+    if (controls) entrancePortal(o, x, w, controls);
+    else arch(o, x, -0.2, 0.07, w, 5.6, d, 'glass', dark);
     if (d > 1) {
       archRim(o, x, -0.2, 0.11, w, 5.6, d, 0.42);
       B(o, 'stone', x, 5.25, 0.22, 0.6, 0.68, 0.5, terra);
       canopy(o, x, 0.2, w + 0.65, d);
-      for (const u of [-0.9, 0.9]) face(o, 'iron', x + u, 0.1, 0.16, 0.12, 3.4, iron);
+      if (!controls)
+        for (const u of [-0.9, 0.9]) face(o, 'iron', x + u, 0.1, 0.16, 0.12, 3.4, iron);
     }
   }
 }
@@ -683,7 +802,7 @@ export function palace(o, frame, d = 3) {
       [-21.6, 37.79],
     ];
   prism(o, [frame.features[0].rings[0]], -5, 0, stone, 'stone');
-  prism(o, [outer, hole], 0, 6.2, stone, 'stone');
+  prism(o, [outer, hole], 0, 6.2, stone, 'stone', d > 2);
   prism(o, [outer, hole], 6.2, 37.846, brick, 'brick');
   prism(o, [outer, hole], 37.846, 37.96, roof, 'roof');
   rim(o, outer, 37.96, 0.78, 0.4);
@@ -863,6 +982,8 @@ export const palaceModel = {
   qaCameras: [
     { name: 'front', position: [-116, 51, 133], lookAt: [-5, 21, 8] },
     { name: 'back', position: [128, 91, -148], lookAt: [0, 18, -4] },
+    { name: 'entrance-portals', position: [-56, 8, 12], lookAt: [-39.46, 2.8, 0] },
+    { name: 'curved-door-frame', position: [-44.5, 3, 1.5], lookAt: [-38.74, 3.4, 0] },
   ],
   build: palace,
   surfaces,
@@ -883,7 +1004,8 @@ export const palaceModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior based on five individually inspected local Qualla photographs and the city landmark report roof plan, four elevations and aerial.',
+    'New actual entrance portals and physical curved double-door/transom framing use the exact native primary Highsmith entrance photograph under explicit photographer public-domain dedication, after a cleared Qualla imagery search. Earlier attribution/private report/satellite imagery is excluded as current construction control. Wider exterior review remains pending.',
+    'Three portals now cut into the actual close-level front wall, with stone jambs/arched soffits, recessed glazing and closed metal frames. Existing widths/heights/canopies retained; .72m recess, .14m frame depth and .65m transom spacing are medium-fi estimates. Exact gilded sculpture/face/monogram is not copied.',
     'Existing city roof/parapet labels control principal heights; low-roof heights, floor spacing, hidden joins and fine terracotta ornament remain interpretations. Coarse map part heights conflict with the city elevations and are retained as evidence only.',
     'Surviving 1909 exterior and attached lower pool/court roofs included. No 1875 reconstruction, interiors or proposed telecommunications equipment. Later rooftop changes are unverified.',
     'Independent terrain remains unflattened; footprint suppression stays disabled. No photo pixels copied.',

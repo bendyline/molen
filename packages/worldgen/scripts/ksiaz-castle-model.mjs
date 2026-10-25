@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u3/u35/n0291_ksiaz_castle_and_park_complex/';
+const root = '../../../content/worldgen/source/places/u3/u35/ksiaz_castle_and_park_complex/';
 const read = (n) => JSON.parse(readFileSync(new URL(root + n, import.meta.url)));
 const frame = read('map-frame.json'),
   refs = read('reference-metadata.json'),
@@ -1002,7 +1002,7 @@ export const buildKsiazSkyline = (o) =>
     0,
   );
 export const ksiazStudy = {
-  id: 'N0291',
+  id: 'ksiaz_castle_and_park_complex',
   key: 'ksiaz_castle_and_park_complex',
   title: 'Książ Castle and park complex',
   previewImage: 'shots/shared/angle-0.png',

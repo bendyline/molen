@@ -1,0 +1,76 @@
+{
+  "format": "molen/structure-map-frame@1",
+  "candidateId": "QS-3f5a2635a414",
+  "title": "Bloukrans Bridge",
+  "anchor": [
+    23.64522412419319,
+    -33.966876359958746
+  ],
+  "heading": -0.01284038575775597,
+  "coordinateSpace": "model-local-xz",
+  "axis": "+X east along the native N2 bridge centerline; +Z south across the deck; +Y up. Deck surface defines modelY0.",
+  "nativeAxes": {
+    "x": "east along N2 crossing",
+    "y": "up,deck surfaceY0",
+    "z": "south across deck"
+  },
+  "source": "Native Protomaps N2 bridge=true centerline crossing named Bloukrans River; separate nearby footway is not the highway bridge.",
+  "sourceUrl": "https://build.protomaps.com/20261019.pmtiles",
+  "zoom": 15,
+  "features": [
+    {
+      "id": "roads/35184376435322",
+      "role": "N2-bridge-centerline",
+      "properties": {
+        "kind_detail": "trunk",
+        "ref": "N2",
+        "shield_text": "N2",
+        "network_1": "za:national",
+        "is_bridge": true,
+        "sort_rank": 400,
+        "kind": "major_road",
+        "min_zoom": 7,
+        "shield_text_1": "N2",
+        "oneway": "no",
+        "network": "za:national"
+      },
+      "rings": [
+        [
+          [
+            -231.43251941767576,
+            4.440892098500626e-16
+          ],
+          [
+            231.43251941767576,
+            -4.440892098500626e-16
+          ]
+        ]
+      ]
+    }
+  ],
+  "identityStatus": "Native N2 bridge centerline spans the named Bloukrans River and matches the cleared whole-bridge photo and adjacent named viewpoint/bungee POI. Straight cardinal-like road axis retained.",
+  "geometryLabel": "Native N2 highway bridge centerline; no invented building footprint",
+  "geometry": {
+    "centerlines": [
+      [
+        [
+          -231.43251941767576,
+          4.440892098500626e-16
+        ],
+        [
+          231.43251941767576,
+          -4.440892098500626e-16
+        ]
+      ]
+    ]
+  },
+  "terrainContact": {
+    "local": [
+      240,
+      0
+    ],
+    "modelY": 0,
+    "basis": "Dry eastern N2 approach beyond mapped bridge end, chosen before terrain acquisition. Deck surfaceY0 matches this approximate road datum."
+  },
+  "notes": "Native line is about463m including road end transitions;451m reported bridge centered within it without changing source coordinates. Bank/springing contact is approximate; landscape and river are not bridge geometry."
+}

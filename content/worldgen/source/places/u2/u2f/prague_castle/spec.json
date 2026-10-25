@@ -1,0 +1,936 @@
+{
+  "planId": "prague_castle",
+  "id": "prague_castle",
+  "assetId": "molen.worldgen.structure.prague_castle",
+  "title": "Prague Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q193369",
+  "referenceCoordinate": {
+    "latitude": 50.09,
+    "longitude": 14.4
+  },
+  "visualBrief": "Mapped castle complex with open second and third courtyards, St Vitus Cathedral and its unequal Gothic and Baroque towers, St George Basilica, royal palace ranges, Rosenberg and Lobkowicz palaces, Powder and Black towers and the small Golden Lane houses. Individually mapped Daliborka is restored.",
+  "size": [
+    558.4566345214844,
+    128.26297187805176,
+    183.6087646484375
+  ],
+  "actualBounds": {
+    "min": [
+      -279.2308044433594,
+      -28.962968826293945,
+      -91.80424499511719
+    ],
+    "max": [
+      279.225830078125,
+      99.30000305175781,
+      91.80451965332031
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X from western palace toward the eastern gate",
+    "front": "+Z toward the southern gardens",
+    "origin": "Signed original map frame;Y0 Third Courtyard terrain reference. Relative Bpv grade, no forced absolute runtime elevation."
+  },
+  "sourceFacts": {
+    "cathedralSouthTowerHeightMeters": 99.3,
+    "stGeorgeTowerHeightMeters": 41,
+    "cathedralCompletion": 1929,
+    "footprints": "Individual OpenStreetMap relations and ways, retrieved 2026-10-04",
+    "surveyedVerticalDimensions": false,
+    "originalMasterHash": "sha256:80beee517c6a4c2b3e50ceea71e4e24d6270c97381b6f2b3d11533180f662ff0",
+    "originalMasterRecipe": "packages/worldgen/scripts/prague-castle-model.mjs#pragueStudy.build",
+    "daliborkaTotalHeightMeters": 20,
+    "gradeDatumMeters": 256.7493164036587
+  },
+  "reconstruction": {
+    "basis": "Individual mapped polygons with court holes, separately reconstructed elevations and roofs from the official visitor plan and inspected exterior photographs.",
+    "verticalDatum": "Exact-Q193369 precinct relation3312247 establishes identity;299 individually retained occupied relations/ways preserve courtyard holes. Fresh coordinates match all298 original cached parts within0.0027m. Native+X bearing109.242deg points toward the eastern gate,+Z199.242deg toward southern gardens. Daliborka is separately registered by exact-Q3506740 relation3367848; White Tower/Black Tower identities remain distinct. Public Czech DMR5G bare-earth data establishes relative grade from the Third Courtyard reference[-114,29],256.749m Bpv. The eastern gate drops about13.4m in this photographic working reconstruction; adjacent retained open ground drops11.45m north of the gate and20.38m on the southern slope. Castle ranges use declared smooth/quarter-specific floor reconstructions rather than per-pixel roof warping; foundations extend into retained terrain. Under-building ground is not a floor survey. Whole-precinct replacement remains disabled. High-resolution host terrain is required for full contact; no absolute Bpv elevation is imposed at runtime.",
+    "roofProfiles": "Individually arranged palace roof runs; cathedral mapped nave, choir and chapel parts. Minor roofs use oriented enclosing rectangles."
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/relation/3312247",
+    "https://www.hrad.cz/en/prague-castle-for-visitors/castle-map",
+    "https://www.hrad.cz/en/prague-castle-for-visitors/objects-for-visitors/st.-vitus-cathedral-10330",
+    "https://www.hrad.cz/en/prague-castle-for-visitors/objects-for-visitors/old-royal-palace-10332",
+    "https://virtualni.praha.eu/towers/cathedral-of-st-vitus-at-prague-castle",
+    "https://virtualni.praha.eu/towers/basilica-of-st-george-at-the-prague-castle",
+    "https://commons.wikimedia.org/wiki/File:Panoramic_view_of_St._Vitus_Cathedral_and_Prague_Castle_grounds.jpg",
+    "https://commons.wikimedia.org/wiki/File:West_facade_of_St._Vitus_Cathedral-Prague.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bazilika_Svat%C3%A9ho_Ji%C5%99%C3%AD-Prague.JPG"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "Signed occupied plan and retained relative ground grade reviewed; architecture reconstructed",
+    "anchor": [
+      14.401732746,
+      50.090863652
+    ],
+    "heading": 0.33583241035,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=14.393,50.087,14.409,50.094",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/3312247",
+      "relation/28649",
+      "relation/28650",
+      "relation/28652",
+      "relation/3367557",
+      "relation/3367566",
+      "relation/3367567",
+      "relation/3367568",
+      "relation/3367569",
+      "relation/3367616",
+      "relation/3367617",
+      "relation/3367715",
+      "relation/3367717",
+      "relation/3367718",
+      "relation/3367729",
+      "relation/3367730",
+      "relation/3367731",
+      "relation/3367732",
+      "relation/3367733",
+      "relation/3367807",
+      "relation/3367808",
+      "relation/3367809",
+      "relation/3367810",
+      "relation/3367811",
+      "relation/3367813",
+      "relation/3367814",
+      "relation/3367815",
+      "relation/3367816",
+      "relation/3367817",
+      "relation/3367843",
+      "relation/3367844",
+      "relation/3367845",
+      "relation/3367846",
+      "relation/3367847",
+      "relation/3367850",
+      "relation/3367852",
+      "relation/3367881",
+      "relation/3367883",
+      "relation/3367884",
+      "relation/3367885",
+      "relation/3367922",
+      "relation/3372132",
+      "relation/3372133",
+      "relation/3372134",
+      "relation/3372143",
+      "relation/15317894",
+      "relation/15317896",
+      "relation/15317897",
+      "relation/15317898",
+      "relation/15317899",
+      "way/26426852",
+      "way/26426883",
+      "way/26426884",
+      "way/26426910",
+      "way/26426911",
+      "way/26426912",
+      "way/26426913",
+      "way/26426914",
+      "way/26426915",
+      "way/26426917",
+      "way/26426918",
+      "way/26426919",
+      "way/26426920",
+      "way/26426921",
+      "way/26426923",
+      "way/26426924",
+      "way/26426925",
+      "way/26426926",
+      "way/26426927",
+      "way/26426928",
+      "way/26426929",
+      "way/26426932",
+      "way/26426933",
+      "way/26426934",
+      "way/26426949",
+      "way/243800050",
+      "way/250799586",
+      "way/279535799",
+      "way/279535800",
+      "way/279536188",
+      "way/422194036",
+      "way/422194037",
+      "way/455569006",
+      "way/456778885",
+      "way/456778886",
+      "way/456778887",
+      "way/462765675",
+      "way/462765676",
+      "way/462765677",
+      "way/462765678",
+      "way/462765679",
+      "way/462765680",
+      "way/462765681",
+      "way/462765683",
+      "way/476905443",
+      "way/476905446",
+      "way/476905448",
+      "way/476905450",
+      "way/476905452",
+      "way/476905454",
+      "way/476905456",
+      "way/476905459",
+      "way/476905462",
+      "way/476905464",
+      "way/476905465",
+      "way/476905466",
+      "way/476905467",
+      "way/476905468",
+      "way/476905469",
+      "way/476905471",
+      "way/476931312",
+      "way/476931313",
+      "way/476933496",
+      "way/476948812",
+      "way/476956157",
+      "way/476956161",
+      "way/476956165",
+      "way/479465451",
+      "way/479465452",
+      "way/479465453",
+      "way/479465454",
+      "way/479465455",
+      "way/479465456",
+      "way/479465457",
+      "way/479465458",
+      "way/479465459",
+      "way/479465460",
+      "way/479465461",
+      "way/479465462",
+      "way/479465463",
+      "way/479465464",
+      "way/479465465",
+      "way/479465466",
+      "way/479512076",
+      "way/480145478",
+      "way/480145479",
+      "way/480145480",
+      "way/480145481",
+      "way/480145501",
+      "way/480145502",
+      "way/480145503",
+      "way/480145505",
+      "way/480145508",
+      "way/480145509",
+      "way/481427404",
+      "way/481427405",
+      "way/485764471",
+      "way/507334883",
+      "way/507334885",
+      "way/507335968",
+      "way/507336896",
+      "way/507340296",
+      "way/532171881",
+      "way/532171883",
+      "way/532171884",
+      "way/532171885",
+      "way/532171886",
+      "way/532171887",
+      "way/532171888",
+      "way/532171889",
+      "way/532171890",
+      "way/532171891",
+      "way/532171892",
+      "way/532171893",
+      "way/532171894",
+      "way/532171895",
+      "way/532171896",
+      "way/532171899",
+      "way/532171901",
+      "way/532171902",
+      "way/532171903",
+      "way/532171904",
+      "way/532171906",
+      "way/532171907",
+      "way/532171909",
+      "way/565398669",
+      "way/565398673",
+      "way/628001627",
+      "way/628001628",
+      "way/629914929",
+      "way/762259522",
+      "way/762259523",
+      "way/762259524",
+      "way/762259525",
+      "way/762259526",
+      "way/762259527",
+      "way/762259528",
+      "way/762259529",
+      "way/762259530",
+      "way/762259531",
+      "way/762259532",
+      "way/762259533",
+      "way/762259534",
+      "way/762259535",
+      "way/895259329",
+      "way/895259330",
+      "way/895259331",
+      "way/895259332",
+      "way/896479228",
+      "way/901093470",
+      "way/901093471",
+      "way/901093472",
+      "way/901093473",
+      "way/901093474",
+      "way/901093475",
+      "way/901093476",
+      "way/901093477",
+      "way/901093478",
+      "way/901093479",
+      "way/901093480",
+      "way/901093481",
+      "way/901132773",
+      "way/901132774",
+      "way/901132775",
+      "way/901132776",
+      "way/901132777",
+      "way/901132778",
+      "way/901132779",
+      "way/901132780",
+      "way/901132781",
+      "way/901132782",
+      "way/901132783",
+      "way/901132784",
+      "way/901132785",
+      "way/901132786",
+      "way/901132787",
+      "way/901132788",
+      "way/901132789",
+      "way/901132790",
+      "way/901132791",
+      "way/901132792",
+      "way/901132793",
+      "way/901132794",
+      "way/901132795",
+      "way/901132796",
+      "way/901132797",
+      "way/901132798",
+      "way/901132799",
+      "way/901132800",
+      "way/901132801",
+      "way/901132802",
+      "way/901132803",
+      "way/901132804",
+      "way/901132805",
+      "way/901132806",
+      "way/901132807",
+      "way/901132808",
+      "way/901132809",
+      "way/901132810",
+      "way/901132811",
+      "way/901132812",
+      "way/901132813",
+      "way/901132814",
+      "way/901132815",
+      "way/901132816",
+      "way/901132817",
+      "way/901132818",
+      "way/901132819",
+      "way/901132820",
+      "way/901132821",
+      "way/901132822",
+      "way/901132823",
+      "way/901132824",
+      "way/901132825",
+      "way/901132826",
+      "way/901132827",
+      "way/901132828",
+      "way/901132829",
+      "way/901190401",
+      "way/901190402",
+      "way/901190403",
+      "way/901190404",
+      "way/901190405",
+      "way/901190406",
+      "way/901190407",
+      "way/901190408",
+      "way/901190409",
+      "way/901190410",
+      "way/1034784278",
+      "way/1034784279",
+      "way/1052956887",
+      "way/1137278310",
+      "way/1137278311",
+      "way/1137278312",
+      "way/1137278313",
+      "way/1137609315",
+      "way/1144669074",
+      "way/1145154469",
+      "way/1145154470",
+      "way/1175378493",
+      "way/1175378494",
+      "way/1179800102",
+      "way/1179800103",
+      "way/1179800104",
+      "way/1179800105",
+      "way/1179800106",
+      "way/1179800107",
+      "way/1531918595",
+      "way/1532980019",
+      "relation/3367848"
+    ],
+    "wikidataId": "Q193369",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a21b47ffe54f0715038b22f715f5bb75dbc0f43b7382a45883aae54ecec7fb6b",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-Q193369 precinct relation3312247 establishes identity;299 individually retained occupied relations/ways preserve courtyard holes. Fresh coordinates match all298 original cached parts within0.0027m. Native+X bearing109.242deg points toward the eastern gate,+Z199.242deg toward southern gardens. Daliborka is separately registered by exact-Q3506740 relation3367848; White Tower/Black Tower identities remain distinct. Public Czech DMR5G bare-earth data establishes relative grade from the Third Courtyard reference[-114,29],256.749m Bpv. The eastern gate drops about13.4m in this photographic working reconstruction; adjacent retained open ground drops11.45m north of the gate and20.38m on the southern slope. Castle ranges use declared smooth/quarter-specific floor reconstructions rather than per-pixel roof warping; foundations extend into retained terrain. Under-building ground is not a floor survey. Whole-precinct replacement remains disabled. High-resolution host terrain is required for full contact; no absolute Bpv elevation is imposed at runtime.",
+    "evidence": "Exact-Q193369 precinct relation3312247 establishes identity;299 individually retained occupied relations/ways preserve courtyard holes. Fresh coordinates match all298 original cached parts within0.0027m. Native+X bearing109.242deg points toward the eastern gate,+Z199.242deg toward southern gardens. Daliborka is separately registered by exact-Q3506740 relation3367848; White Tower/Black Tower identities remain distinct. Public Czech DMR5G bare-earth data establishes relative grade from the Third Courtyard reference[-114,29],256.749m Bpv. The eastern gate drops about13.4m in this photographic working reconstruction; adjacent retained open ground drops11.45m north of the gate and20.38m on the southern slope. Castle ranges use declared smooth/quarter-specific floor reconstructions rather than per-pixel roof warping; foundations extend into retained terrain. Under-building ground is not a floor survey. Whole-precinct replacement remains disabled. High-resolution host terrain is required for full contact; no absolute Bpv elevation is imposed at runtime.",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact-Q193369 precinct relation3312247 establishes identity;299 individually retained occupied relations/ways preserve courtyard holes. Fresh coordinates match all298 original cached parts within0.0027m. Native+X bearing109.242deg points toward the eastern gate,+Z199.242deg toward southern gardens. Daliborka is separately registered by exact-Q3506740 relation3367848; White Tower/Black Tower identities remain distinct. Public Czech DMR5G bare-earth data establishes relative grade from the Third Courtyard reference[-114,29],256.749m Bpv. The eastern gate drops about13.4m in this photographic working reconstruction; adjacent retained open ground drops11.45m north of the gate and20.38m on the southern slope. Castle ranges use declared smooth/quarter-specific floor reconstructions rather than per-pixel roof warping; foundations extend into retained terrain. Under-building ground is not a floor survey. Whole-precinct replacement remains disabled. High-resolution host terrain is required for full contact; no absolute Bpv elevation is imposed at runtime.",
+    "terrainReference": {
+      "anchor": [
+        14.40035952875168,
+        50.09028019945339
+      ],
+      "modelHeight": 0,
+      "basis": "Third Courtyard native[-114,0,29],public Czech DMR5G reference256.749m Bpv used relatively; absolute elevation is not supplied by the asset."
+    }
+  },
+  "scaleBasis": "Meter-scale map coordinates in the cached signed precinct frame. Municipal published tower heights constrain the main vertical landmarks; palace levels, roof rises and smaller detail are estimates.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Individual map geometry derives from © OpenStreetMap contributors, ODbL-1.0; map-parts.json records source, date, meter frame and tags. Photographs are linked only; no photographic pixels or third-party mesh are included.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Original detailed source master47961476bytes/567918triangles remains exactly reproducible atsha256:80beee517c6a4c2b3e50ceea71e4e24d6270c97381b6f2b3d11533180f662ff0 from prague-castle-model.mjs#pragueStudy.build. A separate reviewed runtime source repairs grade/roof edges and supplies four authored browser levels.",
+    "Exact-Q193369 precinct relation3312247 establishes identity;299 individually retained occupied relations/ways preserve courtyard holes. Fresh coordinates match all298 original cached parts within0.0027m. Native+X bearing109.242deg points toward the eastern gate,+Z199.242deg toward southern gardens. Daliborka is separately registered by exact-Q3506740 relation3367848; White Tower/Black Tower identities remain distinct. Public Czech DMR5G bare-earth data establishes relative grade from the Third Courtyard reference[-114,29],256.749m Bpv. The eastern gate drops about13.4m in this photographic working reconstruction; adjacent retained open ground drops11.45m north of the gate and20.38m on the southern slope. Castle ranges use declared smooth/quarter-specific floor reconstructions rather than per-pixel roof warping; foundations extend into retained terrain. Under-building ground is not a floor survey. Whole-precinct replacement remains disabled. High-resolution host terrain is required for full contact; no absolute Bpv elevation is imposed at runtime.",
+    "Seven common lime plaster, limestone, wood, ceramic tile, slate, copper and painted-metal graphs plus opaque PBR glazing are shared. Carved/weathered stone and the small granite obelisk deliberately share limestone grain with component vertex tint; no model copies photographic textures. Skyline bakes common-graph linear means into one draw.",
+    "Exterior shapes, palace floor bands, roof pitches/valleys, façade bays, sculptural traces, house colors and lower defensive elevations are reconstructed medium-fi approximations. No interiors, copied photographs, exact saints/heraldic lion/Golden Gate mosaic, terrain hill or visitor furniture. Fine artwork is omitted. Daliborka20m total and Powder35m total follow map tags; architectural heights are not an as-built survey.",
+    "The bare-earth source is a publicF32 raster exported from2m DMR5G intoEPSG4326 and resampled onto a6m native grid. Values under buildings are ground interpolation. Acquisition date at this castle is unknown; source metadata spans2010–2025. Terrain fixture heights are relative verification evidence; physical laptop/phone timings remain unmeasured.",
+    "Skyline keeps court holes within0.45m, replaces some minor roof ridges by terracotta caps, omits hidden undersides and simplifies the tiny cross arms. District retains mapped court holes and major wings/churches/defensive houses; some ancillary bodies are deferred to street/close. Declared skyline7.5m and district5.5m reconstruction tolerances include outer-outline/roof clipping. These are recipe tolerances, not a surveyed accuracy guarantee."
+  ],
+  "qaCameras": [
+    {
+      "name": "west-courtyards",
+      "position": [
+        -365,
+        125,
+        155
+      ],
+      "lookAt": [
+        -170,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "cathedral-west",
+      "position": [
+        -248,
+        76,
+        -28
+      ],
+      "lookAt": [
+        -133,
+        47,
+        -27
+      ]
+    },
+    {
+      "name": "south-tower-and-golden-gate",
+      "position": [
+        -132,
+        46,
+        80
+      ],
+      "lookAt": [
+        -85,
+        40,
+        -14
+      ]
+    },
+    {
+      "name": "cathedral-north",
+      "position": [
+        -91,
+        59,
+        -138
+      ],
+      "lookAt": [
+        -80,
+        29,
+        -28
+      ]
+    },
+    {
+      "name": "cathedral-choir",
+      "position": [
+        83,
+        81,
+        -33
+      ],
+      "lookAt": [
+        -45,
+        37,
+        -29
+      ]
+    },
+    {
+      "name": "saint-george-west",
+      "position": [
+        1,
+        39,
+        -17
+      ],
+      "lookAt": [
+        72,
+        19,
+        -18
+      ]
+    },
+    {
+      "name": "eastern-palaces",
+      "position": [
+        215,
+        118,
+        155
+      ],
+      "lookAt": [
+        150,
+        13,
+        -20
+      ]
+    },
+    {
+      "name": "golden-lane",
+      "position": [
+        176,
+        7.8,
+        -65
+      ],
+      "lookAt": [
+        204,
+        3.5,
+        -67
+      ]
+    },
+    {
+      "name": "open-courts-plan",
+      "position": [
+        0,
+        590,
+        80
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "whole-reviewed-prague",
+      "position": [
+        -360,
+        230,
+        570
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ]
+    },
+    {
+      "name": "signed-occupied-plan",
+      "position": [
+        0,
+        640,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "daliborka-and-northern-houses",
+      "position": [
+        286,
+        29,
+        -118
+      ],
+      "lookAt": [
+        258,
+        -0.5,
+        -76
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/prague-runtime-model.mjs",
+    "export": "buildPragueReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/prague-runtime-model.mjs",
+    "export": "buildPragueReviewedSkyline",
+    "errorMeters": 7.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPragueReviewedDistrict",
+        "errorMeters": 5.5,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.5,
+            "metallic": 0.85
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildPragueReviewedStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.5,
+            "metallic": 0.85
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPragueReviewedCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.5,
+            "metallic": 0.85
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-prague-skyline",
+      "position": [
+        -360,
+        230,
+        570
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-prague-district",
+      "position": [
+        -360,
+        230,
+        570
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-prague-street",
+      "position": [
+        -360,
+        230,
+        570
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-prague-closeup",
+      "position": [
+        -360,
+        230,
+        570
+      ],
+      "lookAt": [
+        -10,
+        23,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 63809,
+    "vertices": 134637,
+    "materials": 8,
+    "bytes": 5617324,
+    "sha256": "sha256:4aefcfad8be943fa5be66dceb79bcee6ab530fdb5723789c59bbf40fe77d9bb9"
+  }
+}

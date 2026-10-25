@@ -22,7 +22,7 @@ const TAU = 2 * Math.PI,
 const fit = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ke/ke7/n0687_fnb_stadium/pmtiles-fit.json',
+      '../../../content/worldgen/source/places/ke/ke7/fnb_stadium/pmtiles-fit.json',
       import.meta.url,
     ),
   ),

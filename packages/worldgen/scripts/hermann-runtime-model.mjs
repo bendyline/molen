@@ -7,7 +7,7 @@ import { buildHermannRuntime } from './hermann-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/ud/uds/n0274_hermann_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/ud/uds/hermann_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

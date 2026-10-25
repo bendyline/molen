@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sz/szp/n0373_saint_gregory_the_illuminator_cathedral/',
+  '../../../content/worldgen/source/places/sz/szp/saint_gregory_the_illuminator_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -800,7 +800,7 @@ export const buildYerevanGregorySkyline = (o) => build(o, 0),
   buildYerevanGregoryCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const yerevanGregoryStudy = {
-  id: 'N0373',
+  id: 'saint_gregory_the_illuminator_cathedral',
   key: 'saint_gregory_the_illuminator_cathedral',
   title: 'Saint Gregory the Illuminator Cathedral',
   category: 'cathedral',

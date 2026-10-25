@@ -21,7 +21,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 declare const __LANDMARK_CONTENT_ROOT__: string;
-const folder = 'worldgen/source/places/u1/u1p/n0241_wartburg';
+const folder = 'worldgen/source/places/u1/u1p/wartburg';
 const content = `/@fs/${__LANDMARK_CONTENT_ROOT__}/`;
 async function json<T>(path: string): Promise<T> {
   const r = await fetch(content + path);
@@ -36,8 +36,8 @@ const grade = await json<{
 const pack = await resolveStylePackDocuments(await json('worldgen/stylepack.json'), (p) =>
   json(`worldgen/${p}`),
 );
-const catalog = await json<StructureCatalogDoc>('earth/structures/placements.json');
-const entry = catalog.entries.find((e) => e.id === 'next1000.n0241');
+const catalog = await json<StructureCatalogDoc>('earth/structures/placements/authoring.json');
+const entry = catalog.entries.find((e) => e.id === 'wartburg');
 if (!entry?.terrainReference || entry.status !== 'preview')
   throw Error('Missing reviewed Wartburg street reference');
 const selectedEntry = entry;

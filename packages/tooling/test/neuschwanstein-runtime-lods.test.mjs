@@ -10,7 +10,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { neuschwansteinStudy } from '../../worldgen/scripts/neuschwanstein-castle-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u0/u0r/n0237_neuschwanstein_castle'),
+const source = resolve('../../content/worldgen/source/places/u0/u0r/neuschwanstein_castle'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
@@ -124,7 +124,11 @@ it('reproduces the original detailed castle and independently projects every map
   expect(m.triangleCount).toBe(234177);
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=N0237', '--check'],
+    [
+      'packages/worldgen/scripts/generate-signature-towers.mjs',
+      '--ids=neuschwanstein_castle',
+      '--check',
+    ],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const f = await read(`${source}/map-frame.json`);

@@ -1,0 +1,399 @@
+{
+  "planId": "new_york_stock_exchange",
+  "id": "new_york_stock_exchange",
+  "assetId": "molen.worldgen.structure.new_york_stock_exchange",
+  "title": "New York Stock Exchange",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -74.01125853178179,
+    "latitude": 40.706926724054284
+  },
+  "size": [
+    44.08021354675293,
+    48.748801469802856,
+    47.81863975524902
+  ],
+  "actualBounds": {
+    "min": [
+      -23.085521697998047,
+      -1.2000000476837158,
+      -24.541128158569336
+    ],
+    "max": [
+      20.994691848754883,
+      47.54880142211914,
+      23.277511596679688
+    ]
+  },
+  "visualBrief": "1903Broad Street block only: native exterior edges with explicit inferred north interface, six tall fluted Corinthian front columns and six smooth rear columns, bronze-grid recessed glass, seven podium arches/balconies, asymmetric south entrance, triangular pediment with11posed figures and permanent inscription, parapets and conservative upper office/plant roof envelope. Neighboring Wall Street office tower,20Broad,temporary flags/banners,street scenery and trading-floor interiors excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.nps.gov/places/new-york-stock-exchange.htm"
+  ],
+  "stories": [
+    {
+      "id": "new-york-stock-exchange-wp",
+      "url": "https://qualla.com/new-york-stock-exchange/"
+    }
+  ],
+  "referenceInputHash": "sha256:3980d13b3bf53a0cda01a60d59eccce3e8e7261f2143ee95681e697ac41d49da",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-new-york-stock-exchange.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-new-york-stock-exchange.mjs",
+    "level": "skyline",
+    "export": "newYorkStockExchangeSkyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.68,
+        "metallic": 0.45
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.1
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0.04
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "newYorkStockExchangeDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.45
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "newYorkStockExchangeStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.45
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    },
+    "caps": {
+      "closeup": {
+        "triangles": 64000,
+        "errorMeters": 0.04,
+        "prune": true
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "medium-fi-exterior-source-preview-reviewed-in-qa",
+  "geographicProposal": {
+    "status": "bounded-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native parent vertices and photo/document-directed1903scope fixed before locked USGS NY_CMPG_2013raster30939 and geometry. Datum5.3501m,original1mexport independently reproduced. Documentary slopingstreet produces varying basement exposure; architecture wallfoot-1.2m and two-storeypodium11.3m are not a terrain pad. No ground changes or generic parent-footprint replacement; anotherDEM needs contact review.",
+    "anchor": [
+      -74.01125853178179,
+      40.706926724054284
+    ],
+    "heading": 1.1242609803179457,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -74.011007312826,
+        40.706850660098965
+      ],
+      "modelHeight": 0,
+      "basis": "Dry Broad Street threshold footway,1.2m outside main facade and3.8m north of its midpoint, chosen before source ground/geometry. Public ground rises toward New Street; exact paving/door levels remain approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184650142362"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6efcb62b4dec994355ff067563b8f1350be03df85f542d11e08bb3b5466a97ae"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Photographic medium-fi1903exterior with bounded independent source-ground preview, not surveyed facade/foundation or navigable trading floor.",
+    "Nativeparentcombines18Broad/11Wall; ownnorthinterface joins retained parentvertices by explicit scope inference. Quantized map and historical architectural dimensions do not establish cadastral accuracy.",
+    "Exact capital leaves,figurative relief,upper roofsetbacks/currentplant and unseen side/back details are estimates. Original47.55mheight controls upper envelope; omit taller11Walloffice tower.",
+    "Source-specific USGS NY_CMPG_2013ground unchanged;1msampling does not establish surveyaccuracy or defaultEarthterraincompatibility.",
+    "Original photo pixels are not model textures. Ordinary catalog shared graphs, opaque exterior glass, no full-site terrain pad/cutout/generic parent-footprint replacement."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "broad-street-front",
+      "position": [
+        5,
+        19,
+        75
+      ],
+      "lookAt": [
+        1.5,
+        19,
+        21
+      ]
+    },
+    {
+      "name": "fluted-columns",
+      "position": [
+        -11,
+        18,
+        31
+      ],
+      "lookAt": [
+        1.5,
+        19,
+        20
+      ]
+    },
+    {
+      "name": "pediment-sculpture",
+      "position": [
+        4,
+        36,
+        45
+      ],
+      "lookAt": [
+        1.5,
+        33.5,
+        22
+      ]
+    },
+    {
+      "name": "podium-balconies",
+      "position": [
+        6,
+        6,
+        37
+      ],
+      "lookAt": [
+        1.5,
+        6,
+        21
+      ]
+    },
+    {
+      "name": "south-entrance",
+      "position": [
+        -34,
+        7,
+        40
+      ],
+      "lookAt": [
+        -19,
+        5,
+        21
+      ]
+    },
+    {
+      "name": "new-street-front",
+      "position": [
+        -5,
+        20,
+        -76
+      ],
+      "lookAt": [
+        2,
+        20,
+        -23
+      ]
+    },
+    {
+      "name": "smooth-rear-columns",
+      "position": [
+        9,
+        18,
+        -35
+      ],
+      "lookAt": [
+        2,
+        20,
+        -23
+      ]
+    },
+    {
+      "name": "roof-envelope",
+      "position": [
+        -46,
+        68,
+        -35
+      ],
+      "lookAt": [
+        0,
+        39,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 118253,
+    "vertices": 354759,
+    "materials": 6,
+    "bytes": 14194112,
+    "sha256": "sha256:cd8469912a699808cf98481c833e0db5956cda4eafd4556a4c7ad612377881bc"
+  }
+}

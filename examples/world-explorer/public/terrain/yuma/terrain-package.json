@@ -1,0 +1,153 @@
+{
+  "format": "molen/terrain-package@1",
+  "name": "Yuma, Arizona",
+  "version": "2026-10-23",
+  "coordinateSpace": {
+    "kind": "geospatial",
+    "crs": "EPSG:3857",
+    "ellipsoid": "WGS84",
+    "bounds": [-115.4, 32.1, -113.8, 33.5]
+  },
+  "tileMatrix": {
+    "scheme": "xyz",
+    "minLevel": 8,
+    "maxLevel": 15,
+    "rootTiles": [1, 1],
+    "tileResolution": 257
+  },
+  "elevation": {
+    "source": {
+      "kind": "pmtiles",
+      "path": "elevation.pmtiles"
+    },
+    "encoding": "png16",
+    "height": {
+      "min": 0,
+      "max": 5000
+    }
+  },
+  "surface": {
+    "seaLevel": 0,
+    "layers": [
+      {
+        "name": "soil",
+        "color": "#655b49",
+        "tiling": 10
+      },
+      {
+        "name": "lowland",
+        "color": "#668354",
+        "tiling": 14,
+        "auto": {
+          "heightMin": 0,
+          "heightMax": 900
+        }
+      },
+      {
+        "name": "alpine",
+        "color": "#7c786d",
+        "tiling": 18,
+        "auto": {
+          "heightMin": 900,
+          "heightMax": 2300
+        }
+      },
+      {
+        "name": "snow",
+        "color": "#dce5e4",
+        "tiling": 22,
+        "auto": {
+          "heightMin": 1900
+        }
+      }
+    ]
+  },
+  "landcover": {
+    "source": {
+      "kind": "pmtiles",
+      "path": "world.pmtiles"
+    },
+    "encoding": "mvt",
+    "layer": "landcover",
+    "profile": "protomaps-basemap@1"
+  },
+  "features": {
+    "source": {
+      "kind": "pmtiles",
+      "path": "world.pmtiles"
+    },
+    "encoding": "mvt",
+    "layers": ["water", "transportation", "building", "poi"],
+    "profile": "protomaps-basemap@1"
+  },
+  "attribution": [
+    {
+      "text": "Mapzen/USGS terrain tiles; Mapzen Terrain Tiles, with United States 3DEP, GMTED2010, and SRTM terrain data courtesy of the U.S. Geological Survey",
+      "license": "US public domain and source-specific open-data terms",
+      "licenseUrl": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "text": "NOAA ETOPO1; Global ETOPO1 terrain data, U.S. National Oceanic and Atmospheric Administration",
+      "license": "US public domain",
+      "licenseUrl": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md#etopo1"
+    },
+    {
+      "text": "INEGI; Mexico terrain data source: INEGI, Continental relief, 2016",
+      "license": "INEGI free use of information",
+      "licenseUrl": "https://www.inegi.org.mx/inegi/terminos.html"
+    },
+    {
+      "text": "© OpenStreetMap contributors; Protomaps Basemap",
+      "license": "ODbL-1.0",
+      "sourceUrl": "https://www.openstreetmap.org/copyright",
+      "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+    },
+    {
+      "text": "Daylight Landcover; © ESA WorldCover project, modified Copernicus Sentinel data",
+      "license": "CC-BY-4.0",
+      "sourceUrl": "https://esa-worldcover.org/en",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "text": "Natural Earth; public domain",
+      "license": "Public domain (Natural Earth terms of use)",
+      "sourceUrl": "https://www.naturalearthdata.com/about/terms-of-use/"
+    }
+  ],
+  "provenance": {
+    "compiler": "world-explorer-region-fixture",
+    "compilerVersion": "1",
+    "sources": [
+      {
+        "id": "mapzen-terrain-tiles",
+        "release": "AWS open-data snapshot accessed 2026-10-23"
+      },
+      {
+        "id": "protomaps-basemap",
+        "release": "2026-10-23 daily archive"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "elevation.pmtiles",
+      "bytes": 12876557,
+      "sha256": "8aa98e90b9ce214600863d3e1f555f681736859c2520b6afde4d3353caca0d15"
+    },
+    {
+      "path": "world.pmtiles",
+      "bytes": 3133514,
+      "sha256": "c3fcaafa705ff03a29991ea652d4808b915a8344ee24b8b4b3d88aa55e0dff79"
+    },
+    {
+      "path": "SOURCES.json",
+      "bytes": 3301,
+      "sha256": "8b0fe4e3f9e4fe04cedb413312d1ebc04abde72256cc0aa18e2452a881fdec9b"
+    },
+    {
+      "path": "LICENSES.md",
+      "bytes": 2422,
+      "sha256": "b035ecabf5e8bdb0fd755548849cc1a594eb32197554158daf300cc1f88f55d4"
+    }
+  ]
+}

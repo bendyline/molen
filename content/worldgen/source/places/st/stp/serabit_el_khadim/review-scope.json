@@ -1,0 +1,296 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "rock": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "stela": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "fallen": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.98,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      118.99403133721923,
+      55,
+      38.851261319510456
+    ],
+    "lookAt": [
+      -3.159245836556668,
+      1,
+      2.6493708204400837
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "two-rock-chapel-portals-and-standing-stelae",
+      "position": [
+        -7.290020614021866,
+        11,
+        12.44409898092812
+      ],
+      "lookAt": [
+        -32.2987713041897,
+        1,
+        9.043747687748262
+      ],
+      "fov": 48
+    },
+    {
+      "name": "rounded-broken-monoliths-and-fallen-slabs",
+      "position": [
+        8.678535945605592,
+        8,
+        24.691760039349802
+      ],
+      "lookAt": [
+        -6.828366689229919,
+        1,
+        11.107358297876917
+      ],
+      "fov": 47
+    },
+    {
+      "name": "mapped-enclosure-open-corridor-and-low-wall-remnants",
+      "position": [
+        59.764008449499066,
+        22,
+        15.403353337770461
+      ],
+      "lookAt": [
+        -0.04822109132463792,
+        1,
+        4.47187597394555
+      ],
+      "fov": 46
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "serabit-skyline",
+      "position": [
+        -7.290020614021866,
+        11,
+        12.44409898092812
+      ],
+      "lookAt": [
+        -32.2987713041897,
+        1,
+        9.043747687748262
+      ],
+      "fov": 48,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "serabit-district",
+      "position": [
+        -7.290020614021866,
+        11,
+        12.44409898092812
+      ],
+      "lookAt": [
+        -32.2987713041897,
+        1,
+        9.043747687748262
+      ],
+      "fov": 48,
+      "reviewLod": "district"
+    },
+    {
+      "name": "serabit-street",
+      "position": [
+        -7.290020614021866,
+        11,
+        12.44409898092812
+      ],
+      "lookAt": [
+        -32.2987713041897,
+        1,
+        9.043747687748262
+      ],
+      "fov": 48,
+      "reviewLod": "street"
+    },
+    {
+      "name": "serabit-closeup",
+      "position": [
+        -7.290020614021866,
+        11,
+        12.44409898092812
+      ],
+      "lookAt": [
+        -32.2987713041897,
+        1,
+        9.043747687748262
+      ],
+      "fov": 48,
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -3.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/serabit-model.mjs",
+    "export": "buildSerabitSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSerabitDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stela": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "fallen": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSerabitStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stela": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "fallen": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSerabitCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stela": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "fallen": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      33.459437057,
+      29.036749523
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Pinned standard Protomaps2026-10-14/Mapzen13–14 extract. Retain original native six-meter plateau grid and the independent building. Long wall segments follow sampled grade; upright stelae and chapel portals use separately sampled local footings with buried bottoms. Coarse DEM cannot resolve exact plateau paving, rock-cave thresholds or archaeological levels; this is approximate above-ground visualization. No broad invented podium, terrain replacement or excavation cutout.",
+    "replaceFootprint": false,
+    "bounds": [
+      33.45899802659002,
+      29.0364697160337,
+      33.45988507406281,
+      29.036888385222554
+    ],
+    "terrainReference": {
+      "anchor": [
+        33.459437057,
+        29.036749523
+      ],
+      "modelHeight": 0,
+      "basis": "Pinned standard Protomaps2026-10-14/Mapzen13–14 extract. Retain original native six-meter plateau grid and the independent building. Long wall segments follow sampled grade; upright stelae and chapel portals use separately sampled local footings with buried bottoms. Coarse DEM cannot resolve exact plateau paving, rock-cave thresholds or archaeological levels; this is approximate above-ground visualization. No broad invented podium, terrain replacement or excavation cutout."
+    },
+    "notes": "Exact-QID way580657250 is a mapped wall/archaeological extent about77.9x40m. It fixes center and undirected long axis; standard PMTiles named archaeological point35184952746082 corroborates the site. Native east/south at heading0; internal angle-0.452864836238rad. Western boundary jogs guide the approximate two chapel masses; picture-led internal groups and signed facing remain uncertain. A single independent native building about50m north stays unchanged. Pinned standard Protomaps2026-10-14/Mapzen13–14 extract. Retain original native six-meter plateau grid and the independent building. Long wall segments follow sampled grade; upright stelae and chapel portals use separately sampled local footings with buried bottoms. Coarse DEM cannot resolve exact plateau paving, rock-cave thresholds or archaeological levels; this is approximate above-ground visualization. No broad invented podium, terrain replacement or excavation cutout."
+  }
+}

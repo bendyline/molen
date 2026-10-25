@@ -11,7 +11,7 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/sx/sxk/n0293_rumeli_hisar/map-frame.json',
+      '../../../content/worldgen/source/places/sx/sxk/rumeli_hisar/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -53,7 +53,7 @@ function rayHit(origin, direction, p) {
   return u < -1e-5 || v < -1e-5 || u + v > 1.00001 ? null : dot(e2, cross(q, e1)) / det;
 }
 it('builds byte-deterministic browser levels within budgets with shared surfaces and homogeneous GPU views', async () => {
-  const id = 'molen.worldgen.structure.n0293_rumeli_hisar',
+  const id = 'molen.worldgen.structure.rumeli_hisar',
     bytes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

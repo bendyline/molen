@@ -20,7 +20,7 @@ SOURCE_ENTRIES = {entry['key']: entry for entry in SOURCE_INDEX['entries']}
 if len(SOURCE_ENTRIES) != len(SOURCE_INDEX['entries']):
     raise ValueError('Duplicate structure source key')
 PARSER = argparse.ArgumentParser()
-PARSER.add_argument('--ids', default='N0011,N0012,N0014')
+PARSER.add_argument('--ids', default='mes_bridge,kazarma_mycenaean_bridge,haghtanak_bridge')
 ARGS = PARSER.parse_args()
 RADIUS = 6378137
 
@@ -43,7 +43,7 @@ for candidate in ARGS.ids.split(','):
     spec = json.loads(spec_bytes)
     if spec['geographicProposal']['anchor'] != evidence['anchor']:
         raise ValueError('Regenerate the geographic grid after an anchor change')
-    suffix = 'copernicus90' if candidate == 'N0014' else 'copernicus'
+    suffix = 'copernicus90' if candidate == 'haghtanak_bridge' else 'copernicus'
     source = ROOT / '.artifacts/bridge-terrain' / (candidate + '-' + suffix + '.tif')
     image = Image.open(source)
     tiepoint = image.tag_v2[33922]

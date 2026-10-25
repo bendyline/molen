@@ -11,7 +11,7 @@ import { sforzaStudy } from '../../worldgen/scripts/sforza-castle-model.mjs';
 import { sforzaGround } from '../../worldgen/scripts/sforza-runtime-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u0/u0n/n0258_sforza_castle'),
+const source = resolve('../../content/worldgen/source/places/u0/u0n/sforza_castle'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

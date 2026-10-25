@@ -5,7 +5,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u2/u21/n0602_aljaz_tower'),
+const source = resolve('../../content/worldgen/source/places/u2/u21/aljaz_tower'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -78,7 +78,7 @@ it('retains all eight real viewing recesses in district, street and closeup', as
 });
 it('preserves the original source master and labels the preview doorway bearing as approximate', async () => {
   const s = await read(source + '/spec.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.sourceFacts.viewingWindowCount).toBe(8);

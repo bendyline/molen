@@ -1,0 +1,152 @@
+{
+  "format": "molen/terrain-source-decision@1",
+  "reviewedOn": "2026-10-19",
+  "state": "both-fixed-core-placements-held",
+  "primaryMetadata": "https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.082025.4326.1",
+  "specificProductDocumentation": "https://object.cloud.sdsc.edu/v1/AUTH_opentopography/www/metadata/GEDTM30_metadata.pdf",
+  "authorDocumentation": "https://codeberg.org/openlandmap/GEDTM30/raw/branch/main/README.md",
+  "authorDocumentationHash": "sha256:fa53f4de617b0f22418d20a4a28478d18beb53afc4e70a3ff3d6d76465d3d583",
+  "rights": "Original terrain data CC-BY4.0,consistent with existing open map/terrain evidence policy;not photographic imagery. No attribution-only photograph adopted.",
+  "v12Rejected": {
+    "sourceUrl": "https://s3.opengeohub.org/global/dtm/v1.2/gedtm_rf_m_30m_s_20060101_20151231_go_epsg.4326.3855_v1.2.tif",
+    "publisherRecord": "https://zenodo.org/records/18887460",
+    "publisherRecordHash": "sha256:657edb32e70ee38bf233fbdba0e1e9b9d6d50c4da5bebce79075830159e44b10",
+    "nativeBlockHash": "sha256:b980bed6a86a5b001c1e14b9af56e6f6d83be6231b0160edad7bed9b5ebe6d29",
+    "independentlyDecodedPixels": 4194304,
+    "representationConflict": "Original tile isFloat32with metre-looking176.4..328.9values,while embeddedGDALSCALE0.1andauthorInt32decimetre table conflict. Applying scale would putDelhiat21.18m. No interpretation adopted,including the superficially easier scaled contact result.",
+    "diagnosticHash": "sha256:6df7690ad6ab35b4dd119d34f375b18d069d574cd8c547bda28b5b1e7ad65cce"
+  },
+  "filteredProduct": "Separate original Int32decimetre raster explicitly named byOpenTopography;0.1scaling applied exactly. GeoTIFFpixel-is-area centers and complete unchanged native tile bytes verified by two bitwise-agreeing decoders. This is a publisher-filtered product;no local smoothing,coarsening,masking or NODATA filling performed.",
+  "results": [
+    {
+      "dataset": "GEDTM30 filtered v20250619",
+      "sourceUrl": "https://s3.opengeohub.org/global/edtm/filtered.dtm_edtm_m_30m_s_20060101_20151231_go_epsg.4326.3855_v20250619.tif",
+      "license": "CC-BY-4.0",
+      "kind": "terrain data, not photographic imagery",
+      "nativeResolutionArcseconds": 0.9000000000003714,
+      "originalTile": [
+        502,
+        108
+      ],
+      "block": 76534,
+      "independentlyDecodedPixels": 4194304,
+      "bitwiseDecoderAgreement": true,
+      "geoTiffRasterType": "PixelIsArea",
+      "rawScaleMeters": 0.1,
+      "verticalDatum": "EGM2008 / EPSG:3855",
+      "contact": {
+        "local": [
+          12,
+          51.252803
+        ],
+        "geographic": [
+          77.25078051854389,
+          28.59282736380005
+        ],
+        "modelY": 0,
+        "basis": "Dry southern garden path,3m outside mapped lower platform and12m east of centerline, away from central water channel. Chosen before ground acquisition and model geometry."
+      },
+      "datum": 213.0181268610957,
+      "perimeterProbes": 781,
+      "relativeRange": [
+        -1.3891020435812607,
+        0.3631596545660898
+      ],
+      "lowest": {
+        "point": [
+          -49.178727,
+          -48.258639
+        ],
+        "height": 211.62902481751445,
+        "relative": -1.3891020435812607
+      },
+      "highest": {
+        "point": [
+          48.903260103092784,
+          -8.950905427835053
+        ],
+        "height": 213.3812865156618,
+        "relative": 0.3631596545660898
+      },
+      "gridRange": [
+        210.7662,
+        215.5955
+      ],
+      "model": "humayuns_tomb",
+      "status": "rejected-no-model-or-ground-change",
+      "originalBlockHash": "sha256:2a2dd526a3222b16116fcfe89d63bf84f5e998ff9fddc2e6a415d273eccc6752",
+      "completeComparisonHash": "sha256:95f1577231a50fffe7a4c0d0515f09c0b658166863e40700836abee78ef8c84e",
+      "decision": "Filtered field reduces roof intrusion but leaves0.7891munder the original-.6mlower-plinth foot at the northwestern edge. No adaptive foundation extension or datum fitting."
+    },
+    {
+      "dataset": "GEDTM30 filtered v20250619",
+      "sourceUrl": "https://s3.opengeohub.org/global/edtm/filtered.dtm_edtm_m_30m_s_20060101_20151231_go_epsg.4326.3855_v20250619.tif",
+      "license": "CC-BY-4.0",
+      "kind": "terrain data, not photographic imagery",
+      "nativeResolutionArcseconds": 0.9000000000003714,
+      "originalTile": [
+        493,
+        127
+      ],
+      "block": 89901,
+      "independentlyDecodedPixels": 4194304,
+      "bitwiseDecoderAgreement": true,
+      "geoTiffRasterType": "PixelIsArea",
+      "rawScaleMeters": 0.1,
+      "verticalDatum": "EGM2008 / EPSG:3855",
+      "contact": {
+        "local": [
+          2.640169499999999,
+          30.26811
+        ],
+        "geographic": [
+          72.83334697033878,
+          18.92158790592867
+        ],
+        "modelY": 0,
+        "basis": "Dry public pavement1.5m seaward of the middle of the historic waterfront facade, outside native building. Fixed before source ground and geometry. No harbor water or terrace roof used as datum."
+      },
+      "datum": 2.039230182976559,
+      "perimeterProbes": 907,
+      "relativeRange": [
+        -0.046471113241522755,
+        9.967650694516543
+      ],
+      "lowest": {
+        "point": [
+          13.622465687500004,
+          28.76811
+        ],
+        "height": 1.9927590697350364,
+        "relative": -0.046471113241522755
+      },
+      "highest": {
+        "point": [
+          -53.17634,
+          -46.74336
+        ],
+        "height": 12.006880877493101,
+        "relative": 9.967650694516543
+      },
+      "gridRange": [
+        0.0592,
+        17.8056
+      ],
+      "model": "taj_mahal_palace_hotel",
+      "status": "rejected-no-model-or-ground-change",
+      "originalBlockHash": "sha256:8761f09c9e78e2affea7757f494cc27159845323dddd8dfc4050529d6721d998",
+      "completeComparisonHash": "sha256:3652a38bd40b7bf5a0ca625ac932f72897c85d5b1dca8bdcc94b8ffdf28fd1e8",
+      "decision": "Field still rises9.9677mabove the original dry waterfront reference,at the Palace northwest interface. This does not establish bare ground or road contact. No ground/geometry/placement fitted to these values."
+    }
+  ],
+  "commands": [
+    "python3 .artifacts/qualla-batch/gedtm30-reference/compare-humayun.py",
+    "python3 .artifacts/qualla-batch/gedtm30-reference/compare-filtered.py humayun",
+    "python3 .artifacts/qualla-batch/gedtm30-reference/compare-filtered.py taj"
+  ],
+  "modelGeometryChanged": false,
+  "sourceGroundChanged": false,
+  "placementsActivated": 0,
+  "completedStoryWrites": 0,
+  "nextAction": "Do not repeat these unchanged products or choose a scale/datum to force acceptance. Two fixed-core models still require independent usable site ground. Original architectural geometry and failed source fields retained."
+}

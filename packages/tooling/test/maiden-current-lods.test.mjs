@@ -11,7 +11,7 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/tp/tp5/n0562_maiden_tower'),
+const source = resolve('../../content/worldgen/source/places/tp/tp5/maiden_tower'),
   runtime = await runtimeLodFixture(
     source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
   );
@@ -86,12 +86,12 @@ it('reproduces the unchanged Maiden draft and binds the published west-facing en
     )(surfaces, normalize, meshCross, MATERIAL_REPEAT_METERS),
     b = new MeshBufferBuilder(),
     used = new Map(),
-    draft = heritageTowers.find((s) => s.planId === 'N0562');
+    draft = heritageTowers.find((s) => s.planId === 'maiden_tower');
   draft.build(wrap(b, used, draft.componentMap));
   const s = await read(`${source}/spec.json`),
     scope = await read(`${source}/review-scope.json`),
     frame = await read(`${source}/map-frame.json`),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.sourceGeometry.export).toBe('buildMaidenReviewed');

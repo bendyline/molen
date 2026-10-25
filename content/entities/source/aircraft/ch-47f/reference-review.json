@@ -1,0 +1,229 @@
+{
+  "variant": "Boeing CH-47F Chinook, standard fuel sponsons and CAAS cockpit, unarmed",
+  "references": [
+    {
+      "url": "https://www.chinook-helicopter.com/history/Nick_Van_Valkenburgh/H-47_Chinook_Legacy_Nov_2012_Expanded.pdf",
+      "title": "The H-47 Chinook Legacy, expanded November 2012, page 60, OPF00001 CH-47F dimension drawing",
+      "author": "Nick Van Valkenburgh; aircraft drawing reproduced in historical compilation",
+      "license": "Copyright status of reproduced drawing not established; local analysis only; no reference pixels shipped.",
+      "scope": "Tandem rotor spacing, diameter, body length, wheelbase, gear width, pylons and ramp profile."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:CH-47_Cockpit.jpg",
+      "author": "Sgt. Michael Wilson, U.S. Army",
+      "license": "Public domain (U.S. federal government)",
+      "scope": "Exact CH-47F CAAS cockpit photograph, October 2022. Wide-angle lens and crew obscure outer lower panels."
+    },
+    {
+      "url": "https://www.collinsaerospace.com/-/media/CA/product-assets/files/public/products/product-brochures/integrated-systems/flight-deck/caas_h-47-brochure-19-1395-00_0419.pdf?rev=9e3b1920e7224e4ba8b122fb1c6ba02a",
+      "title": "CAAS for the H-47 Chinook, 23-31249-03, December 2023",
+      "author": "Collins Aerospace",
+      "license": "Copyright Collins Aerospace; factual dimensions only; no pixels shipped.",
+      "scope": "MFD-268C3A active 6-by-8-inch display dimensions; five-display cockpit architecture."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:U.S._Army_Boeing_CH-47F_Chinook_11-08097_FDK_MD1.jpg",
+      "author": "Acroterion",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "scope": "Exact F exterior: polygonal nose/glazing, lower fuel sponsons, pylon/engine shapes, gear and surface details."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.58,
+      5.45
+    ],
+    "lookAt": [
+      0,
+      2.03,
+      6.72
+    ],
+    "fov": 91
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.95
+    ],
+    "viewHeight": 1.45,
+    "cameraHeight": 3.65
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/ch47-side-level.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 2164,
+        "height": 910
+      },
+      "referenceAnchor": [
+        588.5,
+        647.65
+      ],
+      "modelAnchor": [
+        -5.9309,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 507.144213340353,
+        "meters": 6.858,
+        "description": "Published wheelbase 22ft 6in."
+      },
+      "scope": "Approximate published CH-47F drawing; scale uniform within each view. Rotor resting/coning angles and ground attitude vary.",
+      "preparation": {
+        "source": "ch47-dimensions.png",
+        "crop": {
+          "left": 690,
+          "top": 2200,
+          "width": 2110,
+          "height": 735
+        },
+        "rotationDegrees": 4.84,
+        "output": [
+          2164,
+          910
+        ],
+        "groundAnchor": [
+          588.5,
+          647.65
+        ],
+        "scalePixels": 507.144213340353,
+        "scope": "Uniform crop and rotation to level the illustrated ground plane. No stretching.",
+        "anchorDescription": "Rotated forward rotor axis projected vertically onto leveled ground. Do not use the tilted mast foot as the horizontal anchor."
+      }
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/ch47-dimensions.png",
+      "crop": {
+        "left": 590,
+        "top": 956,
+        "width": 1958,
+        "height": 1184
+      },
+      "referenceAnchor": [
+        1205.7303370786517,
+        1540.7865168539327
+      ],
+      "modelAnchor": [
+        0,
+        5.9309
+      ],
+      "scaleControls": {
+        "pixels": 747.9775280898876,
+        "meters": 11.8618,
+        "description": "Published rotor-hub spacing 38ft 11in."
+      },
+      "rotate": 270,
+      "scope": "Approximate published CH-47F drawing; scale uniform within each view. Rotor resting/coning angles and ground attitude vary."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/ch47-dimensions.png",
+      "crop": {
+        "left": 2029,
+        "top": 2997,
+        "width": 496,
+        "height": 425
+      },
+      "referenceAnchor": [
+        2255.7303370786517,
+        3376.516853932584
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 219.43820224719101,
+        "meters": 3.6322,
+        "description": "Published main gear width 11ft 11in."
+      },
+      "scope": "Approximate published CH-47F drawing; scale uniform within each view. Rotor resting/coning angles and ground attitude vary."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/ch47-panel-analysis.png",
+      "crop": {
+        "left": 217,
+        "top": 710,
+        "width": 1290,
+        "height": 318
+      },
+      "referenceAnchor": [
+        887,
+        800
+      ],
+      "modelAnchor": [
+        0,
+        -2.04
+      ],
+      "scaleControls": {
+        "pixels": 104,
+        "meters": 0.1524,
+        "description": "Central MFD active width, Collins 6-by-8-inch display. Wide-angle photograph: outer bank widths are estimates."
+      },
+      "edgeMode": "photo",
+      "scope": "Central face relative layout; unrectified wide-angle lens and oblique outer displays. Crew and kneeboard occlusions excluded from geometry."
+    }
+  ],
+  "status": "reviewed-with-limitations",
+  "reviewNotes": {
+    "corrections": [
+      "Replaced generic tandem helicopter with authored CH-47F shell, tapered fuel sponsons, rising cargo ramp, fore/aft transmission pylons, outboard T55 nacelles and fixed four-leg landing gear.",
+      "Set 11.8618m rotor-hub spacing, 18.288m rotor diameter, 15.4686m fuselage length and 6.858m wheelbase from dimension drawing. Counter-rotating three-blade heads carry hub, links and drooped blade geometry.",
+      "Cut true round cabin windows and separate upper, lower and roof cockpit glazing. Expanded lower pilot windows after rendered inspection.",
+      "Rebuilt five portrait-display CAAS panel, central engine page, paired standby units, twin CDU pedestal, overhead switch banks and animated cyclic/thrust/pedal controls."
+    ],
+    "independentDimensions": {
+      "rotorHubSpacingM": 11.8618,
+      "rotorDiameterM": 18.288,
+      "bodyLengthM": 15.4686,
+      "wheelbaseM": 6.858,
+      "publishedMainGearWidthM": 3.6322,
+      "publishedBladeChordM": 0.8128,
+      "centralMfdActiveM": [
+        0.1524,
+        0.2032
+      ]
+    },
+    "limitations": [
+      "Published drawing labels all dimensions approximate; side profile shows a ground attitude and rotor coning/droop that differ from the modeled parked state. Front drawing is low resolution and not consistent enough for fine contour tolerances.",
+      "Cockpit photo is wide angle, with oblique outer screens and crew/kneeboard occlusions. Central display scale uses Collins dimensions; outer panel widths, coaming depth, seat placement and overhead switch spacing remain estimates.",
+      "Cargo seating, switches and avionics graphics are deliberately simplified. The photograph is a specific 2022 cockpit fit and does not establish every CH-47F equipment option."
+    ],
+    "visual": "Individually inspected side/front/top and cockpit overlays, all four turntable views, lit three-quarter scene, pilot forward view, downward panel view and centered cabin view. Confirmed five-screen ordering, side/chin glass openings and unblocked forward sightline; no exterior weapons."
+  },
+  "sourceHash": "sha256:2a24de6b02dbc5abc44b39b4ea1f44e39ad0a659f20652ba45c5f4e2a03f1fe4",
+  "runtimeHash": "sha256:aba3fb837d6d467fcbd106c081299da0b35ff378c9c69bb69c70429e78022c5e",
+  "limitations": [
+    "Published drawing labels all dimensions approximate; side profile shows a ground attitude and rotor coning/droop that differ from the modeled parked state. Front drawing is low resolution and not consistent enough for fine contour tolerances.",
+    "Cockpit photo is wide angle, with oblique outer screens and crew/kneeboard occlusions. Central display scale uses Collins dimensions; outer panel widths, coaming depth, seat placement and overhead switch spacing remain estimates.",
+    "Cargo seating, switches and avionics graphics are deliberately simplified. The photograph is a specific 2022 cockpit fit and does not establish every CH-47F equipment option."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:7fe68984a31662d30a17c636450ce89cb5276ae9cf5b74eb12c2d97ce1d21c50",
+    "sourceHash": "sha256:2a24de6b02dbc5abc44b39b4ea1f44e39ad0a659f20652ba45c5f4e2a03f1fe4",
+    "runtimeHash": "sha256:aba3fb837d6d467fcbd106c081299da0b35ff378c9c69bb69c70429e78022c5e",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/ch-47f-pair.png",
+        "sha256": "sha256:97fd6aea0dbdb18a96a371b5427a86f18b5f6ad2af33345b4c295228e6251bf3",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

@@ -1,0 +1,453 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "floor": {
+      "graph": "concrete_plain",
+      "slot": "trim",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.25,
+      "metallic": 0.1
+    },
+    "frame": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.65,
+      "metallic": 0.2
+    },
+    "roof": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.2
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -241.65959097277977,
+      110.88304575335587,
+      14.164818772888609
+    ],
+    "lookAt": [
+      -2.4593879744417126,
+      5.883045753355873,
+      -1.7179670518294263
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "western-flared-wings-and-balcony",
+      "position": [
+        -120.01573013256905,
+        18.883045753355873,
+        -81.39548218879447
+      ],
+      "lookAt": [
+        -70.50245526732908,
+        7.883045753355873,
+        -49.248388819110225
+      ],
+      "fov": 52
+    },
+    {
+      "name": "southeast-side-entrance-and-ridge",
+      "position": [
+        60.21868315821767,
+        12.883045753355873,
+        88.41781607057591
+      ],
+      "lookAt": [
+        62.30449535252338,
+        7.883045753355873,
+        43.5218319796788
+      ],
+      "fov": 58
+    },
+    {
+      "name": "hall-of-names-rooflight-and-buried-prism",
+      "position": [
+        -42.28557661637855,
+        35.88304575335587,
+        -96.62779108631418
+      ],
+      "lookAt": [
+        -42.22550111171568,
+        9.883045753355873,
+        -35.59504257427567
+      ],
+      "fov": 56
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -241.65959097277977,
+        110.88304575335587,
+        14.164818772888609
+      ],
+      "lookAt": [
+        -2.4593879744417126,
+        5.883045753355873,
+        -1.7179670518294263
+      ],
+      "fov": 43,
+      "name": "yad-history-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -241.65959097277977,
+        110.88304575335587,
+        14.164818772888609
+      ],
+      "lookAt": [
+        -2.4593879744417126,
+        5.883045753355873,
+        -1.7179670518294263
+      ],
+      "fov": 43,
+      "name": "yad-history-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -241.65959097277977,
+        110.88304575335587,
+        14.164818772888609
+      ],
+      "lookAt": [
+        -2.4593879744417126,
+        5.883045753355873,
+        -1.7179670518294263
+      ],
+      "fov": 43,
+      "name": "yad-history-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -241.65959097277977,
+        110.88304575335587,
+        14.164818772888609
+      ],
+      "lookAt": [
+        -2.4593879744417126,
+        5.883045753355873,
+        -1.7179670518294263
+      ],
+      "fov": 43,
+      "name": "yad-history-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.8830457533558729,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yad-history-model.mjs",
+    "export": "buildYadHistorySkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYadHistoryDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "buildYadHistoryStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYadHistoryCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "draft-proposal",
+    "anchor": [
+      35.17525613307953,
+      31.77417759158591
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": false,
+    "groundContactBasis": "Retain original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered southeast approach provider internal[72,13], datum793.3169542466442m. No ground cutout: the museum is partly underground, so its original hillside must continue over buried lower faces. Only the named native building is replaced. Foundation below the occupied prism and a closed balcony retain contact where coarse grade falls. Exact entrances, thresholds/accessibility and underground terrain/interiors are unverified.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      35.17425883735646,
+      31.773605666361412,
+      35.17617832695018,
+      31.774813359546677
+    ],
+    "terrainReference": {
+      "anchor": [
+        35.17580117828083,
+        31.773711468746473
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered southeast approach provider internal[72,13], datum793.3169542466442m. No ground cutout: the museum is partly underground, so its original hillside must continue over buried lower faces. Only the named native building is replaced. Foundation below the occupied prism and a closed balcony retain contact where coarse grade falls. Exact entrances, thresholds/accessibility and underground terrain/interiors are unverified."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -91.37987645599469,
+          -47.9744510229131
+        ],
+        [
+          -79.7035589088398,
+          -44.92846077568425
+        ],
+        [
+          -67.26574239121831,
+          -40.35947371848748
+        ],
+        [
+          75.89606405650669,
+          60.66642476298669
+        ],
+        [
+          84.27255273163954,
+          51.020693163261924
+        ],
+        [
+          -53.81259391297462,
+          -44.42079564747246
+        ],
+        [
+          -66.50424342075169,
+          -54.574093462709044
+        ],
+        [
+          -72.85006817464017,
+          -61.17373167238375
+        ],
+        [
+          -78.68822694821768,
+          -67.77336565510112
+        ],
+        [
+          -82.74955479070627,
+          -62.18906025352746
+        ],
+        [
+          -78.68822694821768,
+          -56.604751822528904
+        ],
+        [
+          -73.86540013526235,
+          -51.781937562438216
+        ],
+        [
+          -74.88073209588453,
+          -50.005110684673795
+        ],
+        [
+          -82.24188881039521,
+          -52.543434701075114
+        ],
+        [
+          -88.58771356428372,
+          -53.30493178276199
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -91.37987645599469,
+            -47.9744510229131
+          ],
+          [
+            -79.7035589088398,
+            -44.92846077568425
+          ],
+          [
+            -67.26574239121831,
+            -40.35947371848748
+          ],
+          [
+            75.89606405650669,
+            60.66642476298669
+          ],
+          [
+            84.27255273163954,
+            51.020693163261924
+          ],
+          [
+            -53.81259391297462,
+            -44.42079564747246
+          ],
+          [
+            -66.50424342075169,
+            -54.574093462709044
+          ],
+          [
+            -72.85006817464017,
+            -61.17373167238375
+          ],
+          [
+            -78.68822694821768,
+            -67.77336565510112
+          ],
+          [
+            -82.74955479070627,
+            -62.18906025352746
+          ],
+          [
+            -78.68822694821768,
+            -56.604751822528904
+          ],
+          [
+            -73.86540013526235,
+            -51.781937562438216
+          ],
+          [
+            -74.88073209588453,
+            -50.005110684673795
+          ],
+          [
+            -82.24188881039521,
+            -52.543434701075114
+          ],
+          [
+            -88.58771356428372,
+            -53.30493178276199
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared Yad Vashem Q156591; distinct named OSM way74078313/native35184446167145 is the History Museum, not the whole campus. The fifteen-point PMTiles outline fixes the southeast entrance, northwest flare and signed long axis. Heading0 with internal+X toward southeast/+Z southwest baked into east/south model coordinates. Hall of Names skylight internal[-70,-19] is a picture-led integrated roof estimate, not a separate mapped building or surveyed position. Preserve all independent buildings, including Hall of Remembrance way74078348."
+    },
+    "notes": "Shared Yad Vashem Q156591; distinct named OSM way74078313/native35184446167145 is the History Museum, not the whole campus. The fifteen-point PMTiles outline fixes the southeast entrance, northwest flare and signed long axis. Heading0 with internal+X toward southeast/+Z southwest baked into east/south model coordinates. Hall of Names skylight internal[-70,-19] is a picture-led integrated roof estimate, not a separate mapped building or surveyed position. Preserve all independent buildings, including Hall of Remembrance way74078348. Retain original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered southeast approach provider internal[72,13], datum793.3169542466442m. No ground cutout: the museum is partly underground, so its original hillside must continue over buried lower faces. Only the named native building is replaced. Foundation below the occupied prism and a closed balcony retain contact where coarse grade falls. Exact entrances, thresholds/accessibility and underground terrain/interiors are unverified."
+  }
+}

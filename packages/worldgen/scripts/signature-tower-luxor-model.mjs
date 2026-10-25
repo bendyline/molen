@@ -169,7 +169,7 @@ function edges(plan) {
     .filter((e) => e.len > 0.05);
 }
 function northernTowers(out, m) {
-  const parts = partsEvidence('n0204_luxor_resort_casino'),
+  const parts = partsEvidence('luxor_resort_casino'),
     base = parts.find((p) => p.id === 136520122);
   const plan = partPlan(m, base);
   // The 1998 podium links both stepped wings to the northern pyramid frontage.
@@ -758,7 +758,7 @@ export function buildLuxor(out, m) {
   obelisk(out);
 }
 export const luxorStudy = {
-  id: 'N0204',
+  id: 'luxor_resort_casino',
   key: 'luxor_resort_casino',
   title: 'Luxor Resort & Casino',
   wikidataId: 'Q637389',

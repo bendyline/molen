@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sw/swr/n0337_saint_sophia_cathedral/',
+  '../../../content/worldgen/source/places/sw/swr/saint_sophia_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -858,7 +858,7 @@ export const buildSophiaDistrict = (o) => build(o, 1);
 export const buildSophiaStreet = (o) => build(o, 2);
 export const buildSophiaCloseup = (o) => build(o, 3);
 export const sophiaStudy = {
-  id: 'N0337',
+  id: 'saint_sophia_cathedral',
   key: 'saint_sophia_cathedral',
   title: 'Saint Sophia Cathedral',
   category: 'cathedral',

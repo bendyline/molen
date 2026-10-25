@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
+import { createEmptyTerrainSemanticTile } from '@bendyline/molen-terrain/kernel';
 import {
   type BuildingMetrics,
   FLAT_GROUND,
@@ -11,6 +12,8 @@ import { Color, SRGBColorSpace } from 'three';
 import { describe, expect, it } from 'vitest';
 import { createRegionalLibrary } from '../src/kernel/regional-content';
 import { regionalCatalogSchema } from '../src/kernel/regional-content-schema';
+import { createRegionalEnvironment } from '../src/kernel/regional-environment';
+import { semanticTileToBatch } from '../src/kernel/semantic-adapter';
 import { loadDefaultAtlas, loadDefaultPack } from './helpers/pack';
 
 const pack = await loadDefaultPack();
@@ -42,6 +45,77 @@ const selected = (
   ).style.replace(/\.(compact|open)$/, '');
 
 describe('ordinary regional architecture', () => {
+  it('chooses regional lot plans, garages and materials for inferred homes, and shops for commercial land', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation = [
+      {
+        class: 'residential',
+        lines: [
+          [
+            [0, 0.5],
+            [1, 0.5],
+          ],
+        ],
+      },
+    ];
+    tile.landcover = [
+      {
+        class: 'residential',
+        polygons: [
+          {
+            outer: [
+              [0, 0],
+              [1, 0],
+              [1, 1],
+              [0, 1],
+            ],
+          },
+        ],
+      },
+    ];
+    const geom = {
+      level: 15,
+      x: 0,
+      z: 0,
+      originX: 0,
+      originZ: 0,
+      size: 480,
+      metersPerUnit: 1,
+      levelBelowMax: 0,
+    };
+    for (const [regionId, family, wall, roof] of [
+      ['us.southwest', 'southwestern', 'stucco', 'tile_ceramic'],
+      ['us.pnw', 'north_american', 'siding', 'shingle_asphalt'],
+      ['jp', 'east_asian', 'stucco', 'tile_ceramic'],
+    ]) {
+      const region = atlas.regions.find((r) => r.id === regionId);
+      if (!region) throw new Error(`Missing ${regionId}`);
+      const regions = { atlas, resolve: () => region, intersecting: () => [region] };
+      const environment = createRegionalEnvironment({ catalogs: [doc] }, 1, regions);
+      const options = { pack, environment, regions, buildingInfill: { seed: 819 } };
+      const batch = semanticTileToBatch(tile, geom, options);
+      const homes = batch.buildings.filter((b) => b.labels.includes('house'));
+      expect(homes.length).toBeGreaterThan(35);
+      expect(homes.every((b) => b.style?.includes(`.${family}.detached`))).toBe(true);
+      const houseStyle = pack.archstyles[homes[0]?.style ?? ''];
+      expect(houseStyle?.materials.wall.choices[0]?.ref).toContain(wall);
+      expect(houseStyle?.materials.roof.choices[0]?.ref).toContain(roof);
+      expect(new Set(homes.map((b) => b.outline.length)).size).toBeGreaterThan(1);
+      const garages = batch.buildings.filter((b) => b.access?.garage);
+      if (regionId === 'jp') expect(garages).toHaveLength(0);
+      else {
+        expect(garages.length).toBeGreaterThan(8);
+        expect(garages.every((b) => b.levels === 1)).toBe(true);
+      }
+      const commercial = structuredClone(tile);
+      if (commercial.landcover[0]) commercial.landcover[0].class = 'commercial';
+      const shops = semanticTileToBatch(commercial, geom, options).buildings;
+      expect(shops.length).toBeGreaterThan(30);
+      expect(
+        shops.every((b) => b.labels.includes('commercial') && b.style?.includes('.commercial')),
+      ).toBe(true);
+    }
+  });
   it('selects all three recipes for every family and use from stable building identities', () => {
     for (const profile of doc.profiles) {
       const seen = new Set<string>();
@@ -92,7 +166,9 @@ describe('ordinary regional architecture', () => {
     }
     expect(selected(undefined, ['house'])).toBe('molen.worldgen.regional.neutral.detached');
     expect(selected('us.pnw', ['house'])).toBe('molen.worldgen.regional.north_american.detached');
-    expect(selected('us.southwest', ['house'])).toBe('molen.worldgen.regional.arid.detached');
+    expect(selected('us.southwest', ['house'])).toBe(
+      'molen.worldgen.regional.southwestern.detached',
+    );
     expect(selected('jp', ['house'])).toBe('molen.worldgen.regional.east_asian.detached');
     expect(selected('library.fiji', ['house'])).toBe(
       'molen.worldgen.regional.tropical_timber.detached',
@@ -128,7 +204,7 @@ describe('ordinary regional architecture', () => {
     const styles = Object.values(pack.archstyles).filter((style) =>
       style.id.startsWith('molen.worldgen.regional.'),
     );
-    expect(styles).toHaveLength(273);
+    expect(styles).toHaveLength(294);
     for (const style of styles) {
       const build = () => {
         const builder = new MeshBufferBuilder();
@@ -166,5 +242,5 @@ describe('ordinary regional architecture', () => {
       expect(Array.from(a.mesh.positions).every(Number.isFinite), style.id).toBe(true);
       expect(a.mesh.positions, style.id).toEqual(build().mesh.positions);
     }
-  }, 30_000); // Builds all 273 regional styles twice.
+  }, 30_000); // Builds every regional style twice.
 });

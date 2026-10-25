@@ -1,4 +1,4 @@
-/** Historic Hotel del Coronado exterior from the Qualla aerial and front photographs.
+/** Historic Hotel del Coronado exterior with original government survey controls.
  * The mapped courtyard remains open; the later north pavilion is outside this asset.
  */
 import './install-deterministic-math.mjs';
@@ -12,6 +12,13 @@ const base = new URL(
   '../../../content/worldgen/source/places/9m/9mu/hotel_del_coronado/',
   import.meta.url,
 );
+const ballroomControls = JSON.parse(
+    fs.readFileSync(new URL('ballroom-survey-controls.json', base)),
+  ),
+  ballroomY = (name) =>
+    ballroomControls.referenceFloorModelY +
+    ballroomControls.relativeFeet[name] * ballroomControls.feetToMeters;
+const kitchenControls = JSON.parse(fs.readFileSync(new URL('kitchen-plan-controls.json', base)));
 const white = rgb('e9e7dc'),
   trim = rgb('f1eee3'),
   roof = rgb('9c4435'),
@@ -233,34 +240,85 @@ function turret(o, x, z, y, d) {
 function rotunda(o, d) {
   const x = 63,
     z = 39,
-    n = 12;
-  band(o, x, z, 23, -1.3, 5.3, n, 'foundation', baseColor);
-  band(o, x, z, 22.4, 3.9, 3.6, n, 'wall', white);
-  cone(o, x, z, 23, 17.1, 7.5, 10.0, n);
-  band(o, x, z, 17.1, 10.0, 2.6, n, 'wall', white);
-  cone(o, x, z, 18, 4.25, 12.6, 31, n);
-  band(o, x, z, 5, 31, 0.45, n);
-  band(o, x, z, 4.15, 31.45, 4.0, n, 'wall', white);
-  cone(o, x, z, 4.7, 0.08, 35.45, 42.4, n);
-  B(o, 'trim', x, 42.3, z, 0.14, 6, 0.14, trim);
+    n = 12,
+    floor = ballroomY('ballroomFloor'),
+    balcony = ballroomY('balcony'),
+    eave = ballroomY('mainRoofEave'),
+    towerFloor = ballroomY('belvedereFloor'),
+    towerEave = towerFloor + 12 * ballroomControls.feetToMeters,
+    roofTip = ballroomY('roofTip'),
+    flagpoleTip = ballroomY('flagpoleTip');
+  // Sheet 7 distinguishes the lower glazed storey from the ballroom facade.
+  // Retain the existing native horizontal envelope and buried attachment plane;
+  // the reconstructed section is not a current ground or horizontal survey.
+  band(o, x, z, 22.4, -1.3, floor + 1.3, n, 'wall', white);
+  band(o, x, z, 22.4, floor, 7.5 - floor, n, 'wall', white);
+  cone(o, x, z, 23, 17.1, 7.5, balcony, n);
+  band(o, x, z, 17.1, balcony, eave - balcony, n, 'wall', white);
+  cone(o, x, z, 18, 4.25, eave, towerFloor - 0.45, n);
+  band(o, x, z, 5, towerFloor - 0.45, 0.45, n);
+  band(o, x, z, 4.15, towerFloor, towerEave - towerFloor, n, 'wall', white);
+  cone(o, x, z, 4.7, 0.08, towerEave, roofTip, n);
+  B(o, 'trim', x, roofTip - 0.1, z, 0.14, flagpoleTip - roofTip + 0.1, 0.14, trim);
   if (d) {
+    band(o, x, z, 22.52, floor - 0.1, 0.2, n);
+    polygonWindows(o, x, z, 21.64, 0.65, 2.65, n, d, 2);
     polygonWindows(o, x, z, 21.64, 4.4, 2.4, n, d, 2);
-    polygonWindows(o, x, z, 16.51, 10.5, 1.8, n, d, 3);
-    polygonWindows(o, x, z, 4.01, 32.0, 2.7, n, d, 1);
+    polygonWindows(o, x, z, 16.51, balcony + 0.2, eave - balcony - 0.4, n, d, 3);
+    polygonWindows(o, x, z, 4.01, towerFloor + 0.4, 2.7, n, d, 1);
   }
   if (d > 1) {
     for (let i = 0; i < n; i++) {
       const a = (i * Math.PI * 2) / n,
         ro = facing(o, a, x, z);
       for (const [y, r, w] of [
-        [18.0, 12.45, 2.6],
+        [18.4, 12.45, 2.6],
         [24.3, 7.55, 1.9],
       ])
         dormer(ro, 0, y, r, w, 2.2, 1.15);
       const rr = facing(o, a, x + Math.sin(a) * 4.82, z + Math.cos(a) * 4.82);
-      railing(rr, 2.6, 31.5, 0, d);
-      beam(ro, 'trim', [0, 30, 4.1], [0, 31.1, 5.05], 0.18, 0.2, trim);
+      railing(rr, 2.6, towerFloor + 0.05, 0, d);
+      beam(ro, 'trim', [0, towerFloor - 1.5, 4.1], [0, towerFloor - 0.35, 5.05], 0.18, 0.2, trim);
     }
+  }
+}
+function kitchen(o, d) {
+  const ring = kitchenControls.outline,
+    eave = kitchenControls.eaveMeters,
+    tip = kitchenControls.roofTipMeters,
+    center = [
+      ring.reduce((sum, p) => sum + p[0], 0) / ring.length,
+      ring.reduce((sum, p) => sum + p[1], 0) / ring.length,
+    ];
+  // The old long dining bar left this distinct mapped kitchen as bare plinth.
+  // Keep the original ground and join the new walls to the existing foundation.
+  prism(o, [ring], d ? 1.15 : -1.4, eave, white);
+  for (let i = 0; i < ring.length; i++) {
+    const a = ring[i],
+      b = ring[(i + 1) % ring.length],
+      p = [
+        [a[0], eave, a[1]],
+        [b[0], eave, b[1]],
+        [center[0], tip, center[1]],
+      ];
+    if (normalFor(...p)[1] < 0) p.reverse();
+    o.addTriangle(
+      'roof',
+      ref,
+      p,
+      normalFor(...p),
+      p.map((v) => [v[0], v[2]]),
+      roof,
+    );
+    if (!d || (d === 1 && i > 1)) continue;
+    const dx = b[0] - a[0],
+      dz = b[1] - a[1],
+      width = Math.hypot(dx, dz),
+      nx = dz / width,
+      nz = -dx / width,
+      facade = facing(o, Math.atan2(nx, nz), (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+    if (d === 1) face(facade, 'glass', 0, 4.1, 0.035, width * 0.52, 2.5, glass);
+    else for (const x of [-width / 3, 0, width / 3]) window(facade, x, 4.1, 0.035, 2.2, 3.0, d);
   }
 }
 function build(o, d) {
@@ -290,6 +348,7 @@ function build(o, d) {
   B(dining, 'wall', 0, 1.1, 0, 24, 10.0, 47, white);
   const dr = facing(dining, Math.PI / 2);
   gable(dr, 0, 0, 49, 25, 11.1, 6.2);
+  kitchen(o, d);
   // Rounded dining projection remains lower than the guest-room roofline.
   band(o, 66, -43, 10.5, 1.1, 9.5, 12, 'wall', white);
   cone(o, 66, -43, 11, 0.1, 10.6, 15.7, 12);
@@ -303,7 +362,7 @@ function build(o, d) {
   veranda(facing(o, Math.PI / 2, -30.8, 1), 39, 5, d, { depth: 1.2, pitch: 3.5 });
   veranda(facing(o, -Math.PI / 2, 30.45, 2), 38, 4, d, { depth: 1.5, pitch: 3.5 });
   if (d) {
-    // Window rhythms on the outer sides and roof dormers visible in the aerial.
+    // Window rhythms are conservative interpretations of the historic plans.
     for (const [fo, w, floors] of [
       [facing(o, -Math.PI / 2, -50.05, 1), 75, 5],
       [facing(o, Math.PI, 0, -38.05), 61, 5],
@@ -381,6 +440,11 @@ export const coronadoModel = {
   qaCameras: [
     { name: 'front', position: [5, 28, 235], lookAt: [15, 18, 20] },
     { name: 'back', position: [-85, 65, -185], lookAt: [12, 16, -10] },
+    { name: 'ballroom-detail', position: [110, 15, 100], lookAt: [63, 12, 39] },
+    { name: 'belvedere-detail', position: [87, 38, 72], lookAt: [63, 32, 39] },
+    { name: 'lower-storey-detail', position: [90, 4, 73], lookAt: [63, 3.3, 39] },
+    { name: 'courtyard-detail', position: [2, 29, 0], lookAt: [2, 9, -16] },
+    { name: 'kitchen-detail', position: [31, 24, -108], lookAt: [40, 9, -57] },
   ],
   build: coronado,
   surfaces,
@@ -394,7 +458,9 @@ export const coronadoModel = {
     module: 'packages/worldgen/scripts/structure-hotel-del-coronado.mjs',
     level: 'skyline',
     export: 'coronadoSkyline',
-    errorMeters: 1,
+    // Conservative allowance for the simplified foundation and small roof details.
+    // The kitchen volume now preserves the former missing northern projection.
+    errorMeters: 10.5,
     surfaces,
     authoredLevels: {
       district: { export: 'coronadoDistrict', errorMeters: 0.35, surfaces },
@@ -402,10 +468,13 @@ export const coronadoModel = {
     },
   },
   limitations: [
-    'Original medium-fi historic hotel exterior derived from the mapped open courtyard and individually inspected Qualla 2006–2019 photographs; not an architectural survey.',
+    'Mapped historic hotel and open courtyard retained. Current comparison starts with a cleared public-domain Lambert panorama and original government HABS1971drawings4/6/7; earlier CC photos and resort-map artwork are excluded. Historic exterior is modeled at medium-fi; later restoration details are outside the dated evidence.',
     'White painted wood, red shingle roofs, verandas, dormers and twelve-sided ballroom tower are retained. Exact floor heights, roof intersections, hidden facade rhythm, ornament and stair joins are interpretations.',
     'The later connected north service pavilion, separate modern resort neighborhoods, pool complex, utility buildings, landscaping and interiors are excluded.',
     'This dated-reference exterior does not claim every 2021–2025 porch/courtyard restoration detail. Flagpoles are modeled without animated flags.',
     'Independent ground is preserved. Other host terrain sources may differ. Reference images are not embedded or redistributed.',
+    'HABS1971sheet7 reconstructs the historical ballroom from original drawings, early photographs and field measurements. Relative lower floor, balcony, eave, belvedere floor, roof and flagpole levels now follow its labels. The existing interpreted ballroom floor+3.9m and native horizontal envelope remain unchanged; no current floor-to-ground or section-width survey claim.',
+    'Lower ballroom glazed storey replaces the former tall solid gray foundation. Original survey controls put roof tip38.9774m and flagpole tip47.0038m in this retained model frame. Belvedere wall height, apron/dormer positions, exact current window divisions and restored finishes remain interpretations.',
+    'The northern kitchen now has a separate wall volume, hipped roof and interpreted service glazing at all detail levels. Its exposed corners retain the native vector boundary. Fixed-scale HABS plan registration gives 2.54m control RMS and 6.49/7.18m approximate ballroom/kitchen check differences; no survey accuracy is claimed. The closer levels retain the native foundation perimeter. The conservative skyline allowance remains 10.5m; no global mesh-distance certificate is claimed.',
   ],
 };

@@ -3,8 +3,8 @@
 This is the original 100-target expansion plan. The target list and reference briefs below
 preserve its design intent; current production and placement status are maintained in the
 [source catalog](../../content/worldgen/source/site-structures/README.md), the
-[expansion progress report](../../content/worldgen/source/next-1000/PROGRESS.md), and the
-[round review](../../content/worldgen/source/next-1000/ROUND-REVIEW.md).
+[expansion progress report](../../content/worldgen/source/structure-catalog/PROGRESS.md), and the
+[round review](../../content/worldgen/source/structure-catalog/ROUND-REVIEW.md).
 Authoring is paused for review and cleanup. Imported geometry, visual acceptance and geographic
 readiness are separate milestones; a model's folder location does not establish placement approval.
 
@@ -14,7 +14,7 @@ readiness are separate milestones; a model's folder location does not establish 
 | Imported Molen assets | Sidecars and canonical GLBs under `content/worldgen/assets/places/` and `content/worldgen/assets/reusable/` |
 | Asset/project registration | `content/worldgen/project.json` and `content/worldgen/stylepack.json` |
 | Visual and geographic review | Each source bundle's capture reports and hash-bound `qa.json`, summarized in the generated readiness ledger |
-| Earth placement and category matching | `content/earth/structures/placements.json` and `content/earth/structures/map-rules.json` |
+| Earth placement and category matching | `content/earth/source/placements/` (compiled to regional runtime catalogs) and `content/earth/structures/map-rules.json` |
 | Procedural building styles | `content/worldgen/structures/catalog.json` |
 
 ## Viewer integration

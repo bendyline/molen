@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/map-parts.json',
+      '../../../content/worldgen/source/places/u2/u2e/hofburg_palace/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -825,7 +825,7 @@ export function buildHofburgSkyline(out) {
   buildHofburgRuntime(out, 'skyline');
 }
 export const hofburgStudy = {
-  id: 'N0245',
+  id: 'hofburg_palace',
   key: 'hofburg_palace',
   title: 'Hofburg Palace',
   category: 'castle',

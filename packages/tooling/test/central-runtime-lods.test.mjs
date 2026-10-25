@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/we/wec/n0181_central_plaza'),
+const source = resolve('../../content/worldgen/source/places/we/wec/central_plaza'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -87,7 +87,7 @@ it('reproduces Central Plaza original master and signs the independent triangula
       },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineWorld.find((p) => p.id === 'N0181').build(a.wrap(b), m);
+  skylineWorld.find((p) => p.id === 'central_plaza').build(a.wrap(b), m);
   const independent = await read(`${source}/map-parts.json`),
     spec = await read(`${source}/spec.json`);
   expect(m.elements).toHaveLength(9);

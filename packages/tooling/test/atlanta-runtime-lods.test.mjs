@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { atlantaStudy } from '../../worldgen/scripts/signature-tower-atlanta-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dn/dn5/n0207_bank_of_america_plaza'),
+const source = resolve('../../content/worldgen/source/places/dn/dn5/bank_of_america_plaza'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

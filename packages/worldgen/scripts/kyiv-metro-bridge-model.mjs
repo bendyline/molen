@@ -220,7 +220,7 @@ function railSection(out, x0, x1, z) {
   );
 }
 export const kyivMetroStudy = {
-  id: 'N0008',
+  id: 'kyiv_metro_bridge',
   mapFrameDocument: 'map-frame.json',
   wikidataId: 'Q2475012',
   key: 'kyiv_metro_bridge',

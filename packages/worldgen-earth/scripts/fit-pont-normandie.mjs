@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { formatJson } from '../../worldgen/scripts/format-json.mjs';
+import { readStructurePlacements, writeStructurePlacement } from './placement-sources.mjs';
 import { metricFrame } from './structure-map-geometry.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
@@ -41,10 +42,10 @@ const local = outline.geometry.map(({ lon, lat }) => {
 });
 const output = {
   format: 'molen/structure-alignment-study@1',
-  candidateId: 'N0002',
+  candidateId: 'pont_de_normandie',
   wikidataId: 'Q504710',
   title: 'Pont de Normandie',
-  asset: 'molen.worldgen.structure.n0002_pont_de_normandie',
+  asset: 'molen.worldgen.structure.pont_de_normandie',
   anchor,
   heading,
   authoredAxis: '+X south, +Y up; horizontal origin halfway between main-span pylon stations',
@@ -91,12 +92,11 @@ const output = {
   sourceCapturedAt: evidence.capturedAt,
   note: 'Mapped roadway transition spacing differs from the published 856 m main span by about 4 m. This supplies a measured map frame and a sourced CMH-to-IGN69 conversion; runtime terrain-datum conversion and in-terrain visual fitting remain open.',
 };
-const path = resolve(root, 'content/earth/structures/alignments/n0002_pont_de_normandie.json');
+const path = resolve(root, 'content/earth/structures/alignments/pont_de_normandie.json');
 await mkdir(dirname(path), { recursive: true });
 await writeFile(path, `${formatJson(output)}\n`);
 if (process.argv.includes('--register-draft')) {
-  const catalogPath = resolve(root, 'content/earth/structures/placements.json');
-  const catalog = JSON.parse(await readFile(catalogPath, 'utf8'));
+  const catalog = await readStructurePlacements();
   const id = 'france.pont-de-normandie';
   const existing = catalog.entries.find((entry) => entry.id === id);
   if (existing?.status === 'preview')
@@ -110,10 +110,10 @@ if (process.argv.includes('--register-draft')) {
     minLevel: 11,
     status: 'draft',
     source: 'https://www.openstreetmap.org/way/440837974',
-    note: 'Exact OSM bridge identity and paired carriageways establish the main-span midpoint and +X south axis. Authored Y is CMH; CMH-to-IGN69 offset is -4.378 m, but the host terrain datum and in-terrain fit remain unverified. Draft does not draw or replace roads. See structures/alignments/n0002_pont_de_normandie.json in the authoring source for measurements and sources. © OpenStreetMap contributors.',
+    note: 'Exact OSM bridge identity and paired carriageways establish the main-span midpoint and +X south axis. Authored Y is CMH; CMH-to-IGN69 offset is -4.378 m, but the host terrain datum and in-terrain fit remain unverified. Draft does not draw or replace roads. See structures/alignments/pont_de_normandie.json in the authoring source for measurements and sources. © OpenStreetMap contributors.',
   };
   catalog.entries = catalog.entries.filter((item) => item.id !== id);
   catalog.entries.push(entry);
-  await writeFile(catalogPath, `${formatJson(catalog)}\n`);
+  await writeStructurePlacement(entry);
 }
 console.log(JSON.stringify({ anchor, heading, extent: output.measuredPlan.fullExtentX }));

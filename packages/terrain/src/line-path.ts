@@ -45,8 +45,11 @@ export function terrainLinePath(line: TerrainSemanticLine, tileSize: number): Te
   return { points, distances, length };
 }
 
-/** Join degree-two source fragments so profiles and dash phases continue through tile features. */
-export function joinTerrainLines(lines: readonly TerrainSemanticLine[]): TerrainSemanticLine[] {
+/** Join degree-two fragments; `directed` preserves one-way travel instead of reversing neighbors. */
+export function joinTerrainLines(
+  lines: readonly TerrainSemanticLine[],
+  directed = false,
+): TerrainSemanticLine[] {
   const ends = new Map<string, number[]>();
   const key = (p: TerrainSemanticPoint): string =>
     `${Math.round(p[0] * 1e7)}/${Math.round(p[1] * 1e7)}`;
@@ -72,8 +75,10 @@ export function joinTerrainLines(lines: readonly TerrainSemanticLine[]): Terrain
         if (adjacent?.length !== 2) break;
         const next = adjacent.find((j) => !used.has(j));
         if (next === undefined) break;
-        used.add(next);
         const other = [...(lines[next] as TerrainSemanticLine)];
+        if (directed && key((front ? other.at(-1) : other[0]) as TerrainSemanticPoint) !== key(p))
+          break;
+        used.add(next);
         if ((key(other[0] as TerrainSemanticPoint) === key(p)) === front) other.reverse();
         if (front) points.unshift(...other.slice(0, -1));
         else points.push(...other.slice(1));

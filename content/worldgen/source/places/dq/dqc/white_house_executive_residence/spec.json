@@ -1,0 +1,400 @@
+{
+  "planId": "white_house_executive_residence",
+  "id": "white_house_executive_residence",
+  "assetId": "molen.worldgen.structure.white_house_executive_residence",
+  "title": "The White House",
+  "category": "government-building",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.03655284999999,
+    "latitude": 38.89767635
+  },
+  "size": [
+    53.2400016784668,
+    30.447380006313324,
+    48.77000045776367
+  ],
+  "actualBounds": {
+    "min": [
+      -26.6200008392334,
+      -0.19738000631332397,
+      -27.940000534057617
+    ],
+    "max": [
+      26.6200008392334,
+      30.25,
+      20.829999923706055
+    ]
+  },
+  "visualBrief": "Whole main White House Executive Residence containing the Blue Room: native main rectangle/central southern oval bay, open North and South Ionic porticos, North triangular pediment and approach stair, South terrace and curved stairs, Truman Balcony/open iron rails, alternating window pediments/multi-pane glazing, stone balustrades/cornices/dentils, hipped gray roof/central attic/8 mapped chimneys/flagstaff. Independent office wings, new ballroom, grounds/trees/fences/art and room interiors excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_United_States_Flag_Flies_at_Half-Staff_Atop_the_White_House_(48918934896).jpg",
+    "https://commons.wikimedia.org/wiki/File%3AA_rainbow_is_seen_over_the_North_Portico_of_the_White_House%2C_Saturday%2C_May_11%2C_2024.jpg",
+    "https://commons.wikimedia.org/wiki/File%3AThe_American_flag_is_flown_at_half-staff_above_the_White_House_in_memory_of_41st_President_George_H._W._Bush_(46094708502).jpg"
+  ],
+  "stories": [
+    {
+      "id": "blue-room-white-house-wp",
+      "url": "https://qualla.com/blue-room-white-house/"
+    },
+    {
+      "id": "white-house-wp",
+      "url": "https://qualla.com/white-house/"
+    }
+  ],
+  "referenceInputHash": "8f6b1f2c0bb8afd99160d93b544435392b110726671d40fabc16236b8f1de78d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-white-house-executive-residence.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-white-house-executive-residence.mjs",
+    "level": "skyline",
+    "export": "whiteHouseSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.67,
+        "metallic": 0.55
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.55,
+        "metallic": 0.75
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.39,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "whiteHouseDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.55
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.75
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.39,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "whiteHouseStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.55
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.75
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.39,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "whiteHouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.55
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.75
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.39,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named Executive Residence relation19761182/Q35525 checked18Sep2026, mainoutlineway238241022 and30nativeparts: mainmass/roofs/14Ioniccolumncentres/8chimneys/Southterrace/Northdeck. Mainrectanglecentre anchor[-77.03655284999999,38.89767635]; heading0, +Xeast/+Zsouth. Main52.3mx26.5m, bothporticosextendwholeenvelopeabout52.3mx47m. Native18mwall/cornice,21mroof/23mchimneys approximate mapped heights; photograph-proportional openings/capital/TrumanBalcony and fineornament estimates. Whole mainresidence only; no separate BlueRoom exterior or demolishedofficewing. Fixed external SouthPortico approach datum16.2404m with Statefloor4m and intrinsic Southterrace4m above localzero, chosen before geometry. Northapproach grade differs naturally in independent source field. Mainfoundation and stair/terrace foundation toes sample original ground. No rescaling, flattening, reacquisition or fitting; floor/oldgrade not surveyed.",
+    "anchor": [
+      -77.03655284999999,
+      38.89767635
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.03655284999999,
+        38.897460755318
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed external SouthPortico approach before independent terrain/geometry; provider-relative visualization datum, not surveyed WhiteHousefloor."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/19761182",
+      "way/238241022",
+      "way/257920156",
+      "way/257920157",
+      "way/257920159",
+      "way/257920160",
+      "way/257920161",
+      "way/257920162",
+      "way/257920163",
+      "way/257920164",
+      "way/257920165",
+      "way/257920166",
+      "way/257920168",
+      "way/257920169",
+      "way/257920171",
+      "way/257920173",
+      "way/257920174",
+      "way/257920175",
+      "way/257920176",
+      "way/257920182",
+      "way/257920185",
+      "way/257920187",
+      "way/257920188",
+      "way/257920189",
+      "way/257920190",
+      "way/257920191",
+      "way/257920194",
+      "way/257920195",
+      "way/257920196",
+      "way/257920198",
+      "way/257920202",
+      "way/257920203"
+    ],
+    "source": "https://www.openstreetmap.org/relation/19761182",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:02100d46fdcfe750de41e895574bb17eb8f8c7c7b322c10dad1fd857fdaae90e",
+    "notes": "Whole main White House Executive Residence containing the Blue Room: native main rectangle/central southern oval bay, open North and South Ionic porticos, North triangular pediment and approach stair, South terrace and curved stairs, Truman Balcony/open iron rails, alternating window pediments/multi-pane glazing, stone balustrades/cornices/dentils, hipped gray roof/central attic/8 mapped chimneys/flagstaff. Independent office wings, new ballroom, grounds/trees/fences/art and room interiors excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Named Executive Residence relation19761182/Q35525 checked18Sep2026, mainoutlineway238241022 and30nativeparts: mainmass/roofs/14Ioniccolumncentres/8chimneys/Southterrace/Northdeck. Mainrectanglecentre anchor[-77.03655284999999,38.89767635]; heading0, +Xeast/+Zsouth. Main52.3mx26.5m, bothporticosextendwholeenvelopeabout52.3mx47m. Native18mwall/cornice,21mroof/23mchimneys approximate mapped heights; photograph-proportional openings/capital/TrumanBalcony and fineornament estimates. Whole mainresidence only; no separate BlueRoom exterior or demolishedofficewing.",
+    "Fixed external SouthPortico approach datum16.2404m with Statefloor4m and intrinsic Southterrace4m above localzero, chosen before geometry. Northapproach grade differs naturally in independent source field. Mainfoundation and stair/terrace foundation toes sample original ground. No rescaling, flattening, reacquisition or fitting; floor/oldgrade not surveyed.",
+    "Whole main Executive Residence only; 14 native column centres and8 mapped chimney positions preserved. Photo-proportional openings/window counts, Ioniccapitals/volutes, curved balcony sections, attic wall/roof junction, curving stair treads, fine moldings and roof hardware are medium-fi approximations. No roominterior/newballroom/separateofficewings/art/grounds.",
+    "Three individually inspected exact official public-domain photographs with named staff credits/official source/federal grant and native bytes; first is cleared publishedQualla. Views are cropped component references, whole form rests on mapped components; no claim of survey or full photographic coverage. No photographictextures/generatedbitmaps/borrowedmodels.",
+    "Independent256m129square16641-sample field/two original Terrariumtiles frozen before geometry, values and hashes retained. Mainstatefloor4m over fixedSouthapproach16.2404mprovider datum is approximate. Terrain neverflattened/fitted/reacquired; hostgroundcontactunverified and replacementdisabled.",
+    "Four authored LODs preserve mainbody/bothopenporticos/TrumanBalcony/8chimneys/roof/flagstaff. Distant windows/baluster/rail/mullion/volute and dentil sections reduced."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-main-residence-south-portico-balcony-and-roof",
+      "position": [
+        77,
+        48,
+        86
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "south-six-ionic-columns-truman-balcony-and-real-openings",
+      "position": [
+        22,
+        13,
+        39
+      ],
+      "lookAt": [
+        0,
+        11,
+        13
+      ]
+    },
+    {
+      "name": "north-open-ionic-portico-gabled-pediment-and-entry",
+      "position": [
+        25,
+        12,
+        -45
+      ],
+      "lookAt": [
+        0,
+        11,
+        -17
+      ]
+    },
+    {
+      "name": "eight-native-chimneys-hipped-roof-stone-balusters-and-flagstaff",
+      "position": [
+        40,
+        38,
+        -10
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 54632,
+    "vertices": 163896,
+    "materials": 5,
+    "bytes": 6559076,
+    "sha256": "sha256:59def679db47fc4e96e025dc84f5d36aafb617c8ccd3f5bc13ab8a052be4761d"
+  }
+}

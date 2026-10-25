@@ -1,0 +1,216 @@
+{
+  "variant": "Bell 206B-3 with standard low skid gear and an analog panel installation",
+  "references": [
+    {
+      "url": "https://prairiehelicopters.com/wp-content/uploads/2014/08/206B3ProdSpec.pdf",
+      "author": "Bell Helicopter Textron",
+      "title": "206B-3 Product Specifications, January 2005",
+      "page": 4,
+      "license": "Copyright Bell, all rights reserved. Local research only; reference pixels are not distributed.",
+      "scope": "Printed dimensions and exterior orthographic shape."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_206B_Panel.jpg",
+      "author": "Gabriel Resende Veiga",
+      "revision": 1083928380,
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "scope": "PT-HUR analog panel photograph, 2016. Avionics installations vary."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_206A_orthographical_image.svg",
+      "author": "FOX 52",
+      "license": "CC BY-SA 4.0",
+      "scope": "Secondary family reference only. A variant and schematic proportions differ from B-3 dimensions."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:LAPD_Bell_206_Jetranger.jpg",
+      "author": "Mfield - Matthew Field, http://www.photography.mattfield.com",
+      "license": "CC BY 2.5",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+      "revision": 1202083600,
+      "scope": "Exterior photograph for shape and detail comparison; gear configuration may differ."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.43,
+      -0.25
+    ],
+    "lookAt": [
+      0,
+      1.08,
+      1.6
+    ],
+    "fov": 80
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0.075,
+      -1.17
+    ],
+    "viewHeight": 1.05,
+    "cameraHeight": 8.5
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/bell-206b-dimensions.png",
+      "crop": {
+        "left": 545,
+        "top": 540,
+        "width": 665,
+        "height": 230
+      },
+      "referenceAnchor": [
+        752.5,
+        753
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 326.5,
+        "meters": 5.08,
+        "description": "Printed main rotor radius; rotor hub to forward blade tip."
+      },
+      "scope": "Uniform scale; B-3 standard low-skid sheet. Rotor azimuth differs."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/bell-206b-dimensions.png",
+      "crop": {
+        "left": 90,
+        "top": 540,
+        "width": 150,
+        "height": 225
+      },
+      "referenceAnchor": [
+        162,
+        753
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 123,
+        "meters": 1.92,
+        "description": "Printed outside skid span."
+      },
+      "scope": "Uniform scale from low-skid span."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/bell-206b-dimensions.png",
+      "crop": {
+        "left": 550,
+        "top": 270,
+        "width": 640,
+        "height": 155
+      },
+      "rotate": 270,
+      "referenceAnchor": [
+        737,
+        345.5
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 326.5,
+        "meters": 5.08,
+        "description": "Common sheet scale from side-view rotor radius."
+      },
+      "scope": "Scale transfer between orthographic views is approximate; rotor azimuth differs."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/bell-206b-panel-rectified.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1400,
+        "height": 820
+      },
+      "referenceAnchor": [
+        0,
+        0
+      ],
+      "modelAnchor": [
+        -0.5,
+        -1.43
+      ],
+      "scaleControls": {
+        "pixels": 1400,
+        "meters": 1.15,
+        "description": "Cabin-fit panel width assumption. Relative layout, not an independent dimension."
+      },
+      "edgeMode": "photo",
+      "scope": "Perspective rectified planar face; assumed aspect checked against round gauges. Does not validate coaming or depth. Controls and labels remain schematic."
+    }
+  ],
+  "panelRectification": {
+    "source": ".artifacts/aircraft/references/bell-206b-panel.jpg",
+    "sourceDimensions": [
+      4473,
+      2516
+    ],
+    "sourceQuadIn2048WidePreview": [
+      [
+        418,
+        263
+      ],
+      [
+        1681,
+        146
+      ],
+      [
+        1510,
+        914
+      ],
+      [
+        420,
+        1142
+      ]
+    ],
+    "outputDimensions": [
+      1400,
+      820
+    ],
+    "method": "Projective transform of extrapolated coplanar panel corners; output aspect chosen to approximately preserve circular gauges. Relative comparison only."
+  },
+  "status": "reviewed-with-limitations",
+  "sourceHash": "sha256:883de98654c2a4606d86a8e52ab39fb517c17be0c7ba187fe9752fc813da1aa5",
+  "runtimeHash": "sha256:6683fccaf3329fadb59c845e2c8290f30da484352ccb0b59a78a30229ba212b9",
+  "limitations": [
+    "Low-skid B-3 dimensions take precedence over the family 206A schematic; front and side drawing hub heights are not fully consistent.",
+    "The PT-HUR panel photograph was projectively rectified using inferred planar corners and round gauges. Absolute face size and cabin depth remain reconstruction assumptions.",
+    "Avionics faceplates, annunciators, needles and legends are simplified. This is an assisted simulation, not a systems trainer.",
+    "Seats, belt routing, mechanical fittings and cowling sections approximate the cited configuration; no claim of manufacturing-level accuracy."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:f561f71cc575906dd229c0be3eabff0078cdd5789f7354a6e947afc014e733d4",
+    "sourceHash": "sha256:883de98654c2a4606d86a8e52ab39fb517c17be0c7ba187fe9752fc813da1aa5",
+    "runtimeHash": "sha256:6683fccaf3329fadb59c845e2c8290f30da484352ccb0b59a78a30229ba212b9",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/bell-206b-pair.png",
+        "sha256": "sha256:a62191f2217e873f3af659f89c05f17637100cb824753ad287f2113a48dd3ec8",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

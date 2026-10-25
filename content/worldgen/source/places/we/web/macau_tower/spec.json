@@ -1,0 +1,306 @@
+{
+  "planId": "macau_tower",
+  "id": "macau_tower",
+  "assetId": "molen.worldgen.structure.macau_tower",
+  "title": "Macau Tower",
+  "category": "observation-tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 113.5367951,
+    "latitude": 22.179809300000002
+  },
+  "size": [
+    45.53571701049805,
+    338.40000000596046,
+    45
+  ],
+  "actualBounds": {
+    "min": [
+      -22.564809799194336,
+      -0.4000000059604645,
+      -22.5
+    ],
+    "max": [
+      22.97090721130371,
+      338,
+      22.5
+    ]
+  },
+  "visualBrief": "338mMacau Tower exterior: tapered16→14mconcrete shaft, eight native-positioned raking base legs and service strip, stepped silver underside/radial pod braces, blue observation/restaurant glazing with160representative panes, open SkyWalk/rim and native projecting bungy platform, conical silver crown and stepped90mcommunication mast. Native overhead pod polygons are preserved as overhead shapes; no whole plaza or related convention buildings.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Macau_Tower_edit1.JPG",
+    "https://commons.wikimedia.org/wiki/File:%E6%BE%B3%E9%96%80%E6%97%85%E9%81%8A%E5%A1%94.JPG",
+    "https://commons.wikimedia.org/wiki/File:MC_%E6%BE%B3%E9%96%80_Macau_Peninsula_%E5%8D%97%E7%81%A3_Nan_Wan_Yoho_Treasure_Island_Hotel_outdoor_Infinity_Swimming_Pool_morning_March_2026_N13P_20.jpg"
+  ],
+  "stories": [
+    {
+      "id": "macau-tower-wp",
+      "url": "https://qualla.com/macau-tower/"
+    }
+  ],
+  "referenceInputHash": "090f6cfce252bc9a31c4839df62fbc0fadb0ae90cf2f5788c7175ad11b9f725b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-macau-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-macau-tower.mjs",
+    "level": "skyline",
+    "export": "macauSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "joint": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62,
+        "metallic": 0.28
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.28,
+        "metallic": 0.12
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0.12
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62,
+        "metallic": 0.28
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "macauDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "joint": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.28
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.28,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "macauStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "joint": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.28
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.28,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named/wikidataQ1568304OSMrelation21176879and three native outer members establish axis, projected pod/SkyWalk shape and bungy projection; these are overhead architectural perimeters, not a ground parcel. Original coordinates retained. Protomaps tower/base-part footprints supply quantized eight-raking-leg positions. Native74mlegheight retained; mapped223mLevel61height conflicts with published233moutdoor deck, so measured-looking native height is not adopted for that level. Public tower federation values338mtip,223mobservation,228mrestaurant,233moutdoor deck,90mmast,16/14mshaft diameters bound the section; exact connections/hidden details remain photographic estimates.",
+    "anchor": [
+      113.5367951,
+      22.179809300000002
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        113.5367951,
+        22.179575739094506
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed dry southern approach26moutside native tower axis before terrain acquisition. Native footings/threshold levels unverified; no full plaza mesh."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/848199020",
+      "way/848284268",
+      "way/1546674399"
+    ],
+    "source": "https://www.openstreetmap.org/relation/21176879",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9ee435624fe82514e834b38debf720447790051cdbd04c759cdcd8edda2be2de",
+    "notes": "Macau Tower exterior: tapered concrete shaft, eight bounded raking base legs, service/elevator strip, articulated observation/restaurant pod with outer SkyWalk and projecting bungy platform, radial braces, open roof rim/rails and stepped90mcommunication mast to338m. Related convention/entertainment buildings, whole plaza, roads/water/landscaping and visitors/brands are excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named/wikidataQ1568304OSMrelation21176879and three native outer members establish axis, projected pod/SkyWalk shape and bungy projection; these are overhead architectural perimeters, not a ground parcel. Original coordinates retained. Protomaps tower/base-part footprints supply quantized eight-raking-leg positions. Native74mlegheight retained; mapped223mLevel61height conflicts with published233moutdoor deck, so measured-looking native height is not adopted for that level. Public tower federation values338mtip,223mobservation,228mrestaurant,233moutdoor deck,90mmast,16/14mshaft diameters bound the section; exact connections/hidden details remain photographic estimates.",
+    "Published Qualla edited2003pod photograph is bound to original photographer and editor native firstPD-selfreleases; exact supplemental2007PD-selfand2026CC0originals establish full shaft/pod/mast silhouette. No other-licensed images, photo textures, visitor likenesses, logos, signs, artworks or underlying unrelated hotel/pool construction reproduced.",
+    "Primary public operator/federation levels control height:338mtip,223mobservation,228mrestaurant,233moutdoor,90mmast and16/14mshaft diameters. Pod profiles/crown transitions, eight upper braces, shaft strip phase, window/panel repeat, raking-leg sections and tiny antenna attachments are medium-fi estimates. Near160representative panes simplify at distance; nativeoverhead pod/SkyWalk and bungy outlines are not extruded as ground parcels.",
+    "Native relation21176879fixes identity/axis and original projected pod rings. Eight base-leg placements use quantized native basemap part outlines with74mheight; actual footing/steel sections/connection details approximate. Related Convention and Entertainment Centre, whole plaza/roads/water/landscaping, temporary attractions and interior room/exhibition geometry are outside this tower-only scope.",
+    "Fixed dry southern approach[0,26]/Y0 precedes terrain acquisition. Raw source terrain retained without flattening/fitting; isolated review groundY-.22does not certify exact host contact, threshold levels or foundation depth. No full-site slab, artificial reclamation terrain or foundation lifted to match vegetation/building returns."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "stepped-observation-pod-eight-braces-and-open-skywalk",
+      "position": [
+        51,
+        223,
+        58
+      ],
+      "lookAt": [
+        0,
+        221,
+        0
+      ]
+    },
+    {
+      "name": "base-raking-legs-and-service-strip",
+      "position": [
+        77,
+        45,
+        88
+      ],
+      "lookAt": [
+        0,
+        38,
+        0
+      ]
+    },
+    {
+      "name": "crown-stepped-mast-and-climb-fixtures",
+      "position": [
+        90,
+        310,
+        100
+      ],
+      "lookAt": [
+        0,
+        293,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26160,
+    "vertices": 78480,
+    "materials": 5,
+    "bytes": 3142300,
+    "sha256": "sha256:966e2cf16be49c3f5d44990f1bcd2d3a4bf274f2b6967158b612b58bcfd9c2a0"
+  }
+}

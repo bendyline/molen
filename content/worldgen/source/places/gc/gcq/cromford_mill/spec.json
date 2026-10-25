@@ -1,0 +1,376 @@
+{
+  "planId": "cromford_mill",
+  "id": "cromford_mill",
+  "assetId": "molen.worldgen.structure.cromford_mill",
+  "title": "Cromford First Mill",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.5567672166666666,
+    "latitude": 53.1088195
+  },
+  "size": [
+    28.322986602783203,
+    10.814000129699707,
+    8.724987506866455
+  ],
+  "actualBounds": {
+    "min": [
+      -14.161005020141602,
+      0,
+      -4.064987659454346
+    ],
+    "max": [
+      14.161981582641602,
+      10.814000129699707,
+      4.659999847412109
+    ]
+  },
+  "visualBrief": "Complete surviving First/Upper Mill at Cromford (Building18/NHLE1248010), the original1771mill plus1785northextension: wholethree-storeygritstonebody/all15historicbaysincludingtwoformerlyoccludedbyseparateBuilding17, low graygable roof, sashfenestration/flatvoussoirheads/stonebanding, northend2bayfacade, roadendblockedworkers/takingindoors, eastwheelopening/roundshaftaperture andshortremainingcastiron aqueduct atclassicaldoor, lowarchedBonsallBrookculvert mouth beneathnorthaddition. SeparatelylistedBuilding17/14-16/21/26, SecondMillruins andothermillcampusbuildings are independentcompanionstructures, excluded/notcountedbuilt. No restoredlostupperstoreys/workinghistoricwheel, fullcampusrectangle/yardground/naturalcliff/riverwater/trees/parking/interiors. ThreepublishedexactPDselforiginals andprimary2024text control permanent exterior. Use sixpointplan scaledbeforefield toprimary28.3x8m; originalnative41.37x11.25m is independentlystoredcoarsegeographicproxy, notsilentlyreshaped. Preserve15bay/threefloor rhythm, 16paneupper/20panegroundsashes, coursedmillstonegrit/ashlarlowerwheelinfill, realrecessedblockedopenings/roundshaftaperture/segmentalculvertmouth/shortvault, lowcorrugatedgrayroof/edgefascialips andsmallcastironaqueductremnant. No missingfive-storeyroof reconstruction orothercampusstructures/yard/cliff/water. Freezeindependent256m129²fieldbeforegeometry; retainallsamples/rawtilebytes.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cromford_1771_mill.jpg",
+    "https://commons.wikimedia.org/wiki/File:Cromford_1771_mill_detail_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Cromford_1771_mill_detail_2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cromford-mill-wp",
+      "url": "https://qualla.com/cromford-mill/"
+    }
+  ],
+  "referenceInputHash": "38ad05414f625d578666e0d3cce10e1dafcfeb628e1ac255d70a39d45887d048",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cromford-mill.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cromford-mill.mjs",
+    "level": "skyline",
+    "export": "cromfordMillSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.4,
+        "metallic": 0.03
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.9,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cromfordMillDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.03
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "cromfordMillStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.03
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "cromfordMillCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.4,
+            "metallic": 0.03
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.8,
+    "groundY": -0.16
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Nativeway1544681099 expressly Building18/NHLE1248010 distinguishes FirstMill fromabuttingBuilding17/otherseparatelylistedcampusbuildings. Original6pointnativeperimeter andanchor/headingpreserved beforegeometry. Its coarse41.372x11.247menvelope disagreeswithofficialheritage28.3x8mstatedbuildingdimensions: model uses28.3x8m primarytextscale with native6pointrelativeplan, kept as separatelydeclaredarchitecturalmetriccontrol, notmisreportedastheoriginalmapoutline. Nativeoutlineisageographicproxy,notsurvey; sitingandexactworldfootprintcontact remainapproximate/replaceFootprint=false. Nativealongfrontculvertlineisroughwaterwaycontext, notproof ofinteriorroute; visiblelowarchedmouthonly/shortsoffitmodeled. +Xnortheastalongmill/+Zsoutheasttowardyard fixedbeforeindependentground.",
+    "anchor": [
+      -1.5567672166666666,
+      53.1088195
+    ],
+    "heading": 1.1816707117592387,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.5566330475301453,
+        53.10887385584779
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed east-yardapproach2moutside primarymetricbody beforeindependentground. Providerrelativegrade, notthresholdsurvey."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1544681099",
+      "NHLE/1248010-metric-control"
+    ],
+    "source": "https://www.openstreetmap.org/way/1544681099",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a310aacb9d6e2b1c66149f2e000c0126082590a1c27e9a788809ca2e19741eb6",
+    "notes": "Complete surviving First/Upper Mill at Cromford (Building18/NHLE1248010), the original1771mill plus1785northextension: wholethree-storeygritstonebody/all15historicbaysincludingtwoformerlyoccludedbyseparateBuilding17, low graygable roof, sashfenestration/flatvoussoirheads/stonebanding, northend2bayfacade, roadendblockedworkers/takingindoors, eastwheelopening/roundshaftaperture andshortremainingcastiron aqueduct atclassicaldoor, lowarchedBonsallBrookculvert mouth beneathnorthaddition. SeparatelylistedBuilding17/14-16/21/26, SecondMillruins andothermillcampusbuildings are independentcompanionstructures, excluded/notcountedbuilt. No restoredlostupperstoreys/workinghistoricwheel, fullcampusrectangle/yardground/naturalcliff/riverwater/trees/parking/interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Nativeway1544681099 expressly Building18/NHLE1248010 distinguishes FirstMill fromabuttingBuilding17/otherseparatelylistedcampusbuildings. Original6pointnativeperimeter andanchor/headingpreserved beforegeometry. Its coarse41.372x11.247menvelope disagreeswithofficialheritage28.3x8mstatedbuildingdimensions: model uses28.3x8m primarytextscale with native6pointrelativeplan, kept as separatelydeclaredarchitecturalmetriccontrol, notmisreportedastheoriginalmapoutline. Nativeoutlineisageographicproxy,notsurvey; sitingandexactworldfootprintcontact remainapproximate/replaceFootprint=false. Nativealongfrontculvertlineisroughwaterwaycontext, notproof ofinteriorroute; visiblelowarchedmouthonly/shortsoffitmodeled. +Xnortheastalongmill/+Zsoutheasttowardyard fixedbeforeindependentground.",
+    "WholeFirstMillBuilding18with1785extension;three-survivingstoreysratherthanlostfive. SeparatelylistedabuttingBuilding17 andothermillcampusstructures/SecondMillruins/modernwaterwheel/wholewaterpowerplant are independentcompanions, excluded/notcountedbuilt. Complete15-bayarchitecturalrhythm includes source-text-identifiedtwoformerlyoccludedbays; exacthiddenfenestration/doorquoins/roofservices unknown. Coursepattern/colorpatches andverticals approximate.",
+    "Threeexactalready-published2009chevinown/PD-selforiginals/nativeSHA1/revisions/itemgrants bound. Native105fileinventorymetadataonly. No additionalarchitecturepixels/questionablerights/otherlicensedphotos/localmediaedits. Primary2024amendedheritagetext supplies metricdimensions/bays/fenestration/conservationstate; operator2026text confirmsongoingsiteuse/otherbuildings. No protectedsitephotos/plans orphoto textures/generatedbitmaps.",
+    "Primary28.3x8mmetricbody declaredbeforefield, original6pointnativeproxy41.37x11.25m keptseparatelyratherthanclaimedexactsurvey. Modelpreservesrelativecoarseoutlineatprimarymetricdimensions. Exactworldfootprint/anchorregistration uncertainty remains; preview/replaceFootprint=false. Three-storey~9.2meaves/10.8mridge/windowheights/foundation/culvert/aqueductremnantposition/source-relativegrades are approximate.",
+    "Actualrecessed16paneupper/20panegroundwindows, realboardedwheelopening/circularshaftpocket andshortsegmentalculvertmouth/soffit; modelonlyvisibleportal/shortdarkvault, notsurveyedundergroundbrookroute. No restoredworkinghistoricwheel orwater/cliff/yard meshes. Stonegrain/paintedframes/roughgraycorrugatedsheetroof useportablepalette plus sharedgraphs, notphoto textures.",
+    "Independent256m129²16641samples/originalTerrariumtiles frozenbeforegeometry unchanged. Providerrelativeapproachdatumnotasurvey, outputpixels/gridmayoversamplecoarseDEM; actualhostgroundcontactunverified. Flatreviewfixtures; no fieldfitting/flattening/reacquisition."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-first-mill-1771-and-1785-extension",
+      "position": [
+        33,
+        20,
+        47
+      ],
+      "lookAt": [
+        0,
+        4.6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "yard-front-sash-windows-wheelopening-and-culvert",
+      "position": [
+        6,
+        9,
+        35
+      ],
+      "lookAt": [
+        0,
+        4.3,
+        0
+      ]
+    },
+    {
+      "name": "north-end-and-physical-segmental-culvert-mouth",
+      "position": [
+        24,
+        7,
+        22
+      ],
+      "lookAt": [
+        10,
+        2.8,
+        2
+      ]
+    },
+    {
+      "name": "western-upper-yard-facade-and-low-gray-gable-roof",
+      "position": [
+        -26,
+        19,
+        -39
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22226,
+    "vertices": 66678,
+    "materials": 5,
+    "bytes": 2670380,
+    "sha256": "sha256:88c06d6c44d4ea0cf2815afe827311bf7ff4241c8c1a54aad83171e807fd1215"
+  }
+}

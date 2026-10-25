@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u9/u96/nesvizh_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1083,7 +1083,7 @@ export function buildNesvizhRuntime(out, detail) {
 }
 export const buildNesvizhSkyline = (o) => buildNesvizhRuntime(o, 'skyline');
 export const nesvizhStudy = {
-  id: 'N0254',
+  id: 'nesvizh_castle',
   key: 'nesvizh_castle',
   title: 'Nesvizh Castle',
   category: 'castle',

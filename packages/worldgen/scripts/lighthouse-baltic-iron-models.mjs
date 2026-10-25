@@ -581,7 +581,7 @@ export function buildKihnu(out) {
 }
 export const lighthouseBalticIronStudies = [
   lighthouseStudy({
-    id: 'N0671',
+    id: 'kihnu_lighthouse',
     key: 'kihnu_lighthouse',
     title: 'Kihnu Lighthouse',
     wikidataId: 'Q3361476',

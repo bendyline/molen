@@ -1,0 +1,269 @@
+{
+  "variant": "2020 Cirrus SR22T G6, optional 12-inch GDU1250A Perspective+ displays and MD302, TSIO-550-K with standard 78-inch three-blade Hartzell composite propeller",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://cfi.thomas-daniel.com/POH/pdf/SR22T_G6_Perspective%2B.2020-01-15.pdf",
+      "title": "SR22T Pilot Operating Handbook, 13772-007, Reissue A / Revision A1",
+      "author": "Cirrus Design Corporation",
+      "license": "Copyright Cirrus; local study only, no source pixels distributed.",
+      "scope": "PDF14 three-view, PDF15 cabin dimensions, PDF17 engine/propeller, PDF241 MD302 panel, PDF248 flap angles, PDF298 optional displays. Reissue January2020, revision November2021."
+    },
+    {
+      "url": "https://cirrusaircraft.com/wp-content/uploads/2014/11/SR-Brochure-2020-A6.pdf",
+      "title": "2020 SR Series brochure",
+      "author": "Cirrus Aircraft",
+      "license": "Copyright Cirrus; local study only, no source pixels distributed.",
+      "scope": "PDF3 five-seat cutaway photograph, PDF6 Perspective+ cockpit photograph, PDF8 2020 G6 specification."
+    },
+    {
+      "url": "https://cirrusaircraft.com/story/cirrus-aircraft-launches-g6-the-smartest-safest-most-advanced-cirrus-ever/",
+      "title": "Cirrus Aircraft Launches G6 SR Series",
+      "author": "Cirrus Aircraft",
+      "scope": "2017 G6 launch: Perspective+, QWERTY controller and Spectra wingtip lights."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cirrus_SR22T_G6_GTS_(N88917,_cn_9291)_(7-29-2023).jpg",
+      "title": "File:Cirrus SR22T G6 GTS (N88917, cn 9291) (7-29-2023).jpg",
+      "author": "ZLEA",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "revision": 1131999541,
+      "scope": "2023 G6 GTS with cowling removed; doors, fairings, windshield and composite finish."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cirrus_Perspective_Cockpit_(angled_view).jpg",
+      "title": "File:Cirrus Perspective Cockpit (angled view).jpg",
+      "author": "Dbreemeersch",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "revision": 861258499,
+      "scope": "2008 Perspective screen/bezel close-up only; not authority for G6 controller or standby layout."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0.03,
+      1.92,
+      0.12
+    ],
+    "lookAt": [
+      0.05,
+      1.4,
+      1.16
+    ],
+    "fov": 77
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      -0.09,
+      -1.48
+    ],
+    "viewHeight": 0.73,
+    "cameraHeight": 8.98
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "propNormalized": 0,
+    "verticalSpeed": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "elevator": 0,
+    "flapPosition": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/sr22t-dimensions-small.png",
+      "crop": {
+        "left": 448,
+        "top": 432,
+        "width": 438,
+        "height": 165
+      },
+      "referenceAnchor": [
+        455,
+        591
+      ],
+      "modelAnchor": [
+        -3.24,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 420,
+        "meters": 7.9248,
+        "description": "26-foot overall length; uniform scale. Printed height does not exactly match drawing aspect."
+      },
+      "scope": "Longitudinal silhouette, roof, swept fin, wheel fairings and propeller."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/sr22t-top-level.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 660,
+        "height": 455
+      },
+      "referenceAnchor": [
+        330,
+        446
+      ],
+      "modelAnchor": [
+        0,
+        3.24
+      ],
+      "scaleControls": {
+        "pixels": 648,
+        "meters": 11.67384,
+        "description": "38.3-foot span including lights; uniform scale."
+      },
+      "scope": "Tapered cuffed wing, 3.9m tailplane and cockpit/cowl planform.",
+      "preparation": "Crop [344,658,660,455] at 1376px page width; rigidly rotated 180 degrees, no unequal scaling."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/sr22t-dimensions-small.png",
+      "crop": {
+        "left": 344,
+        "top": 1204,
+        "width": 660,
+        "height": 166
+      },
+      "referenceAnchor": [
+        674,
+        1363
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 645,
+        "meters": 11.67384,
+        "description": "38.3-foot span; retain independently printed 9.1-foot wheel track."
+      },
+      "scope": "Cabin section, dihedral, propeller circle and wheel spacing."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/sr22t-cockpit-photo-small.png",
+      "crop": {
+        "left": 288,
+        "top": 27,
+        "width": 770,
+        "height": 424
+      },
+      "referenceAnchor": [
+        740,
+        167
+      ],
+      "modelAnchor": [
+        0,
+        -1.65
+      ],
+      "scaleControls": {
+        "pixels": 180,
+        "meters": 0.24384,
+        "description": "Optional 12-inch 4:3 active display, uniform photo scale."
+      },
+      "scope": "Perspective+ panel contour, paired displays, side yokes, bolster, MD302 and QWERTY/AFCS console; photo perspective retained.",
+      "edgeMode": "photo"
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Dedicated 2020 SR22T G6 composite shell, cuffed wing, swept fin, wheel fairings, 78-inch three-blade propeller and genuine windshield/door/rear-window apertures replace the generic low-wing model.",
+      "Uniform top/side/front overlays drove a narrower aft fuselage, shorter tail cone and rear windows, corrected baggage hatch placement, rounded wheel-fairing sections and revised cockpit roof clearance.",
+      "The 2020 factory photograph calibrates optional 12-inch Perspective+ displays, MD302, bolster, QWERTY/AFCS/audio console, side yokes and ventilation controls. Cabin plan and cutaway establish two front seats and a rear three-place bench. Protruding glareshield, console and sun visors were corrected after close inspection.",
+      "Side yokes translate for pitch and rotate for roll. The inclined console carries locally oriented flap control/lamps, with three detent lights driven by measured flap travel; intermediate or missing readings leave all lamps dark.",
+      "PFD and MD302 share TAS, geometric altitude and independent pitch/bank. MFD propeller readout is scaled to the documented 2500 RPM. Imported GLB tests verify controls, missing sensors, window sightlines and units; nine shared aircraft instrument tests passed."
+    ],
+    "independentDimensions": {
+      "lengthMeters": 7.9248,
+      "spanMeters": 11.67384,
+      "heightMeters": 2.71272,
+      "mainGearTrackMeters": 2.77368,
+      "propellerDiameterMeters": 1.9812,
+      "maxPropRpm": 2500,
+      "cabinWidthMeters": 1.25222,
+      "cabinHeightMeters": 1.26238,
+      "tailSpanMeters": 3.93,
+      "wingAreaSqMeters": 13.49,
+      "fullFlapDegrees": 35.5
+    },
+    "visual": "Individually inspected final side/top/front/panel overlays, all four turntables, three-quarter, operator, cabin and wide cabin. Inspected zero, 180-knot/12500-foot/2400-RPM cruise, 2500-RPM upper-range and unavailable TAS/RPM/flap cases, plus passenger and close exterior views. Compared actual 2020 factory cockpit/cabin photographs and G6 exterior photograph; no reference was stretched.",
+    "limitations": [
+      "The POH drawing is not dimensionally consistent: at uniform length scale, side height is about 2.92 m rather than printed 2.713 m; front-view wheel track is about 3.15 m versus printed 2.774 m. Main-wheel fore/aft placement differs by roughly 0.3 m between side and plan projections. Printed dimensions and planform take precedence, leaving visible overlay residuals.",
+      "Windshield/cowling/roof curvature, wing-root fillets, door corners, dorsal fin and wheel fairing transitions remain polygonal approximations; small side-view contour and height residuals remain. Shell detail follows composite construction, with fasteners at service panels and metal control surfaces rather than an invented all-metal rivet grid.",
+      "Photo scale assumes a 12-inch 4:3 active display; exact bezel dimensions and panel depth were not independently measured. Curved bolster, seat bolsters, switches, fine legends, circuit breakers and console depth are simplified. The CC BY-SA cockpit photograph documents older Perspective equipment only, not G6 controls; exact 2020 factory photography remains local study only. No reference pixels are shipped.",
+      "Live instruments show TAS, geometric world elevation, true heading and normalized simulated shaft RPM. IAS/pressure altitude, magnetic errors, manifold pressure, power percentage, thermal/oil/fuel/electrical/ice systems, propeller governing and detailed engine management are not simulated. Unsupported fields remain blank or INOP; moving PFD/MD302 displays are a subset of the real avionics.",
+      "FMS, AFCS, navigation, synthetic vision, radio controls, mixture and CAPS activation are not interactive. Pilot flap input currently selects up/down, although the geometry can display intermediate state and 50-percent annunciation. Flight tuning is an assisted simulation rather than a validated aircraft performance model."
+    ]
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "TAS m/s to knots, nearest whole-knot readout",
+      "altitude": "world meters to feet",
+      "heading": "true heading radians",
+      "rpm": "normalized engine-1 shaft speed to 2500 RPM",
+      "climb": "m/s to ft/min",
+      "flaps": "measured normalized travel; UP/50/100 detents within .012"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/cirrus-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true
+  },
+  "sourceHash": "sha256:b7d8607e015184eeddebf856fe11c157eccb0960eb9bf5103411ea4bc6c11091",
+  "runtimeHash": "sha256:c42b7d8b774204affba77c3c4dc28dfaabd0823860f1e7d4007bd1f856ca9a14",
+  "limitations": [
+    "The POH drawing is not dimensionally consistent: at uniform length scale, side height is about 2.92 m rather than printed 2.713 m; front-view wheel track is about 3.15 m versus printed 2.774 m. Main-wheel fore/aft placement differs by roughly 0.3 m between side and plan projections. Printed dimensions and planform take precedence, leaving visible overlay residuals.",
+    "Windshield/cowling/roof curvature, wing-root fillets, door corners, dorsal fin and wheel fairing transitions remain polygonal approximations; small side-view contour and height residuals remain. Shell detail follows composite construction, with fasteners at service panels and metal control surfaces rather than an invented all-metal rivet grid.",
+    "Photo scale assumes a 12-inch 4:3 active display; exact bezel dimensions and panel depth were not independently measured. Curved bolster, seat bolsters, switches, fine legends, circuit breakers and console depth are simplified. The CC BY-SA cockpit photograph documents older Perspective equipment only, not G6 controls; exact 2020 factory photography remains local study only. No reference pixels are shipped.",
+    "Live instruments show TAS, geometric world elevation, true heading and normalized simulated shaft RPM. IAS/pressure altitude, magnetic errors, manifold pressure, power percentage, thermal/oil/fuel/electrical/ice systems, propeller governing and detailed engine management are not simulated. Unsupported fields remain blank or INOP; moving PFD/MD302 displays are a subset of the real avionics.",
+    "FMS, AFCS, navigation, synthetic vision, radio controls, mixture and CAPS activation are not interactive. Pilot flap input currently selects up/down, although the geometry can display intermediate state and 50-percent annunciation. Flight tuning is an assisted simulation rather than a validated aircraft performance model."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:3a2313ab1ff1755e211f77be8016e60c4d1825701ee5fc220515fb2e916e03bf",
+    "sourceHash": "sha256:b7d8607e015184eeddebf856fe11c157eccb0960eb9bf5103411ea4bc6c11091",
+    "runtimeHash": "sha256:c42b7d8b774204affba77c3c4dc28dfaabd0823860f1e7d4007bd1f856ca9a14",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/cirrus-sr22t-pair.png",
+        "sha256": "sha256:56bb76fb33e95d68bf15e1b04a1d10c1e6435fcf800a349bda5e0c76694b0237",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/cirrus-sr22t-exterior-pair.png",
+        "sha256": "sha256:03cfeea031a8938c95ae936d81a9171b274fcb008012a53e37109b67109c3a58",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

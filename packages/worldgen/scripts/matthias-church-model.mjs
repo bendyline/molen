@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2m/n0340_matthias_church/',
+  '../../../content/worldgen/source/places/u2/u2m/matthias_church/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1040,7 +1040,7 @@ export const buildMatthiasSkyline = (o) => build(o, 0),
   buildMatthiasStreet = (o) => build(o, 2),
   buildMatthiasCloseup = (o) => build(o, 3);
 export const matthiasStudy = {
-  id: 'N0340',
+  id: 'matthias_church',
   key: 'matthias_church',
   title: 'Matthias Church',
   category: 'cathedral',

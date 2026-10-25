@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2s/n0253_bratislava_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u2/u2s/bratislava_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1394,7 +1394,7 @@ export function buildBratislavaRuntime(out, detail) {
 }
 export const buildBratislavaSkyline = (out) => buildBratislavaRuntime(out, 'skyline');
 export const bratislavaStudy = {
-  id: 'N0253',
+  id: 'bratislava_castle',
   key: 'bratislava_castle',
   title: 'Bratislava Castle',
   category: 'castle',

@@ -1,9 +1,14 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.hearst_castle",
-  "sourceHash": "sha256:6eef20ad92c594c54843956509dc7a5a32e6f6bd71546be9a4d72599b5557738",
-  "runtimeHash": "sha256:aaaac3668babd1188af74032ec5516d7734fd95dbe1b1359094c29f840829737",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.hearst_castle",
+    "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4"
+  },
+  "sourceHash": "sha256:383ac413699f8fde0cb0216462207ec9503fb1a26b5e8b5f924d91c12a26e720",
+  "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,48 +33,48 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:422278c264b68b049da015c49b2f4bf83d319462582522ab2e340c23267749c9",
-      "bytes": 47804,
-      "gzipBytes": 8355,
-      "triangles": 609,
-      "cpuBytes": 46388,
-      "gpuBytes": 46388,
+      "hash": "sha256:4cc73fe6766834a0f98eb268f11ce858f7935f2733f20e3f3d0a7f0d36efd17e",
+      "bytes": 53580,
+      "gzipBytes": 9132,
+      "triangles": 683,
+      "cpuBytes": 52160,
+      "gpuBytes": 52160,
       "errorMeters": 5,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:5803c294ed790c84859eb96822cefa4ca36b6893f0a25023e0cc19d340f5f1e6",
-      "bytes": 195916,
-      "gzipBytes": 45396,
-      "triangles": 2603,
-      "cpuBytes": 190976,
-      "gpuBytes": 190976,
+      "hash": "sha256:799e32201d4e31466e935fd6aea4ac8c8449c6efd181ab4fa5e7ebd45796fcd8",
+      "bytes": 201248,
+      "gzipBytes": 46293,
+      "triangles": 2675,
+      "cpuBytes": 196304,
+      "gpuBytes": 196304,
       "errorMeters": 0.8,
       "drawCalls": 4
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:5a70c2740057e86042d0e2a4861e72be9fc6fa8a540ed6466d8c0eac31e204dc",
-      "bytes": 1101936,
-      "gzipBytes": 251308,
-      "triangles": 15472,
-      "cpuBytes": 1096948,
-      "gpuBytes": 1096948,
+      "hash": "sha256:19abfa53c85bbb51c974a9fd2e5b8d4997ed35ce043ba8a39dd0d3a8b093e056",
+      "bytes": 1123716,
+      "gzipBytes": 253498,
+      "triangles": 15747,
+      "cpuBytes": 1118724,
+      "gpuBytes": 1118724,
       "errorMeters": 0.3,
       "drawCalls": 4
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:0e550986f499f76d3684130f33240057dd27ed40d79505652f96ba83440dff36",
-      "bytes": 3023720,
-      "gzipBytes": 558679,
-      "triangles": 25176,
-      "cpuBytes": 3021120,
-      "gpuBytes": 3021120,
+      "hash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
+      "bytes": 3053840,
+      "gzipBytes": 563228,
+      "triangles": 25427,
+      "cpuBytes": 3051240,
+      "gpuBytes": 3051240,
       "errorMeters": 0,
       "drawCalls": 4
     }
@@ -90,14 +95,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:f401a7773fd9e299110d25617d7704aa16055e042a3a0d1f2bc19687d5c659d9",
+      "hash": "sha256:287cf0dad6fa98f0328a99897641e05e14f17ee493fb5c7da5b717cc28a185bd",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 39610,
+        "triangles": 39861,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -123,19 +131,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:3084f9ad01914dda8018f8c5e6042e162cf0d53c6e59d42585b7ea34fc42c549",
+      "hash": "sha256:d4c95cb9213e0e1fa0eac0d803e7f866bdb8fb7f33b0c09fb857c9bbc5ab9862",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 39610,
+        "triangles": 39861,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -161,19 +173,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:53cdc165fc4123f023ba503d3d68e73f818f715381203ae3fc3ef1f40fd48091",
+      "hash": "sha256:b24c88d70be615ab94ecad280a10c6c72b6c76affc16dc9e0b1959e359355cde",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 39610,
+        "triangles": 39861,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -199,19 +215,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:b5f2a7a62adcab3dce94a96363037071a04cfdc72c0beba9bcd85b04bd733264",
+      "hash": "sha256:5fc8364be338c978ffd67cf46f64e05a62d27e822e66db842ed2b8178f30fe35",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 39610,
+        "triangles": 39861,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -237,19 +257,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:4977c47fd2d01dc7cb4751612cb2d3546a8c8139d3f8bc59b91b66fb6d13d95d",
+      "hash": "sha256:e0edb373c0f0a0336fb1bc550eb8ae1b425a2788df8b2219580dbf34e74bc719",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:799e32201d4e31466e935fd6aea4ac8c8449c6efd181ab4fa5e7ebd45796fcd8",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 17037,
+        "triangles": 17109,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -275,19 +299,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:455eea6c9b40d0f4c1145bd0659081276179521bf19dec784f5019aa16d03aa5",
+      "hash": "sha256:f800917056395a6022b7d0b8a9585d91f5ca696e3e94344ce7c5ac557deeb0e3",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:799e32201d4e31466e935fd6aea4ac8c8449c6efd181ab4fa5e7ebd45796fcd8",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 17037,
+        "triangles": 17109,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -313,19 +341,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:48f6f5bbff17b2aa294e6079fce87c3613445a21f3450f633fa00c7f45837238",
+      "hash": "sha256:b141a1788b5abd4c0f71d83200ff4db858c90cc2e5130c97a784021d712dd254",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:799e32201d4e31466e935fd6aea4ac8c8449c6efd181ab4fa5e7ebd45796fcd8",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 17037,
+        "triangles": 17109,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -351,19 +383,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:b519d6cf0954057d5bf544941631d2d98267c27e349cc67d4fb9ca32c21a7660",
+      "hash": "sha256:8c68be306cb7b00a72adc5a6273e31a8651e7cba73f39b43eb7a1990f3706499",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:799e32201d4e31466e935fd6aea4ac8c8449c6efd181ab4fa5e7ebd45796fcd8",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 17037,
+        "triangles": 17109,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -389,19 +425,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:8c161c564e7023c07fe5d6f01f61ffe51b70e5254d21d84b6c26693906b04602",
+      "hash": "sha256:b9e4cc6a19a6caac1277235e84a4155759547449149fea3a1de46bccd710fe11",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:4cc73fe6766834a0f98eb268f11ce858f7935f2733f20e3f3d0a7f0d36efd17e",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 15043,
+        "triangles": 15117,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -427,19 +467,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:6c4a2f53b68c88d5479117dc5d118d4da7a6e97d53adc190ddb4ed1e5e31790a",
+      "hash": "sha256:b1ff2d32c792d3a0453aa9d68aae4342bac6435f0f04a32c9d3d447126b2746a",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:4cc73fe6766834a0f98eb268f11ce858f7935f2733f20e3f3d0a7f0d36efd17e",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15043,
+        "triangles": 15117,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -465,19 +509,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:960fdb1566af4c5683c8e12e658a076bc750349beb4b5798601ea0f0633bfee0",
+      "hash": "sha256:3b3698af0aa649e0138a145026073c4bafcc998c9bbc3cb0b0752dc8a09570f9",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:4cc73fe6766834a0f98eb268f11ce858f7935f2733f20e3f3d0a7f0d36efd17e",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 15043,
+        "triangles": 15117,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -503,19 +551,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:903c249d7299f17d748501b7b71d86aaafdd95e79e9c9cf76a94c8ed3bfbe51e",
+      "hash": "sha256:fb36d4dd03171e452fdd6f4a2d67ed8b08b0b5a0857ebeb17e6731449ebbeb9b",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:4cc73fe6766834a0f98eb268f11ce858f7935f2733f20e3f3d0a7f0d36efd17e",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15043,
+        "triangles": 15117,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -541,19 +593,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:eb6052b6553bc0f42e5d59e778f47e2f5c18f5141a7d517e528bbef19854e20c",
+      "hash": "sha256:4cf25b7245a52ca04f664a2e29598644857724ba381a34eb8c31d817bec338ff",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:4cc73fe6766834a0f98eb268f11ce858f7935f2733f20e3f3d0a7f0d36efd17e",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 3,
-        "triangles": 8803,
+        "triangles": 8877,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -579,19 +635,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/front.png",
-      "hash": "sha256:58896c872291d1e969c6b513b65800b3c5e60c6a9e0c4a0a3564ded96c6fc275",
+      "hash": "sha256:261b45cc04baf351bded1f83c878234b54768471260fc7209bb096373434b160",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 39610,
+        "triangles": 39861,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -617,19 +677,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/back.png",
-      "hash": "sha256:52bb9bc9c2d5efa8c2fcd6cb5a6eae5ba83648c770fb45a45060db9a27b214c3",
+      "hash": "sha256:b70a1e71322e19a1b7049308a0e383238ea3dcee6ef00f5a386c9372db82ee0f",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 39610,
+        "triangles": 39861,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -655,19 +719,107 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/entrance-portal.png",
+      "hash": "sha256:d67d767fe33527e08cba79b775db0f6e4f1c1dfe118e367d6e2d259004cb072f",
+      "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39861,
+        "groundY": -92,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.height.png"
+        },
+        "position": [
+          7,
+          8,
+          13
+        ],
+        "lookAt": [
+          0,
+          7,
+          1.1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/entrance-reveals.png",
+      "hash": "sha256:b589dc4bab66badf806e4b89e297a014ff38fa80fbea23f51cba96269d18f506",
+      "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39861,
+        "groundY": -92,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.height.png"
+        },
+        "position": [
+          -2.8,
+          6,
+          5.5
+        ],
+        "lookAt": [
+          0,
+          6,
+          1.1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:ea08ba6a205c9deec7172f1048c5f9df81865097c373fef8825030bf8adeaa2f",
+      "hash": "sha256:6e6c73dd6ffefccbec7958b2040e814691b4a199f6500610fad0d2341abbe22c",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:4cc73fe6766834a0f98eb268f11ce858f7935f2733f20e3f3d0a7f0d36efd17e",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15043,
+        "triangles": 15117,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -693,19 +845,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:455eea6c9b40d0f4c1145bd0659081276179521bf19dec784f5019aa16d03aa5",
+      "hash": "sha256:f800917056395a6022b7d0b8a9585d91f5ca696e3e94344ce7c5ac557deeb0e3",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:799e32201d4e31466e935fd6aea4ac8c8449c6efd181ab4fa5e7ebd45796fcd8",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 17037,
+        "triangles": 17109,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -731,19 +887,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:8575ac3c93e23f6b66341b9968fe8939359c2bfeb5eac9b04ae5408c006cb5ee",
+      "hash": "sha256:07cc8244018fdc2bf717c145215699672fa42238a9d959f0e7055c221ef4e72d",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:19abfa53c85bbb51c974a9fd2e5b8d4997ed35ce043ba8a39dd0d3a8b093e056",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 29906,
+        "triangles": 30181,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -769,19 +929,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:00539f84855a6a501aa5e0ca350b3039ef5aefde88016414c3485123d021cd3f",
+      "hash": "sha256:934673655587e1f2f8ea136e4b22eab4f1b65edbc4fe00616965f3af4301c3c7",
       "state": {
+        "assetId": "molen.worldgen.structure.hearst_castle",
+        "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+        "lodHash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 39610,
+        "triangles": 39861,
         "groundY": -92,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q3/hearst_castle/terrain-review.terrain.json",
@@ -807,15 +971,10 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     }
   ],
-  "errors": [],
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:96c79eff41d467f7a8895b878bb9b8865733df2ad229b694bd7264991db534b6",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:6dd0a9f716b7518e51c260f474f531f96c9bbf6d6d1e9d05bb14837bfb3de878"
-  }
+  "errors": []
 }

@@ -7,7 +7,7 @@ import { buildKromerizRuntime } from './kromeriz-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u2/u2u/kromeriz_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

@@ -113,7 +113,7 @@ Manifest inside a content pack: a zip file carrying models, documents and catalo
       "type": "object",
       "propertyNames": {
         "type": "string",
-        "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+        "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9][a-z0-9_]*)*$"
       },
       "additionalProperties": {
         "type": "string",

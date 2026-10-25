@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.new_mosque",
+  "sourceHash": "sha256:2a059f8ba9921e23f1295cb36b6c336aca9c43987f2844268a9bd8be00c63d65",
+  "runtimeHash": "sha256:0a5cf92c5b67f334279440a6ed0a81467d1dd93d5dd9bf673b44fb99284f805a",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 10478,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:40cc9076ac6f95a6b305d3bcceae0d0bf6a9b0a46aca87950e0e55b9e1e07ace",
+      "bytes": 98020,
+      "gzipBytes": 14629,
+      "triangles": 984,
+      "cpuBytes": 96588,
+      "gpuBytes": 96588,
+      "errorMeters": 1.2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:54cc10e6d6b1cd83e137b41a00ad860d54d825a7d59ef0c27b4498cbc974dc2e",
+      "bytes": 262704,
+      "gzipBytes": 65135,
+      "triangles": 2979,
+      "cpuBytes": 255296,
+      "gpuBytes": 255296,
+      "errorMeters": 0.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:46c591423b0203d848366cb211f9aa5daa283421e3f81001875a9c0a1f8f1def",
+      "bytes": 1184020,
+      "gzipBytes": 314177,
+      "triangles": 14196,
+      "cpuBytes": 1176556,
+      "gpuBytes": 1176556,
+      "errorMeters": 0.18,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:f1e8ed010ca81b7c9ca8496cd6314e29e7bbe8e6aec12f2137d874c4b58026f5",
+      "bytes": 2376920,
+      "gzipBytes": 666196,
+      "triangles": 28584,
+      "cpuBytes": 2369416,
+      "gpuBytes": 2369416,
+      "errorMeters": 0.08,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:ebff60692776d421984f5b43429a7a9438881e8b9c421e03db7f0d63e970e7ba"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:779e26c7ae8fb2e1478cd651110ce8a238c85ae6ab4a484a9758a75c88dc3682"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:38ae97ae84661891ab97a51743e25b343e7381b160f31b7386605f9a370e11a3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          72.0467,
+          64.0082,
+          124.4441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:c2d343b1ccb227a8df44b75f12e65983f7abc234dd8af44db0c5d591a9552ded",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          72.0467,
+          64.0082,
+          124.4441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:52fd5ad2520251bc398e7ce82c96546792806d1ee0ece17ab70dae0f8f53159b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          72.0467,
+          64.0082,
+          124.4441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:428d1e525c003409e5584a652cf174cfbe67419d3fd9024cdce3d90b7befc960",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          72.0467,
+          64.0082,
+          124.4441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:f30bd5c12f1f6c3e6b3f647f8a8f3e7dfd35f7bb2f1619e03e728f49d7fb5f83",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 34259,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.5467,
+          118.0082,
+          251.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:7db238814dc33a46e577f084d9739db9701997d2bec5324cfe3ebb9fb78e466c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 34259,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.5467,
+          118.0082,
+          251.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:09ce2a95fea97dd4fe0c8f23ffe7db3293951fb740a1b35ca0b0ce9a4fb7496d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 34259,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.5467,
+          118.0082,
+          251.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:cb9321363f3c3468ec782ac567df641d306780669d8b09121474a0fe7a0346f0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 34259,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.5467,
+          118.0082,
+          251.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:41bae6a0c4351cb446dd2624205bc31dae25c92d80518efcbc6568580dbd4668",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32264,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          291.0467,
+          175.0082,
+          503.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:54dbc34abfa8a9744c22b4b189c8baf587467a0b30a4a0714ba592c258107776",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32264,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          291.0467,
+          175.0082,
+          503.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:2b95391cdb863aaac6f6ee14e999110fb966edf803a521542e8e6ccff6f2e44f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32264,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          291.0467,
+          175.0082,
+          503.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:a6846360bff43324fc5dae915171373abb89794e7138bb8ebf1f14af03240fd8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32264,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          291.0467,
+          175.0082,
+          503.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:3038aee6164b38e6f1dd0f8c4ef3523559eda25e447ff75c6a8086e2811b87bd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21786,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          291.0467,
+          175.0082,
+          503.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northwest-court-two-minarets.png",
+      "hash": "sha256:71537ca555dcca8e78871d93a14f9646e6a5251f3eebcd60164224241420fc40",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -95,
+          65,
+          95
+        ],
+        "lookAt": [
+          -3,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-pointed-court.png",
+      "hash": "sha256:d27ae67d826df63a9b42d5350d7d4c2dc009feed83174e0e4676195400fb768e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -20,
+          11,
+          5
+        ],
+        "lookAt": [
+          -31,
+          6,
+          -7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/octagonal-domed-fountain.png",
+      "hash": "sha256:4cce4bf89e4f19ed0bf3d609c34c828f7acf04d7f4642295fae4e90b95e77ddb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -29,
+          10,
+          -5
+        ],
+        "lookAt": [
+          -20.7,
+          5,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southwest-two-storey-gallery.png",
+      "hash": "sha256:efd3c8a7ba237f5964662b801e76477fa65fd41985eeb8667eb1b1f8be277601",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          19,
+          18,
+          70
+        ],
+        "lookAt": [
+          16,
+          9,
+          24
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/three-balcony-minaret.png",
+      "hash": "sha256:20c443c1d2242df4f793a9ccef0fe01cd6d3edab0d12cd56b897b7d83f28e796",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -35,
+          34,
+          66
+        ],
+        "lookAt": [
+          -5.2,
+          31,
+          23.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-and-signed-plan.png",
+      "hash": "sha256:b108736561ee2db050bc3c495a89c42948e3908901a22be144075d132c2cee6a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          190,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-yeni-skyline.png",
+      "hash": "sha256:9859a91c2cb7c9f30c8248dbb3836516a20119e7d41c1fc091eea67e5cc6716d",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32264,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -102,
+          76,
+          112
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-yeni-district.png",
+      "hash": "sha256:d2eda5fb0d64a2afc93b3d5ac08f9b050ccbc6dfb3c2cb7fd4ab7dfc82d48b44",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 34259,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -102,
+          76,
+          112
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-yeni-street.png",
+      "hash": "sha256:86e4ccb5d7975851f9d87e19521675b345d310fe019f469f80972275bad5d6cc",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45476,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -102,
+          76,
+          112
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-yeni-closeup.png",
+      "hash": "sha256:6a55412bdc7c544fed20b95b28c957c14e56644acc7610513d26f845089b92e4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -102,
+          76,
+          112
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:e39954413ecbf68da974bc35b83cdaa05d827ab8cc686aa84c4e7d66f3fd4584",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32264,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.5467,
+          118.0082,
+          251.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:7db238814dc33a46e577f084d9739db9701997d2bec5324cfe3ebb9fb78e466c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 34259,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.5467,
+          118.0082,
+          251.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:58109886a2a4ec783a31532987cd43b8b65da4d4d9189b31e546669e16817dc9",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 45476,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.5467,
+          118.0082,
+          251.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:5e5b77c91564150b3e3bcd554692faae5174e50ec7c7ac77bf562a5e6c19c74e",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59864,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/new_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.5467,
+          118.0082,
+          251.9441
+        ],
+        "lookAt": [
+          0.0467,
+          41.5082,
+          -0.0559
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

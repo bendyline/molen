@@ -526,7 +526,7 @@ export function buildMoeve(out) {
     beam(out, 'metal', [x, 219.76, -19], [x, 219.76, 19], 0.065, 0.035, [0.19, 0.21, 0.22]);
 }
 export const moeveStudy = {
-  id: 'N0203',
+  id: 'torre_moeve',
   key: 'torre_moeve',
   title: 'Torre Moeve',
   wikidataId: 'Q519568',

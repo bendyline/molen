@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gc7/n0275_dublin_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gc7/dublin_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -861,7 +861,7 @@ export const buildDublinSkyline = (o) =>
     ),
   );
 export const dublinStudy = {
-  id: 'N0275',
+  id: 'dublin_castle',
   key: 'dublin_castle',
   title: 'Dublin Castle',
   category: 'castle',
@@ -929,7 +929,7 @@ export const dublinStudy = {
   limitations: JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/gc/gc7/n0275_dublin_castle/reference-metadata.json',
+        '../../../content/worldgen/source/places/gc/gc7/dublin_castle/reference-metadata.json',
         import.meta.url,
       ),
     ),

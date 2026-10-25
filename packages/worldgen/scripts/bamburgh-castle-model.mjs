@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/gc/gcy/n0320_bamburgh_castle/',
+  '../../../content/worldgen/source/places/gc/gcy/bamburgh_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -645,7 +645,7 @@ export const buildBamburghDistrict = (out) => build(out, 1);
 export const buildBamburghStreet = (out) => build(out, 2);
 export const buildBamburghCloseup = (out) => build(out, 3);
 export const bamburghStudy = {
-  id: 'N0320',
+  id: 'bamburgh_castle',
   key: 'bamburgh_castle',
   title: 'Bamburgh Castle',
   category: 'castle',

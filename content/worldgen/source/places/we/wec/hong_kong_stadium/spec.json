@@ -1,0 +1,361 @@
+{
+  "planId": "hong_kong_stadium",
+  "id": "hong_kong_stadium",
+  "assetId": "molen.worldgen.structure.hong_kong_stadium",
+  "title": "Hong Kong Stadium",
+  "category": "stadium",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.188633375,
+    "latitude": 22.27288305
+  },
+  "size": [
+    180.37390899658203,
+    46.07998275756836,
+    208.94441986083984
+  ],
+  "actualBounds": {
+    "min": [
+      -88.22711944580078,
+      -0.25,
+      -102.50321197509766
+    ],
+    "max": [
+      92.14678955078125,
+      45.82998275756836,
+      106.44120788574219
+    ]
+  },
+  "visualBrief": "Whole physical1994Hong Kong Stadium and intrinsic north entry cluster: complete native32-vertex stadium outer617144396/buildingrelation9077109, separate18-vertexwest/17-vertexeast curved grandstand roof footprints, whole5-vertexapproach/8-vertexentry hall of relation10823159, full lower seating bowl/open central field/apron, east/west covered upper stands/concourse/suite bands/aisle stairs, twin white bowed membrane roofs and actual open triangular steel arch/transverse supports, green representative seat rows, end scoreboard frames, red entrance hall/upper glazing/dark fascia/two blue-ivory blade fins/raised approach stairs/low open gate. Official130x74m total turf surface is distinguished from approximate8-vertex mapped pitch. Native44-vertex leisure-stadium site is identity only, not physical footprint. Exclude OlympicHouse/apartments/nearbySoKonPoRecreationGround/tennis/hospitals/roads/fullforecourtparcel/natural hills/trees/people/vehicles/flags/brands/plaque letters/interiorrooms. Use all original32outer/18west/17east/5approach/8hall controls. Native pitch8 is identity/axis only; operator130x74m total turf, open apron and bounded playing markings, not a stuffed roof/whole parcel slab. Actual stepped lower bowl/green seat-row rhythm and side upper tiers, middle suite/concourse strip and open bays; distant row census coarsens. Twin roofs keep open central sky, smoothly bowed white membrane/open silver triangular main arches/transverse webs/anchorage. Red north hall/upperglass/dark fascia/twin tapered blue-ivory fins and intrinsic broad stair/open low gate; no copied letters or plaque. Independent512m129x129ground frozen at fixed native north entry approach before geometry, no fit/flatten/reacquire; actual host hillside/street/pitch grade unverified.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hong_Kong_Stadium-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:HongKongStadium_EastPlatform2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hong-kong-stadium-wp",
+      "url": "https://qualla.com/hong-kong-stadium/"
+    }
+  ],
+  "referenceInputHash": "052d0f039fa3eb19e2e57a0a62ed709003861230aba598354505d97e2f61d28f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hong-kong-stadium.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hong-kong-stadium.mjs",
+    "level": "skyline",
+    "export": "hongKongStadiumSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "shell": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.69,
+        "metallic": 0.18
+      },
+      "seat": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "grass": {
+        "slot": "foundation",
+        "localRef": "palette:#fffeff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.35,
+        "metallic": 0.07
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hongKongStadiumDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.18
+          },
+          "seat": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#fffeff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.07
+          }
+        }
+      },
+      "street": {
+        "export": "hongKongStadiumStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.18
+          },
+          "seat": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#fffeff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.07
+          }
+        }
+      },
+      "closeup": {
+        "export": "hongKongStadiumCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.18
+          },
+          "seat": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#fffeff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.07
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "groundY": -0.27
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original buildingmultipolygon9077109 outerway617144396/all32vertices; two distinct grandstand roofways230843882/all18 and230843885/all17. Native entrybuildingrelation10823159 has two separate outerparts230843886/all5 and780528051/all8, retained as intrinsic north entrance. Whole leisure-stadiumway230843881/all44vertices includes access/forecourt surroundings and is identity only, never extruded as a stadium parcel. Native innerpitch230843887/all8vertices fixes centre/long-axis, not surveyed grass dimensions: its approximate footprint differs from current operator nominal130x74m total turf. Official turf rectangle controls actual field; original8-point mapped line remains provenance/identity, not forced over the turf or used to narrow the whole bowl. Mean8vertexpitch anchor/+Xeastslightlysouth/+Zsouthslightlywest along original long edge fixed before field/geometry. No native roof/stand heights: roof45m peak/13.5m ends/standtier and gate/stair/fin profiles are original bounded photo interpretations, not engineering survey. Independent512mrawfield frozen before geometry; urban DEM may include roof/canopy interpolation, not surveyed pitch/forecourt grade. Actual terrain attachment remains unverified.",
+    "anchor": [
+      114.188633375,
+      22.27288305
+    ],
+    "heading": -0.03173774246753208,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.1882435482331,
+        22.273868971527136
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed original northernmost entry-hall vertex6m outboard toward street before independent field/geometry. True field/platform/street threshold elevations not surveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/617144396",
+      "way/230843882",
+      "way/230843885",
+      "way/230843886",
+      "way/780528051",
+      "way/230843887"
+    ],
+    "source": "https://www.openstreetmap.org/relation/9077109",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:846ded5875f8035c84e326512113701b72eaf4c05264254c3c58bb600dc01bb2",
+    "notes": "Whole physical1994Hong Kong Stadium and intrinsic north entry cluster: complete native32-vertex stadium outer617144396/buildingrelation9077109, separate18-vertexwest/17-vertexeast curved grandstand roof footprints, whole5-vertexapproach/8-vertexentry hall of relation10823159, full lower seating bowl/open central field/apron, east/west covered upper stands/concourse/suite bands/aisle stairs, twin white bowed membrane roofs and actual open triangular steel arch/transverse supports, green representative seat rows, end scoreboard frames, red entrance hall/upper glazing/dark fascia/two blue-ivory blade fins/raised approach stairs/low open gate. Official130x74m total turf surface is distinguished from approximate8-vertex mapped pitch. Native44-vertex leisure-stadium site is identity only, not physical footprint. Exclude OlympicHouse/apartments/nearbySoKonPoRecreationGround/tennis/hospitals/roads/fullforecourtparcel/natural hills/trees/people/vehicles/flags/brands/plaque letters/interiorrooms."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original buildingmultipolygon9077109 outerway617144396/all32vertices; two distinct grandstand roofways230843882/all18 and230843885/all17. Native entrybuildingrelation10823159 has two separate outerparts230843886/all5 and780528051/all8, retained as intrinsic north entrance. Whole leisure-stadiumway230843881/all44vertices includes access/forecourt surroundings and is identity only, never extruded as a stadium parcel. Native innerpitch230843887/all8vertices fixes centre/long-axis, not surveyed grass dimensions: its approximate footprint differs from current operator nominal130x74m total turf. Official turf rectangle controls actual field; original8-point mapped line remains provenance/identity, not forced over the turf or used to narrow the whole bowl. Mean8vertexpitch anchor/+Xeastslightlysouth/+Zsouthslightlywest along original long edge fixed before field/geometry. No native roof/stand heights: roof45m peak/13.5m ends/standtier and gate/stair/fin profiles are original bounded photo interpretations, not engineering survey.",
+    "Whole original32-point physical stadium/18west+17east roofs/5approach+8hall retained.44-vertex leisure-site boundary is identity only, no parcel slab. Native8pitch polygon fixes centre/heading but is approximate and differs from operator130x74m total turf, which independently controls original field rectangle. The turf surface is0.12m above model datum and markings0.16m to avoid coplanar depth artifacts, while apron is−0.02m; these are bounded architectural finish offsets, not terrain fitting. Playing markings/105x68m soccer layout/goals/seat and aisle rhythms/scoreboard orientation/current finish are representative photo-based estimates, not current sporting/seat census.",
+    "Roof45m maximum/13.5mend supports/7m rear slope/32.5m upper seating/12.5m nominal lower maximum/4.8m entrance platform/11.3m hall and34/31m blade fins are bounded original photo proportions, not native or engineering measured heights. Full roofs retain original polygons, open central sky, white upper/underside membranes/open triangular steel arches/transverse supports. Representative seating row ribbons preserve steep split tiers/concourse/aisle gaps while density coarsens at distance.",
+    "Two exact already-published Waka77self-CC0wholebowl2012andChongFatself-photographedPD-user-w eastroof/exterior/entry2006originals individually inspected/nativeSHA1matched/unchanged Qualla policy passes. Native Waka77sourcefield literallyOow; named-author self-CC0 grant explicit, no other source invented. Close gate original inspected but unused due missing PD category in original local media record; accepted east exterior already shows same entrance. Rama-retouchedRoofSupport/plaque/unrelated city sources unused. No sourcebitmap textures/generated raster/downloaded mesh/policy or media-metadata repairs.",
+    "Red entrance hall/glazed upper band/dark fascia/twin blue-ivory blades/raised approach/open lower platform gap and representative stair geometry; Precise entry partitions, slopes, bearings, turnstiles, rooms and side facade openings are bounded estimates. Official pitch-access tunnel dimensions are recorded as reference facts; their positions and interiors are not modeled. Blank scoreboard faces omit brand/event text. No OlympicHouse/apartments/hospital/nearby separate recreation pitch/tennis/cityroads/whole forecourt/natural hills/trees/people/vehicles/letters/plaque/flags.",
+    "Independent512m129x129field/all16641values/one raw Terrarium tile frozen before geometry and unchanged without fit/flatten/reacquisition.27.1763m provider-relative north approach datum and6.3693..115.9634m absolute field are not a surveyed structural datum; urban composite may contain/interpolate roof/canopy heights. Model pitch/stand/street relationships and true live-host contact unverified. Portable/shared/context flat fixtures separate; native preview/replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-open-bowl-twin-roofs-and-north-entrance",
+      "position": [
+        -210,
+        150,
+        -250
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "interior-green-tiers-open-central-sky-and-underside-roof-lattice",
+      "position": [
+        -12,
+        18,
+        63
+      ],
+      "lookAt": [
+        15,
+        20,
+        -15
+      ]
+    },
+    {
+      "name": "red-north-hall-twin-blade-fins-and-intrinsic-stair-approach",
+      "position": [
+        -100,
+        22,
+        -135
+      ],
+      "lookAt": [
+        -43,
+        13,
+        -90
+      ]
+    },
+    {
+      "name": "whole-east-curved-membrane-native-roof-outline-and-upper-stand",
+      "position": [
+        150,
+        55,
+        55
+      ],
+      "lookAt": [
+        55,
+        25,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 55378,
+    "vertices": 166134,
+    "materials": 6,
+    "bytes": 6648720,
+    "sha256": "sha256:49aa39c20d9e13905af70c51e6b86896e558fa221a5b05b2f29d4a66e099729d"
+  }
+}

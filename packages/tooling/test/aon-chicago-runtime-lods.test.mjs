@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineGlobal } from '../../worldgen/scripts/signature-tower-global-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dp/dp3/n0172_aon_center'),
+const source = resolve('../../content/worldgen/source/places/dp/dp3/aon_center_chicago'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -78,7 +78,7 @@ it('reproduces Aon Center detailed master and two independent signed map ways', 
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineGlobal.find((p) => p.id === 'N0172').build(a.wrap(b), m);
+  skylineGlobal.find((p) => p.id === 'aon_center_chicago').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`);
   expect(m.elements).toHaveLength(2);
   expect(m.elements.find((p) => p.id === 64388609).tags.wikidata).toBe('Q271695');

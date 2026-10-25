@@ -1,0 +1,288 @@
+{
+  "variant": "DA42-VI with MAM42-600, AE300/E4-C engines, 1.90m MT three-blade propellers, 2024 G1000 NXi / MD302 cabin",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://web.archive.org/web/20230130234036/http://support.diamond-air.at/fileadmin/uploads/files/after_sales_support/DA42_New_Generation/Airplane_Flight_Manual_with_MAM42-600_DA42-VI/Basic_Manual/70116e-r5-complete.pdf",
+      "title": "DA42 NG with MAM42-600 (DA42-VI), AFM 7.01.16-E rev5, 10 June 2021",
+      "author": "Diamond Aircraft",
+      "license": "Copyright Diamond; local study only, no source pixels distributed.",
+      "scope": "PDF24-25 dimensions, PDF38 three-view, PDF50/56 propeller RPM and markings, PDF368 flap annunciation, PDF373-374 panel/MD302 option, PDF376 gear retraction, PDF391-395 engine/propeller/control details."
+    },
+    {
+      "url": "https://www.diamondaircraft.com/fileadmin/diamondaircraft/documents/da42/DA42-VI_Exterior_and_Interior_Design_2024_SCREEN.pdf",
+      "title": "DA42-VI Exterior and Interior Design, 2024",
+      "author": "Diamond Aircraft",
+      "license": "Copyright Diamond; local study only, no source pixels distributed.",
+      "scope": "PDF1 open-canopy photograph, PDF16 NXi/MD302 cockpit and trim photographs, PDF19 cabin measurements and aerial exterior photograph."
+    },
+    {
+      "url": "https://www.diamondaircraft.com/en/private-owners/aircraft/da42/tech-specs/",
+      "title": "DA42-VI technical specifications and dimension drawing",
+      "author": "Diamond Aircraft",
+      "scope": "711px drawing used for side/front overlays; numeric drawing itself states 8.56m,13.55m,2.49m (web alt-text incorrectly names different dimensions)."
+    },
+    {
+      "url": "https://www.diamondaircraft.com/fileadmin/_processed_/8/3/csm_DA42-VI_Highlight_3_Propulsion-and-Avionics_Bild_0_Teaser_Garmin_NXi_faf7cff71e.jpg",
+      "title": "DA42-VI G1000 NXi cockpit photograph",
+      "author": "Diamond Aircraft",
+      "license": "Copyright Diamond; local study only.",
+      "scope": "1023px straight-on cockpit photograph, also published in 2024 brochure PDF16."
+    },
+    {
+      "url": "https://static.garmin.com/pumac/190-00649-04_b.pdf",
+      "title": "Garmin G1000 Pilot Guide for Diamond DA42, 190-00649-04 rev B",
+      "author": "Garmin",
+      "license": "Copyright Garmin; local study only.",
+      "scope": "PDF109-117 EIS vertical LOAD/RPM sliders and missing-sensor behavior; NXi photo checked for placement."
+    },
+    {
+      "url": "https://www.easa.europa.eu/sites/default/files/dfu/certification-type-certificates-docs-aircraft-EASA-TCDS-A.005_Diamond_DA_42_and_variant-22-14062013.pdf",
+      "title": "EASA.A.005 DA42 type certificate data sheet, issue22",
+      "author": "EASA",
+      "scope": "PDF20 DA42 NG/MAM42-600: 20-degree approach / 42-degree landing flaps; PDF18 E4-C and 1.9m propeller."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Diamond_DA42-VI_Twin_Star_(N315ER,_cn_42.N214)_(9-17-2022).jpg",
+      "title": "File:Diamond DA42-VI Twin Star (N315ER, cn 42.N214) (9-17-2022).jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:ZLEA\" title=\"User:ZLEA\">ZLEA</a>",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "revision": 1211852711,
+      "scope": "2022 photograph of N315ER DA42-VI; canopy, nacelle intakes, gear and composite finish."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.82,
+      -0.15
+    ],
+    "lookAt": [
+      0,
+      1.22,
+      1.1
+    ],
+    "fov": 78
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.4
+    ],
+    "viewHeight": 0.7,
+    "cameraHeight": 8.98
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "propNormalized": 0,
+    "propNormalized2": 0,
+    "verticalSpeed": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "elevator": 0,
+    "flapPosition": 0,
+    "gear": 1
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/da42-dimensions-clean.png",
+      "crop": {
+        "left": 211,
+        "top": 210,
+        "width": 405,
+        "height": 130
+      },
+      "referenceAnchor": [
+        217,
+        333
+      ],
+      "modelAnchor": [
+        -3.28,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 392,
+        "meters": 8.56,
+        "description": "8.56m length; uniform scale, wheelbase separately 1.735m."
+      },
+      "scope": "Canopy/nose/tail longitudinal profile, nacelle position and gear."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/da42-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 815,
+        "height": 510
+      },
+      "referenceAnchor": [
+        407,
+        501
+      ],
+      "modelAnchor": [
+        0,
+        3.28
+      ],
+      "scaleControls": {
+        "pixels": 795,
+        "meters": 13.55,
+        "description": "13.55m span including ACL; uniform scale."
+      },
+      "scope": "Wing taper and chord, nacelle widths, slender fuselage, 3.2m T-tail."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/da42-afm-dimensions-small.png",
+      "crop": {
+        "left": 240,
+        "top": 748,
+        "width": 815,
+        "height": 167
+      },
+      "referenceAnchor": [
+        649,
+        905
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 783,
+        "meters": 13.42,
+        "description": "AFM front drawing: 13.42m structural span, ground and wheel line visible; 2.95m track checked separately."
+      },
+      "scope": "Dihedral, winglets, propeller centers and canopy cross-section."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/da42-cockpit.png",
+      "crop": {
+        "left": 91,
+        "top": 139,
+        "width": 831,
+        "height": 450
+      },
+      "referenceAnchor": [
+        500,
+        327
+      ],
+      "modelAnchor": [
+        0,
+        -1.42
+      ],
+      "scaleControls": {
+        "pixels": 164,
+        "meters": 0.211328,
+        "description": "10.4-inch 4:3 active display width, uniform scale; perspective retained."
+      },
+      "scope": "Panel contour, NXi screens, MD302, breakers, vents, lower console and control sticks.",
+      "edgeMode": "photo"
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced the generic twin with an individually authored DA42-VI shell, long nose baggage compartment, bubble canopy, rear glazing, narrow wing, swept winglets, T-tail, AE300 nacelles and 1.90m three-blade MT propellers.",
+      "Side/top/front overlays drove winglet sweep and rear canopy corrections. Printed wheelbase and track are preserved. Main gear folds inboard and nose gear folds forward. True window apertures were checked by imported-model sightline tests.",
+      "Factory NXi photograph and cabin measurements establish the arched panel, paired 10.4-inch displays, MD302, audio bank, right breaker bank, ECU/master controls, two sticks and two power levers. Render review corrected the glareshield joints, seat shoulder contours and exposed footwell shell.",
+      "The EIS uses independent vertical left/right propeller RPM sliders and numeric indications, scaled to 2300 RPM. Unsupported engine load is crossed out and unsupported thermal/fuel/electrical/map values remain unavailable.",
+      "Named expressions drive gear-down and gear-transit lamps, measured flap lamps with adjacent lights during travel, PFD/MD302 attitude, TAS/geometric altitude/true heading and controls. Ten shared instrument tests passed, including independent sensors and missing-data handling."
+    ],
+    "independentDimensions": {
+      "lengthMeters": 8.56,
+      "spanIncludingAclMeters": 13.55,
+      "structuralSpanMeters": 13.42,
+      "heightMeters": 2.49,
+      "wingAreaSqMeters": 16.29,
+      "meanAerodynamicChordMeters": 1.271,
+      "dihedralDegrees": 5,
+      "mainGearTrackMeters": 2.95,
+      "wheelbaseMeters": 1.735,
+      "propellerDiameterMeters": 1.9,
+      "maxPropRpm": 2300,
+      "tailSpanMeters": 3.2,
+      "horizontalTailAreaSqMeters": 2.35,
+      "cabinWidthPilotMeters": 1.06,
+      "cabinWidthRearMeters": 1.14,
+      "cabinHeightMeters": 1.19,
+      "seatWidthMeters": 0.44,
+      "approachFlapDegrees": 20,
+      "landingFlapDegrees": 42
+    },
+    "visual": "Individually inspected final side/top/front/panel overlays, four turntables, three-quarter, operator, cabin and wide cabin renders. Inspected zero, 170-knot/12500-foot/2200-left-2100-right-RPM cruise, 2300-RPM upper-range and missing TAS/RPM/flap cases, plus passengers and close exterior. Compared factory cockpit/open-canopy/cabin photographs and CC BY-SA N315ER exterior. No nonuniform reference scaling.",
+    "limitations": [
+      "The plan drawing scaled by span is about 0.2m shorter overall than the printed 8.56m length; the side drawing places the nose wheel about 0.08m farther forward than the printed 1.735m wheelbase. Printed dimensions take precedence. Small tailplane, nacelle, aft-fuselage and gear outline residuals remain. The simplified website front drawing was replaced by the AFM front view, which includes a usable ground line.",
+      "Compound canopy/nose/nacelle curvature, wing roots, intake throats, gear-door linkages and fairings remain finite polygonal approximations. Exterior service seams and fasteners follow composite construction without a fictitious all-metal rivet grid. Fine stencils and trim-tab mechanisms are simplified.",
+      "Cockpit photo scaling assumes a 10.4-inch 4:3 active display. Panel depth, seat bolsters, switch shapes, upholstery and small legends remain approximate; the panel overlay does not metrically constrain the perspective console and sticks. Factory reference pixels remain local study material; the openly licensed exterior source has its attribution recorded and no source pixels are distributed.",
+      "PFD and standby use TAS, geometric world altitude and true heading, not calibrated pitot/static or magnetic instruments. Normalized simulated shaft speeds drive propeller RPM only, not diesel crankshaft speed. FADEC, percent load, oil/coolant/fuel/electrical systems, governor behavior, nav/map/autopilot and radios are not simulated. The flight model is assisted tuning, not validated DA42 performance.",
+      "Controls animate from shared pilot inputs; independent engine lever commands, intermediate flap selection, hydraulic failure states and exact control deflection schedules are not implemented. The stock flap input selects up/down; the instrument can display the 20/42 approach point and travel between detents. Gear lamps represent common measured travel rather than three separate downlock sensors."
+    ]
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "TAS m/s to knots",
+      "altitude": "world meters to feet",
+      "heading": "true heading radians",
+      "rpm": "independent normalized engine-1/engine-2 shaft speed to 2300 RPM",
+      "flaps": "measured normalized travel, APP=20/42; adjacent lamps during transit"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/diamond-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true
+  },
+  "sourceHash": "sha256:6b9ba085bc9466fc66176375d42e05ed3cb0cbd4c87ab446f75c7c59f91a21ec",
+  "runtimeHash": "sha256:2cb3bda9be14d2f2f1946908d8bb777dd4110ba9ca69f3a58f5d34ab5edb5779",
+  "limitations": [
+    "The plan drawing scaled by span is about 0.2m shorter overall than the printed 8.56m length; the side drawing places the nose wheel about 0.08m farther forward than the printed 1.735m wheelbase. Printed dimensions take precedence. Small tailplane, nacelle, aft-fuselage and gear outline residuals remain. The simplified website front drawing was replaced by the AFM front view, which includes a usable ground line.",
+    "Compound canopy/nose/nacelle curvature, wing roots, intake throats, gear-door linkages and fairings remain finite polygonal approximations. Exterior service seams and fasteners follow composite construction without a fictitious all-metal rivet grid. Fine stencils and trim-tab mechanisms are simplified.",
+    "Cockpit photo scaling assumes a 10.4-inch 4:3 active display. Panel depth, seat bolsters, switch shapes, upholstery and small legends remain approximate; the panel overlay does not metrically constrain the perspective console and sticks. Factory reference pixels remain local study material; the openly licensed exterior source has its attribution recorded and no source pixels are distributed.",
+    "PFD and standby use TAS, geometric world altitude and true heading, not calibrated pitot/static or magnetic instruments. Normalized simulated shaft speeds drive propeller RPM only, not diesel crankshaft speed. FADEC, percent load, oil/coolant/fuel/electrical systems, governor behavior, nav/map/autopilot and radios are not simulated. The flight model is assisted tuning, not validated DA42 performance.",
+    "Controls animate from shared pilot inputs; independent engine lever commands, intermediate flap selection, hydraulic failure states and exact control deflection schedules are not implemented. The stock flap input selects up/down; the instrument can display the 20/42 approach point and travel between detents. Gear lamps represent common measured travel rather than three separate downlock sensors."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:37f2c308b0dd37b37240f31ccca69c3bcd930c036f36e33801198ee49f92409e",
+    "sourceHash": "sha256:6b9ba085bc9466fc66176375d42e05ed3cb0cbd4c87ab446f75c7c59f91a21ec",
+    "runtimeHash": "sha256:2cb3bda9be14d2f2f1946908d8bb777dd4110ba9ca69f3a58f5d34ab5edb5779",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/diamond-da42-pair.png",
+        "sha256": "sha256:9355befa9426d90d2d7f5f97a44fd83188850a8597a041c4d01a85ef41994897",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/diamond-da42-exterior-pair.png",
+        "sha256": "sha256:db2d6ffb16c0d92e8a0bb39d14435c13e4ad8025cb87952922a2503037265482",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

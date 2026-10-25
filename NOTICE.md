@@ -10,19 +10,22 @@ nothing in LICENSE overrides the terms below.
 If you fork, vendor, repackage or ship a product built on this repository, read this file first.
 Two things need your attention in particular:
 
-- The Sammamish vector tiles are an ODbL 1.0 Derivative Database. ODbL is share-alike: it cannot
+- The regional vector tiles are an ODbL 1.0 Derivative Database. ODbL is share-alike: it cannot
   be relicensed to MIT, and a derivative of it must itself be offered under ODbL 1.0. See §1.
 - The Earth business catalog contains real source names for map matching; rendered signs use
-  generic descriptor models. See §4.
+  generic descriptor models. See §4a.
+- The entities pack identifies 107 vehicle and motorhome models and two aircraft by their real
+  manufacturer, model and year names. The names are identification only; the geometry carries no
+  manufacturer mark. See §4b.
 
 **Section index**
 
 | § | Section |
 | --- | --- |
-| §1 | Geospatial data — Sammamish terrain package |
+| §1 | Geospatial data — regional terrain packages |
 | §2 | Geospatial data — OpenStreetMap-derived test fixtures |
 | §3 | Brand identity data — OSM Name Suggestion Index |
-| §4 | Trademarks |
+| §4 | Trademarks — business identities (4a), vehicle and aircraft identities (4b) |
 | §5 | Generated art assets |
 | §6 | Webfonts |
 | §7 | Ported math code |
@@ -31,7 +34,20 @@ Two things need your attention in particular:
 
 ---
 
-## §1 Geospatial data — Sammamish terrain package
+## §1 Geospatial data — regional terrain packages
+
+The World explorer also bundles packages under `examples/world-explorer/public/terrain/` for
+`seattle-bellevue-sammamish`, `sydney`, `kyoto`, `yuma`, and `new-delhi`. Each directory carries
+`LICENSES.md`, `SOURCES.json`, and a hashed `terrain-package.json`; those sidecars record its
+snapshot, bounds, files, and credits. The vector data terms below apply to all these packages.
+The four new packages use the 2026-10-23 Protomaps build and Mapzen elevation
+accessed on 2026-10-23. Elevation credits include the global USGS and NOAA ETOPO1 sources;
+Sydney also credits Geoscience Australia (CC BY 4.0), and Yuma's cross-border coverage credits
+INEGI Continental relief 2016 under its free-use terms. See the
+[upstream terrain attribution](https://github.com/tilezen/joerd/blob/master/docs/attribution.md).
+
+The detailed byte counts and historical source inspection below describe the original Sammamish
+fixture; the other packages' own manifests and notices describe their contents.
 
 - **Path:** `examples/world-explorer/public/terrain/sammamish/`
 - **Package-local notice:** [`examples/world-explorer/public/terrain/sammamish/LICENSES.md`](examples/world-explorer/public/terrain/sammamish/LICENSES.md)
@@ -146,6 +162,13 @@ Molen's own authored work under MIT. Only the identity data comes from the NSI.
 
 ## §4 Trademarks
 
+Two kinds of third-party name appear in this repository: business identities that the Earth view
+matches against map data (4a), and the manufacturer, model and year names that identify the
+reference vehicles and aircraft in the entities pack (4b). In both, the name is used to say what
+something *is*; no logo artwork, emblem geometry, wordmark or other trade dress is reproduced.
+
+### 4a. Business identities in the Earth catalog
+
 - **Paths:** `content/earth/businesses/catalog.json`,
   `packages/worldgen-earth/test/fixtures/us-retail-library.batch.json`,
   `packages/worldgen-earth/test/fixtures/store-library.batch.json`
@@ -158,26 +181,68 @@ filenames, model IDs, titles and wordmarks are generic, and every mapped-busines
 from the generic descriptor's initials. Source-inspired palettes remain as visual variants. Tests
 repeat some source names and identifiers to verify that mapping behavior.
 
-> All product names, company names, logos, color schemes and other trade dress referred to in this
-> repository are the property of their respective owners. Molen and Bendyline LLC are not
-> affiliated with, endorsed by, sponsored by or approved by any of them, and no such relationship
-> is implied. Source names are used only to recognize real places that mapped data identifies as
-> those businesses. The MIT License in LICENSE grants rights in this repository's software and data
-> only; it grants no right, license or permission in any trademark, service mark, trade name or
-> trade dress of any third party.
->
-> The generated sign geometry uses generic text and initial emblems, not source logo artwork.
->
-> A downstream redistributor's use of these marks is that redistributor's own. Trademark analysis
-> depends on use, context and likelihood of confusion, so a use that is descriptive in this
-> repository may not be descriptive in your product. Take your own advice. The mapping catalog and
-> landmark pack are data and can be replaced independently without changing engine code.
+### 4b. Vehicle, motorhome and aircraft identities in the entities pack
 
-This also covers the real aircraft types depicted in `content/entities/source/aircraft/`
-(P-51D Mustang; OH-6), identified by their public designations. Their models are original low-poly
-interpretations generated by committed scripts (`models/generate.mjs` in each source bundle) from
-three.js primitives and committed parameters; no third-party mesh, texture or bitmap is used. The
-`molen.entities` content pack carries the same statement in its own `NOTICE.md`.
+- **Paths:** `content/entities/source/vehicles/` (107 of its 123 bundles; the exceptions are
+  listed below), `content/entities/source/aircraft/p-51/` and `content/entities/source/aircraft/oh-6/`;
+  the rosters `content/entities/source/us-vehicles.json`, `regional-vehicles.json`,
+  `variety-vehicles.json`, `rvs.json` and `mini-acura.json`; the fleet catalog
+  `content/entities/fleets/road.json`; the collection documents, review reports, contact sheets
+  and scenes under `content/entities/`; and, in the built `molen.entities` pack, the `label`, `doc`
+  and `spec.label` strings of `types/vehicle.types.json` and `types/aircraft.types.json`.
+- **Local notice:** [`content/entities/NOTICE.md`](content/entities/NOTICE.md), shipped inside the
+  pack.
+
+106 road vehicles (the U.S., regional, variety and MINI/Acura collections), one motorhome (the 2022
+Winnebago View 24D) and two aircraft (P-51D Mustang; OH-6) are identified by manufacturer, model,
+model year and, for the road vehicles, a trim name. Those names appear as asset IDs and slugs
+(`molen.entities.vehicle.ford_f_150_2025`, `ford-f-150-2025`), as the `label`, `title` and `doc`
+strings of each bundle's `recipe.json`, `source.json` and `entity.types.json`, in the rosters and
+reviews, and beside the manufacturer reference URLs recorded for published dimensions. They say
+what each model is an interpretation of; nothing else is taken from the maker. Dimensions are
+rounded authoring envelopes, trim is simplified, and handling is game tuning.
+
+The remaining bundles are Molen's own Bendy designs and carry no third-party identity: `compact`,
+`pickup`, `sedan`, `suv`, `van`, `box-truck`, `electric-hatchback`, `offroad`, `sports-coupe`,
+`station-wagon`, `taxi` and the five `bendy-class-*` motorhomes, as are every cycle, transit,
+watercraft and nature model and the generic `airliner`.
+
+**The geometry carries no mark.** Every model is an original low-poly interpretation that a
+committed script builds from three.js primitives and committed parameters
+(`packages/entities/scripts/generate-fleet.mjs` with `road-vehicle-geometry.mjs`,
+`rv-geometry.mjs`, `fleet-geometry.mjs` and `vehicle-detail.mjs`; `models/generate.mjs` in each
+aircraft bundle). No third-party mesh, texture, bitmap, blueprint or CAD data is used. Since
+2026-10-21 the road-vehicle and motorhome generators place a plain chrome ring and disc where a
+badge would sit and emit no manufacturer emblem, wordmark, model lettering, logo-shaped grille
+(the Jeep and Hummer bundles use a six-slot grille and the BMW bundle a plain split grille), cab
+maker's star, coach name, livery or real registration; the only lettering on a real-identity model
+is the fictional plate `MLN <yy>`. The Bendy models keep their `BENDY` house lettering. GLBs built
+from an `asset-lock.json` older than that date carry the generators' earlier badge geometry, which
+did reproduce several makers' emblems and wordmarks; a redistributor of those builds should
+rebuild from source or re-fetch the pack after the next lock update.
+
+### Statement for both
+
+> All product names, company names, model names, logos, color schemes and other trade dress
+> referred to in this repository are the property of their respective owners. Molen and Bendyline
+> LLC are not affiliated with, endorsed by, sponsored by or approved by any of them, and no such
+> relationship is implied. Business names are used only to recognize real places that mapped data
+> identifies as those businesses; vehicle and aircraft names are used only to identify the real
+> type that a model is an original interpretation of. The MIT License in LICENSE grants rights in
+> this repository's software and data only; it grants no right, license or permission in any
+> trademark, service mark, trade name or trade dress of any third party.
+>
+> The generated sign geometry uses generic text and initial emblems, not source logo artwork; the
+> generated vehicle geometry uses plain badges and fictional plates, not maker emblems or lettering.
+>
+> A downstream redistributor's use of these names is that redistributor's own. Trademark analysis
+> depends on use, context and likelihood of confusion, so a use that is descriptive in this
+> repository may not be descriptive in your product. Take your own advice. The mapping catalog,
+> landmark pack and entity rosters are data, and every vehicle and aircraft type also carries a
+> name-free `genericLabel` (`Full-size pickup`) and, for wheeled vehicles, a generic `bodyStyle`
+> (`pickup`, `suv`, `motorhome`, …) that the Earth view reports beside the real name, so a host
+> can show the fleet without any manufacturer, model or type name and without changing engine
+> code.
 
 ---
 
@@ -311,11 +376,16 @@ SOFTWARE.
 Every other model, texture, palette, style pack and fixture in this repository is Molen's own
 authored or procedurally generated work, covered by LICENSE. Notably:
 
-- `content/entities/assets/**` (trees, boulder, aircraft) and
-  `examples/lantern-dungeon/asset-src/*/*/models/**` are generated by committed scripts from committed
-  parameters; no third-party model pack is vendored. (The lantern-dungeon models embed the §5
-  texture, which carries no third-party obligation of its own.)
-- The preview images beside the examples and package READMEs are Molen's own renders.
+- `content/entities/assets/**` (nature, aircraft, road vehicles, motorhomes, cycles, transit,
+  watercraft) and `examples/lantern-dungeon/asset-src/*/*/models/**` are generated by committed
+  scripts from committed parameters; no third-party model pack is vendored. The five tracked
+  masters `content/entities/source/vehicles/{compact,pickup,sedan,suv,van}/models/source.glb` are
+  Molen's own authored Bendy bodies. (The lantern-dungeon models embed the §5 texture, which
+  carries no third-party obligation of its own.) The real-type identities those models carry are
+  in §4b.
+- The preview images beside the examples and package READMEs, the `preview.png` beside each
+  entity and structure source bundle, and the contact sheets under `content/entities/` are Molen's
+  own renders of its own models.
 - The content packs built from `content/` carry their notices inside the pack:
   `content/entities/NOTICE.md`, `content/worldgen/NOTICE.md`, `content/sky/NOTICE.md` (the Bright
   Star Catalogue credit) and `content/earth/businesses/README.md` (§3 and §4).
@@ -351,7 +421,25 @@ Every license statement above was checked against a primary source rather than f
 - Aircraft model provenance: both `models/generate.mjs` scripts import only Node built-ins,
   three.js and their own `interior.mjs`, and read only their committed `interior.json` and
   `source.json`.
+- Road-vehicle, motorhome, cycle and watercraft provenance: `generate-fleet.mjs`,
+  `road-vehicle-geometry.mjs`, `rv-geometry.mjs`, `fleet-geometry.mjs` and `vehicle-detail.mjs`
+  import only Node built-ins, three.js, the §7 deterministic-math port and each other, contain no
+  file read other than each bundle's committed `models/recipe.json`, `source.json` and
+  `entity.types.json`, and have no network access. The absence of marks in §4b was checked by
+  running the generators with the detail kit's text calls intercepted: every real-identity recipe
+  emitted only its `MLN <yy>` plate (plus `WATER`/`POWER`/`LP` utility labels on the motorhome),
+  and the source was searched for emblem, badge, wordmark and slot-count code paths.
 - Webfont licenses: the OFL texts beside the font files, including their copyright lines.
 
 Where a fact could not be established, this file says so rather than guessing, as with the ESA
 WorldCover vintage in §1 and the image model version in §5.
+
+## Lettering fonts
+
+The Earth content pack includes compiled outline subsets of Overpass and Overpass Mono
+(copyright 2021 The Overpass Project Authors), and Molen Sign Serif, derived from Libre
+Baskerville (copyright 2012 The Libre Baskerville Project Authors). These font assets are
+licensed under SIL OFL 1.1, independently of the engine's MIT license. Full license texts,
+pinned source revisions and generation hashes accompany the assets in `content/earth/fonts/`.
+Original TTF inputs are in `content/earth/source/fonts/`. No font binaries are shipped in npm
+library packages.

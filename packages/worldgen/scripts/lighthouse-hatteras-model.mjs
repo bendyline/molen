@@ -554,7 +554,7 @@ export function buildCapeHatteras(out) {
 }
 export const hatterasStudies = [
   lighthouseStudy({
-    id: 'N0669',
+    id: 'cape_hatteras_lighthouse',
     key: 'cape_hatteras_lighthouse',
     title: 'Cape Hatteras Lighthouse',
     wikidataId: 'Q2508238',

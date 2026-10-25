@@ -1,0 +1,222 @@
+{
+  "format": "molen/aircraft-reference-review@1",
+  "status": "reviewed-with-limitations",
+  "variant": "DHC-6 Series 400, Primus Apex, fixed wheels, representative 2012 C-GOVN cockpit",
+  "references": [
+    {
+      "url": "https://www.vikingair.com/sites/default/files/Viking-Twin-Otter-Series-400-Technical-Specifications-R-01-2018.pdf",
+      "title": "Twin Otter Series 400 Technical Specifications and Standard Equipment, revision 01-18",
+      "author": "Viking Air Limited",
+      "license": "Manufacturer factual reference; copyright retained; no reference images distributed",
+      "local": ".artifacts\\aircraft\\references\\dhc6-viking.pdf",
+      "scope": "PDF pages1–3 arrangement, cockpit photo and independent dimensions; construction/window arrangement descriptions."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Viking_DHC-6-400_Twin_Otter,_Viking_Air_JP7339403.jpg",
+      "title": "C-GOVN cockpit, Singapore Airshow, 14 February 2012",
+      "author": "Aldo Bidini",
+      "license": "GFDL 1.2 only; reference photo kept local, not distributed",
+      "licenseUrl": "https://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+      "local": ".artifacts\\aircraft\\references\\dhc6-cockpit.jpg",
+      "scope": "Four displays in asymmetric outer/stacked-center arrangement, shared control column, lower switch panels, pedestal and overhead levers. Covered windshield and foreground seat occlusion limit assessment."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Aurora,_DHC-6-400,_RA-67284_(18233313661).jpg",
+      "title": "Aurora DHC-6-400 RA-67284, 29 May 2015",
+      "author": "Fedor Leukhin",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "local": ".artifacts\\aircraft\\references\\dhc6-exterior.jpg",
+      "scope": "Independent exterior photo: long nose, windscreen, cabin windows, nacelles, struts, flap hinges and fin. Airline paint not reproduced."
+    }
+  ],
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.02
+    ],
+    "viewHeight": 0.84,
+    "cameraHeight": 5.05
+  },
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.55,
+      3.55
+    ],
+    "lookAt": [
+      0,
+      1.98,
+      5.28
+    ],
+    "fov": 74
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0,
+    "engine2": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0,
+    "engine2": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/dhc6-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 690,
+        "height": 262
+      },
+      "referenceAnchor": [
+        20,
+        258
+      ],
+      "modelAnchor": [
+        -7.885,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 655,
+        "meters": 15.77,
+        "description": "Uniform scale from manufacturer dimensions"
+      },
+      "scope": "Body roof/belly, long nose, windscreen, engine station, wheels, fin and stabilizer."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/dhc6-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 646,
+        "height": 193
+      },
+      "referenceAnchor": [
+        323,
+        189
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 632,
+        "meters": 19.81,
+        "description": "Uniform scale from manufacturer dimensions"
+      },
+      "scope": "Wing span, nacelle separation, fuselage/fin and track. Drawing dihedral differs from printed 3 degree value; the printed angle controls."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/dhc6-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 594,
+        "height": 470
+      },
+      "referenceAnchor": [
+        297,
+        459
+      ],
+      "modelAnchor": [
+        0,
+        7.885
+      ],
+      "scaleControls": {
+        "pixels": 578,
+        "meters": 19.81,
+        "description": "Uniform scale from manufacturer dimensions"
+      },
+      "scope": "Constant chord wing, nacelles, narrow fuselage and 6.29m tail span; diagram length and span have a small internal scale discrepancy."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/dhc6-panel.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1200,
+        "height": 810
+      },
+      "referenceAnchor": [
+        650,
+        370
+      ],
+      "modelAnchor": [
+        0,
+        -2.03
+      ],
+      "scaleControls": {
+        "pixels": 1000,
+        "meters": 1.62,
+        "description": "Uniform estimated panel width; perspective not rectified"
+      },
+      "scope": "Panel edge, four displays, standby cluster, yoke assembly and lower controls. Perspective photo: relative placement only; absolute scale estimated, no image warping.",
+      "edgeMode": "photo"
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced generic airframe with independently sampled side roof/belly and plan widths, long radome, hollow rectangular cabin, separate cockpit windscreen and asymmetric 7/8 passenger window pattern.",
+      "Authored constant-chord wing, 3-degree dihedral, separated flaps/ailerons, external flap hinges, bracing, PT6 nacelles, three-blade 2.59m propellers and fixed 4.53m wheelbase /3.70m track undercarriage.",
+      "Rebuilt Apex cockpit from C-GOVN photo: two outer PFDs, stacked center MFDs, standby cluster, lower electrical subpanels, shared pitch-column assembly, pedestal and overhead engine levers.",
+      "Visual iteration corrected rudder trailing edge, cabin window size, invalid side-window apertures that had disrupted skin triangulation, and deep coaming closure.",
+      "Wired actual simulation TAS, geometric altitude, true heading, attitude, VSI and both normalized engine RPM values; column, wheels, pedals, power levers, flaps, ailerons, elevator and rudder animate."
+    ],
+    "independentDimensions": {
+      "length": 15.77,
+      "span": 19.81,
+      "height": 5.94,
+      "tailSpan": 6.29,
+      "gearTrack": 3.7,
+      "wheelbase": 4.53,
+      "propellerDiameter": 2.59,
+      "propellerGroundClearance": 1.52,
+      "dihedralDegrees": 3
+    },
+    "visual": "Personally inspected four final overlays, eight standard views and eleven detail/state views (zero, cruise, limits, below sea level, missing signals, both control extremes, overhead, control column, cabin and close exterior). Dedicated live state/Earth bridge test and final geometry/sightline check passed; candidate is byte-identical.",
+    "limitations": [
+      "Manufacturer three-view is illustrative: plan length/wing span and front-view dihedral have small internal discrepancies. Printed dimensions and 3-degree dihedral take priority; mismatch remains visible in overlays.",
+      "Cockpit photograph is perspective, partly occluded and undimensioned. Uniform estimated 1.62m/1000px scaling establishes relative instrument layout, not surveyed panel depths; photo not warped.",
+      "PFD graphics are an original simplified live subset, not a Honeywell Apex emulation. TAS replaces IAS, geometric feet replace pressure altitude, heading is true, and normalized simulated engine RPM is labeled RPM %.",
+      "Navigation, radio, fuel, torque, ITT, Ng, oil and electrical systems are unavailable and blank or --. Switches and prop/condition levers are modeled without unsupported behavior.",
+      "Clean wheels variant only; no floats, skis or opening doors. Cabin upholstery, fastener spacing and detailed flap linkage are polygonal approximations; no claim of a complete engineering fastener map."
+    ]
+  },
+  "sourceHash": "sha256:7caaee0a2735fe6d2ddf56e9ad6d58951bfe0347c421c68e99d999769756ea90",
+  "runtimeHash": "sha256:43fa2de2eef193fa59ff7633facc82d09e3816c334625007cf9fb0cb637e005c",
+  "limitations": [
+    "Manufacturer three-view is illustrative: plan length/wing span and front-view dihedral have small internal discrepancies. Printed dimensions and 3-degree dihedral take priority; mismatch remains visible in overlays.",
+    "Cockpit photograph is perspective, partly occluded and undimensioned. Uniform estimated 1.62m/1000px scaling establishes relative instrument layout, not surveyed panel depths; photo not warped.",
+    "PFD graphics are an original simplified live subset, not a Honeywell Apex emulation. TAS replaces IAS, geometric feet replace pressure altitude, heading is true, and normalized simulated engine RPM is labeled RPM %.",
+    "Navigation, radio, fuel, torque, ITT, Ng, oil and electrical systems are unavailable and blank or --. Switches and prop/condition levers are modeled without unsupported behavior.",
+    "Clean wheels variant only; no floats, skis or opening doors. Cabin upholstery, fastener spacing and detailed flap linkage are polygonal approximations; no claim of a complete engineering fastener map."
+  ]
+}

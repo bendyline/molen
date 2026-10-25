@@ -546,7 +546,7 @@ export function buildWarsaw(out) {
   wovenSkin(out);
 }
 export const warsawStudy = {
-  id: 'N0702',
+  id: 'kazimierz_gorski_national_stadium',
   key: 'kazimierz_gorski_national_stadium',
   wikidataId: 'Q179693',
   title: 'Kazimierz Górski National Stadium',

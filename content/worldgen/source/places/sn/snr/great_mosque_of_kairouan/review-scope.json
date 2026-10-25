@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "roof",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "dome": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.5,
+      "metallic": 0.5
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kairouan-model.mjs",
+    "export": "buildKairouanSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKairouanDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.5
+          }
+        }
+      },
+      "street": {
+        "export": "buildKairouanStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.5
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKairouanCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.5
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -135,
+      100,
+      130
+    ],
+    "lookAt": [
+      0,
+      8,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kairouan-skyline",
+      "position": [
+        -135,
+        100,
+        130
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-kairouan-district",
+      "position": [
+        -135,
+        100,
+        130
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-kairouan-street",
+      "position": [
+        -135,
+        100,
+        130
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-kairouan-closeup",
+      "position": [
+        -135,
+        100,
+        130
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Exact relation and current map/picture exterior;acceptance separately recorded in QA.",
+    "anchor": [
+      10.103954139,
+      35.681603084
+    ],
+    "heading": -1.024882613773,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and approximate clearance plane. Standard viewer DEM datum 65.801678 m. Working floor 2.721 m is maximum bilinear whole-footprint sample at2 m spacing plus0.25 m;not surveyed paving. Relative footprint DEM -2.98..2.47 m. Raw DEM retained without cutout/flattening;footings adapt beneath it and cross Y=0. Exact entrance/terrace/threshold/court/terrain joins and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        10.103954139,
+        35.681603084
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 65.801678 m. Working floor 2.721 m is maximum bilinear whole-footprint sample at2 m spacing plus0.25 m;not surveyed paving. Relative footprint DEM -2.98..2.47 m. Raw DEM retained without cutout/flattening;footings adapt beneath it and cross Y=0. Exact entrance/terrace/threshold/court/terrain joins and walking remain unverified."
+    },
+    "bounds": [
+      10.097,
+      35.676,
+      10.111,
+      35.688
+    ],
+    "notes": "Retained exact relation/1369784 / Q1255269 matches current whole 52776559503032 (3*2^44+1369784) and the named Great Mosque of Kairouan POI on that encoded relation. Original anchor [10.103954139,35.681603084] and heading -1.024882613773 rad remain unchanged. Current whole has five outer/five court points; separate four-point minaret 35185275952167 occupies the northwestern range. Earlier six-point outer/six-point court plan is retained separately. Deep prayer range lies at +X, minaret at -X; source pictures guide the prayer portal and minaret court-facing fronts. No horizontal rescale or forced centred tower. Exact doorway and surrounding approach joins remain unverified. Standard viewer DEM datum 65.801678 m. Working floor 2.721 m is maximum bilinear whole-footprint sample at2 m spacing plus0.25 m;not surveyed paving. Relative footprint DEM -2.98..2.47 m. Raw DEM retained without cutout/flattening;footings adapt beneath it and cross Y=0. Exact entrance/terrace/threshold/court/terrain joins and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 65.801678 m. Working floor 2.721 m is maximum bilinear whole-footprint sample at2 m spacing plus0.25 m;not surveyed paving. Relative footprint DEM -2.98..2.47 m. Raw DEM retained without cutout/flattening;footings adapt beneath it and cross Y=0. Exact entrance/terrace/threshold/court/terrain joins and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

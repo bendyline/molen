@@ -1,0 +1,179 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.princess_tower",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
+  },
+  "hash": "sha256:64359a0456f09d93c5d01bb2f91f1a3dbf2371fc487d60b1958e833e55944a8d",
+  "sourceHash": "sha256:8f9c4252b79a673592b7e8d366eb11a800a62a95215f3a175733e2dab384f423",
+  "bounds": {
+    "aabb": {
+      "min": [
+        -20.811,
+        0,
+        -19.682
+      ],
+      "max": [
+        20.811,
+        414,
+        19.682
+      ]
+    },
+    "sphere": {
+      "center": [
+        0,
+        207,
+        0
+      ],
+      "radius": 208.8186
+    }
+  },
+  "stats": {
+    "triangles": 63384,
+    "vertices": 182076,
+    "meshes": 1,
+    "primitives": 4,
+    "materials": 4,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 7317680
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 63384
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "concrete_plain-wall",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "metal_painted-trim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "window-window",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "window-window",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -20.811,
+          0,
+          -19.682,
+          -20.811,
+          0,
+          19.682,
+          -20.811,
+          414,
+          -19.682,
+          -20.811,
+          414,
+          19.682,
+          20.811,
+          0,
+          -19.682,
+          20.811,
+          0,
+          19.682,
+          20.811,
+          414,
+          -19.682,
+          20.811,
+          414,
+          19.682
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:27ae46fcf4153b707b356d3b156f7b5e031c3ca3f8620f6f2406a6801fdd0469",
+    "masterHash": "sha256:64359a0456f09d93c5d01bb2f91f1a3dbf2371fc487d60b1958e833e55944a8d",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:396ccb527bb381b1c5d4150f3e8b77a51cbd53c437e1cd5da7a590ee47f1c032",
+        "bytes": 86772,
+        "gzipBytes": 14384,
+        "triangles": 980,
+        "cpuBytes": 85368,
+        "gpuBytes": 85368,
+        "errorMeters": 2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:c7845050c3fb31b4b8167176175b1b91958e5226ddd845d7a9c2296abbfd861e",
+        "bytes": 274236,
+        "gzipBytes": 45652,
+        "triangles": 3424,
+        "cpuBytes": 270492,
+        "gpuBytes": 270492,
+        "errorMeters": 1.2,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:758be1f67b405081b6825ed5c61ea070f5b6e310097b3c37c24b434dea6e987b",
+        "bytes": 1283108,
+        "gzipBytes": 223243,
+        "triangles": 15984,
+        "cpuBytes": 1278180,
+        "gpuBytes": 1278180,
+        "errorMeters": 0.6,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:a7061719338e8a36f8c77186ec86b716eb789cdd50fe982adf26e2ea88220b51",
+        "bytes": 4561188,
+        "gzipBytes": 833452,
+        "triangles": 63384,
+        "cpuBytes": 4556232,
+        "gpuBytes": 4556232,
+        "errorMeters": 0.1,
+        "drawCalls": 4
+      }
+    ]
+  }
+}

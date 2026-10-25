@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/sr7/n0368_basilica_of_saint_nicholas/',
+  '../../../content/worldgen/source/places/sr/sr7/basilica_of_saint_nicholas/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -899,7 +899,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const sanNicolaBariStudy = {
-  id: 'N0368',
+  id: 'basilica_of_saint_nicholas',
   key: 'basilica_of_saint_nicholas',
   title: 'Basilica of Saint Nicholas',
   category: 'cathedral',

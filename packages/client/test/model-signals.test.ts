@@ -27,7 +27,14 @@ it('reads explicit component paths, arrays and booleans without coercion or inhe
     'my.avionics': { engines: [{ rpm: 0.2 }, { rpm: 0.8 }] },
     engine: Object.assign(Object.create({ rpm: 17 }), { running: true, text: '12', bad: Infinity }),
   };
-  expect(readModelSignals(sources, (name) => components[name])).toEqual({ rpm: 0.8, on: 1 });
+  expect(readModelSignals(sources, (name) => components[name])).toEqual({
+    rpm: 0.8,
+    on: 1,
+    inherited: undefined,
+    text: undefined,
+    bad: undefined,
+    absent: undefined,
+  });
 });
 
 it('reset restores the authored pose and new bindings do not compound previous offsets', () => {
@@ -99,6 +106,57 @@ it('signal channels win over animation clips in exact capture and live sampling'
   backend.updateLiveAnimations(45, 30, new THREE.PerspectiveCamera());
   expect(needle('a').rotation.z).toBeCloseTo(1.3);
   backend.destroy('a');
+  cache.dispose();
+});
+
+it('advances response time on models without animation clips and holds missing readings over clips', async () => {
+  const { backend, cache, needle } = fixture();
+  backend.create('a', { kind: 'gltf', ref: 'panel' });
+  backend.setModelSignals(
+    'a',
+    {
+      bindings: [
+        {
+          node: 'pointer',
+          source: 'rpm',
+          property: 'rotation',
+          axis: 'z',
+          scale: 1,
+          responseSeconds: 1,
+        },
+      ],
+    },
+    { rpm: 0 },
+  );
+  await cache.whenIdle();
+  backend.setModelSignals(
+    'a',
+    {
+      bindings: [
+        {
+          node: 'pointer',
+          source: 'rpm',
+          property: 'rotation',
+          axis: 'z',
+          scale: 1,
+          responseSeconds: 1,
+        },
+      ],
+    },
+    { rpm: 1 },
+  );
+  backend.setAnimationTick(30, 30);
+  expect(needle('a').rotation.z).toBeCloseTo(0.3 + 1 - 1 / Math.E);
+  backend.updateLiveAnimations(60, 30, new THREE.PerspectiveCamera());
+  expect(needle('a').rotation.z).toBeCloseTo(0.3 + 1 - Math.exp(-2));
+  backend.create('b', { kind: 'gltf', ref: 'panel', animation: { clip: 'test' } });
+  backend.setModelSignals('b', spec, { rpm: 0.5 });
+  await cache.whenIdle();
+  backend.setModelSignals('b', spec, {});
+  backend.setAnimationTick(45, 30);
+  expect(needle('b').rotation.z).toBeCloseTo(1.3);
+  backend.destroy('a');
+  backend.destroy('b');
   cache.dispose();
 });
 

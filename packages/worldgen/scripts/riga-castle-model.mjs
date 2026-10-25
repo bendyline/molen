@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ud/ud1/n0264_riga_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/ud1/riga_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -688,7 +688,7 @@ export const buildRigaSkyline = (o) =>
     'skyline',
   );
 export const rigaStudy = {
-  id: 'N0264',
+  id: 'riga_castle',
   key: 'riga_castle',
   title: 'Riga Castle',
   category: 'castle',

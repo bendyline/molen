@@ -1,0 +1,567 @@
+{
+  "planId": "arundel_castle",
+  "id": "arundel_castle",
+  "assetId": "molen.worldgen.structure.arundel_castle",
+  "title": "Arundel Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q716667",
+  "referenceCoordinate": {
+    "latitude": 50.856111111,
+    "longitude": -0.553611111
+  },
+  "visualBrief": "Current Arundel Castle exterior: hollow Norman shell keep on its artificial motte, medieval northern curtain and gate defenses, open residential quadrangle with Gothic window rhythm, corbelled round towers, slate pitched roofs and chimneys.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 5.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    208.03973388671875,
+    65.35305595397949,
+    273.7284240722656
+  ],
+  "actualBounds": {
+    "min": [
+      -84.4287338256836,
+      -25.303056716918945,
+      -144.2043914794922
+    ],
+    "max": [
+      123.61100006103516,
+      40.04999923706055,
+      129.52403259277344
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "Long castle axis is NW/SE. Native +X east, +Z south; authoring major-axis rotation is baked into vertices, runtime heading 0.",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "exactCastleRelation": 1118816,
+    "currentKeepPartWay": 1421681564,
+    "publishedDimensions": {
+      "motteBaseDiameterMeters": 75,
+      "motteHeightMeters": 20,
+      "keepPlanMeters": [
+        20,
+        18
+      ],
+      "keepWallHeightMeters": 9,
+      "source": "https://historicengland.org.uk/listing/the-list/list-entry/1012500",
+      "precision": "Approximate heritage-record dimensions, not a new building survey",
+      "conflict": "Current mapped keep outline includes attached stair/well masses and is larger than the heritage-record plan dimensions. Preserve both facts; no invented survey reconciliation."
+    },
+    "originalMasterHash": "sha256:432c23cd81b9906115543bd1f4d7b941e42204ed848d5b93d732821d39c7818c",
+    "originalMasterRecipe": "packages/worldgen/scripts/arundel-castle-model.mjs#buildArundelRuntime"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#cbc3ad",
+      "rubble": "#c4bcaa",
+      "stone": "#ddd2b7",
+      "roof": "#94a1aa",
+      "wood": "#998565",
+      "glass": "#4d6178",
+      "paving": "#bbb3a2",
+      "lawn": "#86a36a"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "masonry": [
+        0.7539,
+        0.710243,
+        0.616244
+      ],
+      "rubble": [
+        0.647739,
+        0.630329,
+        0.558214
+      ],
+      "stone": [
+        0.886354,
+        0.886354,
+        0.886354
+      ],
+      "slate": [
+        0.59493,
+        0.632794,
+        0.653753
+      ],
+      "wood": [
+        0.825128,
+        0.825128,
+        0.825128
+      ],
+      "paving": [
+        0.689355,
+        0.675093,
+        0.630521
+      ]
+    },
+    "materialBudget": 8,
+    "identityFeatures": [
+      "Hollow oval Norman shell keep on a twenty-metre artificial motte",
+      "Medieval gatehouse, barbican and northern curtain enclosure",
+      "Open residential quadrangle, tall corbelled round towers and Gothic south roof massing"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "referencePages": [
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-0.5580,50.8543,-0.5500,50.8591",
+    "https://api.openstreetmap.org/api/0.6/relation/1118816/full",
+    "https://www.arundelcastle.org/explore/",
+    "https://www.arundelcastle.org/",
+    "https://www.arundelcastle.org/wp-content/uploads/2019/11/arundel-castle-set-on-a-hill.jpg",
+    "https://www.visitengland.com/sites/ve/files/styles/page_header_ve_sm/public/lookatmedam/4364f7fe-54d0-40f6-afc2-181bcf4c191dl.jpg?h=14a770de&itok=EOBatrcD",
+    "https://www.arundelcastle.org/wp-content/uploads/2019/09/castle-exterior-1.jpg",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1012500",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1027926"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "anchor": [
+      -0.554513936,
+      50.856706132
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/1118816",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/1118816",
+      "way/71729743",
+      "way/173875638",
+      "way/71729745",
+      "way/1421681564",
+      "way/129320202",
+      "way/896541324",
+      "way/116218118"
+    ],
+    "wikidataId": "Q716667",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5bd8f0262e4505126600c0333844dd52275ff4bc62083d578a6f797a2335c808",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture supports the open oval shell keep on a steep bounded motte, crenellated gatehouse/curtains and later residential castle. Retained east/south map controls set approximate scale, footprint and orientation. Standard viewer PMTiles supply surrounding ground; architecture is raised6m to keep reconstructed courts above its coarse crest and bounded wall/motte toes reach it. The distinctive artificial motte is retained as landmark earthwork; broad surrounding hill/landscape is supplied by host terrain. Anchor -0.554513936,50.856706132; heading 0; standard PMTiles datum 40.68276429976586m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected aerial picture supports the open oval shell keep on a steep bounded motte, crenellated gatehouse/curtains and later residential castle. Retained east/south map controls set approximate scale, footprint and orientation. Standard viewer PMTiles supply surrounding ground; architecture is raised6m to keep reconstructed courts above its coarse crest and bounded wall/motte toes reach it. The distinctive artificial motte is retained as landmark earthwork; broad surrounding hill/landscape is supplied by host terrain. Anchor -0.554513936,50.856706132; heading 0; standard PMTiles datum 40.68276429976586m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        -0.554513936,
+        50.856706132
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "scaleBasis": "Current exact-QID multipolygon, its two separately mapped voids, mapped keep building part and inner-gate tunnel route. Native East/South coordinates bake heading 0. Historic England publishes approximate motte base width 75 m and height 20 m, and keep 20 by 18 m with walls 9 m high. Current mapped keep extends farther including attached stair/well towers; retain its trace and record the dimension discrepancy. All remaining architectural vertical sections, roofs, turret outlines, bay rhythms and gate sections are original estimates from castle-operator and VisitEngland exterior photographs. No certified site elevation datum.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license; own map traces © OpenStreetMap contributors, ODbL-1.0. Historic England numerical facts attributed; photographic references not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors; Historic England; Arundel Castle Trustees; VisitEngland.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Approximate current exterior and fit from inspected aerial picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Keep, motte, Gothic residential details and restored fixtures remain interpreted; interiors and collision excluded.",
+    "Five common limestone/rubble/slate/wood/aggregate graphs plus explicit glass/lawn color slots, zero embedded images. Bounded artificial motte retained; surrounding landscape and vegetation excluded.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "keep-and-motte",
+      "position": [
+        -94.30803612111492,
+        59,
+        -30.182682501369598
+      ],
+      "lookAt": [
+        -10.652953578256437,
+        27,
+        -12.10432071863239
+      ]
+    },
+    {
+      "name": "residential-quadrangle",
+      "position": [
+        24.15190273039535,
+        73,
+        31.94817044059834
+      ],
+      "lookAt": [
+        57.072448538994045,
+        19,
+        82.12025096018567
+      ]
+    },
+    {
+      "name": "south-towers-and-roof",
+      "position": [
+        -39.998118713706496,
+        52,
+        142.1061240741026
+      ],
+      "lookAt": [
+        38.78110945896465,
+        23,
+        83.67810674920771
+      ]
+    },
+    {
+      "name": "inner-gate-passage",
+      "position": [
+        -54.27250137781004,
+        10.4,
+        39.33822052655162
+      ],
+      "lookAt": [
+        -3.4989049959445637,
+        9,
+        41.08232787743842
+      ]
+    },
+    {
+      "name": "roof-plan",
+      "position": [
+        -2.7111375718016695,
+        318,
+        6.682045575029053
+      ],
+      "lookAt": [
+        -2.7111375718016695,
+        6,
+        6.682045575029053
+      ]
+    },
+    {
+      "name": "northern-bailey",
+      "position": [
+        -106.54022607673535,
+        67,
+        -181.50807207261644
+      ],
+      "lookAt": [
+        -38.449309600848125,
+        15,
+        -77.85660274644745
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/arundel-runtime-model.mjs",
+    "export": "buildArundelReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/arundel-runtime-model.mjs",
+    "export": "buildArundelReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildArundelReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "lawn": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildArundelReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "lawn": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildArundelReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "lawn": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-arundel-skyline",
+      "position": [
+        300,
+        225,
+        300
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-arundel-district",
+      "position": [
+        300,
+        225,
+        300
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-arundel-street",
+      "position": [
+        300,
+        225,
+        300
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-arundel-closeup",
+      "position": [
+        300,
+        225,
+        300
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep the current open keep/courtyard, motte and medieval/residential identities through four source-authored browser levels.",
+  "mesh": {
+    "triangles": 15379,
+    "vertices": 46137,
+    "materials": 8,
+    "bytes": 1850032,
+    "sha256": "sha256:359b5177ad7e3ad38ac7ed1bfd96d1c9ec41e1cb3710b8d48b75832ef67cf1c4"
+  }
+}

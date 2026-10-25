@@ -7,7 +7,7 @@ import { box } from './structure-mesh.mjs';
 const fit = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/6v/6vj/n0703_estadio_nacional_de_brasilia/pmtiles-fit.json',
+      '../../../content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/pmtiles-fit.json',
       import.meta.url,
     ),
   ),

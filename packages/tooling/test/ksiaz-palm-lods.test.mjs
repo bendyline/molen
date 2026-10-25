@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
-import { buildKsiazPalm } from '../../worldgen/scripts/ksiaz-palm-model.mjs';
+import { buildKsiazPalm } from '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/ksiaz-palm-model.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 it('keeps the Palm House source and all four levels deterministic, shared and within browser budgets', async () => {

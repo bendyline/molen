@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.lincoln_memorial",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:aa85551595bcc5a652fb47492a49fbeaabe3f33c1eeeef16f3d763fe2b5599a8",
-  "sourceHash": "sha256:65114f38f35aa849ac1993e4da821bd76f3b5dc2580bfdc0c02bd5bd68e3967e",
-  "runtimeHash": "sha256:a7e8a13060035967e0e59aee71cbdb0c7345908cbbcad77d33aab4b831b9457b",
-  "captureReportHash": "sha256:499ba31a3f23f9051a0dd436079e46e00b998b86d69d77e9976fecaf624351ec",
+  "inputHash": "sha256:0a1563acd278d76ddbb6d5567d46a59abd5b38bca9044f0c0449020393390fc1",
+  "sourceHash": "sha256:d60e0ca750c8c947bdf8c15c1618f79901e35120641954e5decd117259a160e9",
+  "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+  "captureReportHash": "sha256:72bc21a53ef6c355d6d289d448d029181244bc675da2ca25159376164c6caf3e",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:72bc21a53ef6c355d6d289d448d029181244bc675da2ca25159376164c6caf3e",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/covered-colonnade.png",
+      "shots/pitched-rooflights.png"
     ],
-    "notes": "Inspected all seven current portable views against the individually inspected local north and east exterior photographs and statue detail. The 36 outer Doric columns, two entrance columns, raised terrace, separate granite and marble stair flights, inset attic and open portal with seated silhouette are represented. Final review corrected the recessed roof and clipped ornament projecting beyond a frieze corner."
+    "notes": "All nine current portable frames inspected, including new covered-colonnade and pitched-rooflights views. The peristyle now has a continuous real soffit joining the cella and outer entablature; columns remain separate below it. Three pitched volumes, wider central field and intervening terrace replace flat panels. Original temple,38column positions, stair flights, floor, silhouette and source-native ground retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f24592ae23da0d43a468986585047a5b51d5fedb5848c22329b7ae302fe5dcde",
+    "captureReportHash": "sha256:139abe8a8517c312846b8a03e8a9f73f8227b0ec0284e0b125c3ffd8332cd245",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,33 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/covered-colonnade.png",
+      "shots/shared/pitched-rooflights.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views including the north-up placement overlay, plus the full shared front view. Marble, granite, painted metal and membrane retain metric-scale bindings; local terrace ground remains distinct. Flat shared ground is a material fixture; independent terrain is in the portable scene."
+    "notes": "All nine current shared-material views inspected, including both details and mapped overlay. Marble/granite, membrane and metal bind at metric scale; pitched rooflight panes use an opaque local window surface distinct from membrane. Ceiling shade is continuous and terrace/three gables remain legible. Placement hash/transform and unload pass. Flat shared fixture establishes material/transform behavior; source-native captures carry original ground context.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_marble": {
+        "path": "materials/stone_marble.matgraph.json",
+        "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:fb44615e6199ffd547ec4668e8c94b9103453e53dfcb76ed5085e122b15c4031",
+    "captureReportHash": "sha256:10cbfd1bc5cad02cec86e9b69e72d139cad22dae324f1f9e131608f8edd90baf",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +76,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/covered-colonnade.png",
+      "medium-fi/pitched-rooflights.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail frames. Skyline retains the colonnade, inset attic and major steps; district resolves recessed roof fields. Finer levels restore flutes, wreaths, balustrades and simplified statue. Synthetic neighbors are style fixtures. No physical-device frame-rate measurement is claimed."
+    "notes": "All21current version-2 frames inspected across noon/late light, economy/high quality, native source ground, front/back, both construction details and four forced levels. Covered peristyle persists at every level; district onward has pitched rooflights and close framing increases. Coarse attic remains a simplified closed volume. Seated silhouette, colonnade and stair layout remain recognizable. Synthetic neighbors are style context."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,24 +102,24 @@
       ],
       "maxPngEncodingErrorMeters": 0.000053555202482513664
     },
-    "notes": "Mapped main rectangle and 38 individual column parts establish plan and orientation; NPS dimensions control colonnade size and heights. Anchor [-77.05017149448395,38.88927185085194], heading pi/2; +X north and +Z east. Independent Terrarium heights are sampled unchanged into a 3 m review grid. Datum 10.7107 m at east approach [0,38]; foundation -1.3 m. Upper retaining terrace and main stairs are included, lower pool stairs and distant approach excluded. Footprint suppression remains off; other host DEMs can differ."
+    "notes": "Original mapped anchor[-77.05017149448395,38.88927185085194],headingpi/2,+X north/+Z east, temple/column/stair controls and placement retained. Original frame and all three source-ground files remain byte-identical. Existing foundation/terrace/floor and source-relative contact[0,38] unchanged; new roof dimensions fixed from image interpretation and never fitted to ground. Original source-native terrain and mapped overlay views inspected. Another host DEM and exact surveyed ground/foundation levels remain outside this bounded review."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Temple exterior, upper retaining terrace, main stair flights and simplified seated Lincoln silhouette; reflecting pool, distant approaches and detailed interiors excluded.",
-    "notes": "Original medium-fi exterior from individually inspected local Qualla photographs, NPS dimensional statistics, and individually viewed 2008 elevation, longitudinal section and chamber plan. Column count, dimensions and overall massing follow these controls. Fine inscriptions, carvings, optical corrections, roof panels and statue likeness are approximations; no readable inscriptions or portrait fidelity is claimed. Side chamber murals, undercroft and temporary construction are excluded. No photo pixels are embedded."
+    "scope": "Mapped marble temple exterior, covered peristyle, three pitched rooflights, original upper stairs/terrace and exterior-visible seated silhouette. Reflecting pool, distant approaches, temporary ramp, undercroft and detailed rooms excluded.",
+    "notes": "Started with cleared Qualla media/candidate metadata. Reused exact native8064x6048 Sean Dudley public-domain original and inspected full image/native colonnade crop; primary PD-self/CC0 creator release and SHA-1/SHA-256 bound. Qualla also contains an edited Highsmith aerial; followed its original LOC identity to exact native4264x3160 JP2 and inspected full/native roof crop. Explicit primary photographer public-domain dedication and catalog/file/hash bound, not merely a no-known-restrictions advisory. Current construction closes unintended gaps over the outer peristyle and replaces flat fields with three closed pitched rooflight volumes and separate membrane terrace. Wider central field follows the original aerial. Existing38columns, body/attic, cornice/top height, temple floor, terrace, steps, mapped frame, original ground and placement retained. Rooflight widths10.4/18.3/10.4m, eave27.4m/ridge29.2m, framing and concealed connections are fixed photographic estimates. The2006aerial does not establish present glazing condition;2024view has temporary works excluded from geometry. Other fine ornament/inscriptions and original seated statue silhouette remain generalized; no new portrait/interior/undercroft work. Earlier attribution imagery excluded as current controls. No copied photo pixels, exact material assay, civil survey or approval of another host terrain field."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:631dd93008fc9da6e2884631433d0b0c186b9bbff0499b7a2d94686e5626806b",
+    "recipeHash": "sha256:c19f69494563ab41123877b86ab85b92ad1392ceb739712af38dc492a4061a79",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:b41b1349a628d5a0c605014e2b06d3d5c344e65c3c6504d1174d4f9ee0d1baaf",
+        "hash": "sha256:239fd050dc303262445fb6c99f7d31cefc46fbb270f6a6bb0651b20b72598b2d",
         "bytes": 78028,
-        "gzipBytes": 10375,
+        "gzipBytes": 10372,
         "triangles": 982,
         "cpuBytes": 76596,
         "gpuBytes": 76596,
@@ -104,56 +129,2143 @@
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:cf3e70df50429343fbb5a2f185b470319e5f8e923482871c574db67147368346",
-        "bytes": 227128,
-        "gzipBytes": 46524,
-        "triangles": 2798,
-        "cpuBytes": 222276,
-        "gpuBytes": 222276,
+        "hash": "sha256:c4847aaaeb7e9b5c8b2ae0ee09d3fcbe16d9808b66d6dbb173242ad5c7fe1f34",
+        "bytes": 227464,
+        "gzipBytes": 46648,
+        "triangles": 2786,
+        "cpuBytes": 221556,
+        "gpuBytes": 221556,
         "errorMeters": 0.3,
-        "drawCalls": 4
+        "drawCalls": 5
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:d3fe2ed2cdd4f981f03cfbc85d673269ef712b172a7f113c1627125dca4b72a6",
-        "bytes": 1066772,
-        "gzipBytes": 230145,
-        "triangles": 13998,
-        "cpuBytes": 1060740,
-        "gpuBytes": 1060740,
+        "hash": "sha256:b336b68abb04d6b33f798937f648806b61e5e9535d820c9f6dc1d0dd82897801",
+        "bytes": 1040908,
+        "gzipBytes": 228514,
+        "triangles": 13650,
+        "cpuBytes": 1033812,
+        "gpuBytes": 1033812,
         "errorMeters": 0.1,
-        "drawCalls": 5
+        "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:70fb59828511577d8291a879307eb647569de5dbe697d3edacf86acb50c75439",
-        "bytes": 7547388,
-        "gzipBytes": 1575992,
-        "triangles": 62870,
-        "cpuBytes": 7544400,
-        "gpuBytes": 7544400,
+        "hash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
+        "bytes": 7543368,
+        "gzipBytes": 1577778,
+        "triangles": 62834,
+        "cpuBytes": 7540080,
+        "gpuBytes": 7540080,
         "errorMeters": 0,
-        "drawCalls": 5
+        "drawCalls": 6
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets: 982 skyline, 2798 district, 13998 street and 62870 closeup triangles. Columns, attic, central portal and major stairs remain at distance; flutes, trim and relief return progressively. Error values are authoring budgets, not measured mesh deviations."
+    "notes": "982/2786/13650/62834triangles and1/5/6/6draws pass strict limits. Widened existing roof members close peristyle gaps at every level without increasing coarse triangle count. District onward has three closed pitched rooflight volumes with wider center; fine framing increases toward close range. Declared geometric errors remain authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 62870,
-    "sourceMaterials": 5,
+    "sourceTriangles": 62834,
+    "sourceMaterials": 6,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 982,
+        "drawCalls": 1,
+        "controls": 63,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 0,
+            "z": 14.1,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 0,
+            "z": 14.1
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 0,
+            "z": 14.1,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 0,
+            "z": -14.1,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 0,
+            "z": -14.1
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 0,
+            "z": -14.1,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": 0,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": 0
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": 0,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": 0,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": 0
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": 0,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -22.540909090909093,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -17.53181818181818,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -12.522727272727272,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -7.5136363636363654,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -2.504545454545454,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 2.5045454545454575,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 7.513636363636362,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 12.52272727272727,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 17.531818181818185,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 22.540909090909093,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -12.092857142857142
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -7.255714285714285
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 7.255714285714287
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 12.092857142857142
+          },
+          {
+            "name": "retained inner entrance column",
+            "pass": true,
+            "side": -1
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -22.540909090909093,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -17.53181818181818,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -12.522727272727272,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -7.5136363636363654,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -2.504545454545454,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 2.5045454545454575,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 7.513636363636362,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 12.52272727272727,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 17.531818181818185,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 22.540909090909093,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -12.092857142857142
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -7.255714285714285
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 7.255714285714287
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 12.092857142857142
+          },
+          {
+            "name": "retained inner entrance column",
+            "pass": true,
+            "side": 1
+          },
+          {
+            "name": "retained central portal air",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 2786,
+        "drawCalls": 5,
+        "controls": 85,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 0,
+            "z": 14.1,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 0,
+            "z": 14.1
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 0,
+            "z": 14.1,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 0,
+            "z": -14.1,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 0,
+            "z": -14.1
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 0,
+            "z": -14.1,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": 0,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": 0
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": 0,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": 0,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": 0
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": 0,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -22.540909090909093,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -17.53181818181818,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -12.522727272727272,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -7.5136363636363654,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -2.504545454545454,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 2.5045454545454575,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 7.513636363636362,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 12.52272727272727,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 17.531818181818185,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 22.540909090909093,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -12.092857142857142
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -7.255714285714285
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 7.255714285714287
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 12.092857142857142
+          },
+          {
+            "name": "retained inner entrance column",
+            "pass": true,
+            "side": -1
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -22.540909090909093,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -17.53181818181818,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -12.522727272727272,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -7.5136363636363654,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -2.504545454545454,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 2.5045454545454575,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 7.513636363636362,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 12.52272727272727,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 17.531818181818185,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 22.540909090909093,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -12.092857142857142
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -7.255714285714285
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 7.255714285714287
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 12.092857142857142
+          },
+          {
+            "name": "retained inner entrance column",
+            "pass": true,
+            "side": 1
+          },
+          {
+            "name": "retained central portal air",
+            "pass": true
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": -0.75,
+            "y": 27.850000102703486,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": -0.25,
+            "y": 28.750000542860796,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": 0.25,
+            "y": 28.750000460331247,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": 0.75,
+            "y": 27.84999985511483,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": -15,
+            "side": -1,
+            "z": -11
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": -15,
+            "side": 1,
+            "z": 11
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": -0.75,
+            "y": 27.849999848350112,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": -0.25,
+            "y": 28.75000045807634,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": 0.25,
+            "y": 28.75000045807634,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": 0.75,
+            "y": 27.849999848350112,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 0,
+            "side": -1,
+            "z": -11
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 0,
+            "side": 1,
+            "z": 11
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": -0.75,
+            "y": 27.84999985511483,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": -0.25,
+            "y": 28.750000460331247,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": 0.25,
+            "y": 28.750000542860796,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": 0.75,
+            "y": 27.850000102703486,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 15,
+            "side": -1,
+            "z": -11
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 15,
+            "side": 1,
+            "z": 11
+          },
+          {
+            "name": "open roof terrace air between separate rooflight volumes",
+            "pass": true,
+            "x": -9.45
+          },
+          {
+            "name": "physical membrane terrace below rooflights",
+            "pass": true,
+            "x": -9.45,
+            "y": 27.360000610351562
+          },
+          {
+            "name": "open roof terrace air between separate rooflight volumes",
+            "pass": true,
+            "x": 9.45
+          },
+          {
+            "name": "physical membrane terrace below rooflights",
+            "pass": true,
+            "x": 9.45,
+            "y": 27.360000610351562
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 13650,
+        "drawCalls": 6,
+        "controls": 85,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 0,
+            "z": 14.1,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 0,
+            "z": 14.1
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 0,
+            "z": 14.1,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 0,
+            "z": -14.1,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 0,
+            "z": -14.1
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 0,
+            "z": -14.1,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": 0,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": 0
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": 0,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": 0,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": 0
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": 0,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -22.540909090909093,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -17.53181818181818,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -12.522727272727272,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -7.5136363636363654,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -2.504545454545454,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 2.5045454545454575,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 7.513636363636362,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 12.52272727272727,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 17.531818181818185,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 22.540909090909093,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -12.092857142857142
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -7.255714285714285
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 7.255714285714287
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 12.092857142857142
+          },
+          {
+            "name": "retained inner entrance column",
+            "pass": true,
+            "side": -1
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -22.540909090909093,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -17.53181818181818,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -12.522727272727272,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -7.5136363636363654,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -2.504545454545454,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 2.5045454545454575,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 7.513636363636362,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 12.52272727272727,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 17.531818181818185,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 22.540909090909093,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -12.092857142857142
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -7.255714285714285
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 7.255714285714287
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 12.092857142857142
+          },
+          {
+            "name": "retained inner entrance column",
+            "pass": true,
+            "side": 1
+          },
+          {
+            "name": "retained central portal air",
+            "pass": true
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": -0.75,
+            "y": 27.850000102703486,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": -0.25,
+            "y": 28.750000542860796,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": 0.25,
+            "y": 28.750000460331247,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": 0.75,
+            "y": 27.84999985511483,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": -15,
+            "side": -1,
+            "z": -11
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": -15,
+            "side": 1,
+            "z": 11
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": -0.75,
+            "y": 27.849999848350112,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": -0.25,
+            "y": 28.75000045807634,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": 0.25,
+            "y": 28.75000045807634,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": 0.75,
+            "y": 27.849999848350112,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 0,
+            "side": -1,
+            "z": -11
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 0,
+            "side": 1,
+            "z": 11
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": -0.75,
+            "y": 27.84999985511483,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": -0.25,
+            "y": 28.750000460331247,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": 0.25,
+            "y": 28.750000542860796,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": 0.75,
+            "y": 27.850000102703486,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 15,
+            "side": -1,
+            "z": -11
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 15,
+            "side": 1,
+            "z": 11
+          },
+          {
+            "name": "open roof terrace air between separate rooflight volumes",
+            "pass": true,
+            "x": -9.45
+          },
+          {
+            "name": "physical membrane terrace below rooflights",
+            "pass": true,
+            "x": -9.45,
+            "y": 27.360000610351562
+          },
+          {
+            "name": "open roof terrace air between separate rooflight volumes",
+            "pass": true,
+            "x": 9.45
+          },
+          {
+            "name": "physical membrane terrace below rooflights",
+            "pass": true,
+            "x": 9.45,
+            "y": 27.360000610351562
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 62834,
+        "drawCalls": 6,
+        "controls": 85,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 0,
+            "z": 14.1,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 0,
+            "z": 14.1
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 0,
+            "z": 14.1,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 0,
+            "z": -14.1,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 0,
+            "z": -14.1
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 0,
+            "z": -14.1,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": 0,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": 0
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": 0,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": 0,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": 0
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": 0,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": 14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": 14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": 24.5,
+            "z": -14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "continuous physical peristyle soffit closes previous roof gap",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5,
+            "y": 20.110000610351562
+          },
+          {
+            "name": "walkway air below covered peristyle",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5
+          },
+          {
+            "name": "retained continuous temple floor",
+            "pass": true,
+            "x": -24.5,
+            "z": -14.5,
+            "y": 6.699999809265137
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -22.540909090909093,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -17.53181818181818,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -12.522727272727272,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -7.5136363636363654,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -2.504545454545454,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 2.5045454545454575,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 7.513636363636362,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 12.52272727272727,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 17.531818181818185,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 22.540909090909093,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -16.93
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -12.092857142857142
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -7.255714285714285
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": -2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 7.255714285714287
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 12.092857142857142
+          },
+          {
+            "name": "retained inner entrance column",
+            "pass": true,
+            "side": -1
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -27.55,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -22.540909090909093,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -17.53181818181818,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -12.522727272727272,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -7.5136363636363654,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": -2.504545454545454,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 2.5045454545454575,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 7.513636363636362,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 12.52272727272727,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 17.531818181818185,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 22.540909090909093,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped long-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 16.93
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -12.092857142857142
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -7.255714285714285
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": -2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 2.418571428571429
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 7.255714285714287
+          },
+          {
+            "name": "retained mapped short-face outer column",
+            "pass": true,
+            "x": 27.55,
+            "z": 12.092857142857142
+          },
+          {
+            "name": "retained inner entrance column",
+            "pass": true,
+            "side": 1
+          },
+          {
+            "name": "retained central portal air",
+            "pass": true
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": -0.75,
+            "y": 27.850000102703486,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": -0.25,
+            "y": 28.750000542860796,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": 0.25,
+            "y": 28.750000460331247,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": -15,
+            "f": 0.75,
+            "y": 27.84999985511483,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": -15,
+            "side": -1,
+            "z": -11
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": -15,
+            "side": 1,
+            "z": 11
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": -0.75,
+            "y": 27.849999848350112,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": -0.25,
+            "y": 28.75000045807634,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": 0.25,
+            "y": 28.75000045807634,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 0,
+            "f": 0.75,
+            "y": 27.849999848350112,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 0,
+            "side": -1,
+            "z": -11
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 0,
+            "side": 1,
+            "z": 11
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": -0.75,
+            "y": 27.84999985511483,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": -0.25,
+            "y": 28.750000460331247,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": 0.25,
+            "y": 28.750000542860796,
+            "expected": 28.75
+          },
+          {
+            "name": "actual rooflight pitched plane",
+            "pass": true,
+            "field": 15,
+            "f": 0.75,
+            "y": 27.850000102703486,
+            "expected": 27.849999999999998
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 15,
+            "side": -1,
+            "z": -11
+          },
+          {
+            "name": "rooflight closed physical gable end",
+            "pass": true,
+            "field": 15,
+            "side": 1,
+            "z": 11
+          },
+          {
+            "name": "open roof terrace air between separate rooflight volumes",
+            "pass": true,
+            "x": -9.45
+          },
+          {
+            "name": "physical membrane terrace below rooflights",
+            "pass": true,
+            "x": -9.45,
+            "y": 27.360000610351562
+          },
+          {
+            "name": "open roof terrace air between separate rooflight volumes",
+            "pass": true,
+            "x": 9.45
+          },
+          {
+            "name": "physical membrane terrace below rooflights",
+            "pass": true,
+            "x": 9.45,
+            "y": 27.360000610351562
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/dq/dqc/lincoln_memorial/verify-roof.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration, asset integrity and strict LOD/material budgets pass. Source/imported normals/winding/UVs pass. Actual imported controls test continuous peristyle soffit/floor/open air,38retained column positions and central portal, rooflight sloped planes/closed gable ends/separate terrace and membrane floor.63coarse/85each other-level controls pass. Original map/ground hashes unchanged. No unchanged completed model regenerated or blanket revalidated."
   },
   "limitations": [
-    "Original medium-fi temple exterior based on individually inspected local Qualla photos, mapped parts and NPS statistics/2008 plan and elevation; not a measured survey.",
+    "Original medium-fi temple exterior. Current controls are the exact native Sean Dudley public-domain photograph already cleared in Qualla and the original Carol M. Highsmith aerial behind its cleared edited aerial, with the photographer primary public-domain dedication. Earlier attribution images are excluded as current controls. NPS dimensions and mapped parts retained; not a measured survey.",
+    "Covered peristyle joins the original cella and entablature, replacing unintended roof gaps. Three pitched opaque rooflight volumes replace flat panels; the center field is wider. Rooflight widths10.4/18.3/10.4m and fixed27.4m eave/29.2m ridge are photographic estimates within the unchanged attic. Fine framing, concealed supports and current roof condition are approximate.",
     "NPS dimensions control the column count, spacing, height and major massing. Fine carvings, inscription strokes, statue likeness, optical corrections and exact roof panels are simplified; inscriptions are not claimed readable.",
     "Seated statue is an original simplified silhouette visible through the portal, not a portrait-quality replica. Side chamber murals, inscriptions, undercroft and detailed interiors are excluded.",
     "Upper terrace and main granite/marble stair flights are included. Reflecting pool, lower pool steps, distant approachway, temporary construction and surrounding gardens are excluded.",
@@ -162,6 +2274,91 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:f3f4420091fbbb582cb69ca5a47690394e1f1ff22fbf10cebd4a14c7d383a571",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "branchIntegrationReview": {
+    "date": "2026-10-15",
+    "reviewer": "Codex",
+    "priorInputHash": "sha256:aa85551595bcc5a652fb47492a49fbeaabe3f33c1eeeef16f3d763fe2b5599a8",
+    "inputHash": "sha256:f802b5999e37cf8fc4b2f0c458670136c0e737e10cc10a9872b2428da30e5acd",
+    "sourceRegeneration": "exact-byte-match",
+    "freshlyInspectedFrames": 33,
+    "reason": "Recipe fingerprints changed in the merged branch; all current capture chains were regenerated and inspected rather than carrying stale approval."
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:0a1563acd278d76ddbb6d5567d46a59abd5b38bca9044f0c0449020393390fc1",
+    "referenceInputHash": "cddf5900744e16bb092b28657991093636e3de1037e816e3354a2280d3213ac8",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/cleared-colonnade-2024.jpg",
+      ".artifacts/reference-photos/original-aerial-04781.jp2"
+    ],
+    "imageryEvidenceHash": "sha256:d8da21a5126792de1cde9a35e43a7be2af8a2a38a80b97855251144f93ee5a32",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/d/q/c/j/lincoln-memorial-wp/exterior-of-the-lincoln-memori.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Exterior_of_the_Lincoln_Memorial_(north_side)_20240601.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded as current construction control."
+      },
+      {
+        "path": "_m/d/q/c/j/lincoln-memorial-wp/lincoln-memorial-east.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Lincoln_Memorial_east_side.JPG",
+        "reason": "Earlier attribution-licensed photograph excluded as current construction control."
+      },
+      {
+        "path": "_m/d/q/c/j/lincoln-memorial-wp/lincoln-memorial-statu.jpg",
+        "reason": "Not selected for current roof construction. Existing original seated silhouette retained as an approximation; no new portrait work. Native photograph has image/subject-scoped grants not inventoried in this construction selection."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Cleared Qualla original first: exact Sean Dudley native bytes reused, explicit creator public-domain grant and native hashes verified. Cleared edited aerial identified original Highsmith LOC photo; exact primary JP2 and public-domain photographer dedication/catalog binding verified and inspected. Both full originals and native architectural crops viewed. Earlier CC exteriors and statue detail excluded from new roof controls. Roof reference is dated2006; present glazing condition and hidden details remain estimates."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "lincoln_memorial",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:0a1563acd278d76ddbb6d5567d46a59abd5b38bca9044f0c0449020393390fc1",
+    "sourceHash": "sha256:d60e0ca750c8c947bdf8c15c1618f79901e35120641954e5decd117259a160e9",
+    "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+    "built": [
+      "Continuous covered peristyle joining cella to outer entablature",
+      "Three closed pitched rooflight volumes replacing flat panels",
+      "Wider central rooflight field and opaque blue-gray panes",
+      "Separate membrane terrace and slope-following rooflight frames"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      982,
+      2786,
+      13650,
+      62834
+    ],
+    "drawCalls": [
+      1,
+      5,
+      6,
+      6
+    ],
+    "limits": "Started with cleared Qualla media/candidate metadata. Reused exact native8064x6048 Sean Dudley public-domain original and inspected full image/native colonnade crop; primary PD-self/CC0 creator release and SHA-1/SHA-256 bound. Qualla also contains an edited Highsmith aerial; followed its original LOC identity to exact native4264x3160 JP2 and inspected full/native roof crop. Explicit primary photographer public-domain dedication and catalog/file/hash bound, not merely a no-known-restrictions advisory. Current construction closes unintended gaps over the outer peristyle and replaces flat fields with three closed pitched rooflight volumes and separate membrane terrace. Wider central field follows the original aerial. Existing38columns, body/attic, cornice/top height, temple floor, terrace, steps, mapped frame, original ground and placement retained. Rooflight widths10.4/18.3/10.4m, eave27.4m/ridge29.2m, framing and concealed connections are fixed photographic estimates. The2006aerial does not establish present glazing condition;2024view has temporary works excluded from geometry. Other fine ornament/inscriptions and original seated statue silhouette remain generalized; no new portrait/interior/undercroft work. Earlier attribution imagery excluded as current controls. No copied photo pixels, exact material assay, civil survey or approval of another host terrain field.",
+    "publicDomainOriginals": 2,
+    "reusedNativeQuallaOriginals": 1,
+    "originalMappedColumnPositionsRetained": 38,
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

@@ -1,0 +1,260 @@
+{
+  "date": "2026-10-20",
+  "scope": "White 2012 MINI Cooper Countryman and dark gray 2019 Acura MDX, plus the existing green 2013 MINI Cooper",
+  "newModels": 2,
+  "existingModels": 1,
+  "generators": [
+    {
+      "path": "packages/entities/scripts/road-vehicle-geometry.mjs",
+      "sha256": "sha256:80b3c5c9fc7e824d385b99d037486af9ff0ad1db0436bbaed8a474818f348341"
+    },
+    {
+      "path": "packages/entities/scripts/vehicle-detail.mjs",
+      "sha256": "sha256:27c915bae24baffefeff6b81a86d507e0418c2a91aa0471d139340eeb33b381d"
+    },
+    {
+      "path": "packages/entities/scripts/generate-fleet.mjs",
+      "sha256": "sha256:fa19b12aedc92830cadb8bb496b9cf8fb2498919a70611d92890fa5734cf848a"
+    }
+  ],
+  "checks": {
+    "entityTests": 393,
+    "earthTests": 136,
+    "build": "passed",
+    "typecheck": "passed",
+    "lint": "passed",
+    "inspection": "Source pins, imported source/runtime hashes and verified asset inspections agree for all three models",
+    "reproducibility": "Whole fleet generate-fleet.mjs --check passed; prior models remain byte-identical",
+    "visualReview": "Four turntable views, lit three-quarter view and exact driver-eye view inspected for all three models",
+    "driving": "Mount, accelerate, steer, brake, reverse, stop and exit passed for all three models",
+    "paint": "Recipe, type default and imported paint material match; new ambient palettes retain white and dark gray"
+  },
+  "limitations": [
+    "Original polygonal reference interpretations; simplified surfaces, trim and interiors, not manufacturer CAD",
+    "Requested colors are authored approximations, not verified OEM paint codes",
+    "Driving, wheel spin, steering and analog speed needles are live; digital display graphics are illustrative",
+    "Doors and body panels are static; handling is tuned for play",
+    "Near-view masters use existing host distance/proxy policies; no separately authored GLB LOD chain"
+  ],
+  "models": [
+    {
+      "id": "molen.entities.vehicle.mini_cooper_2013",
+      "slug": "mini-cooper-2013",
+      "label": "2013 MINI Cooper",
+      "color": "#567759",
+      "existing": true,
+      "sourceHash": "sha256:d89c75ef560c82c14f4467e1de155e2a9fa7e5925da09ac0d34d785258c114a4",
+      "runtimeHash": "sha256:d57cdd0b0f8c6218d54b1ac8f5d3789f2d01006db51d317eb61d07991fc672fe",
+      "recipeHash": "sha256:d228c55e6d0dee60c657451ffbcb0bc2237f5c829d2a50ce8b9153ac447b0d0b",
+      "definitionHash": "sha256:b8c24be0e6eb283c6085c93505ccac033663fe800584860886132fb10ce19b4a",
+      "stats": {
+        "triangles": 19998,
+        "vertices": 29961,
+        "meshes": 31,
+        "primitives": 31,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 625048
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9815, -0.0035, -1.93],
+          "max": [0.9815, 1.407, 1.93]
+        },
+        "sphere": {
+          "center": [0, 0.7017, 0],
+          "radius": 2.0659
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.088, 2.32295, 3.667],
+        "lookAt": [0, 0.70175, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3871, 1.137, 0.1452],
+        "lookAt": [0.3871, 0.977, 1.1452],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/mini-cooper-2013/shots/angle_0.png",
+          "sha256": "sha256:99faefd1c26edbe702474b89d4c5c44dba10abfe04051b1220c3d567a65e84f9"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/mini-cooper-2013/shots/angle_1.png",
+          "sha256": "sha256:345932203dbeed357a01503e835fd6ef4a3a942b891ff3be3b7d051cfb1a258f"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/mini-cooper-2013/shots/angle_2.png",
+          "sha256": "sha256:3a50eec2497cffb4582028a1203e26a09fe5f4a2c4ae1c9c8bcbd89890de713f"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/mini-cooper-2013/shots/angle_3.png",
+          "sha256": "sha256:0464ec7eb5e572e87e78a86c4bb3c101b1ab5fecc656c6bad8b6e6d5d4e79f83"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/mini-cooper-2013/shots/three-quarter.png",
+          "sha256": "sha256:0c6e22252ddb1d4327b185cedb0cfb9743df366fe6013bea316d836c8df88d94"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/mini-cooper-2013/shots/operator.png",
+          "sha256": "sha256:f61c1b83e07ca0ec3089be743eceb85fd95c294999eb63d36aa292e58eac98b4"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.mini_cooper_countryman_2012",
+      "slug": "mini-cooper-countryman-2012",
+      "label": "2012 MINI Cooper Countryman",
+      "color": "#efeee8",
+      "existing": false,
+      "sourceHash": "sha256:0b33078d096f86cea36ddc3e766542f1fa58e8e7a065bf9605252e6c2bd3da23",
+      "runtimeHash": "sha256:afc75b770a0d5cfae112869430c40d6caf04460c75a2bd0313fc5059ffac8978",
+      "recipeHash": "sha256:4dcebc4aa8d4f2506b9c8ef4797de543f6ca9ed83973794268d0edabb64efd14",
+      "definitionHash": "sha256:507abca35fc319607fdc93eaf1cb23d365375a3dfd51ff331faacb3617434d29",
+      "stats": {
+        "triangles": 22370,
+        "vertices": 33912,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 699568
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0345, -0.0035, -2.117],
+          "max": [1.0345, 1.638, 2.12]
+        },
+        "sphere": {
+          "center": [0, 0.8173, 0.0015],
+          "radius": 2.2775
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.3896, 2.59679, 4.02515],
+        "lookAt": [0, 0.8172499999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4115, 1.291, 0.1712],
+        "lookAt": [0.4115, 1.131, 1.1712],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/mini-cooper-countryman-2012/shots/angle_0.png",
+          "sha256": "sha256:474633522a28153df33d53e9e73d01213ef1dcd06e20a50c938dd62f00bb6e15"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/mini-cooper-countryman-2012/shots/angle_1.png",
+          "sha256": "sha256:ee3fcfea46f042d4da5725bd70dfe80fdc594a139196145a2c85438b290e0afc"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/mini-cooper-countryman-2012/shots/angle_2.png",
+          "sha256": "sha256:e3c658a2cd27f94d5dd2d5f7529274d44037163ea0db0ecd6d5a6625d5fb35af"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/mini-cooper-countryman-2012/shots/angle_3.png",
+          "sha256": "sha256:83ad1d60c495b0835eda9328de1f8f5125f98ea804d8fb9d0ad898f24cef7719"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/mini-cooper-countryman-2012/shots/three-quarter.png",
+          "sha256": "sha256:6ecd14fbc40630f85dc5432290814ff0e211ec7c68c022cc6fb2b4684d6a553a"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/mini-cooper-countryman-2012/shots/operator.png",
+          "sha256": "sha256:5c1ce6ce187de70139e3e10ecf634636473f7c866bb10702ef6f4abb5ab3def1"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.acura_mdx_2019",
+      "slug": "acura-mdx-2019",
+      "label": "2019 Acura MDX",
+      "color": "#484c50",
+      "existing": false,
+      "sourceHash": "sha256:26bb0f0d8962e21d59f5660b23f2bafdd9a89e9b8eb142378d4238b178280ba4",
+      "runtimeHash": "sha256:65c349fcfcfe05e8398954955a3adb38b6645254430390c27f1b5890d0787d48",
+      "recipeHash": "sha256:3215feae122650514053669eff63243892a88af116d316132752d9efeb52c347",
+      "definitionHash": "sha256:196b85b154d7954be25269fe4af84a2f8670dc8de2cc3d98dbe98dc0c47c151d",
+      "stats": {
+        "triangles": 17814,
+        "vertices": 26757,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 557432
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.127, -0.0035, -2.56],
+          "max": [1.127, 1.7119, 2.5745]
+        },
+        "sphere": {
+          "center": [0, 0.8542, 0.0072],
+          "radius": 2.7134
+        }
+      },
+      "exteriorCamera": {
+        "position": [4.107600000000001, 3.01069, 4.877775],
+        "lookAt": [0, 0.8542, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.454, 1.442, 0.0737],
+        "lookAt": [0.454, 1.282, 1.0737],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/acura-mdx-2019/shots/angle_0.png",
+          "sha256": "sha256:4eab6817c6cf6398d7186283f22f9ccef50310053aa9c4bf557cf9d3b660ae64"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/acura-mdx-2019/shots/angle_1.png",
+          "sha256": "sha256:98bfaafcf2f1a9cca16ea2f8529d488e970031b0d63250a02888cb4a54847bd5"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/acura-mdx-2019/shots/angle_2.png",
+          "sha256": "sha256:23f21c357d3f05332fdd2af5bfacb5ce41218489222c88ff93b37e7e226401f7"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/acura-mdx-2019/shots/angle_3.png",
+          "sha256": "sha256:cb51a5cc61084abf11f79a8fc7e6737de47fb657295efcec1a0af44366ff5df8"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/acura-mdx-2019/shots/three-quarter.png",
+          "sha256": "sha256:f9c59c877b183b9ea06ee93cf2fa0b1187199cd863cb07f5403c93908f091423"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/acura-mdx-2019/shots/operator.png",
+          "sha256": "sha256:c09b0de9108891559ef4d7a432d10be0c995b6d21f2f4aa494c97ea5cd83606e"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "format": "molen/structure-geometry-controls@1",
+  "structure": "alcatraz_federal_penitentiary",
+  "method": "Native map controls the horizontal plan and signed frame. Eight actual local exterior files, three HABS exterior/roof photographs, the actual partial Citadel basement drawing and the official DOE later roof photo were inspected. Vertical dimensions, glazing/solar density and fine facade details are photographic estimates, not measured elevations. Original USGS ground frozen before geometry.",
+  "scope": "Principal connected prison cellhouse, dining/kitchen and administration/hospital envelope. Integral rooftop cylindrical cistern retained; detached island water tower and separate vaulted front cistern terrace/lighthouse/barracks/ruins excluded. Short entrance apron/steps belong to building.",
+  "nativePlan": {
+    "parts": 3,
+    "physicalEnvelopeVertices": 19,
+    "unalteredRawUnionComponents": 2,
+    "facadeAxisWidthMeters": 38.192515662280876,
+    "heading": 0.7722984760596018,
+    "anchor": [
+      -122.42262840270996,
+      37.82645393370771
+    ],
+    "diningJoin": {
+      "maximumGapMeters": 0.06404288142443863,
+      "method": "Outer envelope splices dining-wing perimeter into main/admin perimeter at their shared west vertex and next east boundary. This closes a native digitization sliver of at most6.5cm; original three part polygons and two raw union components are preserved unchanged. No scale, anchor, heading or source terrain adjustment.",
+      "reviewBasis": "Native plan and local/HABS photographs show an attached dining wing, not a6cm open trench."
+    }
+  },
+  "photographicControls": {
+    "frontBays": 9,
+    "centralParapetRaisedBays": 5,
+    "centralUpperParapetBays": 3,
+    "concretePilasters": true,
+    "largeWindowTiersAboveSmallerBaseLights": 2,
+    "longGlazedRoofMonitors": 3,
+    "roofMonitorCountAndLength": "Interpretation from native plan plus HABS/DOE roof photos; exact as-built skylight survey not available.",
+    "roofSolarArray": "Rows of later PV modules with clear monitor/service aisles; exact module count not certified. Official descriptions959/1300 differ.",
+    "integralRoofCistern": "Broad low weathered cylinder and shallow conical cover seen in actual local2010 photograph; distinct from separate island water tower."
+  },
+  "verticalEstimates": {
+    "externalDryFootwayModelY": 0,
+    "externalFootwayProviderElevationMeters": 37.8684,
+    "foundationHiddenLowerEnvelope": -8.2,
+    "mainParapetTop": 17.2,
+    "mainRoofDeck": 16.55,
+    "diningParapetTop": 14.4,
+    "diningRoofDeck": 13.75,
+    "frontParapetTop": 16.4,
+    "frontCentralSteppedTop": 17.44,
+    "frontRoofDeck": 15.75,
+    "frontDoorBottom": 4.5,
+    "frontEntryApronTop": 4.6,
+    "mainRoofMonitorRidge": 17.9,
+    "roofCisternBase": 16.6,
+    "roofCisternCylinderTop": 20,
+    "roofCisternCoverTop": 21.2
+  },
+  "physicalEvidence": "Real cut wall openings,36cm deep glazing recesses and70cm front-door recess. Grid bars enter at street/closeup; district preserves broad window recesses, skyline preserves native mass/roof cistern and roof-monitor silhouette. Physical coverage and original-source perimeter contact must be checked on actual imported bytes at all four LODs.",
+  "terrainPolicy": "The original F32 export,66049derived values and review PNG remain unchanged. Hidden foundation envelope is explicitly approximate; it does not establish surveyed footing depth. No terrain fitting, flattening or suppression of source evidence.",
+  "limitations": [
+    "No prison/citadel interiors or walkable collision. Fine armorial carving, lettering, spalling and security equipment generalized.",
+    "Standalone shared viewer stage is flat; actual ground-relative contact requires retained original-field fixture and independent geometric source-terrain probes. Synthetic neighbors do not depict Alcatraz Island.",
+    "Current roof array geometry is an approximation, not an exact module inventory or a certified post-rehabilitation state."
+  ]
+}

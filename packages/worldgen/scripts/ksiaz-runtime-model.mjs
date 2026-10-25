@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u3/u35/n0291_ksiaz_castle_and_park_complex/';
+const root = '../../../content/worldgen/source/places/u3/u35/ksiaz_castle_and_park_complex/';
 const read = (n) => JSON.parse(readFileSync(new URL(root + n, import.meta.url)));
 const frame = read('map-frame.json'),
   _refs = read('reference-metadata.json'),
@@ -989,7 +989,7 @@ export const buildKsiazRuntime = (o, level = 'closeup') =>
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u3/u35/n0291_ksiaz_castle_and_park_complex/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u3/u35/ksiaz_castle_and_park_complex/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

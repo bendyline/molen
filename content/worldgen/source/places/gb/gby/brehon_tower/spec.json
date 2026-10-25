@@ -1,0 +1,396 @@
+{
+  "planId": "brehon_tower",
+  "id": "brehon_tower",
+  "assetId": "molen.worldgen.structure.brehon_tower",
+  "title": "Bréhon Tower",
+  "category": "tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -2.4883,
+    "latitude": 49.4713
+  },
+  "size": [
+    28.024396657943726,
+    13.399999618530273,
+    29.791889429092407
+  ],
+  "actualBounds": {
+    "min": [
+      -2.3491170406341553,
+      0,
+      -3.5956976413726807
+    ],
+    "max": [
+      25.67527961730957,
+      13.399999618530273,
+      26.196191787719727
+    ]
+  },
+  "visualBrief": "Whole surviving Bréhon sea fort: full22vertex native oval battered granite tower,13vertex physically attached low entrance ruins/shared5nodes,6vertex concrete entry landing, immediate short wooden entrance bridge and10steps. Two levels of small round-headed southern windows/first-floor southern portal, deliberately blank upper north wall with low WWII embrasure, plain thick parapet/open roof gun platform,6projecting brick loopholed machicolations/corbels, surviving crane pedestal/low gun-base traces and small modern seamark beacon. Exclude wholeislet/naturalrock/reef/sea, detachedlandingpier/remoteaccesspaths, ships/Jethou/background, historiccannons/lostroofbuildings/interiors. Warmgrayrubblegranite/paleashlararchedreveals/mutedredbrickdefenceboxes. Preserveovalasymmetry/batteredprofile/realdeepwindowapertures/blanknorthface/southentry/flatopenroof/plainparapet. Ruinslowandunroofed, immediateentrybridgeand10concretesteps follow nativeplan; no genericcircularcrenellatedmedievaltower. Finehiddenroof/ruindetail and exactheight estimates.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Jethou_July_2010_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Guernsey_July_2011_269.jpg"
+  ],
+  "stories": [
+    {
+      "id": "brehon-tower-wp",
+      "url": "https://qualla.com/brehon-tower/"
+    }
+  ],
+  "referenceInputHash": "1f293bebfd89cf9af4474694dc5fe08bbcbac8a134a3e89273ce8e4767369b2d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-brehon-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-brehon-tower.mjs",
+    "level": "skyline",
+    "export": "brehonTowerSkyline",
+    "errorMeters": 0.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "slab": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.24
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "brehonTowerDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.24
+          }
+        }
+      },
+      "street": {
+        "export": "brehonTowerStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.24
+          }
+        }
+      },
+      "closeup": {
+        "export": "brehonTowerCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.24
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.15,
+    "groundY": -0.08
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native named historic way522604715/Q4981832, all22towerpoints; attached ruin1523593882/all13points shares5towernodes. Immediate landing1523593887/all6points, bridge1523593889 sharesmain-towernode13888664149, and10stepway1523593888 form intrinsic entrance access. Detachedpier1523593884/isletcoastline550354790 excluded. FixedQualla anchor[-2.4883,49.4713], heading0.2861801781864177 from polygon-area majoraxis before terrain/geometry, local+XapproximatelyENE/+ZtowardsSSEentry. Nativefoot~28x22m, upperwall~26x20m after estimatedbatter consistentwithTownie26x20m account, not precise surveyedfootprint. Door/windowpositions/batter/heights/ruincrown/hiddenroof traces estimated independently of terrain. Independent256m129square2mfield frozen beforegeometry returns allzero/coarse sea and does not resolve isletrock. Architecturaltoe/entrylevels estimated independently; actualrock/tidalhostcontact unverified.",
+    "anchor": [
+      -2.4883,
+      49.4713
+    ],
+    "heading": 0.2861801781864177,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -2.488016,
+        49.4711169
+      ],
+      "modelHeight": 0,
+      "basis": "Native bottom entrance step fixed before independentfield, not a surveyed rock/threshold datum"
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/522604715",
+      "way/1523593882",
+      "way/1523593887",
+      "way/1523593888",
+      "way/1523593889"
+    ],
+    "source": "https://www.openstreetmap.org/way/522604715",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:572e694df4de9360bbbe89e2d331d14971c930916cd68e9c2d9e3624c9688a58",
+    "notes": "Whole surviving Bréhon sea fort: full22vertex native oval battered granite tower,13vertex physically attached low entrance ruins/shared5nodes,6vertex concrete entry landing, immediate short wooden entrance bridge and10steps. Two levels of small round-headed southern windows/first-floor southern portal, deliberately blank upper north wall with low WWII embrasure, plain thick parapet/open roof gun platform,6projecting brick loopholed machicolations/corbels, surviving crane pedestal/low gun-base traces and small modern seamark beacon. Exclude wholeislet/naturalrock/reef/sea, detachedlandingpier/remoteaccesspaths, ships/Jethou/background, historiccannons/lostroofbuildings/interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native named historic way522604715/Q4981832, all22towerpoints; attached ruin1523593882/all13points shares5towernodes. Immediate landing1523593887/all6points, bridge1523593889 sharesmain-towernode13888664149, and10stepway1523593888 form intrinsic entrance access. Detachedpier1523593884/isletcoastline550354790 excluded. FixedQualla anchor[-2.4883,49.4713], heading0.2861801781864177 from polygon-area majoraxis before terrain/geometry, local+XapproximatelyENE/+ZtowardsSSEentry. Nativefoot~28x22m, upperwall~26x20m after estimatedbatter consistentwithTownie26x20m account, not precise surveyedfootprint. Door/windowpositions/batter/heights/ruincrown/hiddenroof traces estimated independently of terrain.",
+    "Wholeovalfort22points/13pointattachedlowruin/6pointlanding/shortbridge/10steps represented. Sixbrickmachicolations and blankuppernorthwall follow primary2011sitevisit account. Southernwindowpositions/ruincrown/heights/doorlandingextension/rooftraces/beacon minorgeometry estimated. Openings have deep darksimplifiedinteriorclosures; interiors and exact internalvaults excluded.",
+    "Two exactpublishedManvyiPD-self2010/2011originals individuallyinspected/nativeSHA1bound. Distantviews do not certify hiddenrooffine detail or everywindow. OfficialparishTownie2013textfacts only; protectedPDFphotos/plans notviewed orused. No metadata/category/articlebody/policychange, protectedphototexture/generatedbitmap/downloadedmesh.",
+    "Bodybatteredtoe0..2.2m/top10.9m/parapet12.2m/beacon13.4m/door3.1m/tensteps2.2m/lowruin1.15..2.3m are independent architecturalestimates; Libraryreported~40ft notcurrentheight survey. Upperbody26x20m approximately matches parishtext; coarse nativebase28x22m retained.",
+    "Independent256m129square2m all16641samples/oneoriginalTerrariumtile/PNG frozen unchanged beforegeometry. Provider sea-valuedfield is allzero and DOES NOT resolve actualrock/islet/tide; no terrainfitting/flattening/reacquisition or fabricatedisletmesh. Nativebottomstep fixesY0 but actualcompatiblehostcontact unverified. Ordinarygeographicpreview/replacementdisabled.",
+    "Separatelandingpier/wholeislet/naturalrock/reef/sea/Jethou/ships/background/oldguns/lostroofbuildings/generalremoteaccesspaths excluded. Lowroofmountings/crane pedestal are simplified approximate surviving traces, not complete artillery reconstruction."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-oval-battered-fort-six-brick-defenses-and-attached-ruins",
+      "position": [
+        -24,
+        23,
+        43
+      ],
+      "lookAt": [
+        12,
+        5.5,
+        9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "southern-arched-openings-ashlar-reveals-and-brick-machicolations",
+      "position": [
+        6,
+        10,
+        36
+      ],
+      "lookAt": [
+        11,
+        7.8,
+        14
+      ]
+    },
+    {
+      "name": "open-roof-battery-plain-parapet-and-six-loopholed-boxes",
+      "position": [
+        37,
+        30,
+        20
+      ],
+      "lookAt": [
+        12,
+        9.6,
+        7
+      ]
+    },
+    {
+      "name": "low-attached-ruins-short-entrance-bridge-and-ten-steps",
+      "position": [
+        35,
+        14,
+        37
+      ],
+      "lookAt": [
+        13,
+        3,
+        21
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2639,
+    "vertices": 7917,
+    "materials": 6,
+    "bytes": 320468,
+    "sha256": "sha256:22ade3177cf358d55aed532a5c2dc99b4f1a9d93a4c8e2731f89676d68b43349"
+  }
+}

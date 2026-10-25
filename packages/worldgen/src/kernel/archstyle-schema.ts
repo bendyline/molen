@@ -387,6 +387,25 @@ const lod = z.strictObject({
 });
 
 const archStyleSchema = z.strictObject({
+  lotPlans: z
+    .array(
+      z.strictObject({
+        shape: z.enum([
+          'cottage',
+          'ranch',
+          'front-garage',
+          'side-garage',
+          'courtyard',
+          'compact',
+          'shopfront',
+        ]),
+        weight: z.number().positive(),
+      }),
+    )
+    .min(1)
+    .max(32)
+    .describe('Weighted resizable plans for vacant lots; supplied outlines remain authoritative.')
+    .optional(),
   format: z.literal('molen/archstyle@1').describe("Format envelope; always 'molen/archstyle@1'."),
   id: z
     .string()

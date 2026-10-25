@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u9/u99/n0346_vilnius_cathedral/',
+  '../../../content/worldgen/source/places/u9/u99/vilnius_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -897,7 +897,7 @@ export const buildVilniusSkyline = (o) => build(o, 0),
   buildVilniusStreet = (o) => build(o, 2),
   buildVilniusCloseup = (o) => build(o, 3);
 export const vilniusStudy = {
-  id: 'N0346',
+  id: 'vilnius_cathedral',
   key: 'vilnius_cathedral',
   title: 'Vilnius Cathedral',
   category: 'cathedral',

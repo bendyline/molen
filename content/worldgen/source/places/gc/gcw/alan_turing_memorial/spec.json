@@ -1,0 +1,212 @@
+{
+  "planId": "alan_turing_memorial",
+  "id": "alan_turing_memorial",
+  "assetId": "molen.worldgen.structure.alan_turing_memorial",
+  "title": "Alan Turing Memorial",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -2.2359608,
+    "latitude": 53.476732
+  },
+  "size": [
+    2.3499999046325684,
+    1.5624047853052616,
+    1.4170194268226624
+  ],
+  "actualBounds": {
+    "min": [
+      -1.1749999523162842,
+      -0.04240480437874794,
+      -0.3370193839073181
+    ],
+    "max": [
+      1.1749999523162842,
+      1.5199999809265137,
+      1.0800000429153442
+    ]
+  },
+  "visualBrief": "Complete intrinsic life-size seated bronze Turing portrait on open3backboard/5seatboard cast-bronze bench: natural face/hair/ears, jacket/notchedlapels/open-collar shirt, trouser folds/low shoes, anatomicalright cuppedapplehand/viewerleft and lefthandonthigh; small low unlettered plaque. No wholepark/path/slab, otherbenches, people, text or temporary nailpaint.",
+  "nativeAxes": {
+    "x": "bench length, viewer-right",
+    "y": "up",
+    "z": "figure faces provisionally toward central paved approach west-southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Alan_Turing_Memorial_2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Alan_Turing_Memorial_1.JPG"
+  ],
+  "stories": [
+    {
+      "id": "alan-turing-memorial-wp",
+      "url": "https://qualla.com/alan-turing-memorial/"
+    }
+  ],
+  "referenceInputHash": "c293de9a1258bb222b577c1dedf140511aed2e44f97d35f2523f95122c372c2b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-alan-turing-memorial.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-alan-turing-memorial.mjs",
+    "level": "skyline",
+    "export": "turingSkyline",
+    "errorMeters": 0.065,
+    "surfaces": {
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.79,
+        "metallic": 0.52
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "turingDistrict",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.79,
+            "metallic": 0.52
+          }
+        }
+      },
+      "street": {
+        "export": "turingStreet",
+        "errorMeters": 0.015,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.79,
+            "metallic": 0.52
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.06,
+    "groundY": -0.17,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact native memorialnode1295097482/Q3736114identifies Alan Turing Statue,materialbronze,artistGlynHughes,subjectQ7251. It is a point identity, not a surveyed bench footprint or a park roof. Native adjacent closed footway1185586557provides context/approach only. Bench/figure/plaque dimensions and bounded outline are photographic/anthropometric estimates; signed heading toward original circular-path centre is a provisional photograph/context registration, not a native surveyed statue bearing. Whole park/path never extruded. Fixed pavedcontact[0,1.3] preceded acquisition of the untouched source terrain. Exact benchfoot/plaque and hostpark contact remain approximate.",
+    "anchor": [
+      -2.2359608,
+      53.476732
+    ],
+    "heading": -1.114619634142632,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -2.2359784155610622,
+        53.47672685559933
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed dry paved point1.3minfront of the statue/bench origin before terrain acquisition; groundplaque/bench foot attachment and provisional heading remain approximate, no terrain flattening/fitting."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/1295097482",
+      "way/1185586557",
+      "photographic-bench-envelope"
+    ],
+    "source": "https://www.openstreetmap.org/node/1295097482",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4af9653db7696cdd5be8fdcd89ec9e0ec2923c6333462a6feb93fd3e1c097f41",
+    "notes": "Complete intrinsic Alan Turing Memorial at native Sackville Gardens statuepoint1295097482/Q3736114: life-size seated bronze portrait in jacket/open-collar shirt/trousers/shoes, recognizable head/face/hair/ears, right hand holding apple and left hand resting on thigh; bronze slatted bench with true open back/seat gaps and supporting legs, small low ground plaque. Original medium-fi anatomical/clothing relief and representative unlettered inset panels. No surrounding park/circular path/trees/site slab, extra public benches, neighboring buildings/rails, people, pink nail paint or text/logos. Exact bench dimensions, seated pose and surface details are photographic estimates, not a generic standing mannequin."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact native memorialnode1295097482/Q3736114identifies Alan Turing Statue,materialbronze,artistGlynHughes,subjectQ7251. It is a point identity, not a surveyed bench footprint or a park roof. Native adjacent closed footway1185586557provides context/approach only. Bench/figure/plaque dimensions and bounded outline are photographic/anthropometric estimates; signed heading toward original circular-path centre is a provisional photograph/context registration, not a native surveyed statue bearing. Whole park/path never extruded.",
+    "Exact two native already-published KGGucwa2008own-workPD-selforiginals control original sculptural geometry. Fullbody photo uses independently pinned primary creator grant because legacy Qualla category metadata omits PD; exact published bytes/nativeSHA1match. Opposite-side portrait has ordinary acceptedpublished metadata. No imported scan, copiedphototexture, generated bitmap, outside image source, pinknailpaint or lettering.",
+    "Estimated2.35mbench/.46mseat/1.52mseatedheadtop, portrait/pelvis/limbs and slightheadturn derived from inspected photographs and natural adult seating proportions; no measured sculpture scan. Original sectionedclothing/anatomy, eyelids/nose/brow/closedmouth/ears/shortpartedhair and jointedfingers are bounded medium-fi interpretations. Concealedrear/finehair/fold census and exactportrait likeness are approximate.",
+    "Three backboards/five seatboards/four feet and all primary slat gaps retained at everydistance. Rightapplehand is viewerleft/local-X; otherhandrestsonthigh. Shirt/notchedlapels, cuffs/coat tails, broad shoes/soles and smallunletteredgroundplaque included. Raised cloth/face detail reduces withdistance; uniformbrown/olivebronze uses sharedcast-bronzegraph, no paintedeyes/shadows.",
+    "Native pointQ3736114 fixes identity/location; nearby circularfootway is contextonly and nevera solidroof/park slab. Provisional heading faces original pavedapproachcentre and2.5mestimatedenvelope is notanOSMsurvey. Raw60mproviderfield/fixedpavedcontact frozenbeforegeometry; exactfooting/plaque/hostgrade remainsunverified. FlatstageY-.17 shows sculpture independently, not surveyedparkcontact."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "natural-portrait-open-collar-and-right-apple-hand",
+      "position": [
+        -0.8,
+        1.58,
+        1.32
+      ],
+      "lookAt": [
+        -0.03,
+        1.12,
+        0.1
+      ]
+    },
+    {
+      "name": "seated-pose-shoes-and-true-open-bench-slats",
+      "position": [
+        2.1,
+        1.65,
+        2.6
+      ],
+      "lookAt": [
+        0,
+        0.73,
+        0.15
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "rear-cast-bronze-bench-legs-and-jacket",
+      "position": [
+        -2.5,
+        1.6,
+        -2.8
+      ],
+      "lookAt": [
+        0,
+        0.76,
+        -0.03
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11220,
+    "vertices": 33660,
+    "materials": 1,
+    "bytes": 1347944,
+    "sha256": "sha256:51f01b19a63571ba28e78743de2ae0078f4d1863c59a45eafdc0559fae28c451"
+  }
+}

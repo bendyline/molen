@@ -1,0 +1,305 @@
+{
+  "planId": "alcatraz_island_lighthouse",
+  "id": "alcatraz_island_lighthouse",
+  "assetId": "molen.worldgen.structure.alcatraz_island_lighthouse",
+  "title": "Alcatraz Island Lighthouse",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.4222931265831,
+    "latitude": 37.82625346085028
+  },
+  "size": [
+    4.432500123977661,
+    29.53915023803711,
+    5.340000152587891
+  ],
+  "actualBounds": {
+    "min": [
+      -2.2225000858306885,
+      -1.5,
+      -3.130000114440918
+    ],
+    "max": [
+      2.2100000381469727,
+      28.03915023803711,
+      2.2100000381469727
+    ]
+  },
+  "visualBrief": "1909 natural-gray concrete lighthouse with tall square sash/door base, tapering octagonal long recessed-panel shaft, small gridded windows, octagonal watchroom with alternating sash/blind panels, corbelled gallery and open triple iron rail, cylindrical helical-glazed lantern, shallow conical roof/current beacon and short caged service ladder. Narrow own footing and three entrance treads only; separate prison/cistern and ruined residences excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.dvidshub.net/image/2347416/alcatraz-lighthouse"
+  ],
+  "stories": [
+    {
+      "id": "alcatraz-island-lighthouse-wp",
+      "url": "https://qualla.com/alcatraz-island-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "sha256:e435080132594ff134e15ff933f48e500406b93f30ec1743653b49c51b0f11e8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-alcatraz-island-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-alcatraz-island-lighthouse.mjs",
+    "level": "skyline",
+    "export": "alcatrazIslandLighthouseSkyline",
+    "errorMeters": 0.3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.15
+      },
+      "iron": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "alcatrazIslandLighthouseDistrict",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "alcatrazIslandLighthouseStreet",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Own native tower centroid/frame; original USGS2023 one-metre raster independently resampled before geometry at6.955m external dry footway reference41.1495m. Original heights unchanged. Narrow4.4m square foundation below the actual4.191m wall width; no terrace, island ground or separate structure reconstructed. Physical foundation/terrain contact and current geographic review required.",
+    "anchor": [
+      -122.4222931265831,
+      37.82625346085028
+    ],
+    "heading": 0.7722984760596018,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.42227703340262,
+        37.82619228634254
+      ],
+      "modelHeight": 0,
+      "basis": "Actual native dry footway vertex6.955m southwest of tower centroid, outside every extracted building footprint. Independent original USGS raster is resampled in this tower frame before geometry, without fitting or flattening."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "basis": "Own4.4m square physical lighthouse footing enclosing the retained native octagon; wall width4.191m follows historic dimension/photos. No adjacent plaza/ruin/terrain removed. Original USGS heights unchanged.",
+      "outline": [
+        [
+          -2.2,
+          -2.2
+        ],
+        [
+          -2.2,
+          2.2
+        ],
+        [
+          2.2,
+          2.2
+        ],
+        [
+          2.2,
+          -2.2
+        ]
+      ]
+    },
+    "featureIds": [
+      "buildings/35184471291126"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9ceb5f8a41ffe9ac21935173456d62efe0bcf4eb363a994ea9e88bf6fc3477e3"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Historic1910 inventory controls4.191m square base,3.2512m parapet width,2.322068m circular lantern glass diameter and.9017m glazed height. Full current base-to-beacon envelope approximately27.49m follows historic90ft2.25in ventilator height and dated photos. USCG84ft/NPS95ft disagree; endpoints/epochs unresolved. This is an approximate photographic exterior, not a measured current survey.",
+    "Five actual full local originals/40 thumbnails inspected. Sparse unseen rear shaft/base openings and door bearing are conservative interpretations. Eleven historic varied windows/two doors do not establish their exact present positions. Fine concrete damage and ironwork are generalized; no original photo pixels used as textures.",
+    "Independent original USGS ground remains unchanged. One-metre source/sampling cannot certify hidden foundations or current paving classification. Default coarse Earth terrain compatibility and whole-island scenery are not certified. Separate prison, residences/ruins, cistern, fences and lamps excluded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-tower",
+      "position": [
+        18,
+        16,
+        -30
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "square-base-and-door",
+      "position": [
+        9,
+        5,
+        -12
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        0
+      ]
+    },
+    {
+      "name": "shaft-recess-and-sash",
+      "position": [
+        9,
+        18,
+        9
+      ],
+      "lookAt": [
+        0,
+        16.4,
+        0
+      ]
+    },
+    {
+      "name": "watchroom-and-lantern",
+      "position": [
+        7,
+        27,
+        9
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "gallery-and-ladder",
+      "position": [
+        -8,
+        28,
+        -7
+      ],
+      "lookAt": [
+        0,
+        25.2,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7354,
+    "vertices": 22062,
+    "materials": 3,
+    "bytes": 884804,
+    "sha256": "sha256:27c8f92b5da5cedbe5e4c5e1ebca2e0246597039c4b6575b24884aa0d59824c1"
+  }
+}

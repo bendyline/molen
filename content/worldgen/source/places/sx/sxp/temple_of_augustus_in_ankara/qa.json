@@ -1,0 +1,574 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.temple_of_augustus_in_ankara",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:0274ba9864621229432ce96bca81df4fb417faad9b6517235f6b3b78468e086f",
+  "sourceHash": "sha256:4ac4f58b41fa967c88f45aaa754e00ce8c3c4c4dc91f462f5a99807c15bc602d",
+  "runtimeHash": "sha256:a1cf2780db1d512984fcb8a347570d97063d14e5a3a054e618d4d705bef045a5",
+  "captureReportHash": "sha256:3735f93c08a1fe5ede4019dfb3d1f3a57dfdff65d4bcc8605ebd1804da8cd55c",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-open-cella-vestibule-and-steel-supports.png",
+      "shots/tall-open-southwest-portal-and-layered-lintel.png",
+      "shots/arched-windows-brick-banded-rear-and-open-frame.png"
+    ],
+    "notes": "Inspected48 final current source/shared/medium-fi/native-site/fallback views in one continuous author/build/inspect/fix round. Specific open Ankara cella, tall southwest portal with layered jamb/lintel, broken vestibule wings, three real arched window openings and simple mullions, low stone/brick-banded rear remnants, separately seated broken drums/blocks and an open steel conservation frame. Same-round renders prompted an irregular stepped vestibule rupture instead of a smooth ramp and a rougher rear crest. No intact ancient roof, pediment or colonnade restored."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-open-cella-vestibule-and-steel-supports.png",
+      "shots/shared/tall-open-southwest-portal-and-layered-lintel.png",
+      "shots/shared/arched-windows-brick-banded-rear-and-open-frame.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Four existing256-square graphs: stone_limestone for wall/trim, stone_limestone_weathered for lower remains, brick_longformat for rear bands and metal_painted for steel. Metric UVs and linear muted tints; all four graphs read once by the production resolver. Levels588/1656/2028/2148triangles; at most5draws, initial229160bytes. Zero embedded images or unique atlas, separate GPU attribute streams and matching CPU/GPU accounting. All triangle/draw/download caps pass; eviction releases model geometry.",
+    "captureReportHash": "sha256:17bdc168e9a3e87fc96cd27dd68f85ca6becfb91538cff0244184ce5e3ea496d"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-open-cella-vestibule-and-steel-supports.png",
+      "medium-fi/tall-open-southwest-portal-and-layered-lintel.png",
+      "medium-fi/arched-windows-brick-banded-rear-and-open-frame.png",
+      "medium-fi/ankara-skyline.png",
+      "medium-fi/ankara-district.png",
+      "medium-fi/ankara-street.png",
+      "medium-fi/ankara-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected noon/late, economy/high, source turntable, full silhouette, portal and rear/frame details, all four authored levels and transitions. Skyline preserves the high open cella, portal, window openings, broken vestibule and broad support silhouette while omitting small rubble and simplifying steel cross-braces. District/street/close retain the smaller portal trim and frame subdivisions. Contact is judged against source/native terrain; flat library stages can expose terrain-relative feet. Procedural neighbor facades and green fallback ground are host context, not a reconstruction of the mosque or actual paving/vegetation.",
+    "captureReportHash": "sha256:dbbbbc37374db9fa046e1d727f244dcee50c8261959d9155ba998225d5b364b5"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:c32cd630d476cc848ee48fa0d4f0a41fbc8a3b460d55b8cc83861668a387d81d",
+    "mapFrameHash": "sha256:b3c4b7dff451adcd60c8e8f112b222cf65b2ecf29022b6094d39d3ce9bfe7503",
+    "notes": "Exact-QID Q1640233/way469691342 establishes the59.656x27.054m archaeological-site envelope, corroborated by standard PMTiles named point35184841780174. Root heading0, internal angle-0.802151033991rad; entrance assigned southwest from ordinary pictures and adjacent mosque context. Internal walls/remnants/frame remain picture-led subdivisions rather than surveyed outlines. No native temple building shell exists, so no building replacement mask is used. The neighboring mosque35184527286414 and all716 original in-tile building inputs remain byte-equivalent at every level/fallback. Original6m terrain and water unchanged. Long masonry feet and separate low remains follow sampled grade with buried bottoms; cella/vestibule native ground stays open. No huge podium, flattened precinct or ground/water cutout. Failed load retains all716 natives; unloading restores context and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi surviving-remains visualization from four inspected ordinary pictures and standard PMTiles/Mapzen. The surface close-up did not resolve the obscured door; one wider ordinary front picture filled that concrete coverage gap. No bespoke surveys or research campaign. Wall/portal heights, exact cella/vestibule and low-remnant subdivisions, individual drum/block inventory, damage and steel conservation-frame engineering are approximate. Coarse urban DEM varies about4m along the site and does not resolve excavation floors or thresholds. Readable inscriptions, fine relief, whole ancient roof/colonnade, precise paving, fences, trees and neighboring mosque reconstruction are omitted. Physical-device/dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxp/temple_of_augustus_in_ankara/models/source.glb\",\"hash\":\"sha256:4ac4f58b41fa967c88f45aaa754e00ce8c3c4c4dc91f462f5a99807c15bc602d\",\"bytes\":261216,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxp/temple_of_augustus_in_ankara/model.glb\",\"hash\":\"sha256:a1cf2780db1d512984fcb8a347570d97063d14e5a3a054e618d4d705bef045a5\",\"bytes\":260716,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxp/temple_of_augustus_in_ankara/model.skyline.glb\",\"hash\":\"sha256:6533a5600952b23e28231c9a32940197834ed0bd5d42565f6de4cff8fa72399a\",\"bytes\":63392,\"errors\":0,\"warnings\":0,\"triangles\":588,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxp/temple_of_augustus_in_ankara/model.district.glb\",\"hash\":\"sha256:4f33e213cabe113da8c53827699ff316ec0d217bcf48cb1cc40327b8d8796095\",\"bytes\":165768,\"errors\":0,\"warnings\":0,\"triangles\":1656,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxp/temple_of_augustus_in_ankara/model.street.glb\",\"hash\":\"sha256:55bf19feb610dfb2c0f3e5600870c38909ed2ab6c1763b173e3bd49a76831d46\",\"bytes\":200992,\"errors\":0,\"warnings\":0,\"triangles\":2028,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxp/temple_of_augustus_in_ankara/model.closeup.glb\",\"hash\":\"sha256:93a0ab0f7621358edf2f5c76f8d50a8b0cfc126b0ca239656f9839c4aab2092b\",\"bytes\":211432,\"errors\":0,\"warnings\":0,\"triangles\":2148,\"draws\":5}"
+      },
+      {
+        "check": "open-portal-windows-roof-ground-foundations-and-support-frame",
+        "passed": true,
+        "notes": "162 actual mesh probes across source/runtime/four levels verify the tall open southwest portal, open cella/vestibule sky, three arched window voids, buried wall/foundation feet, physical steel frame, low rear remains and open surrounding ground."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Four reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:4ac4f58b41fa967c88f45aaa754e00ce8c3c4c4dc91f462f5a99807c15bc602d"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:a1cf2780db1d512984fcb8a347570d97063d14e5a3a054e618d4d705bef045a5"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:6533a5600952b23e28231c9a32940197834ed0bd5d42565f6de4cff8fa72399a"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:4f33e213cabe113da8c53827699ff316ec0d217bcf48cb1cc40327b8d8796095"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:55bf19feb610dfb2c0f3e5600870c38909ed2ab6c1763b173e3bd49a76831d46"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:93a0ab0f7621358edf2f5c76f8d50a8b0cfc126b0ca239656f9839c4aab2092b"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 716,
+          "independentBuildings": 716,
+          "remainingBuildings": 716,
+          "neighborMosqueRetained": true,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_augustus_in_ankara"
+          ],
+          "rawTerrainRange": {
+            "min": -34.58856705784842,
+            "max": 53.37553294215161
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 33939.85435877822,
+          "remainingWaterArea": 33939.85435877822,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:2c6efd953e95ee569002294bdfb5e80b7964802e041c24c338b2a05fcef2ad25",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 204959
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -1.2881133647875345,
+                43,
+                91.95836429580213
+              ],
+              "lookAt": [
+                0,
+                5,
+                0
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-whole-open-cella-vestibule-and-steel-supports.png",
+            "hash": "sha256:2751bd6846119bf3d3691979d6a08d2e2ecf2a1285a87a6f1a018007613ecd11",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 204959
+            },
+            "camera": {
+              "name": "whole-open-cella-vestibule-and-steel-supports",
+              "position": [
+                -1.8566980507960373,
+                22,
+                58.022001623075454
+              ],
+              "lookAt": [
+                0,
+                6,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-tall-open-southwest-portal-and-layered-lintel.png",
+            "hash": "sha256:eec72c9580d15ec0fa9d4824eaed301f421acce6f83f71cf7bf89cf08717abe9",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 204959
+            },
+            "camera": {
+              "name": "tall-open-southwest-portal-and-layered-lintel",
+              "position": [
+                -15.032963596158606,
+                9,
+                31.368933764420017
+              ],
+              "lookAt": [
+                -8.341944496679545,
+                6,
+                8.626236839683795
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-arched-windows-brick-banded-rear-and-open-frame.png",
+            "hash": "sha256:71050523b04e24f36c2bdc5bd66e24c95671a85e439bfd6833c9852d0d3ba968",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 205156
+            },
+            "camera": {
+              "name": "arched-windows-brick-banded-rear-and-open-frame",
+              "position": [
+                50.09092682478162,
+                18,
+                -7.2040995158571555
+              ],
+              "lookAt": [
+                7.646782455289583,
+                6,
+                -7.907383769710145
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 716,
+          "independentBuildings": 716,
+          "remainingBuildings": 716,
+          "neighborMosqueRetained": true,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_augustus_in_ankara"
+          ],
+          "rawTerrainRange": {
+            "min": -34.58856705784842,
+            "max": 53.37553294215161
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 33939.85435877822,
+          "remainingWaterArea": 33939.85435877822,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:b138cf57b8de3f7de3f84c9003978d7d6b3144f8d8e78374037f72fa7036e4b6",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 204839
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -1.2881133647875345,
+                43,
+                91.95836429580213
+              ],
+              "lookAt": [
+                0,
+                5,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 716,
+          "independentBuildings": 716,
+          "remainingBuildings": 716,
+          "neighborMosqueRetained": true,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_augustus_in_ankara"
+          ],
+          "rawTerrainRange": {
+            "min": -34.58856705784842,
+            "max": 53.37553294215161
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 33939.85435877822,
+          "remainingWaterArea": 33939.85435877822,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:f1fc6d642edcd13ec4d1f3770c3fc7d3859944cdf72c8933121666f9cd3071be",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 204467
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -1.2881133647875345,
+                43,
+                91.95836429580213
+              ],
+              "lookAt": [
+                0,
+                5,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 716,
+          "independentBuildings": 716,
+          "remainingBuildings": 716,
+          "neighborMosqueRetained": true,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_augustus_in_ankara"
+          ],
+          "rawTerrainRange": {
+            "min": -34.58856705784842,
+            "max": 53.37553294215161
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 33939.85435877822,
+          "remainingWaterArea": 33939.85435877822,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:26067d41220e03355124903b0c617f6deb854f4a5dcfa6719baf72739d27726e",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 203399
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -1.2881133647875345,
+                43,
+                91.95836429580213
+              ],
+              "lookAt": [
+                0,
+                5,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 716,
+          "independentBuildings": 716,
+          "remainingBuildings": 716,
+          "neighborMosqueRetained": true,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_augustus_in_ankara"
+          ],
+          "rawTerrainRange": {
+            "min": -34.58856705784842,
+            "max": 53.37553294215161
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 33939.85435877822,
+          "remainingWaterArea": 33939.85435877822,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:18171d738ba09b21df24951e6ad7ebf91d21da48ae7ebb9c04d2c7ea0f252b1f",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 8,
+              "triangles": 202811
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -1.2881133647875345,
+                43,
+                91.95836429580213
+              ],
+              "lookAt": [
+                0,
+                5,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Surviving open temple ruins inside the mapped Ankara archaeological site: two tall broken limestone cella walls, southwest open vestibule, tall genuine rectangular portal with layered jambs/lintel, three small arched window openings in the southeast wall, low rear stone/brick-banded remnants, scattered foundations and broken drums, plus an open modern steel conservation frame. No ancient roof, pediment or complete colonnade is restored. Internal dimensions and remnant/frame inventory are picture-led approximations; the neighboring mosque is independent native context.",
+    "Exact-QID Q1640233/way469691342 fixes the approximately59.656x27.054m archaeological-site envelope and named standard PMTiles point35184841780174 corroborates identity. This is an archaeological polygon, not a native building shell. Root heading0, internal architectural angle-0.802151033991rad gives northeast/southwest long axis; the photographed entrance is assigned southwest. Cella, vestibule, rear remnants and bracing are picture-led subdivisions within that envelope, not independently mapped wall surveys. Preserve the separate northwest mosque/native building35184527286414 and all other native buildings; no building replacement mask.",
+    "Picture-led broken wall crest about10.4-11.5m above anchor datum, southwest portal threshold about1.0m with8.0m clear opening, and open modern support frame about13.1m above datum. Rear brick-banded remnants roughly3m above local grade; low foundations/drums generally0.4-1.0m. Heights, exact wall subdivisions, window/frame locations and damage are approximate; no complete ancient reconstruction or exact conservation engineering inventory.",
+    "Retain pinned standard Protomaps2026-10-14/Mapzen13-14 original6m urban terrain, water and every independent building. Long masonry bottoms and low foundations follow sampled native grade and are buried0.55m; tall wall crests and portal lintel are level/broken picture-led profiles, not a huge maximum-grade podium. Individual drums/blocks have locally sampled buried feet. Keep cella/vestibule native ground open; no flattened archaeological precinct or ground/water/building cutout. Standard coarse urban terrain falls about4m along the site and does not resolve exact excavated floors or thresholds.",
+    "Cella, vestibule, rear remnants, broken drums and steel support subdivisions, heights and individual damage are picture-led approximations within the mapped archaeological site. Standard urban DEM does not resolve excavation floors or thresholds. The modern neighboring mosque stays independent native context. No intact ancient roof/colonnade, engineering survey, copied readable inscription or sculpture is claimed."
+  ]
+}

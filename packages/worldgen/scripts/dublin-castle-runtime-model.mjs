@@ -7,7 +7,7 @@ import { buildDublinRuntime, buildDublinSkyline } from './dublin-castle-model.mj
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/gc/gc7/n0275_dublin_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/gc/gc7/dublin_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

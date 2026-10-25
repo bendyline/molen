@@ -1,0 +1,1227 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.friday_mosque_of_herat",
+  "sourceHash": "sha256:6ad55cdb4593b887a4bc8701707a5486b9b1ac4d900a0ef037ab19c6d4ca85ca",
+  "runtimeHash": "sha256:a0389f888a186662d84edf971973b43f7ebb951d64130c26ffe06ced7ce5401c",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 10478,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:a6d738384c9bf8491f30a93bdfe8529ac7804b826708929f3723331ce917c709",
+      "bytes": 79036,
+      "gzipBytes": 14634,
+      "triangles": 754,
+      "cpuBytes": 77604,
+      "gpuBytes": 77604,
+      "errorMeters": 4,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:e4019c7b89d5b10b7df78c5b36cdedc185eeb87191b507573a408d17b4cf062e",
+      "bytes": 385892,
+      "gzipBytes": 110828,
+      "triangles": 3973,
+      "cpuBytes": 377328,
+      "gpuBytes": 377328,
+      "errorMeters": 1.5,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:d36aa9386376b7758400b92f04d8097fe48f315d8b97e715a7cf5a95e79f1e7c",
+      "bytes": 1370580,
+      "gzipBytes": 393062,
+      "triangles": 13852,
+      "cpuBytes": 1361948,
+      "gpuBytes": 1361948,
+      "errorMeters": 0.6,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:6e0b1566e584b4b0ef3b12db847ba2b9d2a14ea3d009ff11ee945c03b25e82e3",
+      "bytes": 2081864,
+      "gzipBytes": 656439,
+      "triangles": 20656,
+      "cpuBytes": 2073200,
+      "gpuBytes": 2073200,
+      "errorMeters": 0.28,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:b3ee0b1a8806dd66822585d19ebec57bdaf4a1bc705d800add6b1a4bb02e87a6"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:e516de366d5ffb015719a54651c8f783bfaba5675c9b5c2f2d5cdceaa03e5898"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:ab313190ec4f7fbed0308dcb75507b14ab383807c4d885d51a701e550b4fd3f5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          41.4291,
+          83.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:cdeec03d65be5bd783572d5cd3d490e575c36a3b8229b6ff4a407806815e6f92",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          41.4291,
+          83.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:1618081af6f06faa5dad096388af2592612c8d7245f2ce96a705afa828669189",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          41.4291,
+          83.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:6b5a4dcd401ef039547abbc0a9cef9f293c0aeeebc6a76b2055416c85eb76fa1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          41.4291,
+          83.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:b87f2ac21abf3189edc35f9d737de94221df67fb89ec9593aae24d1b958c8d4c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 35253,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          77.4291,
+          168.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:a228e26d9a86ec8bd98f021fb18cad218af28d51e205189f6ab4ff282bfbca20",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 35253,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          77.4291,
+          168.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:382183df51b7bd5e4eb22da90b8d1a6f25041851e4e8f839cc785cdd8d340da9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 35253,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          77.4291,
+          168.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:f5ba08e97179cfe9115d7eef6ccf33cef841a117b4d22d766560417875f5b49e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 35253,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          77.4291,
+          168.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:2768f248003ee9f454d6e8f3ea6c2f5dcd4b9a9833cc472ae9dfc76d430b47c5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32034,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          115.4291,
+          336.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:d0b9399202de5041b3b7582c6da8c49d58d0688bd0f743484fd23fc0a86070b8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32034,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          115.4291,
+          336.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:b291ee2ac8ce61294e8a9dc0b45601b6dce458290c1690aeb45946421b941c4b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32034,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          115.4291,
+          336.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:e5b194bb0a3252064843288d5fcb8ba76481b253f93d4ce5dc70e4580fba3ec7",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32034,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          115.4291,
+          336.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:290c87a33f5f5881372831281cebb8c34ee5c7dc91794bfae7251bc69547cd7b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21556,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          115.4291,
+          336.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/western-prayer-iwan.png",
+      "hash": "sha256:59688353dac66e71844de08efc47f5aff877fc26d115a22788f66ed195290280",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          14,
+          2
+        ],
+        "lookAt": [
+          -39,
+          15,
+          2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/eastern-outer-entry.png",
+      "hash": "sha256:daa0b7248b04c95b4d287ca433ca68ee00f12912afd039f683e2b7e027ae0b3a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          144,
+          22,
+          3
+        ],
+        "lookAt": [
+          78,
+          14,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/two-tier-court-niches.png",
+      "hash": "sha256:ecd3cea22f07d80cc09def84b722a6dabcabdcac69448596605dc682e147366b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          24,
+          7,
+          12
+        ],
+        "lookAt": [
+          25,
+          5,
+          31
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pointed-iwan-vault.png",
+      "hash": "sha256:8489b6163fb52f804f968b335d10e504450a8fa9d95ef2b507f1b33a3dab0145",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          -24,
+          4,
+          1
+        ],
+        "lookAt": [
+          -47,
+          15,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/turquoise-capped-entry-minarets.png",
+      "hash": "sha256:3b9306250ef70f9c222968ffb0886840eb237b5fd59286e286b81e21b914dcda",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          135,
+          32,
+          52
+        ],
+        "lookAt": [
+          78,
+          24,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/retained-outer-and-open-court.png",
+      "hash": "sha256:16f6f744cb67772c7eea58be216bd120c1a218b2cc085779ebf8740c4ded3897",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          350,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-herat-skyline.png",
+      "hash": "sha256:02e318f6c22cb65d79efabffc44218318a3e350de7c28c5ead7a380e50df7e52",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32034,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          220,
+          170,
+          190
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-herat-district.png",
+      "hash": "sha256:973543e144b001433654848f0219e63d95f216981c68c589187a44d495f13c30",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 35253,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          220,
+          170,
+          190
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-herat-street.png",
+      "hash": "sha256:26a0d51c3a4e481ad8ababc537ddca9d16c364d0b89addd67a9592615e50783f",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 45132,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          220,
+          170,
+          190
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-herat-closeup.png",
+      "hash": "sha256:87ca2e592d383f29b58fe809c501887d38e4184ef8f6487ab2209e1364875ea7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          220,
+          170,
+          190
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:d01f5dc1ec1e5da4291f40e2cc3b68379f8b3701fb08700a487d55d1200c13d0",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32034,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          77.4291,
+          168.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:a228e26d9a86ec8bd98f021fb18cad218af28d51e205189f6ab4ff282bfbca20",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 35253,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          77.4291,
+          168.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:a4a3da9df0ab6054a4223e4f146ef43cd117bd287e4df85034c11c4697c0dfb0",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 45132,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          77.4291,
+          168.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:476e4b13bada2f0aa9a72fcd482d0a683c806e5091b10703127df6b040f9d347",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51936,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          77.4291,
+          168.03
+        ],
+        "lookAt": [
+          0,
+          26.4291,
+          0.03
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

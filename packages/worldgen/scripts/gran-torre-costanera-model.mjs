@@ -389,7 +389,7 @@ export function buildGranTorreSkyline(o) {
 }
 
 export const granTorreCostaneraStudy = {
-  id: 'N0232',
+  id: 'gran_torre_costanera',
   key: 'gran_torre_costanera',
   title: 'Gran Torre Costanera',
   wikidataId: 'Q1542408',

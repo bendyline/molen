@@ -1,0 +1,1348 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "concrete_plain",
+      "slot": "wall"
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "seatBlue": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "seatPale": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "flagBlue": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "mark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "display": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "brick": {
+      "graph": "brick",
+      "slot": "wall"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "glass": {
+      "graph": "window_grid",
+      "slot": "window"
+    },
+    "apron": {
+      "graph": "fabric_canvas",
+      "slot": "wall"
+    },
+    "turf": {
+      "graph": "fabric_canvas",
+      "slot": "wall"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      473.1461044440773,
+      270,
+      119.09140963727941
+    ],
+    "lookAt": [
+      0,
+      38,
+      0
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "fluted-tower-nine-side-ledges-and-upper-spine",
+      "position": [
+        192.001363183465,
+        75,
+        -58.859804074522415
+      ],
+      "lookAt": [
+        109.86435043828067,
+        66,
+        -65.67971150039149
+      ],
+      "fov": 75
+    },
+    {
+      "name": "olympic-three-banks-apron-and-tower",
+      "position": [
+        -18.826943334100527,
+        8,
+        -23.696966149584796
+      ],
+      "lookAt": [
+        99.56456758469186,
+        38,
+        -59.52223854722979
+      ],
+      "fov": 82
+    },
+    {
+      "name": "america-canopy-press-gallery-and-frame",
+      "position": [
+        -1.7726223730770982,
+        16,
+        36.0119120559082
+      ],
+      "lookAt": [
+        -81.53994759091144,
+        28,
+        48.74666087919681
+      ],
+      "fov": 90
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        473.1461044440773,
+        270,
+        119.09140963727941
+      ],
+      "lookAt": [
+        0,
+        38,
+        0
+      ],
+      "fov": 43,
+      "name": "centenario-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        473.1461044440773,
+        270,
+        119.09140963727941
+      ],
+      "lookAt": [
+        0,
+        38,
+        0
+      ],
+      "fov": 43,
+      "name": "centenario-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        473.1461044440773,
+        270,
+        119.09140963727941
+      ],
+      "lookAt": [
+        0,
+        38,
+        0
+      ],
+      "fov": 43,
+      "name": "centenario-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        473.1461044440773,
+        270,
+        119.09140963727941
+      ],
+      "lookAt": [
+        0,
+        38,
+        0
+      ],
+      "fov": 43,
+      "name": "centenario-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/centenario-model.mjs",
+    "export": "buildCentenarioSkyline",
+    "errorMeters": 12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCentenarioDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seatBlue": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seatPale": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "flagBlue": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "mark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "display": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "apron": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          },
+          "turf": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          }
+        }
+      },
+      "street": {
+        "export": "buildCentenarioStreet",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seatBlue": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seatPale": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "flagBlue": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "mark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "display": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "apron": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          },
+          "turf": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCentenarioCloseup",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seatBlue": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seatPale": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "flagBlue": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "mark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "display": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "apron": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          },
+          "turf": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -56.152820063690555,
+      -34.8945116403987
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard6m Mapzen grid/roads/water and all independent buildings remain unchanged. Datum23.45236358081274m defines field/modelY0; boundary samples6.731082644102909..17.97230113028232m. Retaining base, separately partitioned apron/field and bounded opening remain within every level occupied floor; individual outer posts/roof/light contacts and the tower common foot follow original grades. Only the ten integrated stadium records are replaced at99.5percent coverage; generalized merged complexes use bounded clipping. No whole precinct slab or regional terrain flattening. Failure/unload retains/restores original context.",
+    "replaceFootprint": false,
+    "bounds": [
+      -56.154791478402146,
+      -34.896128607910114,
+      -56.150848648978965,
+      -34.89289467288728
+    ],
+    "terrainReference": {
+      "anchor": [
+        -56.152820063690555,
+        -34.8945116403987
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard6m Mapzen grid/roads/water and all independent buildings remain unchanged. Datum23.45236358081274m defines field/modelY0; boundary samples6.731082644102909..17.97230113028232m. Retaining base, separately partitioned apron/field and bounded opening remain within every level occupied floor; individual outer posts/roof/light contacts and the tower common foot follow original grades. Only the ten integrated stadium records are replaced at99.5percent coverage; generalized merged complexes use bounded clipping. No whole precinct slab or regional terrain flattening. Failure/unload retains/restores original context."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -108.70858174329359,
+          -44.93408435155562
+        ],
+        [
+          -107.186357,
+          -50.07162
+        ],
+        [
+          -103.659811,
+          -58.667634
+        ],
+        [
+          -96.386308,
+          -72.33311
+        ],
+        [
+          -90.435261,
+          -80.267914
+        ],
+        [
+          -84.043396,
+          -87.982313
+        ],
+        [
+          -72.802528,
+          -97.900837
+        ],
+        [
+          -58.916751,
+          -106.717313
+        ],
+        [
+          -51.863658,
+          -110.684731
+        ],
+        [
+          -37.977881,
+          -115.533799
+        ],
+        [
+          -24.753332,
+          -118.399159
+        ],
+        [
+          -16.157374,
+          -119.50122
+        ],
+        [
+          -1.61037,
+          -119.50122
+        ],
+        [
+          19.3285,
+          -116.195036
+        ],
+        [
+          18.887682,
+          -114.431738
+        ],
+        [
+          26.381594,
+          -111.566379
+        ],
+        [
+          29.246913,
+          -119.721633
+        ],
+        [
+          41.810235,
+          -114.872562
+        ],
+        [
+          49.965374,
+          -110.905143
+        ],
+        [
+          57.459285,
+          -106.276489
+        ],
+        [
+          69.36138,
+          -97.680426
+        ],
+        [
+          77.736928,
+          -89.966017
+        ],
+        [
+          84.349203,
+          -83.353673
+        ],
+        [
+          90.079841,
+          -76.961745
+        ],
+        [
+          94.708433,
+          -70.790233
+        ],
+        [
+          102.643163,
+          -57.785991
+        ],
+        [
+          110.137074,
+          -43.238897
+        ],
+        [
+          113.443212,
+          -33.761259
+        ],
+        [
+          116.52894,
+          -23.181582
+        ],
+        [
+          119.614668,
+          -7.973322
+        ],
+        [
+          120.716714,
+          7.896138
+        ],
+        [
+          120.055487,
+          22.443116
+        ],
+        [
+          119.17385,
+          31.70027
+        ],
+        [
+          110.357484,
+          30.37782
+        ],
+        [
+          108.814619,
+          38.312517
+        ],
+        [
+          111.018711,
+          38.753333
+        ],
+        [
+          107.051346,
+          51.536994
+        ],
+        [
+          104.626845,
+          57.267594
+        ],
+        [
+          104.555744,
+          57.267594
+        ],
+        [
+          101.100299,
+          65.202265
+        ],
+        [
+          91.843114,
+          78.867513
+        ],
+        [
+          79.500201,
+          93.193959
+        ],
+        [
+          67.598106,
+          102.230627
+        ],
+        [
+          58.340922,
+          108.181598
+        ],
+        [
+          48.42251,
+          112.810129
+        ],
+        [
+          35.638778,
+          117.438656
+        ],
+        [
+          23.957093,
+          119.863122
+        ],
+        [
+          10.071316,
+          120.52434
+        ],
+        [
+          -4.916507,
+          119.642716
+        ],
+        [
+          -14.291092614073218,
+          117.44557896006366
+        ],
+        [
+          -18.500058235575636,
+          114.35064023134706
+        ],
+        [
+          -15.716556,
+          103.773472
+        ],
+        [
+          -22.769649,
+          101.789814
+        ],
+        [
+          -22.108422,
+          100.246969
+        ],
+        [
+          -30.263561,
+          96.500058
+        ],
+        [
+          -29.161515,
+          94.295992
+        ],
+        [
+          -40.181973,
+          88.565418
+        ],
+        [
+          -48.337112,
+          83.275653
+        ],
+        [
+          -56.492251,
+          76.663443
+        ],
+        [
+          -62.884116,
+          70.932856
+        ],
+        [
+          -68.394345,
+          64.981858
+        ],
+        [
+          -73.463756,
+          58.59004
+        ],
+        [
+          -75.888257,
+          60.132893
+        ],
+        [
+          -77.707506,
+          57.267594
+        ],
+        [
+          -77.871939,
+          57.267594
+        ],
+        [
+          -84.704623,
+          46.247206
+        ],
+        [
+          -89.553625,
+          48.451285
+        ],
+        [
+          -93.17892611724022,
+          40.999315628220614
+        ],
+        [
+          -93.42249536349784,
+          40.25142035542188
+        ],
+        [
+          -88.671988,
+          38.092108
+        ],
+        [
+          -94.402626,
+          22.663524
+        ],
+        [
+          -97.488354,
+          8.557365
+        ],
+        [
+          -98.810809,
+          -2.463089
+        ],
+        [
+          -98.810809,
+          -15.467244
+        ],
+        [
+          -97.708763,
+          -28.030599
+        ],
+        [
+          -95.94549,
+          -34.642899
+        ],
+        [
+          -103.61918558830965,
+          -36.475431308046645
+        ],
+        [
+          -103.478923,
+          -37.158726
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Original standard6m Mapzen grid/roads/water and all independent buildings remain unchanged. Datum23.45236358081274m defines field/modelY0; boundary samples6.731082644102909..17.97230113028232m. Retaining base, separately partitioned apron/field and bounded opening remain within every level occupied floor; individual outer posts/roof/light contacts and the tower common foot follow original grades. Only the ten integrated stadium records are replaced at99.5percent coverage; generalized merged complexes use bounded clipping. No whole precinct slab or regional terrain flattening. Failure/unload retains/restores original context."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -123.014338,
+          -42.410512
+        ],
+        [
+          -119.095953,
+          -55.635133
+        ],
+        [
+          -115.177568,
+          -65.18626
+        ],
+        [
+          -107.095898,
+          -80.370123
+        ],
+        [
+          -100.483624,
+          -89.186571
+        ],
+        [
+          -93.381551,
+          -97.758126
+        ],
+        [
+          -80.891698,
+          -108.778708
+        ],
+        [
+          -65.463057,
+          -118.574793
+        ],
+        [
+          -57.626287,
+          -122.983034
+        ],
+        [
+          -42.197646,
+          -128.370887
+        ],
+        [
+          -27.503702,
+          -131.554621
+        ],
+        [
+          -17.952638,
+          -132.779134
+        ],
+        [
+          -1.7893,
+          -132.779134
+        ],
+        [
+          21.476112,
+          -129.105595
+        ],
+        [
+          20.986314,
+          -127.146375
+        ],
+        [
+          29.275633377413577,
+          -123.9768853182858
+        ],
+        [
+          32.49657,
+          -133.024036
+        ],
+        [
+          46.455816,
+          -127.63618
+        ],
+        [
+          55.517082,
+          -123.227936
+        ],
+        [
+          63.84365,
+          -118.084988
+        ],
+        [
+          77.0682,
+          -108.533806
+        ],
+        [
+          86.374364,
+          -99.962241
+        ],
+        [
+          93.721336,
+          -92.615192
+        ],
+        [
+          100.088712,
+          -85.51305
+        ],
+        [
+          105.231592,
+          -78.655814
+        ],
+        [
+          112.21123899942425,
+          -67.21685935134406
+        ],
+        [
+          113.80306,
+          -64.696458
+        ],
+        [
+          113.76171331343836,
+          -64.67578451426758
+        ],
+        [
+          114.047959,
+          -64.206656
+        ],
+        [
+          122.374527,
+          -48.043219
+        ],
+        [
+          126.048013,
+          -37.51251
+        ],
+        [
+          129.4766,
+          -25.757314
+        ],
+        [
+          132.905187,
+          -8.859246
+        ],
+        [
+          134.129682,
+          8.773487
+        ],
+        [
+          133.394985,
+          24.936795
+        ],
+        [
+          132.415389,
+          35.222522
+        ],
+        [
+          122.619426,
+          33.753133
+        ],
+        [
+          120.91497425404287,
+          42.518851031534936
+        ],
+        [
+          123.354123,
+          43.059259
+        ],
+        [
+          118.94594,
+          57.263327
+        ],
+        [
+          116.25205,
+          63.63066
+        ],
+        [
+          116.173049,
+          63.63066
+        ],
+        [
+          112.333665,
+          72.446961
+        ],
+        [
+          102.047905,
+          87.63057
+        ],
+        [
+          88.333557,
+          103.548843
+        ],
+        [
+          75.109007,
+          113.589586
+        ],
+        [
+          64.823246,
+          120.201776
+        ],
+        [
+          53.802788,
+          125.344587
+        ],
+        [
+          39.598643,
+          130.487396
+        ],
+        [
+          26.618992,
+          133.181247
+        ],
+        [
+          11.190351,
+          133.915933
+        ],
+        [
+          -5.462786,
+          132.936351
+        ],
+        [
+          -21.136326,
+          129.262918
+        ],
+        [
+          -17.46284,
+          115.303858
+        ],
+        [
+          -25.29961,
+          113.099794
+        ],
+        [
+          -24.564913,
+          111.385521
+        ],
+        [
+          -33.626178,
+          107.222287
+        ],
+        [
+          -32.401683,
+          104.773325
+        ],
+        [
+          -44.646636,
+          98.40602
+        ],
+        [
+          -53.707902,
+          92.528503
+        ],
+        [
+          -62.769167,
+          85.181603
+        ],
+        [
+          -69.87124,
+          78.814284
+        ],
+        [
+          -75.993717,
+          72.202064
+        ],
+        [
+          -81.626395,
+          65.100044
+        ],
+        [
+          -84.320285,
+          66.814326
+        ],
+        [
+          -86.341673,
+          63.63066
+        ],
+        [
+          -86.524377,
+          63.63066
+        ],
+        [
+          -94.116248,
+          51.385784
+        ],
+        [
+          -99.504027,
+          53.834761
+        ],
+        [
+          -103.91221,
+          44.773544
+        ],
+        [
+          -98.524431,
+          42.324565
+        ],
+        [
+          -104.891807,
+          25.181694
+        ],
+        [
+          -107.095898,
+          15.630651
+        ],
+        [
+          -106.98507575641166,
+          15.61248345362198
+        ],
+        [
+          -108.320394,
+          9.508183
+        ],
+        [
+          -109.789788,
+          -2.736766
+        ],
+        [
+          -109.789788,
+          -17.185826
+        ],
+        [
+          -108.565293,
+          -31.14511
+        ],
+        [
+          -106.6061,
+          -38.49211
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -123.014338,
+            -42.410512
+          ],
+          [
+            -119.095953,
+            -55.635133
+          ],
+          [
+            -115.177568,
+            -65.18626
+          ],
+          [
+            -107.095898,
+            -80.370123
+          ],
+          [
+            -100.483624,
+            -89.186571
+          ],
+          [
+            -93.381551,
+            -97.758126
+          ],
+          [
+            -80.891698,
+            -108.778708
+          ],
+          [
+            -65.463057,
+            -118.574793
+          ],
+          [
+            -57.626287,
+            -122.983034
+          ],
+          [
+            -42.197646,
+            -128.370887
+          ],
+          [
+            -27.503702,
+            -131.554621
+          ],
+          [
+            -17.952638,
+            -132.779134
+          ],
+          [
+            -1.7893,
+            -132.779134
+          ],
+          [
+            21.476112,
+            -129.105595
+          ],
+          [
+            20.986314,
+            -127.146375
+          ],
+          [
+            29.275633377413577,
+            -123.9768853182858
+          ],
+          [
+            32.49657,
+            -133.024036
+          ],
+          [
+            46.455816,
+            -127.63618
+          ],
+          [
+            55.517082,
+            -123.227936
+          ],
+          [
+            63.84365,
+            -118.084988
+          ],
+          [
+            77.0682,
+            -108.533806
+          ],
+          [
+            86.374364,
+            -99.962241
+          ],
+          [
+            93.721336,
+            -92.615192
+          ],
+          [
+            100.088712,
+            -85.51305
+          ],
+          [
+            105.231592,
+            -78.655814
+          ],
+          [
+            112.21123899942425,
+            -67.21685935134406
+          ],
+          [
+            113.80306,
+            -64.696458
+          ],
+          [
+            113.76171331343836,
+            -64.67578451426758
+          ],
+          [
+            114.047959,
+            -64.206656
+          ],
+          [
+            122.374527,
+            -48.043219
+          ],
+          [
+            126.048013,
+            -37.51251
+          ],
+          [
+            129.4766,
+            -25.757314
+          ],
+          [
+            132.905187,
+            -8.859246
+          ],
+          [
+            134.129682,
+            8.773487
+          ],
+          [
+            133.394985,
+            24.936795
+          ],
+          [
+            132.415389,
+            35.222522
+          ],
+          [
+            122.619426,
+            33.753133
+          ],
+          [
+            120.91497425404287,
+            42.518851031534936
+          ],
+          [
+            123.354123,
+            43.059259
+          ],
+          [
+            118.94594,
+            57.263327
+          ],
+          [
+            116.25205,
+            63.63066
+          ],
+          [
+            116.173049,
+            63.63066
+          ],
+          [
+            112.333665,
+            72.446961
+          ],
+          [
+            102.047905,
+            87.63057
+          ],
+          [
+            88.333557,
+            103.548843
+          ],
+          [
+            75.109007,
+            113.589586
+          ],
+          [
+            64.823246,
+            120.201776
+          ],
+          [
+            53.802788,
+            125.344587
+          ],
+          [
+            39.598643,
+            130.487396
+          ],
+          [
+            26.618992,
+            133.181247
+          ],
+          [
+            11.190351,
+            133.915933
+          ],
+          [
+            -5.462786,
+            132.936351
+          ],
+          [
+            -21.136326,
+            129.262918
+          ],
+          [
+            -17.46284,
+            115.303858
+          ],
+          [
+            -25.29961,
+            113.099794
+          ],
+          [
+            -24.564913,
+            111.385521
+          ],
+          [
+            -33.626178,
+            107.222287
+          ],
+          [
+            -32.401683,
+            104.773325
+          ],
+          [
+            -44.646636,
+            98.40602
+          ],
+          [
+            -53.707902,
+            92.528503
+          ],
+          [
+            -62.769167,
+            85.181603
+          ],
+          [
+            -69.87124,
+            78.814284
+          ],
+          [
+            -75.993717,
+            72.202064
+          ],
+          [
+            -81.626395,
+            65.100044
+          ],
+          [
+            -84.320285,
+            66.814326
+          ],
+          [
+            -86.341673,
+            63.63066
+          ],
+          [
+            -86.524377,
+            63.63066
+          ],
+          [
+            -94.116248,
+            51.385784
+          ],
+          [
+            -99.504027,
+            53.834761
+          ],
+          [
+            -103.91221,
+            44.773544
+          ],
+          [
+            -98.524431,
+            42.324565
+          ],
+          [
+            -104.891807,
+            25.181694
+          ],
+          [
+            -107.095898,
+            15.630651
+          ],
+          [
+            -106.98507575641166,
+            15.61248345362198
+          ],
+          [
+            -108.320394,
+            9.508183
+          ],
+          [
+            -109.789788,
+            -2.736766
+          ],
+          [
+            -109.789788,
+            -17.185826
+          ],
+          [
+            -108.565293,
+            -31.14511
+          ],
+          [
+            -106.6061,
+            -38.49211
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only ten integrated stadium/tower/canopy records; retain every independent native building."
+    },
+    "notes": "Retained Q498245 and named native stadiumPOI52776560645765 establish parent52776566859001, four stand records52776566858998/999/59000/59002, central western canopy52776566859020 and tower components35185924616062/63/64/65. All ten native building inputs belong to the one stadium model. Two pitch35184551622004 fragments are unioned before measuring105.209821x68.207751m field axis. Own74-point outer/16-point inner control the asymmetric272x244m body/approximately146x108m open apron. Tower at internalZ about-128m sits on the eastern Olympic stand; positive internalZ is western America. Anchor[-56.152820063690555,-34.8945116403987]/heading0/native east-south/internal X[0.5131227460968085,0.8583152377990677]/Z[-0.8583152377990677,0.5131227460968085]. Every independent building remains native. Fine20degree/2m facing and tier allocation are approximate. Original standard6m Mapzen grid/roads/water and all independent buildings remain unchanged. Datum23.45236358081274m defines field/modelY0; boundary samples6.731082644102909..17.97230113028232m. Retaining base, separately partitioned apron/field and bounded opening remain within every level occupied floor; individual outer posts/roof/light contacts and the tower common foot follow original grades. Only the ten integrated stadium records are replaced at99.5percent coverage; generalized merged complexes use bounded clipping. No whole precinct slab or regional terrain flattening. Failure/unload retains/restores original context."
+  }
+}

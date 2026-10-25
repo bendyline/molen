@@ -328,8 +328,8 @@ function build(out) {
 }
 
 export const wiesghaTower = {
-  id: 'n0599_triq_il_wiesg_a_tower',
-  planId: 'N0599',
+  id: 'triq_il_wiesg_a_tower',
+  planId: 'triq_il_wiesg_a_tower',
   title: 'Triq il-Wiesgħa Tower',
   wikidata: 'Q19726688',
   authoringFile: 'wiesgha-tower-model.mjs',
@@ -365,7 +365,7 @@ export const wiesghaTower = {
   appearance: { state: 'restored exterior after 2009 works', currentWorldEligible: true },
   geographicProposal: {
     mapGeometrySource: 'map-frame.json',
-    mapGeometryHash: 'sha256:7101491e09ef8cf6be1c017092d808f05dcb98f0d275649efe6933b2a45c2360',
+    mapGeometryHash: 'sha256:88cdd0fb966ca0c7f8e4481a89e0961aed802c810b686ffa18328d43987831e2',
     status: 'preview-proposal',
     anchor: [14.564199, 35.877973175],
     heading: -0.9087991986513986,

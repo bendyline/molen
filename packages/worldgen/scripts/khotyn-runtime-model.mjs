@@ -245,7 +245,7 @@ function gate(o, detail) {
     }
   }
 }
-const base = '../../../content/worldgen/source/places/u8/u8d/n0260_khotyn_fortress/';
+const base = '../../../content/worldgen/source/places/u8/u8d/khotyn_fortress/';
 const plan = JSON.parse(readFileSync(new URL(`${base}map-parts-reviewed.json`, import.meta.url))),
   grade = JSON.parse(readFileSync(new URL(`${base}site-grade.json`, import.meta.url))),
   by = Object.fromEntries(plan.features.map((f) => [f.key, f]));

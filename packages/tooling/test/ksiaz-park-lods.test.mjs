@@ -1,6 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
-import { buildKsiazPark, ksiazParkModels } from '../../worldgen/scripts/ksiaz-park-models.mjs';
+import {
+  buildKsiazPark,
+  ksiazParkModels,
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/ksiaz-park-models.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 it.each(ksiazParkModels)('keeps $key deterministic and within browser budgets', async ({ key }) => {

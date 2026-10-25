@@ -7,7 +7,7 @@ import {
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const root = new URL(
-    '../../../content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/',
+    '../../../content/worldgen/source/places/u2/u2e/liechtenstein_castle/',
     import.meta.url,
   ),
   frame = JSON.parse(readFileSync(new URL('map-frame.json', root))),
@@ -53,7 +53,7 @@ const inside = (q, p) => {
   return yes;
 };
 it('rebuilds four byte-deterministic levels within browser budgets using shared surfaces', async () => {
-  const id = 'molen.worldgen.structure.n0302_liechtenstein_castle',
+  const id = 'molen.worldgen.structure.liechtenstein_castle',
     sizes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

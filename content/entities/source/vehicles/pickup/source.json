@@ -2,17 +2,26 @@
   "format": "molen/source-bundle@1",
   "id": "molen.entities.vehicle.pickup",
   "kind": "vehicle",
-  "title": "Pickup",
+  "title": "Bendy Pickup",
   "order": 3,
   "files": {
-    "definitions": ["entity.types.json"],
+    "definitions": [
+      "entity.types.json"
+    ],
     "models": [
       {
-        "path": "models/source.glb",
+        "path": "models/detailed.glb",
         "assetId": "molen.entities.vehicle.pickup",
         "output": "assets/molen/entities/vehicle/pickup/asset.json",
         "pipeline": "import",
+        "sha256": "sha256:0181ff9528bf88a3698e977c07a13e6576cddab185a8c32c8e5d0564643ec47f"
+      },
+      {
+        "path": "models/source.glb",
         "sha256": "sha256:8fea7962f658c37f23477a848a6e4e80fa02764c51f36e91a69c284f9559284c"
+      },
+      {
+        "path": "models/recipe.json"
       }
     ],
     "scripts": [
@@ -23,6 +32,9 @@
     ],
     "textures": [],
     "sounds": [],
-    "documents": ["README.md"]
+    "documents": [
+      "README.md",
+      "preview.png"
+    ]
   }
 }

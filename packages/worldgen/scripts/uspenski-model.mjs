@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/ud/ud9/n0372_uspenski_cathedral/',
+  '../../../content/worldgen/source/places/ud/ud9/uspenski_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -938,7 +938,7 @@ export const buildUspenskiSkyline = (o) => build(o, 0),
   buildUspenskiCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const uspenskiStudy = {
-  id: 'N0372',
+  id: 'uspenski_cathedral',
   key: 'uspenski_cathedral',
   title: 'Uspenski Cathedral',
   category: 'cathedral',

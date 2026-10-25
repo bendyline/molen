@@ -86,7 +86,7 @@ Binds an experience project together: scenes by name, type-registry documents, i
       "type": "object",
       "propertyNames": {
         "type": "string",
-        "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+        "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9][a-z0-9_]*)*$"
       },
       "additionalProperties": {
         "type": "string",

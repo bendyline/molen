@@ -17,6 +17,9 @@ export function createVehicleInteriorVisual(
   const visual = createModelSignalVisual(model, spec);
   return {
     ...visual,
+    get missingSignals() {
+      return visual.missingSignals;
+    },
     missingNodes: [
       ...new Set([
         ...spec.nodes.filter((name) => !model.getObjectByName(name)),

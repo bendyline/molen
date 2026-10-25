@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.watercraft.passenger_ferry": {
-      "doc": "Passenger ferry. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Passenger Ferry. Passenger ferry. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [
@@ -46,14 +46,14 @@
           "kind": "molen.entities.watercraft.passenger_ferry",
           "color": "#678f9f",
           "spec": {
-            "label": "Passenger ferry",
+            "label": "Bendy Passenger Ferry",
             "length": 32.2,
             "width": 9.46,
             "height": 8.5,
             "draft": 1.5,
             "mass": 227040.00000000003,
-            "thrust": 136224.0,
-            "maxSpeed": 13.0,
+            "thrust": 136224,
+            "maxSpeed": 13,
             "reverseSpeed": 3,
             "turnRate": 0.09375,
             "turnResponse": 2.6666666666666665,
@@ -68,7 +68,22 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "helm",
+                "helm-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -97,7 +112,7 @@
               "position": [
                 2.15,
                 2.3499999999999996,
-                -8.0
+                -8
               ]
             }
           ],

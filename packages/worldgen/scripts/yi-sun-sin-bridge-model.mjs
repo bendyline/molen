@@ -466,7 +466,7 @@ export function buildYiSunSin(out) {
   lights(out);
 }
 export const yiSunSinStudy = {
-  id: 'N0025',
+  id: 'yi_sun_sin_bridge',
   key: 'yi_sun_sin_bridge',
   title: 'Yi Sun-sin Bridge',
   wikidataId: 'Q498235',

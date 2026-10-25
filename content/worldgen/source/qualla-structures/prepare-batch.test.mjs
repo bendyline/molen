@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
+import { PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
 import { collectReferences, prepareBatch, sourceFamily } from './prepare-batch.mjs';
 
 function fixture(t) {
@@ -65,8 +66,8 @@ function fixture(t) {
   put('structures.jsonl', `${JSON.stringify(structure)}\n`);
   const batch = { id: 'test', targetCount: 1, entries: [entry] };
   put('batch.json', batch);
-  put('content/worldgen/source/next-1000/candidates.json', { candidates: [] });
-  put('content/worldgen/source/next-1000/collections.json', { collections: [] });
+  put('content/worldgen/source/structure-catalog/candidates.json', { candidates: [] });
+  put('content/worldgen/source/structure-catalog/collections.json', { collections: [] });
   const run = (opts = {}) =>
     prepareBatch({
       qualla: dir,
@@ -84,6 +85,57 @@ test('authoritative gallery paths recover originals absent from merged article',
   assert.equal(r.candidates.length, 2);
   assert.ok(r.candidates.every((r) => r.metadataOrigin.endsWith('metadata.json')));
   assert.ok(!r.candidates.some((r) => r.path.endsWith('old.jpg')));
+});
+test('a PNG hero keeps authoritative source metadata instead of falling back to merged media', (t) => {
+  const f = fixture(t),
+    folder = '_m/a/b/c/d/test',
+    hero = {
+      filename: 'Exterior.png',
+      descriptionUrl: 'https://commons.wikimedia.org/wiki/File:Exterior.png',
+      url: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Exterior.png',
+      mime: 'image/png',
+      license: 'CC0',
+      artist: 'Original photographer',
+      dateCreated: '2015-10-30',
+    };
+  f.put(`${folder}/hero.png`, 'original PNG');
+  f.put(`${folder}/hero.jpg`, 'stale unrelated JPEG');
+  f.put(`${folder}/metadata.json`, { hero });
+  f.put(f.structure.stories[0].sourcePath, {
+    media: { hero: { path: `${folder}/hero.png`, sourceUrl: hero.descriptionUrl } },
+  });
+  const got = collectReferences(f.dir, [f.structure], f.entry).candidates;
+  assert.equal(got.length, 1);
+  assert.equal(got[0].path, `${folder}/hero.png`);
+  assert.equal(got[0].metadataOrigin, `${folder}/metadata.json`);
+  assert.equal(got[0].artist, hero.artist);
+  assert.equal(got[0].license, 'CC0');
+  assert.equal(got[0].dateCreated, hero.dateCreated);
+});
+test('public-domain policy rejects uncertain manual choices before writing and selects published eligible originals', (t) => {
+  const f = fixture(t);
+  f.batch.policy = { imagery: { id: PUBLIC_DOMAIN_POLICY } };
+  f.put('batch.json', f.batch);
+  assert.throws(() => f.run(), /Public-domain Qualla references required/);
+  assert.equal(fs.existsSync(path.join(f.dir, 'references/QS-test.json')), false);
+  const metadata = JSON.parse(fs.readFileSync(path.join(f.dir, '_m/a/b/c/d/test/metadata.json')));
+  Object.assign(metadata.gallery[0], {
+    license: 'CC0',
+    artist: 'Photographer',
+    categories: ['CC-Zero'],
+  });
+  f.put('_m/a/b/c/d/test/metadata.json', metadata);
+  f.put(f.structure.stories[0].sourcePath, {
+    media: { images: [{ ...metadata.gallery[0], path: '_m/a/b/c/d/test/front.jpg' }] },
+  });
+  f.entry.references = [];
+  f.put('batch.json', f.batch);
+  f.run();
+  assert.deepEqual(
+    f.record().references.map((r) => r.path),
+    ['_m/a/b/c/d/test/front.jpg'],
+  );
+  assert.equal(f.record().review.state, 'pending');
 });
 test('source families collapse Commons URL spellings and resized copies', (t) => {
   const f = fixture(t);
@@ -115,6 +167,30 @@ test('source families collapse Commons URL spellings and resized copies', (t) =>
       c.path.endsWith('copy.jpg'),
     ),
   );
+});
+test('targeted preparation preserves unselected evidence and still rejects unknown identities', (t) => {
+  const f = fixture(t);
+  f.run();
+  const other = {
+    ...f.entry,
+    structureId: 'QS-other',
+    modelIdentity: 'second',
+    references: ['_m/a/b/c/d/test/unavailable.jpg'],
+  };
+  f.entry.modelIdentity = 'first';
+  f.batch.entries.push(other);
+  f.batch.targetCount = 2;
+  f.put(
+    'structures.jsonl',
+    `${JSON.stringify(f.structure)}\n${JSON.stringify({ ...f.structure, id: other.structureId })}\n`,
+  );
+  f.put('references/QS-other.json', { ...f.record(), structureId: other.structureId });
+  f.put('batch.json', f.batch);
+  const before = fs.readFileSync(path.join(f.dir, 'references/QS-other.json'));
+  f.run({ ids: ['first'] });
+  assert.ok(before.equals(fs.readFileSync(path.join(f.dir, 'references/QS-other.json'))));
+  assert.equal(f.run({ ids: ['first'], check: true }).filesChanged, 0);
+  assert.throws(() => f.run({ ids: ['not-in-batch'] }), /fixed batch/);
 });
 test('acceptance invalidates when selected bytes, story, scope or attribution change', (t) => {
   const f = fixture(t);
@@ -181,11 +257,15 @@ test('duplicate frozen identities and duplicate selected sources are rejected', 
   assert.throws(() => f.run(), /distinct reference/);
 });
 
-test('a new next-1,000 reservation rejects a stale local selection before writing', (t) => {
+test('a new structure catalog reservation rejects a stale local selection before writing', (t) => {
   const f = fixture(t);
-  f.put('content/worldgen/source/next-1000/candidates.json', {
+  f.put('content/worldgen/source/structure-catalog/candidates.json', {
     candidates: [
-      { id: 'N0904', title: f.entry.name, referenceCoordinate: { longitude: 0, latitude: 0 } },
+      {
+        id: 'kensington_palace',
+        title: f.entry.name,
+        referenceCoordinate: { longitude: 0, latitude: 0 },
+      },
     ],
   });
   assert.throws(() => f.run(), /Other-device work cannot enter the local batch/);
@@ -195,10 +275,51 @@ test('a new next-1,000 reservation rejects a stale local selection before writin
 test('collection member aliases remain reserved even when a model is already ready', (t) => {
   const f = fixture(t);
   f.structure.status = 'existing-ready';
-  f.structure.existing = [{ candidateId: 'N0208_MSU', basis: 'editorial-identity' }];
+  f.structure.existing = [{ candidateId: 'msu_main_building', basis: 'editorial-identity' }];
   f.put('structures.jsonl', `${JSON.stringify(f.structure)}\n`);
-  f.put('content/worldgen/source/next-1000/collections.json', {
-    collections: [{ id: 'N0208', members: [{ id: 'N0208_MSU', title: 'Different named alias' }] }],
+  f.put('content/worldgen/source/structure-catalog/collections.json', {
+    collections: [
+      {
+        id: 'seven_sisters',
+        members: [{ id: 'msu_main_building', title: 'Different named alias' }],
+      },
+    ],
   });
   assert.throws(() => f.run(), /Other-device work cannot enter the local batch/);
+});
+
+test('Commons filename case preserves distinct originals and their licenses', (t) => {
+  const f = fixture(t);
+  const a = 'https://commons.wikimedia.org/wiki/File:GMRT.jpg';
+  const b = 'https://commons.wikimedia.org/wiki/File:Gmrt.JPG';
+  assert.notEqual(sourceFamily({ sourceUrl: a }), sourceFamily({ sourceUrl: b }));
+  assert.equal(
+    sourceFamily({ sourceUrl: a }),
+    sourceFamily({ sourceUrl: a.replace('GMRT', 'gMRT') }),
+  );
+  f.put('_m/a/b/c/d/test/one.jpg', 'small-public-domain-original');
+  f.put('_m/a/b/c/d/test/two.jpg', 'large-attribution-original');
+  f.put(f.structure.stories[0].sourcePath, {
+    media: {
+      images: [
+        {
+          path: '_m/a/b/c/d/test/one.jpg',
+          sourceUrl: a,
+          width: 640,
+          height: 480,
+          license: 'Public domain',
+        },
+        {
+          path: '_m/a/b/c/d/test/two.jpg',
+          sourceUrl: b,
+          width: 2736,
+          height: 3648,
+          license: 'CC BY-SA 3.0',
+        },
+      ],
+    },
+  });
+  const got = collectReferences(f.dir, [f.structure], f.entry).candidates;
+  assert.equal(got.filter((r) => r.sourceUrl === a && r.license === 'Public domain').length, 1);
+  assert.equal(got.filter((r) => r.sourceUrl === b && r.license === 'CC BY-SA 3.0').length, 1);
 });

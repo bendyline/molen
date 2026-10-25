@@ -1,0 +1,410 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_granite",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "soil": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.99,
+      "metallic": 0
+    },
+    "wet": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.83,
+      "metallic": 0
+    },
+    "water": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.4,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.88,
+      "metallic": 0.35
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": null,
+  "camera": {
+    "position": [
+      7.8706499880042635,
+      30,
+      56.08968593927344
+    ],
+    "lookAt": [
+      0,
+      -2,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "massive-square-piers-incomplete-lintels-and-open-hall",
+      "position": [
+        3.165620209778016,
+        10,
+        20.272613267347772
+      ],
+      "lookAt": [
+        0,
+        -2.7,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "wet-island-recesses-green-moat-and-perimeter-doorways",
+      "position": [
+        -4.82076454206832,
+        3,
+        -21.39533194951499
+      ],
+      "lookAt": [
+        0.5613593410836071,
+        -4.7,
+        -0.8275721661451516
+      ],
+      "fov": 49
+    },
+    {
+      "name": "supported-timber-descent-broken-caps-and-fitted-pit-rim",
+      "position": [
+        6.684254317499132,
+        8,
+        31.1178525001163
+      ],
+      "lookAt": [
+        5.0198374831665955,
+        -2.2,
+        10.413511974477949
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        7.8706499880042635,
+        30,
+        56.08968593927344
+      ],
+      "lookAt": [
+        0,
+        -2,
+        0
+      ],
+      "fov": 46,
+      "name": "osireion-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        7.8706499880042635,
+        30,
+        56.08968593927344
+      ],
+      "lookAt": [
+        0,
+        -2,
+        0
+      ],
+      "fov": 46,
+      "name": "osireion-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        7.8706499880042635,
+        30,
+        56.08968593927344
+      ],
+      "lookAt": [
+        0,
+        -2,
+        0
+      ],
+      "fov": 46,
+      "name": "osireion-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        7.8706499880042635,
+        30,
+        56.08968593927344
+      ],
+      "lookAt": [
+        0,
+        -2,
+        0
+      ],
+      "fov": 46,
+      "name": "osireion-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -12,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/osireion-model.mjs",
+    "export": "buildOsireionSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildOsireionDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "soil": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "wet": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "buildOsireionStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "soil": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "wet": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.35
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildOsireionCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "soil": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "wet": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.35
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      31.918428132,
+      26.18413313
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Keep the original standard6m Mapzen height grid, native water/paths and every independent building. A bounded approximately39x31m opening follows only the exact mapped archaeological envelope. A complete opaque authored bed at-6.3m covers the whole opening at every LOD; retaining walls/sloping rim meet the native edge and original terrain returns on failure/unload. No broad precinct flattening, neighboring-temple cutout or deletion. Coarse DEM rises about4m across the pit and cannot resolve its true excavation/terrace sections; native-edge wall heights/depth and the small visitor stair are approximate. The opaque green surface is a static pictured low-water/algae visualization, not hydrology or a replacement for native mapped water.",
+    "replaceFootprint": false,
+    "bounds": [
+      31.918183988542538,
+      26.183904910695503,
+      31.918672303554665,
+      26.18436138964671
+    ],
+    "terrainReference": {
+      "anchor": [
+        31.918428132,
+        26.18413313
+      ],
+      "modelHeight": 0,
+      "basis": "Keep the original standard6m Mapzen height grid, native water/paths and every independent building. A bounded approximately39x31m opening follows only the exact mapped archaeological envelope. A complete opaque authored bed at-6.3m covers the whole opening at every LOD; retaining walls/sloping rim meet the native edge and original terrain returns on failure/unload. No broad precinct flattening, neighboring-temple cutout or deletion. Coarse DEM rises about4m across the pit and cannot resolve its true excavation/terrace sections; native-edge wall heights/depth and the small visitor stair are approximate. The opaque green surface is a static pictured low-water/algae visualization, not hydrology or a replacement for native mapped water."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -23.888943000771743,
+          7.328326091671876
+        ],
+        [
+          2.014569291530666,
+          24.905256765783836
+        ],
+        [
+          23.89174979747716,
+          -7.3324639525026
+        ],
+        [
+          -2.021189868859828,
+          -24.909747640512506
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -23.888943000771743,
+            7.328326091671876
+          ],
+          [
+            2.014569291530666,
+            24.905256765783836
+          ],
+          [
+            23.89174979747716,
+            -7.3324639525026
+          ],
+          [
+            -2.021189868859828,
+            -24.909747640512506
+          ]
+        ]
+      ],
+      "basis": "Keep the original standard6m Mapzen height grid, native water/paths and every independent building. A bounded approximately39x31m opening follows only the exact mapped archaeological envelope. A complete opaque authored bed at-6.3m covers the whole opening at every LOD; retaining walls/sloping rim meet the native edge and original terrain returns on failure/unload. No broad precinct flattening, neighboring-temple cutout or deletion. Coarse DEM rises about4m across the pit and cannot resolve its true excavation/terrace sections; native-edge wall heights/depth and the small visitor stair are approximate. The opaque green surface is a static pictured low-water/algae visualization, not hydrology or a replacement for native mapped water."
+    },
+    "notes": "Exact-QID OSMway90456113/Q2033435 gives approximately38.96x31.31m archaeological envelope and undirected long axis; standard PMTiles named OsireionPOI35184462544945 lies within0.16m of anchor31.918428132,26.18413313. Anchor heading0/native east-south; internal long axis-.97476887509rad points NE toward independently mapped Seti I temple, which remains untouched. Two five-pier rows are parallel to that axis. Signed bridge, recess and surviving-lintel allocation is picture-led and may be reversed by180degrees despite its fixed mapped long axis; mapped outline is an archaeological extent, not a measured pier/foundation plan. No PMTiles building shell corresponds to Osireion; replace none. Keep the original standard6m Mapzen height grid, native water/paths and every independent building. A bounded approximately39x31m opening follows only the exact mapped archaeological envelope. A complete opaque authored bed at-6.3m covers the whole opening at every LOD; retaining walls/sloping rim meet the native edge and original terrain returns on failure/unload. No broad precinct flattening, neighboring-temple cutout or deletion. Coarse DEM rises about4m across the pit and cannot resolve its true excavation/terrace sections; native-edge wall heights/depth and the small visitor stair are approximate. The opaque green surface is a static pictured low-water/algae visualization, not hydrology or a replacement for native mapped water."
+  }
+}

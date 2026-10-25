@@ -1,5 +1,10 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.5.0/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "files": {
     "includes": [
       "**",
@@ -9,6 +14,7 @@
       "!**/.turbo",
       "!**/.artifacts",
       "!review-lock.json",
+      "!content/earth/fonts/*.json",
       "!**/__output__",
       "!**/.tmp",
       "!spikes",
@@ -16,12 +22,17 @@
       "!examples/*/public/packs",
       "!content/entities/gen",
       "!content/entities/types/generated-scripts",
+      "!content/earth/source/signs/americana/*.svg",
+      "!content/worldgen/source/places/**/reference-rights/**/*.html",
+      "!content/worldgen/source/places/**/references/**/*.html",
+      "!content/worldgen/source/places/**/map-sources/**/*.html",
       "!content/worldgen/source/material-library/texture-audit.json",
-      "!content/earth/structures/evidence/bridge-terrain/gugik/N0029.json",
+      "!content/earth/structures/evidence/bridge-terrain/gugik/poniatowski_bridge.json",
       "!content/earth/structures/evidence/osm-features.json",
       "!content/earth/structures/evidence/wikidata-details.json",
       "!content/earth/structures/georeferencing.json",
-      "!content/earth/structures/readiness.json"
+      "!content/earth/structures/readiness.json",
+      "!content/earth/structures/placements"
     ]
   },
   "formatter": {
@@ -55,6 +66,7 @@
     {
       "includes": [
         "packages/worldgen/scripts/**",
+        "content/worldgen/source/places/**/models/*.mjs",
         "packages/entities/scripts/**",
         "content/entities/source/**/models/*.mjs",
         "assets/structures/*/scripts/**"
@@ -93,6 +105,9 @@
         "content/earth/businesses/catalog.json",
         "content/earth/structures/evidence/bridge-terrain/**/*.json",
         "content/earth/world.atlas.json",
+        "content/earth/signs/regions.atlas.json",
+        "content/earth/signs/us-states.json",
+        "content/earth/signs/route-shields.json",
         "content/ecology/ecoregions.json",
         "content/**/regional.catalog.json",
         "content/wildlife/ranges.json",

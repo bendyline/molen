@@ -1,0 +1,1952 @@
+{
+  "date": "2026-10-21",
+  "scope": "24 regional vehicle interpretations and geographic road fleet catalogs",
+  "generators": [
+    {
+      "path": "packages/entities/scripts/road-vehicle-geometry.mjs",
+      "sha256": "sha256:40a14eeedf94b8f6b901df6dafd91f15c535e1c5a9abf3a3527356f8ef907f26"
+    },
+    {
+      "path": "packages/entities/scripts/vehicle-detail.mjs",
+      "sha256": "sha256:27c915bae24baffefeff6b81a86d507e0418c2a91aa0471d139340eeb33b381d"
+    },
+    {
+      "path": "packages/entities/scripts/generate-fleet.mjs",
+      "sha256": "sha256:fa19b12aedc92830cadb8bb496b9cf8fb2498919a70611d92890fa5734cf848a"
+    }
+  ],
+  "checks": {
+    "geometry": "24 source/runtime imports and hash pins verified; all under 20,000 triangles and 2 MiB runtime GLB",
+    "controls": "25 tests: catalog plus mount, accelerate, steer, brake, reverse, stop and exit for all 24",
+    "visual": "Four exterior turntable views, lit three-quarter and exact driver-eye views inspected for each model",
+    "reproducibility": "Whole fleet generate-fleet.mjs --check passed for the reviewed generator hashes. Concurrent later generator edits require regeneration and renewed review; this report remains bound to the hashes above.",
+    "geography": "14 city checks and fallback/coverage tests passed",
+    "downloads": "No-Range per-file download, byte cache eviction, shared cancellation and directory rehosting tests passed"
+  },
+  "limitations": [
+    "Original polygonal interpretations, not manufacturer CAD; rounded body targets, simplified trim and interiors",
+    "Some regional profiles reuse export-market or different steering-side configurations; Korean peninsula profile primarily approximates South Korea",
+    "Display graphics and paint are illustrative; doors are static; game handling is not measured performance",
+    "No separate authored GLB LOD chain; distant instances use host proxies"
+  ],
+  "models": [
+    {
+      "id": "molen.entities.vehicle.byd_seagull_2024",
+      "slug": "byd-seagull-2024",
+      "label": "2024 BYD Seagull",
+      "region": "china",
+      "year": 2024,
+      "make": "BYD",
+      "model": "Seagull",
+      "bodyStyle": "hatchback",
+      "color": "#bdd66e",
+      "rhd": false,
+      "references": [
+        "https://prod.byd.com/en/news-list/The-1-Millionth-BYD-DOLPHIN-MINI-BYD-SEAGULL-Rolled-Off-Production-Line.html"
+      ],
+      "sourceHash": "sha256:e133a86a433ac278c37fb6996e18132771cf0f15e753a416a71f8a50d26da9ba",
+      "runtimeHash": "sha256:7cb72603e1b58da915ded2f9f1d5c4bd394e60ac17de28ad4c60fe843c83e272",
+      "recipeHash": "sha256:65ba7643e99fa24f7c12ca7a20f4276206afaa2c60e3267c521babd3e1aa421f",
+      "definitionHash": "sha256:b53bed565d7deede78c77b6eb891e0563b6c96895759b80ca2bb89b0f27feab5",
+      "stats": {
+        "triangles": 15156,
+        "vertices": 23068,
+        "meshes": 30,
+        "primitives": 30,
+        "materials": 12,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 483904
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9976, -0.0035, -1.9585],
+          "max": [0.9976, 1.54, 1.9585]
+        },
+        "sphere": {
+          "center": [0, 0.7683, 0],
+          "radius": 2.0632
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.1336, 2.4133899999999997, 3.7211499999999997],
+        "lookAt": [0, 0.76825, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3945, 1.27, 0.1914],
+        "lookAt": [0.3945, 1.11, 1.1914],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/byd-seagull-2024/shots/angle_0.png",
+          "sha256": "sha256:1c4d4b578b570e08446ae67cfa331aefd31886968c9a75fdb76e11502ed40e38"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/byd-seagull-2024/shots/angle_1.png",
+          "sha256": "sha256:5de7ba7b3a973970116e57c5ee6e44023009432a72f01714f8a6934d10b69008"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/byd-seagull-2024/shots/angle_2.png",
+          "sha256": "sha256:7272d55a3d7411405bcb3f8506fc5ed583b985089a5b5d4522d9b6f52d96a3d8"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/byd-seagull-2024/shots/angle_3.png",
+          "sha256": "sha256:7b05b33d3158cb1c576ebb6f5ee8d21567fade5a4bd81fbd9b6a562965c65710"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/byd-seagull-2024/shots/three-quarter.png",
+          "sha256": "sha256:82e585a99040134de254f4893ebf740c79ac47a354c81d8ec3d6a36f01cba22e"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/byd-seagull-2024/shots/operator.png",
+          "sha256": "sha256:0bc9a4a2535dab50459bd862cfa595d1fee3006629080cf32a379fa4ae82095e"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.byd_qin_plus_2024",
+      "slug": "byd-qin-plus-2024",
+      "label": "2024 BYD Qin Plus DM-i",
+      "region": "china",
+      "year": 2024,
+      "make": "BYD",
+      "model": "Qin Plus DM-i",
+      "bodyStyle": "sedan",
+      "color": "#d5dbdc",
+      "rhd": false,
+      "references": ["https://www.byd.com/en-sa/car/qin-plus-dmi"],
+      "sourceHash": "sha256:13f37d777b0fb816691e592d7a39ddd3f0b54c25d646a834e51779fb35c4a3ee",
+      "runtimeHash": "sha256:1cc096bd6bbb0d37536ba5f8e28123984cbe2ad025507ed86abb61e747223a04",
+      "recipeHash": "sha256:b3c3587d9ae07d72cdfdf9c693578ac6db953ebb215066a39567e99b71258336",
+      "definitionHash": "sha256:c8c9f2ee5a881869cc674d6d6a61a6c23fe3d7d95da5e52393097b4ea2965be8",
+      "stats": {
+        "triangles": 18487,
+        "vertices": 30315,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 617348
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0585, -0.0035, -2.451],
+          "max": [1.0585, 1.4951, 2.451]
+        },
+        "sphere": {
+          "center": [0, 0.7458, 0],
+          "radius": 2.5736
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.9216, 2.80464, 4.6569],
+        "lookAt": [0, 0.7458, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4225, 1.225, -0.0141],
+        "lookAt": [0.4225, 1.0650000000000002, 0.9859],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/byd-qin-plus-2024/shots/angle_0.png",
+          "sha256": "sha256:39cec96bb8798d5f13425a828759d0c6b23b5bd34064b7c65a1320782d17e9bc"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/byd-qin-plus-2024/shots/angle_1.png",
+          "sha256": "sha256:61dabd2e2cc998ba0753c3ef83bb8c48e973ce6f1431f8224aaee1958f0f38b6"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/byd-qin-plus-2024/shots/angle_2.png",
+          "sha256": "sha256:3f4411bf814c4f140741f0feb486e1e193d7e26f152c63be981207bb23060686"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/byd-qin-plus-2024/shots/angle_3.png",
+          "sha256": "sha256:092b534fe5b4461691ea0c9fa5c319196dab1fb9ce3102f2a2493fbd9df523d5"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/byd-qin-plus-2024/shots/three-quarter.png",
+          "sha256": "sha256:6419889ab0f1e012cd1b40ad2e40d836d733702e203d0ec0f5e11406003232fb"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/byd-qin-plus-2024/shots/operator.png",
+          "sha256": "sha256:9598d84465c0b83b7a634900c70a1d68329cfa8579dbaa05621600d43369c95d"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.wuling_hongguang_mini_ev_2025",
+      "slug": "wuling-hongguang-mini-ev-2025",
+      "label": "2025 Wuling Hongguang MINI EV",
+      "region": "china",
+      "year": 2025,
+      "make": "Wuling",
+      "model": "Hongguang MINI EV",
+      "bodyStyle": "hatchback",
+      "color": "#b8d6c0",
+      "rhd": false,
+      "references": [
+        "https://www.gm.com.cn/zh/home/newsroom.detail.html/Pages/news/cn/zh/2024/dec/1210-wuling.html"
+      ],
+      "sourceHash": "sha256:54f3bc021ed7e418178ba36799aecbbd3ef84b77bfc308a69ec383fe6641669c",
+      "runtimeHash": "sha256:277b66af2a5257419e34ff1cdf884dae4d3a834c356eee1d332b26c8e38545f3",
+      "recipeHash": "sha256:2dd4e47dcb34018726f34367f24409b744c7c9e0ee3c07a6e05239afb58fd039",
+      "definitionHash": "sha256:c39792038bf8621cc63c9c0258750a264bd35bc695576d60bbf5d95d55e8c6e5",
+      "stats": {
+        "triangles": 17072,
+        "vertices": 25282,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 528864
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.8949, -0.0035, -1.6965],
+          "max": [0.8949, 1.578, 1.6965]
+        },
+        "sphere": {
+          "center": [0, 0.7873, 0],
+          "radius": 1.8301
+        }
+      },
+      "exteriorCamera": {
+        "position": [2.7144, 2.2123099999999996, 3.2233499999999995],
+        "lookAt": [0, 0.78725, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3473, 1.308, 0.3838],
+        "lookAt": [0.3473, 1.1480000000000001, 1.3838],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/wuling-hongguang-mini-ev-2025/shots/angle_0.png",
+          "sha256": "sha256:a632923f25a7ca34954098254956ff9ff25300d4b83ce579cdeea64e18513566"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/wuling-hongguang-mini-ev-2025/shots/angle_1.png",
+          "sha256": "sha256:a66ade0d4f290f28ba6c1c01294c3a4731a9aa22f5d9bccd4c23976a36f45d08"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/wuling-hongguang-mini-ev-2025/shots/angle_2.png",
+          "sha256": "sha256:389502c5b104a3519e09f52833fd1108442084ac9ea8fbf25abce6ce78f107aa"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/wuling-hongguang-mini-ev-2025/shots/angle_3.png",
+          "sha256": "sha256:376ccf5df48fc4dc09248c5680834dfd8eee74889ab9a55bf354f6d7beeb43de"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/wuling-hongguang-mini-ev-2025/shots/three-quarter.png",
+          "sha256": "sha256:8b9874a476b3683bc45f1fbb33425edeb7ea9e38e0c096863c10a0f6f33dc9cd"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/wuling-hongguang-mini-ev-2025/shots/operator.png",
+          "sha256": "sha256:c4a37d5774cc0f7cd031dd3898b6d1ea4fedad2129586215119b9f65b0f590b9"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.geely_monjaro_2024",
+      "slug": "geely-monjaro-2024",
+      "label": "2024 Geely Monjaro",
+      "region": "china",
+      "year": 2024,
+      "make": "Geely",
+      "model": "Monjaro",
+      "bodyStyle": "suv",
+      "color": "#5c8c99",
+      "rhd": false,
+      "references": ["https://www.geely.com/en/models/monjaro"],
+      "sourceHash": "sha256:e98a2001d3d1f320465e0c91e37495a2e71217525a9c3b93aed94563b2c12ea6",
+      "runtimeHash": "sha256:7538dc6240a484bc270753be1c821613e8e170124cb6a4e0a872246fcc016f22",
+      "recipeHash": "sha256:dd9956ba95a0f07971c005bd80cb05473602fc82d4ae63efce1b58a695f74bd4",
+      "definitionHash": "sha256:3550b2e8a15fe7f77ee0013ceb34ac02a3b1798ef4ddefe89732b72edf8d2b9a",
+      "stats": {
+        "triangles": 16813,
+        "vertices": 25002,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 523728
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0875, -0.0035, -2.4535],
+          "max": [1.0875, 1.766, 2.4535]
+        },
+        "sphere": {
+          "center": [0, 0.8813, 0],
+          "radius": 2.6086
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.9256, 2.94219, 4.66165],
+        "lookAt": [0, 0.88125, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4359, 1.419, 0.3201],
+        "lookAt": [0.4359, 1.2590000000000001, 1.3201],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/geely-monjaro-2024/shots/angle_0.png",
+          "sha256": "sha256:5bf8ee1d3edeb49f8bb3b3da70c860fce71700dbe8f493e172acfdf5ef69eaab"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/geely-monjaro-2024/shots/angle_1.png",
+          "sha256": "sha256:4a62aec426c7d3042e638d0b6f1a103d27815cab1bca0c40b1ebcd3885edeb85"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/geely-monjaro-2024/shots/angle_2.png",
+          "sha256": "sha256:d2e9d73e894d3b738e2cf6a9770b3f2c54dfb3e4599bec5c5b9677b8ebca91aa"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/geely-monjaro-2024/shots/angle_3.png",
+          "sha256": "sha256:11a222e7464952fd826adeeee74012ed4ff828e7b374806adabab6b829918f2f"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/geely-monjaro-2024/shots/three-quarter.png",
+          "sha256": "sha256:6e8630fcfb86a2efa4fb1c200884795464df51bcabac4bd368212fc5bdde771c"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/geely-monjaro-2024/shots/operator.png",
+          "sha256": "sha256:e3afbcac3289e87b7c03158727c9bc65e355dec3143a476d7566fb77c4ff8e38"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.toyota_yaris_2024",
+      "slug": "toyota-yaris-2024",
+      "label": "2024 Toyota Yaris",
+      "region": "japan",
+      "year": 2024,
+      "make": "Toyota",
+      "model": "Yaris",
+      "bodyStyle": "hatchback",
+      "color": "#b24c47",
+      "rhd": true,
+      "references": ["https://global.toyota/en/mobility/toyota-brand/gallery/yaris.html"],
+      "sourceHash": "sha256:7659295414721b04eb89bc7d50d9e4b60a520fc9c5007a1ea8051a43ae7f735f",
+      "runtimeHash": "sha256:a89d884b3b9710fa7ed0ad1ba672dc3d0c324e3188b8f84c86c845c6293018cf",
+      "recipeHash": "sha256:951f5c84bdbce4b510f9ec9f23a1bfd592e1e32e7eecee0ec68ae7de3b30f0f0",
+      "definitionHash": "sha256:fc1a69c5d2fdbff21d9fe6a3cc2bf20e9ef36823e25c1ff19c4dafe7badd21c8",
+      "stats": {
+        "triangles": 17761,
+        "vertices": 26332,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 551708
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9876, -0.0035, -2.0385],
+          "max": [0.9876, 1.5, 2.0415]
+        },
+        "sphere": {
+          "center": [0, 0.7482, 0.0015],
+          "radius": 2.1813
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.2640000000000002, 2.46185, 3.876],
+        "lookAt": [0, 0.74825, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [-0.3899, 1.23, 0.2122],
+        "lookAt": [-0.3899, 1.07, 1.2122],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/toyota-yaris-2024/shots/angle_0.png",
+          "sha256": "sha256:f38661df313cb58b0f55c52a41e751e67fd6ac6e1f782dbde4f266b031ea0c05"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/toyota-yaris-2024/shots/angle_1.png",
+          "sha256": "sha256:44a1c04dd152bb38d8193d9eff2acf9d261d82154ad5dd77a2892db4d78d3dfa"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/toyota-yaris-2024/shots/angle_2.png",
+          "sha256": "sha256:25ec51e500bc16979affe1bfe00ae534cf6ce7603b2fc06e40e964d975033485"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/toyota-yaris-2024/shots/angle_3.png",
+          "sha256": "sha256:10cdb94bfd92825e7363e210546eeb4804be8ce899edb72b7aacfe1e7c686755"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/toyota-yaris-2024/shots/three-quarter.png",
+          "sha256": "sha256:ee97e39e31880407c82672275712f1b3fff0e91b6a3dbc11925e48438ea23c82"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/toyota-yaris-2024/shots/operator.png",
+          "sha256": "sha256:3e537a5a8092cb529f54f9845cbdd29387fdaf0723add11b1b1865b0d936bb5b"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.honda_n_box_2024",
+      "slug": "honda-n-box-2024",
+      "label": "2024 Honda N-BOX",
+      "region": "japan",
+      "year": 2024,
+      "make": "Honda",
+      "model": "N-BOX",
+      "bodyStyle": "van",
+      "color": "#ced6cc",
+      "rhd": true,
+      "references": ["https://global.honda/en/design/project/2024nbox/"],
+      "sourceHash": "sha256:1613c85dfbd49792414772dd53f790d334820248d87b3681253bbb17d2b4c3b5",
+      "runtimeHash": "sha256:10aedf3f95bc9f7161fcda629f8b0a17877be0f28f29f4991c68237ef9b216e9",
+      "recipeHash": "sha256:7d87236adc95ced6929c019b59c92fc3f92930e4fb16032b0498595deca76b89",
+      "definitionHash": "sha256:9f338ffca973020ea5d096a8ae9c9e9535be110174d9b6125a39255e7459fd0f",
+      "stats": {
+        "triangles": 16246,
+        "vertices": 23342,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 491620
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.8775, -0.0035, -1.766],
+          "max": [0.8775, 1.79, 1.766]
+        },
+        "sphere": {
+          "center": [0, 0.8932, 0],
+          "radius": 1.967
+        }
+      },
+      "exteriorCamera": {
+        "position": [2.8256, 2.37669, 3.3554],
+        "lookAt": [0, 0.89325, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [-0.3393, 1.52, 0.5148],
+        "lookAt": [-0.3393, 1.36, 1.5148000000000001],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/honda-n-box-2024/shots/angle_0.png",
+          "sha256": "sha256:fe501c1a58a1c897db425bda959cead042aaf0190683fc02516bf7b230c74c5a"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/honda-n-box-2024/shots/angle_1.png",
+          "sha256": "sha256:4c1aa38da2ac2c486afa4c3351a782eb5b2dd56be18ee1b30394e6ca1bb1e158"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/honda-n-box-2024/shots/angle_2.png",
+          "sha256": "sha256:328824e3bfd08f2111c7252d2895f021e89e0311c458adfa7093ad801c3a2a00"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/honda-n-box-2024/shots/angle_3.png",
+          "sha256": "sha256:c38e9e9e5cfde4151d369b7cf6e06d1c979f7d7f9ab6f7941f31ac4df40b654d"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/honda-n-box-2024/shots/three-quarter.png",
+          "sha256": "sha256:9df2dcdb1a6bda9ca56c67a48d7e8df8a6ff74a6f04e47360355b6ff8bc42f71"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/honda-n-box-2024/shots/operator.png",
+          "sha256": "sha256:066a48c95eb6f94c6dc703e2d37765250362730a0dc561c7bcd1f95970bc4c6b"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.suzuki_jimny_sierra_2024",
+      "slug": "suzuki-jimny-sierra-2024",
+      "label": "2024 Suzuki Jimny Sierra",
+      "region": "japan",
+      "year": 2024,
+      "make": "Suzuki",
+      "model": "Jimny Sierra",
+      "bodyStyle": "offroad",
+      "color": "#b9ad75",
+      "rhd": true,
+      "references": ["https://www.globalsuzuki.com/globalnews/2021/0120.html"],
+      "sourceHash": "sha256:eaaf1892fddc3fd9c849358902cadcdeb804f2eb0b6cfef618e0c35cb61a488e",
+      "runtimeHash": "sha256:7aa6e13b96fcc49153da6a4ef3e5ba99405eb9ef8783d996b7f571285ebd70d3",
+      "recipeHash": "sha256:ed7228434f659668f778384186b5e1eaadc04bb5a9187aa812cfc06a253fc3c7",
+      "definitionHash": "sha256:0ee15c95e1addedfcbd1ca4578c1df5c182df12819daf8263a20e877ba34e821",
+      "stats": {
+        "triangles": 18734,
+        "vertices": 26726,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 564416
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9626, -0.0035, -2.0149],
+          "max": [0.9626, 1.72, 1.891]
+        },
+        "sphere": {
+          "center": [0, 0.8582, -0.062],
+          "radius": 2.1098
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.12472, 2.498728, 3.7106049999999997],
+        "lookAt": [0, 0.85825, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [-0.3784, 1.45, 0.1374],
+        "lookAt": [-0.3784, 1.29, 1.1374],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/suzuki-jimny-sierra-2024/shots/angle_0.png",
+          "sha256": "sha256:150c0f2d3340e52e518fcb536f1c071d0bc659edad6b33c654b9d4c67b40ee83"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/suzuki-jimny-sierra-2024/shots/angle_1.png",
+          "sha256": "sha256:2069e3f8d5c92a44ece8357b6e79c72f40a81750c410ccb42f3bd4b4960fa66a"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/suzuki-jimny-sierra-2024/shots/angle_2.png",
+          "sha256": "sha256:0ca8dc4d1af1236f1bb989866d4506d9b81baf943d6ad5671c3cd573c5e5da21"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/suzuki-jimny-sierra-2024/shots/angle_3.png",
+          "sha256": "sha256:2632ec656f1eaa2771df9683ec2b679793c922243eebd05be4828b3d689ef29b"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/suzuki-jimny-sierra-2024/shots/three-quarter.png",
+          "sha256": "sha256:7bba0faefd25a69d0103d0d383feb265a875f28b68df532504f329c56bbb78eb"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/suzuki-jimny-sierra-2024/shots/operator.png",
+          "sha256": "sha256:b6e3481e7aacf937f462dfa9d894e8889fcb0185861c1e1dd7a405664ca48e1b"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.toyota_alphard_2024",
+      "slug": "toyota-alphard-2024",
+      "label": "2024 Toyota Alphard",
+      "region": "japan",
+      "year": 2024,
+      "make": "Toyota",
+      "model": "Alphard",
+      "bodyStyle": "van",
+      "color": "#e4e2d9",
+      "rhd": true,
+      "references": [
+        "https://global.toyota/en/mobility/toyota-brand/toyota-design/alphard-vellfire/"
+      ],
+      "sourceHash": "sha256:ce90165fb12f6eb21352cc605d653fd6686c8e3fba0be639c1b5ade65b123a8e",
+      "runtimeHash": "sha256:70cc5246caf21858379616264f29e347127280f2a069e5dcb071539e2bec0461",
+      "recipeHash": "sha256:c0ed71b0e5fa85b313c3c816f2c50d749556cd50128a9f42b0269f3b5246be0e",
+      "definitionHash": "sha256:1c2cfb8d95319a2a50a40929ec28533ff3d150ef2efbf8099782387c81a33c03",
+      "stats": {
+        "triangles": 17631,
+        "vertices": 25955,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 542108
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0649, -0.0035, -2.566],
+          "max": [1.0649, 1.9351, 2.569]
+        },
+        "sphere": {
+          "center": [0, 0.9658, 0.0015],
+          "radius": 2.7376
+        }
+      },
+      "exteriorCamera": {
+        "position": [4.108, 3.1224999999999996, 4.8782499999999995],
+        "lookAt": [0, 0.9658, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [-0.4255, 1.665, 0.699],
+        "lookAt": [-0.4255, 1.5050000000000001, 1.6989999999999998],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/toyota-alphard-2024/shots/angle_0.png",
+          "sha256": "sha256:1615d0b353f74443a2849d93526a3839eeda4d30d9f65c0b6149fff5b5c628d2"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/toyota-alphard-2024/shots/angle_1.png",
+          "sha256": "sha256:796f5a738eec36ef5d3feb38affb9dab2b47976bc2c07aca27bfc3ddaa4058d7"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/toyota-alphard-2024/shots/angle_2.png",
+          "sha256": "sha256:33bae3253dbbbab2236d28ad2290c64b5f452962d1c2b964bf4460384e497411"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/toyota-alphard-2024/shots/angle_3.png",
+          "sha256": "sha256:9c3e49b068bc5a907ef155c159a7962f76c3007a8aafaa129ec23c32e94fa33f"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/toyota-alphard-2024/shots/three-quarter.png",
+          "sha256": "sha256:9c5fd19f5325828f634b1eaa5dafb01bd781edcfb7373797eefac87e1c7edfc1"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/toyota-alphard-2024/shots/operator.png",
+          "sha256": "sha256:327a562b9dd065dc666af9c1f05266e64862d05b74ad7d77dfdd80827b77a63b"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.kia_k5_2024",
+      "slug": "kia-k5-2024",
+      "label": "2024 Kia K5",
+      "region": "korea",
+      "year": 2024,
+      "make": "Kia",
+      "model": "K5",
+      "bodyStyle": "sedan",
+      "color": "#b9c1c5",
+      "rhd": false,
+      "references": ["https://www.kiamedia.com/us/en/models/k5/2024/specifications"],
+      "sourceHash": "sha256:9856efc020a11549f27886c4ad9392b8365fe42bf03ea76e51f9b950b12a9fca",
+      "runtimeHash": "sha256:fa349ad23e91eb334d251b7295aa16ee9cf6d960fb12de5dd1de7c394d5f3117",
+      "recipeHash": "sha256:6aee0cb367171abf454b3f72d4083e936f55c92144bb4041c6d7cb0297f6ac07",
+      "definitionHash": "sha256:292618efd8f2df6642caee01f28fd202fdab9da38528b24b3068db27d18ce624",
+      "stats": {
+        "triangles": 16993,
+        "vertices": 25586,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 532712
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.07, -0.0035, -2.521],
+          "max": [1.07, 1.4452, 2.5209]
+        },
+        "sphere": {
+          "center": [0, 0.7208, 0],
+          "radius": 2.635
+        }
+      },
+      "exteriorCamera": {
+        "position": [4.03352, 2.838448, 4.789804999999999],
+        "lookAt": [0, 0.72085, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4278, 1.175, -0.0057],
+        "lookAt": [0.4278, 1.0150000000000001, 0.9943],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/kia-k5-2024/shots/angle_0.png",
+          "sha256": "sha256:9cf3b143d8508419685ac318ebb7816cf44813fd14ad6ef77da8bf8d05ab317d"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/kia-k5-2024/shots/angle_1.png",
+          "sha256": "sha256:93bdb63b525f5cd0381aa0f8c3b3b68cf8d8d734ea09efd9d8dabdfa58922fe1"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/kia-k5-2024/shots/angle_2.png",
+          "sha256": "sha256:7cdc40d0c8463c53f6547f9a4d4253ab2b923926d51567248aa62cba344de93f"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/kia-k5-2024/shots/angle_3.png",
+          "sha256": "sha256:92e828435fc0ec9c5865016a3d8ed3718b8f6f7d01909edc0269efd7766c3bd3"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/kia-k5-2024/shots/three-quarter.png",
+          "sha256": "sha256:4f3f199d334b7b00be5a7958e6909fdf3b03a7d5bb1487edb6922da83cbbe54b"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/kia-k5-2024/shots/operator.png",
+          "sha256": "sha256:75be1af2d23ab0cf6be208be678253abd32eec5418fb8723bc95c906cc98c195"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.hyundai_casper_electric_2024",
+      "slug": "hyundai-casper-electric-2024",
+      "label": "2024 Hyundai Casper Electric",
+      "region": "korea",
+      "year": 2024,
+      "make": "Hyundai",
+      "model": "Casper Electric",
+      "bodyStyle": "crossover",
+      "color": "#9aaf9c",
+      "rhd": false,
+      "references": ["https://www.hyundai.com/kr/ko/brand/brandstory/heritage/2024-casper-ev"],
+      "sourceHash": "sha256:98fffc22cf65d53d6384f7196383b70d331ce32a594fb9c7dc3dd60d3eb40ce2",
+      "runtimeHash": "sha256:bb7774f42d78266d745252a67f44bb9475a98c1ba26748452eb1ecb726a7e362",
+      "recipeHash": "sha256:bd25b8f2d8bbc37fa5aab5f223b9057f39707a5aaea5b272e63477ca94cd0a42",
+      "definitionHash": "sha256:91d70402eaed64ab4218b0fe4eb1b838b5be3c6331a0402f8cad5732b5f4e3d7",
+      "stats": {
+        "triangles": 16692,
+        "vertices": 25456,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 12,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 529916
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9451, -0.0035, -1.981],
+          "max": [0.9451, 1.575, 1.981]
+        },
+        "sphere": {
+          "center": [0, 0.7858, 0],
+          "radius": 2.0745
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.1696000000000004, 2.44979, 3.7639],
+        "lookAt": [0, 0.78575, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3703, 1.305, 0.3885],
+        "lookAt": [0.3703, 1.145, 1.3885],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/hyundai-casper-electric-2024/shots/angle_0.png",
+          "sha256": "sha256:bd5a85b019fba7fb6557a9075315721239f449657ed6bb3f17da04685d939998"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/hyundai-casper-electric-2024/shots/angle_1.png",
+          "sha256": "sha256:42830a2431747971b146b3a47260ac31d453c406afe193a55e09540e8cc4e610"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/hyundai-casper-electric-2024/shots/angle_2.png",
+          "sha256": "sha256:a97e8be5440b2c41074ef8f9016abf6ad9c0b0caf098e98d297ffe915d373a47"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/hyundai-casper-electric-2024/shots/angle_3.png",
+          "sha256": "sha256:3d48277841d06eef446a59392c567e22ba9ce7f6b117692579b9f24defc1e064"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/hyundai-casper-electric-2024/shots/three-quarter.png",
+          "sha256": "sha256:5b3799bf3734be84731ccb6223a1bdddb768c60efbe4feea87deb32f64537edc"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/hyundai-casper-electric-2024/shots/operator.png",
+          "sha256": "sha256:2ae82b50d905e8c7c0879cfd02527b2ac1c4d4ab48b41cc9ab117790582b01c3"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.hyundai_staria_2024",
+      "slug": "hyundai-staria-2024",
+      "label": "2024 Hyundai Staria",
+      "region": "korea",
+      "year": 2024,
+      "make": "Hyundai",
+      "model": "Staria",
+      "bodyStyle": "van",
+      "color": "#8e979d",
+      "rhd": false,
+      "references": [
+        "https://www.hyundai.news/eu/articles/press-releases/hyundai-motors-staria-mpv-debuts.html"
+      ],
+      "sourceHash": "sha256:d6905eded428012b6ef2f90e0f89cc3174120a73cf15b157de93d1b3a0892f04",
+      "runtimeHash": "sha256:592687d1abf156d32c714c3d350af18f8d710f5d984127f9b82445e100dbd466",
+      "recipeHash": "sha256:7e49ff0d9f139b4831c1be0a29cf0b20187fcbc4fec0ef20098f12b325ad1342",
+      "definitionHash": "sha256:5c1358bebc212a9c78c889f74713ef5ecda8ef83503842200d36f90ad373e4e8",
+      "stats": {
+        "triangles": 18932,
+        "vertices": 28653,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 594676
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.1385, -0.0035, -2.695],
+          "max": [1.1385, 1.9901, 2.6951]
+        },
+        "sphere": {
+          "center": [0, 0.9933, 0.0001],
+          "radius": 2.8756
+        }
+      },
+      "exteriorCamera": {
+        "position": [4.312080000000001, 3.257142, 5.120595],
+        "lookAt": [0, 0.9933, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4593, 1.72, 1.0132],
+        "lookAt": [0.4593, 1.56, 2.0132000000000003],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/hyundai-staria-2024/shots/angle_0.png",
+          "sha256": "sha256:8f4f6ce09ba0a9abf39f0b6b4f1a367bd24fef56e583580667b4f5e5b2da01d5"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/hyundai-staria-2024/shots/angle_1.png",
+          "sha256": "sha256:18117a76e8d913759e6364c698f309d385479302dffbc5314423b55b5c0d6c12"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/hyundai-staria-2024/shots/angle_2.png",
+          "sha256": "sha256:62b79b385960e3d3361b96b75c74552619052adb2b8780f3f3d2eab983576e0a"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/hyundai-staria-2024/shots/angle_3.png",
+          "sha256": "sha256:74635efc7ae5c407a83b0dc1e201e235331d59c21ed6c2b5243d9cca2868cfc0"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/hyundai-staria-2024/shots/three-quarter.png",
+          "sha256": "sha256:359a0ad3628f1a7d9023aecc6179ecbb1c5080e858f3a783ef706dabfc9f58c7"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/hyundai-staria-2024/shots/operator.png",
+          "sha256": "sha256:601675e459a5a25297b858e63fea3d157bf88290e96bb67bb6506549d6c5d70f"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.genesis_g80_2024",
+      "slug": "genesis-g80-2024",
+      "label": "2024 Genesis G80",
+      "region": "korea",
+      "year": 2024,
+      "make": "Genesis",
+      "model": "G80",
+      "bodyStyle": "sedan",
+      "color": "#3a5269",
+      "rhd": false,
+      "references": [
+        "https://www.genesis.com/worldwide/en/models/luxury-sedan-genesis/g80/specs.html?seq=0000000618"
+      ],
+      "sourceHash": "sha256:ac4205d5d56dca90d5c1e5bee6aaa7b25bb273ab5f3aad6fad836af5655d2521",
+      "runtimeHash": "sha256:e3a59833fd646cabe8ee935cfbf9ed136243bcae158e76805e6227769966fb43",
+      "recipeHash": "sha256:8797dc8fdf125c55bc500205aa795f3bfcf6fd93480379b253c65420ef94a50d",
+      "definitionHash": "sha256:da25e24fd228c534086a8542e8a9e8bdf227d78b42452ad46352c06a18c84b77",
+      "stats": {
+        "triangles": 16605,
+        "vertices": 25943,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 535384
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.1024, -0.0035, -2.571],
+          "max": [1.1024, 1.4651, 2.571]
+        },
+        "sphere": {
+          "center": [0, 0.7308, 0],
+          "radius": 2.688
+        }
+      },
+      "exteriorCamera": {
+        "position": [4.113600000000001, 2.89044, 4.8849],
+        "lookAt": [0, 0.7308, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4428, 1.195, 0.0253],
+        "lookAt": [0.4428, 1.0350000000000001, 1.0253],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/genesis-g80-2024/shots/angle_0.png",
+          "sha256": "sha256:5bb519074204129654db5d2b0190c0a75f5f1ae3dcc0b903369a6712409eaabe"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/genesis-g80-2024/shots/angle_1.png",
+          "sha256": "sha256:e273a810596b8c9d24764ee7e8a520a68f8f63fe8f376a89e4f5d36bfd904d90"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/genesis-g80-2024/shots/angle_2.png",
+          "sha256": "sha256:a0d5185f1857847d9687754b1191276fda338b058813a7ae1200c24dd15cd0ad"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/genesis-g80-2024/shots/angle_3.png",
+          "sha256": "sha256:ac9c61cd2105ea3a0b0a69bdd4fba97835bd9dc99abb943efad2a6aab1b9d4ab"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/genesis-g80-2024/shots/three-quarter.png",
+          "sha256": "sha256:7bf0ef084538fb68b67470652b3adb2cffb049842ee12e940a9ed925ca103cab"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/genesis-g80-2024/shots/operator.png",
+          "sha256": "sha256:e913c48449e3be263de6b4693d17b267d98d38f7392496dd4e4706e616c6fc2c"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.peugeot_208_2024",
+      "slug": "peugeot-208-2024",
+      "label": "2024 Peugeot 208",
+      "region": "europe",
+      "year": 2024,
+      "make": "Peugeot",
+      "model": "208",
+      "bodyStyle": "hatchback",
+      "color": "#d3c248",
+      "rhd": false,
+      "references": [
+        "https://www.media.stellantis.com/em-en/peugeot/press/new-peugeot-e-208-irresistible-and-fun-to-drive"
+      ],
+      "sourceHash": "sha256:c683c39d65ccf7512ea163f4f9d00e36e3a55552f78e84b2efd9aeefd24ac4f4",
+      "runtimeHash": "sha256:f61c2bc84a69b2119817105c507cf49dbbc2d087ed8f6ca8ce95d4ca203c8752",
+      "recipeHash": "sha256:08b9fe8ab2428a0fa6a485b441e0380eb911d980d8dfd7281cccd8a76326d3ce",
+      "definitionHash": "sha256:4e79e04bf8c64be11d75c1351e1b68ba8454ccae216eb9ea7a629965a7f0d25d",
+      "stats": {
+        "triangles": 17472,
+        "vertices": 26432,
+        "meshes": 30,
+        "primitives": 30,
+        "materials": 12,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 552172
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0126, -0.0035, -2.096],
+          "max": [1.0126, 1.43, 2.096]
+        },
+        "sphere": {
+          "center": [0, 0.7132, 0],
+          "radius": 2.2276
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.3536, 2.47389, 3.9824],
+        "lookAt": [0, 0.7132499999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4014, 1.16, 0.2272],
+        "lookAt": [0.4014, 0.9999999999999999, 1.2272],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/peugeot-208-2024/shots/angle_0.png",
+          "sha256": "sha256:02be69cf8dbed5be0bf6405327a2ae6b10ca784e259c22234c87c1a73f0c372e"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/peugeot-208-2024/shots/angle_1.png",
+          "sha256": "sha256:41d32005a56d76093e78f05a311361e52e8203c092da0aba7a4fd31bf7b8a6de"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/peugeot-208-2024/shots/angle_2.png",
+          "sha256": "sha256:a077d7407cb8fa4d894b48ac698b646abe726d083062f5936ef8f921769752e5"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/peugeot-208-2024/shots/angle_3.png",
+          "sha256": "sha256:a5df9dfeb962385aa754fdb06d9c412e1ed28fceb20c3180171caf3b79a97cee"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/peugeot-208-2024/shots/three-quarter.png",
+          "sha256": "sha256:a6b98ebe5f488a397d0490fbf24c90e9b71fb8d3a045c4e165615d0194a6a0d6"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/peugeot-208-2024/shots/operator.png",
+          "sha256": "sha256:6bc3922773e945408bba6b02b2760e73cf4a95899eda83cb7d5dd0f057556171"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.renault_clio_2024",
+      "slug": "renault-clio-2024",
+      "label": "2024 Renault Clio",
+      "region": "europe",
+      "year": 2024,
+      "make": "Renault",
+      "model": "Clio",
+      "bodyStyle": "hatchback",
+      "color": "#b75a45",
+      "rhd": false,
+      "references": [
+        "https://be.media.renaultgroup.com/nouvelle-renault-clio-la-reference-des-citadines-polyvalentes-inaugure-un-nouveau-style/?lang=bel"
+      ],
+      "sourceHash": "sha256:1310e3690f200554936fff697a8d0709e1aac70bc91c29d100ad8735fe86598c",
+      "runtimeHash": "sha256:da1bdc2d3b29c46a496030f01cf49799f341c890594eabfd86199a5a606bf00a",
+      "recipeHash": "sha256:42877ed84bd6b6d76e3cdb9d308567f24c83a2526f61f64c289db4a301c31138",
+      "definitionHash": "sha256:537be61718bb1125d78ee875d5c02b006b14c8c84223c757db3d3903835f3b59",
+      "stats": {
+        "triangles": 17263,
+        "vertices": 26116,
+        "meshes": 28,
+        "primitives": 28,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 543780
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0389, -0.0035, -2.095],
+          "max": [1.0389, 1.4399, 2.095]
+        },
+        "sphere": {
+          "center": [0, 0.7182, 0],
+          "radius": 2.2318
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.3520000000000003, 2.4779999999999998, 3.9805],
+        "lookAt": [0, 0.7182, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4135, 1.17, 0.2269],
+        "lookAt": [0.4135, 1.01, 1.2269],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/renault-clio-2024/shots/angle_0.png",
+          "sha256": "sha256:a402823b3ad7024cac7f5ae27f2fcd9d5a0730a1f24ed1838217c0e68e2ba209"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/renault-clio-2024/shots/angle_1.png",
+          "sha256": "sha256:721fe6cc298af3c3916a2ca15acade060a890c20fc1822d2c56952d2907cbba3"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/renault-clio-2024/shots/angle_2.png",
+          "sha256": "sha256:5c7806e0b5bc6e57fd990645581088f30b3a3098c0ae161c7ad43b23fcc1162c"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/renault-clio-2024/shots/angle_3.png",
+          "sha256": "sha256:b16d8bc4169814070117a14ec6b52ee7887c28c8b7e02140c9deed13722cab17"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/renault-clio-2024/shots/three-quarter.png",
+          "sha256": "sha256:79332f3a56697f5be8c440808329d93ee3d6a65a20b85ca21876be486d59286c"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/renault-clio-2024/shots/operator.png",
+          "sha256": "sha256:98945b39d0fc4e24347165f9654f920469149064266ba68dcd0ef38a07b80933"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.dacia_duster_2024",
+      "slug": "dacia-duster-2024",
+      "label": "2024 Dacia Duster",
+      "region": "europe",
+      "year": 2024,
+      "make": "Dacia",
+      "model": "Duster",
+      "bodyStyle": "suv",
+      "color": "#92977a",
+      "rhd": false,
+      "references": ["https://media.dacia.com/more-duster-still-duster-2/?lang=eng"],
+      "sourceHash": "sha256:42bed96c9c055f0dcc01106f6ce6140489ed918de2ecff43e1c80d6f0a569265",
+      "runtimeHash": "sha256:d51b8329de3af69d6caab3a9f839f9a25cbf459322fd8a842b59911fa0e5a7cf",
+      "recipeHash": "sha256:37e041aac376f46df7a597525836e03a8cff00e796327f82b57d479286139b20",
+      "definitionHash": "sha256:ff062a378cb9a391c9dcae78c96df2039ee9159e03feb44791be8dd2b29f49c7",
+      "stats": {
+        "triangles": 17764,
+        "vertices": 25874,
+        "meshes": 26,
+        "primitives": 26,
+        "materials": 10,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 542892
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0466, -0.0035, -2.24],
+          "max": [1.0466, 1.733, 2.24]
+        },
+        "sphere": {
+          "center": [0, 0.8648, 0],
+          "radius": 2.4026
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.5840000000000005, 2.74635, 4.256],
+        "lookAt": [0, 0.86475, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.417, 1.386, 0.308],
+        "lookAt": [0.417, 1.226, 1.308],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/dacia-duster-2024/shots/angle_0.png",
+          "sha256": "sha256:c76206a8fe80b5f57624c353394f872024bde32df4ac8c5a788dbcf137ad9f43"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/dacia-duster-2024/shots/angle_1.png",
+          "sha256": "sha256:ee949e69ab6c220497e2b09c749d67380fab61695e0d1dfe3de0d94474080646"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/dacia-duster-2024/shots/angle_2.png",
+          "sha256": "sha256:8c5cac4e58b45b9b82c9e6f379d11d3e2e9300afd5eb4755b1869c53fabebf14"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/dacia-duster-2024/shots/angle_3.png",
+          "sha256": "sha256:da7bbb32ac8b593e45242a05214f9d9ca51079543a7af78cb9cef30144b1702e"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/dacia-duster-2024/shots/three-quarter.png",
+          "sha256": "sha256:dcc0da20a2b69529f02644c4bd497454f2fa601e59faebbb7b8085a624a57356"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/dacia-duster-2024/shots/operator.png",
+          "sha256": "sha256:27b8f7cdb6b123fb427619ed480dacf9e391e9230d32c9cc22f73eaa199b1f53"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.skoda_octavia_combi_2024",
+      "slug": "skoda-octavia-combi-2024",
+      "label": "2024 Skoda Octavia Combi",
+      "region": "europe",
+      "year": 2024,
+      "make": "Skoda",
+      "model": "Octavia Combi",
+      "bodyStyle": "wagon",
+      "color": "#537974",
+      "rhd": false,
+      "references": [
+        "https://www.skoda-storyboard.com/en/press-kits/skoda-octavia-media-launch-press-kit/exterior-visual-fine-tuning-as-well-as-advanced-headlight-design-and-technology/"
+      ],
+      "sourceHash": "sha256:d678f4e1d5844ec2afc29d92dcd312bd774f437d9e31c0bc217c4c31301befe5",
+      "runtimeHash": "sha256:f725f50fc6b94fc5d14f11b5f60ba304433026fb9ac175a32d58203bc45898d8",
+      "recipeHash": "sha256:61741f8d1a8d5e13a226ea6e417477f66c165e7f3b9d22eaf8922017d42dfa04",
+      "definitionHash": "sha256:25021498da10f58850f3e0c9b33b95726c0841b98d8de48631af39a96b3269c5",
+      "stats": {
+        "triangles": 17831,
+        "vertices": 26066,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 546968
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0545, -0.0035, -2.4175],
+          "max": [1.0545, 1.545, 2.4175]
+        },
+        "sphere": {
+          "center": [0, 0.7708, 0],
+          "radius": 2.5472
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.8680000000000003, 2.80145, 4.593249999999999],
+        "lookAt": [0, 0.7707499999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4207, 1.198, 0.3107],
+        "lookAt": [0.4207, 1.038, 1.3107],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/skoda-octavia-combi-2024/shots/angle_0.png",
+          "sha256": "sha256:c9437566cd8a5e46237ecd8d21fcd103d46aadb6b7416fdc384e4749374de08f"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/skoda-octavia-combi-2024/shots/angle_1.png",
+          "sha256": "sha256:13c7b97b154b2e56fa00d6c402345321b4e775120a76d15e7d84c9a05c0964e7"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/skoda-octavia-combi-2024/shots/angle_2.png",
+          "sha256": "sha256:fbb10296948fb50bc4e3e53c52b3ac1b105dbd436481c174a4ed3539c29a8192"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/skoda-octavia-combi-2024/shots/angle_3.png",
+          "sha256": "sha256:79e444df0893391aae0e478d59be5980b486c4fa075a8091f58ead50f4a07888"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/skoda-octavia-combi-2024/shots/three-quarter.png",
+          "sha256": "sha256:88da28a6a789e95f81b5f84ede1e1af2f2e884abfaf2c7560ca32f5f793cdb39"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/skoda-octavia-combi-2024/shots/operator.png",
+          "sha256": "sha256:8ec4a35de1ceace71639008199d26b55bb5e536d21687d1e05da45869371a71b"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.fiat_strada_2024",
+      "slug": "fiat-strada-2024",
+      "label": "2024 Fiat Strada",
+      "region": "south-america",
+      "year": 2024,
+      "make": "Fiat",
+      "model": "Strada",
+      "bodyStyle": "pickup",
+      "color": "#a93238",
+      "rhd": false,
+      "references": ["https://www.media.stellantis.com/br-pt/fiat/fiat-strada-my-2024"],
+      "sourceHash": "sha256:87cf8e6762519f868bc3777903b91cdc858ee5547be0440660086374a94eb71e",
+      "runtimeHash": "sha256:24b94f510baadca53aa7cadf8fd231983dea03122c7fb6d78450fb514d941fe9",
+      "recipeHash": "sha256:ad508266f83547d7dfb3b9643833cc1830b955a92df355a25e06a8c26dab3241",
+      "definitionHash": "sha256:b8ba8062de3b00a4284f87881d8ccedcf75d226df704786ee332122665c4851a",
+      "stats": {
+        "triangles": 18732,
+        "vertices": 26491,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 558988
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0061, -0.0035, -2.3085],
+          "max": [1.0061, 1.5951, 2.3085]
+        },
+        "sphere": {
+          "center": [0, 0.7958, 0],
+          "radius": 2.3956
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.6936, 2.73494, 4.38615],
+        "lookAt": [0, 0.7958, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3984, 1.325, 0.4168],
+        "lookAt": [0.3984, 1.165, 1.4168],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/fiat-strada-2024/shots/angle_0.png",
+          "sha256": "sha256:96e1c051da8285b015cb0715f9d56397d376adccd3e5bdba9a545d87d964c053"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/fiat-strada-2024/shots/angle_1.png",
+          "sha256": "sha256:b199d059d2ca4997fc3eb167ff9e42a88a03cf49b0aa834ab6a9d8f6a49cd1b7"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/fiat-strada-2024/shots/angle_2.png",
+          "sha256": "sha256:fcae5a6977b8493614b82ca82e0bd1064cd3eda1368f588d616492ab3a8b6658"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/fiat-strada-2024/shots/angle_3.png",
+          "sha256": "sha256:85fb8a400dfaa867d3a7d0e07a17b3d370cfad89dc479f6194416c9b01b4a7bb"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/fiat-strada-2024/shots/three-quarter.png",
+          "sha256": "sha256:c6b5d0760c933ffcde0b3f403f85a5f49fc7077644389cb2e784b0b7597aedd8"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/fiat-strada-2024/shots/operator.png",
+          "sha256": "sha256:7c67f457c7949dd27de337aee9833a8fdf1e2adc564f0255999358d6b78af9d9"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.volkswagen_polo_2024",
+      "slug": "volkswagen-polo-2024",
+      "label": "2024 Volkswagen Polo",
+      "region": "south-america",
+      "year": 2024,
+      "make": "Volkswagen",
+      "model": "Polo",
+      "bodyStyle": "hatchback",
+      "color": "#3d667f",
+      "rhd": false,
+      "references": ["https://newsroom-br.itd.vw.com.br/news/2309"],
+      "sourceHash": "sha256:24106dcea48f42067c023e8cc2b40450d691fd49ea8f838fa623f9148fcf0643",
+      "runtimeHash": "sha256:50bd6b8b232d9adb1234782e35ac818266b67dd8c470c8208d8064437ef8c9fe",
+      "recipeHash": "sha256:f34fb3823db1e75246ad00a1d41bf89db8203269758f72e1f2403b560a3ff450",
+      "definitionHash": "sha256:f496d8c59cbde996007aee7772a2d104182c685c06cb029baf3e4e9fc6249259",
+      "stats": {
+        "triangles": 17951,
+        "vertices": 26684,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 557512
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0155, -0.0035, -2.1055],
+          "max": [1.0155, 1.471, 2.1055]
+        },
+        "sphere": {
+          "center": [0, 0.7337, 0],
+          "radius": 2.2423
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.3688000000000002, 2.50237, 4.00045],
+        "lookAt": [0, 0.73375, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.4027, 1.201, 0.2296],
+        "lookAt": [0.4027, 1.0410000000000001, 1.2296],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/volkswagen-polo-2024/shots/angle_0.png",
+          "sha256": "sha256:f535e0b4dd4857478d0432c26e301badeb00b62eaec4e54e437cfbac763f3cce"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/volkswagen-polo-2024/shots/angle_1.png",
+          "sha256": "sha256:45adecd51c6c4e4373cc3d92ab87ab8ab2c00af16e5c5bd8487681d661f757c9"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/volkswagen-polo-2024/shots/angle_2.png",
+          "sha256": "sha256:7775d8295b3b569494f53bda39a26e756f593b336b402aff9079623ec4b9e689"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/volkswagen-polo-2024/shots/angle_3.png",
+          "sha256": "sha256:9eabb35f93678dd21d60f0a551e2c850480324e0201cbd36d50ca28cf8bf9bb9"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/volkswagen-polo-2024/shots/three-quarter.png",
+          "sha256": "sha256:72a0b091b3744c4668af45d87cb94a22be77e7719007ce2495818c2574af5e16"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/volkswagen-polo-2024/shots/operator.png",
+          "sha256": "sha256:cbb343b945d45d9449a85a1b55e2a619d29bfd5505d4b5e5cc3453442bf2f49a"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.chevrolet_onix_2024",
+      "slug": "chevrolet-onix-2024",
+      "label": "2024 Chevrolet Onix",
+      "region": "south-america",
+      "year": 2024,
+      "make": "Chevrolet",
+      "model": "Onix",
+      "bodyStyle": "hatchback",
+      "color": "#c4cbd0",
+      "rhd": false,
+      "references": [
+        "https://www.chevrolet.com.br/content/dam/chevrolet/south-america/brazil/portuguese/index/portable-navigation/global-footer/lista-de-precos/lista-de-precos-publicos-sugeridos-novembro.pdf"
+      ],
+      "sourceHash": "sha256:ff5b6969991c07cd52015b502ff756ca99f9b0cc8591869a616531848bf832d0",
+      "runtimeHash": "sha256:b9dfbed301cb048a6dc5021f0f94e670e3e95388bf86521302fba8e4a8f17ddb",
+      "recipeHash": "sha256:165abe4d8004d1d0a93f86a6b1c75e1d275389fc3e093ef43034e1088f08539e",
+      "definitionHash": "sha256:ecc39312e791ef7f42d60f6faed64a88017451f21d2a4f6eae9d3c8fa058dc97",
+      "stats": {
+        "triangles": 16353,
+        "vertices": 23285,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 494992
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.005, -0.0035, -2.15],
+          "max": [1.005, 1.4761, 2.15]
+        },
+        "sphere": {
+          "center": [0, 0.7363, 0],
+          "radius": 2.2832
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.44, 2.5423, 4.085],
+        "lookAt": [0, 0.7363, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3979, 1.206, 0.2412],
+        "lookAt": [0.3979, 1.046, 1.2412],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/chevrolet-onix-2024/shots/angle_0.png",
+          "sha256": "sha256:2d6fc98e39ce3f1479c2da0103149c93e816704781a95c1e585781bbaff139d1"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/chevrolet-onix-2024/shots/angle_1.png",
+          "sha256": "sha256:e1e5427d2102b90d13b6175515c75ab5f5bf6104be8cd3a0bce8636128e1f657"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/chevrolet-onix-2024/shots/angle_2.png",
+          "sha256": "sha256:7af5c859ad0315947c52d1547df08b5240fa3327b9baebdfb195a5b6793f2634"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/chevrolet-onix-2024/shots/angle_3.png",
+          "sha256": "sha256:a560b1f029e17015f293220cf4635434d7adcd61cacb1bb414f507678d23cde9"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/chevrolet-onix-2024/shots/three-quarter.png",
+          "sha256": "sha256:3f477d3811da92ac44696fb4afb84a46ac9c72406b1471650ac6390c51d6b459"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/chevrolet-onix-2024/shots/operator.png",
+          "sha256": "sha256:9249acd912606b0f574edfe362b208ede1fa1f163fa9657bd231d9e2a4c09919"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.renault_kwid_2024",
+      "slug": "renault-kwid-2024",
+      "label": "2024 Renault Kwid",
+      "region": "south-america",
+      "year": 2024,
+      "make": "Renault",
+      "model": "Kwid",
+      "bodyStyle": "crossover",
+      "color": "#4c7f9b",
+      "rhd": false,
+      "references": [
+        "https://cdn.group.renault.com/ren/br/renault-new-cars/editorial/2024/catalogos/kwid/AF_RMA000724_Catalogo_Janeiro_Kwid.pdf.asset.pdf/15f0b3332e.pdf"
+      ],
+      "sourceHash": "sha256:fc022f31d2f1099ac7a99a1c4991f9498f3e3712ffdd4eb21eae3049fe470959",
+      "runtimeHash": "sha256:13cb08b8a060516938231dc44ef85ac50eecf4d790e6209bf6f837c3d553fbe8",
+      "recipeHash": "sha256:7ce0480b245f6667c019fe3228566f84770e95cb1ffbadd60181a5dac0019c83",
+      "definitionHash": "sha256:dc8192c98534ef641052b393ee640a714cb401c097cb60c4ad722f28bc0138dd",
+      "stats": {
+        "triangles": 17508,
+        "vertices": 25726,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 539568
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-0.9296, -0.0035, -1.9085],
+          "max": [0.9296, 1.4789, 1.9085]
+        },
+        "sphere": {
+          "center": [0, 0.7377, 0],
+          "radius": 2.0493
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.0536000000000003, 2.34084, 3.62615],
+        "lookAt": [0, 0.7377, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [0.3632, 1.209, 0.2888],
+        "lookAt": [0.3632, 1.0490000000000002, 1.2888],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/renault-kwid-2024/shots/angle_0.png",
+          "sha256": "sha256:9cefe4107d67e1e1b76c632318db57123e7278129fa252605e6de7f61b6faf8d"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/renault-kwid-2024/shots/angle_1.png",
+          "sha256": "sha256:eecf3939c4d5aec28e5d3dd676186d55ff903ef0cf8cf18ef08997734b615c8b"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/renault-kwid-2024/shots/angle_2.png",
+          "sha256": "sha256:608d471e28ad6afea5baf96af0f59d22aabcbae50995fe7a76f14b61244fd94d"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/renault-kwid-2024/shots/angle_3.png",
+          "sha256": "sha256:0886f5131ba94e128902f4e82897509145a559fcdbe197bedd011c140724df78"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/renault-kwid-2024/shots/three-quarter.png",
+          "sha256": "sha256:ba597df08c216475ff267bedc9f58dada0de922934f08fee906abbb359a88033"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/renault-kwid-2024/shots/operator.png",
+          "sha256": "sha256:4b997684e45137727ede4a3cbb9d5039bc960aaf722aeffab0b55732978eb487"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.toyota_hilux_2024",
+      "slug": "toyota-hilux-2024",
+      "label": "2024 Toyota Hilux",
+      "region": "africa",
+      "year": 2024,
+      "make": "Toyota",
+      "model": "Hilux",
+      "bodyStyle": "pickup",
+      "color": "#e4e2da",
+      "rhd": true,
+      "references": ["https://www.toyota.co.za/ranges/hilux"],
+      "sourceHash": "sha256:3e578a91fb760a0b8d3d076495b434e24c7556c64009764fde72492ac6f439b2",
+      "runtimeHash": "sha256:5aa7b33522ca386ac8dfd995bc4c55a2608d847c5391adc7336b26dfa01bc3e4",
+      "recipeHash": "sha256:20a5019d36662d68edfbc6d01e0bf0a7cf0e059d4fb47cae03b5b034cd7a82ab",
+      "definitionHash": "sha256:27e4718c856de5b1488ef955a62f31df7e6095daa3baf1093cc5ae459000a599",
+      "stats": {
+        "triangles": 19255,
+        "vertices": 28558,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 595156
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0676, -0.0035, -2.731],
+          "max": [1.0676, 1.815, 2.734]
+        },
+        "sphere": {
+          "center": [0, 0.9058, 0.0015],
+          "radius": 2.8178
+        }
+      },
+      "exteriorCamera": {
+        "position": [4.372, 3.2010499999999995, 5.19175],
+        "lookAt": [0, 0.9057499999999999, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [-0.4267, 1.545, 0.552],
+        "lookAt": [-0.4267, 1.385, 1.552],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/toyota-hilux-2024/shots/angle_0.png",
+          "sha256": "sha256:b276f9e5d62ac4de22e2c6828fccfd1167283468a19c6fca458273c4f6e7a4b5"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/toyota-hilux-2024/shots/angle_1.png",
+          "sha256": "sha256:f0502bbf9721f6bc645ac6fbf9a7a403524e26cd6f9455de5ec540a1ace537d8"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/toyota-hilux-2024/shots/angle_2.png",
+          "sha256": "sha256:cca70acec1f3c621558596cfd9df24a6f2751fbc17391bda3fa1a8a92441016b"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/toyota-hilux-2024/shots/angle_3.png",
+          "sha256": "sha256:4870d4cfe91299aafec3c764f0d61de3ae7124fbc23b827a8305d3c71c905aaf"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/toyota-hilux-2024/shots/three-quarter.png",
+          "sha256": "sha256:f34baf0943c1c2ecc7c0f22bf8ce5276f68c09f1776661a9dd19b28c48e80d5a"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/toyota-hilux-2024/shots/operator.png",
+          "sha256": "sha256:fbaef432a6ed64910508d4a91ab4dc3d7a65d0b0ba37a9295fbe6ebb930fd018"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.toyota_hiace_2024",
+      "slug": "toyota-hiace-2024",
+      "label": "2024 Toyota Hiace Sesfikile",
+      "region": "africa",
+      "year": 2024,
+      "make": "Toyota",
+      "model": "Hiace Sesfikile",
+      "bodyStyle": "van",
+      "color": "#e2e0d8",
+      "rhd": true,
+      "references": ["https://www.toyota.co.za/ranges/hiace-sesfikile"],
+      "sourceHash": "sha256:14be578ad04685b81acfad9a37972ab4b2925e541ea37b529338ac00c2f094c3",
+      "runtimeHash": "sha256:27e537887bebb410e51ef9551b7c06ff3bfece6c5b382614c58a797d73e3fa72",
+      "recipeHash": "sha256:975ffe8a4bd6fa0f891ac46036001d4425ad1aa9a59cdf5d594cfb206b103a7f",
+      "definitionHash": "sha256:5019480bcad20ae7381dbd36e87019bfe728ccafcda2245ca98a0f53ca4d2f7b",
+      "stats": {
+        "triangles": 19600,
+        "vertices": 27807,
+        "meshes": 29,
+        "primitives": 29,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 585036
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0801, -0.0035, -2.7585],
+          "max": [1.0801, 2.2851, 2.7615]
+        },
+        "sphere": {
+          "center": [0, 1.1408, 0.0015],
+          "radius": 2.9754
+        }
+      },
+      "exteriorCamera": {
+        "position": [4.4159999999999995, 3.4591999999999996, 5.244],
+        "lookAt": [0, 1.1408, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [-0.4324, 2.015, 1.4754],
+        "lookAt": [-0.4324, 1.8550000000000002, 2.4754],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/toyota-hiace-2024/shots/angle_0.png",
+          "sha256": "sha256:a7bd541d252180e6ba8dd2b9ff2bc6e0b290ff4bc40249bee2b1610ae6a2f8ae"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/toyota-hiace-2024/shots/angle_1.png",
+          "sha256": "sha256:1010443e0911e056d752c361899c83ad9ce3a213cf0c5fa4fd4a1d1e335aaa59"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/toyota-hiace-2024/shots/angle_2.png",
+          "sha256": "sha256:e7dbc3b9ad7cb1fbb094cfb56053c679442975e8b1079cee5abef6af749c5abb"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/toyota-hiace-2024/shots/angle_3.png",
+          "sha256": "sha256:470c518725aa870e3152190938c13926987162bddaf291656ac49d53c4a025f5"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/toyota-hiace-2024/shots/three-quarter.png",
+          "sha256": "sha256:ffda7896e8a6a47b8083050580c8a8fdb2dafa0e28154ffd548a7b12a2f5b061"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/toyota-hiace-2024/shots/operator.png",
+          "sha256": "sha256:1039925b182af83d38bfa9f2d7eca992f6c2f27595207c7b8988770d068bb50e"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.isuzu_d_max_2024",
+      "slug": "isuzu-d-max-2024",
+      "label": "2024 Isuzu D-MAX",
+      "region": "africa",
+      "year": 2024,
+      "make": "Isuzu",
+      "model": "D-MAX",
+      "bodyStyle": "pickup",
+      "color": "#6a6c70",
+      "rhd": true,
+      "references": [
+        "https://www.isuzu.co.za/newsroom/isuzu-unveils-the-all-new-isuzu-d-max-x-rider"
+      ],
+      "sourceHash": "sha256:484716a403bb1f7c8f4fcf592b6ef73fef2d9819790097f00455ed5710a498a0",
+      "runtimeHash": "sha256:860a0e9c36ea10c777979ff57ca1847352c6654a6634998887b6db8c55850bab",
+      "recipeHash": "sha256:d6ba19c6864a803ff9f68aacba35489fc73edaa43a7734e2fbde66c56fcbda92",
+      "definitionHash": "sha256:ab33ffc612ad75444ba177e826714a3da377ebfe4f8f1ea2edcd700a5fc646cd",
+      "stats": {
+        "triangles": 19207,
+        "vertices": 28508,
+        "meshes": 27,
+        "primitives": 27,
+        "materials": 11,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 594008
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0749, -0.0035, -2.701],
+          "max": [1.0749, 1.7899, 2.7105]
+        },
+        "sphere": {
+          "center": [0, 0.8932, 0.0047],
+          "radius": 2.7918
+        }
+      },
+      "exteriorCamera": {
+        "position": [4.3292, 3.16603, 5.140925],
+        "lookAt": [0, 0.8932, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [-0.4301, 1.52, 0.5424],
+        "lookAt": [-0.4301, 1.36, 1.5424],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/isuzu-d-max-2024/shots/angle_0.png",
+          "sha256": "sha256:2a338b438f9dea3848b57fb3e3f396c2acb41d5c619d0f842f7382a9499e03a0"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/isuzu-d-max-2024/shots/angle_1.png",
+          "sha256": "sha256:f1fe69c69e116ee9ff7aa2ef3c99c700182701be5451059f9148cbbd3ab91161"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/isuzu-d-max-2024/shots/angle_2.png",
+          "sha256": "sha256:0d256a4c404973fd8710afb9a1dec05513b6add9a0f81da6f6a4ee2f06932931"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/isuzu-d-max-2024/shots/angle_3.png",
+          "sha256": "sha256:568e67fe1df3219e62e2c3c89c1b8bd2470e79e755529082d70e14e2d0536f22"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/isuzu-d-max-2024/shots/three-quarter.png",
+          "sha256": "sha256:d689980da79498af601c666701d51eb2ef5130b920bf4e2cc68e1c61cddf2abb"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/isuzu-d-max-2024/shots/operator.png",
+          "sha256": "sha256:ff67479a726be9b02c450fb229fc3d7250cfc0cfde3570d9fdd8a92d67a31367"
+        }
+      ]
+    },
+    {
+      "id": "molen.entities.vehicle.suzuki_swift_2024",
+      "slug": "suzuki-swift-2024",
+      "label": "2024 Suzuki Swift",
+      "region": "africa",
+      "year": 2024,
+      "make": "Suzuki",
+      "model": "Swift",
+      "bodyStyle": "hatchback",
+      "color": "#a04540",
+      "rhd": true,
+      "references": ["https://www.globalsuzuki.com/globalnews/2023/1206.html"],
+      "sourceHash": "sha256:fff9a55791555834bfa7c0eb93523170c05e6402366994907d23dc3fa14a18d6",
+      "runtimeHash": "sha256:36bc86cff5142c4a11f1435900ac358320939e17aa63c8b7a510de0dc08dd1e4",
+      "recipeHash": "sha256:6cafde2fbbe88046809c9f973ad3e1a51a1b4243b597533f429b6b3d059b73e2",
+      "definitionHash": "sha256:3a71ffde7c9f66d85e10bf492ed281e823a7529aba3d6d93cbc0138c0f3a7179",
+      "stats": {
+        "triangles": 18350,
+        "vertices": 28257,
+        "meshes": 31,
+        "primitives": 31,
+        "materials": 12,
+        "textures": 0,
+        "animations": 0,
+        "sizeBytes": 586744
+      },
+      "bounds": {
+        "aabb": {
+          "min": [-1.0074, -0.0035, -1.9985],
+          "max": [1.0074, 1.495, 1.9985]
+        },
+        "sphere": {
+          "center": [0, 0.7458, 0],
+          "radius": 2.1457
+        }
+      },
+      "exteriorCamera": {
+        "position": [3.1976, 2.42449, 3.79715],
+        "lookAt": [0, 0.74575, 0],
+        "fov": 38
+      },
+      "driverCamera": {
+        "position": [-0.3991, 1.225, 0.2018],
+        "lookAt": [-0.3991, 1.0650000000000002, 1.2018],
+        "fov": 70
+      },
+      "images": [
+        {
+          "view": "angle_0",
+          "path": "source/vehicles/suzuki-swift-2024/shots/angle_0.png",
+          "sha256": "sha256:14bc802cad367b55381c81a3be70789b753e8cee9eae750cf413e0d2118f1e30"
+        },
+        {
+          "view": "angle_1",
+          "path": "source/vehicles/suzuki-swift-2024/shots/angle_1.png",
+          "sha256": "sha256:c380be7817f6b34017c698d01033f38d43e351db281a3e0304b809f9a5011e72"
+        },
+        {
+          "view": "angle_2",
+          "path": "source/vehicles/suzuki-swift-2024/shots/angle_2.png",
+          "sha256": "sha256:234825830f6b0bb682b8c0f7c1a80ea0b1fc9807430fba25f43721280419dd45"
+        },
+        {
+          "view": "angle_3",
+          "path": "source/vehicles/suzuki-swift-2024/shots/angle_3.png",
+          "sha256": "sha256:0b3561bad76ebdda83aecccfbdfe374658777f2fb190436d65dcc7457d838e95"
+        },
+        {
+          "view": "three-quarter",
+          "path": "source/vehicles/suzuki-swift-2024/shots/three-quarter.png",
+          "sha256": "sha256:ce7c4c1c879e6bf3818f4ab5f4fe2eaaf28fbdb03fc1cc0239ad796f18fff025"
+        },
+        {
+          "view": "operator",
+          "path": "source/vehicles/suzuki-swift-2024/shots/operator.png",
+          "sha256": "sha256:a7c84573777b79ed3bcaa847779ccc59a88e33a4a02329842805b9ffd4185532"
+        }
+      ]
+    }
+  ]
+}

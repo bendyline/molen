@@ -8,9 +8,7 @@ import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0028_pont_de_tolbiac', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('pont_de_tolbiac', 'map-frame.json')));
 const letteringFont = new FontLoader().parse(
   JSON.parse(
     readFileSync(
@@ -984,7 +982,7 @@ function geographicProposal() {
   };
 }
 export const tolbiacStudy = {
-  id: 'N0028',
+  id: 'pont_de_tolbiac',
   key: 'pont_de_tolbiac',
   title: 'Pont de Tolbiac',
   wikidataId: 'Q2307670',

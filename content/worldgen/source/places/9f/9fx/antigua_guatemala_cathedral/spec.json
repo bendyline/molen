@@ -1,0 +1,335 @@
+{
+  "planId": "antigua_guatemala_cathedral",
+  "id": "antigua_guatemala_cathedral",
+  "assetId": "molen.worldgen.structure.antigua_guatemala_cathedral",
+  "title": "Antigua Guatemala Cathedral",
+  "category": "cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -90.73265565,
+    "latitude": 14.55672905
+  },
+  "size": [
+    79.23067855834961,
+    21.427444458007812,
+    97.04811096191406
+  ],
+  "actualBounds": {
+    "min": [
+      -39.59536361694336,
+      -0.25,
+      -47.61110305786133
+    ],
+    "max": [
+      39.63531494140625,
+      21.177444458007812,
+      49.437007904052734
+    ]
+  },
+  "visualBrief": "Complete native surviving cathedral: cream west Baroque facade/parish with3recessed timber doors/blue radial fanlights, paired engaged columns, lower and upper saint niches, scroll shoulders/raised ornament, urns and central crown; separate lower southern parish wing/roofs. Full eastern roofless ruin extent with battered brick/plaster walls, articulated compound piers/capitals, real open transverse/lateral arches and thin broken vault-edge fragments around the20mapped roof voids. Bounded intrinsic nave floor/entrance steps/iron fence only. Lost bell towers and complete old dome/roof absent. Native perimeters/voids exact, structural sections/elevations/hidden details photo-estimated.",
+  "nativeAxes": {
+    "x": "south",
+    "y": "up",
+    "z": "west/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Antigua_Guatemala_Cathedral_in_December_2024._04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Parroquia_de_San_José_Catedral,_Antigua_Guatemala,_2024._16.jpg",
+    "https://commons.wikimedia.org/wiki/File:Antigua_Guatemala_Cathedral_in_December_2024._01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Antigua_Guatemala_Cathedral_in_December_2024._03.jpg"
+  ],
+  "stories": [
+    {
+      "id": "antigua-guatemala-cathedral-wp",
+      "url": "https://qualla.com/antigua-guatemala-cathedral/"
+    }
+  ],
+  "referenceInputHash": "9f9a0e99937b50907d95a0cc347750aa49e50557f60e42d4f164c4d114ec7f44",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-antigua-guatemala-cathedral.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c",
+    "trevi-sculpture-anatomy.mjs": "sha256:8bf01ff4b4097572de1b62930cb9bb0e732f873944c25995e42875032873e603"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-antigua-guatemala-cathedral.mjs",
+    "level": "skyline",
+    "export": "antiguaSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "antiguaDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "antiguaStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named cathedralrelation7212555/CatedraldeSanJose/Q2942367supplies the complete50-vertex perimeter and20inner roof-void rings. Original named ruined-cathedralrelation18928711supplies its59-vertex surviving-ruin extent. Exact shared-node boundary difference leaves a35-vertex western/southern standing-parish remainder. These are site/roof-surface controls, not measured ground-level pier/door plans or heights. In particular the20holes are mapped open-to-sky vault/roof voids, not20courtyards and not20standing domes to rebuild. Perimeter and voids are retained; arches/piers/vault fragments, facades and elevations are photographic medium-fi interpretations. Fixed west/front approach selected before terrain sampling. Intrinsic steps/floors remain bounded; no site-wide ground flattening.",
+    "anchor": [
+      -90.73265565,
+      14.55672905
+    ],
+    "heading": -1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -90.73314754511885,
+        14.55672905
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed west/front plaza approach beyond the native west facade, selected before terrain acquisition. Approximate datum only; intrinsic steps/footings are bounded and source relief is not flattened."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/7212555",
+      "relation/18928711"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7212555",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ead1c0f3ec59104a4425abcab8ba04abe6ea32a88b333c451aa8e2475bad2608",
+    "notes": "Current surviving parish to west/south and roofless nave extending east. Do not adopt adjacent ArchbishopPalace/SacristanHouse/seminary/chapels beyond the native cathedral outline, fill roof voids, replace the nave with a solid box, restore lost bell towers or cap the main ruin with a dome. Native perimeters/voids exact; structural sections/elevations and hidden details remain photographic estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named cathedralrelation7212555/CatedraldeSanJose/Q2942367supplies the complete50-vertex perimeter and20inner roof-void rings. Original named ruined-cathedralrelation18928711supplies its59-vertex surviving-ruin extent. Exact shared-node boundary difference leaves a35-vertex western/southern standing-parish remainder. These are site/roof-surface controls, not measured ground-level pier/door plans or heights. In particular the20holes are mapped open-to-sky vault/roof voids, not20courtyards and not20standing domes to rebuild. Perimeter and voids are retained; arches/piers/vault fragments, facades and elevations are photographic medium-fi interpretations.",
+    "Current standing west/south parish and complete eastern ruined extent are both included. Original50vertex perimeter/59vertex ruin boundary and20roof voids are retained; exact35vertex standing remainder is their shared-native-boundary difference. Western main Baroque composition spans the original roughly40.6mfront; the lower parish wing continues south within the original outline. No adjacent ArchbishopPalace/SacristanHouse/seminary, lost bell towers or complete old dome is inferred.",
+    "Main cornice10.2m/crown21.1m, lower parish8.4m/hidden hipped roofs, ruined walls9–10m and surviving arches/vault fragments roughly8–13m are photo-based medium-fi estimates, not surveys. Native voids locate open roof areas rather than measured ground-level pier sections; supporting pier/arch spans/levels and partial vault thickness/breakage are conservative original interpretations. No solid honeycomb extrusion or whole ruin roof replaces the open nave.",
+    "One exact published QuallaNerdoguateCC0portal original and3explicitly self-dedicatedCC0front/nave originals from the same creator were fully inspected. Native metadata dates2025-01-03despite2024filenames. Interior event/carpet scenes, incomplete-attribution night source, other churches and archival appearances were not used. No photographic texture, modern ticket booth/furnishings, inscriptions, park/trees, visitors/vehicles or streets.",
+    "Facade saints use statically baked public Molen figure anatomy under original long robes/attributes; detailed individual identities, portraits, gilded lettering, exact floral carving/capitals and fine erosion are bounded medium-fi approximations. Scrolls, doors/fanlights, niches, moldings, urns, compound piers and visible open arches are real geometry; delicate relief, louvres/fence rods and vault fragments retire with distance.",
+    "The fixed west/front approach[0,53]controls approximate datum, with bounded intrinsic front steps and nave floors near.85m. Footing extends.25m below datum. Exact thresholds, original grade/drainage, demolished foundations and contact with host terrain remain unverified; source relief is preserved without a whole-site platform."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "west-baroque-doors-fanlights-saint-niches-and-scroll-crown",
+      "position": [
+        8,
+        17,
+        91
+      ],
+      "lookAt": [
+        2,
+        10,
+        44
+      ]
+    },
+    {
+      "name": "roofless-nave-brick-arches-compound-piers-and-vault-voids",
+      "position": [
+        31,
+        24,
+        18
+      ],
+      "lookAt": [
+        1,
+        8,
+        4
+      ]
+    },
+    {
+      "name": "complete-ruined-transepts-rear-chapels-and-standing-parish",
+      "position": [
+        -95,
+        62,
+        -107
+      ],
+      "lookAt": [
+        0,
+        7,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 57240,
+    "vertices": 171720,
+    "materials": 6,
+    "bytes": 6872492,
+    "sha256": "sha256:a1edfa383853ad00e0a8da11256c3ce9e1f079074671b830b71a9010a2000e3a"
+  }
+}

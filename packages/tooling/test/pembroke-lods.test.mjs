@@ -9,7 +9,7 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 const frame = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/gc/gch/n0295_pembroke_castle/map-frame.json',
+        '../../../content/worldgen/source/places/gc/gch/pembroke_castle/map-frame.json',
         import.meta.url,
       ),
     ),
@@ -53,7 +53,7 @@ function rayHit(origin, direction, p) {
   return u < -1e-5 || v < -1e-5 || u + v > 1.00001 ? null : dot(e2, cross(q, e1)) / det;
 }
 it('builds deterministic browser levels with five shared graphs and homogeneous GPU views', async () => {
-  const id = 'molen.worldgen.structure.n0295_pembroke_castle',
+  const id = 'molen.worldgen.structure.pembroke_castle',
     sizes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

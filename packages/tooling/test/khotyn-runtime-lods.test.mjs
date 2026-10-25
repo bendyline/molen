@@ -11,7 +11,7 @@ import { khotynStudy } from '../../worldgen/scripts/khotyn-fortress-model.mjs';
 import { khotynGround } from '../../worldgen/scripts/khotyn-runtime-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u8/u8d/n0260_khotyn_fortress'),
+const source = resolve('../../content/worldgen/source/places/u8/u8d/khotyn_fortress'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

@@ -1,0 +1,7 @@
+# Casa Grande entrance construction — 2026-10-18
+
+Built the actual rectangular stone portal recess, jamb/head reveals, two threshold steps, inset metal grille and arched metal fan. The arch belongs to the grille; the stone opening has a flat head. Split the low base band so it no longer passes through the doorway. The recess ends at an opaque boundary. Retained existing main-house offset, compound bodies, source map, ground and placement.
+
+Started with cleared Qualla imagery and inspected its Daderot CC0 grounds photo, which does not show the entrance. Two native Daderot own-work CC0 exterior originals then individually inspected: full Casa Grande front and Neptune temple. Creator primary grants/revisions, no-attribution/no-restrictions metadata and original hashes bound. Prior CC and uncertain archival imagery excluded. Fine carvings, hidden compound details and fixed 0.55 m depth remain approximations.
+
+All 39 current renders inspected. Source-native hill views carry vertical context; the shared flat fixture clips lower compound volumes and only supports material/transform checks. Original source elevations and architecture levels unchanged. Four levels: 683/2675/15747/25427 triangles, 1/4/4/4 draws. Targeted source/import/hash/normal/winding/UV/strict-budget and entrance air/floor/reveal/grille controls pass. No interior navigation, surveyed levels or embedded photos claimed. Current hashes and limits in qa.json.

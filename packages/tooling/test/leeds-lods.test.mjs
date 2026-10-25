@@ -4,7 +4,7 @@ import { leedsParts, leedsPlanPoint } from '../../worldgen/scripts/leeds-castle-
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u1/u10/n0304_leeds_castle/',
+  '../../../content/worldgen/source/places/u1/u10/leeds_castle/',
   import.meta.url,
 );
 const frame = JSON.parse(readFileSync(new URL('map-frame.json', root))),
@@ -74,7 +74,7 @@ function boundaryDistance(q, rings) {
   return minimum;
 }
 it('rebuilds four deterministic browser levels with five shared surfaces and compact GPU layouts', async () => {
-  const id = 'molen.worldgen.structure.n0304_leeds_castle',
+  const id = 'molen.worldgen.structure.leeds_castle',
     sizes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

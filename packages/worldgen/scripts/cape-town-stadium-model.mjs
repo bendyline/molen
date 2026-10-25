@@ -523,7 +523,7 @@ export function buildCapeTown(out) {
   envelope(out);
 }
 export const capeTownStudy = {
-  id: 'N0698',
+  id: 'cape_town_stadium',
   key: 'cape_town_stadium',
   wikidataId: 'Q173559',
   title: 'Cape Town Stadium',

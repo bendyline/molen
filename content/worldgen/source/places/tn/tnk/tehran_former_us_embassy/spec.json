@@ -1,0 +1,261 @@
+{
+  "planId": "tehran_former_us_embassy",
+  "id": "tehran_former_us_embassy",
+  "assetId": "molen.worldgen.structure.tehran_former_us_embassy",
+  "title": "Former United States Embassy, Tehran",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 51.42368271946907,
+    "latitude": 35.707551344093204
+  },
+  "size": [
+    75.93241119384766,
+    13.360000312328339,
+    22.237411499023438
+  ],
+  "actualBounds": {
+    "min": [
+      -37.96190643310547,
+      -0.18000000715255737,
+      -13.565189361572266
+    ],
+    "max": [
+      37.97050476074219,
+      13.180000305175781,
+      8.672222137451172
+    ]
+  },
+  "visualBrief": "Surviving long two-storey brick main1951chancery on its native plan, shallow grey hipped roof, recessed pale-framed sash rhythm, raised tall pale columned entrance portico with square attic and simplified round medallion, bounded entrance treads. Main building only; detached campus buildings, gardens/stadium, perimeter mural walls and interiors excluded.",
+  "nativeAxes": {
+    "x": "east along long chancery body",
+    "y": "up",
+    "z": "south across body"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:USA_Embassy_in_Tehran.jpg"
+  ],
+  "stories": [
+    {
+      "id": "embassy-of-the-united-states-tehran-wp",
+      "url": "https://qualla.com/embassy-of-the-united-states-tehran/"
+    }
+  ],
+  "referenceInputHash": "7a1ef44dd63132d9ab1ea391c95ba8abb0ec5a9e81e49c0b09ae8b2b98639573",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-tehran-former-us-embassy.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-tehran-former-us-embassy.mjs",
+    "level": "skyline",
+    "export": "tehranEmbassySkyline",
+    "errorMeters": 0.7,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "tehranEmbassyDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "tehranEmbassyStreet",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native surviving main chancery plan and northern entrance projection fix center and heading. Open front-ground reference17m north of center is outside physical stair/portico. Source urban DEM unchanged; exact restored paving/ground contact remains approximate.",
+    "anchor": [
+      51.42368271946907,
+      35.707551344093204
+    ],
+    "heading": 0.03546902295930523,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        51.4236760502602,
+        35.707703960942666
+      ],
+      "modelHeight": 0,
+      "basis": "Front open-ground point beyond the main portico and entrance treads, fixed before terrain sampling and geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184832224298"
+    ],
+    "source": "https://build.protomaps.com/20261019.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7bca6417063705ed982cfbdb36bd65c7f2e1692fe543e5975768c8d3ddfdc35e",
+    "notes": "Native plan controls placement/body proportions.1950saerial supports surviving massing, not a complete survey of present restored details. No whole-compound footprint or perimeter mural wall modeled."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native mapped surviving main building controls approximately75m length/17m depth and northern portico projection. About8.8m eaves,11.3m ridge and13.1m entry attic are photographic estimates, not a building survey.",
+    "Only the already cleared published1950spublic-domain aerial is used. It is distant and black-and-white; brick/roof colors, exact window counts/panes, rear openings and restored current details are medium-fi interpretations. Round entry emblem is a simplified disc, not a copied photograph or detailed seal.",
+    "Main original chancery only. The old aerial is not authority to reconstruct every historical campus structure; detached structures, grounds, perimeter propaganda/mural walls, flags and interiors excluded. Surviving main-building model is not a functioning diplomatic mission.",
+    "Flat inspection floor isolates architecture. Original urban source terrain is preserved as placement evidence; exact paving/foundation and cross-provider height contact are not certified. No photographic pixels embedded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "north-portico-and-sashes",
+      "position": [
+        23,
+        11,
+        -34
+      ],
+      "lookAt": [
+        -1,
+        6,
+        -7
+      ]
+    },
+    {
+      "name": "rear-and-hip-roof",
+      "position": [
+        45,
+        24,
+        48
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11942,
+    "vertices": 35826,
+    "materials": 4,
+    "bytes": 1435816,
+    "sha256": "sha256:a6be8095cff6c9ca723c71f1c421ec5e7728724ce42a56911a34913a4e9afd58"
+  }
+}

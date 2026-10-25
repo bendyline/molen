@@ -1,4 +1,4 @@
-/** N0667 individually retained pier ensemble; original detailed source remains unchanged. */
+/** vorontsov_lighthouse individually retained pier ensemble; original detailed source remains unchanged. */
 import earcut from 'earcut';
 import { beam, loft, normalFor, sphere as originalSphere } from './authored-structure-mesh.mjs';
 import { buildVorontsov as master } from './lighthouse-blacksea-models.mjs';

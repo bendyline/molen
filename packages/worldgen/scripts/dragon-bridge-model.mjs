@@ -675,7 +675,7 @@ export function buildDragonBridge(out) {
 
 export const dragonBridgeStudy = {
   mapFrameDocument: 'map-frame.json',
-  id: 'N0022',
+  id: 'dragon_river_bridge',
   key: 'dragon_river_bridge',
   title: 'Dragon Bridge, Da Nang',
   wikidataId: 'Q5305270',

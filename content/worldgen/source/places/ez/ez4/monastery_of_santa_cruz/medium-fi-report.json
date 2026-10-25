@@ -1,0 +1,1101 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.monastery_of_santa_cruz",
+  "sourceHash": "sha256:720d2b24252d60f142d46afdf9ebd1a3bf2cb9fdc4c5346aac3ff3dd0f145709",
+  "runtimeHash": "sha256:bebdc6c810624f74a8550967f80f6cc5782af421ae1544510416531c66a88e81",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:032e0fcbae0f50a9f81a11ebb32de0ea8d00f153eca32848c1963db9d3453710",
+      "bytes": 101516,
+      "gzipBytes": 19094,
+      "triangles": 966,
+      "cpuBytes": 100080,
+      "gpuBytes": 100080,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:3a6ec64a644d3bc913ad4b22329654c9b805078a45996b8fae822853ad71ad1f",
+      "bytes": 358408,
+      "gzipBytes": 97811,
+      "triangles": 3756,
+      "cpuBytes": 350928,
+      "gpuBytes": 350928,
+      "errorMeters": 0.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:caf44c0856829990c0113066af8b89e5bd9a3168016a6081e855869d397906d4",
+      "bytes": 1172292,
+      "gzipBytes": 350613,
+      "triangles": 11827,
+      "cpuBytes": 1163600,
+      "gpuBytes": 1163600,
+      "errorMeters": 0.16,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:caf44c0856829990c0113066af8b89e5bd9a3168016a6081e855869d397906d4",
+      "bytes": 1172292,
+      "gzipBytes": 350613,
+      "triangles": 11827,
+      "cpuBytes": 1163600,
+      "gpuBytes": 1163600,
+      "errorMeters": 0.05,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:c606b04da44a2de4b4b575767733cb0a39de4778db3d8ce89b4ba3b62fa16418"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:5eb4ff932edf7626ff850b5a830eb5906d8107591c45d36b40c8259c8e23af6d"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:ce950c1138cff5b3df51637932c60dfdaab0a745b7ed623a81bea495b1d3e8ca",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 150645,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          83.63759999999999,
+          46.311499999999995,
+          72.88799999999999
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:a160f88c8ee81a8da72df9ff9cdd47856ff01dd7f9df40a8bce28512cc807ce2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 150645,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          83.63759999999999,
+          46.311499999999995,
+          72.88799999999999
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:d40b3e03e82fb2644dd31776551d553be32a2d259da358be6caab8e4f0659a0c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 150645,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          83.63759999999999,
+          46.311499999999995,
+          72.88799999999999
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:43330ab352c8afeee3030dcd80a4a6a686e4408a7db456245f8ac48dcfa53a69",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 150645,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          83.63759999999999,
+          46.311499999999995,
+          72.88799999999999
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:eadfe82b808f5ba89fbbf14e9f1d4b1f68438cc5f62494b57df82e18616058b8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 142574,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          142.4376,
+          89.51149999999998,
+          174.888
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:6d7fa11eae0803a12b351e14ec98d49efb7542be3c387fdad09382400df8a6a5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 142574,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          142.4376,
+          89.51149999999998,
+          174.888
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:b1fadd79331834b41336d532531d4f7632c6375a1fd13d3f129a77c4c977bec4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 142574,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          142.4376,
+          89.51149999999998,
+          174.888
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:ff58d90f2b387ece32ca571a9d71b92a4c4171e22dd5e1fff764a7033f26317a",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 142574,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          142.4376,
+          89.51149999999998,
+          174.888
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:377639c45d21679efe173eae3b58a3ed81c6a4b4ccabe0743ceef8cf47723be8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 139784,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          258.8376,
+          135.1115,
+          376.488
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:d2f62d97c9b2b16b0973bc4996e43e1d0b3e1ffa94845feb6dabf345392068a8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139784,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          258.8376,
+          135.1115,
+          376.488
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:0b4712d72eb6d5adf088190c34c572698041655ddd0074d4c8bb751d654842ee",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 139784,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          258.8376,
+          135.1115,
+          376.488
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:e1afe7d8351f94d42328df1d1eb71646ebe851dc3bded0fac7c146dafbc113f3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139784,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          258.8376,
+          135.1115,
+          376.488
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:1c7d6a4dae88c313e8810067edac05bad0f8e4a8b0f75d99183cdb3749399119",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 134088,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          258.8376,
+          135.1115,
+          376.488
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-stone-front-portal-window-pinnacles.png",
+      "hash": "sha256:9a0a652b550d8303f0a00f8ee9ee9a652e756d746c84b3db729e66c6b3201f9b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 150645,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          -56.23034075591065,
+          17,
+          15.84767422917865
+        ],
+        "lookAt": [
+          -15.662883284838019,
+          14,
+          3.4024384205363343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-cloister-arches-tracery-and-fountain.png",
+      "hash": "sha256:19dd335829fe5d3db80f62adcf3ac9225edc59ad672378e862e2fdfbac1d99a9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 150621,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          29.064744328664098,
+          5,
+          -27.807204769796414
+        ],
+        "lookAt": [
+          41.29375235820056,
+          4.8,
+          -33.76130945593796
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/cloister-court-and-surrounding-roofs.png",
+      "hash": "sha256:d8e48d61bc373058ee0889e6a20ff747c4d4d3ff84c013222b5a7562632e4e06",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 150621,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          31.413021378279467,
+          46,
+          -32.22145384503557
+        ],
+        "lookAt": [
+          31.413021378279467,
+          0,
+          -32.22145384503557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/santacruz-skyline.png",
+      "hash": "sha256:519fc58fbda653bcfd67924adb6b5b5ea9e486cd71f19d2e5ffb0abe523c4014",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139784,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          -74.74707966391492,
+          65,
+          72.3731585721969
+        ],
+        "lookAt": [
+          16.681750738037394,
+          10,
+          -22.841173181646973
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/santacruz-district.png",
+      "hash": "sha256:c5da7938833015122e7faff4460c45d7e57e7bd75cf6eb9d5069f5760e56ccea",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 142574,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          -74.74707966391492,
+          65,
+          72.3731585721969
+        ],
+        "lookAt": [
+          16.681750738037394,
+          10,
+          -22.841173181646973
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/santacruz-street.png",
+      "hash": "sha256:25ed7809c5deb8a9dcfcd32f27cdab0037a031613071101ce7243ddf84734bf2",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 150645,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          -74.74707966391492,
+          65,
+          72.3731585721969
+        ],
+        "lookAt": [
+          16.681750738037394,
+          10,
+          -22.841173181646973
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/santacruz-closeup.png",
+      "hash": "sha256:7ab1bd15008e019e4e9b214b5d9a163fcc8cfa821ec593a7a17889b1becdc89a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 150645,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          -74.74707966391492,
+          65,
+          72.3731585721969
+        ],
+        "lookAt": [
+          16.681750738037394,
+          10,
+          -22.841173181646973
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:ff07ab1ca87b7291a8428be2fd14d2fa3d31b64804eb003bb01b6cce203e26ec",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139784,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          142.4376,
+          89.51149999999998,
+          174.888
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:6d7fa11eae0803a12b351e14ec98d49efb7542be3c387fdad09382400df8a6a5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 142574,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          142.4376,
+          89.51149999999998,
+          174.888
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:ba4946716e38d692ffe59e051cdb6aabe6412752bbc4a0ad017b67855dbdda77",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 150645,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          142.4376,
+          89.51149999999998,
+          174.888
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:70a289000a8aba0f10b9e9e1bf0084f289fef3cda819f601c8ddcf6f8b16430f",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 150645,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/terrain-review.height.png"
+        },
+        "position": [
+          142.4376,
+          89.51149999999998,
+          174.888
+        ],
+        "lookAt": [
+          26.0376,
+          28.3115,
+          -26.712
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/gc/gch/n0311_tintagel_castle/',
+  '../../../content/worldgen/source/places/gc/gch/tintagel_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -558,7 +558,7 @@ export const buildTintagelDistrict = (out) => build(out, 1);
 export const buildTintagelStreet = (out) => build(out, 2);
 export const buildTintagelCloseup = (out) => build(out, 3);
 export const tintagelStudy = {
-  id: 'N0311',
+  id: 'tintagel_castle',
   key: 'tintagel_castle',
   title: 'Tintagel Castle',
   category: 'castle',

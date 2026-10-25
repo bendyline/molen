@@ -553,7 +553,7 @@ export function buildEshima(out) {
   navigationMarks(out);
 }
 export const eshimaStudy = {
-  id: 'N0006',
+  id: 'eshima_ohashi_bridge',
   key: 'eshima_ohashi_bridge',
   title: 'Eshima Ohashi Bridge',
   wikidataId: 'Q11550847',

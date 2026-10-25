@@ -1,0 +1,368 @@
+{
+  "planId": "edificio_altino_arantes",
+  "id": "edificio_altino_arantes",
+  "assetId": "molen.worldgen.structure.edificio_altino_arantes",
+  "title": "Edifício Altino Arantes",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q169420",
+  "referenceCoordinate": {
+    "latitude": -23.545675,
+    "longitude": -46.6341
+  },
+  "visualBrief": "Mapped chamfered white ceramic Art Deco tower with projecting outlook band, preserved upper-core outline, faceted glazed beacon, flag mast and northwest-facing historic entrance.",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 2.5
+  },
+  "size": [
+    46.68600082397461,
+    161.22000122070312,
+    17.02299976348877
+  ],
+  "actualBounds": {
+    "min": [
+      -23.343000411987305,
+      0,
+      -8.729999542236328
+    ],
+    "max": [
+      23.343000411987305,
+      161.22000122070312,
+      8.293000221252441
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped long axis",
+    "front": "-Z toward Rua João Brícola",
+    "origin": "Ground-level center of exact-QID mapped footprint"
+  },
+  "sourceFacts": {
+    "heightMeters": 161.22,
+    "floors": 35,
+    "beaconHeightMeters": 11.7,
+    "flagMastMeters": 9,
+    "completion": 1947,
+    "publishedWindowCount": 1119
+  },
+  "appearance": {
+    "identity": "White ceramic Art Deco tower with broad front outlook band, chamfered upper body and faceted glazed lantern.",
+    "epoch": "Restored Farol Santander exterior; operator2023aerial and2025manual.",
+    "master": "Historical32360triangle recipe retained unchanged. Current exterior is reconstructed as an independent source master.",
+    "materials": "Canonical tile_mosaic approximates ceramic pastilhas; fixedcentral0.6m repeat gives5cm pieces. Canonicalmetal/fabric and local opaque glazing are shared across browser levels."
+  },
+  "reconstruction": {
+    "lowerBandMeters": [
+      16.57,
+      91,
+      107.14
+    ],
+    "upperCore": "Dated mapped part425691323, chamfered plan independently checked against operator21/25/26floor plans",
+    "upperRoofMeters": 140.52,
+    "beaconTopMeters": 152.22,
+    "entranceNativeXZ": [
+      4.159,
+      -8.293
+    ],
+    "detail": "Sideward tier extents/heights, cornice depth and lantern radius profile reconstructed from operator photographs."
+  },
+  "referencePages": [
+    "https://www.farolsantander.com.br/sp/sobre-o-farol",
+    "https://www.farolsantander.com.br/assets/sites/2/20241204172903/Manual-de-Eventos-Farol-Santander-2025.pdf?_rsc=1mcjp"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -46.634121402,
+      -23.545808943
+    ],
+    "heading": 0.826847524337,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/191607149",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/191607149"
+    ],
+    "wikidataId": "Q169420",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4349c9bda66745b752001b5a3906b80d2715462721f68384b92ca51ec5d03c71",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID mapped long-axis frame retained, with ground envelope as mapped. Tier depths, center offset and entrance frontage are exterior reconstructions within the frame; the model includes the operator-published beacon and flag mast in its total height."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_mosaic",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.6,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior reconstruction from operator dimensions, dated photos/plans and attributed OSM perimeter/upper part. Exact1119window correspondence, minor rooftop fixtures and interiors are excluded.",
+    "Shared5cm mosaic approximates smaller ceramic pieces; no photographs or separate baked texture copies. Setback heights and projecting outlook band are reconstructed. Convex collision is exterior only.",
+    "The datum for adjoining streets and podium has not been surveyed. Host terrain supplies nativeY0; mapped address entrance faces -Z."
+  ],
+  "qaCameras": [
+    {
+      "name": "art-deco-facade",
+      "position": [
+        27,
+        78,
+        44
+      ],
+      "lookAt": [
+        1,
+        70,
+        6
+      ]
+    },
+    {
+      "name": "setbacks",
+      "position": [
+        50,
+        138,
+        62
+      ],
+      "lookAt": [
+        1,
+        119,
+        0
+      ]
+    },
+    {
+      "name": "beacon-flag",
+      "position": [
+        30,
+        157,
+        35
+      ],
+      "lookAt": [
+        2,
+        148,
+        0
+      ]
+    },
+    {
+      "name": "entrance",
+      "position": [
+        29,
+        10,
+        42
+      ],
+      "lookAt": [
+        1,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -221,
+        145,
+        327
+      ],
+      "lookAt": [
+        1,
+        80,
+        0
+      ]
+    },
+    {
+      "name": "street-front",
+      "position": [
+        27,
+        80,
+        -65
+      ],
+      "lookAt": [
+        1.7,
+        80,
+        -3
+      ]
+    },
+    {
+      "name": "correct-entrance",
+      "position": [
+        21,
+        12,
+        -42
+      ],
+      "lookAt": [
+        4.159,
+        6,
+        -8.3
+      ]
+    },
+    {
+      "name": "faceted-beacon",
+      "position": [
+        24,
+        151,
+        -32
+      ],
+      "lookAt": [
+        1.7,
+        146,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/altino-arantes-current-model.mjs",
+    "export": "buildAltinoCurrent"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/altino-arantes-current-model.mjs",
+    "export": "buildAltinoSkyline",
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAltinoDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "cladding": {
+            "graph": "tile_mosaic",
+            "slot": "wall",
+            "roughness": 0.32,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "canvas": {
+            "graph": "fabric_canvas",
+            "slot": "roof",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAltinoStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "cladding": {
+            "graph": "tile_mosaic",
+            "slot": "wall",
+            "roughness": 0.32,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "canvas": {
+            "graph": "fabric_canvas",
+            "slot": "roof",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "district-front",
+      "position": [
+        -65,
+        120,
+        -145
+      ],
+      "lookAt": [
+        1.7,
+        90,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-beacon",
+      "position": [
+        24,
+        151,
+        -32
+      ],
+      "lookAt": [
+        1.7,
+        146,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 26760,
+    "vertices": 63838,
+    "materials": 5,
+    "bytes": 2622452,
+    "sha256": "sha256:b546065d2344187367749493b1a3e437824663df64b60b60f1c51cf678b081c8"
+  }
+}

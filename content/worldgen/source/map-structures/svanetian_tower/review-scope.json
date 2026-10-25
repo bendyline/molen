@@ -1,0 +1,279 @@
+{
+  "fidelityTarget": "medium-fi",
+  "brief": "Reusable Svanetian defensive-tower type: tall tapered warm-stone shaft, sparse recessed arrow slits and elevated closed timber door, four projecting crown faces with three deep arched mouths each, and shallow stone/slate gable roof. Medium-fi exterior based on two ordinary photographs, not a replica of a named tower.",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.86,
+      "metallic": 0
+    }
+  },
+  "sourceDocuments": [
+    "review-scope.json",
+    "reference-metadata.json",
+    "surface-means.json",
+    "map-example.json"
+  ],
+  "reconstruction": {
+    "type": "Svanetian defensive tower",
+    "baseWidthMeters": 5.6,
+    "heightMeters": 23,
+    "crownWidthMeters": 5.16,
+    "upperArchesPerFace": 3,
+    "subgradeFootingDepthMeters": 1.5
+  },
+  "sourceFacts": {
+    "identity": "Q16375698 describes a type, not a unique building. Existing unique-anchor identity rejection is retained.",
+    "dimensions": "Authored nominal envelope from ordinary pictures; not surveyed."
+  },
+  "scaleBasis": "Nominal23m tower on5.6m square occupied base, inferred from ordinary village and close tower photos. Instance footprint/height overrides come only from map data.",
+  "camera": {
+    "position": [
+      30,
+      19,
+      38
+    ],
+    "lookAt": [
+      0,
+      11.5,
+      0
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "crown-arched-mouths-and-shallow-roof",
+      "position": [
+        8,
+        23,
+        10
+      ],
+      "lookAt": [
+        0,
+        20.7,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "recessed-elevated-door-and-taper",
+      "position": [
+        8,
+        7,
+        13
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "base-contact-and-rear-slits",
+      "position": [
+        -14,
+        8,
+        -18
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 47
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        30,
+        19,
+        38
+      ],
+      "lookAt": [
+        0,
+        11.5,
+        0
+      ],
+      "fov": 43,
+      "name": "svan-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        30,
+        19,
+        38
+      ],
+      "lookAt": [
+        0,
+        11.5,
+        0
+      ],
+      "fov": 43,
+      "name": "svan-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        30,
+        19,
+        38
+      ],
+      "lookAt": [
+        0,
+        11.5,
+        0
+      ],
+      "fov": 43,
+      "name": "svan-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        30,
+        19,
+        38
+      ],
+      "lookAt": [
+        0,
+        11.5,
+        0
+      ],
+      "fov": 43,
+      "name": "svan-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/svanetian-tower-model.mjs",
+    "export": "buildSvanetianSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSvanetianDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSvanetianStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSvanetianCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "This regional building type is not a unique named landmark. No geographic centroid is published as a placement.",
+    "Nominal5.6m base/23m height, taper, slit inventory, upper arches, roof pitch and elevated-door facing are authored picture-led type values, not measured dimensions.",
+    "Only explicit type names with classification and regional bounds, or tower:type=svanetian in that region, may select this model. Hotels, museums, generic attractions, untyped square buildings and partial-name matches are excluded.",
+    "Mapped direction/complete footprint controls instance orientation and fit when supplied; point-only type labels have no directed facade evidence and keep the declared fallback. No invented survey orientation.",
+    "Exterior only; no copied photo textures, furnished interior, adjoining houses, terrain slab or active unique-site identity.",
+    "Ground attachment plane isY=0 with a bounded1.5m subgrade footing. This is a coarse-terrain visualization aid, not a measured or engineered historical foundation. No ground flattening/cutout."
+  ]
+}

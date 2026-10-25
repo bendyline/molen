@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.suv": {
-      "doc": "Tall sport-utility vehicle with heavier road handling.",
+      "doc": "Bendy SUV. Tall sport-utility vehicle with heavier road handling.",
       "components": {
         "transform": {
           "pos": [
@@ -23,7 +23,9 @@
           "kind": "molen.entities.vehicle.suv",
           "color": "#64735c",
           "spec": {
-            "label": "SUV",
+            "label": "Bendy SUV",
+            "bodyStyle": "suv",
+            "genericLabel": "SUV",
             "width": 1.93,
             "length": 4.75,
             "height": 1.78,
@@ -75,7 +77,8 @@
             "interior": {
               "nodes": [
                 "body",
-                "steering-wheel"
+                "steering-wheel",
+                "cabin"
               ],
               "bindings": [
                 {
@@ -84,6 +87,15 @@
                   "property": "rotation",
                   "axis": "z",
                   "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
                 }
               ]
             }

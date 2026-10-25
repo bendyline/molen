@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u1/u10/n0304_leeds_castle/',
+  '../../../content/worldgen/source/places/u1/u10/leeds_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -867,7 +867,7 @@ const camera = (name, position, lookAt) => ({
   lookAt: native(lookAt),
 });
 export const leedsStudy = {
-  id: 'N0304',
+  id: 'leeds_castle',
   key: 'leeds_castle',
   title: 'Leeds Castle',
   category: 'castle',

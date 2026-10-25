@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { face, localOutline, mappedCap, mappedSolid } from './signature-tower-expansion-models.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0173_torre_glories',
+const key = 'torre_glories',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json')));
 const palette = [

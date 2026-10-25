@@ -5,9 +5,7 @@ import { loft, normalFor } from './authored-structure-mesh.mjs';
 import { quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0016_dyavolski_most', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('dyavolski_most', 'map-frame.json')));
 const gray = [0.39, 0.385, 0.344],
   mortar = [0.35, 0.342, 0.305];
 const rnd = (s) => {
@@ -394,7 +392,7 @@ export function buildDyavolski(out) {
   paving(out);
 }
 export const dyavolskiStudy = {
-  id: 'N0016',
+  id: 'dyavolski_most',
   key: 'dyavolski_most',
   title: 'Dyavolski Most (Devil’s Bridge)',
   wikidataId: 'Q2458142',

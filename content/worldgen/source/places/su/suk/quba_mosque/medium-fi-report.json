@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.quba_mosque",
+  "sourceHash": "sha256:9f36d7f9a4d4daa7b997eb9f18d17ec088c9d7b54f4a8e5f7a0cc34964a529bb",
+  "runtimeHash": "sha256:9d834a53856ac6316d0a2a3b60313c121d686440908799a4d3681ee6139b2521",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 10478,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:0d0643324bb36f3264148d9ba3a462b84519ee4d2e0441a5caf7088c03d0fd0b",
+      "bytes": 88952,
+      "gzipBytes": 14769,
+      "triangles": 906,
+      "cpuBytes": 87516,
+      "gpuBytes": 87516,
+      "errorMeters": 2.2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:1f44d74f2ab861fd772e1ff1bdb7875df6cfbb01a5d202c1ddbdb78f63f41c5e",
+      "bytes": 298684,
+      "gzipBytes": 81940,
+      "triangles": 3246,
+      "cpuBytes": 290128,
+      "gpuBytes": 290128,
+      "errorMeters": 0.9,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:0c67d40dffefe7d02320c3a679a3ee2ee504e2f5f10236c42524db7008144830",
+      "bytes": 1407944,
+      "gzipBytes": 441481,
+      "triangles": 14362,
+      "cpuBytes": 1399312,
+      "gpuBytes": 1399312,
+      "errorMeters": 0.3,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:fdfef4c0b44f66141a1e98eefcf2337a73b0180cac4c9a8d7a3ac72eb89be9ce",
+      "bytes": 3666636,
+      "gzipBytes": 1114213,
+      "triangles": 34068,
+      "cpuBytes": 3657988,
+      "gpuBytes": 3657988,
+      "errorMeters": 0.1,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:2284b77f45347645e54d2d0160e2837d38fabd1e6333519b202ec48ca200bae6"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:db5729a71c083f53bc484de6bf8b0fba01f5a573c430a94eab7aab4814412ea5"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:af9bfb3137ee2d7015798697e70746f26a7149aeacf57c113836dd7e97ca5dbe",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          71.9642,
+          62.5877,
+          124.5152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:bf9b3ead4ecf35aa3634a18dcbe775a31f47ddd8d4f56d5a45bc28bac03e244b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          71.9642,
+          62.5877,
+          124.5152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:d0d8985d3311846679135040e4cff081a9781b748a908008f900f182127563ad",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          71.9642,
+          62.5877,
+          124.5152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:6d08646dd8ca6b7f3c8e4b982d9af6df891fec046645298ed257a6a33494b14f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          71.9642,
+          62.5877,
+          124.5152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:caba50ef8f50022009eda14fdd0ce8fc86413f0ed6bda71f2d6fcd52840e65a0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 34526,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.4642,
+          116.5877,
+          252.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:287e4ae14ba62342a109210d2cfb591c6b11a18f1c25b78a7a88ec10fa669a67",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34526,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.4642,
+          116.5877,
+          252.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:d3d1939ea07e40680d3c5b5d961259d554e513d2f2831dd5095c036a8ae2f21c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 34526,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.4642,
+          116.5877,
+          252.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:9c54bffe9a0865f896b7378e92af2ecffca7b11856ab0a167f7374d836e63462",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34526,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.4642,
+          116.5877,
+          252.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:bdd6d9dbf0aa9a20ab4e44ee2ccb7a19ae2dfdc97f444ddeaee5299a2e44ece6",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32186,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.9642,
+          173.5877,
+          504.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:bcf55628fc35db7e594d90eaf8bc1e99dbd6d349b6388b115c043c114c1271c3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32186,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.9642,
+          173.5877,
+          504.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:e7f4fce8faafb7d83ea325a64fc26103a60cd467d512335fdd21be702ad2ce50",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32186,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.9642,
+          173.5877,
+          504.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:e9abf5d81c91cdb42fdc6c5ac5f459e9995c234bec8c7182fc5be6a0e76359fd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32186,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.9642,
+          173.5877,
+          504.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:442976c549597b6e7358cb1ca2d9d2c6273761a2f880f331967364a1d4619f4e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21708,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          290.9642,
+          173.5877,
+          504.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/six-domes-and-four-minarets.png",
+      "hash": "sha256:9dea8b3fec3e289ff668ca217dcfb7c5c98a4546069b666433466e06f571016f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -116,
+          61,
+          99
+        ],
+        "lookAt": [
+          -10,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-entrance-and-trefoil-hood.png",
+      "hash": "sha256:adf0c1983156f8a0fe13ad48547b6841bdd9e6e288c5d7f492cabbd60a582d7c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -27.5,
+          12,
+          51
+        ],
+        "lookAt": [
+          -27.5,
+          8,
+          26.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/shaded-pointed-courtyard.png",
+      "hash": "sha256:e33690026bd94d750ab91c4d32a7349305a35002285b0e4334f3cfde817442aa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          7,
+          9,
+          0
+        ],
+        "lookAt": [
+          -9,
+          10,
+          -1.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/two-balcony-minaret.png",
+      "hash": "sha256:ae8bb36a27d66df9e0f1b5491876c7fd24a5fc2afd78ac49d97ca7a1d227289d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -78,
+          32,
+          51
+        ],
+        "lookAt": [
+          -44.4,
+          31,
+          23.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/white-dome-and-drum.png",
+      "hash": "sha256:48b8c6a086835518d7d169ec3f67690ecf265a90303f7bc7b80e0fbdd8860bbc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -66,
+          29,
+          16
+        ],
+        "lookAt": [
+          -35,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-and-signed-plan.png",
+      "hash": "sha256:f3b21ba2ebf95b80dd1c65574b543827228143afa607c74b28c8d2cbf7b471be",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          225,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-quba-skyline.png",
+      "hash": "sha256:9dc5b4e43cf7ec123b46cbae4978adffb6aa4c6890d21d9f437f03753264e190",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32186,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -132,
+          89,
+          118
+        ],
+        "lookAt": [
+          -2,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-quba-district.png",
+      "hash": "sha256:a57bc380e8b9d7618e054b548acc20913a8ffa41761fe1401e7094b5dc367785",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34526,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -132,
+          89,
+          118
+        ],
+        "lookAt": [
+          -2,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-quba-street.png",
+      "hash": "sha256:e580e4f5594d720bbc9eaed7a776fb72dc8f870f285f463c6a5d0facf5754069",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 45642,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -132,
+          89,
+          118
+        ],
+        "lookAt": [
+          -2,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-quba-closeup.png",
+      "hash": "sha256:30cb48bf01a40a669a973b80bee5a119bbf8bc7bc0b024ce331c63e1d254d12f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -132,
+          89,
+          118
+        ],
+        "lookAt": [
+          -2,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:0da31332e4f091751293df4eba9beb467886955f9da7b82bbf4f473e5307880c",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32186,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.4642,
+          116.5877,
+          252.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:287e4ae14ba62342a109210d2cfb591c6b11a18f1c25b78a7a88ec10fa669a67",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34526,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.4642,
+          116.5877,
+          252.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:dccbc18dd1a56e5eb58fb9fc167076e43d31e36e7427b7141f5ebf0618922bfa",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 45642,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.4642,
+          116.5877,
+          252.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:d5d9fa0ad320c30df2dd3a68bc5eff38380bcf05963726304f1972d093d64120",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65348,
+        "groundY": -12,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/su/suk/quba_mosque/terrain-review.height.png"
+        },
+        "position": [
+          145.4642,
+          116.5877,
+          252.0152
+        ],
+        "lookAt": [
+          -0.0358,
+          40.0877,
+          0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

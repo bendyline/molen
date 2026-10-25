@@ -7,7 +7,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcp/n0239_windsor_castle/map-parts.json',
+      '../../../content/worldgen/source/places/gc/gcp/windsor_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -923,7 +923,7 @@ export function buildWindsorSkyline(out) {
     pitchedLink(o, a, b, w, y, rise);
 }
 export const windsorStudy = {
-  id: 'N0239',
+  id: 'windsor_castle',
   key: 'windsor_castle',
   title: 'Windsor Castle',
   category: 'castle',

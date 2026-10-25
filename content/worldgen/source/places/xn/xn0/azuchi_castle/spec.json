@@ -1,0 +1,262 @@
+{
+  "planId": "azuchi_castle",
+  "id": "azuchi_castle",
+  "assetId": "molen.worldgen.structure.azuchi_castle",
+  "title": "Azuchi Castle ruins",
+  "category": "castle-ruins",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 136.13932996988297,
+    "latitude": 35.15595754234553
+  },
+  "size": [
+    171.03721618652344,
+    106.14585387706757,
+    366.49370217323303
+  ],
+  "actualBounds": {
+    "min": [
+      -130.3567657470703,
+      -1.279002070426941,
+      -3.3666574954986572
+    ],
+    "max": [
+      40.680450439453125,
+      104.86685180664062,
+      363.1270446777344
+    ]
+  },
+  "visualBrief": "Surviving Azuchi archaeological masonry: open main keep foundation with broken low rubble perimeter and exposed pillar-base field; Honmaru/Ninomaru terraces, breached turning Kuroganemon gate, retained residence courts, lower Otemon remnants and the long worn Otemichi stone stair/landing approach. Native named point and actual path controls; bounded wall footprints and architectural detail are photographic estimates. No reconstructed lost tower or replica.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south/downhill"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aduchi_castle-Kuroganemon.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aduchi_castle-Oda_Nobutada.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aduchi_castle-Takei_Yuan.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aduchi_castle9.jpg",
+    "https://commons.wikimedia.org/wiki/File:%E5%AE%89%E5%9C%9F%E5%9F%8E_%E5%A4%A9%E5%AE%88%E5%8F%B0.jpg",
+    "https://commons.wikimedia.org/wiki/File:%E5%AE%89%E5%9C%9F%E5%9F%8E_%E5%A4%A9%E5%AE%88%E9%96%A3%E5%9D%80.jpg",
+    "https://commons.wikimedia.org/wiki/File:%E5%AE%89%E5%9C%9F%E5%9F%8E_%E4%BA%8C%E3%81%AE%E4%B8%B8%E5%9D%80.jpg",
+    "https://commons.wikimedia.org/wiki/File:%E5%AE%89%E5%9C%9F%E5%9F%8E_%E5%A4%A7%E6%89%8B%E9%96%80.jpg",
+    "https://commons.wikimedia.org/wiki/File:%E5%AE%89%E5%9C%9F%E5%9F%8E_%E5%A4%A7%E6%89%8B%E9%81%93.jpg"
+  ],
+  "stories": [
+    {
+      "id": "azuchi-castle-wp",
+      "url": "https://qualla.com/azuchi-castle/"
+    }
+  ],
+  "referenceInputHash": "772df7bcf071a5b1f2d3f32befe5e99d4e2d0fd6ade57622b58d1b8b70ee6fd4",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-azuchi-castle.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-azuchi-castle.mjs",
+    "level": "skyline",
+    "export": "azuchiSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "earth": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "joint": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.99,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "azuchiDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "joint": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "azuchiStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "joint": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fixed lower Otemon approach before terrain acquisition. Saved raw Terrarium relief drives distributed wall bottoms and stairs; bounded intrinsic terrace fill only. No whole hill slab/flattening or full-height foundations to the lower datum.",
+    "anchor": [
+      136.13932996988297,
+      35.15595754234553
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        136.13923341035843,
+        35.15276894329975
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed mapped lower approach/Otemon vicinity chosen before terrain sampling. Raw relative relief supports distributed archaeological masonry/steps; no flattened/fitted whole hill or reconstructed lost tower."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "pois/17597017196250",
+      "pois/17594645091150",
+      "pois/17597017196112",
+      "pois/17597014646271",
+      "pois/17597014646318",
+      "pois/17597014646308",
+      "pois/17597014011021",
+      "pois/17597014387860",
+      "pois/17597014011204",
+      "pois/17597014011155",
+      "pois/17597014011180",
+      "pois/17597014011265",
+      "pois/17597012872202",
+      "pois/17596656712391",
+      "pois/17596656712396",
+      "pois/17596656928540"
+    ],
+    "source": "https://www.openstreetmap.org/way/753925745",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:637f5af46cb571b7789035f372b964af4113ce38210228d6f27fc03ed0f93ec6",
+    "notes": "Preserve upper foundation/pillarbasefield, several courtyard/residence terraces and lower breached gateways/long stone approach as a complete surviving masonry ensemble. No natural mountain/forest mass, all-site slab, Ise/museum replica, lost keep or separate temple/tomb/statue collection."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Named basemap AzuchiCastle/keepbase/Ninomaru/Kuroganemon/residence/Otemon point controls and actual stone-approach path network establish the surviving archaeological ensemble. No surveyed wall/terrace or keep-base polygon is supplied. Individual bounded foundation/wall footprints, platform levels/courses/pillar-base grid and stair widths are explicit estimates from the9accepted ruin originals; preserve actual approach network and leave forest/natural hillside unmodeled. Providerpathfeatures can merge several original ways and are not an exact originalOSMway census. Site-outline below is an estimated construction envelope, not an extrudable native castle parcel or surviving tower footprint.",
+    "Current surviving ruins only. The vanished 1579 keep, gilded upper rooms, complete roofs/palaces/gates and modern museum/Ise replicas are excluded, as are separate Sokenji temple/pagoda/gate, tomb/sculpture/tablet collections, interpretive sign artwork, people and forest. No photographic textures.",
+    "Main keep/courtyard/residence/gateway footprints, widths, wall heights, battered sections, access gaps and individual pillar/stone counts are explicit medium-fi photographic estimates around named archaeological controls, not measured or surveyed ruin polygons. Exact stair landings, historical construction phases and concealed walls remain approximate.",
+    "The saved unmodified coarse raw relief spans about100m of hillside. Distributed levels use that relief relative to the fixed lower-gate datum; bounded retained soil/platform caps are intrinsic architecture. Level court tops use the maximum sampled perimeter height, so terrace heights/precise thresholds may differ from actual surveyed remains. No whole natural hillside or vegetation is part of the GLB. Flat asset-library views therefore omit its supporting geographic hillside; portable and context scenes retain the raw review terrain. Host terrain/contact remains approximate.",
+    "Four cleared published Qualla public-domain ruin originals and five Mont Blank rich own-work CC0 originals establish surviving rubble, pillar bases, worn steps, terraces and breached gateways. The photographed interpretive map/artwork and other licensed/historical/religious imagery are unused. Stone layouts/colors and hidden return faces are representative; no underlying artwork or exact photographic texture copied."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "open-keep-foundation-pillar-stones-and-upper-terraces",
+      "position": [
+        62,
+        150,
+        76
+      ],
+      "lookAt": [
+        -7,
+        103,
+        15
+      ]
+    },
+    {
+      "name": "kuroganemon-battered-rubble-and-breached-turning-gateway",
+      "position": [
+        -112,
+        108,
+        83
+      ],
+      "lookAt": [
+        -73,
+        90,
+        51
+      ]
+    },
+    {
+      "name": "long-stone-otemichi-approach-and-retained-residence-courts",
+      "position": [
+        54,
+        109,
+        304
+      ],
+      "lookAt": [
+        -34,
+        37,
+        220
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 58760,
+    "vertices": 176280,
+    "materials": 3,
+    "bytes": 7053544,
+    "sha256": "sha256:a4461330a4abf8644bb280554736e82bc5d4a747e6438ce8b981cfa50be3ccf6"
+  }
+}

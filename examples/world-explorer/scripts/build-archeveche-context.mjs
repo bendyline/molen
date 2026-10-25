@@ -6,9 +6,11 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const dir = resolve(root, 'content/earth/structures/evidence/bridge-terrain/ign');
-const bytes = await readFile(resolve(dir, 'N0019.json')),
+const bytes = await readFile(resolve(dir, 'pont_de_l_archeveche.json')),
   field = JSON.parse(bytes);
-const raw = await readFile(resolve(root, '.artifacts/bridge-terrain/ign/N0019-roads.geojson'));
+const raw = await readFile(
+  resolve(root, '.artifacts/bridge-terrain/ign/pont_de_l_archeveche-roads.geojson'),
+);
 const roads = JSON.parse(raw),
   hash = (value) => `sha256:${createHash('sha256').update(value).digest('hex')}`;
 const c = Math.cos(field.heading),
@@ -45,11 +47,11 @@ const stations = Array.from({ length: 101 }, (_, i) => i - 50).flatMap((x) =>
   [-4, 0, 4].map((z) => ({ x, z, elevation: sample(x, z) })),
 );
 await writeFile(
-  resolve(dir, 'N0019-bank-profile.json'),
+  resolve(dir, 'pont_de_l_archeveche-bank-profile.json'),
   `${JSON.stringify(
     {
       format: 'molen/bridge-bank-evidence@1',
-      candidateId: 'N0019',
+      candidateId: 'pont_de_l_archeveche',
       anchor: field.anchor,
       heading: field.heading,
       terrainEvidenceHash: hash(bytes),
@@ -65,15 +67,15 @@ await writeFile(
   )}\n`,
 );
 await writeFile(
-  resolve(dir, 'N0019-road-profile.json'),
+  resolve(dir, 'pont_de_l_archeveche-road-profile.json'),
   `${JSON.stringify(
     {
       format: 'molen/bridge-road-evidence@1',
-      candidateId: 'N0019',
+      candidateId: 'pont_de_l_archeveche',
       anchor: field.anchor,
       heading: field.heading,
       source: 'https://data.geopf.fr/wfs',
-      sourceFile: '.artifacts/bridge-terrain/ign/N0019-roads.geojson',
+      sourceFile: '.artifacts/bridge-terrain/ign/pont_de_l_archeveche-roads.geojson',
       sourceHash: hash(raw),
       responseTimestamp: roads.timeStamp,
       verticalDatum: 'NGF-IGN69',
@@ -95,5 +97,5 @@ await writeFile(
   )}\n`,
 );
 console.log(
-  `N0019: ${stations.length} independent bank samples and ${roads.features.length} original road features`,
+  `pont_de_l_archeveche: ${stations.length} independent bank samples and ${roads.features.length} original road features`,
 );

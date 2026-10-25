@@ -1,4 +1,4 @@
-/** Individual researched tower exteriors N0176 onward. Meter units, +Y up. */
+/** Individual researched tower exteriors us_bank_tower onward. Meter units, +Y up. */
 import { beam, loft, normalFor, radialRing, sphere, torus } from './authored-structure-mesh.mjs';
 import { threeWtcStudy } from './signature-tower-3wtc-model.mjs';
 import { park432Study } from './signature-tower-432-park-model.mjs';
@@ -157,7 +157,7 @@ function stoneBay(out, a, b, n, low, high, stone, glass) {
 }
 
 function buildUsBank(out, m) {
-  const key = 'n0176_u_s_bank_tower',
+  const key = 'us_bank_tower',
     base = localOutline(m),
     evidence = partsEvidence(key);
   const stone = [0.76, 0.73, 0.69],
@@ -534,7 +534,7 @@ function lancet(out, at, x, y, w, h, stone) {
     beam(out, 'cladding', p[i], p[(i + 1) % p.length], 0.14, 0.21, stone);
 }
 function build40Wall(out, m) {
-  const key = 'n0177_40_wall_street',
+  const key = '40_wall_street',
     base = cleanPlan(localOutline(m)),
     evidence = partsEvidence(key);
   const limestone = [0.77, 0.735, 0.635],
@@ -1341,7 +1341,7 @@ function tuntexBay(out, a, b, n, low, high, { bright = false, pink = false } = {
   quad(inset, 1 - inset, y0, y1, glass, 'glass', 0.012);
 }
 function buildTuntex(out, m) {
-  const key = 'n0179_tuntex_sky_tower',
+  const key = 'tuntex_sky_tower',
     ev = partsEvidence(key),
     base = cleanPlan(localOutline(m));
   const plan = (id) =>
@@ -2162,7 +2162,7 @@ function plazaGlazedTriangle(out, a, b, tip) {
   }
 }
 function buildCentralPlaza(out, m) {
-  const pieces = partsEvidence('n0181_central_plaza'),
+  const pieces = partsEvidence('central_plaza'),
     plan = localOutline(m),
     part = (id) =>
       partPlan(
@@ -2424,7 +2424,7 @@ function marinaScreen(out, at, width) {
       }
 }
 function build23Marina(out, m) {
-  const parts = partsEvidence('n0182_23_marina'),
+  const parts = partsEvidence('23_marina'),
     plan = partPlan(
       m,
       parts.find((p) => p.id === 907717855),
@@ -2958,7 +2958,7 @@ export const skylineWorld = [
   threeWtcStudy,
   ...emiratesStudies,
   {
-    id: 'N0193',
+    id: 'metropolitan_life_insurance_company_tower',
     key: 'metropolitan_life_insurance_company_tower',
     wikidataId: 'Q652452',
     title: 'Metropolitan Life Insurance Company Tower',
@@ -3038,7 +3038,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0192',
+    id: 'metlife_building',
     key: 'metlife_building',
     wikidataId: 'Q464482',
     title: 'MetLife Building',
@@ -3107,7 +3107,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0191',
+    id: 'flame_towers',
     key: 'flame_towers',
     wikidataId: 'Q80499',
     title: 'Flame Towers',
@@ -3176,7 +3176,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0190',
+    id: '30_rockefeller_plaza',
     key: '30_rockefeller_plaza',
     wikidataId: 'Q680614',
     title: '30 Rockefeller Plaza',
@@ -3244,7 +3244,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0189',
+    id: 'yokohama_landmark_tower',
     key: 'yokohama_landmark_tower',
     wikidataId: 'Q587108',
     title: 'Yokohama Landmark Tower',
@@ -3306,7 +3306,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0188',
+    id: '70_pine_street',
     key: '70_pine_street',
     wikidataId: 'Q262041',
     title: '70 Pine Street',
@@ -3363,7 +3363,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0176',
+    id: 'us_bank_tower',
     key: 'u_s_bank_tower',
     wikidataId: 'Q57900',
     title: 'U.S. Bank Tower',
@@ -3414,7 +3414,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0177',
+    id: '40_wall_street',
     key: '40_wall_street',
     wikidataId: 'Q218305',
     title: '40 Wall Street',
@@ -3466,7 +3466,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0178',
+    id: 'merdeka_118',
     key: 'merdeka_118',
     wikidataId: 'Q7969454',
     title: 'Merdeka118',
@@ -3533,7 +3533,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0179',
+    id: 'tuntex_sky_tower',
     key: 'tuntex_sky_tower',
     wikidataId: 'Q337631',
     title: '85 Sky Tower (Tuntex)',
@@ -3602,7 +3602,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0180',
+    id: 'al_hamra_tower',
     key: 'al_hamra_tower',
     wikidataId: 'Q557933',
     title: 'Al Hamra Tower',
@@ -3666,7 +3666,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0181',
+    id: 'central_plaza',
     key: 'central_plaza',
     wikidataId: 'Q112640',
     title: 'Central Plaza',
@@ -3736,7 +3736,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0182',
+    id: '23_marina',
     key: '23_marina',
     wikidataId: 'Q216264',
     title: '23 Marina',
@@ -3799,7 +3799,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0183',
+    id: 'lotte_world_tower',
     key: 'lotte_world_tower',
     wikidataId: 'Q494895',
     title: 'Lotte World Tower',
@@ -3868,7 +3868,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0184',
+    id: 'rose_tower',
     key: 'rose_tower',
     wikidataId: 'Q648338',
     title: 'Rose Rayhaan by Rotana',
@@ -3927,7 +3927,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0185',
+    id: 'china_media_group_guanghua_road_office_area',
     key: 'china_media_group_guanghua_road_office_area',
     wikidataId: 'Q754321',
     title: 'CCTV Headquarters',
@@ -3988,7 +3988,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0186',
+    id: 'guangzhou_international_finance_center',
     key: 'guangzhou_international_finance_center',
     wikidataId: 'Q1043438',
     title: 'Guangzhou International Finance Center',
@@ -4051,7 +4051,7 @@ export const skylineWorld = [
     ],
   },
   {
-    id: 'N0187',
+    id: 'ping_an_finance_centre',
     key: 'ping_an_finance_centre',
     wikidataId: 'Q1077308',
     title: 'Ping An Finance Center',

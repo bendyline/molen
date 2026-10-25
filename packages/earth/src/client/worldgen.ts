@@ -42,6 +42,7 @@ import {
   type WorldgenSemanticRenderers,
 } from '@bendyline/molen-worldgen-earth/client';
 import {
+  type BuildingInfillOptions,
   createRegionalEnvironment,
   isStructureViewingDate,
   type RegionalEnvironment,
@@ -75,6 +76,8 @@ export interface EarthWorldgen extends WorldgenSemanticRenderers {
 }
 
 export interface CreateEarthWorldgenOptions {
+  /** Seeded synthetic homes in streets with missing map coverage (default true). */
+  buildingInfill?: boolean | BuildingInfillOptions;
   /** Bounded, progressive landmark LODs by default; false opts into legacy full models. */
   landmarkStreaming?: StructureStreamingOptions | false;
   /** Explicit YYYY-MM-DD date for archival landmarks; omitted keeps them unloaded. */
@@ -176,6 +179,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     places.landmarks.definitions,
     false,
     environment?.library.plants,
+    options.content.fonts,
     options.modelMaterial,
   );
   // Geographic assets are loaded only when a visible tile asks for them. Their source glTF
@@ -300,6 +304,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
         })
       : undefined;
   const renderers = createWorldgenSemanticRenderers(pack, {
+    buildingInfill: options.buildingInfill ?? true,
     places,
     structures,
     ...(options.viewingDate !== undefined ? { viewingDate: options.viewingDate } : {}),

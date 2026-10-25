@@ -17,7 +17,7 @@ import {
 import { tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0158_turning_torso',
+const key = 'turning_torso',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'))),
   parts = partsEvidence(key);
@@ -89,7 +89,7 @@ function buildTorso(out, m, level) {
         uv,
         color,
       );
-  const key = 'n0158_turning_torso',
+  const key = 'turning_torso',
     base = localOutline(m);
   const core = partPlan(m, part(key, 940786326));
   const center = core.reduce((s, p) => s.map((v, i) => v + p[i] / core.length), [0, 0]);

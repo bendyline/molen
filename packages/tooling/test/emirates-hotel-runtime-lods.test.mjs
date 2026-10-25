@@ -9,7 +9,7 @@ import { buildEmirates } from '../../worldgen/scripts/signature-tower-emirates-m
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve(
-    '../../content/worldgen/source/places/th/thr/n0199_jumeirah_emirates_towers_hotel',
+    '../../content/worldgen/source/places/th/thr/jumeirah_emirates_towers_hotel',
   ),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));

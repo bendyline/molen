@@ -1005,7 +1005,7 @@ export function buildWisloujscie(out) {
 
 export const wisloujscieStudies = [
   lighthouseStudy({
-    id: 'N0666',
+    id: 'wis_oujscie_fortress',
     key: 'wis_oujscie_fortress',
     title: 'Wisłoujście Fortress',
     wikidataId: 'Q1409002',

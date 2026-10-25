@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.station_wagon": {
-      "doc": "Station wagon. Mountable and ambient road vehicle.",
+      "doc": "Bendy Station Wagon. Station wagon. Mountable and ambient road vehicle.",
       "components": {
         "transform": {
           "pos": [
@@ -31,7 +31,9 @@
           "kind": "molen.entities.vehicle.station_wagon",
           "color": "#668b85",
           "spec": {
-            "label": "Station wagon",
+            "label": "Bendy Station Wagon",
+            "bodyStyle": "wagon",
+            "genericLabel": "Station wagon",
             "width": 2.0832,
             "length": 4.8999999999999995,
             "height": 1.7,
@@ -76,7 +78,32 @@
               "wheel-front-left",
               "wheel-front-right"
             ],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "close-detail",
+                "steering-wheel",
+                "cabin"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
           }
         },
         "vehicleInput": {

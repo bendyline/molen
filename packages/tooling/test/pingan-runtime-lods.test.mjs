@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ws/ws1/n0187_ping_an_finance_centre'),
+const source = resolve('../../content/worldgen/source/places/ws/ws1/ping_an_finance_centre'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -91,7 +91,7 @@ it('reproduces the preserved Ping An master and verifies independent signed map 
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineWorld.find((p) => p.id === 'N0187').build(a.wrap(b), m);
+  skylineWorld.find((p) => p.id === 'ping_an_finance_centre').build(a.wrap(b), m);
   const baseline = await read(`${source}/georeferencing-baseline.json`),
     prior = await read(`${source}/map-parts.json`),
     spec = await read(`${source}/spec.json`);

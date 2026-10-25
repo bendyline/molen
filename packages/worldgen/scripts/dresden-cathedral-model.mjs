@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u3/u31/n0348_dresden_cathedral/',
+  '../../../content/worldgen/source/places/u3/u31/dresden_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -853,7 +853,7 @@ export const buildDresdenSkyline = (o) => build(o, 0),
   buildDresdenStreet = (o) => build(o, 2),
   buildDresdenCloseup = (o) => build(o, 3);
 export const dresdenStudy = {
-  id: 'N0348',
+  id: 'dresden_cathedral',
   key: 'dresden_cathedral',
   title: 'Dresden Cathedral',
   category: 'cathedral',

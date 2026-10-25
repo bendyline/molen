@@ -5,7 +5,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(readFileSync(structureSourcePath('n0011_mes_bridge', 'map-frame.json')));
+const frame = JSON.parse(readFileSync(structureSourcePath('mes_bridge', 'map-frame.json')));
 const grey = [0.57, 0.568, 0.517],
   mortar = [0.49, 0.487, 0.441],
   pale = [0.69, 0.679, 0.605];
@@ -362,7 +362,7 @@ export function buildMesBridge(out) {
       cobble(out, x, -1.18 + lane * 0.213, 0.105, 0.204, seed++, true);
 }
 export const mesStudy = {
-  id: 'N0011',
+  id: 'mes_bridge',
   key: 'mes_bridge',
   title: 'Mes Bridge',
   wikidataId: 'Q856285',

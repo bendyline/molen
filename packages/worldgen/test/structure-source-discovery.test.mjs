@@ -45,8 +45,40 @@ it('rejects missing registered bundles while retaining research-only registered 
   await expect(checkSourceRegistry(options)).resolves.toBeUndefined();
 });
 
+it('accepts shared collection recipes but still discovers unregistered models below them', async () => {
+  const recipes = join(dir, 'source/places/u3/u35/collection-recipes');
+  await mkdir(recipes, { recursive: true });
+  await writeFile(
+    join(recipes, 'source.json'),
+    JSON.stringify({ kind: 'structure-collection', files: { models: [] } }),
+  );
+  const options = { entries: [], repositoryRoot: dir, directories: [join(dir, 'source/places')] };
+  await expect(checkSourceRegistry(options)).resolves.toBeUndefined();
+  const member = join(recipes, 'member');
+  await mkdir(member);
+  await writeFile(join(member, 'source.json'), '{}');
+  await expect(checkSourceRegistry(options)).rejects.toThrow(/member.*registry|registry.*member/);
+});
+
+it('does not exempt a collection manifest that also defines a standalone model', async () => {
+  const recipes = join(dir, 'source/places/u3/u35/mixed-collection');
+  await mkdir(recipes, { recursive: true });
+  await writeFile(
+    join(recipes, 'source.json'),
+    JSON.stringify({ kind: 'structure-collection', files: { models: [] } }),
+  );
+  await writeFile(join(recipes, 'spec.json'), '{}');
+  await expect(
+    checkSourceRegistry({
+      entries: [],
+      repositoryRoot: dir,
+      directories: [join(dir, 'source/places')],
+    }),
+  ).rejects.toThrow(/mixed-collection.*index-structure-sources/);
+});
+
 it('includes explicitly selected auxiliary components without sweeping in other site bundles', () => {
-  const core = { candidateId: 'N0291', collection: 'next-1000' },
+  const core = { candidateId: 'ksiaz_castle_and_park_complex', collection: 'structure-catalog' },
     gate = { candidateId: 'KSI_A01', collection: 'site-structures' },
     legacy = { candidateId: 'A02', collection: 'site-structures' };
   expect(authoredPlaceEntries([core, gate, legacy])).toEqual([core]);
@@ -61,9 +93,17 @@ it('keeps model input hashes stable when captures change but invalidates edited 
     before = await modelInputHash(dir, id);
   await writeFile(join(dir, 'medium-fi-report.json'), JSON.stringify({ frames: ['first'] }));
   await writeFile(join(dir, 'capture-report.json'), JSON.stringify({ frames: ['first'] }));
+  await writeFile(
+    join(dir, 'category-integration-report.json'),
+    JSON.stringify({ frames: ['first'] }),
+  );
   await writeFile(join(dir, 'shared-capture-report.json'), JSON.stringify({ frames: ['first'] }));
   expect(await modelInputHash(dir, id)).toBe(before);
   await writeFile(join(dir, 'medium-fi-report.json'), JSON.stringify({ frames: ['second'] }));
+  await writeFile(
+    join(dir, 'category-integration-report.json'),
+    JSON.stringify({ frames: ['second'] }),
+  );
   expect(await modelInputHash(dir, id)).toBe(before);
   await writeFile(join(dir, 'geometry.json'), JSON.stringify({ width: 14 }));
   expect(await modelInputHash(dir, id)).not.toBe(before);

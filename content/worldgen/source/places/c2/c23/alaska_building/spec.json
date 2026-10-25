@@ -1,0 +1,299 @@
+{
+  "planId": "alaska_building",
+  "id": "alaska_building",
+  "assetId": "molen.worldgen.structure.alaska_building",
+  "title": "Alaska Building",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.33258959999999,
+    "latitude": 47.60294331666666
+  },
+  "size": [
+    33.928850173950195,
+    63.299999952316284,
+    37.2326774597168
+  ],
+  "actualBounds": {
+    "min": [
+      -20.057077407836914,
+      -1.2999999523162842,
+      -20.977680206298828
+    ],
+    "max": [
+      13.871772766113281,
+      62,
+      16.25499725341797
+    ]
+  },
+  "visualBrief": "Preserved Seattle corner skyscraper with exact native base perimeter, pale two-level terra-cotta base, buff-brick paired-window shaft, ornate pale capital/rectangular sash and round attic windows, bracketed Second Avenue entrance and flat L-shaped roof/open estimated rear court. Clear published1909Qualla book scans and municipal preservation facts control exterior; inner court/hidden hotel brace and minor roof sections approximate.",
+  "nativeAxes": {
+    "x": "northeast along Cherry Street facade",
+    "y": "up",
+    "z": "southeast along Second Avenue facade"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Argus_-_A.Y.P._ed._-_Page_48b.jpg",
+    "https://commons.wikimedia.org/wiki/File:General_history,_Alaska_Yukon_Pacific_Exposition,_fully_illustrated_-_meet_me_in_Seattle_1909_-_Page_66.jpg"
+  ],
+  "stories": [
+    {
+      "id": "alaska-building-wp",
+      "url": "https://qualla.com/alaska-building/"
+    }
+  ],
+  "referenceInputHash": "ed846de304d33a5040490a355881542b162b90c95b33cbcd5cc656116a56c1c4",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-alaska-building.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-alaska-building.mjs",
+    "level": "skyline",
+    "export": "alaskaSkyline",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.33,
+        "metallic": 0.08
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "alaskaDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.33,
+            "metallic": 0.08
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "alaskaStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.33,
+            "metallic": 0.08
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": -1.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent raw urban terrain frozen before geometry at original Second Avenue dry approach; source native perimeter/street edge governs placement, with unsurveyed threshold/basement and hill grade approximate.",
+    "anchor": [
+      -122.33258959999999,
+      47.60294331666666
+    ],
+    "heading": 0.5513695390721587,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.33285789547892,
+        47.602854432474736
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed dry Second Avenue entrance approach three metres outward from original west facade, before terrain/geometry. Uphill street/sidewalk and threshold/basement datum are approximate, with no fitted terrain or site platform."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/240874271"
+    ],
+    "source": "https://www.openstreetmap.org/way/240874271",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1827792e6ead87a10a3d18ead7835be2bf7efa61547243728d0095941ec7d443",
+    "notes": "Surviving Alaska Building exterior within its exact original native perimeter: full two-level base, L-shaped upper tower/open rear light court, buff-brick shaft, pale terra-cotta base/capital, paired sash/trabeated end-bay windows, top rectangular and porthole windows, cornice/parapet and shallow bracketed Second Avenue entrance. No neighboring historic buildings, hotel logos/lettering, gold nugget/interiors, historic flags/awnings/street/parade or speculative modern machinery. Historic images control preserved primary facades; current native identity/height and municipal preservation facts control surviving scope. Inner rear-court dimensions/sections, hidden hotel seismic brace and minor roof/window detail remain estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact native named Alaska Buildingway240874271/Q4708507 supplies original six-vertex full base plan and62mheight. Original Cherry Street edge and perimeter mean establish heading/anchor; story point and neighboring footprints do not replace these controls.",
+    "Both accepted images are already-published Qualla native mechanical scans of1909publications with explicit PD-scan/PD-1923primary records and nativeSHA1matches. GeneralHistorypage66shows full corner facades/capital/base; AsahelCurtis1908parade in Argus1909shows southeast side/step-back. Historic awnings/flags/lettering/parade/traffic and all hotel branding/artwork are excluded. No copied photograph or generated bitmap texture.",
+    "Municipal text documents preserved original windows, buff brick/pale terra cotta, two-level base, eleven-row shaft and L-shaped upper plan. Precise rear-court position/width/roof levels and hidden2010seismic brace are not surveyed or photographically resolved. Rear court is an explicitly estimated notch behind both intact photographed street facades. Official74x50ftfootprint and southwest-court wording conflict with native plan/primary elevations and are not adopted as exact controls.",
+    "Native14levels and other15floor conventions differ with basement/attic. Two base rows, eleven shaft rows, rectangular capital and small porthole row form a bounded photographic exterior section within62m. Exact ornament, window census, contemporary storefront/roof services and concealed structure are medium-fi estimates; no interior or engineering replica claim.",
+    "Independent180mrawTerrariumfield and fixed dry Second Avenue datum remain unchanged, with1.3mdeep base. Uphill street, basement/sidewalk threshold and host-DEM attachment are approximate. No terrain flattening, fitted grade, generic site platform, neighboring building or landscape included."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "two-preserved-street-facades-and-corner",
+      "position": [
+        -77,
+        34,
+        -80
+      ],
+      "lookAt": [
+        -4,
+        30,
+        -3
+      ]
+    },
+    {
+      "name": "rectangular-capital-portholes-and-cornice",
+      "position": [
+        -42,
+        64,
+        -44
+      ],
+      "lookAt": [
+        -9,
+        56.5,
+        -11
+      ]
+    },
+    {
+      "name": "second-avenue-base-and-bracketed-entry",
+      "position": [
+        -48,
+        9,
+        2
+      ],
+      "lookAt": [
+        -19.3,
+        5.2,
+        -0.2
+      ]
+    },
+    {
+      "name": "open-upper-rear-court-and-l-roof",
+      "position": [
+        55,
+        86,
+        63
+      ],
+      "lookAt": [
+        2,
+        30,
+        4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 25187,
+    "vertices": 75561,
+    "materials": 4,
+    "bytes": 3025092,
+    "sha256": "sha256:c717dd1372f585cf3b979694fbb0e52810639bfff03c97bdfb8541845ad7eafd"
+  }
+}

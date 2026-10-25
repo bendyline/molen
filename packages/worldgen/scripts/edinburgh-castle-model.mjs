@@ -7,7 +7,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcv/n0242_edinburgh_castle/map-parts.json',
+      '../../../content/worldgen/source/places/gc/gcv/edinburgh_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1023,7 +1023,7 @@ export function buildEdinburghSkyline(out) {
   buildEdinburghRuntime(out, 'skyline');
 }
 export const edinburghStudy = {
-  id: 'N0242',
+  id: 'edinburgh_castle',
   key: 'edinburgh_castle',
   title: 'Edinburgh Castle',
   category: 'castle',

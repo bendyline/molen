@@ -34,6 +34,7 @@ export const NAVIGATION_ACTIONS: {
   readonly engine: 'nav-engine';
   readonly gear: 'nav-gear';
   readonly flaps: 'nav-flaps';
+  readonly vector: 'nav-vector';
   readonly recover: 'nav-recover';
 } = {
   forward: 'nav-forward',
@@ -57,6 +58,7 @@ export const NAVIGATION_ACTIONS: {
   engine: 'nav-engine',
   gear: 'nav-gear',
   flaps: 'nav-flaps',
+  vector: 'nav-vector',
   recover: 'nav-recover',
 };
 
@@ -145,6 +147,7 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
       KeyI: A.engine,
       KeyG: A.gear,
       KeyF: A.flaps,
+      KeyJ: A.vector,
       KeyR: A.recover,
     },
     axes: STICKS,
@@ -172,6 +175,8 @@ export interface PilotInput {
   engine: number;
   gear: number;
   flaps: number;
+  /** Powered-lift lever advances through 0, 25, 50, 75, 100 percent on each press. */
+  vector?: number;
   recover: number;
 }
 
@@ -248,7 +253,7 @@ export class NavigationInputSource {
   private interactPresses = 0;
   private viewPresses = 0;
   private profile: NavigationProfileName;
-  private readonly pilotPresses = { engine: 0, gear: 0, flaps: 0, recover: 0 };
+  private readonly pilotPresses = { engine: 0, gear: 0, flaps: 0, vector: 0, recover: 0 };
   private readonly lookSpeed: number;
   private readonly unsubscribe: Array<() => void>;
 
@@ -265,7 +270,7 @@ export class NavigationInputSource {
     this.lookSpeed = options.gamepadLookSpeed ?? 900;
     this.profile = options.profile ?? 'orbit';
     this.unsubscribe = [
-      ...(['engine', 'gear', 'flaps', 'recover'] as const).map((name) =>
+      ...(['engine', 'gear', 'flaps', 'vector', 'recover'] as const).map((name) =>
         this.map.onPress(A[name], () => {
           this.pilotPresses[name]++;
         }),
@@ -283,6 +288,7 @@ export class NavigationInputSource {
         this.pilotPresses.engine = 0;
         this.pilotPresses.gear = 0;
         this.pilotPresses.flaps = 0;
+        this.pilotPresses.vector = 0;
         this.pilotPresses.recover = 0;
       }),
     ];
@@ -346,6 +352,7 @@ export class NavigationInputSource {
     this.pilotPresses.engine = 0;
     this.pilotPresses.gear = 0;
     this.pilotPresses.flaps = 0;
+    this.pilotPresses.vector = 0;
     this.pilotPresses.recover = 0;
     return input;
   }

@@ -1,0 +1,1146 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.sibenik_cathedral",
+  "sourceHash": "sha256:23d68f28f1e9d8d741c75770c62c5a45a7b48c593e8507f3ab5f8dee5fff51dc",
+  "runtimeHash": "sha256:9d29e2b86bc057d44c47734a3b6b592bd7d75bf2ca0b7cfbe0b3afbe7a6320f1",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:4557740590e4fcae74df3023c56f873b3be29b31ea82d70e02b18d9fb5152ffb",
+      "bytes": 45244,
+      "gzipBytes": 8634,
+      "triangles": 431,
+      "cpuBytes": 43808,
+      "gpuBytes": 43808,
+      "errorMeters": 1.1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:b3f5238dfa77d785ff184bfbae7eaca563b97f49a452e0295e524fbc9543b555",
+      "bytes": 160420,
+      "gzipBytes": 44422,
+      "triangles": 1669,
+      "cpuBytes": 153044,
+      "gpuBytes": 153044,
+      "errorMeters": 0.45,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:eb19c71a08e6b4b1a2aefca9a8b95345177f9bf27cd79d9549c662ea8b14c279",
+      "bytes": 614936,
+      "gzipBytes": 176450,
+      "triangles": 6923,
+      "cpuBytes": 607532,
+      "gpuBytes": 607532,
+      "errorMeters": 0.13,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:68f3f731b816de2e42e623139f13b3f3088ecf4bbe8e98180e6889551aac0e35",
+      "bytes": 933272,
+      "gzipBytes": 286632,
+      "triangles": 10441,
+      "cpuBytes": 925856,
+      "gpuBytes": 925856,
+      "errorMeters": 0.05,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:0423107bf4248647a0c27b06cbe49db12ea2392e81545a602d3c1054a238b840"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:d3b4e88aca38c01f4c4949a96187acaad7e807e2f80beb9279d6086684e17c56"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:42ca4cf41a9e6be823aefd5c7d30a390374e664fbdb4054a9c836aadf593201c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          52.4365,
+          44.680800000000005,
+          91.0447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:909a7efbebb12189ec1c60df2ad0bedd02e604dc6e74031200ba46bd4af50b01",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          52.4365,
+          44.680800000000005,
+          91.0447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f28a89ebaf24fb7136320e4c2d90e7bdd4cffb898f934f14abe1eeecfd3da156",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          52.4365,
+          44.680800000000005,
+          91.0447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:016cf167f988c38d9c2a0f5d5a6fc3610eb8fc77629752a7664a07531babf91f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          52.4365,
+          44.680800000000005,
+          91.0447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:96f12964c97399718660c0e5768e73d7efd217aee50cc1856749ad59c5e8a73e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 27027,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.3365,
+          84.2808,
+          184.5447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:36f24a1adf2b5bc8075a765216d2b71174db8a74a7db705bef42c9f1a19c4784",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 27027,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.3365,
+          84.2808,
+          184.5447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:11ce2281bb77eda529f97cb827738a0be4b30350e163fc626fd702dd04e46b99",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 27027,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.3365,
+          84.2808,
+          184.5447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:3867616d8f4ab8e54f81b58f5095596640cc1e13129d8d8f3e4c0dc4f25aecfe",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 27027,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.3365,
+          84.2808,
+          184.5447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:d63ff8ee9a15c6b8c6a27ab5a67dde86a6891c59332303404dad3460b31248dd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25789,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          213.03650000000002,
+          126.08080000000001,
+          369.34470000000005
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:dd4c68c7f06e37ada1f0be92d661ef0dc5a07b29ee7f9e7e5d1bb55a2db0f89a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25789,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          213.03650000000002,
+          126.08080000000001,
+          369.34470000000005
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:e6243025af9ce708ebc6b40484a59e6256d34e69bfde3b822db0f30d59e9a4ba",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25789,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          213.03650000000002,
+          126.08080000000001,
+          369.34470000000005
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:3147d094582c67de0079d28dc29a13fb7bd33c1094919d5d534d145695df43f1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25789,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          213.03650000000002,
+          126.08080000000001,
+          369.34470000000005
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:09808d474c1606385cb70ba2905e095c4a2253563849ecd99df4245cd61637a6",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21233,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          213.03650000000002,
+          126.08080000000001,
+          369.34470000000005
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/curved-west-facade-and-rose.png",
+      "hash": "sha256:e41df4b73c3a3892f25b8180af1f132cb14180879765ac2114f0dd60576b5ffe",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -64,
+          27,
+          -5
+        ],
+        "lookAt": [
+          -19,
+          12,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-recessed-main-portal.png",
+      "hash": "sha256:cdf39fb1f743b185ca1dea4ef4677855660c2ba0b5d28949ce0b17bc7973752f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -36,
+          8,
+          -1
+        ],
+        "lookAt": [
+          -19,
+          4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northern-portal-and-stone-vaults.png",
+      "hash": "sha256:a430baf53b58447f56b585eb1ed241b603a28922e0f1c0c22b900fdebc5c9bb0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -10,
+          27,
+          -58
+        ],
+        "lookAt": [
+          -1,
+          12,
+          -2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/octagonal-windowed-drum-and-pointed-dome.png",
+      "hash": "sha256:d325edbfc6c417aca47bf3e56679d4de756ceeadb1c8e71c435a6d95b01d100c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35793,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -15,
+          40,
+          -26
+        ],
+        "lookAt": [
+          8.5,
+          26,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/triple-eastern-apse-and-curved-transept.png",
+      "hash": "sha256:de0cca6e4d3ceb6fd6ca4e329796a65e9b96d34d992f79aae48f67177c416bbd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          60,
+          26,
+          -31
+        ],
+        "lookAt": [
+          14,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/seaward-aisle-and-ribbed-stone-roofs.png",
+      "hash": "sha256:5217a280a4b12cf7285778247b68e69a668574257056ad3a46a156d38d2bd85f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -17,
+          32,
+          58
+        ],
+        "lookAt": [
+          0,
+          12,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sibenik-skyline.png",
+      "hash": "sha256:6538540ce090ba52082c9e64d8b7b602af0572a1033f4a291ef2679e95b657e9",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25789,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -85,
+          62,
+          -73
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sibenik-district.png",
+      "hash": "sha256:b4b12e7efdbc52671a69a92d50e7451d9c3e24136c9cf7725334aa747af264ab",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 27027,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -85,
+          62,
+          -73
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sibenik-street.png",
+      "hash": "sha256:66118ed7d6b04b7c97f24e11d51981414813f6f4d88ed07697d03c6ca9bfdb14",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 32281,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -85,
+          62,
+          -73
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sibenik-closeup.png",
+      "hash": "sha256:11a0670feb028a3167c142129dc155faa991b2d9fd57f85d0eaff84b4ed02559",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -85,
+          62,
+          -73
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:ace46c31100acf231666ae0a7781bc0a4998b8af00ce327923be0217b690cc49",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25789,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.3365,
+          84.2808,
+          184.5447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:36f24a1adf2b5bc8075a765216d2b71174db8a74a7db705bef42c9f1a19c4784",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 27027,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.3365,
+          84.2808,
+          184.5447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:4f95b0d188595a6ebbb0ad9660eca946445498ea04fc765ad01ecbb7f2166aed",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 32281,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.3365,
+          84.2808,
+          184.5447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:be8840cb2138ea7cf737134ccdbd44adedb667b3434c9d2a4a7b9fea0c9f33c2",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35799,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srg/sibenik_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.3365,
+          84.2808,
+          184.5447
+        ],
+        "lookAt": [
+          -0.3635,
+          28.1808,
+          -0.2553
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

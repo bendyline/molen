@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_glazed",
+      "roughness": 0.68,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "trim",
+      "graph": "tile_mosaic",
+      "roughness": 0.68,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.46,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hassan-model.mjs",
+    "export": "buildHassanSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHassanDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildHassanStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHassanCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.68,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      365,
+      265,
+      330
+    ],
+    "lookAt": [
+      -15,
+      55,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-hassan-skyline",
+      "position": [
+        365,
+        265,
+        330
+      ],
+      "lookAt": [
+        -15,
+        55,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hassan-district",
+      "position": [
+        365,
+        265,
+        330
+      ],
+      "lookAt": [
+        -15,
+        55,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hassan-street",
+      "position": [
+        365,
+        265,
+        330
+      ],
+      "lookAt": [
+        -15,
+        55,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hassan-closeup",
+      "position": [
+        365,
+        265,
+        330
+      ],
+      "lookAt": [
+        -15,
+        55,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      -7.632405194,
+      33.608206697
+    ],
+    "heading": -0.041321084592,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared court/hall floor,not surveyed ground contact. Standard viewer DEM datum11.633841m;whole perimeter-8.94 to4.46m relative to anchor. Floor0.600m is representative median perimeter sample plus0.6m. Stone foundations crossY=0 and extend below retained ground. Raw DEM retained without cutout/flattening;coarse shoreline/building contamination may expose footings or bury outside margins. Model paving replaces its own plinth footprint only;host Atlantic surface/seawall/plaza/fountains remain separate. Exact altitude,ground/court/threshold/shoreline/street contact and walking unverified;no road/water replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -7.632405194,
+        33.608206697
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum11.633841m;whole perimeter-8.94 to4.46m relative to anchor. Floor0.600m is representative median perimeter sample plus0.6m. Stone foundations crossY=0 and extend below retained ground. Raw DEM retained without cutout/flattening;coarse shoreline/building contamination may expose footings or bury outside margins. Model paving replaces its own plinth footprint only;host Atlantic surface/seawall/plaza/fountains remain separate. Exact altitude,ground/court/threshold/shoreline/street contact and walking unverified;no road/water replacement."
+    },
+    "bounds": [
+      -7.64,
+      33.601,
+      -7.624,
+      33.615
+    ],
+    "notes": "Retained exact relation/6002963 /Q41346 identifies the Hassan II Mosque building grouping with five retained outlines. Current PMTiles whole52776570812648 uses a different feature ID;the union of those five retained outlines matches its outer boundary within0.161m in both directions. The grouping ID is not silently treated as the current outline ID. Current whole52776570812648 retains48 outer and22 courtyard-hole points/properties,plus all18 separately mapped parts. Source/fragment records are preserved without horizontal rescale. Hall27m footprint,nested40/50/60m roof controls,diamond-oriented172m shaft,172–190m setback upper stage,190–194m cap and195–210m finial supply individual nominal controls. Two15m ancillary/gallery footprints and17/20m pavilions retained. Anchor[-7.632405194,33.608206697] and heading−0.041321084592rad unchanged. Native+X east curved ancillary wing,−X west main-hall end,−Z north/Atlantic side,+Z south polygonal courtyard/minaret side. Pictures resolve facing with about3° uncertainty. Roof/hall/tower/gallery footprints follow map controls;arcade cadence,hip ridges,facade fields/diagonal panels and portals are picture-led estimates with about3m subplan uncertainty. Atlantic water,seawall,outer plaza/fountains,roads,trees and separate campus/city buildings remain host content. Standard viewer DEM datum11.633841m;whole perimeter-8.94 to4.46m relative to anchor. Floor0.600m is representative median perimeter sample plus0.6m. Stone foundations crossY=0 and extend below retained ground. Raw DEM retained without cutout/flattening;coarse shoreline/building contamination may expose footings or bury outside margins. Model paving replaces its own plinth footprint only;host Atlantic surface/seawall/plaza/fountains remain separate. Exact altitude,ground/court/threshold/shoreline/street contact and walking unverified;no road/water replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum11.633841m;whole perimeter-8.94 to4.46m relative to anchor. Floor0.600m is representative median perimeter sample plus0.6m. Stone foundations crossY=0 and extend below retained ground. Raw DEM retained without cutout/flattening;coarse shoreline/building contamination may expose footings or bury outside margins. Model paving replaces its own plinth footprint only;host Atlantic surface/seawall/plaza/fountains remain separate. Exact altitude,ground/court/threshold/shoreline/street contact and walking unverified;no road/water replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

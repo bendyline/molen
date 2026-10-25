@@ -375,7 +375,7 @@ function buildCircleBridge(out) {
 }
 
 export const circleBridgeStudy = {
-  id: 'N0033',
+  id: 'circle_bridge',
   key: 'circle_bridge',
   title: 'Circle Bridge (Cirkelbroen)',
   wikidataId: 'Q11963844',

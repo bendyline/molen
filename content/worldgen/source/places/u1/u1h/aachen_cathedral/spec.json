@@ -1,0 +1,345 @@
+{
+  "planId": "aachen_cathedral",
+  "id": "aachen_cathedral",
+  "assetId": "molen.worldgen.structure.aachen_cathedral",
+  "title": "Aachen Cathedral",
+  "category": "cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 6.083882412500001,
+    "latitude": 50.7747384125
+  },
+  "size": [
+    76.04386138916016,
+    75.54999694228172,
+    50.15528678894043
+  ],
+  "actualBounds": {
+    "min": [
+      -32.055843353271484,
+      -0.3499999940395355,
+      -27.553850173950195
+    ],
+    "max": [
+      43.98801803588867,
+      75.19999694824219,
+      22.601436614990234
+    ]
+  },
+  "visualBrief": "Complete intrinsic surviving cathedral from21native building parts:74mwesternspire/49mwestwork/flanking turrets,16-sidedambulatory/octagonalupperdrum/currentcurveddome/openlantern, tallglazedGothicchoir/apse withstone tracery/buttress-pinnacle systems/representativestatues/openparapets, allnamedsidechapels/entryvestibule/upperlink and boundednorthwestinfill. Current QuallaCC0exterior plus primary historical plan relationship only. No separatecloister/treasury/townhall/houses/siteplaza/ground/interiors/copiedphoto/signage.",
+  "nativeAxes": {
+    "x": "from westwork toward Gothic eastern choir",
+    "y": "up",
+    "z": "toward south-side chapels"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aachen_Cathedral_from_east_(2026).jpg",
+    "https://commons.wikimedia.org/wiki/File:Aachen_Dehio_1887.jpg"
+  ],
+  "stories": [
+    {
+      "id": "aachen-cathedral-wp",
+      "url": "https://qualla.com/aachen-cathedral/"
+    }
+  ],
+  "referenceInputHash": "c48b8d8ea02d229e809fbd646a18a902b20398c2046da40fea3418d86de0644e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-aachen-cathedral.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-aachen-cathedral.mjs",
+    "level": "skyline",
+    "export": "aachenSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#fefffe",
+        "roughness": 0.84,
+        "metallic": 0.08
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.37,
+        "metallic": 0.08
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.35
+      },
+      "door": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "aachenDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fefffe",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.37,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "aachenStreet",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fefffe",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.37,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.7,
+    "groundY": -0.52
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named cathedralway20470246/Q5908and21native building-part footprints identify the complete main church, independent of the surrounding cloister/dependencies. Native vertices and source height/min-height/roof-shape/roof-height tags are preserved. Parts include westwork/spire/turrets,16-sided ambulatory, upper chapel drum/current dome, Gothic rectangular/polygonal choir and named side chapels. The whole cathedral perimeter is never substituted by a generic filled block. Primary mapped values are not a certified elevation survey; minor roof/lantern sections, tracery/figures and concealed facade census are photo-informed estimates. Fixedwesternentranceapproach[-34,0]before independent rawterrain. Thresholds/hiddenfootings and compatible hostgrade remain approximate.",
+    "anchor": [
+      6.083882412500001,
+      50.7747384125
+    ],
+    "heading": 0.044331584915248724,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        6.083399901812809,
+        50.77472487692481
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed western cathedral entrance approach before terrain acquisition; exact thresholds/footings/host attachment remain approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/20470246",
+      "way/211100408",
+      "way/306573602",
+      "way/505513553",
+      "way/505513555",
+      "way/505513556",
+      "way/505513557",
+      "way/505524598",
+      "way/505524600",
+      "way/505524601",
+      "way/505550221",
+      "way/505597426",
+      "way/505597429",
+      "way/505597432",
+      "way/505597436",
+      "way/505623454",
+      "way/505623457",
+      "way/505623459",
+      "way/505623462",
+      "way/734807753",
+      "way/1077724896",
+      "way/1169861473"
+    ],
+    "source": "https://www.openstreetmap.org/way/20470246",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:84d8d76b7f2d1b8cdea4e34c20ef541bf2237dc5095b0c35953bdaac8390ccf2",
+    "notes": "Complete intrinsic surviving Aachen Cathedral main church: native multipart westwork/74m spire and flanking turrets, sixteen-sided lower ambulatory and octagonal drum/baroque domed roof/lantern, glazed polygonal Gothic choir with buttresses/tracery/pinnacles and surrounding named side chapels, entrance vestibule and small upper link. Preserve their independent original footprints, roof types and height relationships. Exclude separate north cloister/treasury dependencies, surrounding houses/town hall/public square/natural ground, interiors/altar objects/people and copied inscriptions. Concealed details and minor sections are bounded medium-fi interpretations; no generic whole-site extrusion."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named cathedralway20470246/Q5908and21native building-part footprints identify the complete main church, independent of the surrounding cloister/dependencies. Native vertices and source height/min-height/roof-shape/roof-height tags are preserved. Parts include westwork/spire/turrets,16-sided ambulatory, upper chapel drum/current dome, Gothic rectangular/polygonal choir and named side chapels. The whole cathedral perimeter is never substituted by a generic filled block. Primary mapped values are not a certified elevation survey; minor roof/lantern sections, tracery/figures and concealed facade census are photo-informed estimates.",
+    "Exactly two native published Qualla originals: current2026KaapbijSneeuw creatorCC0east exterior and Dehio/Bezoldplate40/1887-1901primaryPD-old-auto-expired/deathyear1934. Both nativeSHA1matched/actually inspected. Historical lower-left floorplan only; its upper conjectural Carolingian reconstruction is NOT used for surviving roofs. Indooraltar/artifacts/uncertain or attributionimages excluded. No external image/generatedbitmap/copiedphototexture.",
+    "All21native component footprints and their sourceheight/min-height/roofshape/roofheight controls retained in the master. Completecompound church, not an overall footprintblock. Unknown small south-choirconnector is estimated10m/gable2m; unassigned thin northweststrip follows original mainperimeter with estimated13meave/20mridge. Separatecloister/treasury dependencies excluded.",
+    "Photo-informed detailed characteristic forms include closed pointed stained-glass interpretations/originalleadgrid, carvedmouldings/rose-tracery,13native-front choirbuttresses with interpretedstagedsections/creamquoinbands, pinnacles/representativeoriginalrobedstonefigures and openupperparapets. Exact tracery/artwork, statue identity/pose/census, concealedfacades, windowcounts and currentconservation are not a measured replica. Closed portable glazing uses a colored opaque approximation.",
+    "Current centralcurvedroof and openlantern are interpreted within nominal42msourceheight; smallcrosses extend slightlyabove nominalroofheights. Domecurve/lanternsections, leadseams, finials and roofjoins are not surveyed. Nativeupperbridge retains25mminimumheight and smallestimated.6mgable; supporting adjacent architecture remains separate.",
+    "Independent180mrawTerrariumfield frozenbeforegeometry atwesternapproach. Source grid/PNG/originaltile unchanged; no groundflattening/fitting. Thresholds/hidden foundations/host contact approximate; flatviewerstage is not gradecertification. No naturalground/publicsquare included. Detaillevels simplifycurvefacets/tracery/sculpture while compound massing/choir/dome/spire and openlanternpersist."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "complete-native-cathedral-spire-dome-choir-and-side-chapels",
+      "position": [
+        106,
+        104,
+        105
+      ],
+      "lookAt": [
+        3,
+        24,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "gothic-choir-glass-tracery-buttresses-figures-and-pinnacles",
+      "position": [
+        70,
+        27,
+        37
+      ],
+      "lookAt": [
+        32,
+        15,
+        3
+      ]
+    },
+    {
+      "name": "westwork-spire-entrance-and-open-dome-lantern",
+      "position": [
+        -67,
+        43,
+        36
+      ],
+      "lookAt": [
+        -10,
+        28,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 42857,
+    "vertices": 128571,
+    "materials": 6,
+    "bytes": 5146480,
+    "sha256": "sha256:a664f173fd1583f70f85ae1dd16dd7ffcbf6df401ad336f344065c02e7121552"
+  }
+}

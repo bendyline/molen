@@ -1,6 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
-import { buildKsiazSwiss, ksiazSwissModels } from '../../worldgen/scripts/ksiaz-swiss-models.mjs';
+import {
+  buildKsiazSwiss,
+  ksiazSwissModels,
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/ksiaz-swiss-models.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 for (const model of ksiazSwissModels) {

@@ -1,4 +1,6 @@
-# City taxi
+# Bendy Taxi
+
+![Molen preview](preview.png)
 
 Original brief: add diverse cars, motorcycles, bicycles, boats, cargo ships and ferries to Molen.
 

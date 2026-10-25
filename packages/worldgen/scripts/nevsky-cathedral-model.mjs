@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sx8/n0329_alexander_nevsky_cathedral/',
+  '../../../content/worldgen/source/places/sx/sx8/alexander_nevsky_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -712,7 +712,7 @@ export const buildNevskyDistrict = (out) => build(out, 1);
 export const buildNevskyStreet = (out) => build(out, 2);
 export const buildNevskyCloseup = (out) => build(out, 3);
 export const nevskyStudy = {
-  id: 'N0329',
+  id: 'alexander_nevsky_cathedral',
   key: 'alexander_nevsky_cathedral',
   title: 'Alexander Nevsky Cathedral',
   category: 'cathedral',

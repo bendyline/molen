@@ -1,0 +1,181 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.bloukrans_bridge",
+  "status": "completed",
+  "reviewedOn": "2026-10-19",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:ebd7179e76c7914927fd0d630b913fb5a9d20df1be1f106d87fab44462620e2a",
+  "sourceHash": "sha256:c349703b8faf40cf5e49904e600d1d78f9fb70bd2206821360eaf2ef34bf5b7a",
+  "runtimeHash": "sha256:c8e909fc784bc10758551d31aaa5ad554a10682c0bc13ec288a0a7fb702ee69b",
+  "visualReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:288bc017a4d1579d3944d339ae927fe43ad2895a484089e85a070d64db51528e",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/arch-and-spandrels.png",
+      "shots/road-and-parapets.png",
+      "shots/catwalk-and-platform.png"
+    ],
+    "notes": "All8 current portable images inspected: lit overview, four turntable views, broad arch/open paired columns, roadway/slit parapets and central bungee platform/catwalk. Matches the two inspected local NJR ZA originals at approximate medium-fi exterior scope."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:8b0a72a5ad7a5c957b5111be1601112c1a528ec6239049fcbe85a10cd6d5e146",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/arch-and-spandrels.png",
+      "shots/shared/road-and-parapets.png",
+      "shots/shared/catwalk-and-platform.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All8 shared-material images inspected, including native north-up N2 bridge centerline overlay. Pale concrete, charcoal roadway and dark metal catwalk/platform bind correctly. Native road-axis heading/centroid, off-origin bank-reference mount and unload pass. Lowered flat stage exposes the full arch; it does not simulate the ravine."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ec085bf880538dd24d94b16b3d3ed716d1a06433197694b94e031855f1f009c9",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/arch-and-spandrels.png",
+      "medium-fi/road-and-parapets.png",
+      "medium-fi/catwalk-and-platform.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All20 current context images inspected: noon/late economy/high street/block/skyline, silhouette, three structural details and four shipped LOD transitions. Stable broad arch and open spandrels at useful distances; fine parapet/catwalk details retire in lower LODs. Inspection floor is below the arch; synthetic neighbors are not the Tsitsikamma gorge."
+  },
+  "captureReportHash": "sha256:288bc017a4d1579d3944d339ae927fe43ad2895a484089e85a070d64db51528e",
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:ae8ffb5655a6701a2e079d677592dc202ac4ed674bed7d31b4e541c9a1391a53",
+    "mapGeometryHash": "sha256:e5b0c6c20e09910a961feecd474b3e4aadf1c3d76c74aa783511ae6055c646c4",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:153240d3a9e33c5501c44df4a0ec4421414b60dab56bdceb1e225ba7e258900e",
+      "descriptorHash": "sha256:da12301cae8f7c088c2588c4e3a24e1bbf3a2d9c00a4189d8d0fd49872868f6a",
+      "heightfieldHash": "sha256:6cf7861f64970265bbc1c84a13f768a7be1d2ae0876f11b08c93d86ad9daa088",
+      "providerDatumMeters": 219.4243,
+      "nativeLineEndpointRelativeRangeMeters": [
+        -10.6469,
+        -3.7616
+      ]
+    },
+    "groundContactVerified": false,
+    "approximateGeographicPreview": true,
+    "notes": "Native N2 bridge=true centerline crossing named Bloukrans River fixes exact source midpoint and signed road-axis heading.451m physical bridge is centered within the463m mapped road bridge segment/end transitions. A dry eastern approach240m from center sets deckY0; unmodified source terrain is preserved. Off-origin reference sampling, geographic centerline overlay and load/unload are verified. Ravine/rock springing and bank contact remain approximate; flat inspection floor is below the arch and is not geographic contact evidence."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Surviving N2 concrete bridge, arch/spandrels/approach piers, roadway/parapets and intrinsic catwalk/central bungee platform only. Gorge, traffic, bungee ropes/people and detached visitor buildings excluded.",
+    "notes": "Single broad concrete arch, paired open spandrel columns, approach supports, roadway/slit parapets and intrinsic central bungee platform/catwalk match both inspected public-domain NJR ZA originals. Overall451m and272m arch controls agree with primary ACI text.62m rise,16m width, bay spacing and small sections remain photographic medium-fi estimates. No river-floor stilts, detached visitor buildings, traffic, people, logos or active ropes."
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:ebd7179e76c7914927fd0d630b913fb5a9d20df1be1f106d87fab44462620e2a",
+    "referenceInputHash": "e41b8f08513a2e1a9066998a9846f9fd67fa54e355932641b3448c84bece9478",
+    "acceptedReferencePaths": [
+      "_m/k/9/b/y/bloukrans-bridge-wp/hero.jpg",
+      "_m/k/9/b/y/bloukrans-bridge-wp/bungee-operations-main.jpg"
+    ],
+    "auxiliaryReferencePaths": [],
+    "imageryEvidenceHash": "sha256:d668d786287c35318ee5e13000d851a9b36ddd736b63c9470bb4b594b3b5b62e",
+    "excludedHistoricalImagery": [],
+    "notes": "Both exact local Qualla-published NJR ZA originals inspected. Named-creator public-domain release basis, original metadata, published paths and current image bytes agree. Unrelated railway/other bridge candidates and incomplete metadata sources excluded. ACI text supplied dimensions only; no external image/engineering drawing or photographic textures used."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:dd407a8cacf0ea6550de77d4fefe22f85132dd939ad52e558069f560cc63113d",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:87744a53e4e73143198e6ef400b3838c7c009a49834bed044767ad31c0c1c3c4",
+        "bytes": 66572,
+        "gzipBytes": 9390,
+        "triangles": 836,
+        "cpuBytes": 65208,
+        "gpuBytes": 65208,
+        "errorMeters": 1.3,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:8b8534231aa7e0b8db10535bf3e776f6d8b7d37e524b8c984d3e3b16679728c8",
+        "bytes": 184580,
+        "gzipBytes": 30276,
+        "triangles": 2396,
+        "cpuBytes": 180840,
+        "gpuBytes": 180840,
+        "errorMeters": 0.4,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:3ce1be0ddae57c372df2efc5ed7e164d9a0957088e36b6d6e903b286d68c2bb3",
+        "bytes": 535116,
+        "gzipBytes": 76359,
+        "triangles": 6956,
+        "cpuBytes": 531336,
+        "gpuBytes": 531336,
+        "errorMeters": 0.14,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:79264d4b72f9a9251a884b2e6702196ad20ff33bac4235888cc3a507dd472bb8",
+        "bytes": 1166204,
+        "gzipBytes": 165016,
+        "triangles": 9700,
+        "cpuBytes": 1164000,
+        "gpuBytes": 1164000,
+        "errorMeters": 0,
+        "drawCalls": 3
+      }
+    ]
+  },
+  "validation": {
+    "completed": true,
+    "exactSourceRegeneration": true,
+    "assetInspectVerified": true,
+    "mediumFiAudit": "passed without findings",
+    "currentFramesInspected": 36,
+    "activePlacement": "bloukrans-bridge",
+    "storyAnnotation": "linked-and-zero-change-repeat-verified",
+    "sceneValidation": true,
+    "simulationTicks": 30,
+    "stateHash": "sha256:fbefb7edab40bbc83db403f029bd759e56ea2d686c0f1699f66693cea4ece522"
+  },
+  "limitations": [
+    "Primary ACI1981 construction abstract and Qualla agree on451m total length,272m arch span and216m river clearance. Native mapped bridge centerline includes about12m of end transition beyond the reported bridge length; it controls centroid/heading, not a rescaling of the whole structure.",
+    "Two inspected public-domain NJR ZA Qualla originals control the single broad concrete arch, repeated paired columns, slab/parapets and under-deck bungee platform. Rise,16m width, precise bay count, section thickness, hidden faces, platform/catwalk dimensions and bank-pier foundations are photographic medium-fi estimates. No engineering drawing or non-public-domain imagery used.",
+    "Static exterior only: no traffic, people, operator logos, active bungee ropes or detached visitor facilities. No navigable internal structural box or engineering-grade collision.",
+    "Bank reference and source terrain are approximate. Actual216m gorge/forest/river are supplied by the host landscape, not authored into the bridge. Gorge/rock contact is not surveyed and no source elevation is fitted to the model. Original photos remain in Qualla and are not textures."
+  ]
+}

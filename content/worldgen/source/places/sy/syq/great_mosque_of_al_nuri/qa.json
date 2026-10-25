@@ -1,0 +1,151 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.great_mosque_of_al_nuri",
+  "reviewedOn": "2026-10-18",
+  "inputHash": "sha256:6c919130e7efae3f4e9d156788284160aedc2f7c908da6502c3ea72d9898ddf0",
+  "sourceHash": "sha256:73f33ddeac572a8fe29e3f1b94e0f3f31337d2ec60b3b242296c457de2273e11",
+  "runtimeHash": "sha256:e3baebe3f6083e6dc1f10e77402ec9760faf73fa9d3cc48d4abed7ae0d882483",
+  "captureReportHash": "sha256:c35ca9391a2000d9b1eb46567f8d7fe9541b970c8896e00b591e08e322a8b4cb",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/rebuilt-hall-gallery.png",
+      "shots/green-dome-and-four-turrets.png",
+      "shots/northwest-al-hadba.png",
+      "shots/courtyard-arcade.png",
+      "shots/octagonal-fountain.png",
+      "shots/north-up-plan.png"
+    ],
+    "notes": "Inspected all11 current portable frames including the small retained preview. Original medium-fi geometry follows the retained hall plan and the declared estimated site extension. Corrected outward winding on the battered minaret base, moved its coarse relief onto the sloping faces, closed gallery/fountain ceilings and inward gallery boundary faces, and pulled back the minaret camera to include its entire height. Recessed hall doors, pointed arcades, green dome, four short turrets, fountain pavilion and one northwestern tall minaret are separate modeled geometry. Decorative inscriptions, dense historical brick motifs, plants, people, temporary signs/lights and furnished interiors are omitted."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/rebuilt-hall-gallery.png",
+      "shots/shared/green-dome-and-four-turrets.png",
+      "shots/shared/northwest-al-hadba.png",
+      "shots/shared/courtyard-arcade.png",
+      "shots/shared/octagonal-fountain.png",
+      "shots/shared/north-up-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all11 current shared-material/geographic-flat views including the placement overlay. Six existing shared256² graphs serve seven merged roles: coursed limestone, raw limestone, plaster, brick, painted metal, wood and local palette glazing. Physical UV scale and linear tints; zero embedded images. Each graph is read once, eviction disposes model geometry and restores host ground.181 nearby buildings remain separate host content. Garden ground between narrow modeled paths remains uncovered. Flat placement tests pose and replacement logic; it does not prove a surveyed modern courtyard grade.",
+    "captureReportHash": "sha256:906788b79c39ea1759004034c0a2c005548e5809b2cb3258897f39fe6ae580c5"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/rebuilt-hall-gallery.png",
+      "medium-fi/green-dome-and-four-turrets.png",
+      "medium-fi/northwest-al-hadba.png",
+      "medium-fi/courtyard-arcade.png",
+      "medium-fi/octagonal-fountain.png",
+      "medium-fi/north-up-plan.png",
+      "medium-fi/whole-nuri-skyline.png",
+      "medium-fi/whole-nuri-district.png",
+      "medium-fi/whole-nuri-street.png",
+      "medium-fi/whole-nuri-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all27 current medium-fi frames: Economy/High, noon/late light, street/block/skyline, silhouette, six details, four matched levels and four transitions. The far model retains the tall leaning minaret, green dome, four short turrets, gallery rhythm and fountain roof. Skyline uses three broad side-gallery bays and four pavilion posts; district restores nine side bays, open turret caps and minaret bands; street/closeup refine curves, dome ribs and selected relief. Reduced curve facets and omitted thin finials are intended distance changes. Physical laptop/phone/tablet and full-city timings remain pending.",
+    "captureReportHash": "sha256:3eb5edc09b567d938dc862b009cc3d4f6553fd10e8e4c8adeb98ab75c286a516"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:40cc1bc9f68e037f441a3223618de02705ce6b611b16fd059e5e64698e405e37",
+    "mapFrameHash": "sha256:8a9632877deab0699e2d7d5e0e9d77a849cbdef80f7977826b273e2bf3d04cc9",
+    "notes": "Retained Q5599605 / way468118902 anchor [43.126768234,36.342740215] and heading -0.096841454998 rad remain unchanged. The six-vertex hall plan is the retained map-axis outline, not a newly extracted current building polygon. Current named mosque POI35184840207734 still says ruins; the inspected2025 pictures show rebuilt architecture. Current named Al-Hadba POI17596477684205 supplies the northwest minaret point [-36.0811989170203,-71.4911008586867]. A second Arabic minaret marker17597058803445 lies near the court center; it conflicts with the northwestern tower seen beside the hall and is retained as excluded ambiguity, not a second tall minaret. Current four-vertex garden35184869293474 constrains the east garden; courtyard arcades and narrow paths are inferred around it. Positive X east-northeast along the hall; positive Z south-southeast; the court/front faces negative Z. Site extension and lean bearing are approximations. Normal viewer DEM datum 231.67538504646745 m. Working floor 0.6233996862299194 m is the median of 66 outside hall/minaret perimeter samples at1 m offset plus.3 m. 335 raw samples under modeled masks span -0.6537850464674477..2.5059655799239238 m. Adaptive foundations sample outlines at<=2.5 m stations. Ground cutouts follow the hall, arcade strips, minaret base and narrow paths; garden ground between them is preserved. Preview terrain seats only these masks with1.5 m margin. Exact modern courtyard grade and thresholds are unverified; this coarse DEM is a visualization fixture. Independently reproduced the retained six-vertex hall and mapped tags, current named mosque/minaret points, excluded conflicting marker and four-vertex garden. No current raw building polygon or measured height is claimed. All1104 footprint checks pass across six GLBs: retained hall/estimated minaret base are covered;181 other buildings and the garden polygon remain separate. All1842 FrontSide probes pass for gallery openings/back screens/ceilings, pointed soffits, outward battered base and shaft, tower/dome/pavilion totals and terrain-seated foundations.335 raw under-mask terrain samples,66 perimeter samples and403 seated preview points/required16-bit height fixture reproduce. Two sampled garden interiors are outside all cutout masks."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Individual rebuilt al-Nuri mosque visualization: retained hall plan, a green central dome, four short corner turrets, pointed hall gallery, side courtyard arcades, small octagonal fountain pavilion and the separate tall northwestern brick Al-Hadba minaret. Shared low-contrast textures, original geometry, no copied photographs, inscriptions, furnished interiors or museum/visitor-center additions. The site extension and vertical proportions remain explicitly approximate. No retained published height/width/length facts and no current PMTiles part heights are available. All vertical values are explicit picture/footprint-scale estimates: hall roof8.5 m, main drum10.8 m, green dome19 m/finial20.5 m, four short turret finials16.8 m, Al-Hadba finial45 m with an estimated1.6 m eastward offset, courtyard arcade eaves7 m and fountain pavilion roof6.8 m. The lean direction/magnitude are not surveyed. Gallery bay count, dome profiles, minaret bands, fountain, paving and site extension are visualization reconstruction. Retained historic=ruins is preserved verbatim rather than presented as current appearance. This is a reconstructed exterior visualization guided by two useful recent exterior photographs, retained hall geometry and ordinary viewer map/DEM. The current map is stale about destruction and has no replacement building outline. Exact rebuilt court dimensions, lean vector, roof construction, fountain position and thresholds are unverified. The central duplicate minaret marker is kept as an ambiguity, not multiplied into a second tower. Neighboring museums, visitor facilities and the city remain host content."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sy/syq/great_mosque_of_al_nuri/models/source.glb\",\"hash\":\"sha256:73f33ddeac572a8fe29e3f1b94e0f3f31337d2ec60b3b242296c457de2273e11\",\"bytes\":906004,\"triangles\":7515,\"materials\":7,\"images\":0,\"min\":[-40.581199645996094,-1.0037850141525269,-76],\"max\":[41.20000076293945,45.62339782714844,12.620330810546875],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sy/syq/great_mosque_of_al_nuri/model.glb\",\"hash\":\"sha256:e3baebe3f6083e6dc1f10e77402ec9760faf73fa9d3cc48d4abed7ae0d882483\",\"bytes\":905364,\"triangles\":7515,\"materials\":7,\"images\":0,\"min\":[-40.581199645996094,-1.0037850141525269,-76],\"max\":[41.20000076293945,45.62339782714844,12.620330810546875],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sy/syq/great_mosque_of_al_nuri/model.skyline.glb\",\"hash\":\"sha256:ff3b8af55da9dae369816ac12207bcecea56e9a0cad5cb8e45d392087bf5ce90\",\"bytes\":100324,\"triangles\":980,\"materials\":1,\"images\":0,\"min\":[-40.581199645996094,-1.0037850141525269,-76],\"max\":[41.20000076293945,45.62339782714844,12.565999984741211],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sy/syq/great_mosque_of_al_nuri/model.district.glb\",\"hash\":\"sha256:2c8f1b8678d3b0a0ce56a63f5f6f525c8fde2bf575f144cd9dc83cdaf4454ffd\",\"bytes\":291060,\"triangles\":3527,\"materials\":7,\"images\":0,\"min\":[-40.581199645996094,-1.0037850141525269,-76],\"max\":[41.20000076293945,45.62339782714844,12.613380432128906],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sy/syq/great_mosque_of_al_nuri/model.street.glb\",\"hash\":\"sha256:b6183cfe7e22b58fd07109ee20adbbf872762cf16ab3c3a3c02a210bf6215b9a\",\"bytes\":474328,\"triangles\":5521,\"materials\":7,\"images\":0,\"min\":[-40.581199645996094,-1.0037850141525269,-76],\"max\":[41.20000076293945,45.62339782714844,12.620330810546875],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sy/syq/great_mosque_of_al_nuri/model.closeup.glb\",\"hash\":\"sha256:efc243b80fdb56629f119926ec276da4493c5aeed603767727b3d4fb702b44e6\",\"bytes\":597472,\"triangles\":7053,\"materials\":7,\"images\":0,\"min\":[-40.581199645996094,-1.0037850141525269,-76],\"max\":[41.20000076293945,45.62339782714844,12.620330810546875],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "1842-current-FrontSide-probes",
+        "passed": true,
+        "notes": "Retained Q5599605 / way468118902 anchor [43.126768234,36.342740215] and heading -0.096841454998 rad remain unchanged. The six-vertex hall plan is the retained map-axis outline, not a newly extracted current building polygon. Current named mosque POI35184840207734 still says ruins; the inspected2025 pictures show rebuilt architecture. Current named Al-Hadba POI17596477684205 supplies the northwest minaret point [-36.0811989170203,-71.4911008586867]. A second Arabic minaret marker17597058803445 lies near the court center; it conflicts with the northwestern tower seen beside the hall and is retained as excluded ambiguity, not a second tall minaret. Current four-vertex garden35184869293474 constrains the east garden; courtyard arcades and narrow paths are inferred around it. Positive X east-northeast along the hall; positive Z south-southeast; the court/front faces negative Z. Site extension and lean bearing are approximations. Normal viewer DEM datum 231.67538504646745 m. Working floor 0.6233996862299194 m is the median of 66 outside hall/minaret perimeter samples at1 m offset plus.3 m. 335 raw samples under modeled masks span -0.6537850464674477..2.5059655799239238 m. Adaptive foundations sample outlines at<=2.5 m stations. Ground cutouts follow the hall, arcade strips, minaret base and narrow paths; garden ground between them is preserved. Preview terrain seats only these masks with1.5 m margin. Exact modern courtyard grade and thresholds are unverified; this coarse DEM is a visualization fixture. Independently reproduced the retained six-vertex hall and mapped tags, current named mosque/minaret points, excluded conflicting marker and four-vertex garden. No current raw building polygon or measured height is claimed. All1104 footprint checks pass across six GLBs: retained hall/estimated minaret base are covered;181 other buildings and the garden polygon remain separate. All1842 FrontSide probes pass for gallery openings/back screens/ceilings, pointed soffits, outward battered base and shaft, tower/dome/pavilion totals and terrain-seated foundations.335 raw under-mask terrain samples,66 perimeter samples and403 seated preview points/required16-bit height fixture reproduce. Two sampled garden interiors are outside all cutout masks."
+      },
+      {
+        "check": "1104-footprint-source-controls-and-host-preservation",
+        "passed": true,
+        "notes": "Retained Q5599605 / way468118902 anchor [43.126768234,36.342740215] and heading -0.096841454998 rad remain unchanged. The six-vertex hall plan is the retained map-axis outline, not a newly extracted current building polygon. Current named mosque POI35184840207734 still says ruins; the inspected2025 pictures show rebuilt architecture. Current named Al-Hadba POI17596477684205 supplies the northwest minaret point [-36.0811989170203,-71.4911008586867]. A second Arabic minaret marker17597058803445 lies near the court center; it conflicts with the northwestern tower seen beside the hall and is retained as excluded ambiguity, not a second tall minaret. Current four-vertex garden35184869293474 constrains the east garden; courtyard arcades and narrow paths are inferred around it. Positive X east-northeast along the hall; positive Z south-southeast; the court/front faces negative Z. Site extension and lean bearing are approximations. Normal viewer DEM datum 231.67538504646745 m. Working floor 0.6233996862299194 m is the median of 66 outside hall/minaret perimeter samples at1 m offset plus.3 m. 335 raw samples under modeled masks span -0.6537850464674477..2.5059655799239238 m. Adaptive foundations sample outlines at<=2.5 m stations. Ground cutouts follow the hall, arcade strips, minaret base and narrow paths; garden ground between them is preserved. Preview terrain seats only these masks with1.5 m margin. Exact modern courtyard grade and thresholds are unverified; this coarse DEM is a visualization fixture. Independently reproduced the retained six-vertex hall and mapped tags, current named mosque/minaret points, excluded conflicting marker and four-vertex garden. No current raw building polygon or measured height is claimed. All1104 footprint checks pass across six GLBs: retained hall/estimated minaret base are covered;181 other buildings and the garden polygon remain separate. All1842 FrontSide probes pass for gallery openings/back screens/ceilings, pointed soffits, outward battered base and shaft, tower/dome/pavilion totals and terrain-seated foundations.335 raw under-mask terrain samples,66 perimeter samples and403 seated preview points/required16-bit height fixture reproduce. Two sampled garden interiors are outside all cutout masks."
+      },
+      {
+        "check": "49-current-render-views-and-shared-lifecycle",
+        "passed": true,
+        "notes": "Inspected all11 current shared-material/geographic-flat views including the placement overlay. Six existing shared256² graphs serve seven merged roles: coursed limestone, raw limestone, plaster, brick, painted metal, wood and local palette glazing. Physical UV scale and linear tints; zero embedded images. Each graph is read once, eviction disposes model geometry and restores host ground.181 nearby buildings remain separate host content. Garden ground between narrow modeled paths remains uncovered. Flat placement tests pose and replacement logic; it does not prove a surveyed modern courtyard grade. Inspected all27 current medium-fi frames: Economy/High, noon/late light, street/block/skyline, silhouette, six details, four matched levels and four transitions. The far model retains the tall leaning minaret, green dome, four short turrets, gallery rhythm and fountain roof. Skyline uses three broad side-gallery bays and four pavilion posts; district restores nine side bays, open turret caps and minaret bands; street/closeup refine curves, dome ribs and selected relief. Reduced curve facets and omitted thin finials are intended distance changes. Physical laptop/phone/tablet and full-city timings remain pending."
+      },
+      {
+        "check": "source-scene-and-layout",
+        "passed": true,
+        "notes": "Targeted source/placement --check,scene validate/sim30,selected LOD layout and recipe/registration Biome pass. Simulation sha256:d9cc9dbeb4919820fd3312b8a21be96496d08a45c00c2b6fd2cd079996b03388. Existing package builds reused."
+      }
+    ]
+  },
+  "limitations": [
+    "Retained Q5599605 / way468118902 anchor [43.126768234,36.342740215] and heading -0.096841454998 rad remain unchanged. The six-vertex hall plan is the retained map-axis outline, not a newly extracted current building polygon. Current named mosque POI35184840207734 still says ruins; the inspected2025 pictures show rebuilt architecture. Current named Al-Hadba POI17596477684205 supplies the northwest minaret point [-36.0811989170203,-71.4911008586867]. A second Arabic minaret marker17597058803445 lies near the court center; it conflicts with the northwestern tower seen beside the hall and is retained as excluded ambiguity, not a second tall minaret. Current four-vertex garden35184869293474 constrains the east garden; courtyard arcades and narrow paths are inferred around it. Positive X east-northeast along the hall; positive Z south-southeast; the court/front faces negative Z. Site extension and lean bearing are approximations.",
+    "No retained published height/width/length facts and no current PMTiles part heights are available. All vertical values are explicit picture/footprint-scale estimates: hall roof8.5 m, main drum10.8 m, green dome19 m/finial20.5 m, four short turret finials16.8 m, Al-Hadba finial45 m with an estimated1.6 m eastward offset, courtyard arcade eaves7 m and fountain pavilion roof6.8 m. The lean direction/magnitude are not surveyed. Gallery bay count, dome profiles, minaret bands, fountain, paving and site extension are visualization reconstruction. Retained historic=ruins is preserved verbatim rather than presented as current appearance.",
+    "Normal viewer DEM datum 231.67538504646745 m. Working floor 0.6233996862299194 m is the median of 66 outside hall/minaret perimeter samples at1 m offset plus.3 m. 335 raw samples under modeled masks span -0.6537850464674477..2.5059655799239238 m. Adaptive foundations sample outlines at<=2.5 m stations. Ground cutouts follow the hall, arcade strips, minaret base and narrow paths; garden ground between them is preserved. Preview terrain seats only these masks with1.5 m margin. Exact modern courtyard grade and thresholds are unverified; this coarse DEM is a visualization fixture.",
+    "Current map still labels the mosque ruins and supplies no building polygon. The hall uses the retained rounded six-vertex plan; the site extension, garden-side arcades and minaret base are approximations guided by named points and pictures. The duplicate central minaret marker is not modeled as another tower. Exact restored interiors, decorative brickwork, hidden roof construction, inscriptions, engineering and physical-device performance are unverified. Neighborhood buildings and visitor/museum facilities remain host content."
+  ]
+}

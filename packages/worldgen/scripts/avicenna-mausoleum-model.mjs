@@ -8,7 +8,7 @@ import { face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const bytes = readFileSync(structureSourcePath('n0601_avicenna_mausoleum', 'map-frame.json'));
+const bytes = readFileSync(structureSourcePath('avicenna_mausoleum', 'map-frame.json'));
 const map = JSON.parse(bytes),
   outline = map.geometry.parts.find((p) => p.id === 698835433).local;
 const stone = [0.53, 0.515, 0.46],
@@ -409,8 +409,8 @@ function build(out) {
   tower(out);
 }
 export const avicennaMausoleum = {
-  id: 'n0601_avicenna_mausoleum',
-  planId: 'N0601',
+  id: 'avicenna_mausoleum',
+  planId: 'avicenna_mausoleum',
   title: 'Avicenna Mausoleum',
   wikidata: 'Q5952145',
   authoringFile: 'avicenna-mausoleum-model.mjs',

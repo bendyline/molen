@@ -1,0 +1,36 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.entities.aircraft.cessna_208b",
+  "kind": "aircraft",
+  "title": "Cessna 208B Grand Caravan EX",
+  "order": 15,
+  "files": {
+    "definitions": [
+      "entity.types.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.entities.aircraft.cessna_208b",
+        "output": "assets/molen/entities/aircraft/cessna_208b/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c76f084c985691af99ef08fd438eddd8b01dabd09cb131d5149f7602d217fa04"
+      }
+    ],
+    "generators": [
+      {
+        "id": "model",
+        "path": "models/generate.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "models/airframe.json",
+      "reference-review.json",
+      "preview.png"
+    ]
+  }
+}

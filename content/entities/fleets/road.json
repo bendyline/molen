@@ -1,0 +1,350 @@
+{
+  "format": "molen/fleet-catalog@1",
+  "id": "molen.entities.road-fleets",
+  "version": 1,
+  "description": "Illustrative mixed-age visual prevalence, not registration or sales statistics. New 2024–2025 regional models join shared older vehicles. Broad atlas boundaries, trim substitutions and countries lacking coverage are documented in REGIONAL-VEHICLES.md.",
+  "fallback": "global",
+  "regions": {
+    "library.north_america": "north-america",
+    "library.china": "china",
+    "jp": "japan",
+    "library.korea": "korea",
+    "library.germany": "europe",
+    "library.alps": "europe",
+    "library.italy": "europe",
+    "library.greece": "europe",
+    "library.eastern_europe": "europe",
+    "library.adriatic": "europe",
+    "library.anatolia": "europe",
+    "library.france": "europe-west",
+    "library.low_countries": "europe-west",
+    "library.iberia": "europe-west",
+    "library.nordic": "europe-north",
+    "library.iceland": "europe-north",
+    "library.baltic": "europe-north",
+    "library.britain": "europe-islands",
+    "library.ireland": "europe-islands",
+    "library.brazil": "brazil",
+    "library.colombia": "andes",
+    "library.andes": "andes",
+    "library.chile": "southern-south-america",
+    "library.southern_south_america": "southern-south-america",
+    "library.central_america": "south-america",
+    "library.caribbean": "south-america",
+    "library.mexico": "south-america",
+    "library.maghreb": "africa-north",
+    "library.nile": "africa-north",
+    "library.west_africa": "africa-west",
+    "library.central_africa": "africa-west",
+    "library.east_africa": "africa-east",
+    "library.madagascar": "africa-east",
+    "library.south_africa": "africa-south"
+  },
+  "profiles": [
+    {
+      "id": "global",
+      "title": "Global fallback",
+      "weights": {
+        "molen.entities.vehicle.compact": 2,
+        "molen.entities.vehicle.sedan": 2,
+        "molen.entities.vehicle.suv": 1,
+        "molen.entities.vehicle.van": 1,
+        "molen.entities.vehicle.box_truck": 1,
+        "molen.entities.transit.bus": 0.8,
+        "molen.entities.vehicle.toyota_corolla_2025": 4,
+        "molen.entities.vehicle.toyota_rav4_2025": 2,
+        "molen.entities.vehicle.honda_civic_2025": 2,
+        "molen.entities.vehicle.hyundai_tucson_2025": 2
+      }
+    },
+    {
+      "id": "north-america",
+      "title": "United States and Canada",
+      "extends": "global",
+      "weights": {
+        "molen.entities.vehicle.ford_f_150_2025": 12,
+        "molen.entities.vehicle.chevrolet_silverado_1500_2025": 9,
+        "molen.entities.vehicle.ram_1500_2025": 7,
+        "molen.entities.vehicle.toyota_rav4_2025": 12,
+        "molen.entities.vehicle.honda_cr_v_2025": 11,
+        "molen.entities.vehicle.toyota_camry_2025": 9,
+        "molen.entities.vehicle.toyota_corolla_2025": 7,
+        "molen.entities.vehicle.tesla_model_y_2024": 6,
+        "molen.entities.vehicle.tesla_model_3_2025": 5,
+        "molen.entities.vehicle.honda_accord_2025": 4,
+        "molen.entities.vehicle.nissan_rogue_2025": 5,
+        "molen.entities.vehicle.toyota_tacoma_2025": 4,
+        "molen.entities.vehicle.ford_explorer_2025": 4,
+        "molen.entities.vehicle.subaru_outback_2025": 3,
+        "molen.entities.vehicle.honda_civic_2025": 7,
+        "molen.entities.vehicle.chevrolet_trax_2025": 3,
+        "molen.entities.vehicle.ford_mustang_2024": 2,
+        "molen.entities.vehicle.acura_mdx_2019": 2,
+        "molen.entities.vehicle.mini_cooper_countryman_2012": 1,
+        "molen.entities.vehicle.winnebago_view_2022": 0.25,
+        "molen.entities.vehicle.bendy_class_a_touring": 0.15,
+        "molen.entities.vehicle.bendy_class_b_camper": 0.2,
+        "molen.entities.vehicle.ford_transit_2021": 2
+      }
+    },
+    {
+      "id": "china",
+      "title": "China",
+      "extends": "global",
+      "weights": {
+        "molen.entities.vehicle.byd_seagull_2024": 16,
+        "molen.entities.vehicle.byd_qin_plus_2024": 18,
+        "molen.entities.vehicle.wuling_hongguang_mini_ev_2025": 13,
+        "molen.entities.vehicle.geely_monjaro_2024": 12,
+        "molen.entities.vehicle.tesla_model_y_2024": 8,
+        "molen.entities.vehicle.tesla_model_3_2025": 7,
+        "molen.entities.vehicle.toyota_camry_2025": 5,
+        "molen.entities.vehicle.toyota_corolla_2025": 5,
+        "molen.entities.vehicle.honda_accord_2025": 4,
+        "molen.entities.vehicle.honda_civic_2025": 3,
+        "molen.entities.vehicle.toyota_rav4_2025": 3,
+        "molen.entities.vehicle.volkswagen_polo_2024": 2,
+        "molen.entities.vehicle.toyota_alphard_2024": 1,
+        "molen.entities.vehicle.hyundai_tucson_2025": 1
+      }
+    },
+    {
+      "id": "japan",
+      "title": "Japan",
+      "extends": "global",
+      "weights": {
+        "molen.entities.vehicle.toyota_yaris_2024": 17,
+        "molen.entities.vehicle.honda_n_box_2024": 20,
+        "molen.entities.vehicle.suzuki_jimny_sierra_2024": 12,
+        "molen.entities.vehicle.toyota_alphard_2024": 13,
+        "molen.entities.vehicle.toyota_prius_2024": 12,
+        "molen.entities.vehicle.toyota_corolla_2025": 7,
+        "molen.entities.vehicle.nissan_leaf_2012": 3,
+        "molen.entities.vehicle.suzuki_swift_2024": 8,
+        "molen.entities.vehicle.toyota_rav4_2025": 3,
+        "molen.entities.vehicle.mazda_cx_5_2025": 3,
+        "molen.entities.vehicle.honda_civic_2025": 2,
+        "molen.entities.vehicle.toyota_hiace_2024": 3,
+        "molen.entities.vehicle.subaru_forester_2025": 2,
+        "molen.entities.vehicle.tesla_model_3_2025": 0.7,
+        "molen.entities.vehicle.hyundai_tucson_2025": 0
+      }
+    },
+    {
+      "id": "korea",
+      "title": "Korean peninsula approximation",
+      "extends": "global",
+      "weights": {
+        "molen.entities.vehicle.kia_k5_2024": 20,
+        "molen.entities.vehicle.hyundai_casper_electric_2024": 15,
+        "molen.entities.vehicle.hyundai_staria_2024": 13,
+        "molen.entities.vehicle.genesis_g80_2024": 14,
+        "molen.entities.vehicle.hyundai_tucson_2025": 10,
+        "molen.entities.vehicle.kia_sportage_2025": 9,
+        "molen.entities.vehicle.hyundai_palisade_2025": 5,
+        "molen.entities.vehicle.hyundai_ioniq_5_2022": 8,
+        "molen.entities.vehicle.kia_soul_2015": 4,
+        "molen.entities.vehicle.hyundai_veloster_2020": 2,
+        "molen.entities.vehicle.tesla_model_3_2025": 3,
+        "molen.entities.vehicle.tesla_model_y_2024": 3,
+        "molen.entities.vehicle.toyota_corolla_2025": 0.5,
+        "molen.entities.vehicle.toyota_rav4_2025": 0.5,
+        "molen.entities.vehicle.honda_civic_2025": 0.5
+      }
+    },
+    {
+      "id": "europe",
+      "title": "Continental Europe",
+      "extends": "global",
+      "weights": {
+        "molen.entities.vehicle.peugeot_208_2024": 13,
+        "molen.entities.vehicle.renault_clio_2024": 14,
+        "molen.entities.vehicle.dacia_duster_2024": 12,
+        "molen.entities.vehicle.skoda_octavia_combi_2024": 15,
+        "molen.entities.vehicle.volkswagen_golf_gti_2016": 9,
+        "molen.entities.vehicle.volkswagen_polo_2024": 9,
+        "molen.entities.vehicle.fiat_500_2012": 5,
+        "molen.entities.vehicle.mini_cooper_2013": 3,
+        "molen.entities.vehicle.volvo_v70_2008": 2,
+        "molen.entities.vehicle.tesla_model_y_2024": 4,
+        "molen.entities.vehicle.tesla_model_3_2025": 3,
+        "molen.entities.vehicle.mercedes_benz_sprinter_2019": 5,
+        "molen.entities.vehicle.ford_transit_2021": 5,
+        "molen.entities.vehicle.alfa_romeo_giulia_2018": 2,
+        "molen.entities.vehicle.bmw_i3_2017": 2,
+        "molen.entities.vehicle.toyota_yaris_2024": 6,
+        "molen.entities.vehicle.hyundai_tucson_2025": 4
+      }
+    },
+    {
+      "id": "europe-west",
+      "title": "France, Benelux and Iberia",
+      "extends": "europe",
+      "weights": {
+        "molen.entities.vehicle.peugeot_208_2024": 22,
+        "molen.entities.vehicle.renault_clio_2024": 24,
+        "molen.entities.vehicle.dacia_duster_2024": 17,
+        "molen.entities.vehicle.skoda_octavia_combi_2024": 9
+      }
+    },
+    {
+      "id": "europe-north",
+      "title": "Northern Europe",
+      "extends": "europe",
+      "weights": {
+        "molen.entities.vehicle.volvo_v70_2008": 12,
+        "molen.entities.vehicle.saab_9_3_sportcombi_2011": 4,
+        "molen.entities.vehicle.tesla_model_y_2024": 15,
+        "molen.entities.vehicle.tesla_model_3_2025": 12,
+        "molen.entities.vehicle.nissan_leaf_2012": 8,
+        "molen.entities.vehicle.hyundai_ioniq_5_2022": 7
+      }
+    },
+    {
+      "id": "europe-islands",
+      "title": "Britain and Ireland",
+      "extends": "europe",
+      "weights": {
+        "molen.entities.vehicle.mini_cooper_2013": 10,
+        "molen.entities.vehicle.mini_cooper_countryman_2012": 6,
+        "molen.entities.vehicle.ford_transit_2021": 12,
+        "molen.entities.vehicle.land_rover_defender_90_2023": 3,
+        "molen.entities.vehicle.toyota_yaris_2024": 9
+      }
+    },
+    {
+      "id": "south-america",
+      "title": "South American fallback",
+      "extends": "global",
+      "weights": {
+        "molen.entities.vehicle.fiat_strada_2024": 13,
+        "molen.entities.vehicle.volkswagen_polo_2024": 17,
+        "molen.entities.vehicle.chevrolet_onix_2024": 17,
+        "molen.entities.vehicle.renault_kwid_2024": 13,
+        "molen.entities.vehicle.toyota_hilux_2024": 9,
+        "molen.entities.vehicle.suzuki_swift_2024": 5,
+        "molen.entities.vehicle.toyota_corolla_2025": 7,
+        "molen.entities.vehicle.hyundai_tucson_2025": 4,
+        "molen.entities.vehicle.peugeot_208_2024": 6,
+        "molen.entities.vehicle.dacia_duster_2024": 5,
+        "molen.entities.vehicle.byd_seagull_2024": 2
+      }
+    },
+    {
+      "id": "brazil",
+      "title": "Brazil",
+      "extends": "south-america",
+      "weights": {
+        "molen.entities.vehicle.fiat_strada_2024": 22,
+        "molen.entities.vehicle.volkswagen_polo_2024": 24,
+        "molen.entities.vehicle.chevrolet_onix_2024": 21,
+        "molen.entities.vehicle.renault_kwid_2024": 17,
+        "molen.entities.vehicle.byd_seagull_2024": 4,
+        "molen.entities.vehicle.byd_qin_plus_2024": 1
+      }
+    },
+    {
+      "id": "andes",
+      "title": "Andean markets",
+      "extends": "south-america",
+      "weights": {
+        "molen.entities.vehicle.toyota_hilux_2024": 16,
+        "molen.entities.vehicle.chevrolet_onix_2024": 15,
+        "molen.entities.vehicle.suzuki_swift_2024": 11,
+        "molen.entities.vehicle.renault_kwid_2024": 12,
+        "molen.entities.vehicle.fiat_strada_2024": 7,
+        "molen.entities.vehicle.isuzu_d_max_2024": 5,
+        "molen.entities.vehicle.toyota_hiace_2024": 6,
+        "molen.entities.vehicle.hyundai_staria_2024": 3
+      }
+    },
+    {
+      "id": "southern-south-america",
+      "title": "Argentina, Uruguay and Chile",
+      "extends": "south-america",
+      "weights": {
+        "molen.entities.vehicle.toyota_hilux_2024": 19,
+        "molen.entities.vehicle.peugeot_208_2024": 17,
+        "molen.entities.vehicle.volkswagen_polo_2024": 18,
+        "molen.entities.vehicle.chevrolet_onix_2024": 15,
+        "molen.entities.vehicle.fiat_strada_2024": 8
+      }
+    },
+    {
+      "id": "africa",
+      "title": "African fallback",
+      "extends": "global",
+      "weights": {
+        "molen.entities.vehicle.toyota_hilux_2024": 15,
+        "molen.entities.vehicle.toyota_hiace_2024": 17,
+        "molen.entities.vehicle.isuzu_d_max_2024": 13,
+        "molen.entities.vehicle.suzuki_swift_2024": 14,
+        "molen.entities.vehicle.toyota_corolla_2025": 10,
+        "molen.entities.vehicle.toyota_camry_2025": 7,
+        "molen.entities.vehicle.honda_civic_2025": 3,
+        "molen.entities.vehicle.volkswagen_polo_2024": 5,
+        "molen.entities.vehicle.renault_kwid_2024": 5,
+        "molen.entities.vehicle.mercedes_benz_sprinter_2019": 4,
+        "molen.entities.vehicle.dacia_duster_2024": 5
+      }
+    },
+    {
+      "id": "africa-north",
+      "title": "North Africa",
+      "extends": "africa",
+      "weights": {
+        "molen.entities.vehicle.dacia_duster_2024": 22,
+        "molen.entities.vehicle.renault_clio_2024": 23,
+        "molen.entities.vehicle.peugeot_208_2024": 20,
+        "molen.entities.vehicle.volkswagen_polo_2024": 12,
+        "molen.entities.vehicle.toyota_hiace_2024": 5,
+        "molen.entities.vehicle.toyota_hilux_2024": 7,
+        "molen.entities.vehicle.isuzu_d_max_2024": 3,
+        "molen.entities.vehicle.suzuki_swift_2024": 4
+      }
+    },
+    {
+      "id": "africa-west",
+      "title": "West and Central Africa",
+      "extends": "africa",
+      "weights": {
+        "molen.entities.vehicle.toyota_corolla_2025": 23,
+        "molen.entities.vehicle.toyota_camry_2025": 19,
+        "molen.entities.vehicle.toyota_hiace_2024": 21,
+        "molen.entities.vehicle.toyota_hilux_2024": 18,
+        "molen.entities.vehicle.peugeot_208_2024": 4,
+        "molen.entities.vehicle.renault_clio_2024": 5,
+        "molen.entities.vehicle.hyundai_tucson_2025": 8,
+        "molen.entities.vehicle.isuzu_d_max_2024": 5
+      }
+    },
+    {
+      "id": "africa-east",
+      "title": "East Africa and Madagascar",
+      "extends": "africa",
+      "weights": {
+        "molen.entities.vehicle.toyota_hiace_2024": 24,
+        "molen.entities.vehicle.toyota_hilux_2024": 22,
+        "molen.entities.vehicle.suzuki_swift_2024": 18,
+        "molen.entities.vehicle.toyota_yaris_2024": 17,
+        "molen.entities.vehicle.isuzu_d_max_2024": 9,
+        "molen.entities.vehicle.toyota_corolla_2025": 12,
+        "molen.entities.vehicle.nissan_leaf_2012": 2
+      }
+    },
+    {
+      "id": "africa-south",
+      "title": "Southern Africa",
+      "extends": "africa",
+      "weights": {
+        "molen.entities.vehicle.toyota_hilux_2024": 25,
+        "molen.entities.vehicle.toyota_hiace_2024": 22,
+        "molen.entities.vehicle.isuzu_d_max_2024": 23,
+        "molen.entities.vehicle.suzuki_swift_2024": 21,
+        "molen.entities.vehicle.volkswagen_polo_2024": 18,
+        "molen.entities.vehicle.renault_kwid_2024": 12,
+        "molen.entities.vehicle.ford_ranger_2025": 10
+      }
+    }
+  ]
+}

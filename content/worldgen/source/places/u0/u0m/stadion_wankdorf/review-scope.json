@@ -1,0 +1,704 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "concrete_plain",
+      "slot": "wall"
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "seat": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "mark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "display": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "accent": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "screen": {
+      "graph": "metal_perforated_square",
+      "slot": "wall"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "glass": {
+      "graph": "window_grid",
+      "slot": "window"
+    },
+    "solar": {
+      "graph": "window_grid",
+      "slot": "window"
+    },
+    "clearGlass": {
+      "slot": "window",
+      "ref": "palette:#fffefd",
+      "localRef": "palette:#fffefd",
+      "opacity": 0.55,
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.55
+      ],
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "roughness": 0.18,
+      "metallic": 0
+    },
+    "turf": {
+      "graph": "fabric_canvas",
+      "slot": "wall"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      104.72851822825083,
+      210,
+      359.9054562933368
+    ],
+    "lookAt": [
+      0,
+      15,
+      0
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "screened-facade-and-base-entrance",
+      "position": [
+        105.37078692392075,
+        12,
+        100.48381592591758
+      ],
+      "lookAt": [
+        76.54810822957612,
+        14,
+        65.02604959916526
+      ],
+      "fov": 65
+    },
+    {
+      "name": "two-tiers-and-south-hospitality",
+      "position": [
+        -20.765581965316997,
+        9,
+        -35.746197079433514
+      ],
+      "lookAt": [
+        -22.949547437582105,
+        20,
+        52.32894297050313
+      ],
+      "fov": 90
+    },
+    {
+      "name": "solar-wing-and-transparent-leading-strip",
+      "position": [
+        -50.92210535071951,
+        72,
+        -139.6672445015302
+      ],
+      "lookAt": [
+        -3.5694781045221653,
+        29,
+        -68.50736329812538
+      ],
+      "fov": 67
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        104.72851822825083,
+        210,
+        359.9054562933368
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 43,
+      "name": "wankdorf-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        104.72851822825083,
+        210,
+        359.9054562933368
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 43,
+      "name": "wankdorf-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        104.72851822825083,
+        210,
+        359.9054562933368
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 43,
+      "name": "wankdorf-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        104.72851822825083,
+        210,
+        359.9054562933368
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 43,
+      "name": "wankdorf-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/wankdorf-model.mjs",
+    "export": "buildWankdorfSkyline",
+    "errorMeters": 12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWankdorfDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "mark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "display": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "accent": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "screen": {
+            "graph": "metal_perforated_square",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "solar": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "clearGlass": {
+            "slot": "window",
+            "ref": "palette:#fffefd",
+            "localRef": "palette:#fffefd",
+            "opacity": 0.55,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.55
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.18,
+            "metallic": 0
+          },
+          "turf": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          }
+        }
+      },
+      "street": {
+        "export": "buildWankdorfStreet",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "mark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "display": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "accent": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "screen": {
+            "graph": "metal_perforated_square",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "solar": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "clearGlass": {
+            "slot": "window",
+            "ref": "palette:#fffefd",
+            "localRef": "palette:#fffefd",
+            "opacity": 0.55,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.55
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.18,
+            "metallic": 0
+          },
+          "turf": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildWankdorfCloseup",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "graph": "concrete_plain",
+            "slot": "wall"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "seat": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "mark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "display": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "accent": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "screen": {
+            "graph": "metal_perforated_square",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "solar": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "clearGlass": {
+            "slot": "window",
+            "ref": "palette:#fffefd",
+            "localRef": "palette:#fffefd",
+            "opacity": 0.55,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.55
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.18,
+            "metallic": 0
+          },
+          "turf": {
+            "graph": "fabric_canvas",
+            "slot": "wall"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      7.464870661497116,
+      46.96311498116273
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard6m Mapzen grid, roads, water and all independent buildings are retained. Datum556.6123752579924m defines field/modelY0. Boundary original samples span-2.870661703437804..2.5407756651422915m. Own retaining base extends below minimum grade; bounded ground opening remains inside that occupied base at every level. External supports meet individual sampled original grades. Only stadium parent52776562948269 is replaced with99.5percent whole-feature coverage; generalized lower levels use bounded area clipping. Failure/unload retains/restores original terrain/context.",
+    "replaceFootprint": false,
+    "bounds": [
+      7.462501370848212,
+      46.961498013651315,
+      7.46723995214602,
+      46.96473194867415
+    ],
+    "terrainReference": {
+      "anchor": [
+        7.464870661497116,
+        46.96311498116273
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard6m Mapzen grid, roads, water and all independent buildings are retained. Datum556.6123752579924m defines field/modelY0. Boundary original samples span-2.870661703437804..2.5407756651422915m. Own retaining base extends below minimum grade; bounded ground opening remains inside that occupied base at every level. External supports meet individual sampled original grades. Only stadium parent52776562948269 is replaced with99.5percent whole-feature coverage; generalized lower levels use bounded area clipping. Failure/unload retains/restores original terrain/context."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -117.64838,
+          30.168428
+        ],
+        [
+          -68.131525,
+          -65.197056
+        ],
+        [
+          -45.940638,
+          -107.194009
+        ],
+        [
+          -32.369352,
+          -100.041713
+        ],
+        [
+          -32.736143,
+          -99.308144
+        ],
+        [
+          99.4922,
+          -29.618593
+        ],
+        [
+          99.858992,
+          -30.535566
+        ],
+        [
+          113.980465,
+          -23.199773
+        ],
+        [
+          103.160115,
+          -2.659497
+        ],
+        [
+          103.343511,
+          -2.476102
+        ],
+        [
+          47.774596,
+          103.894446
+        ],
+        [
+          47.5912,
+          103.894446
+        ],
+        [
+          42.089327,
+          114.164817
+        ],
+        [
+          29.43502,
+          107.379034
+        ],
+        [
+          28.334645,
+          109.396428
+        ],
+        [
+          -26.317292,
+          80.786182
+        ],
+        [
+          -26.684083,
+          81.336378
+        ],
+        [
+          -52.176094,
+          67.948301
+        ],
+        [
+          -51.809302,
+          67.398106
+        ],
+        [
+          -105.911052,
+          38.971481
+        ],
+        [
+          -104.810677,
+          36.954114
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Original standard6m Mapzen grid, roads, water and all independent buildings are retained. Datum556.6123752579924m defines field/modelY0. Boundary original samples span-2.870661703437804..2.5407756651422915m. Own retaining base extends below minimum grade; bounded ground opening remains inside that occupied base at every level. External supports meet individual sampled original grades. Only stadium parent52776562948269 is replaced with99.5percent whole-feature coverage; generalized lower levels use bounded area clipping. Failure/unload retains/restores original terrain/context."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -130.720423,
+          33.520476
+        ],
+        [
+          -116.456308,
+          41.060126
+        ],
+        [
+          -117.678946,
+          43.301646
+        ],
+        [
+          -57.565891,
+          74.886785
+        ],
+        [
+          -57.973438,
+          75.498112
+        ],
+        [
+          -29.648981,
+          90.373753
+        ],
+        [
+          -29.241435,
+          89.762424
+        ],
+        [
+          31.482939,
+          121.551587
+        ],
+        [
+          32.705577,
+          119.310038
+        ],
+        [
+          46.765919,
+          126.849797
+        ],
+        [
+          52.879111,
+          115.438273
+        ],
+        [
+          53.082884,
+          115.438273
+        ],
+        [
+          114.826123,
+          -2.751224
+        ],
+        [
+          114.62235,
+          -2.954997
+        ],
+        [
+          126.644961,
+          -25.777525
+        ],
+        [
+          110.954435,
+          -33.928407
+        ],
+        [
+          110.546889,
+          -32.909548
+        ],
+        [
+          -36.373493,
+          -110.342382
+        ],
+        [
+          -35.965946,
+          -111.157459
+        ],
+        [
+          -51.045153,
+          -119.104455
+        ],
+        [
+          -75.701694,
+          -72.441173
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -130.720423,
+            33.520476
+          ],
+          [
+            -116.456308,
+            41.060126
+          ],
+          [
+            -117.678946,
+            43.301646
+          ],
+          [
+            -57.565891,
+            74.886785
+          ],
+          [
+            -57.973438,
+            75.498112
+          ],
+          [
+            -29.648981,
+            90.373753
+          ],
+          [
+            -29.241435,
+            89.762424
+          ],
+          [
+            31.482939,
+            121.551587
+          ],
+          [
+            32.705577,
+            119.310038
+          ],
+          [
+            46.765919,
+            126.849797
+          ],
+          [
+            52.879111,
+            115.438273
+          ],
+          [
+            53.082884,
+            115.438273
+          ],
+          [
+            114.826123,
+            -2.751224
+          ],
+          [
+            114.62235,
+            -2.954997
+          ],
+          [
+            126.644961,
+            -25.777525
+          ],
+          [
+            110.954435,
+            -33.928407
+          ],
+          [
+            110.546889,
+            -32.909548
+          ],
+          [
+            -36.373493,
+            -110.342382
+          ],
+          [
+            -35.965946,
+            -111.157459
+          ],
+          [
+            -51.045153,
+            -119.104455
+          ],
+          [
+            -75.701694,
+            -72.441173
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only owned stadium52776562948269; retain every independent native building."
+    },
+    "notes": "Retained Q194479 and named native Stadion Wankdorf POI35184404574015 establish owned building52776562948269. Pitch35184420213294 supplies map-derived 110.92972798121477 by 74.1033718131827m field surround and axis. Own21-point outer controls integrated base, four-point approximately136x96m hole controls the open roof; lower116x78m bowl/runoff remains separate. Anchor[7.464870661497116,46.96311498116273]/heading0/native east-south/internal X[0.8854369248295099,0.46475956380526573]/Z[-0.46475956380526573,0.8854369248295099]. Integrated south projection follows the positive internal Z side; its fine facing and layout remain picture-led estimates. All neighboring native records remain independent. Original standard6m Mapzen grid, roads, water and all independent buildings are retained. Datum556.6123752579924m defines field/modelY0. Boundary original samples span-2.870661703437804..2.5407756651422915m. Own retaining base extends below minimum grade; bounded ground opening remains inside that occupied base at every level. External supports meet individual sampled original grades. Only stadium parent52776562948269 is replaced with99.5percent whole-feature coverage; generalized lower levels use bounded area clipping. Failure/unload retains/restores original terrain/context."
+  }
+}

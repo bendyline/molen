@@ -1,0 +1,1077 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.temple_of_peace",
+  "sourceHash": "sha256:2e30d2bd3fac28cef8a9ef4169991dd892ee1734103141de532a31374edcae15",
+  "runtimeHash": "sha256:dab320766607b1767f414ce4b8ce31a4958e9ba43bb832fdcd53ccf6b954bed0",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5312,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:947940ef74966d8f28b4c95a2abc808e73a3bf11a8ad580cad1447f095fafbc7",
+      "bytes": 71080,
+      "gzipBytes": 12260,
+      "triangles": 688,
+      "cpuBytes": 69648,
+      "gpuBytes": 69648,
+      "errorMeters": 0.6,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:21ced750fa76b9617ebb5daecb31211c54dd16f623984fcd424b70c83311bb0f",
+      "bytes": 199400,
+      "gzipBytes": 63739,
+      "triangles": 1904,
+      "cpuBytes": 193152,
+      "gpuBytes": 193152,
+      "errorMeters": 0.25,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:d519cb89df835a7c513ecca98290d1cc3251ef46f91d4859f79952a33259da8d",
+      "bytes": 339916,
+      "gzipBytes": 115777,
+      "triangles": 3224,
+      "cpuBytes": 333660,
+      "gpuBytes": 333660,
+      "errorMeters": 0.1,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:608ee8d78106a58a0ac9605a6ebefbd7539ca63a9c9d689a5766dcdbc7d55fb8",
+      "bytes": 555680,
+      "gzipBytes": 194848,
+      "triangles": 5236,
+      "cpuBytes": 549420,
+      "gpuBytes": 549420,
+      "errorMeters": 0.035,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d4a7ec2f36dd4fe2762588c4276b9ff910d38364391e2e7a8866fbef4e424685"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:92fa05ba89b10c76a7431122c4c7583deebfdc2e23d60b36d12c478cf2843e38"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:eab5a2287c12929731b0f3759a2c797c8b7337479676c30ae7e2384793ac232a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 63030,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          25.110200000000003,
+          29.3484,
+          76.64210000000001
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:184803461b5b9cefbb8976012f05e19f1c979e92db1c5176b8cb051187f89ec1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63030,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          25.110200000000003,
+          29.3484,
+          76.64210000000001
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:cd7b25db74bc11b86006bf99ce30341f5336ccd3ba68a8735ac1ee75f4c7746b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 63030,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          25.110200000000003,
+          29.3484,
+          76.64210000000001
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:ca1ffb5d519e3b02d4d97049184304221501cc5d6b0c28fbb473726e275dac9e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63030,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          25.110200000000003,
+          29.3484,
+          76.64210000000001
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:ba1cb34cf76d760d7dd7421cc2fb1156d3cd8d1144b52bb2584552d18bde85b8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 59698,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          79.0102,
+          68.9484,
+          170.1421
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:3e21a37f0e050c3725b204b4bf6dd59afd39a6a768cc72c42a5f7764c9a97031",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 59698,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          79.0102,
+          68.9484,
+          170.1421
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:b344eb072b4ade363bdca8ef453f9c1ada8e23e2e8c34ea53642716d8466f4f1",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 59698,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          79.0102,
+          68.9484,
+          170.1421
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:5039c253ebda0fd64a356486bd9f340942201b66ca469c168ce551c5aeb55950",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 59698,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          79.0102,
+          68.9484,
+          170.1421
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:4238f9f0e66a6c807cb2700a86a39c2d94f5405fb47109c3b5abb1218b68a5df",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 58482,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          185.71020000000001,
+          110.74840000000002,
+          354.94210000000004
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:a37d60417865427435d0aa22d5839ac6f8939dffb02683982cb3b638326d2bfb",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58482,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          185.71020000000001,
+          110.74840000000002,
+          354.94210000000004
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:68e4d1190993efa43a6e557131be9cd14fb2c2df996fc95019e925b2d1739d5a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 58482,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          185.71020000000001,
+          110.74840000000002,
+          354.94210000000004
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:6a90c21a14202115719ab01fed6bbbb88ac74e4b2063d93bfa6f6ebd1bd91bc2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58482,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          185.71020000000001,
+          110.74840000000002,
+          354.94210000000004
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:51cf904401c7bef5b70b0adba381bd40e0fea003be291e31f559303f259993df",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 53170,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          185.71020000000001,
+          110.74840000000002,
+          354.94210000000004
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/plain-granite-shafts-and-white-step-bases.png",
+      "hash": "sha256:7b279d6d5fa695148b25a1c7f921fd81d5ef83aa7599db64e5ce71c153422853",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63030,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          -43.72934841735941,
+          1.494497295636548,
+          -19.79122387744522
+        ],
+        "lookAt": [
+          -69.53576021609705,
+          1.494497295636548,
+          -25.361601788680225
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roofless-court-traces-and-fallen-drums.png",
+      "hash": "sha256:084a98f9b6a773136849d386c8644b7e7fc35be26bef0508c682dc33f1c90dbc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63030,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          -64.93295968107644,
+          12.494497295636549,
+          -56.91812610988541
+        ],
+        "lookAt": [
+          -66.27368568653182,
+          -1.505502704363452,
+          -30.779984366863665
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/separate-low-mapped-eastern-relics.png",
+      "hash": "sha256:ddfa1e9d307537519438692cbda8bc8aca502c8594ecc4c9d78ec9eb32f6dc99",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63030,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          55.48189630688401,
+          23,
+          47.17407513307279
+        ],
+        "lookAt": [
+          30.48189630688401,
+          4,
+          21.174075133072787
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/peace-skyline.png",
+      "hash": "sha256:ed16d939f484a457d71f14dcf67ad8fcdd03a601aa976bce41bb9e60ccef9522",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58482,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          3.031782070724894,
+          41.49449729563655,
+          -28.181496547409708
+        ],
+        "lookAt": [
+          -67.25506929106518,
+          -0.5055027043634519,
+          -27.31056276942799
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/peace-district.png",
+      "hash": "sha256:76687db01133893fad848ca1f731fa268e9ac54c5ae62ed8335e36e5afa10ece",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 59698,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          3.031782070724894,
+          41.49449729563655,
+          -28.181496547409708
+        ],
+        "lookAt": [
+          -67.25506929106518,
+          -0.5055027043634519,
+          -27.31056276942799
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/peace-street.png",
+      "hash": "sha256:cd6c138ab55b3f6502dc69b410a5c7eb65c77fc0ac45db114e20f3f00517ba71",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 61018,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          3.031782070724894,
+          41.49449729563655,
+          -28.181496547409708
+        ],
+        "lookAt": [
+          -67.25506929106518,
+          -0.5055027043634519,
+          -27.31056276942799
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/peace-closeup.png",
+      "hash": "sha256:7a5918ebd097956f2e0b39e4bf28dc69e7f419367b52f15e9c666686bb545d0e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63030,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          3.031782070724894,
+          41.49449729563655,
+          -28.181496547409708
+        ],
+        "lookAt": [
+          -67.25506929106518,
+          -0.5055027043634519,
+          -27.31056276942799
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:853ab06fa157f3cad75780f7d6a08696e22a658d63a129fc56fc8aea8e3362d2",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58482,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          79.0102,
+          68.9484,
+          170.1421
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:3e21a37f0e050c3725b204b4bf6dd59afd39a6a768cc72c42a5f7764c9a97031",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 59698,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          79.0102,
+          68.9484,
+          170.1421
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:172d763e4f6c321179ba94e971f31cc72c53fd2a10a106d574097965bd9f097a",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 61018,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          79.0102,
+          68.9484,
+          170.1421
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:e113714e0249dc43e8ab32a64727ba32bd7089e77ecd044d3e895037c1067c4f",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63030,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_peace/terrain-review.height.png"
+        },
+        "position": [
+          79.0102,
+          68.9484,
+          170.1421
+        ],
+        "lookAt": [
+          -27.6898,
+          12.848400000000002,
+          -14.6579
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_travertine": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

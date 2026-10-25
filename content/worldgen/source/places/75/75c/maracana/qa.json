@@ -1,0 +1,70 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.maracana",
+  "inputHash": "sha256:01b943452b43120573d7864fdcb6dd7fe71b4cd3573b438f1efd7bae41e49302",
+  "captureReportHash": "sha256:7b177c40f6a6888f6944b13a69b0697f083703c1529837e61e3bd912005c9309",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed exterior, open seating bowl and portable materials.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-roof-cables.png",
+      "shots/near-seating.png",
+      "shots/near-west-boxes.png",
+      "shots/near-facade.png",
+      "shots/near-monumental-ramp.png",
+      "shots/far-roof.png"
+    ],
+    "notes": "All eleven final portable and eleven shared frames inspected, plus full-resolution roof, seats and exterior. Structural bowl underside now closes the previously see-through shell; photovoltaic rows are visibly above the corrected membrane. Field/goals, chair mosaic, aisles, western boxes, concrete crown/ribs, monumental ramps and cable ring are connected."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:079d1eac3d7a961fd9c56202c45805d0b7feeca0347d489dcf73469eaa14794e",
+    "fixtureHash": "sha256:30a01c038a2fc391e1d7ec2c992fc210adc9fcf8831e2d419cf8aa0531f1e6cf",
+    "inputHash": "sha256:01b943452b43120573d7864fdcb6dd7fe71b4cd3573b438f1efd7bae41e49302",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-roof-cables.png",
+      "shots/shared/near-seating.png",
+      "shots/shared/near-west-boxes.png",
+      "shots/shared/near-facade.png",
+      "shots/shared/near-monumental-ramp.png",
+      "shots/shared/far-roof.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared concrete, membrane and painted metal use metric scale; chair/turf colors remain inexpensive local PBR. Clear visual separation of roof/PV and structure retained. Thin cable raster aliasing occurs at far distances without missing geometry. Geographic and unload assertions pass."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e9cd9fb90c73496602bdec9f8f16770d084930d37a00f90b9047c67545f494eb",
+    "notes": "Exact mapped pitch establishes center and short/long axes; native west side contains press boxes. North-up overlay confirms main oval and two long access ramps within mapped envelope. Overall model bounds include ramps and are not scaled to the295×258m roof measurement. Minor concrete foot bevel extends0.103m below the reviewed gradeY0."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Roof engineer dimensions/current exterior and structural photos, Rio owner installation manual and exact mapped axes constrain recognizable architecture. Seat distribution is reconstructed from the published mosaic, not a certified ticket inventory; cable prestress and individual workshop sections are outside visible exterior accuracy. Detached Maracanazinho and other neighboring sports facilities remain separate assets."
+  }
+}

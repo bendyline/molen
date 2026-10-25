@@ -1,0 +1,277 @@
+{
+  "planId": "davids_tomb",
+  "id": "davids_tomb",
+  "assetId": "molen.worldgen.structure.davids_tomb",
+  "title": "David's Tomb",
+  "category": "religious-structure",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 35.22926515,
+    "latitude": 31.77172415
+  },
+  "size": [
+    41.356149673461914,
+    23.600000768899918,
+    68.01820755004883
+  ],
+  "actualBounds": {
+    "min": [
+      -20.67852020263672,
+      -0.4000000059604645,
+      -34.038692474365234
+    ],
+    "max": [
+      20.677629470825195,
+      23.200000762939453,
+      33.979515075683594
+    ]
+  },
+  "visualBrief": "Named Mount Zion tomb blocks and attached Upper Room on three complete native plans: irregular stepped pale limestone walls, deep courtyard recesses, flat roof terraces with physical parapets, small recessed window/arched-door openings, the native mapped roof dome and a slender historic roof minaret. Excludes neighboring Dormition Abbey, cemetery, sculpture and interiors.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Souvenirs_d%27Orient,_1878_by_F%C3%A9lix_Bonfils_0130-2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "david-s-tomb-wp",
+      "url": "https://qualla.com/david-s-tomb/"
+    }
+  ],
+  "referenceInputHash": "cac41a7fca7e16c19220319a893b6889a77001e13487ab1634a90dff8a050d38",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-davids-tomb.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-davids-tomb.mjs",
+    "level": "skyline",
+    "export": "davidsTombSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "davidsTombDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "davidsTombStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Three original named building plans and a roof-dome polygon define the signed true-east frame. A fixed open western approach point outside all body plans defines the approximate terrain datum; no roof-return fitting or whole-compound platform.",
+    "anchor": [
+      35.22926515,
+      31.77172415
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        35.22901155473909,
+        31.77172415
+      ],
+      "modelHeight": 0,
+      "basis": "Open western approach outside the named northern tomb block establishes a fixed approximate ground datum before terrain acquisition. Local foundation and courtyard contact require geographic-preview review."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/161058945",
+      "way/161058978",
+      "way/256278896",
+      "way/1553751244"
+    ],
+    "source": "https://www.openstreetmap.org/way/161058945",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f5df567bee847819f7f9335f18998bb712a51d3c57235774015151a24e0c29a6",
+    "notes": "Native original polygons control plan, not layer tag integers as literal floor heights.1878exterior controls historic stone/massing typology; modern roof fixtures, exact elevations and minaret attachment remain photographic medium-fi interpretations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete original named tomb and immediately attached Upper Room plans retain their signed shape and courtyard recesses. Native layer integers are not interpreted as measured elevations. Body heights7.6/9.2/11.2m, dome rise, minaret dimensions/attachment and small façade openings are photographic medium-fi estimates, not a measured architectural survey.",
+    "The exact Qualla-published1878Bonfils exterior is the unambiguously public-domain visual control for stone, stepped massing, arches, low dome and slender minaret. Current native plans/roof dome are separate controls. Modern fittings, restored details and the survival of every1878roof item are not asserted; interiors/curtains and unrelated archaeological imagery are excluded.",
+    "Exterior assembly only: no Tomb sarcophagus, religious textiles or inscriptions, Upper Room interior, neighboring Dormition Abbey/other monasteries, cemetery, memorial sculpture or landscape reconstruction. No photographic textures or exterior image links embedded in OSM tags were used.",
+    "Host terrain/foundation and courtyard contact are approximate. Footings extend0.4m below a fixed western dry-approach datum; source terrain is preserved and no platform/blanket ground opening is introduced."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "tomb-courtyard-and-stonework",
+      "position": [
+        -42,
+        12,
+        40
+      ],
+      "lookAt": [
+        -6,
+        4,
+        18
+      ]
+    },
+    {
+      "name": "mapped-dome-and-minaret",
+      "position": [
+        30,
+        25,
+        -28
+      ],
+      "lookAt": [
+        1,
+        12,
+        -12
+      ]
+    },
+    {
+      "name": "upper-room-and-terraces",
+      "position": [
+        -28,
+        19,
+        -54
+      ],
+      "lookAt": [
+        0,
+        7,
+        -22
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6746,
+    "vertices": 20238,
+    "materials": 4,
+    "bytes": 812324,
+    "sha256": "sha256:1c9d5d9ea600fe500877bc19d24a83aa392f02354f60337a89089c7e367678cd"
+  }
+}

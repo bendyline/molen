@@ -6,7 +6,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u0/u0z/n0297_nuremberg_castle/',
+  '../../../content/worldgen/source/places/u0/u0z/nuremberg_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -1030,7 +1030,7 @@ export const buildNurembergSkyline = (o) => buildNurembergRuntime(o, 'skyline');
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u0/u0z/n0297_nuremberg_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u0/u0z/nuremberg_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

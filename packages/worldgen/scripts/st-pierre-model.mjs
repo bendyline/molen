@@ -58,7 +58,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u0/u0h/n0381_st_pierre_cathedral/',
+  '../../../content/worldgen/source/places/u0/u0h/st_pierre_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1165,7 +1165,7 @@ export const buildStPierreSkyline = (o) => build(o, 0),
   buildStPierreCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const stPierreStudy = {
-  id: 'N0381',
+  id: 'st_pierre_cathedral',
   key: 'st_pierre_cathedral',
   title: 'St. Pierre Cathedral',
   category: 'cathedral',

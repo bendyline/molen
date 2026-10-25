@@ -1,0 +1,759 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.library_of_ahmed_iii_topkapi_palace",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:83475e26b415302771dc9af96679cc98c6766f4c412646242e38dd2cfaa9b974",
+  "sourceHash": "sha256:210616d3e0c9c2cc40bd5168adaf2dffe4107eece9b41a20e979d01c4e046989",
+  "runtimeHash": "sha256:37c2231aafde4d9694dbb769870338a4b89b5ae1c1f64614242aadcd19f39b72",
+  "captureReportHash": "sha256:f50324cba5f6378c235c92632361bf75a7cd5a25bddb0547b8e8c4d62bf5b4cd",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/three-open-arches-and-entrance.png",
+      "shots/cross-plan-and-lead-dome-group.png",
+      "shots/paired-side-stairs-and-front-fountain.png"
+    ],
+    "notes": "Inspected all 48 final source/shared/medium-fi/native views in one continuous author/build/inspect/fix pass. Specific cross-shaped pale marble library with raised basement, paired side stairs, three open pointed portico arches/four pale shafts/dark collars and ties, a real central entrance and two recessed window rows with opaque backs and simple metal grilles. Main lead dome sits on an octagonal drum; three small portico domes and shallow lead vaults over three arms retain the roof identity. Front fountain has a geometric gold recess/crest, tap and actual recessed basin floor/lips. Closed exposed window-header ends, aligned those headers with the wall thickness, made the basin hollow and tightened its ground opening. Restored simple window rows in the skyline to avoid blank far walls. Corrected the provider control from beneath the Audience Chamber canopy into an uncovered gap without changing the model world position or any GLB; 31 pixel-identical inspected views were retained and 17 changed final views inspected. All eight earlier palace members retain their approved input/source/runtime pins. The native fixture renders this member against native context, not a combined nine-model scene."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/three-open-arches-and-entrance.png",
+      "shots/shared/cross-plan-and-lead-dome-group.png",
+      "shots/shared/paired-side-stairs-and-front-fountain.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Seven existing 256px graphs: stone_marble, stone_limestone_raw, stone_granite, metal_standing_seam, metal_painted, metal_bronze_cast and wood_plain. Eight material roles/draws in textured levels; wall and trim use the same marble graph with distinct slots. Skyline merges to one draw and uses each graph mean. Explicit metric wall/roof quad UVs, opaque dark trim bindings and linear vertex tints. Each requested graph read once. No new graph, private atlas or embedded image. Separate POSITION/NORMAL streams and equal CPU/GPU accounting.",
+    "captureReportHash": "sha256:38db73e68b31c3a6732a7b3583dc5af7ecac0dac3d32e064035ba67c57ea18c4"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/three-open-arches-and-entrance.png",
+      "medium-fi/cross-plan-and-lead-dome-group.png",
+      "medium-fi/paired-side-stairs-and-front-fountain.png",
+      "medium-fi/library-skyline.png",
+      "medium-fi/library-district.png",
+      "medium-fi/library-street.png",
+      "medium-fi/library-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored levels: 936 / 3206 / 9826 / 13788 triangles. Skyline plus district initial geometry is 390784 bytes. All levels retain the cross plan, raised approach, open portico, real entrance, main dome/three small domes and arm roofs. Skyline now retains representative rectangular/pointed window rows; district restores the window pattern, small dome profiles and shaft detail. Street/closeup restore recessed window backs/reveals/grilles, finer pointed arches, dome/crescent profiles, stair rails and fountain detail. All levels meet triangle/download/draw/layout budgets. Physical laptop/phone/tablet and dense-city timings remain pending.",
+    "captureReportHash": "sha256:2525d21c1f4b3d966ebe4f8fc751240865e45176a9adc16b5bd29feb2939a920"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:10026da6a6efdbd7f09ec94f6da6923c61dcfd8906584a731a8c8b7ce06541d5",
+    "mapFrameHash": "sha256:a1b5c300300daa4fee5c5a38aedd4a0d8d637b70e0226ef72e739cbc180d7749",
+    "notes": "Independent Library Q104549762, within Topkapi Q170495, OSM way32396231/native35184404485063. Existing parent has twelve cross-plan corners and two detailed tile fragments. Internal+X follows front elevation southeast; internal+Z faces southwest toward separate Audience Chamber. World heading0/+X east/+Z south. Ordinary photos show the same front portico, raised basement, window rows and lead roofs. Only Library way32396231/native35184404485063 replaced. Ground opening follows actual occupied cross plan, paired stairs and the fountain body/basin. All 258 independent resident records of 259 and 572 wider records of 573 retained. Six overlapping PMTiles cases at levels 13/14/15 pass, including both detailed parent fragments. Original 161x161/6m terrain, roads and 3400906.0006393427 square metres water unchanged. Failure keeps 259 originals; all four LOD unloads restore ground/water and zero live geometry. The uncovered front gap internal[0,9.6] supplies the provider attachment with its explicit negative modelHeight; the unchanged source datum preserves the original model position. All 573 native footprints exclude that control. Walking planeY2.2 is level above the falling original samples. Native exterior fit and facing accepted as approximate visualization. Rear/east terrain exposes a deep protective basement: it accommodates coarse terrain and does not verify historical basement or retaining-wall height. Historical thresholds/accessibility remain unverified. No precinct slab/flattening or removal of the Audience Chamber. Standalone views show the full front arcade; the native doorway is inspected from inside its own portico because the retained Audience Chamber crowds the distant front camera."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Three ordinary photos viewed: Dosseman 2008 whole corner, Giovanni DallOrto 2006 roof close-up and Serhinho 2007 front elevation. Commons Library category attributes independent Q104549762; the collection now records that identifier with its identitySource. Existing PMTiles supplies twelve cross-plan corners and the separate named building parent. No qualified native height. Picture-led floor2.2m above open front court, main eaves10.9m, portico arch spring8.3m/crown10.45m, central octagonal drum12.0m and lead dome14.9m plus finial. Three portico domes and shallow arm vaults follow photos; heights/profiles, exact hidden roof joins, room layout and fine decoration remain approximate. Column/roof/window controls and fine profiles remain picture-led approximations. Fountain crest/shell and plaque are neutral geometry; no copied calligraphy, floral carving or textured artwork. No visitors, planted garden, furnishings or asserted surveyed interior plan. This is one member; the whole palace remains incomplete."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/models/source.glb\",\"hash\":\"sha256:210616d3e0c9c2cc40bd5168adaf2dffe4107eece9b41a20e979d01c4e046989\",\"bytes\":1525336,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.glb\",\"hash\":\"sha256:37c2231aafde4d9694dbb769870338a4b89b5ae1c1f64614242aadcd19f39b72\",\"bytes\":1524616,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.skyline.glb\",\"hash\":\"sha256:e9fbf1230e6f58aab3a22a9c21a9d7f1931a69f120833bb1601942660687a1b8\",\"bytes\":90500,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.district.glb\",\"hash\":\"sha256:80d58e3477ac178a2b59892f5770c9146c54b574580513e14c9e6bb1ca2f7118\",\"bytes\":300284,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.street.glb\",\"hash\":\"sha256:459f2024e775bedd7f5f1062e335247d73b0153e022916e423389b079ca19af4\",\"bytes\":911472,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.closeup.glb\",\"hash\":\"sha256:1e4355c75df5bf531431996f7c2af545b98f7ac749802954e5b9941c05c135d1\",\"bytes\":1272972,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "cross-plan-open-pointed-portico-real-shafts-opaque-windows-domes-stairs-basin-and-cutout-seals",
+        "passed": true,
+        "notes": "572 actual mesh/contact probes across six files. All four shafts/three open bays, clear entry, room ceiling/rear wall, seated domes, actual side stair treads, opaque window backs from both sides, recessed fountain floor and occupied ground-cutout triangle coverage pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:83475e26b415302771dc9af96679cc98c6766f4c412646242e38dd2cfaa9b974",
+    "sceneInputs": {
+      "inputHash": "sha256:83475e26b415302771dc9af96679cc98c6766f4c412646242e38dd2cfaa9b974",
+      "sourceHash": "sha256:210616d3e0c9c2cc40bd5168adaf2dffe4107eece9b41a20e979d01c4e046989",
+      "runtimeHash": "sha256:37c2231aafde4d9694dbb769870338a4b89b5ae1c1f64614242aadcd19f39b72",
+      "files": {
+        "content/worldgen/source/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/models/source.glb": "sha256:210616d3e0c9c2cc40bd5168adaf2dffe4107eece9b41a20e979d01c4e046989",
+        "content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.glb": "sha256:37c2231aafde4d9694dbb769870338a4b89b5ae1c1f64614242aadcd19f39b72",
+        "content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.skyline.glb": "sha256:e9fbf1230e6f58aab3a22a9c21a9d7f1931a69f120833bb1601942660687a1b8",
+        "content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.district.glb": "sha256:80d58e3477ac178a2b59892f5770c9146c54b574580513e14c9e6bb1ca2f7118",
+        "content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.street.glb": "sha256:459f2024e775bedd7f5f1062e335247d73b0153e022916e423389b079ca19af4",
+        "content/worldgen/assets/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/model.closeup.glb": "sha256:1e4355c75df5bf531431996f7c2af545b98f7ac749802954e5b9941c05c135d1"
+      }
+    },
+    "attachmentControl": {
+      "basis": "Source vertical datum remains 51.31288038632903m, preserving authored geometry and its native position. Actual provider attachment uses the uncovered front gap internal[0,9.6], outside every one of the 573 retained native building records, with modelHeight=-0.29670710644687404m. This negative local attachment height compensates for the original grid slope. Original terrain/roads/water remain unchanged; occupied floorY2.2 and deep rear/east foundations are approximate accommodations, not verified historical basement heights. No precinct flattening/custom terrain; thresholds/accessibility remain unverified.",
+      "anchor": [
+        28.984498608323825,
+        41.01295194718182
+      ],
+      "sourceDatum": 51.31288038632903,
+      "absoluteGround": 51.01617327988215,
+      "modelHeight": -0.29670710644687404,
+      "resultingSourceDatum": 51.31288038632903,
+      "buildingsContainingControl": [],
+      "frameReuse": {
+        "pixelIdenticalPreviouslyInspected": 31,
+        "changedFrames": 17,
+        "changedPaths": [
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\street-noon-high.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\street-late-high.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\block-noon-high.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\block-late-high.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\cross-plan-and-lead-dome-group.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\library-district.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\library-street.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\library-closeup.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\transition-district.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\transition-street.png",
+          "content\\worldgen\\source\\places\\sx\\sxk\\library_of_ahmed_iii_topkapi_palace\\medium-fi\\transition-closeup.png",
+          ".artifacts\\topkapi-library-integration\\shots\\final-district-whole-site.png",
+          ".artifacts\\topkapi-library-integration\\shots\\final-street-whole-site.png",
+          ".artifacts\\topkapi-library-integration\\shots\\final-closeup-whole-site.png",
+          ".artifacts\\topkapi-library-integration\\shots\\final-closeup-inside-portico-open-entrance.png",
+          ".artifacts\\topkapi-library-integration\\shots\\final-closeup-cross-plan-and-lead-dome-group.png",
+          ".artifacts\\topkapi-library-integration\\shots\\final-closeup-paired-side-stairs-and-front-fountain.png"
+        ]
+      },
+      "allSixGlbsUnchanged": true
+    },
+    "preservedMembers": [
+      {
+        "asset": "molen.worldgen.structure.gate_of_salutation_topkapi_palace",
+        "inputHash": "sha256:0a52b9af3b571a54e4fd83b157c6a072d5bd3e725554b55c9d5191a7ea98b044",
+        "sourceHash": "sha256:531f1f4b806f391653269bec502d96e6abf7647823f7a0bf395f5225c79ecdfe",
+        "runtimeHash": "sha256:92bca0aacb504f346d048aeb42dd68f499eb1800bdda2573f7f14568841bb00d"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_gate_topkapi_palace",
+        "inputHash": "sha256:e5ecd840eac8634c6a2f3c82871f3243bfc10845705f5b617a69e67cfc0800de",
+        "sourceHash": "sha256:7a56eaa1398cf42a46442536dbe45b6834596d9b3ed15429dd25f56c414c1c09",
+        "runtimeHash": "sha256:0ac29d303f82f04c2c8450f8cbd53f58ad967daa02ac4a6b634eaab32c91ebce"
+      },
+      {
+        "asset": "molen.worldgen.structure.gate_of_felicity_topkapi_palace",
+        "inputHash": "sha256:60916dfdfb785c016abbf3c096b41a22563f5109507bff69083f006b1daa0001",
+        "sourceHash": "sha256:337e05137e257792295fd557f29463ff21ba5a6e4e515eb0c9ef5c6d6f693143",
+        "runtimeHash": "sha256:b98b68a9ed89a363706253dff8a894f3a2fdc80cad028eaa3810e0b0e49f88b9"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_council_hall_topkapi_palace",
+        "inputHash": "sha256:58f0bce402de4a05f12950a109b87543f1c936a960fdbf4756b928237b946fc0",
+        "sourceHash": "sha256:2225c439d3cdabe44790b10d7abe72d7a361f9ea71719515fac54a4878a232ad",
+        "runtimeHash": "sha256:2c3d1cce002ff939daa4ef152b4488b43f327c9e5eabad5f1c2eca8d8562d383"
+      },
+      {
+        "asset": "molen.worldgen.structure.tower_of_justice_topkapi_palace",
+        "inputHash": "sha256:219a1a343cf2a993979c5af59c734dbd14a39782e5ba088ee584ef92aed3f290",
+        "sourceHash": "sha256:dfdc0d06990acc65f05893e24e4a6f5b292661ad97b0b9f404e2300791e418f4",
+        "runtimeHash": "sha256:d7bff441bfbaff86a4578a449c1280e9ddf814a0de190865c98237ae3b86755c"
+      },
+      {
+        "asset": "molen.worldgen.structure.palace_kitchens_topkapi_palace",
+        "inputHash": "sha256:edbc800a3fd69705a9e78f7f98e45b4722190b464a7f03ad4aa6c0894a4b296f",
+        "sourceHash": "sha256:ad2bc7e06bef640a001ef60d029936252d91f74f94e4032c6dae671aa5bdbd92",
+        "runtimeHash": "sha256:693b3acba3c158ad3e1b0c388a3d4aa7edc088dfbc0ab9e82dd6074b9e51cccd"
+      },
+      {
+        "asset": "molen.worldgen.structure.imperial_harem_topkapi_palace",
+        "inputHash": "sha256:df97e03dbb3cbeecd512e47fef57d635500b4fb349b02a1af695421bdb647b52",
+        "sourceHash": "sha256:7e22c6fd6761ff86e4e35320732d357294434a10ba565c39012ce12babe2d622",
+        "runtimeHash": "sha256:72359c535333df60842bd02efbdb60a4de86d29ed51ab00ab5434da47f359d96"
+      },
+      {
+        "asset": "molen.worldgen.structure.audience_chamber_topkapi_palace",
+        "inputHash": "sha256:f0ae33ae6fbe3c28af23699d003252595d6107771bb4cbd1820940e90734a4e4",
+        "sourceHash": "sha256:277459ee2d0e5178232fb43b261ff3ad035de68784f66ea72797afc60d16fdaa",
+        "runtimeHash": "sha256:1d3b436a3c5173dc569e41417e5db7e0f3bac8b7d459ae084e79a903a988e4d2"
+      }
+    ],
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:83475e26b415302771dc9af96679cc98c6766f4c412646242e38dd2cfaa9b974",
+      "ownerRemainder": 0,
+      "footprintQuantizationMeters": 0.0001,
+      "groundBoundaryRounding": {
+        "outsideArea": 0,
+        "maxDistanceMeters": 0
+      },
+      "independentBuildingsUnchanged": 258,
+      "widerIndependentBuildingsUnchanged": 572,
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3070
+          ],
+          "id": 35184396894810,
+          "owned": false,
+          "covered": 0.00016073013852705367,
+          "area": 1516256.7168042676,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3071
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.0003930431917829327,
+          "area": 620054.3788305053,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6141
+          ],
+          "id": 35184404484940,
+          "owned": false,
+          "covered": 0.0024358237349803,
+          "area": 100453.16494859578,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.003770087955863958,
+          "area": 64901.98804383282,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 35184404485063,
+          "owned": true,
+          "covered": 0.9999995969566903,
+          "area": 247.2231897220414,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184404485063,
+          "owned": true,
+          "covered": 0.9999995969566903,
+          "area": 247.2231897220414,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "method": "Only Library way32396231/native35184404485063 replaced. Ground opening follows actual occupied cross plan, paired stairs and the fountain body/basin. All 258 independent resident records of 259 and 572 wider records of 573 retained. Six overlapping PMTiles cases at levels 13/14/15 pass, including both detailed parent fragments. Original 161x161/6m terrain, roads and 3400906.0006393427 square metres water unchanged. Failure keeps 259 originals; all four LOD unloads restore ground/water and zero live geometry."
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "modelWorldY": 2.629789719321707e-9,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.library_of_ahmed_iii_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -52.059780386329024,
+            "max": 4.153619613670976
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:8b4da3d877d870a8526a96e03f1232218ecf0c33e6963a50482d69cf69341bd6",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 12,
+              "triangles": 311006
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                46.71881985582858,
+                28,
+                -14.083744930899492
+              ],
+              "lookAt": [
+                0,
+                6,
+                0
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "modelWorldY": 2.629789719321707e-9,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.library_of_ahmed_iii_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -52.059780386329024,
+            "max": 4.153619613670976
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:01405e60c612abd94b1833b697fa10558daa83f142b99e6ddfbef358f0cef490",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 313276
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                46.71881985582858,
+                28,
+                -14.083744930899492
+              ],
+              "lookAt": [
+                0,
+                6,
+                0
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "modelWorldY": 2.629789719321707e-9,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.library_of_ahmed_iii_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -52.059780386329024,
+            "max": 4.153619613670976
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:e6c7da1917ea42f6f7b0c55fe2df8c4dc522b0cf24e4f7b420ef87bb421d7869",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 319896
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                46.71881985582858,
+                28,
+                -14.083744930899492
+              ],
+              "lookAt": [
+                0,
+                6,
+                0
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "modelWorldY": 2.629789719321707e-9,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.library_of_ahmed_iii_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -52.059780386329024,
+            "max": 4.153619613670976
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:7177e40edce82d3c4e3be8f47243e6454eec23763bd06f04d564ab84f2c1d29b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 323858
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                46.71881985582858,
+                28,
+                -14.083744930899492
+              ],
+              "lookAt": [
+                0,
+                6,
+                0
+              ],
+              "fov": 45
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-inside-portico-open-entrance.png",
+            "hash": "sha256:116f3ba038d3e9eae2ec52c7ca23bd3f395efcc1f46e6a5276b2acdf562df67d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 324670
+            },
+            "camera": {
+              "name": "inside-portico-open-entrance",
+              "position": [
+                -3.4480515362680655,
+                4,
+                6.206524035500017
+              ],
+              "lookAt": [
+                -1.9911283519294463,
+                5.5,
+                3.584049090922545
+              ],
+              "fov": 80
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-cross-plan-and-lead-dome-group.png",
+            "hash": "sha256:79309a16e3aaba5eeebcfcca6caed5a16153f6c65f650e7e931ad92a20f00d95",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 323858
+            },
+            "camera": {
+              "name": "cross-plan-and-lead-dome-group",
+              "position": [
+                31.08113803895686,
+                18,
+                -4.46798144616883
+              ],
+              "lookAt": [
+                0,
+                6,
+                0
+              ],
+              "fov": 57
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-paired-side-stairs-and-front-fountain.png",
+            "hash": "sha256:22188e1950ead3a058e3370e9073708900f61104254ef983d339a2675fe48067",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 324670
+            },
+            "camera": {
+              "name": "paired-side-stairs-and-front-fountain",
+              "position": [
+                4.176559373125226,
+                4.2,
+                14.103061788234488
+              ],
+              "lookAt": [
+                -1.1655297389589236,
+                3.8,
+                6.2162320120473575
+              ],
+              "fov": 66
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 259,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184404485063,
+              "area": 247.22467070576783
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.library_of_ahmed_iii_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -52.059780386329024,
+            "max": 4.153619613670976
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:ed426038f18ed320629d9f591174b0ef8f52f220abde54cce1be2d16747b8283",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 11,
+              "triangles": 309952
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                46.71881985582858,
+                28,
+                -14.083744930899492
+              ],
+              "lookAt": [
+                0,
+                6,
+                0
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Library of Ahmed III/Enderun Library: mapped cross-shaped marble building, raised basement and paired side stairs, open three-bay pointed-arch portico/four pale shafts, real central doorway, two recessed window rows with metal grilles, main lead dome on octagonal drum, three small portico domes, low barrel roofs over three arms and front fountain. No copied inscriptions, floral carving, visitors, planting or furnished library.",
+    "Independent Library Q104549762, within Topkapi Q170495, OSM way32396231/native35184404485063. Existing parent has twelve cross-plan corners and two detailed tile fragments. Internal+X follows front elevation southeast; internal+Z faces southwest toward separate Audience Chamber. World heading0/+X east/+Z south. Ordinary photos show the same front portico, raised basement, window rows and lead roofs.",
+    "No qualified native height. Picture-led floor2.2m above open front court, main eaves10.9m, portico arch spring8.3m/crown10.45m, central octagonal drum12.0m and lead dome14.9m plus finial. Three portico domes and shallow arm vaults follow photos; heights/profiles, exact hidden roof joins, room layout and fine decoration remain approximate.",
+    "Source vertical datum remains 51.31288038632903m, preserving authored geometry and its native position. Actual provider attachment uses the uncovered front gap internal[0,9.6], outside every one of the 573 retained native building records, with modelHeight=-0.29670710644687404m. This negative local attachment height compensates for the original grid slope. Original terrain/roads/water remain unchanged; occupied floorY2.2 and deep rear/east foundations are approximate accommodations, not verified historical basement heights. No precinct flattening/custom terrain; thresholds/accessibility remain unverified."
+  ]
+}

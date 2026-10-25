@@ -1,0 +1,182 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.hartrao_26m_antenna",
+  "status": "completed",
+  "reviewedOn": "2026-10-19",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:bf6f1d01f053ec2759f86dd554e01c61887a957e2e9c544ced3f999cffd595e0",
+  "sourceHash": "sha256:02caaa245eb941ae1d2456eb6a361e2f412b49d62b74a5b7422b40a689e3a844",
+  "runtimeHash": "sha256:00a53d7223539a671a58833907429cfbce4d9b611ff749bf8a66c765bd6d5b67",
+  "visualReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:cf6281f7cda0b576b6bf7c78f9f467c15eacf2c5eccb502a4c911f6cb45258fd",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/parabolic-reflector-and-feed.png",
+      "shots/rear-ribs-and-polar-frame.png",
+      "shots/open-lattice-feet-and-axis.png"
+    ],
+    "notes": "All8 current portable images inspected:26m white parabolic shell with central receiver/three open feed trusses, rear ribs/rings, open inclined polar/hour-axis frame, four splayed lattice legs, footings and ladder. The body/profile and open steelwork follow both inspected NASA staff photographs in a reasonable illustrative observing pose."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:e22060ee7ab32a1027dd4aa8501653a1f4b350a82cfe7d25d5c413e6b5db3f4a",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/parabolic-reflector-and-feed.png",
+      "shots/shared/rear-ribs-and-polar-frame.png",
+      "shots/shared/open-lattice-feet-and-axis.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All8 current shared-material images inspected, including native26m instrument plan overlay. Pale painted metal, dark axis/frame and concrete footings bind correctly. Exact named instrument center, true-east frame, off-origin dry-pad datum and target-only geographic load/unload pass; detached observatory instruments are outside this model scope."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:058d27e731e054ee65dbdcd457a461ddbc9de4a14035ff26dd5cf616ecd0d0d6",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/parabolic-reflector-and-feed.png",
+      "medium-fi/rear-ribs-and-polar-frame.png",
+      "medium-fi/open-lattice-feet-and-axis.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All20 current context images inspected: noon/late economy/high at street/block/skyline, silhouette, three details and all four shipped LOD transitions. Reflector/feed/polar-mount silhouettes remain at distance; fine cage/web/ladder detail retires in lower LODs. Synthetic context checks lighting/scale, not the actual observatory landscape or a surveyed pad fit."
+  },
+  "captureReportHash": "sha256:cf6281f7cda0b576b6bf7c78f9f467c15eacf2c5eccb502a4c911f6cb45258fd",
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:b45c8e4206f539c59a1891cb06a60aaae84cc00bce98ea94c73f0e7b3bcf8557",
+    "mapGeometryHash": "sha256:816c924c7d3c3bc5b25d6ca6fac56b90f6ed4f5b71873463ffa73104d94a878a",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:5392be6d4a9b0e94158268f4889980d99b0d8a5e23a1abfadad8455bde9d6ab7",
+      "descriptorHash": "sha256:5bd1fe3d8833d7eb320ff9406d7f048ed910853f469b677bd318436885ebc2a6",
+      "heightfieldHash": "sha256:15975756109177025cb8bff05b249837114bbb2f3f30f104adbaf570b39b0214",
+      "providerDatumMeters": 1386.5686,
+      "nativeReflectorPlanRelativeRangeMeters": [
+        -0.07804,
+        1.64575
+      ]
+    },
+    "groundContactVerified": false,
+    "approximateGeographicPreview": true,
+    "notes": "Original OSM way220662077 explicitly names the HartRAO26-metre IVS/VLBI antenna and records26m diameter. Its original polygon centroid fixes the actual instrument anchor, about70m north of the general story point; campus POI and separate C-BASS/XDM/HIRAX structures are rejected as different identities. A fixed open pad point18m south defines approximateY0 before terrain acquisition. Shared original-plan overlay/off-origin datum and actual target-only geographic placement pass. Source terrain is preserved; footing/pad attachment is approximate. Dish pose is illustrative because the instrument moves; no claim of permanent operational pointing or surveyed foundation contact."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Principal HartRAO26metre radio-telescope reflector, polar mount/steel support, feed structure and intrinsic footings. Detached15m/XDM/C-BASS dishes, HIRAX array, campus buildings, fences, survey instruments and landscape are separate and excluded.",
+    "notes": "26m shallow parabolic reflector with central receiver, three open triangular feed trusses, rear radial webs/rings, inclined open polar/hour-axis framework, four splayed lattice feet and bounded footings/access ladder. Features agree with both inspected NASA photographs;50degree display elevation, focal ratio/depth, exact truss sections, hidden connections and fittings remain reasonable medium-fi estimates. Detached instruments, campus buildings/containers/fence, branding and landscape excluded; this is a static exterior asset, not an engineering/tracking simulation."
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:bf6f1d01f053ec2759f86dd554e01c61887a957e2e9c544ced3f999cffd595e0",
+    "referenceInputHash": "d4e3659e175c2be9b8e49007acb8878360bc245b62b8d217cfbca56ca48fd74b",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      "references/26m-front.jpg",
+      "references/26m-rear.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:a8ead4468861f747cfb4e21337542a25452eb0144e387c14a8841ab3190d1236",
+    "excludedHistoricalImagery": [],
+    "notes": "Started with published Qualla media; actual instrument pictures are CC BY-SA/CC BY and regional PD airport/Pretoria images are unrelated, so none were adopted. Both exact900x550NASA GSFC gallery renditions by Frank Lemoine inspected. Individual photo credit, exact offered links/dimensions/bytes, institutional civil-service role report and NASA government-work copyright policy are bound in the complete imagery inventory, which passes. No other image source or photographic texture used."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:4c80b2e3e1bf7c48ec6758e3b395c0fb4df9738b53438ca08df6757f03cf1a86",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:69fc2e31a4bba5172d582bfd2e0e791008387b9f6ef6637d888be40360efdae4",
+        "bytes": 52412,
+        "gzipBytes": 11696,
+        "triangles": 636,
+        "cpuBytes": 50976,
+        "gpuBytes": 50976,
+        "errorMeters": 1.1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:62438ae645a2b5d4e86ba2b69f81997405a9fa2f05c5f4a8e96153552b93c7b0",
+        "bytes": 242452,
+        "gzipBytes": 65193,
+        "triangles": 3020,
+        "cpuBytes": 238584,
+        "gpuBytes": 238584,
+        "errorMeters": 0.45,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:93b90744946a4f05673d42451f2cb282c0bc41a1d9755f63cda85855c595a280",
+        "bytes": 714296,
+        "gzipBytes": 199098,
+        "triangles": 9040,
+        "cpuBytes": 710412,
+        "gpuBytes": 710412,
+        "errorMeters": 0.14,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:9277cdede3f56bc82f942adcd2994cac2cb207944242546b5d37263c24acfe85",
+        "bytes": 1824436,
+        "gzipBytes": 450202,
+        "triangles": 15184,
+        "cpuBytes": 1822080,
+        "gpuBytes": 1822080,
+        "errorMeters": 0,
+        "drawCalls": 3
+      }
+    ]
+  },
+  "validation": {
+    "completed": true,
+    "exactSourceRegeneration": true,
+    "assetInspectVerified": true,
+    "mediumFiAudit": "passed without findings",
+    "currentFramesInspected": 36,
+    "activePlacement": "hartrao-26m-antenna",
+    "storyAnnotation": "linked-and-zero-change-repeat-verified",
+    "sceneValidation": true,
+    "simulationTicks": 30,
+    "stateHash": "sha256:690398bef65f1ce364b19a3a38a7bfe9e85fc1572a65c6c7d8019135e17f9083",
+    "sharedCaptureScope": "target-only; principal named26m instrument placement and original native plan"
+  },
+  "limitations": [
+    "Native way220662077 explicitly identifies the26m IVS/VLBI telescope; its original polygon fixes the instrument center rather than the general campus/story point.26m diameter is retained. Surface focal ratio/depth,50degree display elevation, receiver, polar framework, truss sections and small fittings are photographic medium-fi estimates; this is not an engineering or tracking simulation.",
+    "Two inspected NASA GSFC photographs by named civil servant Frank Lemoine show the principal instrument during the2016VLBI meeting. Both exact offered900x550renditions, primary staff-role report and NASA government-work policy are hash-bound after a Qualla-first search. Original pixels are visual references and are not textures.",
+    "Principal26m structure only. Separate15m/XDM/C-BASS dishes, HIRAX array, laser-ranging equipment, campus buildings, containers, fences, landscape and branded labels are excluded. Fine webs/cage/ladder detail retires in lower LODs; the open mount and main feed/reflector silhouettes remain.",
+    "Footings extend0.35m below a fixed dry-pad datum. Source terrain, local foundation/pad attachment and ground slope remain approximate; no whole-site platform, blanket ground opening or source-height fitting is introduced."
+  ]
+}

@@ -11,7 +11,7 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 const f = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u1/u1z/n0298_egeskov_castle/map-frame.json',
+        '../../../content/worldgen/source/places/u1/u1z/egeskov_castle/map-frame.json',
         import.meta.url,
       ),
     ),
@@ -58,7 +58,7 @@ function rayHit(origin, d, p) {
   return u < -1e-5 || v < -1e-5 || u + v > 1.00001 ? null : dot(e2, cross(q, e1)) / det;
 }
 it('reproduces four browser levels with shared graphs, homogeneous uploads and small initial downloads', async () => {
-  const id = 'molen.worldgen.structure.n0298_egeskov_castle',
+  const id = 'molen.worldgen.structure.egeskov_castle',
     bytes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

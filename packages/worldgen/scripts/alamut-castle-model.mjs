@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/tn/tn7/n0249_alamut_castle/map-parts.json',
+      '../../../content/worldgen/source/places/tn/tn7/alamut_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -676,7 +676,7 @@ export function buildAlamutSkyline(out) {
   buildAlamutRuntime(out, 'skyline');
 }
 export const alamutStudy = {
-  id: 'N0249',
+  id: 'alamut_castle',
   key: 'alamut_castle',
   title: 'Alamut Castle',
   category: 'castle',

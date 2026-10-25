@@ -7,7 +7,7 @@ import { buildCorvinRuntime } from './corvin-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u8/u80/n0285_corvin_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u8/u80/corvin_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

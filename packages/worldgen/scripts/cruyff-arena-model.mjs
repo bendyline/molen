@@ -824,7 +824,7 @@ export function buildCruyff(out) {
 }
 
 export const cruyffStudy = {
-  id: 'N0699',
+  id: 'johan_cruyff_arena',
   key: 'johan_cruyff_arena',
   wikidataId: 'Q207109',
   title: 'Johan Cruyff Arena',

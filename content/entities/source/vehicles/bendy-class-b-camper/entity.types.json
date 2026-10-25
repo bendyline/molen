@@ -1,0 +1,175 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.bendy_class_b_camper": {
+      "doc": "Bendy Class B Camper. Original Bendy design, polygonal Class B motorhome with close-view cab and coach fittings. Stowed touring configuration; simplified game handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.bendy_class_b_camper",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.bendy_class_b_camper",
+          "color": "#8c9b8e",
+          "spec": {
+            "label": "Bendy Class B Camper",
+            "bodyStyle": "motorhome",
+            "genericLabel": "Class B camper van",
+            "width": 2.4699999999999998,
+            "length": 6.7,
+            "height": 2.95,
+            "centerOfMass": [
+              0,
+              1.0915000000000001,
+              0
+            ],
+            "wheelbase": 4.04,
+            "wheelTrack": 1.763,
+            "wheelRadius": 0.365,
+            "mass": 3500,
+            "engineForce": 9800,
+            "maxSpeed": 35,
+            "reverseSpeed": 4,
+            "brakeDeceleration": 6,
+            "maxSteer": 0.49,
+            "grip": 7,
+            "driverEye": [
+              0.4715,
+              1.8,
+              1.5300000000000002
+            ],
+            "drive": "rear",
+            "steeringRate": 1.2,
+            "steeringFadeSpeed": 14,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.18,
+            "maxSlope": 0.4
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel",
+                "coach-interior"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4715,
+                1.8,
+                1.5300000000000002
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.4749999999999999,
+              0,
+              1.5300000000000002
+            ],
+            [
+              -1.4749999999999999,
+              0,
+              0.17999999999999994
+            ]
+          ],
+          "exits": [
+            [
+              1.593,
+              0,
+              1.5300000000000002
+            ],
+            [
+              -1.593,
+              0,
+              0.17999999999999994
+            ]
+          ],
+          "reach": 2.5
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "ambientRole": {
+          "role": "bus",
+          "weight": 0.02,
+          "cruise": 13,
+          "max": 25
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.bendy_class_b_camper"
+      ]
+    }
+  }
+}

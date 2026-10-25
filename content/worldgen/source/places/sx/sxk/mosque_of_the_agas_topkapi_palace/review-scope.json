@@ -1,0 +1,475 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stone_limestone_raw",
+      "slot": "wall"
+    },
+    "brick": {
+      "graph": "brick",
+      "slot": "wall"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "floor": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "screen": {
+      "graph": "metal_rosette_screen",
+      "slot": "trim"
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "door"
+    },
+    "grid": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "finial": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "inner": {
+      "graph": "stone_limestone_raw",
+      "slot": "wall"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -9.892234382189258,
+      28,
+      49.46861327071775
+    ],
+    "lookAt": [
+      0,
+      5.5,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "striped-courtyard-front-and-barrel-roof",
+      "position": [
+        -5.472822389925508,
+        14,
+        26.45842427447882
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "pointed-upper-and-round-lower-window-backs",
+      "position": [
+        0.25261753433723744,
+        3.2,
+        11.039301806787662
+      ],
+      "lookAt": [
+        -1.3949594735419897,
+        4.2,
+        9.027961456894655
+      ],
+      "fov": 76
+    },
+    {
+      "name": "open-entrance-hood-and-short-stair",
+      "position": [
+        7.799255530617915,
+        2.9,
+        5.891656233023601
+      ],
+      "lookAt": [
+        5.581363404626648,
+        2.7,
+        3.1840826850907042
+      ],
+      "fov": 78
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -9.892234382189258,
+        28,
+        49.46861327071775
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "fov": 46,
+      "name": "agas-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -9.892234382189258,
+        28,
+        49.46861327071775
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "fov": 46,
+      "name": "agas-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -9.892234382189258,
+        28,
+        49.46861327071775
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "fov": 46,
+      "name": "agas-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -9.892234382189258,
+        28,
+        49.46861327071775
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "fov": 46,
+      "name": "agas-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-agas-model.mjs",
+    "export": "buildTopkapiAgasSkyline",
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiAgasDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall"
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "screen": {
+            "graph": "metal_rosette_screen",
+            "slot": "trim"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "door"
+          },
+          "grid": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "finial": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "inner": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiAgasStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall"
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "screen": {
+            "graph": "metal_rosette_screen",
+            "slot": "trim"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "door"
+          },
+          "grid": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "finial": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "inner": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiAgasCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall"
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "screen": {
+            "graph": "metal_rosette_screen",
+            "slot": "trim"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "door"
+          },
+          "grid": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "finial": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "inner": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      28.984106183052063,
+      41.01309209741913
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Existing standard PMTiles/Mapzen grid retained. Provider control internal[0,10] is outside every original native building footprint, verified before authoring; it supplies nativeY0. Level occupied floor is .18m above the highest original boundary sample, with bounded protective foundations and a short front entry stair. Only the actual body/stair footprint cuts terrain. Coarse ground falls below rear/east parts and may expose foundation; this does not verify historical basement/retaining-wall heights. No precinct flattening or custom terrain; historical thresholds/accessibility unverified. Initial native exterior placement inspected2026-10-21; uncovered provider control remains present, original context retained and coarse-grade foundation exposure explicit. Final QA binds corrected exterior courses and spindle finial.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      28.983922012927007,
+      41.01296122655216,
+      28.98429035317712,
+      41.01322296828611
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.984181624077944,
+        41.013022604427675
+      ],
+      "modelHeight": 0,
+      "basis": "Uncovered court internal[0,10], outside all 573 original native building records; nativeY0."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -14.868141419075219,
+          3.3793302249605484
+        ],
+        [
+          -12.615370641111035,
+          1.3518500111710376
+        ],
+        [
+          6.082626815991734,
+          -13.966871277475203
+        ],
+        [
+          14.868432850052063,
+          -3.3789349788535343
+        ],
+        [
+          6.74124421107908,
+          3.2784013297336427
+        ],
+        [
+          7.6283123457905475,
+          4.361322445964884
+        ],
+        [
+          6.236104504257275,
+          5.501740888831304
+        ],
+        [
+          5.349306276778169,
+          4.419149271800757
+        ],
+        [
+          5.3491869688712725,
+          4.419247002134795
+        ],
+        [
+          5.348917061638912,
+          4.418917502934102
+        ],
+        [
+          -6.3076124628113055,
+          13.967291569596245
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Existing standard PMTiles/Mapzen grid retained. Provider control internal[0,10] is outside every original native building footprint, verified before authoring; it supplies nativeY0. Level occupied floor is .18m above the highest original boundary sample, with bounded protective foundations and a short front entry stair. Only the actual body/stair footprint cuts terrain. Coarse ground falls below rear/east parts and may expose foundation; this does not verify historical basement/retaining-wall heights. No precinct flattening or custom terrain; historical thresholds/accessibility unverified."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -14.869774111974838,
+          3.379458024702494
+        ],
+        [
+          -6.3083890172014465,
+          13.968478271362855
+        ],
+        [
+          14.869774111974843,
+          -3.3794830732213805
+        ],
+        [
+          6.083089409444257,
+          -13.968478271362862
+        ],
+        [
+          -12.616778034402895,
+          1.3517750426147748
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -14.869774111974838,
+            3.379458024702494
+          ],
+          [
+            -6.3083890172014465,
+            13.968478271362855
+          ],
+          [
+            14.869774111974843,
+            -3.3794830732213805
+          ],
+          [
+            6.083089409444257,
+            -13.968478271362862
+          ],
+          [
+            -12.616778034402895,
+            1.3517750426147748
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only Agas Chamber way32396236/native35184404485068; retain independent low attached ranges/Library/other palace members."
+    },
+    "notes": "Independent Ağalar Mosque Q133475725 within Topkapi Q170495; Commons category directly records OSM way32396236/native35184404485068. Original five-corner parent with two detailed PMTiles fragments retained. Internal+X follows the courtyard elevation northeast; internal+Z faces southeast into Third Courtyard toward the Library. World heading0/+X east/+Z south. Low attached ranges visible in photos remain independent native buildings. Existing standard PMTiles/Mapzen grid retained. Provider control internal[0,10] is outside every original native building footprint, verified before authoring; it supplies nativeY0. Level occupied floor is .18m above the highest original boundary sample, with bounded protective foundations and a short front entry stair. Only the actual body/stair footprint cuts terrain. Coarse ground falls below rear/east parts and may expose foundation; this does not verify historical basement/retaining-wall heights. No precinct flattening or custom terrain; historical thresholds/accessibility unverified."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.rostov_arena",
+  "inputHash": "sha256:3b7e8a06b1d157dd4bcf3c6f716868ff926bc43a2bb500966965d5b5acde76e2",
+  "captureReportHash": "sha256:7058e24972e7011cafc435649dbeb6c02b53a5834125c5ecb9190ed094ad2872",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Completed stadium exterior and visible football bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-membrane-vaults.png",
+      "shots/near-console-stays.png",
+      "shots/near-catwalk-lights.png",
+      "shots/near-main-screen.png",
+      "shots/near-seating.png",
+      "shots/near-internal-screen.png",
+      "shots/near-media-facade.png",
+      "shots/near-west-ramp.png",
+      "shots/near-concourse.png",
+      "shots/near-roof-joints.png",
+      "shots/far-roof-structure.png"
+    ],
+    "notes": "All sixteen current portable and sixteen shared frames inspected, including full-size concourse, catwalk, roof-joint and placement views. Corrected concourse slabs and continuous columns close the visible gaps. Forty-six stayed consoles, vaulted canopy, maintenance ladders, catwalk underside, floodlights, three blue/yellow seating tiers, west screen and six individual ramps are coherent."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:1c7f336c9c0dc95f0aafc7ffb60040bf30127ce2bd5f922f562296e85edb5781",
+    "fixtureHash": "sha256:36e8975a19939e4721614f21f41c2e7865a16cadc727ced17c51433c6e5fb126",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-membrane-vaults.png",
+      "shots/shared/near-console-stays.png",
+      "shots/shared/near-catwalk-lights.png",
+      "shots/shared/near-main-screen.png",
+      "shots/shared/near-seating.png",
+      "shots/shared/near-internal-screen.png",
+      "shots/shared/near-media-facade.png",
+      "shots/shared/near-west-ramp.png",
+      "shots/shared/near-concourse.png",
+      "shots/shared/near-roof-joints.png",
+      "shots/shared/far-roof-structure.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Metric membrane, concrete and painted metal are coherent in near and distant shared-surface frames. Local glazing, chairs and pitch keep their portable colors. Sky-PMREM geographic rendering and unload assertions pass. Published42mm roof tension rods are physically authored and may alias at distant viewpoints."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:18d3ceccd35617c080c9a1a7a576e98ac14edc63835ffe7a1438ace756f2114c",
+    "notes": "Exact mapped pitch axis and actual stadium body align with the north-up outline; main facade screen is west. The incorrect wide estate footprint was retained as rejected evidence. Six mapped elevated approach ramps join the terrace; nativeY0 is outer ground/pitch contact."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Resident club, executed structural engineer and tension-rod manufacturer support the individual architecture and major dimensions. Console sections, chair inventory, local ramp grades, membrane camber and panel distribution remain photograph-based reconstruction; no event graphics or enclosed service rooms are included."
+  }
+}

@@ -222,8 +222,8 @@ function base(out) {
 }
 
 export const spireOfDublin = {
-  id: 'n0975_spire_of_dublin',
-  planId: 'N0975',
+  id: 'spire_of_dublin',
+  planId: 'spire_of_dublin',
   title: 'Spire of Dublin',
   category: 'monument',
   wikidata: 'Q1134365',

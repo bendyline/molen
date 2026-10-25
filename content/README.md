@@ -31,8 +31,8 @@ into a shared core and regional model archives while retaining that logical pack
 | [sky/](sky/) | `molen.sky` | The Bright Star Catalogue as `molen/stars@1` binary columns |
 | [sounds/](sounds/) | `molen.sounds` | 63 CC0 sounds and six music tracks behind a `molen/soundbank@1` bank; provenance in `sources.json` and `NOTICE.md` |
 
-The worldgen authoring source also carries a [next 1,000 structure candidate catalog](worldgen/source/next-1000/README.md).
-See its generated [progress report](worldgen/source/next-1000/PROGRESS.md) for current readiness
+The worldgen authoring source also carries a [structure catalog structure candidate catalog](worldgen/source/structure-catalog/README.md).
+See its generated [progress report](worldgen/source/structure-catalog/PROGRESS.md) for current readiness
 and the [structure gallery](worldgen/source/places/gallery.html) for registered model bundles.
 Candidate metadata is excluded from the runtime pack.
 
@@ -62,11 +62,25 @@ an organizational coordinate use `places/unlocated/<source-key>/` under the corr
 These reference coordinates classify folders; placement approval remains in the Earth catalog
 and each model's geographic review.
 
+Geographic placements are edited individually in
+`earth/source/placements/<gh2>/<gh3>/<placement-id>.json`. Those files retain notes and review
+bases. The [placement compiler and authoring helpers](earth/source/placements/README.md) generate
+compact regional files under `earth/structures/placements/`; the Earth view reads only regions
+needed by its terrain tiles. Generated files are ignored by Git, and source evidence is excluded
+from runtime packs.
+
 Reusable runtime bundles use `worldgen/assets/reusable/urban/<source-key>/`,
 `worldgen/assets/reusable/infrastructure/<source-key>/`, or
 `worldgen/assets/reusable/map-structures/<source-key>/`. Urban and infrastructure source bundles
 use matching `source/reusable/` folders; generic mapped-feature sources use `source/map-structures/`.
 Procedural architectural styles remain in `worldgen/styles/` and `worldgen/structures/`.
+
+Dedicated place generators and geometry recipes belong in the geographic source bundle's
+`models/` directory, listed in its `source.json`. Related components generated together, such as
+the Książ park gates, may share a geographic authoring bundle beside their individual model
+bundles. `asset-build.json` invokes those local generators directly. Shared mesh, material and
+triangulation helpers remain in `packages/worldgen/scripts/`; production-batch names do not
+determine the location of a place's source files.
 
 Folder changes preserve asset IDs such as `molen.worldgen.structure.space_needle`.
 `worldgen/source/structure-index.json` locates source bundles, `worldgen/project.json` maps IDs
@@ -89,8 +103,10 @@ molen pack inspect dist-packs/molen.worldgen.default-<hash>.zip
 molen pack verify dist-packs/molen.worldgen.default-<hash>.zip
 ```
 
-The world explorer stages all five content libraries into `examples/world-explorer/public/packs/` (with an
-`index.json`) before `dev` and `build`. It and the docs site use a small worldgen core plus
+The world explorer stages the content libraries into `examples/world-explorer/public/packs/`
+(with an `index.json`) during production `build` or the explicit `pnpm dev:content` command.
+Normal development reuses those packs; `pnpm dev:prepare` restores the repository assets and
+packages content for first-time setup. It and the docs site use a small worldgen core plus
 bounded geographic model archives. The core retains sidecars and style metadata; archive routes
 load a model's archive on demand through the host's fetch function. Hosts need HTTP Range
 support for selective network reads; a server returning a full-file response still works but

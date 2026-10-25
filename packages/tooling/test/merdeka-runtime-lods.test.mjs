@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/w2/w28/n0178_merdeka_118'),
+const source = resolve('../../content/worldgen/source/places/w2/w28/merdeka_118'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2')),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -76,7 +76,7 @@ it('reproduces the original Merdeka 118 master and verifies signed whole and mas
       stainless: { graph: 'metal_stainless', slot: 'trim', roughness: 0.3, metallic: 1 },
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
     });
-  skylineWorld.find((p) => p.id === 'N0178').build(a.wrap(b), m);
+  skylineWorld.find((p) => p.id === 'merdeka_118').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`),
     independent = await read(`${source}/map-parts.json`);
   expect(m.elements).toHaveLength(10);

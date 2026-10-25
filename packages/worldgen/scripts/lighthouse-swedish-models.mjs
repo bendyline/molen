@@ -403,7 +403,7 @@ export function buildLangeErik(out) {
 
 export const lighthouseSwedishStudies = [
   lighthouseStudy({
-    id: 'N0664',
+    id: 'lange_jan',
     key: 'lange_jan',
     title: 'Långe Jan',
     wikidataId: 'Q712299',
@@ -445,7 +445,7 @@ export const lighthouseSwedishStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0665',
+    id: 'lange_erik',
     key: 'lange_erik',
     title: 'Långe Erik',
     wikidataId: 'Q1024406',

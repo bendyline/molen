@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.watercraft.bulk_carrier": {
-      "doc": "Geared bulk carrier. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Bulk Carrier. Geared bulk carrier. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [
@@ -46,13 +46,13 @@
           "kind": "molen.entities.watercraft.bulk_carrier",
           "color": "#a36b55",
           "spec": {
-            "label": "Geared bulk carrier",
+            "label": "Bendy Bulk Carrier",
             "length": 135.2,
             "width": 25.3,
             "height": 24,
             "draft": 7.5,
-            "mass": 12808125.0,
-            "thrust": 1536975.0,
+            "mass": 12808125,
+            "thrust": 1536975,
             "maxSpeed": 10.4,
             "reverseSpeed": 3,
             "turnRate": 0.022222222222222223,
@@ -68,7 +68,22 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "helm",
+                "helm-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {

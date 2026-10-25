@@ -71,9 +71,23 @@ hash, and speed is quantized so a steadily walking figure sends no deltas.
 ## Status
 
 0.x, versioned independently of the other `@bendyline/molen-*` packages. The `molen/figure@1`
-format is versioned and beta. Known limits: hands are mittens (a thumb on the near tier), there
-are no faces beyond eyes and brows, foot planting on uneven ground and quadruped IK are not
-evaluated yet, and imported skinned glTF figures plus skinned-GLB export are later phases.
+format is versioned and beta. Human bodies have modeled facial features, shaped clothing,
+fingers on the near tier, and rounded footwear. Rounded shoulders join the torso continuously;
+arms hang beside the thighs with a slight elbow bend at idle. Forearms turn the backs of the
+hands diagonally forward, with soft wrist flexion, gently curled fingers and tucked thumbs.
+The rigid distant tier retains the turned forearm and cupped hand silhouette.
+The near/medium/distant human bodies use roughly 7,400/2,200/1,100 triangles with one shared
+vertex-color material. Quadrupeds have species-shaped bodies, muscular limb profiles, modeled
+faces and ears, rounded paws or single/split hooves, coat markings and curved tails. Animal
+presets use about 4,100–6,500/2,100–2,900/1,100–1,500 triangles across the three tiers and retain
+the existing 27-joint rigs. Fingers share the hand joint; facial expressions, cloth simulation, foot
+planting on uneven ground and quadruped IK are not evaluated yet. Imported skinned glTF figures
+and skinned-GLB export remain later phases.
+
+For repository contributors, `node scripts/review-humans.mjs` produces rendered views and a
+registered GLB for local QA. `node scripts/review-animals.mjs` does the same for all six animal
+presets, including front/side, walk/run and all three detail tiers. These review exports are not
+a public bake API.
 
 ## Docs
 

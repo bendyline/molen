@@ -11,6 +11,7 @@ import {
   landmarkSurfaces,
 } from './authored-place-models.mjs';
 import { cross, normalize, validateAuthoredMesh } from './authored-structure-mesh.mjs';
+import { embedGraphFallbacks } from './embed-graph-fallbacks.mjs';
 import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { structureAssetPathFromSource } from './structure-asset-paths.mjs';
@@ -81,7 +82,7 @@ for (const model of authoredPlaceModels.filter(
   }
   const mesh = out.finalize();
   validateAuthoredMesh(mesh, model.id);
-  const bytes = Buffer.from(
+  const encoded = Buffer.from(
     encodeGlb(
       mesh,
       mesh.groups.map((g) => {
@@ -103,6 +104,14 @@ for (const model of authoredPlaceModels.filter(
       model.title,
     ),
   );
+  const bytes = await embedGraphFallbacks(
+    encoded,
+    (model.embeddedCanonicalGraphs ?? []).map((name) => ({
+      ref: `matgraph:molen.worldgen.material.${name}`,
+      graphPath: path.resolve(root, `content/worldgen/materials/${name}.matgraph.json`),
+    })),
+    root,
+  );
   const min = [Infinity, Infinity, Infinity],
     max = [-Infinity, -Infinity, -Infinity];
   for (let i = 0; i < mesh.positions.length; i++) {
@@ -115,6 +124,9 @@ for (const model of authoredPlaceModels.filter(
   const look = model.lookAt ?? [center[0], Math.max(2, center[1] * 0.7), center[2]],
     camera = { position: model.camera, lookAt: look, fov: 43 };
   const hasTerrain = fs.existsSync(path.join(dir, 'terrain-grid.json'));
+  const usePortableTerrain = hasTerrain && model.portableGroundY === undefined;
+  if (model.portableGroundY !== undefined && !Number.isFinite(model.portableGroundY))
+    throw Error(`${model.id}: invalid isolated review ground datum`);
   const limitations = model.limitations ?? [
     'Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.',
     frame.notes,
@@ -137,20 +149,33 @@ for (const model of authoredPlaceModels.filter(
       standard: 'docs-src/guide/medium-fi.md',
       colorEncoding: 'sRGB palette decoded to linear COLOR_0',
       materialBudget: 6,
+      ...(model.appearance ?? {}),
     },
-    referencePages: refs.references.map((r) => r.sourceUrl).filter(Boolean),
+    referencePages: [
+      ...new Set(
+        [...refs.references, ...(refs.externalReferences ?? [])]
+          .map((r) => r.sourceUrl)
+          .filter(Boolean),
+      ),
+    ],
     stories: refs.stories.map((s) => ({ id: s.id, url: s.url })),
     referenceInputHash: refs.inputHash,
     sourceGeometry: { module: `packages/worldgen/scripts/${model.recipe}` },
     recipeDependencies: Object.fromEntries(
-      ['landmark-model-helpers.mjs', 'authored-structure-mesh.mjs', 'structure-mesh.mjs'].map(
-        (name) => [
-          name,
-          hashEvidenceText(fs.readFileSync(path.join(root, 'packages/worldgen/scripts', name))),
-        ],
-      ),
+      [
+        'landmark-model-helpers.mjs',
+        'authored-structure-mesh.mjs',
+        'structure-mesh.mjs',
+        ...(model.recipeDependencies ?? []),
+      ].map((name) => [
+        name,
+        hashEvidenceText(fs.readFileSync(path.join(root, 'packages/worldgen/scripts', name))),
+      ]),
     ),
     ...(model.runtimeLodOverlay ? { runtimeLodOverlay: model.runtimeLodOverlay } : {}),
+    ...(model.embeddedCanonicalGraphs?.length
+      ? { portableCanonicalFallbacks: model.embeddedCanonicalGraphs }
+      : {}),
     fidelityTarget: 'medium-fi',
     ...(model.mediumFiContext ? { mediumFiContext: model.mediumFiContext } : {}),
     fidelityStatus: model.quality === 'medium-fi-exterior' ? 'review-in-qa.json' : 'pending',
@@ -186,6 +211,7 @@ for (const model of authoredPlaceModels.filter(
           }
         : {}),
       replaceFootprint: false,
+      ...(model.groundCutout ? { groundCutout: model.groundCutout } : {}),
       featureIds: frame.features.map((f) => f.id),
       source: frame.sourceUrl,
       mapGeometrySource: 'map-frame.json',
@@ -241,7 +267,7 @@ for (const model of authoredPlaceModels.filter(
         id: 'ground',
         components: {
           transform: {
-            pos: [center[0], -0.18, center[2]],
+            pos: [center[0], model.portableGroundY ?? -0.18, center[2]],
             rot: [0, 0, 0, 1],
             scale: [span * 1.8, 0.3, span * 1.8],
           },
@@ -268,7 +294,7 @@ for (const model of authoredPlaceModels.filter(
       },
     ],
     camera: { mode: 'fixed', ...camera },
-    ...(hasTerrain
+    ...(usePortableTerrain
       ? {
           terrain: {
             descriptor: 'terrain-review.terrain.json',
@@ -278,7 +304,7 @@ for (const model of authoredPlaceModels.filter(
       : {}),
     physics: { engine: 'none' },
   };
-  if (hasTerrain) scene.entities = scene.entities.filter((e) => e.id !== 'ground');
+  if (usePortableTerrain) scene.entities = scene.entities.filter((e) => e.id !== 'ground');
   const sourceFile = path.join(dir, 'source.json'),
     previous = fs.existsSync(sourceFile) ? JSON.parse(fs.readFileSync(sourceFile)) : null;
   const source = {
@@ -321,7 +347,7 @@ for (const model of authoredPlaceModels.filter(
     ['source.json', source],
     [
       'README.md',
-      `# ${model.title}\n\n${model.brief}\n\n![Molen preview](preview.png)\n\nAuthoring state: **${model.reviewStatus ?? 'draft exterior; geographic activation pending'}**. Current completion evidence is in [qa.json](qa.json) and the [local 100 ledger](../../../../qualla-structures/batches/PROGRESS.md).\n\n${refs.stories.map((s) => `- [${s.title}](${s.url})`).join('\n')}\n\n${limitations.join('\n\n')}\n\nBuild: \`node packages/worldgen/scripts/generate-authored-places.mjs --ids=${model.id}\`. Add \`--check\` to verify exact regeneration. ${mesh.triangleCount} triangles; ${mesh.groups.length} materials; no embedded photographs.\n`,
+      `# ${model.title}\n\n${model.brief}\n\n![Molen preview](preview.png)\n\nAuthoring state: **${model.reviewStatus ?? 'draft exterior; geographic activation pending'}**. Current completion evidence is in [qa.json](qa.json) and the [${model.progressLedger ? 'completion ledger' : 'local 100 ledger'}](../../../../qualla-structures/batches/${model.progressLedger ?? 'PROGRESS.md'}).\n\n${refs.stories.map((s) => `- [${s.title}](${s.url})`).join('\n')}\n\n${limitations.join('\n\n')}\n\nBuild: \`node packages/worldgen/scripts/generate-authored-places.mjs --ids=${model.id}\`. Add \`--check\` to verify exact regeneration. ${mesh.triangleCount} triangles; ${mesh.groups.length} materials; no embedded photographs.\n`,
     ],
   ])
     emit(path.join(dir, name), value);

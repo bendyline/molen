@@ -1,0 +1,288 @@
+{
+  "planId": "cape_lookout_lighthouse",
+  "id": "cape_lookout_lighthouse",
+  "assetId": "molen.worldgen.structure.cape_lookout_lighthouse",
+  "title": "Cape Lookout Lighthouse",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -76.5245324,
+    "latitude": 34.622750249999996
+  },
+  "size": [
+    9.070722103118896,
+    50.08439865708351,
+    12.349670886993408
+  ],
+  "actualBounds": {
+    "min": [
+      -4.270212650299072,
+      -0.4000000059604645,
+      -8.079458236694336
+    ],
+    "max": [
+      4.800509452819824,
+      49.68439865112305,
+      4.270212650299072
+    ]
+  },
+  "visualBrief": "Complete49.6844m1859Cape Lookout tower at its actual native location: mapped tapered round masonry, original black/white diamond daymark in true cardinal alignment, white neck/flared dark galleries/watch stage/open rails, glazed lantern/dark roof/vent/finial, shallow divided windows/doors and native northeast entrance steps/open landing. Exact public-domain NPSstaff original first inspected through Qualla then byte-matched to primary federal release. Separate houses/1812ruin/site/boardwalk/temporary restoration works excluded. Minor sections/paint phase/windows/rails and coastal contact approximate.",
+  "nativeAxes": {
+    "x": "true east",
+    "y": "up",
+    "z": "true south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://npgallery.nps.gov/AssetDetail/6ffd8706-6840-42f0-9f20-8eaac145101a"
+  ],
+  "stories": [
+    {
+      "id": "cape-lookout-lighthouse-wp",
+      "url": "https://qualla.com/cape-lookout-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "2fd57ce039988798a85f3e08bd8735ddd7e958b44aa62ecc401e7e83873e5888",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cape-lookout-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cape-lookout-lighthouse.mjs",
+    "level": "skyline",
+    "export": "capeLookoutSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "white": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "black": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.3,
+        "metallic": 0.08
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "capeLookoutDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "black": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.3,
+            "metallic": 0.08
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "capeLookoutStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "black": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.3,
+            "metallic": 0.08
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.7,
+    "groundY": -0.52
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named lighthouseway727525529/Q4286379and intrinsic entrance stepsway991715350fix tower identity/circular footprint, cardinal frame and northeast entrance/approach. This tower is about2.2kmfrom the story coordinate, which lies farther down the cape; actual named native plan controls model placement. Native height15.7m conflicts with its own seamark51.5m and official NPS163ftaboveground/169ftASL; use independently documented163ft=49.6844moverall height, retaining the full conflicting native tags as evidence. Original approximate8.5mplan versus official8.7122mbase diameter is a mapping/survey difference, not reason to stretch terrain. Minor vertical subdivisions and hidden details are explicit architectural estimates. Fixed native entrance stair bottom before independent160mrawterrain; coastal grade/footings approximate.",
+    "anchor": [
+      -76.5245324,
+      34.622750249999996
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -76.524538,
+        34.622818
+      ],
+      "modelHeight": 0,
+      "basis": "Original intrinsic entrance stair bottom fixes a dry approach datum before independent terrain acquisition. Exact sandy pavement/footings/coastal host contact approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/727525529",
+      "way/991715350"
+    ],
+    "source": "https://www.openstreetmap.org/way/727525529",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ae4c42816fa6aca61e0563f8d30c93c7f314e88b20f2d2f9f7f9caa184085a04",
+    "notes": "Complete surviving1859Cape Lookout Lighthouse permanent tower exterior: native circular masonry plan, strong taper, original black-and-white cardinal diamond daymark, white upper neck, flared black gallery/watch stage/open rails, glazed lantern/metal roof/vent/finial, small masonry window/door openings and native attached entrance stair/landing. Separate keeper houses/visitor center/old1812tower foundation, whole boardwalk/grounds/vegetation/beach and temporary2025-2026stabilization scaffolding/site works are excluded. Official NPS163ftheight controls vertical scale; inconsistent native15.7mheight is not used. Minor section/window/railing/pane census and coastal contact are bounded estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named lighthouseway727525529/Q4286379and intrinsic entrance stepsway991715350fix tower identity/circular footprint, cardinal frame and northeast entrance/approach. This tower is about2.2kmfrom the story coordinate, which lies farther down the cape; actual named native plan controls model placement. Native height15.7m conflicts with its own seamark51.5m and official NPS163ftaboveground/169ftASL; use independently documented163ft=49.6844moverall height, retaining the full conflicting native tags as evidence. Original approximate8.5mplan versus official8.7122mbase diameter is a mapping/survey difference, not reason to stretch terrain. Minor vertical subdivisions and hidden details are explicit architectural estimates.",
+    "Qualla first: exact published3072x2048NPSstaff image inspected; pinned primary NPGallery record explicitly credits National Park Service staff and public domain. Selected primary original is byte-identical to Qualla image, avoiding missing category provenance in generated Qualla metadata. Both shareSHA256b81ab7aa34a69d8275e20f4c92e2284ec5c5c75562bae94ec23137c67e86750c. No additional architectural photo, generatedbitmap or copied photographic texture.",
+    "Official NPS163ftabove-ground/49.6844moverall height and4.0386mtop diameter govern vertical scale. Original approximate8.5mnative base circle retained; published8.7122mbase diameter differs slightly. Native15.7mheight is explicitly inconsistent and excluded; seamark51.5mhas a different measurement datum. Minor profile/roof/gallery levels are independent estimates from inspected photograph rather than a measured restoration survey.",
+    "Black diamond centers face true north/south and white centers east/west. Rhombi are original clipped vertex-color geometry retained in all four LODs, with photograph-informed approximate12mpitch/vertical phase. No camera-facing rotation or copied daymark photograph. Small window distribution/white watch-room aperture/door sizes and rail/pane census are representative; concealed interiors and optical apparatus are excluded.",
+    "Surviving permanent tower only; NPSarchive metadata2004does not establish camera date. Native current northeast stair/landing controls approach geometry. Detached keeper house/visitor center/1812tower ruins, grounds/wholeboardwalk/vegetation/beach, and temporary2025-2026conservation/scaffolding/site works excluded. No proposed1859attached house reconstructed. Closed blue-grey glazing approximates panes; lighthouse emits no simulated navigational signal.",
+    "Independent160mrawTerrariumfield frozen before geometry at actual native entrance stair bottom. Original source grid/tiles/PNGpreserved without flattening/fitting. Sandy coastal threshold/footings and host contact approximate; no model terrain/platform. Flatstage is illustrative rather than surveyed grade."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "cardinal-diamonds-and-surviving-conical-tower",
+      "position": [
+        33,
+        26,
+        43
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "northeast-native-steps-landing-and-small-masonry-openings",
+      "position": [
+        14,
+        7,
+        -20
+      ],
+      "lookAt": [
+        0,
+        5,
+        -1
+      ]
+    },
+    {
+      "name": "white-neck-flared-galleries-open-rails-and-glazed-lantern",
+      "position": [
+        13,
+        46,
+        17
+      ],
+      "lookAt": [
+        0,
+        44.6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4358,
+    "vertices": 13074,
+    "materials": 3,
+    "bytes": 525292,
+    "sha256": "sha256:23ea17c3f0ccc1ea6c9237953878ea2e2355716a04aeb9c9207b9ac01ff56c88"
+  }
+}

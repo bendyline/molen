@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.76,
+      "metallic": 0.28
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.45,
+      "metallic": 0.02
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.6,
+      "metallic": 0.5
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sultan-ahmed-model.mjs",
+    "export": "buildSultanAhmedSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSultanAhmedDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.28
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.5
+          }
+        }
+      },
+      "street": {
+        "export": "buildSultanAhmedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.28
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.5
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSultanAhmedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.28
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.5
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -155,
+      107,
+      164
+    ],
+    "lookAt": [
+      0,
+      23,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-blue-mosque-skyline",
+      "position": [
+        -155,
+        107,
+        164
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-blue-mosque-district",
+      "position": [
+        -155,
+        107,
+        164
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-blue-mosque-street",
+      "position": [
+        -155,
+        107,
+        164
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-blue-mosque-closeup",
+      "position": [
+        -155,
+        107,
+        164
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      28.976654159,
+      41.005406915
+    ],
+    "heading": -0.764606278692,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared raised court/hall floor,not exact ground contact. Standard viewer DEM reused from the nearby Istanbul extractN0411;datum38.472520m. Whole perimeter-1.25 to1.00m relative to it. Floor1.349m is maximum whole-perimeter sample plus0.35m,an approximate raised attachment plane. Adaptive stone footings crossY=0 and extend below retained terrain. Exact thresholds,stairs,outer paving,street/court/base contact,altitude and walking remain unverified. No flattening,ground cutout or road replacement;raw DEM retained.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        28.976654159,
+        41.005406915
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM reused from the nearby Istanbul extractN0411;datum38.472520m. Whole perimeter-1.25 to1.00m relative to it. Floor1.349m is maximum whole-perimeter sample plus0.35m,an approximate raised attachment plane. Adaptive stone footings crossY=0 and extend below retained terrain. Exact thresholds,stairs,outer paving,street/court/base contact,altitude and walking remain unverified. No flattening,ground cutout or road replacement;raw DEM retained."
+    },
+    "bounds": [
+      28.973,
+      41.004,
+      28.987,
+      41.013
+    ],
+    "notes": "Retained exact relation/18055570 /Q80541 and current PMTiles whole52776576188818 identify Sultan Ahmed Mosque (Blue Mosque),Istanbul. Whole,courtyard void,all selected roof/gallery/minaret parts and six fountain layers retain raw plan points/properties. Anchor[28.976654159,41.005406915] and heading−0.764606278692rad unchanged,no horizontal rescale. Native+X southeast prayer hall/mihrab,−X northwest open courtyard,+Z southwest Hippodrome side. Three inspected pictures resolve signed facing with approximate3° uncertainty. Separate Hagia Sophia,mausoleum,park/outer enclosure and nearby buildings remain host content. Standard viewer DEM reused from the nearby Istanbul extractN0411;datum38.472520m. Whole perimeter-1.25 to1.00m relative to it. Floor1.349m is maximum whole-perimeter sample plus0.35m,an approximate raised attachment plane. Adaptive stone footings crossY=0 and extend below retained terrain. Exact thresholds,stairs,outer paving,street/court/base contact,altitude and walking remain unverified. No flattening,ground cutout or road replacement;raw DEM retained."
+  },
+  "geographicNote": "Standard viewer DEM reused from the nearby Istanbul extractN0411;datum38.472520m. Whole perimeter-1.25 to1.00m relative to it. Floor1.349m is maximum whole-perimeter sample plus0.35m,an approximate raised attachment plane. Adaptive stone footings crossY=0 and extend below retained terrain. Exact thresholds,stairs,outer paving,street/court/base contact,altitude and walking remain unverified. No flattening,ground cutout or road replacement;raw DEM retained.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

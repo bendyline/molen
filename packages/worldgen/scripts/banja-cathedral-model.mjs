@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/sru/n0389_cathedral_of_christ_the_saviour/',
+  '../../../content/worldgen/source/places/sr/sru/cathedral_of_christ_the_saviour/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1072,7 +1072,7 @@ export const buildBanjaCathedralSkyline = (o) => build(o, 0),
   buildBanjaCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const banjaCathedralStudy = {
-  id: 'N0389',
+  id: 'cathedral_of_christ_the_saviour',
   key: 'cathedral_of_christ_the_saviour',
   title: 'Cathedral of Christ the Saviour',
   category: 'cathedral',

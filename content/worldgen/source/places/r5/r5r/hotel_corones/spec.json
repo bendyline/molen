@@ -1,0 +1,383 @@
+{
+  "planId": "hotel_corones",
+  "id": "hotel_corones",
+  "assetId": "molen.worldgen.structure.hotel_corones",
+  "title": "Hotel Corones",
+  "category": "hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 146.24083044999998,
+    "latitude": -26.40250535
+  },
+  "size": [
+    68.3499984741211,
+    11.339999958872795,
+    43.520000755786896
+  ],
+  "actualBounds": {
+    "min": [
+      -32.75,
+      0.20000000298023224,
+      -43.20000076293945
+    ],
+    "max": [
+      35.599998474121094,
+      11.539999961853027,
+      0.3199999928474426
+    ]
+  },
+  "visualBrief": "WholeheritageHotelCorones complex: actual64.57mWillsStreetmainhotel/roof-and-return outline, two-storeyopenverandahs/timberposts/brackets/battenrails, highshapedparapets/namepanels/dentilcornice/skillionroof/Frenchdoors/deepgroundwindows/tileddado, rearveranda/mappedkitchenprojection/twinchimneys; intrinsicnorth-easternone-storeyballroom/archedwindows andset-backsteppedbrickCoronesHall/semicircularentrypediment. Ballroom/HallroofpartsareexplicitboundedestimatesinsideQHRlot,notindividualnativefootprints. Separatecontemporarymotel/OldFireStation/modernstaffgarage/streets/floodwater/trees/peopleexcluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_82855_Floodwaters_around_the_Hotel_Corones,_Charleville,_1934.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hotel-corones-wp",
+      "url": "https://qualla.com/hotel-corones/"
+    }
+  ],
+  "referenceInputHash": "40ca2cc5039959af41d2c4ada43e185c225ed016b26ecbb1ce00157871099727",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hotel-corones.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c",
+    "stadium-lettering.mjs": "sha256:b05c2e1200c7498700a4f65c488b5ecedbdb844025961be2b4aed4935375ae56"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hotel-corones.mjs",
+    "level": "skyline",
+    "export": "hotelCoronesSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.82,
+        "metallic": 0.2
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "foundation",
+        "graph": "tile_mosaic",
+        "roughness": 0.78,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hotelCoronesDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "foundation",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "hotelCoronesStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "foundation",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "hotelCoronesCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "foundation",
+            "graph": "tile_mosaic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actualnativeway546158499/Q28184281 fixesmain64.5725mstreetroofedge/bearing andirregularrearkitchenoutline. Mainfrontmidpoint[146.24083044999998,-26.40250535],heading-0.9669963003153994,+Xsouth-eastalongWills/+Zsouth-weststreetfront. Nativepolygonincludeswideverandaroof, sohotelwallsetback3.2m/return3.5m withinoutline. QHR601282primaryboundaryanddescription expressly includeadjoiningballroom/Hall; theirunmappedroofsections are boundedestimationsinGalatealot:ballroomz-19.7to-29.2,x-28.5to-6 andHallz-29.2to-43.2,x-25.3to1. NeitherOldFireStationz~-51to-66norCoronesMotelx~22to53 included. PrimarySLQcaption210ftfrontage64.008m corroboratesnative64.57mrooffrontage; noarbitraryreplacementbox. Exactheight/roofdivisions/roomcensus/wingroofplanandsectionsaremedium-fi estimates, notsurvey. Independent256m129square2m grid/16641originalheights/twooriginalTerrariumtiles frozenbeforegeometry, fixedexternalWillsfootpath[0,6] providerdatum301.1068m. Intrinsicfloor0.4mabovefixedreference fromarchitecturalestimate, notsurveyslab/floodgrade. Footing/skirtoesmayconsume originalfield, nofieldflattening/fitting/reacquisition. Native~4.28moutputpixels mayoversample coarserDEM andnotresolve verandasteps/roomfloors/floodlevels/urbanreturns; exactwall/roof/wingcontactsunsurveyed. Geographicpreviewapproximate/replacementdisabled;1934floodwaternotauthored.",
+    "anchor": [
+      146.24083044999998,
+      -26.40250535
+    ],
+    "heading": -0.9669963003153994,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        146.24078091454837,
+        -26.40253595230073
+      ],
+      "modelHeight": 0,
+      "basis": "FixedexternalWillsStreetfootpathpointbeforeindependentfieldandgeometry; notfloodwaterlevel or surveyedfinishedfloor."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/546158499",
+      "qhr/601282"
+    ],
+    "source": "https://www.openstreetmap.org/way/546158499",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:532f4a503d3890dda3d109a8b259068e8f4a381853bf033e3acd497d8379cb1e",
+    "notes": "WholeheritageHotelCorones complex: actual64.57mWillsStreetmainhotel/roof-and-return outline, two-storeyopenverandahs/timberposts/brackets/battenrails, highshapedparapets/namepanels/dentilcornice/skillionroof/Frenchdoors/deepgroundwindows/tileddado, rearveranda/mappedkitchenprojection/twinchimneys; intrinsicnorth-easternone-storeyballroom/archedwindows andset-backsteppedbrickCoronesHall/semicircularentrypediment. Ballroom/HallroofpartsareexplicitboundedestimatesinsideQHRlot,notindividualnativefootprints. Separatecontemporarymotel/OldFireStation/modernstaffgarage/streets/floodwater/trees/peopleexcluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_mosaic",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.6,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Actualnativeway546158499/Q28184281 fixesmain64.5725mstreetroofedge/bearing andirregularrearkitchenoutline. Mainfrontmidpoint[146.24083044999998,-26.40250535],heading-0.9669963003153994,+Xsouth-eastalongWills/+Zsouth-weststreetfront. Nativepolygonincludeswideverandaroof, sohotelwallsetback3.2m/return3.5m withinoutline. QHR601282primaryboundaryanddescription expressly includeadjoiningballroom/Hall; theirunmappedroofsections are boundedestimationsinGalatealot:ballroomz-19.7to-29.2,x-28.5to-6 andHallz-29.2to-43.2,x-25.3to1. NeitherOldFireStationz~-51to-66norCoronesMotelx~22to53 included. PrimarySLQcaption210ftfrontage64.008m corroboratesnative64.57mrooffrontage; noarbitraryreplacementbox. Exactheight/roofdivisions/roomcensus/wingroofplanandsectionsaremedium-fi estimates, notsurvey.",
+    "Independent256m129square2m grid/16641originalheights/twooriginalTerrariumtiles frozenbeforegeometry, fixedexternalWillsfootpath[0,6] providerdatum301.1068m. Intrinsicfloor0.4mabovefixedreference fromarchitecturalestimate, notsurveyslab/floodgrade. Footing/skirtoesmayconsume originalfield, nofieldflattening/fitting/reacquisition. Native~4.28moutputpixels mayoversample coarserDEM andnotresolve verandasteps/roomfloors/floodlevels/urbanreturns; exactwall/roof/wingcontactsunsurveyed. Geographicpreviewapproximate/replacementdisabled;1934floodwaternotauthored.",
+    "Wholeheritagehotel exterior includeslongmainblock/verandas/parapets/roof/doors/deepwindows/tileddado/rearkitchen/twofireplaces andintrinsicone-storeyballroom/steppedbrickHall. Actualmainroofpolygon andactualQHRlot controlwholemetricextent; ballroom/Hallroofparts areexplicitinferredsectionsinsideQHRboundary basedprimarydescription, notindividuallymappedfootprints or photogrammetry. Hiddenrear/floor/roofdivisions/openingcensus/name/datelettering andsectiondetails medium-fiestimates.",
+    "One exactpublished1000x5521934CharlevilleTimes/SLQNeg82855PD-Australiaphotograph controls longfacade/openverandas/posts/brackets/battens/parapet/dentils. No claimofindependentallsidephotographiccoverage orcurrent2026finishes. Neutralivory/graygreen/darktile paletteinferred fromgrayscale/type; no modernCC/galleryphotos or1990PDM-ownerarchiveimage used. Oppositestreetview,1930interiors,1919differentHotelCharleville andQuilpiehotel notadopted. No floodwater/trees/poles/people/logos/unrelatedbuildings/borrowedmeshes/photographictextures/generatedbitmaps.",
+    "Main64.57mnativestreetroofedge corroboratesprimarySLQ210ftfrontage. SeparatecontemporaryCoronesMotel546158498,OldFireStation546158497,modernstaffquarters/garages andstreetcontext excluded. Surviving1924-29heritageform, exactcurrentalterations/repairdetailsunsurveyed. Independentground/rawtiles neverflattened/fitted/reacquired; actualfooting/step/floodlevelcontactunverified andgeographicreplacementdisabled.",
+    "FourLODs preservewholemainhotel/realopenverandas/twolevels/return/shapedparapets/attachedballroomandsteppedHall/twinchimneys. Nearwindowreveals/Frenchdoormullions/closelyspacedtimberbattens/chamferedpostbrackets/dentils/relieflettering/Halldiamonds returnprogressively. Sixactualsurface slots withfivecanonicalsharedgraphs/localglazing."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-hotel-wills-galatea-verandas-and-intrinsic-ballroom-hall",
+      "position": [
+        -70,
+        40,
+        83
+      ],
+      "lookAt": [
+        0,
+        4,
+        -16
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "genuinely-open-two-storey-verandah-battens-brackets-and-french-doors",
+      "position": [
+        14,
+        7.3,
+        11
+      ],
+      "lookAt": [
+        -1,
+        4.7,
+        -2
+      ]
+    },
+    {
+      "name": "high-shaped-parapets-relief-name-panels-dentils-and-skillion-roof",
+      "position": [
+        8,
+        16,
+        13
+      ],
+      "lookAt": [
+        0,
+        10,
+        -1
+      ]
+    },
+    {
+      "name": "galatea-return-ballroom-round-windows-and-stepped-corones-hall",
+      "position": [
+        -51,
+        13,
+        -28
+      ],
+      "lookAt": [
+        -25,
+        4,
+        -29
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16026,
+    "vertices": 48078,
+    "materials": 6,
+    "bytes": 1926820,
+    "sha256": "sha256:41fb5ef3a097435e4ff7c9cb3a1bc1b908f1348395d3ea45264e7276c21bdf9f"
+  }
+}

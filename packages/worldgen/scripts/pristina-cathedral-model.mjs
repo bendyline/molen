@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/srx/n0356_cathedral_of_saint_mother_teresa_in_pristina/',
+  '../../../content/worldgen/source/places/sr/srx/cathedral_of_saint_mother_teresa_in_pristina/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -999,7 +999,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const pristinaStudy = {
-  id: 'N0356',
+  id: 'cathedral_of_saint_mother_teresa_in_pristina',
   key: 'cathedral_of_saint_mother_teresa_in_pristina',
   title: 'Cathedral of Saint Mother Teresa in Pristina',
   category: 'cathedral',

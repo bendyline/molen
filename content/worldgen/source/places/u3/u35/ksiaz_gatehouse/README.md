@@ -4,7 +4,7 @@
 
 Cream gatehouse with twin octagonal upper towers,dark faceted domes,red central hip and tall arched library window.
 
-Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
 
 ## Sources and reconstruction
 
@@ -20,7 +20,7 @@ Own map footprint;native Y0 is estimated local ground contact. Heights,roof prof
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-entrances.mjs --ids=KSI_A01 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz-entrances/models/generate-ksiaz-entrances.mjs --ids=KSI_A01 (or --check).
 
 1700 triangles;207212 source bytes;5 merged material groups;no embedded images. Shared plaster,tile,sandstone and gatehouse bronze use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
 

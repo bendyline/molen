@@ -7,7 +7,7 @@ import { buildKamianetsRuntime } from './kamianets-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u8/u8d/n0278_kamianets_podilskyi_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u8/u8d/kamianets_podilskyi_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

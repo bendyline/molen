@@ -1,0 +1,438 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stone_limestone",
+      "slot": "wall"
+    },
+    "floor": {
+      "graph": "stone_limestone",
+      "slot": "wall"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "column": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim"
+    },
+    "edge": {
+      "graph": "wood_plain",
+      "slot": "trim"
+    },
+    "tile": {
+      "graph": "tile_glazed",
+      "slot": "wall"
+    },
+    "gold": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim"
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "brick": {
+      "graph": "brick",
+      "slot": "wall"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -10.295595470351419,
+      22.72948739538784,
+      -37.510008183295284
+    ],
+    "lookAt": [
+      0,
+      4.729487395387838,
+      0
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "blue-faceted-room-and-descending-garden-stair",
+      "position": [
+        16.759783082028953,
+        10.729487395387839,
+        -5.666539600438359
+      ],
+      "lookAt": [
+        3.5913886424676367,
+        2.729487395387838,
+        -0.3192610511078082
+      ],
+      "fov": 65
+    },
+    {
+      "name": "open-pointed-portico-and-clear-room-entry",
+      "position": [
+        -11.253103378294655,
+        3.729487395387838,
+        -10.694281853280911
+      ],
+      "lookAt": [
+        -2.6336972376042755,
+        3.429487395387838,
+        -1.4365371072950421
+      ],
+      "fov": 65
+    },
+    {
+      "name": "shared-marble-gold-grilles-and-curved-canopy-braces",
+      "position": [
+        13.567447816331057,
+        4.429487395387838,
+        -3.9905337676974453
+      ],
+      "lookAt": [
+        5.426979126532423,
+        3.8294873953878383,
+        -1.596213507078978
+      ],
+      "fov": 65
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -10.295595470351419,
+        22.72948739538784,
+        -37.510008183295284
+      ],
+      "lookAt": [
+        0,
+        4.729487395387838,
+        0
+      ],
+      "fov": 45,
+      "name": "yerevan-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -10.295595470351419,
+        22.72948739538784,
+        -37.510008183295284
+      ],
+      "lookAt": [
+        0,
+        4.729487395387838,
+        0
+      ],
+      "fov": 45,
+      "name": "yerevan-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -10.295595470351419,
+        22.72948739538784,
+        -37.510008183295284
+      ],
+      "lookAt": [
+        0,
+        4.729487395387838,
+        0
+      ],
+      "fov": 45,
+      "name": "yerevan-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -10.295595470351419,
+        22.72948739538784,
+        -37.510008183295284
+      ],
+      "lookAt": [
+        0,
+        4.729487395387838,
+        0
+      ],
+      "fov": 45,
+      "name": "yerevan-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.8,
+    "groundY": -1.9705126046121622,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-yerevan-model.mjs",
+    "export": "buildTopkapiYerevanSkyline",
+    "errorMeters": 2.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiYerevanDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "edge": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "tile": {
+            "graph": "tile_glazed",
+            "slot": "wall"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiYerevanStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "edge": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "tile": {
+            "graph": "tile_glazed",
+            "slot": "wall"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiYerevanCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "edge": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "tile": {
+            "graph": "tile_glazed",
+            "slot": "wall"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      28.984607756137848,
+      41.01382676425342
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Existing standard Protomaps20261020/Mapzen extract and original161x161/6m grid retained. Uncovered provider internal[-14,0] is outside every native building. Original grid is nearly flat at this small pavilion and does not resolve the photographed garden terrace drop. No custom terrain/precinct flattening; do not approve historical thresholds or accessibility. Only the occupied canopy floor opens the ground; lower garden stair stays behind retained native terrain where its drop is unresolved. Main pavilion footprint, floor seating and signed garden/pool facing inspected in clear native views. Native fit accepted as an approximate exterior. The unresolved garden drop leaves much of the lower modeled stair/basement buried; historical garden-level fit is not approved.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      28.98446381782345,
+      41.013732324340076,
+      28.984751694452246,
+      41.01392120416677
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.984461433108766,
+        41.013886985871274
+      ],
+      "modelHeight": 0,
+      "basis": "Existing standard Protomaps20261020/Mapzen extract and original161x161/6m grid retained. Uncovered provider internal[-14,0] is outside every native building. Original grid is nearly flat at this small pavilion and does not resolve the photographed garden terrace drop. No custom terrain/precinct flattening; do not approve historical thresholds or accessibility. Only the occupied canopy floor opens the ground; lower garden stair stays behind retained native terrain where its drop is unresolved."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -11.490049063518972,
+          0.45057647435311843
+        ],
+        [
+          5.857673772389063,
+          9.912805930735267
+        ],
+        [
+          11.490051316515048,
+          -0.22529659112917155
+        ],
+        [
+          -5.632376417627949,
+          -9.912803677913892
+        ]
+      ],
+      "basis": "Only the occupied canopy walking floor. Retain host ground at outside court, provider control and below unresolved garden stair."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.490279995616923,
+          0.45058435962963017
+        ],
+        [
+          5.857789801687058,
+          9.913003064385874
+        ],
+        [
+          11.490279995616921,
+          -0.22530222358432273
+        ],
+        [
+          -5.632490193929867,
+          -9.913003064385862
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -11.490279995616923,
+            0.45058435962963017
+          ],
+          [
+            5.857789801687058,
+            9.913003064385874
+          ],
+          [
+            11.490279995616921,
+            -0.22530222358432273
+          ],
+          [
+            -5.632490193929867,
+            -9.913003064385862
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only way969327995/native35185341416827; preserve the Sacred Relics chamber, Sofa Kiosk and every independent palace neighbour."
+    },
+    "notes": "Independent Yerevan Kiosk Q6040439 / OSM way969327995 v14 / native35185341416827. The source page names Revan K\u00f6\u015fk\u00fc/Yerevan Kiosk and Q6040439. Exact original four-corner canopy retained; internal+X southeast places the faceted room toward the garden end and internal+Z southwest faces the pool court. Existing standard Protomaps20261020/Mapzen extract and original161x161/6m grid retained. Uncovered provider internal[-14,0] is outside every native building. Original grid is nearly flat at this small pavilion and does not resolve the photographed garden terrace drop. No custom terrain/precinct flattening; do not approve historical thresholds or accessibility. Only the occupied canopy floor opens the ground; lower garden stair stays behind retained native terrain where its drop is unresolved."
+  }
+}

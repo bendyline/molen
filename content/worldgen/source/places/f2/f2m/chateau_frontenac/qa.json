@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.chateau_frontenac",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:7d9d814f06393aa23562f19ac36878edad52d973b7f6c4debf48638ea1d2eedf",
-  "sourceHash": "sha256:0fd47c18560ee91a39a232d4ddcd18e2f1b4beaf5bef09cb970fb84104b2a632",
-  "runtimeHash": "sha256:bb56978414d00f5df6d3639e4edd85a6c3e53482164b06e543e96a02798deb77",
-  "captureReportHash": "sha256:9fe02ca73add47953f7d60cdc156da4cb549e06a618f4f960c4fd8f6ce9b2d1a",
+  "inputHash": "sha256:a24376485ab90b082d3a15d3fa9c734a3e78df23f674dfca42cbd295706954ea",
+  "sourceHash": "sha256:0d4966af1c9cf1a457192466ccf86cf203ad077585e9426199c546cd1a82d95e",
+  "runtimeHash": "sha256:f5323bf25de4f3235d5b5d9ee7c1fbed8328c1cdeb72660ab463463e8c568d28",
+  "captureReportHash": "sha256:d980aaef4a40e943f5b4930aae7a0149cbe1f7e1767b97b12e616dcd77ee010a",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:d980aaef4a40e943f5b4930aae7a0149cbe1f7e1767b97b12e616dcd77ee010a",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/west-roof-vents.png",
+      "shots/east-roof-stacks.png"
     ],
-    "notes": "Inspected all seven final portable views and the full terrain-front image against three individually inspected local Qualla photographs, the historical floor plan, phase silhouette and satellite context. Review corrected the missing southeast connector, filled the later western range and added the entrance wing side openings. Two courts, open entrance passage, rounded rooms, tower corner turrets and stepped roof heights remain distinct."
+    "notes": "All9final portable views inspected, including native west-roof-vents/east-roof-stacks. Three roof fittings are supported on the original tower roof; actual louver depth/gaps and diamond seams visible. Four old central mid-tier dormers removed; revised stacks interleave upper dormers. Complete connected hotel, two courts, through passage, round rooms and source-ground terrace steps retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:b2d2a49f02da89a3d3cc949f48c78f0afb0d67a50c7c8c548d62f2c5069ad4ad",
+    "captureReportHash": "sha256:c86fa7826af565c2208ee51448b2df41e3a90bbd436d1d55bd0e4e1dc9734c79",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,29 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/west-roof-vents.png",
+      "shots/shared/east-roof-stacks.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared views and full back entrance elevation. Brick, limestone and standing-seam copper use shared metric surfaces; glass remains local. The map overlay confirms the major wing positions and courtyard holes. Flat terrain is a material fixture; portable views use independent NRCan relief."
+    "notes": "All9final shared-material views inspected, including native roof details and mapped overlay. Brown copper/green patinated wings, limestone trim, brick and windows remain distinct. Original placement transform/hash and footprint overlay retained; unload leaves zero live model geometries. Shared fixture is geographic flat terrain; portable source ground retains independent slope context.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:86b30726c946bba2006deeae39dde1882595d1794a522643a71806a8ef9c74ce",
+    "captureReportHash": "sha256:2512cd606aa099c524e8b6f909ede14b0b0224a4ab14f7941de42db5da7b754a",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +72,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/west-roof-vents.png",
+      "medium-fi/east-roof-stacks.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail images. All four levels retain the tower, connected ranges, open courts, rounded room and differing ground levels. Fine openings, dormers and ornament progressively simplify within all hard budgets. Synthetic neighbors are style fixtures; no physical-device performance claim."
+    "notes": "All21final version2frames inspected: noon/late light, economy/high, front/back, two roof detail cameras, original source ground and four forced levels. New physical vent fittings visible at close; exact lower levels retain complete hotel/tower/wing/round-room silhouette. Synthetic neighbors are style fixtures only."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +98,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.0005666700363136101
     },
-    "notes": "Anchor [-71.2052236,46.8119065], heading 0.444, +X northeast and +Z southeast. Independent NRCan HRDEM Mosaic DTM replaces the coarser Terrarium review; raw GeoTIFF hash verified. Rue Saint-Louis sidewalk [-30,-45] defines datum 57.3337 m CGVD2013. Southwest ground rises roughly 9 m while northeast rooms sit near -1 m; foundations extend to -4 m and raised plinths retain that slope. The cliff remains unflattened. Small terraces are simplified; full promenade is excluded and footprint suppression stays off."
+    "notes": "Original anchor[-71.2052236,46.8119065],heading0.444,+X northeast/+Z southeast retained. Original NRCan HRDEM Mosaic DTM, CGVD2013datum57.3337m at RueSaintLouis sidewalk[-30,-45], original foundations-4m and stepped southwest ranges retained. Map, terrain grid, terrain descriptor and height PNG byte-identical; placement unchanged. Southwest rise and river cliff remain unflattened, both courts and through passage preserved. New roof work changes no ground contact, pads, fitting or footprint suppression. Small hotel terraces remain simplified; whole promenade and another host terrain/survey levels outside scope."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Surviving connected hotel exterior, Maxwell tower, steep copper roofs, rounded rooms, two courts, Saint-Louis passage and limited hotel terraces.",
-    "notes": "Three local 2013–2016 images, original 1927 plan, CIEQ construction-phase silhouette, Parks Canada and city histories, mapped parts and satellite roof context guide the geometry. The 77 m architectural height record and rounded 80 m tourism statement remain distinguished; individual floors, roofs, service elevations, terraces and ornament are interpretations. No interiors, separate kiosks or full Dufferin promenade; no photo pixels embedded."
+    "scope": "Present hotel central tower, connected wings, steep copper roofs and principal retaining terrace; distinguish later additions by massing.",
+    "notes": "Full fixed surviving hotel, Maxwell tower, connected historic/later wings, round rooms, two courts, steep copper roofscape, Saint-Louis passage and principal hotel retaining terraces retained. Five exact native photographer-own CC0 exterior originals from2020/2022/2024 inspected, including opposite long tower faces, street/river views and native west chimney/east hooded-stack crops. Built a capped octagonal copper-clad shaft with physical diamond seams, two rectangular copper vent stacks with louvered tapered hoods, and two five-bay louver banks with120closed tilted blades, open front gaps, recessed dark backing and sloped copper hoods. Four old mid-tier dormers, two per long face, removed behind banks. Stack positions estimated between retained upper dormers after correcting visible clashes. All three original lower levels and all source attributes outside bounded new roof fittings/dormer regions retained. Map/terrain/placement unchanged. Heights, coordinates, widths, blade counts/depths, patina, roof joins, hidden service elevations, fine stone carving and current condition remain medium-fi estimates; no survey or mechanical interiors claimed. Original scope is not reduced; entire public promenade, separate kiosks, landscaping and interiors remain excluded."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:0e1a69bd4cdabac637782f341102a2679f6eec42af7a9549ac5f7920f5be0ad3",
+    "recipeHash": "sha256:9af88a9a0c4cb17b258e8e6d8a51ca548ef0128fb0d3cd5734320431a8fe5ba2",
     "levels": [
       {
         "name": "skyline",
@@ -128,32 +149,79 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:5e03d2624a7c7678f17b7ac9150a3a0162ae617bc20857d24df1730805b6e56e",
-        "bytes": 5540140,
-        "gzipBytes": 965681,
-        "triangles": 46146,
-        "cpuBytes": 5537520,
-        "gpuBytes": 5537520,
+        "hash": "sha256:bea11ecbff0f62af9d60cdb2ca94fa383ad2a6d846fd011ee1b7d63a1dff60c0",
+        "bytes": 5890540,
+        "gzipBytes": 1024834,
+        "triangles": 49066,
+        "cpuBytes": 5887920,
+        "gpuBytes": 5887920,
         "errorMeters": 0,
         "drawCalls": 4
       }
     ],
-    "notes": "All four current derivatives visually inspected and budget-checked. Error values are authoring budgets, not measured deviations."
+    "notes": "986/3834/14994/49066triangles and1/4/4/4draws pass strict limits. Three lower levels exact; close adds2920triangles. All original attributes outside two bank/dormer regions and three new roof stacks retained. Four central old mid-tier dormers removed; new fittings below original spike skyline. Lower levels retain original simplification. Error figures remain authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 46146,
+    "sourceTriangles": 49066,
     "sourceMaterials": 4,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 986,
+        "drawCalls": 1,
+        "addedTriangles": 0,
+        "retainedTriangles": 986,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3834,
+        "drawCalls": 4,
+        "addedTriangles": 0,
+        "retainedTriangles": 3834,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 14994,
+        "drawCalls": 4,
+        "addedTriangles": 0,
+        "retainedTriangles": 14994,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 49066,
+        "drawCalls": 4,
+        "addedTriangles": 2920,
+        "retainedTriangles": 45982,
+        "controls": 287,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, current LOD checks and strict medium-fi audit pass. Source bundle, scene and terrain schemas pass, as does independent heightfield round-trip validation. Raw NRCan GeoTIFF provenance is hash checked. No independent Khronos run claimed."
+    "verification": [
+      "node content/worldgen/source/places/f2/f2m/chateau_frontenac/verify-roof-vents.mjs"
+    ],
+    "notes": "Imported1/1/1/287controls pass: closed octagonal shaft/cap, paired rectangular shafts and12hood-louver fronts, all120projecting closed bank blades and120real front gaps, recessed dark backing, copper separating piers/hoods, removal of both old central panes/peaks on each long face and exact surrounding attributes. Targeted generation/import/exact source, normals/winding/UVs/counts/runtime hashes and strict material/LOD limits pass. Immutable pre-edit baseline preserved; original map/terrain/placement unchanged. Initial primary snapshot lacked revision IDs; separately pinnedV2records provide exact revision/native/release binding without changing the original geometry baseline or weakening grants."
   },
   "limitations": [
-    "Original medium-fi surviving exterior interpreted from three individually inspected 2013–2016 Qualla photographs, the 1927 ground-floor plan, CIEQ phase silhouette, heritage descriptions and mapped roof parts.",
+    "New tower roof work uses five exact native photographer-own CC0 originals from2020/2022/2024 after cleared Qualla search, including native octagonal chimney/diamond seams and opposite paired hooded vent stacks. Earlier attribution/private later plan/satellite imagery excluded as current construction control. Fixed full hotel/tower/wings/roofs/retaining terrace scope retained.",
+    "Built one octagonal copper-clad stack with physical diamond seams, two rectangular copper shafts with louvered tapered hoods and two five-bay physical louver banks. Three lower levels retained. All roof details, positions, sizes,12blades per bank bay and.24m recess are medium-fi authoring estimates; exact mechanical interiors are excluded.",
     "Central tower height follows the 77 m architectural record approximately; official tourism rounds to 80 m. Individual storeys, roof junctions, hidden service elevations and sculptural ornament are photographic interpretations, not a measured survey.",
     "Later western ranges are represented by massing; interiors, whole Dufferin promenade, separate kiosks, landscaping and later unverified rooftop changes are excluded.",
     "Independent NRCan DTM retains real southwest rise and river cliff. Small hotel terraces are simplified; runtime terrain may differ. Footprint suppression remains disabled.",
@@ -162,6 +230,94 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:d016a3f17b64328728bc3fe0772964390e1d00a3d53787083c59781dfb12e373",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:a24376485ab90b082d3a15d3fa9c734a3e78df23f674dfca42cbd295706954ea",
+    "referenceInputHash": "sha256:af1474197ccff4538ea1873651e507db824684ee965356b74e24ea770a134025",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/exterior-0.jpg",
+      ".artifacts/reference-photos/exterior-1.jpg",
+      ".artifacts/reference-photos/exterior-2.jpg",
+      ".artifacts/reference-photos/exterior-3.jpg",
+      ".artifacts/reference-photos/exterior-4.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:4864c96f0e10da5b4ce963eaf38297a8957cfd24f5b75fe732761963cbe9514f",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/f/2/m/6/ch-teau-frontenac-wp/chateau-frontenac-queb.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:2016-11_Ch%C3%A2teau_Frontenac_06.jpg",
+        "reason": "Earlier attribution/private later plan/satellite imagery excluded as current roof-construction controls; original mapped geometry/full fixed scope retained."
+      },
+      {
+        "path": "_m/f/2/m/6/quebec-city-walled-wk/chateau-frontenac-seen.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_Frontenac_02.jpg",
+        "reason": "Earlier attribution/private later plan/satellite imagery excluded as current roof-construction controls; original mapped geometry/full fixed scope retained."
+      },
+      {
+        "path": "_m/f/2/m/6/ch-teau-frontenac-wp/hero.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Chateau_Frontenac_37.JPG",
+        "reason": "Earlier attribution/private later plan/satellite imagery excluded as current roof-construction controls; original mapped geometry/full fixed scope retained."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Qualla first. Only local public-domain candidate is a wartime reception, unsuitable for current exterior; earlier local contemporary attribution photos excluded. Five exact native Wilfredor own-work CC0 originals from primary Commons records adopted after explicit self|cc-zero/creator/no-attribution/no-restrictions verification. Native SHA1/dimensions, primary revision IDs and full photos/native chimney/vent crops bound and inspected. Initial category snapshot retained, targetedV2with revision IDs supplies complete primary proof. Private later plan/satellite imagery excluded as current controls. No photo texture, questionable grant, exact sculptural carving or illumination scheme copied."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "chateau_frontenac",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:a24376485ab90b082d3a15d3fa9c734a3e78df23f674dfca42cbd295706954ea",
+    "sourceHash": "sha256:0d4966af1c9cf1a457192466ccf86cf203ad077585e9426199c546cd1a82d95e",
+    "runtimeHash": "sha256:f5323bf25de4f3235d5b5d9ee7c1fbed8328c1cdeb72660ab463463e8c568d28",
+    "built": [
+      "Capped octagonal copper-clad roof chimney with physical diamond seams",
+      "Two rectangular copper vent shafts with louvered tapered hoods",
+      "Two five-bay roof louver banks with120closed tilted blades and real front gaps",
+      "Recessed vent backing, copper piers and sloped hoods",
+      "Cleared four obsolete mid-tier dormers and interleaved stacks with upper dormers"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      986,
+      3834,
+      14994,
+      49066
+    ],
+    "drawCalls": [
+      1,
+      4,
+      4,
+      4
+    ],
+    "limits": "Full fixed surviving hotel, Maxwell tower, connected historic/later wings, round rooms, two courts, steep copper roofscape, Saint-Louis passage and principal hotel retaining terraces retained. Five exact native photographer-own CC0 exterior originals from2020/2022/2024 inspected, including opposite long tower faces, street/river views and native west chimney/east hooded-stack crops. Built a capped octagonal copper-clad shaft with physical diamond seams, two rectangular copper vent stacks with louvered tapered hoods, and two five-bay louver banks with120closed tilted blades, open front gaps, recessed dark backing and sloped copper hoods. Four old mid-tier dormers, two per long face, removed behind banks. Stack positions estimated between retained upper dormers after correcting visible clashes. All three original lower levels and all source attributes outside bounded new roof fittings/dormer regions retained. Map/terrain/placement unchanged. Heights, coordinates, widths, blade counts/depths, patina, roof joins, hidden service elevations, fine stone carving and current condition remain medium-fi estimates; no survey or mechanical interiors claimed. Original scope is not reduced; entire public promenade, separate kiosks, landscaping and interiors remain excluded.",
+    "publicDomainPrimaryOriginals": 5,
+    "roofStacks": 3,
+    "ventBanks": 2,
+    "ventBays": 10,
+    "bankBlades": 120,
+    "hoodBlades": 12,
+    "removedOldMidTierDormers": 4,
+    "exactThreeOriginalLowerLevels": true,
+    "retainedFixedWholeHotelScope": true,
+    "storyState": "ready",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

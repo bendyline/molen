@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.hotel_chelsea",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-19",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:0db42d27b5875758e37640a5fd645e9976286cd9158fbc2eaf68c9978d1bcf9f",
-  "sourceHash": "sha256:7619de4f17d6dcde2fb569f4cb22d4200a1db4c8040b4f7c6ffd30cccdf796d6",
-  "runtimeHash": "sha256:95baea2db13da7d48b7238cf4570149c9e826a88963d648a1d6e03fd64f061db",
-  "captureReportHash": "sha256:e3b7afef646a560130d19c392463940c755524c57c8c4e7ef933246ef4e18c81",
+  "inputHash": "sha256:bee32d064729ebf5196ffb96671b77e495d5a55564fffeec0afdd0a8e69fc21d",
+  "sourceHash": "sha256:6ad9f38f279a2a7d4c8e60dd1ae2177a188b2e95ecc4b008f4b8f353f78cd3bf",
+  "runtimeHash": "sha256:4dac0d49a264b88c7e2834128eed6c3418cd1e73f092f509979191b0be662120",
+  "captureReportHash": "sha256:50420adc2f43620e99fc8ca9fce955a4a15004c43a8a55810b8f8eaeb177f314",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:50420adc2f43620e99fc8ca9fce955a4a15004c43a8a55810b8f8eaeb177f314",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/blade-sign.png",
+      "shots/oval-letter.png"
     ],
-    "notes": "Inspected all seven current portable views against individually viewed 2025 and 2010 local facade photographs and the ironwork close-up. Eight varied balcony tiers, pointed end gables, four dormers, four substantial chimneys, central roof and restored window finishes are represented. Review corrected central-bay faceting, upper central windows and a sign intersecting the bay."
+    "notes": "All nine current portable views inspected against active public-domain references and the primary architectural description. Balcony tiers, faceted bay, central roof pyramid, end gables and large chimneys agree at approximate medium-fi scope. Hidden rear/service and exact roof dimensions remain estimates."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f5227b4da6963558b7b77d8f232be56fb85cafd4543b186d54414401c4c1a4c9",
+    "captureReportHash": "sha256:618653a9e515b9680e608f89f429830c9e206e180d87ec1bc687b3afe158536f",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,33 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/blade-sign.png",
+      "shots/shared/oval-letter.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared-material views and the full final side/front view showing the hotel sign clear of the faceted bay. Brick, sandstone trim, painted metal and slate retain metric bindings; glass is local. The mapped three front projections and rear service projection agree with the overlay. Flat terrain here is a material fixture; independent terrain is preserved in the portable scene."
+    "notes": "All nine unchanged shared-material views inspected, including mapped overlay and sign details. Brick, slate, stone and iron hierarchy is coherent; native placement and source-ground hashes remain exact.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.slate": {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4bb7263547df79896c0232039226bbebc7577ebc408ccfb1e42993a1d9f35ee1",
+    "captureReportHash": "sha256:40476088370da9876b88155bb3a0ba2d741cf698381eed491b3044e2d225678e",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +76,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/blade-sign.png",
+      "medium-fi/oval-letter.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail frames. Skyline retains balcony bands, gables, chimneys and central roof; street detail preserves window frames and railing divisions, while close views add original simplified floral ironwork. Synthetic neighbors are style fixtures. No physical-device frame-rate measurement is claimed."
+    "notes": "All21current version2context/detail and actual runtime-level views inspected. Whole exterior accepted at the agreed approximate medium-fi scope with explicit limits in architectural-evidence.json. Synthetic surrounding buildings are style fixtures."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +102,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.0000305774688715843
     },
-    "notes": "Individual hotel footprint at 222 West 23rd Street, with adjacent parcels excluded. Anchor [-73.99687349796295,40.74432061253444], heading 2.633658028998456: +X west-northwest and +Z north-northeast toward the street. Independent Terrarium terrain remains unchanged, datum 7.6051 m at sidewalk [0,15]. Foundation reaches -0.65 m. Mapped 52.5 m height is a coarse roof control, not a surveyed elevation. Footprint suppression remains off; another host DEM can differ."
+    "notes": "Original mapped hotel shell, sidewalk datum, placement and original frame/three terrain files retained byte-identical. No new foundations or terrain fitting. The sign-detail work does not establish surveyed sign dimensions or exact contact with another host DEM."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Restored Hotel Chelsea exterior on West 23rd Street; adjacent properties, interiors and exact rooftop spa/garden furnishings excluded.",
-    "notes": "Individually inspected local 2025 restored facade, opposite 2010 view and 2011 ironwork detail, corroborated by the official NYC landmark report. Current finishes take precedence over older storefronts and air conditioners. Window spacing, story heights, roof slopes and service-side openings remain approximations. Floral railing geometry and sign lettering are simplified original geometry; no photo pixels are embedded."
+    "scope": "West 23rd Street hotel exterior, red brick, iron balconies, pointed gables and rooftop massing.",
+    "notes": "Full Hotel Chelsea exterior accepted at the agreed approximate medium-fi scope. Started with the already-cleared Qualla Sterling Dudley4531x3052public-domain sign original. Added the exact uncropped2991x2217Berenice Abbott1936WPA original, with NYPL catalog identity482725and explicit PD-USGov-WPA provenance. This photograph resolves repeated open iron galleries, triangular supports, floral panel silhouettes, tall divided openings and the projecting faceted bay. The independent1966NYC landmark designation LP-0215 describes the eleven-storey brick facade, French-door balcony tiers, tall central pyramidal slate roof, enormous flanking chimneys, and projecting end wings with pointed openings in brick gables. Current geometry agrees with those defining features and the native mapped footprint. The full original hotel scope is retained; neither the partial photo nor this review certifies exact historic/current shopfront layouts, every balcony panel, measured roof pitches, chimney/dormer dimensions, hidden side/rear openings or modern rooftop fit-out. Those remain explicit medium-fi estimates. Source/runtime/four LODs, independent ground, placement and all39inspected render bytes are retained unchanged. No photo pixels embedded. Accepted at the agreed approximate medium-fi exterior scope. No reference pixels are embedded. Previously used attribution/private imagery is excluded from this current review."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:ee0bf754b4eb9c0697b59ddbe70a30baa53f49d31f9db796f20519757c954753",
+    "recipeHash": "sha256:5425b40a3fdeda39704c03f7b13d2af285d4a0df5747c3b260f92d61dd06e075",
     "levels": [
       {
         "name": "skyline",
@@ -116,52 +141,362 @@
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:748d88e14984b9928b27a04d091da0c48a98b834d50cb8dbc8e174c10bbcbf36",
-        "bytes": 1031476,
-        "gzipBytes": 194447,
-        "triangles": 13199,
-        "cpuBytes": 1025312,
-        "gpuBytes": 1025312,
+        "hash": "sha256:fe6b86d443116398998da898dccc23636ba2149cebaaeeb8fcb24860c6b4cfd4",
+        "bytes": 1108448,
+        "gzipBytes": 208564,
+        "triangles": 14267,
+        "cpuBytes": 1102280,
+        "gpuBytes": 1102280,
         "errorMeters": 0.15,
         "drawCalls": 5
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:d847c557e6965e1ed268dc9674072a96f22998104f4af8e24f3cded8162e8065",
-        "bytes": 5244228,
-        "gzipBytes": 864155,
-        "triangles": 43677,
-        "cpuBytes": 5241240,
-        "gpuBytes": 5241240,
+        "hash": "sha256:f249ee06a4b8c9f7c8c86ffb43857a954c0b00655920ae2176e251582bd26450",
+        "bytes": 5372388,
+        "gzipBytes": 883647,
+        "triangles": 44745,
+        "cpuBytes": 5369400,
+        "gpuBytes": 5369400,
         "errorMeters": 0,
         "drawCalls": 5
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets: 880 skyline, 3787 district, 13199 street and 43677 closeup triangles. Street rail posts and window heads are simplified to meet their budget while preserving recognizable structure. Error values are authoring budgets, not measured mesh deviations."
+    "notes": "880/3787/14267/44745triangles within strict budgets,1/5/5/5draws. Exact original skyline/district source attributes retained. All street/close source triangle attributes outside bounded sign box retained.752new physical side triangles per detailed level; physical oval counter depth verified."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 43677,
+    "sourceTriangles": 44745,
     "sourceMaterials": 5,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 880,
+        "drawCalls": 1,
+        "controls": 2,
+        "failed": 0,
+        "physicalLetterSideTriangles": 0,
+        "retainedTriangles": 880,
+        "attributeHash": "sha256:1c1fb855604b9fc0e06e830cedd49f6407da867ccc79369caf2178e50a319470",
+        "controlResults": [
+          {
+            "name": "exact original surrounding source triangle attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:1c1fb855604b9fc0e06e830cedd49f6407da867ccc79369caf2178e50a319470",
+            "retainedTriangles": 880
+          },
+          {
+            "name": "closed glyph physical side triangles",
+            "pass": true,
+            "physicalLetterSideTriangles": 0
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 3787,
+        "drawCalls": 5,
+        "controls": 2,
+        "failed": 0,
+        "physicalLetterSideTriangles": 0,
+        "retainedTriangles": 3787,
+        "attributeHash": "sha256:73fbc54861caa628e50928e1347bdffa366f66beca1ad16524029a9e70d760b0",
+        "controlResults": [
+          {
+            "name": "exact original surrounding source triangle attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:73fbc54861caa628e50928e1347bdffa366f66beca1ad16524029a9e70d760b0",
+            "retainedTriangles": 3787
+          },
+          {
+            "name": "closed glyph physical side triangles",
+            "pass": true,
+            "physicalLetterSideTriangles": 0
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 14267,
+        "drawCalls": 5,
+        "controls": 11,
+        "failed": 0,
+        "physicalLetterSideTriangles": 752,
+        "retainedTriangles": 12989,
+        "attributeHash": "sha256:a660a42873e5da5337307138f7ce45ebd9d6b420909509fdc669f825cf8de402",
+        "controlResults": [
+          {
+            "name": "exact original surrounding source triangle attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:a660a42873e5da5337307138f7ce45ebd9d6b420909509fdc669f825cf8de402",
+            "retainedTriangles": 12989
+          },
+          {
+            "name": "closed glyph physical side triangles",
+            "pass": true,
+            "physicalLetterSideTriangles": 752
+          },
+          {
+            "name": "front oval counter remains open before signboard",
+            "pass": true
+          },
+          {
+            "name": "front oval upper corner remains outside ellipse",
+            "pass": true
+          },
+          {
+            "name": "front oval is a physical raised face",
+            "pass": true
+          },
+          {
+            "name": "oval counter has physical inward side depth",
+            "pass": true
+          },
+          {
+            "name": "original solid blade behind oval counter retained",
+            "pass": true
+          },
+          {
+            "name": "H stem has physical front face",
+            "pass": true
+          },
+          {
+            "name": "H stem has solid end-to-face side depth",
+            "pass": true
+          },
+          {
+            "name": "reverse oval counter remains open",
+            "pass": true
+          },
+          {
+            "name": "reverse oval raised face present",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 44745,
+        "drawCalls": 5,
+        "controls": 11,
+        "failed": 0,
+        "physicalLetterSideTriangles": 752,
+        "retainedTriangles": 43467,
+        "attributeHash": "sha256:ee9e164348755c7663e888a2d237302069740bce2006d075154abf2fce8ecc9f",
+        "controlResults": [
+          {
+            "name": "exact original surrounding source triangle attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:ee9e164348755c7663e888a2d237302069740bce2006d075154abf2fce8ecc9f",
+            "retainedTriangles": 43467
+          },
+          {
+            "name": "closed glyph physical side triangles",
+            "pass": true,
+            "physicalLetterSideTriangles": 752
+          },
+          {
+            "name": "front oval counter remains open before signboard",
+            "pass": true
+          },
+          {
+            "name": "front oval upper corner remains outside ellipse",
+            "pass": true
+          },
+          {
+            "name": "front oval is a physical raised face",
+            "pass": true
+          },
+          {
+            "name": "oval counter has physical inward side depth",
+            "pass": true
+          },
+          {
+            "name": "original solid blade behind oval counter retained",
+            "pass": true
+          },
+          {
+            "name": "H stem has physical front face",
+            "pass": true
+          },
+          {
+            "name": "H stem has solid end-to-face side depth",
+            "pass": true
+          },
+          {
+            "name": "reverse oval counter remains open",
+            "pass": true
+          },
+          {
+            "name": "reverse oval raised face present",
+            "pass": true
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/dr/dr5/hotel_chelsea/verify-sign.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration, source/runtime integrity, normals/winding/UVs and strict budgets pass. Actual imported controls2/2/11/11pass for original surrounding geometry,752letter side triangles, front/reverse oval holes/faces, physical inner side, H face/side and retained blade behind counter. Original pre-edit control file retained; RGB stride correction derived from restoring old lettering and first matching all four immutable original fingerprints. Map/ground byte-identical."
   },
   "limitations": [
-    "Original medium-fi exterior from individually inspected Qualla 2025 and 2010 facade photographs, 2011 ironwork detail and the official NYC landmark report. Not a survey or photogrammetric reconstruction.",
+    "Full medium-fi exterior reviewed against the cleared Qualla sign original, exact1936Abbott WPA balcony photograph and primary NYC landmark description of the roof, chimneys and end gables. No whole-building photographic survey claimed.",
+    "Earlier attribution-licensed facade/ironwork photographs are excluded from the active review. Retained architecture now compared with independent public-domain imagery and primary factual architectural descriptions.",
     "Mapped height 52.5 m provides a coarse upper roof control. Intermediate levels, roof slopes, rear/service openings and exact balcony panel spacing remain photographic approximations.",
-    "2025 restored finishes take precedence over older white windows, air conditioners and shop signage. Flower-and-leaf ironwork is original simplified geometry; no photo pixels are embedded.",
+    "2025 public-domain night view resolves vertically stacked cream HOTEL and a red horizontal CHELSEA footer. Original simplified letter outlines, sign dimensions, thickness, concealed mounts and unlit appearance remain estimates. No photo pixels or measured neon emission are embedded.",
     "The hotel parcel only; adjacent buildings, interiors and precise rooftop spa/garden fit-out are excluded. Hidden roof service enclosure and side/rear openings are conservative interpretations.",
     "Independent terrain is preserved unchanged, with foundation below the central sidewalk datum. Exact contact with another host DEM remains uncertain."
   ],
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:65d76e7305804e488d96df1b1dda8806c831726b9e0166b7eb3a42807cfa82f4",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:bee32d064729ebf5196ffb96671b77e495d5a55564fffeec0afdd0a8e69fc21d",
+    "referenceInputHash": "sha256:058d14dee9b282ec11c5e365f3fe7653335945020d66052c6db310ffd63e63ca",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/marquee-original.jpg",
+      ".artifacts/reference-photos/abbott-1936.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:82468d4c1719e3c378dd924c704ba865adfdc3cc27b7b839e9865a2743e7d189",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/d/r/5/r/hotel-chelsea-wp/hotel-chelsea-manhatta.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Chelsea_Manhattan_Aug_2025_102.jpg",
+        "reason": "Prior attribution-licensed facade imagery excluded as new sign construction control; inherited whole exterior remains unapproved under the current policy."
+      },
+      {
+        "path": "_m/d/r/5/r/hotel-chelsea-wp/hotel-chelsea-2010.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hotel_Chelsea_2010.jpg",
+        "reason": "Prior attribution-licensed facade imagery excluded as new sign construction control; inherited whole exterior remains unapproved under the current policy."
+      },
+      {
+        "path": "_m/d/r/5/r/hotel-chelsea-wp/hotel-chelsea-in-manhattan.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hotel_Chelsea_in_Manhattan.jpg",
+        "reason": "Earlier attribution-licensed ironwork image excluded from current sign construction controls. Existing balcony geometry retained without full current-policy approval."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Full Hotel Chelsea exterior accepted at the agreed approximate medium-fi scope. Started with the already-cleared Qualla Sterling Dudley4531x3052public-domain sign original. Added the exact uncropped2991x2217Berenice Abbott1936WPA original, with NYPL catalog identity482725and explicit PD-USGov-WPA provenance. This photograph resolves repeated open iron galleries, triangular supports, floral panel silhouettes, tall divided openings and the projecting faceted bay. The independent1966NYC landmark designation LP-0215 describes the eleven-storey brick facade, French-door balcony tiers, tall central pyramidal slate roof, enormous flanking chimneys, and projecting end wings with pointed openings in brick gables. Current geometry agrees with those defining features and the native mapped footprint. The full original hotel scope is retained; neither the partial photo nor this review certifies exact historic/current shopfront layouts, every balcony panel, measured roof pitches, chimney/dormer dimensions, hidden side/rear openings or modern rooftop fit-out. Those remain explicit medium-fi estimates. Source/runtime/four LODs, independent ground, placement and all39inspected render bytes are retained unchanged. No photo pixels embedded. The source-specific WPA designation, NYPL catalog identity, exact native file history and original bytes are bound in reference-rights/abbott-wpa.json. The uploader is not claimed as photographer."
+  },
+  "constructionReview": {
+    "status": "sign-detail-completed-full-exterior-awaiting-reference",
+    "model": "hotel_chelsea",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:9fa0d2d600e9ead40940e25287d728314fdfb7bf714ceb19ee7a9a28fe36bc9d",
+    "sourceHash": "sha256:6ad9f38f279a2a7d4c8e60dd1ae2177a188b2e95ecc4b008f4b8f353f78cd3bf",
+    "runtimeHash": "sha256:4dac0d49a264b88c7e2834128eed6c3418cd1e73f092f509979191b0be662120",
+    "built": [
+      "Closed solid HOTEL/CHELSEA lettering on both blade faces",
+      "24segment oval O with open counter and physical inner/outer sides",
+      "752physical side triangles at each detailed level"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      880,
+      3787,
+      14267,
+      44745
+    ],
+    "drawCalls": [
+      1,
+      5,
+      5,
+      5
+    ],
+    "limits": "This is a completed sign-detail change, not a whole-hotel fidelity approval. Exact native cleared Qualla Sterling Dudley4531x3052public-domain night original and native sign crop inspected. Primary photographer PD-self release, matching I-took-it source statement, creator and native hashes bound. Built closed solid lettering on both blade faces, with a24segment oval O, real inner/outer sides and open counter.752physical side triangles occur in street/close levels. Original simplified glyph outlines, dimensions, thickness, concealed mounts and unlit appearance remain estimates; no measured neon/bloom or copied pixels. Existing surrounding hotel geometry, full skyline/district and map/ground retained. Earlier attribution exteriors excluded as current controls. Need a usable public-domain full elevation/roof view before whole exterior approval; the dark sign photo does not establish it. No full completion claimed.",
+    "publicDomainOriginals": 1,
+    "reusedNativeQuallaOriginals": 1,
+    "fullExteriorCompleted": false,
+    "physicalLetterSideTriangles": 752,
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
+  },
+  "status": "completed",
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:bee32d064729ebf5196ffb96671b77e495d5a55564fffeec0afdd0a8e69fc21d",
+    "sourceHash": "sha256:6ad9f38f279a2a7d4c8e60dd1ae2177a188b2e95ecc4b008f4b8f353f78cd3bf",
+    "runtimeHash": "sha256:4dac0d49a264b88c7e2834128eed6c3418cd1e73f092f509979191b0be662120",
+    "notes": "Full Hotel Chelsea exterior accepted at the agreed approximate medium-fi scope. Started with the already-cleared Qualla Sterling Dudley4531x3052public-domain sign original. Added the exact uncropped2991x2217Berenice Abbott1936WPA original, with NYPL catalog identity482725and explicit PD-USGov-WPA provenance. This photograph resolves repeated open iron galleries, triangular supports, floral panel silhouettes, tall divided openings and the projecting faceted bay. The independent1966NYC landmark designation LP-0215 describes the eleven-storey brick facade, French-door balcony tiers, tall central pyramidal slate roof, enormous flanking chimneys, and projecting end wings with pointed openings in brick gables. Current geometry agrees with those defining features and the native mapped footprint. The full original hotel scope is retained; neither the partial photo nor this review certifies exact historic/current shopfront layouts, every balcony panel, measured roof pitches, chimney/dormer dimensions, hidden side/rear openings or modern rooftop fit-out. Those remain explicit medium-fi estimates. Source/runtime/four LODs, independent ground, placement and all39inspected render bytes are retained unchanged. No photo pixels embedded.",
+    "renderReuse": {
+      "reason": "Only reference selection/interpretation, inventory and historical-source annotations changed. Graphics specification (apart from reference URLs/fingerprint), source/runtime/LOD bytes, scene, map, terrain, placement, material bindings, cameras and every image byte are unchanged. Retain the original inspected renders; no fresh capture is claimed.",
+      "originalInputHash": "sha256:9fa0d2d600e9ead40940e25287d728314fdfb7bf714ceb19ee7a9a28fe36bc9d",
+      "reviewInputHash": "sha256:bee32d064729ebf5196ffb96671b77e495d5a55564fffeec0afdd0a8e69fc21d",
+      "sourceHash": "sha256:6ad9f38f279a2a7d4c8e60dd1ae2177a188b2e95ecc4b008f4b8f353f78cd3bf",
+      "runtimeHash": "sha256:4dac0d49a264b88c7e2834128eed6c3418cd1e73f092f509979191b0be662120",
+      "originalCaptureReports": {
+        "capture-report.json": "sha256:348125dc17c1a3efa34a4b612f3ef54dc53a3a1c020ab4064f26cad2e385db26",
+        "shared-capture-report.json": "sha256:59822792104b5ee49465650e2f152f4d043aacb47bc959017c31c3ed7bdcf72a",
+        "medium-fi-report.json": "sha256:ea59570ce2d0fa36c9465cb2bb45774f5f793a2f020dd7c064935405deb9d032"
+      }
+    },
+    "previousImageryReview": {
+      "policy": "qualla-public-domain-imagery@1",
+      "status": "needs-review",
+      "scope": "all-model-reference-imagery",
+      "reviewedOn": "2026-10-18",
+      "inputHash": "sha256:9fa0d2d600e9ead40940e25287d728314fdfb7bf714ceb19ee7a9a28fe36bc9d",
+      "referenceInputHash": "sha256:3b5c301938ba5e749ed0bb948f48d33a6c0008f31f225b3e151ee0c61d7754c7",
+      "acceptedReferencePaths": [],
+      "auxiliaryReferencePaths": [
+        ".artifacts/reference-photos/marquee-original.jpg"
+      ],
+      "imageryEvidenceHash": "sha256:8899c79ddcf9a7a0e2512ff1e66cbce5227cf224faba749a51f7c8ad5c5d0564",
+      "excludedHistoricalImagery": [
+        {
+          "path": "_m/d/r/5/r/hotel-chelsea-wp/hotel-chelsea-manhatta.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Chelsea_Manhattan_Aug_2025_102.jpg",
+          "reason": "Prior attribution-licensed facade imagery excluded as new sign construction control; inherited whole exterior remains unapproved under the current policy."
+        },
+        {
+          "path": "_m/d/r/5/r/hotel-chelsea-wp/hotel-chelsea-2010.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Hotel_Chelsea_2010.jpg",
+          "reason": "Prior attribution-licensed facade imagery excluded as new sign construction control; inherited whole exterior remains unapproved under the current policy."
+        },
+        {
+          "path": "_m/d/r/5/r/hotel-chelsea-wp/hotel-chelsea-in-manhattan.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Hotel_Chelsea_in_Manhattan.jpg",
+          "reason": "Earlier attribution-licensed ironwork image excluded from current sign construction controls. Existing balcony geometry retained without full current-policy approval."
+        }
+      ],
+      "inventoryStatus": "passed",
+      "notes": "Only exact native Sterling Dudley public-domain original already cleared in Qualla used for new construction; native full image/crop inspected. Explicit primary PD-self grant, creator and identical native SHA-1/SHA-256 verified. No new photograph downloaded. Earlier attribution photos excluded. This source supports the sign only; full public-domain exterior fidelity remains pending."
+    }
+  },
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

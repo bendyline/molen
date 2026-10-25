@@ -5,11 +5,9 @@ import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0031_pont_del_diable', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('pont_del_diable', 'map-frame.json')));
 const elevation = JSON.parse(
-  readFileSync(structureSourcePath('n0031_pont_del_diable', 'terrain-profile.json')),
+  readFileSync(structureSourcePath('pont_del_diable', 'terrain-profile.json')),
 );
 const start = frame.geometry.centerlines[0][0][0],
   end = frame.geometry.centerlines[0].at(-1)[0];
@@ -658,7 +656,7 @@ export function buildPontDelDiable(out) {
   ring(out, blocked, -2.9, -2.79, 0, 0.42, 'sandstone', false, 44);
 }
 export const pontDelDiableStudy = {
-  id: 'N0031',
+  id: 'pont_del_diable',
   key: 'pont_del_diable',
   title: 'Pont del Diable, Martorell',
   wikidataId: 'Q250523',
@@ -684,7 +682,7 @@ export const pontDelDiableStudy = {
     elevationEvidence: {
       file: 'terrain-profile.json',
       hash: hashEvidenceText(
-        readFileSync(structureSourcePath('n0031_pont_del_diable', 'terrain-profile.json')),
+        readFileSync(structureSourcePath('pont_del_diable', 'terrain-profile.json')),
       ),
       attribution: elevation.attribution,
       layers: elevation.layers,

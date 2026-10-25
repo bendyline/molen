@@ -1,0 +1,357 @@
+{
+  "planId": "fort_worth_livestock_exchange",
+  "id": "fort_worth_livestock_exchange",
+  "assetId": "molen.worldgen.structure.fort_worth_livestock_exchange",
+  "title": "Fort Worth Livestock Exchange Building",
+  "category": "civic-cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -97.34672710000001,
+    "latitude": 32.78952875
+  },
+  "size": [
+    70.85356903076172,
+    16.889999389648438,
+    66.35795593261719
+  ],
+  "actualBounds": {
+    "min": [
+      -35.42678451538086,
+      -0.25,
+      -32.77967834472656
+    ],
+    "max": [
+      35.42678451538086,
+      16.639999389648438,
+      33.578277587890625
+    ]
+  },
+  "visualBrief": "Whole originalT-shaped LivestockExchangeBuilding and BOTHopeninnercourtyards: creamstucco/terracotta hippedroofs/broad eaves, genuineeight-bay southfront arcade and recessedclosedentries, centraltallMissioncurvedsteppedparapet/ballfinials, shingledsquarecupola/archedlights/bellcastpatinatedroof/louvredlantern/cap/finial; connectedrearwing. No district slab/pens/detachedlandmarks/artwork/lettering/interiors.",
+  "nativeAxes": {
+    "x": "true east",
+    "y": "up",
+    "z": "true south/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/2013650788/",
+    "https://www.loc.gov/item/2011630470/"
+  ],
+  "stories": [
+    {
+      "id": "fort-worth-stockyards-wk",
+      "url": "https://qualla.com/stockyards-fort-worth/"
+    },
+    {
+      "id": "fort-worth-stockyards-wp",
+      "url": "https://qualla.com/fort-worth-stockyards/"
+    }
+  ],
+  "referenceInputHash": "99e51add79b7e1053dfa5760256332cf27b66b9a5476aa83bba1d5e7dd75877f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-fort-worth-livestock-exchange.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-fort-worth-livestock-exchange.mjs",
+    "level": "skyline",
+    "export": "exchangeSkyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "shingle_cedar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.04
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "exchangeDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "shingle_cedar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "exchangeStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "shingle_cedar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.55,
+    "groundY": -0.3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact LivestockExchangeBuildingnode4273376249and StockyardsMuseumnode368165552at131EastExchangeAvenue identify original buildingmultipolygonrelation7321195: full21vertexouterway56029794and both6vertexinternalcourtyardholes499180510/499180511. OriginalT-shaped rearwing and long south/frontblock, approximately70x65moverall, retained unchanged; neither courtyard is a separate building or filled roof/site slab. Fixed cardinal east/south frame anchored at original outerbboxcenter[-97.34672710000001,32.78952875]. Southfront architecture from acceptedHighsmithphotos; map has no heights/roof partitions. Exact arcade depth/bay census/rear roofing/vertical sections hidden and bounded estimates. Distinct CowtownColiseumway56029797and other districtstructures excluded. Original independent160mfield frozen at fixed southfront[0,36]before geometry; own entry steps/arcadefloor/hostcontact approximate.",
+    "anchor": [
+      -97.34672710000001,
+      32.78952875
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -97.34672710000001,
+        32.789205357977
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed south/front approach[0,36]beyond original front elevation before terrain and geometry. Own entrance steps only; no siteplaza. Exact sill/arcadefloor/grade/hostcontact unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/7321195"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7321195",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:34bc36441df6d51597819c36a42d8a6f3dcc8e6a98971080bfd4ed4be2f8513b",
+    "notes": "Whole surviving named Livestock Exchange Building at131EastExchangeAvenue, the Stockyards central landmark: original full21vertexT-shaped outer plan and both six-vertex internal open courtyards; pale cream/straw stucco, terracotta tiled hipped/gabled roofs and broad eaves, genuine south/front open round-arch arcade on square piers, taller central second-storey Mission Revival scalloped/stepped parapet with ball finials, central shingled square cupola with arched sash/bellcast patinated metal roof/small louvred lantern/cap/finial and own entry steps, plus connected rear office/auction wing. Exclude entire Stockyards district/cattlepens, detached CowtownColiseum/StockyardsHotel/station/barns, roads/parking/plazas/landscape/statues/signage/lettering/longhorn-headartwork/interiors/animals/people/cars and separateflagpoles. No historical demolished packingplant reconstruction."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact LivestockExchangeBuildingnode4273376249and StockyardsMuseumnode368165552at131EastExchangeAvenue identify original buildingmultipolygonrelation7321195: full21vertexouterway56029794and both6vertexinternalcourtyardholes499180510/499180511. OriginalT-shaped rearwing and long south/frontblock, approximately70x65moverall, retained unchanged; neither courtyard is a separate building or filled roof/site slab. Fixed cardinal east/south frame anchored at original outerbboxcenter[-97.34672710000001,32.78952875]. Southfront architecture from acceptedHighsmithphotos; map has no heights/roof partitions. Exact arcade depth/bay census/rear roofing/vertical sections hidden and bounded estimates. Distinct CowtownColiseumway56029797and other districtstructures excluded.",
+    "Whole survivingExchangeBuilding only, originalT-shaped21vertexouterenvelope and both6vertexcourtyardholes preserved. Mainfrontarcade modeled as eight genuinely open bays with coveredrecesses/closedentries; exactbaycensus/roofpartitions/hiddenrear elevations/courtyardsash/sections/heights are bounded interpretations of two frontHighsmithphotos and native plan. Nearer roofs use explicit planar hip sections clipped to the full original perforated plan, with genuinecourtyardholes and closed boundary faces. Skyline approximates these roof sections within2.2m. No rooforcampusslab fills courts.",
+    "Two exact primaryHighsmithnativeJP2photographs actually inspected via lossless full-sizeddecodes, bound to individualLOCcatalog/photographer public-domain dedication. Qualla inventory inspected first; oldstockpen/packingplant postcards do not establish this Exchangeexterior and are unused. No copied image pixels or generatedbitmap. Source wall/roof/shingle/metal hues support exterior; moderncosmetics/hiddenchanges unverified.",
+    "Missioncurvedparapet/ballfinials, paleopenarcade/raisedentry and shingledarched-windowcupola/bellcastgreenroof/louvredlantern represented. Lettering/mountedlonghorn-headartwork/flags/flagpole omitted. Sharedproceduralstucco/terracottatile/cedarshingle/paintedmetal, muted glazing and original geometric relief only; no engineeringreplica claim.",
+    "No entireStockyardsdistrict/cattlepens, detachedCowtownColiseum/StockyardsHotel/station/barns, roads/plazas/parking/landscape/statues, interiors/animals/people/cars or demolishedpackingplant. Original160mterrain/rawtile/grid/PNG frozen unchanged at fixed[0,36]. Exact sill/arcadefloor/hostcontact unverified; replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "southfront-open-arcade-mission-parapet-and-cupola",
+      "position": [
+        -32,
+        15,
+        62
+      ],
+      "lookAt": [
+        0,
+        7,
+        23
+      ]
+    },
+    {
+      "name": "both-open-native-courtyards-and-complete-roof-plan",
+      "position": [
+        29,
+        54,
+        47
+      ],
+      "lookAt": [
+        0,
+        5,
+        16
+      ]
+    },
+    {
+      "name": "arcade-eye-level-through-open-arch-to-recessed-entry",
+      "position": [
+        -6.8,
+        1.8,
+        36
+      ],
+      "lookAt": [
+        -6.8,
+        2,
+        25
+      ]
+    },
+    {
+      "name": "cupola-arched-lights-shingles-bellcast-roof-and-louvred-lantern",
+      "position": [
+        12,
+        21,
+        37
+      ],
+      "lookAt": [
+        -0.4,
+        13.1,
+        20.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14473,
+    "vertices": 43419,
+    "materials": 7,
+    "bytes": 1740820,
+    "sha256": "sha256:e95b41e49ac798a37e1064a2d71bcf5e7dba9d13929afe7d5020ee86696c263e"
+  }
+}

@@ -1,0 +1,344 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "base": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "pale": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_corrugated",
+      "roughness": 0.8,
+      "metallic": 0.5
+    },
+    "inset": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "blue": {
+      "slot": "trim",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      35,
+      21.591161994520235,
+      27
+    ],
+    "lookAt": [
+      5,
+      4.291161994520235,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "front-stair-carved-piers-and-broken-stumps",
+      "position": [
+        29,
+        7.591161994520235,
+        7
+      ],
+      "lookAt": [
+        8,
+        4.591161994520235,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "open-hall-sanctuary-door-and-original-nandi",
+      "position": [
+        11,
+        4.8911619945202345,
+        0.7
+      ],
+      "lookAt": [
+        1,
+        4.3911619945202345,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "rear-low-sanctuary-and-modern-sheet-shelter",
+      "position": [
+        -17,
+        12.591161994520235,
+        -18
+      ],
+      "lookAt": [
+        3,
+        4.591161994520235,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        35,
+        21.591161994520235,
+        27
+      ],
+      "lookAt": [
+        5,
+        4.291161994520235,
+        0
+      ],
+      "fov": 46,
+      "name": "bhainsdehi-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        35,
+        21.591161994520235,
+        27
+      ],
+      "lookAt": [
+        5,
+        4.291161994520235,
+        0
+      ],
+      "fov": 46,
+      "name": "bhainsdehi-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        35,
+        21.591161994520235,
+        27
+      ],
+      "lookAt": [
+        5,
+        4.291161994520235,
+        0
+      ],
+      "fov": 46,
+      "name": "bhainsdehi-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        35,
+        21.591161994520235,
+        27
+      ],
+      "lookAt": [
+        5,
+        4.291161994520235,
+        0
+      ],
+      "fov": 46,
+      "name": "bhainsdehi-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/bhainsdehi-model.mjs",
+    "export": "buildBhainsdehiSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBhainsdehiDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_corrugated",
+            "roughness": 0.8,
+            "metallic": 0.5
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBhainsdehiStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_corrugated",
+            "roughness": 0.8,
+            "metallic": 0.5
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBhainsdehiCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_corrugated",
+            "roughness": 0.8,
+            "metallic": 0.5
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      77.6352777778,
+      21.6494444444
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original pinned standard6m Mapzen grid and all native roads/ground/water remain unchanged. Level occupied platform just above its sampled ground envelope; narrow buried stone footing and six-step approach to sampled front grade. No broad surrounding slab, terrain flattening, building/ground/water cutout. Coarse DEM cannot resolve archaeological paving or actual threshold heights.",
+    "replaceFootprint": false,
+    "bounds": [
+      77.63522945313984,
+      21.64936359602443,
+      77.63545174657658,
+      21.64952529277557
+    ],
+    "terrainReference": {
+      "anchor": [
+        77.6352777778,
+        21.6494444444
+      ],
+      "modelHeight": 0,
+      "basis": "Original pinned standard6m Mapzen grid and all native roads/ground/water remain unchanged. Level occupied platform just above its sampled ground envelope; narrow buried stone footing and six-step approach to sampled front grade. No broad surrounding slab, terrain flattening, building/ground/water cutout. Coarse DEM cannot resolve archaeological paving or actual threshold heights."
+    },
+    "notes": "RosterN0552 originally used townQ759139 at77.63,21.65. Its retained picture/Commons category identifies Ancient Shiva Temple S-MP-4; the same front picture is attached to specific templeQ97100854. That item gives21deg38min58secN,77deg38min7secE: anchor77.6352777778,21.6494444444. Correct the modeled identity toQ97100854 while retaining the original town record here. Standard PMTiles contains town/major roads but no temple POI or building outlines. The12.2x16.4m pictured envelope is an estimate, not mapped geometry. East-facing placement is explicitly approximate with180degree facing uncertainty and roughly40m location uncertainty; no exact-QID footprint or surveyed bearing claim. Local model center is shifted5m east from the coarse reference point to clear native roadMD3515; native road geometry is retained. Original pinned standard6m Mapzen grid and all native roads/ground/water remain unchanged. Level occupied platform just above its sampled ground envelope; narrow buried stone footing and six-step approach to sampled front grade. No broad surrounding slab, terrain flattening, building/ground/water cutout. Coarse DEM cannot resolve archaeological paving or actual threshold heights."
+  }
+}

@@ -1,4 +1,4 @@
-/** Independently researched exterior reconstructions N0164–N0175, meters, +Y up. */
+/** Independently researched exterior reconstructions citic_plaza–almas_tower, meters, +Y up. */
 import { ShapeUtils, Vector2 } from 'three';
 import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import {
@@ -108,7 +108,7 @@ function planter(out, x, y, z) {
 }
 
 function buildMesseturm(out, m) {
-  const key = 'n0170_messeturm',
+  const key = 'messeturm',
     granite = [0.52, 0.335, 0.285],
     dark = [0.2, 0.29, 0.3],
     trim = [0.55, 0.56, 0.53];
@@ -239,7 +239,7 @@ function buildMesseturm(out, m) {
 }
 
 function buildAon(out, m) {
-  const key = 'n0172_aon_center',
+  const key = 'aon_center_chicago',
     plan = cleanPlan(localOutline(m), 0.14),
     white = [0.85, 0.86, 0.83],
     shadowGlass = [0.095, 0.15, 0.18];
@@ -344,7 +344,7 @@ function buildAon(out, m) {
 }
 
 function buildKingdom(out, m) {
-  const key = 'n0166_kingdom_centre',
+  const key = 'kingdom_centre',
     podium = cleanPlan(partPlan(m, part(key, 264745917))),
     plan = cleanPlan(partPlan(m, part(key, 264745922)), 0.055);
   mappedSolid(out, 'stone', podium, 0, 0.35, [0.69, 0.63, 0.5]);
@@ -488,7 +488,7 @@ function buildKingdom(out, m) {
 }
 
 function buildShunHing(out, m) {
-  const key = 'n0167_shun_hing_square',
+  const key = 'shun_hing_square',
     body = cleanPlan(partPlan(m, part(key, 279950100))),
     whole = localOutline(m),
     white = [0.76, 0.79, 0.73],
@@ -807,7 +807,7 @@ function validPolygon(poly) {
   return area > 0.0001;
 }
 function buildMercury(out, m) {
-  const key = 'n0169_mercury_city_tower',
+  const key = 'mercury_city_tower',
     gold = [0.66, 0.29, 0.085],
     dark = [0.15, 0.12, 0.095],
     white = [0.84, 0.86, 0.85];
@@ -1298,7 +1298,7 @@ function buildAlmas(out, m) {
 }
 
 function buildTrumpChicago(out, m) {
-  const key = 'n0174_trump_international_hotel_and_tower';
+  const key = 'trump_international_hotel_and_tower';
   const silver = [0.73, 0.76, 0.77],
     blue = [0.32, 0.43, 0.49];
   const blocks = [
@@ -1745,7 +1745,7 @@ function buildGlories(out, m) {
 }
 
 function buildHancock(out, m) {
-  const key = 'n0171_875_north_michigan_avenue',
+  const key = '875_north_michigan_avenue',
     bronze = [0.125, 0.11, 0.095],
     glazing = [0.145, 0.18, 0.18],
     roofY = 337.4136;
@@ -2162,7 +2162,7 @@ function theatreFrontage(out, cx) {
 }
 
 function buildBankAmerica(out, m) {
-  const key = 'n0165_bank_of_america_tower',
+  const key = 'bank_of_america_tower',
     tint = [0.42, 0.54, 0.59],
     trim = [0.7, 0.75, 0.75],
     features = partsEvidence(key);
@@ -2288,7 +2288,7 @@ function roundedOutline(plan, radius = 2.7, subdivisions = 6) {
 }
 
 function buildZifeng(out, m) {
-  const key = 'n0168_zifeng_tower',
+  const key = 'zifeng_tower',
     plan = roundedOutline(localOutline(m)),
     trim = [0.7, 0.73, 0.73],
     tint = [0.39, 0.51, 0.58];
@@ -2554,7 +2554,7 @@ function buildZifeng(out, m) {
 }
 
 function buildCitic(out, m) {
-  const key = 'n0164_citic_plaza',
+  const key = 'citic_plaza',
     white = [0.83, 0.85, 0.81],
     blue = [0.39, 0.59, 0.62],
     teal = [0.2, 0.44, 0.46];
@@ -2683,7 +2683,7 @@ function buildCitic(out, m) {
 
 export const skylineGlobal = [
   {
-    id: 'N0175',
+    id: 'almas_tower',
     key: 'almas_tower',
     wikidataId: 'Q838780',
     title: 'Almas Tower',
@@ -2751,7 +2751,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0174',
+    id: 'trump_international_hotel_and_tower',
     key: 'trump_international_hotel_and_tower',
     wikidataId: 'Q546221',
     title: 'Trump International Hotel and Tower Chicago',
@@ -2802,7 +2802,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0173',
+    id: 'torre_glories',
     key: 'torre_glories',
     wikidataId: 'Q336246',
     title: 'Torre Glòries',
@@ -2852,7 +2852,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0171',
+    id: '875_north_michigan_avenue',
     key: '875_north_michigan_avenue',
     wikidataId: 'Q217727',
     title: '875 North Michigan Avenue',
@@ -2904,7 +2904,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0169',
+    id: 'mercury_city_tower',
     key: 'mercury_city_tower',
     wikidataId: 'Q59483',
     title: 'Mercury City Tower',
@@ -2955,7 +2955,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0165',
+    id: 'bank_of_america_tower',
     key: 'bank_of_america_tower',
     wikidataId: 'Q328505',
     title: 'Bank of America Tower',
@@ -3010,7 +3010,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0168',
+    id: 'zifeng_tower',
     key: 'zifeng_tower',
     wikidataId: 'Q382121',
     title: 'Zifeng Tower',
@@ -3059,7 +3059,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0164',
+    id: 'citic_plaza',
     key: 'citic_plaza',
     wikidataId: 'Q245246',
     title: 'CITIC Plaza',
@@ -3108,7 +3108,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0167',
+    id: 'shun_hing_square',
     key: 'shun_hing_square',
     wikidataId: 'Q236201',
     title: 'Shun Hing Square',
@@ -3157,7 +3157,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0166',
+    id: 'kingdom_centre',
     key: 'kingdom_centre',
     wikidataId: 'Q656743',
     title: 'Kingdom Centre',
@@ -3207,7 +3207,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0170',
+    id: 'messeturm',
     key: 'messeturm',
     wikidataId: 'Q156198',
     title: 'Messeturm',
@@ -3258,7 +3258,7 @@ export const skylineGlobal = [
     ],
   },
   {
-    id: 'N0172',
+    id: 'aon_center_chicago',
     key: 'aon_center',
     wikidataId: 'Q271695',
     title: 'Aon Center',
