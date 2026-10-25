@@ -70,7 +70,7 @@ describe('state route shields', () => {
         disposeTerrainSurfaceObject(object);
         disposeTerrainSurfaceObject(unlettered);
       }
-  });
+  }, 30_000); // Builds 200 surface objects across all 50 states; exceeds 5 s on CI.
   it.each([
     'US:I',
     'US:US',

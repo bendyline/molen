@@ -98,7 +98,7 @@ describe('regional procedural plants', () => {
       expect(counts[0]).toBeGreaterThan(counts[1] as number);
       if ((counts[1] as number) > 0) expect(counts[1]).toBeGreaterThan(counts[2] as number);
     }
-  });
+  }, 30_000); // Checks every vertex of 354 presets at three detail levels; exceeds 5 s on CI.
 
   it('caches and releases distinct procedural LODs without requesting a GLB', async () => {
     const p = plants.find((entry) => entry.family === 'palm');

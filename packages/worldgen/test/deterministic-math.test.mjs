@@ -152,6 +152,30 @@ it('installs the ports in this process and in the Node processes it starts', () 
   expect(output.trim()).toBe('true true');
 }, 30_000); // Starts two Node processes.
 
+it('keeps aircraft calibration on the installed portable power function', () => {
+  const installer = pathToFileURL(
+    join(root, 'packages/worldgen/scripts/install-deterministic-math.mjs'),
+  ).href;
+  const calibration = pathToFileURL(
+    join(root, 'packages/entities/scripts/update-aircraft-performance.mjs'),
+  ).href;
+  // Run the real read-only metadata check in its own process. Counting calls catches a
+  // kernel ** bypass even on Node versions where the native result happens to match.
+  const script = `const pow = Math.pow;
+let calls = 0;
+Math.pow = (x, y) => { calls++; return pow(x, y); };
+process.argv.push('--check');
+await import(${JSON.stringify(calibration)});
+if (calls === 0) throw new Error('Aircraft calibration bypassed portable Math.pow');`;
+  expect(() =>
+    execFileSync(process.execPath, ['--import', installer, '--input-type=module', '-e', script], {
+      encoding: 'utf8',
+      env: { ...process.env, NODE_OPTIONS: '' },
+      stdio: 'pipe',
+    }),
+  ).not.toThrow();
+}, 30_000); // Starts Node and checks every aircraft profile without rewriting source metadata.
+
 /** Asset generator sources: worldgen and entities scripts, aircraft models, structure scripts. */
 function generatorSources() {
   const files = [];

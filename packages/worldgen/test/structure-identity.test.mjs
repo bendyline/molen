@@ -16,7 +16,7 @@ describe('stable named structure identities', () => {
       sources: 1065,
       placements: 975,
     });
-  });
+  }, 30_000); // Reads over 1,000 source specs; filesystem contention can exceed 5 s.
   it('uses readable names while preserving numeric building names and diacritics in display titles', () => {
     expect(structureKeyFromTitle('Edifício Altino Arantes')).toBe('edificio_altino_arantes');
     expect(structureKeyFromTitle("St. Mary's Cathedral, Tokyo")).toBe('st_marys_cathedral_tokyo');

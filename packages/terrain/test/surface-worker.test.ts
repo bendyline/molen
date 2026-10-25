@@ -216,7 +216,7 @@ describe('surface worker', () => {
       disposeTerrainSurfaceObject(direct);
     }
     bridge.dispose();
-  });
+  }, 30_000); // Rebuilds and compares route geometry through both paths, including cache reloads.
   it('transfers regional geometry and metadata and honors an explicit profile over the tile resolver', async () => {
     const tile = fixture();
     const main = tile.transportation[0];
