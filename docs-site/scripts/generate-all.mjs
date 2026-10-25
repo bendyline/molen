@@ -9,7 +9,6 @@
 //
 //   node scripts/generate-all.mjs          # write (pnpm docs:site:gen)
 //   node scripts/generate-all.mjs --check  # fail if anything is stale or off-style (CI)
-import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { checkStyle } from './check-style.mjs';
@@ -17,6 +16,7 @@ import { generateApi } from './generate-api.mjs';
 import { generateCli } from './generate-cli.mjs';
 import { generateGuides } from './generate-guides.mjs';
 import { generateSamples } from './generate-samples.mjs';
+import { writeNavigation } from './navigation-file.mjs';
 import { siteDir } from './packages.mjs';
 import { withSiteLock } from './site-lock.mjs';
 
@@ -151,14 +151,7 @@ export async function generateAll({ check = false } = {}) {
 
   const outPath = join(siteDir, '.vitepress', 'generated-nav.json');
   const next = `${JSON.stringify(nav, null, 2)}\n`;
-  if (check) {
-    const current = await readFile(outPath, 'utf8').catch(() => '');
-    if (current !== next) {
-      throw new Error('docs site navigation is stale — run `pnpm docs:site:gen` and commit.');
-    }
-  } else {
-    await writeFile(outPath, next);
-  }
+  await writeNavigation(outPath, next, { check });
 
   const style = checkStyle();
   if (style.length > 0) {
