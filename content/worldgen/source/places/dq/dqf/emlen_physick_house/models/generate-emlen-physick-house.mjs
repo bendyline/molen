@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-emlen-physick-house.mjs', 'models/emlen-physick-house-model.mjs'],
+      generators: [
+        { id: 'generate-emlen-physick-house', path: 'models/generate-emlen-physick-house.mjs' },
+        { id: 'emlen-physick-house-model', path: 'models/emlen-physick-house-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

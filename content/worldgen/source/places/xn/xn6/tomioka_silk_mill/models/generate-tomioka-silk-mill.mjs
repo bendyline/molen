@@ -331,7 +331,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-tomioka-silk-mill.mjs', 'models/tomioka-silk-mill-model.mjs'],
+      generators: [
+        { id: 'generate-tomioka-silk-mill', path: 'models/generate-tomioka-silk-mill.mjs' },
+        { id: 'tomioka-silk-mill-model', path: 'models/tomioka-silk-mill-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

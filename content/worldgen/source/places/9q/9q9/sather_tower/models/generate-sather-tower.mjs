@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-sather-tower.mjs', 'models/sather-tower-model.mjs'],
+      generators: [
+        { id: 'generate-sather-tower', path: 'models/generate-sather-tower.mjs' },
+        { id: 'sather-tower-model', path: 'models/sather-tower-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

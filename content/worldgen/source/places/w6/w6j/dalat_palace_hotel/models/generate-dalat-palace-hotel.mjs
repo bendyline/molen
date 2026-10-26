@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-dalat-palace-hotel.mjs', 'models/dalat-palace-hotel-model.mjs'],
+      generators: [
+        { id: 'generate-dalat-palace-hotel', path: 'models/generate-dalat-palace-hotel.mjs' },
+        { id: 'dalat-palace-hotel-model', path: 'models/dalat-palace-hotel-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

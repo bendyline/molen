@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-birdsville-hotel.mjs', 'models/birdsville-hotel-model.mjs'],
+      generators: [
+        { id: 'generate-birdsville-hotel', path: 'models/generate-birdsville-hotel.mjs' },
+        { id: 'birdsville-hotel-model', path: 'models/birdsville-hotel-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

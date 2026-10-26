@@ -333,10 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-apollon-theater-syros.mjs',
-        'models/apollon-theater-syros-model.mjs',
+      generators: [
+        { id: 'generate-apollon-theater-syros', path: 'models/generate-apollon-theater-syros.mjs' },
+        { id: 'apollon-theater-syros-model', path: 'models/apollon-theater-syros-model.mjs' },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

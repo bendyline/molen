@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-black-eagle-dam.mjs', 'models/black-eagle-dam-model.mjs'],
+      generators: [
+        { id: 'generate-black-eagle-dam', path: 'models/generate-black-eagle-dam.mjs' },
+        { id: 'black-eagle-dam-model', path: 'models/black-eagle-dam-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

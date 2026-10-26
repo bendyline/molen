@@ -333,10 +333,14 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-national-flag-memorial.mjs',
-        'models/national-flag-memorial-model.mjs',
+      generators: [
+        {
+          id: 'generate-national-flag-memorial',
+          path: 'models/generate-national-flag-memorial.mjs',
+        },
+        { id: 'national-flag-memorial-model', path: 'models/national-flag-memorial-model.mjs' },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

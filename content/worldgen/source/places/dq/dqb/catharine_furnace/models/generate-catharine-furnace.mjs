@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-catharine-furnace.mjs', 'models/catharine-furnace-model.mjs'],
+      generators: [
+        { id: 'generate-catharine-furnace', path: 'models/generate-catharine-furnace.mjs' },
+        { id: 'catharine-furnace-model', path: 'models/catharine-furnace-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

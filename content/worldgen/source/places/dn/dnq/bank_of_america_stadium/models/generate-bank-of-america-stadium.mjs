@@ -333,10 +333,14 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-bank-of-america-stadium.mjs',
-        'models/bank-of-america-stadium-model.mjs',
+      generators: [
+        {
+          id: 'generate-bank-of-america-stadium',
+          path: 'models/generate-bank-of-america-stadium.mjs',
+        },
+        { id: 'bank-of-america-stadium-model', path: 'models/bank-of-america-stadium-model.mjs' },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

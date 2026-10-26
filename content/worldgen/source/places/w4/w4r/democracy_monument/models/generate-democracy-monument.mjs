@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-democracy-monument.mjs', 'models/democracy-monument-model.mjs'],
+      generators: [
+        { id: 'generate-democracy-monument', path: 'models/generate-democracy-monument.mjs' },
+        { id: 'democracy-monument-model', path: 'models/democracy-monument-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

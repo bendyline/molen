@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-bai-dinh-temple.mjs', 'models/bai-dinh-temple-model.mjs'],
+      generators: [
+        { id: 'generate-bai-dinh-temple', path: 'models/generate-bai-dinh-temple.mjs' },
+        { id: 'bai-dinh-temple-model', path: 'models/bai-dinh-temple-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

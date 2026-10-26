@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-derby-silk-mill.mjs', 'models/derby-silk-mill-model.mjs'],
+      generators: [
+        { id: 'generate-derby-silk-mill', path: 'models/generate-derby-silk-mill.mjs' },
+        { id: 'derby-silk-mill-model', path: 'models/derby-silk-mill-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

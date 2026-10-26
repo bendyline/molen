@@ -333,10 +333,14 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-victoria-bridge-brisbane.mjs',
-        'models/victoria-bridge-brisbane-model.mjs',
+      generators: [
+        {
+          id: 'generate-victoria-bridge-brisbane',
+          path: 'models/generate-victoria-bridge-brisbane.mjs',
+        },
+        { id: 'victoria-bridge-brisbane-model', path: 'models/victoria-bridge-brisbane-model.mjs' },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

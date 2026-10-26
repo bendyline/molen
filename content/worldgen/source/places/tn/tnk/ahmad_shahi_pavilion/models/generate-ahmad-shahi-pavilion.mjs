@@ -333,10 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-ahmad-shahi-pavilion.mjs',
-        'models/ahmad-shahi-pavilion-model.mjs',
+      generators: [
+        { id: 'generate-ahmad-shahi-pavilion', path: 'models/generate-ahmad-shahi-pavilion.mjs' },
+        { id: 'ahmad-shahi-pavilion-model', path: 'models/ahmad-shahi-pavilion-model.mjs' },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

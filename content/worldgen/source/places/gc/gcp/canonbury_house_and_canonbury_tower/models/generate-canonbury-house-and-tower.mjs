@@ -333,10 +333,17 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-canonbury-house-and-tower.mjs',
-        'models/canonbury-house-and-tower-model.mjs',
+      generators: [
+        {
+          id: 'generate-canonbury-house-and-tower',
+          path: 'models/generate-canonbury-house-and-tower.mjs',
+        },
+        {
+          id: 'canonbury-house-and-tower-model',
+          path: 'models/canonbury-house-and-tower-model.mjs',
+        },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

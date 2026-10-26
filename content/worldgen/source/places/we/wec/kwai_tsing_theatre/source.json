@@ -17,10 +17,17 @@
         "sha256": "sha256:c00af42c6580b3e8aec30574f952a3354905c9420337c37e352e44534dc1ff02"
       }
     ],
-    "scripts": [
-      "models/generate-kwai-tsing-theatre.mjs",
-      "models/kwai-tsing-theatre-model.mjs"
+    "generators": [
+      {
+        "id": "generate-kwai-tsing-theatre",
+        "path": "models/generate-kwai-tsing-theatre.mjs"
+      },
+      {
+        "id": "kwai-tsing-theatre-model",
+        "path": "models/kwai-tsing-theatre-model.mjs"
+      }
     ],
+    "scripts": [],
     "textures": [],
     "sounds": [],
     "documents": [
@@ -44,7 +51,8 @@
       "import-report.json",
       "shared-capture-report.json",
       "capture-report.json",
-      "qa.json"
+      "qa.json",
+      "medium-fi-report.json"
     ]
   }
 }

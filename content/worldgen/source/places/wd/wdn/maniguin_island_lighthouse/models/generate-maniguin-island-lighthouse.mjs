@@ -333,10 +333,17 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-maniguin-island-lighthouse.mjs',
-        'models/maniguin-island-lighthouse-model.mjs',
+      generators: [
+        {
+          id: 'generate-maniguin-island-lighthouse',
+          path: 'models/generate-maniguin-island-lighthouse.mjs',
+        },
+        {
+          id: 'maniguin-island-lighthouse-model',
+          path: 'models/maniguin-island-lighthouse-model.mjs',
+        },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

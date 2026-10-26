@@ -17,10 +17,17 @@
         "sha256": "sha256:425f15937b6d00d31bad8e47eaf600de1ee2409acc4b161fc42fcba9d1a02600"
       }
     ],
-    "scripts": [
-      "models/generate-cairn-gorm-weather-station.mjs",
-      "models/cairn-gorm-weather-station-model.mjs"
+    "generators": [
+      {
+        "id": "generate-cairn-gorm-weather-station",
+        "path": "models/generate-cairn-gorm-weather-station.mjs"
+      },
+      {
+        "id": "cairn-gorm-weather-station-model",
+        "path": "models/cairn-gorm-weather-station-model.mjs"
+      }
     ],
+    "scripts": [],
     "textures": [],
     "sounds": [],
     "documents": [
@@ -44,7 +51,8 @@
       "capture-report.json",
       "shared-capture-report.json",
       "medium-fi-report.json",
-      "qa.json"
+      "qa.json",
+      "reference-images/weather-station-north.jpg"
     ]
   }
 }

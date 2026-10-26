@@ -91,14 +91,15 @@ const surfaces = {
   recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
   foliage: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.94, metallic: 0 },
 };
-it('reproduces the unchanged detailed master and preserves independently mapped signed ground and four parts', async () => {
+it('reproduces the detailed master with joined canopy frames and preserves independently mapped signed ground and four parts', async () => {
   const m = await read(source + '/map-frame.json'),
     prior = await read(source + '/georeferencing-baseline.json'),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   build3Wtc(a.wrap(b), prior);
   const mesh = b.finalize();
-  expect(mesh.triangleCount).toBe(295672);
+  // Joining the four canopy beams removes sixteen hidden end-cap triangles.
+  expect(mesh.triangleCount).toBe(295656);
   const spec = await read(source + '/spec.json');
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(spec.geographicProposal.replaceFootprint).toBe(false);

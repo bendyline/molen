@@ -72,8 +72,11 @@ it('moves the explorer from a connected joystick and suspends it while remapping
     await page.locator('#view').evaluate(() => new Promise((resolve) => setTimeout(resolve, 650)));
     expect((await position()).map(String)).toEqual(paused?.map((value) => String(Number(value))));
     await page.getByRole('button', { name: 'Done', exact: true }).click();
+    // Resumed streaming can delay browser queries beyond the default 1 s on software renderers.
     await expect
-      .poll(() => page.locator('#view').evaluate((node) => node === document.activeElement))
+      .poll(() => page.locator('#view').evaluate((node) => node === document.activeElement), {
+        timeout: 10_000,
+      })
       .toBe(true);
     const resumed = await position();
     await expect

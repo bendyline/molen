@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-aqueduct-of-valens.mjs', 'models/aqueduct-of-valens-model.mjs'],
+      generators: [
+        { id: 'generate-aqueduct-of-valens', path: 'models/generate-aqueduct-of-valens.mjs' },
+        { id: 'aqueduct-of-valens-model', path: 'models/aqueduct-of-valens-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

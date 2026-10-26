@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-kwai-tsing-theatre.mjs', 'models/kwai-tsing-theatre-model.mjs'],
+      generators: [
+        { id: 'generate-kwai-tsing-theatre', path: 'models/generate-kwai-tsing-theatre.mjs' },
+        { id: 'kwai-tsing-theatre-model', path: 'models/kwai-tsing-theatre-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

@@ -66,7 +66,8 @@ function nearest(ts, o, d) {
 it('retains the reproducible detailed source master and independently mapped signed southwest arrival', async () => {
   const spec = await read(`${source}/spec.json`),
     frame = await read(`${source}/map-frame.json`);
-  expect(spec.mesh.triangles).toBe(292272);
+  // Joined window frames omit the hidden caps between adjacent frame segments.
+  expect(spec.mesh.triangles).toBe(261936);
   expect(frame.wikidataId).toBe('Q233940');
   expect(frame.heading).toBeCloseTo(1.072509089709, 10);
   expect(Math.max(...frame.orientationControl.shaftPerimeterResiduals)).toBeLessThan(0.15);

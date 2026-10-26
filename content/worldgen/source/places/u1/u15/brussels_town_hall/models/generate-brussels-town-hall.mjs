@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-brussels-town-hall.mjs', 'models/brussels-town-hall-model.mjs'],
+      generators: [
+        { id: 'generate-brussels-town-hall', path: 'models/generate-brussels-town-hall.mjs' },
+        { id: 'brussels-town-hall-model', path: 'models/brussels-town-hall-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

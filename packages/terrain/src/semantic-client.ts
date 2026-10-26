@@ -158,17 +158,16 @@ export function createTerrainWaterMaterial(
     });
     shader.vertexShader = `
       varying vec2 vTerrainWaterWorldPosition;
-      varying float vTerrainWaterViewDistance;
       uniform vec2 terrainWaterWorldOrigin;
     ${shader.vertexShader}`.replace(
       '#include <begin_vertex>',
       `#include <begin_vertex>
-       vTerrainWaterWorldPosition = (modelMatrix * vec4(transformed, 1.0)).xz + terrainWaterWorldOrigin;
-       vTerrainWaterViewDistance = length((modelViewMatrix * vec4(transformed, 1.0)).xyz);`,
+       vTerrainWaterWorldPosition = (modelMatrix * vec4(transformed, 1.0)).xz + terrainWaterWorldOrigin;`,
     );
+    // Evaluate distance per fragment: a large water polygon can pass under the camera
+    // even when all its corners are beyond the ripple fade distance.
     shader.fragmentShader = `
       varying vec2 vTerrainWaterWorldPosition;
-      varying float vTerrainWaterViewDistance;
       uniform float terrainWaterTime;
       uniform float terrainWaterWaveScale;
       uniform float terrainWaterWaveStrength;
@@ -197,7 +196,7 @@ export function createTerrainWaterMaterial(
          vec3 terrainWaterSurface = terrainWaterDetail(vTerrainWaterWorldPosition,
            terrainWaterTime * terrainWaterWaveSpeed);
          float terrainWaterFootprint = length(fwidth(vTerrainWaterWorldPosition)) * terrainWaterWaveScale;
-         float terrainWaterDistanceFade = 1.0 - smoothstep(120.0, 1600.0, vTerrainWaterViewDistance);
+         float terrainWaterDistanceFade = 1.0 - smoothstep(120.0, 1600.0, length(vViewPosition));
          terrainWaterSurface *= terrainWaterDistanceFade *
            (1.0 - smoothstep(0.5, 2.0, terrainWaterFootprint));
          diffuseColor.rgb *= 1.0 + terrainWaterSurface.z * 0.35;`,

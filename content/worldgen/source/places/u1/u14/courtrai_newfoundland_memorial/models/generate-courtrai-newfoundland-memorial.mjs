@@ -339,10 +339,17 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-courtrai-newfoundland-memorial.mjs',
-        'models/courtrai-newfoundland-memorial-model.mjs',
+      generators: [
+        {
+          id: 'generate-courtrai-newfoundland-memorial',
+          path: 'models/generate-courtrai-newfoundland-memorial.mjs',
+        },
+        {
+          id: 'courtrai-newfoundland-memorial-model',
+          path: 'models/courtrai-newfoundland-memorial-model.mjs',
+        },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

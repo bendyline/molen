@@ -333,10 +333,14 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-national-congress-palace.mjs',
-        'models/national-congress-palace-model.mjs',
+      generators: [
+        {
+          id: 'generate-national-congress-palace',
+          path: 'models/generate-national-congress-palace.mjs',
+        },
+        { id: 'national-congress-palace-model', path: 'models/national-congress-palace-model.mjs' },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

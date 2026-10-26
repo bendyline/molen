@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-sardar-sarovar-dam.mjs', 'models/sardar-sarovar-dam-model.mjs'],
+      generators: [
+        { id: 'generate-sardar-sarovar-dam', path: 'models/generate-sardar-sarovar-dam.mjs' },
+        { id: 'sardar-sarovar-dam-model', path: 'models/sardar-sarovar-dam-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

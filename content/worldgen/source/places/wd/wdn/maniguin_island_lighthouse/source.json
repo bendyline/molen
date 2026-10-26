@@ -17,10 +17,17 @@
         "sha256": "sha256:d405c66c55e10246fef60ff4d9b79647f04c24f0631014e7f1af3c9363e11e58"
       }
     ],
-    "scripts": [
-      "models/generate-maniguin-island-lighthouse.mjs",
-      "models/maniguin-island-lighthouse-model.mjs"
+    "generators": [
+      {
+        "id": "generate-maniguin-island-lighthouse",
+        "path": "models/generate-maniguin-island-lighthouse.mjs"
+      },
+      {
+        "id": "maniguin-island-lighthouse-model",
+        "path": "models/maniguin-island-lighthouse-model.mjs"
+      }
     ],
+    "scripts": [],
     "textures": [],
     "sounds": [],
     "documents": [
@@ -43,7 +50,8 @@
       "import-report.json",
       "shared-capture-report.json",
       "capture-report.json",
-      "qa.json"
+      "qa.json",
+      "medium-fi-report.json"
     ]
   }
 }

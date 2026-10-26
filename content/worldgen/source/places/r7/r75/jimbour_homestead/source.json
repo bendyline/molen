@@ -17,10 +17,17 @@
         "sha256": "sha256:63e70cc93733c9bf64516e7a2ae8ba1b85fccb61cf10cfcfc53eac0bbbfa415b"
       }
     ],
-    "scripts": [
-      "models/generate-jimbour-homestead.mjs",
-      "models/jimbour-homestead-model.mjs"
+    "generators": [
+      {
+        "id": "generate-jimbour-homestead",
+        "path": "models/generate-jimbour-homestead.mjs"
+      },
+      {
+        "id": "jimbour-homestead-model",
+        "path": "models/jimbour-homestead-model.mjs"
+      }
     ],
+    "scripts": [],
     "textures": [],
     "sounds": [],
     "documents": [

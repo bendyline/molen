@@ -104,7 +104,7 @@ const originals = {
   },
   recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
 };
-it('reconstitutes the original large instanced master and independently reprojects the signed individual tower', async () => {
+it('reconstitutes the large instanced master with a joined roof ring and independently reprojects the signed individual tower', async () => {
   const bytes = chinaWorldTowerStudy.encodeAssembly((build, name) => {
     const b = new MeshBufferBuilder(),
       a = createArchitecturalSurfaceAuthoring(originals, { legacyAlphaFields: true });
@@ -119,7 +119,7 @@ it('reconstitutes the original large instanced master and independently reprojec
       name,
     );
   }, encodeAuthoredAssembly);
-  expect(bytes.byteLength).toBe(40771324);
+  expect(bytes.byteLength).toBe(40768252);
   execFileSync(
     process.execPath,
     [

@@ -333,10 +333,17 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-cairn-gorm-weather-station.mjs',
-        'models/cairn-gorm-weather-station-model.mjs',
+      generators: [
+        {
+          id: 'generate-cairn-gorm-weather-station',
+          path: 'models/generate-cairn-gorm-weather-station.mjs',
+        },
+        {
+          id: 'cairn-gorm-weather-station-model',
+          path: 'models/cairn-gorm-weather-station-model.mjs',
+        },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

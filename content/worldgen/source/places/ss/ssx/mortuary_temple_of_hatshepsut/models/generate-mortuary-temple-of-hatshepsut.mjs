@@ -333,10 +333,17 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-mortuary-temple-of-hatshepsut.mjs',
-        'models/mortuary-temple-of-hatshepsut-model.mjs',
+      generators: [
+        {
+          id: 'generate-mortuary-temple-of-hatshepsut',
+          path: 'models/generate-mortuary-temple-of-hatshepsut.mjs',
+        },
+        {
+          id: 'mortuary-temple-of-hatshepsut-model',
+          path: 'models/mortuary-temple-of-hatshepsut-model.mjs',
+        },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

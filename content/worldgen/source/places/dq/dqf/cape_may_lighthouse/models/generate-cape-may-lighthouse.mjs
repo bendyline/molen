@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-cape-may-lighthouse.mjs', 'models/cape-may-lighthouse-model.mjs'],
+      generators: [
+        { id: 'generate-cape-may-lighthouse', path: 'models/generate-cape-may-lighthouse.mjs' },
+        { id: 'cape-may-lighthouse-model', path: 'models/cape-may-lighthouse-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

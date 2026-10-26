@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-larnach-castle.mjs', 'models/larnach-castle-model.mjs'],
+      generators: [
+        { id: 'generate-larnach-castle', path: 'models/generate-larnach-castle.mjs' },
+        { id: 'larnach-castle-model', path: 'models/larnach-castle-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

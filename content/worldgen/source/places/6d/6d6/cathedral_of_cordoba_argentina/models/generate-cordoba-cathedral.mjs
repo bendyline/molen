@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-cordoba-cathedral.mjs', 'models/cordoba-cathedral-model.mjs'],
+      generators: [
+        { id: 'generate-cordoba-cathedral', path: 'models/generate-cordoba-cathedral.mjs' },
+        { id: 'cordoba-cathedral-model', path: 'models/cordoba-cathedral-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

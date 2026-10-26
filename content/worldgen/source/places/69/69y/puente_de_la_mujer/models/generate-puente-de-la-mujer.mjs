@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-puente-de-la-mujer.mjs', 'models/puente-de-la-mujer-model.mjs'],
+      generators: [
+        { id: 'generate-puente-de-la-mujer', path: 'models/generate-puente-de-la-mujer.mjs' },
+        { id: 'puente-de-la-mujer-model', path: 'models/puente-de-la-mujer-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

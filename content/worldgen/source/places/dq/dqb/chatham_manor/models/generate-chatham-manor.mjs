@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-chatham-manor.mjs', 'models/chatham-manor-model.mjs'],
+      generators: [
+        { id: 'generate-chatham-manor', path: 'models/generate-chatham-manor.mjs' },
+        { id: 'chatham-manor-model', path: 'models/chatham-manor-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

@@ -17,10 +17,17 @@
         "sha256": "sha256:e47443384eb054d1910ae43c24eeae9d451034113d3fc75b4bd40711bbfc96d1"
       }
     ],
-    "scripts": [
-      "models/generate-tomioka-silk-mill.mjs",
-      "models/tomioka-silk-mill-model.mjs"
+    "generators": [
+      {
+        "id": "generate-tomioka-silk-mill",
+        "path": "models/generate-tomioka-silk-mill.mjs"
+      },
+      {
+        "id": "tomioka-silk-mill-model",
+        "path": "models/tomioka-silk-mill-model.mjs"
+      }
     ],
+    "scripts": [],
     "textures": [],
     "sounds": [],
     "documents": [
@@ -43,7 +50,8 @@
       "import-report.json",
       "capture-report.json",
       "shared-capture-report.json",
-      "qa.json"
+      "qa.json",
+      "medium-fi-report.json"
     ]
   }
 }

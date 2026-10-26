@@ -333,10 +333,14 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-arkansas-state-capitol.mjs',
-        'models/arkansas-state-capitol-model.mjs',
+      generators: [
+        {
+          id: 'generate-arkansas-state-capitol',
+          path: 'models/generate-arkansas-state-capitol.mjs',
+        },
+        { id: 'arkansas-state-capitol-model', path: 'models/arkansas-state-capitol-model.mjs' },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

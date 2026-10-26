@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-jimbour-homestead.mjs', 'models/jimbour-homestead-model.mjs'],
+      generators: [
+        { id: 'generate-jimbour-homestead', path: 'models/generate-jimbour-homestead.mjs' },
+        { id: 'jimbour-homestead-model', path: 'models/jimbour-homestead-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

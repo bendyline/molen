@@ -333,10 +333,14 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-gurdwara-sis-ganj-sahib.mjs',
-        'models/gurdwara-sis-ganj-sahib-model.mjs',
+      generators: [
+        {
+          id: 'generate-gurdwara-sis-ganj-sahib',
+          path: 'models/generate-gurdwara-sis-ganj-sahib.mjs',
+        },
+        { id: 'gurdwara-sis-ganj-sahib-model', path: 'models/gurdwara-sis-ganj-sahib-model.mjs' },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

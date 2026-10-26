@@ -229,9 +229,11 @@ for (let study of [
     ? await readFile(resolve(dir, study.mapFrameDocument))
     : undefined;
   let priorDocs = [];
+  let priorGenerators = [];
   try {
     const src = JSON.parse(await readFile(resolve(dir, 'source.json')));
     priorDocs = src.files.documents;
+    priorGenerators = src.files.generators ?? [];
     if (hashBytes(await readFile(modelPath)) !== src.files.models[0].sha256)
       throw new Error(`${study.id}: preserve artist-edited source before regenerating`);
   } catch (e) {
@@ -423,6 +425,7 @@ for (let study of [
           sha256: hashBytes(glb),
         },
       ],
+      generators: priorGenerators,
       scripts: [],
       textures: [],
       sounds: [],

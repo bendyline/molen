@@ -333,10 +333,17 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-national-observatory-of-athens.mjs',
-        'models/national-observatory-of-athens-model.mjs',
+      generators: [
+        {
+          id: 'generate-national-observatory-of-athens',
+          path: 'models/generate-national-observatory-of-athens.mjs',
+        },
+        {
+          id: 'national-observatory-of-athens-model',
+          path: 'models/national-observatory-of-athens-model.mjs',
+        },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

@@ -17,10 +17,17 @@
         "sha256": "sha256:fe36cc731aa8ffefbd2ff76db27a4676e8d985c299a64fdf26e1f518901d8c48"
       }
     ],
-    "scripts": [
-      "models/generate-democracy-monument.mjs",
-      "models/democracy-monument-model.mjs"
+    "generators": [
+      {
+        "id": "generate-democracy-monument",
+        "path": "models/generate-democracy-monument.mjs"
+      },
+      {
+        "id": "democracy-monument-model",
+        "path": "models/democracy-monument-model.mjs"
+      }
     ],
+    "scripts": [],
     "textures": [],
     "sounds": [],
     "documents": [
@@ -43,7 +50,8 @@
       "import-report.json",
       "shared-capture-report.json",
       "capture-report.json",
-      "qa.json"
+      "qa.json",
+      "medium-fi-report.json"
     ]
   }
 }

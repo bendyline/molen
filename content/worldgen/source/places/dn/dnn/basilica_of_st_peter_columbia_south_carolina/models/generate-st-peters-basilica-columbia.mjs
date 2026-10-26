@@ -333,10 +333,17 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-st-peters-basilica-columbia.mjs',
-        'models/st-peters-basilica-columbia-model.mjs',
+      generators: [
+        {
+          id: 'generate-st-peters-basilica-columbia',
+          path: 'models/generate-st-peters-basilica-columbia.mjs',
+        },
+        {
+          id: 'st-peters-basilica-columbia-model',
+          path: 'models/st-peters-basilica-columbia-model.mjs',
+        },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

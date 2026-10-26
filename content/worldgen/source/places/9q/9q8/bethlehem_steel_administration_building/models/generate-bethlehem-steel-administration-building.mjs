@@ -333,10 +333,17 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-bethlehem-steel-administration-building.mjs',
-        'models/bethlehem-steel-administration-building-model.mjs',
+      generators: [
+        {
+          id: 'generate-bethlehem-steel-administration-building',
+          path: 'models/generate-bethlehem-steel-administration-building.mjs',
+        },
+        {
+          id: 'bethlehem-steel-administration-building-model',
+          path: 'models/bethlehem-steel-administration-building-model.mjs',
+        },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

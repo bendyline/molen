@@ -334,7 +334,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-boughton-house.mjs', 'models/boughton-house-model.mjs'],
+      generators: [
+        { id: 'generate-boughton-house', path: 'models/generate-boughton-house.mjs' },
+        { id: 'boughton-house-model', path: 'models/boughton-house-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

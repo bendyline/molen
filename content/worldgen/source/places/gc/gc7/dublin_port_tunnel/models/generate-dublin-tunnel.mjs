@@ -334,7 +334,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-dublin-tunnel.mjs', 'models/dublin-tunnel-model.mjs'],
+      generators: [
+        { id: 'generate-dublin-tunnel', path: 'models/generate-dublin-tunnel.mjs' },
+        { id: 'dublin-tunnel-model', path: 'models/dublin-tunnel-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

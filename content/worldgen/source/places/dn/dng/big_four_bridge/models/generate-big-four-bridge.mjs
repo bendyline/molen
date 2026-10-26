@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-big-four-bridge.mjs', 'models/big-four-bridge-model.mjs'],
+      generators: [
+        { id: 'generate-big-four-bridge', path: 'models/generate-big-four-bridge.mjs' },
+        { id: 'big-four-bridge-model', path: 'models/big-four-bridge-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

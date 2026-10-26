@@ -333,10 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: [
-        'models/generate-griffith-observatory.mjs',
-        'models/griffith-observatory-model.mjs',
+      generators: [
+        { id: 'generate-griffith-observatory', path: 'models/generate-griffith-observatory.mjs' },
+        { id: 'griffith-observatory-model', path: 'models/griffith-observatory-model.mjs' },
       ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-canton-tower.mjs', 'models/canton-tower-model.mjs'],
+      generators: [
+        { id: 'generate-canton-tower', path: 'models/generate-canton-tower.mjs' },
+        { id: 'canton-tower-model', path: 'models/canton-tower-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-trial-bay-gaol.mjs', 'models/trial-bay-gaol-model.mjs'],
+      generators: [
+        { id: 'generate-trial-bay-gaol', path: 'models/generate-trial-bay-gaol.mjs' },
+        { id: 'trial-bay-gaol-model', path: 'models/trial-bay-gaol-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-gran-hotel-palma.mjs', 'models/gran-hotel-palma-model.mjs'],
+      generators: [
+        { id: 'generate-gran-hotel-palma', path: 'models/generate-gran-hotel-palma.mjs' },
+        { id: 'gran-hotel-palma-model', path: 'models/gran-hotel-palma-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

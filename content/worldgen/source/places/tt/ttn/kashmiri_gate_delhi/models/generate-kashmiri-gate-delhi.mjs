@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-kashmiri-gate-delhi.mjs', 'models/kashmiri-gate-delhi-model.mjs'],
+      generators: [
+        { id: 'generate-kashmiri-gate-delhi', path: 'models/generate-kashmiri-gate-delhi.mjs' },
+        { id: 'kashmiri-gate-delhi-model', path: 'models/kashmiri-gate-delhi-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [

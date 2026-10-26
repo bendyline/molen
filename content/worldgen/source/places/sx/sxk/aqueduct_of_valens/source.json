@@ -17,10 +17,17 @@
         "sha256": "sha256:3b10530bf344ed462a123d5ffe6311bb6239fc40d64c110d370219f1e73978b3"
       }
     ],
-    "scripts": [
-      "models/generate-aqueduct-of-valens.mjs",
-      "models/aqueduct-of-valens-model.mjs"
+    "generators": [
+      {
+        "id": "generate-aqueduct-of-valens",
+        "path": "models/generate-aqueduct-of-valens.mjs"
+      },
+      {
+        "id": "aqueduct-of-valens-model",
+        "path": "models/aqueduct-of-valens-model.mjs"
+      }
     ],
+    "scripts": [],
     "textures": [],
     "sounds": [],
     "documents": [
@@ -51,7 +58,10 @@
       "shared-capture-report.json",
       "capture-report.json",
       "medium-fi-report.json",
-      "qa.json"
+      "qa.json",
+      "reference-images/valens-aqueduct-gryffindor-1.jpg",
+      "reference-images/valens-aqueduct-gryffindor-2.jpg",
+      "reference-images/valens-aqueduct-gryffindor-3.jpg"
     ]
   }
 }

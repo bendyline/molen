@@ -333,7 +333,11 @@ for (const model of authoredPlaceModels.filter(
           sha256: hash(bytes),
         },
       ],
-      scripts: ['models/generate-alferaki-palace.mjs', 'models/alferaki-palace-model.mjs'],
+      generators: [
+        { id: 'generate-alferaki-palace', path: 'models/generate-alferaki-palace.mjs' },
+        { id: 'alferaki-palace-model', path: 'models/alferaki-palace-model.mjs' },
+      ],
+      scripts: [],
       textures: [],
       sounds: [],
       documents: [
