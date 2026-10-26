@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.icehouse_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Icehouse — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.icehouse_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/icehouse_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:89936361946e15ec6e765a94aa83cc1a0b2cb63dd31ec2d402a7f40f3009c26f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-icehouse-yasnaya-polyana",
+        "path": "models/generate-icehouse-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "icehouse-yasnaya-polyana-model",
+        "path": "models/icehouse-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "icehouse-yasnaya-polyana-geometry",
+        "path": "models/icehouse-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

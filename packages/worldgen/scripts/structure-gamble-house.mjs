@@ -1,7 +1,7 @@
 /** Gamble House: individual overlapping gables and three open sleeping porches. */
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
-import { beam, normalFor } from './authored-structure-mesh.mjs';
+import { beam, beamPath, normalFor } from './authored-structure-mesh.mjs';
 import { B, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
@@ -104,7 +104,7 @@ function win(o, x, y, w, h, d, { panes = 3, art = false } = {}) {
         [x + s * w * 0.12, y + h * 0.7, 0.21],
         [x + s * w * 0.36, y + h * 0.94, 0.21],
       ];
-      for (let i = 1; i < p.length; i++) beam(o, 'wood', p[i - 1], p[i], 0.022, 0.022, timber);
+      beamPath(o, 'wood', p, 0.022, 0.022, timber);
     }
   }
 }

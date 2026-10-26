@@ -1,7 +1,7 @@
 /** Source-local runtime overlays avoid putting every model in a shared recipe table. */
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
-import { dirname, isAbsolute, relative, resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { NodeIO, VertexLayout } from '@gltf-transform/core';
@@ -17,7 +17,10 @@ import {
   root,
   writeIndex,
 } from '../../worldgen/scripts/structure-model-files.mjs';
-import { knownSourceEntries } from '../../worldgen/scripts/structure-source-paths.mjs';
+import {
+  isStructureRecipePath,
+  knownSourceEntries,
+} from '../../worldgen/scripts/structure-source-paths.mjs';
 import {
   landmarkLodRecipeHash as baseHash,
   buildModelLandmarkLods as buildBase,
@@ -33,7 +36,10 @@ const withGraphFallbacks = (bytes, definition) =>
     })),
     root,
   );
-const implementation = hashEvidenceText(await readFile(new URL(import.meta.url)));
+const implementation = hashEvidenceText(
+  (await readFile(new URL(import.meta.url), 'utf8')) +
+    (await readFile(new URL('../../worldgen/scripts/joined-path.mjs', import.meta.url), 'utf8')),
+);
 async function overlay(id) {
   const entry = knownSourceEntries().find((e) => e.assetId === id);
   const spec = entry
@@ -41,13 +47,9 @@ async function overlay(id) {
     : undefined;
   const definition = spec?.runtimeLodOverlay;
   if (!definition) return undefined;
-  const path = resolve(root, definition.module),
-    within = relative(resolve(root, 'packages/worldgen/scripts'), path);
+  const path = resolve(root, definition.module);
   if (
-    isAbsolute(within) ||
-    within === '..' ||
-    within.startsWith(`..`) ||
-    !path.endsWith('.mjs') ||
+    !isStructureRecipePath(definition.module, entry.sourcePath) ||
     definition.level !== 'skyline' ||
     typeof definition.export !== 'string' ||
     !Number.isFinite(definition.errorMeters) ||

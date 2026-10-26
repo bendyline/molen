@@ -1,0 +1,424 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "log": {
+      "graph": "wood_log",
+      "slot": "wall",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "frame": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "board": {
+      "graph": "wood_vertical",
+      "slot": "roof",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "plaster": {
+      "graph": "plaster_lime",
+      "slot": "wall",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "base": {
+      "graph": "stone_limestone",
+      "slot": "foundation",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#feffff",
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "opacity": 0.52,
+      "name": "clear-glass",
+      "localRef": "palette:#feffff",
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.52
+      ],
+      "doubleSided": true
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      33.03350552767814,
+      13,
+      3.7131539899199133
+    ],
+    "lookAt": [
+      0,
+      1.8,
+      0
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "whole-log-greenhouse-glazing-entry-and-chimney",
+      "position": [
+        27.52792460173731,
+        8,
+        1.7925867122864094
+      ],
+      "lookAt": [
+        0,
+        1.9,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "entry-leaf-fuel-alcove-and-threshold",
+      "position": [
+        15.008397165502075,
+        4,
+        -4.696699574663336
+      ],
+      "lookAt": [
+        5.482452971115379,
+        1.7,
+        -4.5686870540631395
+      ],
+      "fov": 48
+    },
+    {
+      "name": "roof-lights-rafters-clear-panes",
+      "position": [
+        5.249499963047507,
+        9,
+        4.737377981327247
+      ],
+      "lookAt": [
+        -0.7682229166467648,
+        2.4,
+        0.6401824352001061
+      ],
+      "fov": 52
+    },
+    {
+      "name": "glazed-gable-chimney-and-plinth",
+      "position": [
+        -18.821431499795956,
+        5,
+        3.969095148580921
+      ],
+      "lookAt": [
+        -3.072891666587059,
+        2,
+        2.5607297408004244
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/models/greenhouse-yasnaya-polyana-model.mjs",
+    "export": "buildGreenhouseSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGreenhouseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "log": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "frame": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "board": {
+            "graph": "wood_vertical",
+            "slot": "roof",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "name": "clear-glass",
+            "localRef": "palette:#feffff",
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildGreenhouseStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "log": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "frame": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "board": {
+            "graph": "wood_vertical",
+            "slot": "roof",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "name": "clear-glass",
+            "localRef": "palette:#feffff",
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGreenhouseCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "log": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "frame": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "board": {
+            "graph": "wood_vertical",
+            "slot": "roof",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "name": "clear-glass",
+            "localRef": "palette:#feffff",
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.52816900610924,
+      54.075362515099215
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained Protomaps20261020 / standard Mapzen201x201 at6m; outside garden control[0,5.8] supplies216.7855550974413m datum. Preserve all DEM samples and native roads/water. Replace only building35184592164230; cut only its occupied footprint. A supported apron meets the end door. Absolute historic levels, ground contact and approach accessibility remain approximate; no custom terrain or whole-garden cut. Inspected the native greenhouse, floor/plinth, end doorway/threshold, chimney and clear-roof structure. All242 resident/294 wider independent buildings, original garden approaches/roads, water and DEM samples remain. Final geometry closes the clipped timber gable and removes the coplanar floor/plinth surface. Exact historic thresholds, hidden benches and absolute entry/chimney-side assignment remain approximate.",
+    "terrainReference": {
+      "anchor": [
+        37.528225855618196,
+        54.075322488928734
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Protomaps20261020 / standard Mapzen201x201 at6m; outside garden control[0,5.8] supplies216.7855550974413m datum. Preserve all DEM samples and native roads/water. Replace only building35184592164230; cut only its occupied footprint. A supported apron meets the end door. Absolute historic levels, ground contact and approach accessibility remain approximate; no custom terrain or whole-garden cut."
+    },
+    "groundModelY": 0,
+    "elevationMode": "terrain-contact",
+    "mapIdentity": {
+      "maxDistance": 20
+    },
+    "maxDistance": 20,
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.620560314492694,
+          2.6277622272306194
+        ],
+        [
+          -3.94166912818588,
+          7.007374310935175
+        ],
+        [
+          7.620560314492694,
+          -2.6277667927242025
+        ],
+        [
+          3.9416691281858935,
+          -7.00736974544158
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.620560314492694,
+            2.6277622272306194
+          ],
+          [
+            -3.94166912818588,
+            7.007374310935175
+          ],
+          [
+            7.620560314492694,
+            -2.6277667927242025
+          ],
+          [
+            3.9416691281858935,
+            -7.00736974544158
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Retained independent15.05x5.72m PMTiles outline matches the public mapped way220075398, visibly named Теплица with building=greenhouse and building:levels=1. Four ordinary museum photos show long log base, glazed gable roof, timber entry/fuel bay at one end and pale chimney at the other. No visitor-map schematic coordinate is used as WGS84. Native X northeast follows the mapped long axis; source axes are baked with heading0. Long glazed garden face assigned local+Z southeast, entry bay at+X northeast and chimney at-X southwest; this absolute photo-side assignment is approximate."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -7.620560314492694,
+          2.6277622272306194
+        ],
+        [
+          -3.94166912818588,
+          7.007374310935175
+        ],
+        [
+          7.620560314492694,
+          -2.6277667927242025
+        ],
+        [
+          3.9416691281858935,
+          -7.00736974544158
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.620560314492694,
+            2.6277622272306194
+          ],
+          [
+            -3.94166912818588,
+            7.007374310935175
+          ],
+          [
+            7.620560314492694,
+            -2.6277667927242025
+          ],
+          [
+            3.9416691281858935,
+            -7.00736974544158
+          ]
+        ]
+      ],
+      "basis": "Only occupied greenhouse footprint; garden/approach ground remains."
+    },
+    "notes": "Retained independent15.05x5.72m PMTiles outline matches the public mapped way220075398, visibly named Теплица with building=greenhouse and building:levels=1. Four ordinary museum photos show long log base, glazed gable roof, timber entry/fuel bay at one end and pale chimney at the other. No visitor-map schematic coordinate is used as WGS84. Native X northeast follows the mapped long axis; source axes are baked with heading0. Long glazed garden face assigned local+Z southeast, entry bay at+X northeast and chimney at-X southwest; this absolute photo-side assignment is approximate. Photo-led one-story scale: low log body1.25m above floor, glazed gable ridge3.15m, chimney4.12m, timber entry/fuel bay2.2m long, real .88x1.95m doorway with leaf open90degrees. Floor 0.7182087492670064m above outside datum; original corner grades 0.568/0.230/0.165/0.465m. Floor is.15m above highest sampled corner; small plinth/foundation follows the standard terrain. Bay widths, roof pitch, vent positions, fuel census and inner benches remain reconstructed. Retained Protomaps20261020 / standard Mapzen201x201 at6m; outside garden control[0,5.8] supplies216.7855550974413m datum. Preserve all DEM samples and native roads/water. Replace only building35184592164230; cut only its occupied footprint. A supported apron meets the end door. Absolute historic levels, ground contact and approach accessibility remain approximate; no custom terrain or whole-garden cut.",
+    "bounds": [
+      37.52802233001709,
+      54.07526956678476,
+      37.52831568220139,
+      54.075455463372656
+    ]
+  }
+}

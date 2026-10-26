@@ -1,8 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.stari_most",
-  "inputHash": "sha256:075f72861cecb84d2c92e702f0073a3519cf582c064dce271cbbee4bcd2a7cb3",
-  "captureReportHash": "sha256:84b5ab24c9d423bf3afc48b84f0b27f8142bb2cee84117f1aec736a679534537",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:7ee89285f508c180e11dbef738c844eca2b3360380f044af34436ed91cecb01c",
+  "sourceHash": "sha256:53ad9863952d0c2f42050ddd2d1de6fb2410acbdb13bbf83db8380b1ccbcea53",
+  "runtimeHash": "sha256:9c9aec741654c902eab54193a906ac5a6af1b56b4901d9aa91d2fbbb3d640aca",
+  "captureReportHash": "sha256:9c337455704ae3326a985c12077fca2998713f42f21fc6c1eec9c5172c2d52ba",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -17,12 +20,11 @@
       "shots/intrados.png",
       "shots/far-crossing.png"
     ],
-    "scope": "Detailed rebuilt bridge exterior between its bank bearings.",
-    "notes": "Inspected all ten current portable frames: preview, four sides, arch stones, walkway, cornices, intrados and distant crossing. The recessed mortar core closes the former see-through arch joints. The humpback deck, individually jointed arch and ashlar faces, two cornices, parapets, metal guards and traction strips are complete. Subpixel joints and rails alias in the portable turntable; the shared antialiased close views resolve them."
+    "captureReportHash": "sha256:9c337455704ae3326a985c12077fca2998713f42f21fc6c1eec9c5172c2d52ba",
+    "notes": "Inspected 51 current frames in one author/inspect/fix pass: 10 portable, 10 shared, 22 medium-fi and 9 native. The humpback crossing, clear arch, closed intrados, stone cornices, parapets, iron guard and traction strips remain recognizable. Replaced the over-decimated skyline with a complete 64-segment arch. Actual ray tests found the old district crown deck missing down to the extrados; the authored district now closes the deck and preserves both cornices. Detailed source/runtime masters and street/closeup bytes are unchanged."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:989b5f703f4c9d08cb321c9d03687f84ac93dd023376be1da2cecce8945fc454",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -35,16 +37,1223 @@
       "shots/shared/far-crossing.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all ten current shared frames. Metric continuous stone grain supports the physical stone joints without a second conflicting masonry pattern. Arch underside is closed behind recessed joints. Painted iron and rough bank-bearing masonry remain distinct. Actual viewer placement, one read per shared material and model geometry unload pass."
+    "captureReportHash": "sha256:2d19bbbe02802e249c98a4df25480cb35c6403b0a0249dae83d7569207bbec84",
+    "notes": "Three existing shared graphs: stone_granite, metal_painted, stone_drywall. District uses the two stone graphs; skyline uses baked vertex color and one draw. No embedded images, private atlas or copied photo pixels. Metric UVs and restrained pale stone match the earlier master. Runtime LODs keep position/normal streams separate. Shared graphs are read once each; the model library releases its geometry on unload."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/arch-stones.png",
+      "medium-fi/walkway.png",
+      "medium-fi/cornices.png",
+      "medium-fi/intrados.png",
+      "medium-fi/far-crossing.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:41192e3999a45095096c47addb447b66ab2217dd61bd480c486067bdb258f5ed",
+    "notes": "Four LODs: 864/2448/15873/56312 triangles; initial skyline + district 220,124 bytes. Skyline/district omit sub-pixel iron guard geometry, retaining stone parapets. District adds the two projecting cornices and shared surfaces. Synthetic lighting, distances and transitions inspected. Physical phone/laptop timings remain pending."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:af75adbe8b4fac398be18676cd6b509aeedc337dc467c7b191f3f1d2c573c7c7",
-    "notes": "Mapped pedestrian way33924615 fixes the main straight crossing at [17.8150293,43.3372672], heading−0.004339929494839471. North-up rendering agrees with that main span; bent streets in the coarse perimeter continue beyond the separately scoped bearings. LocalY0 is published historical low-water40.05m ASL, giving the documented deck crown60.39m ASL. River stage and host terrain can vary; the asset is not draped to the riverbed."
+    "placementHash": "sha256:28030528bf2e22514162b793696e8d6b5641302af3757faa56f4b930cb8e6a72",
+    "mapFrameHash": "sha256:376a8d85676d5fad8208e7f8719d8d240722ca5705dd60f00a9d048ae8ea76c8",
+    "notes": "Approved for approximate photo/map visualization at the confirmed crossing [17.8150293,43.3372672], heading -0.004339929494839471. The historical low-water datum is 40.05 m ASL, with deck crown 60.39 m. Short retained bridge tails carry the respective deck-edge heights through one short west gateway to the connected streets. Six sampled bank/street joins meet the corresponding deck level within 0.1 m in every LOD. The original standard DEM remains 11–18 m too low at the immediate banks: supported approach grading and tall retaining faces are inferred visualization, not surveyed historic quays. Current native views show continuous supported connections. Adjacent towers and town buildings remain independent generic context outside this bridge asset."
   },
   "fidelityReview": {
-    "target": "maximum",
+    "target": "medium-fi",
     "status": "passed",
-    "notes": "56,312-triangle detailed exterior reconstructed from the restoration technical account:28.71m north span,12.06m rise,3.95m width,0.77m ring and111 radial courses with2–5 stones across. The multi-center arch profile, individual ashlar faces, shaped cornices,0.945m parapets, iron railing, paving and transverse traction strips were compared with primary restoration drawings. Individual stone ordinates, bearing surfaces and minor rail spacing are reconstructed. Adjacent towers, rocky banks, approach streets and internal historical joints are outside this bridge asset."
-  }
+    "notes": "Complete bridge exterior within its two bearings. Existing engineering dimensions and specific stonework remain; ordinary photographs were compared in this pass. Adjacent towers, town buildings and rocky bank geometry remain separate native context, not approved unique models. Four LODs: 864/2448/15873/56312 triangles; initial skyline + district 220,124 bytes. Skyline/district omit sub-pixel iron guard geometry, retaining stone parapets. District adds the two projecting cornices and shared surfaces. Synthetic lighting, distances and transitions inspected. Physical phone/laptop timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/srs/stari_most/models/source.glb\",\"hash\":\"sha256:53ad9863952d0c2f42050ddd2d1de6fb2410acbdb13bbf83db8380b1ccbcea53\",\"bytes\":4689320,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/srs/stari_most/model.glb\",\"hash\":\"sha256:9c9aec741654c902eab54193a906ac5a6af1b56b4901d9aa91d2fbbb3d640aca\",\"bytes\":4688964,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/srs/stari_most/model.skyline.glb\",\"hash\":\"sha256:27d83206ecdcbba6d2b3f0fd676642fcd44ce4338e6434a47d5062171af05b41\",\"bytes\":59160,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/srs/stari_most/model.district.glb\",\"hash\":\"sha256:415a7257772ee3d8267d909958f4c73bfed77fd3759816d9daed2b64b3f492df\",\"bytes\":160964,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/srs/stari_most/model.street.glb\",\"hash\":\"sha256:7c332c046ebfb794404d9af9c64ddf203f4daf806882b3e91397fad9e17b796e\",\"bytes\":1172524,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/srs/stari_most/model.closeup.glb\",\"hash\":\"sha256:f200a3962baf7a3addae58369981bf78ecd02aa1357e7c5164a293dd67d6b74c\",\"bytes\":4689216,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "open-arch-closed-deck-bearings-and-parapets",
+        "passed": true,
+        "notes": "84 actual mesh probes over 6 GLBs; exact pins, finite attributes, shared materials, budgets and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approved for approximate photo/map visualization at the confirmed crossing [17.8150293,43.3372672], heading -0.004339929494839471. The historical low-water datum is 40.05 m ASL, with deck crown 60.39 m. Short retained bridge tails carry the respective deck-edge heights through one short west gateway to the connected streets. Six sampled bank/street joins meet the corresponding deck level within 0.1 m in every LOD. The original standard DEM remains 11–18 m too low at the immediate banks: supported approach grading and tall retaining faces are inferred visualization, not surveyed historic quays. Current native views show continuous supported connections. Adjacent towers and town buildings remain independent generic context outside this bridge asset."
+    },
+    "inputHash": "sha256:7ee89285f508c180e11dbef738c844eca2b3360380f044af34436ed91cecb01c",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:7ee89285f508c180e11dbef738c844eca2b3360380f044af34436ed91cecb01c",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 51 current frames in one author/inspect/fix pass: 10 portable, 10 shared, 22 medium-fi and 9 native. The humpback crossing, clear arch, closed intrados, stone cornices, parapets, iron guard and traction strips remain recognizable. Replaced the over-decimated skyline with a complete 64-segment arch. Actual ray tests found the old district crown deck missing down to the extrados; the authored district now closes the deck and preserves both cornices. Detailed source/runtime masters and street/closeup bytes are unchanged.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/preview.png",
+          "hash": "sha256:6764dff0e4b892f13a8bbda81bde4f9e9b524d3e27c71b4e7a01b0f6da9b2215"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/turntable/angle_0.png",
+          "hash": "sha256:98ece1de8866c6d726288424f240718eeebc7a2e9f246cc2b29286c983583f1e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/turntable/angle_1.png",
+          "hash": "sha256:2049c39c41ca4878c4ce663403e794b88fa81b1ba897d77335bd59a79a2a930e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/turntable/angle_2.png",
+          "hash": "sha256:aeb5ef7b0498f611d41f0775122db42a9a014273884dfcb8d2bad72a409c46c8"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/turntable/angle_3.png",
+          "hash": "sha256:58bc8e2e28017e710d463ac9c413fb3ab48d91285c06bc44dd7f2bc237e0d075"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/arch-stones.png",
+          "hash": "sha256:c2fb581f01fb238047497dcb67253440d49e28fe60a91fb8b8a072c3dfddf41a"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/walkway.png",
+          "hash": "sha256:a06ba7df67b80175cbcc41fe278927b0dfbc3be6fe6eda69ec76104be3335ee8"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/cornices.png",
+          "hash": "sha256:0dab09c3f3e582b050c4aea0708494aaf4ca82dbbd0ba7dbc2ea58fc157dafde"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/intrados.png",
+          "hash": "sha256:899131d9c79b63d7bda81911333dc18d7f20744439e612ad4221c27e8569c40c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/far-crossing.png",
+          "hash": "sha256:1eb022bb33fbb3efeb66efb8011acefc1a4acc1e290160a836305315066c9ab7"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/angle-0.png",
+          "hash": "sha256:ef523a261e03c547bdff7680b0be0f5ca2c7efa418dac1ff21e8ae1718a71285"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/angle-1.png",
+          "hash": "sha256:918815740c46aaa92a9eaba05d4fa08fe6dc85c0ea96f702130a4d34c73894f8"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/angle-2.png",
+          "hash": "sha256:7fa18b42849c5387c87becdec2791ff09accb5727536d339ea90ef2e7365b998"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/angle-3.png",
+          "hash": "sha256:b210875978307147d07a26c55d366b7b04f5cb0b79d6ba2f96a5db7de7024572"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/arch-stones.png",
+          "hash": "sha256:28745fb5a331f73410d1ea0d70c7a56b571abe2262063b2cac30213fbafd9304"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/walkway.png",
+          "hash": "sha256:3b43d3c1dd2559a38eb5551d5c970eba5ca5696eba586d1ba44f58338c089856"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/cornices.png",
+          "hash": "sha256:30e7bcaa3eff1f18f0154ce8eae693db261136136a29bf4d2f8029c1588043fd"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/intrados.png",
+          "hash": "sha256:186803aa5be29c7256dee9fc4bb06d4f774b6dd9eb9832775b19a1a7c20bf268"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/far-crossing.png",
+          "hash": "sha256:08f31e97d627d416b6bfa1719c24c30372511799a5742795d2ddd39bc8aea787"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/shots/shared/placement.png",
+          "hash": "sha256:a4be1ba93eb737816c667743bb445bf5afc4b9586528ff9f815be1c14c0a5aba"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/street-noon-economy.png",
+          "hash": "sha256:703664a458cc68b59cdf35b24281a2004c11508333548ffee4aff7b53db2f33f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/street-noon-high.png",
+          "hash": "sha256:66132396a15818bc3627699170dd52daf66c23c3de1ff242c70deaa240c2ddde"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/street-late-economy.png",
+          "hash": "sha256:debecc75a124afce394fb89eb9f650c46958b4d94239057fa5c1009fe107d4f1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/street-late-high.png",
+          "hash": "sha256:112f2556fd3aeaa6dcdeefc3041ffb74af7061db187eba78b89922dd21204289"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/block-noon-economy.png",
+          "hash": "sha256:c952ed98869b29e684eb4c37b540a280446ecd4699705bd7ca91b30d35386d05"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/block-noon-high.png",
+          "hash": "sha256:73fdfd0b2e0eac5b121822de0cf262193e086bcdbc2f3937f2f8bca2c02eea58"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/block-late-economy.png",
+          "hash": "sha256:0b9abe97497f71c9f135acda0188766de0d5f6f49b2625fec451f91a4b0d47f8"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/block-late-high.png",
+          "hash": "sha256:94816f66605c9452043e0650f9e3933aed786970ca93318409363410367929ea"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:e3bca7a1beec4117d6400e1600f8388d5b7c0e0bbe9a02468830f89b2c7a9722"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:5ed6c1e370061f7dd546abfdb50a858fc309cd6331d532556faf4a6971eaf35b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:5a211daa27ed1e52449ab90e878b4832f82c67eedf7e62940817123f6def8d23"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/skyline-late-high.png",
+          "hash": "sha256:dae07c4d687f25cfc5a0f0f99fedf50866bbd348d05f5285645666f01e3ed949"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/silhouette.png",
+          "hash": "sha256:9f7ce849ece6d8425147f2cff4b8a667ea6f6fd22e502ccb1e60527ba716ba80"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/arch-stones.png",
+          "hash": "sha256:131006a6328f2a4a13a8f267b4834b068ffde4ff36678c3f45ce029c2f20766f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/walkway.png",
+          "hash": "sha256:eee68d2216d7e4e619989f1f81ef74761da701077e0e750540c2b077da2fecfe"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/cornices.png",
+          "hash": "sha256:a1fe661f840dc930f1a8a8bb374beb187603760c9271f7c2bc08db7733174ef3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/intrados.png",
+          "hash": "sha256:34bb57e0608d44e75e0dae52f183585bfe96848ef0e9514488cf80594b225724"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/far-crossing.png",
+          "hash": "sha256:98c71b3d308be4dc46b3ad1ca74d0033c96973203e0e17bf076c19b62bade739"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/transition-skyline.png",
+          "hash": "sha256:16be4d02cd007a26580a14fade934649827b81fdb9102627bfce80363ea29cfb"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/transition-district.png",
+          "hash": "sha256:73fdfd0b2e0eac5b121822de0cf262193e086bcdbc2f3937f2f8bca2c02eea58"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/transition-street.png",
+          "hash": "sha256:710feae38442c937683e7606201c7ff197090a6cd28298a94f8ca34225798fb7"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srs/stari_most/medium-fi/transition-closeup.png",
+          "hash": "sha256:ccd55583f5371bb40e18bfff828a44377128c4a5579b1ec4db05c9068be8db92"
+        },
+        {
+          "path": ".artifacts/stari-most-integration/shots/final-skyline-old-town-crossing.png",
+          "hash": "sha256:61d9fd905d2624a1ebc3a373b874d4f7ea2075b42d734ebbcbeeb1b8451cc8fe"
+        },
+        {
+          "path": ".artifacts/stari-most-integration/shots/final-district-old-town-crossing.png",
+          "hash": "sha256:92c4a6bcf633391e13421f891d560072de34b7e2dd4b60ab282f59f388e3418d"
+        },
+        {
+          "path": ".artifacts/stari-most-integration/shots/final-street-old-town-crossing.png",
+          "hash": "sha256:30c621e914bd6338dbdb67e8c9353e4f93bec291d8dca735fedd4f3c7851d5cc"
+        },
+        {
+          "path": ".artifacts/stari-most-integration/shots/final-closeup-old-town-crossing.png",
+          "hash": "sha256:b0fde58e43b84b772d2edcf04a3eaa939fefe8df1f2deca56f809872fe082b86"
+        },
+        {
+          "path": ".artifacts/stari-most-integration/shots/final-closeup-river-profile.png",
+          "hash": "sha256:ba25148ba701031e15c3c6efc5f89fc8900549f141b2fcca4450894ba99b131d"
+        },
+        {
+          "path": ".artifacts/stari-most-integration/shots/final-closeup-north-river-profile.png",
+          "hash": "sha256:67c4a45d2691ba332915f3c36a1a12afe4b94760137473f93f23b0c64a029c23"
+        },
+        {
+          "path": ".artifacts/stari-most-integration/shots/final-closeup-walkway-and-bank-joins.png",
+          "hash": "sha256:0ca5d3ac36dbf61f87958d7f36a91e914d1892f4bc9aac5bf7399aa12cd0b581"
+        },
+        {
+          "path": ".artifacts/stari-most-integration/shots/final-closeup-intrados-and-river.png",
+          "hash": "sha256:acd205625a8d93ea5f905a30035f8b5dffedb627bbc1ca34046ada60089a19e7"
+        },
+        {
+          "path": ".artifacts/stari-most-integration/shots/final-failure-old-town-crossing.png",
+          "hash": "sha256:7513048e9cd2821649b7c6ffe63587532fd2ae0839cddb8a1031707cdeab81e5"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "Actual native Molen placement, four LODs and failed-load fallback checked. Only the overlapping longitudinal bridge corridor is suppressed while resident. Short outside bridge tails retain connected deck heights; the two directly connected streets receive local elevation hints with retaining side/end faces down to unchanged native ground. All 290 resident buildings and the horizontal geometry of 296 other road features remain; only the two connected street profiles intentionally change. Original source road inputs, every DEM sample, native river and native shoreline behavior remain. Model vertices retain the 40.05 m absolute datum. Failure retains the original full mapped crossing without inferred approach hints/supports. Unload restores native content and releases both model and support geometry."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:7ee89285f508c180e11dbef738c844eca2b3360380f044af34436ed91cecb01c",
+      "sourceHash": "sha256:53ad9863952d0c2f42050ddd2d1de6fb2410acbdb13bbf83db8380b1ccbcea53",
+      "runtimeHash": "sha256:9c9aec741654c902eab54193a906ac5a6af1b56b4901d9aa91d2fbbb3d640aca",
+      "files": {
+        "content/worldgen/source/places/sr/srs/stari_most/models/source.glb": "sha256:53ad9863952d0c2f42050ddd2d1de6fb2410acbdb13bbf83db8380b1ccbcea53",
+        "content/worldgen/assets/places/sr/srs/stari_most/model.glb": "sha256:9c9aec741654c902eab54193a906ac5a6af1b56b4901d9aa91d2fbbb3d640aca",
+        ".artifacts/stari-most-integration/data.json": "sha256:530f5827b0057c58fa0bb91a8d775e6bd992ea6b9cb2b074ffedcaa01cf93a7e",
+        "content/worldgen/assets/places/sr/srs/stari_most/model.skyline.glb": "sha256:27d83206ecdcbba6d2b3f0fd676642fcd44ce4338e6434a47d5062171af05b41",
+        "content/worldgen/assets/places/sr/srs/stari_most/model.district.glb": "sha256:415a7257772ee3d8267d909958f4c73bfed77fd3759816d9daed2b64b3f492df",
+        "content/worldgen/assets/places/sr/srs/stari_most/model.street.glb": "sha256:7c332c046ebfb794404d9af9c64ddf203f4daf806882b3e91397fad9e17b796e",
+        "content/worldgen/assets/places/sr/srs/stari_most/model.closeup.glb": "sha256:f200a3962baf7a3addae58369981bf78ecd02aa1357e7c5164a293dd67d6b74c"
+      },
+      "engine": {
+        "packages/worldgen-earth/src/client/structure-geometry.ts": "sha256:9679860d40f1a9d25d6a4ae04d880ac3f118aa15123d80142376ef3e7c5d1ab4",
+        "packages/terrain/src/surface-bridges.ts": "sha256:a921e62846e7342809bad97b17470531e38ede838c1b2ca1123e038a35cbe811",
+        "packages/terrain/src/surface-client.ts": "sha256:2309d499139b4292ae6097937346395be5cfa0659ba8dd5ba74ca22012c123db"
+      }
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "east-model-edge",
+              "point": [
+                16.35,
+                -1.19
+              ],
+              "roadHeight": 57.04999923706055,
+              "rawGround": 39.487249367189165
+            },
+            {
+              "name": "east-map-join",
+              "point": [
+                28.138704479,
+                -5.233843426
+              ],
+              "roadHeight": 57.04999923706055,
+              "rawGround": 41.32514873120626
+            },
+            {
+              "name": "east-first-street",
+              "point": [
+                30.953362776,
+                -7.200575967
+              ],
+              "roadHeight": 57.02927582426105,
+              "rawGround": 42.65053983608565
+            },
+            {
+              "name": "west-map-join",
+              "point": [
+                -18.2911797,
+                4.957422876
+              ],
+              "roadHeight": 57.2400016784668,
+              "rawGround": 48.394500206736524
+            },
+            {
+              "name": "west-after-gateway",
+              "point": [
+                -22.7,
+                9.028
+              ],
+              "roadHeight": 57.23644375467745,
+              "rawGround": 50.76291538288917
+            },
+            {
+              "name": "west-first-street",
+              "point": [
+                -26.951376718,
+                11.075740057
+              ],
+              "roadHeight": 57.21182060296758,
+              "rawGround": 51.74093570671515
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184406013440,
+              "connections": [
+                {
+                  "point": [
+                    0.44390327562040455,
+                    0.5219674968974131
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 110.56874741420195
+                }
+              ]
+            },
+            {
+              "id": 35184407507130,
+              "connections": [
+                {
+                  "point": [
+                    0.5704028848090859,
+                    0.4872208136837184
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100.21970254654318
+                }
+              ]
+            }
+          ],
+          "level": "skyline",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -18.11090087890625,
+              40.04999923706055,
+              -2.6285247802734375
+            ],
+            "max": [
+              18.11090087890625,
+              61.334999084472656,
+              2.6285247802734375
+            ]
+          },
+          "sourceBuildings": 290,
+          "remainingBuildings": 290,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 296,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184406013447
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184406013447,
+              "lines": [
+                [
+                  [
+                    28.138704479231645,
+                    -5.233843426479673
+                  ],
+                  [
+                    16.199999999953825,
+                    -1.140407864944017
+                  ]
+                ],
+                [
+                  [
+                    -16.200000000036066,
+                    2.52325699226796
+                  ],
+                  [
+                    -18.291179700431876,
+                    4.957422875872282
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.45950038140814287,
+                    0.499824233406689
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.5404996185918571,
+                    0.500175766593311
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.5704028848090859,
+                    0.4872208136837184
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.4542186943954472,
+                    0.5121949850209933
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.stari_most"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "east-model-edge",
+              "point": [
+                16.35,
+                -1.19
+              ],
+              "roadHeight": 57.04999923706055,
+              "rawGround": 39.487249367189165
+            },
+            {
+              "name": "east-map-join",
+              "point": [
+                28.138704479,
+                -5.233843426
+              ],
+              "roadHeight": 57.04999923706055,
+              "rawGround": 41.32514873120626
+            },
+            {
+              "name": "east-first-street",
+              "point": [
+                30.953362776,
+                -7.200575967
+              ],
+              "roadHeight": 57.02927582426105,
+              "rawGround": 42.65053983608565
+            },
+            {
+              "name": "west-map-join",
+              "point": [
+                -18.2911797,
+                4.957422876
+              ],
+              "roadHeight": 57.2400016784668,
+              "rawGround": 48.394500206736524
+            },
+            {
+              "name": "west-after-gateway",
+              "point": [
+                -22.7,
+                9.028
+              ],
+              "roadHeight": 57.23644375467745,
+              "rawGround": 50.76291538288917
+            },
+            {
+              "name": "west-first-street",
+              "point": [
+                -26.951376718,
+                11.075740057
+              ],
+              "roadHeight": 57.21182060296758,
+              "rawGround": 51.74093570671515
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184406013440,
+              "connections": [
+                {
+                  "point": [
+                    0.44390327562040455,
+                    0.5219674968974131
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 110.56874741420195
+                }
+              ]
+            },
+            {
+              "id": 35184407507130,
+              "connections": [
+                {
+                  "point": [
+                    0.5704028848090859,
+                    0.4872208136837184
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100.21970254654318
+                }
+              ]
+            }
+          ],
+          "level": "district",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -18.11090087890625,
+              40.04999923706055,
+              -2.6285247802734375
+            ],
+            "max": [
+              18.11090087890625,
+              61.334999084472656,
+              2.6285247802734375
+            ]
+          },
+          "sourceBuildings": 290,
+          "remainingBuildings": 290,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 296,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184406013447
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184406013447,
+              "lines": [
+                [
+                  [
+                    28.138704479231645,
+                    -5.233843426479673
+                  ],
+                  [
+                    16.199999999953825,
+                    -1.140407864944017
+                  ]
+                ],
+                [
+                  [
+                    -16.200000000036066,
+                    2.52325699226796
+                  ],
+                  [
+                    -18.291179700431876,
+                    4.957422875872282
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.45950038140814287,
+                    0.499824233406689
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.5404996185918571,
+                    0.500175766593311
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.5704028848090859,
+                    0.4872208136837184
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.4542186943954472,
+                    0.5121949850209933
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_drywall": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.stari_most"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "east-model-edge",
+              "point": [
+                16.35,
+                -1.19
+              ],
+              "roadHeight": 57.04999923706055,
+              "rawGround": 39.487249367189165
+            },
+            {
+              "name": "east-map-join",
+              "point": [
+                28.138704479,
+                -5.233843426
+              ],
+              "roadHeight": 57.04999923706055,
+              "rawGround": 41.32514873120626
+            },
+            {
+              "name": "east-first-street",
+              "point": [
+                30.953362776,
+                -7.200575967
+              ],
+              "roadHeight": 57.02927582426105,
+              "rawGround": 42.65053983608565
+            },
+            {
+              "name": "west-map-join",
+              "point": [
+                -18.2911797,
+                4.957422876
+              ],
+              "roadHeight": 57.2400016784668,
+              "rawGround": 48.394500206736524
+            },
+            {
+              "name": "west-after-gateway",
+              "point": [
+                -22.7,
+                9.028
+              ],
+              "roadHeight": 57.23644375467745,
+              "rawGround": 50.76291538288917
+            },
+            {
+              "name": "west-first-street",
+              "point": [
+                -26.951376718,
+                11.075740057
+              ],
+              "roadHeight": 57.21182060296758,
+              "rawGround": 51.74093570671515
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184406013440,
+              "connections": [
+                {
+                  "point": [
+                    0.44390327562040455,
+                    0.5219674968974131
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 110.56874741420195
+                }
+              ]
+            },
+            {
+              "id": 35184407507130,
+              "connections": [
+                {
+                  "point": [
+                    0.5704028848090859,
+                    0.4872208136837184
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100.21970254654318
+                }
+              ]
+            }
+          ],
+          "level": "street",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -18.11090087890625,
+              40.04999923706055,
+              -2.65350341796875
+            ],
+            "max": [
+              18.111007690429688,
+              61.72999954223633,
+              2.6285247802734375
+            ]
+          },
+          "sourceBuildings": 290,
+          "remainingBuildings": 290,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 296,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184406013447
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184406013447,
+              "lines": [
+                [
+                  [
+                    28.138704479231645,
+                    -5.233843426479673
+                  ],
+                  [
+                    16.199999999953825,
+                    -1.140407864944017
+                  ]
+                ],
+                [
+                  [
+                    -16.200000000036066,
+                    2.52325699226796
+                  ],
+                  [
+                    -18.291179700431876,
+                    4.957422875872282
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.45950038140814287,
+                    0.499824233406689
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.5404996185918571,
+                    0.500175766593311
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.5704028848090859,
+                    0.4872208136837184
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.4542186943954472,
+                    0.5121949850209933
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_drywall": 1,
+            "molen.worldgen.material.metal_painted": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.stari_most"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "east-model-edge",
+              "point": [
+                16.35,
+                -1.19
+              ],
+              "roadHeight": 57.04999923706055,
+              "rawGround": 39.487249367189165
+            },
+            {
+              "name": "east-map-join",
+              "point": [
+                28.138704479,
+                -5.233843426
+              ],
+              "roadHeight": 57.04999923706055,
+              "rawGround": 41.32514873120626
+            },
+            {
+              "name": "east-first-street",
+              "point": [
+                30.953362776,
+                -7.200575967
+              ],
+              "roadHeight": 57.02927582426105,
+              "rawGround": 42.65053983608565
+            },
+            {
+              "name": "west-map-join",
+              "point": [
+                -18.2911797,
+                4.957422876
+              ],
+              "roadHeight": 57.2400016784668,
+              "rawGround": 48.394500206736524
+            },
+            {
+              "name": "west-after-gateway",
+              "point": [
+                -22.7,
+                9.028
+              ],
+              "roadHeight": 57.23644375467745,
+              "rawGround": 50.76291538288917
+            },
+            {
+              "name": "west-first-street",
+              "point": [
+                -26.951376718,
+                11.075740057
+              ],
+              "roadHeight": 57.21182060296758,
+              "rawGround": 51.74093570671515
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184406013440,
+              "connections": [
+                {
+                  "point": [
+                    0.44390327562040455,
+                    0.5219674968974131
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 110.56874741420195
+                }
+              ]
+            },
+            {
+              "id": 35184407507130,
+              "connections": [
+                {
+                  "point": [
+                    0.5704028848090859,
+                    0.4872208136837184
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100.21970254654318
+                }
+              ]
+            }
+          ],
+          "level": "closeup",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -18.11090087890625,
+              40.04999923706055,
+              -2.65350341796875
+            ],
+            "max": [
+              18.111007690429688,
+              61.72999954223633,
+              2.6285247802734375
+            ]
+          },
+          "sourceBuildings": 290,
+          "remainingBuildings": 290,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 296,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184406013447
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184406013447,
+              "lines": [
+                [
+                  [
+                    28.138704479231645,
+                    -5.233843426479673
+                  ],
+                  [
+                    16.199999999953825,
+                    -1.140407864944017
+                  ]
+                ],
+                [
+                  [
+                    -16.200000000036066,
+                    2.52325699226796
+                  ],
+                  [
+                    -18.291179700431876,
+                    4.957422875872282
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.45950038140814287,
+                    0.499824233406689
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.5404996185918571,
+                    0.500175766593311
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.5704028848090859,
+                    0.4872208136837184
+                  ],
+                  "elevation": 57.05,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.4542186943954472,
+                    0.5121949850209933
+                  ],
+                  "elevation": 57.239999999999995,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_drywall": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.stari_most"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "east-model-edge",
+              "point": [
+                16.35,
+                -1.19
+              ],
+              "roadHeight": 44.26592341330638,
+              "rawGround": 39.487249367189165
+            },
+            {
+              "name": "east-map-join",
+              "point": [
+                28.138704479,
+                -5.233843426
+              ],
+              "roadHeight": 41.76670704422975,
+              "rawGround": 41.32514873120626
+            },
+            {
+              "name": "east-first-street",
+              "point": [
+                30.953362776,
+                -7.200575967
+              ],
+              "roadHeight": 43.07716645111191,
+              "rawGround": 42.65053983608565
+            },
+            {
+              "name": "west-map-join",
+              "point": [
+                -18.2911797,
+                4.957422876
+              ],
+              "roadHeight": 51.33354532950261,
+              "rawGround": 48.394500206736524
+            },
+            {
+              "name": "west-after-gateway",
+              "point": [
+                -22.7,
+                9.028
+              ],
+              "roadHeight": 51.18847066243313,
+              "rawGround": 50.76291538288917
+            },
+            {
+              "name": "west-first-street",
+              "point": [
+                -26.951376718,
+                11.075740057
+              ],
+              "roadHeight": 52.1636064159776,
+              "rawGround": 51.74093570671515
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "failure",
+          "modelLoaded": false,
+          "modelWorldY": null,
+          "modelBounds": null,
+          "sourceBuildings": 290,
+          "remainingBuildings": 290,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 296,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184406013447
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184406013447,
+              "lines": [
+                [
+                  [
+                    28.138704479231645,
+                    -5.233843426479673
+                  ],
+                  [
+                    12.742632838666408,
+                    0.045023076030685935
+                  ],
+                  [
+                    -12.883740221654168,
+                    -0.06092832878057914
+                  ],
+                  [
+                    -15.482176329458985,
+                    1.6876990104631604
+                  ],
+                  [
+                    -18.291179700431876,
+                    4.957422875872282
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.stari_most"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Approved for approximate photo/map visualization at the confirmed crossing [17.8150293,43.3372672], heading -0.004339929494839471. The historical low-water datum is 40.05 m ASL, with deck crown 60.39 m. Short retained bridge tails carry the respective deck-edge heights through one short west gateway to the connected streets. Six sampled bank/street joins meet the corresponding deck level within 0.1 m in every LOD. The original standard DEM remains 11–18 m too low at the immediate banks: supported approach grading and tall retaining faces are inferred visualization, not surveyed historic quays. Current native views show continuous supported connections. Adjacent towers and town buildings remain independent generic context outside this bridge asset.",
+    "Fine stone ordinates, minor rail spacing and present river stage remain reconstructed. Approach grading and retaining faces are inferred from connectivity and model deck heights; native terrain is unchanged. The separately scoped towers and banks are not detailed landmark models in this asset. Physical laptop and phone measurements remain pending."
+  ]
 }

@@ -1,0 +1,266 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "The asymmetric pale-stone Trebišnjica crossing: two dominant pointed arches, a lower south water arch with a relief opening above it, three small south approach openings, a small north opening, raised stone parapets and a narrow double-crested cobbled walk.",
+    "sourceMaster": "Detailed original arch/soffit, voussoir and coping recipe retained separately from four complete browser levels.",
+    "exclusions": "Unsurveyed individual stones and concealed foundations, temporary furniture/signs, private houses and utilities beyond the mapped crossing."
+  },
+  "surfaceOverrides": {
+    "stone": "limestone",
+    "raw": "rawlimestone",
+    "paving": "roughstone"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srt/arslanagic_bridge/models/arslanagic-model.mjs",
+    "export": "buildArslanagicSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildArslanagicDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildArslanagicStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildArslanagicCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "anchor": [
+      18.354008321,
+      42.714653005
+    ],
+    "heading": 1.34679398019,
+    "elevationMode": "sea-level",
+    "elevationMeters": 269.88,
+    "replaceFootprint": false,
+    "bounds": [
+      18.353395549531754,
+      42.71395253604127,
+      18.354621092468243,
+      42.715353473958736
+    ],
+    "replaceRoads": {
+      "length": 85.14,
+      "width": 4.162,
+      "outline": [
+        [
+          -42.57,
+          -2.081
+        ],
+        [
+          42.57,
+          -2.081
+        ],
+        [
+          42.57,
+          2.081
+        ],
+        [
+          -42.57,
+          2.081
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -42.57,
+          0
+        ],
+        [
+          42.57,
+          0
+        ]
+      ],
+      "deckHeights": [
+        3,
+        7
+      ],
+      "deckProfile": [
+        [
+          -42.57,
+          3,
+          0
+        ],
+        [
+          -25,
+          8.8,
+          0
+        ],
+        [
+          -18,
+          10.5,
+          0
+        ],
+        [
+          0,
+          11.25,
+          0
+        ],
+        [
+          12.2,
+          10.2,
+          0
+        ],
+        [
+          23.2,
+          10.7,
+          0
+        ],
+        [
+          42.57,
+          7,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "groundContactBasis": "Standard viewer water271.078674m and model origin269.88m place the water at sourceY1.198674m. Endpoint decks272.88/276.88m join the actual native footways within0.035m at probes3cm outside the outline. Corrected shared approach grading preserves uphill native slopes instead of flattening them into the bank; the north approach is visible in the inspected current view. No model ground/water cutouts, source heightfield changes or independent feature removal are used. Banks and foundations remain approximate.",
+    "groundContactReviewed": true
+  },
+  "sourceDocuments": [
+    "models/arslanagic-model.mjs",
+    "map-frame.json",
+    "mapped-features.json",
+    "reference-metadata.json",
+    "native-fit.json"
+  ],
+  "qaLodCameras": [
+    {
+      "name": "complete-arslanagic-skyline",
+      "position": [
+        -12,
+        22,
+        95
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 53,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "complete-arslanagic-district",
+      "position": [
+        -12,
+        22,
+        95
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 53,
+      "reviewLod": "district"
+    },
+    {
+      "name": "complete-arslanagic-street",
+      "position": [
+        -12,
+        22,
+        95
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 53,
+      "reviewLod": "street"
+    },
+    {
+      "name": "complete-arslanagic-closeup",
+      "position": [
+        -12,
+        22,
+        95
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 53,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Exact arch radii/rises, pier sections, parapet height, individual stones and pavement repairs are approximate ordinary-photo interpretations.",
+    "The historical80m length and current85.14m mapped extent differ; original foundations and a6m caption height have unresolved scope/datum.",
+    "Only ordinary photos and the standard PMTiles/Mapzen pipeline guide this pass. Native river stage and banks are approximate; current shared-material/native review uses the retained provisional river level and approximate banks.",
+    "Opposite-face details, concealed foundations, temporary signs/furniture, bankside buildings and utilities outside the bridge are excluded.",
+    "Physical ordinary-laptop and phone/tablet timing measurements remain pending."
+  ]
+}

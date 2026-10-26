@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.garden_house_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Garden House — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.garden_house_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/garden_house_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:aa6fade7108086b8e32cb200cdfe7f473862f359b3862ae9beca894ac4d78343"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-garden-house-yasnaya-polyana",
+        "path": "models/generate-garden-house-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "garden-house-yasnaya-polyana-model",
+        "path": "models/garden-house-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "garden-house-yasnaya-polyana-geometry",
+        "path": "models/garden-house-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

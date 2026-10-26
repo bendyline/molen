@@ -2,6 +2,7 @@
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { joinedPath } from '../../worldgen/scripts/joined-path.mjs';
 import { prepareSurface } from './surface-normals.mjs';
 import {
   addMarineDashboard,
@@ -10,7 +11,28 @@ import {
   panelTools,
 } from './vehicle-interiors.mjs';
 
+// Authoring-only recipes survive batching, without changing legacy vehicle/exterior GLBs.
+// Aircraft can replace the selected cabin's text before export; no bitmap recognition is needed.
+const batchedText = new WeakMap();
+export function replaceDetailText(cabin, render) {
+  const meshes = [];
+  cabin.traverse((mesh) => {
+    if (batchedText.has(mesh)) meshes.push(mesh);
+  });
+  for (const mesh of meshes) {
+    const { solid, runs } = batchedText.get(mesh);
+    batchedText.delete(mesh);
+    const holder = new T.Group().copy(mesh, false);
+    mesh.parent.add(holder);
+    mesh.removeFromParent();
+    if (solid) holder.add(new T.Mesh(solid, mesh.material));
+    render(holder, runs, mesh.material);
+    mesh.geometry.dispose();
+  }
+}
+
 export function detailKit(parent, name = 'close-detail') {
+  const textGroups = new WeakMap();
   const root = new T.Group();
   root.name = name;
   parent.add(root);
@@ -42,6 +64,14 @@ export function detailKit(parent, name = 'close-detail') {
     );
     mesh.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), delta.normalize());
     return mesh;
+  };
+  const path = (points, radius = 0.01, material = metal, closed = false) => {
+    const { positions, indices } = joinedPath(points, radius, 6, closed);
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+    geometry.setIndex(indices);
+    geometry.computeVertexNormals();
+    return add(geometry, material);
   };
   const ring = (radius, tube, at, material = metal, axis = 'z', group) => {
     const mesh = add(new T.TorusGeometry(radius, tube, 5, 24), material, at, group);
@@ -90,11 +120,12 @@ export function detailKit(parent, name = 'close-detail') {
     '-': '000000111000000',
     '.': '000000000000010',
   };
-  const text = (label, at, height = 0.05, yaw = 0, material = ivory) => {
+  const text = (label, at, height = 0.05, yaw = 0, material = ivory, role = 'panel') => {
     const g = new T.Group();
     g.position.fromArray(at);
     g.rotation.y = yaw;
     root.add(g);
+    textGroups.set(g, { label, height, role });
     const pixel = height / 5,
       width = (label.length * 4 - 1) * pixel;
     [...label.toUpperCase()].forEach((char, n) => {
@@ -120,21 +151,39 @@ export function detailKit(parent, name = 'close-detail') {
         mesh.geometry.index ? mesh.geometry.toNonIndexed() : mesh.geometry.clone()
       ).applyMatrix4(inverse.clone().multiply(mesh.matrixWorld));
       geometry.deleteAttribute('uv');
-      const batch = batches.get(mesh.material) ?? [];
-      batch.push(geometry);
+      const batch = batches.get(mesh.material) ?? { all: [], solid: [], runs: new Map() };
+      batch.all.push(geometry);
+      const inherited = batchedText.get(mesh),
+        text = textGroups.get(mesh.parent),
+        transform = inverse.clone().multiply(mesh.matrixWorld);
+      if (inherited) {
+        if (inherited.solid) batch.solid.push(inherited.solid.clone().applyMatrix4(transform));
+        for (const run of inherited.runs)
+          batch.runs.set(run, { ...run, matrix: transform.clone().multiply(run.matrix) });
+      } else if (text) {
+        batch.runs.set(mesh.parent, {
+          ...text,
+          matrix: inverse.clone().multiply(mesh.parent.matrixWorld),
+        });
+      } else batch.solid.push(geometry);
       batches.set(mesh.material, batch);
     });
     root.clear();
-    for (const [material, geometries] of batches) {
-      const merged = mergeGeometries(geometries);
+    for (const [material, batch] of batches) {
+      const merged = mergeGeometries(batch.all);
       if (!merged) throw new Error(`Cannot consolidate ${name}/${material.name}`);
       const mesh = add(merged, material);
       mesh.name = `${name}-${material.name}`;
-      for (const geometry of geometries) geometry.dispose();
+      if (batch.runs.size)
+        batchedText.set(mesh, {
+          solid: batch.solid.length ? mergeGeometries(batch.solid) : null,
+          runs: [...batch.runs.values()],
+        });
+      for (const geometry of new Set([...batch.all, ...batch.solid])) geometry.dispose();
     }
     return root;
   };
-  return { root, metal, dark, ivory, amber, red, green, add, box, rod, ring, text, finish };
+  return { root, metal, dark, ivory, amber, red, green, add, box, rod, path, ring, text, finish };
 }
 
 export function addWheelDetail(wheel, radius, width, bicycle = false) {

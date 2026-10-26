@@ -66,7 +66,7 @@ function ribbon(o, slot, a, b, width, color) {
 }
 function build(out, detail) {
   const o = writer(out, !detail),
-    n = detail ? 40 : 16,
+    n = detail ? 40 : 15,
     ring = (x) => {
       const y = deckY(x);
       return [
@@ -120,29 +120,54 @@ function build(out, detail) {
       o,
       'foundation',
       [x - (sign < 0 ? 20 : 5), 0, -17.5],
-      [x + (sign > 0 ? 20 : 5), 33.3, 17.5],
+      [x + (sign > 0 ? 20 : 5), 30.8, 17.5],
       concrete,
     );
+    for (const z of [-11.75, 11.75])
+      box(
+        o,
+        'foundation',
+        [x - (sign < 0 ? 20 : 5), 30.8, z - 3.1],
+        [x + (sign > 0 ? 20 : 5), 33.3, z + 3.1],
+        concrete,
+      );
   }
-  const cableSteps = detail ? 64 : 32;
-  for (let i = 0; i < cableSteps; i++)
+  const cableSteps = detail ? 64 : 30;
+  const cableStations = [
+    ...new Set([
+      ...Array.from({ length: cableSteps + 1 }, (_, i) => -end + (i * 2 * end) / cableSteps),
+      -tower,
+      tower,
+    ]),
+  ].sort((a, b) => a - b);
+  for (let i = 0; i < cableStations.length - 1; i++)
     for (const z of [-11.75, 11.75]) {
-      const a = -end + (i * 2 * end) / cableSteps,
-        b = -end + ((i + 1) * 2 * end) / cableSteps,
+      const a = cableStations[i],
+        b = cableStations[i + 1],
         p = [a, cableY(a), z],
         q = [b, cableY(b), z];
       if (detail) beam(o, 'cable', p, q, 0.55, 0.55, cable);
       else ribbon(o, 'cable', p, q, 0.6, cable);
     }
-  const hangerSteps = detail ? 40 : 16;
+  const hangerSteps = detail ? 32 : 16;
   for (let i = 0; i < hangerSteps; i++)
     for (const z of [-11.75, 11.75]) {
       const x = -end + ((i + 0.5) * 2 * end) / hangerSteps,
         p = [x, cableY(x), z],
-        q = [Math.max(-end, Math.min(end, x + (i % 2 ? 9.144 : -9.144))), deckY(x) + 0.3, z];
+        offset = Math.min(
+          9.144,
+          Math.max(0, cableY(x) - deckY(x) - 0.86) * Math.tan((35 * Math.PI) / 180),
+        );
       if (Math.abs(x - tower) < 5 || Math.abs(x + tower) < 5) continue;
-      if (detail) beam(o, 'cable', p, q, 0.12, 0.12, cable);
-      else ribbon(o, 'cable', p, q, 0.18, cable);
+      for (const direction of [-1, 1]) {
+        const q = [
+          Math.max(-end, Math.min(end, x + direction * offset)),
+          deckY(x + direction * offset) + 0.3,
+          z,
+        ];
+        if (detail) beam(o, 'cable', p, q, 0.12, 0.12, cable);
+        else ribbon(o, 'cable', p, q, 0.18, cable);
+      }
     }
 }
 export const buildSevernSkyline = (out) => build(out, false);

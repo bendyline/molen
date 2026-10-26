@@ -6,6 +6,7 @@
 import { dmath } from '@bendyline/molen-kernel/determinism';
 import type { ArchStyleDoc } from './archstyle-types';
 import { buildBuildingAccess } from './building-access';
+import { buildYardFence } from './building-yard';
 import { buildFacade, buildOpeningFrames, type FacadeStats } from './facade';
 import {
   analyzeFootprint,
@@ -217,6 +218,8 @@ export function generateBuilding(
   const wallBase = base + recipe.minHeight;
   if (input.request.access && recipe.minHeight === 0)
     buildBuildingAccess(input.request.access, input.ground, out);
+  if (input.request.yard?.driveway && recipe.minHeight === 0)
+    buildBuildingAccess(input.request.yard.driveway, input.ground, out);
   let eave = wallBase + recipe.totalHeight;
   const foundationDepth = Math.max(0.05, recipe.foundationHeight);
   const bounds = ringBounds(outline);
@@ -262,6 +265,15 @@ export function generateBuilding(
   }
 
   const geometryTier = input.simplified === true ? Math.max(2, input.tier) : input.tier;
+  if (input.request.yard?.fence && recipe.minHeight === 0)
+    buildYardFence(
+      input.request.yard.fence,
+      input.request.identity,
+      recipe.parts.wall.color,
+      input.ground,
+      input.simplified === true ? Math.max(1, input.tier) : input.tier,
+      out,
+    );
   const foundationSkirt = recipe.exposeFoundation && geometryTier <= 1 && recipe.minHeight === 0;
   let wallBottom = wallBase;
   if (recipe.minHeight === 0 && !foundationSkirt) {

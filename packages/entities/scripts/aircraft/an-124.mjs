@@ -797,7 +797,7 @@ function cockpit(root, m) {
     ins.available(`rpm-${i + 1}`, `engine${i + 1}`, g.name);
     d.text(String(i + 1), [x, y + 0.127, z - 0.023], 0.015, Math.PI, ink);
   }
-  d.text('SIM RPM', at(891, 565, -0.025), 0.014, Math.PI, ink);
+  d.text('SIM RPM', at(891, 565, -0.025), 0.014, Math.PI, ink, 'display');
   for (const u of [846, 934]) {
     d.box([0.23, 0.12, 0.015], at(u, 699, -0.006), black);
     d.text('--', at(u, 699, -0.02), 0.018, Math.PI, ink);
@@ -830,7 +830,7 @@ function cockpit(root, m) {
     for (let j = 0; j < 4; j++) pt.knob(side * 0.31 - 0.21 + j * 0.14, 9.2, 28.21, 0.018);
   }
   d.box([0.36, 0.16, 0.09], [0, 9.45, 28.36], m.dark);
-  d.text('NAV --', [0, 9.45, 28.31], 0.02, Math.PI, ink);
+  d.text('NAV --', [0, 9.45, 28.31], 0.02, Math.PI, ink, 'display');
   // Long pedestal with four tall ivory levers, low radar scopes and offset flap handle.
   const ped = group(cabin, 'AN124-pedestal', [0, 8.12, 27.4]);
   ped.rotation.x = Math.PI / 2;
@@ -857,7 +857,7 @@ function cockpit(root, m) {
   }
   for (const side of [-1, 1]) {
     td.box([0.36, 0.26, 0.015], [side * 0.22, 0.9, -0.09], black);
-    td.text('RADAR --', [side * 0.22, 0.9, -0.103], 0.018, Math.PI, ink);
+    td.text('RADAR --', [side * 0.22, 0.9, -0.103], 0.018, Math.PI, ink, 'display');
   }
   for (const [yy, n] of [
     [-0.1, 5],

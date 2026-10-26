@@ -1,5 +1,5 @@
 /** Completed 2018 RSHP tower: stepped cruciform shaft and external corner K frames. */
-import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
   commonLimit,
   face,
@@ -291,8 +291,7 @@ function entrance(out, base) {
   const roof = [at(0.16, 3.62, 0.0), at(0.84, 3.62, 0.0), at(0.84, 3.62, 2.2), at(0.16, 3.62, 2.2)];
   face(out, 'glass', roof, [0.32, 0.43, 0.46]);
   face(out, 'glass', roof.toReversed(), [0.32, 0.43, 0.46]);
-  for (let i = 0; i < 4; i++)
-    beam(out, 'stainless', roof[i], roof[(i + 1) % 4], 0.13, 0.17, silver);
+  beamPath(out, 'stainless', roof.slice(0, 4), 0.13, 0.17, silver, true);
 }
 export function build3Wtc(out, mapped) {
   const ev = partsEvidence('3_world_trade_center'),

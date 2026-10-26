@@ -54,7 +54,8 @@ describe.each(aircraft)('$slug imported aircraft', (s) => {
     expect(bytes.length).toBeLessThan(4_000_000);
     expect(asset.stats.triangles).toBeLessThan(100_000);
     expect(asset.stats.textures).toBe(source.files.textures.length);
-    expect(asset.stats.textures).toBeLessThanOrEqual(12);
+    // Up to eight shared PBR finishes (three maps each), plus a cockpit font atlas.
+    expect(asset.stats.textures).toBeLessThanOrEqual(27); // Shared finishes + per-role font atlases.
     const { scene } = await new GLTFLoader().parseAsync(
       bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
       '',

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:5de0a38bb99c4ff850b016534af4d3683856a57609f9dd929f2ebecfeed4a009",
-  "sourceHash": "sha256:84a1aa757a04d2972de6babaed9dcdf592ece369cf0b4af5753ced2239f4bbc1",
+  "hash": "sha256:4e03e2c34786a06b48659c9126068a32f6fc624c9de299d967890a802138fae1",
+  "sourceHash": "sha256:7cbcf456ef4f739093d7b96f919a55c88a0fd02b73469d787bcedb56407ebdd0",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 36981,
-    "vertices": 63045,
-    "meshes": 85,
-    "primitives": 85,
-    "materials": 23,
-    "textures": 9,
+    "triangles": 15041,
+    "vertices": 19165,
+    "meshes": 90,
+    "primitives": 90,
+    "materials": 29,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 1674728
+    "sizeBytes": 919116
   },
   "nodes": [
     {
@@ -202,16 +202,28 @@
       "triangles": 2304
     },
     {
-      "name": "F22-cabin-F22-display",
-      "triangles": 4872
+      "name": "F22-cabin-F22-display-panel-print",
+      "triangles": 62
     },
     {
-      "name": "F22-cabin-F22-instrument-amber",
-      "triangles": 3528
+      "name": "F22-cabin-F22-display-display-print",
+      "triangles": 30
+    },
+    {
+      "name": "F22-cabin-F22-instrument-amber-display-print",
+      "triangles": 46
+    },
+    {
+      "name": "F22-cabin-F22-instrument-amber-panel-print",
+      "triangles": 24
     },
     {
       "name": "F22-cabin-F22-instrument-ink",
-      "triangles": 1260
+      "triangles": 24
+    },
+    {
+      "name": "F22-cabin-F22-instrument-ink-panel-print",
+      "triangles": 20
     },
     {
       "name": "F22-attitude-fixed-F22-instrument-black",
@@ -231,7 +243,11 @@
     },
     {
       "name": "F22-attitude-card-F22-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "F22-attitude-card-F22-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "F22-speed-0-0-F22-display",
@@ -463,7 +479,11 @@
     },
     {
       "name": "F22-heading-F22-display",
-      "triangles": 3840
+      "triangles": 1728
+    },
+    {
+      "name": "F22-heading-F22-display-panel-print",
+      "triangles": 40
     },
     {
       "name": "F22-vertical-speed-0-0-F22-display",
@@ -531,26 +551,6 @@
     },
     {
       "name": "F22-vertical-speed-2-2-F22-display",
-      "triangles": 12
-    },
-    {
-      "name": "F22-vertical-speed-2-3-F22-display",
-      "triangles": 12
-    },
-    {
-      "name": "F22-vertical-speed-2-4-F22-display",
-      "triangles": 12
-    },
-    {
-      "name": "F22-vertical-speed-2-5-F22-display",
-      "triangles": 12
-    },
-    {
-      "name": "F22-vertical-speed-2-6-F22-display",
-      "triangles": 12
-    },
-    {
-      "name": "F22-vertical-speed-3-0-F22-display",
       "triangles": 12
     }
   ],
@@ -641,23 +641,60 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "F22-display",
+      "name": "F22-display-technical-font",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "emissive"
       ],
       "doubleSided": false,
-      "alphaMode": "OPAQUE"
+      "alphaMode": "BLEND"
     },
     {
-      "name": "F22-instrument-amber",
+      "name": "F22-display-modern-font",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "emissive"
       ],
       "doubleSided": false,
-      "alphaMode": "OPAQUE"
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "F22-instrument-amber-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "F22-instrument-amber-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     },
     {
       "name": "F22-instrument-ink",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "F22-instrument-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "F22-instrument-amber",
       "slots": [
         "baseColor"
       ],
@@ -674,6 +711,14 @@
     },
     {
       "name": "F22-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "F22-display",
       "slots": [
         "baseColor"
       ],
@@ -730,20 +775,29 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -1920,90 +1974,177 @@
         ]
       },
       {
-        "node": "F22-cabin-F22-display",
+        "node": "F22-cabin-F22-display-panel-print",
         "points": [
-          -0.2347,
-          2.1057,
-          8.0915,
-          -0.2347,
-          2.1057,
-          8.0925,
-          -0.2347,
-          2.7086,
-          8.0915,
-          -0.2347,
-          2.7086,
-          8.0925,
-          0.2721,
-          2.1057,
-          8.0915,
-          0.2721,
-          2.1057,
-          8.0925,
-          0.2721,
-          2.7086,
-          8.0915,
-          0.2721,
-          2.7086,
-          8.0925
+          -0.2354,
+          2.2206,
+          8.092,
+          -0.2354,
+          2.2206,
+          8.092,
+          -0.2354,
+          2.7075,
+          8.092,
+          -0.2354,
+          2.7075,
+          8.092,
+          0.2552,
+          2.2206,
+          8.092,
+          0.2552,
+          2.2206,
+          8.092,
+          0.2552,
+          2.7075,
+          8.092,
+          0.2552,
+          2.7075,
+          8.092
         ]
       },
       {
-        "node": "F22-cabin-F22-instrument-amber",
+        "node": "F22-cabin-F22-display-display-print",
         "points": [
-          -0.2663,
-          2.4354,
-          8.0475,
-          -0.2663,
-          2.4354,
-          8.0925,
-          -0.2663,
-          2.7671,
-          8.0475,
-          -0.2663,
-          2.7671,
-          8.0925,
-          0.1911,
-          2.4354,
-          8.0475,
-          0.1911,
-          2.4354,
-          8.0925,
-          0.1911,
-          2.7671,
-          8.0475,
-          0.1911,
-          2.7671,
-          8.0925
+          -0.0088,
+          2.1051,
+          8.092,
+          -0.0088,
+          2.1051,
+          8.092,
+          -0.0088,
+          2.6886,
+          8.092,
+          -0.0088,
+          2.6886,
+          8.092,
+          0.2716,
+          2.1051,
+          8.092,
+          0.2716,
+          2.1051,
+          8.092,
+          0.2716,
+          2.6886,
+          8.092,
+          0.2716,
+          2.6886,
+          8.092
+        ]
+      },
+      {
+        "node": "F22-cabin-F22-instrument-amber-display-print",
+        "points": [
+          -0.2673,
+          2.433,
+          8.092,
+          -0.2673,
+          2.433,
+          8.092,
+          -0.2673,
+          2.4749,
+          8.092,
+          -0.2673,
+          2.4749,
+          8.092,
+          0.06,
+          2.433,
+          8.092,
+          0.06,
+          2.433,
+          8.092,
+          0.06,
+          2.4749,
+          8.092,
+          0.06,
+          2.4749,
+          8.092
+        ]
+      },
+      {
+        "node": "F22-cabin-F22-instrument-amber-panel-print",
+        "points": [
+          -0.2396,
+          2.6599,
+          8.048,
+          -0.2396,
+          2.6599,
+          8.092,
+          -0.2396,
+          2.7663,
+          8.048,
+          -0.2396,
+          2.7663,
+          8.092,
+          0.1905,
+          2.6599,
+          8.048,
+          0.1905,
+          2.6599,
+          8.092,
+          0.1905,
+          2.7663,
+          8.048,
+          0.1905,
+          2.7663,
+          8.092
         ]
       },
       {
         "node": "F22-cabin-F22-instrument-ink",
         "points": [
-          -0.2403,
+          -0.0009,
           2.215,
           8.087,
-          -0.2403,
+          -0.0009,
           2.215,
-          8.0925,
-          -0.2403,
-          2.6881,
+          8.089,
+          -0.0009,
+          2.223,
           8.087,
-          -0.2403,
-          2.6881,
-          8.0925,
-          0.3795,
+          -0.0009,
+          2.223,
+          8.089,
+          0.0009,
           2.215,
           8.087,
-          0.3795,
+          0.0009,
           2.215,
-          8.0925,
-          0.3795,
-          2.6881,
+          8.089,
+          0.0009,
+          2.223,
           8.087,
-          0.3795,
-          2.6881,
-          8.0925
+          0.0009,
+          2.223,
+          8.089
+        ]
+      },
+      {
+        "node": "F22-cabin-F22-instrument-ink-panel-print",
+        "points": [
+          -0.2411,
+          2.2773,
+          8.092,
+          -0.2411,
+          2.2773,
+          8.092,
+          -0.2411,
+          2.6876,
+          8.092,
+          -0.2411,
+          2.6876,
+          8.092,
+          0.3789,
+          2.2773,
+          8.092,
+          0.3789,
+          2.2773,
+          8.092,
+          0.3789,
+          2.6876,
+          8.092,
+          0.3789,
+          2.6876,
+          8.092
         ]
       },
       {
@@ -2126,29 +2267,58 @@
         "node": "F22-attitude-card-F22-instrument-ink",
         "points": [
           0.1218,
-          2.4606,
+          2.462,
           8.1283,
           0.1218,
-          2.4606,
+          2.462,
           8.1297,
           0.1218,
-          2.5203,
+          2.518,
           8.1283,
           0.1218,
-          2.5203,
+          2.518,
           8.1297,
           0.3282,
-          2.4606,
+          2.462,
           8.1283,
           0.3282,
-          2.4606,
+          2.462,
           8.1297,
           0.3282,
-          2.5203,
+          2.518,
           8.1283,
           0.3282,
-          2.5203,
+          2.518,
           8.1297
+        ]
+      },
+      {
+        "node": "F22-attitude-card-F22-instrument-ink-dial-print",
+        "points": [
+          0.2427,
+          2.4603,
+          8.129,
+          0.2427,
+          2.4603,
+          8.129,
+          0.2427,
+          2.5197,
+          8.129,
+          0.2427,
+          2.5197,
+          8.129,
+          0.2495,
+          2.4603,
+          8.129,
+          0.2495,
+          2.4603,
+          8.129,
+          0.2495,
+          2.5197,
+          8.129,
+          0.2495,
+          2.5197,
+          8.129
         ]
       },
       {
@@ -3834,6 +4004,35 @@
         ]
       },
       {
+        "node": "F22-heading-F22-display-panel-print",
+        "points": [
+          -0.0337,
+          2.1296,
+          8.09,
+          -0.0337,
+          2.1296,
+          8.09,
+          -0.0337,
+          2.1993,
+          8.09,
+          -0.0337,
+          2.1993,
+          8.09,
+          0.0361,
+          2.1296,
+          8.09,
+          0.0361,
+          2.1296,
+          8.09,
+          0.0361,
+          2.1993,
+          8.09,
+          0.0361,
+          2.1993,
+          8.09
+        ]
+      },
+      {
         "node": "F22-vertical-speed-0-0-F22-display",
         "points": [
           0.2352,
@@ -4323,151 +4522,6 @@
           8.0896,
           0.2233,
           2.6624,
-          8.0904
-        ]
-      },
-      {
-        "node": "F22-vertical-speed-2-3-F22-display",
-        "points": [
-          0.2233,
-          2.6582,
-          8.0896,
-          0.2233,
-          2.6582,
-          8.0904,
-          0.2233,
-          2.6588,
-          8.0896,
-          0.2233,
-          2.6588,
-          8.0904,
-          0.2267,
-          2.6582,
-          8.0896,
-          0.2267,
-          2.6582,
-          8.0904,
-          0.2267,
-          2.6588,
-          8.0896,
-          0.2267,
-          2.6588,
-          8.0904
-        ]
-      },
-      {
-        "node": "F22-vertical-speed-2-4-F22-display",
-        "points": [
-          0.2267,
-          2.6591,
-          8.0896,
-          0.2267,
-          2.6591,
-          8.0904,
-          0.2267,
-          2.6624,
-          8.0896,
-          0.2267,
-          2.6624,
-          8.0904,
-          0.2274,
-          2.6591,
-          8.0896,
-          0.2274,
-          2.6591,
-          8.0904,
-          0.2274,
-          2.6624,
-          8.0896,
-          0.2274,
-          2.6624,
-          8.0904
-        ]
-      },
-      {
-        "node": "F22-vertical-speed-2-5-F22-display",
-        "points": [
-          0.2267,
-          2.6636,
-          8.0896,
-          0.2267,
-          2.6636,
-          8.0904,
-          0.2267,
-          2.6669,
-          8.0896,
-          0.2267,
-          2.6669,
-          8.0904,
-          0.2274,
-          2.6636,
-          8.0896,
-          0.2274,
-          2.6636,
-          8.0904,
-          0.2274,
-          2.6669,
-          8.0896,
-          0.2274,
-          2.6669,
-          8.0904
-        ]
-      },
-      {
-        "node": "F22-vertical-speed-2-6-F22-display",
-        "points": [
-          0.2233,
-          2.6627,
-          8.0896,
-          0.2233,
-          2.6627,
-          8.0904,
-          0.2233,
-          2.6633,
-          8.0896,
-          0.2233,
-          2.6633,
-          8.0904,
-          0.2267,
-          2.6627,
-          8.0896,
-          0.2267,
-          2.6627,
-          8.0904,
-          0.2267,
-          2.6633,
-          8.0896,
-          0.2267,
-          2.6633,
-          8.0904
-        ]
-      },
-      {
-        "node": "F22-vertical-speed-3-0-F22-display",
-        "points": [
-          0.2174,
-          2.6672,
-          8.0896,
-          0.2174,
-          2.6672,
-          8.0904,
-          0.2174,
-          2.6678,
-          8.0896,
-          0.2174,
-          2.6678,
-          8.0904,
-          0.2207,
-          2.6672,
-          8.0896,
-          0.2207,
-          2.6672,
-          8.0904,
-          0.2207,
-          2.6678,
-          8.0896,
-          0.2207,
-          2.6678,
           8.0904
         ]
       }

@@ -303,6 +303,7 @@ export function semanticTileToBatch(
         ...(infill
           ? {
               access: infill.access,
+              ...(infill.yard ? { yard: infill.yard } : {}),
               groundOutline: infill.groundOutline,
               ...(infill.style ? { style: infill.style } : {}),
             }
@@ -378,6 +379,17 @@ export function semanticTileToBatch(
         radius: 0.5,
         kind: 'roads',
       });
+    }
+    for (const feature of inferred) {
+      const yard = feature.infill.yard;
+      if (yard?.driveway)
+        scatter.exclusions.push({
+          ring: corridor(yard.driveway.from, yard.driveway.to, yard.driveway.width).outer,
+          radius: 0.5,
+          kind: 'roads',
+        });
+      for (const segment of yard?.fence?.segments ?? [])
+        scatter.exclusions.push({ polyline: segment, width: 0.2, radius: 0.6, kind: 'buildings' });
     }
     scatter.polygons.push(...residentialTreePolygons(tile, geom, options));
   }

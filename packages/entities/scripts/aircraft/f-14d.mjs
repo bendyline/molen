@@ -669,8 +669,8 @@ function f14Cockpits(root, m) {
     const holes = [];
     const box = (u, v, w, h, material = black, depth = 0.015) =>
       d.box([w * k, h * k, depth], at(u, v, -0.03 + depth / 2), material);
-    const text = (label, u, v, h = 7, material = ink) =>
-      d.text(label, at(u, v, -0.034), h * k, Math.PI, material);
+    const text = (label, u, v, h = 7, material = ink, role = 'panel') =>
+      d.text(label, at(u, v, -0.034), h * k, Math.PI, material, role);
     const circleHole = (u, v, r) =>
       Array.from({ length: 40 }, (_, i) =>
         at(u + Math.cos((i * Math.PI) / 20) * r, v + Math.sin((i * Math.PI) / 20) * r),
@@ -735,9 +735,9 @@ function f14Cockpits(root, m) {
           true,
           true,
         );
-        text('TAS', u - 30, v + 29, 4);
-        text('GEO FT', u + 22, v + 29, 4);
-      } else text('INOP', u, v, 8, amber);
+        text('TAS', u - 30, v + 29, 4, ink, 'display');
+        text('GEO FT', u + 22, v + 29, 4, ink, 'display');
+      } else text('INOP', u, v, 8, amber, 'display');
     };
     const standby = rear ? [708, 356, 21] : [668, 356, 25];
     holes.push(circleHole(...standby));
@@ -878,7 +878,7 @@ function f14Cockpits(root, m) {
       ]) {
         pt.gauge(...at(u, v).slice(0, 2), z - 0.01, r * k, black, false);
         text(label, u, v, 4);
-        text('--', u, v + 7, 5, amber);
+        text('--', u, v + 7, 5, amber, 'display');
       }
       for (const [u, v, w, h, label] of [
         [641, 513, 80, 107, 'ENGINE'],
@@ -888,7 +888,7 @@ function f14Cockpits(root, m) {
       ]) {
         box(u, v, w, h);
         text(label, u, v - h * 0.28, 5);
-        text('--', u, v, 8, amber);
+        text('--', u, v, 8, amber, 'display');
       }
       for (const [u, label] of [
         [616, 'RPM'],
@@ -906,7 +906,7 @@ function f14Cockpits(root, m) {
               ink,
             );
         }
-        text('--', u, 555, 5, amber);
+        text('--', u, 555, 5, amber, 'display');
       }
       for (const [u, v, label] of [
         [562, 493, 'HYD'],
@@ -916,7 +916,7 @@ function f14Cockpits(root, m) {
       ]) {
         pt.gauge(...at(u, v).slice(0, 2), z - 0.02, 10 * k, black, false);
         text(label, u, v + 14, 3);
-        text('--', u, v, 4, amber);
+        text('--', u, v, 4, amber, 'display');
       }
       for (const side of [-1, 1]) {
         text(side === 1 ? 'R' : 'L', 870 + side * 20, 493, 5);

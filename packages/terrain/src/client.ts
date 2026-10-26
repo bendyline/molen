@@ -1,5 +1,6 @@
 export {
   markTerrainGroundSurface,
+  markTerrainPavementSurface,
   markTerrainWaterSurface,
   setTerrainGroundCutout,
   setTerrainGroundCutouts,

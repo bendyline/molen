@@ -1,0 +1,903 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.pavilion_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:11dfe539da8ff0c9eb4d95fcf8334fab7ab7a570eceea77908196197795a8eba",
+  "sourceHash": "sha256:4677adfc9f2f55f3a8ced46e831ee2cd997ebb539c2d0d5ab5ad5afc32092a6a",
+  "runtimeHash": "sha256:b27a6c3b3fc26aa865eee3a6f05006be32efb7b22476f3bb4e5d29488dbd17ec",
+  "captureReportHash": "sha256:8e5caa8051cbf3a9c7baa52802b01f75fbd059ff9bf2676ec6bb4d6aefa19053",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-pavilion-three-part-window-and-gabled-roof.png",
+      "shots/three-part-window-recess-gable-vent-and-toothed-verge.png",
+      "shots/opposite-single-window-gable-and-low-plinth.png",
+      "shots/reconstructed-side-door-supported-apron-and-blank-side.png"
+    ],
+    "notes": "Inspected all48 current portable/shared/medium-fi/native frames in labeled sheets, plus full-resolution native gable-window and side-door views. The enclosed mint wooden pavilion reads as a complete small cottage, with a three-part front window, narrow opposite window, actual triangular attic recesses, vertical dado/gables, steep gray roof, toothed verge trim and a recessed side entrance with supported threshold. The continuous pass removed central battens crossing attic vents, replaced a gable-blocking roof closure with two thin closed roof sheets, removed siding trim crossing the door and cooled the shared cedar roof tint. Hidden entrance and native plinth exposure remain approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-pavilion-three-part-window-and-gabled-roof.png",
+      "shots/shared/three-part-window-recess-gable-vent-and-toothed-verge.png",
+      "shots/shared/opposite-single-window-gable-and-low-plinth.png",
+      "shots/shared/reconstructed-side-door-supported-apron-and-blank-side.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Seven roles reuse five existing256px graphs: wood_plain, wood_vertical, shingle_cedar, storefront and stone_limestone. Mint horizontal walls, pale trim and darker door share wood_plain; dado/gables share wood_vertical. Metric UVs, linear tints, separate POSITION/NORMAL streams, equal CPU/GPU geometry accounting and at most6 nearby draws/one skyline. No embedded image, private atlas or new graph. Every used graph reads once; unload releases all model geometry.",
+    "captureReportHash": "sha256:0ed66afeb2139549a0634c6b2dd4cebab9b1f9519f875fb243f596643fc4255f"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-pavilion-three-part-window-and-gabled-roof.png",
+      "medium-fi/three-part-window-recess-gable-vent-and-toothed-verge.png",
+      "medium-fi/opposite-single-window-gable-and-low-plinth.png",
+      "medium-fi/reconstructed-side-door-supported-apron-and-blank-side.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 180/306/1218/1474 triangles. Initial skyline+district 48340bytes; closeup 133028bytes. Skyline retains the complete enclosed body/steep roof, both unequal recessed windows, attic vents, side door and grounded aprons below200triangles. District adds window divisions/corner boards/verges; street/closeup add coarse board seams, gable battens and toothed trim. Synthetic scenes check style/LOD/mode coherence; native views establish approximate geographic fit.",
+    "captureReportHash": "sha256:69ee818274d616dfc7cc3121c55b48195a982fd722fb5d09fdfc09d5e797a8da"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:a7de7b6562b904addf0093f0ecfc79baa270e1611305ebb8d6bfa3c497933255",
+    "mapFrameHash": "sha256:54961add4375f6f0ca0f06496536cdfcb603ff71d203cf907ee4219a5c39a7e7",
+    "notes": "Independent pavilion way678672695 matches the small4.3m-long by3.5m-wide map footprint southwest of Tolstoy House. Ordinary front and opposite-gable photographs establish both gables, blank southwest long wall, triangular vents and differing window widths. The Tolstoy House context behind the three-part-window view supports southeast-facing large window and northwest-facing single window. X northeast across width, Z southeast along ridge, baked native axes with heading0 at the unchanged assigned member anchor. Door on hidden northeast side is a plausible reconstruction, not a photographed inventory; absolute gable assignment remains approximate. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside southeast provider[0,4] supplies224.87881894030872m datum. Boundary grades0.011..0.521m, floor+0.7m and foundation-0.2m. Only occupied room and two narrow northeast entry aprons cut ground. Coarse slope exposes a0.18..0.69m plinth, larger than parts of the pictured footing; no terrain flattening or bespoke survey. Original approaches, independent neighbors, roads and ponds remain. Inspected current native whole, large-window/vent, opposite-gable and reconstructed-side-door views. Both gables and the complete mapped envelope read coherently. Removed an inherited sill strip across the recessed door and cooled the shared cedar roof tint. One owned record is replaced while242 resident independent buildings, roads and40070.675m² pond water remain. Gable assignment, unseen entrance, exact historical roof finish and coarse0.18..0.69m exposed footing remain approximate. One owned map record replaced while242 resident/294 wider independent buildings, original approaches, roads and40070.675m² pond water remain. Only occupied room and two side entry aprons cut original ground. Failure retains all243 originals; every LOD/failure/unload restores ground/water and releases geometry. Fixture legacy fields terrainAtUnderCanopy/Center sample ordinary outside grass[-3,0]; this pavilion has no canopy."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete enclosed wooden pavilion exterior at Yasnaya Polyana: compact mapped rectangle, pale mint horizontal siding above a vertical-board dado, steep weathered-gray gable roof with overhangs, vertical-board gables, toothed verge and eave trim, three-part southeast window and single northwest window, triangular attic vents and a recessed northeast side entrance. No invented open gazebo, interior exhibit, copied signs, inscriptions, people or photograph pixels. The unseen door and hidden side inventory are explicitly reconstructed. Photo-led approximate dimensions:2.85m wall eaves and1.65m gable rise, roof ridge4.5m above floor, low0.66m vertical-board dado and small attic vents. Three-part front window2.3x1.5m; opposite single window0.62x1.3m. Hidden side entrance0.85x2.03m, support/threshold levels and exact historical material/trim measurements remain approximate. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside southeast provider[0,4] supplies224.87881894030872m datum. Boundary grades0.011..0.521m, floor+0.7m and foundation-0.2m. Only occupied room and two narrow northeast entry aprons cut ground. Coarse slope exposes a0.18..0.69m plinth, larger than parts of the pictured footing; no terrain flattening or bespoke survey. Original approaches, independent neighbors, roads and ponds remain. Ordinary pictures establish the large and small gable windows, blank southwest wall, board pattern and roof/verge silhouette. The unseen northeast door is deliberately reconstructed. Southeast/northwest gable assignment follows Tolstoy House context and remains approximate. Shared cedar roof texture approximates an unresolved weathered-gray roof finish. Signs, fine carvings and interior exhibit are omitted. Fixed synthetic planes partly bury grade-specific plinth/aprons; native views cover the whole envelope. Other estate structures remain procedural context in this isolated fixture. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:4677adfc9f2f55f3a8ced46e831ee2cd997ebb539c2d0d5ab5ad5afc32092a6a\",\"bytes\":139264,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.glb\",\"hash\":\"sha256:b27a6c3b3fc26aa865eee3a6f05006be32efb7b22476f3bb4e5d29488dbd17ec\",\"bytes\":138696,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:fd000d7fff5fae6a3b5eec355484ffb755fc592d8ecf27e2dfd32a728a5d559d\",\"bytes\":17412,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:60e19b8022d0f3e1e777293741708d7dd92be10017202dd50d67c56a567f48f7\",\"bytes\":30928,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:987372465ea7d32e61d5edcba22888e2e1236ff165672d42dc798d8204438c58\",\"bytes\":110756,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:5bd9df196c07fd5be51b65c8365ac3153fbf98db9e39f69f9415cb84970d3497\",\"bytes\":133028,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-pavilion-gables-roof-recessed-windows-vents-and-side-entrance",
+        "passed": true,
+        "notes": "120 actual mesh/contact probes; all six GLB pins, finite attributes, shared bindings, LOD caps, separate vertex streams and initial download budget pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Independent pavilion way678672695 matches the small4.3m-long by3.5m-wide map footprint southwest of Tolstoy House. Ordinary front and opposite-gable photographs establish both gables, blank southwest long wall, triangular vents and differing window widths. The Tolstoy House context behind the three-part-window view supports southeast-facing large window and northwest-facing single window. X northeast across width, Z southeast along ridge, baked native axes with heading0 at the unchanged assigned member anchor. Door on hidden northeast side is a plausible reconstruction, not a photographed inventory; absolute gable assignment remains approximate. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside southeast provider[0,4] supplies224.87881894030872m datum. Boundary grades0.011..0.521m, floor+0.7m and foundation-0.2m. Only occupied room and two narrow northeast entry aprons cut ground. Coarse slope exposes a0.18..0.69m plinth, larger than parts of the pictured footing; no terrain flattening or bespoke survey. Original approaches, independent neighbors, roads and ponds remain. Inspected current native whole, large-window/vent, opposite-gable and reconstructed-side-door views. Both gables and the complete mapped envelope read coherently. Removed an inherited sill strip across the recessed door and cooled the shared cedar roof tint. One owned record is replaced while242 resident independent buildings, roads and40070.675m² pond water remain. Gable assignment, unseen entrance, exact historical roof finish and coarse0.18..0.69m exposed footing remain approximate. One owned map record replaced while242 resident/294 wider independent buildings, original approaches, roads and40070.675m² pond water remain. Only occupied room and two side entry aprons cut original ground. Failure retains all243 originals; every LOD/failure/unload restores ground/water and releases geometry. Fixture legacy fields terrainAtUnderCanopy/Center sample ordinary outside grass[-3,0]; this pavilion has no canopy."
+    },
+    "inputHash": "sha256:11dfe539da8ff0c9eb4d95fcf8334fab7ab7a570eceea77908196197795a8eba",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:11dfe539da8ff0c9eb4d95fcf8334fab7ab7a570eceea77908196197795a8eba",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected all48 current portable/shared/medium-fi/native frames in labeled sheets, plus full-resolution native gable-window and side-door views. The enclosed mint wooden pavilion reads as a complete small cottage, with a three-part front window, narrow opposite window, actual triangular attic recesses, vertical dado/gables, steep gray roof, toothed verge trim and a recessed side entrance with supported threshold. The continuous pass removed central battens crossing attic vents, replaced a gable-blocking roof closure with two thin closed roof sheets, removed siding trim crossing the door and cooled the shared cedar roof tint. Hidden entrance and native plinth exposure remain approximate.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/preview.png",
+          "hash": "sha256:4b085d9933e254b99ea6680058427eaad00a500492ea0cdc663360a516e30fc1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:be998725ffc4e91045ff8ba9a218fdd4adf8a8e6e1049c1ce1b0d427cccb65d1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:9c10b082f5c312c1761a8698857d76fd2725b2d91332741668dff091d6ae2324"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:e1882ae833c59242e25f592d4231ef9c913afb2f6ac2b1c6e5111a0941ceb871"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:3bcd535c0c100020e9536cdc405ce0c7a3e6815c8776cfced0aa090e48832f6b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/whole-pavilion-three-part-window-and-gabled-roof.png",
+          "hash": "sha256:641aa3ca714acdb515b44a904daeaf9b4451778a3688d11eaafa576b959a4b36"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/three-part-window-recess-gable-vent-and-toothed-verge.png",
+          "hash": "sha256:1873c26ae5bb097aede72118a19f03da670883d159f3ead4ccaf01a483a8a2ae"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/opposite-single-window-gable-and-low-plinth.png",
+          "hash": "sha256:ab2da3674a19e7b79fa07215633cd2fa92c6b8623c153e945d4b7ce0bf18caf4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/reconstructed-side-door-supported-apron-and-blank-side.png",
+          "hash": "sha256:1cbae1bcf9efafc37ba9e66066e1c43fc6e103d87a50619417ba0de1c072f693"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:72faea2bdce1ff81ed979b618fad01c7eacf1eea523f80be06a833d9de509698"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:8b3075d325c572cc9e10416394a8445433dcb07da83b8e855f498a29c3f27609"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:2f253c8b1a5ae9c25164e86426bce4857e4dd71ffb4ddcf4518c806f069f253c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:d13b16a856b3489e39ddf375b44026f29124b80aafb9572482c2bb7b8ce065a2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/shared/whole-pavilion-three-part-window-and-gabled-roof.png",
+          "hash": "sha256:0e3a66cc7607a84192b134e7f5033d0051c3e2031628dcb8464250686484d07d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/shared/three-part-window-recess-gable-vent-and-toothed-verge.png",
+          "hash": "sha256:29557e57fa2aa043d0339aac7695be3c7bb5b0007418f4ea6d9b79ddd92efb57"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/shared/opposite-single-window-gable-and-low-plinth.png",
+          "hash": "sha256:634967a4d79d792b6317a7ead0a526f54c9e8103d2a897de91ca2a8f467cb1aa"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/shared/reconstructed-side-door-supported-apron-and-blank-side.png",
+          "hash": "sha256:9fe69b918ffc304bef2f8326463ebf14c4f16736459e23aad089b1fbff961757"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:06b9bea737c4b10d9b58e479b04c8e4987d3d95e64d4ed24570a9f309ffdd45c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:d1b1f510fbe5d697cc4a4b1c59867cac2f5dc9ea211dc982551a4dbea96e9442"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:691c986626812932a3c041cdb5fadb172aa79b478fd8aa52c3087e8934ca523b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:bdb5a304b909f736891e68ce178314c21fabd2c0d26de6210be5bf003d0365bb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:efe2416ff6864c1031ddd8aee03ee39c740d6ad8567033ca2b9940d07ad7f7f1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:bb09fd5f8a268bcd291a67ea3f051d507d08a9e9d1406a9ae46911117ce4b711"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:d78858ca13f6cddd8fb3d3fee686477c2fb199bf886f159a374bf28c4894b292"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:af54cee37fdbde2e18ff12cf7338410e84409be57757d37eb8f19b6ed5c0141a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:f3ee9401cdbce28ab314c59cb7ee9385542eb0f64c35d8a533cb56b0bb143e5c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:2a8079e632989149360fe30ad3840351da396e6e933873d0d6bd7b1374b592c4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:4cbd66ca007e1ba63072c5f558192271fe6af03bf479b97506329b55e6160d8f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:31d08ae73627b8fdff20a03f985e6acd56ca8c4f88731414b2a58e9c9510abb8"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:3720638d02d04d28597743a4e186b328a137e1fbeb9a4049994b890060d24d0a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:ad86583099146885145515a9fb6d147ac2ecf4ef108bd643719da3c4c451fb0a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/whole-pavilion-three-part-window-and-gabled-roof.png",
+          "hash": "sha256:7aca81cf30d3fb2849a286f6e7cc7f2bfb9a47cf6dda34a0187fd0ce0feabc02"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/three-part-window-recess-gable-vent-and-toothed-verge.png",
+          "hash": "sha256:cd4d5372870bc554619d60f9b4aacd6a16f2914ca217d4edf81e8e2d362d7bc1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/opposite-single-window-gable-and-low-plinth.png",
+          "hash": "sha256:b5485c04c55cbb28bd63d0127652e9eb9c78de5a465bb36948d83932f46d29e9"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/reconstructed-side-door-supported-apron-and-blank-side.png",
+          "hash": "sha256:2e0e5dedd062328eae488089a0a56e48377075565fe3becb4755226348b66a49"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:03e784cdc688ee089cc9c1a0282f9cf2cf8c0dbb4f8e6cab7878a8629b7a8fdc"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:d78858ca13f6cddd8fb3d3fee686477c2fb199bf886f159a374bf28c4894b292"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:2e58de9fb4e7addf2bc6f56d9273996d3968d6c47056c444b03f86042556407d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:c0f991f5fa7a9dc8403ecadfdc1d634c8e68d3ccfde0e29632dc8d49f590d190"
+        },
+        {
+          "path": ".artifacts/pavilion-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:34529b82de6bbac799f778238d7e2a0aebb8d9627d4722a6e1259fb178d08870"
+        },
+        {
+          "path": ".artifacts/pavilion-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:51d6a0afcf86818a0aaa130f698210ad36117b88dfd8a9fac27ebac2c77e04eb"
+        },
+        {
+          "path": ".artifacts/pavilion-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:a5ef70c4793b38e43ba7be3c84b76f9ecc202fbfba49e3ebead3413715e861ac"
+        },
+        {
+          "path": ".artifacts/pavilion-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:70322302c16800dbb015dfdfc9d7415bcd466f37f2294a0babf8ff8d92ce3d45"
+        },
+        {
+          "path": ".artifacts/pavilion-integration/shots/final-closeup-whole-pavilion-three-part-window-and-gabled-roof.png",
+          "hash": "sha256:c0b64b9c294f037d14f16cb39976e80ebdd54c4f07f40544d83b9fb155c9ea10"
+        },
+        {
+          "path": ".artifacts/pavilion-integration/shots/final-closeup-three-part-window-recess-gable-vent-and-toothed-verge.png",
+          "hash": "sha256:be7b6a45e7f09fea67b3a4637425ed7f8fc47ecf403ca52426485e61a9b6881a"
+        },
+        {
+          "path": ".artifacts/pavilion-integration/shots/final-closeup-opposite-single-window-gable-and-low-plinth.png",
+          "hash": "sha256:ee3b4bac2bbd7cde544ccfba478b609e9c29260942d37a4164251b5fd9301bfb"
+        },
+        {
+          "path": ".artifacts/pavilion-integration/shots/final-closeup-reconstructed-side-door-supported-apron-and-blank-side.png",
+          "hash": "sha256:d90bb73e1cf06ec85c2233dd65aabfed98f7b6a46a1ba6432798fb7f6cc6841e"
+        },
+        {
+          "path": ".artifacts/pavilion-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:90bede88ec53031e1f614f650c0885120920112169bebc8c42fe660837192576"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:11dfe539da8ff0c9eb4d95fcf8334fab7ab7a570eceea77908196197795a8eba",
+      "sourceHash": "sha256:4677adfc9f2f55f3a8ced46e831ee2cd997ebb539c2d0d5ab5ad5afc32092a6a",
+      "runtimeHash": "sha256:b27a6c3b3fc26aa865eee3a6f05006be32efb7b22476f3bb4e5d29488dbd17ec",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/models/source.glb": "sha256:4677adfc9f2f55f3a8ced46e831ee2cd997ebb539c2d0d5ab5ad5afc32092a6a",
+        "content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.glb": "sha256:b27a6c3b3fc26aa865eee3a6f05006be32efb7b22476f3bb4e5d29488dbd17ec",
+        "content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.skyline.glb": "sha256:fd000d7fff5fae6a3b5eec355484ffb755fc592d8ecf27e2dfd32a728a5d559d",
+        "content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.district.glb": "sha256:60e19b8022d0f3e1e777293741708d7dd92be10017202dd50d67c56a567f48f7",
+        "content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.street.glb": "sha256:987372465ea7d32e61d5edcba22888e2e1236ff165672d42dc798d8204438c58",
+        "content/worldgen/assets/places/uc/ucd/pavilion_yasnaya_polyana/model.closeup.glb": "sha256:5bd9df196c07fd5be51b65c8365ac3153fbf98db9e39f69f9415cb84970d3497"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35185050761527
+      ],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35185050761527,
+          "owned": true,
+          "covered": 0.9999998905778369,
+          "area": 15.114431056280079,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000022732090130261895,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.pavilion_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.128118940308724,
+            "max": 18.85598105969129
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:34529b82de6bbac799f778238d7e2a0aebb8d9627d4722a6e1259fb178d08870",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 271817
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -2.18025277001414,
+                6,
+                14.044447225108065
+              ],
+              "lookAt": [
+                0,
+                2.7,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000022732090130261895,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.shingle_cedar": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.pavilion_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.128118940308724,
+            "max": 18.85598105969129
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:51d6a0afcf86818a0aaa130f698210ad36117b88dfd8a9fac27ebac2c77e04eb",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 271943
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -2.18025277001414,
+                6,
+                14.044447225108065
+              ],
+              "lookAt": [
+                0,
+                2.7,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000022732090130261895,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.shingle_cedar": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.pavilion_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.128118940308724,
+            "max": 18.85598105969129
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:a5ef70c4793b38e43ba7be3c84b76f9ecc202fbfba49e3ebead3413715e861ac",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272855
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -2.18025277001414,
+                6,
+                14.044447225108065
+              ],
+              "lookAt": [
+                0,
+                2.7,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000022732090130261895,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.shingle_cedar": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.pavilion_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.128118940308724,
+            "max": 18.85598105969129
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:70322302c16800dbb015dfdfc9d7415bcd466f37f2294a0babf8ff8d92ce3d45",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 273111
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -2.18025277001414,
+                6,
+                14.044447225108065
+              ],
+              "lookAt": [
+                0,
+                2.7,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-whole-pavilion-three-part-window-and-gabled-roof.png",
+            "hash": "sha256:c0b64b9c294f037d14f16cb39976e80ebdd54c4f07f40544d83b9fb155c9ea10",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 273111
+            },
+            "camera": {
+              "name": "whole-pavilion-three-part-window-and-gabled-roof",
+              "position": [
+                -1.4704116823854374,
+                4.5,
+                11.306541888849322
+              ],
+              "lookAt": [
+                0,
+                2.8,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-three-part-window-recess-gable-vent-and-toothed-verge.png",
+            "hash": "sha256:be7b6a45e7f09fea67b3a4637425ed7f8fc47ecf403ca52426485e61a9b6881a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 273111
+            },
+            "camera": {
+              "name": "three-part-window-recess-gable-vent-and-toothed-verge",
+              "position": [
+                4.056128497260081,
+                3.8,
+                6.89549284777489
+              ],
+              "lookAt": [
+                1.1325080394646891,
+                3.3,
+                1.9252844409272167
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-opposite-single-window-gable-and-low-plinth.png",
+            "hash": "sha256:ee3b4bac2bbd7cde544ccfba478b609e9c29260942d37a4164251b5fd9301bfb",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 273391
+            },
+            "camera": {
+              "name": "opposite-single-window-gable-and-low-plinth",
+              "position": [
+                -10.08968473906311,
+                4,
+                -3.3463804126723193
+              ],
+              "lookAt": [
+                0,
+                2.7,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-reconstructed-side-door-supported-apron-and-blank-side.png",
+            "hash": "sha256:d90bb73e1cf06ec85c2233dd65aabfed98f7b6a46a1ba6432798fb7f6cc6841e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 273391
+            },
+            "camera": {
+              "name": "reconstructed-side-door-supported-apron-and-blank-side",
+              "position": [
+                6.38847678561738,
+                3,
+                -4.9180651032319425
+              ],
+              "lookAt": [
+                0.6084285748931062,
+                2.5,
+                -0.9379843651434407
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185050761527,
+              "area": 15.114600445971238
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.pavilion_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.128118940308724,
+            "max": 18.85598105969129
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:90bede88ec53031e1f614f650c0885120920112169bebc8c42fe660837192576",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 271705
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -2.18025277001414,
+                6,
+                14.044447225108065
+              ],
+              "lookAt": [
+                0,
+                2.7,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Complete enclosed wooden pavilion exterior at Yasnaya Polyana: compact mapped rectangle, pale mint horizontal siding above a vertical-board dado, steep weathered-gray gable roof with overhangs, vertical-board gables, toothed verge and eave trim, three-part southeast window and single northwest window, triangular attic vents and a recessed northeast side entrance. No invented open gazebo, interior exhibit, copied signs, inscriptions, people or photograph pixels. The unseen door and hidden side inventory are explicitly reconstructed. Photo-led approximate dimensions:2.85m wall eaves and1.65m gable rise, roof ridge4.5m above floor, low0.66m vertical-board dado and small attic vents. Three-part front window2.3x1.5m; opposite single window0.62x1.3m. Hidden side entrance0.85x2.03m, support/threshold levels and exact historical material/trim measurements remain approximate. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside southeast provider[0,4] supplies224.87881894030872m datum. Boundary grades0.011..0.521m, floor+0.7m and foundation-0.2m. Only occupied room and two narrow northeast entry aprons cut ground. Coarse slope exposes a0.18..0.69m plinth, larger than parts of the pictured footing; no terrain flattening or bespoke survey. Original approaches, independent neighbors, roads and ponds remain. Ordinary pictures establish the large and small gable windows, blank southwest wall, board pattern and roof/verge silhouette. The unseen northeast door is deliberately reconstructed. Southeast/northwest gable assignment follows Tolstoy House context and remains approximate. Shared cedar roof texture approximates an unresolved weathered-gray roof finish. Signs, fine carvings and interior exhibit are omitted. Fixed synthetic planes partly bury grade-specific plinth/aprons; native views cover the whole envelope. Other estate structures remain procedural context in this isolated fixture. Physical phone/laptop and dense-city timings remain pending."
+  ]
+}

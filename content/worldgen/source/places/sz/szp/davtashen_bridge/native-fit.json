@@ -1,0 +1,213 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "candidateId": "davtashen_bridge",
+  "method": "Ordinary pictures and standard PMTiles/Mapzen only.",
+  "anchor": [
+    44.493313519,
+    40.209637037
+  ],
+  "heading": -0.977148492357,
+  "elevationMeters": 1014.15,
+  "standardInputs": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-20",
+      "url": "https://build.protomaps.com/20261020.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:3f50c7524810d402078931e212739989b81ed2b0ac79957b9439b17fde238409"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        957.05859375,
+        1249.34375
+      ],
+      "flattenedSubseaSamples": 0,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:1117632bfaef824c5e603a373c88c047890f32ebe36a7866205a67b492826228"
+    }
+  },
+  "approachJoinSamples": [
+    {
+      "name": "davtashen-join--7.14",
+      "point": [
+        -248.5465,
+        -7.14
+      ],
+      "expectedDeck": 1095.3,
+      "roadHeight": 1095.3000616186573,
+      "rawGround": 1094.8005163407024
+    },
+    {
+      "name": "davtashen-join-6.14",
+      "point": [
+        -248.5465,
+        6.14
+      ],
+      "expectedDeck": 1095.3,
+      "roadHeight": 1095.2959974850596,
+      "rawGround": 1094.810440879756
+    },
+    {
+      "name": "davtashen-join-13.35",
+      "point": [
+        -248.5465,
+        13.35
+      ],
+      "expectedDeck": 1095.3,
+      "roadHeight": 1095.3000251038868,
+      "rawGround": 1094.7011411818821
+    },
+    {
+      "name": "davtashen-join--12.39",
+      "point": [
+        -248.5465,
+        -12.39
+      ],
+      "expectedDeck": 1095.3,
+      "roadHeight": 1095.299721867536,
+      "rawGround": 1094.6757742305408
+    },
+    {
+      "name": "arabkir-join--12.12",
+      "point": [
+        248.5465,
+        -12.12
+      ],
+      "expectedDeck": 1117,
+      "roadHeight": 1116.993618851573,
+      "rawGround": 1115.445434491273
+    },
+    {
+      "name": "arabkir-join-5.34",
+      "point": [
+        248.5465,
+        5.34
+      ],
+      "expectedDeck": 1117,
+      "roadHeight": 1116.9987198728613,
+      "rawGround": 1116.134925030252
+    },
+    {
+      "name": "arabkir-join--6.36",
+      "point": [
+        248.5465,
+        -6.36
+      ],
+      "expectedDeck": 1117,
+      "roadHeight": 1116.9957693170425,
+      "rawGround": 1115.6263461969254
+    },
+    {
+      "name": "arabkir-join-12.74",
+      "point": [
+        248.5465,
+        12.74
+      ],
+      "expectedDeck": 1117,
+      "roadHeight": 1117.0009647440957,
+      "rawGround": 1116.5205290418714
+    }
+  ],
+  "groundProbeSamples": [
+    {
+      "x": 220,
+      "z": 0,
+      "rendered": 1107.5517809069202,
+      "raw": 1107.5379940491878
+    },
+    {
+      "x": 260,
+      "z": 30,
+      "rendered": 1120.1002013720213,
+      "raw": 1120.0969956105284
+    },
+    {
+      "x": 260,
+      "z": 0,
+      "rendered": 1114.449951171875,
+      "raw": 1118.3480241989048
+    }
+  ],
+  "scopedTerrainSupport": {
+    "outline": [
+      [
+        232,
+        -17.4
+      ],
+      [
+        280,
+        -17.4
+      ],
+      [
+        280,
+        17.4
+      ],
+      [
+        232,
+        17.4
+      ]
+    ],
+    "minHeight": 100.3,
+    "preservePaving": true,
+    "basis": "Bounded48×34.8m Arabkir approach retaining cut at sourceY100.3m; three original modeled support walls meet the sampled native ground at its exposed perimeter. Bridge and road centerlines remain exact; these walls are visualization support inferred from the standard terrain, not surveyed bridge members. Original DEM, water, paving and outside ground remain; unload restores native ground."
+  },
+  "limitations": [
+    "Foundation elevations, structural sections and precise span/end allocation are approximate photo interpretations. A 4.37% longitudinal visualization grade follows the standard native bank endpoints; it is not an as-built surveyed road profile.",
+    "Nominal 92 m height has an unresolved datum; native terrain is coarse in the gorge. Native placement is not approved until current viewer renders are inspected.",
+    "Hidden structure, temporary signs/banners, vehicles, exact present traffic and trolley operation, adjoining retaining walls and utility lines crossing the gorge are excluded.",
+    "Physical laptop and phone/tablet timing measurements remain pending.",
+    "Bounded48×34.8m Arabkir approach retaining cut at sourceY100.3m; three original modeled support walls meet the sampled native ground at its exposed perimeter. Bridge and road centerlines remain exact; these walls are visualization support inferred from the standard terrain, not surveyed bridge members. Original DEM, water, paving and outside ground remain; unload restores native ground."
+  ]
+}

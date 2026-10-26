@@ -362,6 +362,20 @@ export class InputMap {
   value(action: string): number {
     return this.values.get(action) ?? 0;
   }
+  /** Whether an enabled, connected axis supplies this action, including a zero reading. */
+  hasAxis(action: string): boolean {
+    return (
+      !this.disposed &&
+      this.accepting &&
+      (this.profile.axes ?? []).some(
+        (binding) =>
+          binding.action === action &&
+          this.pads.some(
+            (pad) => matches(binding.device, pad) && Number.isFinite(pad.axes[binding.axis]),
+          ),
+      )
+    );
+  }
   isActive(action: string): boolean {
     return this.value(action) !== 0;
   }

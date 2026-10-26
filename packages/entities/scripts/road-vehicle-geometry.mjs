@@ -131,7 +131,7 @@ export function roadVehicleModel(s) {
     return d.add(g, material);
   }
   const path = (d, points, radius, material) => {
-    for (let i = 1; i < points.length; i++) d.rod(points[i - 1], points[i], radius, material);
+    d.path(points, radius, material);
   };
   const belt = H * f.belt,
     clearance = Math.max(0.13, R * 0.48);

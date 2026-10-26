@@ -59,7 +59,7 @@ exported from `@bendyline/molen-earth/client` as `EARTH_SKY_PALETTE`, `EARTH_LIG
 | Cast shadows | On from the Medium tier up, in a shadow map that follows the camera | Do not bake shadows or ambient occlusion into colors or textures |
 | Sky | Saturated zenith `#2a6cc4` over a pale horizon `#b2cde4`, both lifted by ACES on screen | Large pure-white surfaces outshine it; prefer off-whites and creams |
 | Haze | The sky's own horizon color, from about 2 km | Distant ground dissolves into the horizon; do not add a fog color of your own |
-| Water | `#286d83` with a soft sky reflection | Lakes and bays read clearly blue, never grey |
+| Water | Muted blue-green `#356b78` with a soft sky reflection | Keep ripples legible nearby; fade small wave detail at airplane distance |
 
 Two consequences matter for authoring:
 

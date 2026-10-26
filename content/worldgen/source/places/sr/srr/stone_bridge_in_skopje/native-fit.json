@@ -1,0 +1,131 @@
+{
+  "status": "authored-approximation",
+  "anchor": [
+    21.433244271,
+    41.9971125
+  ],
+  "heading": 0.7410149177885357,
+  "datum": "sea-level",
+  "elevationMeters": 241.5,
+  "controls": [
+    {
+      "modelLocal": [
+        -109.458947,
+        0
+      ],
+      "terrainMeters": 244.05076013016452,
+      "modelDeckMeters": 249.2
+    },
+    {
+      "modelLocal": [
+        -59,
+        0
+      ],
+      "terrainMeters": 243.2307525671864,
+      "modelDeckMeters": 252.7
+    },
+    {
+      "modelLocal": [
+        -17.35,
+        0
+      ],
+      "terrainMeters": 243.68644575319937,
+      "modelDeckMeters": 252.7
+    },
+    {
+      "modelLocal": [
+        12,
+        0
+      ],
+      "terrainMeters": 244.18629754977556,
+      "modelDeckMeters": 252.7
+    },
+    {
+      "modelLocal": [
+        109.458947,
+        0
+      ],
+      "terrainMeters": 246.61453836561674,
+      "modelDeckMeters": 249.2
+    }
+  ],
+  "provenance": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-20 daily archive",
+      "url": "https://build.protomaps.com/20261020.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:c2111618672c47aab845bbd07f449f6fbff741e676d1a3d2c7e3a3802778f42e"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        238.78125,
+        937.671875
+      ],
+      "flattenedSubseaSamples": 0,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:50cb60bc359ccd5a2751c99be020957a80d9dd764d2f9c3e8ab3b97eb7cf7837"
+    }
+  },
+  "preserved": [
+    "Original standard DEM",
+    "Native river and shoreline behavior",
+    "Mapped buildings and independent road plans"
+  ],
+  "limitations": [
+    "Historical channel-bottom datum and photo-reconstructed deck/arch heights remain approximate.",
+    "Geographic approval requires current native-view inspection; this input records the proposed contract."
+  ]
+}

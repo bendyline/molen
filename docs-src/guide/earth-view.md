@@ -572,13 +572,46 @@ footprint polygon. It replaces the rectangle for suppression, including concave 
 parallel road segments outside it remain intact. Connection stations use the outline's outer
 intersections with native Z=0, ordered negative to positive X. Without an intersecting outline,
 they fall back to X=-length/2 and X=+length/2. `deckHeights` keeps that endpoint order.
+When a curved crossing's actual ends lie away from native Z=0, supply
+`replaceRoads.deckEndpoints: [[negativeEndX, negativeEndZ], [positiveEndX, positiveEndZ]]`.
+These native coordinates override the inferred connection stations and follow the model's
+heading and X/Z scale. They require `deckHeight` or `deckHeights`, with the same endpoint order.
+For side connections on a sloping or curved deck, add `deckProfile: [[x, y, z], ...]` in
+increasing X order. Remaining bridge fragments join at their actual outline cut using the
+nearest profile segment's interpolated height. The model's scale and resolved datum apply.
+`includeTransverseBridges: true` also replaces bridge-tagged side connectors that terminate
+inside the exact outline, such as paths covered by viewing pods. It requires an outline;
+untagged ground crossings, tunnels, through crossings with both endpoints outside the model,
+and bridge segments outside the outline remain independent.
 If the asset includes its retaining walls and approach pavement, set
 `replaceRoads.includeConnectedApproaches: true`. A grade road is then clipped inside the outline
 only if it shares a covered endpoint with a mapped bridge and continues outward along the bridge
 axis. The remaining grade fragment receives a 20 m terrain blend. Nearby roads, transverse paths
 and tunnels remain intact. This requires the source tile to retain the shared bridge/approach
 endpoint; disconnected or generalized map geometry is left in place.
+For this opted-in mode, a retained mapped bridge tail up to 32 m can carry its deck height
+to the connected street, including through one covered gateway up to 8 m long. The gateway
+itself stays unchanged. Raised ground approaches receive retaining side and end faces down
+to the original terrain; their paving supplies the top. These supports follow the model's
+load and unload lifetime. They provide approximate continuity where coarse elevation data
+misses a bank or quay; they do not establish surveyed ground levels.
 Sunken structures can declare `groundCutout: { outline: [[x, z], ...], basis: 'source evidence' }` on a placement. The simple polygon uses native model metres and follows the same heading and scale as the model. It should bound the ground opening covered by the authored concourse or rim. The terrain pyramid subtracts the polygon from actual elevation and draped ground triangles across tile and LOD boundaries, preserving interpolated heights and surface attributes along its edge. The cutout becomes active only when its successfully loaded structure is visible, and the original ground returns on layer hiding or eviction. Failed or cancelled models leave the ground intact. Heights remain available for anchoring; an opening does not itself author walkable floors or collision. Separate excavations can add `additionalOutlines: [[[x, z], ...], ...]` to the same object (up to 64 total polygons). Ground between those outlines stays intact; every opening needs matching model geometry. Client integrations can register the same set with `setTerrainGroundCutouts(object, outlines)`. The singular `setTerrainGroundCutout` remains available for one polygon.
+
+Bridge openings can set `groundCutout.minHeight` to a native model Y threshold. Only ground
+above that threshold is removed inside the outlines and capped at the threshold; lower dry
+riverbanks remain visible. This explicitly reconstructs a bounded rendered bank without changing
+source height samples. It must be supported by the model's site-fit evidence.
+When `preservePaving` is set, `groundCutout.pavingOutlines` can still name smaller explicit
+paving areas that need the same treatment, such as a river walk passing below a bridge.
+Approach roads outside those paving outlines retain their deck-connection heights and geometry.
+Custom owners pass `{ minHeight }` as the fourth argument to `setTerrainGroundCutouts`.
+The threshold follows the owner's vertical translation and scale, like the existing ceiling.
+
+Bridge landings can set `groundCutout.preservePaving: true` to open coarse terrain and
+generated shoreline walls while retaining native approach roads and sidewalks. The default
+also removes covered paving, as required by sunken buildings. Custom paving adapters use
+`markTerrainPavementSurface`; custom owners pass `{ preservePaving: true }` as the fourth
+argument to `setTerrainGroundCutouts`. Water and source elevation samples remain independent.
 
 For separated parts, `groundCutout.outlines` supplies the complete set of up to 64 simple polygons
 and supersedes the single `outline`. Keep `outline` as the primary boundary for compatibility.

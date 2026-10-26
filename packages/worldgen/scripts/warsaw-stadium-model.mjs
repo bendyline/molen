@@ -1,5 +1,5 @@
 /** Warsaw: mapped72-column plan, two cable rings, floating needle and woven expanded-metal basket. */
-import { beam, normalFor } from './authored-structure-mesh.mjs';
+import { beam, beamPath, normalFor } from './authored-structure-mesh.mjs';
 import { lathe as latheY, transformed } from './lighthouse-models.mjs';
 import { chair, curve, face, soccerPitch } from './stadium-models.mjs';
 import { box, tube } from './structure-mesh.mjs';
@@ -239,7 +239,7 @@ function wovenSkin(out) {
             color,
           );
         else out.addQuad('diamond', 'metric:uv', inside, ni, uv, color);
-        for (let k = 0; k < 4; k++) beam(out, 'metal', p[k], p[(k + 1) % 4], 0.045, 0.035, color);
+        beamPath(out, 'metal', p.slice(0, 4), 0.045, 0.035, color, true);
         if (j === 0 || j === 3) {
           const mid = mix(p[0], p[3], 0.5),
             inside = rad((A + B) / 2, Math.hypot(...plan.columns[i]), mid[1]);

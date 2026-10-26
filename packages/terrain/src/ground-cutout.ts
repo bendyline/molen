@@ -5,9 +5,16 @@ type Point = readonly [number, number];
 export type TerrainGroundOutline = readonly Point[];
 const owners = new WeakMap<THREE.Object3D, readonly TerrainGroundOutline[]>();
 const ceilings = new WeakMap<THREE.Object3D, number>();
+const floors = new WeakMap<THREE.Object3D, number>();
+const pavementOpenings = new WeakMap<THREE.Object3D, readonly TerrainGroundOutline[]>();
 const surfaces = new WeakSet<THREE.Mesh>();
 const waterSurfaces = new WeakSet<THREE.Mesh>();
 const waterOwners = new WeakSet<THREE.Object3D>();
+const shorelineOwners = new WeakSet<THREE.Object3D>();
+const shorelineSurfaces = new WeakSet<THREE.Mesh>();
+const pavementSurfaces = new WeakSet<THREE.Mesh>();
+const preservePavementOwners = new WeakSet<THREE.Object3D>();
+const shorelineLevels = new WeakMap<THREE.Object3D, readonly number[]>();
 const ownerRefs = new Set<WeakRef<THREE.Object3D>>();
 const surfaceRefs = new Set<WeakRef<THREE.Mesh>>();
 interface CutState {
@@ -46,28 +53,43 @@ function sameNumbers(a: readonly number[], b: readonly number[]): boolean {
 }
 const states = new WeakMap<THREE.Mesh, CutState>();
 
-/** Mark a mesh that represents ground (bare elevation, draped land cover or paving). */
-export function markTerrainGroundSurface(mesh: THREE.Mesh): void {
+/** Mark ground for model openings. Native shorelines clear elevation/landcover, not paving. */
+export function markTerrainGroundSurface(mesh: THREE.Mesh, shoreline = true): void {
   if (!surfaces.has(mesh)) surfaceRefs.add(new WeakRef(mesh));
   surfaces.add(mesh);
   waterSurfaces.delete(mesh);
+  pavementSurfaces.delete(mesh);
+  if (shoreline) shorelineSurfaces.add(mesh);
+  else shorelineSurfaces.delete(mesh);
 }
 
 /** Mark native water that can be replaced by an explicit model-owned water opening. */
 export function markTerrainWaterSurface(mesh: THREE.Mesh): void {
-  markTerrainGroundSurface(mesh);
+  markTerrainGroundSurface(mesh, false);
   waterSurfaces.add(mesh);
+}
+
+/** Mark native road/sidewalk surfaces that a terrain-only bridge opening may retain. */
+export function markTerrainPavementSurface(mesh: THREE.Mesh): void {
+  markTerrainGroundSurface(mesh, false);
+  pavementSurfaces.add(mesh);
 }
 
 /** A simple model-local X/Z polygon. Only a visible owner opens the ground.
  * `maxHeight` limits removal to ground below this model-local Y, preserving terrain above a bore.
+ * `minHeight` retains lower banks and caps removed high ground at that model-local Y.
  * Height-limited owners use translation and rotation about Y (no pitch/roll). */
 export function setTerrainGroundCutout(
   object: THREE.Object3D,
   outline: TerrainGroundOutline,
   maxHeight?: number,
+  options?: {
+    preservePaving?: boolean;
+    minHeight?: number;
+    pavingOutlines?: readonly TerrainGroundOutline[];
+  },
 ): void {
-  setTerrainGroundCutouts(object, [outline], maxHeight);
+  setTerrainGroundCutouts(object, [outline], maxHeight, options);
 }
 
 /** Separate model-local openings preserve ground between river channels, stairs and basements.
@@ -76,9 +98,18 @@ export function setTerrainGroundCutouts(
   object: THREE.Object3D,
   outlines: readonly TerrainGroundOutline[],
   maxHeight?: number,
+  options?: {
+    preservePaving?: boolean;
+    minHeight?: number;
+    pavingOutlines?: readonly TerrainGroundOutline[];
+  },
 ): void {
   if (maxHeight !== undefined && !Number.isFinite(maxHeight))
     throw new Error('Ground cutout ceiling must be finite');
+  if (options?.minHeight !== undefined && !Number.isFinite(options.minHeight))
+    throw new Error('Ground cutout floor must be finite');
+  if (options?.minHeight !== undefined && maxHeight !== undefined && options.minHeight > maxHeight)
+    throw new Error('Ground cutout floor must not exceed its ceiling');
   if (!outlines.length || outlines.length > 64)
     throw new Error('Ground cutouts require 1–64 outlines');
   const polygons = outlines.map((outline) => {
@@ -93,12 +124,48 @@ export function setTerrainGroundCutouts(
       throw new Error('Ground cutout requires 3–512 finite X/Z vertices');
     return points;
   });
+  const paving = options?.pavingOutlines?.map((outline) => {
+    if (
+      outline.length < 3 ||
+      outline.length > 512 ||
+      outline.some((p) => !p.every(Number.isFinite))
+    )
+      throw new Error('Paving cutout requires 3–512 finite X/Z vertices');
+    return outline.map(([x, z]) => [x, z] as Point);
+  });
+  if ((paving?.length ?? 0) > 64) throw new Error('Paving cutouts require at most64 outlines');
   if (!owners.has(object)) ownerRefs.add(new WeakRef(object));
   owners.set(object, polygons);
+  if (paving?.length) pavementOpenings.set(object, paving);
+  else pavementOpenings.delete(object);
   waterOwners.delete(object);
+  shorelineOwners.delete(object);
+  if (options?.preservePaving) preservePavementOwners.add(object);
+  else preservePavementOwners.delete(object);
+  if (options?.minHeight !== undefined) floors.set(object, options.minHeight);
+  else floors.delete(object);
   if (maxHeight !== undefined) {
     ceilings.set(object, maxHeight);
   } else ceilings.delete(object);
+}
+
+/** Internal: triangles from the rendered native water, already triangulated around islands.
+ * Tile residency owns these openings; loading a landmark is not required to expose a lake. */
+export function setTerrainShorelineCutouts(
+  object: THREE.Object3D,
+  outlines: readonly TerrainGroundOutline[],
+  levels: readonly number[],
+): void {
+  if (!outlines.length) return;
+  if (!owners.has(object)) ownerRefs.add(new WeakRef(object));
+  owners.set(object, outlines);
+  pavementOpenings.delete(object);
+  ceilings.delete(object);
+  floors.delete(object);
+  waterOwners.delete(object);
+  shorelineOwners.add(object);
+  preservePavementOwners.delete(object);
+  shorelineLevels.set(object, levels);
 }
 
 /** Replace only native water within this visible owner's footprint. Ground remains intact. */
@@ -180,11 +247,17 @@ export function subtractTerrainGroundGeometry(
   source: THREE.BufferGeometry,
   outlines: readonly TerrainGroundOutline[],
   maxHeights: readonly (number | undefined)[] = [],
+  minHeights: readonly (number | undefined)[] = [],
 ): THREE.BufferGeometry {
   const names = ['position', ...Object.keys(source.attributes).filter((n) => n !== 'position')];
   const attrs = names.map((n) => source.getAttribute(n));
   const cutters = outlines.flatMap((outline, i) =>
-    pieces(outline).map((points) => ({ points, bounds: bounds(points), maxHeight: maxHeights[i] })),
+    pieces(outline).map((points) => ({
+      points,
+      bounds: bounds(points),
+      maxHeight: maxHeights[i],
+      minHeight: minHeights[i],
+    })),
   );
   // A mapped bore has hundreds of short cutters. Index them so a fine DEM triangle
   // only visits nearby segments instead of scanning every opening on the tile.
@@ -337,6 +410,8 @@ export function subtractTerrainGroundGeometry(
   ): boolean => {
     const ceiling = cutter.maxHeight;
     if (ceiling !== undefined && corners.every((c) => c[1] > ceiling)) return true;
+    const floor = cutter.minHeight;
+    if (floor !== undefined && corners.every((c) => c[1] < floor)) return true;
     const points = cutter.points;
     for (let j = 0; j < points.length; j++) {
       const a = points[j] as Point,
@@ -433,11 +508,29 @@ export function subtractTerrainGroundGeometry(
             const ceiling = cutter.maxHeight;
             planes.push((p) => ceiling - (p[1] as number));
           }
+          // Bridges remove only obstructing high ground, retaining lower dry banks.
+          if (cutter.minHeight !== undefined) {
+            const floor = cutter.minHeight;
+            planes.push((p) => (p[1] as number) - floor);
+          }
           for (const distance of planes) {
             if (remainder.length < 3) break;
             const fragment = clipByDistance(remainder, (p) => -distance(p));
             if (fragment.length >= 3) outside.push(fragment);
             remainder = clipByDistance(remainder, distance);
+          }
+          if (cutter.minHeight !== undefined && remainder.length >= 3) {
+            const floor = cutter.minHeight;
+            const normalIndex = names.indexOf('normal');
+            const normalOffset = attrs.slice(0, normalIndex).reduce((n, a) => n + a.itemSize, 0);
+            outside.push(
+              remainder.map((p) => {
+                const cap = p.slice();
+                cap[1] = floor;
+                if (normalIndex >= 0) cap.splice(normalOffset, 3, 0, 1, 0);
+                return cap;
+              }),
+            );
           }
           return outside;
         });
@@ -494,6 +587,13 @@ export function subtractTerrainGroundGeometry(
   if (!source.boundingSphere) source.computeBoundingSphere();
   result.boundingBox = (source.boundingBox as THREE.Box3).clone();
   result.boundingSphere = (source.boundingSphere as THREE.Sphere).clone();
+  // A bridge floor can add a cap below the original grid, extending its bounds downward.
+  for (const floor of minHeights) {
+    if (floor !== undefined && floor < result.boundingBox.min.y) {
+      result.boundingBox.min.y = floor;
+      result.boundingBox.getBoundingSphere(result.boundingSphere);
+    }
+  }
   return result;
 }
 
@@ -533,10 +633,15 @@ export class TerrainGroundCutoutController {
       points: THREE.Vector3[];
       bounds: [number, number, number, number];
       maxHeight?: number;
+      minHeight?: number;
       water: boolean;
       owner: THREE.Object3D;
       outline: object;
       ceiling: number;
+      shoreline: boolean;
+      preservePaving: boolean;
+      pavingOnly: boolean;
+      minimumHeight?: number;
     }> = [];
     for (const ref of ownerRefs) {
       const object = ref.deref();
@@ -547,7 +652,12 @@ export class TerrainGroundCutoutController {
       if (!visibleWithin(object)) continue;
       object.updateWorldMatrix(true, false);
       const ceiling = ceilings.get(object);
-      for (const outline of owners.get(object) ?? []) {
+      const floor = floors.get(object);
+      const openings = [
+        ...(owners.get(object) ?? []).map((outline) => ({ outline, pavingOnly: false })),
+        ...(pavementOpenings.get(object) ?? []).map((outline) => ({ outline, pavingOnly: true })),
+      ];
+      for (const [index, { outline, pavingOnly }] of openings.entries()) {
         const points = outline.map(([x, z]) =>
           new THREE.Vector3(x, 0, z).applyMatrix4(object.matrixWorld),
         );
@@ -557,9 +667,24 @@ export class TerrainGroundCutoutController {
           outline,
           ceiling: ceiling ?? Number.NEGATIVE_INFINITY,
           water: waterOwners.has(object),
+          shoreline: shorelineOwners.has(object),
+          preservePaving: preservePavementOwners.has(object),
+          pavingOnly,
+          ...(shorelineOwners.has(object)
+            ? {
+                minimumHeight: new THREE.Vector3(
+                  0,
+                  shorelineLevels.get(object)?.[index] ?? 0,
+                  0,
+                ).applyMatrix4(object.matrixWorld).y,
+              }
+            : {}),
           bounds: bounds(points.map((p) => [p.x, p.z])),
           ...(ceiling !== undefined
             ? { maxHeight: new THREE.Vector3(0, ceiling, 0).applyMatrix4(object.matrixWorld).y }
+            : {}),
+          ...(floor !== undefined
+            ? { minHeight: new THREE.Vector3(0, floor, 0).applyMatrix4(object.matrixWorld).y }
             : {}),
         });
       }
@@ -588,7 +713,12 @@ export class TerrainGroundCutoutController {
       const nearby = cutters.filter(
         (c) =>
           c.water === waterSurfaces.has(mesh) &&
+          (!c.pavingOnly || pavementSurfaces.has(mesh)) &&
+          !(c.preservePaving && !c.pavingOnly && pavementSurfaces.has(mesh)) &&
+          (!c.shoreline || shorelineSurfaces.has(mesh)) &&
           worldBox &&
+          (c.minHeight === undefined || worldBox.max.y > c.minHeight) &&
+          (c.minimumHeight === undefined || worldBox.max.y > c.minimumHeight) &&
           overlaps([worldBox.min.x, worldBox.min.z, worldBox.max.x, worldBox.max.z], c.bounds),
       );
       if (!nearby.length) continue;
@@ -604,7 +734,13 @@ export class TerrainGroundCutoutController {
             : attribute.version,
         );
       for (const c of nearby)
-        depends.push(identity(c.outline), c.ceiling, ...c.owner.matrixWorld.elements);
+        depends.push(
+          identity(c.outline),
+          c.ceiling,
+          c.minHeight ?? Number.NEGATIVE_INFINITY,
+          c.minimumHeight ?? Number.NEGATIVE_INFINITY,
+          ...c.owner.matrixWorld.elements,
+        );
       const current = this.active.get(mesh);
       if (current?.depends !== undefined && sameNumbers(current.depends, depends)) {
         seen.add(mesh);
@@ -628,11 +764,17 @@ export class TerrainGroundCutoutController {
           ? undefined
           : new THREE.Vector3(0, c.maxHeight, 0).applyMatrix4(inverse).y,
       );
+      const minHeights = nearby.map((c) =>
+        c.minHeight === undefined
+          ? undefined
+          : new THREE.Vector3(0, c.minHeight, 0).applyMatrix4(inverse).y,
+      );
       if (!outlines.length) continue;
       seen.add(mesh);
       const key = JSON.stringify([
         outlines.map((outline) => outline.map(([x, z]) => [millimeters(x), millimeters(z)])),
         maxHeights.map((height) => (height === undefined ? undefined : millimeters(height))),
+        minHeights.map((height) => (height === undefined ? undefined : millimeters(height))),
         Object.values(source.attributes).map((a) =>
           a instanceof THREE.InterleavedBufferAttribute ? a.data.version : a.version,
         ),
@@ -647,7 +789,7 @@ export class TerrainGroundCutoutController {
       }
       cuts++;
       this.active.get(mesh)?.release();
-      const rendered = subtractTerrainGroundGeometry(source, outlines, maxHeights);
+      const rendered = subtractTerrainGroundGeometry(source, outlines, maxHeights, minHeights);
       let released = false;
       const release = (disposeRendered = true) => {
         if (released) return;

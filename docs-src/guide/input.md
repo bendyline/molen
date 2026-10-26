@@ -212,3 +212,33 @@ Style fieldsets and `[data-binding="key"|"button"|"axis"]` rows under `className
 includes `src/` so a host can copy/modify the component. A completely custom editor can use
 `getProfile`, `defineProfile`, `devices`, `suspend`, and the exported `InputProfile` types with no
 React dependency. No storage writes or permission prompts occur unless the host supplies them.
+
+## Navigation controller settings
+
+World Explorer and the Earth view sample expose **Controllers (N)** beside their navigation
+buttons. Open it, press a controller button if no device is listed, then move the stick and read
+the numbered axes. Choose the relevant profile (`pilot` for an aircraft), assign axes and buttons,
+and use **Reverse axis** or **Dead zone** as needed. Assign a throttle slider to
+**Throttle / collective (absolute lever)**; its position sets power directly. **Done** resumes
+gameplay; **Save** remembers all profiles in this browser. **Reset profile** restores the default
+gamepad layout; save again to retain the reset. Keyboard controls remain available.
+
+Custom navigation hosts can mount the same framework-free editor:
+
+```ts
+import { createNavigationControls } from '@bendyline/molen-client/navigation';
+
+const controls = createNavigationControls(input, {
+  container: toolbar,
+  focusTarget: canvas,
+  storageKey: 'my-app:controls:v1', // optional; enables Save and restores saved profiles
+});
+// On host disposal: controls.dispose();
+```
+
+Here `input` is the host's `NavigationInputSource`. Continue calling `input.read(dt)` every frame.
+The modal editor suspends gameplay while polling devices, then restores canvas focus on close.
+Mappings are saved by browser device ID; identical devices can share an ID. The selected editor
+profile does not change the gameplay mode. `nav-power` uses a `unit` axis; the optional
+`NavigationInput.pilot.power` is absent while that axis is disconnected or input is suspended,
+so hosts can retain the existing throttle setting. Zero is a valid connected lever reading.

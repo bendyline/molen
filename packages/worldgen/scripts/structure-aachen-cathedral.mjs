@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 import { box } from './structure-mesh.mjs';
 
@@ -329,8 +329,7 @@ function dome(o, r, d) {
     if (d >= 1)
       for (const y of [38.85, 41.15]) {
         const ring = radialRing(y, rr, rr, 8, c, phase);
-        for (let i = 0; i < 8; i++)
-          beam(o, 'metal', ring[i], ring[(i + 1) % 8], 0.1, 0.12, C.metal);
+        beamPath(o, 'metal', ring.slice(0, 8), 0.1, 0.12, C.metal, true);
       }
     if (d >= 2) {
       beam(o, 'metal', [c[0], 42, c[1]], [c[0], 43.25, c[1]], 0.055, 0.055, C.metal);

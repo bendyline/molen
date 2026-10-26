@@ -1,4 +1,5 @@
 /** Small deterministic mesh vocabulary for authored structure studies. Units are meters, +Y up. */
+import { joinedPath } from './joined-path.mjs';
 
 const uv = [
   [0, 0],
@@ -145,6 +146,34 @@ export function tube(out, slot, a, b, radius, color, sides = 6) {
     (p) => [p[0], p[2]],
     color,
   );
+}
+
+/** A continuous rail or frame: one shared miter ring per station, caps only at open ends. */
+export function tubePath(out, slot, points, radius, color, sides = 6, closed = false) {
+  const mesh = joinedPath(points, radius, sides, closed);
+  for (let i = 0; i < mesh.indices.length; i += 3) {
+    const p = mesh.indices
+      .slice(i, i + 3)
+      .map((index) => mesh.positions.slice(index * 3, index * 3 + 3));
+    const normal = norm(
+      cross(
+        p[1].map((v, k) => v - p[0][k]),
+        p[2].map((v, k) => v - p[0][k]),
+      ),
+    );
+    out.addTriangle(
+      slot,
+      ref,
+      p,
+      normal,
+      [
+        [0, 0],
+        [1, 0],
+        [1, 1],
+      ],
+      color,
+    );
+  }
 }
 
 export function profile(out, layers, sides = 24, center = [0, 0]) {

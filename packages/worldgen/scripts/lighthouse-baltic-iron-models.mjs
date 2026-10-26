@@ -7,7 +7,7 @@ import {
   shell as originalShell,
 } from './lighthouse-expansion-models.mjs';
 import { lathe as originalLathe, panel, piercedFacade, transformed } from './lighthouse-models.mjs';
-import { box, tube as originalTube, quad } from './structure-mesh.mjs';
+import { box, tube as originalTube, quad, tubePath } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2;
 const white = [0.88, 0.88, 0.83],
@@ -41,8 +41,7 @@ export function buildKihnuDetail(out, resolution = 1) {
     originalSphere(o, s, p, r, c, segments(n), Math.max(3, Math.round(h * resolution)));
   const shell = (o, c) => originalShell(o, c);
   function curvedLine(out, points, color = red, width = 0.008) {
-    for (let i = 1; i < points.length; i++)
-      tube(out, 'metal', points[i - 1], points[i], width, color, 6);
+    tubePath(out, 'metal', points, width, color, Math.max(3, Math.round(6 * resolution)));
   }
   function circleOpening(out, angle, y) {
     const count = segments(64),

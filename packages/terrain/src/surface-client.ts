@@ -22,7 +22,11 @@ import type {
   TerrainSemanticPolygon,
   TerrainSemanticTile,
 } from './semantic-types';
-import { appendBridgeStructure, bridgeDeckProfile } from './surface-bridges';
+import {
+  appendBridgeApproachSupport,
+  appendBridgeStructure,
+  bridgeDeckProfile,
+} from './surface-bridges';
 import { incomingArm, surfaceJunctionControls } from './surface-controls';
 import { isSurfaceLink, SurfaceNetwork, type SurfaceRoad } from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
@@ -215,6 +219,7 @@ export function createTerrainSurfaceObject(
   const edges = new TerrainSurfaceMeshBuilder(context);
   const marks = new TerrainSurfaceMeshBuilder(context);
   const bridges = new TerrainSurfaceMeshBuilder(context);
+  const approachSupports = new TerrainSurfaceMeshBuilder(context);
   // Every pavement mesh carries surfaceDetail, so one material program serves them all.
   for (const builder of [pavement, roads, edges, marks])
     builder.ensureAttribute('surfaceDetail', 4);
@@ -229,11 +234,18 @@ export function createTerrainSurfaceObject(
     const profile = bridgeDeckProfile(road, bridges, groundEnds);
     bridgeProfiles.set(road, profile);
     if (road.feature.bridge) appendBridgeStructure(bridges, road, profile, detailed ? 6 : 16);
+    else appendBridgeApproachSupport(approachSupports, road, profile, detailed ? 2 : 6);
   }
   const bridgeMesh = bridges.mesh('surfaces:bridges', roadMaterial);
   if (bridgeMesh) {
     bridgeMesh.castShadow = true;
     group.add(bridgeMesh);
+  }
+  const supportMesh = approachSupports.mesh('surfaces:approach-supports', roadMaterial);
+  if (supportMesh) {
+    supportMesh.castShadow = true;
+    supportMesh.receiveShadow = true;
+    group.add(supportMesh);
   }
   const fixtures: TerrainBoxPlacement[] = [];
   const signalHeads: TerrainSignalHead[] = [];
@@ -510,9 +522,30 @@ export function createTerrainSurfaceObject(
           context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z);
         let previous: { x: number; z: number; top: number } | undefined;
         const back = road.width / 2 + style.sidewalkWidth + 0.8;
+        const overheadUtilities =
+          !road.feature.bridge &&
+          !road.feature.tunnel &&
+          road.feature.tags?.location !== 'underground' &&
+          road.feature.tags?.power !== 'cable' &&
+          ['residential', 'unclassified', 'tertiary', 'living_street'].includes(
+            road.feature.subclass ?? road.feature.class,
+          ) &&
+          !tile.buildings.some(
+            (building) =>
+              (building.height ?? (building.levels ?? 0) * 3) > 25 &&
+              building.polygons.some((polygon) => {
+                const bounds = polygonBounds(polygon);
+                return (
+                  Math.hypot(
+                    ((bounds[0] + bounds[2]) * context.tileSize) / 2 - first[0],
+                    ((bounds[1] + bounds[3]) * context.tileSize) / 2 - first[1],
+                  ) < 120
+                );
+              }),
+          );
         for (
           let d = 10 + hash(first[1], first[0]) * 14;
-          d < road.path.length - 10 && furniture + 4 <= maxFurniture;
+          overheadUtilities && d < road.path.length - 10 && furniture + 4 <= maxFurniture;
           d += 38
         ) {
           const p = sampleTerrainLine(road.path, d, side * back);
@@ -1075,6 +1108,48 @@ export function createTerrainSurfaceObject(
         );
       if (kind !== 'parking') continue;
       stats.parkingAreas++;
+      if (!detailed && context.address.level === context.pyramid.maxLevel - 1 && style.parkedCars) {
+        // Distant parked-car color patches share the lot mesh; no vehicle meshes/textures.
+        const bounds = polygonBounds(polygon);
+        const step = 8 / context.tileSize;
+        for (
+          let u = Math.ceil(bounds[0] / step) * step;
+          u < bounds[2] && fixtureCount < Math.min(32, maxFixtures);
+          u += step
+        )
+          for (
+            let v = Math.ceil(bounds[1] / step) * step;
+            v < bounds[3] && fixtureCount < Math.min(32, maxFixtures);
+            v += step
+          ) {
+            const x = u * context.tileSize,
+              z = v * context.tileSize;
+            const seed = hash(context.origin[0] + x, context.origin[1] + z);
+            const w = 0.9 / context.tileSize,
+              d = 2.2 / context.tileSize;
+            const patch = {
+              outer: [
+                [u - w, v - d],
+                [u + w, v - d],
+                [u + w, v + d],
+                [u - w, v + d],
+              ] as TerrainSemanticPoint[],
+            };
+            if (
+              seed >= (details.parkingOccupancy ?? 0.7) ||
+              blocked(x, z) ||
+              network.occupied(x, z, 2) ||
+              !patch.outer.every((p) => pointInPolygon(p, polygon))
+            )
+              continue;
+            const tint = ['#a5afb2', '#59656b', '#bcbab0', '#777a77'][
+              Math.floor(seed * 31) % 4
+            ] as string;
+            appendTerrainSurfaceArea(pavement, patch, new THREE.Color(tint), elevation + 0.06);
+            fixtureCount++;
+            stats.parkedCars++;
+          }
+      }
       if (!detailed || (!style.parkingStalls && !style.parkedCars) || remaining <= 0) continue;
       // Align stalls to the longest mapped boundary, and anchor the lattice in world space.
       let angle = 0,

@@ -41,6 +41,19 @@ const complete = (member) => ({
 });
 
 describe('collection readiness and spatial routing', () => {
+  it('keeps an explicitly unfinished inventory open even when every declared model is ready', () => {
+    const scoped = structuredClone(collection);
+    scoped.membershipEvidence.inventoryStatus = 'needs-review';
+    scoped.membershipEvidence.outstanding = ['Stable and other service buildings'];
+    const records = scoped.members.map(complete);
+    const result = collectionReadiness(scoped, records, {});
+    expect(result.collection.readyCount).toBe(scoped.requiredCount);
+    expect(result.readiness).toBe('incomplete');
+    expect(result.blockers).toContain('collection-inventory-unresolved');
+    scoped.membershipEvidence.inventoryStatus = 'complete';
+    scoped.membershipEvidence.outstanding = [];
+    expect(collectionReadiness(scoped, records, {}).readiness).toBe('ready');
+  });
   it('requires all seven current member reviews, not a successful first import', () => {
     const records = collection.members.map(complete);
     expect(collectionReadiness(collection, records, {}).readiness).toBe('ready');

@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.poultry_house_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Poultry House — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.poultry_house_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/poultry_house_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5b7f94a50aa1bf7a1aa28d06ce21cd4980c7ee8c3c8c72a081821066039467bc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-poultry-house-yasnaya-polyana",
+        "path": "models/generate-poultry-house-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "poultry-house-yasnaya-polyana-model",
+        "path": "models/poultry-house-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "poultry-house-yasnaya-polyana-geometry",
+        "path": "models/poultry-house-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

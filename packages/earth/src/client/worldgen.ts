@@ -314,6 +314,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
         })
       : undefined;
   const renderers = createWorldgenSemanticRenderers(pack, {
+    distantBuildings: true,
     buildingInfill: options.buildingInfill ?? true,
     places,
     structures,

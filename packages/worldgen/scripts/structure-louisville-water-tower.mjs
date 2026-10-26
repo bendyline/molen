@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { beam, normalFor, sphere } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 import { waterTowerStatue } from './structure-louisville-water-statuary.mjs';
-import { box, profile as radialProfile, tube } from './structure-mesh.mjs';
+import { box, profile as radialProfile, tube, tubePath } from './structure-mesh.mjs';
 
 const plan = JSON.parse(
   fs.readFileSync(
@@ -397,8 +397,7 @@ function shaft(o, d) {
                 yy = y - sign * 0.8 * Math.sin(t);
               return P(shaftRadius(yy) + 0.02, aa, yy);
             });
-          for (let j = 1; j < points.length; j++)
-            tube(o, 'shaft', points[j - 1], points[j], 0.022, C.shaft, 4);
+          tubePath(o, 'shaft', points, 0.022, C.shaft, 4);
         }
       }
     }
@@ -454,7 +453,7 @@ function lantern(o, d) {
     for (let i = 0; i < (d > 2 ? 12 : 8); i++) {
       const a = (i / (d > 2 ? 12 : 8)) * Math.PI * 2,
         ps = layers.slice(0, -1).map(([y, r]) => P(r + 0.026, a, y));
-      for (let j = 1; j < ps.length; j++) tube(o, 'trim', ps[j - 1], ps[j], 0.04, C.trim, 5);
+      tubePath(o, 'trim', ps, 0.04, C.trim, 5);
     }
   radial(
     o,

@@ -5,8 +5,14 @@ import * as THREE from 'three';
 import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
 import { appendAgricultureAttributes } from './agriculture-surface';
-import { markTerrainWaterSurface } from './ground-cutout';
+import {
+  markTerrainGroundSurface,
+  markTerrainWaterSurface,
+  setTerrainShorelineCutouts,
+  type TerrainGroundOutline,
+} from './ground-cutout';
 import { createTerrainGroundMaterial } from './ground-material';
+import { landcoverAppearance, orderLandcover } from './landcover-appearance';
 import { applyLandcoverBlend, type LandcoverBlendRange } from './landcover-blend';
 import { visibleLandcoverPolygons } from './landcover-surface';
 import { appendTerrainSurfaceArea, TerrainSurfaceMeshBuilder } from './linear-features';
@@ -35,6 +41,7 @@ import {
 import type { TerrainSurfaceOptions } from './surface-styles';
 import { tagTerrainObject } from './tagged-objects';
 import { WATER_RIPPLE_LAYERS, WATER_RIPPLES_GLSL, waterRippleTexture } from './water-ripples';
+import { buildTerrainWaterBanks } from './water-shoreline';
 
 export interface TerrainSemanticTileSource {
   load(
@@ -96,8 +103,8 @@ function terrainWaterParameters(
 ): THREE.MeshPhysicalMaterialParameters {
   const opacity = options.opacity ?? 1;
   return {
-    color: options.color ?? '#286d83',
-    roughness: options.roughness ?? 0.34,
+    color: options.color ?? '#356b78',
+    roughness: options.roughness ?? 0.42,
     metalness: 0,
     // Water reflects less head-on than the default glass IOR. Keep the extra clearcoat
     // lobe weak and broad so sun-facing ponds retain their color instead of turning white.
@@ -151,14 +158,17 @@ export function createTerrainWaterMaterial(
     });
     shader.vertexShader = `
       varying vec2 vTerrainWaterWorldPosition;
+      varying float vTerrainWaterViewDistance;
       uniform vec2 terrainWaterWorldOrigin;
     ${shader.vertexShader}`.replace(
       '#include <begin_vertex>',
       `#include <begin_vertex>
-       vTerrainWaterWorldPosition = (modelMatrix * vec4(transformed, 1.0)).xz + terrainWaterWorldOrigin;`,
+       vTerrainWaterWorldPosition = (modelMatrix * vec4(transformed, 1.0)).xz + terrainWaterWorldOrigin;
+       vTerrainWaterViewDistance = length((modelViewMatrix * vec4(transformed, 1.0)).xyz);`,
     );
     shader.fragmentShader = `
       varying vec2 vTerrainWaterWorldPosition;
+      varying float vTerrainWaterViewDistance;
       uniform float terrainWaterTime;
       uniform float terrainWaterWaveScale;
       uniform float terrainWaterWaveStrength;
@@ -171,6 +181,7 @@ export function createTerrainWaterMaterial(
         `#include <normal_fragment_maps>
          vec2 slope = terrainWaterSurface.xy;
          ${slopes}
+         slope *= terrainWaterDistanceFade;
          normal = normalize(mat3(viewMatrix) * vec3(-slope.x, 1.0, -slope.y));`,
       )
       .replace(
@@ -185,6 +196,10 @@ export function createTerrainWaterMaterial(
         `#include <color_fragment>
          vec3 terrainWaterSurface = terrainWaterDetail(vTerrainWaterWorldPosition,
            terrainWaterTime * terrainWaterWaveSpeed);
+         float terrainWaterFootprint = length(fwidth(vTerrainWaterWorldPosition)) * terrainWaterWaveScale;
+         float terrainWaterDistanceFade = 1.0 - smoothstep(120.0, 1600.0, vTerrainWaterViewDistance);
+         terrainWaterSurface *= terrainWaterDistanceFade *
+           (1.0 - smoothstep(0.5, 2.0, terrainWaterFootprint));
          diffuseColor.rgb *= 1.0 + terrainWaterSurface.z * 0.35;`,
       )
       .replace(
@@ -218,6 +233,7 @@ export async function createTerrainWaterMaterialAsync(
       materialColor,
       materialRoughness,
       positionWorld,
+      positionView,
       uniform,
       texture,
       vec2,
@@ -258,8 +274,17 @@ export async function createTerrainWaterMaterialAsync(
     const n = texture(ripples, uv).rg.mul(2).sub(1).toVar();
     detail = detail.add(vec2(x, y).mul(n.x).add(vec2(-y, x).mul(n.y).mul(0.65)).mul(weight));
   }
-  const rippleSlope = detail.mul(patch.b.mul(0.7).add(1)).mul(waveStrength).mul(14).toVar();
-  const variation = patch.b.mul(waveStrength).toVar();
+  const footprint = fwidth(worldPosition).length().mul(waveScale);
+  const fade = smoothstep(120, 1600, positionView.length())
+    .oneMinus()
+    .mul(smoothstep(0.5, 2, footprint).oneMinus());
+  const rippleSlope = detail
+    .mul(patch.b.mul(0.7).add(1))
+    .mul(waveStrength)
+    .mul(14)
+    .mul(fade)
+    .toVar();
+  const variation = patch.b.mul(waveStrength).mul(fade).toVar();
   const material = new MeshPhysicalNodeMaterial(terrainWaterParameters(options));
   material.name = 'terrain-water';
   material.userData.terrainWaterMaterial = true;
@@ -283,6 +308,7 @@ export async function createTerrainWaterMaterialAsync(
     const slope = phase
       .cos()
       .mul(wave.amplitude * k)
+      .mul(smoothstep(120, 1600, positionView.length()).oneMinus())
       .mul(smoothstep(0.5, 2.5, fwidth(phase)).oneMinus());
     slopeX = slopeX.add(slope.mul(dx));
     slopeZ = slopeZ.add(slope.mul(dz));
@@ -347,6 +373,11 @@ const DEFAULT_BUILDING_MATERIAL = new THREE.MeshStandardMaterial({
   roughness: 0.84,
 });
 const DEFAULT_WATER_MATERIAL = createTerrainWaterMaterial();
+const DEFAULT_WATER_BANK_MATERIAL = new THREE.MeshStandardMaterial({
+  color: '#77725b',
+  roughness: 1,
+  side: THREE.DoubleSide,
+});
 const DEFAULT_FOREST_CLASSES = ['forest', 'wood', 'trees'];
 const DEFAULT_LANDCOVER_COLORS: Readonly<Record<string, string>> = {
   forest: '#42684a',
@@ -362,6 +393,14 @@ const DEFAULT_LANDCOVER_COLORS: Readonly<Record<string, string>> = {
   glacier: '#d7e3e5',
   snow: '#e4eaeb',
   park: '#64845c',
+  garden: '#6b8059',
+  residential: '#929985',
+  commercial: '#aaa59a',
+  retail: '#aaa59a',
+  gravel: '#b6b0a2',
+  pedestrian: '#aaa79e',
+  pavement: '#aaa79e',
+  parking: '#747575',
   urban_area: '#85857d',
   industrial: '#827c72',
 };
@@ -398,6 +437,9 @@ export interface TerrainSemanticMeshOptions {
   defaultBuildingHeight?: number;
   defaultLevelHeight?: number;
   waterOffset?: number;
+  /** Bank upper-edge lift; defaults to landcoverOffset or 0.18m, even in a separate water layer.
+   * Set 0 for bare elevation without a raised landcover surface. */
+  shorelineGroundOffset?: number;
   /**
    * Height of the sea, for projected-Earth terrain. Water whose floor reaches within 2 m of it is
    * the sea (or a tidal river or harbor): it draws as one flat surface 1.5 m above sea level in
@@ -671,6 +713,7 @@ export function createLandcoverMesh(
   options: TerrainSemanticMeshOptions,
 ): THREE.Mesh | undefined {
   const builder = new TerrainSurfaceMeshBuilder(context);
+  tile = { ...tile, landcover: orderLandcover(tile.landcover) };
   const visible = visibleLandcoverPolygons(tile.landcover);
   const ranges: LandcoverBlendRange[] = [];
   const colorsAt: ((x: number, z: number) => THREE.Color)[] = [];
@@ -679,10 +722,10 @@ export function createLandcoverMesh(
     if (feature === undefined) continue;
     const color = feature.cultivation
       ? new THREE.Color(feature.cultivation.color)
-      : landcoverColor(feature.class, options);
+      : landcoverColor(landcoverAppearance(feature), options);
     const palettes = options.landcoverPaletteAreas?.map((area) => ({
       bounds: area.bounds,
-      color: landcoverColor(feature.class, {
+      color: landcoverColor(landcoverAppearance(feature), {
         landcoverColors: { ...options.landcoverColors, ...area.colors },
       }),
     }));
@@ -714,6 +757,8 @@ export function createLandcoverMesh(
   const mesh = builder.mesh(
     'semantic:landcover',
     options.materials?.landcover ?? DEFAULT_LANDCOVER_MATERIAL,
+    true,
+    true,
   );
   if (mesh) {
     applyLandcoverBlend(
@@ -830,6 +875,9 @@ function createWaterMesh(
   options: TerrainSemanticMeshOptions,
 ): THREE.Mesh | undefined {
   const geometries: THREE.BufferGeometry[] = [];
+  const shoreline: TerrainGroundOutline[] = [];
+  const shorelineLevels: number[] = [];
+  const waters: { polygon: TerrainSemanticPolygon; height: number }[] = [];
   for (const feature of tile.water) {
     for (const polygon of feature.polygons ?? []) {
       const shape = shapeFromPolygon(polygon, context.tileSize);
@@ -847,6 +895,17 @@ function createWaterMesh(
         positions.setY(index, height);
       }
       positions.needsUpdate = true;
+      waters.push({ polygon, height });
+      const indices = geometry.index;
+      for (let i = 0; i < (indices?.count ?? positions.count); i += 3) {
+        shorelineLevels.push(height);
+        shoreline.push(
+          [0, 1, 2].map((k) => {
+            const index = indices?.getX(i + k) ?? i + k;
+            return [positions.getX(index), positions.getZ(index)] as const;
+          }),
+        );
+      }
       geometry.computeVertexNormals();
       geometries.push(geometry);
     }
@@ -864,6 +923,23 @@ function createWaterMesh(
   mesh.userData.terrainOwnedGeometry = true;
   mesh.userData.terrainWaterSurface = true;
   tagTerrainObject('water', mesh);
+  setTerrainShorelineCutouts(mesh, shoreline, shorelineLevels);
+  const bankGeometry = buildTerrainWaterBanks(
+    waters,
+    context,
+    options.shorelineGroundOffset ?? options.landcoverOffset ?? 0.18,
+  );
+  if (bankGeometry) {
+    const bank = new THREE.Mesh(bankGeometry, DEFAULT_WATER_BANK_MATERIAL);
+    bank.name = 'semantic:water-banks';
+    bank.userData.terrainOwnedGeometry = true;
+    bank.userData.shadowCaster = false;
+    bank.receiveShadow = true;
+    // An authored bridge/landing may open the coarse bank without removing native water.
+    // Ignore the water's own shoreline cutout so the bank still closes ordinary shores.
+    markTerrainGroundSurface(bank, false);
+    mesh.add(bank);
+  }
   return mesh;
 }
 

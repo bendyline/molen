@@ -133,6 +133,106 @@ A serialized generation request: labeled building outlines, optional labeled pol
       "items": {
         "type": "object",
         "properties": {
+          "yard": {
+            "description": "Lot driveway and open fence segments, in local meters; attach once per house.",
+            "type": "object",
+            "properties": {
+              "driveway": {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "[x, z] in local meters."
+                  },
+                  "to": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "[x, z] in local meters."
+                  },
+                  "width": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 12
+                  },
+                  "lift": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "from",
+                  "to",
+                  "width"
+                ],
+                "additionalProperties": false
+              },
+              "fence": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "timber",
+                      "masonry",
+                      "rail"
+                    ]
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 0.3,
+                    "maximum": 2
+                  },
+                  "segments": {
+                    "maxItems": 64,
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "minItems": 2,
+                          "maxItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          },
+                          "description": "[x, z] in local meters."
+                        },
+                        {
+                          "minItems": 2,
+                          "maxItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          },
+                          "description": "[x, z] in local meters."
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  }
+                },
+                "required": [
+                  "kind",
+                  "height",
+                  "segments"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
           "priority": {
             "type": "number"
           },
@@ -161,6 +261,11 @@ A serialized generation request: labeled building outlines, optional labeled pol
                 "type": "number",
                 "exclusiveMinimum": 0,
                 "maximum": 12
+              },
+              "lift": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
               },
               "garage": {
                 "type": "boolean"

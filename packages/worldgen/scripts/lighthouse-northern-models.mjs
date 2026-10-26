@@ -15,7 +15,7 @@ import {
   railRing,
   transformed,
 } from './lighthouse-models.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 
 const pale = [0.85, 0.85, 0.79],
   dark = [0.1, 0.12, 0.12],
@@ -171,8 +171,7 @@ export function buildBellRock(out) {
       polar(1.55, 35.38, a),
       polar(0.18, 35.86, a),
     ];
-    for (let j = 1; j < pts.length; j++)
-      tube(out, 'metal', pts[j - 1], pts[j], 0.021, [0.41, 0.42, 0.37], 6);
+    tubePath(out, 'metal', pts, 0.021, [0.41, 0.42, 0.37], 6);
   }
   for (const [y, r] of [
     [33.1, 2.86],

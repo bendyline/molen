@@ -875,6 +875,9 @@ const PAVEMENT_GLSL = /* glsl */ `
       terrainGroundNoise(p + vec2(3.0, 61.0), 0.25) * 0.4) * 0.6 * near;
     vec3 paint = mix(vec3(1.0), vec3(0.032, 0.036, 0.04) / max(base, vec3(0.001)), worn) *
       (0.97 + grain * 0.08);
+    // A 12 cm line must not remain a bright pixel-wide stripe at airplane altitude.
+    paint = mix(vec3(0.093, 0.100, 0.104) / max(base, vec3(0.001)), paint,
+      smoothstep(0.25, 1.25, width / max(footprint, 0.0001)));
     float loose = 1.0 + grain * 0.35 + blotch * 0.2;
     float plain = 1.0 + blotch * 0.08;
     float isPlain = 1.0 - clamp(isAsphalt + isConcrete + isPaint + isPlaza + isLoose, 0.0, 1.0);
@@ -1257,8 +1260,13 @@ export async function createTerrainPavementMaterialAsync(
           .mul(near),
       );
     });
-    const paint = mix(vec3(1), vec3(0.032, 0.036, 0.04).div(max(base, vec3(0.001))), worn).mul(
+    const wornPaint = mix(vec3(1), vec3(0.032, 0.036, 0.04).div(max(base, vec3(0.001))), worn).mul(
       grain.mul(0.08).add(0.97),
+    );
+    const paint = mix(
+      vec3(0.093, 0.1, 0.104).div(max(base, vec3(0.001))),
+      wornPaint,
+      smoothstep(0.25, 1.25, width.div(max(footprint, 0.0001))),
     );
     const loose = grain.mul(0.35).add(blotch.mul(0.2)).add(1);
     const plain = blotch.mul(0.08).add(1);

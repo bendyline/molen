@@ -25,8 +25,11 @@ node packages/tooling/dist/cli.mjs asset import content/entities/source/aircraft
 ```
 
 The reference-informed cockpit and exterior pass is documented in [REFERENCES.md](REFERENCES.md).
-Instrument parts live in `models/instruments.mjs`; each source bundle carries its own copy so it
-remains portable. Materials and dial printing are procedural geometry with no bitmap textures.
+Instrument parts live in `models/instruments.mjs`. Dial numerals, captions and placards use
+Overpass Semibold baked into an antialiased texture atlas, shared by all lettering in the model.
+The GLB embeds the atlas; it needs no installed fonts at runtime. The repository helper and
+licensed font sources are documented in [cockpit lettering](../../../fonts/README.md).
+Cockpit enamel, upholstery and harnesses also use procedural finish textures.
 
 The exterior follows the OH-6A silhouette: an egg-shaped cabin with arched front door windows and
 separate rear glazing, a narrow transmission doghouse and louvered intakes, a tapered boom and

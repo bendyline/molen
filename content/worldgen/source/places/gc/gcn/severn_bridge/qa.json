@@ -1,11 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.severn_bridge",
-  "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:0f9c7ff8da5299e4ec3d7741626a7eebdd6469c0afd66d48770fa62a8e71f96d",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:4678bee686fb952dce19cd921b0dd999953baa813363269d9906370b42aa217c",
   "sourceHash": "sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0",
   "runtimeHash": "sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9",
-  "captureReportHash": "sha256:b463aa3439900b3bc6ebb22e9ce0735173554cca27a0f22c6018f9149ca421e1",
+  "captureReportHash": "sha256:00e4924b32fb9322cc2a5ae131fd45d48aa885675014a9eed10797938165d99a",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -22,11 +22,11 @@
       "shots/west-anchorage.png",
       "shots/east-anchorage.png"
     ],
-    "notes": "Inspected all12 final source views: PMTiles shoreline overview, four object turntables, white portal tower, dual road/footways, inclined hanger fittings, shallow deck underside, full crossing and both cable anchorages. The suspension silhouette matches the two inspected reference pictures; separate approach structures are outside scope."
+    "captureReportHash": "sha256:00e4924b32fb9322cc2a5ae131fd45d48aa885675014a9eed10797938165d99a",
+    "notes": "Inspected 63 current frames during one author/inspect/fix pass: 12 portable, 12 shared, 28 medium-fi and 11 native. Paired white portal towers, continuous main cables with exact saddle knots, inclined hangers, full shallow aerofoil deck and separate footways, piers and anchorages remain. Automatic near reductions had fragmented rails/cables; street and closeup now use independent analytic structural geometry with the complete 344-hanger schedule and continuous rails. Distant anchorage bases were lowered beneath the road, retaining separate side cable blocks and an open outer walking route. The 308648-triangle detailed shared-material source and canonical runtime master remain byte-exact."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:327980d5bb0e8001138c8d1a605ba6c65488e02c235a71df44765c9c09710ea6",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -41,11 +41,11 @@
       "shots/shared/east-anchorage.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all12 shared-viewer views, including the cached mapped-road placement overlay. Shared painted-metal and concrete graphs bind without embedded images; near cable/rail hardware and road tints remain visible. Bounded geographic selection, locality, cache reuse and unload checks passed. This harness uses flat terrain; source/medium views separately show the PMTiles shore/water fixture."
+    "captureReportHash": "sha256:f2bb608ad382e0fc442223af8fda8a21926ec3f704d44812e7168e4c5560e94d",
+    "notes": "Two existing 256px shared graphs, metal_painted and concrete_plain, supply painted steel and low-frequency aggregate. Metric UVs and restrained source paint/road tints; no embedded images, private atlas or copied photographic pixels. Three textured material groups/draws share these two graph resources, read once each; skyline bakes shared means into vertex colors in one draw. Separate GPU attribute streams and complete model geometry disposal pass. Source parapet pickets retain their fine original rhythm; runtime levels choose explicitly spaced rails/pickets instead of noisy decimation."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:556bfa4871bfb844fb0d9091da2d179ea6e6a638722d4a2c9ea1f49b99821599",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -76,329 +76,2444 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all28 medium-fi lighting and browser-level views. Skyline preserves the paired portals, sagging main cables and representative inclined hangers; district adds paired cable/hanger structure, street and closeup retain the thin deck and finer rail/socket impressions. Closer reductions simplify or unevenly retain fine cable clamps and markings, accepted for the browser levels; the source retains them."
+    "captureReportHash": "sha256:533e9350d055599a408ba618bd567ec13fd15603af80509a96fa0736cea33256",
+    "notes": "Four complete authored LODs: 994/3952/14792/53752 triangles; initial skyline + district 436984 bytes. Closeup is 4103664 bytes. Skyline/district use representative paired hangers; near levels retain the full hanger schedule and source portal shapes. Street pickets are spaced 16m, closeup 2m, detailed master 0.75m. Economy/high, noon/late, near/far, silhouette and four transitions inspected under the shared Earth rig. Geometry/download budgets pass; physical laptop/phone timings remain pending."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:c7c8a6f4ee46d219b0ac003347c956f8acae420b498bd29e66b5008ea30ea87c",
     "mapFrameHash": "sha256:e5fa9ad88d241239ea96f92218ae5258da0471f64b68874ed58eca279838831a",
-    "notes": "Two inspected pictures confirm white portal towers, paired inclined hangers, continuous suspension cables and a thin deck. Standard viewer PMTiles named M48 bridge roads and tower-adjacent path offsets establish the main-span midpoint and east/southeast Aust-facing native+X. Mapped tower spacing986.5m matches the retained987.5m source within about1m. The named road includes a separate eastern approach, which remains outside this1637.5m suspension/anchorage asset. LocalY0 is deliberately accepted as an approximate global sea plane; no tidal or engineering datum certification. PMTiles water masks and raw terrain provide the surrounding review fixture; physical road endpoints remain approximate."
+    "notes": "Approximate native fit approved at [-2.6399325393140316,51.609817360632036], heading -0.5492121314969372, with +X toward Aust (east/southeast). Original M48 crossing Q1850537; not the second Severn crossing. Retains 987.5m main span, 305m side spans and 1597.5m suspended road. Simplified anchorage exteriors extend to 1637.5m. Local Y=0 is an approximate sea-plane reference, not a reconciled tidal/survey datum. All four mapped carriageway joins at x=±799m meet the 32m end deck within 0.005m. The independent eastern approach begins its inferred descent (31.28m at x=820m); the western approach remains near32m. These grades fit ordinary pictures and current PMTiles/Mapzen but are not surveyed engineering profiles."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Accepted medium-fi exterior and approximate PMTiles bridge placement. Mapped path-offset tower spacing986.5m agrees with987.5m source. Authored localY0 is explicitly an approximate global sea plane, without tidal/datum certification. Separate Aust/Beachley/Wye approach bridges, real traffic, interiors and precise endpoint joins are excluded. Preview mapped water is not bathymetry; physical laptop/phone timing remains unmeasured."
-  },
-  "legacyFidelityScope": {
-    "target": "maximum",
-    "status": "pending",
-    "notes": "Detailed original exterior reconstruction, not survey-grade maximum fidelity. Resolve primary hanger-count discrepancy, final section dimensions and vertical profile, common vertical datum, modern replacement hanger dimensions, texture/weathering treatment, adaptive cable visibility and collision/LOD work before full acceptance.",
-    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+    "notes": "Complete scoped suspension bridge exterior; detailed source retained separately. Four complete authored LODs: 994/3952/14792/53752 triangles; initial skyline + district 436984 bytes. Closeup is 4103664 bytes. Skyline/district use representative paired hangers; near levels retain the full hanger schedule and source portal shapes. Street pickets are spaced 16m, closeup 2m, detailed master 0.75m. Economy/high, noon/late, near/far, silhouette and four transitions inspected under the shared Earth rig. Geometry/download budgets pass; physical laptop/phone timings remain pending."
   },
   "geometryValidation": {
-    "validator": "Khronos glTF Validator",
-    "results": [
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
       {
-        "name": "source",
-        "path": "content/worldgen/source/places/gc/gcn/severn_bridge/models/source.glb",
-        "hash": "sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0",
-        "bytes": 24002716,
-        "triangles": 308648,
-        "materials": 3,
-        "images": 0,
-        "min": [
-          -818.75,
-          0,
-          -20
-        ],
-        "max": [
-          818.75,
-          135.38446044921875,
-          20
-        ],
-        "errors": 0,
-        "warnings": 0
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/gc/gcn/severn_bridge/models/source.glb\",\"hash\":\"sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0\",\"bytes\":24002716,\"errors\":0,\"warnings\":0}"
       },
       {
-        "name": "runtime",
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.glb",
-        "hash": "sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9",
-        "bytes": 24002348,
-        "triangles": 308648,
-        "materials": 3,
-        "images": 0,
-        "min": [
-          -818.75,
-          0,
-          -20
-        ],
-        "max": [
-          818.75,
-          135.38446044921875,
-          20
-        ],
-        "errors": 0,
-        "warnings": 0
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/gc/gcn/severn_bridge/model.glb\",\"hash\":\"sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9\",\"bytes\":24002348,\"errors\":0,\"warnings\":0}"
       },
       {
-        "name": "skyline",
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.skyline.glb",
-        "hash": "sha256:483fa8241b85494363022c52b5f9b12b185ebdc03613eb29a29f0e9efce64631",
-        "bytes": 69232,
-        "triangles": 832,
-        "materials": 1,
-        "images": 0,
-        "min": [
-          -818.75,
-          0,
-          -20
-        ],
-        "max": [
-          818.75,
-          136,
-          20
-        ],
-        "errors": 0,
-        "warnings": 0
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/gc/gcn/severn_bridge/model.skyline.glb\",\"hash\":\"sha256:132e32c58ab48ebc7dd003079c01898090e490b58b4c017e101dcb18e4ac90aa\",\"bytes\":82804,\"errors\":0,\"warnings\":0}"
       },
       {
-        "name": "district",
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.district.glb",
-        "hash": "sha256:900cfd87cbf1990b331092ff25960e81243aa01a07c468a35d0b619474bf8cfa",
-        "bytes": 293700,
-        "triangles": 3280,
-        "materials": 3,
-        "images": 0,
-        "min": [
-          -818.75,
-          0,
-          -20
-        ],
-        "max": [
-          818.75,
-          136,
-          20
-        ],
-        "errors": 0,
-        "warnings": 0
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/gc/gcn/severn_bridge/model.district.glb\",\"hash\":\"sha256:76b0544a8058a20a08d2ee738f1cf4b2fc171976216469929b911c200f1fc88b\",\"bytes\":354180,\"errors\":0,\"warnings\":0}"
       },
       {
-        "name": "street",
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.street.glb",
-        "hash": "sha256:7fe449f193202ee7ded94a78ca739ed82c83edb263892e43ba31e9c911afd52d",
-        "bytes": 1762388,
-        "triangles": 15943,
-        "materials": 3,
-        "images": 0,
-        "min": [
-          -818.75,
-          0,
-          -20
-        ],
-        "max": [
-          818.75,
-          135.38446044921875,
-          20
-        ],
-        "errors": 0,
-        "warnings": 0
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/gc/gcn/severn_bridge/model.street.glb\",\"hash\":\"sha256:6b2fdf320d87fbf3e2fee1f6b5839e4d3915f006b170fcfd4b0e0e06c5a90d73\",\"bytes\":1089632,\"errors\":0,\"warnings\":0}"
       },
       {
-        "name": "closeup",
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.closeup.glb",
-        "hash": "sha256:d3ae789e7bcefb6d9ba95fb08b39360e1bf67c2f9b1b61c582cd0f20d287aecc",
-        "bytes": 7135712,
-        "triangles": 63117,
-        "materials": 3,
-        "images": 0,
-        "min": [
-          -818.75,
-          0,
-          -20
-        ],
-        "max": [
-          818.75,
-          135.3723907470703,
-          20
-        ],
-        "errors": 0,
-        "warnings": 0
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/gc/gcn/severn_bridge/model.closeup.glb\",\"hash\":\"sha256:d248c8b387880c3a955a6f4a83d988bd4e5d9d3d68dcd19816a1170e981bd65b\",\"bytes\":4103664,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "connected-deck-footways-cables-open-portals-and-anchorages",
+        "passed": true,
+        "notes": "508 actual mesh probes across source/runtime and all four LODs: complete road and footways including outer end walking routes, main cable continuity at saddle joins, open portals, full tower legs, cutwater piers and anchorages. Near/source paired hangers and outer rails pass. Exact pins, finite attributes, shared surfaces, budgets and separate GPU streams pass."
       }
-    ],
-    "tests": {
-      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
-      "passed": true
-    },
-    "notes": "Six GLBs validate with zero errors, zero warnings and zero embedded images. Original308648-triangle,24003148-byte master was reproduced exactly at sha256:41a39bb8d560fad968924a5f1cd2dc687f8af781a35c039da0be20e415d29450. Shared-material source geometry retains the same count and bounds. Browser levels832/3280/15943/63117 satisfy1k/4k/16k/64k limits; initial download362932bytes. Current source/runtime/LOD hashes and material/placement bindings verified."
+    ]
   },
-  "runtimeLodReview": {
+  "siteIntegrationReview": {
     "status": "passed",
-    "recipeHash": "sha256:d5b5ad840771f1d115754535e8e0deb0b54d9eb0400c7a7d5a7365e6fb1ad75d",
-    "levels": [
-      {
-        "name": "skyline",
-        "file": "model.skyline.glb",
-        "hash": "sha256:483fa8241b85494363022c52b5f9b12b185ebdc03613eb29a29f0e9efce64631",
-        "bytes": 69232,
-        "gzipBytes": 14110,
-        "triangles": 832,
-        "cpuBytes": 67884,
-        "gpuBytes": 67884,
-        "errorMeters": 5,
-        "drawCalls": 1
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native fit approved at [-2.6399325393140316,51.609817360632036], heading -0.5492121314969372, with +X toward Aust (east/southeast). Original M48 crossing Q1850537; not the second Severn crossing. Retains 987.5m main span, 305m side spans and 1597.5m suspended road. Simplified anchorage exteriors extend to 1637.5m. Local Y=0 is an approximate sea-plane reference, not a reconciled tidal/survey datum. All four mapped carriageway joins at x=±799m meet the 32m end deck within 0.005m. The independent eastern approach begins its inferred descent (31.28m at x=820m); the western approach remains near32m. These grades fit ordinary pictures and current PMTiles/Mapzen but are not surveyed engineering profiles."
+    },
+    "inputHash": "sha256:4678bee686fb952dce19cd921b0dd999953baa813363269d9906370b42aa217c",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:4678bee686fb952dce19cd921b0dd999953baa813363269d9906370b42aa217c",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 63 current frames during one author/inspect/fix pass: 12 portable, 12 shared, 28 medium-fi and 11 native. Paired white portal towers, continuous main cables with exact saddle knots, inclined hangers, full shallow aerofoil deck and separate footways, piers and anchorages remain. Automatic near reductions had fragmented rails/cables; street and closeup now use independent analytic structural geometry with the complete 344-hanger schedule and continuous rails. Distant anchorage bases were lowered beneath the road, retaining separate side cable blocks and an open outer walking route. The 308648-triangle detailed shared-material source and canonical runtime master remain byte-exact.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/preview.png",
+          "hash": "sha256:d668fc99f6f5cd796f414341f87666091f88697bd8111b2c9d61cea0f3d6f418"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:443ee9c53aa7f33ea8111b84f1b865a7b931ff866f476e921ba6cc07a9dcdab9"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:b5aff60a9e92bb3fd03e339cb3d8529b5460f19d24e598a0c292656d0233ba42"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:fb2c505b734a19f24ef8cd94e6f9b943abcfe9240f754cb7fbe7d113b229ec06"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:8ef0f810ba26a20d2320f6a83c7752e11b21b55cff7369fa423a6ac3a50466d4"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/near-tower.png",
+          "hash": "sha256:f5793b4c49548e42561ef6bbb24bd5323a4f695bc62f6ae8a25c410d0fb0194d"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/near-deck.png",
+          "hash": "sha256:274c5028569b21160939e88a3f0299ede0bd6436954b022ac6c91de1ec124266"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/near-hangers.png",
+          "hash": "sha256:db67c9f9599672ba63cdb732708688aa03a87724caa19107aebe38ed95d6e5b2"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/under-deck.png",
+          "hash": "sha256:ae66e8bc8291be6372fff19727951694847846667c31b2de078be65ed9d43054"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/far-crossing.png",
+          "hash": "sha256:53881deb8bf59fd57ead267f5c5bf8ce8a2f5331b8e18994507b865bc572c71b"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/west-anchorage.png",
+          "hash": "sha256:86354e4a2678fe0c1b024d7e8edc9b7ff3f2bc140a99a324c9957906badd9d49"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/east-anchorage.png",
+          "hash": "sha256:c405f5a60a20f67103af1e15a9da7408f51e5fecfbd50bee107e2e0c9062c933"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:67443b6c074c30560536d9a5c1534f6935419f972e61c6147f6a3747e28811ce"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:106e42bbb86f192505760c20de059daa4b76d1226d30a1f2a934af567ed14435"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:ab2d3d1a50ed723f0357929a18edf13eb321c2f1cef1e6b6a6cc8c6b706e1570"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:f2ac1221048909342395ce5ee5c780c808e2310e151c9d5fdc010cca02112b38"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/near-tower.png",
+          "hash": "sha256:2ce57f5cb63fa53092c6e8202074d3e46523900e285319cc74945a010bb1f2a3"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/near-deck.png",
+          "hash": "sha256:0a823b99313d47241cda5976da9e745327c818b74e54963fe6ed455fe65e4e63"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/near-hangers.png",
+          "hash": "sha256:0d4a5215d7291b6be0c32dc48f529f4d4f008bedd80b7038ec0cf96336f30252"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/under-deck.png",
+          "hash": "sha256:99423d5ae955d1ef2f6a23dbae92900ad88f5753fa969fd4b2788c6a40afd724"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/far-crossing.png",
+          "hash": "sha256:efa047ab7a1fddfce8db45fd3e998f56b4e819b9da3f5e0330adcda5487d3d29"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/west-anchorage.png",
+          "hash": "sha256:c65c2d34d4f1c35a560d12cb673b81137309839e390dfea9ab87e5a377064667"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/east-anchorage.png",
+          "hash": "sha256:9d7c6cc2b9c36390a38ba595609cbd704c45af6e6944144c31f20003055967c5"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/shots/shared/placement.png",
+          "hash": "sha256:544cede371315fbecc141ad3c0628b7198746e955a1de36b18586fc975bb9523"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:3c527122baf56dc1c62fb3586d99bed675116a61b94a6fffec6d12c25d9bfb2a"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:8f4d323bf2519b55b53a365b73a5afc0fbdf3cd435fe722dc95822424fcd9925"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:937cf119822f363e8272fcd6c5c9d47acc679b2ac191da64370361846ae64d5d"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:bd8d3a24f33ad7d38703a2773edb228620b92f995859f91863fb6eebc0114239"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:4724c644353f8e5d738e1b469f4ea9d1927987f0d1af2002832822cde077eeb5"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:85173f3b5fcec86ae4f4e569e0f451f350abb1435f14259828dcc4afffe9f8c0"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:1bad32c6d9a282a3875e26b1290ed275364851740b3f07a1b2e0e28920ead301"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:d6d831484f2a4bf1029656ac6a6dbadef73aed7cc2facd5680fcfc5adb75b541"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:82f51859df656256620b1b79be05fc375419319913f379b9751834a69bae47be"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:c3c2e359839bec4293222ee9d497575dedb2a7ab11fe80083ba9f506b03eaa85"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:7ea8d7bdd7a212b12a9d185ddfe9c63f331af1c4deb6cd34b6d3f5de426b646b"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:b7a60fcf01fa8f03e7864ca099f3647f86dea65b3f47d8244723f8307122d3cc"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:e948833bf2f336876b3d54b0cb3bc692b1acc73214ab7c553947275ba4c5dada"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/near-tower.png",
+          "hash": "sha256:e76253d1ee43df33251185149a1fa91877cbd95317281220da47b909fc1398c5"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/near-deck.png",
+          "hash": "sha256:7c747c9884054dc429ac2272a0f56c089a2c7b9ef89cbcb94532cf73754fbdb8"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/near-hangers.png",
+          "hash": "sha256:2913653e6bc24fa8c4a88310c62fea9b4692577e01a07d6226ceae2f129717d9"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/under-deck.png",
+          "hash": "sha256:94c809f7398a995f3e0fc4f98d4f98f6266852620d993fd6338228e3e33a2fae"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/far-crossing.png",
+          "hash": "sha256:afbee3b3c2c07d8c50093d88cbd3bb34e792537211d37c3fb9f29cd96ff721de"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/west-anchorage.png",
+          "hash": "sha256:aa91856b6a8e817dd5ac1b905ba1832800536f5094c97dac4db207f3fcf62954"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/east-anchorage.png",
+          "hash": "sha256:1bd7463c8a8551b78fdca5d2fe877caa7316c5f5272ee14c8966d1c581040d23"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/whole-severn-skyline.png",
+          "hash": "sha256:4360797d948213dae935f14f51b4c45cab67631eb030d3b12ff3e1259c738d37"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/whole-severn-district.png",
+          "hash": "sha256:34e399a5c3475c0f513fed060c1f299e21994aa0c3e7af3c0fdceabf60bb930f"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/whole-severn-street.png",
+          "hash": "sha256:bdf5375fc3fba81b08d3ccad7f399e0bae57c61ec850cfb172f923595f0a33a4"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/whole-severn-closeup.png",
+          "hash": "sha256:65711dd390d8f865dfbb07e8ba8df1f244cd284f4cec83cf8f78b5484f111396"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:d489dfbe312eefc5430d37be0a5837a539574d6b2ac51f69acfebfdcc7cb7277"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:85173f3b5fcec86ae4f4e569e0f451f350abb1435f14259828dcc4afffe9f8c0"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:8cd3b67c2765aa046b2f46525e2b42add26901ee5782ab79ae3d009b6dbd8087"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcn/severn_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:132e749c75ad40ea9473d87239fbb44cd39fd143162afde61402eaf5f8fe05a0"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-skyline-estuary-crossing.png",
+          "hash": "sha256:d8de32fb9de961f56fc9719dbc96f31df8b9a2c7a6025f645aa64cec541e5aab"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-district-estuary-crossing.png",
+          "hash": "sha256:6ccdcfd43601b4d0b3e36bb1ffb9c8932f8678ec9b22c7e4091a2cd92fd6a3a9"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-street-estuary-crossing.png",
+          "hash": "sha256:8e9b2ed314a6bb2f539e342ff994ff759f4eadd6e2e329329b639ca19d02999b"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-closeup-estuary-crossing.png",
+          "hash": "sha256:ec70d73bb6d8534d6c29be6e5fc476fea4b42ee0e2ce76fba79308d77f9b4bdf"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-closeup-west-anchorage.png",
+          "hash": "sha256:06b7607cc66ee09d34285290a979ce323b8e7faa08ed80c0887dc6d504ed54e8"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-closeup-east-anchorage.png",
+          "hash": "sha256:aabfd73af7ad68e610c1c298469384eba2a29e512fdaec8502ee2adc7853c3a5"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-closeup-portal-tower.png",
+          "hash": "sha256:1f2f2283bc2673b137986acafe1b81e0dff64bd056aedf65dd1262b53c19bcc2"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-closeup-inclined-hangers.png",
+          "hash": "sha256:efa5500038e3122e0e02ff5c2b0c9942080a3b3e00d05e90f399ab0e312013b3"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-closeup-under-deck.png",
+          "hash": "sha256:a14e72bfca2e4a3c538ff846cd3439858bfa14eb80d99aa0e324e23072abb3a7"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-closeup-road-and-footways.png",
+          "hash": "sha256:1d1effe7228ca8117fbee3ef649990fa66263cb9ef165669844c83bdc3bd8122"
+        },
+        {
+          "path": ".artifacts/severn-integration/shots/final-failure-estuary-crossing.png",
+          "hash": "sha256:639228acc00cb46efadf8c17d2365211e45e420aa6d235ad96cb7c733a612b08"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 33 resident / 97 wider original mapped buildings remain; no building footprint is replaced. Native Aust/Beachley/Wye approach bridge geometry and unrelated roads stay independent. Only road geometry overlapping the authored suspension footprint is replaced, with connected approach height hints. Every original DEM sample, source road input and native estuary/shoreline behavior remains. Failed model load retains the original procedural crossing without inferred supports. Unload releases all model geometry and restores native content. Native captures use the actual client directional-shadow focus helper; fixture and engine source hashes are pinned. Separate unique approach viaduct models, traffic, interiors, exact tide and engineering grades remain outside this scoped suspension/anchorage asset."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:4678bee686fb952dce19cd921b0dd999953baa813363269d9906370b42aa217c",
+      "sourceHash": "sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0",
+      "runtimeHash": "sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9",
+      "files": {
+        "content/worldgen/source/places/gc/gcn/severn_bridge/models/source.glb": "sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0",
+        "content/worldgen/assets/places/gc/gcn/severn_bridge/model.glb": "sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9",
+        ".artifacts/severn-integration/data.json": "sha256:feba6c0af10c48cdeb340e7b0ff321c34f64d9cb97ef12a270c73c41b9c944a8",
+        ".artifacts/severn-integration/site.ts": "sha256:fad9f7ab5aa47a9e554b11a30620d93ef60493a88a020efc0e80a88d642a3f50",
+        ".artifacts/severn-integration/site.mjs": "sha256:28e5a30efa230d28462132a93bacbc893724c17166590050807eb3720a6158ab",
+        "content/worldgen/assets/places/gc/gcn/severn_bridge/model.skyline.glb": "sha256:132e32c58ab48ebc7dd003079c01898090e490b58b4c017e101dcb18e4ac90aa",
+        "content/worldgen/assets/places/gc/gcn/severn_bridge/model.district.glb": "sha256:76b0544a8058a20a08d2ee738f1cf4b2fc171976216469929b911c200f1fc88b",
+        "content/worldgen/assets/places/gc/gcn/severn_bridge/model.street.glb": "sha256:6b2fdf320d87fbf3e2fee1f6b5839e4d3915f006b170fcfd4b0e0e06c5a90d73",
+        "content/worldgen/assets/places/gc/gcn/severn_bridge/model.closeup.glb": "sha256:d248c8b387880c3a955a6f4a83d988bd4e5d9d3d68dcd19816a1170e981bd65b"
       },
-      {
-        "name": "district",
-        "file": "model.district.glb",
-        "hash": "sha256:900cfd87cbf1990b331092ff25960e81243aa01a07c468a35d0b619474bf8cfa",
-        "bytes": 293700,
-        "gzipBytes": 55428,
-        "triangles": 3280,
-        "cpuBytes": 289932,
-        "gpuBytes": 289932,
-        "errorMeters": 3,
-        "drawCalls": 3
-      },
-      {
-        "name": "street",
-        "file": "model.street.glb",
-        "hash": "sha256:7fe449f193202ee7ded94a78ca739ed82c83edb263892e43ba31e9c911afd52d",
-        "bytes": 1762388,
-        "gzipBytes": 446941,
-        "triangles": 15943,
-        "cpuBytes": 1758572,
-        "gpuBytes": 1758572,
-        "errorMeters": 3.8930726279175323,
-        "drawCalls": 3
-      },
-      {
-        "name": "closeup",
-        "file": "model.closeup.glb",
-        "hash": "sha256:d3ae789e7bcefb6d9ba95fb08b39360e1bf67c2f9b1b61c582cd0f20d287aecc",
-        "bytes": 7135712,
-        "gzipBytes": 1629560,
-        "triangles": 63117,
-        "cpuBytes": 7131864,
-        "gpuBytes": 7131864,
-        "errorMeters": 1.4022253925281785,
-        "drawCalls": 3
+      "engine": {
+        "packages/worldgen-earth/src/client/structure-geometry.ts": "sha256:9679860d40f1a9d25d6a4ae04d880ac3f118aa15123d80142376ef3e7c5d1ab4",
+        "packages/terrain/src/surface-bridges.ts": "sha256:a921e62846e7342809bad97b17470531e38ede838c1b2ca1123e038a35cbe811",
+        "packages/terrain/src/surface-client.ts": "sha256:2309d499139b4292ae6097937346395be5cfa0659ba8dd5ba74ca22012c123db",
+        "packages/client/src/three/shadow-focus.ts": "sha256:ff1b6d0dc914faf5ca592d9c7fa2e74132ad7cae65cc63c0c03e325545a49d09"
       }
-    ],
-    "initialBytes": 362932,
-    "notes": "skyline: 832 triangles, 69232 bytes, 1 draws; district: 3280 triangles, 293700 bytes, 3 draws; street: 15943 triangles, 1762388 bytes, 3 draws; closeup: 63117 triangles, 7135712 bytes, 3 draws. Initial skyline+district 362932 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "west-deck-join-north-lane",
+              "point": [
+                -799,
+                -5
+              ],
+              "roadHeight": 31.99799919128418,
+              "rawGround": 17.29814318764568
+            },
+            {
+              "name": "west-deck-join-south-lane",
+              "point": [
+                -799,
+                5
+              ],
+              "roadHeight": 31.996000289916992,
+              "rawGround": 17.28758315472068
+            },
+            {
+              "name": "east-deck-join-north-lane",
+              "point": [
+                799,
+                -5
+              ],
+              "roadHeight": 31.997283885802858,
+              "rawGround": 0.33395949190575824
+            },
+            {
+              "name": "east-deck-join-south-lane",
+              "point": [
+                799,
+                5
+              ],
+              "roadHeight": 31.996595473708112,
+              "rawGround": 0.05738326667993323
+            },
+            {
+              "name": "west-approach-north-lane",
+              "point": [
+                -820,
+                -5
+              ],
+              "roadHeight": 31.99799919128418,
+              "rawGround": 17.248758373039205
+            },
+            {
+              "name": "west-approach-south-lane",
+              "point": [
+                -820,
+                5
+              ],
+              "roadHeight": 31.996000289916992,
+              "rawGround": 17.292239552589454
+            },
+            {
+              "name": "east-approach-north-lane",
+              "point": [
+                820,
+                -5
+              ],
+              "roadHeight": 31.277268203579183,
+              "rawGround": 0.09595630094088134
+            },
+            {
+              "name": "east-approach-south-lane",
+              "point": [
+                820,
+                5
+              ],
+              "roadHeight": 31.278424598498532,
+              "rawGround": 0
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "skyline",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -707.4766845703125,
+              0,
+              -442.32647705078125
+            ],
+            "max": [
+              707.4766845703125,
+              136,
+              442.3265380859375
+            ]
+          },
+          "sourceBuildings": 33,
+          "remainingBuildings": 33,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 251,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184375479260,
+            35184400212850,
+            35184455354870,
+            35184487395700
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -1388.2913705170554,
+                    -6.122494454027219
+                  ],
+                  [
+                    -798.749999999899,
+                    -5.051745200991718
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -798.7499999999027,
+                    3.893182331637888
+                  ],
+                  [
+                    -1388.7493692716516,
+                    6.982242392680519
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -1388.8343666335695,
+                    11.816261199908013
+                  ],
+                  [
+                    -958.7660215530709,
+                    12.27308420663877
+                  ],
+                  [
+                    -881.6542858521698,
+                    11.814479193587601
+                  ],
+                  [
+                    -798.7499999999181,
+                    12.472427004109136
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -798.7499999998778,
+                    -13.16114165049072
+                  ],
+                  [
+                    -1388.3479880657096,
+                    -12.608730096954673
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    798.750000000015,
+                    -3.994136376961592
+                  ],
+                  [
+                    999.6278437566428,
+                    -3.894925277277707
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    999.7397489098714,
+                    5.168095613801711
+                  ],
+                  [
+                    798.7499999998591,
+                    4.928243646417172
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    798.749999999931,
+                    13.265328016548722
+                  ],
+                  [
+                    999.8679991998092,
+                    12.481788133276723
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    999.5705088260067,
+                    -10.382333071405753
+                  ],
+                  [
+                    798.7499999999784,
+                    -11.617028124182525
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.severn_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "west-deck-join-north-lane",
+              "point": [
+                -799,
+                -5
+              ],
+              "roadHeight": 31.99799919128418,
+              "rawGround": 17.29814318764568
+            },
+            {
+              "name": "west-deck-join-south-lane",
+              "point": [
+                -799,
+                5
+              ],
+              "roadHeight": 31.996000289916992,
+              "rawGround": 17.28758315472068
+            },
+            {
+              "name": "east-deck-join-north-lane",
+              "point": [
+                799,
+                -5
+              ],
+              "roadHeight": 31.997283885802858,
+              "rawGround": 0.33395949190575824
+            },
+            {
+              "name": "east-deck-join-south-lane",
+              "point": [
+                799,
+                5
+              ],
+              "roadHeight": 31.996595473708112,
+              "rawGround": 0.05738326667993323
+            },
+            {
+              "name": "west-approach-north-lane",
+              "point": [
+                -820,
+                -5
+              ],
+              "roadHeight": 31.99799919128418,
+              "rawGround": 17.248758373039205
+            },
+            {
+              "name": "west-approach-south-lane",
+              "point": [
+                -820,
+                5
+              ],
+              "roadHeight": 31.996000289916992,
+              "rawGround": 17.292239552589454
+            },
+            {
+              "name": "east-approach-north-lane",
+              "point": [
+                820,
+                -5
+              ],
+              "roadHeight": 31.277268203579183,
+              "rawGround": 0.09595630094088134
+            },
+            {
+              "name": "east-approach-south-lane",
+              "point": [
+                820,
+                5
+              ],
+              "roadHeight": 31.278424598498532,
+              "rawGround": 0
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "district",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -707.4766845703125,
+              0,
+              -442.32647705078125
+            ],
+            "max": [
+              707.4766845703125,
+              136,
+              442.3265380859375
+            ]
+          },
+          "sourceBuildings": 33,
+          "remainingBuildings": 33,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 251,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184375479260,
+            35184400212850,
+            35184455354870,
+            35184487395700
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -1388.2913705170554,
+                    -6.122494454027219
+                  ],
+                  [
+                    -798.749999999899,
+                    -5.051745200991718
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -798.7499999999027,
+                    3.893182331637888
+                  ],
+                  [
+                    -1388.7493692716516,
+                    6.982242392680519
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -1388.8343666335695,
+                    11.816261199908013
+                  ],
+                  [
+                    -958.7660215530709,
+                    12.27308420663877
+                  ],
+                  [
+                    -881.6542858521698,
+                    11.814479193587601
+                  ],
+                  [
+                    -798.7499999999181,
+                    12.472427004109136
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -798.7499999998778,
+                    -13.16114165049072
+                  ],
+                  [
+                    -1388.3479880657096,
+                    -12.608730096954673
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    798.750000000015,
+                    -3.994136376961592
+                  ],
+                  [
+                    999.6278437566428,
+                    -3.894925277277707
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    999.7397489098714,
+                    5.168095613801711
+                  ],
+                  [
+                    798.7499999998591,
+                    4.928243646417172
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    798.749999999931,
+                    13.265328016548722
+                  ],
+                  [
+                    999.8679991998092,
+                    12.481788133276723
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    999.5705088260067,
+                    -10.382333071405753
+                  ],
+                  [
+                    798.7499999999784,
+                    -11.617028124182525
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.severn_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "west-deck-join-north-lane",
+              "point": [
+                -799,
+                -5
+              ],
+              "roadHeight": 31.99799919128418,
+              "rawGround": 17.29814318764568
+            },
+            {
+              "name": "west-deck-join-south-lane",
+              "point": [
+                -799,
+                5
+              ],
+              "roadHeight": 31.996000289916992,
+              "rawGround": 17.28758315472068
+            },
+            {
+              "name": "east-deck-join-north-lane",
+              "point": [
+                799,
+                -5
+              ],
+              "roadHeight": 31.997283885802858,
+              "rawGround": 0.33395949190575824
+            },
+            {
+              "name": "east-deck-join-south-lane",
+              "point": [
+                799,
+                5
+              ],
+              "roadHeight": 31.996595473708112,
+              "rawGround": 0.05738326667993323
+            },
+            {
+              "name": "west-approach-north-lane",
+              "point": [
+                -820,
+                -5
+              ],
+              "roadHeight": 31.99799919128418,
+              "rawGround": 17.248758373039205
+            },
+            {
+              "name": "west-approach-south-lane",
+              "point": [
+                -820,
+                5
+              ],
+              "roadHeight": 31.996000289916992,
+              "rawGround": 17.292239552589454
+            },
+            {
+              "name": "east-approach-north-lane",
+              "point": [
+                820,
+                -5
+              ],
+              "roadHeight": 31.277268203579183,
+              "rawGround": 0.09595630094088134
+            },
+            {
+              "name": "east-approach-south-lane",
+              "point": [
+                820,
+                5
+              ],
+              "roadHeight": 31.278424598498532,
+              "rawGround": 0
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "street",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -707.4766845703125,
+              0,
+              -442.32647705078125
+            ],
+            "max": [
+              707.4766845703125,
+              135.385498046875,
+              442.3265380859375
+            ]
+          },
+          "sourceBuildings": 33,
+          "remainingBuildings": 33,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 251,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184375479260,
+            35184400212850,
+            35184455354870,
+            35184487395700
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -1388.2913705170554,
+                    -6.122494454027219
+                  ],
+                  [
+                    -798.749999999899,
+                    -5.051745200991718
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -798.7499999999027,
+                    3.893182331637888
+                  ],
+                  [
+                    -1388.7493692716516,
+                    6.982242392680519
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -1388.8343666335695,
+                    11.816261199908013
+                  ],
+                  [
+                    -958.7660215530709,
+                    12.27308420663877
+                  ],
+                  [
+                    -881.6542858521698,
+                    11.814479193587601
+                  ],
+                  [
+                    -798.7499999999181,
+                    12.472427004109136
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -798.7499999998778,
+                    -13.16114165049072
+                  ],
+                  [
+                    -1388.3479880657096,
+                    -12.608730096954673
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    798.750000000015,
+                    -3.994136376961592
+                  ],
+                  [
+                    999.6278437566428,
+                    -3.894925277277707
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    999.7397489098714,
+                    5.168095613801711
+                  ],
+                  [
+                    798.7499999998591,
+                    4.928243646417172
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    798.749999999931,
+                    13.265328016548722
+                  ],
+                  [
+                    999.8679991998092,
+                    12.481788133276723
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    999.5705088260067,
+                    -10.382333071405753
+                  ],
+                  [
+                    798.7499999999784,
+                    -11.617028124182525
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.severn_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "west-deck-join-north-lane",
+              "point": [
+                -799,
+                -5
+              ],
+              "roadHeight": 31.99799919128418,
+              "rawGround": 17.29814318764568
+            },
+            {
+              "name": "west-deck-join-south-lane",
+              "point": [
+                -799,
+                5
+              ],
+              "roadHeight": 31.996000289916992,
+              "rawGround": 17.28758315472068
+            },
+            {
+              "name": "east-deck-join-north-lane",
+              "point": [
+                799,
+                -5
+              ],
+              "roadHeight": 31.997283885802858,
+              "rawGround": 0.33395949190575824
+            },
+            {
+              "name": "east-deck-join-south-lane",
+              "point": [
+                799,
+                5
+              ],
+              "roadHeight": 31.996595473708112,
+              "rawGround": 0.05738326667993323
+            },
+            {
+              "name": "west-approach-north-lane",
+              "point": [
+                -820,
+                -5
+              ],
+              "roadHeight": 31.99799919128418,
+              "rawGround": 17.248758373039205
+            },
+            {
+              "name": "west-approach-south-lane",
+              "point": [
+                -820,
+                5
+              ],
+              "roadHeight": 31.996000289916992,
+              "rawGround": 17.292239552589454
+            },
+            {
+              "name": "east-approach-north-lane",
+              "point": [
+                820,
+                -5
+              ],
+              "roadHeight": 31.277268203579183,
+              "rawGround": 0.09595630094088134
+            },
+            {
+              "name": "east-approach-south-lane",
+              "point": [
+                820,
+                5
+              ],
+              "roadHeight": 31.278424598498532,
+              "rawGround": 0
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "closeup",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -707.4766845703125,
+              0,
+              -442.32647705078125
+            ],
+            "max": [
+              707.4766845703125,
+              135.3848876953125,
+              442.3265380859375
+            ]
+          },
+          "sourceBuildings": 33,
+          "remainingBuildings": 33,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 251,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184375479260,
+            35184400212850,
+            35184455354870,
+            35184487395700
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -1388.2913705170554,
+                    -6.122494454027219
+                  ],
+                  [
+                    -798.749999999899,
+                    -5.051745200991718
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -798.7499999999027,
+                    3.893182331637888
+                  ],
+                  [
+                    -1388.7493692716516,
+                    6.982242392680519
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -1388.8343666335695,
+                    11.816261199908013
+                  ],
+                  [
+                    -958.7660215530709,
+                    12.27308420663877
+                  ],
+                  [
+                    -881.6542858521698,
+                    11.814479193587601
+                  ],
+                  [
+                    -798.7499999999181,
+                    12.472427004109136
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -798.7499999998778,
+                    -13.16114165049072
+                  ],
+                  [
+                    -1388.3479880657096,
+                    -12.608730096954673
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    798.750000000015,
+                    -3.994136376961592
+                  ],
+                  [
+                    999.6278437566428,
+                    -3.894925277277707
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    999.7397489098714,
+                    5.168095613801711
+                  ],
+                  [
+                    798.7499999998591,
+                    4.928243646417172
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    798.749999999931,
+                    13.265328016548722
+                  ],
+                  [
+                    999.8679991998092,
+                    12.481788133276723
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    999.5705088260067,
+                    -10.382333071405753
+                  ],
+                  [
+                    798.7499999999784,
+                    -11.617028124182525
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.21613221545953518,
+                    0.3262667531634603
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7838677845404648,
+                    0.6737332468365397
+                  ],
+                  "elevation": 32,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.severn_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "west-deck-join-north-lane",
+              "point": [
+                -799,
+                -5
+              ],
+              "roadHeight": 23.293552779319384,
+              "rawGround": 17.29814318764568
+            },
+            {
+              "name": "west-deck-join-south-lane",
+              "point": [
+                -799,
+                5
+              ],
+              "roadHeight": 23.284116129066092,
+              "rawGround": 17.28758315472068
+            },
+            {
+              "name": "east-deck-join-north-lane",
+              "point": [
+                799,
+                -5
+              ],
+              "roadHeight": 25.771185630216564,
+              "rawGround": 0.33395949190575824
+            },
+            {
+              "name": "east-deck-join-south-lane",
+              "point": [
+                799,
+                5
+              ],
+              "roadHeight": 26.131404904908663,
+              "rawGround": 0.05738326667993323
+            },
+            {
+              "name": "west-approach-north-lane",
+              "point": [
+                -820,
+                -5
+              ],
+              "roadHeight": 23.247777870492314,
+              "rawGround": 17.248758373039205
+            },
+            {
+              "name": "west-approach-south-lane",
+              "point": [
+                -820,
+                5
+              ],
+              "roadHeight": 23.289591814165988,
+              "rawGround": 17.292239552589454
+            },
+            {
+              "name": "east-approach-north-lane",
+              "point": [
+                820,
+                -5
+              ],
+              "roadHeight": 26.519372463797367,
+              "rawGround": 0.09595630094088134
+            },
+            {
+              "name": "east-approach-south-lane",
+              "point": [
+                820,
+                5
+              ],
+              "roadHeight": 26.90053692951426,
+              "rawGround": 0
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "failure",
+          "modelLoaded": false,
+          "modelWorldY": null,
+          "modelBounds": null,
+          "sourceBuildings": 33,
+          "remainingBuildings": 33,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 251,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184375479260,
+            35184400212850,
+            35184455354870,
+            35184487395700
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    -797.6263559885373,
+                    -5.049704392791284
+                  ],
+                  [
+                    -619.2914021684661,
+                    -5.288031431581317
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    -613.2905603240054,
+                    4.516917884587031
+                  ],
+                  [
+                    -798.0250872676634,
+                    3.889386905425397
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -1388.2913705170554,
+                    -6.122494454027219
+                  ],
+                  [
+                    -797.6263559885373,
+                    -5.049704392791284
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184400212850,
+              "lines": [
+                [
+                  [
+                    -798.0250872676634,
+                    3.889386905425397
+                  ],
+                  [
+                    -1388.7493692716516,
+                    6.982242392680519
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    -798.204290186681,
+                    12.476757884728329
+                  ],
+                  [
+                    -608.2575856668886,
+                    12.740440967126005
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    -624.0339933252083,
+                    -13.037088501313974
+                  ],
+                  [
+                    -797.1567848826293,
+                    -13.162634380377483
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -1388.8343666335695,
+                    11.816261199908013
+                  ],
+                  [
+                    -958.7660215530709,
+                    12.27308420663877
+                  ],
+                  [
+                    -881.6542858521698,
+                    11.814479193587601
+                  ],
+                  [
+                    -798.204290186681,
+                    12.476757884728329
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184487395700,
+              "lines": [
+                [
+                  [
+                    -797.1567848826293,
+                    -13.162634380377483
+                  ],
+                  [
+                    -1388.3479880657096,
+                    -12.608730096954673
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    -647.0845950809972,
+                    -5.23363422066501
+                  ],
+                  [
+                    -262.96106424162565,
+                    -4.898690168949031
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    -278.1438888246582,
+                    4.393528091142173
+                  ],
+                  [
+                    -641.1805580136163,
+                    4.413142966086923
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    -636.0508101597076,
+                    12.794786578095568
+                  ],
+                  [
+                    -511.2006495933665,
+                    12.902243645157597
+                  ],
+                  [
+                    -497.53996950488306,
+                    14.976023682078846
+                  ],
+                  [
+                    -489.87520122903754,
+                    15.06746444598545
+                  ],
+                  [
+                    -474.46783783754324,
+                    13.24626730497721
+                  ],
+                  [
+                    -292.53594129398584,
+                    13.201776650183788
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    -250.30871042242364,
+                    -12.642205385696755
+                  ],
+                  [
+                    -476.12829475466737,
+                    -12.910465514283459
+                  ],
+                  [
+                    -487.1522229023816,
+                    -15.293671602588745
+                  ],
+                  [
+                    -497.7086638860377,
+                    -15.137001707886355
+                  ],
+                  [
+                    -511.74449918224474,
+                    -12.850860246850175
+                  ],
+                  [
+                    -651.8271726632913,
+                    -12.98266911071363
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    -308.40458705607443,
+                    -4.911908606572808
+                  ],
+                  [
+                    271.7477213059012,
+                    -4.321403131662734
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    277.07153894690305,
+                    4.377336727100726
+                  ],
+                  [
+                    -323.7455660618479,
+                    4.477103593728316
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    -337.9794641084346,
+                    13.188558212560025
+                  ],
+                  [
+                    282.4921643111428,
+                    13.234253529093806
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    266.42391441011193,
+                    -13.02012543351212
+                  ],
+                  [
+                    -295.7522332368724,
+                    -12.655423823320547
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    243.9538322375828,
+                    -4.2681433898528525
+                  ],
+                  [
+                    999.6278437566428,
+                    -3.894925277277707
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184375479260,
+              "lines": [
+                [
+                  [
+                    999.7397489098714,
+                    5.168095613801711
+                  ],
+                  [
+                    249.18083813841076,
+                    4.272412962292918
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    254.69824449169064,
+                    13.28746302573552
+                  ],
+                  [
+                    474.9233137721493,
+                    13.294858774443185
+                  ],
+                  [
+                    490.3691420264515,
+                    15.798994880453051
+                  ],
+                  [
+                    499.5897608464621,
+                    15.590928654515096
+                  ],
+                  [
+                    510.47919229298657,
+                    13.491892293314208
+                  ],
+                  [
+                    639.8516881432557,
+                    13.884383323644556
+                  ],
+                  [
+                    999.8679991998092,
+                    12.481788133276723
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184455354870,
+              "lines": [
+                [
+                  [
+                    999.5705088260067,
+                    -10.382333071405753
+                  ],
+                  [
+                    513.16809069154,
+                    -13.37285760909424
+                  ],
+                  [
+                    497.72227611256505,
+                    -15.876971370590638
+                  ],
+                  [
+                    487.99176463655033,
+                    -15.79161945979132
+                  ],
+                  [
+                    471.5737985119429,
+                    -13.13522616904541
+                  ],
+                  [
+                    238.63004057795263,
+                    -12.96684079690047
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.severn_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
   },
   "limitations": [
-    "Pictures and standard viewer PMTiles determine approximate fit; the working sea plane is not a certified vertical/tidal datum.",
-    "Original detailed geometry is preserved and byte-reproduced; shared graphs supply reusable painted steel and concrete grain. Road material uses a dark aggregate approximation.",
-    "Skyline uses representative suspension/hanger ribbons; district reconstructs broader cables. Street/closeup reductions simplify rails, fittings and narrow markings; source retains all authored geometry.",
-    "Separate approach bridges are excluded. Connected road fitting is requested, but exact host endpoint joins and tides are not surveyed. Mapped-water preview is not bathymetry. Footprint replacement off; physical-device timings remain pending."
-  ],
-  "inputReconciliation": {
-    "reconciledOn": "2026-10-13",
-    "previousInputHash": "sha256:ad64b6c2d1ea927b61579a2f4d1dcdc01fdbe2bd70927744bde7836fb289b6b3",
-    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
-    "buildRelease": "assets-16f966c72052fd6c",
-    "previousCaptureReportHash": "sha256:5a2f58fbea611c5716766fc11a0b5c8ea09a1d73202a139c9ca9f9cd832d06b9",
-    "previousSharedCaptureReportHash": "sha256:8c3c259ef255923cad5275a80d804b94d3638ed08992a0440e9cab3d2a18bb36",
-    "changedRecipes": [
-      {
-        "path": "packages/worldgen/scripts/severn-browser-model.mjs",
-        "beforeHash": "sha256:e25e31c0f7677b7d4fe40c5c060b3cfbfd1e946ac67e0477f4fc8e70001956cb",
-        "afterHash": "sha256:6446ae93d1da1e8c739978e02620155c4626cd62eb99b91c542aabfc7241b2dc",
-        "change": "formatting-or-bound-import-order"
-      }
-    ],
-    "unchangedOutputs": [
-      {
-        "path": "content/worldgen/source/places/gc/gcn/severn_bridge/models/source.glb",
-        "hash": "sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0",
-        "bytes": 24002716
-      },
-      {
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.glb",
-        "hash": "sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9",
-        "bytes": 24002348
-      },
-      {
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.skyline.glb",
-        "hash": "sha256:483fa8241b85494363022c52b5f9b12b185ebdc03613eb29a29f0e9efce64631",
-        "bytes": 69232
-      },
-      {
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.district.glb",
-        "hash": "sha256:900cfd87cbf1990b331092ff25960e81243aa01a07c468a35d0b619474bf8cfa",
-        "bytes": 293700
-      },
-      {
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.street.glb",
-        "hash": "sha256:7fe449f193202ee7ded94a78ca739ed82c83edb263892e43ba31e9c911afd52d",
-        "bytes": 1762388
-      },
-      {
-        "path": "content/worldgen/assets/places/gc/gcn/severn_bridge/model.closeup.glb",
-        "hash": "sha256:d3ae789e7bcefb6d9ba95fb08b39360e1bf67c2f9b1b61c582cd0f20d287aecc",
-        "bytes": 7135712
-      }
-    ],
-    "retainedInspectedImageCount": 52
-  },
-  "inputRevalidation": {
-    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
-    "validatedOn": "2026-10-15",
-    "previousInputHash": "sha256:00734072eef1b3baa760d18d3e9cb5f938f448022e6db5c570116da524bebc37",
-    "inputHash": "sha256:0f9c7ff8da5299e4ec3d7741626a7eebdd6469c0afd66d48770fa62a8e71f96d",
-    "previousQaHash": "sha256:bac6f3707a7e13557bcd464133b7ee80d410bb4105c8b0f9cb60c910c302f3be",
-    "sourceHash": "sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0",
-    "runtimeHash": "sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9",
-    "levels": [
-      {
-        "name": "skyline",
-        "hash": "sha256:483fa8241b85494363022c52b5f9b12b185ebdc03613eb29a29f0e9efce64631"
-      },
-      {
-        "name": "district",
-        "hash": "sha256:900cfd87cbf1990b331092ff25960e81243aa01a07c468a35d0b619474bf8cfa"
-      },
-      {
-        "name": "street",
-        "hash": "sha256:7fe449f193202ee7ded94a78ca739ed82c83edb263892e43ba31e9c911afd52d"
-      },
-      {
-        "name": "closeup",
-        "hash": "sha256:d3ae789e7bcefb6d9ba95fb08b39360e1bf67c2f9b1b61c582cd0f20d287aecc"
-      }
-    ],
-    "sceneHash": "sha256:0cb2bcf92d919e3fe0831ea5b2b5047cf2cd28ba82bb955bfc5bdc4beeb33e3b",
-    "qaCamerasHash": "sha256:f887bcf2c5dd09a69f3387f524d15a744178deb03b7942f9f1f774c8ce7faea1",
-    "placementHash": "sha256:c7c8a6f4ee46d219b0ac003347c956f8acae420b498bd29e66b5008ea30ea87c",
-    "maps": [
-      {
-        "path": "map-frame.json",
-        "hash": "sha256:e5fa9ad88d241239ea96f92218ae5258da0471f64b68874ed58eca279838831a"
-      }
-    ],
-    "materials": [
-      {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      }
-    ],
-    "terrain": [
-      {
-        "path": "terrain-water.terrain.json",
-        "hash": "sha256:5bc6a2d77c74b32740c18bb86605627eebbf826fd2aaee2c0571b03c3f4fce27"
-      },
-      {
-        "path": "terrain-water.height.png",
-        "hash": "sha256:2b5eef6b5d5c162a8de56aaf5bffc556b8cd27213f26c99a3b64cb36b8ccb2ed"
-      }
-    ],
-    "framesVerified": 52,
-    "sourceRebuild": "assets-4c110226cdb7e02d",
-    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
-  }
+    "The 308648-triangle shared-material detailed master remains exact. Browser models preserve paired portals, connected main cables, inclined hangers, complete aerofoil roadway and footways, piers and anchorages.",
+    "Source nominal dimensions, local sea-plane datum, sag/grade and fittings remain photo/map approximations; this is not a reconciled tidal or engineering survey.",
+    "Skyline/district use representative paired hangers. Near levels retain the 344-hanger schedule, continuous cables and rails; parapet pickets are spaced 16 m on street and 2 m on closeup, while the master retains the fine original 0.75 m rhythm.",
+    "Separate Aust/Beachley/Wye approach structures use the independent native procedural bridge renderer. Their detailed unique models, current traffic, interiors, exact endpoint grades and physical device timings are outside this asset.",
+    "Approximate native fit approved at [-2.6399325393140316,51.609817360632036], heading -0.5492121314969372, with +X toward Aust (east/southeast). Original M48 crossing Q1850537; not the second Severn crossing. Retains 987.5m main span, 305m side spans and 1597.5m suspended road. Simplified anchorage exteriors extend to 1637.5m. Local Y=0 is an approximate sea-plane reference, not a reconciled tidal/survey datum. All four mapped carriageway joins at x=±799m meet the 32m end deck within 0.005m. The independent eastern approach begins its inferred descent (31.28m at x=820m); the western approach remains near32m. These grades fit ordinary pictures and current PMTiles/Mapzen but are not surveyed engineering profiles."
+  ]
 }

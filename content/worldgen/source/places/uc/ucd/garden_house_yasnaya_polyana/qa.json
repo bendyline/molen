@@ -1,0 +1,905 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.garden_house_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:61f5b6a701dfd9c9930f9ca42ef04eb948bee51a8a2b5bdfaff0c10b8b626315",
+  "sourceHash": "sha256:aa6fade7108086b8e32cb200cdfe7f473862f359b3862ae9beca894ac4d78343",
+  "runtimeHash": "sha256:2f6cd9c4cdc62a49ba77ef12f2dffdee989e22614f69b7d834ada7acd254f9d4",
+  "captureReportHash": "sha256:536aae390f8b6321e8b4c318e10ae4c4ad305a398ce06817c193cc8218cdba09",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-garden-house-red-hip-gallery-and-three-lower-gates.png",
+      "shots/open-gallery-upper-door-and-external-stair.png",
+      "shots/log-lower-gates-and-weathered-board-upper-room.png",
+      "shots/map-derived-rear-roof-and-raised-floor.png"
+    ],
+    "notes": "Inspected all48 current portable/shared/medium-fi/native frames in labeled sheets and full-resolution gallery/stair/gate views. Complete two-level garden-house interpretation: pale log lower walls, weathered boarded upper room, broad red metal hip roof, three physical lower gate recesses, upper gallery entrance, open supported gallery, rails, external twelve-tread stair and eight ground-seated timber piers. Continuous authoring moved gallery posts between openings and clear of the stair head. All LODs retain the roof/gallery support hierarchy. Photo obscuration, hidden rear and coarse support exposure remain explicit limitations."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-garden-house-red-hip-gallery-and-three-lower-gates.png",
+      "shots/shared/open-gallery-upper-door-and-external-stair.png",
+      "shots/shared/log-lower-gates-and-weathered-board-upper-room.png",
+      "shots/shared/map-derived-rear-roof-and-raised-floor.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six roles reuse four existing256px graphs: wood_log, wood_vertical, metal_standing_seam and wood_plain. Timber supports, rails, doors and aprons share wood_plain with separate linear tints. Metric UVs, separate POSITION/NORMAL streams, equal CPU/GPU geometry accounting and four nearby draws/one skyline. No embedded image, private atlas or new graph. Every used graph reads once; failure keeps original building and unload releases model geometry.",
+    "captureReportHash": "sha256:9119eb2e7e3f1ced39f355c4da81d07e3a94973509a3804bbcf08ce012fdaebf"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-garden-house-red-hip-gallery-and-three-lower-gates.png",
+      "medium-fi/open-gallery-upper-door-and-external-stair.png",
+      "medium-fi/log-lower-gates-and-weathered-board-upper-room.png",
+      "medium-fi/map-derived-rear-roof-and-raised-floor.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs keep the whole envelope, three lower gates and upper door, full roof, supported gallery and external stair. Skyline uses a closed thin stair slope, simple open rails and all floor/gallery supports under the1k authored-structure ceiling. District adds actual treads and simple door trim; street/closeup add restrained log courses/ends, railing infill/braces and door bands. Initial skyline+district geometry remains below3MB phone/6MB laptop targets. Synthetic views compare style/LOD/modes; native views establish approximate geographic fit.",
+    "captureReportHash": "sha256:9ded8f6998fcf5664e921b5977a1d008da6ac17b71dd00981cb7df7850421cca"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:194d5cf7af0db6f83d9557a9fb8f8d8ebab5f0ce9f72f39eeea68b1f96358c23",
+    "mapFrameHash": "sha256:5cf27aa06aef792e8abf72f18936679dcfcadd7abc02a2d0a1e66c436d66309a",
+    "notes": "Named Садовый домик node13324187201 lies in building way220075410, independently mapped south of Житня/way220075392. The13.5x6.8m envelope and nominal5m height anchor the complete building; room front is set back1.1m within the envelope for the photo-led upper gallery. X northeast along long facade, Z southeast toward the interpreted approach, baked native axes with heading0 at the unchanged assigned garden-house anchor. The labeled garden-house photograph in the ordinary2012 estate walk guides log/board hierarchy, red hip roof, multiple lower gates, upper gallery and right-descending stair. Similar historic storage typology is shared by the nearby granary; this model has its own location, footprint, gate layout, access and roof. Trees hide exact bay inventory and absolute front assignment remains approximate. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside southeast provider[0,7] supplies218.56964118057482m datum. Boundary grades-0.265..0.781m, floor+0.95m and timber pier bottoms-0.45m. Coarse slope exposes up to1.22m beneath the downhill floor, greater than the pictured footing. Original ground remains under raised rooms, gallery and stair; only eight pier feet and four supported aprons cut it. No flattening or bespoke survey. Independent neighbors, approaches, roads and ponds remain. One owned footprint is replaced while242 resident/294 wider independent buildings, original approaches/roads and40070.675m² pond water remain. Original ground stays under raised rooms, gallery and external stair; only eight pier feet and four apron footprints cut it. Failure retains all243 original buildings; every LOD/failure/unload restores ground/water with zero live model geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete mapped garden-house exterior interpretation: two-level apple storehouse with pale log lower room, weathered vertical-board upper room, broad red standing-seam hip roof, open front gallery and external twelve-tread stair. Three lower wooden gate openings and one upper gallery entrance are physically recessed; timber piers, railings, stringers and supported aprons complete the exterior. The independent named garden-house POI and its own mapped footprint remain distinct from the nearby granary. No copied signs, inscriptions, people, merchandise, furnishings or photograph pixels. Hidden rear inventory and precise historical levels remain reconstructed. Approximate photo-led scale:2.25m log lower room,2.05m boarded upper room and1.5m hip rise, gallery at2.25m with.92m open rails and12 stair treads. Nominal map5m is a scale cue; all historical heights, timber sections, roof condition, hidden rear openings, thresholds and accessibility remain reconstructed. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside southeast provider[0,7] supplies218.56964118057482m datum. Boundary grades-0.265..0.781m, floor+0.95m and timber pier bottoms-0.45m. Coarse slope exposes up to1.22m beneath the downhill floor, greater than the pictured footing. Original ground remains under raised rooms, gallery and stair; only eight pier feet and four supported aprons cut it. No flattening or bespoke survey. Independent neighbors, approaches, roads and ponds remain. Named mapped POI and independent envelope establish placement. The ordinary walk photograph labeled Садовый домик guides architecture; adjacent granary has a similar storage typology. Tree-hidden lower gate count, exact bay positions, rear openings, roof condition and absolute southeast front assignment remain reconstructed. No exact historical or survey claim. Synthetic flat planes partly bury grade-specific supports/aprons; native views expose the original slope. Other estate models remain procedural context in this isolated fixture. Physical phone/laptop and dense-city timing measurements remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:aa6fade7108086b8e32cb200cdfe7f473862f359b3862ae9beca894ac4d78343\",\"bytes\":119364,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.glb\",\"hash\":\"sha256:2f6cd9c4cdc62a49ba77ef12f2dffdee989e22614f69b7d834ada7acd254f9d4\",\"bytes\":118928,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:e7f91d7694a7bbf78634e858d5e0b592c4e3a340aec06063f8337b50f95ef9f3\",\"bytes\":38772,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:249ad13901e4ebe73bc1e1ea8974ee510cf8bfd90c0504c527abdd827b23f6df\",\"bytes\":63336,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:b85636eaaa07efe884366cd1cff33e438dc91c7bb32003a3c95529f92130b8cc\",\"bytes\":102600,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:29ffd818ce67366f7045d8308fd2f85b8103cc1bb43d3d431c5b1b91df2dfa88\",\"bytes\":113520,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-garden-house-three-gates-upper-door-supported-open-gallery-and-external-stair",
+        "passed": true,
+        "notes": "252 actual mesh/contact probes; all six GLB pins, finite attributes, shared bindings, LOD caps, separate vertex streams and initial download budget pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named Садовый домик node13324187201 lies in building way220075410, independently mapped south of Житня/way220075392. The13.5x6.8m envelope and nominal5m height anchor the complete building; room front is set back1.1m within the envelope for the photo-led upper gallery. X northeast along long facade, Z southeast toward the interpreted approach, baked native axes with heading0 at the unchanged assigned garden-house anchor. The labeled garden-house photograph in the ordinary2012 estate walk guides log/board hierarchy, red hip roof, multiple lower gates, upper gallery and right-descending stair. Similar historic storage typology is shared by the nearby granary; this model has its own location, footprint, gate layout, access and roof. Trees hide exact bay inventory and absolute front assignment remains approximate. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside southeast provider[0,7] supplies218.56964118057482m datum. Boundary grades-0.265..0.781m, floor+0.95m and timber pier bottoms-0.45m. Coarse slope exposes up to1.22m beneath the downhill floor, greater than the pictured footing. Original ground remains under raised rooms, gallery and stair; only eight pier feet and four supported aprons cut it. No flattening or bespoke survey. Independent neighbors, approaches, roads and ponds remain. One owned footprint is replaced while242 resident/294 wider independent buildings, original approaches/roads and40070.675m² pond water remain. Original ground stays under raised rooms, gallery and external stair; only eight pier feet and four apron footprints cut it. Failure retains all243 original buildings; every LOD/failure/unload restores ground/water with zero live model geometry."
+    },
+    "inputHash": "sha256:61f5b6a701dfd9c9930f9ca42ef04eb948bee51a8a2b5bdfaff0c10b8b626315",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:61f5b6a701dfd9c9930f9ca42ef04eb948bee51a8a2b5bdfaff0c10b8b626315",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected all48 current portable/shared/medium-fi/native frames in labeled sheets and full-resolution gallery/stair/gate views. Complete two-level garden-house interpretation: pale log lower walls, weathered boarded upper room, broad red metal hip roof, three physical lower gate recesses, upper gallery entrance, open supported gallery, rails, external twelve-tread stair and eight ground-seated timber piers. Continuous authoring moved gallery posts between openings and clear of the stair head. All LODs retain the roof/gallery support hierarchy. Photo obscuration, hidden rear and coarse support exposure remain explicit limitations.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/preview.png",
+          "hash": "sha256:14f466f4dcd648b611bb71608ef7521197c013b0c64fe4284ee89635ddfe4dcd"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:804e161ab496035733da3fcb63b4fa802467e13c381dbbc7bdee1c8df30576f4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:0c5ba6d5d8499c959d29e4217c4328c5a14a4455edf2a89202e5d849506f71ec"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:4b215c05bb61e144e0e242dc56982ab0a20da29504157ffc1dd899a4b526d795"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:8ed398419d722370cd4b749bc58d98d69002c8e9f19f24b17bb2f63415e40baa"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/whole-garden-house-red-hip-gallery-and-three-lower-gates.png",
+          "hash": "sha256:9156f9179b81812532609ebe7fe4201da20cd8ac1b1659aff10e6bf697310977"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/open-gallery-upper-door-and-external-stair.png",
+          "hash": "sha256:856e8fbf7cafe129dbb2ce38c2518ad69dab0e6a17257d3cf429cff15a9d629c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/log-lower-gates-and-weathered-board-upper-room.png",
+          "hash": "sha256:65f1b67352af7207833e33d29457bd746e0be11670a4ed85acb2c7b3f201b10a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/map-derived-rear-roof-and-raised-floor.png",
+          "hash": "sha256:c61df3f94092278be186e92c6de0ad461c277750cb2fdc6422fe7614e5d6aee0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:5d578dbd960c2849d2944b8f016e899ecad97e2d2d68c48ae9469f76128e87c9"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:6bf84b8d90d6896d45c7283f5a36078fd652b3578bd6ae9c79d8d8db556a4a45"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:bafb9fa15eedf5e1080a7878fe192efb270529facd80368a2531a2f16da258ef"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:d2b57a5c216aa4c9e3cf46fbb05b3a586d69d25ed4dc5829aed66ae788247f2b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/shared/whole-garden-house-red-hip-gallery-and-three-lower-gates.png",
+          "hash": "sha256:87ca29b7d60484c311fc7b7089a2ce5632ca9c51263912e3acf7574a418d9422"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/shared/open-gallery-upper-door-and-external-stair.png",
+          "hash": "sha256:c4e2641d534621d6e9054c4e151abe21141e31a6e69685e0190a9189f8bc1dad"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/shared/log-lower-gates-and-weathered-board-upper-room.png",
+          "hash": "sha256:d7064818bbb9f10cc5a7dbdd95d6ac3327cad3071c92cfa626c21b9e5e8c6d96"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/shared/map-derived-rear-roof-and-raised-floor.png",
+          "hash": "sha256:d364579feccec8768340f5f53ba7a1797e58dc7d0c95d89b0387cef70d83a3f6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:65668ad014bcad7eb241cec39c8a97532b6be2e54824bd3f6f3dc0feb63ddf84"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:87776061426a9d6339a407b701064cec78a4c4472e68d637e5938a3727b49ff0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:92eab06dd3cd8768617936ef37231ab5cc1919fe6143646cfae0a29a152e18ec"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:30ac5043191f3b275ea5d5e02ea097ff0d42e681c036d59e0af3bc435af97515"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:66e884345f27561d0521a01d7b7cbeffbd964fc7c75e9614b8bf3f087aa694e3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:9bb9e57e8b001626af133e05673d9bdaaf28795deb3e07be30d0594e951e172a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:eb9729bab9e82bcdca09006253b397952b1428f13cfb0379e3e62b7c2b2b3aea"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:2c4c139e5203cae3434b3c2146dafbadd4380eb46b2de2e65ad1f68512608678"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:ef68bfe88f03f63ad95bea966b3c38304c92625f5a2cbaa361c6083fd73fde24"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:5c30f3f8faaf6b94648eb6bffca6a976c9f989899f90c2e91061b8729946997e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:1528f08a7302f8747bafc0d798a95d24be8bf0cb83e06b99086945c41fd3c8c0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:ffacdd7df92703fad55db615f14724d145d15d77d03f0ebe97d1c16f823a6244"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:871177c8268d335d311139d1ba1580f80106b6e4d7701da861d9b42d7b504b4c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:d1f1996e688da005f9268cac2f7ab3aa82265e757eaa325bf1b7a7878c02ddd0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/whole-garden-house-red-hip-gallery-and-three-lower-gates.png",
+          "hash": "sha256:e0c02aba4970203ad8397a5ace05da1a48ec72664ec4fc19e134215ae9f089a6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/open-gallery-upper-door-and-external-stair.png",
+          "hash": "sha256:64e92cf2f8468fdeadbc6a97ce3a6f8cf1ebb99f8e76dd73fbf53a5bbdd4a186"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/log-lower-gates-and-weathered-board-upper-room.png",
+          "hash": "sha256:a1c8e3ca9f78e73b00d7e2ef578fce067e3f8a862437a2176d3effc8cb69027e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/map-derived-rear-roof-and-raised-floor.png",
+          "hash": "sha256:1f8f83c996e49c12f011b348b9d57b271efafbb8eb83102a125649ec7bffa4e3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:48daf4040cea321ccc373ed64ffb9af75ef158cefa9f023ab4c75221e8441368"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:eb9729bab9e82bcdca09006253b397952b1428f13cfb0379e3e62b7c2b2b3aea"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:1a42e96544b89c9a34db278d44b8efaa4cf3340b2d799a6f58bb5b72aa87de49"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:6bf73ab33739d35ee4d127d91d61210deff54e48b92c4d409744d111ed587185"
+        },
+        {
+          "path": ".artifacts/garden-house-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:aa5acfe624f9102080380c1c138146733538ba500e9576ad5a154a57c7fcf948"
+        },
+        {
+          "path": ".artifacts/garden-house-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:a7d88d0f8c3b7b02b7bbb3eab19e740eceb697d6846ee16551da4f957e783e74"
+        },
+        {
+          "path": ".artifacts/garden-house-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:14f565fa7e88e3e77175029a9c906c6b8882698511f6fc4199133d161a06a64f"
+        },
+        {
+          "path": ".artifacts/garden-house-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:d2c4c3316a10fba029083069610b42e4d11254bbe0c5494d421b498f0762304d"
+        },
+        {
+          "path": ".artifacts/garden-house-integration/shots/final-closeup-whole-garden-house-red-hip-gallery-and-three-lower-gates.png",
+          "hash": "sha256:c8af907bcb572d6e3f2bde66b51b275d2fde66a7e59c77533520c18aefcaefdf"
+        },
+        {
+          "path": ".artifacts/garden-house-integration/shots/final-closeup-open-gallery-upper-door-and-external-stair.png",
+          "hash": "sha256:c4d4d706983f81093a7b09de203214b3ff2fc4387aa7d8aa5c8cd96a9181ca11"
+        },
+        {
+          "path": ".artifacts/garden-house-integration/shots/final-closeup-log-lower-gates-and-weathered-board-upper-room.png",
+          "hash": "sha256:62efa923119bf8240d14329ebaec206dc672748cfa85c2ed77b117c409411717"
+        },
+        {
+          "path": ".artifacts/garden-house-integration/shots/final-closeup-map-derived-rear-roof-and-raised-floor.png",
+          "hash": "sha256:42ef8fb3928295a03fc8d5ad797712e30500f90dab7d3b4938a2060d175960d3"
+        },
+        {
+          "path": ".artifacts/garden-house-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:da5c852e05cb40d6f423cb970ac337d29f922dfbc50ab3d6fd239fcb246d613f"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:61f5b6a701dfd9c9930f9ca42ef04eb948bee51a8a2b5bdfaff0c10b8b626315",
+      "sourceHash": "sha256:aa6fade7108086b8e32cb200cdfe7f473862f359b3862ae9beca894ac4d78343",
+      "runtimeHash": "sha256:2f6cd9c4cdc62a49ba77ef12f2dffdee989e22614f69b7d834ada7acd254f9d4",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/models/source.glb": "sha256:aa6fade7108086b8e32cb200cdfe7f473862f359b3862ae9beca894ac4d78343",
+        "content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.glb": "sha256:2f6cd9c4cdc62a49ba77ef12f2dffdee989e22614f69b7d834ada7acd254f9d4",
+        "content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.skyline.glb": "sha256:e7f91d7694a7bbf78634e858d5e0b592c4e3a340aec06063f8337b50f95ef9f3",
+        "content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.district.glb": "sha256:249ad13901e4ebe73bc1e1ea8974ee510cf8bfd90c0504c527abdd827b23f6df",
+        "content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.street.glb": "sha256:b85636eaaa07efe884366cd1cff33e438dc91c7bb32003a3c95529f92130b8cc",
+        "content/worldgen/assets/places/uc/ucd/garden_house_yasnaya_polyana/model.closeup.glb": "sha256:29ffd818ce67366f7045d8308fd2f85b8103cc1bb43d3d431c5b1b91df2dfa88"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184592164242
+      ],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184592164242,
+          "owned": true,
+          "covered": 0.9999743593219141,
+          "area": 91.69032848904612,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": -2.8809821017716786e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.garden_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -31.818941180574825,
+            "max": 25.165158819425187
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:aa5acfe624f9102080380c1c138146733538ba500e9576ad5a154a57c7fcf948",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 271729
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27.953098223019005,
+                13,
+                9.144632290816938
+              ],
+              "lookAt": [
+                -1.445564070043553,
+                3.55,
+                1.0725411504455755
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": -2.8809821017716786e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.garden_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -31.818941180574825,
+            "max": 25.165158819425187
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:a7d88d0f8c3b7b02b7bbb3eab19e740eceb697d6846ee16551da4f957e783e74",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272013
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27.953098223019005,
+                13,
+                9.144632290816938
+              ],
+              "lookAt": [
+                -1.445564070043553,
+                3.55,
+                1.0725411504455755
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": -2.8809821017716786e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.garden_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -31.818941180574825,
+            "max": 25.165158819425187
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:14f565fa7e88e3e77175029a9c906c6b8882698511f6fc4199133d161a06a64f",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272469
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27.953098223019005,
+                13,
+                9.144632290816938
+              ],
+              "lookAt": [
+                -1.445564070043553,
+                3.55,
+                1.0725411504455755
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": -2.8809821017716786e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.garden_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -31.818941180574825,
+            "max": 25.165158819425187
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:d2c4c3316a10fba029083069610b42e4d11254bbe0c5494d421b498f0762304d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272609
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27.953098223019005,
+                13,
+                9.144632290816938
+              ],
+              "lookAt": [
+                -1.445564070043553,
+                3.55,
+                1.0725411504455755
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-whole-garden-house-red-hip-gallery-and-three-lower-gates.png",
+            "hash": "sha256:c8af907bcb572d6e3f2bde66b51b275d2fde66a7e59c77533520c18aefcaefdf",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272609
+            },
+            "camera": {
+              "name": "whole-garden-house-red-hip-gallery-and-three-lower-gates",
+              "position": [
+                25.36243848891885,
+                9,
+                7.331215035436335
+              ],
+              "lookAt": [
+                -1.445564070043553,
+                3.55,
+                1.0725411504455755
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-gallery-upper-door-and-external-stair.png",
+            "hash": "sha256:c4d4d706983f81093a7b09de203214b3ff2fc4387aa7d8aa5c8cd96a9181ca11",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272609
+            },
+            "camera": {
+              "name": "open-gallery-upper-door-and-external-stair",
+              "position": [
+                14.3780946865216,
+                5,
+                4.274388048062476
+              ],
+              "lookAt": [
+                1.787568584075959,
+                2.95,
+                2.4092734500725883
+              ],
+              "fov": 56
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-log-lower-gates-and-weathered-board-upper-room.png",
+            "hash": "sha256:62efa923119bf8240d14329ebaec206dc672748cfa85c2ed77b117c409411717",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272609
+            },
+            "camera": {
+              "name": "log-lower-gates-and-weathered-board-upper-room",
+              "position": [
+                -1.2951070746025444,
+                5,
+                18.39355043664258
+              ],
+              "lookAt": [
+                -2.0206522107128118,
+                2.95,
+                3.989607078816338
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-map-derived-rear-roof-and-raised-floor.png",
+            "hash": "sha256:42ef8fb3928295a03fc8d5ad797712e30500f90dab7d3b4938a2060d175960d3",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 272889
+            },
+            "camera": {
+              "name": "map-derived-rear-roof-and-raised-floor",
+              "position": [
+                -24.973817249559076,
+                11,
+                -5.129176540695957
+              ],
+              "lookAt": [
+                -1.445564070043553,
+                2.95,
+                1.0725411504455755
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184592164242,
+              "area": 91.68819662088711
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.garden_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -31.818941180574825,
+            "max": 25.165158819425187
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:da5c852e05cb40d6f423cb970ac337d29f922dfbc50ab3d6fd239fcb246d613f",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 271705
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27.953098223019005,
+                13,
+                9.144632290816938
+              ],
+              "lookAt": [
+                -1.445564070043553,
+                3.55,
+                1.0725411504455755
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Complete mapped garden-house exterior interpretation: two-level apple storehouse with pale log lower room, weathered vertical-board upper room, broad red standing-seam hip roof, open front gallery and external twelve-tread stair. Three lower wooden gate openings and one upper gallery entrance are physically recessed; timber piers, railings, stringers and supported aprons complete the exterior. The independent named garden-house POI and its own mapped footprint remain distinct from the nearby granary. No copied signs, inscriptions, people, merchandise, furnishings or photograph pixels. Hidden rear inventory and precise historical levels remain reconstructed. Approximate photo-led scale:2.25m log lower room,2.05m boarded upper room and1.5m hip rise, gallery at2.25m with.92m open rails and12 stair treads. Nominal map5m is a scale cue; all historical heights, timber sections, roof condition, hidden rear openings, thresholds and accessibility remain reconstructed. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside southeast provider[0,7] supplies218.56964118057482m datum. Boundary grades-0.265..0.781m, floor+0.95m and timber pier bottoms-0.45m. Coarse slope exposes up to1.22m beneath the downhill floor, greater than the pictured footing. Original ground remains under raised rooms, gallery and stair; only eight pier feet and four supported aprons cut it. No flattening or bespoke survey. Independent neighbors, approaches, roads and ponds remain. Named mapped POI and independent envelope establish placement. The ordinary walk photograph labeled Садовый домик guides architecture; adjacent granary has a similar storage typology. Tree-hidden lower gate count, exact bay positions, rear openings, roof condition and absolute southeast front assignment remain reconstructed. No exact historical or survey claim. Synthetic flat planes partly bury grade-specific supports/aprons; native views expose the original slope. Other estate models remain procedural context in this isolated fixture. Physical phone/laptop and dense-city timing measurements remain pending."
+  ]
+}

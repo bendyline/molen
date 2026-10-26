@@ -445,7 +445,9 @@ export function buildF16B(s) {
       [side * 0.615, 2.03, 4.91],
       [side * 0.615, 1.99, 4.97],
     ];
-    outline(d, arrow, 0.006, d.ivory, false);
+    // The shaft branches into the arrowhead; do not trace an arm out and back as one rail.
+    d.rod(arrow[0], arrow[1], 0.006, d.ivory);
+    outline(d, [arrow[2], arrow[1], arrow[4]], 0.006, d.ivory, false);
     d.text('DANGER INTAKE', [side * 0.66, 1.28, 4.48], 0.035, yaw, d.ivory);
     // Operator identifiers belong to the selected livery, not the shared airframe.
     d.box([0.12, 0.035, 0.22], [side * 0.68, 1.8, 4.5], side === 1 ? d.red : d.green);
@@ -718,7 +720,7 @@ function f16Cockpits(root, m) {
     ins.available(`${prefix}-heading`, 'trueHeading', hg.name);
     d.rod(at(hdg[0], hdg[1] - 9, -0.028), at(hdg[0], hdg[1] + 9, -0.028), 0.001, ink);
     d.rod(at(hdg[0] - 10, hdg[1], -0.028), at(hdg[0] + 10, hdg[1], -0.028), 0.001, ink);
-    d.text('TRUE', at(hdg[0], hdg[1] + 24, -0.028), 0.0045, Math.PI, ink);
+    d.text('TRUE', at(hdg[0], hdg[1] + 24, -0.028), 0.0045, Math.PI, ink, 'display');
     // Square instrument mounts and screws frame the round faces seen in the photographs.
     for (const [u, v, r] of [
       ...[ah, sh].map(([u, v, r]) => [u, v, r / 2 + 5]),

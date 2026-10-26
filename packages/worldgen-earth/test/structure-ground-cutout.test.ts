@@ -91,6 +91,55 @@ function area(g: THREE.BufferGeometry) {
   return a;
 }
 describe('geographic structure ground cutouts', () => {
+  it('validates a finite native bridge floor', () => {
+    registerStructurePlacementsSchema();
+    const entry = {
+      ...base,
+      groundCutout: {
+        ...base.groundCutout,
+        outline: primaryOpening,
+        minHeight: 3.8,
+        pavingOutlines: [primaryOpening],
+      },
+    };
+    const schema = getSchema('structure-placements')?.zod;
+    if (!schema) throw new Error('Missing placements schema');
+    expect(schema.safeParse(catalog(entry)).success).toBe(true);
+    expect(() => createStructureIndex(catalog(entry))).not.toThrow();
+    const invalidPaving = {
+      ...entry,
+      groundCutout: { ...entry.groundCutout, pavingOutlines: [[]] },
+    };
+    expect(schema.safeParse(catalog(invalidPaving)).success).toBe(false);
+    expect(() => createStructureIndex(catalog(invalidPaving))).toThrow('invalid ground cutout');
+    for (const minHeight of [NaN, Infinity, '3.8']) {
+      const invalid = {
+        ...entry,
+        groundCutout: { ...entry.groundCutout, minHeight },
+      } as unknown as StructurePlacement;
+      expect(schema.safeParse(catalog(invalid)).success).toBe(false);
+      expect(() => createStructureIndex(catalog(invalid))).toThrow('invalid ground cutout');
+    }
+  });
+
+  it('validates the opt-in preservation of approach paving', () => {
+    registerStructurePlacementsSchema();
+    const entry = {
+      ...base,
+      groundCutout: { ...base.groundCutout, outline: primaryOpening, preservePaving: true },
+    };
+    const schema = getSchema('structure-placements')?.zod;
+    if (!schema) throw new Error('Missing placements schema');
+    expect(schema.safeParse(catalog(entry)).success).toBe(true);
+    expect(() => createStructureIndex(catalog(entry))).not.toThrow();
+    const invalid = {
+      ...entry,
+      groundCutout: { ...entry.groundCutout, preservePaving: 'yes' },
+    } as unknown as StructurePlacement;
+    expect(schema.safeParse(catalog(invalid)).success).toBe(false);
+    expect(() => createStructureIndex(catalog(invalid))).toThrow('invalid ground cutout');
+  });
+
   it('validates bounded water openings independently of ground openings', () => {
     registerStructurePlacementsSchema();
     const entry: StructurePlacement = {

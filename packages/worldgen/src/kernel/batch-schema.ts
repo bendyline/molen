@@ -57,12 +57,33 @@ const ring = z
   .describe('Open ring of [x, z] points (no repeated closing point).');
 
 const buildingRequest = z.strictObject({
+  yard: z
+    .strictObject({
+      driveway: z
+        .strictObject({
+          from: point,
+          to: point,
+          width: z.number().positive().max(12),
+          lift: z.number().min(0).max(1).optional(),
+        })
+        .optional(),
+      fence: z
+        .strictObject({
+          kind: z.enum(['timber', 'masonry', 'rail']),
+          height: z.number().min(0.3).max(2),
+          segments: z.array(z.tuple([point, point])).max(64),
+        })
+        .optional(),
+    })
+    .optional()
+    .describe('Lot driveway and open fence segments, in local meters; attach once per house.'),
   priority: z.number().finite().optional(),
   access: z
     .strictObject({
       from: point,
       to: point,
       width: z.number().positive().max(12),
+      lift: z.number().min(0).max(1).optional(),
       garage: z.boolean().optional(),
     })
     .optional(),

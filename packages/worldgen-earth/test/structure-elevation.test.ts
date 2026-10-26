@@ -152,6 +152,16 @@ describe('landmark ground reference', () => {
         length: 100,
         width: 20,
         deckHeights: [3, 5],
+        deckEndpoints: [
+          [-50, 40],
+          [50, 40],
+        ],
+        deckProfile: [
+          [-50, 3, 40],
+          [0, 8, 0],
+          [50, 5, 40],
+        ],
+        includeTransverseBridges: false,
         includeConnectedApproaches: true,
       },
     };
@@ -172,7 +182,53 @@ describe('landmark ground reference', () => {
         ] as [number, number][],
       },
       { length: 100, width: 20, deckHeights: [3, Infinity] as [number, number] },
+      { length: 100, width: 20, includeTransverseBridges: true },
+      {
+        length: 100,
+        width: 20,
+        deckHeights: [3, 5] as [number, number],
+        deckProfile: [
+          [-50, 3, 40],
+          [0, Infinity, 0],
+          [50, 5, 40],
+        ] as [number, number, number][],
+      },
+      {
+        length: 100,
+        width: 20,
+        deckHeights: [3, 5] as [number, number],
+        deckProfile: [
+          [50, 5, 40],
+          [-50, 3, 40],
+        ] as [number, number, number][],
+      },
       { length: 100, width: 20, deckHeights: [3, 5] as [number, number], deckHeight: 4 },
+      {
+        length: 100,
+        width: 20,
+        deckHeight: 4,
+        deckEndpoints: [
+          [-50, Infinity],
+          [50, 40],
+        ] as [[number, number], [number, number]],
+      },
+      {
+        length: 100,
+        width: 20,
+        deckHeight: 4,
+        deckEndpoints: [
+          [50, 40],
+          [-50, 40],
+        ] as [[number, number], [number, number]],
+      },
+      {
+        length: 100,
+        width: 20,
+        deckEndpoints: [
+          [-50, 40],
+          [50, 40],
+        ] as [[number, number], [number, number]],
+      },
     ]) {
       const invalid = { ...absolute, replaceRoads };
       expect(getSchema('structure-placements')?.zod.safeParse(catalog(invalid)).success).toBe(

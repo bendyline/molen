@@ -100,7 +100,7 @@ const originals = {
     doubleSided: true,
   },
 };
-it('preserves the exact original detailed instanced master and reconciles source/import bytes', async () => {
+it('reproduces the detailed instanced master with joined trim and reconciles source/import bytes', async () => {
   const bytes = baroloPalaceStudy.encodeAssembly((build, name) => {
     const b = new MeshBufferBuilder(),
       a = createArchitecturalSurfaceAuthoring(originals, { legacyAlphaFields: true });
@@ -115,7 +115,7 @@ it('preserves the exact original detailed instanced master and reconciles source
       name,
     );
   }, encodeAuthoredAssembly);
-  expect(bytes.byteLength).toBe(49608172);
+  expect(bytes.byteLength).toBe(48991656);
   execFileSync(
     process.execPath,
     ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=barolo_palace', '--check'],

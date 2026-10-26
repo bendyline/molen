@@ -350,6 +350,98 @@ export function buildStariMostDetailed(out) {
   }
 }
 
+/** Closed full-span silhouette, preserving the actual multi-center arch instead of mesh decimation. */
+export function buildStariMostSkyline(out) {
+  const samples = 64,
+    extent = 16.2;
+  for (let i = 0; i < samples; i++) {
+    const a = archPoint(i / samples),
+      b = archPoint((i + 1) / samples);
+    wedge(out, a[0], b[0], a[1], b[1], deck(a[0]), deck(b[0]), -width / 2, width / 2, cream);
+  }
+  for (const side of [-1, 1]) {
+    const a = side < 0 ? -extent : half,
+      b = side < 0 ? -half : extent;
+    wedge(
+      out,
+      a,
+      b,
+      arch(side * half),
+      arch(side * half),
+      deck(a),
+      deck(b),
+      -width / 2,
+      width / 2,
+      cream,
+    );
+    for (const [x0, x1] of [
+      [-extent, 0],
+      [0, extent],
+    ]) {
+      const z = side * (width / 2 - 0.13);
+      wedge(
+        out,
+        x0,
+        x1,
+        deck(x0),
+        deck(x1),
+        deck(x0) + 0.945,
+        deck(x1) + 0.945,
+        z - 0.13,
+        z + 0.13,
+        pale,
+      );
+      // The iron guard is sub-pixel at skyline distance; keep the solid stone parapet.
+    }
+    const x0 = side < 0 ? -18.1 : half,
+      x1 = side < 0 ? -half : 18.1;
+    box(out, 'roughstone', [x0, 0, -2.55], [x1, 6.8, 2.55], [0.66, 0.65, 0.58]);
+  }
+}
+
+/** Medium distance keeps a closed deck plus both projecting stone cornices. */
+export function buildStariMostDistrict(out) {
+  buildStariMostSkyline(out);
+  for (const side of [-1, 1]) {
+    for (let i = 0; i < 64; i++) {
+      const a = i / 64,
+        b = (i + 1) / 64,
+        A = archPoint(a),
+        B = archPoint(b),
+        na = archNormal(a),
+        nb = archNormal(b);
+      solid(
+        out,
+        [
+          A.map((v, k) => v + na[k] * 0.78),
+          B.map((v, k) => v + nb[k] * 0.78),
+          B.map((v, k) => v + nb[k] * 0.93),
+          A.map((v, k) => v + na[k] * 0.93),
+        ],
+        side < 0 ? -2.13 : 1.96,
+        side < 0 ? -1.96 : 2.13,
+        pale,
+      );
+    }
+    for (const [x0, x1] of [
+      [-16.2, 0],
+      [0, 16.2],
+    ])
+      wedge(
+        out,
+        x0,
+        x1,
+        deck(x0) - 0.21,
+        deck(x1) - 0.21,
+        deck(x0),
+        deck(x1),
+        side < 0 ? -2.18 : 1.9,
+        side < 0 ? -1.9 : 2.18,
+        pale,
+      );
+  }
+}
+
 export const stariMostStudy = {
   id: 'stari_most',
   key: 'stari_most',

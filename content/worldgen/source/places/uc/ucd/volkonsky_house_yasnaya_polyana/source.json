@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.volkonsky_house_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Volkonsky House and wings — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.volkonsky_house_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d9af3b261b2ea2d0a30e634691fa1c5c4964752426cc04377b788d05df28c91c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-volkonsky-house-yasnaya-polyana",
+        "path": "models/generate-volkonsky-house-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "volkonsky-house-yasnaya-polyana-model",
+        "path": "models/volkonsky-house-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "volkonsky-house-yasnaya-polyana-geometry",
+        "path": "models/volkonsky-house-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

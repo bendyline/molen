@@ -1,0 +1,937 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:88142e81153ec9b9e523d0d616538e9bb7d1103b20dd11229c96c18160bf3c46",
+  "sourceHash": "sha256:fd97e715b480c159b41576c4d2c49a9733bc66be8552d28b08bb64a46dcfe676",
+  "runtimeHash": "sha256:00aee7aa1053480aea30d476404e4f8e88a196da52ff962d4e23325a35f6f151",
+  "captureReportHash": "sha256:e6d92a9357ae79fceaa9ee884340f2c3d7d3ed4a3fdf3db850853937dde9587d",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/white-front-balcony-green-roof-and-chimneys.png",
+      "shots/supported-balcony-and-front-recessed-door.png",
+      "shots/rear-arched-window-low-bay-and-open-porch.png",
+      "shots/recessed-rear-entry-open-porch-and-treads.png"
+    ],
+    "notes": "Inspected all48 current portable/shared/medium-fi/native frames in labeled contact sheets, plus full-resolution native whole-site, front balcony, rear bay/arched window, porch and entry views. The white long house, green hip roof, six pale chimneys, pediment/canopy, open balcony rails/brackets, low rear bay and open wooden porch read coherently. The native pass led to a closed roof-to-wall joint on the rear bay; final source/runtime/captures share exact pins. Ordinary front/rear pictures and standard PMTiles guided one continuous author/inspect/fix round."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/white-front-balcony-green-roof-and-chimneys.png",
+      "shots/shared/supported-balcony-and-front-recessed-door.png",
+      "shots/shared/rear-arched-window-low-bay-and-open-porch.png",
+      "shots/shared/recessed-rear-entry-open-porch-and-treads.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Seven roles reuse six existing256px graphs: stucco, wood_plain, stone_limestone, metal_standing_seam, storefront and fabric_canvas. Trim and porch wood share one graph. Metric UVs, linear tints, six nearby draws/one skyline, separate POSITION/NORMAL streams and matching CPU/GPU geometry accounting. No embedded image, private atlas or new graph. Each used graph reads once; unload releases every model geometry.",
+    "captureReportHash": "sha256:c24afa7cb3da4393f88f9a4570e7547e81297091511bb2c8bffee89982f16172"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/white-front-balcony-green-roof-and-chimneys.png",
+      "medium-fi/supported-balcony-and-front-recessed-door.png",
+      "medium-fi/rear-arched-window-low-bay-and-open-porch.png",
+      "medium-fi/recessed-rear-entry-open-porch-and-treads.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs779/1519/3791/4661 triangles. Initial skyline+district197416bytes; closeup372812bytes. Skyline retains the main hip roof, six stacks, front pediment/canopy, physical balcony and bracket proxies, two recessed doors, low rear bay, open porch and both supported tread sets. It omits window modules and close lattice/mullion detail. District retains windows and a simplified arched upper window; nearby LODs add lattice, rails, corner bands, vents and pipes. Synthetic contexts test style/LOD/tier coherence; native frames establish approximate geographic fit.",
+    "captureReportHash": "sha256:53bed3e4c015448dce987b605cc7e3450ab6db4fbde8e2b1e3c57d20eada6f6e"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:b26cf26521036213e4cfb0a75779ef3c35da119caadebdea89b990e00148e21a",
+    "mapFrameHash": "sha256:5183b79f9a977807bd1a2ecdb186add5d8c6aa8b0864b69c19bbfeb1a0ce8b1d",
+    "notes": "Named Дом Толстого museum POI and building way99697450 identify this house separately from Kuzminsky and Volkonsky houses, service/garden buildings and gate towers. X southwest along the southeast front; Z southeast toward the garden. Native east/up/south axes baked into geometry, heading0. Map outline33.13m long by12.22m deep; photo-visible rear bay, porch and balcony are picture-led additions outside the simple map rectangle. Retained standard Protomaps20261020 PMTiles and Mapzen ground, no bespoke terrain or flattening. Outside garden provider[0,6] supplies225.42026112723954m datum. Mapped boundary grades-.358..+.640m; floor+.8m, closed foundation-.55m. Original garden/approach ground, independent estate buildings, roads and ponds remain. Coarse plinth exposure, thresholds and accessibility approximate. Inspected current native front/rear views: mapped house aligns with the garden paths; supported base, both tread sets, low rear bay and open porch read coherently. All242 resident independent buildings and40070.675m² pond water remain unchanged; original garden ground and roads retained. Historic heights, hidden bays and thresholds remain approximate. The one owned mapped house is replaced while242 resident/294 wider independent buildings, original garden/approach ground, roads and40070.675m² pond water remain. Failure keeps all243 originals; every LOD/failure/unload case restores ground/water and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Recognizable medium-fi exterior. Main map rectangle fixes33.13m by12.22m horizontal extent; rear bay/porch and front balcony/pediment are picture-led additions. Original boundary grades-.358..+.640m, floor+.8m and closed foundation-.55m support the house with modest exposed low-side plinth. Heights, hidden bays/roofs, porch enclosure, canopy state, historic thresholds, landscaping and accessibility remain approximate. Map nominal8m is a scale cue, not surveyed height. Trees, furnishings, inscriptions and artwork are not copied. Flat synthetic planes bury some grade-specific base/steps; some detail frames crop the opposite end. Whole/native front/rear views cover the envelope. Other estate structures are still independent procedural context. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:fd97e715b480c159b41576c4d2c49a9733bc66be8552d28b08bb64a46dcfe676\",\"bytes\":428412,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.glb\",\"hash\":\"sha256:00aee7aa1053480aea30d476404e4f8e88a196da52ff962d4e23325a35f6f151\",\"bytes\":427828,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:7d1fbccb43f78df8758748588cccc49371ac09b90aeab612ca31dfe14610c1bb\",\"bytes\":70048,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:acf64a87db09df7782a8bef1f6ba889afc3c47e59e27c362a3c24ed5c5ded5cd\",\"bytes\":127368,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:6b53fe4d716c738911c1492bb5c46a5bfffef879764ec6ad7b15ec00803ed8e4\",\"bytes\":304736,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:dbdf95b91e77235bccea57703821977ec788e7adf092c9e96d3df04ed5d24299\",\"bytes\":372812,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "mapped-roof-foundation-six-chimneys-recessed-entries-porch-balcony-treads-arched-window-and-budgets",
+        "passed": true,
+        "notes": "173 actual mesh/contact probes and all six GLB pins pass. Finite attributes, shared bindings, strict LOD caps, separate vertex streams and initial download budget checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named Дом Толстого museum POI and building way99697450 identify this house separately from Kuzminsky and Volkonsky houses, service/garden buildings and gate towers. X southwest along the southeast front; Z southeast toward the garden. Native east/up/south axes baked into geometry, heading0. Map outline33.13m long by12.22m deep; photo-visible rear bay, porch and balcony are picture-led additions outside the simple map rectangle. Retained standard Protomaps20261020 PMTiles and Mapzen ground, no bespoke terrain or flattening. Outside garden provider[0,6] supplies225.42026112723954m datum. Mapped boundary grades-.358..+.640m; floor+.8m, closed foundation-.55m. Original garden/approach ground, independent estate buildings, roads and ponds remain. Coarse plinth exposure, thresholds and accessibility approximate. Inspected current native front/rear views: mapped house aligns with the garden paths; supported base, both tread sets, low rear bay and open porch read coherently. All242 resident independent buildings and40070.675m² pond water remain unchanged; original garden ground and roads retained. Historic heights, hidden bays and thresholds remain approximate. The one owned mapped house is replaced while242 resident/294 wider independent buildings, original garden/approach ground, roads and40070.675m² pond water remain. Failure keeps all243 originals; every LOD/failure/unload case restores ground/water and releases geometry."
+    },
+    "inputHash": "sha256:88142e81153ec9b9e523d0d616538e9bb7d1103b20dd11229c96c18160bf3c46",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:88142e81153ec9b9e523d0d616538e9bb7d1103b20dd11229c96c18160bf3c46",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected all48 current portable/shared/medium-fi/native frames in labeled contact sheets, plus full-resolution native whole-site, front balcony, rear bay/arched window, porch and entry views. The white long house, green hip roof, six pale chimneys, pediment/canopy, open balcony rails/brackets, low rear bay and open wooden porch read coherently. The native pass led to a closed roof-to-wall joint on the rear bay; final source/runtime/captures share exact pins. Ordinary front/rear pictures and standard PMTiles guided one continuous author/inspect/fix round.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/preview.png",
+          "hash": "sha256:2430767e8c41c35def9f60e32b678a1de0f079a91426ca0c56eb9f6a15471f72"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:87fc5daddfad9ae6d2fefb7197361f498df0a9315442e8403ae4e0d8acaa97ed"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:383089b3bfc7c1d25b54d3ad83a51a26ae3d3c6aab5a1c6998faeaab70eb3640"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:3057766fdc1b084693078ace29ee30ad997999eaa12fed7c5ffe3ca7b824b4a1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:cdc3fc17f55ee2024384ac2e5267897dc3e76be8c63750af10a808d25b4a32f0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/white-front-balcony-green-roof-and-chimneys.png",
+          "hash": "sha256:a925342294716180f99be08f8f31eb59522ab46430e74534426ddc99c38b6d63"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/supported-balcony-and-front-recessed-door.png",
+          "hash": "sha256:44e7ea54a8672525d7744bc6cca17189295380f4a16e7b4bc01c221059c4a492"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/rear-arched-window-low-bay-and-open-porch.png",
+          "hash": "sha256:6336de7fe6a67eaea49ed8d6816ced44177c963c28482580bdff6613f23eb551"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/recessed-rear-entry-open-porch-and-treads.png",
+          "hash": "sha256:f0f35215da5d96ec21dac6562344660ba732fd980566770a1991cb2fe8cb4c4e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:9b34109b73ecef5316874449ef23a34cbfd85fbc7c2b9ed51d07278ad2d5c383"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:80b3b60ecb36c444768b0343c6e5211e37071d4e5a6b362205d9a015bf1e4103"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:e6dbd4b39ff0da90a71e113d46cef6b51555514629e61e1610ef7efe360e3b47"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:85f56861c71f1a8a34f86479a66f4136cd6a014511790f552c9f6094c749dfdb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/shared/white-front-balcony-green-roof-and-chimneys.png",
+          "hash": "sha256:fccd8b26308f654eb8c9d10df66f08c93f11d4a30d91c0af96ba3e8c94584f04"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/shared/supported-balcony-and-front-recessed-door.png",
+          "hash": "sha256:786afb21a1ed3e91535ba42277237c3c21fc99b3ef5585dab70343c7bd5f8a25"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/shared/rear-arched-window-low-bay-and-open-porch.png",
+          "hash": "sha256:69a72e3af1a79ca8292fb0ac422490680edf9fa2e931ab2e2f436571c42b7574"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/shared/recessed-rear-entry-open-porch-and-treads.png",
+          "hash": "sha256:e84417c0c7c3dee7fefbab7a1d030d56c7cc70114f0882fbec3a391788d88d21"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:25ed27bd0f4c6239ca1bfc4d5f81d459062f82cbe2f944b40ea9f7f18df9b704"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:ba45c865588c698af639ad6e899bf5bfc7e37d60159cb18f68318fd1d66e93ce"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:623c518a60c128e0aa011761deaca2383863c9ad81b01ef68666070bc3acd578"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:1668f88b4bca0e3b57cb3c27cb9a86b08ba7b46a176758cfb8cd6d9c6e390b52"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:2f571bd10cadc05aa5769fe24eb8d6937f1e2bbb2d012c847accd587624a6ab5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:1534f1e565ee833aff0735a4a8e7a91bb911280555c04ae576ff8f1ff00bbbb6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:cbc98efeec3681106a0980b1b702e078b8de888e8a9d5fc27248b0e195aeef73"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:c5be8dfe2236f8a41d6c9c255b29a9793a9990fba8c8201b5a6c56d24e25819a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:8b595c8c828326542e5922b7edd7ef500a3ae27781bbbd49749f40cf8d5295f4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:e19f8c171029888d9c482e8a014fd57c94f701de8747ba64ab7fdfa3bc845162"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:020a42a7f6f00d20d7799c20a9c559a79f1d3dd5c7bbe6f40de3676c626bf61d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:70d5e342e2ffd8c89fac3af0dd55af0e1b78e3687d6da1df2f1e524ceb506550"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:5991d49623476387db76378d58027748fdff27732a9890a11a829e424e65481d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:7a8351c1221f1dd74ada6a02a34efdd856c908630b6eef07ac31665641cf1d5a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/white-front-balcony-green-roof-and-chimneys.png",
+          "hash": "sha256:b3a6e58a0685e9069d8bca3a4e0a16a86156b927de37a4ea528d8aeac4acb580"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/supported-balcony-and-front-recessed-door.png",
+          "hash": "sha256:285bd9784cd956622e4a65b45609a2eaf4a5c7f6c7f2ef6acaeeced1b33f49cc"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/rear-arched-window-low-bay-and-open-porch.png",
+          "hash": "sha256:ea6c99a0ab581014b73d6f34b283c16faca69fa636ecd42c2ec4a65bf6f9ef68"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/recessed-rear-entry-open-porch-and-treads.png",
+          "hash": "sha256:af0ae652acfb61eeeb88b9a1cff1036a342f5f7de12bff3ef231bb405024b38b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:3246f620469b6b27eba5b93cd474a14e8ec42dbd37bbe9bea2ef428d8c9039e3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:cbc98efeec3681106a0980b1b702e078b8de888e8a9d5fc27248b0e195aeef73"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:9a474f79524b29b213648b83e1e0a5c347daa1ead3e79a2575252c3f9cb811b1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:d3364b0c63963cfd81cfbafc94ae3e78ed605932945842d1b57949100b3e6ccf"
+        },
+        {
+          "path": ".artifacts/yasnaya-house-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:4d848c1a0d3c44fa807d991e64285e69744d86ba7dd2d7dd060ed428ad6006bb"
+        },
+        {
+          "path": ".artifacts/yasnaya-house-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:010fa2ad9558e7d0a72f67527e9a398cdcaae179ed501bc4507ea30ecd015bb6"
+        },
+        {
+          "path": ".artifacts/yasnaya-house-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:a719556298023c196ed95c9942f17320b2715cbca378b00b50687782644d02dd"
+        },
+        {
+          "path": ".artifacts/yasnaya-house-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:9608a58f3ff1bee9da0dea0f0a88eaf1eba26c6ecb752fcef13ab4a6cae0cbf9"
+        },
+        {
+          "path": ".artifacts/yasnaya-house-integration/shots/final-closeup-white-front-balcony-green-roof-and-chimneys.png",
+          "hash": "sha256:c27b7896c270e6e0ff14af95096f0eb712d305c011a64f390006dc194ccab8a5"
+        },
+        {
+          "path": ".artifacts/yasnaya-house-integration/shots/final-closeup-supported-balcony-and-front-recessed-door.png",
+          "hash": "sha256:ed73590bb7b896f298be01b9f380ae722f53201a5c50022f0ad0a1ececb0aec4"
+        },
+        {
+          "path": ".artifacts/yasnaya-house-integration/shots/final-closeup-rear-arched-window-low-bay-and-open-porch.png",
+          "hash": "sha256:1c0964c782883fbc6bf764de01b2b87ff235dc6ec792439b7daee438ec97cf56"
+        },
+        {
+          "path": ".artifacts/yasnaya-house-integration/shots/final-closeup-recessed-rear-entry-open-porch-and-treads.png",
+          "hash": "sha256:9191391c018a2380df6134861a890df0a28405a1b44288302ed6cdc133d28b3c"
+        },
+        {
+          "path": ".artifacts/yasnaya-house-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:b680e576310f8c81e7b8fdc928a32810c7796859463e588814d6e931e006d334"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:88142e81153ec9b9e523d0d616538e9bb7d1103b20dd11229c96c18160bf3c46",
+      "sourceHash": "sha256:fd97e715b480c159b41576c4d2c49a9733bc66be8552d28b08bb64a46dcfe676",
+      "runtimeHash": "sha256:00aee7aa1053480aea30d476404e4f8e88a196da52ff962d4e23325a35f6f151",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/models/source.glb": "sha256:fd97e715b480c159b41576c4d2c49a9733bc66be8552d28b08bb64a46dcfe676",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.glb": "sha256:00aee7aa1053480aea30d476404e4f8e88a196da52ff962d4e23325a35f6f151",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.skyline.glb": "sha256:7d1fbccb43f78df8758748588cccc49371ac09b90aeab612ca31dfe14610c1bb",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.district.glb": "sha256:acf64a87db09df7782a8bef1f6ba889afc3c47e59e27c362a3c24ed5c5ded5cd",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.street.glb": "sha256:6b53fe4d716c738911c1492bb5c46a5bfffef879764ec6ad7b15ec00803ed8e4",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.closeup.glb": "sha256:dbdf95b91e77235bccea57703821977ec788e7adf092c9e96d3df04ed5d24299"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184471786282
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4949,
+            2627
+          ],
+          "id": 35184471786280,
+          "owned": false,
+          "covered": 0.14831253155109372,
+          "area": 2684.457206390932,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9899,
+            5254
+          ],
+          "id": 35184471786280,
+          "owned": false,
+          "covered": 0.5482106737327954,
+          "area": 724.0721014773028,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184471786282,
+          "owned": true,
+          "covered": 0.9999956250472464,
+          "area": 403.2157336415598,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -4.610768939983245e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.66956112723955,
+            "max": 18.314538872760465
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:4d848c1a0d3c44fa807d991e64285e69744d86ba7dd2d7dd060ed428ad6006bb",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 271031
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                0.5174687987917004,
+                28,
+                62.62373532489321
+              ],
+              "lookAt": [
+                -3.145948047949552,
+                4,
+                -3.8862592398863987
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -4.610768939983245e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.66956112723955,
+            "max": 18.314538872760465
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:010fa2ad9558e7d0a72f67527e9a398cdcaae179ed501bc4507ea30ecd015bb6",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 271771
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                0.5174687987917004,
+                28,
+                62.62373532489321
+              ],
+              "lookAt": [
+                -3.145948047949552,
+                4,
+                -3.8862592398863987
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -4.610768939983245e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.66956112723955,
+            "max": 18.314538872760465
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:a719556298023c196ed95c9942f17320b2715cbca378b00b50687782644d02dd",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 274043
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                0.5174687987917004,
+                28,
+                62.62373532489321
+              ],
+              "lookAt": [
+                -3.145948047949552,
+                4,
+                -3.8862592398863987
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -4.610768939983245e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.66956112723955,
+            "max": 18.314538872760465
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:9608a58f3ff1bee9da0dea0f0a88eaf1eba26c6ecb752fcef13ab4a6cae0cbf9",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 274913
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                0.5174687987917004,
+                28,
+                62.62373532489321
+              ],
+              "lookAt": [
+                -3.145948047949552,
+                4,
+                -3.8862592398863987
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-white-front-balcony-green-roof-and-chimneys.png",
+            "hash": "sha256:c27b7896c270e6e0ff14af95096f0eb712d305c011a64f390006dc194ccab8a5",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 274625
+            },
+            "camera": {
+              "name": "white-front-balcony-green-roof-and-chimneys",
+              "position": [
+                15.951683790215998,
+                12,
+                30.830890098356882
+              ],
+              "lookAt": [
+                -1.8875688287697314,
+                4,
+                -2.3317555439318394
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-supported-balcony-and-front-recessed-door.png",
+            "hash": "sha256:ed73590bb7b896f298be01b9f380ae722f53201a5c50022f0ad0a1ececb0aec4",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 274625
+            },
+            "camera": {
+              "name": "supported-balcony-and-front-recessed-door",
+              "position": [
+                6.958026361529448,
+                5,
+                14.952788005996117
+              ],
+              "lookAt": [
+                2.3317555439318394,
+                4,
+                -1.8875688287697314
+              ],
+              "fov": 64
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-rear-arched-window-low-bay-and-open-porch.png",
+            "hash": "sha256:1c0964c782883fbc6bf764de01b2b87ff235dc6ec792439b7daee438ec97cf56",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 274913
+            },
+            "camera": {
+              "name": "rear-arched-window-low-bay-and-open-porch",
+              "position": [
+                -44.11775321182587,
+                14,
+                -13.17664037379896
+              ],
+              "lookAt": [
+                -8.475589401443575,
+                4,
+                -7.291391108570256
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-recessed-rear-entry-open-porch-and-treads.png",
+            "hash": "sha256:9191391c018a2380df6134861a890df0a28405a1b44288302ed6cdc133d28b3c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 274913
+            },
+            "camera": {
+              "name": "recessed-rear-entry-open-porch-and-treads",
+              "position": [
+                -25.352886892249856,
+                3.5,
+                -9.06813796921869
+              ],
+              "lookAt": [
+                -15.322793794851723,
+                2,
+                -3.0351260798282533
+              ],
+              "fov": 60
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184471786282,
+              "area": 403.22487688011944
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -38.66956112723955,
+            "max": 18.314538872760465
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:b680e576310f8c81e7b8fdc928a32810c7796859463e588814d6e931e006d334",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 271993
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                0.5174687987917004,
+                28,
+                62.62373532489321
+              ],
+              "lookAt": [
+                -3.145948047949552,
+                4,
+                -3.8862592398863987
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Recognizable medium-fi exterior. Main map rectangle fixes33.13m by12.22m horizontal extent; rear bay/porch and front balcony/pediment are picture-led additions. Original boundary grades-.358..+.640m, floor+.8m and closed foundation-.55m support the house with modest exposed low-side plinth. Heights, hidden bays/roofs, porch enclosure, canopy state, historic thresholds, landscaping and accessibility remain approximate. Map nominal8m is a scale cue, not surveyed height. Trees, furnishings, inscriptions and artwork are not copied. Flat synthetic planes bury some grade-specific base/steps; some detail frames crop the opposite end. Whole/native front/rear views cover the envelope. Other estate structures are still independent procedural context. Physical phone/laptop and dense-city timings remain pending."
+  ],
+  "inputIdentityReconciliation": {
+    "reason": "First authoring-index registration adds duplicate references to recipes already included under local bundle paths. No source input, geometry or image changed.",
+    "previousInputHash": "sha256:21e730a4b36b09e825ac1df8adcb450a8bd63b33769cd888d73bc080c318ea2f",
+    "inputHash": "sha256:88142e81153ec9b9e523d0d616538e9bb7d1103b20dd11229c96c18160bf3c46",
+    "indexedRecipePaths": [
+      "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/models/generate-leo-tolstoy-house-yasnaya-polyana.mjs",
+      "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/models/leo-tolstoy-house-yasnaya-polyana-model.mjs"
+    ],
+    "reviewedFramesRetained": 48
+  }
+}

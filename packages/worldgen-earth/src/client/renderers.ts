@@ -52,6 +52,7 @@ import type {
 } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
 import { prepareAgricultureTile } from '../kernel/agriculture';
+import { coarseBuildingTile } from '../kernel/coarse-buildings';
 import { isLandcoverDesignation } from '../kernel/labels';
 import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
@@ -94,6 +95,8 @@ const COMPACT_SCATTER_KEEP = 0.5;
 const FOOTPRINT_SLACK = 12;
 
 export interface WorldgenRendererOptions {
+  /** Bounded coarse building silhouettes below the detailed generation range. Opt-in. */
+  distantBuildings?: boolean;
   /** Opt-in synthetic homes; seed/density are forwarded to either generation path and cache. */
   buildingInfill?: SemanticAdapterOptions['buildingInfill'];
   atlas?: RegionAtlasDoc;
@@ -818,7 +821,11 @@ export function createWorldgenSemanticRenderers(
             const outlines = clipToTile
               ? clipStructureGroundOutlines(nativeOutlines, mesh.matrix, context.tileSize)
               : nativeOutlines;
-            setTerrainGroundCutouts(placed, outlines);
+            setTerrainGroundCutouts(placed, outlines, undefined, {
+              preservePaving: entry.groundCutout.preservePaving,
+              minHeight: entry.groundCutout.minHeight,
+              pavingOutlines: entry.groundCutout.pavingOutlines,
+            });
           }
           if (entry.waterCutout) {
             mesh.updateMatrix();
@@ -1107,6 +1114,42 @@ export function createWorldgenSemanticRenderers(
   const humanFeatures: TerrainSemanticTileRenderer = {
     async createTile(tile: TerrainSemanticTile, context): Promise<THREE.Object3D | undefined> {
       if (context.signal.aborted || disposed) return undefined;
+      if (options.distantBuildings && context.address.level < context.pyramid.maxLevel - 1) {
+        // Continuous airplane silhouettes at a fixed per-tile cost, without generating a
+        // street-level city for a tile kilometres across. Higher tiles replace these shells.
+        const group = new THREE.Group();
+        try {
+          // Landmarks keep their own screen-space LOD and replacement footprints here too.
+          // A fixed local cap prevents a continent-scale tile from requesting every asset.
+          const structures = (await structuresForTile(tile, context)).slice(0, 8);
+          await placeStructures(group, context, structures);
+          const placed = placedStructures(group, context, structures);
+          const mapped = withoutReplacedFootprints(
+            tile,
+            context,
+            placed,
+            nearbyFootprints(group, context),
+          );
+          group.add(
+            createTerrainSemanticObject(coarseBuildingTile(mapped), context, {
+              renderLandcover: false,
+              renderWater: false,
+              renderTransportation: false,
+              defaultBuildingHeight: 6.4,
+              defaultLevelHeight: 3.2,
+            }),
+          );
+          if (context.signal.aborted) {
+            disposeHumanTile(group);
+            return undefined;
+          }
+          shareFootprints(group, placed);
+          return group;
+        } catch (error) {
+          disposeHumanTile(group);
+          throw error;
+        }
+      }
       const group = new THREE.Group();
       group.name = `worldgen:${context.address.level}/${context.address.x}/${context.address.z}`;
       try {
@@ -1320,7 +1363,10 @@ export function createWorldgenSemanticRenderers(
         surface.getObjectByName('semantic:landcover') !== undefined &&
         meshOptions.renderLandcover !== false;
       if (coversGround) surface.userData[TERRAIN_COVERS_GROUND] = true;
-      if (models === undefined) return surface;
+      // Coarse canopy and fields remain in the classification colors. Do not multiply
+      // plant batches when extending this layer to the full semantic coverage radius.
+      if (models === undefined || context.address.level < context.pyramid.maxLevel - 2)
+        return surface;
       const group = new THREE.Group();
       group.name = `worldgen-scatter:${context.address.level}/${context.address.x}/${context.address.z}`;
       if (coversGround) group.userData[TERRAIN_COVERS_GROUND] = true;

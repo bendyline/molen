@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:10610cf18993580a920bade8361b6928309458b7ca3450a63c442c26f85c1b0d",
-  "sourceHash": "sha256:5bf099adfc8a2e682db6087b367849fcdf4b82990c2eea0080d417fab96a8524",
+  "hash": "sha256:706085985184e5feeaf71f74606f36246d47ece918a650cec1889ec9cd57e31f",
+  "sourceHash": "sha256:ca8fb51a545bed873c181ee667071d95081a867a905c45a3f8b305626cdbfd28",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 38266,
-    "vertices": 51429,
-    "meshes": 56,
-    "primitives": 56,
-    "materials": 22,
-    "textures": 9,
+    "triangles": 32432,
+    "vertices": 39761,
+    "meshes": 57,
+    "primitives": 57,
+    "materials": 24,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 1507652
+    "sizeBytes": 1356840
   },
   "nodes": [
     {
@@ -486,16 +486,20 @@
       "triangles": 24
     },
     {
-      "name": "airliner-cabin-detail-detail-lettering",
-      "triangles": 3900
-    },
-    {
       "name": "airliner-cabin-detail-detail-alloy",
       "triangles": 1392
     },
     {
       "name": "airliner-cabin-detail-detail-red",
       "triangles": 36
+    },
+    {
+      "name": "airliner-cabin-detail-detail-lettering",
+      "triangles": 1884
+    },
+    {
+      "name": "airliner-cabin-detail-detail-lettering-display-print",
+      "triangles": 38
     },
     {
       "name": "airliner-throttle--1-detail-alloy",
@@ -530,12 +534,12 @@
       "triangles": 176
     },
     {
-      "name": "flight-control-mounts-flight-control-legend",
-      "triangles": 3924
-    },
-    {
       "name": "flight-control-mounts-flight-control-grip",
       "triangles": 84
+    },
+    {
+      "name": "flight-control-mounts-flight-control-legend-panel-print",
+      "triangles": 68
     },
     {
       "name": "flight-power-common-moving-flight-control-alloy",
@@ -547,10 +551,6 @@
     },
     {
       "name": "flight-power-common-moving-flight-control-legend",
-      "triangles": 12
-    },
-    {
-      "name": "flight-engine-common-moving-flight-control-master",
       "triangles": 12
     }
   ],
@@ -692,6 +692,15 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "detail-lettering-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "detail-trim-rubber",
       "slots": [
         "baseColor",
@@ -725,20 +734,29 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -3974,35 +3992,6 @@
         ]
       },
       {
-        "node": "airliner-cabin-detail-detail-lettering",
-        "points": [
-          -0.9155,
-          3.765,
-          14.9955,
-          -0.9155,
-          3.765,
-          16.0235,
-          -0.9155,
-          4.5843,
-          14.9955,
-          -0.9155,
-          4.5843,
-          16.0235,
-          0.9613,
-          3.765,
-          14.9955,
-          0.9613,
-          3.765,
-          16.0235,
-          0.9613,
-          4.5843,
-          14.9955,
-          0.9613,
-          4.5843,
-          16.0235
-        ]
-      },
-      {
         "node": "airliner-cabin-detail-detail-alloy",
         "points": [
           -0.712,
@@ -4058,6 +4047,64 @@
           0.225,
           5.08,
           15.5575
+        ]
+      },
+      {
+        "node": "airliner-cabin-detail-detail-lettering",
+        "points": [
+          -0.9155,
+          3.765,
+          14.9955,
+          -0.9155,
+          3.765,
+          16.0235,
+          -0.9155,
+          4.537,
+          14.9955,
+          -0.9155,
+          4.537,
+          16.0235,
+          0.9613,
+          3.765,
+          14.9955,
+          0.9613,
+          3.765,
+          16.0235,
+          0.9613,
+          4.537,
+          14.9955,
+          0.9613,
+          4.537,
+          16.0235
+        ]
+      },
+      {
+        "node": "airliner-cabin-detail-detail-lettering-display-print",
+        "points": [
+          -0.7163,
+          4.567,
+          16.015,
+          -0.7163,
+          4.567,
+          16.015,
+          -0.7163,
+          4.583,
+          16.015,
+          -0.7163,
+          4.583,
+          16.015,
+          0.6912,
+          4.567,
+          16.015,
+          0.6912,
+          4.567,
+          16.015,
+          0.6912,
+          4.583,
+          16.015,
+          0.6912,
+          4.583,
+          16.015
         ]
       },
       {
@@ -4293,35 +4340,6 @@
         ]
       },
       {
-        "node": "flight-control-mounts-flight-control-legend",
-        "points": [
-          -0.2903,
-          4.0189,
-          15.8995,
-          -0.2903,
-          4.0189,
-          15.9005,
-          -0.2903,
-          4.0267,
-          15.8995,
-          -0.2903,
-          4.0267,
-          15.9005,
-          0.2983,
-          4.0189,
-          15.8995,
-          0.2983,
-          4.0189,
-          15.9005,
-          0.2983,
-          4.0267,
-          15.8995,
-          0.2983,
-          4.0267,
-          15.9005
-        ]
-      },
-      {
         "node": "flight-control-mounts-flight-control-grip",
         "points": [
           -0.2805,
@@ -4348,6 +4366,35 @@
           0.2805,
           4.0055,
           15.902
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-legend-panel-print",
+        "points": [
+          -0.2912,
+          4.0174,
+          15.9,
+          -0.2912,
+          4.0174,
+          15.9,
+          -0.2912,
+          4.0267,
+          15.9,
+          -0.2912,
+          4.0267,
+          15.9,
+          0.2972,
+          4.0174,
+          15.9,
+          0.2972,
+          4.0174,
+          15.9,
+          0.2972,
+          4.0267,
+          15.9,
+          0.2972,
+          4.0267,
+          15.9
         ]
       },
       {
@@ -4435,35 +4482,6 @@
           0.285,
           3.983,
           15.8525
-        ]
-      },
-      {
-        "node": "flight-engine-common-moving-flight-control-master",
-        "points": [
-          0.168,
-          3.9675,
-          15.8805,
-          0.168,
-          3.9675,
-          15.8975,
-          0.168,
-          3.9965,
-          15.8805,
-          0.168,
-          3.9965,
-          15.8975,
-          0.2,
-          3.9675,
-          15.8805,
-          0.2,
-          3.9675,
-          15.8975,
-          0.2,
-          3.9965,
-          15.8805,
-          0.2,
-          3.9965,
-          15.8975
         ]
       }
     ]

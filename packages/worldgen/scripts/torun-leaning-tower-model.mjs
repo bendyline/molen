@@ -1,5 +1,5 @@
 /** Original exterior reconstruction from Toruń's 2019 measured restoration record. */
-import { beam, loft } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft } from './authored-structure-mesh.mjs';
 import { deform, facade, face, frame, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 
@@ -73,8 +73,7 @@ function reliefBand(out, width, y, z) {
         r = 0.215 + 0.061 * Math.cos(a * 4);
       paths.push([x + r * Math.cos(a), y + 0.27 + r * Math.sin(a), z + 0.045]);
     }
-    for (let i = 1; i < paths.length; i++)
-      beam(out, 'brick', paths[i - 1], paths[i], 0.066, 0.065, [0.64, 0.35, 0.235]);
+    beamPath(out, 'brick', paths, 0.066, 0.065, [0.64, 0.35, 0.235]);
   }
   for (const yy of [y - 0.1, y + 0.54])
     box(

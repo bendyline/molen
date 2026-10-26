@@ -1,0 +1,380 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "wood_log",
+      "slot": "wall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "wood_vertical",
+      "slot": "trim",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "trim": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "sign": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.9,
+      "metallic": 0.05
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof",
+      "roughness": 0.87,
+      "metallic": 0.1
+    },
+    "base": {
+      "graph": "plaster_lime",
+      "slot": "foundation",
+      "roughness": 0.96,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -5.453018268393173,
+      9,
+      22.141919333349815
+    ],
+    "lookAt": [
+      0,
+      2,
+      0
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "whole-weathered-shed-three-doors-and-red-hip",
+      "position": [
+        -5.411665697666371,
+        6,
+        15.738928628617042
+      ],
+      "lookAt": [
+        0,
+        1.9,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "three-recessed-door-bays-and-thresholds",
+      "position": [
+        -7.848869221114895,
+        4,
+        6.1963902354383125
+      ],
+      "lookAt": [
+        -2.3546607663344683,
+        1.5,
+        1.858917070631494
+      ],
+      "fov": 60
+    },
+    {
+      "name": "hip-end-log-corners-and-native-plinth",
+      "position": [
+        12.764628838738744,
+        6,
+        6.485695846186375
+      ],
+      "lookAt": [
+        2.478556094175325,
+        2,
+        3.139547688445958
+      ],
+      "fov": 48
+    },
+    {
+      "name": "rear-log-wall-red-roof-and-grade",
+      "position": [
+        1.5285836578357248,
+        7,
+        -19.04372421563066
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/models/equipment-shed-yasnaya-polyana-model.mjs",
+    "export": "buildEquipmentSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEquipmentDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_vertical",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "sign": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0.05
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.87,
+            "metallic": 0.1
+          },
+          "base": {
+            "graph": "plaster_lime",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildEquipmentStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_vertical",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "sign": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0.05
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.87,
+            "metallic": 0.1
+          },
+          "base": {
+            "graph": "plaster_lime",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEquipmentCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_vertical",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "sign": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0.05
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.87,
+            "metallic": 0.1
+          },
+          "base": {
+            "graph": "plaster_lime",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.526037991046906,
+      54.07453749082352
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained Protomaps20261020 and standard Mapzen201x201/6m. Outside garden control[0,5.5774795481570365] gives215.1551128071785m datum. Floor intercept0.3556289698292119m and foundation intercept-0.8778526227228269m, with explicit long-axis grade-.06. Replace only building35184539471090; preserve the independent poultry hut, native courtyard/roads, DEM samples and all ponds. Only the occupied footprint cuts ground; supported aprons seat into original soil. No custom terrain or broad yard flattening. Inspected the actual paired native view, all three recessed door bays, red hip/eaves, log corners, pale plinth and supported aprons. Both independent models load together, the garden passage and original ground/roads/water remain, and shared graph reads are reused. The bounded long-axis visualization grade and exposed plinth remain explicit coarse-DEM approximations, not surveyed historical levels.",
+    "terrainReference": {
+      "anchor": [
+        37.52597096554892,
+        54.074506444831876
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Protomaps20261020 and standard Mapzen201x201/6m. Outside garden control[0,5.5774795481570365] gives215.1551128071785m datum. Floor intercept0.3556289698292119m and foundation intercept-0.8778526227228269m, with explicit long-axis grade-.06. Replace only building35184539471090; preserve the independent poultry hut, native courtyard/roads, DEM samples and all ponds. Only the occupied footprint cuts ground; supported aprons seat into original soil. No custom terrain or broad yard flattening."
+    },
+    "groundModelY": 0,
+    "elevationMode": "terrain-contact",
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "maxDistance": 8,
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.3066706050974055,
+          -3.0219912896051047
+        ],
+        [
+          1.5766676512743523,
+          6.7885285171065695
+        ],
+        [
+          6.306670605097402,
+          3.1095811462754748
+        ],
+        [
+          -1.5766676512743527,
+          -6.87611837377694
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.3066706050974055,
+            -3.0219912896051047
+          ],
+          [
+            1.5766676512743523,
+            6.7885285171065695
+          ],
+          [
+            6.306670605097402,
+            3.1095811462754748
+          ],
+          [
+            -1.5766676512743527,
+            -6.87611837377694
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Two adjacent retained one-story shed footprints are candidates for the small gray-gabled poultry house and longer red-hipped equipment shed shown together in the ordinary museum photograph. Sizes and separation support this assignment. The retained long axes are nearly parallel; the photograph may show different faces through perspective/parallax, and no camera position is known. Specific poultry/equipment function and absolute front assignment remain explicit photo/relative-context inferences; the public map names both only as sheds. Use the photographed gray roof on the small building despite the generic map red-roof tag. The larger12.72x6.10m footprint is kept separate from the small gabled poultry house. LocalX southeast is its mapped long axis, with the three-door face inferred at local+Z southwest. Native axes are baked east/up/south, heading0."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -6.3066706050974055,
+          -3.0219912896051047
+        ],
+        [
+          1.5766676512743523,
+          6.7885285171065695
+        ],
+        [
+          6.306670605097402,
+          3.1095811462754748
+        ],
+        [
+          -1.5766676512743527,
+          -6.87611837377694
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.3066706050974055,
+            -3.0219912896051047
+          ],
+          [
+            1.5766676512743523,
+            6.7885285171065695
+          ],
+          [
+            6.306670605097402,
+            3.1095811462754748
+          ],
+          [
+            -1.5766676512743527,
+            -6.87611837377694
+          ]
+        ]
+      ],
+      "basis": "Only occupied equipment-shed footprint; original approaches and neighboring poultry house remain."
+    },
+    "notes": "Two adjacent retained one-story shed footprints are candidates for the small gray-gabled poultry house and longer red-hipped equipment shed shown together in the ordinary museum photograph. Sizes and separation support this assignment. The retained long axes are nearly parallel; the photograph may show different faces through perspective/parallax, and no camera position is known. Specific poultry/equipment function and absolute front assignment remain explicit photo/relative-context inferences; the public map names both only as sheds. Use the photographed gray roof on the small building despite the generic map red-roof tag. The larger12.72x6.10m footprint is kept separate from the small gabled poultry house. LocalX southeast is its mapped long axis, with the three-door face inferred at local+Z southwest. Native axes are baked east/up/south, heading0. Photo-led low log shed: wall2.25m, red hip ridge3.6m above local floor, three genuinely recessed timber door bays, restrained eaves, small plain end plaques and supported threshold aprons. Native ground changes about1.6m across this footprint. The source applies a bounded -.06m/m long-axis visualization grade; this reduces the exposed plinth while retaining one-story proportions, and is not a surveyed historic floor/roof. Exact pitch, door census, panel details and thresholds remain reconstructed. Retained Protomaps20261020 and standard Mapzen201x201/6m. Outside garden control[0,5.5774795481570365] gives215.1551128071785m datum. Floor intercept0.3556289698292119m and foundation intercept-0.8778526227228269m, with explicit long-axis grade-.06. Replace only building35184539471090; preserve the independent poultry hut, native courtyard/roads, DEM samples and all ponds. Only the occupied footprint cuts ground; supported aprons seat into original soil. No custom terrain or broad yard flattening.",
+    "bounds": [
+      37.52592143152237,
+      54.07445650843429,
+      37.52615455057144,
+      54.07461926004583
+    ]
+  }
+}

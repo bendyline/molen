@@ -297,9 +297,10 @@ for (const level of ['skyline', 'district', 'street', 'closeup']) {
 // the underside of the finite tile when viewed from a distant camera.
 if (
   groundOpening &&
-  Object.values(models).some(
-    (object) => new THREE.Box3().setFromObject(object).min.y < ground.position.y,
-  )
+  (!terrainDescriptor ||
+    Object.values(models).some(
+      (object) => new THREE.Box3().setFromObject(object).min.y < ground.position.y,
+    ))
 ) {
   markTerrainGroundSurface(ground);
   openingSurfaces.push({

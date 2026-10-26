@@ -14,4 +14,4 @@ Mapped30.8m podium and height-coded tower parts plus primary131m total/100m obse
 
 Independent original GSI1A terrain retained unchanged with all16641 valid source samples. Own foundation/south entrance contact reviewed as a bounded preview; other host terrain remains unverified and footprint replacement disabled.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=kyoto_tower`. Add `--check` to verify exact regeneration. 47302 triangles; 4 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=kyoto_tower`. Add `--check` to verify exact regeneration. 47158 triangles; 4 materials; no embedded photographs.

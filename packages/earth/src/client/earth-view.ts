@@ -2989,6 +2989,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     ): NavigationPose => {
       const aircraft = current.aircraft as EarthAircraft;
       const pilot = frameInput.pilot;
+      if (pilot?.power !== undefined) aircraft.setPower(pilot.power);
       if (frameInput.view > 0) aircraft.view = aircraft.view === 'cockpit' ? 'chase' : 'cockpit';
       const reach = aircraft.view === 'chase' ? Math.PI : 1.45;
       aircraft.lookYaw = Math.max(

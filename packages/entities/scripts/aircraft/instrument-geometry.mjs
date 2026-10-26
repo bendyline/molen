@@ -144,6 +144,7 @@ export function instrumentGeometry(parent, prefix) {
           radius * 0.15,
           Math.PI,
           ink,
+          'dial',
         );
     }
     for (const [lo, hi, color, ring = 0.93] of options.bands ?? []) {
@@ -156,7 +157,8 @@ export function instrumentGeometry(parent, prefix) {
         d.rod(p(value), p(Math.min(hi, value + 2)), radius * 0.024, material);
       }
     }
-    d.text(caption, [0, -radius * 0.4, -0.009], radius * 0.13, Math.PI, ink);
+    // Reserve the lower perimeter for scale numerals, including long unit captions.
+    d.text(caption, [0, -radius * 0.22, -0.009], radius * 0.13, Math.PI, ink, 'dial');
     d.finish();
     return { frame, binding: b };
   }
@@ -169,9 +171,9 @@ export function instrumentGeometry(parent, prefix) {
       const a = (i * Math.PI) / 25,
         p = (r) => [-Math.sin(a) * r, Math.cos(a) * r, -0.009];
       d.rod(p(radius * (i % 5 ? 0.86 : 0.79)), p(radius * 0.91), radius * 0.01, ink);
-      if (i % 5 === 0) d.text(String(i / 5), p(radius * 0.66), radius * 0.18, Math.PI, ink);
+      if (i % 5 === 0) d.text(String(i / 5), p(radius * 0.66), radius * 0.18, Math.PI, ink, 'dial');
     }
-    d.text('GEO FT', [0, -radius * 0.4, -0.01], radius * 0.14, Math.PI, ink);
+    d.text('GEO FT', [0, -radius * 0.4, -0.01], radius * 0.14, Math.PI, ink, 'dial');
     d.finish();
     const nodes = [];
     [0.79, 0.53, 0.33].forEach((length, i) => {
@@ -214,6 +216,7 @@ export function instrumentGeometry(parent, prefix) {
           radius * 0.22,
           Math.PI + a,
           ink,
+          'dial',
         );
     }
     dd.finish();
@@ -231,7 +234,7 @@ export function instrumentGeometry(parent, prefix) {
     sheet(d, circle, black, [0, 0, -1], [hole]);
     d.ring(radius * 0.97, radius * 0.045, [0, 0, -0.004], d.metal);
     d.rod([0, radius * 0.27, -0.004], [0, radius * 0.1, -0.004], 0.0007, amber);
-    d.text('TRUE', [0, -radius * 0.52, -0.004], radius * 0.14, Math.PI, ink);
+    d.text('TRUE', [0, -radius * 0.52, -0.004], radius * 0.14, Math.PI, ink, 'dial');
     d.finish();
     bindings.push({
       node: drum.name,
@@ -270,7 +273,14 @@ export function instrumentGeometry(parent, prefix) {
         length = width * (Math.abs(deg) % 10 ? 0.12 : 0.25);
       cd.rod([-length / 2, y, -0.001], [length / 2, y, -0.001], 0.0006, ink);
       if (Math.abs(deg) % 10 === 0)
-        cd.text(String(Math.abs(deg)), [length * 0.8, y, -0.001], height * 0.065, Math.PI, ink);
+        cd.text(
+          String(Math.abs(deg)),
+          [length * 0.8, y, -0.001],
+          height * 0.065,
+          Math.PI,
+          ink,
+          'dial',
+        );
     }
     cd.finish();
     const z = -0.003,

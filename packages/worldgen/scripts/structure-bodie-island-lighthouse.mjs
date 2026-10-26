@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, cross, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
+import { beam, beamPath, cross, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 import { box } from './structure-mesh.mjs';
 
@@ -306,7 +306,7 @@ function upper(o, d) {
   if (d > 0)
     for (const yy of [45.74, 46.92]) {
       const r = radialRing(yy, 2.18, 2.18, 16);
-      for (let i = 0; i < 16; i++) beam(o, 'metal', r[i], r[(i + 1) % 16], 0.065, 0.065, C.metal);
+      beamPath(o, 'metal', r.slice(0, 16), 0.065, 0.065, C.metal, true);
     }
   cyl(o, 'metal', 48.1, 48.25, 2.42, 2.42, n);
   cyl(o, 'metal', 48.25, 49.22, 2.42, 0.25, n);

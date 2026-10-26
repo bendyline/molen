@@ -652,8 +652,8 @@ function cockpit(root, m) {
     true,
     true,
   );
-  d.text('TAS', [sx + 0.083, sy + 0.065, z + 0.001], 0.006, Math.PI, ink);
-  d.text('GEO FT', [sx - 0.081, sy + 0.047, z + 0.001], 0.005, Math.PI, ink);
+  d.text('TAS', [sx + 0.083, sy + 0.065, z + 0.001], 0.006, Math.PI, ink, 'display');
+  d.text('GEO FT', [sx - 0.081, sy + 0.047, z + 0.001], 0.005, Math.PI, ink, 'display');
   const vsi = group(cabin, 'Skylane-VSI', [sx - 0.101, sy + 0.025, z + 0.001]),
     vd = detailKit(vsi, 'VSI');
   vd.rod([-0.002, 0, 0], [0.002, 0.002, 0], 0.0008, ink);
@@ -703,9 +703,9 @@ function cockpit(root, m) {
     responseSeconds: 0.15,
   });
   instruments.available('heading', 'trueHeading', rose.name);
-  d.text('TRUE', [sx, sy - 0.013, z + 0.001], 0.004, Math.PI, ink);
+  d.text('TRUE', [sx, sy - 0.013, z + 0.001], 0.004, Math.PI, ink, 'display');
   d.rod([sx, sy - 0.024, z - 0.001], [sx, sy - 0.029, z - 0.001], 0.001, instruments.amber);
-  d.text('NAV --  COM --', [sx, sy + 0.071, z + 0.001], 0.005, Math.PI, ink);
+  d.text('NAV --  COM --', [sx, sy + 0.071, z + 0.001], 0.005, Math.PI, ink, 'display');
   // MFD engine sidebar. Oil, fuel, electrical and map data remain explicitly unavailable.
   const mx = px(681),
     my = py(550);
@@ -731,8 +731,8 @@ function cockpit(root, m) {
   ])
     d.text(label, [mx + 0.072, my + yy, z], 0.005, Math.PI, ink);
   d.rod([mx + 0.042, my - 0.074, z], [mx + 0.042, my + 0.074, z], 0.0006, ink);
-  d.text('MAP DATA', [mx - 0.025, my + 0.012, z], 0.009, Math.PI, ink);
-  d.text('UNAVAILABLE', [mx - 0.025, my - 0.003, z], 0.007, Math.PI, ink);
+  d.text('MAP DATA', [mx - 0.025, my + 0.012, z], 0.009, Math.PI, ink, 'display');
+  d.text('UNAVAILABLE', [mx - 0.025, my - 0.003, z], 0.007, Math.PI, ink, 'display');
 
   d.box([0.03302, 0.19558, 0.012], at(542, 550, -0.008), black);
   for (let i = 0; i < 11; i++)

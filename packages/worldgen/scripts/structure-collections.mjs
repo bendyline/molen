@@ -32,7 +32,8 @@ export function validateStructureCollections(document, candidates = []) {
     throw new Error('Invalid structure collection manifest');
   const identities = new Map(),
     ids = new Map(),
-    assets = new Map();
+    assets = new Map(),
+    features = new Map();
   const collectionIds = new Set();
   for (const collection of document.collections) {
     if (!id.test(collection.id) || collectionIds.has(collection.id))
@@ -50,17 +51,46 @@ export function validateStructureCollections(document, candidates = []) {
     )
       throw new Error(`${collection.id}: every required member must be declared`);
     const evidence = collection.membershipEvidence;
-    const mappedMembers = collection.identityKind === 'osm-members';
+    if (
+      evidence?.inventoryStatus !== undefined &&
+      (!['complete', 'needs-review'].includes(evidence.inventoryStatus) ||
+        !Array.isArray(evidence.outstanding) ||
+        evidence.outstanding.some((entry) => typeof entry !== 'string' || !entry.trim()) ||
+        (evidence.inventoryStatus === 'complete'
+          ? evidence.outstanding.length !== 0
+          : evidence.outstanding.length === 0))
+    )
+      throw new Error(`${collection.id}: invalid collection inventory review`);
+    const siteMembers = collection.identityKind === 'site-members';
+    const mappedMembers = siteMembers || collection.identityKind === 'osm-members';
     if (collection.identityKind && !mappedMembers)
       throw new Error(`${collection.id}: unsupported member identity kind`);
-    const identity = (member) => (mappedMembers ? member.featureId : member.wikidataId);
-    const expected = new Set((mappedMembers ? evidence?.featureIds : evidence?.wikidataIds) ?? []);
+    const identity = (member) =>
+      siteMembers ? member.id : mappedMembers ? member.featureId : member.wikidataId;
+    const expected = new Set(
+      (siteMembers
+        ? evidence?.memberIds
+        : mappedMembers
+          ? evidence?.featureIds
+          : evidence?.wikidataIds) ?? [],
+    );
     if (
       !/^https?:\/\//.test(evidence?.source ?? '') ||
       expected.size !== collection.requiredCount ||
       collection.members.some((member) => !expected.has(identity(member)))
     )
       throw new Error(`${collection.id}: members differ from attributed membership evidence`);
+    if (siteMembers) {
+      const declared = collection.members.flatMap((member) =>
+        member.featureId ? [member.featureId] : [],
+      );
+      const attributed = new Set(evidence?.featureIds ?? []);
+      if (
+        attributed.size !== declared.length ||
+        declared.some((feature) => !attributed.has(feature))
+      )
+        throw new Error(`${collection.id}: mapped members differ from attributed map evidence`);
+    }
     const localIds = new Set(),
       localQids = new Set();
     for (const member of collection.members) {
@@ -69,7 +99,12 @@ export function validateStructureCollections(document, candidates = []) {
         member.id === collection.id ||
         !qid.test(member.wikidataId) ||
         (mappedMembers
-          ? !featureId.test(member.featureId) ||
+          ? (member.featureId !== undefined
+              ? !featureId.test(member.featureId)
+              : !siteMembers ||
+                !/^https?:\/\//.test(member.positionReference?.source ?? '') ||
+                typeof member.positionReference?.basis !== 'string' ||
+                !member.positionReference.basis.trim()) ||
             (member.wikidataId !== collection.wikidataId &&
               member.identitySource !== `https://www.wikidata.org/wiki/${member.wikidataId}`)
           : member.wikidataId === collection.wikidataId || member.featureId !== undefined) ||
@@ -96,11 +131,12 @@ export function validateStructureCollections(document, candidates = []) {
         )
           throw new Error(`${member.id}: reuse existing identity ${existing.id}`);
       }
-      const signature = `${member.id}/${identity(member)}/${member.assetId}`;
+      const signature = `${member.id}/${member.wikidataId}/${member.featureId ?? ''}/${member.assetId}`;
       for (const [map, key] of [
         [identities, identity(member)],
         [ids, member.id],
         [assets, member.assetId],
+        ...(member.featureId ? [[features, member.featureId]] : []),
       ]) {
         if (map.has(key) && map.get(key) !== signature)
           throw new Error(`${member.id}: conflicting collection identity or asset`);
@@ -184,16 +220,17 @@ export function authoredMapMatchRadius(proposal) {
   return radius;
 }
 
-/** Shared site QIDs are safe only for declared distinct map members with disjoint match radii. */
+/** Shared site QIDs require independent declared members and disjoint position ranges. */
 export function distinctMappedCollectionPlacement(spec, proposal, existing, collections) {
   const collection = collections.find((entry) => entry.id === spec.collectionId);
-  if (collection?.identityKind !== 'osm-members') return false;
+  if (!['osm-members', 'site-members'].includes(collection?.identityKind)) return false;
   const member = collection.members.find((entry) => entry.id === spec.id);
   const other = collection.members.find((entry) => entry.assetId === existing.asset);
   if (
     !member ||
     !other ||
-    member.featureId === other.featureId ||
+    member.id === other.id ||
+    (member.featureId !== undefined && member.featureId === other.featureId) ||
     member.featureId !== spec.mapFeatureId ||
     spec.wikidataId !== collection.wikidataId ||
     existing.mapIdentity?.wikidata !== collection.wikidataId

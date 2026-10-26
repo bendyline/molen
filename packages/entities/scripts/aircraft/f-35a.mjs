@@ -710,8 +710,8 @@ function f35Cockpit(root, m) {
         [0.5, 0.5],
         [-0.5, 0.5],
       ].map(([u, v]) => [x + u * w, y + v * h, z + dz]),
-    txt = (t, x, y, h = 0.009, color = ink, dz = -0.035) =>
-      d.text(t, [x, y, z + dz], h, Math.PI, color);
+    txt = (t, x, y, h = 0.009, color = ink, dz = -0.035, role = 'panel') =>
+      d.text(t, [x, y, z + dz], h, Math.PI, color, role);
   // The JPO publishes a20x8in active area. Single panoramic face with real horizon apertures.
   const edge = [
     [-0.43, 2.388],
@@ -764,19 +764,19 @@ function f35Cockpit(root, m) {
     [rect(-0.03, 2.55, 0.102, 0.077, -0.012)],
   );
   outline(d, rect(0, 2.54, 0.508, 0.2032, -0.023), 0.0025, button);
-  txt('FLIGHT / SIM', -0.03, 2.628, 0.008, green);
+  txt('FLIGHT / SIM', -0.03, 2.628, 0.008, green, undefined, 'display');
   for (const x of [-0.127, 0.127])
     d.rod([x, 2.443, z - 0.027], [x, 2.632, z - 0.027], 0.0008, button);
-  txt('TACTICAL', 0.19, 2.56, 0.008, amber);
-  txt('INOP', 0.19, 2.54, 0.012, amber);
-  txt('SENSORS', -0.19, 2.56, 0.008, amber);
-  txt('INOP', -0.19, 2.54, 0.012, amber);
+  txt('TACTICAL', 0.19, 2.56, 0.008, amber, undefined, 'display');
+  txt('INOP', 0.19, 2.54, 0.012, amber, undefined, 'display');
+  txt('SENSORS', -0.19, 2.56, 0.008, amber, undefined, 'display');
+  txt('INOP', -0.19, 2.54, 0.012, amber, undefined, 'display');
   ins.horizon('attitude', [-0.03, 2.55, z + 0.012], 0.1, 0.075, { blankBackdrop: true });
-  txt('TAS', 0.079, 2.573, 0.006, green);
+  txt('TAS', 0.079, 2.573, 0.006, green, undefined, 'display');
   ins.readout('speed', [0.079, 2.552, z - 0.036], 'knots', 3, 0.009, green);
-  txt('GEO FT', -0.1, 2.506, 0.0055, green);
+  txt('GEO FT', -0.1, 2.506, 0.0055, green, undefined, 'display');
   ins.readout('altitude', [-0.1, 2.49, z - 0.036], 'feet', 5, 0.006, green, true, true);
-  txt('FPM', 0.076, 2.506, 0.006, green);
+  txt('FPM', 0.076, 2.506, 0.006, green, undefined, 'display');
   ins.readout(
     'vertical-speed',
     [0.076, 2.49, z - 0.036],
@@ -806,7 +806,7 @@ function f35Cockpit(root, m) {
   });
   ins.available('heading', 'trueHeading', hg.name);
   d.rod([-0.028, 2.499, z - 0.04], [-0.028, 2.495, z - 0.04], 0.0007, ink);
-  txt('TRUE', -0.028, 2.445, 0.004, green);
+  txt('TRUE', -0.028, 2.445, 0.004, green, undefined, 'display');
   for (let j = 0; j < 6; j++) {
     const x = 0.21 - j * 0.084;
     outline(d, rect(x, 2.452, 0.075, 0.012, -0.03), 0.0006, button);
@@ -831,7 +831,7 @@ function f35Cockpit(root, m) {
   for (let j = 0; j < 8; j++)
     for (const side of [-1, 1])
       d.box([0.013, 0.007, 0.006], [0.085 - j * 0.024, 2.3 + side * 0.051, z - 0.021], button);
-  txt('STANDBY / SIM', -0.044, 2.339, 0.005, green);
+  txt('STANDBY / SIM', -0.044, 2.339, 0.005, green, undefined, 'display');
   // No conventional HUD. The real helmet display is not synthesized by this model.
   d.box([0.86, 0.05, 1.9], [0, 1.695, 5.85], panel);
   d.box([0.86, 0.64, 0.035], [0, 2.04, 6.8], panel);
@@ -958,8 +958,8 @@ function f35Cockpit(root, m) {
     missing: 'hide',
   });
   txt('GEAR', 0.34, 2.411, 0.007);
-  txt('ENGINE --', 0.19, 2.473, 0.007, amber);
-  txt('FUEL --', -0.19, 2.473, 0.007, amber);
+  txt('ENGINE --', 0.19, 2.473, 0.007, amber, undefined, 'display');
+  txt('FUEL --', -0.19, 2.473, 0.007, amber, undefined, 'display');
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };
 }

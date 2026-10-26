@@ -51,6 +51,13 @@ function fixture(edit = () => {}) {
 }
 it('accepts inspected, current medium-fi evidence', async () => {
   expect(await reviewedMediumFi(fixture())).toBe(true);
+  expect(
+    await reviewedMediumFi(
+      fixture((r) => {
+        r.rig = { toneMapping: 'aces', exposure: 1.05 };
+      }),
+    ),
+  ).toBe(true);
 });
 it('accepts the current Earth rig and rejects a mismatched exposure', async () => {
   const current = (report) => {

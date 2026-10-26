@@ -30,6 +30,7 @@ export const NAVIGATION_ACTIONS: {
   readonly boost: 'nav-boost';
   readonly throttleUp: 'nav-throttle-up';
   readonly throttleDown: 'nav-throttle-down';
+  readonly power: 'nav-power';
   readonly yawLeft: 'nav-yaw-left';
   readonly yawRight: 'nav-yaw-right';
   readonly engine: 'nav-engine';
@@ -55,6 +56,7 @@ export const NAVIGATION_ACTIONS: {
   boost: 'nav-boost',
   throttleUp: 'nav-throttle-up',
   throttleDown: 'nav-throttle-down',
+  power: 'nav-power',
   yawLeft: 'nav-yaw-left',
   yawRight: 'nav-yaw-right',
   engine: 'nav-engine',
@@ -178,6 +180,8 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
 
 /** Flight controls beyond pitch (`-move.forward`) and roll (`move.right`), in the pilot profile. */
 export interface PilotInput {
+  /** Absolute throttle/collective, 0..1, only while a mapped hardware axis is connected. */
+  power?: number;
   /** Held throttle or collective change, -1..1 (more power positive). */
   throttle: number;
   /** Held rudder or pedals, -1..1 (right positive). */
@@ -359,6 +363,7 @@ export class NavigationInputSource {
       ...(this.profile === 'pilot'
         ? {
             pilot: {
+              ...(this.map.hasAxis(A.power) ? { power: v(A.power) } : {}),
               throttle: v(A.throttleUp) - v(A.throttleDown),
               yaw: v(A.yawRight) - v(A.yawLeft),
               ...this.pilotPresses,

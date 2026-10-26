@@ -1,0 +1,901 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.coachmans_house_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:e0510e86507544170544df33c26f665345bd85e5b5cdedc36cfcdf886b1a1b56",
+  "sourceHash": "sha256:25ded326d20c40d42e738318d90954eb0d7c23e2866c78e73db1695e925543c0",
+  "runtimeHash": "sha256:484d158a061bf5d9f4d56c79f360d8b19c20638d66e43615c8310acb30944b3b",
+  "captureReportHash": "sha256:c6af5fb359054ebf4364124c934299fd678a5f1e161521bc60493c8a2d903047",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-hut-log-walls-thatched-hip-and-chimney.png",
+      "shots/recessed-front-door-window-frames-and-threshold.png",
+      "shots/windowed-short-side-and-thick-thatch-eaves.png",
+      "shots/rear-log-envelope-and-supported-low-side-foundation.png"
+    ],
+    "notes": "Inspected all48 current portable/shared/medium-fi/native frames in labeled contact sheets plus full-resolution native front, recessed doorway and rear/low-side foundation views. The squat log envelope, broad thick thatched hip, single pale chimney, two front windows, one short-side window, recessed wooden door and supported threshold read coherently. Coarse log courses/corner ends and low front edging remain simple shared-material proxies. The original slope exposes the downhill plinth more than the pictures; hidden rear faces and front assignment remain approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-hut-log-walls-thatched-hip-and-chimney.png",
+      "shots/shared/recessed-front-door-window-frames-and-threshold.png",
+      "shots/shared/windowed-short-side-and-thick-thatch-eaves.png",
+      "shots/shared/rear-log-envelope-and-supported-low-side-foundation.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Seven roles reuse six existing256px graphs: wood_log, thatch, wood_plain, stone_limestone, storefront and stucco. The darker recessed door shares the trim’s wood_plain graph. Metric UVs, linear tints, six nearby draws/one skyline, separate POSITION/NORMAL streams and matching CPU/GPU geometry accounting. No embedded image, private atlas or new graph. Each used graph reads once; unload releases every model geometry.",
+    "captureReportHash": "sha256:58dbf7a2c953036bdcd4758601ae2686222903120cff1b5b9826bbd187b3f097"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-hut-log-walls-thatched-hip-and-chimney.png",
+      "medium-fi/recessed-front-door-window-frames-and-threshold.png",
+      "medium-fi/windowed-short-side-and-thick-thatch-eaves.png",
+      "medium-fi/rear-log-envelope-and-supported-low-side-foundation.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 128/260/870/1290 triangles. Initial skyline+district 39752bytes; closeup 111784bytes. Skyline preserves the complete log-house mass, broad thatched hip, capped chimney, recessed entrance and supported apron/treads, without tiny window modules. District adds the three recessed shared glazed windows; street/closeup add coarse log courses, corner ends, ridge hold-downs, frame bars and edging. Synthetic contexts check style/LOD/tier coherence; native views establish approximate geographic fit.",
+    "captureReportHash": "sha256:855d4bc3ea3f7bad59fd32dd593d32feca57ebf11d50c1310be0be382f24d09f"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:c31ae0588bf6def00bf7ba54aef3e89e0e21c83254e4c57a60387652a69097e6",
+    "mapFrameHash": "sha256:662eb84e84068325933033b40a50e9636025b2ea24e1946108b7e53b9678d193",
+    "notes": "Coachman’s hut/Кучерская изба, way167382256, remains independent from Volkonsky House and the other estate houses. The exact mapped9.7m by5.5m four-sided outline fixes the axes: X northwest along the long face, Z northeast toward the photographed front approach. Native east/up/south axes are baked with heading0, using the unchanged assigned collection coordinate as model origin. Ordinary oblique pictures guide the two-window/one-door long front and one glazed short end; rear faces and absolute front assignment remain an approximate photo/map interpretation, not a survey. Retained Protomaps20261020 and Mapzen201x201/6m terrain; outside northeast approach provider[2.5,6] supplies215.68442192541778m datum. Original boundary grades-1.644..0.348m, floor+0.5m and closed foundation-1.85m. Coarse terrain falls about2m along this small footprint: the downhill plinth is therefore more exposed than in the photographs. The datum and broad supported foundation provide an explicitly approximate fit; no flattening or bespoke terrain. Original approach, independent neighbors, roads and ponds remain. Historic levels, thresholds and accessibility are not surveyed. Inspected native front, doorway and rear/low-side views: the whole log body, hip roof, chimney and supported entrance align with the mapped outline; the coarse slope exposes a high downhill plinth compared with the photographs. One owned map record is replaced,242 resident independent buildings and original roads/pond water remain. This explicitly approximate fit retains the unmodified standard ground. One owned map record is replaced while242 resident/294 wider independent buildings, original paths/lawn, roads and40070.675m² pond water remain. Failure retains all243 originals; every LOD/failure/unload case restores ground/water and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete mapped coachman’s hut exterior at Yasnaya Polyana: single-storey log cabin with broad thick thatched hip roof, short ridge, one pale capped chimney, two front windows, one short-side window and one physically recessed wooden front door. Nearby levels add coarse log courses/corner ends, simple window bars, ridge hold-down poles and low garden edging interrupted at the supported entrance. All four actual mapped edges are retained. Hidden rear faces, chimney inventory, thatch profile and historic levels remain approximate. No interiors, copied signs, inscriptions, plaques, people, photograph pixels or surrounding plantings. Photo-led medium-fi scale:2.5m log eaves, thick2.55m thatched hip rise and one pale chimney to about6.13m above floor. Map nominal5m is a scale cue. Roof thickness, doorway/window dimensions, hold-down poles, threshold and low garden edging approximate. Retained Protomaps20261020 and Mapzen201x201/6m terrain; outside northeast approach provider[2.5,6] supplies215.68442192541778m datum. Original boundary grades-1.644..0.348m, floor+0.5m and closed foundation-1.85m. Coarse terrain falls about2m along this small footprint: the downhill plinth is therefore more exposed than in the photographs. The datum and broad supported foundation provide an explicitly approximate fit; no flattening or bespoke terrain. Original approach, independent neighbors, roads and ponds remain. Historic levels, thresholds and accessibility are not surveyed. Exact historic levels, rear bays, front assignment, thresholds and accessibility are not surveyed. Some fixed shared/style detail views crop the opposite edge; flat synthetic ground can bury grade-specific bases/treads. Whole/turntable/native views cover the envelope. The other estate models remain independent procedural context in this isolated fixture. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:25ded326d20c40d42e738318d90954eb0d7c23e2866c78e73db1695e925543c0\",\"bytes\":120680,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.glb\",\"hash\":\"sha256:484d158a061bf5d9f4d56c79f360d8b19c20638d66e43615c8310acb30944b3b\",\"bytes\":120100,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:bdd55151279a2a8e711668afc963ca2daa5524bc8c1f74f8e926149dd5252ed4\",\"bytes\":12864,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:57966aa406b34ef3d2b269e42f92592cfe476fc5faa02da12adceb02aaa5ef92\",\"bytes\":26888,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:ba0c0a1566c640ac71233406da41239453f1519517aafa9536032bdae62a87fd\",\"bytes\":77864,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:bd00a0219a27029951845355e0265581847ff10edcccb8c676e86eab0fa49d24\",\"bytes\":111784,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "closed-log-envelope-thick-hip-recessed-openings-chimney-supported-threshold-and-budgets",
+        "passed": true,
+        "notes": "123 actual mesh/contact probes; all six GLB pins, finite attributes, shared bindings, small-building LOD caps, separate vertex streams and initial download budget pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Coachman’s hut/Кучерская изба, way167382256, remains independent from Volkonsky House and the other estate houses. The exact mapped9.7m by5.5m four-sided outline fixes the axes: X northwest along the long face, Z northeast toward the photographed front approach. Native east/up/south axes are baked with heading0, using the unchanged assigned collection coordinate as model origin. Ordinary oblique pictures guide the two-window/one-door long front and one glazed short end; rear faces and absolute front assignment remain an approximate photo/map interpretation, not a survey. Retained Protomaps20261020 and Mapzen201x201/6m terrain; outside northeast approach provider[2.5,6] supplies215.68442192541778m datum. Original boundary grades-1.644..0.348m, floor+0.5m and closed foundation-1.85m. Coarse terrain falls about2m along this small footprint: the downhill plinth is therefore more exposed than in the photographs. The datum and broad supported foundation provide an explicitly approximate fit; no flattening or bespoke terrain. Original approach, independent neighbors, roads and ponds remain. Historic levels, thresholds and accessibility are not surveyed. Inspected native front, doorway and rear/low-side views: the whole log body, hip roof, chimney and supported entrance align with the mapped outline; the coarse slope exposes a high downhill plinth compared with the photographs. One owned map record is replaced,242 resident independent buildings and original roads/pond water remain. This explicitly approximate fit retains the unmodified standard ground. One owned map record is replaced while242 resident/294 wider independent buildings, original paths/lawn, roads and40070.675m² pond water remain. Failure retains all243 originals; every LOD/failure/unload case restores ground/water and releases geometry."
+    },
+    "inputHash": "sha256:e0510e86507544170544df33c26f665345bd85e5b5cdedc36cfcdf886b1a1b56",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:e0510e86507544170544df33c26f665345bd85e5b5cdedc36cfcdf886b1a1b56",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected all48 current portable/shared/medium-fi/native frames in labeled contact sheets plus full-resolution native front, recessed doorway and rear/low-side foundation views. The squat log envelope, broad thick thatched hip, single pale chimney, two front windows, one short-side window, recessed wooden door and supported threshold read coherently. Coarse log courses/corner ends and low front edging remain simple shared-material proxies. The original slope exposes the downhill plinth more than the pictures; hidden rear faces and front assignment remain approximate.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/preview.png",
+          "hash": "sha256:bd0b40bd08e85e84b6ab2d7dc69fe3a55c32041d662940496afc01a9da43888c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:36c0b56070ec5ba7a6914cc05bf97085dc387ab60a2df67c39a23876a24e26fe"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:3f91caf127138a1bc2362b13d5418c7a59945d8eeb3dc5e50d8648aea1ab31e2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:0e920bedd84ea638ab116221782723e748a522858e371ef421a2c3f614489ee3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:d83e0620779f07e365ec53353eda0f99bff0b13ebb04074196c58d0390fb92e3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/whole-hut-log-walls-thatched-hip-and-chimney.png",
+          "hash": "sha256:49029634655d8e97fb78e2939fa8fb75bcfb2578285a44350b1e893a36b38e9f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/recessed-front-door-window-frames-and-threshold.png",
+          "hash": "sha256:3d3f4f3a0eaf0171b5ca1d612efa41acb4f2a4d846e906f81de3f0d0f104e215"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/windowed-short-side-and-thick-thatch-eaves.png",
+          "hash": "sha256:a444119bd8950dbc25ef64277f59f83cda60495937a70f1ab13f9b45aeb4d99f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/rear-log-envelope-and-supported-low-side-foundation.png",
+          "hash": "sha256:a4a467a679bc03d5cf239dd8f3985a90b3e12a9bc0cba3e0609eed41e9a79f4d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:3204eebb1742fccdb267d991a301b65912404d4c6582cc2962e1238e43f12da1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:f6f909ea4d4a73c53d5fac923f5f4fbb0a73e58a899d17e48a1a89d47fd8d200"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:9076268cd6fe53d2f41163060d4842b5771f64788fdbc01cb811ef095c1b5978"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:f8abc4370c612c4e4efcd8b06f4386a8dedf2309482f02259a0df630a4dcee13"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/shared/whole-hut-log-walls-thatched-hip-and-chimney.png",
+          "hash": "sha256:2064de7b3c050907fded2c97c939ee36b78f25c20d25d1fb67982ada77289050"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/shared/recessed-front-door-window-frames-and-threshold.png",
+          "hash": "sha256:ed95cd2ddaf7233b8de97fe42b163921077019064a59ad09ddb611fb436cdb04"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/shared/windowed-short-side-and-thick-thatch-eaves.png",
+          "hash": "sha256:69fc125f1c06073e4609184c772e34c6e8fb17af447794574bc5cb674c3014b5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/shared/rear-log-envelope-and-supported-low-side-foundation.png",
+          "hash": "sha256:d966d1300d7bf397dcf535d52e5b98075bbd188338802283ef0e1f7999131964"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:72ca3dff09a6ab05097e8b2ef995b9354641b9d315be02fa30ed37dd81871117"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:5a7d9e2f90e338fe34de9899f05ec26ac4cea55091bf3a8567f03a0bf14b8196"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:abde80f7e6c1fcc0869191019ae362fc280db15fff6b8c8085ae87f10db63860"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:083021b006c18297872a5c0e6a2cf4f61c9abdb6b552dd58a58b21f6d7944f45"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:fd1de8993060fc2e6bad3b60e2e6aba567ddeff0b5e63591e868abf597940687"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:e1080eb929dc3406fce03dd746cb2908e7081151d707631931fb8d27ebeea826"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:663efa36403d4f8538a4e350af341155659f78c6f9f52b2c1b1ba14dd99bc48f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:b2d86a451a2d6376520f82dd60510ed8333ac8406c9b6a6fe96cba32cf87c042"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:a5d7d9c0f7d922a4e0897f4ed9b3cf9f6923322b388f5985007b72f1d02a83e0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:b1d9607e6ac8f90bc808a3f1777064c80d99f1857e47dc1e2d5cc4044cdb896e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:2a42e0a897a0f91d03192737a2c8fa8af1f9789f17c2e38518dd4d103e879cf4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:b8ac3bca03aadc16fefd19a1451e0c521d4100e3a4cfafee1864428f3b002c61"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:3746a629d17bf7f058f5a7236465fc40ff5b6994d365e557d38d7d3afeee1c7a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:5801044f3f81b537722f1ced8f9be4afcb671222d2eb4cfd1aeb45620167edfd"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/whole-hut-log-walls-thatched-hip-and-chimney.png",
+          "hash": "sha256:81afe8031dd9733061ab549a2d38da7f470c4dbd070bf231e032c47d6a9ab34a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/recessed-front-door-window-frames-and-threshold.png",
+          "hash": "sha256:15b54a89ab04a6c240f8114917ab386cc7b46bc1ae1a44497f74c3da196d4308"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/windowed-short-side-and-thick-thatch-eaves.png",
+          "hash": "sha256:d74a2b720369ed4b636727f7f07cedca501b3d75582ca50dade21f0371a3874f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/rear-log-envelope-and-supported-low-side-foundation.png",
+          "hash": "sha256:39a72a2f22ff65d17dd70ca2eddc0b51d24662063fa3d88a86f05b250f28aafa"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:704a2049f08bb1983fb4346418f26fa6b075d7014f3446f832fb3bea87581c4a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:663efa36403d4f8538a4e350af341155659f78c6f9f52b2c1b1ba14dd99bc48f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:36a2eb7405ab8125b77ee6f1400e623e1cbeb1e66be5d57bd53acd5ee2341ee2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:a50b32b65e89caef5c098beeec4425c2f2b5029c7ff21f9b8cf3e39186e673c2"
+        },
+        {
+          "path": ".artifacts/coachman-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:24e5dbd5d7e8b2fef604e8b2af8cd0599b23b7b10ecc50493627cd48d50fc1ac"
+        },
+        {
+          "path": ".artifacts/coachman-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:17bd972575bcdb2a2e5ec82771f9045828ff32ed8fe88c51e3d3388a2c8b5872"
+        },
+        {
+          "path": ".artifacts/coachman-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:28ed2aedf7fa837a3647fb031e60ae67accf9a817c44a442031d6776d49e87e9"
+        },
+        {
+          "path": ".artifacts/coachman-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:e2de3441f26345c950dc6d40ba1de00c1a121eec399c872e70eb42bdd11e4daf"
+        },
+        {
+          "path": ".artifacts/coachman-integration/shots/final-closeup-whole-hut-log-walls-thatched-hip-and-chimney.png",
+          "hash": "sha256:155dc5ad826094f46d5af2a9ed07890f4cf79784d09a1bce7c9fd3d71b834de3"
+        },
+        {
+          "path": ".artifacts/coachman-integration/shots/final-closeup-recessed-front-door-window-frames-and-threshold.png",
+          "hash": "sha256:8231c60e2f643e57ac6c89754d8727f516229909ba47665e31733aad6ee7bfcc"
+        },
+        {
+          "path": ".artifacts/coachman-integration/shots/final-closeup-windowed-short-side-and-thick-thatch-eaves.png",
+          "hash": "sha256:54d626255ba9d4c4e67d23872f7e6d2095a52f3d2d725c0d124a0450132071df"
+        },
+        {
+          "path": ".artifacts/coachman-integration/shots/final-closeup-rear-log-envelope-and-supported-low-side-foundation.png",
+          "hash": "sha256:560fe7587613a1eb03df07ec9f2e0b570ee43ccd5afac1fd2300c52f6e289ecf"
+        },
+        {
+          "path": ".artifacts/coachman-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:e7e35b0b0530cf78912705289854d40553d4d8904d876a17cf69e8b5a2059bd3"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:e0510e86507544170544df33c26f665345bd85e5b5cdedc36cfcdf886b1a1b56",
+      "sourceHash": "sha256:25ded326d20c40d42e738318d90954eb0d7c23e2866c78e73db1695e925543c0",
+      "runtimeHash": "sha256:484d158a061bf5d9f4d56c79f360d8b19c20638d66e43615c8310acb30944b3b",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/models/source.glb": "sha256:25ded326d20c40d42e738318d90954eb0d7c23e2866c78e73db1695e925543c0",
+        "content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.glb": "sha256:484d158a061bf5d9f4d56c79f360d8b19c20638d66e43615c8310acb30944b3b",
+        "content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.skyline.glb": "sha256:bdd55151279a2a8e711668afc963ca2daa5524bc8c1f74f8e926149dd5252ed4",
+        "content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.district.glb": "sha256:57966aa406b34ef3d2b269e42f92592cfe476fc5faa02da12adceb02aaa5ef92",
+        "content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.street.glb": "sha256:ba0c0a1566c640ac71233406da41239453f1519517aafa9536032bdae62a87fd",
+        "content/worldgen/assets/places/uc/ucd/coachmans_house_yasnaya_polyana/model.closeup.glb": "sha256:bd00a0219a27029951845355e0265581847ff10edcccb8c676e86eab0fa49d24"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184539471088
+      ],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184539471088,
+          "owned": true,
+          "covered": 0.9999729056953297,
+          "area": 52.896817594875664,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000062631653570122126,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.coachmans_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.933721925417785,
+            "max": 28.050378074582227
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:24e5dbd5d7e8b2fef604e8b2af8cd0599b23b7b10ecc50493627cd48d50fc1ac",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 271775
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                22.763158517782244,
+                10,
+                -1.3559551225308493
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000062631653570122126,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.thatch": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.coachmans_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.933721925417785,
+            "max": 28.050378074582227
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:17bd972575bcdb2a2e5ec82771f9045828ff32ed8fe88c51e3d3388a2c8b5872",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 271907
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                22.763158517782244,
+                10,
+                -1.3559551225308493
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000062631653570122126,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.thatch": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.coachmans_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.933721925417785,
+            "max": 28.050378074582227
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:28ed2aedf7fa837a3647fb031e60ae67accf9a817c44a442031d6776d49e87e9",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 272517
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                22.763158517782244,
+                10,
+                -1.3559551225308493
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000062631653570122126,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.thatch": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.coachmans_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.933721925417785,
+            "max": 28.050378074582227
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:e2de3441f26345c950dc6d40ba1de00c1a121eec399c872e70eb42bdd11e4daf",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 272937
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                22.763158517782244,
+                10,
+                -1.3559551225308493
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-whole-hut-log-walls-thatched-hip-and-chimney.png",
+            "hash": "sha256:155dc5ad826094f46d5af2a9ed07890f4cf79784d09a1bce7c9fd3d71b834de3",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 272937
+            },
+            "camera": {
+              "name": "whole-hut-log-walls-thatched-hip-and-chimney",
+              "position": [
+                19.94067815986242,
+                7,
+                -1.5392707769544725
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-recessed-front-door-window-frames-and-threshold.png",
+            "hash": "sha256:8231c60e2f643e57ac6c89754d8727f516229909ba47665e31733aad6ee7bfcc",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 272937
+            },
+            "camera": {
+              "name": "recessed-front-door-window-frames-and-threshold",
+              "position": [
+                2.895951799740266,
+                4.3,
+                -11.858054780341554
+              ],
+              "lookAt": [
+                1.1436864315320188,
+                1.75,
+                -2.334947825183586
+              ],
+              "fov": 56
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-windowed-short-side-and-thick-thatch-eaves.png",
+            "hash": "sha256:54d626255ba9d4c4e67d23872f7e6d2095a52f3d2d725c0d124a0450132071df",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 272937
+            },
+            "camera": {
+              "name": "windowed-short-side-and-thick-thatch-eaves",
+              "position": [
+                11.491423471494308,
+                5,
+                8.540912515579922
+              ],
+              "lookAt": [
+                1.9793735276221542,
+                2.5,
+                2.2543470092575877
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-rear-log-envelope-and-supported-low-side-foundation.png",
+            "hash": "sha256:560fe7587613a1eb03df07ec9f2e0b570ee43ccd5afac1fd2300c52f6e289ecf",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 272937
+            },
+            "camera": {
+              "name": "rear-log-envelope-and-supported-low-side-foundation",
+              "position": [
+                -19.189229156776555,
+                9,
+                0.8794796010804209
+              ],
+              "lookAt": [
+                0,
+                2.5,
+                0
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184539471088,
+              "area": 52.89541922270935
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.coachmans_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.933721925417785,
+            "max": 28.050378074582227
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:e7e35b0b0530cf78912705289854d40553d4d8904d876a17cf69e8b5a2059bd3",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 271981
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                22.763158517782244,
+                10,
+                -1.3559551225308493
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Complete mapped coachman’s hut exterior at Yasnaya Polyana: single-storey log cabin with broad thick thatched hip roof, short ridge, one pale capped chimney, two front windows, one short-side window and one physically recessed wooden front door. Nearby levels add coarse log courses/corner ends, simple window bars, ridge hold-down poles and low garden edging interrupted at the supported entrance. All four actual mapped edges are retained. Hidden rear faces, chimney inventory, thatch profile and historic levels remain approximate. No interiors, copied signs, inscriptions, plaques, people, photograph pixels or surrounding plantings. Photo-led medium-fi scale:2.5m log eaves, thick2.55m thatched hip rise and one pale chimney to about6.13m above floor. Map nominal5m is a scale cue. Roof thickness, doorway/window dimensions, hold-down poles, threshold and low garden edging approximate. Retained Protomaps20261020 and Mapzen201x201/6m terrain; outside northeast approach provider[2.5,6] supplies215.68442192541778m datum. Original boundary grades-1.644..0.348m, floor+0.5m and closed foundation-1.85m. Coarse terrain falls about2m along this small footprint: the downhill plinth is therefore more exposed than in the photographs. The datum and broad supported foundation provide an explicitly approximate fit; no flattening or bespoke terrain. Original approach, independent neighbors, roads and ponds remain. Historic levels, thresholds and accessibility are not surveyed. Exact historic levels, rear bays, front assignment, thresholds and accessibility are not surveyed. Some fixed shared/style detail views crop the opposite edge; flat synthetic ground can bury grade-specific bases/treads. Whole/turntable/native views cover the envelope. The other estate models remain independent procedural context in this isolated fixture. Physical phone/laptop and dense-city timings remain pending."
+  ]
+}

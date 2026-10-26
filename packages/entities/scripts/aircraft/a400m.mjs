@@ -714,14 +714,14 @@ function cockpit(root, m) {
       ii.horizon('horizon', [0, 0.07, 0], 0.185, 0.19, { blankBackdrop: true });
       sheet(dd, rect(0, 0, w, h, -0.012), black, [0, 0, -1], [rect(0, 0.07, 0.185, 0.19, -0.012)]);
       ii.readout('speed', [0.12, 0.07, -0.02], 'knots', 3, 0.011, ink, false, true);
-      dd.text('TAS', [0.12, 0.13, -0.022], 0.007, Math.PI, ink);
+      dd.text('TAS', [0.12, 0.13, -0.022], 0.007, Math.PI, ink, 'display');
       ii.readout('altitude', [-0.12, 0.07, -0.02], 'feet', 5, 0.008, ink, true, true);
-      dd.text('GEO FT', [-0.12, 0.13, -0.022], 0.006, Math.PI, ink);
+      dd.text('GEO FT', [-0.12, 0.13, -0.022], 0.006, Math.PI, ink, 'display');
       rose(g, label, 0, -0.09, 0.058, dd);
-      dd.text('TRUE', [0, -0.013, -0.022], 0.006, Math.PI, ink);
+      dd.text('TRUE', [0, -0.013, -0.022], 0.006, Math.PI, ink, 'display');
       ii.readout('vertical', [-0.1, -0.09, -0.02], 'verticalFpm', 4, 0.008, ink, true, true);
       dd.text('FPM', [-0.1, -0.135, -0.022], 0.006, Math.PI, ink);
-      dd.text('SIM', [0.11, -0.13, -0.022], 0.008, Math.PI, green);
+      dd.text('SIM', [0.11, -0.13, -0.022], 0.008, Math.PI, green, 'display');
       dd.finish();
       bindings.push(...ii.bindings);
       Object.assign(derived, ii.derived);
@@ -731,14 +731,14 @@ function cockpit(root, m) {
         dd = detailKit(g, g.name);
       dd.box([w, h, 0.005], [0, 0, 0.012], black);
       rose(g, label, 0, -0.02, 0.112, dd);
-      dd.text('TRUE HEADING', [0, 0.168, 0], 0.01, Math.PI, green);
-      dd.text('NAV --', [0, -0.17, 0], 0.012, Math.PI, green);
+      dd.text('TRUE HEADING', [0, 0.168, 0], 0.01, Math.PI, green, 'display');
+      dd.text('NAV --', [0, -0.17, 0], 0.012, Math.PI, green, 'display');
       dd.rod([0, -0.01, -0.025], [0, 0.016, -0.025], 0.002, amber);
       dd.finish();
     } else {
       sheet(d, rect(x, y, w, h, z + 0.009), black, [0, 0, -1]);
       if (i === 2) {
-        d.text('SIM PROP RPM', [x, y + 0.17, z], 0.01, Math.PI, green);
+        d.text('SIM PROP RPM', [x, y + 0.17, z], 0.01, Math.PI, green, 'display');
         for (let j = 0; j < 4; j++) {
           const value = `propRpm${j + 1}`,
             source = `engine${j + 1}`;
@@ -767,7 +767,7 @@ function cockpit(root, m) {
             d.text('--', [xx, yy, z - 0.002], 0.008, Math.PI, green);
           }
         }
-        d.text('TRQ ITT NG --', [x, y - 0.125, z], 0.009, Math.PI, green);
+        d.text('TRQ ITT NG --', [x, y - 0.125, z], 0.009, Math.PI, green, 'display');
       } else {
         d.text('FLIGHT CONTROLS', [x, y + 0.17, z], 0.009, Math.PI, green);
         ins.dial(
@@ -826,7 +826,7 @@ function cockpit(root, m) {
   for (const side of [-1, 1]) {
     d.box([0.63, 0.19, 0.022], [side * 0.92, 5.02, 19.24], face);
     d.box([0.39, 0.044, 0.008], [side * 0.92, 5.05, 19.222], black);
-    d.text('COM --', [side * 0.92, 5.05, 19.215], 0.012, Math.PI, green);
+    d.text('COM --', [side * 0.92, 5.05, 19.215], 0.012, Math.PI, green, 'display');
     for (let j = 0; j < 6; j++)
       d.box([0.028, 0.021, 0.008], [side * 0.92 - 0.13 + j * 0.051, 4.995, 19.21], m.dark);
     pt.knob(side * 0.92 - 0.27, 5.03, 19.21, 0.024);

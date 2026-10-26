@@ -14,9 +14,24 @@
     "wikidata": "Q188528",
     "maxDistance": 80
   },
-  "replaceFootprint": true,
+  "replaceFootprint": false,
+  "bounds": [
+    17.814793206652645,
+    43.33723411631929,
+    17.815265393347353,
+    43.33730028368071
+  ],
+  "replaceRoads": {
+    "length": 32.4,
+    "width": 5.2,
+    "deckHeights": [
+      17.19,
+      17
+    ],
+    "includeConnectedApproaches": true
+  },
   "minLevel": 13,
   "status": "preview",
   "source": "https://www.openstreetmap.org/way/33924615",
-  "note": "Exact-QID pedestrian centerline fixes west→east main axis; bent approaches are excluded from axis fit. LocalY0 at historical low-water40.05m ASL gives crown60.39m. Host terrain and current river stage may differ. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
+  "note": "Confirmed mapped east-west crossing, fixed heading and historical low-water40.05m ASL datum retained. Only the modeled longitudinal bridge-road corridor is replaced. Its native bent tails retain the corresponding deck height and transfer it into the two connected streets. Automatic retaining supports seat raised approaches into the original terrain. Raw DEM bank levels remain coarse and differ from the bridge deck; preserve all mapped buildings and unrelated roads, native river and every DEM sample. Adjacent towers/town buildings remain independent native context. Geographic approval is recorded separately after inspection. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
 }

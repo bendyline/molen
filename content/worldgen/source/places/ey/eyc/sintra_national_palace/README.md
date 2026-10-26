@@ -26,4 +26,4 @@ Independent public class2 ground is frozen before geometry. There are no class2 
 
 Dated local2011–2019 photos and public2024 LiDAR describe permanent exterior features; current2026 chapel restoration finish not asserted. Intermediate roof ridges/eaves, unknown back-face bay counts, carved details, terraces, Patim/stair placement and construction thresholds are interpretations. Four front arches are exterior recesses with back walls, not four through-gateways. Original abstract carving/geometry replaces exact heraldry/inscriptions. This model remains in review until current geometry, all detail levels, terrain/placement and actual renders pass.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=sintra_national_palace`. Add `--check` to verify exact regeneration. 29790 triangles; 7 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=sintra_national_palace`. Add `--check` to verify exact regeneration. 27630 triangles; 7 materials; no embedded photographs.

@@ -2,15 +2,14 @@
 import { beam, loft, normalFor, sphere } from './authored-structure-mesh.mjs';
 import { lighthouseStudy, ring, shell } from './lighthouse-expansion-models.mjs';
 import { lathe, panel, piercedFacade, transformed } from './lighthouse-models.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2,
   white = [0.87, 0.88, 0.84],
   dark = [0.065, 0.075, 0.071];
 const P = (r, y, a) => [r * Math.sin(a), y, r * Math.cos(a)];
 function line(out, points, slot, color, radius = 0.018) {
-  for (let i = 1; i < points.length; i++)
-    tube(out, slot, points[i - 1], points[i], radius, color, 8);
+  tubePath(out, slot, points, radius, color, 8);
 }
 function circularRail(out, r, y, h, n, color = white) {
   for (let i = 0; i < n; i++)

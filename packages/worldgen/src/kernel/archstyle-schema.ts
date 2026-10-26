@@ -387,6 +387,17 @@ const lod = z.strictObject({
 });
 
 const archStyleSchema = z.strictObject({
+  lotFences: z
+    .array(
+      z.strictObject({
+        kind: z.enum(['none', 'timber', 'masonry', 'rail']),
+        weight: z.number().positive().finite(),
+      }),
+    )
+    .min(1)
+    .max(16)
+    .optional()
+    .describe('Weighted fence types for invented residential lots. none leaves the yard open.'),
   lotPlans: z
     .array(
       z.strictObject({

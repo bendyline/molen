@@ -1,0 +1,729 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.greenhouse_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:74eb65b2ffcd5b67cdb4be5ac503cee2d069415d573cc62d5bbb956da21e4d83",
+  "sourceHash": "sha256:1b1da655b920d2bb7f519ae3667235c29854bdbc306bebc8a690179818a370de",
+  "runtimeHash": "sha256:9a745db28ada4b285d7b9a1ff8570c05a4b82aa431b94d7cf737b4aa71f2d35d",
+  "captureReportHash": "sha256:4b60cfd1efc4cf630b5d18ed57f6899f1ed8848696f6230071c6d170e11b2c3e",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-log-greenhouse-glazing-entry-and-chimney.png",
+      "shots/entry-leaf-fuel-alcove-and-threshold.png",
+      "shots/roof-lights-rafters-clear-panes.png",
+      "shots/glazed-gable-chimney-and-plinth.png"
+    ],
+    "captureReportHash": "sha256:4b60cfd1efc4cf630b5d18ed57f6899f1ed8848696f6230071c6d170e11b2c3e",
+    "notes": "Inspected48 current portable/shared/medium-fi/native frames in one author/inspect/fix pass, including full-resolution glazing, timber gable/entry, fuel alcove, plinth and roof-light views. Complete log base, clear pitched panes/end gable, rafters/purlins, two fixed-open roof lights, boarded entry bay with open leaf, coarse fuel stack and opposite-end pale chimney. Corrected the small clipped-gable gap and the coplanar floor/plinth top before final capture. Interior floor/benches are reconstructed; flower beds, trees, pots and people stay separate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-log-greenhouse-glazing-entry-and-chimney.png",
+      "shots/shared/entry-leaf-fuel-alcove-and-threshold.png",
+      "shots/shared/roof-lights-rafters-clear-panes.png",
+      "shots/shared/glazed-gable-chimney-and-plinth.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:6466f167d8e2c0e934471f09ea3dcac0e3cbe3e2afcd3c3a50898426192ab7f2",
+    "notes": "Five existing256px graphs cover log walls, plain/boarded timber, pale plaster and stone plinth. Transparent glass uses a texture-free PBR material with alpha.52 and two-sided panes; its district/street/closeup exports preserve alpha. Metric UVs, linear tints, separate vertex streams and at most6draws; no embedded image, private atlas or new texture graph. Each shared graph reads once; unload releases all geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-log-greenhouse-glazing-entry-and-chimney.png",
+      "medium-fi/entry-leaf-fuel-alcove-and-threshold.png",
+      "medium-fi/roof-lights-rafters-clear-panes.png",
+      "medium-fi/glazed-gable-chimney-and-plinth.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:6b61f5e1f7835794981033992a3a5e2c1cf00b64a3ceb61a8799a009f58cf042",
+    "notes": "Four authored LODs 344/596/1644/1644 triangles; initial skyline+district 92212 bytes. Skyline retains low glazed-gable silhouette, entry bay and chimney below1000triangles, with an opaque distance fallback. District adds rafters and transparent glazing; near levels add fixed-open roof lights, benches, coarse fuel ends and log relief. Mode/distance/lighting frames are synthetic comparisons; physical laptop/phone measurements remain pending."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:46accc67abf9514f704151cc63556efbedaad9bca88afeb49a850ac4e79c54fd",
+    "mapFrameHash": "sha256:fc7bfab9d4490aaba0ecb44bb88578f8b4b4152b2371b4c7b4f4efe64485a167",
+    "notes": "Retained independent15.05x5.72m PMTiles outline matches the public mapped way220075398, visibly named Теплица with building=greenhouse and building:levels=1. Four ordinary museum photos show long log base, glazed gable roof, timber entry/fuel bay at one end and pale chimney at the other. No visitor-map schematic coordinate is used as WGS84. Native X northeast follows the mapped long axis; source axes are baked with heading0. Long glazed garden face assigned local+Z southeast, entry bay at+X northeast and chimney at-X southwest; this absolute photo-side assignment is approximate. Retained Protomaps20261020 / standard Mapzen201x201 at6m; outside garden control[0,5.8] supplies216.7855550974413m datum. Preserve all DEM samples and native roads/water. Replace only building35184592164230; cut only its occupied footprint. A supported apron meets the end door. Absolute historic levels, ground contact and approach accessibility remain approximate; no custom terrain or whole-garden cut. Inspected the native greenhouse, floor/plinth, end doorway/threshold, chimney and clear-roof structure. All242 resident/294 wider independent buildings, original garden approaches/roads, water and DEM samples remain. Final geometry closes the clipped timber gable and removes the coplanar floor/plinth surface. Exact historic thresholds, hidden benches and absolute entry/chimney-side assignment remain approximate. Only native building35184592164230 is replaced. All242resident/294wider independent buildings, native garden approaches/roads, original DEM samples and40070.675m²water remain. Failure retains all243original buildings; unload restores ground after water unload. Mapped long-axis orientation is retained; the photo-side assignment of entry/chimney remains approximate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete original medium-fi greenhouse exterior: log base on pale plinth, genuinely transparent gable panes and glazed end, timber rafters/purlins, two opening roof lights, boarded entry/fuel bay with open wooden door, coarse split-log alcove, opposite-end pale chimney and supported threshold. Simple inner benches are reconstructed for the clear-roof view. Reuse existing wood_log, wood_plain, wood_vertical, plaster_lime and stone_limestone graphs plus a texture-free clear-glass material; no private atlas, copied photograph pixels, flowers, trees or people baked into the building. Photo-led one-story scale: low log body1.25m above floor, glazed gable ridge3.15m, chimney4.12m, timber entry/fuel bay2.2m long, real .88x1.95m doorway with leaf open90degrees. Floor 0.7182087492670064m above outside datum; original corner grades 0.568/0.230/0.165/0.465m. Floor is.15m above highest sampled corner; small plinth/foundation follows the standard terrain. Bay widths, roof pitch, vent positions, fuel census and inner benches remain reconstructed. The mapped greenhouse name/type and footprint support identity/scale. Exact historic roof pitch, chimney/threshold heights, end-bay orientation, vent count/placement, hidden benches/floor, fuel census and glazing schedule remain photo-led approximations. The glass is a simple browser PBR approximation, not physical refraction. Estate service inventory remains incomplete."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:1b1da655b920d2bb7f519ae3667235c29854bdbc306bebc8a690179818a370de\",\"bytes\":155236,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.glb\",\"hash\":\"sha256:9a745db28ada4b285d7b9a1ff8570c05a4b82aa431b94d7cf737b4aa71f2d35d\",\"bytes\":154732,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:d94efe046b5831484a7cdaca7af69cc5d3fb0a2204dd55f612497cad2554f588\",\"bytes\":35172,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:1ac25b2a74e3c47d83212347ddbd0985cceb0ba2bae85f4f1eaea8b4278b8deb\",\"bytes\":57040,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:3edfc22c6c12a7b7952f4ae7445dae6a7485200a47346babc65e92e2aadeac15\",\"bytes\":136456,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:3edfc22c6c12a7b7952f4ae7445dae6a7485200a47346babc65e92e2aadeac15\",\"bytes\":136456,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "closed-gable-clear-panes-raised-roof-lights-floor-entry-alcove-and-chimney",
+        "passed": true,
+        "notes": "87 actual mesh probes over6GLBs; finite attributes, exact source/runtime/four-LOD hashes, shared materials, budgets and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Retained independent15.05x5.72m PMTiles outline matches the public mapped way220075398, visibly named Теплица with building=greenhouse and building:levels=1. Four ordinary museum photos show long log base, glazed gable roof, timber entry/fuel bay at one end and pale chimney at the other. No visitor-map schematic coordinate is used as WGS84. Native X northeast follows the mapped long axis; source axes are baked with heading0. Long glazed garden face assigned local+Z southeast, entry bay at+X northeast and chimney at-X southwest; this absolute photo-side assignment is approximate. Retained Protomaps20261020 / standard Mapzen201x201 at6m; outside garden control[0,5.8] supplies216.7855550974413m datum. Preserve all DEM samples and native roads/water. Replace only building35184592164230; cut only its occupied footprint. A supported apron meets the end door. Absolute historic levels, ground contact and approach accessibility remain approximate; no custom terrain or whole-garden cut. Inspected the native greenhouse, floor/plinth, end doorway/threshold, chimney and clear-roof structure. All242 resident/294 wider independent buildings, original garden approaches/roads, water and DEM samples remain. Final geometry closes the clipped timber gable and removes the coplanar floor/plinth surface. Exact historic thresholds, hidden benches and absolute entry/chimney-side assignment remain approximate. Only native building35184592164230 is replaced. All242resident/294wider independent buildings, native garden approaches/roads, original DEM samples and40070.675m²water remain. Failure retains all243original buildings; unload restores ground after water unload. Mapped long-axis orientation is retained; the photo-side assignment of entry/chimney remains approximate."
+    },
+    "inputHash": "sha256:74eb65b2ffcd5b67cdb4be5ac503cee2d069415d573cc62d5bbb956da21e4d83",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:74eb65b2ffcd5b67cdb4be5ac503cee2d069415d573cc62d5bbb956da21e4d83",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected48 current portable/shared/medium-fi/native frames in one author/inspect/fix pass, including full-resolution glazing, timber gable/entry, fuel alcove, plinth and roof-light views. Complete log base, clear pitched panes/end gable, rafters/purlins, two fixed-open roof lights, boarded entry bay with open leaf, coarse fuel stack and opposite-end pale chimney. Corrected the small clipped-gable gap and the coplanar floor/plinth top before final capture. Interior floor/benches are reconstructed; flower beds, trees, pots and people stay separate.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/preview.png",
+          "hash": "sha256:171f19bff8b91d37815c7930dae30ce1c847d739247386f415cdfe5f098189a5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:afc54c97d06bd04da8f32566abe0f1b04084ea6e1372d4ce770e23a6b331b891"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:ad7352fa81825abd4c21264fdf42ba8462027cc9d7da6e833862fefd93948cb4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:b891fc5783a33190711fc964f4b86c19dab146d7c98a2760b1a3b920fb05f7af"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:c9c20cb496dc6327637f771a9e0855361d52e3d01d8a68ad3158da88fd71e5f3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/whole-log-greenhouse-glazing-entry-and-chimney.png",
+          "hash": "sha256:3e8c217b90b606fe68c1eca80fb1f36a5c020d84e7b068d892b4ad735bff5f95"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/entry-leaf-fuel-alcove-and-threshold.png",
+          "hash": "sha256:8c1c5c3f7f7683544c43d470bf9d114c5baf76a476ecf36a0c4ff5bbc929c81e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/roof-lights-rafters-clear-panes.png",
+          "hash": "sha256:332e760811eb26dbfa6594f81951c0b9b214d269dd1f96c723f770ac09f8a9d4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/glazed-gable-chimney-and-plinth.png",
+          "hash": "sha256:4e469ea86ce0ed35c736f84d3ce9ccf736cc6e327c5b56399e31806d2d419b8d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:2ae47a44ad460dee66b569fc7e137d0c8cd82ab38927d4d45f97c2a6e66b67eb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:176476aea955434bdfce4d98c8d4ddbd3f6ab0aa9b8b80964a3164535f0d62c5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:360ce328c5f34dd6dea65a80a4add22dda0f57ffd29c80234ecd13a361ca6918"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:255861ed34bd54edf687dceec7579dc2789d11e283bbbb4e5902165a0bc6f8ca"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/shared/whole-log-greenhouse-glazing-entry-and-chimney.png",
+          "hash": "sha256:d97eb95a9c5d5d8fe41f4c2768ff47becb89022404ebc073be625b2ba202086a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/shared/entry-leaf-fuel-alcove-and-threshold.png",
+          "hash": "sha256:01a8db0d1fcbb48660de3c26003f4338c5327e74630022778c53917e14169c4a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/shared/roof-lights-rafters-clear-panes.png",
+          "hash": "sha256:53b51f1523863df55b33e6b12949096183916e02181dbcebb9faea1ff2952570"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/shared/glazed-gable-chimney-and-plinth.png",
+          "hash": "sha256:64ea2b7ab4748c8d319fe70d1dccf08d69e789e393d766ee6a04cc8835e80610"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:99de662371515ce7054687fd82f397b9bafb7b983eaf2118eda20ce883c07e29"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:6a85dadbf69fdc63c912b671a28c54f54ae4179ecdb570583bd88359d20ee5b4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:f63a048f40a1e1773c8cc38279fbfcc5ee6c6d49094e58cd20198d4b7b188649"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:f8212ac2e4f369208adf4a737b670ce88024725d2c7ae16208bd3d45315e29fb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:9adc311895b83713543111071cedc763f0c83db67a194638186600ee27ef31ed"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:5d693eb06d75afc83b9ca401b26b920b917407b62de970aec62c7a759dc9a59a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:369631f9a50219d2fd1e4caa3e62a162e52542bf4887425c791bef98e1583d7d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:3eb0e2121b9542f16fbf390443acce9b91149a13249db8ebdb7e2cc6ba0eef78"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:c747d8351f4e06563e24502b49b52e7068704a0a723a5a14c4036ffd6eedda44"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:333da1e4e4f1466408c46952959e72532458f97225cf19b6ac821a82c8417cc7"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:4fbdeded8bfaf3ec791810fdccb798c6333c95bafff0e093f910698441f6ae14"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:223c8fc9293b270e40cfa6959280644037a430c94512c636d2784dccad246813"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:be0697da32ece4e9d9b8ba024d123f188f50e6e5012b5b613fde524c97081a8b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:32cbc6f522f12a39300226d02cad5bdb1a24a754485fbae2a4349c97c77c5d86"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/whole-log-greenhouse-glazing-entry-and-chimney.png",
+          "hash": "sha256:225f8559b6329b2ee6c30cf2b2302fa7117a06f6cb4271cb980985f09ecab505"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/entry-leaf-fuel-alcove-and-threshold.png",
+          "hash": "sha256:dc45302d023fbf020936c335254fd24c96dd49e3351fd7cee541b2116d7e5865"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/roof-lights-rafters-clear-panes.png",
+          "hash": "sha256:f6c2fbc449882ca3317d04b13b2645bf18a07a75c4248aa027698ba3a96aecf6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/glazed-gable-chimney-and-plinth.png",
+          "hash": "sha256:281dc04472753089a1cf279b035b67034368cb4af5e4f232a5f96f96cf01c724"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:f63eb47f6f7172af0f13909229c2812744e9d5d40ac5135e5f8fe05319bf3838"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:369631f9a50219d2fd1e4caa3e62a162e52542bf4887425c791bef98e1583d7d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:1a5815abb338b66a2fc85909e82c3397f523b68ffce01d96501cdc925c52f209"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:bb479eb54ff865e22101dc1210087aff0c004bb8647aef485bf962d5b66e07a3"
+        },
+        {
+          "path": ".artifacts/greenhouse-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:45452d1ca62b498966821326ca440a9489e11a4e98aa57011479d2769e975de1"
+        },
+        {
+          "path": ".artifacts/greenhouse-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:f0ee60d9df6fbe9702f1d7443fd16c226f79b547ad17275a5bfffd1ff92df4db"
+        },
+        {
+          "path": ".artifacts/greenhouse-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:386d9231885bc776ae538d1a42efd4fbfbb4e933ccee62c9b47d320fb072da51"
+        },
+        {
+          "path": ".artifacts/greenhouse-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:386d9231885bc776ae538d1a42efd4fbfbb4e933ccee62c9b47d320fb072da51"
+        },
+        {
+          "path": ".artifacts/greenhouse-integration/shots/final-closeup-whole-log-greenhouse-glazing-entry-and-chimney.png",
+          "hash": "sha256:5830c37e4bb6e257b953380f68156c3ec736550063e75edc09ff3a4a504b026d"
+        },
+        {
+          "path": ".artifacts/greenhouse-integration/shots/final-closeup-entry-leaf-fuel-alcove-and-threshold.png",
+          "hash": "sha256:5c4b6bcaf97d3e4d43127d63f556fe8a03062d9af1fb0d93b097de3df878405b"
+        },
+        {
+          "path": ".artifacts/greenhouse-integration/shots/final-closeup-roof-lights-rafters-clear-panes.png",
+          "hash": "sha256:1f8d5122bced6d2e50045558a67cd0e7d7955ee76484a5221efa478a4e7c5687"
+        },
+        {
+          "path": ".artifacts/greenhouse-integration/shots/final-closeup-glazed-gable-chimney-and-plinth.png",
+          "hash": "sha256:ff4e09143f1e6556326460a8a356a1bbc32ad54b6123d1094cbbed16c98b87e6"
+        },
+        {
+          "path": ".artifacts/greenhouse-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:a61e6ad828c600c217784304479ce74efa9e8d57c90dcf642d0f8d59497202a9"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:74eb65b2ffcd5b67cdb4be5ac503cee2d069415d573cc62d5bbb956da21e4d83",
+      "sourceHash": "sha256:1b1da655b920d2bb7f519ae3667235c29854bdbc306bebc8a690179818a370de",
+      "runtimeHash": "sha256:9a745db28ada4b285d7b9a1ff8570c05a4b82aa431b94d7cf737b4aa71f2d35d",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/models/source.glb": "sha256:1b1da655b920d2bb7f519ae3667235c29854bdbc306bebc8a690179818a370de",
+        "content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.glb": "sha256:9a745db28ada4b285d7b9a1ff8570c05a4b82aa431b94d7cf737b4aa71f2d35d",
+        "content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.skyline.glb": "sha256:d94efe046b5831484a7cdaca7af69cc5d3fb0a2204dd55f612497cad2554f588",
+        "content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.district.glb": "sha256:1ac25b2a74e3c47d83212347ddbd0985cceb0ba2bae85f4f1eaea8b4278b8deb",
+        "content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.street.glb": "sha256:3edfc22c6c12a7b7952f4ae7445dae6a7485200a47346babc65e92e2aadeac15",
+        "content/worldgen/assets/places/uc/ucd/greenhouse_yasnaya_polyana/model.closeup.glb": "sha256:3edfc22c6c12a7b7952f4ae7445dae6a7485200a47346babc65e92e2aadeac15"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184592164230
+      ],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184592164230,
+          "owned": true,
+          "covered": 0.9999991350340938,
+          "area": 86.08415750177485,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000010018207383666322,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.greenhouse_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -30.034855097441294,
+            "max": 26.949244902558718
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000010018207383666322,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_limestone": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.greenhouse_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -30.034855097441294,
+            "max": 26.949244902558718
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000010018207383666322,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_limestone": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.greenhouse_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -30.034855097441294,
+            "max": 26.949244902558718
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000010018207383666322,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_limestone": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.greenhouse_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -30.034855097441294,
+            "max": 26.949244902558718
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            true,
+            true,
+            true
+          ],
+          "bankGround": true,
+          "gangwayGround": true,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184592164230,
+              "area": 86.08464588354624
+            }
+          ],
+          "groundCutoutActive": true,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.greenhouse_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -30.034855097441294,
+            "max": 26.949244902558718
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Complete original medium-fi greenhouse exterior: log base on pale plinth, genuinely transparent gable panes and glazed end, timber rafters/purlins, two opening roof lights, boarded entry/fuel bay with open wooden door, coarse split-log alcove, opposite-end pale chimney and supported threshold. Simple inner benches are reconstructed for the clear-roof view. Reuse existing wood_log, wood_plain, wood_vertical, plaster_lime and stone_limestone graphs plus a texture-free clear-glass material; no private atlas, copied photograph pixels, flowers, trees or people baked into the building. Photo-led one-story scale: low log body1.25m above floor, glazed gable ridge3.15m, chimney4.12m, timber entry/fuel bay2.2m long, real .88x1.95m doorway with leaf open90degrees. Floor 0.7182087492670064m above outside datum; original corner grades 0.568/0.230/0.165/0.465m. Floor is.15m above highest sampled corner; small plinth/foundation follows the standard terrain. Bay widths, roof pitch, vent positions, fuel census and inner benches remain reconstructed. The mapped greenhouse name/type and footprint support identity/scale. Exact historic roof pitch, chimney/threshold heights, end-bay orientation, vent count/placement, hidden benches/floor, fuel census and glazing schedule remain photo-led approximations. The glass is a simple browser PBR approximation, not physical refraction. Estate service inventory remains incomplete."
+  ]
+}

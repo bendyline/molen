@@ -683,9 +683,9 @@ function cockpit(root, m) {
       ii.horizon('horizon', [0, 0.047, 0], 0.19, 0.15, { blankBackdrop: true });
       sheet(dd, rect(0, 0, w, h, -0.012), black, [0, 0, -1], [rect(0, 0.047, 0.19, 0.15, -0.012)]);
       ii.readout('speed', [0.126, 0.052, -0.019], 'knots', 3, 0.01, ink, false, true);
-      dd.text('TAS', [0.126, 0.094, -0.02], 0.007, Math.PI, ink);
+      dd.text('TAS', [0.126, 0.094, -0.02], 0.007, Math.PI, ink, 'display');
       ii.readout('altitude', [-0.126, 0.052, -0.019], 'feet', 5, 0.008, ink, true, true);
-      dd.text('GEO FT', [-0.126, 0.094, -0.02], 0.006, Math.PI, ink);
+      dd.text('GEO FT', [-0.126, 0.094, -0.02], 0.006, Math.PI, ink, 'display');
       const rose = group(g, `C17-${a.kind}-heading`, [0, -0.081, -0.019]),
         rr = detailKit(rose, rose.name);
       for (let deg = 0; deg < 360; deg += 10) {
@@ -713,17 +713,17 @@ function cockpit(root, m) {
       });
       ii.available('heading', 'trueHeading', rose.name);
       dd.rod([0, -0.026, -0.02], [0, -0.036, -0.02], 0.001, amber);
-      dd.text('TRUE', [0, -0.012, -0.02], 0.006, Math.PI, ink);
+      dd.text('TRUE', [0, -0.012, -0.02], 0.006, Math.PI, ink, 'display');
       ii.readout('vertical', [-0.117, -0.079, -0.018], 'verticalFpm', 4, 0.008, ink, true, true);
       dd.text('FPM', [-0.117, -0.112, -0.02], 0.006, Math.PI, ink);
-      dd.text('SIM', [0.12, -0.09, -0.02], 0.007, Math.PI, green);
+      dd.text('SIM', [0.12, -0.09, -0.02], 0.007, Math.PI, green, 'display');
       dd.finish();
       bindings.push(...ii.bindings);
       Object.assign(derived, ii.derived);
     } else {
       sheet(d, rect(x, y, w, h, z + 0.007), black, [0, 0, -1]);
       if (a.kind === 'engine') {
-        d.text('SIM RPM', [x, y + h * 0.43, z], 0.012, Math.PI, green);
+        d.text('SIM RPM', [x, y + h * 0.43, z], 0.012, Math.PI, green, 'display');
         for (let i = 0; i < 4; i++) {
           const source = `engine${i + 1}`,
             value = `rpmPercent${i + 1}`;
@@ -831,7 +831,7 @@ function cockpit(root, m) {
     const x = px(u);
     d.box([0.285, 0.195, 0.022], [x, 5.59, 23.228], face);
     d.box([0.19, 0.14, 0.008], [x + 0.015, 5.595, 23.212], black);
-    d.text('COM --', [x + 0.015, 5.6, 23.205], 0.013, Math.PI, green);
+    d.text('COM --', [x + 0.015, 5.6, 23.205], 0.013, Math.PI, green, 'display');
     for (let row = 0; row < 5; row++)
       for (const dx of [-0.115, 0.115])
         d.box([0.016, 0.013, 0.007], [x + dx, 5.65 - row * 0.029, 23.202], m.dark);
@@ -885,7 +885,7 @@ function cockpit(root, m) {
       '--',
     );
   sheet(d, rect(px(952), py(783), 0.22, 0.11, z - 0.014), black, [0, 0, -1]);
-  d.text('SYSTEMS --', at(952, 783, -0.018), 0.011, Math.PI, green);
+  d.text('SYSTEMS --', at(952, 783, -0.018), 0.011, Math.PI, green, 'display');
   // HUDs are physical projector/combiner assemblies. Collimated symbology is not simulated.
   for (const side of [-1, 1]) {
     const x = side * 0.87;
@@ -911,7 +911,7 @@ function cockpit(root, m) {
   beveledBox(td, [0.76, 2.05, 0.28], [0, 0, 0.1], face);
   for (const x of [-0.245, 0.245]) {
     td.box([0.23, 0.29, 0.024], [x, 0.61, -0.056], black);
-    td.text('CNI --', [x, 0.64, -0.071], 0.017, Math.PI, green);
+    td.text('CNI --', [x, 0.64, -0.071], 0.017, Math.PI, green, 'display');
     td.box([0.23, 0.24, 0.025], [x, 0.15, -0.056], black);
     td.text('FMS --', [x, 0.17, -0.072], 0.016, Math.PI, green);
     for (let row = 0; row < 5; row++)

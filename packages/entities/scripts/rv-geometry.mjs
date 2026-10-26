@@ -182,7 +182,7 @@ export function recreationalVehicleModel(s) {
     return kit.add(g, mat);
   }
   function line(kit, points, r, mat) {
-    for (let i = 1; i < points.length; i++) kit.rod(points[i - 1], points[i], r, mat);
+    kit.path(points, r, mat);
   }
   function rect(z, y, w, h, r = 0.055) {
     return [

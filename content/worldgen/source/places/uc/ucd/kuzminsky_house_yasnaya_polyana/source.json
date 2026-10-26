@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Kuzminsky House — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1bf69b38caaaf4bcafd33ce3c13cfa2aa6c8ab6bbd5bff699b6b8ef493005a06"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kuzminsky-house-yasnaya-polyana",
+        "path": "models/generate-kuzminsky-house-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "kuzminsky-house-yasnaya-polyana-model",
+        "path": "models/kuzminsky-house-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "kuzminsky-house-yasnaya-polyana-geometry",
+        "path": "models/kuzminsky-house-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

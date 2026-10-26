@@ -43,11 +43,40 @@ const placementSchema = (runtime: boolean) =>
             .optional(),
           deckHeight: finite.optional(),
           deckHeights: z.tuple([finite, finite]).optional(),
+          deckProfile: z
+            .array(z.tuple([finite, finite, finite]))
+            .min(2)
+            .max(512)
+            .refine(
+              (points) =>
+                points.every((p, i) => i === 0 || p[0] > (points[i - 1]?.[0] ?? -Infinity)),
+              'deck profile must be ordered by X',
+            )
+            .optional(),
+          includeTransverseBridges: z.boolean().optional(),
+          deckEndpoints: z
+            .tuple([z.tuple([finite, finite]), z.tuple([finite, finite])])
+            .refine((ends) => ends[0][0] < ends[1][0], 'road endpoints must be ordered by X')
+            .optional(),
           includeConnectedApproaches: z.boolean().optional(),
         })
         .refine(
           (road) => road.deckHeight === undefined || road.deckHeights === undefined,
           'choose a uniform deck height or separate endpoint heights',
+        )
+        .refine(
+          (road) =>
+            !road.deckEndpoints || road.deckHeight !== undefined || road.deckHeights !== undefined,
+          'explicit road endpoints require deck heights',
+        )
+        .refine(
+          (road) =>
+            !road.deckProfile || road.deckHeight !== undefined || road.deckHeights !== undefined,
+          'deck profile requires endpoint deck heights',
+        )
+        .refine(
+          (road) => !road.includeTransverseBridges || !!road.outline,
+          'transverse bridge replacement requires an exact outline',
         )
         .optional(),
       replaceFootprint: z.boolean().optional(),
@@ -81,6 +110,22 @@ const placementSchema = (runtime: boolean) =>
         .optional(),
       groundCutout: z
         .strictObject({
+          preservePaving: z.boolean().optional(),
+          minHeight: finite.optional(),
+          pavingOutlines: z
+            .array(
+              z
+                .array(z.tuple([finite, finite]))
+                .min(3)
+                .max(512)
+                .refine(
+                  validGroundOutline,
+                  'paving opening must be a simple polygon with positive area',
+                ),
+            )
+            .min(1)
+            .max(64)
+            .optional(),
           outline: z
             .array(z.tuple([finite, finite]))
             .min(3)

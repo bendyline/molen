@@ -1,0 +1,398 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "wood_log",
+      "slot": "wall",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "door": {
+      "graph": "wood_vertical",
+      "slot": "wall",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof",
+      "roughness": 0.6,
+      "metallic": 0.45
+    },
+    "base": {
+      "graph": "stone_sandstone",
+      "slot": "foundation",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.8,
+      "metallic": 0.3
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -3.353787175446911,
+      15,
+      37.386523127750294
+    ],
+    "lookAt": [
+      0,
+      2.3,
+      0
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "whole-stepped-log-riga-and-red-hips",
+      "position": [
+        -5.72004290103982,
+        8,
+        29.176722043613193
+      ],
+      "lookAt": [
+        0,
+        2.2,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "large-main-door-and-open-entry-recess",
+      "position": [
+        -2.654265389709451,
+        4,
+        13.189195397786424
+      ],
+      "lookAt": [
+        -0.5375344677208811,
+        1.6,
+        4.512052686418112
+      ],
+      "fov": 54
+    },
+    {
+      "name": "side-door-bracing-and-main-hip",
+      "position": [
+        24.176764329137356,
+        7,
+        5.6994795002133
+      ],
+      "lookAt": [
+        5.5389404630420955,
+        2,
+        2.4212690673858046
+      ],
+      "fov": 48
+    },
+    {
+      "name": "lower-annex-door-and-rear-roof-closure",
+      "position": [
+        -27.79811982041954,
+        9,
+        -0.5143291257535232
+      ],
+      "lookAt": [
+        -2.40738252724595,
+        2,
+        1.790114344814572
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/models/riga-yasnaya-polyana-model.mjs",
+    "export": "buildRigaSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRigaDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "door": {
+            "graph": "wood_vertical",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.6,
+            "metallic": 0.45
+          },
+          "base": {
+            "graph": "stone_sandstone",
+            "slot": "foundation",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.8,
+            "metallic": 0.3
+          }
+        }
+      },
+      "street": {
+        "export": "buildRigaStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "door": {
+            "graph": "wood_vertical",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.6,
+            "metallic": 0.45
+          },
+          "base": {
+            "graph": "stone_sandstone",
+            "slot": "foundation",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.8,
+            "metallic": 0.3
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRigaCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "door": {
+            "graph": "wood_vertical",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.6,
+            "metallic": 0.45
+          },
+          "base": {
+            "graph": "stone_sandstone",
+            "slot": "foundation",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.8,
+            "metallic": 0.3
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.52248004078865,
+      54.074947841126
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained Protomaps20261020 and standard Mapzen201x201/6m grid. Outside southeast control[0,7.378085874850401] gives datum223.9371359199232m. Replace only named riga building35184539471073. Keep every original DEM sample, road, pond and independent building. Ground cutouts follow the two occupied parts, preserving the entry recess; small solid threshold treads seat into unchanged soil. Inspected the actual native stepped shell, all three entrances, braced log faces, low thresholds and both closed red hips. The main-entry recess and original approaches retain ground; every independent building, road, pond and DEM sample remains. No roof/floor grade adaptation is needed at this site. Heights, facade assignment and the generalized rectangle-to-stepped-plan interpretation remain approximate.",
+    "terrainReference": {
+      "anchor": [
+        37.52254744673243,
+        54.074894655246645
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Protomaps20261020 and standard Mapzen201x201/6m grid. Outside southeast control[0,7.378085874850401] gives datum223.9371359199232m. Replace only named riga building35184539471073. Keep every original DEM sample, road, pond and independent building. Ground cutouts follow the two occupied parts, preserving the entry recess; small solid threshold treads seat into unchanged soil."
+    },
+    "groundModelY": 0,
+    "elevationMode": "terrain-contact",
+    "mapIdentity": {
+      "maxDistance": 14
+    },
+    "maxDistance": 14,
+    "buildingCutout": {
+      "outline": [
+        [
+          -10.073154438697202,
+          0.788332509606497
+        ],
+        [
+          -3.5912985390137924,
+          9.372458427520293
+        ],
+        [
+          10.07315443869723,
+          -0.7883419490729722
+        ],
+        [
+          3.5912985390138217,
+          -9.372448988053819
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -10.073154438697202,
+            0.788332509606497
+          ],
+          [
+            -3.5912985390137924,
+            9.372458427520293
+          ],
+          [
+            10.07315443869723,
+            -0.7883419490729722
+          ],
+          [
+            3.5912985390138217,
+            -9.372448988053819
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Public OpenStreetMap way167382241 explicitly names this footprint Рига and tags a one-story building with red roof. Retained PMTiles supplies the independent footprint. The museum exterior photograph shows a higher main log barn with lower attached bay, red hipped roofs, large boarded doors and vertical timber bracing. Native axes are baked east/up/south; the southwest end and southeast side facade assignments are inferred from the photograph and path context, not surveyed. The17.11x10.76m map rectangle generalizes the stepped plan. The photo-led main room and inset lower annex occupy only their individual footprints; the open entry recess keeps its original soil."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -5.6382204427734015,
+          -2.3474545449938873
+        ],
+        [
+          0.6248999487395817,
+          6.075318357889022
+        ],
+        [
+          9.891262907574609,
+          -0.8150902369783308
+        ],
+        [
+          3.628142516061626,
+          -9.23786313986124
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -5.6382204427734015,
+            -2.3474545449938873
+          ],
+          [
+            0.6248999487395817,
+            6.075318357889022
+          ],
+          [
+            9.891262907574609,
+            -0.8150902369783308
+          ],
+          [
+            3.628142516061626,
+            -9.23786313986124
+          ]
+        ],
+        [
+          [
+            -9.891262907574578,
+            0.8150807975118566
+          ],
+          [
+            -5.953011348982521,
+            6.111322357452947
+          ],
+          [
+            -1.6999688841813434,
+            2.9487870149472024
+          ],
+          [
+            -5.6382204427734015,
+            -2.3474545449938873
+          ]
+        ]
+      ],
+      "basis": "Only the two occupied parts; open main-entry recess and original approach ground remain."
+    },
+    "notes": "Public OpenStreetMap way167382241 explicitly names this footprint Рига and tags a one-story building with red roof. Retained PMTiles supplies the independent footprint. The museum exterior photograph shows a higher main log barn with lower attached bay, red hipped roofs, large boarded doors and vertical timber bracing. Native axes are baked east/up/south; the southwest end and southeast side facade assignments are inferred from the photograph and path context, not surveyed. The17.11x10.76m map rectangle generalizes the stepped plan. The photo-led main room and inset lower annex occupy only their individual footprints; the open entry recess keeps its original soil. Photo-led main log wall3.35m/red hip ridge5.25m; lower annex wall2.6m/ridge3.78m above one level floor. The internal split, annex inset, door dimensions, bracing census and unseen rear remain reconstructed. Retained ground varies only0.23m across the footprint, so no sloped roof/floor adaptation is used. Floor0.2621166822335397m above outside datum and modest exposed plinth approximate native contact; no surveyed historical threshold claim. Retained Protomaps20261020 and standard Mapzen201x201/6m grid. Outside southeast control[0,7.378085874850401] gives datum223.9371359199232m. Replace only named riga building35184539471073. Keep every original DEM sample, road, pond and independent building. Ground cutouts follow the two occupied parts, preserving the entry recess; small solid threshold treads seat into unchanged soil.",
+    "bounds": [
+      37.522305813770295,
+      54.074843646899446,
+      37.522654267807006,
+      54.07505203526775
+    ]
+  }
+}

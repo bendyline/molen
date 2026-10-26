@@ -21,6 +21,8 @@ export function collectionReadiness(collection, members, manifest) {
   );
   if (members.some((record) => record.readiness !== 'ready') && !blockers.length)
     blockers.push('collection-members-incomplete');
+  if (collection.membershipEvidence.inventoryStatus === 'needs-review')
+    blockers.push('collection-inventory-unresolved');
   return {
     candidateId: collection.id,
     wikidataId: collection.wikidataId,

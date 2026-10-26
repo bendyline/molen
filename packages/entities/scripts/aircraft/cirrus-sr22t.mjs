@@ -642,8 +642,8 @@ function cockpit(root, m) {
     dd.text(label, [mx + 0.077, my + dy, -0.002], 0.0045, Math.PI, di.ink);
   di.readout('MFD-rpm', [mx + 0.075, my + 0.023, -0.003], 'rpmDisplay', 4, 0.0075, di.ink);
   dd.rod([mx + 0.045, my - 0.074, 0], [mx + 0.045, my + 0.074, 0], 0.0006, di.ink);
-  dd.text('MAP DATA', [mx - 0.025, my + 0.01, 0], 0.009, Math.PI, di.ink);
-  dd.text('UNAVAILABLE', [mx - 0.025, my - 0.006, 0], 0.007, Math.PI, di.ink);
+  dd.text('MAP DATA', [mx - 0.025, my + 0.01, 0], 0.009, Math.PI, di.ink, 'display');
+  dd.text('UNAVAILABLE', [mx - 0.025, my - 0.006, 0], 0.007, Math.PI, di.ink, 'display');
   dd.finish();
   Object.assign(sources, { flapPosition: { component: 'aircraftState', path: ['flapPosition'] } });
   // Switch bolster and center keypad, AFCS and audio panel. All unsupported selections stay unlit.

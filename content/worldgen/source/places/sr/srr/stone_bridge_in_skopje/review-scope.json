@@ -1,0 +1,156 @@
+{
+  "fidelityTarget": "medium-fi",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "native-fit.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/models/skopje-runtime.mjs",
+    "export": "buildSkopjeSkyline",
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSkopjeDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "clay_fired",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "iron": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "buildSkopjeStreet",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "clay_fired",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "iron": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "roughstone": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSkopjeCloseup",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "clay_fired",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "iron": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "roughstone": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "geographic": {
+    "anchor": [
+      21.433244271,
+      41.9971125
+    ],
+    "heading": 0.7410149177885357,
+    "elevationMode": "sea-level",
+    "elevationMeters": 241.5,
+    "bounds": [
+      21.43214961286003,
+      41.996353665866806,
+      21.43433892913997,
+      41.997871334133194
+    ],
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 218.917894,
+      "width": 6.4,
+      "deckHeights": [
+        7.7,
+        7.7
+      ],
+      "includeConnectedApproaches": true
+    },
+    "featureIds": [
+      "way/734159692"
+    ],
+    "source": "https://www.openstreetmap.org/way/734159692",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 is the retained historical channel-bottom reference 241.5 m. Bridge deck/arches are photo-reconstructed. Native river and unmodified coarse terrain determine exposed masonry; connected approaches use the 7.7 m model end decks. Actual fit is reviewed separately in current QA.",
+    "notes": "Retain confirmed exact-identity outline, signed northeast long axis and southeast downstream side. Preserve the historical 241.5 m channel-bottom datum as an explicitly approximate rendering reference. Replace only the overlapping longitudinal bridge-road corridor and directly connected end fragments; retain all buildings, unrelated roads, original DEM and native river/shorelines. Current native fit must be inspected before approval."
+  },
+  "limitations": [
+    "The 466,084-triangle detailed source master remains exact. Four separate runtime representations prioritize the full vaults, complete deck/parapets, mapped asymmetric cutwaters, recessed prayer niche and supported opposite balcony.",
+    "Runtime surfaces use shared low-frequency graphs. Dense individual wall/paving side faces are omitted to avoid automatic-decimation noise; closeup retains radial masonry, carved niche and rosette detail.",
+    "Eleven exposed/reconstructed openings are represented; historical total counts, buried ends, precise vault dimensions, channel-bottom datum and seasonal river stage are not a current engineering survey.",
+    "Native nearby statues, town buildings, shore landscaping and interiors remain outside the bridge asset. Physical device timings remain pending."
+  ]
+}

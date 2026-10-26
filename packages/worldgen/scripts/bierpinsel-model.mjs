@@ -2,7 +2,7 @@
 
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { beam, loft, radialRing } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing } from './authored-structure-mesh.mjs';
 import { face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
@@ -21,8 +21,7 @@ const cyan = [0.16, 0.62, 0.74],
 const pi = Math.PI;
 
 function line(out, slot, points, width, color) {
-  for (let i = 1; i < points.length; i++)
-    beam(out, slot, points[i - 1], points[i], width, width, color);
+  beamPath(out, slot, points, width, width, color);
 }
 function ellipse(out, cx, cy, rx, ry, z, color) {
   for (let i = 0; i < 48; i++) {

@@ -23,7 +23,7 @@ Original geometry from public primary dimensions and reference photographs, whic
 
 ## Authored geometry and materials
 
-663,256 triangles, 1,212,788 vertices, 7 surface groups; 51,623,308 source bytes. SHA-256: `sha256:8267e2fcefb342d331679a2bf282c77d028cea285fe9e4ae7f3c3cd2cff8d9c1`. Actual bounds: -82.000, -0.358, -99.500 to 82.000, 40.550, 103.000 m.
+566,096 triangles, 1,220,684 vertices, 7 surface groups; 50,741,640 source bytes. SHA-256: `sha256:36d4cf61d420be096197db613b3307612a96096fe2d66c7b2e97794c2342ebde`. Actual bounds: -82.000, -0.358, -99.500 to 82.000, 40.550, 103.000 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped playing enclosure centre at Y0; +Z points northwest to the D family stand, +X southwest toward Oster Alle and the C stand."}.
 

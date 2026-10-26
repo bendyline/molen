@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.palazzo_dei_conservatori",
+  "kind": "static-structure",
+  "title": "Palazzo dei Conservatori and Caffarelli museum ranges",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.palazzo_dei_conservatori",
+        "output": "assets/places/sr/sr2/palazzo_dei_conservatori/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5947aa261f2bafdc3b2bec19534951f4cbaac4e43d72d350fb171b2527350f57"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-palazzo-dei-conservatori",
+        "path": "models/generate-palazzo-dei-conservatori.mjs"
+      },
+      {
+        "id": "palazzo-dei-conservatori-model",
+        "path": "models/palazzo-dei-conservatori-model.mjs"
+      },
+      {
+        "id": "palazzo-dei-conservatori-geometry",
+        "path": "models/palazzo-dei-conservatori-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "qa.json",
+      "shared-capture-report.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

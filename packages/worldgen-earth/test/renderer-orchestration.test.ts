@@ -117,7 +117,10 @@ function fixture(prepareObject?: (object: THREE.Object3D, signal: AbortSignal) =
 }
 
 describe('worldgen human-feature tile orchestration', () => {
-  it('keeps a streamed bridge oriented, elevated and clipped to the same tile through an upgrade', async () => {
+  it.each([
+    false,
+    true,
+  ])('keeps a streamed bridge oriented, elevated and clipped through an upgrade (coarse %s)', async (coarse) => {
     let now = 0;
     const objects = new StructureLodStreamer(
       async () => ({
@@ -149,6 +152,7 @@ describe('worldgen human-feature tile orchestration', () => {
       { clock: () => now },
     );
     const renderers = createWorldgenSemanticRenderers(pack, {
+      distantBuildings: coarse,
       structures: createStructureIndex({
         format: 'molen/structure-placements@1',
         title: 'Span',
@@ -173,6 +177,7 @@ describe('worldgen human-feature tile orchestration', () => {
       generator: { generate: async () => output(), dispose() {} },
     });
     const ctx = context(new AbortController().signal);
+    if (coarse) ctx.address.level = 1;
     ctx.origin = [-100, -100];
     const root = await renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), ctx);
     const placed = root?.getObjectByName('structure:span');

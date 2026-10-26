@@ -1,8 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.the_helix_bridge",
-  "inputHash": "sha256:7ac9a89f925c6d2d4db48325342e192786786d1279cded8ddb3ee3104e8a1a6b",
-  "captureReportHash": "sha256:e9870004f4beaec88f9c2cb0c2850028ca12379ff8835686017da10928dcef35",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:e0f954978d550f80acb4f2d2f706fe89821fe5cc2c5b0bc697ea8d0a2181fbc5",
+  "sourceHash": "sha256:c9e015fbb26a90ea3d137691971ff4df2e375d8b9d159a80d5130e0aad41a68b",
+  "runtimeHash": "sha256:12c536f0d6c9343f936c2325ce0942e47c7482614553dc34d48dfeed8b5705f9",
+  "captureReportHash": "sha256:f03aa0e05ad91b96ce2f56f672b572e797a7a0d512a90c3ba15f8ff9574e46f3",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -18,12 +21,11 @@
       "shots/far-crossing.png",
       "shots/shore-entrance.png"
     ],
-    "scope": "Original detailed exterior of the curved pedestrian crossing and four viewing pods.",
-    "notes": "Inspected all11 current portable frames. The walkway and pod entries are open; shore helix members turn outside the walk and down to end bearings. Canopy, tube connections, pod rails, tapered supports and deck framing are retained. These legacy direct-light captures render bare stainless steel dark because they contain no reflection environment; the current shared viewer captures below verify its actual silver appearance."
+    "captureReportHash": "sha256:f03aa0e05ad91b96ce2f56f672b572e797a7a0d512a90c3ba15f8ff9574e46f3",
+    "notes": "Inspected62 current frames in one author/inspect/fix pass:11 portable,11 shared,27 medium-fi and13 native. Complete curved walkway, six major/five minor helical strands, four bay-facing pods and their necks, four paired tripod groups, glass rails and alternating canopy leaves remain. Corrected a source bug that treated mapped viewpoint X coordinates as arc stations, moving pods/piers and rail openings to projected stations. Smooth reconstructed phase transitions clear all four pod thresholds without cutting the continuous primary strands.192 near/source threshold rays pass. The original505124-triangle master recipe remains byte-reproducible; the intentionally corrected detailed master has504896 triangles and40070112 bytes."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:a0cd2c189725a6a473cc959dfd776c108b151c235218ea3836b451b142dc3d9e",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -37,16 +39,3722 @@
       "shots/shared/shore-entrance.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all11 current sky-pmrem shared frames after radiance calibration and removal of duplicate hemisphere diffuse light. Silver steel highlights, stone paving, glass barriers, alternating canopy panels and concrete bearings read correctly. Fine lines become subpixel in distant full-crossing views; detail cameras resolve them. All material graphs load once, only this landmark is requested and geometry is released at unload."
+    "captureReportHash": "sha256:ff52a219804091fd334076e0a710032c1d6c9eb66ffe8691f5224c6bbfc2f6e5",
+    "notes": "Three existing256px shared graphs (concrete_plain, stone_granite, metal_stainless) provide metric-repeat concrete, paving and steel. Glass and perforated-canopy mean use two small transparent local PBR materials without images. No private bitmap atlas, embedded images or copied photo pixels. Textured LODs use five draws and load each graph once; skyline bakes shared means into one vertex-color draw. Separate vertex streams avoid duplicate uploads; model/support disposal passes."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/walkway.png",
+      "medium-fi/helix-joints.png",
+      "medium-fi/viewing-pod.png",
+      "medium-fi/under-deck.png",
+      "medium-fi/far-crossing.png",
+      "medium-fi/shore-entrance.png",
+      "medium-fi/whole-helix-skyline.png",
+      "medium-fi/whole-helix-district.png",
+      "medium-fi/whole-helix-street.png",
+      "medium-fi/whole-helix-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:d1e368744e4923b7e4565cdbd6d3073f8e8dc27e051b55cfee778b140783aaf5",
+    "notes": "Four authored browser LODs: 988/3980/15968/62900 triangles. Initial skyline + district 496852 bytes; closeup 7137608 bytes. Skyline uses four representative opposed ribbons; district retains all eleven strands as crossed ribbons; near levels use six/twelve-sided tubes. Fine paving relief, collars and secondary hardware stay in the detailed master. Noon/late, economy/high, silhouette and all transitions were inspected beside procedural neighbors. Physical laptop/phone timings remain pending."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:9d41cb57b3e9b3088948f74a042d4827e3f842e92a217ff867be4eb39b7f7b64",
-    "notes": "Curved centerline fit uses four exact bridge ways164881537/687965211/212/213, anchor[103.860485341,1.287468009], heading1.497794301143. Four mapped viewpoint nodes6449716756/6761/6763/11482830572 and COX architect drawings establish WEST-facing pods. The older coarse magenta bridge area has incorrectly mirrored pod protrusions and is not used for those locations. Datum0 is provisional MarinaReservoir surface; deck rises from6m to8.8m. Centerline, bearings and direction agree with the map; current reservoir stage is not a surveyed datum."
+    "placementHash": "sha256:4367c6badc65aed36e44a1a0249da293c3bed54145b5a8632beccf60cfb4318b",
+    "mapFrameHash": "sha256:327047fb0af0fe996d320c90e5a4281b492a1283325fffa5a88f7cb16f23365d",
+    "notes": "Approximate native fit at [103.860485341,1.287468009], heading1.497794301143; +X roughly north and pods to the bay-facing west. Standard Protomaps/Mapzen and ordinary photographs establish fit. Reservoir water/pier-cap zero and6m endpoint deck levels are provisional, not surveyed elevations. A249-point body/pod replacement outline removes only overlapping mapped paths; the57-sample curved deck profile aligns the retained side connector. The earlier ignored review reader halved terrain elevations; this review re-reads the original archive at its correct scale (center28.3448m matches the28.3448407m independent decoder sample). Bounded walkway/pod and direct-approach ground openings keep coarse ground/shoreline walls out of the structure without editing DEM samples or native water. Three immediate mesh joins meet the authored deck within0.02m. This proves internal consistency, not geodetic accuracy. The outer side-link/cycleway junction, native shore morphology, generic approach grades/widths and neighboring procedural bridge heights remain coarse approximations, outside the scoped bridge exterior. High, steep coarse bank walls remain beside the narrow landings; this is not a polished street-level waterfront reconstruction."
   },
   "fidelityReview": {
-    "target": "maximum",
+    "target": "medium-fi",
     "status": "passed",
-    "notes": "505,124-triangle exterior based on COX/Arup/SCI/IMOA dimensions and drawings: six10.8m major and five9.4m minor helices,273mm tubes,73.6m/51.4m pitches, curved6m walkway, four connected oval bays, double tripods, end transitions, joints, rails, glazed/mesh canopy and under-deck framing. Individual joint hardware, glass segmentation, bearing details and exact vertical profile are reconstructed. The nearby vehicular bridge, shore plazas, artwork inscriptions, night light programming and submerged piles are outside this asset."
-  }
+    "notes": "Complete scoped operating bridge exterior; detailed source retained separately. Four authored browser LODs: 988/3980/15968/62900 triangles. Initial skyline + district 496852 bytes; closeup 7137608 bytes. Skyline uses four representative opposed ribbons; district retains all eleven strands as crossed ribbons; near levels use six/twelve-sided tubes. Fine paving relief, collars and secondary hardware stay in the detailed master. Noon/late, economy/high, silhouette and all transitions were inspected beside procedural neighbors. Physical laptop/phone timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/w2/w21/the_helix_bridge/models/source.glb\",\"hash\":\"sha256:c9e015fbb26a90ea3d137691971ff4df2e375d8b9d159a80d5130e0aad41a68b\",\"bytes\":40070112,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/w2/w21/the_helix_bridge/model.glb\",\"hash\":\"sha256:12c536f0d6c9343f936c2325ce0942e47c7482614553dc34d48dfeed8b5705f9\",\"bytes\":40069728,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/w2/w21/the_helix_bridge/model.skyline.glb\",\"hash\":\"sha256:97cef1a7d4f5ca3039850c6a1425407263e187b7b0404b424749288fffa849b7\",\"bytes\":96412,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/w2/w21/the_helix_bridge/model.district.glb\",\"hash\":\"sha256:8dc3ec97b2aae65d7b2623a24c6822e35fa2351dbc226049983aa7d1fdac8072\",\"bytes\":400440,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/w2/w21/the_helix_bridge/model.street.glb\",\"hash\":\"sha256:27eba958ac3635809d728fd0acc1efa97e4bcbd193e42b8e907ee279769a9e68\",\"bytes\":1692600,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/w2/w21/the_helix_bridge/model.closeup.glb\",\"hash\":\"sha256:059311a1adf74efb3f95091366b3732d758c6df29a7b1ffb5533353ec5b011df\",\"bytes\":7137608,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-walkway-pods-thresholds-tripods-helices-and-canopy",
+        "passed": true,
+        "notes": "1407 actual mesh checks across source/runtime/four LODs: walkway continuity and headroom, all mapped pod points on floors, connected necks, tripod branches, continuous opposed coils and192 near/source pod-threshold clearance rays. Exact pins, finite attributes, shared graphs, budgets and separate GPU streams pass."
+      },
+      {
+        "check": "reused-exact-geometry-evidence",
+        "passed": true,
+        "notes": "All six GLBs retain exact prior hashes, so the1407 geometry checks remain applicable. Re-ran placement/terrain/renderer checks and inspected51 changed images;11 portable images retained their already inspected hashes."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native fit at [103.860485341,1.287468009], heading1.497794301143; +X roughly north and pods to the bay-facing west. Standard Protomaps/Mapzen and ordinary photographs establish fit. Reservoir water/pier-cap zero and6m endpoint deck levels are provisional, not surveyed elevations. A249-point body/pod replacement outline removes only overlapping mapped paths; the57-sample curved deck profile aligns the retained side connector. The earlier ignored review reader halved terrain elevations; this review re-reads the original archive at its correct scale (center28.3448m matches the28.3448407m independent decoder sample). Bounded walkway/pod and direct-approach ground openings keep coarse ground/shoreline walls out of the structure without editing DEM samples or native water. Three immediate mesh joins meet the authored deck within0.02m. This proves internal consistency, not geodetic accuracy. The outer side-link/cycleway junction, native shore morphology, generic approach grades/widths and neighboring procedural bridge heights remain coarse approximations, outside the scoped bridge exterior. High, steep coarse bank walls remain beside the narrow landings; this is not a polished street-level waterfront reconstruction."
+    },
+    "inputHash": "sha256:e0f954978d550f80acb4f2d2f706fe89821fe5cc2c5b0bc697ea8d0a2181fbc5",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:e0f954978d550f80acb4f2d2f706fe89821fe5cc2c5b0bc697ea8d0a2181fbc5",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected62 current frames in one author/inspect/fix pass:11 portable,11 shared,27 medium-fi and13 native. Complete curved walkway, six major/five minor helical strands, four bay-facing pods and their necks, four paired tripod groups, glass rails and alternating canopy leaves remain. Corrected a source bug that treated mapped viewpoint X coordinates as arc stations, moving pods/piers and rail openings to projected stations. Smooth reconstructed phase transitions clear all four pod thresholds without cutting the continuous primary strands.192 near/source threshold rays pass. The original505124-triangle master recipe remains byte-reproducible; the intentionally corrected detailed master has504896 triangles and40070112 bytes.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/preview.png",
+          "hash": "sha256:4ec938776488f10e6725bd5bb821d18dfbe65895adfb1bdb8a03333f79fc27ab"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:5e71b86dc43f8e7e50117340d29ef26b98721102b6895b6d9c44086347d7f2c7"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:41841345bdb6353ffd276526cfc7a47d04389eec2525772ba8c1963526dec0ea"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:080fef9a1fed4ead36e0d0e45497cfa0b6fd97f279e07a587a1dae47191e2ff9"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:92fafd8ffcba7d137f1d6aae89de48beb6e810b52c45af30fae4f26e99800c91"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/walkway.png",
+          "hash": "sha256:1fa6c24c5451cc7824eddc2484e778c90196d0dc4e860a802526638a796e67b4"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/helix-joints.png",
+          "hash": "sha256:c1bc8d0cc929255af11ce63a4b4243ecbffc54c6db1bd173318b87f8e1b801e4"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/viewing-pod.png",
+          "hash": "sha256:c5867dc8ac052ce46728ccc4df252715447e18f73c80723a5a6e54827728001f"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/under-deck.png",
+          "hash": "sha256:6a2895ac00e1771795f7de0d8959b73de51348d6ca2ed74919ca873363a9ecd9"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/far-crossing.png",
+          "hash": "sha256:118caaba11a593f3695a0caba9a338a9469feefea6699c5adc2d85bd2f41ff2d"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shore-entrance.png",
+          "hash": "sha256:4dfbca27bd19fac7fceba252d77fab68f7bb3f2dd05e06dfa34ef7f83eac9aad"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:8be81ecdcd7372af3c9ae1a4ecffb50f063c8314abbc8ac50a6ac2657c1479c0"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:ee63e9b4a0bdbca46fc446810021c27d8af62e9a0eff71aa1972d86ff870b511"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:8995b13abb52a1ec21937cd732ee7e9e246d71912387932ea7f42a40b3a1d0a5"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:aca1304af647bc58f7b426e1e59e0e5d5ff0c5389f9fd6f1bf4a8086d053b468"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/walkway.png",
+          "hash": "sha256:82a76de12e31e8c48b17ad60c44dbf1b4c03f7605586306a92fd1b0e829ca52b"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/helix-joints.png",
+          "hash": "sha256:ddf16f7b6fe8903b1f3780416840854bcd5ca1e27ffeb8779673340004a50d8a"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/viewing-pod.png",
+          "hash": "sha256:8bc260774492412b0dc0992b3a34077137d8984c0032049d067edba2b4f99763"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/under-deck.png",
+          "hash": "sha256:31e68e1551755967b1fb3092f6bb23e590e2ae950a92626a99bd138aaa6c1486"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/far-crossing.png",
+          "hash": "sha256:88a334839e4542681f07322d902454ea13fe1ccae1854eec0a74f12757561d48"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/shore-entrance.png",
+          "hash": "sha256:77ab0a9e6c82f30201f9c33a8c2a0617463914ace4f6d30b5d26850f04793468"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/shots/shared/placement.png",
+          "hash": "sha256:78a9ed8be2a552cc695ed128d023ff000bd38f65286e9c3d474460e5c0a71818"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:3309280f518733002ae433a277c323830be91457156a6ffd8cc64a6bf73369a7"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:38b9ce958cc213e1b95e9360fdaed95fbcb37a3281144d313ca23886fb931503"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:bca79fb310907b32daf18207fa10072686a8654807b65beb22f8a15238103dda"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:e29056ef8e83141ad054d05bb7d16cd8cf9a0fef02ccdbf4ded1c45ac33c0c13"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:513689b7510033b6ef79dae52a492436f371a3a29f429631bc94546f9bca2483"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:6d0ef867c8f8b97aff8665a9310b69d73f7c9b2bdf0cba2e71eecb2235d9de92"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:e4b3ba915b09d4da2dca4f39510c696f1eef70098ca1477639e7122f4a79e33a"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:95dafdc564b194e99ff4e41df2a7a9d5acb4de7d1e824fe776661e2dd6acb6cf"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:166d34a666abcc754fe4f87ee382c489914dc3db8d674554daf8a9222c3de79f"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:4aa785c48a4d3647153a3535516f8c5d7b21209b816f8de85fa7af9cd3f27250"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:4ee97994bd85a3b4eac508df16ac71bb413703329fdaf926218106b6928554cf"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:281a52aa0bc40c11168397a20cace1f13fbb2f264da6ff970580d5ed1424aebf"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:8f819faae65c06aa68346db6314dd71ac55bebce7c78b8556508b98934933cdb"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/walkway.png",
+          "hash": "sha256:5c3d4bad5369b8385abb76aea7fc42a3069e49ff35598d0b88d9db07d2f0bc5f"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/helix-joints.png",
+          "hash": "sha256:c7472a1dea21cf5297be9c5a39e78ce5b410b6ee90813dd1e8adf598ad94f454"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/viewing-pod.png",
+          "hash": "sha256:31cc39a0ff2457656ec6387aaf9b969d9b7272fae7ebacaa6ccf0315ddb7ecc4"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/under-deck.png",
+          "hash": "sha256:32cc9f05da62ee57b12c20f01eef8a2b6f395d7c60ec8101db3b25c05443927a"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/far-crossing.png",
+          "hash": "sha256:502964cae1cb63cb7d85200f4c0eec5ebf284210acab3cf2619d28978351ad63"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/shore-entrance.png",
+          "hash": "sha256:47d7bd7faa2f3e3fc43281a49ad343c42b04c2d5bb77607258ba5ab1ee11edc7"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/whole-helix-skyline.png",
+          "hash": "sha256:79db78c93c259f260e9224466c3a09fa853e12c2b5e0b51a609801d2e1f88996"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/whole-helix-district.png",
+          "hash": "sha256:504f02ce73f5b800143243cb2b47a8ad0ad7ddb0d9165779b84afc07f340ed50"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/whole-helix-street.png",
+          "hash": "sha256:09c524788a1f8fe3c7ce8145311f8611dc42fe0840bf10570211a1ae8770caa0"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/whole-helix-closeup.png",
+          "hash": "sha256:db8fed4d063e0a385094f183e6fb88d47692fb9098d504ebf20a2067bc6bb850"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:fd17c7f16351af0255c48366b175cc31277c7de8a496ffae123f0e39e9e262f8"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:6d0ef867c8f8b97aff8665a9310b69d73f7c9b2bdf0cba2e71eecb2235d9de92"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:e6c21b7c3e882a2222e447c080744b1cb6eedada3f6b00d0c836d75d3a82323e"
+        },
+        {
+          "path": "content/worldgen/source/places/w2/w21/the_helix_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:74c86ba1741347617fbea503616bbe74e600e95ca6d59bbc877bd3c5fb8e6a12"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-skyline-marina-bay-crossing.png",
+          "hash": "sha256:b03587dc528d21d8775c4e78e0a444235dc41eaaa7956d698a4f4b45fb50c2a8"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-district-marina-bay-crossing.png",
+          "hash": "sha256:8546f9cb179e5da03447828b2ba6ad6436affa31a382301ca053779edeb70ade"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-street-marina-bay-crossing.png",
+          "hash": "sha256:e98ad9897aab29811721e973038c8d72ee3a887e6f0e1eedeb06cd13c9c7362d"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-closeup-marina-bay-crossing.png",
+          "hash": "sha256:15fd047ff183498c08dc6af338261dfe144c27c2ceaf99e5382c935cdeef9261"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-closeup-walkway.png",
+          "hash": "sha256:63dc5b7a5501e59187f5872f267d2e6c37d03d0fae4df742021e113f821b8302"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-closeup-helix-joints.png",
+          "hash": "sha256:cc94c246288b4d7a90f1eaf1865ff8a6935fa62031cc1ecade60e10fcb36e941"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-closeup-viewing-pod.png",
+          "hash": "sha256:bd408648626cf5140f4c9f8444863b8a00734578d83f2d9f33027c6a4a56d295"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-closeup-under-deck.png",
+          "hash": "sha256:e16b3f0bbb91f093b408319b1e3876fd97660f26a26239a7a6e9d94d31d994ab"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-closeup-far-crossing.png",
+          "hash": "sha256:de28c7e438cf5237284e038add9842a9229075d31b075a9a30bc85300fa89e1d"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-closeup-shore-entrance.png",
+          "hash": "sha256:fad36eb30f083bf38f87bc1d05d04c14357fc5dce48e661b6a72d5b89f67e576"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-closeup-south-shore-join.png",
+          "hash": "sha256:19dca4520745b7e22f39bcfca60af44f31a1b6af490f67c645f565f7dea057c3"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-closeup-north-shore-join.png",
+          "hash": "sha256:4a718b80ce0588ea5169931dfb953c10067a5fe1c8e8d6dfcdff41a7ec839b31"
+        },
+        {
+          "path": ".artifacts/helix-integration/shots/final-failure-marina-bay-crossing.png",
+          "hash": "sha256:6752c0a197aac3e0815382f5310c7a0d501cf783c3fe17663e550bca39d490c2"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 191 resident / 336 wider mapped buildings, 1131 independent transportation records, correctly decoded original DEM samples and native water remain. Bayfront Avenue road bridge (two lane records) and the independent Marina Promenade cycleway (one through record) retain exact geometry plans and hints. Bounded ground/bank openings deliberately alter only the rendered terrain beneath the model and direct approach strips; outside ground probes remain exact and all ground/bank geometry restores on unload. Native shoreline walls now respect model ground openings while retaining water. Failed load keeps original native content without supports. Fixture/engine hashes are pinned.56 targeted Earth ground/placement/connector tests,24 shoreline/ground/semantic tests, affected package typechecks and changed-file formatter checks passed. Full engine CI was not rerun; earlier livery-schema failures remain recorded."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:e0f954978d550f80acb4f2d2f706fe89821fe5cc2c5b0bc697ea8d0a2181fbc5",
+      "sourceHash": "sha256:c9e015fbb26a90ea3d137691971ff4df2e375d8b9d159a80d5130e0aad41a68b",
+      "runtimeHash": "sha256:12c536f0d6c9343f936c2325ce0942e47c7482614553dc34d48dfeed8b5705f9",
+      "files": {
+        "content/worldgen/source/places/w2/w21/the_helix_bridge/models/source.glb": "sha256:c9e015fbb26a90ea3d137691971ff4df2e375d8b9d159a80d5130e0aad41a68b",
+        "content/worldgen/assets/places/w2/w21/the_helix_bridge/model.glb": "sha256:12c536f0d6c9343f936c2325ce0942e47c7482614553dc34d48dfeed8b5705f9",
+        ".artifacts/helix-integration/data.json": "sha256:f608a2cd107d971450c11e9af4b62f3df3bd8015c9915b531748472b84e2a51e",
+        ".artifacts/helix-integration/site.ts": "sha256:7e0b1f9c867bf9d69130bd84ba98f3cc365829ef175a0bca58ec082eecbab4da",
+        ".artifacts/helix-integration/site.mjs": "sha256:1320890b3cd54c9403987d0b78b68522e0c4188b8902b60e56d6796819c9feff",
+        "content/worldgen/assets/places/w2/w21/the_helix_bridge/model.skyline.glb": "sha256:97cef1a7d4f5ca3039850c6a1425407263e187b7b0404b424749288fffa849b7",
+        "content/worldgen/assets/places/w2/w21/the_helix_bridge/model.district.glb": "sha256:8dc3ec97b2aae65d7b2623a24c6822e35fa2351dbc226049983aa7d1fdac8072",
+        "content/worldgen/assets/places/w2/w21/the_helix_bridge/model.street.glb": "sha256:27eba958ac3635809d728fd0acc1efa97e4bcbd193e42b8e907ee279769a9e68",
+        "content/worldgen/assets/places/w2/w21/the_helix_bridge/model.closeup.glb": "sha256:059311a1adf74efb3f95091366b3732d758c6df29a7b1ffb5533353ec5b011df"
+      },
+      "engine": {
+        "packages/worldgen-earth/src/client/structure-geometry.ts": "sha256:d1f2bf1f44f1f00353cacaa692ac3ea0bcf2c75f36ca068fea32090ff6e12402",
+        "packages/terrain/src/surface-bridges.ts": "sha256:a921e62846e7342809bad97b17470531e38ede838c1b2ca1123e038a35cbe811",
+        "packages/terrain/src/surface-client.ts": "sha256:2309d499139b4292ae6097937346395be5cfa0659ba8dd5ba74ca22012c123db",
+        "packages/terrain/src/semantic-client.ts": "sha256:59820f7d9e636fd144b9ead9e84dabe114b240d24c96a39f9b0a79be0048643d",
+        "packages/terrain/src/ground-cutout.ts": "sha256:94fc7e772d2a775fef1a0e0205f3edc1d5e041c271842d978f5e64ec69fb4725",
+        "packages/terrain/src/linear-features.ts": "sha256:a7f5e41e4b2985a6063b3a7f2d647a190e3cc71dbdd1f12b7c2f0fb5b33bd9f0",
+        "packages/worldgen-earth/src/client/renderers.ts": "sha256:81955a6b37aa3f77dbd2abd3bd7d7897a95f9fb321b9048d00a7e43937550a51",
+        "packages/client/src/three/shadow-focus.ts": "sha256:ff1b6d0dc914faf5ca592d9c7fa2e74132ad7cae65cc63c0c03e325545a49d09"
+      }
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "protectedBridges": [
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677488,
+              "unchanged": true
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184767209302,
+              "lines": [
+                [
+                  [
+                    174.07344686903244,
+                    -37.41580115829962
+                  ],
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184413978170,
+              "lines": [
+                [
+                  [
+                    -132.9543823122204,
+                    -16.159462103568863
+                  ],
+                  [
+                    -141.57335316675977,
+                    -19.42009099245132
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "north-join",
+              "id": 35184534614430,
+              "point": [
+                136.19452359730082,
+                -19.13238444924026
+              ],
+              "expectedDeck": 6,
+              "roadHeight": 6,
+              "rawGround": 11.349285983472308
+            },
+            {
+              "name": "side-join",
+              "id": 35184534614430,
+              "point": [
+                -34.1420472295796,
+                16.21902035034303
+              ],
+              "expectedDeck": 8.625832577533574,
+              "roadHeight": 8.625832557678223,
+              "rawGround": 27.369682632904464
+            },
+            {
+              "name": "south-join",
+              "id": 35184413978170,
+              "point": [
+                -135.66791052015714,
+                -17.186012559694753
+              ],
+              "expectedDeck": 6,
+              "roadHeight": 6.013056437211503,
+              "rawGround": 6.951744652628726
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [
+            {
+              "id": 35184767209302,
+              "connections": [
+                {
+                  "point": [
+                    0.4763148913369912,
+                    0.2967406134062884
+                  ],
+                  "elevation": 6,
+                  "radius": 14.856515418562655
+                }
+              ]
+            },
+            {
+              "id": 35184413978170,
+              "connections": [
+                {
+                  "point": [
+                    0.4662812394928187,
+                    0.6676120768240071
+                  ],
+                  "elevation": 6,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.48737225428689274,
+                    0.3289985111401256
+                  ],
+                  "elevation": 6,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "skyline",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -33.031879073360315,
+              0,
+              -138.6408848458251
+            ],
+            "max": [
+              30.26439232458332,
+              16.09954071044922,
+              138.37256733126165
+            ]
+          },
+          "sourceBuildings": 191,
+          "remainingBuildings": 191,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 1131,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184534614430,
+            35184536970369
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ],
+                  [
+                    136.19452359730082,
+                    -19.13238444924026
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.4885652767161105,
+                    0.32846595391323863
+                  ],
+                  "elevation": 6,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.4763148913369912,
+                    0.2967406134062884
+                  ],
+                  "elevation": 6,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -34.1420472295796,
+                    16.21902035034303
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.5171069952355436,
+                    0.5440426013067737
+                  ],
+                  "elevation": 8.625832577533574,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.52743417466945,
+                    0.5452474390555786
+                  ],
+                  "elevation": 8.625832577533574,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    214.81448817031608,
+                    8.09196540504478
+                  ],
+                  [
+                    206.16618292896783,
+                    12.61538448462086
+                  ],
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ],
+                  [
+                    -172.06350009273154,
+                    173.4663298233054
+                  ],
+                  [
+                    -159.39914850154724,
+                    154.28261972306197
+                  ],
+                  [
+                    -155.2307087490838,
+                    141.7063115178916
+                  ],
+                  [
+                    -121.91159254051968,
+                    24.336901779850876
+                  ],
+                  [
+                    -216.85991033288155,
+                    31.579964761018903
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -197.09118282063926,
+                    314.17368652358874
+                  ],
+                  [
+                    -200.74418912570843,
+                    329.7053395535775
+                  ],
+                  [
+                    -216.20438540649357,
+                    355.6782022156016
+                  ],
+                  [
+                    -226.49414426711058,
+                    370.4979983404831
+                  ],
+                  [
+                    -233.6326058233619,
+                    387.48176543155836
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    699.0376067891871,
+                    -770.1926354713446
+                  ],
+                  [
+                    696.496413208553,
+                    -776.2921758776636
+                  ],
+                  [
+                    698.1231723751533,
+                    -782.6965269452157
+                  ],
+                  [
+                    703.1989294702868,
+                    -786.9586784844009
+                  ],
+                  [
+                    710.0898246676613,
+                    -786.864015433904
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    573.1485370417097,
+                    -359.32021759423014
+                  ],
+                  [
+                    583.2200684471977,
+                    -364.84563187819833
+                  ],
+                  [
+                    643.203878376716,
+                    -334.51310887482725
+                  ],
+                  [
+                    641.0905577949177,
+                    -326.5766548574957
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    660.502381163167,
+                    -204.38374890993688
+                  ],
+                  [
+                    671.8669852246501,
+                    -224.968925639521
+                  ],
+                  [
+                    676.8192105978433,
+                    -226.82761146257906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    575.9472302595232,
+                    -251.47616582285252
+                  ],
+                  [
+                    574.9177763465663,
+                    -294.2013445896222
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    489.7392809667643,
+                    -182.01847395452538
+                  ],
+                  [
+                    458.6684558789472,
+                    -181.24272256186887
+                  ],
+                  [
+                    454.0650539869905,
+                    -186.8921456289955
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    453.998294391445,
+                    -339.2329736561814
+                  ],
+                  [
+                    430.3248168228843,
+                    -290.510965161003
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    481.99731597862706,
+                    -521.1622713479537
+                  ],
+                  [
+                    491.67742110546715,
+                    -544.3179928715143
+                  ],
+                  [
+                    476.5234961946619,
+                    -550.9916589362311
+                  ],
+                  [
+                    464.955362499164,
+                    -525.0041265898282
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    197.00617254709604,
+                    -648.7750620317889
+                  ],
+                  [
+                    268.12891093198704,
+                    -621.651582584187
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    271.7691238109575,
+                    -682.3771963772492
+                  ],
+                  [
+                    273.19993591729764,
+                    -691.4609529914884
+                  ],
+                  [
+                    274.81202610370616,
+                    -693.9732799441399
+                  ],
+                  [
+                    277.70205070380666,
+                    -695.3818489811589
+                  ],
+                  [
+                    346.5817554863174,
+                    -686.6511768975895
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    218.91377555800534,
+                    -471.99205465186236
+                  ],
+                  [
+                    218.99376451485267,
+                    -474.9909438976404
+                  ],
+                  [
+                    233.4874354637942,
+                    -481.4383659265504
+                  ],
+                  [
+                    244.08908509142992,
+                    -487.90046065755604
+                  ],
+                  [
+                    254.04466692587698,
+                    -499.1041703579787
+                  ],
+                  [
+                    261.29907361655535,
+                    -510.4096417081411
+                  ],
+                  [
+                    262.5334636670723,
+                    -509.9013072034209
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -246.17292079570154,
+                    -737.5825944021667
+                  ],
+                  [
+                    -253.0207682069529,
+                    -724.8103357940724
+                  ],
+                  [
+                    -269.2131726338174,
+                    -729.3129281418826
+                  ],
+                  [
+                    -267.3464380202611,
+                    -744.7139475758468
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    323.05505889814,
+                    -112.06286353862171
+                  ],
+                  [
+                    327.2007736995058,
+                    -100.39388991476642
+                  ],
+                  [
+                    327.13498506674097,
+                    -89.01552857999161
+                  ],
+                  [
+                    323.7508270295362,
+                    -77.99309620136478
+                  ],
+                  [
+                    316.93943820627777,
+                    -68.81515127526097
+                  ],
+                  [
+                    307.5504079650713,
+                    -62.14243385970423
+                  ],
+                  [
+                    296.3026922370128,
+                    -60.421954223778464
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    756.7652894539327,
+                    -38.12665980211537
+                  ],
+                  [
+                    758.8350646436988,
+                    -46.658537156984444
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    779.8054605105704,
+                    -46.396320154689434
+                  ],
+                  [
+                    786.006273375711,
+                    -39.36719917508415
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -190.6200890270173,
+                    279.87909629181536
+                  ],
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "groundOpeningActive": true,
+          "shoreBankOpeningActive": true,
+          "outsideGroundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.the_helix_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "shoreBankRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "protectedBridges": [
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677488,
+              "unchanged": true
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184767209302,
+              "lines": [
+                [
+                  [
+                    174.07344686903244,
+                    -37.41580115829962
+                  ],
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184413978170,
+              "lines": [
+                [
+                  [
+                    -132.9543823122204,
+                    -16.159462103568863
+                  ],
+                  [
+                    -141.57335316675977,
+                    -19.42009099245132
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "north-join",
+              "id": 35184534614430,
+              "point": [
+                136.19452359730082,
+                -19.13238444924026
+              ],
+              "expectedDeck": 6,
+              "roadHeight": 6,
+              "rawGround": 11.349285983472308
+            },
+            {
+              "name": "side-join",
+              "id": 35184534614430,
+              "point": [
+                -34.1420472295796,
+                16.21902035034303
+              ],
+              "expectedDeck": 8.625832577533574,
+              "roadHeight": 8.625832557678223,
+              "rawGround": 27.369682632904464
+            },
+            {
+              "name": "south-join",
+              "id": 35184413978170,
+              "point": [
+                -135.66791052015714,
+                -17.186012559694753
+              ],
+              "expectedDeck": 6,
+              "roadHeight": 6.013056437211503,
+              "rawGround": 6.951744652628726
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [
+            {
+              "id": 35184767209302,
+              "connections": [
+                {
+                  "point": [
+                    0.4763148913369912,
+                    0.2967406134062884
+                  ],
+                  "elevation": 6,
+                  "radius": 14.856515418562655
+                }
+              ]
+            },
+            {
+              "id": 35184413978170,
+              "connections": [
+                {
+                  "point": [
+                    0.4662812394928187,
+                    0.6676120768240071
+                  ],
+                  "elevation": 6,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.48737225428689274,
+                    0.3289985111401256
+                  ],
+                  "elevation": 6,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "district",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -33.031183339126244,
+              0,
+              -138.64239305134822
+            ],
+            "max": [
+              30.133604253739314,
+              16.69908332824707,
+              138.3645616258678
+            ]
+          },
+          "sourceBuildings": 191,
+          "remainingBuildings": 191,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 1131,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184534614430,
+            35184536970369
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ],
+                  [
+                    136.19452359730082,
+                    -19.13238444924026
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.4885652767161105,
+                    0.32846595391323863
+                  ],
+                  "elevation": 6,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.4763148913369912,
+                    0.2967406134062884
+                  ],
+                  "elevation": 6,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -34.1420472295796,
+                    16.21902035034303
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.5171069952355436,
+                    0.5440426013067737
+                  ],
+                  "elevation": 8.625832577533574,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.52743417466945,
+                    0.5452474390555786
+                  ],
+                  "elevation": 8.625832577533574,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    214.81448817031608,
+                    8.09196540504478
+                  ],
+                  [
+                    206.16618292896783,
+                    12.61538448462086
+                  ],
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ],
+                  [
+                    -172.06350009273154,
+                    173.4663298233054
+                  ],
+                  [
+                    -159.39914850154724,
+                    154.28261972306197
+                  ],
+                  [
+                    -155.2307087490838,
+                    141.7063115178916
+                  ],
+                  [
+                    -121.91159254051968,
+                    24.336901779850876
+                  ],
+                  [
+                    -216.85991033288155,
+                    31.579964761018903
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -197.09118282063926,
+                    314.17368652358874
+                  ],
+                  [
+                    -200.74418912570843,
+                    329.7053395535775
+                  ],
+                  [
+                    -216.20438540649357,
+                    355.6782022156016
+                  ],
+                  [
+                    -226.49414426711058,
+                    370.4979983404831
+                  ],
+                  [
+                    -233.6326058233619,
+                    387.48176543155836
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    699.0376067891871,
+                    -770.1926354713446
+                  ],
+                  [
+                    696.496413208553,
+                    -776.2921758776636
+                  ],
+                  [
+                    698.1231723751533,
+                    -782.6965269452157
+                  ],
+                  [
+                    703.1989294702868,
+                    -786.9586784844009
+                  ],
+                  [
+                    710.0898246676613,
+                    -786.864015433904
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    573.1485370417097,
+                    -359.32021759423014
+                  ],
+                  [
+                    583.2200684471977,
+                    -364.84563187819833
+                  ],
+                  [
+                    643.203878376716,
+                    -334.51310887482725
+                  ],
+                  [
+                    641.0905577949177,
+                    -326.5766548574957
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    660.502381163167,
+                    -204.38374890993688
+                  ],
+                  [
+                    671.8669852246501,
+                    -224.968925639521
+                  ],
+                  [
+                    676.8192105978433,
+                    -226.82761146257906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    575.9472302595232,
+                    -251.47616582285252
+                  ],
+                  [
+                    574.9177763465663,
+                    -294.2013445896222
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    489.7392809667643,
+                    -182.01847395452538
+                  ],
+                  [
+                    458.6684558789472,
+                    -181.24272256186887
+                  ],
+                  [
+                    454.0650539869905,
+                    -186.8921456289955
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    453.998294391445,
+                    -339.2329736561814
+                  ],
+                  [
+                    430.3248168228843,
+                    -290.510965161003
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    481.99731597862706,
+                    -521.1622713479537
+                  ],
+                  [
+                    491.67742110546715,
+                    -544.3179928715143
+                  ],
+                  [
+                    476.5234961946619,
+                    -550.9916589362311
+                  ],
+                  [
+                    464.955362499164,
+                    -525.0041265898282
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    197.00617254709604,
+                    -648.7750620317889
+                  ],
+                  [
+                    268.12891093198704,
+                    -621.651582584187
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    271.7691238109575,
+                    -682.3771963772492
+                  ],
+                  [
+                    273.19993591729764,
+                    -691.4609529914884
+                  ],
+                  [
+                    274.81202610370616,
+                    -693.9732799441399
+                  ],
+                  [
+                    277.70205070380666,
+                    -695.3818489811589
+                  ],
+                  [
+                    346.5817554863174,
+                    -686.6511768975895
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    218.91377555800534,
+                    -471.99205465186236
+                  ],
+                  [
+                    218.99376451485267,
+                    -474.9909438976404
+                  ],
+                  [
+                    233.4874354637942,
+                    -481.4383659265504
+                  ],
+                  [
+                    244.08908509142992,
+                    -487.90046065755604
+                  ],
+                  [
+                    254.04466692587698,
+                    -499.1041703579787
+                  ],
+                  [
+                    261.29907361655535,
+                    -510.4096417081411
+                  ],
+                  [
+                    262.5334636670723,
+                    -509.9013072034209
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -246.17292079570154,
+                    -737.5825944021667
+                  ],
+                  [
+                    -253.0207682069529,
+                    -724.8103357940724
+                  ],
+                  [
+                    -269.2131726338174,
+                    -729.3129281418826
+                  ],
+                  [
+                    -267.3464380202611,
+                    -744.7139475758468
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    323.05505889814,
+                    -112.06286353862171
+                  ],
+                  [
+                    327.2007736995058,
+                    -100.39388991476642
+                  ],
+                  [
+                    327.13498506674097,
+                    -89.01552857999161
+                  ],
+                  [
+                    323.7508270295362,
+                    -77.99309620136478
+                  ],
+                  [
+                    316.93943820627777,
+                    -68.81515127526097
+                  ],
+                  [
+                    307.5504079650713,
+                    -62.14243385970423
+                  ],
+                  [
+                    296.3026922370128,
+                    -60.421954223778464
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    756.7652894539327,
+                    -38.12665980211537
+                  ],
+                  [
+                    758.8350646436988,
+                    -46.658537156984444
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    779.8054605105704,
+                    -46.396320154689434
+                  ],
+                  [
+                    786.006273375711,
+                    -39.36719917508415
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -190.6200890270173,
+                    279.87909629181536
+                  ],
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "groundOpeningActive": true,
+          "shoreBankOpeningActive": true,
+          "outsideGroundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.the_helix_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "shoreBankRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "protectedBridges": [
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677488,
+              "unchanged": true
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184767209302,
+              "lines": [
+                [
+                  [
+                    174.07344686903244,
+                    -37.41580115829962
+                  ],
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184413978170,
+              "lines": [
+                [
+                  [
+                    -132.9543823122204,
+                    -16.159462103568863
+                  ],
+                  [
+                    -141.57335316675977,
+                    -19.42009099245132
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "north-join",
+              "id": 35184534614430,
+              "point": [
+                136.19452359730082,
+                -19.13238444924026
+              ],
+              "expectedDeck": 6,
+              "roadHeight": 6,
+              "rawGround": 11.349285983472308
+            },
+            {
+              "name": "side-join",
+              "id": 35184534614430,
+              "point": [
+                -34.1420472295796,
+                16.21902035034303
+              ],
+              "expectedDeck": 8.625832577533574,
+              "roadHeight": 8.625832557678223,
+              "rawGround": 27.369682632904464
+            },
+            {
+              "name": "south-join",
+              "id": 35184413978170,
+              "point": [
+                -135.66791052015714,
+                -17.186012559694753
+              ],
+              "expectedDeck": 6,
+              "roadHeight": 6.013056437211503,
+              "rawGround": 6.951744652628726
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [
+            {
+              "id": 35184767209302,
+              "connections": [
+                {
+                  "point": [
+                    0.4763148913369912,
+                    0.2967406134062884
+                  ],
+                  "elevation": 6,
+                  "radius": 14.856515418562655
+                }
+              ]
+            },
+            {
+              "id": 35184413978170,
+              "connections": [
+                {
+                  "point": [
+                    0.4662812394928187,
+                    0.6676120768240071
+                  ],
+                  "elevation": 6,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.48737225428689274,
+                    0.3289985111401256
+                  ],
+                  "elevation": 6,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "street",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -33.03247914134293,
+              0,
+              -138.6646451831395
+            ],
+            "max": [
+              30.269434501115736,
+              16.70930290222168,
+              138.3914965842051
+            ]
+          },
+          "sourceBuildings": 191,
+          "remainingBuildings": 191,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 1131,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184534614430,
+            35184536970369
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ],
+                  [
+                    136.19452359730082,
+                    -19.13238444924026
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.4885652767161105,
+                    0.32846595391323863
+                  ],
+                  "elevation": 6,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.4763148913369912,
+                    0.2967406134062884
+                  ],
+                  "elevation": 6,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -34.1420472295796,
+                    16.21902035034303
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.5171069952355436,
+                    0.5440426013067737
+                  ],
+                  "elevation": 8.625832577533574,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.52743417466945,
+                    0.5452474390555786
+                  ],
+                  "elevation": 8.625832577533574,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    214.81448817031608,
+                    8.09196540504478
+                  ],
+                  [
+                    206.16618292896783,
+                    12.61538448462086
+                  ],
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ],
+                  [
+                    -172.06350009273154,
+                    173.4663298233054
+                  ],
+                  [
+                    -159.39914850154724,
+                    154.28261972306197
+                  ],
+                  [
+                    -155.2307087490838,
+                    141.7063115178916
+                  ],
+                  [
+                    -121.91159254051968,
+                    24.336901779850876
+                  ],
+                  [
+                    -216.85991033288155,
+                    31.579964761018903
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -197.09118282063926,
+                    314.17368652358874
+                  ],
+                  [
+                    -200.74418912570843,
+                    329.7053395535775
+                  ],
+                  [
+                    -216.20438540649357,
+                    355.6782022156016
+                  ],
+                  [
+                    -226.49414426711058,
+                    370.4979983404831
+                  ],
+                  [
+                    -233.6326058233619,
+                    387.48176543155836
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    699.0376067891871,
+                    -770.1926354713446
+                  ],
+                  [
+                    696.496413208553,
+                    -776.2921758776636
+                  ],
+                  [
+                    698.1231723751533,
+                    -782.6965269452157
+                  ],
+                  [
+                    703.1989294702868,
+                    -786.9586784844009
+                  ],
+                  [
+                    710.0898246676613,
+                    -786.864015433904
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    573.1485370417097,
+                    -359.32021759423014
+                  ],
+                  [
+                    583.2200684471977,
+                    -364.84563187819833
+                  ],
+                  [
+                    643.203878376716,
+                    -334.51310887482725
+                  ],
+                  [
+                    641.0905577949177,
+                    -326.5766548574957
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    660.502381163167,
+                    -204.38374890993688
+                  ],
+                  [
+                    671.8669852246501,
+                    -224.968925639521
+                  ],
+                  [
+                    676.8192105978433,
+                    -226.82761146257906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    575.9472302595232,
+                    -251.47616582285252
+                  ],
+                  [
+                    574.9177763465663,
+                    -294.2013445896222
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    489.7392809667643,
+                    -182.01847395452538
+                  ],
+                  [
+                    458.6684558789472,
+                    -181.24272256186887
+                  ],
+                  [
+                    454.0650539869905,
+                    -186.8921456289955
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    453.998294391445,
+                    -339.2329736561814
+                  ],
+                  [
+                    430.3248168228843,
+                    -290.510965161003
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    481.99731597862706,
+                    -521.1622713479537
+                  ],
+                  [
+                    491.67742110546715,
+                    -544.3179928715143
+                  ],
+                  [
+                    476.5234961946619,
+                    -550.9916589362311
+                  ],
+                  [
+                    464.955362499164,
+                    -525.0041265898282
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    197.00617254709604,
+                    -648.7750620317889
+                  ],
+                  [
+                    268.12891093198704,
+                    -621.651582584187
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    271.7691238109575,
+                    -682.3771963772492
+                  ],
+                  [
+                    273.19993591729764,
+                    -691.4609529914884
+                  ],
+                  [
+                    274.81202610370616,
+                    -693.9732799441399
+                  ],
+                  [
+                    277.70205070380666,
+                    -695.3818489811589
+                  ],
+                  [
+                    346.5817554863174,
+                    -686.6511768975895
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    218.91377555800534,
+                    -471.99205465186236
+                  ],
+                  [
+                    218.99376451485267,
+                    -474.9909438976404
+                  ],
+                  [
+                    233.4874354637942,
+                    -481.4383659265504
+                  ],
+                  [
+                    244.08908509142992,
+                    -487.90046065755604
+                  ],
+                  [
+                    254.04466692587698,
+                    -499.1041703579787
+                  ],
+                  [
+                    261.29907361655535,
+                    -510.4096417081411
+                  ],
+                  [
+                    262.5334636670723,
+                    -509.9013072034209
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -246.17292079570154,
+                    -737.5825944021667
+                  ],
+                  [
+                    -253.0207682069529,
+                    -724.8103357940724
+                  ],
+                  [
+                    -269.2131726338174,
+                    -729.3129281418826
+                  ],
+                  [
+                    -267.3464380202611,
+                    -744.7139475758468
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    323.05505889814,
+                    -112.06286353862171
+                  ],
+                  [
+                    327.2007736995058,
+                    -100.39388991476642
+                  ],
+                  [
+                    327.13498506674097,
+                    -89.01552857999161
+                  ],
+                  [
+                    323.7508270295362,
+                    -77.99309620136478
+                  ],
+                  [
+                    316.93943820627777,
+                    -68.81515127526097
+                  ],
+                  [
+                    307.5504079650713,
+                    -62.14243385970423
+                  ],
+                  [
+                    296.3026922370128,
+                    -60.421954223778464
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    756.7652894539327,
+                    -38.12665980211537
+                  ],
+                  [
+                    758.8350646436988,
+                    -46.658537156984444
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    779.8054605105704,
+                    -46.396320154689434
+                  ],
+                  [
+                    786.006273375711,
+                    -39.36719917508415
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -190.6200890270173,
+                    279.87909629181536
+                  ],
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "groundOpeningActive": true,
+          "shoreBankOpeningActive": true,
+          "outsideGroundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.the_helix_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "shoreBankRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "protectedBridges": [
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677488,
+              "unchanged": true
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184767209302,
+              "lines": [
+                [
+                  [
+                    174.07344686903244,
+                    -37.41580115829962
+                  ],
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184413978170,
+              "lines": [
+                [
+                  [
+                    -132.9543823122204,
+                    -16.159462103568863
+                  ],
+                  [
+                    -141.57335316675977,
+                    -19.42009099245132
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "north-join",
+              "id": 35184534614430,
+              "point": [
+                136.19452359730082,
+                -19.13238444924026
+              ],
+              "expectedDeck": 6,
+              "roadHeight": 6,
+              "rawGround": 11.349285983472308
+            },
+            {
+              "name": "side-join",
+              "id": 35184534614430,
+              "point": [
+                -34.1420472295796,
+                16.21902035034303
+              ],
+              "expectedDeck": 8.625832577533574,
+              "roadHeight": 8.625832557678223,
+              "rawGround": 27.369682632904464
+            },
+            {
+              "name": "south-join",
+              "id": 35184413978170,
+              "point": [
+                -135.66791052015714,
+                -17.186012559694753
+              ],
+              "expectedDeck": 6,
+              "roadHeight": 6.013056437211503,
+              "rawGround": 6.951744652628726
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [
+            {
+              "id": 35184767209302,
+              "connections": [
+                {
+                  "point": [
+                    0.4763148913369912,
+                    0.2967406134062884
+                  ],
+                  "elevation": 6,
+                  "radius": 14.856515418562655
+                }
+              ]
+            },
+            {
+              "id": 35184413978170,
+              "connections": [
+                {
+                  "point": [
+                    0.4662812394928187,
+                    0.6676120768240071
+                  ],
+                  "elevation": 6,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.48737225428689274,
+                    0.3289985111401256
+                  ],
+                  "elevation": 6,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "closeup",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -33.03143567878175,
+              0,
+              -138.65321548917385
+            ],
+            "max": [
+              30.268600914021295,
+              16.740758895874023,
+              138.38308094846255
+            ]
+          },
+          "sourceBuildings": 191,
+          "remainingBuildings": 191,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 1131,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184534614430,
+            35184536970369
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ],
+                  [
+                    136.19452359730082,
+                    -19.13238444924026
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.4885652767161105,
+                    0.32846595391323863
+                  ],
+                  "elevation": 6,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.4763148913369912,
+                    0.2967406134062884
+                  ],
+                  "elevation": 6,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -34.1420472295796,
+                    16.21902035034303
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.5171069952355436,
+                    0.5440426013067737
+                  ],
+                  "elevation": 8.625832577533574,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.52743417466945,
+                    0.5452474390555786
+                  ],
+                  "elevation": 8.625832577533574,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    214.81448817031608,
+                    8.09196540504478
+                  ],
+                  [
+                    206.16618292896783,
+                    12.61538448462086
+                  ],
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ],
+                  [
+                    -172.06350009273154,
+                    173.4663298233054
+                  ],
+                  [
+                    -159.39914850154724,
+                    154.28261972306197
+                  ],
+                  [
+                    -155.2307087490838,
+                    141.7063115178916
+                  ],
+                  [
+                    -121.91159254051968,
+                    24.336901779850876
+                  ],
+                  [
+                    -216.85991033288155,
+                    31.579964761018903
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -197.09118282063926,
+                    314.17368652358874
+                  ],
+                  [
+                    -200.74418912570843,
+                    329.7053395535775
+                  ],
+                  [
+                    -216.20438540649357,
+                    355.6782022156016
+                  ],
+                  [
+                    -226.49414426711058,
+                    370.4979983404831
+                  ],
+                  [
+                    -233.6326058233619,
+                    387.48176543155836
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    699.0376067891871,
+                    -770.1926354713446
+                  ],
+                  [
+                    696.496413208553,
+                    -776.2921758776636
+                  ],
+                  [
+                    698.1231723751533,
+                    -782.6965269452157
+                  ],
+                  [
+                    703.1989294702868,
+                    -786.9586784844009
+                  ],
+                  [
+                    710.0898246676613,
+                    -786.864015433904
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    573.1485370417097,
+                    -359.32021759423014
+                  ],
+                  [
+                    583.2200684471977,
+                    -364.84563187819833
+                  ],
+                  [
+                    643.203878376716,
+                    -334.51310887482725
+                  ],
+                  [
+                    641.0905577949177,
+                    -326.5766548574957
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    660.502381163167,
+                    -204.38374890993688
+                  ],
+                  [
+                    671.8669852246501,
+                    -224.968925639521
+                  ],
+                  [
+                    676.8192105978433,
+                    -226.82761146257906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    575.9472302595232,
+                    -251.47616582285252
+                  ],
+                  [
+                    574.9177763465663,
+                    -294.2013445896222
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    489.7392809667643,
+                    -182.01847395452538
+                  ],
+                  [
+                    458.6684558789472,
+                    -181.24272256186887
+                  ],
+                  [
+                    454.0650539869905,
+                    -186.8921456289955
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    453.998294391445,
+                    -339.2329736561814
+                  ],
+                  [
+                    430.3248168228843,
+                    -290.510965161003
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    481.99731597862706,
+                    -521.1622713479537
+                  ],
+                  [
+                    491.67742110546715,
+                    -544.3179928715143
+                  ],
+                  [
+                    476.5234961946619,
+                    -550.9916589362311
+                  ],
+                  [
+                    464.955362499164,
+                    -525.0041265898282
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    197.00617254709604,
+                    -648.7750620317889
+                  ],
+                  [
+                    268.12891093198704,
+                    -621.651582584187
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    271.7691238109575,
+                    -682.3771963772492
+                  ],
+                  [
+                    273.19993591729764,
+                    -691.4609529914884
+                  ],
+                  [
+                    274.81202610370616,
+                    -693.9732799441399
+                  ],
+                  [
+                    277.70205070380666,
+                    -695.3818489811589
+                  ],
+                  [
+                    346.5817554863174,
+                    -686.6511768975895
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    218.91377555800534,
+                    -471.99205465186236
+                  ],
+                  [
+                    218.99376451485267,
+                    -474.9909438976404
+                  ],
+                  [
+                    233.4874354637942,
+                    -481.4383659265504
+                  ],
+                  [
+                    244.08908509142992,
+                    -487.90046065755604
+                  ],
+                  [
+                    254.04466692587698,
+                    -499.1041703579787
+                  ],
+                  [
+                    261.29907361655535,
+                    -510.4096417081411
+                  ],
+                  [
+                    262.5334636670723,
+                    -509.9013072034209
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -246.17292079570154,
+                    -737.5825944021667
+                  ],
+                  [
+                    -253.0207682069529,
+                    -724.8103357940724
+                  ],
+                  [
+                    -269.2131726338174,
+                    -729.3129281418826
+                  ],
+                  [
+                    -267.3464380202611,
+                    -744.7139475758468
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    323.05505889814,
+                    -112.06286353862171
+                  ],
+                  [
+                    327.2007736995058,
+                    -100.39388991476642
+                  ],
+                  [
+                    327.13498506674097,
+                    -89.01552857999161
+                  ],
+                  [
+                    323.7508270295362,
+                    -77.99309620136478
+                  ],
+                  [
+                    316.93943820627777,
+                    -68.81515127526097
+                  ],
+                  [
+                    307.5504079650713,
+                    -62.14243385970423
+                  ],
+                  [
+                    296.3026922370128,
+                    -60.421954223778464
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    756.7652894539327,
+                    -38.12665980211537
+                  ],
+                  [
+                    758.8350646436988,
+                    -46.658537156984444
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    779.8054605105704,
+                    -46.396320154689434
+                  ],
+                  [
+                    786.006273375711,
+                    -39.36719917508415
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -190.6200890270173,
+                    279.87909629181536
+                  ],
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "groundOpeningActive": true,
+          "shoreBankOpeningActive": true,
+          "outsideGroundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.the_helix_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "shoreBankRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "protectedBridges": [
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677460,
+              "unchanged": true
+            },
+            {
+              "id": 35184532677488,
+              "unchanged": true
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184767209302,
+              "lines": [
+                [
+                  [
+                    174.07344686903244,
+                    -37.41580115829962
+                  ],
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184413978170,
+              "lines": [
+                [
+                  [
+                    -132.9543823122204,
+                    -16.159462103568863
+                  ],
+                  [
+                    -141.57335316675977,
+                    -19.42009099245132
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "failure",
+          "modelLoaded": false,
+          "modelWorldY": null,
+          "modelBounds": null,
+          "sourceBuildings": 191,
+          "remainingBuildings": 191,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 1131,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184534614430,
+            35184536970369
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    96.39865719943423,
+                    -2.702806440962462
+                  ],
+                  [
+                    93.21849107842719,
+                    -9.354225415046269
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    160.79238948322273,
+                    -30.757756017101755
+                  ],
+                  [
+                    131.57264091475068,
+                    -16.94800374921319
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    31.025158313460945,
+                    11.955117687101769
+                  ],
+                  [
+                    30.226684942160666,
+                    5.129520790737516
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -33.72311445019124,
+                    6.513953170606932
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -52.87842781906056,
+                    10.60855482070739
+                  ],
+                  [
+                    -81.4729573854045,
+                    4.319218966618363
+                  ],
+                  [
+                    -115.58580785221665,
+                    -7.851934060834113
+                  ],
+                  [
+                    -132.9543823122204,
+                    -16.159462103568863
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -97.4765046990082,
+                    -1.6937046260493975
+                  ],
+                  [
+                    -96.12567884371153,
+                    -7.778572192391369
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184536970369,
+              "lines": [
+                [
+                  [
+                    131.57264091475068,
+                    -16.94800374921319
+                  ],
+                  [
+                    101.37266537248105,
+                    -4.263781333231671
+                  ],
+                  [
+                    67.65836378871467,
+                    5.385107280284921
+                  ],
+                  [
+                    46.76033189854615,
+                    10.205765295113702
+                  ],
+                  [
+                    13.823197659854303,
+                    14.111043078525723
+                  ],
+                  [
+                    -19.012178949398994,
+                    15.315143576368076
+                  ],
+                  [
+                    -52.87842781906056,
+                    10.60855482070739
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    214.81448817031608,
+                    8.09196540504478
+                  ],
+                  [
+                    206.16618292896783,
+                    12.61538448462086
+                  ],
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ],
+                  [
+                    -172.06350009273154,
+                    173.4663298233054
+                  ],
+                  [
+                    -159.39914850154724,
+                    154.28261972306197
+                  ],
+                  [
+                    -155.2307087490838,
+                    141.7063115178916
+                  ],
+                  [
+                    -121.91159254051968,
+                    24.336901779850876
+                  ],
+                  [
+                    -216.85991033288155,
+                    31.579964761018903
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -197.09118282063926,
+                    314.17368652358874
+                  ],
+                  [
+                    -200.74418912570843,
+                    329.7053395535775
+                  ],
+                  [
+                    -216.20438540649357,
+                    355.6782022156016
+                  ],
+                  [
+                    -226.49414426711058,
+                    370.4979983404831
+                  ],
+                  [
+                    -233.6326058233619,
+                    387.48176543155836
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    699.0376067891871,
+                    -770.1926354713446
+                  ],
+                  [
+                    696.496413208553,
+                    -776.2921758776636
+                  ],
+                  [
+                    698.1231723751533,
+                    -782.6965269452157
+                  ],
+                  [
+                    703.1989294702868,
+                    -786.9586784844009
+                  ],
+                  [
+                    710.0898246676613,
+                    -786.864015433904
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    573.1485370417097,
+                    -359.32021759423014
+                  ],
+                  [
+                    583.2200684471977,
+                    -364.84563187819833
+                  ],
+                  [
+                    643.203878376716,
+                    -334.51310887482725
+                  ],
+                  [
+                    641.0905577949177,
+                    -326.5766548574957
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    660.502381163167,
+                    -204.38374890993688
+                  ],
+                  [
+                    671.8669852246501,
+                    -224.968925639521
+                  ],
+                  [
+                    676.8192105978433,
+                    -226.82761146257906
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    575.9472302595232,
+                    -251.47616582285252
+                  ],
+                  [
+                    574.9177763465663,
+                    -294.2013445896222
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    489.7392809667643,
+                    -182.01847395452538
+                  ],
+                  [
+                    458.6684558789472,
+                    -181.24272256186887
+                  ],
+                  [
+                    454.0650539869905,
+                    -186.8921456289955
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    453.998294391445,
+                    -339.2329736561814
+                  ],
+                  [
+                    430.3248168228843,
+                    -290.510965161003
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    481.99731597862706,
+                    -521.1622713479537
+                  ],
+                  [
+                    491.67742110546715,
+                    -544.3179928715143
+                  ],
+                  [
+                    476.5234961946619,
+                    -550.9916589362311
+                  ],
+                  [
+                    464.955362499164,
+                    -525.0041265898282
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    197.00617254709604,
+                    -648.7750620317889
+                  ],
+                  [
+                    268.12891093198704,
+                    -621.651582584187
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    271.7691238109575,
+                    -682.3771963772492
+                  ],
+                  [
+                    273.19993591729764,
+                    -691.4609529914884
+                  ],
+                  [
+                    274.81202610370616,
+                    -693.9732799441399
+                  ],
+                  [
+                    277.70205070380666,
+                    -695.3818489811589
+                  ],
+                  [
+                    346.5817554863174,
+                    -686.6511768975895
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    218.91377555800534,
+                    -471.99205465186236
+                  ],
+                  [
+                    218.99376451485267,
+                    -474.9909438976404
+                  ],
+                  [
+                    233.4874354637942,
+                    -481.4383659265504
+                  ],
+                  [
+                    244.08908509142992,
+                    -487.90046065755604
+                  ],
+                  [
+                    254.04466692587698,
+                    -499.1041703579787
+                  ],
+                  [
+                    261.29907361655535,
+                    -510.4096417081411
+                  ],
+                  [
+                    262.5334636670723,
+                    -509.9013072034209
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -246.17292079570154,
+                    -737.5825944021667
+                  ],
+                  [
+                    -253.0207682069529,
+                    -724.8103357940724
+                  ],
+                  [
+                    -269.2131726338174,
+                    -729.3129281418826
+                  ],
+                  [
+                    -267.3464380202611,
+                    -744.7139475758468
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    323.05505889814,
+                    -112.06286353862171
+                  ],
+                  [
+                    327.2007736995058,
+                    -100.39388991476642
+                  ],
+                  [
+                    327.13498506674097,
+                    -89.01552857999161
+                  ],
+                  [
+                    323.7508270295362,
+                    -77.99309620136478
+                  ],
+                  [
+                    316.93943820627777,
+                    -68.81515127526097
+                  ],
+                  [
+                    307.5504079650713,
+                    -62.14243385970423
+                  ],
+                  [
+                    296.3026922370128,
+                    -60.421954223778464
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    756.7652894539327,
+                    -38.12665980211537
+                  ],
+                  [
+                    758.8350646436988,
+                    -46.658537156984444
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    779.8054605105704,
+                    -46.396320154689434
+                  ],
+                  [
+                    786.006273375711,
+                    -39.36719917508415
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    182.4363519686088,
+                    15.548009943121906
+                  ],
+                  [
+                    -34.500761741624096,
+                    24.52906103028715
+                  ],
+                  [
+                    -217.19406722258876,
+                    35.19604971099064
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184534614430,
+              "lines": [
+                [
+                  [
+                    -193.43060343820923,
+                    290.56027302458415
+                  ],
+                  [
+                    -190.6200890270173,
+                    279.87909629181536
+                  ],
+                  [
+                    -189.88645854487396,
+                    273.54006149855553
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "groundOpeningActive": false,
+          "shoreBankOpeningActive": false,
+          "outsideGroundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.the_helix_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "shoreBankRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Exterior reconstruction, not fabrication geometry. Spans total285m in the source although narrative length is280m; mapped curve is used for fit.",
+    "Helix phase and pitch, small rods, canopy panel boundaries and joint hardware are reconstructed from primary photographs.",
+    "Local reservoir water/pier-cap elevation is provisionally0m in the viewer. Geographic approval requires rendered fit; no survey datum is claimed.",
+    "Adjacent vehicular Bayfront bridge, city promenade, interior foundation piles and dynamic lighting control are outside this asset.",
+    "The original detailed master remains reproducible through the unchanged default recipe. Current detailed and browser models correct the pod/pier stations while retaining the full detailed geometry.",
+    "Skyline uses four representative counter-rotating helical ribbons. District retains all eleven source strands as crossed ribbons; near levels use six/twelve-sided tubes. Narrow collars, paving relief and small secondary hardware stay in the master.",
+    "Near glass rails and leaf canopies remain open and transparent. Rail posts use6m/1.5m spacing; brace/collar rhythms are explicitly reduced from the master.",
+    "Ordinary pictures and standard PMTiles/Mapzen establish approximate fit, not a reservoir/engineering survey. Physical device timings remain pending.",
+    "Pod footprints suppress their original map connector paths. Retained side links use the authored curved deck profile; adjacent Bayfront road-bridge height remains a procedural approximation.",
+    "Current phases interpolate smoothly around the mapped pod stations to keep the access thresholds clear. The untouched default master recipe retains its original constant phases. Exact fabrication profiles and structural analysis remain outside the asset.",
+    "Standard coarse urban terrain overstates the local shore heights. Exact model-owned walkway/pod/approach ground openings keep the bridge visible without editing elevation samples or water. The outer side-link/cycleway junction and generic approach grades remain coarse reconstructions; only the three immediate model joins are height-verified.",
+    "Approximate native fit at [103.860485341,1.287468009], heading1.497794301143; +X roughly north and pods to the bay-facing west. Standard Protomaps/Mapzen and ordinary photographs establish fit. Reservoir water/pier-cap zero and6m endpoint deck levels are provisional, not surveyed elevations. A249-point body/pod replacement outline removes only overlapping mapped paths; the57-sample curved deck profile aligns the retained side connector. The earlier ignored review reader halved terrain elevations; this review re-reads the original archive at its correct scale (center28.3448m matches the28.3448407m independent decoder sample). Bounded walkway/pod and direct-approach ground openings keep coarse ground/shoreline walls out of the structure without editing DEM samples or native water. Three immediate mesh joins meet the authored deck within0.02m. This proves internal consistency, not geodetic accuracy. The outer side-link/cycleway junction, native shore morphology, generic approach grades/widths and neighboring procedural bridge heights remain coarse approximations, outside the scoped bridge exterior. High, steep coarse bank walls remain beside the narrow landings; this is not a polished street-level waterfront reconstruction."
+  ]
 }

@@ -6,7 +6,7 @@ import {
   torus as originalTorus,
 } from './authored-structure-mesh.mjs';
 import { face, annulus as originalAnnulus, transform } from './heritage-tower-detail-mesh.mjs';
-import { box, tube as originalTube } from './structure-mesh.mjs';
+import { box, tube as originalTube, tubePath } from './structure-mesh.mjs';
 
 function detail(destination, mode = 'reviewed') {
   const selectCount = (master, close, street, district) =>
@@ -374,7 +374,7 @@ function detail(destination, mode = 'reviewed') {
         y,
         2.26 + 0.43 * Math.sin((tau * i) / 12),
       ]);
-      for (let j = 1; j < rail.length; j++) tube(g, 'metal', rail[j - 1], rail[j], 0.022, metal, 6);
+      tubePath(g, 'metal', rail, 0.022, metal, selectCount(6, 6, 3, 3));
     }
     for (const [a, y, r, s] of [
       [0.4, 270.7, 3.55, 0.45],

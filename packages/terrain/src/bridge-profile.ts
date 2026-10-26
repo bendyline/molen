@@ -98,7 +98,24 @@ export function bridgeDeckHeightFn(
             : !atStart && options.connects[0]
               ? smooth(t)
               : 1);
-      height += (connection.elevation - height) * weight;
+      if (options.groundApproach) {
+        // Keep the bank's shape and fade only the height difference at the join.
+        // Blending toward a constant deck height buries an uphill approach.
+        const end = atStart ? a : b;
+        const neighbor = (atStart ? path.points[1] : path.points.at(-2)) ?? end;
+        const ex = neighbor[0] - end[0],
+          ez = neighbor[1] - end[1],
+          length = Math.hypot(ex, ez) || 1;
+        const nx = -ez / length,
+          nz = ex / length;
+        const offset = (x - connection.point[0]) * nx + (z - connection.point[1]) * nz;
+        const joinGround =
+          groundAt(connection.point[0] + nx * offset, connection.point[1] + nz * offset) +
+          options.approachLift;
+        // Two distinct hints can overlap on a short approach. Retain each exact end.
+        const endWeight = connections.length > 1 ? (atStart ? 1 - smooth(t) : smooth(t)) : 1;
+        height += (connection.elevation - joinGround) * weight * endWeight;
+      } else height += (connection.elevation - height) * weight;
     }
     return height;
   };

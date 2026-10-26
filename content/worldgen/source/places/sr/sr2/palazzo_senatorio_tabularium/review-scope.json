@@ -1,0 +1,737 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stucco",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "trim": {
+      "graph": "stone_limestone",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "tile_ceramic",
+      "slot": "roof",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.33,
+      "metallic": 0.1
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "brick": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "base": {
+      "graph": "stone_ashlar",
+      "slot": "wall",
+      "roughness": 0.92,
+      "metallic": 0
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      -72.9218740364373,
+      64,
+      -49.258504717601525
+    ],
+    "lookAt": [
+      14.893885983817515,
+      12,
+      13.68108768706071
+    ],
+    "fov": 53
+  },
+  "qaCameras": [
+    {
+      "name": "piazza-facade-double-stairs-and-clock",
+      "position": [
+        -66.29261276039755,
+        20,
+        -44.78045883418321
+      ],
+      "lookAt": [
+        5.509749805185175,
+        17,
+        6.1353612024282596
+      ],
+      "fov": 53
+    },
+    {
+      "name": "supported-double-stair-and-recessed-portal",
+      "position": [
+        -8.08900960960231,
+        8,
+        -38.046917398598296
+      ],
+      "lookAt": [
+        -1.6573153190099388,
+        5,
+        -1.1195114708545801
+      ],
+      "fov": 65
+    },
+    {
+      "name": "deep-central-tabularium-arch",
+      "position": [
+        41.4436484126745,
+        -2,
+        35.235684556960955
+      ],
+      "lookAt": [
+        32.32841415811984,
+        -2,
+        29.078371467260766
+      ],
+      "fov": 65
+    },
+    {
+      "name": "open-bell-stages-and-clock",
+      "position": [
+        -7.035353800563524,
+        42,
+        -28.887779369499768
+      ],
+      "lookAt": [
+        13.426449272707698,
+        34,
+        8.70749446898515
+      ],
+      "fov": 45
+    },
+    {
+      "name": "original-narrow-court-open",
+      "position": [
+        17.110957038254746,
+        65,
+        13.97194149841032
+      ],
+      "lookAt": [
+        17.110957038254746,
+        0,
+        13.97194149841032
+      ],
+      "fov": 46
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.25,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/sr2/palazzo_senatorio_tabularium/models/palazzo-senatorio-tabularium-model.mjs",
+    "export": "buildSenatorioSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSenatorioDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "stone_limestone",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.33,
+            "metallic": 0.1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSenatorioStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "stone_limestone",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.33,
+            "metallic": 0.1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSenatorioCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "stone_limestone",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.33,
+            "metallic": 0.1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      12.483381628990173,
+      41.893086283723136
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard Protomaps20261020 / Mapzen grid retained. Outside piazza provider[0,13] gives 46.75355052584945m datum. Parent boundary grades -9.159..-0.794m; closed foundation-9.409m. Rear levels approximate the steep Forum slope. Court and piazza ground, independent neighbors, roads and water retained; no bespoke terrain or flattening. Historical thresholds, exposed basements and accessibility approximate. Initial native terrain/ownership inspected: both stair feet and the central landing are supported, the narrow court remains open, all four owned map records are replaced and independent structures/roads/water remain. Coarse rear levels, basement exposure and historic thresholds remain approximate.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 16
+    },
+    "bounds": [
+      12.483110730231079,
+      41.892540210672784,
+      12.48407631677362,
+      41.89333691564519
+    ],
+    "terrainReference": {
+      "anchor": [
+        12.483251628394955,
+        41.893151652550365
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard Protomaps20261020 / Mapzen grid retained. Outside piazza provider[0,13] gives 46.75355052584945m datum. Parent boundary grades -9.159..-0.794m; closed foundation-9.409m. Rear levels approximate the steep Forum slope. Court and piazza ground, independent neighbors, roads and water retained; no bespoke terrain or flattening. Historical thresholds, exposed basements and accessibility approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          42.4520967800547,
+          2.555995904666883
+        ],
+        [
+          50.00901453147805,
+          7.445767641533717
+        ],
+        [
+          55.56557170164227,
+          -1.0001996126934642
+        ],
+        [
+          48.00865395021893,
+          -5.889965540657851
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            42.4520967800547,
+            2.555995904666883
+          ],
+          [
+            50.00901453147805,
+            7.445767641533717
+          ],
+          [
+            55.56557170164227,
+            -1.0001996126934642
+          ],
+          [
+            48.00865395021893,
+            -5.889965540657851
+          ]
+        ],
+        [
+          [
+            -9.112753759069337,
+            37.228995383406975
+          ],
+          [
+            -5.334294883357664,
+            40.78521001699203
+          ],
+          [
+            -2.4448851548722637,
+            37.895785487993
+          ],
+          [
+            -6.223344030583938,
+            34.339572297141885
+          ]
+        ],
+        [
+          [
+            7.55691775142335,
+            10.557442312612332
+          ],
+          [
+            13.780261782007283,
+            14.558168895619811
+          ],
+          [
+            18.89229437855837,
+            6.556717982294685
+          ],
+          [
+            12.668950347974434,
+            2.5559959046668794
+          ]
+        ],
+        [
+          [
+            -20.448130386204358,
+            25.44904710634792
+          ],
+          [
+            -13.335737208394153,
+            33.005992812500686
+          ],
+          [
+            -5.334294883357664,
+            40.78521001699203
+          ],
+          [
+            -3.778458875711671,
+            39.22936589332625
+          ],
+          [
+            15.780622363266414,
+            58.78857390072512
+          ],
+          [
+            48.8977030974452,
+            6.778980387612769
+          ],
+          [
+            50.00901453147805,
+            7.445767641533717
+          ],
+          [
+            55.56557170164227,
+            -1.0001996126934642
+          ],
+          [
+            53.78747340718972,
+            -2.111510342088902
+          ],
+          [
+            48.00865395021893,
+            -5.889965540657851
+          ],
+          [
+            13.113474921587567,
+            -25.004472812468684
+          ],
+          [
+            8.668229185456193,
+            -18.558888891407857
+          ],
+          [
+            11.335376627135028,
+            -16.78079574884352
+          ],
+          [
+            -11.335376627135028,
+            16.78079574884352
+          ],
+          [
+            -12.891212634781006,
+            15.447219554648148
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Relation1691910 fixes the connected Senatorio/Tabularium parent. Integral ways123817461,123817462 and123817559 locate the corner and central clock towers. X northeast along the long central piazza edge; Z northwest toward the piazza. Signed axes baked east/up/south, heading0. Conservatori/Caffarelli, Nuovo, Aracoeli, surrounding ruins and city buildings remain independent."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          15.780622363266414,
+          58.78857390072512
+        ],
+        [
+          48.8977030974452,
+          6.778980387612769
+        ],
+        [
+          29.338621858467114,
+          0.555635709029719
+        ],
+        [
+          9.11275375906933,
+          30.56109773556478
+        ],
+        [
+          4.889770309744515,
+          27.671677363917503
+        ],
+        [
+          25.1156384091423,
+          -2.33377246898465
+        ],
+        [
+          11.335376627135028,
+          -16.78079574884352
+        ],
+        [
+          -11.335376627135028,
+          16.78079574884352
+        ],
+        [
+          -12.891212634781006,
+          15.447219554648148
+        ],
+        [
+          -20.448130386204358,
+          25.44904710634792
+        ],
+        [
+          -13.335737208394153,
+          33.005992812500686
+        ],
+        [
+          -5.334294883357664,
+          40.78521001699203
+        ],
+        [
+          -3.778458875711671,
+          39.22936589332625
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            15.780622363266414,
+            58.78857390072512
+          ],
+          [
+            48.8977030974452,
+            6.778980387612769
+          ],
+          [
+            29.338621858467114,
+            0.555635709029719
+          ],
+          [
+            9.11275375906933,
+            30.56109773556478
+          ],
+          [
+            4.889770309744515,
+            27.671677363917503
+          ],
+          [
+            25.1156384091423,
+            -2.33377246898465
+          ],
+          [
+            11.335376627135028,
+            -16.78079574884352
+          ],
+          [
+            -11.335376627135028,
+            16.78079574884352
+          ],
+          [
+            -12.891212634781006,
+            15.447219554648148
+          ],
+          [
+            -20.448130386204358,
+            25.44904710634792
+          ],
+          [
+            -13.335737208394153,
+            33.005992812500686
+          ],
+          [
+            -5.334294883357664,
+            40.78521001699203
+          ],
+          [
+            -3.778458875711671,
+            39.22936589332625
+          ]
+        ],
+        [
+          [
+            29.338621858467114,
+            0.555635709029719
+          ],
+          [
+            48.8977030974452,
+            6.778980387612769
+          ],
+          [
+            50.00901453147805,
+            7.445767641533717
+          ],
+          [
+            55.56557170164227,
+            -1.0001996126934642
+          ],
+          [
+            53.78747340718972,
+            -2.111510342088902
+          ],
+          [
+            48.00865395021893,
+            -5.889965540657851
+          ],
+          [
+            13.113474921587567,
+            -25.004472812468684
+          ],
+          [
+            8.668229185456193,
+            -18.558888891407857
+          ],
+          [
+            11.335376627135028,
+            -16.78079574884352
+          ],
+          [
+            25.1156384091423,
+            -2.33377246898465
+          ]
+        ],
+        [
+          [
+            -16.77072017554677,
+            21.254245335779594
+          ],
+          [
+            0.3018297549855764,
+            -4.019813279121973
+          ],
+          [
+            -3.2613981808857924,
+            -6.42676294145932
+          ],
+          [
+            -20.333948111418138,
+            18.847295673442247
+          ]
+        ],
+        [
+          [
+            -3.616460393005454,
+            1.7807903374128127
+          ],
+          [
+            13.456089537526893,
+            -23.493268277488752
+          ],
+          [
+            9.892861601655525,
+            -25.9002179398261
+          ],
+          [
+            -7.179688328876822,
+            -0.6261593249245347
+          ]
+        ],
+        [
+          [
+            -1.9591450739955152,
+            2.900301808267393
+          ],
+          [
+            1.9591450739955152,
+            -2.900301808267393
+          ],
+          [
+            -3.2613981808857924,
+            -6.42676294145932
+          ],
+          [
+            -7.179688328876822,
+            -0.6261593249245347
+          ]
+        ],
+        [
+          [
+            42.4520967800547,
+            2.555995904666883
+          ],
+          [
+            50.00901453147805,
+            7.445767641533717
+          ],
+          [
+            55.56557170164227,
+            -1.0001996126934642
+          ],
+          [
+            48.00865395021893,
+            -5.889965540657851
+          ]
+        ],
+        [
+          [
+            -9.112753759069337,
+            37.228995383406975
+          ],
+          [
+            -5.334294883357664,
+            40.78521001699203
+          ],
+          [
+            -2.4448851548722637,
+            37.895785487993
+          ],
+          [
+            -6.223344030583938,
+            34.339572297141885
+          ]
+        ],
+        [
+          [
+            7.55691775142335,
+            10.557442312612332
+          ],
+          [
+            13.780261782007283,
+            14.558168895619811
+          ],
+          [
+            18.89229437855837,
+            6.556717982294685
+          ],
+          [
+            12.668950347974434,
+            2.5559959046668794
+          ]
+        ]
+      ],
+      "basis": "Occupied parent outside its mapped court, supported stair footprints and landing; original court/piazza retained."
+    },
+    "notes": "Relation1691910 fixes the connected Senatorio/Tabularium parent. Integral ways123817461,123817462 and123817559 locate the corner and central clock towers. X northeast along the long central piazza edge; Z northwest toward the piazza. Signed axes baked east/up/south, heading0. Conservatori/Caffarelli, Nuovo, Aracoeli, surrounding ruins and city buildings remain independent. Original standard Protomaps20261020 / Mapzen grid retained. Outside piazza provider[0,13] gives 46.75355052584945m datum. Parent boundary grades -9.159..-0.794m; closed foundation-9.409m. Rear levels approximate the steep Forum slope. Court and piazza ground, independent neighbors, roads and water retained; no bespoke terrain or flattening. Historical thresholds, exposed basements and accessibility approximate."
+  }
+}

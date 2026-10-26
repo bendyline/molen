@@ -17,10 +17,23 @@ import {
 import { biomeJson } from '../../../../../../../../packages/worldgen/scripts/format-json.mjs';
 import { MATERIAL_REPEAT_METERS } from '../../../../../../../../packages/worldgen/scripts/standard-materials.mjs';
 import { structureAssetSidecarPath } from '../../../../../../../../packages/worldgen/scripts/structure-asset-paths.mjs';
+import { writeIndex } from '../../../../../../../../packages/worldgen/scripts/structure-model-files.mjs';
 import { structureSourceDirectory } from '../../../../../../../../packages/worldgen/scripts/structure-source-paths.mjs';
-import { gamlaBronStudy as asset, buildGamlaBron } from './gamla-bron-model.mjs';
+import { buildGamlaBron, gamlaBronStudy as master } from './gamla-bron-model.mjs';
 
 const dir = structureSourceDirectory('gamla_bron');
+const reviewScope = await readFile(resolve(dir, 'review-scope.json'), 'utf8')
+  .then(JSON.parse)
+  .catch((error) => {
+    if (error.code === 'ENOENT') return undefined;
+    throw error;
+  });
+const asset = {
+  ...master,
+  ...(reviewScope?.geographic ? { geographicProposal: reviewScope.geographic } : {}),
+  ...(reviewScope?.nativeAxes ? { nativeAxes: reviewScope.nativeAxes } : {}),
+  ...(reviewScope?.limitations ? { limitations: reviewScope.limitations } : {}),
+};
 const modelPath = resolve(dir, 'models/source.glb');
 const check = process.argv.includes('--check');
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
@@ -43,7 +56,9 @@ async function emit(path, bytes) {
   }
   if (previous?.equals(bytes)) return;
   await mkdir(resolve(path, '..'), { recursive: true });
-  await writeFile(path, bytes);
+  // A Windows viewer can hold the source index open. Replace it without truncation.
+  if (path === resolve(dir, 'source.json')) await writeIndex(path, bytes);
+  else await writeFile(path, bytes);
 }
 
 try {
@@ -140,6 +155,12 @@ const spec = {
   ...asset,
   category: 'bridge',
   quality: 'detailed',
+  mesh: {
+    sha256: hash(glb),
+    triangles: mesh.triangleCount,
+    vertices: mesh.vertexCount,
+    bytes: glb.length,
+  },
   actualBounds: { min, max },
   geometrySource:
     'Original deterministic Molen mesh from documented identity, published overall length and span count, plus separately labeled photographic reconstruction. No third-party mesh or image is embedded.',
@@ -177,11 +198,14 @@ const spec = {
       uv: 'repeats',
       repeatMeters: MATERIAL_REPEAT_METERS[s.graph],
     })),
-  fidelityTarget: 'maximum',
+  fidelityTarget: reviewScope?.fidelityTarget ?? 'maximum',
+  ...(reviewScope?.runtimeLodOverlay ? { runtimeLodOverlay: reviewScope.runtimeLodOverlay } : {}),
+  ...(reviewScope?.mediumFiContext ? { mediumFiContext: reviewScope.mediumFiContext } : {}),
   geographicProposal: asset.geographicProposal,
-  reviewStatus: 'Source geometry; rendered visual review and maximum-fidelity review pending.',
+  reviewStatus:
+    'Source master retained. Current rendered, medium-fi and geographic approvals are recorded separately in qa.json.',
   geographicStatus:
-    'Signed NNE longitudinal axis from exact bridge outline; downstream pipe and pole line face ESE. Provisional river-surface datum; see proposal.',
+    'Signed NNE longitudinal axis from the exact bridge outline; ESE downstream pipe/pole side. Current host attachment and approximation limits are in geographicProposal; approvals are in qa.json.',
   importOptions: { optimize: false },
   importReason:
     'Whole-bridge position quantization at 309 m extent can erase small steel flanges, rail bars, bolt heads and masonry joints. Preserve the authored source until measured LODs are available.',
@@ -212,7 +236,7 @@ const scene = {
         renderable: {
           kind: 'primitive',
           ref: 'box',
-          materialRef: 'palette:#476b79',
+          materialRef: 'palette:#286d83',
           shadows: { receive: true },
         },
       },
@@ -221,11 +245,11 @@ const scene = {
       id: 'environment',
       components: {
         environment: {
-          ambient: { sky: '#dce5ed', ground: '#6c7473', intensity: 1.15 },
-          sun: { direction: [-8, 14, 9], color: '#fff1d3', intensity: 2.2, castShadow: true },
-          background: '#b5d2df',
-          toneMapping: 'agx',
-          exposure: 1.08,
+          ambient: { sky: '#b2cde4', ground: '#9a8f70', intensity: 2 },
+          sun: { direction: [-8, 14, 9], color: '#fff1d8', intensity: 4.4, castShadow: true },
+          background: '#b2cde4',
+          toneMapping: 'aces',
+          exposure: 1.05,
           shadows: 'high',
         },
       },
@@ -239,7 +263,19 @@ const existing = await readdir(dir).catch((error) => {
   throw error;
 });
 const optional = existing
-  .filter((name) => name.endsWith('-report.json') || ['qa.json', 'map-frame.json'].includes(name))
+  .filter(
+    (name) =>
+      name.endsWith('-report.json') ||
+      [
+        'qa.json',
+        'map-frame.json',
+        'review-scope.json',
+        'reference-metadata.json',
+        'native-fit.json',
+        'QA-REVIEW.md',
+        'site-preview.png',
+      ].includes(name),
+  )
   .sort();
 const source = {
   format: 'molen/source-bundle@1',
@@ -260,6 +296,7 @@ const source = {
     generators: [
       { id: 'generate-gamla-bron', path: 'models/generate-gamla-bron.mjs' },
       { id: 'gamla-bron-model', path: 'models/gamla-bron-model.mjs' },
+      { id: 'gamla-bron-runtime', path: 'models/gamla-bron-runtime.mjs' },
     ],
     scripts: [],
     textures: [],
@@ -275,7 +312,19 @@ for (const [name, data] of [
   ['source.json', source],
 ])
   await emit(resolve(dir, name), Buffer.from(biomeJson(data, resolve(dir, name))));
-await emit(resolve(dir, 'README.md'), Buffer.from(readme));
+const currentReadme = reviewScope
+  ? readme
+      .replace(
+        'provisionally sea-level zero in the viewer.',
+        'with the viewer height now referenced to the mapped south deck landing through terrainReference.modelHeight=5.8.',
+      )
+      .replace(
+        'Seasonal river level and exact bank grading depend on host data.',
+        'Seasonal river level and exact bank grading depend on host data. The former sea-level-zero placement was buried by the standard terrain; the current host-relative attachment avoids that. Nearby buildings and unrelated roads remain independent.',
+      ) +
+    '\n## Browser models\n\nThe detailed source master is preserved. Source-local gamla-bron-runtime.mjs authors four complete distance representations under the medium-fi guide; review-scope.json records the shared surfaces, error bounds and native attachment. See QA-REVIEW.md and qa.json for current results and limitations.\n'
+  : readme;
+await emit(resolve(dir, 'README.md'), Buffer.from(currentReadme));
 console.log(
   `${asset.id}: ${mesh.triangleCount} triangles, ${glb.length} bytes; bounds ${JSON.stringify({ min, max })}`,
 );

@@ -1,5 +1,5 @@
 /** Original China World Tower A exterior, with surveyed facts separate from reconstruction. */
-import { beam, loft, normalFor } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor } from './authored-structure-mesh.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 
 const silver = [0.72, 0.74, 0.72],
@@ -279,8 +279,7 @@ parts.push({
       327.235,
       12 * Math.sin((i * Math.PI) / 32),
     ]);
-    for (let i = 1; i < ring.length; i++)
-      beam(o, 'metal', ring[i - 1], ring[i], 0.16, 0.014, [0.86, 0.84, 0.69]);
+    beamPath(o, 'metal', ring, 0.16, 0.014, [0.86, 0.84, 0.69]);
     for (const x of [-2.2, 2.2])
       box(o, 'metal', [x - 0.16, 327.23, -3.5], [x + 0.16, 327.245, 3.5], [0.88, 0.86, 0.71]);
     box(o, 'metal', [-2.2, 327.23, -0.16], [2.2, 327.245, 0.16], [0.88, 0.86, 0.71]);

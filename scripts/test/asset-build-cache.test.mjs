@@ -11,6 +11,7 @@ import { createAssetFileCache } from '../asset-file-cache.mjs';
 import { assetInputs } from '../asset-inputs.mjs';
 import { createJobCache } from '../asset-job-cache.mjs';
 import { buildAssetsFromSource } from '../build-assets.mjs';
+import { traceVerifiedAssetOutputs } from '../verified-asset-outputs.mjs';
 
 const roots = [];
 afterEach(async () => {
@@ -73,6 +74,29 @@ const runIds = (report) =>
     .filter((job) => !job.cached)
     .map((job) => job.id)
     .sort();
+
+test('verified unchanged GLBs retain cache ownership without rewriting their bytes', async () => {
+  const root = await fixture();
+  const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
+  const job = plan.generators[0],
+    file = join(root, 'assets/reused/model.glb');
+  await put(root, 'assets/reused/model.glb', 'verified existing geometry');
+  const cache = await createJobCache(root, plan),
+    trace = await cache.begin(job);
+  await traceVerifiedAssetOutputs([file], { root, directory: trace });
+  await assert.rejects(
+    traceVerifiedAssetOutputs([join(root, 'asset-build.json')], { root, directory: trace }),
+    /repository GLBs/,
+  );
+  await cache.complete(job, trace);
+  await cache.save();
+  const current = await createJobCache(root, plan);
+  assert.equal(await current.current(job), true);
+  assert.deepEqual(current.outputs(job), ['assets/reused/model.glb']);
+  assert.equal(await readFile(file, 'utf8'), 'verified existing geometry');
+  await writeFile(file, 'changed after verification');
+  assert.equal(await current.current(job), false);
+});
 
 test('child traces preserve earlier records when a process ID is reused', async () => {
   const root = await fixture();

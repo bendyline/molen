@@ -5,6 +5,12 @@ import { Float32BufferAttribute, Vector3 } from 'three';
 import library from '../../../../content/entities/source/cockpit-materials/library.json' with {
   type: 'json',
 };
+import {
+  cockpitFontProfiles,
+  cockpitFontTexture,
+  letteringTag,
+  textureCockpitLettering,
+} from './cockpit-lettering.mjs';
 
 export const cockpitFinishLibrary = library;
 const finishes = library.finishes;
@@ -157,12 +163,15 @@ export function finishCockpit(cabin, select) {
 export function finishAircraftCockpit(model, spec, slug) {
   const profile = library.profiles[slug];
   if (!profile) throw Error(`Missing cockpit finish profile: ${slug}`);
+  const fonts = cockpitFontProfiles[slug];
+  if (!fonts) throw Error(`Missing cockpit font profile: ${slug}`);
   const panel = new Set(profile.panelMaterials);
   const padding = new Set(profile.paddingMaterials);
   const hardware = new Set(profile.hardwareMaterials);
   for (const name of new Set([...(spec.visual.interior?.nodes ?? []), 'flight-controls'])) {
     const cabin = model.getObjectByName(name);
     if (!cabin) continue;
+    textureCockpitLettering(cabin, fonts);
     finishCockpit(cabin, (mesh) => {
       const material = mesh.material;
       if (Array.isArray(material) || material.transparent || material.emissive?.getHex()) return;
@@ -204,7 +213,7 @@ export async function writeCockpitFinishLibrary() {
 export function embedCockpitTextures(bytes) {
   const jsonSize = bytes.readUInt32LE(12);
   const doc = JSON.parse(bytes.subarray(20, 20 + jsonSize).toString());
-  const selected = doc.materials?.filter((m) => m.extras?.[tag]) ?? [];
+  const selected = doc.materials?.filter((m) => m.extras?.[tag] || m.extras?.[letteringTag]) ?? [];
   if (!selected.length) return bytes;
   const parts = [bytes.subarray(28 + jsonSize, 28 + jsonSize + doc.buffers[0].byteLength)];
   let length = parts[0].length;
@@ -213,16 +222,20 @@ export function embedCockpitTextures(bytes) {
   doc.textures ??= [];
   const sampler = doc.samplers.length;
   doc.samplers.push({ magFilter: 9729, minFilter: 9987, wrapS: 10497, wrapT: 10497 });
+  const fontSampler = doc.samplers.length;
+  if (selected.some((m) => m.extras?.[letteringTag]))
+    doc.samplers.push({ magFilter: 9729, minFilter: 9987, wrapS: 33071, wrapT: 33071 });
   const textures = new Map();
   for (const material of selected) {
     const kind = material.extras[tag];
-    for (const slot of ['basecolor', 'roughness', 'normal']) {
-      const key = `${kind}-${slot}`;
+    const font = material.extras[letteringTag];
+    for (const slot of font ? ['lettering'] : ['basecolor', 'roughness', 'normal']) {
+      const key = font ? `font-${font}` : `${kind}-${slot}`;
       if (!textures.has(key)) {
         const padding = (4 - (length % 4)) % 4;
         parts.push(Buffer.alloc(padding));
         length += padding;
-        const png = image(kind, slot),
+        const png = font ? cockpitFontTexture(font) : image(kind, slot),
           view = doc.bufferViews.length;
         doc.bufferViews.push({ buffer: 0, byteOffset: length, byteLength: png.length });
         parts.push(png);
@@ -230,11 +243,15 @@ export function embedCockpitTextures(bytes) {
         const source = doc.images.length;
         doc.images.push({ name: `cockpit-${key}`, bufferView: view, mimeType: 'image/png' });
         const index = doc.textures.length;
-        doc.textures.push({ sampler, source });
+        doc.textures.push({ sampler: font ? fontSampler : sampler, source });
         textures.set(key, index);
       }
       const info = { index: textures.get(key) };
-      if (slot === 'normal') material.normalTexture = { ...info, scale: finishes[kind].normal };
+      if (font) {
+        material.pbrMetallicRoughness.baseColorTexture = info;
+        material.emissiveTexture = info;
+      } else if (slot === 'normal')
+        material.normalTexture = { ...info, scale: finishes[kind].normal };
       else
         material.pbrMetallicRoughness[
           slot === 'basecolor' ? 'baseColorTexture' : 'metallicRoughnessTexture'
@@ -260,7 +277,10 @@ export function embedCockpitTextures(bytes) {
 export async function writeCockpitTextures(directory, bytes) {
   const doc = JSON.parse(bytes.subarray(20, 20 + bytes.readUInt32LE(12)).toString());
   const kinds = [...new Set(doc.materials?.map((m) => m.extras?.[tag]).filter(Boolean))].sort();
-  if (!kinds.length) return [];
+  const fonts = [
+    ...new Set(doc.materials?.map((m) => m.extras?.[letteringTag]).filter(Boolean)),
+  ].sort();
+  if (!kinds.length && !fonts.length) return [];
   await mkdir(`${directory}/textures`, { recursive: true });
   const entries = [];
   for (const kind of kinds)
@@ -269,5 +289,10 @@ export async function writeCockpitTextures(directory, bytes) {
       await writeFile(`${directory}/${path}`, image(kind, slot));
       entries.push({ id: `cockpit-${kind}-${slot}`, path });
     }
+  for (const font of fonts) {
+    const path = `textures/cockpit-font-${font}.png`;
+    await writeFile(`${directory}/${path}`, cockpitFontTexture(font));
+    entries.push({ id: `cockpit-font-${font}`, path });
+  }
   return entries;
 }

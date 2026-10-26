@@ -68,6 +68,9 @@ export interface CreateTerrainPackageSemanticLayersOptions
    * every tile's own, generalized footprints.
    */
   buildingDetail?: false | { maxDepth?: number };
+  /** Carry broad landcover and bounded building massing into distant terrain tiles.
+   * Custom renderers must bound their work at these coarser levels. Default false. */
+  distantCoverage?: boolean;
 }
 
 export interface TerrainPackageSemanticLayers {
@@ -113,6 +116,7 @@ export async function createTerrainPackageSemanticLayers(
     overzoom = true,
     buildingDetail,
     admission,
+    distantCoverage = false,
     ...unadmitted
   } = options;
   const openOptions: OpenTerrainPackageSemanticsOptions =
@@ -236,7 +240,13 @@ export async function createTerrainPackageSemanticLayers(
         visible: style.visible ?? false,
         minLevel:
           style.minLevel ??
-          defaultMinimumLevel(semantics.landcover.minLevel, reach(semantics.landcover.maxLevel), 3),
+          (distantCoverage
+            ? semantics.landcover.minLevel
+            : defaultMinimumLevel(
+                semantics.landcover.minLevel,
+                reach(semantics.landcover.maxLevel),
+                3,
+              )),
         maxLevel: style.maxLevel ?? reach(semantics.landcover.maxLevel),
       }),
     );
@@ -314,7 +324,13 @@ export async function createTerrainPackageSemanticLayers(
         visible: style.visible ?? false,
         minLevel:
           style.minLevel ??
-          defaultMinimumLevel(semantics.features.minLevel, reach(semantics.features.maxLevel), 2),
+          (distantCoverage
+            ? semantics.features.minLevel
+            : defaultMinimumLevel(
+                semantics.features.minLevel,
+                reach(semantics.features.maxLevel),
+                2,
+              )),
         maxLevel: style.maxLevel ?? reach(semantics.features.maxLevel),
       }),
     );

@@ -1770,6 +1770,7 @@ const controlSpec = Object.values(
 )[0].components.aircraft.spec;
 const controlledModel = completeCockpitControls(mustang(), controlSpec, {
   panelZ: interiorLayout.panelZ,
+  letteringFont: 'period',
 });
 finishAircraftCockpit(controlledModel, controlSpec, 'p-51');
 const bytes = embedCockpitTextures(

@@ -3,6 +3,7 @@ import { PNG } from 'pngjs';
 import { Vector3 } from 'three';
 import { expect, it } from 'vitest';
 import { createAircraftVisual } from '../../client/dist/aircraft.mjs';
+import { cockpitFontProfiles, cockpitFontTexture } from '../scripts/aircraft/cockpit-lettering.mjs';
 import { cockpitFinishLibrary } from '../scripts/aircraft/cockpit-surfaces.mjs';
 import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
@@ -17,10 +18,20 @@ it.each(
   );
   const interior = definition.types[source.id].components.aircraft.spec.visual.interior;
   expect(source.files.textures.length).toBeGreaterThanOrEqual(9);
-  expect(source.files.textures.length).toBeLessThanOrEqual(24);
+  // Up to eight shared finishes plus three explicit lettering roles.
+  expect(source.files.textures.length).toBeLessThanOrEqual(27);
+  const fontProfile = cockpitFontProfiles[slug];
+  const fontTextures = source.files.textures.filter((t) => t.id.startsWith('cockpit-font-'));
+  expect(fontTextures.length, `${slug} has actual font textures`).toBeGreaterThan(0);
+  expect(fontTextures.length).toBeLessThanOrEqual(3);
   const canonical = new Map();
   for (const texture of source.files.textures) {
     const bytes = await readFile(new URL(`source/aircraft/${slug}/${texture.path}`, root));
+    if (texture.id.startsWith('cockpit-font-')) {
+      expect(bytes.equals(cockpitFontTexture(texture.id.slice('cockpit-font-'.length)))).toBe(true);
+      canonical.set(texture.id, bytes);
+      continue;
+    }
     const shared = await readFile(new URL(`source/cockpit-materials/${texture.id}.png`, root));
     expect(bytes.equals(shared), `${texture.id} matches the shared library`).toBe(true);
     canonical.set(texture.id, shared);
@@ -74,6 +85,20 @@ it.each(
     '',
   );
   const cabins = new Set([...interior.nodes, 'flight-controls']);
+  let printed = 0;
+  scene.traverse((mesh) => {
+    const font = mesh.material?.userData.molenCockpitLettering;
+    if (!font) return;
+    printed++;
+    expect([fontProfile.panel, fontProfile.dial, fontProfile.display]).toContain(font);
+    if (mesh.userData.molenCockpitTextRole)
+      expect(font).toBe(fontProfile[mesh.userData.molenCockpitTextRole]);
+    expect(mesh.material.map).toBeTruthy();
+    expect(mesh.material.emissiveMap).toBeTruthy();
+    expect(mesh.material.depthWrite).toBe(false);
+    expect(mesh.geometry.attributes.uv.count).toBe(mesh.geometry.attributes.position.count);
+  });
+  expect(printed).toBeGreaterThan(0);
   let finished = 0,
     backboards = 0;
   const kinds = new Set();

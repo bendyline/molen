@@ -6,17 +6,17 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:246ca8899d63db27d60d62d4edb04f574a3fd6c4aa6a937149212b092682266d",
-  "sourceHash": "sha256:3caaf054f0af56c7ce4df6dc57eaaf11e1e19413553754023ff130923e7dfa6a",
+  "hash": "sha256:f642b2a2923487b9f626a42721e9a6b36473578ed6951b02114985f78ad6dedb",
+  "sourceHash": "sha256:73449bf9dc98b32c513298bc407d9d9bd3d70d7b37da28882b163ab2ab447618",
   "bounds": {
     "aabb": {
       "min": [
-        -21.2027,
+        -21.2026,
         0,
         -22.55
       ],
       "max": [
-        21.2027,
+        21.2026,
         14.6995,
         22.55
       ]
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 83025,
-    "vertices": 104862,
-    "meshes": 134,
-    "primitives": 134,
-    "materials": 31,
-    "textures": 9,
+    "triangles": 55685,
+    "vertices": 50066,
+    "meshes": 145,
+    "primitives": 145,
+    "materials": 36,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 2665976
+    "sizeBytes": 1777052
   },
   "nodes": [
     {
@@ -458,14 +458,6 @@
       "triangles": 116
     },
     {
-      "name": "A400-cabin-A400-display-green",
-      "triangles": 5836
-    },
-    {
-      "name": "A400-cabin-A400-instrument-ink",
-      "triangles": 1524
-    },
-    {
       "name": "A400-cabin-detail-alloy",
       "triangles": 1056
     },
@@ -498,20 +490,40 @@
       "triangles": 20
     },
     {
-      "name": "A400-pilot-display-A400-instrument-black",
-      "triangles": 8
+      "name": "A400-cabin-A400-display-green",
+      "triangles": 256
     },
     {
-      "name": "A400-pilot-display-A400-instrument-ink",
-      "triangles": 1584
+      "name": "A400-cabin-A400-display-green-display-print",
+      "triangles": 60
+    },
+    {
+      "name": "A400-cabin-A400-display-green-panel-print",
+      "triangles": 84
+    },
+    {
+      "name": "A400-cabin-A400-instrument-ink-panel-print",
+      "triangles": 30
+    },
+    {
+      "name": "A400-pilot-display-A400-instrument-black",
+      "triangles": 8
     },
     {
       "name": "A400-pilot-display-A400-instrument-amber",
       "triangles": 24
     },
     {
-      "name": "A400-pilot-display-A400-display-green",
-      "triangles": 336
+      "name": "A400-pilot-display-A400-instrument-ink-display-print",
+      "triangles": 24
+    },
+    {
+      "name": "A400-pilot-display-A400-instrument-ink-panel-print",
+      "triangles": 6
+    },
+    {
+      "name": "A400-pilot-display-A400-display-green-display-print",
+      "triangles": 6
     },
     {
       "name": "A400-pilot-horizon-fixed-A400-pilot-instrument-black",
@@ -531,26 +543,14 @@
     },
     {
       "name": "A400-pilot-horizon-card-A400-pilot-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "A400-pilot-horizon-card-A400-pilot-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "A400-pilot-speed-0-0-A400-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "A400-pilot-speed-0-1-A400-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "A400-pilot-speed-0-2-A400-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "A400-pilot-speed-0-3-A400-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "A400-pilot-speed-0-4-A400-instrument-ink",
       "triangles": 12
     }
   ],
@@ -679,22 +679,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "A400-display-green",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "A400-instrument-ink",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "detail-alloy-brushed",
       "slots": [
         "baseColor",
@@ -746,12 +730,56 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "A400-display-green",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "A400-display-green-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "A400-display-green-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "A400-instrument-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "A400-instrument-amber",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "A400-instrument-ink-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     },
     {
       "name": "A400-pilot-instrument-sky",
@@ -763,6 +791,14 @@
     },
     {
       "name": "A400-pilot-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "A400-pilot-instrument-ink",
       "slots": [
         "baseColor"
       ],
@@ -800,20 +836,29 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -919,29 +964,29 @@
       {
         "node": "A400-exterior-A400-seams",
         "points": [
-          -21.2027,
-          1.2159,
-          -15.1488,
-          -21.2027,
-          1.2159,
+          -21.2026,
+          1.2165,
+          -15.1487,
+          -21.2026,
+          1.2165,
           21.0188,
-          -21.2027,
-          6.8429,
-          -15.1488,
-          -21.2027,
-          6.8429,
+          -21.2026,
+          6.8434,
+          -15.1487,
+          -21.2026,
+          6.8434,
           21.0188,
-          21.2027,
-          1.2159,
-          -15.1488,
-          21.2027,
-          1.2159,
+          21.2026,
+          1.2165,
+          -15.1487,
+          21.2026,
+          1.2165,
           21.0188,
-          21.2027,
-          6.8429,
-          -15.1488,
-          21.2027,
-          6.8429,
+          21.2026,
+          6.8434,
+          -15.1487,
+          21.2026,
+          6.8434,
           21.0188
         ]
       },
@@ -3846,64 +3891,6 @@
         ]
       },
       {
-        "node": "A400-cabin-A400-display-green",
-        "points": [
-          -0.9462,
-          4.4265,
-          19.2145,
-          -0.9462,
-          4.4265,
-          19.4505,
-          -0.9462,
-          5.0626,
-          19.2145,
-          -0.9462,
-          5.0626,
-          19.4505,
-          0.9486,
-          4.4265,
-          19.2145,
-          0.9486,
-          4.4265,
-          19.4505,
-          0.9486,
-          5.0626,
-          19.2145,
-          0.9486,
-          5.0626,
-          19.4505
-        ]
-      },
-      {
-        "node": "A400-cabin-A400-instrument-ink",
-        "points": [
-          -0.4259,
-          4.6916,
-          19.2145,
-          -0.4259,
-          4.6916,
-          19.4505,
-          -0.4259,
-          4.9708,
-          19.2145,
-          -0.4259,
-          4.9708,
-          19.4505,
-          0.4318,
-          4.6916,
-          19.2145,
-          0.4318,
-          4.6916,
-          19.4505,
-          0.4318,
-          4.9708,
-          19.2145,
-          0.4318,
-          4.9708,
-          19.4505
-        ]
-      },
-      {
         "node": "A400-cabin-detail-alloy",
         "points": [
           -1.402,
@@ -4136,6 +4123,122 @@
         ]
       },
       {
+        "node": "A400-cabin-A400-display-green",
+        "points": [
+          0.065,
+          4.485,
+          19.45,
+          0.065,
+          4.485,
+          19.45,
+          0.065,
+          4.58,
+          19.45,
+          0.065,
+          4.58,
+          19.45,
+          0.315,
+          4.485,
+          19.45,
+          0.315,
+          4.485,
+          19.45,
+          0.315,
+          4.58,
+          19.45,
+          0.315,
+          4.58,
+          19.45
+        ]
+      },
+      {
+        "node": "A400-cabin-A400-display-green-display-print",
+        "points": [
+          -0.9469,
+          4.439,
+          19.2151,
+          -0.9469,
+          4.439,
+          19.4499,
+          -0.9469,
+          5.0571,
+          19.2151,
+          -0.9469,
+          5.0571,
+          19.4499,
+          0.947,
+          4.439,
+          19.2151,
+          0.947,
+          4.439,
+          19.4499,
+          0.947,
+          5.0571,
+          19.2151,
+          0.947,
+          5.0571,
+          19.4499
+        ]
+      },
+      {
+        "node": "A400-cabin-A400-display-green-panel-print",
+        "points": [
+          -0.4274,
+          4.4259,
+          19.222,
+          -0.4274,
+          4.4259,
+          19.45,
+          -0.4274,
+          5.0608,
+          19.222,
+          -0.4274,
+          5.0608,
+          19.45,
+          0.4274,
+          4.4259,
+          19.222,
+          0.4274,
+          4.4259,
+          19.45,
+          0.4274,
+          5.0608,
+          19.222,
+          0.4274,
+          5.0608,
+          19.45
+        ]
+      },
+      {
+        "node": "A400-cabin-A400-instrument-ink-panel-print",
+        "points": [
+          -0.4268,
+          4.69,
+          19.215,
+          -0.4268,
+          4.69,
+          19.45,
+          -0.4268,
+          4.9699,
+          19.215,
+          -0.4268,
+          4.9699,
+          19.45,
+          0.431,
+          4.69,
+          19.215,
+          0.431,
+          4.69,
+          19.45,
+          0.431,
+          4.9699,
+          19.215,
+          0.431,
+          4.9699,
+          19.45
+        ]
+      },
+      {
         "node": "A400-pilot-display-A400-instrument-black",
         "points": [
           0.89,
@@ -4162,35 +4265,6 @@
           1.19,
           4.77,
           19.454
-        ]
-      },
-      {
-        "node": "A400-pilot-display-A400-instrument-ink",
-        "points": [
-          0.9069,
-          4.4327,
-          19.4435,
-          0.9069,
-          4.4327,
-          19.4445,
-          0.9069,
-          4.7041,
-          19.4435,
-          0.9069,
-          4.7041,
-          19.4445,
-          1.1683,
-          4.4327,
-          19.4435,
-          1.1683,
-          4.4327,
-          19.4445,
-          1.1683,
-          4.7041,
-          19.4435,
-          1.1683,
-          4.7041,
-          19.4445
         ]
       },
       {
@@ -4223,32 +4297,90 @@
         ]
       },
       {
-        "node": "A400-pilot-display-A400-display-green",
+        "node": "A400-pilot-display-A400-instrument-ink-display-print",
         "points": [
-          1.1421,
-          4.4369,
-          19.4435,
-          1.1421,
-          4.4369,
-          19.4445,
-          1.1421,
-          4.4447,
-          19.4435,
-          1.1421,
-          4.4447,
-          19.4445,
-          1.1595,
-          4.4369,
-          19.4435,
-          1.1595,
-          4.4369,
-          19.4445,
-          1.1595,
-          4.4447,
-          19.4435,
-          1.1595,
-          4.4447,
-          19.4445
+          0.9063,
+          4.5541,
+          19.444,
+          0.9063,
+          4.5541,
+          19.444,
+          0.9063,
+          4.7037,
+          19.444,
+          0.9063,
+          4.7037,
+          19.444,
+          1.1677,
+          4.5541,
+          19.444,
+          1.1677,
+          4.5541,
+          19.444,
+          1.1677,
+          4.7037,
+          19.444,
+          1.1677,
+          4.7037,
+          19.444
+        ]
+      },
+      {
+        "node": "A400-pilot-display-A400-instrument-ink-panel-print",
+        "points": [
+          0.9337,
+          4.4323,
+          19.444,
+          0.9337,
+          4.4323,
+          19.444,
+          0.9337,
+          4.4376,
+          19.444,
+          0.9337,
+          4.4376,
+          19.444,
+          0.9464,
+          4.4323,
+          19.444,
+          0.9464,
+          4.4323,
+          19.444,
+          0.9464,
+          4.4376,
+          19.444,
+          0.9464,
+          4.4376,
+          19.444
+        ]
+      },
+      {
+        "node": "A400-pilot-display-A400-display-green-display-print",
+        "points": [
+          1.1417,
+          4.4358,
+          19.444,
+          1.1417,
+          4.4358,
+          19.444,
+          1.1417,
+          4.4443,
+          19.444,
+          1.1417,
+          4.4443,
+          19.444,
+          1.1586,
+          4.4358,
+          19.444,
+          1.1586,
+          4.4358,
+          19.444,
+          1.1586,
+          4.4443,
+          19.444,
+          1.1586,
+          4.4443,
+          19.444
         ]
       },
       {
@@ -4371,29 +4503,58 @@
         "node": "A400-pilot-horizon-card-A400-pilot-instrument-ink",
         "points": [
           0.8278,
-          4.5656,
+          4.5698,
           19.4643,
           0.8278,
-          4.5656,
+          4.5698,
           19.4657,
           0.8278,
-          4.7169,
+          4.7102,
           19.4643,
           0.8278,
-          4.7169,
+          4.7102,
           19.4657,
           1.2522,
-          4.5656,
+          4.5698,
           19.4643,
           1.2522,
-          4.5656,
+          4.5698,
           19.4657,
           1.2522,
-          4.7169,
+          4.7102,
           19.4643,
           1.2522,
-          4.7169,
+          4.7102,
           19.4657
+        ]
+      },
+      {
+        "node": "A400-pilot-horizon-card-A400-pilot-instrument-ink-dial-print",
+        "points": [
+          1.0687,
+          4.5648,
+          19.465,
+          1.0687,
+          4.5648,
+          19.465,
+          1.0687,
+          4.7152,
+          19.465,
+          1.0687,
+          4.7152,
+          19.465,
+          1.0859,
+          4.5648,
+          19.465,
+          1.0859,
+          4.5648,
+          19.465,
+          1.0859,
+          4.7152,
+          19.465,
+          1.0859,
+          4.7152,
+          19.465
         ]
       },
       {
@@ -4422,122 +4583,6 @@
           19.4456,
           1.1693,
           4.6459,
-          19.4464
-        ]
-      },
-      {
-        "node": "A400-pilot-speed-0-1-A400-instrument-ink",
-        "points": [
-          1.1643,
-          4.6407,
-          19.4456,
-          1.1643,
-          4.6407,
-          19.4464,
-          1.1643,
-          4.6448,
-          19.4456,
-          1.1643,
-          4.6448,
-          19.4464,
-          1.1651,
-          4.6407,
-          19.4456,
-          1.1651,
-          4.6407,
-          19.4464,
-          1.1651,
-          4.6448,
-          19.4456,
-          1.1651,
-          4.6448,
-          19.4464
-        ]
-      },
-      {
-        "node": "A400-pilot-speed-0-2-A400-instrument-ink",
-        "points": [
-          1.1643,
-          4.6352,
-          19.4456,
-          1.1643,
-          4.6352,
-          19.4464,
-          1.1643,
-          4.6393,
-          19.4456,
-          1.1643,
-          4.6393,
-          19.4464,
-          1.1651,
-          4.6352,
-          19.4456,
-          1.1651,
-          4.6352,
-          19.4464,
-          1.1651,
-          4.6393,
-          19.4456,
-          1.1651,
-          4.6393,
-          19.4464
-        ]
-      },
-      {
-        "node": "A400-pilot-speed-0-3-A400-instrument-ink",
-        "points": [
-          1.1652,
-          4.6341,
-          19.4456,
-          1.1652,
-          4.6341,
-          19.4464,
-          1.1652,
-          4.6349,
-          19.4456,
-          1.1652,
-          4.6349,
-          19.4464,
-          1.1693,
-          4.6341,
-          19.4456,
-          1.1693,
-          4.6341,
-          19.4464,
-          1.1693,
-          4.6349,
-          19.4456,
-          1.1693,
-          4.6349,
-          19.4464
-        ]
-      },
-      {
-        "node": "A400-pilot-speed-0-4-A400-instrument-ink",
-        "points": [
-          1.1694,
-          4.6352,
-          19.4456,
-          1.1694,
-          4.6352,
-          19.4464,
-          1.1694,
-          4.6393,
-          19.4456,
-          1.1694,
-          4.6393,
-          19.4464,
-          1.1702,
-          4.6352,
-          19.4456,
-          1.1702,
-          4.6352,
-          19.4464,
-          1.1702,
-          4.6393,
-          19.4456,
-          1.1702,
-          4.6393,
           19.4464
         ]
       }

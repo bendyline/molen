@@ -21,7 +21,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-62,940 triangles; 127,964 vertices; 5 material groups; 5,365,120 bytes. Native bounds: -15.500, 0.000, -23.866 to 15.500, 100.000, 23.866. Source hash: `sha256:fcb0a63abd36b33013ce8513ccd3d73b0e751e39956523368f0e595ce0f3881d`.
+59,140 triangles; 136,148 vertices; 5 material groups; 5,614,140 bytes. Native bounds: -15.500, 0.000, -23.857 to 15.500, 100.000, 23.857. Source hash: `sha256:a4186fde8a136189b80ac258b7e1b9f1f72ccf17dc60788531f695e7a3ac3548`.
 
 {"up":"+Y","longitudinal":"+Z toward Hipólito Yrigoyen","front":"Native-Z toward Avenida de Mayo north of the model; native+Z toward Hipólito Yrigoyen.","origin":"Approximate PMTiles named-place center at terrain contact; exact cadastral parcel remains unverified."}
 

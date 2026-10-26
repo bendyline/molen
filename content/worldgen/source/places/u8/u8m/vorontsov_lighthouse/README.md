@@ -20,7 +20,7 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-54,128 triangles, 102,790 vertices, 5 surface groups; 4,353,236 source bytes. SHA-256: `sha256:4b5dbd6cb1816d93d83a361ddce9882f62bd996c120c31a0694a5f30eb518c2c`. Actual bounds: -10.041, 0.000, -10.292 to 6.156, 31.181, 24.000 m.
+53,872 triangles, 103,078 vertices, 5 surface groups; 4,360,532 source bytes. SHA-256: `sha256:993c249b3636f5527cd5f661d1a6858b7a247179c27b36cbc8c98ba34e6413e5`. Actual bounds: -10.041, 0.000, -10.292 to 6.156, 31.181, 24.000 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.stone` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z south-southeast","origin":"Native+Z follows the mapped south-southeast pier axis,0.5rad from south toward east; service doors/cowls face the southwest harbor side. Exact-Q1976702 tower node is the origin. Y0 is sea level; service deckY4 and light centerY27."}.
 

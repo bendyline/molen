@@ -340,7 +340,7 @@ function airliner() {
     const x = -0.68 + i * 0.34;
     instruments.display(x, 0.73, 16.03, 0.12, 0.025, 'mode');
     instruments.knob(x, 0.68, 16.02, 0.016);
-    detail.text(label, [x, 0.775, 16.015], 0.016, Math.PI);
+    detail.text(label, [x, 0.775, 16.015], 0.016, Math.PI, detail.ivory, 'display');
   }
   detail.box([0.42, 0.25, 0.76], [0, 0.04, 15.22], detail.dark);
   for (const side of [-1, 1]) {

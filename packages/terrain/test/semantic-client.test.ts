@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
+import { setTerrainGroundCutout, TerrainGroundCutoutController } from '../src/ground-cutout';
 import { Heightfield } from '../src/heightfield';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
+import { renderedGroundSampler } from '../src/rendered-ground';
 import {
   createDefaultTerrainSemanticRenderer,
   createTerrainSemanticObject,
@@ -190,6 +192,83 @@ describe('normalized semantic mesh adapter', () => {
     expect(material.userData.terrainWaterMaterial).toBe(true);
     expect(material.customProgramCacheKey()).toBe('terrain-water@3:[]');
     expect(() => setTerrainWaterTime(material, 2.5, [100, 200])).not.toThrow();
+  });
+  it('closes banks against a separate raised landcover layer when this tile renders only water', () => {
+    const ctx = context();
+    ctx.heightfield = new Heightfield(new Float32Array([0.1, 0.8, 0.35, 0.95]), 2, 2, {
+      origin: ctx.origin,
+      worldSize: [ctx.tileSize, ctx.tileSize],
+      height: { min: 0, max: 20 },
+    });
+    const object = createTerrainSemanticObject(semanticTile(), ctx, {
+      renderLandcover: false,
+      renderBuildings: false,
+      renderTransportation: false,
+    });
+    const water = object.getObjectByName('semantic:water') as THREE.Mesh;
+    const bank = object.getObjectByName('semantic:water-banks') as THREE.Mesh;
+    expect(bank).toBeInstanceOf(THREE.Mesh);
+    const waterY = water.geometry.getAttribute('position').getY(0);
+    const points = bank.geometry.getAttribute('position');
+    const sample = renderedGroundSampler(ctx.heightfield, ctx.origin, ctx.tileSize);
+    for (let i = 0; i < points.count; i++) {
+      const y = points.getY(i);
+      if (y > waterY + 1e-5)
+        expect(y).toBeCloseTo(
+          sample(ctx.origin[0] + points.getX(i), ctx.origin[1] + points.getZ(i)) + 0.18,
+          4,
+        );
+    }
+    disposeTerrainSemanticObject(object);
+  });
+
+  it('opens shoreline walls for a resident landing without changing water or source heights', () => {
+    const ctx = context();
+    ctx.heightfield = new Heightfield(new Float32Array([0.1, 0.8, 0.35, 0.95]), 2, 2, {
+      origin: ctx.origin,
+      worldSize: [ctx.tileSize, ctx.tileSize],
+      height: { min: 0, max: 20 },
+    });
+    const samples = ctx.heightfield.copySamples();
+    const object = createTerrainSemanticObject(semanticTile(), ctx, {
+      renderLandcover: false,
+      renderBuildings: false,
+      renderTransportation: false,
+    });
+    const water = object.getObjectByName('semantic:water') as THREE.Mesh;
+    const bank = object.getObjectByName('semantic:water-banks') as THREE.Mesh;
+    const sourceBank = bank.geometry,
+      sourceWater = water.geometry;
+    sourceBank.computeBoundingBox();
+    const bounds = sourceBank.boundingBox as THREE.Box3;
+    const middle = (bounds.min.x + bounds.max.x) / 2;
+    const landing = new THREE.Object3D();
+    setTerrainGroundCutout(landing, [
+      [bounds.min.x - 1, bounds.min.z - 1],
+      [middle, bounds.min.z - 1],
+      [middle, bounds.max.z + 1],
+      [bounds.min.x - 1, bounds.max.z + 1],
+    ]);
+    object.add(landing);
+    object.updateMatrixWorld(true);
+    const cuts = new TerrainGroundCutoutController();
+    expect(cuts.update(object)).toBe(true);
+    expect(bank.geometry).not.toBe(sourceBank);
+    expect(water.geometry).toBe(sourceWater);
+    const positions = bank.geometry.getAttribute('position');
+    const indices = bank.geometry.index as THREE.BufferAttribute;
+    expect(indices.count).toBeGreaterThan(0);
+    for (let i = 0; i < indices.count; i++)
+      expect(positions.getX(indices.getX(i))).toBeGreaterThanOrEqual(middle - 1e-5);
+    expect(ctx.heightfield.copySamples()).toEqual(samples);
+    const disposed = vi.spyOn(bank.geometry, 'dispose');
+    landing.visible = false;
+    expect(cuts.update(object)).toBe(true);
+    expect(bank.geometry).toBe(sourceBank);
+    expect(water.geometry).toBe(sourceWater);
+    expect(disposed).toHaveBeenCalledOnce();
+    cuts.dispose();
+    disposeTerrainSemanticObject(object);
   });
 
   it('disposes generated tile geometry but preserves shared instanced assets', () => {

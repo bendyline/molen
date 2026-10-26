@@ -57,7 +57,11 @@ describe('semantic polygon helpers', () => {
     expect(roadWidth('path')).toBe(2.5);
     expect(roadWidth('service', 4.5)).toBe(4.5);
     expect(waterwayWidth('river')).toBe(10);
-    expect(waterwayWidth(undefined)).toBe(5);
+    expect(waterwayWidth(undefined)).toBe(2.5);
+    expect(waterwayWidth('canal')).toBe(5);
+    expect(waterwayWidth('ditch')).toBe(1);
+    expect(waterwayWidth('moat')).toBe(4);
+    expect(waterwayWidth('canal', 18)).toBe(18);
   });
 });
 

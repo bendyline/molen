@@ -12,6 +12,8 @@ import {
   cameraForward,
   cameraPlanarForward,
   cameraRight,
+  createNavigationControls,
+  NavigationInputSource,
   viewNeedsImmediateUpdate,
   WALK_EYE_HEIGHT,
   WALK_PLACEMENT_RADIUS,
@@ -984,6 +986,7 @@ async function main(): Promise<void> {
               }),
             }
           : {}),
+        distantCoverage: worldgen !== undefined,
         tunnels: {
           heights: {
             load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
@@ -1433,10 +1436,21 @@ async function main(): Promise<void> {
     });
   }
 
-  const keys = new Set<string>();
+  const input = new NavigationInputSource({ element: canvas, keyTarget: window, profile: 'fly' });
+  let jumpRequested = false;
+  input.map.onPress('nav-jump', () => {
+    jumpRequested = true;
+  });
+  input.map.onReset(() => {
+    jumpRequested = false;
+  });
+  const controllerControls = createNavigationControls(input, {
+    container: document.getElementById('navigation') as HTMLElement,
+    focusTarget: canvas,
+    storageKey: 'molen:navigation-controls:v1',
+  });
   if (selectedDiorama(params.get('diorama')) !== undefined || params.get('mode') === 'human')
     setMode('human');
-  let jumpRequested = false;
   const walker = new WalkController();
   // A full scan of the streamed scene each frame was the walk mode's largest fixed cost; 5 Hz
   // rescans still catch streamed changes, and placement forces one.
@@ -1567,7 +1581,7 @@ async function main(): Promise<void> {
     walker.waitingForTerrain = false;
     camera.pos = [feet[0], feet[1] + WALK_EYE_HEIGHT, feet[2]];
     camera.pitch = 0;
-    keys.clear();
+    input.map.reset();
     help.textContent = walkHelp;
     return true;
   };
@@ -1579,6 +1593,8 @@ async function main(): Promise<void> {
       wildlifeFeatures?.detach();
       wildlife?.dispose();
       audioTerrain.clear();
+      controllerControls.dispose();
+      input.dispose();
       flight.dispose();
       cockpitPointer.dispose();
       vehicles.dispose();
@@ -1591,8 +1607,8 @@ async function main(): Promise<void> {
       return;
     }
     navigation = mode;
-    keys.clear();
-    jumpRequested = false;
+    input.setProfile(mode);
+    input.map.reset();
     if (mode === 'walk') {
       walker.reset(camera.pos[0], camera.pos[2]);
       camera.pitch = 0;
@@ -1654,116 +1670,39 @@ async function main(): Promise<void> {
       visitingTransit = button.dataset.transit as 'bus' | 'lightrail';
     });
   }
+  const interact = (): void => {
+    if (navigation !== 'walk' || (!vehicles.mountedId && !walker.ready)) return;
+    if (vehicles.mountedId) exitVehicle();
+    else if (flight.enter(camera.pos) || vehicles.enter(camera.pos)) {
+      input.map.reset();
+      vehicles.view = 'cockpit';
+      vehicles.lookYaw = 0;
+      vehicles.lookPitch = -0.18;
+      help.textContent = flight.mountedKind
+        ? AIRCRAFT_HELP
+        : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
+          ? boatHelp
+          : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · E exit · V change view · drag to look';
+    }
+  };
   window.addEventListener('keydown', (event) => {
+    if (event.defaultPrevented || event.repeat || event.ctrlKey || event.altKey || event.metaKey)
+      return;
     if (
       event.target instanceof HTMLElement &&
-      (event.target.closest('input, select, textarea, button, a, summary') ||
+      (event.target.closest('input, select, textarea, button, a, summary, dialog') ||
         event.target.isContentEditable)
     )
       return;
-    if (
-      [
-        'KeyW',
-        'KeyA',
-        'KeyS',
-        'KeyD',
-        'KeyQ',
-        'KeyE',
-        'Space',
-        'ShiftLeft',
-        'ShiftRight',
-        'KeyR',
-        'KeyV',
-        'KeyL',
-        'KeyB',
-        'KeyI',
-        'KeyG',
-        'KeyF',
-        'KeyJ',
-        'KeyZ',
-        'ControlLeft',
-        'ControlRight',
-      ].includes(event.code)
-    ) {
-      event.preventDefault();
-      keys.add(event.code);
-      if (!event.repeat) flight.key(event.code);
-      if (event.code === 'KeyB' && !event.repeat) spawnBoat();
-      if (event.code === 'Space' && !event.repeat) jumpRequested = true;
-      if (
-        event.code === 'KeyE' &&
-        !event.repeat &&
-        navigation === 'walk' &&
-        (vehicles.mountedId || walker.ready)
-      ) {
-        if (vehicles.mountedId) exitVehicle();
-        else if (flight.enter(camera.pos) || vehicles.enter(camera.pos)) {
-          keys.clear();
-          vehicles.view = 'cockpit';
-          vehicles.lookYaw = 0;
-          vehicles.lookPitch = -0.18;
-          help.textContent = flight.mountedKind
-            ? AIRCRAFT_HELP
-            : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
-              ? boatHelp
-              : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · E exit · V change view · drag to look';
-        }
-      }
-      if (event.code === 'KeyL' && !event.repeat && ambient !== undefined) {
-        ambient.setEnabled(!ambient.isEnabled);
-        wildlife?.setEnabled(ambient.isEnabled);
-      }
-      if (event.code === 'KeyV' && !event.repeat && vehicles.mountedId) {
-        vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
-      }
+    if (event.code === 'KeyB') spawnBoat();
+    if (event.code === 'KeyR' && !flight.mountedKind)
+      viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
+    if (event.code === 'KeyL' && ambient !== undefined) {
+      ambient.setEnabled(!ambient.isEnabled);
+      wildlife?.setEnabled(ambient.isEnabled);
     }
   });
-  window.addEventListener('keyup', (event) => keys.delete(event.code));
-  let dragPointer: { id: number; x: number; y: number } | undefined;
-  const clearInput = (): void => {
-    keys.clear();
-    jumpRequested = false;
-    dragPointer = undefined;
-  };
-  window.addEventListener('blur', clearInput);
-  document.getElementById('hud')?.addEventListener('focusin', clearInput);
-  document.addEventListener('visibilitychange', clearInput);
-  document.addEventListener('pointerlockchange', clearInput);
-  canvas.addEventListener('pointerdown', (event) => {
-    if (event.button !== 0) return;
-    canvas.focus();
-    if (navigation === 'walk' && !flight.mountedKind && document.pointerLockElement !== canvas) {
-      // Drag-look remains available when the host does not grant pointer lock.
-      void canvas.requestPointerLock?.()?.catch(() => {});
-    }
-    dragPointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
-    canvas.setPointerCapture(event.pointerId);
-  });
-  canvas.addEventListener('pointermove', (event) => {
-    const locked = document.pointerLockElement === canvas;
-    if (!locked && dragPointer?.id !== event.pointerId) return;
-    const dx = locked ? event.movementX : event.clientX - (dragPointer?.x ?? event.clientX);
-    const dy = locked ? event.movementY : event.clientY - (dragPointer?.y ?? event.clientY);
-    if (dragPointer !== undefined) {
-      dragPointer.x = event.clientX;
-      dragPointer.y = event.clientY;
-    }
-    if (vehicles.mountedId) {
-      vehicles.lookYaw = Math.max(-1.45, Math.min(1.45, vehicles.lookYaw + dx * 0.003));
-      vehicles.lookPitch = Math.max(-0.8, Math.min(0.8, vehicles.lookPitch - dy * 0.003));
-      return;
-    }
-    const orientation = applyCameraLookDelta(camera.yaw, camera.pitch, dx, dy);
-    camera.yaw = orientation.yaw;
-    camera.pitch = orientation.pitch;
-  });
-  const finishDrag = (event: PointerEvent): void => {
-    if (dragPointer?.id !== event.pointerId) return;
-    dragPointer = undefined;
-    if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
-  };
-  canvas.addEventListener('pointerup', finishDrag);
-  canvas.addEventListener('pointercancel', finishDrag);
+  document.getElementById('hud')?.addEventListener('focusin', () => input.map.reset());
   window.addEventListener('resize', resizeRenderer);
 
   if (params.get('navigation') === 'walk') setNavigation('walk');
@@ -1857,7 +1796,33 @@ async function main(): Promise<void> {
     frameMax = Math.max(frameMax, frameMs);
     const dt = Math.max(0, Math.min(0.1, (now - lastTime) / 1000));
     lastTime = now;
-    const sprint = keys.has('ShiftLeft') || keys.has('ShiftRight');
+    input.setProfile(flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation);
+    input.map.setEnabled(!document.hidden && document.hasFocus());
+    let frameInput = input.read(dt);
+    frameInput.jump ||= jumpRequested;
+    jumpRequested = false;
+    if (frameInput.interact > 0) {
+      interact();
+      input.setProfile(flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation);
+      frameInput = input.read(0);
+    }
+    if (frameInput.view % 2 === 1 && vehicles.mountedId)
+      vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
+    if (vehicles.mountedId) {
+      vehicles.lookYaw = Math.max(
+        -1.45,
+        Math.min(1.45, vehicles.lookYaw + frameInput.look[0] * 0.003),
+      );
+      vehicles.lookPitch = Math.max(
+        -0.8,
+        Math.min(0.8, vehicles.lookPitch - frameInput.look[1] * 0.003),
+      );
+    } else {
+      const orientation = applyCameraLookDelta(camera.yaw, camera.pitch, ...frameInput.look);
+      camera.yaw = orientation.yaw;
+      camera.pitch = orientation.pitch;
+    }
+    const sprint = frameInput.sprint;
     const tunnelBefore = sampleTerrainTunnel(stream.object, ...camera.pos);
     const previousFlyPosition: [number, number, number] = [...camera.pos];
     const groundBelow = sampleHeight(camera.pos[0], camera.pos[2]);
@@ -1949,12 +1914,18 @@ async function main(): Promise<void> {
         ? [{ x: camera.pos[0], z: camera.pos[2], radius: 0.5 }]
         : [],
     );
-    flight.input(dt, keys, !document.hidden && document.hasFocus());
+    // Visiting or spawning a vehicle can change the mode after the frame began.
+    const activeProfile = flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation;
+    if (input.map.activeProfile !== activeProfile) {
+      input.setProfile(activeProfile);
+      frameInput = input.read(0);
+    }
+    flight.input(dt, frameInput);
     vehicles.update(dt, {
-      throttle: Number(keys.has('KeyW')) - Number(keys.has('KeyS')),
-      steering: Number(keys.has('KeyD')) - Number(keys.has('KeyA')),
-      brake: keys.has('Space') || document.hidden || !document.hasFocus(),
-      handbrake: keys.has('ShiftLeft') || keys.has('ShiftRight'),
+      throttle: frameInput.move.forward,
+      steering: frameInput.move.right,
+      brake: frameInput.jump || document.hidden || !document.hasFocus(),
+      handbrake: frameInput.sprint,
     });
     // Last frame's camera: parked and distant aircraft draw without their cockpits.
     flight.render(camera.pos);
@@ -1981,7 +1952,6 @@ async function main(): Promise<void> {
         .sub(new THREE.Vector3().fromArray(camera.pos))
         .normalize();
       viewDirection = direction.toArray();
-      jumpRequested = false;
     } else if (navigation === 'walk') {
       walkCollision.update(stream.object, camera.pos[0], camera.pos[2]);
       if (!walker.ready) {
@@ -1999,28 +1969,24 @@ async function main(): Promise<void> {
       walker.update(
         dt,
         {
-          forward: Number(keys.has('KeyW')) - Number(keys.has('KeyS')),
-          right: Number(keys.has('KeyD')) - Number(keys.has('KeyA')),
+          forward: frameInput.move.forward,
+          right: frameInput.move.right,
           yaw: camera.yaw,
           sprint,
-          jump: keys.has('Space') || jumpRequested,
+          jump: frameInput.jump,
         },
         walkCollision,
         sampleHeight,
       );
-      jumpRequested = false;
       if (walker.ready) {
         camera.pos[0] = walker.feet.x;
         camera.pos[1] = walker.feet.y + WALK_EYE_HEIGHT;
         camera.pos[2] = walker.feet.z;
       }
     } else {
-      if (keys.has('KeyW')) move(forward, speed);
-      if (keys.has('KeyS')) move(forward, -speed);
-      if (keys.has('KeyA')) move(right, -speed);
-      if (keys.has('KeyD')) move(right, speed);
-      if (keys.has('KeyE')) move([0, 1, 0], speed);
-      if (keys.has('KeyQ')) move([0, 1, 0], -speed);
+      move(forward, speed * frameInput.move.forward);
+      move(right, speed * frameInput.move.right);
+      move([0, 1, 0], speed * frameInput.move.up);
       // Probe at the previous height so raising the camera cannot jump through a bore's roof.
       const tunnel = sampleTerrainTunnel(
         stream.object,
@@ -2077,9 +2043,6 @@ async function main(): Promise<void> {
       streamedDirection = [...viewDirection];
     }
 
-    if (keys.delete('KeyR')) {
-      viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
-    }
     if (
       water !== undefined &&
       Math.hypot(camera.pos[0] - water.position.x, camera.pos[2] - water.position.z) >
@@ -2138,7 +2101,11 @@ async function main(): Promise<void> {
     if (dioramaStatus.textContent !== dioramaText) dioramaStatus.textContent = dioramaText;
     // Fit the visit once local terrain has arrived. Explicit camera parameters and navigation win.
     if (fitDioramaCamera && requestedDiorama) {
-      if (keys.size > 0 || camera.pos[0] !== startX || camera.pos[2] !== startZ)
+      if (
+        input.map.activeActions().size > 0 ||
+        camera.pos[0] !== startX ||
+        camera.pos[2] !== startZ
+      )
         fitDioramaCamera = false;
       else if (dioramaState === 'playing') {
         const [mx, mz] = wgs84ToWebMercator(requestedDiorama.longitude, requestedDiorama.latitude);

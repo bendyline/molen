@@ -20,4 +20,4 @@ Qualla-first3publishedPD-selforiginals and4explicit samecreator2006PD-selftower/
 
 Grey brick/stone shared surfaces, grey cylindrical tiles/pale copings, red timber lattice and blue-green courtyard eaves/closed red arch doors carry identity. Exact plaque lettering/carved roof ornaments and small fixture counts simplified; no reproduced indoorart, garden sculpture, ACunits/utilitywires/flags, landscape/trees/roads/bridges/subway/vehicles/visitors. Raw terrain retained without flattened/fitted entire-site ground.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=beijing_ancient_observatory`. Add `--check` to verify exact regeneration. 39178 triangles; 6 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=beijing_ancient_observatory`. Add `--check` to verify exact regeneration. 39114 triangles; 6 materials; no embedded photographs.

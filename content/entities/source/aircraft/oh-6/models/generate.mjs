@@ -571,7 +571,7 @@ function mergeStaticFrames(parent) {
     const geometries = objects.map((object) => {
       object.updateMatrix();
       const geometry = object.geometry.clone().applyMatrix4(object.matrix);
-      geometry.deleteAttribute('uv');
+      if (!object.material.userData.molenCockpitLettering) geometry.deleteAttribute('uv');
       return geometry;
     });
     mesh(parent, objects[0].name, mergeGeometries(geometries), objects[0].material);
@@ -645,6 +645,7 @@ const controlSpec = Object.values(
 )[0].components.aircraft.spec;
 const controlledModel = completeCockpitControls(helicopter(), controlSpec, {
   panelZ: interiorLayout.panelZ,
+  letteringFont: 'technical',
 });
 finishAircraftCockpit(controlledModel, controlSpec, 'oh-6');
 const bytes = embedCockpitTextures(

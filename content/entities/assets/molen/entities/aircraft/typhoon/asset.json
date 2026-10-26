@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:a3dd47bd6410f64efee672adfe2566a613aa1339860730490c9040a3c956ad55",
-  "sourceHash": "sha256:c1c0446bfdbc979bd3857defb2e2e59939996d6148099e4ab5911d67e6eae61e",
+  "hash": "sha256:a81265869497836a0d9c0a43c0e4b90cc901de3ea382a57c88d9940819d03c8c",
+  "sourceHash": "sha256:76668d6376fc192d774d56cea5bf25df1e03ee61b6d6029e421b61dee80153be",
   "bounds": {
     "aabb": {
       "min": [
@@ -17,28 +17,28 @@
       ],
       "max": [
         5.4749,
-        5.29,
+        5.2904,
         9
       ]
     },
     "sphere": {
       "center": [
         0,
-        2.645,
+        2.6452,
         1.02
       ],
       "radius": 8.4071
     }
   },
   "stats": {
-    "triangles": 46902,
-    "vertices": 79001,
-    "meshes": 100,
-    "primitives": 100,
-    "materials": 25,
-    "textures": 9,
+    "triangles": 17832,
+    "vertices": 20829,
+    "meshes": 106,
+    "primitives": 106,
+    "materials": 31,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 1971704
+    "sizeBytes": 972804
   },
   "nodes": [
     {
@@ -190,16 +190,28 @@
       "triangles": 66
     },
     {
-      "name": "Typhoon-cabin-Typhoon-display",
-      "triangles": 3216
+      "name": "Typhoon-cabin-Typhoon-display-display-print",
+      "triangles": 50
+    },
+    {
+      "name": "Typhoon-cabin-Typhoon-display-panel-print",
+      "triangles": 14
     },
     {
       "name": "Typhoon-cabin-Typhoon-instrument-ink",
-      "triangles": 9744
+      "triangles": 24
     },
     {
-      "name": "Typhoon-cabin-Typhoon-instrument-amber",
-      "triangles": 3504
+      "name": "Typhoon-cabin-Typhoon-instrument-ink-panel-print",
+      "triangles": 178
+    },
+    {
+      "name": "Typhoon-cabin-Typhoon-instrument-amber-display-print",
+      "triangles": 50
+    },
+    {
+      "name": "Typhoon-cabin-Typhoon-instrument-amber-panel-print",
+      "triangles": 16
     },
     {
       "name": "Typhoon-attitude-fixed-Typhoon-instrument-black",
@@ -219,7 +231,11 @@
     },
     {
       "name": "Typhoon-attitude-card-Typhoon-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "Typhoon-attitude-card-Typhoon-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "Typhoon-speed-0-0-Typhoon-display",
@@ -536,22 +552,6 @@
     {
       "name": "Typhoon-vertical-speed-3-0-Typhoon-display",
       "triangles": 12
-    },
-    {
-      "name": "Typhoon-vertical-speed-3-1-Typhoon-display",
-      "triangles": 12
-    },
-    {
-      "name": "Typhoon-vertical-speed-3-2-Typhoon-display",
-      "triangles": 12
-    },
-    {
-      "name": "Typhoon-vertical-speed-3-3-Typhoon-display",
-      "triangles": 12
-    },
-    {
-      "name": "Typhoon-vertical-speed-3-4-Typhoon-display",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -657,12 +657,22 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Typhoon-display",
+      "name": "Typhoon-display-display-font",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "emissive"
       ],
       "doubleSided": false,
-      "alphaMode": "OPAQUE"
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Typhoon-display-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     },
     {
       "name": "Typhoon-instrument-ink",
@@ -671,6 +681,33 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Typhoon-instrument-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Typhoon-instrument-amber-display-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Typhoon-instrument-amber-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     },
     {
       "name": "Typhoon-instrument-amber",
@@ -690,6 +727,14 @@
     },
     {
       "name": "Typhoon-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Typhoon-display",
       "slots": [
         "baseColor"
       ],
@@ -746,20 +791,29 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -808,28 +862,28 @@
         "node": "Typhoon-airframe-Typhoon-gray",
         "points": [
           -5.3599,
-          0.8069,
+          0.8075,
           -6.65,
           -5.3599,
-          0.8069,
+          0.8075,
           6.98,
           -5.3599,
-          5.2898,
+          5.2904,
           -6.65,
           -5.3599,
-          5.2898,
+          5.2904,
           6.98,
           5.3599,
-          0.8069,
+          0.8075,
           -6.65,
           5.3599,
-          0.8069,
+          0.8075,
           6.98,
           5.3599,
-          5.2898,
+          5.2904,
           -6.65,
           5.3599,
-          5.2898,
+          5.2904,
           6.98
         ]
       },
@@ -837,29 +891,29 @@
         "node": "Typhoon-airframe-Typhoon-seal",
         "points": [
           -5.2531,
-          1.5019,
-          -3.3328,
+          1.5015,
+          -3.3326,
           -5.2531,
-          1.5019,
-          6.8477,
+          1.5015,
+          6.8479,
           -5.2531,
-          2.9332,
-          -3.3328,
+          2.9341,
+          -3.3326,
           -5.2531,
-          2.9332,
-          6.8477,
+          2.9341,
+          6.8479,
           5.2531,
-          1.5019,
-          -3.3328,
+          1.5015,
+          -3.3326,
           5.2531,
-          1.5019,
-          6.8477,
+          1.5015,
+          6.8479,
           5.2531,
-          2.9332,
-          -3.3328,
+          2.9341,
+          -3.3326,
           5.2531,
-          2.9332,
-          6.8477
+          2.9341,
+          6.8479
         ]
       },
       {
@@ -1849,90 +1903,177 @@
         ]
       },
       {
-        "node": "Typhoon-cabin-Typhoon-display",
+        "node": "Typhoon-cabin-Typhoon-display-display-print",
         "points": [
-          -0.2413,
-          2.4227,
-          5.5195,
-          -0.2413,
-          2.4227,
-          5.5205,
-          -0.2413,
-          2.6415,
-          5.5195,
-          -0.2413,
-          2.6415,
-          5.5205,
-          0.2631,
-          2.4227,
-          5.5195,
-          0.2631,
-          2.4227,
-          5.5205,
-          0.2631,
-          2.6415,
-          5.5195,
-          0.2631,
-          2.6415,
-          5.5205
+          -0.0103,
+          2.4222,
+          5.52,
+          -0.0103,
+          2.4222,
+          5.52,
+          -0.0103,
+          2.6411,
+          5.52,
+          -0.0103,
+          2.6411,
+          5.52,
+          0.2626,
+          2.4222,
+          5.52,
+          0.2626,
+          2.4222,
+          5.52,
+          0.2626,
+          2.6411,
+          5.52,
+          0.2626,
+          2.6411,
+          5.52
+        ]
+      },
+      {
+        "node": "Typhoon-cabin-Typhoon-display-panel-print",
+        "points": [
+          -0.2421,
+          2.6156,
+          5.52,
+          -0.2421,
+          2.6156,
+          5.52,
+          -0.2421,
+          2.6245,
+          5.52,
+          -0.2421,
+          2.6245,
+          5.52,
+          -0.1937,
+          2.6156,
+          5.52,
+          -0.1937,
+          2.6156,
+          5.52,
+          -0.1937,
+          2.6245,
+          5.52,
+          -0.1937,
+          2.6245,
+          5.52
         ]
       },
       {
         "node": "Typhoon-cabin-Typhoon-instrument-ink",
         "points": [
-          -0.0843,
-          2.1921,
-          5.5195,
-          -0.0843,
-          2.1921,
-          5.5335,
-          -0.0843,
-          2.7956,
-          5.5195,
-          -0.0843,
-          2.7956,
-          5.5335,
-          0.3595,
-          2.1921,
-          5.5195,
-          0.3595,
-          2.1921,
-          5.5335,
-          0.3595,
-          2.7956,
-          5.5195,
-          0.3595,
-          2.7956,
-          5.5335
+          -0.0009,
+          2.532,
+          5.52,
+          -0.0009,
+          2.532,
+          5.522,
+          -0.0009,
+          2.54,
+          5.52,
+          -0.0009,
+          2.54,
+          5.522,
+          0.0009,
+          2.532,
+          5.52,
+          0.0009,
+          2.532,
+          5.522,
+          0.0009,
+          2.54,
+          5.52,
+          0.0009,
+          2.54,
+          5.522
         ]
       },
       {
-        "node": "Typhoon-cabin-Typhoon-instrument-amber",
+        "node": "Typhoon-cabin-Typhoon-instrument-ink-panel-print",
         "points": [
-          -0.2501,
-          2.5213,
-          5.5045,
-          -0.2501,
-          2.5213,
-          5.5205,
-          -0.2501,
-          2.8309,
-          5.5045,
-          -0.2501,
-          2.8309,
-          5.5205,
-          0.1579,
-          2.5213,
-          5.5045,
-          0.1579,
-          2.5213,
-          5.5205,
-          0.1579,
-          2.8309,
-          5.5045,
-          0.1579,
-          2.8309,
-          5.5205
+          -0.0849,
+          2.1914,
+          5.52,
+          -0.0849,
+          2.1914,
+          5.533,
+          -0.0849,
+          2.7952,
+          5.52,
+          -0.0849,
+          2.7952,
+          5.533,
+          0.3589,
+          2.1914,
+          5.52,
+          0.3589,
+          2.1914,
+          5.533,
+          0.3589,
+          2.7952,
+          5.52,
+          0.3589,
+          2.7952,
+          5.533
+        ]
+      },
+      {
+        "node": "Typhoon-cabin-Typhoon-instrument-amber-display-print",
+        "points": [
+          -0.2507,
+          2.5204,
+          5.52,
+          -0.2507,
+          2.5204,
+          5.52,
+          -0.2507,
+          2.5917,
+          5.52,
+          -0.2507,
+          2.5917,
+          5.52,
+          -0.1854,
+          2.5204,
+          5.52,
+          -0.1854,
+          2.5204,
+          5.52,
+          -0.1854,
+          2.5917,
+          5.52,
+          -0.1854,
+          2.5917,
+          5.52
+        ]
+      },
+      {
+        "node": "Typhoon-cabin-Typhoon-instrument-amber-panel-print",
+        "points": [
+          -0.1575,
+          2.8256,
+          5.505,
+          -0.1575,
+          2.8256,
+          5.505,
+          -0.1575,
+          2.8304,
+          5.505,
+          -0.1575,
+          2.8304,
+          5.505,
+          0.1575,
+          2.8256,
+          5.505,
+          0.1575,
+          2.8256,
+          5.505,
+          0.1575,
+          2.8304,
+          5.505,
+          0.1575,
+          2.8304,
+          5.505
         ]
       },
       {
@@ -2055,29 +2196,58 @@
         "node": "Typhoon-attitude-card-Typhoon-instrument-ink",
         "points": [
           0.1169,
-          2.5602,
+          2.5616,
           5.5583,
           0.1169,
-          2.5602,
+          2.5616,
           5.5597,
           0.1169,
-          2.6207,
+          2.6184,
           5.5583,
           0.1169,
-          2.6207,
+          2.6184,
           5.5597,
           0.3191,
-          2.5602,
+          2.5616,
           5.5583,
           0.3191,
-          2.5602,
+          2.5616,
           5.5597,
           0.3191,
-          2.6207,
+          2.6184,
           5.5583,
           0.3191,
-          2.6207,
+          2.6184,
           5.5597
+        ]
+      },
+      {
+        "node": "Typhoon-attitude-card-Typhoon-instrument-ink-dial-print",
+        "points": [
+          0.2349,
+          2.5599,
+          5.559,
+          0.2349,
+          2.5599,
+          5.559,
+          0.2349,
+          2.6201,
+          5.559,
+          0.2349,
+          2.6201,
+          5.559,
+          0.2418,
+          2.5599,
+          5.559,
+          0.2418,
+          2.5599,
+          5.559,
+          0.2418,
+          2.6201,
+          5.559,
+          0.2418,
+          2.6201,
+          5.559
         ]
       },
       {
@@ -4368,122 +4538,6 @@
           5.5216,
           -0.0043,
           2.4138,
-          5.5224
-        ]
-      },
-      {
-        "node": "Typhoon-vertical-speed-3-1-Typhoon-display",
-        "points": [
-          -0.0083,
-          2.4096,
-          5.5216,
-          -0.0083,
-          2.4096,
-          5.5224,
-          -0.0083,
-          2.4129,
-          5.5216,
-          -0.0083,
-          2.4129,
-          5.5224,
-          -0.0077,
-          2.4096,
-          5.5216,
-          -0.0077,
-          2.4096,
-          5.5224,
-          -0.0077,
-          2.4129,
-          5.5216,
-          -0.0077,
-          2.4129,
-          5.5224
-        ]
-      },
-      {
-        "node": "Typhoon-vertical-speed-3-2-Typhoon-display",
-        "points": [
-          -0.0083,
-          2.4051,
-          5.5216,
-          -0.0083,
-          2.4051,
-          5.5224,
-          -0.0083,
-          2.4084,
-          5.5216,
-          -0.0083,
-          2.4084,
-          5.5224,
-          -0.0077,
-          2.4051,
-          5.5216,
-          -0.0077,
-          2.4051,
-          5.5224,
-          -0.0077,
-          2.4084,
-          5.5216,
-          -0.0077,
-          2.4084,
-          5.5224
-        ]
-      },
-      {
-        "node": "Typhoon-vertical-speed-3-3-Typhoon-display",
-        "points": [
-          -0.0076,
-          2.4042,
-          5.5216,
-          -0.0076,
-          2.4042,
-          5.5224,
-          -0.0076,
-          2.4048,
-          5.5216,
-          -0.0076,
-          2.4048,
-          5.5224,
-          -0.0043,
-          2.4042,
-          5.5216,
-          -0.0043,
-          2.4042,
-          5.5224,
-          -0.0043,
-          2.4048,
-          5.5216,
-          -0.0043,
-          2.4048,
-          5.5224
-        ]
-      },
-      {
-        "node": "Typhoon-vertical-speed-3-4-Typhoon-display",
-        "points": [
-          -0.0042,
-          2.4051,
-          5.5216,
-          -0.0042,
-          2.4051,
-          5.5224,
-          -0.0042,
-          2.4084,
-          5.5216,
-          -0.0042,
-          2.4084,
-          5.5224,
-          -0.0035,
-          2.4051,
-          5.5216,
-          -0.0035,
-          2.4051,
-          5.5224,
-          -0.0035,
-          2.4084,
-          5.5216,
-          -0.0035,
-          2.4084,
           5.5224
         ]
       }

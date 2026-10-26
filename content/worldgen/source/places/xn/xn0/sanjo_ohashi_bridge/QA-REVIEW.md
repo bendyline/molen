@@ -1,51 +1,34 @@
-# Sanjō Ōhashi Bridge — completed medium-fi exterior review
+# Sanjō Ōhashi Bridge — current medium-fi pass
 
-Reviewed 2026-10-09. Q3087620, Kyoto. This clears one of the fixed 213 authored
-backlog candidates. Current hashes and inspected image lists are in `qa.json`.
+Reviewed2026-10-25. **Scoped bridge exterior and approximate native placement complete.**
 
-## Source and browser representation
+![Native crossing](site-preview.png)
 
-The original 716,504-triangle, 58,571,200-byte master is unchanged. Its editable
-restoration study remains in `sanjo-ohashi-model.mjs`; the separate browser recipe
-is `sanjo-ohashi-runtime.mjs`. Original geometry and owner research references are
-preserved. GLBs remain reproducible build outputs, outside Git.
+## Geometry and shared materials
 
-| Level | Triangles | Bytes | Material draws |
+Inspected74 current frames:14 preserved-master,14 shared-material placement,30 medium-fi and16 native. Nine cambered spans, eight seven-column pier frames and circular stone shoes, fourteen green bronze giboshi, pale hinoki rails, open asanoha barriers, fine gray checker walks and steel soffit remain complete. Browser curbs now rise30cm and intermediate post clamps use the existing green bronze surface. The detailed716504-triangle source and canonical master retain their exact earlier bytes and18cm/dark-clamp interpretation.
+
+Six existing shared graphs on the detailed master; seven central256px graphs on textured browser levels, including reusable alpha asanoha and fine checker paving. Each graph reads once; no embedded image, private atlas or redistributed photo. Skyline is one mean-color draw; nearer levels use eight draws. Metric UVs and separated GPU vertex streams pass.
+
+| Level | Triangles | Bytes | Draws |
 | --- | ---: | ---: | ---: |
-| Skyline | 994 | 78,948 | 1 |
-| District | 3,996 | 314,696 | 8 |
-| Street | 15,704 | 1,170,352 | 8 |
-| Closeup | 28,920 | 2,108,492 | 8 |
+| skyline | 994 | 78948 | 1 |
+| district | 3996 | 314696 | 8 |
+| street | 15704 | 1170348 | 8 |
+| closeup | 28920 | 2108496 | 8 |
 
-The initial two levels total **393,644 bytes**. No images are embedded. Seven
-central shared graphs supply timber, bronze, steel, stone, concrete, fine paving
-and open hemp-leaf railing. New patterns are analytically authored and reusable;
-photographs supply evidence only. The 42-node lattice bakes in about 1.6 seconds
-on this development machine, versus eight seconds for the discarded first graph.
-Runtime textures require Molen's shared-surface resolver.
+Four browser levels:994/3996/15704/28920 triangles and78948/314696/1170348/2108496 bytes. Initial skyline plus district is393644 bytes; the detailed58.6MB master is not the initial browser download. Near models retain all56 columns; skyline retains the complete crossing/pier-row/finial silhouette with reduced inner supports. Physical ordinary-laptop and phone/tablet measurements remain pending.
 
-## Inspected and repaired
+## Native fit
 
-Inspected 14 portable master, 14 bounded shared-viewer, 26 medium-fi and eight
-current district/closeup real-terrain images. Nine cambered spans, fourteen bronze
-finials and eight seven-column frames remain recognizable. Corrected reversed
-rail end faces and restored both pink raised curb strips. Repeated paving and
-lattice use shared surfaces; far geometry deliberately omits small inner members.
-Six Khronos validations have zero errors/warnings; five focused checks pass.
+Retained exact-QID anchor[135.771720333,35.009046048], heading0.123568417936rad: +X east-northeast to Higashiyama, +Z downstream/south. Authored73.3x16.7m section retained. Standard PMTiles/Mapzen gives local native water42.150093m; provisional model base41.70m submerges shoes about0.45m and contacts the lower east dry bank. Both native road-end joins meet the46.25m authored deck within0.01m. The rejected west-bank DSM reference had left footings2.33m above water. Bounded bridge/immediate-approach terrain caps at sourceY0.45m remove coarse high banks without changing raw DEM or water; lower banks and approach paving remain. An inset bridge-interior paving mask grades the original river walk beneath the deck while retaining its mapped route; paving beyond the bridge can still overstate bank heights. The cap, river level and steep outer bank transitions are approximate visualization, not surveyed foundations or riverbed.
 
-Exact map anchor and signed heading 0.123568417936 radians are preserved. The
-bounded fixture compares independently transformed source vertices, not rotated
-axis-aligned boxes. Actual bank renders use preserved independent GSI DEM1A 1 m
-samples and OSM roads. Both approach connections remain continuous. Unknown
-river height cells remain unknown and their triangles are omitted.
+All 512 resident / 1988 wider native buildings and 1211 independent road records remain. Original road inputs, raw heightfield samples, native water and outside-ground probes remain exact. Only mapped bridge strips/direct approaches receive road replacement/height hints. Failure keeps native geometry and creates no supports; unload restores bank/ground geometry and disposes every model/support resource. Coarse paving outside the inset mask remains elevated in some close backgrounds; native detail cameras are placed clear of bank surfaces and pier columns; their source-local counterparts remain unchanged.27 terrain and57 Earth tests, both package typechecks,5 Sanjo LOD tests and changed-file Biome checks pass. Earlier full-repository livery-schema failures remain separately recorded.
 
-## Declared limits
+## Verification
 
-The accepted scope is the stylized present exterior. Inscribed finial text, sword
-scars, individual paving joints, concealed structure and fine fabrication counts
-are excluded. Support sections, foundation depth and pattern pitch are original
-photo reconstructions. The host must supply fine terrain and a consistent
-`sampleStructureTerrain` bank reference. Global coarse DEM compatibility,
-underwater survey, traversable collision and physical laptop/phone frame rates
-are not certified. The maximum-fidelity master is preserved without asserting
-that its former pending maximum-fidelity review passed.
+Selected source reproducibility, strict medium-fi, scene validation and30-tick simulation pass. Six GLBs/580 geometry probes and74 inspected current frames bind the current source/runtime/LOD/placement/fixture hashes. Tests use a workspace-local temporary directory because Windows sandbox temp virtualization caused Vitest ENOENT errors; all targeted suites pass with that corrected test environment. Bulk captures stay ignored; two small previews stay with source.
+
+## Pictures and limits
+
+Ordinary restored-bridge photographs from [the railing maker](https://note.sekisuijushi.co.jp/n/n6ac7ea5a0500) and the retained March2025 Kyoto photo collage informed the curb/clamp corrections. No photo pixels are redistributed. See reference-metadata.json and map-frame.json. Native map attribution: © OpenStreetMap contributors, ODbL-1.0. Detailed historic inscriptions, statues, vehicles, surrounding unique architecture and surveyed foundations are outside this asset. The original master retains its historical curb/clamp interpretation; current browser models carry the visible corrections.

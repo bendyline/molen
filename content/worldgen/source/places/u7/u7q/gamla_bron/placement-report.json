@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.gamla_bron",
-  "inputHash": "sha256:768298b6405426121be8faa4c19761743c2731a24c947b58e9c70bc52731981b",
-  "placementHash": "sha256:7c6c5665e6c91763060c13e1d2e47bbeefd1a13faac4b0817c009d80045fd246",
+  "inputHash": "sha256:c5c89d53a80529d23447a3819fa115f26e7b72f04f28d5b6cf9cd3be11c11c23",
+  "placementHash": "sha256:d2ab32adc05e5a7276e2ff790a84700d58ef80dcc1307fa9eaa3677de0151962",
   "entry": {
     "id": "gamla.bron",
     "title": "Gamla bron, Umeå",
@@ -12,18 +12,47 @@
       63.824875538
     ],
     "heading": 1.266401710014,
-    "datum": "sea-level",
+    "datum": "terrain",
     "elevation": 0,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q3603782",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        20.24813801050186,
+        63.82355124656934
+      ],
+      "modelHeight": 5.8,
+      "basis": "South mapped cycleway landing terrain attaches to the authored deck at Y=5.8. The higher bank establishes a stable host-relative bridge level; not surveyed river stage."
+    },
+    "bounds": [
+      20.24803249726583,
+      63.82352914311843,
+      20.25012888273417,
+      63.82622193288157
+    ],
+    "replaceRoads": {
+      "length": 309,
+      "width": 6.7,
+      "deckHeights": [
+        5.8,
+        5.8
+      ],
+      "includeConnectedApproaches": true
+    },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/454463632",
-    "note": "Exact-QID bridge outline and timber cycleway establish the309.007m envelope and NNE axis. Published301m superstructure lies inside with reconstructed4m abutment ends. The downstream ESE pipe/pole side follows original2023 and municipal2022 photographs. River level0m is a provisional rendering datum; actual water stage and shore grade depend on host terrain and water data. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
+    "note": "Confirmed NNE crossing and ESE downstream pipe/pole side. Nominal 301 m superstructure and full 309 m extent remain separate. Replace the former buried sea-level-zero placement with host terrain referenced to the south mapped deck landing at model Y=5.8. Clip only the overlapping cycleway and its connected end fragments. Preserve all buildings, unrelated road geometry, native water and original DEM. Equal span stationing, pier heights, river stage and exact bank grading remain reconstructed. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval.",
+  "sourceIndexWriteProvenance": {
+    "previousInputHash": "sha256:20c5621e24fe63faebd1291d5f116d010609312265ab6357b0fb03d77dbe1d58",
+    "inputHash": "sha256:c5c89d53a80529d23447a3819fa115f26e7b72f04f28d5b6cf9cd3be11c11c23",
+    "checkedOn": "2026-10-25",
+    "change": "Generator I/O only: replace source.json atomically using the existing shared writeIndex helper, avoiding reproducible Windows UNKNOWN truncation errors. No geometry, surfaces, map fit, scene, renderer or LOD recipe changed. Selected regeneration and --check pass; all six source/runtime/LOD bytes and existing reviewed image hashes remain exact."
+  }
 }

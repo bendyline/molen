@@ -225,7 +225,7 @@ export function buildSanjoRuntime(out, level = 'closeup') {
           side > 0 ? 4.3 : -4.62,
           side > 0 ? 4.62 : -4.3,
           sanjoDeckY,
-          (x) => sanjoDeckY(x) + 0.18,
+          (x) => sanjoDeckY(x) + 0.3,
         );
       if (d >= 2)
         slab(
@@ -290,18 +290,18 @@ export function buildSanjoRuntime(out, level = 'closeup') {
       if (d >= 2 && i % 6 !== 0) {
         box(
           out,
-          'iron',
+          'bronze',
           [x - 0.04, y + 0.39, z + side * 0.13 - 0.009],
           [x + 0.04, y + 0.66, z + side * 0.13 + 0.009],
-          colors.iron,
+          colors.bronze,
         );
         if (d === 3)
           box(
             out,
-            'iron',
+            'bronze',
             [x - 0.17, y + 0.49, z + side * 0.13 - 0.009],
             [x + 0.17, y + 0.56, z + side * 0.13 + 0.009],
-            colors.iron,
+            colors.bronze,
           );
       }
     }

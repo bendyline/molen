@@ -1,4 +1,6 @@
 /** Meter-scale construction helpers for researched structure assets. No private dependencies. */
+
+import { joinedBeamPath } from './joined-path.mjs';
 import { quad } from './structure-mesh.mjs';
 
 const ref = 'palette:#ffffff';
@@ -56,6 +58,28 @@ export function beam(out, slot, a, b, width, depth, color) {
       center.map((n, i) => n + (across[i] * u * width) / 2 + (other[i] * v * depth) / 2),
     );
   loft(out, slot, [ring(a), ring(b)], color);
+}
+
+/** Continuous rectangular molding or frame, with shared mitered corner rings. */
+export function beamPath(out, slot, points, width, depth, color, closed = false) {
+  const mesh = joinedBeamPath(points, width, depth, closed);
+  for (let i = 0; i < mesh.indices.length; i += 3) {
+    const p = mesh.indices
+      .slice(i, i + 3)
+      .map((index) => mesh.positions.slice(index * 3, index * 3 + 3));
+    out.addTriangle(
+      slot,
+      ref,
+      p,
+      normalFor(...p),
+      [
+        [0, 0],
+        [1, 0],
+        [1, 1],
+      ],
+      color,
+    );
+  }
 }
 
 export function sphere(out, slot, center, radii, color, segments = 32, latitudes = 16) {

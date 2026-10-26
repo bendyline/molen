@@ -2,7 +2,7 @@
 import { beam, loft, radialRing, smoothMeshNormals, torus } from './authored-structure-mesh.mjs';
 import { compactAuthoredMesh } from './compact-authored-mesh.mjs';
 import { annulus, face, transform } from './heritage-tower-detail-mesh.mjs';
-import { box, tube } from './structure-mesh.mjs';
+import { box, tube, tubePath } from './structure-mesh.mjs';
 
 const tau = 2 * Math.PI;
 const concrete = [0.64, 0.62, 0.56],
@@ -286,7 +286,7 @@ function aerials(out) {
       y,
       2.26 + 0.43 * Math.sin((tau * i) / 12),
     ]);
-    for (let j = 1; j < rail.length; j++) tube(g, 'metal', rail[j - 1], rail[j], 0.022, metal, 6);
+    tubePath(g, 'metal', rail, 0.022, metal, 6);
   }
   for (const [a, y, r, s] of [
     [0.4, 270.7, 3.55, 0.45],

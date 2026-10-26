@@ -15,7 +15,7 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-505124 triangles; 40086960 bytes; 5 material groups. SHA256: sha256:f9d5a96f56863ea4a79e5309e7ccd8557b2c59b61f82f8fe7447c367fe31fedf.
+504896 triangles; 40070112 bytes; 5 material groups. SHA256: sha256:c9e015fbb26a90ea3d137691971ff4df2e375d8b9d159a80d5130e0aad41a68b.
 
 Shared surfaces (concrete_plain, stone_granite, metal_stainless) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
@@ -27,3 +27,10 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 - Helix phase and pitch, small rods, canopy panel boundaries and joint hardware are reconstructed from primary photographs.
 - Local reservoir water/pier-cap elevation is provisionally0m in the viewer. Geographic approval requires rendered fit; no survey datum is claimed.
 - Adjacent vehicular Bayfront bridge, city promenade, interior foundation piles and dynamic lighting control are outside this asset.
+- The original detailed master remains reproducible through the unchanged default recipe. Current detailed and browser models correct the pod/pier stations while retaining the full detailed geometry.
+- Skyline uses four representative counter-rotating helical ribbons. District retains all eleven source strands as crossed ribbons; near levels use six/twelve-sided tubes. Narrow collars, paving relief and small secondary hardware stay in the master.
+- Near glass rails and leaf canopies remain open and transparent. Rail posts use6m/1.5m spacing; brace/collar rhythms are explicitly reduced from the master.
+- Ordinary pictures and standard PMTiles/Mapzen establish approximate fit, not a reservoir/engineering survey. Physical device timings remain pending.
+- Pod footprints suppress their original map connector paths. Retained side links use the authored curved deck profile; adjacent Bayfront road-bridge height remains a procedural approximation.
+- Current phases interpolate smoothly around the mapped pod stations to keep the access thresholds clear. The untouched default master recipe retains its original constant phases. Exact fabrication profiles and structural analysis remain outside the asset.
+- Standard coarse urban terrain overstates the local shore heights. Exact model-owned walkway/pod/approach ground openings keep the bridge visible without editing elevation samples or water. The outer side-link/cycleway junction and generic approach grades remain coarse reconstructions; only the three immediate model joins are height-verified.

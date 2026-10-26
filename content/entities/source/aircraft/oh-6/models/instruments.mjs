@@ -1,52 +1,11 @@
 /** Small, portable mechanical instrument parts; aircraft layout stays in interior.json. */
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { cockpitText } from '../../../../../../packages/entities/scripts/aircraft/cockpit-lettering.mjs';
 import {
   domeDepth,
   instrumentDome,
 } from '../../../../../../packages/entities/scripts/aircraft/rounded-instruments.mjs';
-
-const GLYPHS = {
-  A: '010/101/111/101/101',
-  B: '110/101/110/101/110',
-  C: '011/100/100/100/011',
-  D: '110/101/101/101/110',
-  E: '111/100/110/100/111',
-  F: '111/100/110/100/100',
-  G: '011/100/101/101/011',
-  H: '101/101/111/101/101',
-  I: '111/010/010/010/111',
-  J: '001/001/001/101/010',
-  K: '101/101/110/101/101',
-  L: '100/100/100/100/111',
-  M: '101/111/111/101/101',
-  N: '101/111/111/111/101',
-  O: '010/101/101/101/010',
-  P: '110/101/110/100/100',
-  Q: '010/101/101/111/011',
-  R: '110/101/110/101/101',
-  S: '011/100/010/001/110',
-  T: '111/010/010/010/010',
-  U: '101/101/101/101/111',
-  V: '101/101/101/101/010',
-  W: '101/101/111/111/101',
-  X: '101/101/010/101/101',
-  Y: '101/101/010/010/010',
-  Z: '111/001/010/100/111',
-  0: '111/101/101/101/111',
-  1: '010/110/010/010/111',
-  2: '110/001/010/100/111',
-  3: '110/001/010/001/110',
-  4: '101/101/111/001/001',
-  5: '111/100/110/001/110',
-  6: '011/100/111/101/111',
-  7: '111/001/010/010/010',
-  8: '111/101/111/101/111',
-  9: '111/101/111/001/110',
-  '-': '000/000/111/000/000',
-  '.': '000/000/000/000/010',
-  '/': '001/001/010/100/100',
-};
 
 export function instrumentParts(api) {
   const { group, box, rod, sphere, mesh, dark, silver, white, yellow, blue, brown, rubber } = api;
@@ -79,42 +38,16 @@ export function instrumentParts(api) {
   });
 
   function text(parent, name, value, x, y, z, pixel = 0.0015, material = paper) {
-    const vertices = [],
-      normals = [],
-      indices = [];
-    [...value.toUpperCase()].forEach((char, c) => {
-      (GLYPHS[char]?.split('/') ?? []).forEach((row, r) => {
-        [...row].forEach((bit, col) => {
-          if (bit !== '1') return;
-          // +X is left to a seated pilot looking +Z. Every glyph faces -Z.
-          const px = x + ((value.length * 4 - 1) / 2 - c * 4 - col) * pixel;
-          const py = y + (2.5 - r) * pixel;
-          const i = vertices.length / 3;
-          vertices.push(
-            px,
-            py,
-            z,
-            px - pixel * 0.82,
-            py,
-            z,
-            px - pixel * 0.82,
-            py - pixel * 0.82,
-            z,
-            px,
-            py - pixel * 0.82,
-            z,
-          );
-          normals.push(0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1);
-          indices.push(i, i + 2, i + 1, i, i + 3, i + 2);
-        });
-      });
-    });
-    if (!vertices.length) return;
-    const geometry = new T.BufferGeometry();
-    geometry.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
-    geometry.setAttribute('normal', new T.Float32BufferAttribute(normals, 3));
-    geometry.setIndex(indices);
-    return mesh(parent, name, geometry, material);
+    return cockpitText(
+      parent,
+      name,
+      value,
+      [x, y, z],
+      pixel * 5,
+      material,
+      'technical',
+      Math.max(1, value.length * 4 - 1) * pixel,
+    );
   }
 
   function plate(parent, name, outline, z, material = dark, depth = 0.035) {
@@ -202,8 +135,10 @@ export function instrumentParts(api) {
         r * 0.037,
       );
     });
-    text(instrument, `${id}-label`, label, 0, -r * 0.25, -0.008, r * 0.029);
-    text(instrument, `${id}-units`, units, 0, -r * 0.45, -0.008, r * 0.024);
+    // Keep captions above the bottom numerals on closed scales, and use the clear
+    // lower gap for units on open scales.
+    text(instrument, `${id}-label`, label, 0, -r * (sweep > 5 ? 0.15 : 0.25), -0.008, r * 0.029);
+    text(instrument, `${id}-units`, units, 0, -r * (sweep > 5 ? 0.35 : 0.62), -0.008, r * 0.024);
     if (type === 'horizon') {
       const ball = group(instrument, 'attitude-ball', [0, 0, -0.011]);
       const radius = r * 0.72,

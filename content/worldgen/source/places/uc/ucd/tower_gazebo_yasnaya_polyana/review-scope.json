@@ -1,0 +1,223 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "bark": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof",
+      "roughness": 0.85,
+      "metallic": 0.1
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      2.9384087511575148,
+      7,
+      16.135853061153007
+    ],
+    "lookAt": [
+      -0.4578409548196371,
+      2.4,
+      0.8890341163812797
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "whole-timber-tower-stair-platform-and-green-roof",
+      "position": [
+        1.6448292664725876,
+        4,
+        12.095227847550257
+      ],
+      "lookAt": [
+        -0.32048866837374596,
+        2.5,
+        0.6223238814668958
+      ],
+      "fov": 48
+    },
+    {
+      "name": "open-undercroft-four-grounded-posts-and-stair",
+      "position": [
+        -7.192216310824222,
+        2,
+        3.0449999241894927
+      ],
+      "lookAt": [
+        -0.32048866837374596,
+        1.5,
+        0.6223238814668958
+      ],
+      "fov": 50
+    },
+    {
+      "name": "platform-entry-balusters-and-rafter-supports",
+      "position": [
+        0.3778975750456537,
+        5,
+        5.81869344636531
+      ],
+      "lookAt": [
+        -0.18313638192785486,
+        3.2,
+        0.35561364655251193
+      ],
+      "fov": 50
+    },
+    {
+      "name": "rear-railing-green-pyramid-and-open-frame",
+      "position": [
+        -2.1293180145502184,
+        5,
+        -8.97028454358678
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/models/tower-gazebo-yasnaya-polyana-model.mjs",
+    "export": "buildTowerGazeboSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTowerGazeboDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "bark": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "buildTowerGazeboStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "bark": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTowerGazeboCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "bark": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "anchor": [
+      37.53197110790589,
+      54.07432543327198
+    ],
+    "heading": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained Protomaps20261020/Mapzen201x201/6m standard extract. Outside control[-2.5,0] sets datum198.23757107381198m. Four post ground offsets[-0.07934965518876425,-0.106392250622946,0.018416897355848505,0.04679499927158304]m; whole platform sits about2.4m above the highest sampled post foot. Original ground remains beneath platform, stair, supports and approaches; solid posts/stringer ends seat into soil without cutouts. No flattening, new water or bespoke terrain. The map lacks this small footprint and final trail connection; exact orientation, scale and soil/footing details remain approximate. Inspected native whole tower, platform entry, roof-bearing frame and grounded posts/open stair. Original terrain stays beneath every open area; all independent buildings, paths and water remain. Approximate stair direction follows the nearest retained path; map point alone does not certify compass facing or dimensions. The30-degree uncertainty is an authoring estimate, not a surveyed angular bound. No missing-map trail was added.",
+    "mapIdentity": {
+      "maxDistance": 12
+    },
+    "bounds": [
+      37.53189343142875,
+      54.07427094963186,
+      37.53203266169522,
+      54.074361548354595
+    ],
+    "terrainReference": {
+      "anchor": [
+        37.531937078575304,
+        54.074335715410164
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Protomaps20261020/Mapzen201x201/6m standard extract. Outside control[-2.5,0] sets datum198.23757107381198m. Four post ground offsets[-0.07934965518876425,-0.106392250622946,0.018416897355848505,0.04679499927158304]m; whole platform sits about2.4m above the highest sampled post foot. Original ground remains beneath platform, stair, supports and approaches; solid posts/stringer ends seat into soil without cutouts. No flattening, new water or bespoke terrain. The map lacks this small footprint and final trail connection; exact orientation, scale and soil/footing details remain approximate."
+    },
+    "notes": "Named Беседка-вышка node6338741862 at unchanged assigned anchor[37.53197110790589,54.07432543327198]. No retained building footprint within40m. Map evidence is the named point only: the2.15m platform/2.6m roof and5.4m approximate height are photo-led, not mapped or surveyed dimensions. LocalX southeast, localZ southwest toward the nearest retained path point6.897m away; native axes baked with heading0. Stair faces the inferred approach, with30-degree orientation uncertainty. The small unrepresented foot trail between stair and mapped path is not invented as source map geometry. The gazebo is independent from the pavilion and entrance towers. Retained Protomaps20261020/Mapzen201x201/6m standard extract. Outside control[-2.5,0] sets datum198.23757107381198m. Four post ground offsets[-0.07934965518876425,-0.106392250622946,0.018416897355848505,0.04679499927158304]m; whole platform sits about2.4m above the highest sampled post foot. Original ground remains beneath platform, stair, supports and approaches; solid posts/stringer ends seat into soil without cutouts. No flattening, new water or bespoke terrain. The map lacks this small footprint and final trail connection; exact orientation, scale and soil/footing details remain approximate.",
+    "elevationMode": "terrain-contact"
+  }
+}

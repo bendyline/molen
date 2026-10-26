@@ -1,6 +1,6 @@
 /** Restored Liebermann villa: separately observed street and lake elevations. */
 import './install-deterministic-math.mjs';
-import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { B, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
@@ -394,7 +394,7 @@ function villa(o, _frame, d = 3) {
       p.push([Math.cos(a) * 0.48, 9.6 + Math.sin(a) * 0.63, 7.9]);
     }
     lake.addConvexPolygon('glass', ref, p, [0, 0, 1], (p) => [p[0], p[1]], glass);
-    for (let i = 0; i < n; i++) beam(lake, 'stone', p[i], p[(i + 1) % n], 0.12, 0.15, trim);
+    beamPath(lake, 'stone', p.slice(0, n), 0.12, 0.15, trim, true);
     if (d > 1) {
       face(lake, 'wood', 0, 9.04, 8.0, 0.045, 1.12, trim);
       face(lake, 'wood', 0, 9.6, 8.0, 0.85, 0.045, trim);

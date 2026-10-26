@@ -26,5 +26,10 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 ## Reconstruction limits
 
 - Fine historic finial inscriptions and individual sword scars require additional close photographic evidence.
-- Pier footings remain a photographic reconstruction. GSI DEM1A resolves the road banks but does not measure submerged riverbed or validate foundation embedment.
 - Adjacent statues, street signs, temporary furniture and vegetation are outside this bridge asset.
+- The original detailed master retains its earlier18cm curb/dark-clamp interpretation. Current browser levels correct the visible curb to30cm and near post clamps to patinated bronze; the original detailed source recipe/bytes remain preserved.
+- Ordinary photographs and standard PMTiles/Mapzen guide this current review. The retained GSI study is historical evidence and is not fetched or required for normal builds or the current placement fixture.
+- Near river stage and bank/road widths remain generalized; source pier proportions and seven-column schedule are retained without a new fabrication survey. Physical laptop/phone timings remain pending.
+- Footing placement uses a provisional local water fit, not surveyed foundation levels. Coarse terrain beside the bounded bridge/approach openings can remain steep, and distant road grades are generalized. No native water or terrain samples are changed.
+- A bounded native-terrain cap at sourceY0.45m reconstructs dry banks beneath the bridge/immediate approaches where coarse DSM is too high. Native heightfield samples and water remain exact; the cap and steep outer bank transitions are visualization approximations.
+- Intersecting native river-walk paving receives a bounded underpass grade at the same bank cap inside the inset bridge footprint. Its original route remains; exact ramps and historical riverside steps are not reconstructed.

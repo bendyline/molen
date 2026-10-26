@@ -336,6 +336,13 @@ anchors repeat every 16 projected meters, with small gaps and varied widths. Eve
 unobstructed approach from its street to its entrance or garage; homes never form landlocked rows
 inside a block. Visible ground-following paths and driveways connect the entrances to the roadside.
 Separately mapped sidewalks move the building setback behind the sidewalk while retaining access.
+Inferred homes without an attached garage also receive a simple driveway to the front of the
+house when the corridor is clear. Garage approaches and paths connect to the roadside. Weighted
+`lotFences` (`none`, `timber`, `masonry`, `rail`) select low decorative yard boundaries, including
+some fully open yards. Front fences leave gaps around every path and driveway and stay behind
+mapped sidewalks. Fences follow the terrain, exclude vegetation, use a cheaper shape with simplified
+nearby buildings, and disappear on distant tiles. They do not add physical collision barriers. Yard choices use an
+independent identity salt, so decorating a lot does not move or re-roll its house.
 Mapped footprints, occupied landmark extents, other streets, water and incompatible land uses
 such as parks, farmland, schools and parking exclude the entire parcel, including its approach.
 Slopes above 0.3 or more than three meters of height variation also exclude it.

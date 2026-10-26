@@ -8,7 +8,7 @@ import {
   applyAircraftControl,
   createAircraftVisual,
 } from '@bendyline/molen-client/aircraft';
-import { WalkCollision } from '@bendyline/molen-client/navigation';
+import { type NavigationInput, WalkCollision } from '@bendyline/molen-client/navigation';
 import {
   Aircraft,
   AircraftInput,
@@ -445,29 +445,37 @@ export class WorldAircraft {
       this.message = '';
     }
   }
-  input(dt: number, keys: ReadonlySet<string>, focused = true): void {
+  input(dt: number, controls: NavigationInput): void {
     const kind = this.mountedKind;
     if (!kind) return;
     const t = this.world.get(`aircraft-${kind}`, Transform);
     if (t) this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
-    const held = (key: string): number => Number(focused && keys.has(key));
-    const throttle =
-      held('ShiftLeft') + held('ShiftRight') - held('ControlLeft') - held('ControlRight');
-    if (throttle)
+    const pilot = controls.pilot;
+    for (const [action, code] of [
+      ['engine', 'KeyI'],
+      ['gear', 'KeyG'],
+      ['flaps', 'KeyF'],
+      ['vector', 'KeyJ'],
+      ['recover', 'KeyR'],
+    ] as const) {
+      for (let i = 0; i < (pilot?.[action] ?? 0); i++) this.key(code);
+    }
+    if (pilot?.power !== undefined || pilot?.throttle) {
       this.inputs = applyAircraftControl(
         this.inputs,
         {
           control: { id: 'common', label: 'Power', action: 'power', nodes: [] },
-          value: this.inputs.power + Math.min(dt, 0.1) * 0.22 * throttle,
+          value: pilot.power ?? this.inputs.power + Math.min(dt, 0.1) * 0.22 * pilot.throttle,
         },
         this.aircraftData(entityId(kind)).spec,
       );
+    }
     this.inputs = {
       ...this.inputs,
-      pitch: held('KeyS') - held('KeyW') || this.pointerAxes.pitch,
-      roll: held('KeyD') - held('KeyA') || this.pointerAxes.roll,
-      yaw: held('KeyZ') - held('KeyQ') || this.pointerAxes.yaw,
-      brake: held('Space') > 0 || this.cockpitBrake,
+      pitch: -controls.move.forward || this.pointerAxes.pitch,
+      roll: controls.move.right || this.pointerAxes.roll,
+      yaw: pilot?.yaw || this.pointerAxes.yaw,
+      brake: controls.jump || this.cockpitBrake,
     };
     flyAircraft(this.world, PLAYER, this.inputs);
   }

@@ -2,6 +2,7 @@
 import '../../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { joinedPath } from '../../../worldgen/scripts/joined-path.mjs';
 import { smoothSurface } from '../surface-normals.mjs';
 import { detailKit } from '../vehicle-detail.mjs';
 
@@ -156,63 +157,7 @@ export function loft(
   }
 }
 export function outline(d, points, radius, material, closed = true) {
-  const path = points
-    .map((p) => new T.Vector3(...p))
-    .filter((p, i, all) => i === 0 || p.distanceToSquared(all[i - 1]) > 1e-16);
-  if (closed && path.length > 1 && path[0].distanceToSquared(path.at(-1)) < 1e-16) path.pop();
-  if (path.length < 2) return;
-  const segments = path.length - (closed ? 0 : 1);
-  const directions = Array.from({ length: segments }, (_, i) =>
-    path[(i + 1) % path.length].clone().sub(path[i]).normalize(),
-  );
-  const initial = closed ? directions.at(-1) : directions[0];
-  const u = new T.Vector3(...(Math.abs(initial.y) < 0.9 ? [0, 1, 0] : [1, 0, 0]))
-    .cross(initial)
-    .normalize();
-  const positions = [],
-    indices = [],
-    sides = 6;
-  for (let i = 0; i < path.length; i++) {
-    const incoming = directions[(i - 1 + segments) % segments];
-    const from = i === 0 && !closed ? directions[0] : incoming;
-    const to = directions[i % segments];
-    const outgoing = i === path.length - 1 && !closed ? from : to;
-    const tangent = from.clone().add(outgoing).normalize();
-    const v = from.clone().cross(u).normalize();
-    for (let j = 0; j < sides; j++) {
-      const angle = (j * Math.PI * 2) / sides;
-      const offset = u
-        .clone()
-        .multiplyScalar(Math.cos(angle) * radius)
-        .addScaledVector(v, Math.sin(angle) * radius);
-      // Adjacent sections share this miter ring instead of ending in separate
-      // cylinder caps, so even a sharp rail bend has no daylight wedge.
-      const denominator = from.dot(tangent);
-      if (denominator > 0.25) offset.addScaledVector(from, -offset.dot(tangent) / denominator);
-      positions.push(...path[i].clone().add(offset).toArray());
-    }
-    u.applyQuaternion(new T.Quaternion().setFromUnitVectors(from, outgoing));
-  }
-  for (let i = 0; i < segments; i++)
-    for (let j = 0; j < sides; j++) {
-      const a = i * sides + j,
-        b = ((i + 1) % path.length) * sides + j;
-      const c = ((i + 1) % path.length) * sides + ((j + 1) % sides);
-      const e = i * sides + ((j + 1) % sides);
-      indices.push(a, e, b, e, c, b);
-    }
-  if (!closed) {
-    const first = positions.length / 3;
-    positions.push(...path[0].toArray(), ...path.at(-1).toArray());
-    for (let j = 0; j < sides; j++) {
-      indices.push(first, (j + 1) % sides, j);
-      indices.push(
-        first + 1,
-        (path.length - 1) * sides + j,
-        (path.length - 1) * sides + ((j + 1) % sides),
-      );
-    }
-  }
+  const { positions, indices } = joinedPath(points, radius, 6, closed);
   const geometry = new T.BufferGeometry();
   geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
   geometry.setIndex(indices);

@@ -184,7 +184,7 @@ const plants = [
     'umbrella',
     22,
     14,
-    '#899e85',
+    '#667e60',
     { bark: '#b9b4a1', crownBase: 0.65 },
   ),
   plant('mallee', 'Australian mallee form', 'broadleaf', 'round', 5, 6, '#91a08b', {
@@ -375,7 +375,7 @@ const population = (name, weight = 1) => {
     align: 'up',
     // Enough per-plant drift that a stand is not one swatch: autumn crowns range yellow to
     // russet, conifers yellow- to blue-green, and some trees stand in deeper shade.
-    tint: { hue: 0.05, saturation: 0.12, lightness: 0.16 },
+    tint: { hue: 0.025, saturation: 0.07, lightness: 0.08 },
   };
 };
 const populations = (names) =>
@@ -392,6 +392,18 @@ const colors = (ground, forest, grass) => ({
     meadow: grass,
     park: grass,
     garden: grass,
+    cemetery: grass,
+    recreation_ground: grass,
+    village_green: grass,
+    golf_course: grass,
+    pitch: grass,
+    gravel: '#b6b0a2',
+    bare_rock: '#aaa395',
+    pedestrian: '#aaa79e',
+    pavement: '#aaa79e',
+    parking: '#747575',
+    retail: '#aaa59a',
+    civic: '#aaa59a',
     residential: grass,
     wetland: '#7f9272',
     farmland: '#b0a475',
@@ -431,7 +443,12 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     scrubDensity = 55,
     openDensity = 1.4,
     surface = colors('#929f73', '#53734f', '#97a46a'),
+    // A regional color refinement must not change the habitat's brush/density selection.
+    surfacePalette = surface,
     parkTrees = trees,
+    homeTrees = parkTrees,
+    parkDensity = 19,
+    crownScale = 1,
     orchard = ['fruit_tree'],
     wetland = ['reeds'],
     grasslandTrees = 0,
@@ -451,7 +468,14 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
       densityPerHectare: density,
       minSpacing: layer === 'groundcover' ? 0.35 : 1.8,
       slopeMax: layer === 'groundcover' ? 0.7 : 0.85,
-      populations: populations(names),
+      populations: populations(names).map((p) =>
+        layer === 'canopy'
+          ? {
+              ...p,
+              widthScale: { min: 0.85 * crownScale, max: 1.15 * crownScale },
+            }
+          : p,
+      ),
       layer,
       clustering: {
         scale: layer === 'groundcover' ? 35 : 135,
@@ -472,11 +496,13 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     notClasses: wildExclusions,
     ...(mangrove ? { nearWater: { maxDistance: 250 } } : {}),
   });
-  add('park', ['park', 'garden', 'cemetery'], parkTrees, 19, 'canopy', { notClasses: knownCrops });
+  add('park', ['park', 'garden', 'cemetery'], parkTrees, parkDensity, 'canopy', {
+    notClasses: knownCrops,
+  });
   // Yards are planted lot by lot, not in forest-scale stands: denser than a park, with clustering
   // fine enough to vary between neighbours instead of blanking whole blocks. Only regions whose
   // atlas sets a tree fill factor infer yards at all.
-  add('home_canopy', ['home_canopy'], parkTrees, 140, 'canopy', {
+  add('home_canopy', ['home_canopy'], homeTrees, 120, 'canopy', {
     clustering: { scale: 55, threshold: 0.12, contrast: 2.2, seedOffset: 11 },
   });
   add('open', ['open_ground'], shrubs, openDensity);
@@ -615,7 +641,7 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     version: 1,
     title,
     doc: 'Representative habitat forms. Actual mapped land cover controls placement; this is not a species occurrence map.',
-    surface,
+    surface: surfacePalette,
     defaults: {
       avoid: { roads: 5, buildings: 3, water: 1.5 },
       slopeMax: 0.8,
@@ -633,9 +659,33 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
   });
 }
 
-const wet = colors('#6e8863', '#406647', '#829660');
-const dry = colors('#b6a780', '#87936c', '#b6ad7c');
-const desert = colors('#c3ae85', '#98a07b', '#b9ac7d');
+const wet = colors('#6e8065', '#406047', '#7b8b63');
+// Aerial review of Bellevue's open lawn: the shared wet grass was pale yellow-green
+// under the Earth sun. Cooler, deeper turf belongs to this coastal region; rough ground
+// stays lighter and woodland keeps its own dark green without adding trees to open lawns.
+const pacificCoastal = colors('#4b6248', '#2c4a38', '#315a38');
+Object.assign(pacificCoastal.colors, {
+  scrub: '#466044',
+  grassland: '#506b45',
+  meadow: '#506b45',
+  garden: '#365a38',
+  residential: '#5a7150',
+  wetland: '#405d48',
+});
+const dry = colors('#aaa38c', '#687c58', '#a5a080');
+const desert = colors('#b4aa96', '#647650', '#a9a081');
+// Managed planting is not the potential dry biome. Keep verges dry and parks irrigated.
+for (const surface of [dry, desert]) {
+  Object.assign(surface.colors, {
+    park: '#788b61',
+    garden: '#74865b',
+    cemetery: '#7f8e67',
+    grass: '#87956e',
+    residential: '#a49f89',
+    sand: '#c1b59e',
+    barren: '#b4ac9c',
+  });
+}
 const cold = colors('#929b81', '#57745d', '#9eaa85');
 habitat('ice', 'Bare rock and ice', { biomes: [0] }, [], [], [], {
   forestDensity: 0,
@@ -660,7 +710,7 @@ habitat(
   ['dry_tropical'],
   ['scrub'],
   ['dry_grass'],
-  { surface: dry },
+  { surface: dry, crownScale: 1.25 },
 );
 habitat(
   'tropical_conifers',
@@ -811,7 +861,14 @@ habitat(
   [['eucalyptus', 4], 'mallee'],
   ['mallee'],
   ['dry_grass'],
-  { priority: 40, surface: dry, forestDensity: 100, grasslandTrees: 4 },
+  {
+    priority: 40,
+    surface: dry,
+    forestDensity: 100,
+    grasslandTrees: 4,
+    parkTrees: [['eucalyptus', 4], 'warm_evergreen'],
+    crownScale: 1.25,
+  },
 );
 habitat(
   'southern_beech_forest',
@@ -847,7 +904,19 @@ habitat(
   [['cedar', 5], ['fir', 2], 'alder'],
   ['scrub'],
   ['fern'],
-  { priority: 40, surface: wet, forestDensity: 195, parkTrees: ['alder', 'cedar'] },
+  {
+    priority: 40,
+    surface: wet,
+    surfacePalette: pacificCoastal,
+    forestDensity: 175,
+    parkTrees: [
+      ['alder', 3],
+      ['maple', 2],
+      ['cedar', 2],
+    ],
+    homeTrees: [['cedar', 4], ['fir', 2], ['alder', 3], 'maple'],
+    crownScale: 1.2,
+  },
 );
 habitat(
   'atacama',
@@ -929,6 +998,30 @@ habitat(
     scrubDensity: 38,
     openDensity: 1.2,
     parkTrees: ['mesquite'],
+    riparian: [
+      ['willow', 3],
+      ['mesquite', 2],
+    ],
+    crownScale: 1.2,
+    orchard: [],
+  },
+);
+habitat(
+  'aravalli_thorn',
+  'Aravalli thorn woodland and managed broadleaf parks',
+  { ecoregions: [314] },
+  ['dry_tropical'],
+  ['dry_scrub'],
+  ['dry_grass'],
+  {
+    priority: 40,
+    surface: dry,
+    forestDensity: 65,
+    scrubDensity: 32,
+    openDensity: 0.8,
+    openTrees: 0,
+    parkTrees: [['warm_evergreen', 4], 'dry_tropical'],
+    crownScale: 1.3,
     orchard: [],
   },
 );
@@ -999,7 +1092,16 @@ habitat(
   [['warm_evergreen', 5], 'maple'],
   ['scrub', 'bamboo'],
   ['fern'],
-  { priority: 40, surface: wet, forestDensity: 170, parkTrees: ['maple', 'warm_evergreen'] },
+  {
+    priority: 40,
+    surface: { ...wet, colors: { ...wet.colors, residential: '#999b91', garden: '#6f8059' } },
+    forestDensity: 155,
+    parkTrees: [
+      ['warm_evergreen', 3],
+      ['maple', 2],
+    ],
+    crownScale: 1.2,
+  },
 );
 habitat(
   'east_asian_deciduous',
@@ -1026,7 +1128,8 @@ const doc = {
   plants,
   crops: agricultureCrops(),
 };
-const bytes = `${JSON.stringify(doc, null, 2)}\n`;
+// This generated download is read through its authoring source; keep the existing data budget.
+const bytes = `${JSON.stringify(doc)}\n`;
 const destination = new URL('regional.catalog.json', root);
 if (process.argv.includes('--check')) {
   if ((await readFile(destination, 'utf8')) !== bytes)

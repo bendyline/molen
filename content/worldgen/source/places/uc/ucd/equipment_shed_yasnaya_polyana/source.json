@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.equipment_shed_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Equipment Shed — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.equipment_shed_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/equipment_shed_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:464e7458d7210376629cd663fce8b424445de66b8352612f22536f7992653be9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-equipment-shed-yasnaya-polyana",
+        "path": "models/generate-equipment-shed-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "equipment-shed-yasnaya-polyana-model",
+        "path": "models/equipment-shed-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "equipment-shed-yasnaya-polyana-geometry",
+        "path": "models/equipment-shed-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

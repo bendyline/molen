@@ -296,6 +296,29 @@ describe('navigation input source', () => {
     expect(next.pilot?.throttle).toBe(1);
     source.dispose();
   });
+  it('distinguishes an idle throttle lever from a disconnected or suspended one', () => {
+    const surface = new FakeSurface();
+    const pad = { id: 'stick', index: 2, connected: true, mapping: '', axes: [1], buttons: [] };
+    const source = new NavigationInputSource({
+      element: surface,
+      profile: 'pilot',
+      getGamepads: () => (pad.connected ? [pad] : []),
+    });
+    source.map.defineProfile('pilot', {
+      bindings: {},
+      axes: [{ axis: 0, action: A.power, mode: 'unit', invert: true }],
+    });
+    expect(source.read(0).pilot?.power).toBe(0);
+    pad.axes[0] = -1;
+    expect(source.read(0).pilot?.power).toBe(1);
+    const resume = source.map.suspend();
+    expect(source.read(0).pilot?.power).toBeUndefined();
+    resume();
+    expect(source.read(0).pilot?.power).toBe(1);
+    pad.connected = false;
+    expect(source.read(0).pilot?.power).toBeUndefined();
+    source.dispose();
+  });
 });
 
 describe('virtual inputs and the touch stick', () => {

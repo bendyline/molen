@@ -19,7 +19,13 @@ describe.each(['source', 'imported'])('UH-1H windshield clearance (%s)', (versio
       housing = [],
       shell = [];
     cockpit.traverse((mesh) => {
-      if (!mesh.isMesh || !['huey-panel', 'huey-coaming'].includes(mesh.material.name)) return;
+      if (
+        !mesh.isMesh ||
+        !['huey-panel', 'huey-coaming'].some(
+          (name) => mesh.material.name === name || mesh.material.name.startsWith(`${name}-`),
+        )
+      )
+        return;
       // Check the whole volume, including surfaces facing away from the observer.
       mesh.material.side = DoubleSide;
       housing.push(mesh);

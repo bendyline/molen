@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/emley-moor-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-271,836 triangles; 516,290 vertices; 4 material groups; 21,851,308 source bytes. Source hash: `sha256:13b243d97ccaf74044cb251b0cf0b987281939dc0e3639b85b771864e5f3b630`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+271,260 triangles; 515,498 vertices; 4 material groups; 21,815,884 source bytes. Source hash: `sha256:de4f70d0099c207de14fe9321d3e719abdd586b466f8ebc676f487e64f97e07a`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs emley_moor_transmitting_station`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

@@ -1,7 +1,7 @@
 /** Original Rouen clock-pavilion and belfry exterior from municipal records, cast measurements and the BnF survey. */
 
 import { readFileSync } from 'node:fs';
-import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
   annulus,
   archBay,
@@ -24,7 +24,7 @@ const stone = [0.76, 0.73, 0.63],
   dark = [0.065, 0.068, 0.064];
 const map = JSON.parse(readFileSync(structureSourcePath('gros_horloge', 'map-frame.json'), 'utf8'));
 function tube(out, slot, points, r, color) {
-  for (let i = 1; i < points.length; i++) beam(out, slot, points[i - 1], points[i], r, r, color);
+  beamPath(out, slot, points, r, r, color);
 }
 function circ(out, slot, x, y, z, rx, ry, width, color) {
   const p = Array.from({ length: 65 }, (_, i) => [

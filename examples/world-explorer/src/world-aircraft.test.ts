@@ -1,10 +1,25 @@
+import { idleNavigationInput, NavigationInputSource } from '@bendyline/molen-client/navigation';
 import { EarthVehicles } from '@bendyline/molen-earth/client';
-import { AircraftState } from '@bendyline/molen-kernel/aircraft';
+import { AircraftInput, AircraftState } from '@bendyline/molen-kernel/aircraft';
 import { Transform } from '@bendyline/molen-kernel/world';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { ENTITY_TYPES } from './test-content';
 import { aircraftBlocks, WorldAircraft } from './world-aircraft';
+
+function controls(keys: string[] = []) {
+  const input = idleNavigationInput();
+  input.move.forward = Number(keys.includes('KeyW')) - Number(keys.includes('KeyS'));
+  input.pilot = {
+    throttle: Number(keys.includes('ShiftLeft')),
+    yaw: 0,
+    engine: 0,
+    gear: 0,
+    flaps: 0,
+    recover: 0,
+  };
+  return input;
+}
 
 async function setup(
   loadModel: (id: string) => Promise<THREE.Object3D> = async () => new THREE.Group(),
@@ -31,6 +46,97 @@ async function setup(
   return { root, vehicles, flight };
 }
 describe('world aircraft', () => {
+  it('preserves cockpit controls while keyboard or joystick axes override their movement', async () => {
+    const { vehicles, flight } = await setup();
+    flight.enter(flight.visitPosition('p51d'));
+    const session = flight.cockpitSession();
+    expect(session).toBeDefined();
+    session?.change({
+      control: { id: 'stick', label: 'Stick', action: 'stick', nodes: [] },
+      value: 0.4,
+      pitch: 0.3,
+    });
+    session?.change({
+      control: { id: 'brake', label: 'Brake', action: 'brake', nodes: [] },
+      value: 1,
+    });
+    flight.input(1 / 60, controls());
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      pitch: 0.3,
+      roll: 0.4,
+      brake: true,
+    });
+    const axes = controls();
+    axes.move = { forward: -0.7, right: -0.2, up: 0 };
+    flight.input(1 / 60, axes);
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      pitch: 0.7,
+      roll: -0.2,
+      brake: true,
+    });
+    session?.release();
+    session?.change({
+      control: { id: 'brake', label: 'Brake', action: 'brake', nodes: [] },
+      value: 0,
+    });
+    flight.input(1 / 60, controls());
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      pitch: 0,
+      roll: 0,
+      brake: false,
+    });
+    flight.dispose();
+    vehicles.dispose();
+  });
+  it('uses raw joystick axes for proportional flight and an absolute throttle lever', async () => {
+    const { vehicles, flight } = await setup();
+    flight.enter(flight.visitPosition('p51d'));
+    const pad = {
+      id: 'Flight stick',
+      index: 0,
+      connected: true,
+      mapping: '',
+      axes: [0.44, 0.66, -0.44, -1],
+      buttons: [],
+    };
+    const source = new NavigationInputSource({
+      element: { addEventListener() {}, removeEventListener() {} },
+      profile: 'pilot',
+      getGamepads: () => (pad.connected ? [pad] : []),
+    });
+    const profile = source.map.getProfile();
+    profile.axes = [
+      { axis: 0, action: 'nav-right' },
+      { axis: 1, action: 'nav-back' },
+      { axis: 2, action: 'nav-yaw-right' },
+      { axis: 3, action: 'nav-power', mode: 'unit', invert: true },
+    ];
+    source.map.defineProfile('pilot', profile);
+    flight.input(1 / 60, source.read(1 / 60));
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      roll: (0.44 - 0.12) / 0.88,
+      pitch: (0.66 - 0.12) / 0.88,
+      yaw: -(0.44 - 0.12) / 0.88,
+      power: 1,
+    });
+    pad.axes[3] = 1;
+    flight.input(1 / 60, source.read(1 / 60));
+    expect(flight.power).toBe(0);
+    pad.axes[3] = 0;
+    flight.input(1 / 60, source.read(1 / 60));
+    expect(flight.power).toBe(0.5);
+    pad.connected = false;
+    flight.input(1 / 60, source.read(1 / 60));
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      roll: 0,
+      pitch: 0,
+      yaw: 0,
+      power: 0.5,
+    });
+    source.dispose();
+    flight.dispose();
+    vehicles.dispose();
+  });
   it('loads the selected catalog aircraft only, evicts the previous addition and boards it', async () => {
     const loads: string[] = [];
     const { vehicles, flight } = await setup(async (id) => {
@@ -50,7 +156,7 @@ describe('world aircraft', () => {
     expect(flight.enter(flight.visitPosition('av_8b'))).toBe(true);
     expect(flight.mountedKind).toBe('av_8b');
     flight.key('KeyJ');
-    flight.input(1 / 60, new Set());
+    flight.input(1 / 60, controls());
     vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: false });
     expect(flight.state?.thrustVectorPosition).toBeGreaterThan(0);
     flight.dispose();
@@ -96,7 +202,7 @@ describe('world aircraft', () => {
     for (let i = 0; i < 3600 && (flight.state?.grounded ?? true); i++) {
       const keys = new Set(['ShiftLeft']);
       if ((flight.state?.airspeed ?? 0) >= 65) keys.add('KeyS');
-      flight.input(1 / 60, keys);
+      flight.input(1 / 60, controls([...keys]));
       vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: false });
     }
     expect(flight.state?.crashed).toBe(false);
@@ -117,7 +223,7 @@ describe('world aircraft', () => {
     flight.key('KeyI');
     const run = (keys: string[], count: number): void => {
       for (let i = 0; i < count; i++) {
-        flight.input(1 / 60, new Set(keys));
+        flight.input(1 / 60, controls(keys));
         vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: false });
         flight.render();
       }

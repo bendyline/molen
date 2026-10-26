@@ -1,0 +1,749 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.riga_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:284127248755d2599ef5243d0b97dc0f5d36f69c99a9ac7deb5ad3106d94794e",
+  "sourceHash": "sha256:1a1651446b625efd21f383984bf344470b6a84efcb43ca3f07c6dc706c003188",
+  "runtimeHash": "sha256:e77d52dae44bc489424921b459d4c3802a7bbc64bc442f36e941201a798e4a8a",
+  "captureReportHash": "sha256:ef207e479fd60404188311216170625ccf24d70c0aa4da8a78712832f9952f52",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-stepped-log-riga-and-red-hips.png",
+      "shots/large-main-door-and-open-entry-recess.png",
+      "shots/side-door-bracing-and-main-hip.png",
+      "shots/lower-annex-door-and-rear-roof-closure.png"
+    ],
+    "captureReportHash": "sha256:ef207e479fd60404188311216170625ccf24d70c0aa4da8a78712832f9952f52",
+    "notes": "Inspected 48 current portable/shared/medium-fi/native frames in the same author/inspect/fix pass. Complete higher log main barn and inset lower annex, two closed red hips with eave undersides, three genuinely recessed timber doors, vertical bracing, coarse log courses/corner ends and four supported threshold treads. Whole, entry-recess, side-door and rear views show the complete exterior; no exhibition contents are implied."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-stepped-log-riga-and-red-hips.png",
+      "shots/shared/large-main-door-and-open-entry-recess.png",
+      "shots/shared/side-door-bracing-and-main-hip.png",
+      "shots/shared/lower-annex-door-and-rear-roof-closure.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:2fbdff9a3437ca1c1277a2114914c48653f830ea224ee70db1f633d823700409",
+    "notes": "Six existing 256px shared graphs: wood_log, wood_plain, wood_vertical, metal_standing_seam, stone_sandstone and metal_painted. Metric UVs, restrained linear tints and separate vertex streams. No embedded images, copied photo pixels, private atlas or new graph. District uses five draws, street/closeup six; every graph reads once in the native scene and unload releases all model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-stepped-log-riga-and-red-hips.png",
+      "medium-fi/large-main-door-and-open-entry-recess.png",
+      "medium-fi/side-door-bracing-and-main-hip.png",
+      "medium-fi/lower-annex-door-and-rear-roof-closure.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:4753f18197f9bd4efca974c7c3b20e237ff800e8624241a47ef78c013408d833",
+    "notes": "Four source-authored LODs: 178/572/1768/2412 triangles. Initial skyline+district 72452 bytes. Skyline keeps both roof heights and all three recessed entrances; district adds bracing/shared surfaces and near levels add log relief and door hardware. Synthetic lighting/distance/transition views pass; physical laptop/phone timings remain pending."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e0d25d16cb1a32967fc962a7eaf0bfbf91ebc8e27f12587bc3134655d9665201",
+    "mapFrameHash": "sha256:f0ca2e10ed9fccdddc99d496ece59377b5bc99af4b0abbd228af12ebd6539051",
+    "notes": "Confirmed named OSM way167382241, native building35184539471073, at[37.52248004078865,54.074947841126]. Footprint axes are baked east/up/south, heading0; southwest end and southeast side assignments remain photo-led. Two occupied ground masks preserve the open main-entry recess. All242resident/294wider independent buildings, original roads, DEM samples and40070.675m²native water remain. Failed loading retains all243original buildings; unload restores ground and releases geometry. Detailed level15 ownership and generalized level14 clipping pass."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "The named map footprint confirms identity. Its17.11x10.76m rectangle generalizes the photo-led stepped main/annex plan; the internal split and inset are reconstructed. Main wall/ridge3.35/5.25m and annex2.6/3.78m, door dimensions, bracing census, hidden rear and historical threshold levels are visual estimates. Standard native ground varies0.23m, so one level floor fits without sloped-floor/roof adaptation. No exact surveyed facade assignment, historical level accuracy or navigable exhibition interior is claimed. The estate inventory remains open for the icehouse/white-kitchen/woodshed group."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:1a1651446b625efd21f383984bf344470b6a84efcb43ca3f07c6dc706c003188\",\"bytes\":227740,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.glb\",\"hash\":\"sha256:e77d52dae44bc489424921b459d4c3802a7bbc64bc442f36e941201a798e4a8a\",\"bytes\":227156,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:5094b5c728c4ee43486a5668299a74ae5b8b56cca1f035d39ee72daa6094bf46\",\"bytes\":17072,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:d12e92e696aca5eed3e784dcc2ebf080c553830260a569300a0bc13a2e4b8e8f\",\"bytes\":55380,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:b6876977c060966e0b781a3820ef0bc508214082b39abf6f9d5318d3f904cdac\",\"bytes\":159632,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:1efcb10e104c76547ebfdfe58cf06e1ccec4fe58dc8773bcec0403d89b15d89c\",\"bytes\":215052,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "three-recessed-entrances-stepped-closed-hips-bracing-and-thresholds",
+        "passed": true,
+        "notes": "112 actual mesh probes over6GLBs; finite attributes, exact source/runtime/four-LOD hashes, shared materials, budgets and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Confirmed named OSM way167382241, native building35184539471073, at[37.52248004078865,54.074947841126]. Footprint axes are baked east/up/south, heading0; southwest end and southeast side assignments remain photo-led. Two occupied ground masks preserve the open main-entry recess. All242resident/294wider independent buildings, original roads, DEM samples and40070.675m²native water remain. Failed loading retains all243original buildings; unload restores ground and releases geometry. Detailed level15 ownership and generalized level14 clipping pass."
+    },
+    "inputHash": "sha256:284127248755d2599ef5243d0b97dc0f5d36f69c99a9ac7deb5ad3106d94794e",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:284127248755d2599ef5243d0b97dc0f5d36f69c99a9ac7deb5ad3106d94794e",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 48 current portable/shared/medium-fi/native frames in the same author/inspect/fix pass. Complete higher log main barn and inset lower annex, two closed red hips with eave undersides, three genuinely recessed timber doors, vertical bracing, coarse log courses/corner ends and four supported threshold treads. Whole, entry-recess, side-door and rear views show the complete exterior; no exhibition contents are implied.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/preview.png",
+          "hash": "sha256:ba3f28bad869f73959ffe5aca02bdfd273f312d5bf29c2d5190773f558fe502b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:cd64e1030a8b6e375f5f08dcd2efc7554a19d3c76c62f494a3c7367af52f39fa"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:78111bf8dad81192be2bef5527cd287e7c87920b2c3bf4c510ee90d667ac05d3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:bc1fccd1010f56928faa1336993bf36c49234369605d8e5465220f9f9eec6495"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:7595a40c4c9ea915ef30f03447caba58771df5d3006ce49a7311ee118fced385"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/whole-stepped-log-riga-and-red-hips.png",
+          "hash": "sha256:a0d87269daab58317c851254f6f39d06c22b81b34f1194a35add3fb5a812b92b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/large-main-door-and-open-entry-recess.png",
+          "hash": "sha256:6167dc35f418d2ecb4d1f7a4eac6f3f4c90a4c977d51800531bc387a3bc7feaf"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/side-door-bracing-and-main-hip.png",
+          "hash": "sha256:6f706811ed977aaa6a4d3486500c43bffe57bad2c264d863181deb762f0f6d5c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/lower-annex-door-and-rear-roof-closure.png",
+          "hash": "sha256:6275afc97e1368aacb7d1ffd8c1360cd9cc1f514cc3be82d107da51c0efa018b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:4dda5970b2b8844324892f0c9405366eae243cbc3b9a32ad6075276f26151b36"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:254c662416c14b060c2ce9532c532067fd2ff5d9c1772ba66c28a91e918ca873"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:606dc00a7bebfd89347710a36a45366f0537168b8dedf0f022ec22dfe2eb5a6b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:c516959e0e745bf649f4abd895aea2a23d883da75fca1a98d5589cd38895b3dc"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/shared/whole-stepped-log-riga-and-red-hips.png",
+          "hash": "sha256:ed8d89df18b77fa660ea85f705298eefcbda5984621b46fc843467202c21403e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/shared/large-main-door-and-open-entry-recess.png",
+          "hash": "sha256:5d428542812487991a1a3dff5a25a23a7a664f1ec65825a9a79cf88f59f6c779"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/shared/side-door-bracing-and-main-hip.png",
+          "hash": "sha256:dd91fab94fff8060b7d1118fec51da08f95ed8bb2850786b86493b36e947e83d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/shared/lower-annex-door-and-rear-roof-closure.png",
+          "hash": "sha256:3eab2cf182c1dee232d255184a4e1faa4acea574d9fb6a742dfc1471df1dabfe"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:4cd2270b936b0afcb109ae784180ab978e5de912a177eb59ba9f4aa8c7deeb4c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:a861b158bdee236fb02fb7dae49b9542ac5e42337d2ea913fa7bc41412ea2234"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:08fb8f3a02d831ee45a23d5948cc80802d3282bdec0789a7fcfc8095d8e88305"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:dccc8b56241350cbb9cce0eedb94d5ea41e2f7d0ad2fbff6a1019b8db8aeaf10"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:20b5487147885bed7ba2bd42f0a1aef69b262871fe2c6f3f3eeb557a9ca6ba44"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:c8d388d9110d379b73b053eb59b304b334094d7729667b985c08ab13c2b30e7f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:f69cd99cd77aa5a73c3257fefab39d524f66904af7b520be8b5c0c470c28f95c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:088786a75726b959f4e1c52a8ad9daa2a4fe78c1af5a34dd13d169a906fb1464"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:bc4c55811e9391cea5966dd9eeec180f935fefbb80925b39a93e2fae061cbe4a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:572df5704d370510dd1c9e5973c916c4d1325563c4668e8f28f2cc98ebf246a6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:a255276a46e7434392b485ee487c3c2c264c4c1088ade9f7500818e584445d18"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:a20533537621e0997ed1b249bbd4adccf919d914503217acbe3df0243f7074f1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:9ce9076a32b7b90b81eb675835fbaf15996608944d5f03765dfe38f5eac74d73"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:6d9394320f330550772f60fb57d3f5a82d3ebff26e68caf5dba4dfe87b5a4408"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/whole-stepped-log-riga-and-red-hips.png",
+          "hash": "sha256:c5e3ded603f3cdb0e3802448fc80dad8c2329b96e04230d1791c44f68ea94609"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/large-main-door-and-open-entry-recess.png",
+          "hash": "sha256:2bb70c9d7c787557d0228671ed3ca594ca8627b1c66533102ce62ae8d4db52b5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/side-door-bracing-and-main-hip.png",
+          "hash": "sha256:3216dc9a1fb084f2eea473c5d739ef1b4272be5001ea87924ded6dd572ff2a0e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/lower-annex-door-and-rear-roof-closure.png",
+          "hash": "sha256:0ed6deae599211c7611de3c3ad5b7ef0fbb4ae7b3e5f230b80810e8688bed837"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:8eaf2b6c8a39b9b7699b9306d3bc1e7ac9db901ca372cad28e4bc906d50beeac"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:f69cd99cd77aa5a73c3257fefab39d524f66904af7b520be8b5c0c470c28f95c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:85c862ef327345e48f274e1f5dd2111133062d186e5f74fddf0752314dd49a6a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:9141ff0f670390738d740bfd454f72a8b9e08c6a62a0289c7c0442e7a1885b92"
+        },
+        {
+          "path": ".artifacts/riga-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:2c31d2148bf67bc90efb026b76682a0ed0cb2b0bcf3662e58ae465707dd54a3b"
+        },
+        {
+          "path": ".artifacts/riga-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:f0139dba9fb4a488b77285a3489c08999c9a8d0f719c4725d0b4cab44c227ef5"
+        },
+        {
+          "path": ".artifacts/riga-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:fd2c9b5ed7e9f35c3516dd813b4a1ac0ae6d1183e076497f4f07abf911ccf2a9"
+        },
+        {
+          "path": ".artifacts/riga-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:0b7572af9f5a4fa2a0dc62246335bcf66b9a7dc9fd1d76fa4fe8a0f2aa8efb37"
+        },
+        {
+          "path": ".artifacts/riga-integration/shots/final-closeup-whole-stepped-log-riga-and-red-hips.png",
+          "hash": "sha256:6190a81025b8538248e8d18cdf20307fbb6dc6225da9e519416a34640004dc70"
+        },
+        {
+          "path": ".artifacts/riga-integration/shots/final-closeup-large-main-door-and-open-entry-recess.png",
+          "hash": "sha256:b8414ec6a753276c6d4faae443b3d8dcbb202f7b2490bcb8b6a64ed719ee2adc"
+        },
+        {
+          "path": ".artifacts/riga-integration/shots/final-closeup-side-door-bracing-and-main-hip.png",
+          "hash": "sha256:f8d814c96dcb4021b68ab921e28cafccb80506129acd2fdae9ac579fb9e50d96"
+        },
+        {
+          "path": ".artifacts/riga-integration/shots/final-closeup-lower-annex-door-and-rear-roof-closure.png",
+          "hash": "sha256:0d9f97033007c3519564d1410fb880d47e508413ec9370e4fb5adf689af977af"
+        },
+        {
+          "path": ".artifacts/riga-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:0cf5ed467ed82b9a5ef4197a33f3cc9bd5fc448cbc458e5e24a978f1ecf4003c"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:284127248755d2599ef5243d0b97dc0f5d36f69c99a9ac7deb5ad3106d94794e",
+      "sourceHash": "sha256:1a1651446b625efd21f383984bf344470b6a84efcb43ca3f07c6dc706c003188",
+      "runtimeHash": "sha256:e77d52dae44bc489424921b459d4c3802a7bbc64bc442f36e941201a798e4a8a",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/models/source.glb": "sha256:1a1651446b625efd21f383984bf344470b6a84efcb43ca3f07c6dc706c003188",
+        "content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.glb": "sha256:e77d52dae44bc489424921b459d4c3802a7bbc64bc442f36e941201a798e4a8a",
+        "content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.skyline.glb": "sha256:5094b5c728c4ee43486a5668299a74ae5b8b56cca1f035d39ee72daa6094bf46",
+        "content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.district.glb": "sha256:d12e92e696aca5eed3e784dcc2ebf080c553830260a569300a0bc13a2e4b8e8f",
+        "content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.street.glb": "sha256:b6876977c060966e0b781a3820ef0bc508214082b39abf6f9d5318d3f904cdac",
+        "content/worldgen/assets/places/uc/ucd/riga_yasnaya_polyana/model.closeup.glb": "sha256:1efcb10e104c76547ebfdfe58cf06e1ccec4fe58dc8773bcec0403d89b15d89c"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184539471073
+      ],
+      "mapLevels": [
+        {
+          "level": 14,
+          "tile": [
+            9899,
+            5254
+          ],
+          "id": 35184539471070,
+          "owned": false,
+          "covered": 0.07864439599417228,
+          "area": 2303.1284767924462,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184539471073,
+          "owned": true,
+          "covered": 0.9999953904167003,
+          "area": 183.1588291130608,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtEntryRecess": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -1.8564738013537863e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.riga_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.18643591992321,
+            "max": 19.7976640800768
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtEntryRecess": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -1.8564738013537863e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_sandstone": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.riga_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.18643591992321,
+            "max": 19.7976640800768
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtEntryRecess": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -1.8564738013537863e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_sandstone": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.riga_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.18643591992321,
+            "max": 19.7976640800768
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtEntryRecess": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -1.8564738013537863e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_sandstone": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.riga_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.18643591992321,
+            "max": 19.7976640800768
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtEntryRecess": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            true,
+            true,
+            true
+          ],
+          "bankGround": true,
+          "gangwayGround": true,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184539471073,
+              "area": 183.1580386562015
+            }
+          ],
+          "groundCutoutActive": true,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.riga_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.18643591992321,
+            "max": 19.7976640800768
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "The named map footprint confirms identity. Its17.11x10.76m rectangle generalizes the photo-led stepped main/annex plan; the internal split and inset are reconstructed. Main wall/ridge3.35/5.25m and annex2.6/3.78m, door dimensions, bracing census, hidden rear and historical threshold levels are visual estimates. Standard native ground varies0.23m, so one level floor fits without sloped-floor/roof adaptation. No exact surveyed facade assignment, historical level accuracy or navigable exhibition interior is claimed. The estate inventory remains open for the icehouse/white-kitchen/woodshed group."
+  ]
+}

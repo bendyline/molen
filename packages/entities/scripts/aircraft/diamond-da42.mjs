@@ -690,8 +690,8 @@ function cockpit(root, m) {
   ].entries())
     d.text(`${label} --`, [cx, my - 0.019 - i * 0.009, z - 0.015], 0.0034, Math.PI, ink);
   d.rod([mx + 0.045, my - 0.075, z - 0.015], [mx + 0.045, my + 0.075, z - 0.015], 0.0006, ink);
-  d.text('MAP DATA', [mx - 0.022, my + 0.005, z - 0.015], 0.008, Math.PI, ink);
-  d.text('UNAVAILABLE', [mx - 0.022, my - 0.009, z - 0.015], 0.006, Math.PI, ink);
+  d.text('MAP DATA', [mx - 0.022, my + 0.005, z - 0.015], 0.008, Math.PI, ink, 'display');
+  d.text('UNAVAILABLE', [mx - 0.022, my - 0.009, z - 0.015], 0.006, Math.PI, ink, 'display');
   // Optional MD302 above the radios; independent attitude and air-data apertures.
   sheet(
     d,

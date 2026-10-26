@@ -13,7 +13,7 @@ import {
   mappedSolid,
   tri,
 } from './signature-tower-expansion-models.mjs';
-import { box, tube } from './structure-mesh.mjs';
+import { box, tube, tubePath } from './structure-mesh.mjs';
 
 const glass = [0.27, 0.405, 0.465],
   silver = [0.51, 0.57, 0.59],
@@ -247,9 +247,7 @@ function barrelAtrium(out, cfg) {
       const p = [[cx, y0, z], contour[i - 1], contour[i]];
       tri(out, 'glass', reverse ? p.toReversed() : p, [0.19, 0.42, 0.55]);
     }
-    if (cfg.details)
-      for (let i = 1; i < contour.length; i++)
-        tube(out, 'metal', contour[i - 1], contour[i], 0.055, silver, 6);
+    if (cfg.details) tubePath(out, 'metal', contour, 0.055, silver, 6);
   }
   for (const x of [cx - radius - 0.4, cx + radius + 0.4])
     box(out, 'limestone', [x - 0.4, 11.8, z0 - 0.4], [x + 0.4, 12.4, z1 + 0.4], stone);

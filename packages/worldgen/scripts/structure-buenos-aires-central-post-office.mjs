@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, normalFor } from './authored-structure-mesh.mjs';
+import { beam, beamPath, normalFor } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 
 const plan = JSON.parse(
@@ -354,7 +354,7 @@ function cupola(o, x, z, w, depth, bottom, top, d, glazedCover = false) {
       for (let j = 1; j < rings.length; j++) {
         for (const t of d === 3 ? [0.25, 0.5, 0.75] : [0.5]) {
           const r = rings[j].map((p, i) => p.map((v, k) => v * t + rings[j - 1][i][k] * (1 - t)));
-          for (let i = 0; i < 8; i++) beam(o, 'frame', r[i], r[(i + 1) % 8], 0.08, 0.1, C.frame);
+          beamPath(o, 'frame', r.slice(0, 8), 0.08, 0.1, C.frame, true);
         }
         if (d === 3)
           for (let i = 0; i < 8; i++) {

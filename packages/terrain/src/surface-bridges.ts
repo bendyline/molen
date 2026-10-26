@@ -135,3 +135,46 @@ export function appendBridgeStructure(
     }
   }
 }
+
+/** A lifted ground approach needs a retaining volume, not a road floating above its bank. */
+export function appendBridgeApproachSupport(
+  builder: TerrainSurfaceMeshBuilder,
+  road: SurfaceRoad,
+  heightAt: (x: number, z: number) => number,
+  sampleSpacing = 2,
+): void {
+  const stone = new THREE.Color('#aaa79c');
+  const halfWidth = Math.max(0.3, road.width / 2 - 0.05);
+  const point = (distance: number, offset: number, top: boolean): [number, number, number] => {
+    const p = sampleTerrainLine(road.path, distance, offset);
+    const ground = builder.context.heightfield.sampleHeight(
+      builder.context.origin[0] + p.x,
+      builder.context.origin[1] + p.z,
+    );
+    return [p.x, top ? Math.max(ground - 0.05, heightAt(p.x, p.z) - 0.08) : ground - 0.15, p.z];
+  };
+  for (let i = 1; i < road.path.distances.length; i++) {
+    const start = road.path.distances[i - 1] as number,
+      end = road.path.distances[i] as number;
+    for (let d = start; d < end; d += sampleSpacing) {
+      const next = Math.min(end, d + sampleSpacing);
+      const a = point(d, -halfWidth, false),
+        b = point(next, -halfWidth, false),
+        c = point(next, halfWidth, false),
+        e = point(d, halfWidth, false),
+        A = point(d, -halfWidth, true),
+        B = point(next, -halfWidth, true),
+        C = point(next, halfWidth, true),
+        E = point(d, halfWidth, true);
+      if (Math.max(A[1] - a[1], B[1] - b[1], C[1] - c[1], E[1] - e[1]) < 0.6) continue;
+      // Pavement supplies the top; all four sides seat below the unchanged terrain.
+      for (const face of [
+        [a, A, B, b],
+        [e, c, C, E],
+        [a, e, E, A],
+        [b, B, C, c],
+      ])
+        builder.face(face, stone);
+    }
+  }
+}

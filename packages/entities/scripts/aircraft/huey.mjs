@@ -560,8 +560,12 @@ function addHueyCockpit(root) {
       c = hoodFront(...hood[i + 1]),
       e = hoodFront(...hood[i]);
     quad(d, a, b, c, e, coaming, [0, 1, 0]);
-    d.rod(a, b, 0.022, coaming);
   }
+  d.path(
+    hood.map((p) => panelPoint(...p, 2.58)),
+    0.022,
+    coaming,
+  );
   const hoodInner = [
     [338, 599],
     [338, 500],

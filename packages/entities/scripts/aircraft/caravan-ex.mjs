@@ -613,8 +613,8 @@ function cockpit(root, m) {
   pd.box([0.03, 0.014, 0.002], [0.084, 0.022, 0.005], black);
   pi.readout('speed', [0.084, 0.022, 0.004], 'knots', 3, 0.01, pi.ink, false, true);
   pi.readout('altitude', [-0.081, 0.022, 0.004], 'feet', 5, 0.0075, pi.ink, true, true);
-  pd.text('TAS', [0.083, 0.064, 0.003], 0.005, Math.PI, pi.ink);
-  pd.text('GEO FT', [-0.081, 0.05, 0.003], 0.005, Math.PI, pi.ink);
+  pd.text('TAS', [0.083, 0.064, 0.003], 0.005, Math.PI, pi.ink, 'display');
+  pd.text('GEO FT', [-0.081, 0.05, 0.003], 0.005, Math.PI, pi.ink, 'display');
   const rose = group(pfd, 'Caravan-PFD-rose', [0, -0.045, 0.003]),
     rr = detailKit(rose, rose.name);
   for (let deg = 0; deg < 360; deg += 10) {
@@ -642,8 +642,8 @@ function cockpit(root, m) {
   });
   pi.available('heading', 'trueHeading', rose.name);
   pd.rod([0, -0.017, 0.002], [0, -0.025, 0.002], 0.0008, pi.amber);
-  pd.text('TRUE', [0, -0.01, 0.002], 0.004, Math.PI, pi.ink);
-  pd.text('NAV -- COM --', [0, 0.071, 0.003], 0.005, Math.PI, pi.ink);
+  pd.text('TRUE', [0, -0.01, 0.002], 0.004, Math.PI, pi.ink, 'display');
+  pd.text('NAV -- COM --', [0, 0.071, 0.003], 0.005, Math.PI, pi.ink, 'display');
   const vg = group(pfd, 'Caravan-PFD-vsi', [-0.101, 0.022, 0.003]),
     vd = detailKit(vg, vg.name);
   vd.rod([-0.002, 0, 0], [0.002, 0.002, 0], 0.0008, pi.ink);
@@ -710,8 +710,8 @@ function cockpit(root, m) {
   ])
     d.text(label, [mx + 0.073, my + yy, z + 0.002], 0.0045, Math.PI, ink);
   d.rod([mx + 0.04, my - 0.073, z], [mx + 0.04, my + 0.074, z], 0.0006, ink);
-  d.text('MAP DATA', [mx - 0.026, my + 0.01, z], 0.008, Math.PI, ink);
-  d.text('UNAVAILABLE', [mx - 0.026, my - 0.005, z], 0.006, Math.PI, ink);
+  d.text('MAP DATA', [mx - 0.026, my + 0.01, z], 0.008, Math.PI, ink, 'display');
+  d.text('UNAVAILABLE', [mx - 0.026, my - 0.005, z], 0.006, Math.PI, ink, 'display');
   // Three mechanical standby instruments and a wet torque gauge below the center MFD.
   instruments.dial(
     'standby-speed',

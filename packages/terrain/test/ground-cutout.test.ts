@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import {
   markTerrainGroundSurface,
+  markTerrainPavementSurface,
   markTerrainWaterSurface,
   setTerrainGroundCutout,
   setTerrainGroundCutouts,
@@ -11,6 +12,7 @@ import {
   terrainGroundSourceGeometry,
 } from '../src/ground-cutout';
 import { Heightfield } from '../src/heightfield';
+import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
 import { createTerrainPyramidStream } from '../src/pyramid-stream';
 import {
   type TerrainPyramidDescriptor,
@@ -62,6 +64,233 @@ const square: [[number, number], [number, number], [number, number], [number, nu
   [3, 7],
 ];
 describe('model-owned ground openings', () => {
+  it('lowers an explicit underpass ribbon while retaining paving outside it', () => {
+    const scene = new THREE.Group(),
+      ground = new THREE.Mesh(plane()),
+      paving = new THREE.Mesh(plane());
+    markTerrainGroundSurface(ground);
+    markTerrainPavementSurface(paving);
+    const originalGround = ground.geometry,
+      originalPaving = paving.geometry;
+    const owner = new THREE.Group();
+    setTerrainGroundCutout(owner, square, undefined, {
+      minHeight: 5,
+      preservePaving: true,
+      pavingOutlines: [
+        [
+          [4, 4],
+          [6, 4],
+          [6, 6],
+          [4, 6],
+        ],
+      ],
+    });
+    scene.add(ground, paving, owner);
+    const cuts = new TerrainGroundCutoutController();
+    cuts.update(scene);
+    const hit = (x: number, z: number) =>
+      new THREE.Raycaster(
+        new THREE.Vector3(x, 100, z),
+        new THREE.Vector3(0, -1, 0),
+      ).intersectObject(paving)[0]?.point.y;
+    expect(hit(5, 5)).toBeCloseTo(5, 5);
+    expect(hit(3.5, 3.5)).toBeCloseTo(17.5, 5);
+    owner.visible = false;
+    cuts.update(scene);
+    expect(ground.geometry).toBe(originalGround);
+    expect(paving.geometry).toBe(originalPaving);
+    cuts.dispose();
+    originalGround.dispose();
+    originalPaving.dispose();
+  });
+
+  it('clips only above a bridge floor and interpolates sloping dry banks', () => {
+    const original = plane();
+    const cut = subtractTerrainGroundGeometry(original, [square], [], [25]);
+    // The square crosses Y25 diagonally: half its area remains below the bridge.
+    expect(area(cut)).toBeCloseTo(100, 5);
+    const mesh = new THREE.Mesh(cut, new THREE.MeshBasicMaterial({ side: THREE.DoubleSide }));
+    const hit = (x: number, z: number) =>
+      new THREE.Raycaster(
+        new THREE.Vector3(x, 100, z),
+        new THREE.Vector3(0, -1, 0),
+      ).intersectObject(mesh)[0]?.point.y;
+    expect(hit(4, 4)).toBeCloseTo(20, 5);
+    expect(hit(6, 6)).toBeCloseTo(25, 5);
+    cut.dispose();
+    original.dispose();
+    (mesh.material as THREE.Material).dispose();
+  });
+
+  it('transforms a bridge floor, restores lower banks, and invalidates cached openings', () => {
+    const scene = new THREE.Group();
+    const lower = new THREE.Mesh(new THREE.PlaneGeometry(10, 10).rotateX(-Math.PI / 2));
+    const upper = new THREE.Mesh(lower.geometry.clone());
+    upper.position.y = 8;
+    markTerrainGroundSurface(lower);
+    markTerrainGroundSurface(upper);
+    const originalLower = lower.geometry,
+      originalUpper = upper.geometry;
+    const owner = new THREE.Group();
+    owner.position.y = 2;
+    owner.rotation.y = Math.PI / 4;
+    const outline = [
+      [-2, -2],
+      [2, -2],
+      [2, 2],
+      [-2, 2],
+    ] as const;
+    setTerrainGroundCutout(owner, outline, undefined, { minHeight: 3 });
+    scene.add(lower, upper, owner);
+    const cuts = new TerrainGroundCutoutController();
+    cuts.update(scene);
+    expect(lower.geometry).toBe(originalLower);
+    expect(area(upper.geometry)).toBeCloseTo(100, 5);
+    // The bridge cap lies below the source grid and must remain inside culling/raycast bounds.
+    expect(upper.geometry.boundingBox?.min.y).toBeCloseTo(-3, 5);
+    expect(upper.geometry.boundingSphere?.containsPoint(new THREE.Vector3(0, -3, 0))).toBe(true);
+    const hit = new THREE.Raycaster(
+      new THREE.Vector3(0, 20, 0),
+      new THREE.Vector3(0, -1, 0),
+    ).intersectObject(upper)[0];
+    expect(hit?.point.y).toBeCloseTo(5, 5);
+    setTerrainGroundCutout(owner, outline, undefined, { minHeight: 10 });
+    cuts.update(scene);
+    expect(upper.geometry).toBe(originalUpper);
+    setTerrainGroundCutout(owner, outline);
+    cuts.update(scene);
+    expect(area(lower.geometry)).toBeCloseTo(84, 5);
+    expect(() => setTerrainGroundCutout(owner, outline, undefined, { minHeight: NaN })).toThrow();
+    expect(() => setTerrainGroundCutout(owner, outline, 2, { minHeight: 3 })).toThrow();
+    owner.visible = false;
+    cuts.update(scene);
+    expect(lower.geometry).toBe(originalLower);
+    expect(upper.geometry).toBe(originalUpper);
+    cuts.dispose();
+    originalLower.dispose();
+    originalUpper.dispose();
+  });
+
+  it('can open land and shore walls while preserving approach paving, then restore all surfaces', () => {
+    const scene = new THREE.Group();
+    const ground = new THREE.Mesh(plane()),
+      bank = new THREE.Mesh(plane()),
+      paving = new THREE.Mesh(plane());
+    markTerrainGroundSurface(ground);
+    markTerrainGroundSurface(bank, false);
+    markTerrainPavementSurface(paving);
+    scene.add(ground, bank, paving);
+    const originals = [ground.geometry, bank.geometry, paving.geometry];
+    const owner = new THREE.Object3D();
+    const opening = [
+      [4, 4],
+      [6, 4],
+      [6, 6],
+      [4, 6],
+    ] as const;
+    setTerrainGroundCutout(owner, opening, undefined, { preservePaving: true });
+    scene.add(owner);
+    const cuts = new TerrainGroundCutoutController();
+    expect(cuts.update(scene)).toBe(true);
+    expect(area(ground.geometry)).toBeLessThan(area(originals[0] as THREE.BufferGeometry));
+    expect(area(bank.geometry)).toBeLessThan(area(originals[1] as THREE.BufferGeometry));
+    expect(paving.geometry).toBe(originals[2]);
+    setTerrainGroundCutout(owner, opening);
+    expect(cuts.update(scene)).toBe(true);
+    expect(paving.geometry).not.toBe(originals[2]);
+    owner.visible = false;
+    expect(cuts.update(scene)).toBe(true);
+    [ground, bank, paving].forEach((mesh, i) => {
+      expect(mesh.geometry).toBe(originals[i]);
+    });
+    cuts.dispose();
+    for (const geometry of originals) geometry.dispose();
+  });
+
+  it('exposes mapped lakes independently of landmarks, retaining islands, roads and source grids', () => {
+    const scene = new THREE.Group();
+    const ground = new THREE.Mesh(plane());
+    const cover = new THREE.Mesh(plane());
+    const road = new THREE.Mesh(plane());
+    const submerged = new THREE.Mesh(new THREE.PlaneGeometry(10, 10).rotateX(-Math.PI / 2));
+    markTerrainGroundSurface(submerged);
+    const submergedOriginal = submerged.geometry;
+    markTerrainGroundSurface(ground);
+    markTerrainGroundSurface(cover);
+    markTerrainGroundSurface(road, false);
+    const originals = [ground.geometry, cover.geometry, road.geometry];
+    scene.add(ground, cover, road, submerged);
+    const field = new Heightfield(new Float32Array(4).fill(0.25), 2, 2, {
+      origin: [0, 0],
+      worldSize: [10, 10],
+      height: { min: 0, max: 20 },
+    });
+    const samples = field.copySamples();
+    const context = {
+      address: { level: 16, x: 0, z: 0 },
+      origin: [0, 0],
+      tileSize: 10,
+      heightfield: field,
+    } as TerrainPyramidTileLayerContext;
+    const tile = createEmptyTerrainSemanticTile();
+    tile.water = [
+      {
+        polygons: [
+          {
+            outer: [
+              [0.2, 0.2],
+              [0.8, 0.2],
+              [0.8, 0.8],
+              [0.2, 0.8],
+            ],
+            holes: [
+              [
+                [0.4, 0.4],
+                [0.6, 0.4],
+                [0.6, 0.6],
+                [0.4, 0.6],
+              ],
+            ],
+          },
+        ],
+      },
+    ];
+    const native = createTerrainSemanticObject(tile, context, {
+      renderBuildings: false,
+      renderLandcover: false,
+      renderTransportation: false,
+    });
+    scene.add(native);
+    const water = native.getObjectByName('semantic:water') as THREE.Mesh;
+    const originalWater = water.geometry;
+    const controller = new TerrainGroundCutoutController();
+    try {
+      expect(controller.update(scene)).toBe(true);
+      expect(area(ground.geometry)).toBeCloseTo(68, 5);
+      expect(area(cover.geometry)).toBeCloseTo(68, 5);
+      expect(road.geometry).toBe(originals[2]);
+      expect(submerged.geometry).toBe(submergedOriginal);
+      expect(water.geometry).toBe(originalWater);
+      expect(area(water.geometry)).toBeCloseTo(32, 5);
+      expect(field.copySamples()).toEqual(samples);
+      expect(controller.update(scene)).toBe(false);
+      native.visible = false;
+      controller.update(scene);
+      expect(ground.geometry).toBe(originals[0]);
+      expect(cover.geometry).toBe(originals[1]);
+      native.visible = true;
+      controller.update(scene);
+      native.removeFromParent();
+      controller.update(scene);
+      expect(ground.geometry).toBe(originals[0]);
+      expect(cover.geometry).toBe(originals[1]);
+    } finally {
+      controller.dispose();
+      disposeTerrainSemanticObject(native);
+      for (const geometry of originals) geometry?.dispose();
+      submerged.geometry.dispose();
+    }
+  });
   it('keeps ground and native-water openings independent and restores each visible owner', () => {
     const scene = new THREE.Group(),
       ground = new THREE.Mesh(plane()),
@@ -135,8 +364,21 @@ describe('model-owned ground openings', () => {
       expect(c.getY(i)).toBeCloseTo(p.getZ(i) / 10, 5);
       expect(uv.getX(i)).toBeCloseTo(p.getX(i) / 10, 5);
     }
-    // Indexed: untouched triangles keep their source vertices, clipped pieces add their own.
     expect(cut.groups).toEqual([{ start: 0, count: cut.index?.count, materialIndex: 2 }]);
+  });
+  it('retains an indexed elevation grid within a bounded memory overhead for small openings', () => {
+    const source = new THREE.PlaneGeometry(200, 200, 40, 40)
+      .rotateX(-Math.PI / 2)
+      .translate(100, 0, 100);
+    const bytes = (g: THREE.BufferGeometry) =>
+      Object.values(g.attributes).reduce((sum, a) => sum + a.array.byteLength, 0) +
+      (g.index?.array.byteLength ?? 0);
+    const cut = subtractTerrainGroundGeometry(source, [square]);
+    expect(area(cut)).toBeCloseTo(40000 - 16, 4);
+    expect(cut.index).not.toBeNull();
+    expect(bytes(cut)).toBeLessThan(bytes(source) * 1.5);
+    source.dispose();
+    cut.dispose();
   });
   it('subtracts concave polygons and overlapping openings as a union', () => {
     const cut = subtractTerrainGroundGeometry(plane(), [

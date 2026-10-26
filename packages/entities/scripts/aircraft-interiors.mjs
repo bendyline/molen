@@ -37,7 +37,8 @@ export function addAircraftCockpit(root, s, f) {
     eye = f.eye,
     py = eye[1] - 0.48,
     pz = f.panelZ;
-  const text = (label, x, y, z, h = 0.026) => d.text(label, [x, y, z], h, pi, d.ivory);
+  const text = (label, x, y, z, h = 0.026, role = 'panel') =>
+    d.text(label, [x, y, z], h, pi, d.ivory, role);
   // Floor, inner sidewalls and footwell stop the outside skin appearing through controls.
   d.box(
     [width + 0.12, 0.055, f.fighter ? (s.tandem ? 3.4 : 2.1) : 2.8],
@@ -61,7 +62,7 @@ export function addAircraftCockpit(root, s, f) {
     k.add(new T.CircleGeometry(r * 0.09, 12).rotateY(pi), k.metal, [0, 0, -0.003]);
     k.finish();
     bindings.push({ node: needle.name, source, property: 'rotation', axis: 'z', scale, offset });
-    text(name.replaceAll('-', ' ').toUpperCase(), x, y - r * 0.54, z - 0.016, r * 0.17);
+    text(name.replaceAll('-', ' ').toUpperCase(), x, y - r * 0.54, z - 0.016, r * 0.17, 'dial');
   };
   const screen = (x, y, z, w, h, kind, index) => {
     tools.display(x, y, z, w, h, kind);
@@ -71,6 +72,7 @@ export function addAircraftCockpit(root, s, f) {
       y - h * 0.43,
       z - 0.012,
       0.022,
+      'display',
     );
     // A small actual attitude cue above the static diagrammatic symbology.
     if (kind === 'attitude') {

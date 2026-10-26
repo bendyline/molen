@@ -16,6 +16,11 @@ export {
   viewNeedsImmediateUpdate,
 } from './navigation/camera-math';
 export { CollisionTree } from './navigation/collision-tree';
+export {
+  createNavigationControls,
+  type NavigationControls,
+  type NavigationControlsOptions,
+} from './navigation/controls';
 export { FlyController, type FlyControllerOptions } from './navigation/fly';
 export {
   FollowController,

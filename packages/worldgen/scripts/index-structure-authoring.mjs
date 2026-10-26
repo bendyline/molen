@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { writeIndex as writeFile } from './structure-model-files.mjs';
-import { knownSourceEntries } from './structure-source-paths.mjs';
+import { isStructureRecipePath, knownSourceEntries } from './structure-source-paths.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
 const text = new Map();
@@ -48,15 +48,7 @@ for (const entry of knownSourceEntries().filter((e) => e.hasModel)) {
   const spec = JSON.parse(await readFile(resolve(dir, 'spec.json'), 'utf8'));
   for (const definition of [spec.runtimeLodOverlay, spec.sourceGeometry].filter(Boolean)) {
     const module = definition.module;
-    const localPrefix = `${entry.sourcePath}/models/`;
-    if (
-      typeof module !== 'string' ||
-      (!/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(module) &&
-        !(
-          module.startsWith(localPrefix) &&
-          /^[a-z0-9-]+\.mjs$/.test(module.slice(localPrefix.length))
-        ))
-    )
+    if (!isStructureRecipePath(module, entry.sourcePath))
       throw new Error(`${entry.assetId}: invalid runtime overlay source`);
     await dependencies(module);
     if (!recipes.includes(module)) recipes.push(module);

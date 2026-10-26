@@ -1,6 +1,6 @@
 /** Kyoto's smooth white shell and two-tier red cage on its actual nine-storey hotel podium. */
 import './install-deterministic-math.mjs';
-import { beam, loft, normalFor, radialRing, torus } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor, radialRing, torus } from './authored-structure-mesh.mjs';
 import { B, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
@@ -608,8 +608,7 @@ function tower(o, d) {
           y,
           2.65 + 0.48 * Math.sin((j / 8) * Math.PI),
         ]);
-        for (let j = 1; j < pts.length; j++)
-          beam(q, 'metal', pts[j - 1], pts[j], 0.025, 0.025, steel);
+        beamPath(q, 'metal', pts, 0.025, 0.025, steel);
       }
   }
 }

@@ -1,5 +1,5 @@
 /** Independent Emirates tower exteriors from NORR's published plans/sections. */
-import { beam, loft, radialRing } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing } from './authored-structure-mesh.mjs';
 import {
   commonLimit,
   face,
@@ -8,7 +8,7 @@ import {
   mappedSolid,
   tri,
 } from './signature-tower-expansion-models.mjs';
-import { box, tube } from './structure-mesh.mjs';
+import { box, tube, tubePath } from './structure-mesh.mjs';
 
 const S = 55.5,
   H = (S * Math.sqrt(3)) / 2,
@@ -211,7 +211,7 @@ function beacon(out, bottom, top) {
   }
   for (let y = bottom; y < top; y += 1.3) {
     const ring = radialRing(y, r + 0.015, r + 0.015, 64, [center, 0]);
-    for (let i = 0; i < 64; i++) tube(out, 'metal', ring[i], ring[(i + 1) % 64], 0.025, silver, 4);
+    tubePath(out, 'metal', ring.slice(0, 64), 0.025, silver, 4, true);
   }
   loft(
     out,
@@ -310,7 +310,7 @@ function crown(out, bodyTop, low, high, height) {
       }
     }
   }
-  for (let i = 0; i < 3; i++) beam(out, 'metal', q[i], q[(i + 1) % 3], 0.5, 0.65, silver);
+  beamPath(out, 'metal', q.slice(0, 3), 0.5, 0.65, silver, true);
   // Rectangular two-stage pinnacle with a solid lower plate and narrow upper fin.
   const x = tip - 0.3;
   box(out, 'metal', [x - 0.48, high - 5, -0.48], [x + 0.48, height - 22, 0.48], silver);
@@ -337,7 +337,7 @@ function entrance(out, isHotel) {
   ];
   tri(out, 'glass', roof, [0.27, 0.38, 0.41]);
   tri(out, 'glass', roof.toReversed(), [0.27, 0.38, 0.41]);
-  for (let i = 0; i < 3; i++) beam(out, 'metal', roof[i], roof[(i + 1) % 3], 0.35, 0.4, silver);
+  beamPath(out, 'metal', roof.slice(0, 3), 0.35, 0.4, silver, true);
   for (let i = 1; i < 12; i++) {
     const t = i / 12;
     beam(

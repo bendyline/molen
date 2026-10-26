@@ -13,6 +13,13 @@ PMTiles. Selecting a region reloads at its starting location while retaining ren
 Direct links use `?region=sydney`, `?region=kyoto`, `?region=yuma`, or `?region=new-delhi`.
 Explicit `?package=...` and `?synthetic=1` overrides remain available.
 
+**Controllers (N)** shows detected joysticks and gamepads. Open it to inspect raw axes/buttons,
+choose the walking, driving, free-flight or aircraft (`pilot`) profile, and assign controls.
+For a flight stick, assign pitch, roll, rudder and an absolute throttle lever as appropriate;
+axis numbering varies by device. Press a controller button with the page focused if it is not
+detected. **Save** keeps mappings in this browser and shares them with the Earth view sample on
+the same origin; **Done** resumes play. Keyboard controls continue to work alongside analog input.
+
 **Living places** plays six scripted dioramas at registered geographic sites. Choose a place
 and press **Visit**, or open `?diorama=football`, `airport`, `little-league`, `fireworks`, `fair`
 or `market`. Scenes load within 450 meters and unload beyond 550 meters. They run in separate

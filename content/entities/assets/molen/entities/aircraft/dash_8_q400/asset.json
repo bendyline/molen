@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:34c5a26c76d672db8364c9de004950197f2792a917997328558b277085af572b",
-  "sourceHash": "sha256:eeb026b19d877799e486188a5326c65c6116f2eee01a1310650f35f065bd09aa",
+  "hash": "sha256:747059ad6a9f98fb7137b13f21ef10df9562b0c56a03c4b0cf5ded7470a7b163",
+  "sourceHash": "sha256:16cc1c781dc354d0ee6ad2e85822823168b54a74ea7c9340e8932d41a8990e56",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 51042,
-    "vertices": 73439,
-    "meshes": 69,
-    "primitives": 69,
-    "materials": 25,
-    "textures": 9,
+    "triangles": 35056,
+    "vertices": 41467,
+    "meshes": 72,
+    "primitives": 72,
+    "materials": 28,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 1907652
+    "sizeBytes": 1374252
   },
   "nodes": [
     {
@@ -226,10 +226,6 @@
       "triangles": 180
     },
     {
-      "name": "cockpit-fixed-detail-lettering",
-      "triangles": 12708
-    },
-    {
       "name": "cockpit-fixed-detail-alloy",
       "triangles": 2456
     },
@@ -244,6 +240,22 @@
     {
       "name": "cockpit-fixed-seat-harness",
       "triangles": 384
+    },
+    {
+      "name": "cockpit-fixed-detail-lettering",
+      "triangles": 1356
+    },
+    {
+      "name": "cockpit-fixed-detail-lettering-display-print",
+      "triangles": 30
+    },
+    {
+      "name": "cockpit-fixed-detail-lettering-dial-print",
+      "triangles": 32
+    },
+    {
+      "name": "cockpit-fixed-detail-lettering-panel-print",
+      "triangles": 148
     },
     {
       "name": "horizon-line-detail-amber",
@@ -350,12 +362,12 @@
       "triangles": 128
     },
     {
-      "name": "flight-control-mounts-flight-control-legend",
-      "triangles": 4932
-    },
-    {
       "name": "flight-control-mounts-flight-control-grip",
       "triangles": 108
+    },
+    {
+      "name": "flight-control-mounts-flight-control-legend-panel-print",
+      "triangles": 88
     },
     {
       "name": "flight-power-common-moving-flight-control-alloy",
@@ -607,6 +619,24 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "detail-lettering-display-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "detail-lettering-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "detail-trim-rubber",
       "slots": [
         "baseColor",
@@ -640,20 +670,29 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -2012,35 +2051,6 @@
         ]
       },
       {
-        "node": "cockpit-fixed-detail-lettering",
-        "points": [
-          -0.852,
-          2.5499,
-          11.4515,
-          -0.852,
-          2.5499,
-          12.158,
-          -0.852,
-          3.0561,
-          11.4515,
-          -0.852,
-          3.0561,
-          12.158,
-          0.852,
-          2.5499,
-          11.4515,
-          0.852,
-          2.5499,
-          12.158,
-          0.852,
-          3.0561,
-          11.4515,
-          0.852,
-          3.0561,
-          12.158
-        ]
-      },
-      {
         "node": "cockpit-fixed-detail-alloy",
         "points": [
           -0.9795,
@@ -2154,6 +2164,122 @@
           0.767,
           3.0397,
           11.4059
+        ]
+      },
+      {
+        "node": "cockpit-fixed-detail-lettering",
+        "points": [
+          -0.852,
+          2.6101,
+          11.4515,
+          -0.852,
+          2.6101,
+          12.158,
+          -0.852,
+          2.9681,
+          11.4515,
+          -0.852,
+          2.9681,
+          12.158,
+          0.852,
+          2.6101,
+          11.4515,
+          0.852,
+          2.6101,
+          12.158,
+          0.852,
+          2.9681,
+          11.4515,
+          0.852,
+          2.9681,
+          12.158
+        ]
+      },
+      {
+        "node": "cockpit-fixed-detail-lettering-display-print",
+        "points": [
+          -0.7741,
+          2.6768,
+          12.152,
+          -0.7741,
+          2.6768,
+          12.152,
+          -0.7741,
+          2.6981,
+          12.152,
+          -0.7741,
+          2.6981,
+          12.152,
+          0.7732,
+          2.6768,
+          12.152,
+          0.7732,
+          2.6768,
+          12.152,
+          0.7732,
+          2.6981,
+          12.152,
+          0.7732,
+          2.6981,
+          12.152
+        ]
+      },
+      {
+        "node": "cockpit-fixed-detail-lettering-dial-print",
+        "points": [
+          0.6433,
+          2.6249,
+          12.148,
+          0.6433,
+          2.6249,
+          12.148,
+          0.6433,
+          2.6301,
+          12.148,
+          0.6433,
+          2.6301,
+          12.148,
+          0.7653,
+          2.6249,
+          12.148,
+          0.7653,
+          2.6249,
+          12.148,
+          0.7653,
+          2.6301,
+          12.148,
+          0.7653,
+          2.6301,
+          12.148
+        ]
+      },
+      {
+        "node": "cockpit-fixed-detail-lettering-panel-print",
+        "points": [
+          -0.8157,
+          2.5486,
+          12.114,
+          -0.8157,
+          2.5486,
+          12.149,
+          -0.8157,
+          3.0555,
+          12.114,
+          -0.8157,
+          3.0555,
+          12.149,
+          0.8125,
+          2.5486,
+          12.114,
+          0.8125,
+          2.5486,
+          12.149,
+          0.8125,
+          3.0555,
+          12.114,
+          0.8125,
+          3.0555,
+          12.149
         ]
       },
       {
@@ -2911,35 +3037,6 @@
         ]
       },
       {
-        "node": "flight-control-mounts-flight-control-legend",
-        "points": [
-          -0.3363,
-          2.7285,
-          12.0885,
-          -0.3363,
-          2.7285,
-          12.0895,
-          -0.3363,
-          2.8412,
-          12.0885,
-          -0.3363,
-          2.8412,
-          12.0895,
-          0.3443,
-          2.7285,
-          12.0885,
-          0.3443,
-          2.7285,
-          12.0895,
-          0.3443,
-          2.8412,
-          12.0885,
-          0.3443,
-          2.8412,
-          12.0895
-        ]
-      },
-      {
         "node": "flight-control-mounts-flight-control-grip",
         "points": [
           -0.3265,
@@ -2966,6 +3063,35 @@
           0.3265,
           2.82,
           12.091
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-legend-panel-print",
+        "points": [
+          -0.337,
+          2.728,
+          12.089,
+          -0.337,
+          2.728,
+          12.089,
+          -0.337,
+          2.8412,
+          12.089,
+          -0.337,
+          2.8412,
+          12.089,
+          0.3432,
+          2.728,
+          12.089,
+          0.3432,
+          2.728,
+          12.089,
+          0.3432,
+          2.8412,
+          12.089,
+          0.3432,
+          2.8412,
+          12.089
         ]
       },
       {

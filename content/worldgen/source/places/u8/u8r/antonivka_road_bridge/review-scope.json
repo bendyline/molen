@@ -1,0 +1,392 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Long damaged four-lane box-girder crossing, two breaches/three deck remnants, paired tapered portal piers and blue/yellow lamp standards.",
+    "exclusions": "Intact pre-war operating road, temporary barges, military activity, hidden foundations and surveyed contemporary damage inventory."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/models/antonivka-runtime.mjs",
+    "export": "buildAntonivkaSkyline",
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAntonivkaDistrict",
+        "errorMeters": 4,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "marking": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "buildAntonivkaStreet",
+        "errorMeters": 2,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "marking": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAntonivkaCloseup",
+        "errorMeters": 1,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "marking": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          }
+        }
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "geographic": {
+    "anchor": [
+      32.720187802,
+      46.67020641
+    ],
+    "heading": -1.517726713957,
+    "elevationMode": "sea-level",
+    "elevationMeters": 0,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 1361.2,
+      "width": 25.01,
+      "deckHeights": [
+        15.2,
+        15.2
+      ],
+      "deckEndpoints": [
+        [
+          -680.7745,
+          0
+        ],
+        [
+          680.7745,
+          0
+        ]
+      ],
+      "deckProfile": [
+        [
+          -680.7745,
+          15.2,
+          0
+        ],
+        [
+          -640.7289411764706,
+          16.296193771626296,
+          0
+        ],
+        [
+          -600.6833823529412,
+          17.325951557093425,
+          0
+        ],
+        [
+          -560.6378235294118,
+          18.28927335640138,
+          0
+        ],
+        [
+          -520.5922647058824,
+          19.186159169550173,
+          0
+        ],
+        [
+          -480.54670588235297,
+          20.01660899653979,
+          0
+        ],
+        [
+          -440.50114705882356,
+          20.78062283737024,
+          0
+        ],
+        [
+          -400.4555882352941,
+          21.478200692041522,
+          0
+        ],
+        [
+          -360.4100294117647,
+          22.109342560553632,
+          0
+        ],
+        [
+          -320.3644705882353,
+          22.674048442906575,
+          0
+        ],
+        [
+          -280.3189117647059,
+          23.172318339100343,
+          0
+        ],
+        [
+          -240.27335294117643,
+          23.60415224913495,
+          0
+        ],
+        [
+          -200.22779411764708,
+          23.96955017301038,
+          0
+        ],
+        [
+          -160.18223529411762,
+          24.268512110726643,
+          0
+        ],
+        [
+          -120.13667647058821,
+          24.501038062283733,
+          0
+        ],
+        [
+          -80.09111764705881,
+          24.66712802768166,
+          0
+        ],
+        [
+          -40.045558823529404,
+          24.766782006920415,
+          0
+        ],
+        [
+          0,
+          24.799999999999997,
+          0
+        ],
+        [
+          40.045558823529404,
+          24.766782006920415,
+          0
+        ],
+        [
+          80.09111764705881,
+          24.66712802768166,
+          0
+        ],
+        [
+          120.13667647058821,
+          24.501038062283733,
+          0
+        ],
+        [
+          160.18223529411762,
+          24.268512110726643,
+          0
+        ],
+        [
+          200.22779411764714,
+          23.96955017301038,
+          0
+        ],
+        [
+          240.27335294117654,
+          23.60415224913495,
+          0
+        ],
+        [
+          280.31891176470583,
+          23.172318339100347,
+          0
+        ],
+        [
+          320.36447058823524,
+          22.674048442906575,
+          0
+        ],
+        [
+          360.41002941176475,
+          22.109342560553632,
+          0
+        ],
+        [
+          400.45558823529404,
+          21.478200692041522,
+          0
+        ],
+        [
+          440.50114705882356,
+          20.78062283737024,
+          0
+        ],
+        [
+          480.5467058823531,
+          20.016608996539787,
+          0
+        ],
+        [
+          520.5922647058824,
+          19.186159169550173,
+          0
+        ],
+        [
+          560.6378235294119,
+          18.28927335640138,
+          0
+        ],
+        [
+          600.6833823529412,
+          17.325951557093425,
+          0
+        ],
+        [
+          640.7289411764705,
+          16.2961937716263,
+          0
+        ],
+        [
+          680.7745,
+          15.2,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "notes": "Dated damaged state: the replacement mask suppresses any surviving generic line across the original crossing; the model keeps both real mapped breaches open. Heights and approach fit remain provisional until current native review. The clipping mask is inset0.175m from each authored end; this retains tiny original lane tails and their individual deck-profile hints at all four generalized PMTiles endpoints. It does not shorten the model or close either breach.",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Ordinary dated pictures show pier bases and slumped fragments at the river surface. Standard PMTiles/Mapzen records river terrain zero; the model uses that provisional water contact plane with submerged debris down toY-1.4. This is a preview visualization datum, not surveyed bridge elevations.",
+    "bounds": [
+      32.719309524294225,
+      46.663912760674314,
+      32.72106607970577,
+      46.67650005932568
+    ]
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-antonivka-skyline",
+      "position": [
+        850,
+        350,
+        950
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-antonivka-district",
+      "position": [
+        850,
+        350,
+        950
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-antonivka-street",
+      "position": [
+        850,
+        350,
+        950
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-antonivka-closeup",
+      "position": [
+        850,
+        350,
+        950
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json"
+  ]
+}

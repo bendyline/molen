@@ -39,6 +39,12 @@ export interface StructurePlacement {
     /** Uniform native deck Y, or separate native Y values at negative-X / positive-X ends. */
     deckHeight?: number;
     deckHeights?: [number, number];
+    /** Actual native X/Z road ends, ordered negative-X then positive-X, for curved crossings. */
+    deckEndpoints?: [[number, number], [number, number]];
+    /** Native [X,Y,Z] centerline samples, ordered by X; height at intermediate side connections. */
+    deckProfile?: [number, number, number][];
+    /** Also replace transverse bridge-tagged segments inside the exact authored outline. */
+    includeTransverseBridges?: boolean;
     /** Also clip longitudinal grade approaches sharing a covered bridge endpoint. */
     includeConnectedApproaches?: boolean;
   };
@@ -47,6 +53,12 @@ export interface StructurePlacement {
   /** Ground opening in native model X/Z metres; active only while this structure is visible. */
   groundCutout?: {
     outline: [number, number][];
+    /** Open coarse land/shore walls beneath a bridge while retaining its approach paving. */
+    preservePaving?: boolean;
+    /** Cap obstructing terrain at this native model Y, retaining lower dry bridge banks. */
+    minHeight?: number;
+    /** Explicit paving-only areas, e.g. lower river walks beneath a bridge; approaches stay intact. */
+    pavingOutlines?: [number, number][][];
     /** Complete set for separated openings; when present, supersedes outline. */
     outlines?: [number, number][][];
     /** Separate excavations appended to outline when outlines is omitted; at most 63 rings. */
@@ -315,6 +327,20 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     if (
       entry.groundCutout &&
       ((evidence && !entry.groundCutout.basis?.trim()) ||
+        (entry.groundCutout.minHeight !== undefined &&
+          !Number.isFinite(entry.groundCutout.minHeight)) ||
+        (entry.groundCutout.pavingOutlines !== undefined &&
+          (entry.groundCutout.pavingOutlines.length < 1 ||
+            entry.groundCutout.pavingOutlines.length > 64 ||
+            entry.groundCutout.pavingOutlines.some(
+              (outline) =>
+                outline.length < 3 ||
+                outline.length > 512 ||
+                outline.some((p) => !p.every(Number.isFinite)) ||
+                !validGroundOutline(outline),
+            ))) ||
+        (entry.groundCutout.preservePaving !== undefined &&
+          typeof entry.groundCutout.preservePaving !== 'boolean') ||
         (entry.groundCutout.additionalOutlines?.length ?? 0) > 63 ||
         (entry.groundCutout.additionalOutlines ?? []).some(
           (outline) =>
@@ -407,6 +433,32 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       throw new Error(`road replacement requires an extent ${entry.id}`);
     if (entry.replaceRoads) {
       const road = entry.replaceRoads;
+      if (
+        (road.includeTransverseBridges !== undefined &&
+          typeof road.includeTransverseBridges !== 'boolean') ||
+        (road.includeTransverseBridges && !road.outline) ||
+        (road.deckProfile &&
+          (road.deckProfile.length < 2 ||
+            road.deckProfile.length > 512 ||
+            road.deckProfile.some(
+              (point, index) =>
+                point.length !== 3 ||
+                point.some((v) => !Number.isFinite(v)) ||
+                (index > 0 && point[0] <= (road.deckProfile?.[index - 1]?.[0] ?? -Infinity)),
+            ) ||
+            (road.deckHeight === undefined && road.deckHeights === undefined)))
+      )
+        throw new Error(`invalid structure road connection profile ${entry.id}`);
+      if (
+        road.deckEndpoints &&
+        (road.deckEndpoints.length !== 2 ||
+          road.deckEndpoints.some(
+            (point) => point.length !== 2 || point.some((v) => !Number.isFinite(v)),
+          ) ||
+          road.deckEndpoints[0][0] >= road.deckEndpoints[1][0] ||
+          (road.deckHeight === undefined && road.deckHeights === undefined))
+      )
+        throw new Error(`invalid structure road endpoints ${entry.id}`);
       if (
         road.outline &&
         (road.outline.length < 3 ||

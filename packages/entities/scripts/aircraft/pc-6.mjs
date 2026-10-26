@@ -700,7 +700,7 @@ function porterCockpit(root, m) {
     d.rod(at(u, 633, -0.025), at(u, 626, -0.045), 0.0025, m.metal);
     d.text(['BAT', 'GEN', 'LTS', 'HEAT', 'NAV'][i % 5], at(u, 611, -0.02), 0.0045, Math.PI, ink);
   }
-  d.text('SIM DATUM', at(604, 418, -0.02), 0.006, Math.PI, ink);
+  d.text('SIM DATUM', at(604, 418, -0.02), 0.006, Math.PI, ink, 'display');
   d.text('NO NAV DATA', at(470, 503, -0.04), 0.006, Math.PI, ink);
   // Tall central quadrant with black power bar, blue prop lever and red condition knob.
   const q = group(cabin, 'Porter-quadrant', [0, 0.86, 2.3]),

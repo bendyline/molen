@@ -6,17 +6,17 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:274ff6a2df2de06f6ada68c11b70b5cc15854510e085cc6efdea7535dd69a0b9",
-  "sourceHash": "sha256:5f5391ad7ac5cd46b2f8f8724c89e9bbe077c87a8fa86aac808e3f6b0b2345a9",
+  "hash": "sha256:69aab988cc25cb0cd2237ea9bce00fa44e9d841c2145a52cb190441f52ef676c",
+  "sourceHash": "sha256:2080033437c89aaa685a01a8b521703d15ff2e7ec4264f0c5ffc643221b496c1",
   "bounds": {
     "aabb": {
       "min": [
-        -33.9522,
+        -33.9517,
         0,
         -37.655
       ],
       "max": [
-        33.9522,
+        33.9517,
         19.8398,
         37.655
       ]
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 86509,
-    "vertices": 123890,
-    "meshes": 144,
-    "primitives": 144,
-    "materials": 30,
-    "textures": 9,
+    "triangles": 50641,
+    "vertices": 51714,
+    "meshes": 159,
+    "primitives": 159,
+    "materials": 35,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 3035864
+    "sizeBytes": 1815396
   },
   "nodes": [
     {
@@ -250,14 +250,6 @@
       "triangles": 100
     },
     {
-      "name": "C5-cabin-C5-display-green",
-      "triangles": 5728
-    },
-    {
-      "name": "C5-cabin-C5-instrument-ink",
-      "triangles": 1032
-    },
-    {
       "name": "C5-cabin-C5-alloy",
       "triangles": 744
     },
@@ -286,6 +278,26 @@
       "triangles": 44
     },
     {
+      "name": "C5-cabin-C5-display-green",
+      "triangles": 256
+    },
+    {
+      "name": "C5-cabin-C5-display-green-panel-print",
+      "triangles": 108
+    },
+    {
+      "name": "C5-cabin-C5-display-green-display-print",
+      "triangles": 20
+    },
+    {
+      "name": "C5-cabin-C5-instrument-ink",
+      "triangles": 48
+    },
+    {
+      "name": "C5-cabin-C5-instrument-ink-panel-print",
+      "triangles": 28
+    },
+    {
       "name": "C5-pilot-nav-C5-instrument-black",
       "triangles": 12
     },
@@ -294,24 +306,32 @@
       "triangles": 24
     },
     {
-      "name": "C5-pilot-nav-C5-display-green",
-      "triangles": 1776
+      "name": "C5-pilot-nav-C5-display-green-display-print",
+      "triangles": 32
     },
     {
       "name": "C5-pilot-nav-heading-C5-instrument-ink",
-      "triangles": 2772
+      "triangles": 864
+    },
+    {
+      "name": "C5-pilot-nav-heading-C5-instrument-ink-panel-print",
+      "triangles": 36
     },
     {
       "name": "C5-pilot-display-C5-instrument-black",
       "triangles": 8
     },
     {
-      "name": "C5-pilot-display-C5-instrument-ink",
-      "triangles": 1584
-    },
-    {
       "name": "C5-pilot-display-C5-instrument-amber",
       "triangles": 24
+    },
+    {
+      "name": "C5-pilot-display-C5-instrument-ink-display-print",
+      "triangles": 24
+    },
+    {
+      "name": "C5-pilot-display-C5-instrument-ink-panel-print",
+      "triangles": 6
     },
     {
       "name": "C5-pilot-horizon-fixed-C5-pilot-instrument-black",
@@ -331,7 +351,11 @@
     },
     {
       "name": "C5-pilot-horizon-card-C5-pilot-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "C5-pilot-horizon-card-C5-pilot-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "C5-pilot-speed-0-0-C5-instrument-ink",
@@ -528,30 +552,6 @@
     {
       "name": "C5-pilot-altitude-3-6-C5-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "C5-pilot-altitude-4-0-C5-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "C5-pilot-altitude-4-1-C5-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "C5-pilot-altitude-4-2-C5-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "C5-pilot-altitude-4-3-C5-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "C5-pilot-altitude-4-4-C5-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "C5-pilot-altitude-4-5-C5-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -679,22 +679,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "C5-display-green",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "C5-instrument-ink",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "C5-alloy-brushed",
       "slots": [
         "baseColor",
@@ -754,6 +738,58 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "C5-display-green",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "C5-display-green-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "C5-display-green-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "C5-instrument-ink",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "C5-instrument-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "C5-instrument-ink-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "C5-pilot-instrument-sky",
       "slots": [
         "baseColor"
@@ -792,20 +828,29 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -911,30 +956,30 @@
       {
         "node": "C5-exterior-C5-seam",
         "points": [
-          -33.9522,
-          1.3485,
-          -30.3404,
-          -33.9522,
-          1.3485,
-          32.1676,
-          -33.9522,
-          10.1021,
-          -30.3404,
-          -33.9522,
-          10.1021,
-          32.1676,
-          33.9522,
-          1.3485,
-          -30.3404,
-          33.9522,
-          1.3485,
-          32.1676,
-          33.9522,
-          10.1021,
-          -30.3404,
-          33.9522,
-          10.1021,
-          32.1676
+          -33.9517,
+          1.3486,
+          -30.3396,
+          -33.9517,
+          1.3486,
+          32.1675,
+          -33.9517,
+          10.102,
+          -30.3396,
+          -33.9517,
+          10.102,
+          32.1675,
+          33.9517,
+          1.3486,
+          -30.3396,
+          33.9517,
+          1.3486,
+          32.1675,
+          33.9517,
+          10.102,
+          -30.3396,
+          33.9517,
+          10.102,
+          32.1675
         ]
       },
       {
@@ -2330,64 +2375,6 @@
         ]
       },
       {
-        "node": "C5-cabin-C5-display-green",
-        "points": [
-          -0.8706,
-          7.9235,
-          31.7245,
-          -0.8706,
-          7.9235,
-          32.0005,
-          -0.8706,
-          8.6282,
-          31.7245,
-          -0.8706,
-          8.6282,
-          32.0005,
-          0.8734,
-          7.9235,
-          31.7245,
-          0.8734,
-          7.9235,
-          32.0005,
-          0.8734,
-          8.6282,
-          31.7245,
-          0.8734,
-          8.6282,
-          32.0005
-        ]
-      },
-      {
-        "node": "C5-cabin-C5-instrument-ink",
-        "points": [
-          -0.5204,
-          8.0108,
-          31.6725,
-          -0.5204,
-          8.0108,
-          32.0005,
-          -0.5204,
-          8.685,
-          31.6725,
-          -0.5204,
-          8.685,
-          32.0005,
-          0.505,
-          8.0108,
-          31.6725,
-          0.505,
-          8.0108,
-          32.0005,
-          0.505,
-          8.685,
-          31.6725,
-          0.505,
-          8.685,
-          32.0005
-        ]
-      },
-      {
         "node": "C5-cabin-C5-alloy",
         "points": [
           -1.095,
@@ -2591,6 +2578,151 @@
         ]
       },
       {
+        "node": "C5-cabin-C5-display-green",
+        "points": [
+          0.197,
+          7.977,
+          32,
+          0.197,
+          7.977,
+          32,
+          0.197,
+          8.087,
+          32,
+          0.197,
+          8.087,
+          32,
+          0.441,
+          7.977,
+          32,
+          0.441,
+          7.977,
+          32,
+          0.441,
+          8.087,
+          32,
+          0.441,
+          8.087,
+          32
+        ]
+      },
+      {
+        "node": "C5-cabin-C5-display-green-panel-print",
+        "points": [
+          -0.0944,
+          7.9229,
+          31.998,
+          -0.0944,
+          7.9229,
+          32,
+          -0.0944,
+          8.2621,
+          31.998,
+          -0.0944,
+          8.2621,
+          32,
+          0.4252,
+          7.9229,
+          31.998,
+          0.4252,
+          7.9229,
+          32,
+          0.4252,
+          8.2621,
+          31.998,
+          0.4252,
+          8.2621,
+          32
+        ]
+      },
+      {
+        "node": "C5-cabin-C5-display-green-display-print",
+        "points": [
+          -0.8713,
+          8.6118,
+          31.725,
+          -0.8713,
+          8.6118,
+          31.725,
+          -0.8713,
+          8.6282,
+          31.725,
+          -0.8713,
+          8.6282,
+          31.725,
+          0.8715,
+          8.6118,
+          31.725,
+          0.8715,
+          8.6118,
+          31.725,
+          0.8715,
+          8.6282,
+          31.725,
+          0.8715,
+          8.6282,
+          31.725
+        ]
+      },
+      {
+        "node": "C5-cabin-C5-instrument-ink",
+        "points": [
+          -0.505,
+          8.475,
+          31.739,
+          -0.505,
+          8.475,
+          31.761,
+          -0.505,
+          8.685,
+          31.739,
+          -0.505,
+          8.685,
+          31.761,
+          0.505,
+          8.475,
+          31.739,
+          0.505,
+          8.475,
+          31.761,
+          0.505,
+          8.685,
+          31.739,
+          0.505,
+          8.685,
+          31.761
+        ]
+      },
+      {
+        "node": "C5-cabin-C5-instrument-ink-panel-print",
+        "points": [
+          -0.5196,
+          8.0077,
+          31.673,
+          -0.5196,
+          8.0077,
+          32,
+          -0.5196,
+          8.59,
+          31.673,
+          -0.5196,
+          8.59,
+          32,
+          0.4237,
+          8.0077,
+          31.673,
+          0.4237,
+          8.0077,
+          32,
+          0.4237,
+          8.59,
+          31.673,
+          0.4237,
+          8.59,
+          32
+        ]
+      },
+      {
         "node": "C5-pilot-nav-C5-instrument-black",
         "points": [
           1.094,
@@ -2649,32 +2781,32 @@
         ]
       },
       {
-        "node": "C5-pilot-nav-C5-display-green",
+        "node": "C5-pilot-nav-C5-display-green-display-print",
         "points": [
-          1.1986,
-          7.8539,
-          31.9995,
-          1.1986,
-          7.8539,
-          32.0005,
-          1.1986,
-          8.1944,
-          31.9995,
-          1.1986,
-          8.1944,
-          32.0005,
-          1.2923,
-          7.8539,
-          31.9995,
-          1.2923,
-          7.8539,
-          32.0005,
-          1.2923,
-          8.1944,
-          31.9995,
-          1.2923,
-          8.1944,
-          32.0005
+          1.1978,
+          7.8519,
+          32,
+          1.1978,
+          7.8519,
+          32,
+          1.1978,
+          8.194,
+          32,
+          1.1978,
+          8.194,
+          32,
+          1.2915,
+          7.8519,
+          32,
+          1.2915,
+          7.8519,
+          32,
+          1.2915,
+          8.194,
+          32,
+          1.2915,
+          8.194,
+          32
         ]
       },
       {
@@ -2707,6 +2839,35 @@
         ]
       },
       {
+        "node": "C5-pilot-nav-heading-C5-instrument-ink-panel-print",
+        "points": [
+          1.1695,
+          7.937,
+          31.98,
+          1.1695,
+          7.937,
+          31.98,
+          1.1695,
+          8.089,
+          31.98,
+          1.1695,
+          8.089,
+          31.98,
+          1.3195,
+          7.937,
+          31.98,
+          1.3195,
+          7.937,
+          31.98,
+          1.3195,
+          8.089,
+          31.98,
+          1.3195,
+          8.089,
+          31.98
+        ]
+      },
+      {
         "node": "C5-pilot-display-C5-instrument-black",
         "points": [
           0.7346,
@@ -2736,35 +2897,6 @@
         ]
       },
       {
-        "node": "C5-pilot-display-C5-instrument-ink",
-        "points": [
-          0.7525,
-          7.8673,
-          31.9935,
-          0.7525,
-          7.8673,
-          31.9945,
-          0.7525,
-          8.1421,
-          31.9935,
-          0.7525,
-          8.1421,
-          31.9945,
-          1.0027,
-          7.8673,
-          31.9935,
-          1.0027,
-          7.8673,
-          31.9945,
-          1.0027,
-          8.1421,
-          31.9935,
-          1.0027,
-          8.1421,
-          31.9945
-        ]
-      },
-      {
         "node": "C5-pilot-display-C5-instrument-amber",
         "points": [
           0.8793,
@@ -2791,6 +2923,64 @@
           0.8819,
           7.9936,
           31.9955
+        ]
+      },
+      {
+        "node": "C5-pilot-display-C5-instrument-ink-display-print",
+        "points": [
+          0.7519,
+          8.0007,
+          31.994,
+          0.7519,
+          8.0007,
+          31.994,
+          0.7519,
+          8.1419,
+          31.994,
+          0.7519,
+          8.1419,
+          31.994,
+          1.0022,
+          8.0007,
+          31.994,
+          1.0022,
+          8.0007,
+          31.994,
+          1.0022,
+          8.1419,
+          31.994,
+          1.0022,
+          8.1419,
+          31.994
+        ]
+      },
+      {
+        "node": "C5-pilot-display-C5-instrument-ink-panel-print",
+        "points": [
+          0.7743,
+          7.8669,
+          31.994,
+          0.7743,
+          7.8669,
+          31.994,
+          0.7743,
+          7.8721,
+          31.994,
+          0.7743,
+          7.8721,
+          31.994,
+          0.7869,
+          7.8669,
+          31.994,
+          0.7869,
+          7.8669,
+          31.994,
+          0.7869,
+          7.8721,
+          31.994,
+          0.7869,
+          7.8721,
+          31.994
         ]
       },
       {
@@ -2913,29 +3103,58 @@
         "node": "C5-pilot-horizon-card-C5-pilot-instrument-ink",
         "points": [
           0.6769,
-          8.0141,
+          8.0181,
           32.0143,
           0.6769,
-          8.0141,
+          8.0181,
           32.0157,
           0.6769,
-          8.1574,
+          8.151,
           32.0143,
           0.6769,
-          8.1574,
+          8.151,
           32.0157,
           1.0842,
-          8.0141,
+          8.0181,
           32.0143,
           1.0842,
-          8.0141,
+          8.0181,
           32.0157,
           1.0842,
-          8.1574,
+          8.151,
           32.0143,
           1.0842,
-          8.1574,
+          8.151,
           32.0157
+        ]
+      },
+      {
+        "node": "C5-pilot-horizon-card-C5-pilot-instrument-ink-dial-print",
+        "points": [
+          0.9087,
+          8.0133,
+          32.015,
+          0.9087,
+          8.0133,
+          32.015,
+          0.9087,
+          8.1558,
+          32.015,
+          0.9087,
+          8.1558,
+          32.015,
+          0.9251,
+          8.0133,
+          32.015,
+          0.9251,
+          8.0133,
+          32.015,
+          0.9251,
+          8.1558,
+          32.015,
+          0.9251,
+          8.1558,
+          32.015
         ]
       },
       {
@@ -4356,180 +4575,6 @@
           31.9956,
           0.7618,
           8.0849,
-          31.9964
-        ]
-      },
-      {
-        "node": "C5-pilot-altitude-4-0-C5-instrument-ink",
-        "points": [
-          0.7535,
-          8.0883,
-          31.9956,
-          0.7535,
-          8.0883,
-          31.9964,
-          0.7535,
-          8.0889,
-          31.9956,
-          0.7535,
-          8.0889,
-          31.9964,
-          0.7565,
-          8.0883,
-          31.9956,
-          0.7565,
-          8.0883,
-          31.9964,
-          0.7565,
-          8.0889,
-          31.9956,
-          0.7565,
-          8.0889,
-          31.9964
-        ]
-      },
-      {
-        "node": "C5-pilot-altitude-4-1-C5-instrument-ink",
-        "points": [
-          0.7529,
-          8.0851,
-          31.9956,
-          0.7529,
-          8.0851,
-          31.9964,
-          0.7529,
-          8.088,
-          31.9956,
-          0.7529,
-          8.088,
-          31.9964,
-          0.7535,
-          8.0851,
-          31.9956,
-          0.7535,
-          8.0851,
-          31.9964,
-          0.7535,
-          8.088,
-          31.9956,
-          0.7535,
-          8.088,
-          31.9964
-        ]
-      },
-      {
-        "node": "C5-pilot-altitude-4-2-C5-instrument-ink",
-        "points": [
-          0.7529,
-          8.0811,
-          31.9956,
-          0.7529,
-          8.0811,
-          31.9964,
-          0.7529,
-          8.084,
-          31.9956,
-          0.7529,
-          8.084,
-          31.9964,
-          0.7535,
-          8.0811,
-          31.9956,
-          0.7535,
-          8.0811,
-          31.9964,
-          0.7535,
-          8.084,
-          31.9956,
-          0.7535,
-          8.084,
-          31.9964
-        ]
-      },
-      {
-        "node": "C5-pilot-altitude-4-3-C5-instrument-ink",
-        "points": [
-          0.7535,
-          8.0803,
-          31.9956,
-          0.7535,
-          8.0803,
-          31.9964,
-          0.7535,
-          8.0809,
-          31.9956,
-          0.7535,
-          8.0809,
-          31.9964,
-          0.7565,
-          8.0803,
-          31.9956,
-          0.7565,
-          8.0803,
-          31.9964,
-          0.7565,
-          8.0809,
-          31.9956,
-          0.7565,
-          8.0809,
-          31.9964
-        ]
-      },
-      {
-        "node": "C5-pilot-altitude-4-4-C5-instrument-ink",
-        "points": [
-          0.7566,
-          8.0811,
-          31.9956,
-          0.7566,
-          8.0811,
-          31.9964,
-          0.7566,
-          8.084,
-          31.9956,
-          0.7566,
-          8.084,
-          31.9964,
-          0.7572,
-          8.0811,
-          31.9956,
-          0.7572,
-          8.0811,
-          31.9964,
-          0.7572,
-          8.084,
-          31.9956,
-          0.7572,
-          8.084,
-          31.9964
-        ]
-      },
-      {
-        "node": "C5-pilot-altitude-4-5-C5-instrument-ink",
-        "points": [
-          0.7566,
-          8.0851,
-          31.9956,
-          0.7566,
-          8.0851,
-          31.9964,
-          0.7566,
-          8.088,
-          31.9956,
-          0.7566,
-          8.088,
-          31.9964,
-          0.7572,
-          8.0851,
-          31.9956,
-          0.7572,
-          8.0851,
-          31.9964,
-          0.7572,
-          8.088,
-          31.9956,
-          0.7572,
-          8.088,
           31.9964
         ]
       }

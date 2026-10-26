@@ -1,5 +1,5 @@
 /** Register explicit authored geographic proposals; never promote coordinate-only candidates. */
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import {
   authoredMapMatchRadius,
@@ -13,7 +13,7 @@ import {
   hashBytes,
   readOptionalJson,
   registerSourceDocuments,
-  root,
+  writeIndex,
 } from '../../worldgen/scripts/structure-model-files.mjs';
 import { createStructureIndex } from '../dist/kernel.mjs';
 import { hasAuthoredGroundContact } from './authored-ground-contact.mjs';
@@ -112,7 +112,7 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
     } else if (!existing) catalog.entries.push(entry);
     createStructureIndex(catalog);
     await writeStructurePlacement(entry);
-    await writeFile(
+    await writeIndex(
       reportPath,
       `${JSON.stringify(
         {

@@ -1,6 +1,6 @@
 /** Open monument, not a filled box: retain the terrace, cloud and four external lifts. */
 
-import { beam } from './authored-structure-mesh.mjs';
+import { beam, beamPath } from './authored-structure-mesh.mjs';
 import { face, grid, skylineExpansion, tri } from './signature-tower-expansion-models.mjs';
 import { box } from './structure-mesh.mjs';
 
@@ -165,5 +165,5 @@ function buildOpenArche(out, district) {
     [52.45, h + 0.8, 55],
     [52.45, h + 0.8, -55],
   ];
-  for (let i = 0; i < 4; i++) beam(out, 'metal', ring[i], ring[(i + 1) % 4], 0.055, 0.055, metal);
+  beamPath(out, 'metal', ring.slice(0, 4), 0.055, 0.055, metal, true);
 }

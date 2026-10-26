@@ -414,6 +414,16 @@ avoids dark overlap seams while adjacent or parent/child water tiles refine. Exp
 can be level-bounded, toggled without re-decoding resident objects, and disposed with the elevation
 tile. Applications may replace the decoder, renderer, materials, or model geometry independently.
 
+Mapped lake polygons also clear coarse elevation and landcover beneath their water surface,
+preserving polygon holes as islands. Small bank faces close the difference between the rendered
+ground triangles and the water level; clipped tile edges do not become artificial banks. These
+openings follow hydrology tile residency, independently of landmark loading, and restore the
+original ground on hide/unload. Roads and bridge surfaces retain their geometry. Source height
+samples remain available for anchoring and physics. Ground clipping keeps shared grid vertices
+indexed instead of duplicating every triangle's attributes.
+`shorelineGroundOffset` defaults to the landcover lift of 0.18m, including when hydrology and
+classification render in separate layers; set it to `0` for a bare elevation surface.
+
 For the standard path, `createTerrainPackageSemanticLayers` opens every optional sidecar and returns
 classification, hydrology, and human-feature layers ready for
 `createTerrainPackagePyramidStream`. Classification and built features are detail-bounded by

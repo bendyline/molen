@@ -377,20 +377,36 @@
     "regional_wall": {
       "entries": [
         {
-          "color": "#d0b797",
+          "color": "#b8bfc4",
+          "weight": 4
+        },
+        {
+          "color": "#ddd6c6",
+          "weight": 3
+        },
+        {
+          "color": "#9eacb8",
+          "weight": 3
+        },
+        {
+          "color": "#e3e0d8",
+          "weight": 3
+        },
+        {
+          "color": "#8f9397",
+          "weight": 2
+        },
+        {
+          "color": "#a9b3a7",
           "weight": 1
         },
         {
-          "color": "#eadfc9",
+          "color": "#ae8b78",
           "weight": 1
         },
         {
-          "color": "#c6ad91",
-          "weight": 1
-        },
-        {
-          "color": "#dac6a6",
-          "weight": 1
+          "color": "#d2cec5",
+          "weight": 5
         }
       ],
       "jitter": {
@@ -442,9 +458,9 @@
       "probability": 0.85,
       "count": {
         "min": 2,
-        "max": 14
+        "max": 6
       },
-      "perAreaM2": 150,
+      "perAreaM2": 250,
       "roof": [
         "flat"
       ],
@@ -455,7 +471,7 @@
         "max": 1.7
       },
       "yaw": "align-wall",
-      "lodTier": 0
+      "lodTier": 1
     }
   ],
   "lod": {
@@ -474,7 +490,8 @@
         "minTier": 1,
         "keep": [
           "roof-shape",
-          "facade-texture"
+          "facade-texture",
+          "props"
         ]
       },
       {

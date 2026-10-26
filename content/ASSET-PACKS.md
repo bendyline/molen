@@ -217,6 +217,14 @@ existing source facts, and decide fit from the standard PMTiles. Additional besp
 is not a completion gate for this backlog. Record unresolved precision as a limitation and
 continue with a reasonable visualization fit; do not start a new research campaign per model.
 
+An independent site building can be absent from the map. A collection with
+`identityKind: "site-members"` lists all required `membershipEvidence.memberIds` and retains
+`featureIds` for the members that actually have OSM features. An unmapped member needs an
+attributed `positionReference` with a source URL and an explicit approximation basis. Never
+invent an OSM ID or take ownership of a neighboring building to register it. Its ordinary
+source frame, position, material, terrain-contact and visual checks still apply. Shared site
+QIDs retain independent, disjoint position ranges.
+
 Structure bundles can keep per-model review scope in `review-scope.json` and attributed
 signed map controls in `map-frame.json`; the source generator preserves these documents.
 Declare the frame's signed axes in its `axis` text before capture, including positive `+X`

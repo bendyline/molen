@@ -677,8 +677,8 @@ function f22Cockpit(root, m) {
         [0.5, 0.5],
         [-0.5, 0.5],
       ].map(([u, v]) => [x + u * w, y + v * h, z + dz]);
-  const txt = (t, x, y, h = 0.009, color = ink, dz = -0.028) =>
-    d.text(t, [x, y, z + dz], h, Math.PI, color);
+  const txt = (t, x, y, h = 0.009, color = ink, dz = -0.028, role = 'panel') =>
+    d.text(t, [x, y, z + dz], h, Math.PI, color, role);
   const edge = [
     [-0.41, 2.2],
     [-0.41, 2.43],
@@ -749,14 +749,14 @@ function f22Cockpit(root, m) {
   };
   display('FLIGHT / SIM', 0.225, 2.47, 0.1524, 0.1524, true);
   ins.horizon('attitude', [0.225, 2.49, z + 0.01], 0.105, 0.075, { blankBackdrop: true });
-  txt('TAS', 0.265, 2.417, 0.006, green);
+  txt('TAS', 0.265, 2.417, 0.006, green, undefined, 'display');
   ins.readout('speed', [0.265, 2.405, z - 0.03], 'knots', 3, 0.009, green);
-  txt('GEO FT', 0.185, 2.417, 0.006, green);
+  txt('GEO FT', 0.185, 2.417, 0.006, green, undefined, 'display');
   ins.readout('altitude', [0.185, 2.405, z - 0.03], 'feet', 5, 0.008, green, true, true);
   display('PMFD', 0, 2.44, 0.2032, 0.2032);
-  txt('TACTICAL INOP', 0, 2.44, 0.012, amber);
+  txt('TACTICAL INOP', 0, 2.44, 0.012, amber, undefined, 'display');
   display('SMFD', -0.225, 2.47, 0.1524, 0.1524);
-  txt('SENSORS INOP', -0.225, 2.47, 0.009, amber);
+  txt('SENSORS INOP', -0.225, 2.47, 0.009, amber, undefined, 'display');
   display('NAV / SIM', 0, 2.165, 0.1524, 0.1524);
   const hg = group(cabin, 'F22-heading', [0, 2.165, z - 0.03]),
     hd = detailKit(hg, hg.name);
@@ -776,12 +776,12 @@ function f22Cockpit(root, m) {
     period: Math.PI * 2,
   });
   ins.available('heading', 'trueHeading', hg.name);
-  txt('TRUE', 0, 2.108, 0.006, green);
+  txt('TRUE', 0, 2.108, 0.006, green, undefined, 'display');
   d.rod([0, 2.223, z - 0.032], [0, 2.215, z - 0.032], 0.001, ink);
   for (const side of [-1, 1]) {
     display('AUX', side * 0.225, 2.674, 0.1016, 0.0762);
     if (side === 1) {
-      txt('FPM', side * 0.225, 2.686, 0.006, green);
+      txt('FPM', side * 0.225, 2.686, 0.006, green, undefined, 'display');
       ins.readout(
         'vertical-speed',
         [side * 0.225, 2.663, z - 0.03],

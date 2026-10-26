@@ -80,7 +80,7 @@ export function addG1000Readouts({
   for (let value = 20; value <= tapeMax; value += 10) {
     const row = group(tape, `${prefix}-speed-tape-${value}`, [0, value * 0.001, 0]),
       dd = detailKit(row, row.name);
-    dd.text(String(value), [0.002, 0, 0], 0.0045, Math.PI, ink);
+    dd.text(String(value), [0.002, 0, 0], 0.0045, Math.PI, ink, 'display');
     dd.rod([-0.008, 0, 0], [-0.014, 0, 0], 0.0004, ink);
     dd.finish();
     const distance = `tape.${value}.distance`,
@@ -113,8 +113,8 @@ export function addG1000Readouts({
     true,
     true,
   );
-  d.text('TAS', [sx + 0.083, sy + 0.065, z + 0.001], 0.006, Math.PI, ink);
-  d.text('GEO FT', [sx - 0.081, sy + 0.047, z + 0.001], 0.005, Math.PI, ink);
+  d.text('TAS', [sx + 0.083, sy + 0.065, z + 0.001], 0.006, Math.PI, ink, 'display');
+  d.text('GEO FT', [sx - 0.081, sy + 0.047, z + 0.001], 0.005, Math.PI, ink, 'display');
   const vsi = group(cabin, `${prefix}-VSI`, [sx - 0.101, sy + 0.025, z + 0.001]),
     vd = detailKit(vsi, 'VSI');
   vd.rod([-0.002, 0, 0], [0.002, 0.002, 0], 0.0008, ink);
@@ -151,6 +151,7 @@ export function addG1000Readouts({
         0.004,
         Math.PI,
         ink,
+        'display',
       );
   }
   hr.finish();
@@ -164,9 +165,9 @@ export function addG1000Readouts({
     responseSeconds: 0.15,
   });
   instruments.available('heading', 'trueHeading', rose.name);
-  d.text('TRUE', [sx, sy - 0.013, z + 0.001], 0.004, Math.PI, ink);
+  d.text('TRUE', [sx, sy - 0.013, z + 0.001], 0.004, Math.PI, ink, 'display');
   d.rod([sx, sy - 0.024, z - 0.001], [sx, sy - 0.029, z - 0.001], 0.001, instruments.amber);
-  d.text('NAV --  COM --', [sx, sy + 0.071, z + 0.001], 0.005, Math.PI, ink);
+  d.text('NAV --  COM --', [sx, sy + 0.071, z + 0.001], 0.005, Math.PI, ink, 'display');
   if (!mfdReadouts) return sources;
   // MFD engine sidebar. Oil, fuel, electrical and map data remain explicitly unavailable.
   const [mx, my] = mfd;
@@ -185,7 +186,7 @@ export function addG1000Readouts({
     const cx = mx + 0.078,
       cy = my + 0.025,
       radius = 0.021;
-    d.text('MAN -- --', [cx, my + 0.063, z - 0.001], 0.004, Math.PI, ink);
+    d.text('MAN -- --', [cx, my + 0.063, z - 0.001], 0.004, Math.PI, ink, 'display');
     for (const [engine, side, source, display] of [
       [1, 1, 'propRpm', 'rpmDisplay'],
       [2, -1, 'propRpm2', 'rpmDisplay2'],
@@ -214,8 +215,8 @@ export function addG1000Readouts({
         0.005,
       );
     }
-    d.text('RPM', [cx, cy + 0.007, z - 0.002], 0.004, Math.PI, ink);
-    d.text('3000', [cx, cy + 0.024, z - 0.001], 0.0035, Math.PI, ink);
+    d.text('RPM', [cx, cy + 0.007, z - 0.002], 0.004, Math.PI, ink, 'display');
+    d.text('3000', [cx, cy + 0.024, z - 0.001], 0.0035, Math.PI, ink, 'display');
     for (const [label, yy] of [
       ['FF -- --', -0.016],
       ['CHT -- --', -0.028],
@@ -223,7 +224,7 @@ export function addG1000Readouts({
       ['AMPS -- --', -0.052],
       ['FUEL -- --', -0.064],
     ])
-      d.text(label, [cx, my + yy, z - 0.001], 0.004, Math.PI, ink);
+      d.text(label, [cx, my + yy, z - 0.001], 0.004, Math.PI, ink, 'display');
   } else {
     instruments.dial(
       'MFD-tach',
@@ -244,11 +245,11 @@ export function addG1000Readouts({
       ['FUEL --', -0.031],
       ['VOLTS --', -0.046],
     ])
-      d.text(label, [mx + 0.072, my + yy, z], 0.005, Math.PI, ink);
+      d.text(label, [mx + 0.072, my + yy, z], 0.005, Math.PI, ink, 'display');
   }
   d.rod([mx + 0.042, my - 0.074, z], [mx + 0.042, my + 0.074, z], 0.0006, ink);
-  d.text('MAP DATA', [mx - 0.025, my + 0.012, z], 0.009, Math.PI, ink);
-  d.text('UNAVAILABLE', [mx - 0.025, my - 0.003, z], 0.007, Math.PI, ink);
+  d.text('MAP DATA', [mx - 0.025, my + 0.012, z], 0.009, Math.PI, ink, 'display');
+  d.text('UNAVAILABLE', [mx - 0.025, my - 0.003, z], 0.007, Math.PI, ink, 'display');
 
   return sources;
 }

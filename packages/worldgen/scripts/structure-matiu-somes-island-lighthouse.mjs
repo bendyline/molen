@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, normalFor, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, normalFor, sphere } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 
 const plan = JSON.parse(
@@ -385,9 +385,7 @@ function dome(o, d) {
             center[1] + (r + offset) * Math.cos(a) - x * Math.sin(a),
           ],
           pts = [P(-0.1, 0, 0), P(-0.1, 0.11, 0.04), P(0.1, 0.11, 0.04), P(0.1, 0, 0)];
-        if (d > 1)
-          for (let i = 1; i < pts.length; i++)
-            beam(o, 'roof', pts[i - 1], pts[i], 0.025, 0.025, C.roof);
+        if (d > 1) beamPath(o, 'roof', pts, 0.025, 0.025, C.roof);
         else Q(o, 'roof', pts);
       }
     if (d > 2)
@@ -439,8 +437,7 @@ function ladder(o, d) {
         const t = (j * Math.PI) / 8;
         return P(0.38 * Math.cos(t), y, 0.38 * Math.sin(t));
       });
-      for (let j = 1; j < pts.length; j++)
-        beam(o, 'frame', pts[j - 1], pts[j], 0.025, 0.025, C.frame);
+      beamPath(o, 'frame', pts, 0.025, 0.025, C.frame);
     }
     for (const x of [-0.38, 0, 0.38])
       beam(

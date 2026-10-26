@@ -2,7 +2,14 @@
 
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { beam, chamferedRectangle, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import {
+  beam,
+  beamPath,
+  chamferedRectangle,
+  loft,
+  radialRing,
+  sphere,
+} from './authored-structure-mesh.mjs';
 import {
   archBay,
   column,
@@ -28,8 +35,7 @@ const mapBytes = readFileSync(structureSourcePath('sukharev_tower', 'map-frame.j
 const map = JSON.parse(mapBytes);
 
 function line(out, slot, points, width, color) {
-  for (let i = 1; i < points.length; i++)
-    beam(out, slot, points[i - 1], points[i], width, width, color);
+  beamPath(out, slot, points, width, width, color);
 }
 function arc(out, slot, x, y, z, rx, ry, width, color, a0 = 0, a1 = Math.PI) {
   line(

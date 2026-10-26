@@ -188,6 +188,12 @@ try {
       reviewGroundY === undefined || Number.isFinite(reviewGroundY),
       'Invalid review ground datum',
     );
+    const groundFloor = placement?.groundCutout?.minHeight;
+    const expectedGroundCutoutActive =
+      !!placement?.groundCutout &&
+      (groundFloor === undefined ||
+        (reviewGroundY ?? 0) >
+          (placement.elevation ?? 0) + groundFloor * (placement.scale?.[1] ?? 1));
     let current =
       (prior?.targetOnly ?? false) === targetOnly &&
       (prior?.reviewBoundedPlacement ?? false) === reviewBoundedPlacement &&
@@ -224,6 +230,7 @@ try {
       prior?.placementHash === placementHash &&
       prior?.frames?.length > 0 &&
       (!placement?.groundCutout ||
+        groundFloor !== undefined ||
         (prior?.eviction?.groundRestored === true &&
           prior?.groundLifecycle?.visibleOpen === true &&
           prior.frames.every(
@@ -443,10 +450,10 @@ try {
       }
       assert.equal(
         state.groundCutoutActive,
-        !!placement?.groundCutout,
+        expectedGroundCutoutActive,
         'Only a placed ground opening may change ground geometry',
       );
-      if (placement?.groundCutout)
+      if (placement?.groundCutout && groundFloor === undefined)
         assert.equal(
           state.groundCoversCutoutProbe,
           false,
@@ -468,9 +475,10 @@ try {
     const groundLifecycle = await page.evaluate(() =>
       window.landmarkLibraryQA.verifyGroundLifecycle(),
     );
-    if (placement?.groundCutout)
+    if (expectedGroundCutoutActive)
       assert(
-        groundLifecycle.hiddenRestored && groundLifecycle.visibleOpen,
+        groundLifecycle.hiddenRestored &&
+          (groundFloor === undefined ? groundLifecycle.visibleOpen : groundLifecycle.visibleCapped),
         'Hiding the structure restores ground and showing it reopens the polygon',
       );
     else assert(groundLifecycle.unchanged, 'Ordinary models retain original ground geometry');

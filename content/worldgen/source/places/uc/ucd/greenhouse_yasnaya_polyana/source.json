@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.greenhouse_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Greenhouse — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.greenhouse_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/greenhouse_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1b1da655b920d2bb7f519ae3667235c29854bdbc306bebc8a690179818a370de"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-greenhouse-yasnaya-polyana",
+        "path": "models/generate-greenhouse-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "greenhouse-yasnaya-polyana-model",
+        "path": "models/greenhouse-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "greenhouse-yasnaya-polyana-geometry",
+        "path": "models/greenhouse-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

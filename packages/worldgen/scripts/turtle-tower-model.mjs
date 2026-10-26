@@ -2,7 +2,7 @@
 
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import { facade, face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
@@ -77,8 +77,7 @@ function band(out, w, d, y, h, over = 0, color = edge) {
   );
 }
 function curve(out, points, width = 0.06, color = edge, slot = 'plaster') {
-  for (let i = 1; i < points.length; i++)
-    beam(out, slot, points[i - 1], points[i], width, width, color);
+  beamPath(out, slot, points, width, width, color);
 }
 function stairs(out) {
   for (let i = 0; i < 4; i++)

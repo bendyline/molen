@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tower_gazebo_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Tower Gazebo — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tower_gazebo_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cf7afdf192de9f4eddc65509b89aba4eff8555d77b59e86c32fa962f88a1938d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tower-gazebo-yasnaya-polyana",
+        "path": "models/generate-tower-gazebo-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "tower-gazebo-yasnaya-polyana-model",
+        "path": "models/tower-gazebo-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "tower-gazebo-yasnaya-polyana-geometry",
+        "path": "models/tower-gazebo-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

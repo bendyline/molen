@@ -74,7 +74,7 @@
     ],
     "source": "https://www.openstreetmap.org/way/33924615",
     "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:9496df9568b4184581604750229ee72d7d15406465ebdca983cf9ae9676475b5",
+    "mapGeometryHash": "sha256:376a8d85676d5fad8208e7f8719d8d240722ca5705dd60f00a9d048ae8ea76c8",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "anchor": [
@@ -84,7 +84,25 @@
     "heading": -0.004339929494839471,
     "elevationMode": "sea-level",
     "elevationMeters": 40.05,
-    "notes": "Exact-QID pedestrian centerline fixes west→east main axis; bent approaches are excluded from axis fit. LocalY0 at historical low-water40.05m ASL gives crown60.39m. Host terrain and current river stage may differ."
+    "bounds": [
+      17.814793206652645,
+      43.33723411631929,
+      17.815265393347353,
+      43.33730028368071
+    ],
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 32.4,
+      "width": 5.2,
+      "deckHeights": [
+        17.19,
+        17
+      ],
+      "includeConnectedApproaches": true
+    },
+    "notes": "Confirmed mapped east-west crossing, fixed heading and historical low-water40.05m ASL datum retained. Only the modeled longitudinal bridge-road corridor is replaced. Its native bent tails retain the corresponding deck height and transfer it into the two connected streets. Automatic retaining supports seat raised approaches into the original terrain. Raw DEM bank levels remain coarse and differ from the bridge deck; preserve all mapped buildings and unrelated roads, native river and every DEM sample. Adjacent towers/town buildings remain independent native context. Geographic approval is recorded separately after inspection.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The original coarse DEM is retained. The viewer transfers the authored bank height through short retained bridge tails and one short covered gateway, then blends into the actual adjoining mapped street. Raised ground approaches receive retaining supports down to native ground. Corrected native join heights and unload/fallback are checked in qa.json; this is a photo/map-led visualization, not a surveyed quay reconstruction."
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
@@ -119,7 +137,38 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/stari-most-model.mjs",
+    "export": "buildStariMostSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStariMostDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roughstone": {
+            "graph": "stone_drywall",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
   "fidelityStatus": "pending",
   "limitations": [
     "Detailed exterior reconstruction of the rebuilt bridge; historical survey dimensions guide its silhouette, without claiming exact current stone-by-stone survey coordinates.",

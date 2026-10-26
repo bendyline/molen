@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:eb63dcadbf144f7d7071e04141361d54c90f33d5d8646af6685816fb2a5de5c9",
-  "sourceHash": "sha256:83ca951c9752f914af13421e6bcab591aad43cb257c64f5e1bf20bc8ba4e5a67",
+  "hash": "sha256:e04eeb63969ab57d0a197f0962c53fcaceb552003f1d2ba0881408b0aeb9d2ae",
+  "sourceHash": "sha256:d782dccea2408ffed1461aceb1967d9b1528c77aa69bcfc141d946040c30b43e",
   "bounds": {
     "aabb": {
       "min": [
@@ -17,7 +17,7 @@
       ],
       "max": [
         7.2644,
-        3.0087,
+        3.0088,
         4.7069
       ]
     },
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 91502,
-    "vertices": 136595,
-    "meshes": 151,
-    "primitives": 151,
-    "materials": 29,
-    "textures": 9,
+    "triangles": 47340,
+    "vertices": 46283,
+    "meshes": 167,
+    "primitives": 167,
+    "materials": 32,
+    "textures": 10,
     "animations": 0,
-    "sizeBytes": 3191076
+    "sizeBytes": 1746068
   },
   "nodes": [
     {
@@ -422,10 +422,6 @@
       "triangles": 1608
     },
     {
-      "name": "Beech18-cockpit-Beech18-prop-control",
-      "triangles": 120
-    },
-    {
       "name": "Beech18-cockpit-detail-alloy",
       "triangles": 2688
     },
@@ -442,12 +438,16 @@
       "triangles": 204
     },
     {
-      "name": "Beech18-cockpit-Beech18-instrument-ink",
-      "triangles": 10656
-    },
-    {
       "name": "Beech18-cockpit-Beech18-liner",
       "triangles": 232
+    },
+    {
+      "name": "Beech18-cockpit-Beech18-prop-control-panel-print",
+      "triangles": 2
+    },
+    {
+      "name": "Beech18-cockpit-Beech18-instrument-ink-panel-print",
+      "triangles": 250
     },
     {
       "name": "Beech18-speed-face-Beech18-instrument-black",
@@ -459,7 +459,11 @@
     },
     {
       "name": "Beech18-speed-face-Beech18-instrument-ink",
-      "triangles": 3084
+      "triangles": 168
+    },
+    {
+      "name": "Beech18-speed-face-Beech18-instrument-ink-dial-print",
+      "triangles": 48
     },
     {
       "name": "Beech18-speed-Beech18-instrument-ink",
@@ -479,7 +483,11 @@
     },
     {
       "name": "Beech18-speed-right-face-Beech18-instrument-ink",
-      "triangles": 3084
+      "triangles": 168
+    },
+    {
+      "name": "Beech18-speed-right-face-Beech18-instrument-ink-dial-print",
+      "triangles": 48
     },
     {
       "name": "Beech18-speed-right-Beech18-instrument-ink",
@@ -502,8 +510,8 @@
       "triangles": 24
     },
     {
-      "name": "Beech18-heading-fixed-Beech18-instrument-ink",
-      "triangles": 456
+      "name": "Beech18-heading-fixed-Beech18-instrument-ink-dial-print",
+      "triangles": 8
     },
     {
       "name": "Beech18-heading-drum-Beech18-instrument-black",
@@ -511,7 +519,11 @@
     },
     {
       "name": "Beech18-heading-drum-Beech18-instrument-ink",
-      "triangles": 3636
+      "triangles": 1728
+    },
+    {
+      "name": "Beech18-heading-drum-Beech18-instrument-ink-dial-print",
+      "triangles": 36
     },
     {
       "name": "Beech18-attitude-fixed-Beech18-instrument-black",
@@ -531,27 +543,15 @@
     },
     {
       "name": "Beech18-attitude-card-Beech18-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "Beech18-attitude-card-Beech18-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "Beech18-attitude-right-fixed-Beech18-instrument-black",
       "triangles": 100
-    },
-    {
-      "name": "Beech18-attitude-right-fixed-Beech18-instrument-amber",
-      "triangles": 96
-    },
-    {
-      "name": "Beech18-attitude-right-card-Beech18-instrument-sky",
-      "triangles": 48
-    },
-    {
-      "name": "Beech18-attitude-right-card-Beech18-instrument-earth",
-      "triangles": 48
-    },
-    {
-      "name": "Beech18-attitude-right-card-Beech18-instrument-ink",
-      "triangles": 1128
     }
   ],
   "nodesTruncated": true,
@@ -660,14 +660,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Beech18-prop-control",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "detail-alloy-brushed",
       "slots": [
         "baseColor",
@@ -703,7 +695,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Beech18-instrument-ink",
+      "name": "Beech18-liner",
       "slots": [
         "baseColor"
       ],
@@ -711,7 +703,25 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Beech18-liner",
+      "name": "Beech18-prop-control-period-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Beech18-instrument-ink-period-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Beech18-instrument-ink",
       "slots": [
         "baseColor"
       ],
@@ -736,6 +746,14 @@
     },
     {
       "name": "Beech18-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Beech18-prop-control",
       "slots": [
         "baseColor"
       ],
@@ -781,20 +799,29 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-period-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -871,28 +898,28 @@
       {
         "node": "Beech18-shell-Beech18-blue",
         "points": [
-          -0.7163,
+          -0.7169,
           0.8936,
           -5.0393,
-          -0.7163,
-          0.8936,
-          4.6539,
-          -0.7163,
-          2.7842,
-          -5.0393,
-          -0.7163,
-          2.7842,
-          4.6539,
-          0.7163,
-          0.8936,
-          -5.0393,
-          0.7163,
+          -0.7169,
           0.8936,
           4.6539,
-          0.7163,
+          -0.7169,
           2.7842,
           -5.0393,
-          0.7163,
+          -0.7169,
+          2.7842,
+          4.6539,
+          0.7169,
+          0.8936,
+          -5.0393,
+          0.7169,
+          0.8936,
+          4.6539,
+          0.7169,
+          2.7842,
+          -5.0393,
+          0.7169,
           2.7842,
           4.6539
         ]
@@ -901,28 +928,28 @@
         "node": "Beech18-shell-Beech18-dark",
         "points": [
           -0.7148,
-          0.9752,
-          -4.5429,
+          0.9753,
+          -4.5428,
           -0.7148,
-          0.9752,
+          0.9753,
           3.2541,
           -0.7148,
-          3.0087,
-          -4.5429,
+          3.0088,
+          -4.5428,
           -0.7148,
-          3.0087,
+          3.0088,
           3.2541,
           0.7148,
-          0.9752,
-          -4.5429,
+          0.9753,
+          -4.5428,
           0.7148,
-          0.9752,
+          0.9753,
           3.2541,
           0.7148,
-          3.0087,
-          -4.5429,
+          3.0088,
+          -4.5428,
           0.7148,
-          3.0087,
+          3.0088,
           3.2541
         ]
       },
@@ -3566,35 +3593,6 @@
         ]
       },
       {
-        "node": "Beech18-cockpit-Beech18-prop-control",
-        "points": [
-          0.0354,
-          2.259,
-          2.9699,
-          0.0354,
-          2.259,
-          2.9725,
-          0.0354,
-          2.2668,
-          2.9699,
-          0.0354,
-          2.2668,
-          2.9725,
-          0.0399,
-          2.259,
-          2.9699,
-          0.0399,
-          2.259,
-          2.9725,
-          0.0399,
-          2.2668,
-          2.9699,
-          0.0399,
-          2.2668,
-          2.9725
-        ]
-      },
-      {
         "node": "Beech18-cockpit-detail-alloy",
         "points": [
           -0.5015,
@@ -3711,35 +3709,6 @@
         ]
       },
       {
-        "node": "Beech18-cockpit-Beech18-instrument-ink",
-        "points": [
-          -0.4662,
-          1.289,
-          2.6847,
-          -0.4662,
-          1.289,
-          2.9972,
-          -0.4662,
-          2.5576,
-          2.6847,
-          -0.4662,
-          2.5576,
-          2.9972,
-          0.4755,
-          1.289,
-          2.6847,
-          0.4755,
-          1.289,
-          2.9972,
-          0.4755,
-          2.5576,
-          2.6847,
-          0.4755,
-          2.5576,
-          2.9972
-        ]
-      },
-      {
         "node": "Beech18-cockpit-Beech18-liner",
         "points": [
           -0.5265,
@@ -3766,6 +3735,64 @@
           0.5265,
           2.3514,
           2.409
+        ]
+      },
+      {
+        "node": "Beech18-cockpit-Beech18-prop-control-panel-print",
+        "points": [
+          0.0342,
+          2.2591,
+          2.9707,
+          0.0342,
+          2.2591,
+          2.972,
+          0.0342,
+          2.2652,
+          2.9707,
+          0.0342,
+          2.2652,
+          2.972,
+          0.039,
+          2.2591,
+          2.9707,
+          0.039,
+          2.2591,
+          2.972,
+          0.039,
+          2.2652,
+          2.9707,
+          0.039,
+          2.2652,
+          2.972
+        ]
+      },
+      {
+        "node": "Beech18-cockpit-Beech18-instrument-ink-panel-print",
+        "points": [
+          -0.4654,
+          1.2876,
+          2.6853,
+          -0.4654,
+          1.2876,
+          2.9971,
+          -0.4654,
+          2.5571,
+          2.6853,
+          -0.4654,
+          2.5571,
+          2.9971,
+          0.4726,
+          1.2876,
+          2.6853,
+          0.4726,
+          1.2876,
+          2.9971,
+          0.4726,
+          2.5571,
+          2.6853,
+          0.4726,
+          2.5571,
+          2.9971
         ]
       },
       {
@@ -3853,6 +3880,35 @@
           0.509,
           2.4348,
           2.9637
+        ]
+      },
+      {
+        "node": "Beech18-speed-face-Beech18-instrument-ink-dial-print",
+        "points": [
+          0.4333,
+          2.364,
+          2.9481,
+          0.4333,
+          2.364,
+          2.9615,
+          0.4333,
+          2.4254,
+          2.9481,
+          0.4333,
+          2.4254,
+          2.9615,
+          0.5044,
+          2.364,
+          2.9481,
+          0.5044,
+          2.364,
+          2.9615,
+          0.5044,
+          2.4254,
+          2.9481,
+          0.5044,
+          2.4254,
+          2.9615
         ]
       },
       {
@@ -4001,6 +4057,35 @@
         ]
       },
       {
+        "node": "Beech18-speed-right-face-Beech18-instrument-ink-dial-print",
+        "points": [
+          -0.3794,
+          2.268,
+          2.9702,
+          -0.3794,
+          2.268,
+          2.9824,
+          -0.3794,
+          2.324,
+          2.9702,
+          -0.3794,
+          2.324,
+          2.9824,
+          -0.3147,
+          2.268,
+          2.9702,
+          -0.3147,
+          2.268,
+          2.9824,
+          -0.3147,
+          2.324,
+          2.9702,
+          -0.3147,
+          2.324,
+          2.9824
+        ]
+      },
+      {
         "node": "Beech18-speed-right-Beech18-instrument-ink",
         "points": [
           -0.3486,
@@ -4146,32 +4231,32 @@
         ]
       },
       {
-        "node": "Beech18-heading-fixed-Beech18-instrument-ink",
+        "node": "Beech18-heading-fixed-Beech18-instrument-ink-dial-print",
         "points": [
-          0.3367,
-          2.3742,
-          2.9627,
-          0.3367,
-          2.3742,
-          2.9648,
-          0.3367,
-          2.3799,
-          2.9627,
-          0.3367,
-          2.3799,
-          2.9648,
-          0.3537,
-          2.3742,
-          2.9627,
-          0.3537,
-          2.3742,
-          2.9648,
-          0.3537,
-          2.3799,
-          2.9627,
-          0.3537,
-          2.3799,
-          2.9648
+          0.3361,
+          2.3736,
+          2.9632,
+          0.3361,
+          2.3736,
+          2.9645,
+          0.3361,
+          2.3793,
+          2.9632,
+          0.3361,
+          2.3793,
+          2.9645,
+          0.3535,
+          2.3736,
+          2.9632,
+          0.3535,
+          2.3736,
+          2.9645,
+          0.3535,
+          2.3793,
+          2.9632,
+          0.3535,
+          2.3793,
+          2.9645
         ]
       },
       {
@@ -4206,30 +4291,59 @@
       {
         "node": "Beech18-heading-drum-Beech18-instrument-ink",
         "points": [
-          0.3067,
-          2.3918,
+          0.3068,
+          2.4012,
           2.9625,
-          0.3067,
-          2.3918,
-          3.0397,
-          0.3067,
+          0.3068,
+          2.4012,
+          3.0376,
+          0.3068,
           2.4225,
           2.9625,
-          0.3067,
+          0.3068,
           2.4225,
-          3.0397,
-          0.3825,
-          2.3918,
+          3.0376,
+          0.3824,
+          2.4012,
           2.9625,
-          0.3825,
-          2.3918,
-          3.0397,
-          0.3825,
+          0.3824,
+          2.4012,
+          3.0376,
+          0.3824,
           2.4225,
           2.9625,
-          0.3825,
+          0.3824,
           2.4225,
-          3.0397
+          3.0376
+        ]
+      },
+      {
+        "node": "Beech18-heading-drum-Beech18-instrument-ink-dial-print",
+        "points": [
+          0.3072,
+          2.3913,
+          2.9648,
+          0.3072,
+          2.3913,
+          3.0393,
+          0.3072,
+          2.4155,
+          2.9648,
+          0.3072,
+          2.4155,
+          3.0393,
+          0.382,
+          2.3913,
+          2.9648,
+          0.382,
+          2.3913,
+          3.0393,
+          0.382,
+          2.4155,
+          2.9648,
+          0.382,
+          2.4155,
+          3.0393
         ]
       },
       {
@@ -4352,29 +4466,58 @@
         "node": "Beech18-attitude-card-Beech18-instrument-ink",
         "points": [
           0.0817,
-          2.3595,
-          2.9784,
+          2.3615,
+          2.9792,
           0.0817,
-          2.3595,
-          2.9967,
+          2.3615,
+          2.9963,
           0.0817,
-          2.439,
-          2.9784,
+          2.4357,
+          2.9792,
           0.0817,
-          2.439,
-          2.9967,
+          2.4357,
+          2.9963,
           0.3125,
-          2.3595,
-          2.9784,
+          2.3615,
+          2.9792,
           0.3125,
-          2.3595,
-          2.9967,
+          2.3615,
+          2.9963,
           0.3125,
-          2.439,
-          2.9784,
+          2.4357,
+          2.9792,
           0.3125,
-          2.439,
-          2.9967
+          2.4357,
+          2.9963
+        ]
+      },
+      {
+        "node": "Beech18-attitude-card-Beech18-instrument-ink-dial-print",
+        "points": [
+          0.2129,
+          2.3591,
+          2.9791,
+          0.2129,
+          2.3591,
+          2.9963,
+          0.2129,
+          2.4381,
+          2.9791,
+          0.2129,
+          2.4381,
+          2.9963,
+          0.2223,
+          2.3591,
+          2.9791,
+          0.2223,
+          2.3591,
+          2.9963,
+          0.2223,
+          2.4381,
+          2.9791,
+          0.2223,
+          2.4381,
+          2.9963
         ]
       },
       {
@@ -4404,122 +4547,6 @@
           -0.3172,
           2.5408,
           3.012
-        ]
-      },
-      {
-        "node": "Beech18-attitude-right-fixed-Beech18-instrument-amber",
-        "points": [
-          -0.4793,
-          2.4038,
-          2.9795,
-          -0.4793,
-          2.4038,
-          2.9823,
-          -0.4793,
-          2.4094,
-          2.9795,
-          -0.4793,
-          2.4094,
-          2.9823,
-          -0.4247,
-          2.4038,
-          2.9795,
-          -0.4247,
-          2.4038,
-          2.9823,
-          -0.4247,
-          2.4094,
-          2.9795,
-          -0.4247,
-          2.4094,
-          2.9823
-        ]
-      },
-      {
-        "node": "Beech18-attitude-right-card-Beech18-instrument-sky",
-        "points": [
-          -0.5516,
-          2.4097,
-          2.9651,
-          -0.5516,
-          2.4097,
-          2.9863,
-          -0.5516,
-          2.507,
-          2.9651,
-          -0.5516,
-          2.507,
-          2.9863,
-          -0.3524,
-          2.4097,
-          2.9651,
-          -0.3524,
-          2.4097,
-          2.9863,
-          -0.3524,
-          2.507,
-          2.9651,
-          -0.3524,
-          2.507,
-          2.9863
-        ]
-      },
-      {
-        "node": "Beech18-attitude-right-card-Beech18-instrument-earth",
-        "points": [
-          -0.5516,
-          2.3125,
-          2.9863,
-          -0.5516,
-          2.3125,
-          3.0075,
-          -0.5516,
-          2.4098,
-          2.9863,
-          -0.5516,
-          2.4098,
-          3.0075,
-          -0.3524,
-          2.3125,
-          2.9863,
-          -0.3524,
-          2.3125,
-          3.0075,
-          -0.3524,
-          2.4098,
-          2.9863,
-          -0.3524,
-          2.4098,
-          3.0075
-        ]
-      },
-      {
-        "node": "Beech18-attitude-right-card-Beech18-instrument-ink",
-        "points": [
-          -0.5516,
-          2.3758,
-          2.9773,
-          -0.5516,
-          2.3758,
-          2.9931,
-          -0.5516,
-          2.4444,
-          2.9773,
-          -0.5516,
-          2.4444,
-          2.9931,
-          -0.3524,
-          2.3758,
-          2.9773,
-          -0.3524,
-          2.3758,
-          2.9931,
-          -0.3524,
-          2.4444,
-          2.9773,
-          -0.3524,
-          2.4444,
-          2.9931
         ]
       }
     ]

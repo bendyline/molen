@@ -24,7 +24,10 @@ export function roadWidth(className: string, explicit?: number): number {
 export function waterwayWidth(className: string | undefined, explicit?: number): number {
   if (explicit !== undefined) return explicit;
   const value = normalizedClass(className ?? '');
-  if (value.includes('river') || value.includes('canal')) return 10;
-  if (value.includes('stream') || value.includes('ditch')) return 2.5;
-  return 5;
+  if (value.includes('river')) return 10;
+  if (value.includes('canal')) return 5;
+  if (value.includes('stream')) return 2;
+  if (value.includes('ditch') || value.includes('drain')) return 1;
+  if (value.includes('moat')) return 4;
+  return 2.5;
 }

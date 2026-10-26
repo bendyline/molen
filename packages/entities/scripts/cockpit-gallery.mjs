@@ -67,6 +67,9 @@ const labels = {
   quadrant: 'Throttle quadrant',
 };
 const joinViews = {
+  'dc-3': {
+    panel: { position: [0.5, 4.55, 6.6], lookAt: [0.3, 4.65, 7.2], fov: 58 },
+  },
   'cessna-182t': {
     panel: { position: [0, 1.7, 0.68], lookAt: [0, 1.42, 1.5], fov: 70 },
   },

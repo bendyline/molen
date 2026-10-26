@@ -7,6 +7,8 @@
     "data": [
       "assets/structures",
       "content/entities/source",
+      "content/entities/fonts",
+      "content/earth/source/fonts",
       "content/worldgen/source",
       "content/worldgen/materials",
       "content/earth/structures/georeferencing.json",
@@ -33,24 +35,15 @@
   "generators": [
     {
       "id": "worldgen-stadiums",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-stadium-models.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-stadium-models.mjs"]
     },
     {
       "id": "worldgen-signature-towers",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-signature-towers.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-signature-towers.mjs"]
     },
     {
       "id": "worldgen-additional-landmarks",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-additional-landmarks.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-additional-landmarks.mjs"]
     },
     {
       "id": "worldgen-place-u35-ksiaz-entrances",
@@ -96,31 +89,19 @@
     },
     {
       "id": "worldgen-researched-bridges",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-researched-bridges.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-researched-bridges.mjs"]
     },
     {
       "id": "worldgen-heritage-towers",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-heritage-towers.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-heritage-towers.mjs"]
     },
     {
       "id": "worldgen-structure-catalog",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-structure-catalog.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-structure-catalog.mjs"]
     },
     {
       "id": "worldgen-lighthouses",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-lighthouse-models.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-lighthouse-models.mjs"]
     },
     {
       "id": "worldgen-place-dp3-willis-tower",
@@ -131,10 +112,7 @@
     },
     {
       "id": "worldgen-landmarks",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-landmark-models.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-landmark-models.mjs"]
     },
     {
       "id": "worldgen-place-sxk-galata-tower",
@@ -159,97 +137,56 @@
     },
     {
       "id": "worldgen-site-structures",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-site-structures.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-site-structures.mjs"]
     },
     {
       "id": "worldgen-map-structures",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-map-structures.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-map-structures.mjs"]
     },
     {
       "id": "worldgen-props",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-pack.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-pack.mjs"]
     },
     {
       "id": "entities-aircraft-oh6",
-      "command": [
-        "node",
-        "content/entities/source/aircraft/oh-6/models/generate.mjs"
-      ]
+      "command": ["node", "content/entities/source/aircraft/oh-6/models/generate.mjs"]
     },
     {
       "id": "entities-aircraft-p51",
-      "command": [
-        "node",
-        "content/entities/source/aircraft/p-51/models/generate.mjs"
-      ]
+      "command": ["node", "content/entities/source/aircraft/p-51/models/generate.mjs"]
     },
     {
       "id": "entities-aircraft-airliner",
-      "command": [
-        "node",
-        "content/entities/source/aircraft/airliner/models/generate.mjs"
-      ]
+      "command": ["node", "content/entities/source/aircraft/airliner/models/generate.mjs"]
     },
     {
       "id": "entities-aircraft-expansion",
-      "command": [
-        "node",
-        "packages/entities/scripts/generate-aircraft.mjs"
-      ]
+      "command": ["node", "packages/entities/scripts/generate-aircraft.mjs"]
     },
     {
       "id": "entities-transit-bus",
-      "command": [
-        "node",
-        "content/entities/source/transit/bus/models/generate.mjs"
-      ]
+      "command": ["node", "content/entities/source/transit/bus/models/generate.mjs"]
     },
     {
       "id": "entities-transit-lightrail",
-      "command": [
-        "node",
-        "content/entities/source/transit/light-rail-car/models/generate.mjs"
-      ]
+      "command": ["node", "content/entities/source/transit/light-rail-car/models/generate.mjs"]
     },
     {
       "id": "entities-fleet",
-      "command": [
-        "node",
-        "packages/entities/scripts/generate-fleet.mjs"
-      ]
+      "command": ["node", "packages/entities/scripts/generate-fleet.mjs"]
     },
     {
       "id": "entities-json-models",
-      "command": [
-        "node",
-        "packages/entities/scripts/generate-json-models.mjs"
-      ]
+      "command": ["node", "packages/entities/scripts/generate-json-models.mjs"]
     },
     {
       "id": "red-barn",
-      "command": [
-        "node",
-        "assets/structures/red-barn/scripts/generate-barn.mjs"
-      ]
+      "command": ["node", "assets/structures/red-barn/scripts/generate-barn.mjs"]
     },
     {
       "id": "lantern-dungeon",
-      "outputs": [
-        "examples/lantern-dungeon/asset-src"
-      ],
-      "command": [
-        "python",
-        "examples/lantern-dungeon/tools/generate-assets.py"
-      ]
+      "outputs": ["examples/lantern-dungeon/asset-src"],
+      "command": ["python", "examples/lantern-dungeon/tools/generate-assets.py"]
     },
     {
       "id": "worldgen-place-u35-ksiaz-stables",
@@ -274,10 +211,7 @@
     },
     {
       "id": "worldgen-authored-places",
-      "command": [
-        "node",
-        "packages/worldgen/scripts/generate-authored-places.mjs"
-      ]
+      "command": ["node", "packages/worldgen/scripts/generate-authored-places.mjs"]
     },
     {
       "id": "worldgen-tomioka-silk-mill",
@@ -593,22 +527,174 @@
         "node",
         "content/worldgen/source/places/gc/gcr/boughton_house/models/generate-boughton-house.mjs"
       ]
+    },
+    {
+      "id": "worldgen-india-gate",
+      "command": ["node", "packages/worldgen/scripts/generate-india-gate.mjs"]
+    },
+    {
+      "id": "worldgen-place-sr2-palazzo-dei-conservatori",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/models/generate-palazzo-dei-conservatori.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-sr2-palazzo-nuovo-capitoline",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sr/sr2/palazzo_nuovo_capitoline/models/generate-palazzo-nuovo-capitoline.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-sr2-palazzo-senatorio-tabularium",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sr/sr2/palazzo_senatorio_tabularium/models/generate-palazzo-senatorio-tabularium.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-leo-tolstoy-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/models/generate-leo-tolstoy-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-kuzminsky-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/models/generate-kuzminsky-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-volkonsky-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/models/generate-volkonsky-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-coachmans-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/models/generate-coachmans-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-granary",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/models/generate-granary-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-smithy-carpentry",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/models/generate-smithy-carpentry-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-pavilion",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/models/generate-pavilion-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-garden-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/models/generate-garden-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-gate-towers",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/models/generate-gate-towers-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-bathhouse",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/bathhouse_yasnaya_polyana/models/generate-bathhouse-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-birch-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/models/generate-birch-bridge-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-tower-gazebo",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/models/generate-tower-gazebo-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-stable-carriage-shed",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/stable_carriage_shed_yasnaya_polyana/models/generate-stable-carriage-shed-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-greenhouse",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/models/generate-greenhouse-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-poultry-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/poultry_house_yasnaya_polyana/models/generate-poultry-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-equipment-shed",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/models/generate-equipment-shed-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-riga",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/models/generate-riga-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-white-kitchen",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/models/generate-white-kitchen-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-icehouse",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/icehouse_yasnaya_polyana/models/generate-icehouse-yasnaya-polyana.mjs"
+      ]
     }
   ],
   "afterImport": [
     {
       "id": "worldgen-runtime-lods",
-      "command": [
-        "node",
-        "packages/tooling/scripts/generate-landmark-lods.mjs"
-      ]
+      "command": ["node", "packages/tooling/scripts/generate-landmark-lods.mjs"]
     },
     {
       "id": "lantern-dungeon-import-report",
-      "command": [
-        "node",
-        "examples/lantern-dungeon/tools/import-assets.mjs"
-      ]
+      "command": ["node", "examples/lantern-dungeon/tools/import-assets.mjs"]
     }
   ],
   "masters": [

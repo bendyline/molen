@@ -22,7 +22,7 @@ Original authored geometry. Architect/operator photographs and drawings were use
 
 ## Authored geometry and materials
 
-1,216,324 triangles, 2,347,596 vertices, 6 surface groups; 99,112,908 source bytes. SHA-256: `sha256:16674811ec65058c2eab9577c1af5521e95e87653f4275eb9668d7876b001bbb`. Actual bounds: -125.152, -9.100, -157.236 to 123.965, 21.100, 152.768 m.
+1,120,300 triangles, 2,362,692 vertices, 6 surface groups; 98,504,076 source bytes. SHA-256: `sha256:6afc68c4fd9c12443ce548163d4c47178c2b47517833df89a1c7e3c10a64143f`. Actual bounds: -125.152, -9.100, -157.236 to 123.965, 21.100, 152.768 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped playing-field center; +Z points north-northeast. Y0 is the immediate ring esplanade; the depressed playing field and lower galleries lie below it."}.
 

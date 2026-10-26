@@ -18,7 +18,7 @@ export function buildBuildingAccess(
   const p = (t: number, side: number): Vec3 => {
     const x = access.from[0] + dx * t + nx * side,
       z = access.from[1] + dz * t + nz * side;
-    return [x, ground.sampleHeight(x, z) + 0.045, z];
+    return [x, ground.sampleHeight(x, z) + (access.lift ?? 0.045), z];
   };
   for (let i = 0; i < count; i++) {
     const a = i / count,
@@ -35,7 +35,7 @@ export function buildBuildingAccess(
       [p(a, -1), p(a, 1), p(b, 1), p(b, -1)],
       [0, 1, 0],
       uv,
-      [0.66, 0.65, 0.6],
+      access.width >= 2 ? [0.72, 0.73, 0.71] : [0.66, 0.65, 0.6],
     );
   }
 }

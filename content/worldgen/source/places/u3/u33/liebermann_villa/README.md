@@ -18,4 +18,4 @@ No reference-image pixels are embedded. Shared materials and original simplified
 
 Independent terrain remains unchanged; another host DEM can change exact foundation contact.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=liebermann_villa`. Add `--check` to verify exact regeneration. 22869 triangles; 6 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=liebermann_villa`. Add `--check` to verify exact regeneration. 22741 triangles; 6 materials; no embedded photographs.

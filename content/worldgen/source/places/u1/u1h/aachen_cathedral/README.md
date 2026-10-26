@@ -20,4 +20,4 @@ Current centralcurvedroof and openlantern are interpreted within nominal42msourc
 
 Independent180mrawTerrariumfield frozenbeforegeometry atwesternapproach. Source grid/PNG/originaltile unchanged; no groundflattening/fitting. Thresholds/hidden foundations/host contact approximate; flatviewerstage is not gradecertification. No naturalground/publicsquare included. Detaillevels simplifycurvefacets/tracery/sculpture while compound massing/choir/dome/spire and openlanternpersist.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=aachen_cathedral`. Add `--check` to verify exact regeneration. 42857 triangles; 6 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=aachen_cathedral`. Add `--check` to verify exact regeneration. 42793 triangles; 6 materials; no embedded photographs.

@@ -2,7 +2,7 @@
 
 import { readFileSync } from 'node:fs';
 import { beam, loft, normalFor, sphere } from './authored-structure-mesh.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
 const frame = JSON.parse(
@@ -193,7 +193,7 @@ function pier(out, x) {
       const t = (i / 48) * Math.PI * 2;
       ring.push([x + Math.cos(t) * 0.105, 2.95 + Math.sin(t) * 0.105, side * 5.925]);
     }
-    for (let i = 1; i < ring.length; i++) tube(out, 'iron', ring[i - 1], ring[i], 0.018, iron, 8);
+    tubePath(out, 'iron', ring, 0.018, iron, 8);
     box(
       out,
       'iron',
@@ -275,7 +275,7 @@ function lamp(out, x, z) {
       const t = i / 24;
       return [x + side * (0.1 + 0.24 * Math.sin((Math.PI * t) / 2)), y + 3.8 + 0.82 * t, z];
     });
-    for (let i = 1; i < path.length; i++) tube(out, 'iron', path[i - 1], path[i], 0.028, iron, 10);
+    tubePath(out, 'iron', path, 0.028, iron, 10);
     sphere(out, 'iron', [x + side * 0.23, y + 3.99, z], [0.053, 0.045, 0.045], iron, 20, 12);
   }
   lathe(

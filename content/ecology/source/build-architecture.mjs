@@ -3,8 +3,9 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { aerialRoofPalette, towerWalls, urbanWalls } from './aerial-palettes.mjs';
 import { architectureFamilies } from './architecture-families.mjs';
-import { architectureLotPlans } from './architecture-lots.mjs';
+import { architectureLotFences, architectureLotPlans } from './architecture-lots.mjs';
 import { architectureVariants } from './architecture-variants.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../worldgen');
@@ -23,7 +24,9 @@ const write = async (path, doc) => {
 };
 const range = (min, max = min) => ({ min, max });
 const palette = (colors) => ({
-  entries: colors.map((color) => ({ color, weight: 1 })),
+  entries: colors.map((entry) =>
+    Array.isArray(entry) ? { color: entry[0], weight: entry[1] } : { color: entry, weight: 1 },
+  ),
   jitter: { hue: 0.005, saturation: 0.015, lightness: 0.025 },
 });
 const material = (name) => [{ ref: `matgraph:molen.worldgen.material.${name}`, weight: 1 }];
@@ -32,6 +35,7 @@ const sources = {
   attached: await read('styles/generic/house.archstyle.json'),
   apartments: await read('styles/catalog/modern_apartments.archstyle.json'),
   commercial: await read('styles/generic/commercial.archstyle.json'),
+  tower: await read('styles/generic/commercial.archstyle.json'),
   civic: await read('styles/generic/commercial.archstyle.json'),
   industrial: await read('styles/generic/warehouse.archstyle.json'),
   farm: await read('styles/generic/box.archstyle.json'),
@@ -41,6 +45,7 @@ const classes = {
   attached: ['terrace', 'townhouse', 'townhouses', 'rowhouse'],
   apartments: ['apartments', 'dormitory', 'residential'],
   commercial: ['commercial', 'office', 'retail', 'hotel', 'shop'],
+  tower: ['commercial', 'office', 'hotel', 'apartments', 'residential', 'yes', 'building'],
   civic: [
     'school',
     'kindergarten',
@@ -82,18 +87,27 @@ for (const family of architectureFamilies) {
     const shed = type === 'industrial' || type === 'farm';
     style.id = id(family.id, type);
     style.lotPlans = architectureLotPlans(family.id, type);
+    style.lotFences = architectureLotFences(family.id, type);
     style.title = `${family.title}: ${type}`;
     style.doc =
       'Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.';
     style.applicability = { classes: classes[type] };
     // Chimneys on houses and rooftop units on commercial blocks, as authored; sheds stay bare.
     style.props = shed ? [] : structuredClone(source.props ?? []);
-    // Low shops and civic blocks carry a full-size rooftop unit for about every 150 m² of roof,
+    // Low shops and civic blocks carry a full-size rooftop unit for about every 250 m² of roof,
     // so a flat roof seen from above reads as working plant rather than a blank membrane.
-    if (type === 'commercial' || type === 'civic')
+    if (type === 'commercial' || type === 'civic' || type === 'tower')
       for (const prop of style.props)
         if (prop.id === 'hvac')
-          Object.assign(prop, { count: range(2, 14), perAreaM2: 150, scale: range(1.1, 1.7) });
+          Object.assign(prop, {
+            count: range(2, 6),
+            perAreaM2: 250,
+            scale: range(1.1, 1.7),
+            lodTier: 1,
+          });
+    if (['commercial', 'civic', 'tower'].includes(type))
+      for (const tier of style.lod?.tiers ?? [])
+        if (tier.minTier === 1 && !tier.keep.includes('props')) tier.keep.push('props');
     // Foundation plantings: a few shrubs along a house's walls, flanking its door first.
     if (home)
       style.props.push({
@@ -135,7 +149,9 @@ for (const family of architectureFamilies) {
     style.materials.roof.uvScale ??= [2.5, 2.5];
     style.materials.roof.palette = 'regional_roof';
     style.materials.trim.palette = 'regional_trim';
-    style.palettes.regional_wall = palette(family.colors);
+    style.palettes.regional_wall = palette(
+      type === 'tower' ? towerWalls : home || type === 'farm' ? family.colors : urbanWalls,
+    );
     style.palettes.regional_roof = palette(family.roofColors);
     style.palettes.regional_trim = palette(['#dcd8cc', '#8c918c']);
     style.roof.features =
@@ -196,6 +212,24 @@ for (const family of architectureFamilies) {
     if (family.veranda && type === 'detached')
       style.facade.details.veranda = { depth: family.veranda, columns: true };
     if (type === 'attached') style.roof.overhang = range(0.1, 0.25);
+    const roofPalette = aerialRoofPalette(family.id, home);
+    if (roofPalette) style.palettes.regional_roof = palette(roofPalette);
+    if (home && family.id === 'southwestern') {
+      // Flat/light roofs dominate the reviewed Yuma blocks; tile remains a minority.
+      style.roof.choices = [structuredClone(flat), ...style.roof.choices];
+      style.roof.choices[0].weight = 8;
+      style.materials.flatRoof = { ...style.materials.roof, choices: material('membrane') };
+    }
+    if (type === 'tower') {
+      style.materials.wall.choices = material('concrete_panel');
+      style.massing.floorHeight = range(3.3, 3.8);
+      style.facade.windows.style = 'grid';
+      style.facade.windows.width = range(2.1, 2.7);
+      style.facade.windows.height = range(2.3, 2.8);
+      style.facade.windows.sill = range(0.45, 0.65);
+      style.facade.windows.probabilityPerBay = 0.98;
+      // The source recipe's setbacks and mapped height preserve the tower/podium envelope.
+    }
     for (const variant of architectureVariants(style)) {
       const suffix = variant.id === style.id ? '' : `_${variant.id.split('.').at(-1)}`;
       const path = `styles/regional/${family.id}/${type}${suffix}.archstyle.json`;
@@ -216,6 +250,8 @@ for (const family of architectureFamilies) {
   const rules = [
     // A caller's explicit named architectural precedent remains available in every region.
     ...explicitStyles,
+    use('tower', { class: classes.tower, heightMin: 35 }),
+    use('tower', { class: classes.tower, levelsMin: 11 }),
     ...['industrial', 'farm', 'civic', 'commercial'].map((type) =>
       use(type, { class: classes[type] }),
     ),

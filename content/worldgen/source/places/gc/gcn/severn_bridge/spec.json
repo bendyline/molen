@@ -60,8 +60,8 @@
       1.8
     ],
     "originalMasterHash": "sha256:41a39bb8d560fad968924a5f1cd2dc687f8af781a35c039da0be20e415d29450",
-    "originalMasterRecipe": "packages/worldgen/scripts/severn-bridge-model.mjs#buildSevern",
-    "reviewScope": "Picture and standard PMTiles approximate exterior review; detailed geometry unchanged."
+    "originalMasterRecipe": "content/worldgen/source/places/gc/gcn/severn_bridge/models/severn-bridge-model.mjs#buildSevern",
+    "reviewScope": "Ordinary photos, preserved detailed master, explicit complete browser LODs and actual native PMTiles placement."
   },
   "reconstruction": {
     "towerTopLocalY": 136,
@@ -95,10 +95,10 @@
   "reviewStatus": "Source ready for picture/PMTiles and browser-level visual review.",
   "placementStatus": "Approximate PMTiles crossing fit and global sea-plane visualization.",
   "limitations": [
-    "Pictures and standard viewer PMTiles determine approximate fit; the working sea plane is not a certified vertical/tidal datum.",
-    "Original detailed geometry is preserved and byte-reproduced; shared graphs supply reusable painted steel and concrete grain. Road material uses a dark aggregate approximation.",
-    "Skyline uses representative suspension/hanger ribbons; district reconstructs broader cables. Street/closeup reductions simplify rails, fittings and narrow markings; source retains all authored geometry.",
-    "Separate approach bridges are excluded. Connected road fitting is requested, but exact host endpoint joins and tides are not surveyed. Mapped-water preview is not bathymetry. Footprint replacement off; physical-device timings remain pending."
+    "The 308648-triangle shared-material detailed master remains exact. Browser models preserve paired portals, connected main cables, inclined hangers, complete aerofoil roadway and footways, piers and anchorages.",
+    "Source nominal dimensions, local sea-plane datum, sag/grade and fittings remain photo/map approximations; this is not a reconciled tidal or engineering survey.",
+    "Skyline/district use representative paired hangers. Near levels retain the 344-hanger schedule, continuous cables and rails; parapet pickets are spaced 16 m on street and 2 m on closeup, while the master retains the fine original 0.75 m rhythm.",
+    "Separate Aust/Beachley/Wye approach structures use the independent native procedural bridge renderer. Their detailed unique models, current traffic, interiors, exact endpoint grades and physical device timings are outside this asset."
   ],
   "qaCameras": [
     {
@@ -211,30 +211,90 @@
   },
   "mediumFiContext": {
     "groundY": 0,
-    "scale": 11,
+    "scale": 1,
     "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "runtimeLodOverlay": {
     "level": "skyline",
-    "module": "packages/worldgen/scripts/severn-browser-model.mjs",
+    "module": "content/worldgen/source/places/gc/gcn/severn_bridge/models/severn-runtime.mjs",
     "export": "buildSevernSkyline",
     "errorMeters": 5,
-    "caps": {
-      "street": {
-        "triangles": 16000,
-        "errorMeters": 1.5,
-        "prune": true
-      },
-      "closeup": {
-        "triangles": 64000,
-        "errorMeters": 0.6,
-        "prune": true
-      }
-    },
     "authoredLevels": {
       "district": {
         "export": "buildSevernDistrict",
         "errorMeters": 3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.42
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.51,
+            "metallic": 0.42
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSevernStreet",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.42
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.51,
+            "metallic": 0.42
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSevernCloseup",
+        "errorMeters": 0.6,
         "surfaces": {
           "wall": {
             "slot": "wall",

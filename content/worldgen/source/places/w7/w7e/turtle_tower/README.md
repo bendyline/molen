@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/turtle-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-270,704 triangles; 811,536 vertices; 4 material groups; 32,466,552 source bytes. Source hash: `sha256:1c2d4cccaab653fdde5a2c233176644a7985493be480956bf673a9214aadbf16`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+269,320 triangles; 807,384 vertices; 4 material groups; 32,300,472 source bytes. Source hash: `sha256:744945e16c61052b4e4e1583bc19763aeb3e57bbd9635767f882fdfe5129df1a`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs turtle_tower`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

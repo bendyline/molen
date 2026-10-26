@@ -24,7 +24,7 @@ Public primary photographs are used for architectural analysis only. No photogra
 
 ## Authored geometry and materials
 
-1,426,422 triangles, 2,703,604 vertices, 7 surface groups; 114,450,732 source bytes. SHA-256: `sha256:f07ce08f66f05e716982580f0278eadf4769c315ac0ac5fe78e79ee0bdedfcce`. Actual bounds: -120.018, 0.000, -137.537 to 119.565, 51.589, 154.010 m.
+1,227,182 triangles, 2,910,076 vertices, 7 surface groups; 119,492,848 source bytes. SHA-256: `sha256:59dc1228cd0822dc79860231d9518f63057aa125d5291227e9bb7f1609a72571`. Actual bounds: -120.018, 0.000, -137.537 to 119.565, 51.589, 154.010 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.etfe_film` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped pitch center at ground playing-field datum. Native +Z points south-southwest along the pitch; +X points east-southeast."}.
 

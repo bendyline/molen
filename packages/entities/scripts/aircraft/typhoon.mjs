@@ -622,8 +622,8 @@ function typhoonCockpit(root, m) {
         [0.5, 0.5],
         [-0.5, 0.5],
       ].map(([u, v]) => [x + u * w, y + v * h, z + dz]),
-    txt = (t, x, y, h = 0.008, color = ink, dz = -0.03) =>
-      d.text(t, [x, y, z + dz], h, Math.PI, color);
+    txt = (t, x, y, h = 0.008, color = ink, dz = -0.03, role = 'panel') =>
+      d.text(t, [x, y, z + dz], h, Math.PI, color, role);
   const edge = [
     [-0.44, 2.38],
     [-0.44, 2.55],
@@ -696,13 +696,13 @@ function typhoonCockpit(root, m) {
   display(0, 2.485);
   display(-0.218, 2.574);
   ins.horizon('attitude', [0.218, 2.59, z + 0.01], 0.101, 0.076, { blankBackdrop: true });
-  txt('FLIGHT / SIM', 0.218, 2.638, 0.006, green);
-  txt('TAS', 0.256, 2.538, 0.006, green);
+  txt('FLIGHT / SIM', 0.218, 2.638, 0.006, green, undefined, 'display');
+  txt('TAS', 0.256, 2.538, 0.006, green, undefined, 'display');
   ins.readout('speed', [0.256, 2.523, z - 0.028], 'knots', 3, 0.009, green);
-  txt('GEO FT', 0.18, 2.538, 0.006, green);
+  txt('GEO FT', 0.18, 2.538, 0.006, green, undefined, 'display');
   ins.readout('altitude', [0.18, 2.523, z - 0.028], 'feet', 5, 0.008, green, true, true);
-  txt('TRUE', 0, 2.552, 0.007, green);
-  txt('FPM', 0, 2.425, 0.006, green);
+  txt('TRUE', 0, 2.552, 0.007, green, undefined, 'display');
+  txt('FPM', 0, 2.425, 0.006, green, undefined, 'display');
   ins.readout('vertical-speed', [0, 2.409, z - 0.028], 'verticalFpm', 5, 0.009, green, true, true);
   const hg = group(cabin, 'Typhoon-heading', [0, 2.487, z - 0.028]),
     hd = detailKit(hg, hg.name);
@@ -724,9 +724,9 @@ function typhoonCockpit(root, m) {
   ins.available('heading', 'trueHeading', hg.name);
   d.rod([0, 2.54, z - 0.029], [0, 2.532, z - 0.029], 0.001, ink);
   txt('SYSTEMS', -0.218, 2.62, 0.009, green);
-  txt('ENGINE --', -0.218, 2.587, 0.009, amber);
-  txt('FUEL --', -0.218, 2.559, 0.009, amber);
-  txt('SENSORS INOP', -0.218, 2.524, 0.007, amber);
+  txt('ENGINE --', -0.218, 2.587, 0.009, amber, undefined, 'display');
+  txt('FUEL --', -0.218, 2.559, 0.009, amber, undefined, 'display');
+  txt('SENSORS INOP', -0.218, 2.524, 0.007, amber, undefined, 'display');
   sheet(
     d,
     rect(-0.255, 2.775, 0.079, 0.067, -0.01),

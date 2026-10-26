@@ -168,7 +168,55 @@ function platform(out, x) {
   }
 }
 
-export function buildHelix(out) {
+export const helixPoint = (
+  x,
+  j,
+  count,
+  r,
+  cy,
+  pitch,
+  hand,
+  phase = count === 6 ? 0.892 : 0.516,
+) => {
+  const endStart = 111;
+  const station = Math.max(-endStart, Math.min(endStart, x));
+  const angle =
+    Math.PI - (phase + (2 * Math.PI * j) / count + (hand * 2 * Math.PI * (station + half)) / pitch);
+  let y = cy + r * Math.sin(angle),
+    z = r * Math.cos(angle);
+  if (Math.abs(x) > endStart) {
+    // Architect's end-span drawing gathers the tubes into the deck-edge
+    // bearings. Move overhead tubes outside the walking width before lowering
+    // them, leaving a clear entrance rather than cutting a full helix at shore.
+    const t = (Math.abs(x) - endStart) / (half - endStart);
+    const spread = Math.min(1, t * 2);
+    const ease = spread * spread * (3 - 2 * spread);
+    z += ((z >= 0 ? 3.3 : -3.3) - z) * ease;
+    const fall = Math.max(0, (t - 0.5) * 2);
+    y += (5.6 - y) * fall * fall * (3 - 2 * fall);
+  }
+  return point(x, y, z);
+};
+// Secondary rods stop at the open viewing bays. Main helical tubes remain continuous.
+export const helixClearsWalk = (a, b, x, podStations = podCenters) => {
+  const origin = point(x, 0),
+    n = frame(x).across;
+  return sampled(0, 1, 0.025, (t) => a.map((v, k) => v + (b[k] - v) * t)).every((p) => {
+    if (p[1] - grade(x) < 5.85 || p[1] - grade(x) > 8.45) return true;
+    const lateral = p.reduce((sum, v, k) => sum + (v - origin[k]) * n[k], 0);
+    if (Math.abs(lateral) < 3.08) return false;
+    return !podStations.some(
+      (center) =>
+        ((x - center) / podRadiusAlong) ** 2 + ((lateral + podOffset) / podRadiusAcross) ** 2 <
+          1.06 ||
+        (Math.abs(x - center) < podOpeningHalf + 0.2 && lateral < -3),
+    );
+  });
+};
+
+export function buildHelix(out, { podStations = podCenters, phaseAt } = {}) {
+  const sampleHelix = (x, j, count, r, cy, pitch, hand) =>
+    helixPoint(x, j, count, r, cy, pitch, hand, phaseAt?.(count, x));
   // Slab, individually jointed granite panels and longitudinal floor beams.
   for (let x = -half; x < half; x += 0.8) {
     const end = Math.min(half, x + 0.8);
@@ -195,7 +243,7 @@ export function buildHelix(out) {
     );
     const cuts =
       side === -1
-        ? [-half, ...podCenters.flatMap((x) => [x - podOpeningHalf, x + podOpeningHalf]), half]
+        ? [-half, ...podStations.flatMap((x) => [x - podOpeningHalf, x + podOpeningHalf]), half]
         : [-half, half];
     for (let section = 0; section < cuts.length - 1; section += 2) {
       const from = cuts[section],
@@ -224,44 +272,6 @@ export function buildHelix(out) {
       }
     }
   }
-  const helixPoint = (x, j, count, r, cy, pitch, hand) => {
-    const phase = count === 6 ? 0.892 : 0.516;
-    const endStart = 111;
-    const station = Math.max(-endStart, Math.min(endStart, x));
-    const angle =
-      Math.PI -
-      (phase + (2 * Math.PI * j) / count + (hand * 2 * Math.PI * (station + half)) / pitch);
-    let y = cy + r * Math.sin(angle),
-      z = r * Math.cos(angle);
-    if (Math.abs(x) > endStart) {
-      // Architect's end-span drawing gathers the tubes into the deck-edge
-      // bearings. Move overhead tubes outside the walking width before lowering
-      // them, leaving a clear entrance rather than cutting a full helix at shore.
-      const t = (Math.abs(x) - endStart) / (half - endStart);
-      const spread = Math.min(1, t * 2);
-      const ease = spread * spread * (3 - 2 * spread);
-      z += ((z >= 0 ? 3.3 : -3.3) - z) * ease;
-      const fall = Math.max(0, (t - 0.5) * 2);
-      y += (5.6 - y) * fall * fall * (3 - 2 * fall);
-    }
-    return point(x, y, z);
-  };
-  // Secondary rods stop at the open viewing bays. Main helical tubes remain continuous.
-  const clearsWalk = (a, b, x) => {
-    const origin = point(x, 0),
-      n = frame(x).across;
-    return sampled(0, 1, 0.025, (t) => a.map((v, k) => v + (b[k] - v) * t)).every((p) => {
-      if (p[1] - grade(x) < 5.85 || p[1] - grade(x) > 8.45) return true;
-      const lateral = p.reduce((sum, v, k) => sum + (v - origin[k]) * n[k], 0);
-      if (Math.abs(lateral) < 3.08) return false;
-      return !podCenters.some(
-        (center) =>
-          ((x - center) / podRadiusAlong) ** 2 + ((lateral + podOffset) / podRadiusAcross) ** 2 <
-            1.06 ||
-          (Math.abs(x - center) < podOpeningHalf + 0.2 && lateral < -3),
-      );
-    });
-  };
   for (const [count, r, cy, pitch, hand, color] of [
     [6, 5.4, 8.4, 73.6, 1, white],
     [5, 4.7, 7.7, 51.4, -1, polished],
@@ -270,15 +280,15 @@ export function buildHelix(out) {
       stroke(
         out,
         'steel',
-        sampled(-half, half, 0.4, (x) => helixPoint(x, j, count, r, cy, pitch, hand)),
+        sampled(-half, half, 0.4, (x) => sampleHelix(x, j, count, r, cy, pitch, hand)),
         0.1365,
         color,
         16,
       );
       for (let x = -half + 2; x < half - 2; x += 5) {
-        const a = helixPoint(x, j, count, r, cy, pitch, hand),
-          b = helixPoint(x, j + 1, count, r, cy, pitch, hand);
-        if (clearsWalk(a, b, x)) cylinder(out, a, b, 0.026, white);
+        const a = sampleHelix(x, j, count, r, cy, pitch, hand),
+          b = sampleHelix(x, j + 1, count, r, cy, pitch, hand);
+        if (helixClearsWalk(a, b, x, podStations)) cylinder(out, a, b, 0.026, white);
         // Collar and pin at the real tube/rod junction, modeled independently of surface grain.
         const t = frame(x).tangent;
         cylinder(
@@ -294,15 +304,16 @@ export function buildHelix(out) {
   // Short tension struts connect the counter-rotating systems without closing the walking tube.
   for (let x = -half + 3; x < half; x += 5)
     for (let j = 0; j < 6; j++) {
-      const a = helixPoint(x, j, 6, 5.4, 8.4, 73.6, 1);
+      const a = sampleHelix(x, j, 6, 5.4, 8.4, 73.6, 1);
       const candidates = Array.from({ length: 5 }, (_, k) =>
-        helixPoint(x, k, 5, 4.7, 7.7, 51.4, -1),
+        sampleHelix(x, k, 5, 4.7, 7.7, 51.4, -1),
       );
       candidates.sort(
         (p, q) =>
           Math.hypot(...p.map((v, k) => v - a[k])) - Math.hypot(...q.map((v, k) => v - a[k])),
       );
-      if (clearsWalk(a, candidates[0], x)) cylinder(out, a, candidates[0], 0.027, polished);
+      if (helixClearsWalk(a, candidates[0], x, podStations))
+        cylinder(out, a, candidates[0], 0.027, polished);
     }
   // The alternating overhead fritted-glass and mesh leaves preserve open sides and sky slots.
   for (let x = -110; x < 110; x += 3.5) {
@@ -328,9 +339,9 @@ export function buildHelix(out) {
       }
     }
   }
-  for (const x of podCenters) platform(out, x);
+  for (const x of podStations) platform(out, x);
   // Each of the four pile caps carries two inverted tripods, as in the architect's detail.
-  for (const x of podCenters) {
+  for (const x of podStations) {
     const cap = Array.from({ length: 8 }, (_, i) =>
       point(x + 2.8 * Math.cos((-i * Math.PI) / 4), 0, 4.8 * Math.sin((-i * Math.PI) / 4)),
     );
@@ -371,6 +382,15 @@ export function buildHelix(out) {
       );
   }
 }
+
+export {
+  curve as helixCurve,
+  frame as helixFrame,
+  grade as helixGrade,
+  podCenters as helixPodCenters,
+  point as helixDeckPoint,
+  stroke as helixStroke,
+};
 
 export const helixStudy = {
   id: 'the_helix_bridge',

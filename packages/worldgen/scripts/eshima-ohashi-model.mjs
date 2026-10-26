@@ -552,6 +552,15 @@ export function buildEshima(out) {
   }
   navigationMarks(out);
 }
+// Runtime representations share the measured alignment/profile without changing the master.
+export {
+  depth as eshimaDepth,
+  edge as eshimaEdge,
+  p as eshimaPoint,
+  path as eshimaPath,
+  roadEdge as eshimaRoadEdge,
+  supports as eshimaSupports,
+};
 export const eshimaStudy = {
   id: 'eshima_ohashi_bridge',
   key: 'eshima_ohashi_bridge',

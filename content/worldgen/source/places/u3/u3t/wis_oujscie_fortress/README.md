@@ -25,7 +25,7 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-107,446 triangles, 211,076 vertices, 11 surface groups; 8,894,136 source bytes. SHA-256: `sha256:38ad824542d260d9eb3a4bf9a5b75ee1f122940dbbcc59b3acfdefb1b5d73f38`. Actual bounds: -78.826, -4.350, -89.175 to 115.716, 27.430, 122.814 m.
+101,942 triangles, 211,076 vertices, 11 surface groups; 8,828,088 source bytes. SHA-256: `sha256:058a86b9549d5570592d598665c7bc224db6c085870d1a5a980bdfbebb0d5872`. Actual bounds: -78.826, -4.350, -89.175 to 115.716, 27.430, 122.814 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.brick` (1.92 × 0.9 m), `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.stone` (2 × 2 m), `matgraph:molen.worldgen.material.stone_limestone` (2.4 × 1.6 m), `matgraph:molen.worldgen.material.tile_ceramic` (2.4 × 2.4 m), `matgraph:molen.worldgen.material.fabric_canvas` (0.25 × 0.25 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m), `matgraph:molen.worldgen.material.gravel` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 

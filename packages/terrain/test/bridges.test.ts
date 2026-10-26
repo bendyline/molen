@@ -54,6 +54,46 @@ function vertices(object: THREE.Object3D, name: string) {
   return mesh.geometry.getAttribute('position');
 }
 describe('automatic bridge structures', () => {
+  it('seats a raised ground approach on supports without adding bridge barriers', () => {
+    const tile = fixture(false);
+    tile.transportation[0] = {
+      class: 'path',
+      width: 3,
+      lines: [
+        [
+          [0, 0.5],
+          [1, 0.5],
+        ],
+      ],
+      bridgeConnections: [{ point: [0, 0.5], elevation: 18, radius: 40 }],
+    };
+    const object = createTerrainSurfaceObject(tile, context());
+    expect(object.getObjectByName('surfaces:bridges')).toBeUndefined();
+    const p = vertices(object, 'surfaces:approach-supports'),
+      ys = Array.from({ length: p.count }, (_, i) => p.getY(i));
+    expect(Math.min(...ys)).toBeLessThan(5);
+    expect(Math.max(...ys)).toBeCloseTo(17.92);
+    expect(Array.from({ length: p.count }, (_, i) => p.getX(i)).every((x) => x <= 42)).toBe(true);
+    const normal = (
+      object.getObjectByName('surfaces:approach-supports') as THREE.Mesh
+    ).geometry.getAttribute('normal');
+    expect(
+      Array.from({ length: normal.count }, (_, i) => [
+        normal.getX(i),
+        normal.getY(i),
+        normal.getZ(i),
+      ])
+        .flat()
+        .every(Number.isFinite),
+    ).toBe(true);
+    const dispose = vi.fn();
+    (object.getObjectByName('surfaces:approach-supports') as THREE.Mesh).geometry.addEventListener(
+      'dispose',
+      dispose,
+    );
+    disposeTerrainSurfaceObject(object);
+    expect(dispose).toHaveBeenCalledOnce();
+  });
   it('grades a connected ground approach without adding a bridge slab or a second surface lift', () => {
     const tile = fixture(false);
     tile.transportation[0] = {

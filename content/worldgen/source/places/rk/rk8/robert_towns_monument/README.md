@@ -18,4 +18,4 @@ No mapped monument footprint or verified vertical survey. Approximate6.8m height
 
 Independent32m129x129at0.25m terrain field frozen before geometry; provider260.4679m, full relative range[-4.4186,1.1222]. Original raw tile/grid/PNG unchanged without fitting, clipping or flattening. This oversamples4.51m output pixels and a coarser DEM; precise plinth foot, ground/threshold and host contact unverified. Geographic preview; replaceFootprint=false.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=robert_towns_monument`. Add `--check` to verify exact regeneration. 4608 triangles; 4 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=robert_towns_monument`. Add `--check` to verify exact regeneration. 4416 triangles; 4 materials; no embedded photographs.

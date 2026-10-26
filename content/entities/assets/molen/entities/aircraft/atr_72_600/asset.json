@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:78fa781f63f4400e54f45d4691a013d797aad83d475e8bdaad4523c477a4fd5b",
-  "sourceHash": "sha256:8400801e0d78b0a563163e8868c090c71d84eaefdc42f6960625eab43e0b5c5e",
+  "hash": "sha256:4553efb78cc80d03b2f7ae54e3d7f0d0a54ba265f0fc2aa4fa135ecec068763f",
+  "sourceHash": "sha256:98e6b7acaa36c81bd75fafeaf6907fc7458143f848021dd48f6b252fe5fd8a78",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 91554,
-    "vertices": 148672,
-    "meshes": 128,
-    "primitives": 128,
-    "materials": 28,
-    "textures": 9,
+    "triangles": 53224,
+    "vertices": 71894,
+    "meshes": 137,
+    "primitives": 137,
+    "materials": 31,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 3530756
+    "sizeBytes": 2178148
   },
   "nodes": [
     {
@@ -346,10 +346,6 @@
       "triangles": 408
     },
     {
-      "name": "ATR72-cabin-ATR72-instrument-ink",
-      "triangles": 14664
-    },
-    {
       "name": "ATR72-cabin-ATR72-teal",
       "triangles": 48
     },
@@ -364,6 +360,18 @@
     {
       "name": "ATR72-cabin-ATR72-alloy",
       "triangles": 4440
+    },
+    {
+      "name": "ATR72-cabin-ATR72-instrument-ink",
+      "triangles": 936
+    },
+    {
+      "name": "ATR72-cabin-ATR72-instrument-ink-display-print",
+      "triangles": 160
+    },
+    {
+      "name": "ATR72-cabin-ATR72-instrument-ink-panel-print",
+      "triangles": 134
     },
     {
       "name": "ATR72-PFD-0-attitude-fixed-ATR72-instrument-black",
@@ -383,7 +391,11 @@
     },
     {
       "name": "ATR72-PFD-0-attitude-card-ATR72-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "ATR72-PFD-0-attitude-card-ATR72-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "ATR72-PFD-0-speed-0-0-ATR72-instrument-ink",
@@ -540,18 +552,6 @@
     {
       "name": "ATR72-PFD-0-altitude-2-3-ATR72-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "ATR72-PFD-0-altitude-2-4-ATR72-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "ATR72-PFD-0-altitude-2-5-ATR72-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "ATR72-PFD-0-altitude-2-6-ATR72-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -679,14 +679,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "ATR72-instrument-ink",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "ATR72-liner",
       "slots": [
         "baseColor"
@@ -712,6 +704,32 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "ATR72-instrument-ink",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "ATR72-instrument-ink-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "ATR72-instrument-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     },
     {
       "name": "ATR72-instrument-amber",
@@ -776,20 +794,29 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "flight-control-legend",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "flight-control-grip-rubber",
       "slots": [
         "baseColor",
         "roughness",
         "metalness",
         "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -867,28 +894,28 @@
         "node": "ATR72-shell-ATR72-trim",
         "points": [
           -13.25,
-          1.3646,
+          1.3647,
           -6.6425,
           -13.25,
-          1.3646,
+          1.3647,
           12.2804,
           -13.25,
-          3.8264,
+          3.8266,
           -6.6425,
           -13.25,
-          3.8264,
+          3.8266,
           12.2804,
           13.25,
-          1.3646,
+          1.3647,
           -6.6425,
           13.25,
-          1.3646,
+          1.3647,
           12.2804,
           13.25,
-          3.8264,
+          3.8266,
           -6.6425,
           13.25,
-          3.8264,
+          3.8266,
           12.2804
         ]
       },
@@ -3010,35 +3037,6 @@
         ]
       },
       {
-        "node": "ATR72-cabin-ATR72-instrument-ink",
-        "points": [
-          -1.04,
-          2.4002,
-          11.216,
-          -1.04,
-          2.4002,
-          11.3877,
-          -1.04,
-          2.9264,
-          11.216,
-          -1.04,
-          2.9264,
-          11.3877,
-          1.04,
-          2.4002,
-          11.216,
-          1.04,
-          2.4002,
-          11.3877,
-          1.04,
-          2.9264,
-          11.216,
-          1.04,
-          2.9264,
-          11.3877
-        ]
-      },
-      {
         "node": "ATR72-cabin-ATR72-teal",
         "points": [
           -1.0946,
@@ -3152,6 +3150,93 @@
           1.1281,
           2.0205,
           10.355
+        ]
+      },
+      {
+        "node": "ATR72-cabin-ATR72-instrument-ink",
+        "points": [
+          -1.04,
+          2.4117,
+          11.216,
+          -1.04,
+          2.4117,
+          11.3877,
+          -1.04,
+          2.6222,
+          11.216,
+          -1.04,
+          2.6222,
+          11.3877,
+          1.04,
+          2.4117,
+          11.216,
+          1.04,
+          2.4117,
+          11.3877,
+          1.04,
+          2.6222,
+          11.216,
+          1.04,
+          2.6222,
+          11.3877
+        ]
+      },
+      {
+        "node": "ATR72-cabin-ATR72-instrument-ink-display-print",
+        "points": [
+          -0.8436,
+          2.4004,
+          11.385,
+          -0.8436,
+          2.4004,
+          11.387,
+          -0.8436,
+          2.664,
+          11.385,
+          -0.8436,
+          2.664,
+          11.387,
+          0.8472,
+          2.4004,
+          11.385,
+          0.8472,
+          2.4004,
+          11.387,
+          0.8472,
+          2.664,
+          11.385,
+          0.8472,
+          2.664,
+          11.387
+        ]
+      },
+      {
+        "node": "ATR72-cabin-ATR72-instrument-ink-panel-print",
+        "points": [
+          -0.9593,
+          2.3996,
+          11.3649,
+          -0.9593,
+          2.3996,
+          11.3871,
+          -0.9593,
+          2.9258,
+          11.3649,
+          -0.9593,
+          2.9258,
+          11.3871,
+          0.9675,
+          2.3996,
+          11.3649,
+          0.9675,
+          2.3996,
+          11.3871,
+          0.9675,
+          2.9258,
+          11.3649,
+          0.9675,
+          2.9258,
+          11.3871
         ]
       },
       {
@@ -3274,29 +3359,58 @@
         "node": "ATR72-PFD-0-attitude-card-ATR72-instrument-ink",
         "points": [
           0.6122,
-          2.5405,
+          2.5429,
           11.4093,
           0.6122,
-          2.5405,
+          2.5429,
           11.4107,
           0.6122,
-          2.6321,
+          2.6282,
           11.4093,
           0.6122,
-          2.6321,
+          2.6282,
           11.4107,
           0.8923,
-          2.5405,
+          2.5429,
           11.4093,
           0.8923,
-          2.5405,
+          2.5429,
           11.4107,
           0.8923,
-          2.6321,
+          2.6282,
           11.4093,
           0.8923,
-          2.6321,
+          2.6282,
           11.4107
+        ]
+      },
+      {
+        "node": "ATR72-PFD-0-attitude-card-ATR72-instrument-ink-dial-print",
+        "points": [
+          0.7736,
+          2.5401,
+          11.41,
+          0.7736,
+          2.5401,
+          11.41,
+          0.7736,
+          2.6311,
+          11.41,
+          0.7736,
+          2.6311,
+          11.41,
+          0.7841,
+          2.5401,
+          11.41,
+          0.7841,
+          2.5401,
+          11.41,
+          0.7841,
+          2.6311,
+          11.41,
+          0.7841,
+          2.6311,
+          11.41
         ]
       },
       {
@@ -4427,93 +4541,6 @@
           11.3876,
           0.6656,
           2.5823,
-          11.3884
-        ]
-      },
-      {
-        "node": "ATR72-PFD-0-altitude-2-4-ATR72-instrument-ink",
-        "points": [
-          0.6656,
-          2.5825,
-          11.3876,
-          0.6656,
-          2.5825,
-          11.3884,
-          0.6656,
-          2.5851,
-          11.3876,
-          0.6656,
-          2.5851,
-          11.3884,
-          0.6661,
-          2.5825,
-          11.3876,
-          0.6661,
-          2.5825,
-          11.3884,
-          0.6661,
-          2.5851,
-          11.3876,
-          0.6661,
-          2.5851,
-          11.3884
-        ]
-      },
-      {
-        "node": "ATR72-PFD-0-altitude-2-5-ATR72-instrument-ink",
-        "points": [
-          0.6656,
-          2.586,
-          11.3876,
-          0.6656,
-          2.586,
-          11.3884,
-          0.6656,
-          2.5886,
-          11.3876,
-          0.6656,
-          2.5886,
-          11.3884,
-          0.6661,
-          2.586,
-          11.3876,
-          0.6661,
-          2.586,
-          11.3884,
-          0.6661,
-          2.5886,
-          11.3876,
-          0.6661,
-          2.5886,
-          11.3884
-        ]
-      },
-      {
-        "node": "ATR72-PFD-0-altitude-2-6-ATR72-instrument-ink",
-        "points": [
-          0.663,
-          2.5853,
-          11.3876,
-          0.663,
-          2.5853,
-          11.3884,
-          0.663,
-          2.5858,
-          11.3876,
-          0.663,
-          2.5858,
-          11.3884,
-          0.6656,
-          2.5853,
-          11.3876,
-          0.6656,
-          2.5853,
-          11.3884,
-          0.6656,
-          2.5858,
-          11.3876,
-          0.6656,
-          2.5858,
           11.3884
         ]
       }

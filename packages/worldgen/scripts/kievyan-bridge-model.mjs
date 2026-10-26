@@ -1,6 +1,6 @@
 /** Kievyan's paired arch vaults, transverse portals and cast-iron rosettes. */
 import { beam, loft, normalFor, sphere } from './authored-structure-mesh.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 
 const stone = [0.34, 0.352, 0.324],
   concrete = [0.58, 0.58, 0.535],
@@ -510,7 +510,7 @@ function lamps(out) {
           const t = i / 20;
           return [x + sign * 1.5 * t, y + 6.5 + 1.3 * Math.sin((t * Math.PI) / 2), z];
         });
-        for (let i = 1; i < pts.length; i++) tube(out, 'iron', pts[i - 1], pts[i], 0.038, iron, 12);
+        tubePath(out, 'iron', pts, 0.038, iron, 12);
         sphere(out, 'iron', [x + sign * 1.48, y + 7.8, z], [0.29, 0.11, 0.13], iron, 20, 10);
         sphere(
           out,

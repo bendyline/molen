@@ -24,6 +24,83 @@ const collections = validateStructureCollections(document, catalog.candidates);
 const collection = collections.find((entry) => entry.id === 'seven_sisters');
 
 describe('independent landmark collections', () => {
+  it('reuses the same mapped asset across site and OSM collection identity modes', () => {
+    const changed = structuredClone(document);
+    const original = changed.collections.find((entry) => entry.id === 'towers_of_silence_in_yazd');
+    const reused = structuredClone(original);
+    reused.id = 'shared_landmark_pair';
+    reused.wikidataId = 'Q42';
+    reused.identityKind = 'site-members';
+    reused.membershipEvidence.memberIds = reused.members.map((member) => member.id);
+    for (const member of reused.members)
+      member.identitySource = `https://www.wikidata.org/wiki/${member.wikidataId}`;
+    changed.collections.push(reused);
+    expect(validateStructureCollections(changed)).toHaveLength(document.collections.length + 1);
+    reused.members[0].assetId = 'molen.worldgen.structure.copied_tower';
+    reused.members[0].sourceKey = 'copied_tower';
+    expect(() => validateStructureCollections(changed)).toThrow('conflicting collection identity');
+  });
+  it('allows an attributed unmapped site member without inventing an OSM feature', () => {
+    const changed = structuredClone(document);
+    const site = changed.collections.find((entry) => entry.id === 'towers_of_silence_in_yazd');
+    site.identityKind = 'site-members';
+    const manual = {
+      id: 'unmapped_service_building',
+      sourceKey: 'unmapped_service_building',
+      title: 'Unmapped service building',
+      wikidataId: site.wikidataId,
+      assetId: 'molen.worldgen.structure.unmapped_service_building',
+      referenceCoordinate: { longitude: 54.4, latitude: 31.9 },
+      positionReference: {
+        source: 'https://example.org/site-photo',
+        basis:
+          'Approximate roof center from an ordinary aerial photo; no native footprint ownership.',
+      },
+    };
+    site.members.push(manual);
+    site.requiredCount = site.members.length;
+    site.membershipEvidence.memberIds = site.members.map((member) => member.id);
+    const accepted = validateStructureCollections(changed, catalog.candidates);
+    expect(validateCollectionSpec({ ...manual, collectionId: site.id }, accepted)).toEqual(manual);
+    expect(collectionModelRefs(site, { [manual.assetId]: 'asset.json' })).toEqual([
+      { id: manual.id, wikidataId: manual.wikidataId, asset: manual.assetId },
+    ]);
+    const anchor = [manual.referenceCoordinate.longitude, manual.referenceCoordinate.latitude];
+    const other = site.members[0];
+    expect(
+      distinctMappedCollectionPlacement(
+        { ...manual, collectionId: site.id },
+        { anchor, mapIdentity: { maxDistance: 8 } },
+        {
+          asset: other.assetId,
+          anchor: [other.referenceCoordinate.longitude, other.referenceCoordinate.latitude],
+          mapIdentity: { wikidata: site.wikidataId, maxDistance: 8 },
+        },
+        accepted,
+      ),
+    ).toBe(true);
+    for (const mutate of [
+      (c) => {
+        delete c.members.at(-1).positionReference;
+      },
+      (c) => {
+        c.members.at(-1).positionReference.basis = ' ';
+      },
+      (c) => {
+        c.members.at(-1).featureId = 'photo/1';
+      },
+      (c) => {
+        c.membershipEvidence.memberIds.pop();
+      },
+      (c) => {
+        c.members[1].featureId = c.members[0].featureId;
+      },
+    ]) {
+      const invalid = structuredClone(changed);
+      mutate(invalid.collections.find((c) => c.id === site.id));
+      expect(() => validateStructureCollections(invalid, catalog.candidates)).toThrow();
+    }
+  });
   it('keeps node-mapped memorials independent from campus building members', () => {
     const site = collections.find((entry) => entry.id === 'yad_vashem');
     expect(site.requiredCount).toBe(10);

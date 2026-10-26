@@ -1,6 +1,5 @@
 import { readFile } from 'node:fs/promises';
 import { Vector3 } from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { expect, it } from 'vitest';
 import { createAircraftVisual } from '../../client/dist/aircraft.mjs';
 import {
@@ -9,6 +8,7 @@ import {
   readModelSignals,
 } from '../../client/dist/instruments.mjs';
 import { IDLE_AIRCRAFT_INPUT, initialAircraftState } from '../../kernel/dist/aircraft.mjs';
+import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
 const base = new URL('../../../content/entities/', import.meta.url);
 it('keeps A400M propeller handedness, individual gauges and swept hinges physically consistent', async () => {

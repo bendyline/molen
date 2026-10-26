@@ -556,8 +556,8 @@ function av8Cockpit(root, m) {
       );
   const box = (u, v, w, h, material = black, depth = 0.012) =>
       d.box([w * k, h * k, depth], at(u, v, -0.012 - depth / 2), material),
-    text = (t, u, v, h = 8, material = ink) =>
-      d.text(t, at(u, v, -0.033), h * k, Math.PI, material);
+    text = (t, u, v, h = 8, material = ink, role = 'panel') =>
+      d.text(t, at(u, v, -0.033), h * k, Math.PI, material, role);
   const edge = [
     [110, 400],
     [110, 280],
@@ -617,10 +617,10 @@ function av8Cockpit(root, m) {
   screen(778, 264, 223, 226);
   ins.horizon('MPCD-attitude', at(285, 256, 0.012), 148 * k, 112 * k, { blankBackdrop: true });
   ins.readout('MPCD-speed', at(246, 331, -0.034), 'knots', 3, 0.012, green);
-  text('TAS', 246, 315, 7, green);
+  text('TAS', 246, 315, 7, green, 'display');
   ins.readout('MPCD-altitude', at(330, 331, -0.034), 'feet', 5, 0.009, green, true, true);
-  text('GEO FT', 330, 315, 7, green);
-  text('SIM ATT', 285, 176, 8, green);
+  text('GEO FT', 330, 315, 7, green, 'display');
+  text('SIM ATT', 285, 176, 8, green, 'display');
   // A true-heading rose occupies the second MPCD; no invented map or radar picture.
   const hg = group(cabin, 'AV8-heading', at(778, 256, -0.03)),
     hd = detailKit(hg, hg.name);
@@ -648,7 +648,7 @@ function av8Cockpit(root, m) {
   });
   ins.available('heading', 'trueHeading', hg.name);
   d.rod(at(778, 175, -0.031), at(778, 187, -0.031), 0.001, ink);
-  text('TRUE / SIM', 778, 340, 8, green);
+  text('TRUE / SIM', 778, 340, 8, green, 'display');
   ins.horizon('standby', at(570, 396, 0.012), 0.071, 0.071, { round: true, blankBackdrop: true });
   ins.dial(
     'speed',
@@ -685,11 +685,11 @@ function av8Cockpit(root, m) {
   );
   pt.gauge(...at(472, 506).slice(0, 2), z - 0.01, 36 * k, black, false);
   text('AOA', 472, 496, 7);
-  text('--', 472, 516, 9, amber);
+  text('--', 472, 516, 9, amber, 'display');
   // UFC, ODU, HUD controls and the distinct upper-right engine display.
   box(535, 121, 184, 198);
   box(535, 42, 108, 18, panel);
-  text('----', 535, 42, 10, green);
+  text('----', 535, 42, 10, green, 'display');
   for (let row = 0; row < 5; row++)
     for (let col = 0; col < 4; col++) {
       const u = 495 + col * 25,
@@ -725,7 +725,7 @@ function av8Cockpit(root, m) {
     }
   for (let row = 0; row < 5; row++) {
     box(417, 60 + row * 31, 28, 24, black);
-    text('--', 417, 60 + row * 31, 8, green);
+    text('--', 417, 60 + row * 31, 8, green, 'display');
   }
   box(533, 267, 185, 48);
   for (let j = 0; j < 6; j++) {
@@ -771,7 +771,7 @@ function av8Cockpit(root, m) {
   );
   box(812, 479, 192, 84);
   text('FUEL', 812, 452, 8);
-  text('-----', 798, 480, 12, amber);
+  text('-----', 798, 480, 12, amber, 'display');
   // Dark warning cells remain unlit unless a corresponding simulated state exists.
   for (let row = 0; row < 3; row++)
     for (let col = 0; col < 3; col++) {
@@ -814,7 +814,7 @@ function av8Cockpit(root, m) {
   for (let row = 0; row < 12; row++)
     for (let col = 0; col < 2; col++) {
       box(871 + col * 51, 568 + row * 17, 45, 12, panel);
-      text('--', 871 + col * 51, 568 + row * 17, 4);
+      text('--', 871 + col * 51, 568 + row * 17, 4, ink, 'display');
     }
   // Lower side panels, distinct from the center pedestal: gear/flap controls left,
   // V/STOL/radio-altimeter controls right. Detached foldout details are not copied twice.
@@ -911,7 +911,7 @@ function av8Cockpit(root, m) {
   ]) {
     pt.gauge(...at(u, v).slice(0, 2), z - 0.01, 32 * k, black, false);
     text(label, u, v - 6, 6);
-    text('--', u, v + 9, 9, amber);
+    text('--', u, v + 9, 9, amber, 'display');
   }
   for (let j = 0; j < 3; j++) {
     const g = group(

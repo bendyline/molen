@@ -3,6 +3,7 @@
  * glTF extras carry the interaction and rest-relative motion through the normal asset importer.
  */
 import { createAircraftCockpit } from '../../../client/dist/aircraft.mjs';
+import { cockpitText } from './cockpit-lettering.mjs';
 import { detailKit, group, mat, T } from './mesh-kit.mjs';
 
 export function completeCockpitControls(model, spec, frame = {}) {
@@ -148,7 +149,19 @@ export function completeCockpitControls(model, spec, frame = {}) {
                 : control.action === 'mixture'
                   ? `MIX ${engineNumber ?? ''}`
                   : control.action.toUpperCase();
-    backing.text(label, [x, y + 0.032, center[2] - 0.02], 0.008, Math.PI, ink);
+    const legendAt = [x, y + 0.032, center[2] - 0.02];
+    if (frame.letteringFont)
+      cockpitText(
+        controls,
+        `${name}-legend`,
+        label,
+        legendAt,
+        0.008,
+        ink,
+        frame.letteringFont,
+        pitch * 0.85,
+      );
+    else backing.text(label, legendAt, 0.008, Math.PI, ink);
     backing.box([0.009, 0.049, 0.002], [x, y - 0.009, center[2] - 0.019], black);
     if (control.action === 'engine') {
       d.box([0.032, 0.029, 0.017], [0, 0, -0.008], control.engine ? black : red);

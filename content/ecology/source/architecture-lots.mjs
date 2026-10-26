@@ -16,3 +16,16 @@ export function architectureLotPlans(family, type) {
     return choices({ compact: 5, cottage: 3, courtyard: 2 });
   return choices({ cottage: 5, ranch: 3, courtyard: 1, compact: 2 });
 }
+
+// Keep open yards in every pool. Only a known synthetic lot may receive a boundary treatment.
+export function architectureLotFences(family, type) {
+  if (type !== 'detached') return undefined;
+  const weights = ['southwestern', 'arid', 'mediterranean', 'south_asian', 'east_asian'].includes(
+    family,
+  )
+    ? { none: 4, masonry: 5, rail: 1 }
+    : ['north_american', 'oceanian', 'northern', 'tropical_timber'].includes(family)
+      ? { none: 4, timber: 5, rail: 1 }
+      : { none: 5, timber: 2, masonry: 1, rail: 2 };
+  return Object.entries(weights).map(([kind, weight]) => ({ kind, weight }));
+}

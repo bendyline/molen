@@ -667,8 +667,8 @@ function pc12Cockpit(root, m) {
       true,
       true,
     );
-    d.text('TAS', [hx + 0.049, hy + 0.044, z], 0.004, Math.PI, ink);
-    d.text('GEO FT', [hx - 0.047, hy + 0.044, z], 0.0037, Math.PI, ink);
+    d.text('TAS', [hx + 0.049, hy + 0.044, z], 0.004, Math.PI, ink, 'display');
+    d.text('GEO FT', [hx - 0.047, hy + 0.044, z], 0.0037, Math.PI, ink, 'display');
     const rose = group(cabin, `PC12-${label}-rose`, [hx, y - 0.047, z + 0.002]),
       dd = detailKit(rose, rose.name);
     for (let deg = 0; deg < 360; deg += 10) {
@@ -695,7 +695,7 @@ function pc12Cockpit(root, m) {
     });
     ins.available(`${label}-heading`, 'trueHeading', rose.name);
     ins.readout(`${label}-heading`, [hx, y - 0.048, z], 'degreesTrue', 3, 0.005, ink, false, true);
-    d.text('TRUE', [hx, y - 0.076, z], 0.0035, Math.PI, ink);
+    d.text('TRUE', [hx, y - 0.076, z], 0.0035, Math.PI, ink, 'display');
     const vsi = group(cabin, `PC12-${label}-VSI`, [hx - 0.069, hy, z]),
       vd = detailKit(vsi, vsi.name);
     vd.rod([-0.002, 0, 0], [0.002, 0.002, 0], 0.0007, ink);

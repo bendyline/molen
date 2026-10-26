@@ -27,7 +27,7 @@ export function glassDisplay(d, x, y, z, w, h, kind) {
       [-0.425, '100'],
       [0.345, '1200'],
     ])
-      d.text(label, p(u, 0.1), h * 0.055, Math.PI, d.ivory);
+      d.text(label, p(u, 0.1), h * 0.055, Math.PI, d.ivory, 'display');
     const c = p(-0.035, -0.29),
       r = h * 0.17;
     d.ring(r, 0.0015, c, d.ivory);
@@ -59,8 +59,11 @@ export function glassDisplay(d, x, y, z, w, h, kind) {
         [0.48, 0.2],
       ],
     ])
-      for (let i = 0; i < points.length - 1; i++)
-        d.rod(p(...points[i]), p(...points[i + 1]), 0.0024, river);
+      d.path(
+        points.map((q) => p(...q)),
+        0.0024,
+        river,
+      );
     for (const points of [
       [
         [-0.35, -0.18],
@@ -73,8 +76,11 @@ export function glassDisplay(d, x, y, z, w, h, kind) {
         [0.29, -0.45],
       ],
     ])
-      for (let i = 0; i < points.length - 1; i++)
-        d.rod(p(...points[i]), p(...points[i + 1]), 0.0012, d.ivory);
+      d.path(
+        points.map((q) => p(...q)),
+        0.0012,
+        d.ivory,
+      );
     for (const points of [
       [
         [-0.2, -0.4],
@@ -82,15 +88,32 @@ export function glassDisplay(d, x, y, z, w, h, kind) {
         [0.32, 0.36],
       ],
     ])
-      for (let i = 0; i < points.length - 1; i++)
-        d.rod(p(...points[i]), p(...points[i + 1]), 0.0018, pink);
+      d.path(
+        points.map((q) => p(...q)),
+        0.0018,
+        pink,
+      );
     rect(-0.425, 0, 0.13, 0.92, black, 0.003);
     for (let i = 0; i < 4; i++) {
       rect(-0.425, 0.31 - i * 0.21, 0.032, 0.15, d.green);
-      d.text(String(80 - i * 8), p(-0.425, 0.22 - i * 0.21), h * 0.045, Math.PI, d.ivory);
+      d.text(
+        String(80 - i * 8),
+        p(-0.425, 0.22 - i * 0.21),
+        h * 0.045,
+        Math.PI,
+        d.ivory,
+        'display',
+      );
     }
     d.rod(p(-0.02, -0.02), p(0.08, 0.0), 0.0016, d.ivory);
     d.rod(p(0.03, -0.06), p(0.03, 0.07), 0.0016, d.ivory);
   }
-  d.text(kind === 'attitude' ? 'HDG 000' : 'NAV', p(0, 0.46), h * 0.045, Math.PI, d.ivory);
+  d.text(
+    kind === 'attitude' ? 'HDG 000' : 'NAV',
+    p(0, 0.46),
+    h * 0.045,
+    Math.PI,
+    d.ivory,
+    'display',
+  );
 }

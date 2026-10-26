@@ -37,6 +37,16 @@ const stations = [
 // Provisional exposed structure profile, to be tested against independent terrain.
 const road = (x) => 30.6 - 2.5 * ((x - 100) / 475) ** 2;
 const archedCrown = road(px) + 53;
+export const pivnichnyiControls = {
+  pylonStation: px,
+  ends,
+  halfWidth: half,
+  stations,
+  roadHeight: road,
+  archCrown: archedCrown,
+  top: 119,
+  galleryLevels: [87.2, 98.2, 109.2],
+};
 const samples = (n, fn) => Array.from({ length: n + 1 }, (_, i) => fn(i / n));
 function transform(out, angle, center) {
   const c = Math.cos(angle),
@@ -90,14 +100,28 @@ function extrusion(out, slot, outline, z0, z1, color, holes = []) {
       quad(out, slot, p, normalFor(...p), color);
     }
 }
+
+export { extrusion as pivnichnyiExtrusion, rounded as pivnichnyiRounded };
+
 function rounded(out, slot, points, r, color, sides = 12) {
+  const closed = Math.hypot(...points[0].map((n, i) => n - points.at(-1)[i])) < 1e-8;
+  let previousU, firstRing;
   const rings = points.map((p, i) => {
-    const a = points[Math.max(0, i - 1)],
+    if (closed && i === points.length - 1) return firstRing.map((p) => [...p]);
+    const a = points[i === 0 && closed ? points.length - 2 : Math.max(0, i - 1)],
       b = points[Math.min(points.length - 1, i + 1)],
-      axis = normalize(b.map((v, j) => v - a[j])),
-      u = normalize(cross(axis, Math.abs(axis[2]) < 0.9 ? [0, 0, 1] : [0, 1, 0])),
-      v = cross(axis, u);
-    return Array.from({ length: sides }, (_, j) =>
+      axis = normalize(b.map((v, j) => v - a[j]));
+    // Transport the frame along the tube. Switching reference axes mid-curve twisted
+    // adjacent rings and inverted the second triangle of thousands of small quads.
+    const dot = previousU?.reduce((sum, n, j) => sum + n * axis[j], 0) ?? 0;
+    const projected = previousU?.map((n, j) => n - dot * axis[j]);
+    const u =
+      projected && Math.hypot(...projected) > 1e-8
+        ? normalize(projected)
+        : normalize(cross(axis, Math.abs(axis[2]) < 0.9 ? [0, 0, 1] : [0, 1, 0]));
+    const v = cross(axis, u);
+    previousU = u;
+    const ring = Array.from({ length: sides }, (_, j) =>
       p.map(
         (n, k) =>
           n +
@@ -106,8 +130,10 @@ function rounded(out, slot, points, r, color, sides = 12) {
               v[k] * Math.sin((j / sides) * Math.PI * 2)),
       ),
     );
+    firstRing ??= ring;
+    return ring;
   });
-  loft(out, slot, rings, color);
+  loft(out, slot, rings, color, { cap: !closed });
 }
 const line = (out, slot, a, b, r, color = iron, sides = 12) =>
   rounded(out, slot, [a, b], r, color, sides);
@@ -691,24 +717,21 @@ function lettering(out, text, x, y, z, width, height) {
   };
   const pitch = width / text.length;
   for (let i = 0; i < text.length; i++)
-    for (const stroke of glyphs[text[i]] ?? [])
-      rounded(
-        out,
-        'marking',
-        stroke.map((p) => [
-          x - width / 2 + i * pitch + (p[0] / 0.65) * pitch * 0.77,
-          y + p[1] * height,
-          z,
-        ]),
-        0.027,
-        [0.1, 0.115, 0.11],
-        10,
-      );
+    for (const stroke of glyphs[text[i]] ?? []) {
+      const points = stroke.map((p) => [
+        x - width / 2 + i * pitch + (p[0] / 0.65) * pitch * 0.77,
+        y + p[1] * height,
+        z,
+      ]);
+      // Separate capped strokes preserve sharp letter corners without folded tubes.
+      for (let j = 1; j < points.length; j++)
+        line(out, 'marking', points[j - 1], points[j], 0.027, [0.1, 0.115, 0.11], 10);
+    }
 }
 function plaques(out) {
   for (const side of [-1, 1]) {
     const y = road(px),
-      z = side * 17.1,
+      z = side * 18.05,
       local = transform(out, side > 0 ? 0 : Math.PI, [px, y, z]);
     box(local, 'iron', [-2.13, 1.0, -0.025], [2.13, 2.68, 0.025], [0.82, 0.83, 0.78]);
     lettering(local, 'ПІВНІЧНИЙ', 0, 1.83, 0.062, 3.8, 0.39);
@@ -718,6 +741,8 @@ function plaques(out) {
         sphere(local, 'iron', [x, yy, 0.058], [0.04, 0.04, 0.025], iron, 12, 6);
   }
 }
+
+export { plaques as pivnichnyiPlaques };
 export function buildPivnichnyi(out) {
   deck(out);
   piers(out);
@@ -811,7 +836,7 @@ export const pivnichnyiStudy = {
     {
       name: 'current-name-plate',
       position: [px + 2, road(px) + 2, 24],
-      lookAt: [px, road(px) + 1.8, 17.1],
+      lookAt: [px, road(px) + 1.8, 18.05],
     },
     { name: 'summit-and-shield-frame', position: [px + 22, 120, 12], lookAt: [px, 116, 0] },
     {

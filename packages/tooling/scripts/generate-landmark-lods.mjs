@@ -2,7 +2,13 @@ import { spawn } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { buildModelLandmarkLods as buildLandmarkLods } from './source-runtime-lods.mjs';
+import { traceVerifiedAssetOutputs } from '../../../scripts/verified-asset-outputs.mjs';
+import { writeIndex } from '../../worldgen/scripts/structure-model-files.mjs';
+import { currentLandmarkLods } from './current-landmark-lods.mjs';
+import {
+  buildModelLandmarkLods as buildLandmarkLods,
+  landmarkLodRecipeHash,
+} from './source-runtime-lods.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const one = process.argv.find((arg) => arg.startsWith('--one='))?.slice(6);
@@ -32,8 +38,21 @@ if (one) {
     .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
   const directory = resolve(root, '.artifacts/landmark-lods');
   await mkdir(directory, { recursive: true });
+  // Import-cache replay can restore the master sidecar before LOD metadata was added.
+  // Reports are optional local caches: recipe, master and all four files must still verify.
+  const previous = new Map();
+  for (const name of ['build.json', 'selected-build.json']) {
+    try {
+      const report = JSON.parse(await readFile(resolve(directory, name), 'utf8'));
+      for (const { id, ...record } of report.outputs ?? []) previous.set(id, record);
+    } catch (error) {
+      if (error.code !== 'ENOENT' && !(error instanceof SyntaxError)) throw error;
+    }
+  }
+  const retainedPaths = [];
   let cursor = 0,
-    finished = 0;
+    finished = 0,
+    reused = 0;
   const failures = [];
   const outputs = [];
   const started = Date.now();
@@ -41,6 +60,26 @@ if (one) {
     Array.from({ length: concurrency }, async () => {
       while (cursor < entries.length) {
         const [id, path] = entries[cursor++];
+        const sidecarPath = resolve(root, 'content/worldgen', path);
+        const current =
+          !process.argv.includes('--force') &&
+          (await currentLandmarkLods(
+            sidecarPath,
+            await landmarkLodRecipeHash(id),
+            previous.get(id),
+          ));
+        if (current) {
+          const sidecar = JSON.parse(await readFile(sidecarPath, 'utf8'));
+          sidecar.runtimeLods = current;
+          await writeIndex(sidecarPath, `${JSON.stringify(sidecar, null, 2)}\n`);
+          retainedPaths.push(
+            ...current.levels.map((level) => resolve(dirname(sidecarPath), level.file)),
+          );
+          reused++;
+          outputs.push({ id, ...current });
+          console.log(`${++finished}/${entries.length} ${id}: verified existing levels`);
+          continue;
+        }
         const args = [fileURLToPath(import.meta.url), `--one=content/worldgen/${path}`];
         if (process.argv.includes('--force')) args.push('--force');
         const result = await new Promise((accept) => {
@@ -73,9 +112,10 @@ if (one) {
       }
     }),
   );
+  await traceVerifiedAssetOutputs(retainedPaths);
   await writeFile(
     resolve(directory, ids ? 'selected-build.json' : 'build.json'),
-    `${JSON.stringify({ models: entries.length, completed: finished, seconds: (Date.now() - started) / 1000, failures, outputs }, null, 2)}\n`,
+    `${JSON.stringify({ models: entries.length, completed: finished, reused, seconds: (Date.now() - started) / 1000, failures, outputs }, null, 2)}\n`,
   );
   if (failures.length)
     throw new Error(`${failures.length} landmark LOD builds failed; see ${directory}`);

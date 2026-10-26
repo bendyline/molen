@@ -44,7 +44,7 @@ export const EARTH_LIGHTING: {
 } = { sunIntensity: 4.4, dayAmbient: 2, nightAmbient: 0.05, skyLightSaturation: 0.18 };
 
 /** Open water: a clear teal-blue that stays blue under the sky's reflection. */
-export const EARTH_WATER_COLOR = '#286d83';
+export const EARTH_WATER_COLOR = '#356b78';
 
 /**
  * ACES filmic. Khronos PBR Neutral keeps base colors and saturation below the highlights, but its

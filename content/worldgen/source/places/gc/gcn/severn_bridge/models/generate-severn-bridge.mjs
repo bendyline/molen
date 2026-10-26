@@ -247,6 +247,16 @@ if (reviewScope?.previewTerrain) scene.terrain = reviewScope.previewTerrain;
 if (reviewScope?.previewEntities)
   scene.entities.push(...structuredClone(reviewScope.previewEntities));
 if (reviewScope?.previewCamera) Object.assign(scene.camera, reviewScope.previewCamera);
+if (reviewScope) {
+  const rig = scene.entities.find((e) => e.id === 'environment').components.environment;
+  Object.assign(rig, {
+    ambient: { sky: '#b2cde4', ground: '#9a8f70', intensity: 2 },
+    sun: { direction: [-8, 14, 9], color: '#fff1d8', intensity: 4.4, castShadow: true },
+    background: '#b2cde4',
+    toneMapping: 'aces',
+    exposure: 1.05,
+  });
+}
 const optionalReports = (
   await readdir(dir).catch((error) => {
     if (error.code === 'ENOENT') return [];
@@ -274,6 +284,7 @@ const source = {
     generators: [
       { id: 'generate-severn-bridge', path: 'models/generate-severn-bridge.mjs' },
       { id: 'severn-bridge-model', path: 'models/severn-bridge-model.mjs' },
+      { id: 'severn-runtime', path: 'models/severn-runtime.mjs' },
     ],
     scripts: [],
     textures: [],

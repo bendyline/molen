@@ -20,4 +20,4 @@ The lower plans are not surveyed upper guest-floor plans. Upper Hunion,22.8meave
 
 Native street junctions establish an approximate plot registration and metric scale, not original hotel corner surveys; changed road widths/paper reproduction introduce uncertainty. Raw300mcurrentTerrariumfield remains unchanged at fixed east entry.1921ground and modern campus grading differ; old footprint/threshold/bedrock/host contact remain unverified. No authored courtyard pavement or generic site slab.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ambassador_hotel_los_angeles`. Add `--check` to verify exact regeneration. 46184 triangles; 5 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ambassador_hotel_los_angeles`. Add `--check` to verify exact regeneration. 46176 triangles; 5 materials; no embedded photographs.

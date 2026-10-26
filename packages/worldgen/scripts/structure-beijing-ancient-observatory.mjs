@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, cross, loft, normalFor, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, cross, loft, normalFor, sphere } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 import { box } from './structure-mesh.mjs';
 
@@ -370,8 +370,7 @@ function instrument(o, x, z, type, d) {
         [x + s * r * 0.5, y + h * 0.34, z],
         [x + s * r * 0.65, y + h * 0.48, z],
       ];
-      for (let i = 1; i < points.length; i++)
-        beam(o, 'bronze', points[i - 1], points[i], 0.14, 0.12, C.bronze);
+      beamPath(o, 'bronze', points, 0.14, 0.12, C.bronze);
       if (d === 3)
         for (let i = 0; i < 4; i++)
           B(
