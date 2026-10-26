@@ -393,14 +393,21 @@ export function createWorldgenSemanticRenderers(
     // is admitted like the rest: run as tiles' sources resolved, several stacked into one frame.
     // For a dense town tile it was 8-16 ms in one piece, past any frame's budget, so the tile's
     // content hash and the generator's preparation (its ground grid) go first, each its own job.
+    // All three queue at once and run in order: awaiting each before queueing the next sent the
+    // tile to the back of the queue three times, and on a software renderer's few frames a second
+    // that held its generation behind tens of seconds of other tiles' work.
     const admitted = async <T>(label: string, work: () => T): Promise<T> =>
       context.admission ? context.admission.run(work, { signal: context.signal, label }) : work();
     let output: WorldgenTileOutput | undefined;
     try {
-      if (cache !== undefined) await admitted('worldgen-key', () => tileHash(tile));
-      if (generator.prepare !== undefined)
-        await admitted('worldgen-prepare', () => generator.prepare?.(input));
-      output = await admitted('worldgen-request', () => generator.generate(input, context.signal));
+      const prepared = Promise.all([
+        cache !== undefined ? admitted('worldgen-key', () => tileHash(tile)) : undefined,
+        generator.prepare !== undefined
+          ? admitted('worldgen-prepare', () => generator.prepare?.(input))
+          : undefined,
+      ]);
+      const request = admitted('worldgen-request', () => generator.generate(input, context.signal));
+      [, output] = await Promise.all([prepared, request]);
     } catch (error) {
       if (context.signal.aborted) return undefined;
       throw error;
@@ -426,17 +433,25 @@ export function createWorldgenSemanticRenderers(
   ): Promise<THREE.Object3D[]> {
     if (models === undefined) return [];
     const objects: THREE.Object3D[] = [];
+    // Every set's assembly queues as its models are ready, as building cells do: awaiting each
+    // admission before preparing the next set sent the tile to the back of the queue per set.
+    const assembly: Promise<void>[] = [];
+    const warn = (set: PlacementSet, error: unknown): void => {
+      if (context.signal.aborted || warnedModels.has(set.modelRef)) return;
+      warnedModels.add(set.modelRef);
+      console.warn(`[molen] worldgen model "${set.modelRef}": ${(error as Error).message}`);
+    };
     for (const set of sets) {
       if (buildingBoxGeometry(set.modelRef) !== undefined || set.count === 0) continue;
       try {
         const coarse = context.address.level < context.pyramid.maxLevel;
         const prepared = await models.prepare(set.modelRef, coarse);
-        if (context.signal.aborted) return objects;
+        if (context.signal.aborted) break;
         const medium =
           options.propLod !== false ? await models.prepare(set.modelRef, true) : prepared;
         const distant =
           options.propLod !== false ? await models.prepare(set.modelRef, 'distant') : prepared;
-        if (context.signal.aborted) return objects;
+        if (context.signal.aborted) break;
         // Instance matrices for every placement: admitted, as a tile's sources resolve together.
         const build = (): THREE.Object3D =>
           options.propLod !== false
@@ -469,25 +484,28 @@ export function createWorldgenSemanticRenderers(
                 prepared.material,
                 `${name}:${set.setId}`,
               );
-        objects.push(
-          context.admission
-            ? await context.admission.run(build, {
+        const add = (object: THREE.Object3D): void => {
+          objects.push(object);
+          stats.props += set.count;
+          stats.geometryBytes += set.data.byteLength;
+        };
+        if (context.admission)
+          assembly.push(
+            context.admission
+              .run(build, {
                 signal: context.signal,
                 label: 'prop-assembly',
                 bytes: set.data.byteLength,
               })
-            : build(),
-        );
-        stats.props += set.count;
-        stats.geometryBytes += set.data.byteLength;
+              .then(add, (error: unknown) => warn(set, error)),
+          );
+        else add(build());
       } catch (error) {
-        if (context.signal.aborted) return objects;
-        if (!warnedModels.has(set.modelRef)) {
-          warnedModels.add(set.modelRef);
-          console.warn(`[molen] worldgen model "${set.modelRef}": ${(error as Error).message}`);
-        }
+        if (context.signal.aborted) break;
+        warn(set, error);
       }
     }
+    await Promise.all(assembly);
     return objects;
   }
 

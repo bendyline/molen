@@ -24,7 +24,8 @@ globalThis.FileReader = class {
 const root = dirname(fileURLToPath(import.meta.url));
 const mat = (name, color, metalness = 0, roughness = 0.6, extra = {}) =>
   new T.MeshStandardMaterial({ name, color, metalness, roughness, ...extra });
-const paint = mat('rail-livery-body', '#ffffff', 0.1, 0.45);
+// Off-white, never pure white on a large surface (medium-fi palette).
+const paint = mat('rail-livery-body', '#e8e6de', 0.1, 0.45);
 const livery = mat('rail-livery-stripe', '#1d6f8f', 0.1, 0.45);
 const doorGlass = mat('door-glass', '#1d2a31', 0.1, 0.15, { transparent: true, opacity: 0.85 });
 const glass = mat('vehicle-glass', '#26343c', 0.1, 0.12, { transparent: true, opacity: 0.82 });

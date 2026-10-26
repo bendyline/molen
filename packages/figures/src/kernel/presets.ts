@@ -172,11 +172,13 @@ export const FIGURE_PRESETS: Readonly<Record<FigurePresetId, FigurePreset>> = {
   cat: quadruped(
     'cat',
     0.28,
-    -0.2,
+    0,
     {
+      // Shorter legs and a larger head than a dog's: a cat, not a small hound.
+      legRatio: 0.9,
       neckLength: 0.3,
       neckPitch: 20 * DEG,
-      headScale: 1,
+      headScale: 1.25,
       bodyLength: 1.45,
       tailLength: 1,
       snoutLength: 0.16,

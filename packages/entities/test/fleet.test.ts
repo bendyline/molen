@@ -22,9 +22,18 @@ describe('fleet model contracts', () => {
     const folder = `${root}/assets/${id.replaceAll('.', '/')}`;
     const sidecar = JSON.parse(await readFile(`${folder}/asset.json`, 'utf8'));
     // These are player-view masters. Ambient rendering selects separate instanced proxies.
+    // Bendy generics built on the shared road-vehicle body carry the same cabin and running gear.
     const closeViewReference =
       (MOLEN_US_VEHICLE_ENTITY_IDS as readonly string[]).includes(id) ||
-      (MOLEN_REGIONAL_VEHICLE_ENTITY_IDS as readonly string[]).includes(id);
+      (MOLEN_REGIONAL_VEHICLE_ENTITY_IDS as readonly string[]).includes(id) ||
+      [
+        'molen.entities.vehicle.box_truck',
+        'molen.entities.vehicle.electric_hatchback',
+        'molen.entities.vehicle.offroad',
+        'molen.entities.vehicle.sports_coupe',
+        'molen.entities.vehicle.station_wagon',
+        'molen.entities.vehicle.taxi',
+      ].includes(id);
     const varietyReference =
       (MOLEN_VARIETY_VEHICLE_ENTITY_IDS as readonly string[]).includes(id) ||
       [

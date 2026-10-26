@@ -561,6 +561,9 @@ record the completed result once. Revisit it when a defect or relevant change wa
 5. **Modes.** Check the Economy mode (no shadows) as well as High.
 6. **Distance behavior.** Watch the switches between levels for popping, shimmer on thin parts,
    and floating or sinking at the base.
+7. **Family.** Models made by one builder or template fail together. Render the family's side
+   views at one scale on one sheet: an SUV with a sedan's rear, every pickup at a car's ride
+   height or two types with the same silhouette show there, not in one model's preview.
 
 Useful captures from a project:
 

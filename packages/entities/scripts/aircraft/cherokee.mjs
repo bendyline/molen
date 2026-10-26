@@ -178,7 +178,8 @@ export function buildCherokee(s) {
         [side * 4.33, y(4.33), 0.72, -0.57, 0.135],
         [side * 4.572, y(4.572), 0.65, -0.83, 0.11],
       ],
-      navy,
+      // White like its flaps and ailerons; the blue belongs to the fuselage belt and tail.
+      paint,
       0.065,
     );
     const upper = (x, z) => {

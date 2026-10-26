@@ -58,6 +58,9 @@ Keep these durable artifacts in Git:
 - One or two curated small summary previews per model, normally `preview.png` beside its
   source bundle. Prefer a web-sized image, roughly 1024 pixels on the long edge; do not promote
   an entire capture set. Source textures are separate assets, not review screenshots.
+  To judge a generator change before importing it, `node packages/entities/scripts/model-sheet.mjs`
+  renders source GLBs (and figure or wildlife bodies) from calibrated views, side by side or as
+  before/after pairs; see [entity model quality](entities/MODEL-QUALITY.md).
   For the entity fleet, `node packages/entities/scripts/preview-fleet.mjs` composes each
   bundle's `preview.png` (exterior and operator view, listed in `source.json` and linked from the
   README) and the per-collection contact sheets in `content/entities/` from the local

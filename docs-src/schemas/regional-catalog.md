@@ -1238,7 +1238,10 @@ Composable ecological and architectural channels with explicit dependency versio
                   "type": "string",
                   "enum": [
                     "antlers",
+                    "palmate",
                     "horns",
+                    "straight-horns",
+                    "mane",
                     "long-neck",
                     "bushy-tail",
                     "stripes",

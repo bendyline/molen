@@ -11,6 +11,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { addTransitDetail } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
 
 // GLTFExporter uses FileReader only to pack its binary buffer in Node.
@@ -25,7 +26,14 @@ globalThis.FileReader = class {
 const root = dirname(fileURLToPath(import.meta.url));
 const mat = (name, color, metalness = 0, roughness = 0.6, extra = {}) =>
   new T.MeshStandardMaterial({ name, color, metalness, roughness, ...extra });
-const paint = mat('vehicle-paint-and-trim', '#ffffff', 0.15, 0.42);
+// Off-white, never pure white on a large surface (medium-fi palette). Liveries recolor this
+// material by node (source/liveries.json), so the body keeps its node names and material.
+const paint = mat('vehicle-paint-and-trim', '#e8e6de', 0.15, 0.42);
+const tint = mat('tinted-glass', '#1c2830', 0.15, 0.15, {
+  transparent: true,
+  opacity: 0.62,
+  depthWrite: false,
+});
 const glass = mat('vehicle-glass', '#26343c', 0.1, 0.12, { transparent: true, opacity: 0.82 });
 const trim = mat('trim-charcoal', '#22272b', 0.05, 0.7);
 const rubber = mat('rubber', '#141718', 0, 0.92);
@@ -81,13 +89,45 @@ function bus() {
   const skirt = 0.36;
   // Lower body, window band, roof and roof pod.
   box(body, 'floor', [W, 0.1, L - 0.2], [0, skirt, 0], trim);
+  // Lower sides stop at real wheel openings: one 'lower-side' panel per side (the livery slot),
+  // made of the spans between the arches and a strip over each wheel.
+  const gap = WHEEL_R + 0.18,
+    archTop = WHEEL_R * 2 + 0.1;
   for (const x of [-W / 2 + 0.04, W / 2 - 0.04]) {
-    box(body, 'lower-side', [0.08, 1.0, L - 0.2], [x, skirt + 0.5, 0], paint);
+    const parts = [];
+    for (const [a, b] of [
+      [-L / 2 + 0.1, REAR_AXLE - gap],
+      [REAR_AXLE + gap, FRONT_AXLE - gap],
+      [FRONT_AXLE + gap, L / 2 - 0.1],
+    ])
+      parts.push(new T.BoxGeometry(0.08, 1.0, b - a).translate(x, skirt + 0.5, (a + b) / 2));
+    for (const axle of [FRONT_AXLE, REAR_AXLE]) {
+      const h = skirt + 1.0 - archTop;
+      parts.push(new T.BoxGeometry(0.08, h, gap * 2).translate(x, archTop + h / 2, axle));
+      const lip = new T.Mesh(new T.TorusGeometry(WHEEL_R + 0.1, 0.035, 4, 16, Math.PI), trim);
+      lip.name = 'arch-lip';
+      lip.rotation.y = Math.PI / 2;
+      lip.position.set(x + Math.sign(x) * 0.04, WHEEL_R, axle);
+      body.add(lip);
+      // Dark wheel wells keep the cabin out of view through the openings.
+      const well = archTop - 0.2;
+      box(
+        body,
+        'wheel-well',
+        [0.04, well, gap * 2],
+        [x - Math.sign(x) * 0.4, 0.2 + well / 2, axle],
+        trim,
+      );
+      box(body, 'wheel-well', [0.4, 0.04, gap * 2], [x - Math.sign(x) * 0.2, archTop, axle], trim);
+    }
+    const side = new T.Mesh(mergeGeometries(parts), paint);
+    side.name = 'lower-side';
+    body.add(side);
     box(body, 'belt-side', [0.08, 0.2, L - 0.2], [x, skirt + 1.1, 0], paint);
   }
   for (const z of [-L / 2 + 0.1, L / 2 - 0.1])
     box(body, 'lower-end', [W, 1.2, 0.08], [0, skirt + 0.6, z], paint);
-  box(body, 'window-band', [W - 0.04, 1.28, L - 0.7], [0, skirt + 1.64, -0.1], glass);
+  box(body, 'window-band', [W - 0.04, 1.28, L - 0.7], [0, skirt + 1.64, -0.1], tint);
   box(body, 'roof', [W, 0.36, L - 0.3], [0, H - 0.34, -0.05], paint);
   box(body, 'roof-pod', [W * 0.72, 0.28, 2.8], [0, H - 0.04, -L / 2 + 2.4], paint);
   // Window pillars along both sides.
@@ -104,7 +144,7 @@ function bus() {
   for (const x of [-W / 2 + 0.3, W / 2 - 0.3])
     box(body, 'headlamp', [0.34, 0.16, 0.04], [x, skirt + 0.46, L / 2 - 0.08], lamp);
   // Rear: engine grille, lamps, bumper.
-  box(body, 'rear-window', [W - 0.3, 0.9, 0.05], [0, skirt + 1.9, -L / 2 + 0.07], glass);
+  box(body, 'rear-window', [W - 0.3, 0.9, 0.05], [0, skirt + 1.9, -L / 2 + 0.07], tint);
   box(body, 'rear-bumper', [W, 0.34, 0.18], [0, skirt + 0.1, -L / 2 + 0.02], trim);
   box(body, 'engine-grille', [W - 0.6, 0.5, 0.04], [0, skirt + 0.62, -L / 2 + 0.08], trim);
   for (const x of [-W / 2 + 0.2, W / 2 - 0.2])
@@ -116,8 +156,6 @@ function bus() {
   for (const x of [-W / 2 - 0.25, W / 2 + 0.25])
     box(body, 'mirror', [0.06, 0.4, 0.18], [x, skirt + 1.9, L / 2 - 0.35], trim);
   // Wheel arches (dark) and wheels: left is +X when facing +Z.
-  for (const z of [FRONT_AXLE, REAR_AXLE])
-    for (const x of [-W / 2, W / 2]) box(body, 'arch', [0.06, 0.62, 1.3], [x, 0.62, z], trim);
   wheel(g, 'wheel-front-left', W / 2 - 0.2, FRONT_AXLE);
   wheel(g, 'wheel-front-right', -W / 2 + 0.2, FRONT_AXLE);
   wheel(g, 'wheel-rear-left', W / 2 - 0.2, REAR_AXLE);

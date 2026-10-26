@@ -18,6 +18,7 @@ import {
 import { emptyWorldgenStats } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
+import { createWorldgenTileCache } from '../src/client/cache';
 import { createWorldgenSemanticRenderers } from '../src/client/renderers';
 import type { WorldgenGenerateRequest } from '../src/client/worker-bridge';
 import { createStructureIndex } from '../src/kernel/structure-index';
@@ -538,6 +539,40 @@ describe('worldgen human-feature tile orchestration', () => {
       queue.dispose();
       renderers.dispose();
       disposeGeometry.mockRestore();
+    }
+  });
+
+  it('queues a tile request with its cache key and preparation, not behind them', async () => {
+    const frames: Array<() => void> = [];
+    const labels: string[] = [];
+    const queue = new FrameAdmissionQueue({
+      schedule: (callback) => frames.push(callback),
+      now: () => 0,
+      maxJobs: 1,
+      onSample: (sample) => labels.push(sample.label),
+    });
+    const prepare = vi.fn();
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      roads: { renderTransportation: false },
+      cache: createWorldgenTileCache(),
+      generator: { prepare, generate: async () => output(), dispose() {} },
+    });
+    try {
+      const pending = renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), {
+        ...context(new AbortController().signal),
+        admission: queue,
+      });
+      // One wait in the queue for the tile, not three: each step queued only once the one before
+      // it ran sent the tile to the back of a busy queue each time.
+      await vi.waitFor(() => expect(queue.pending).toBe(3));
+      while (frames.length > 0) frames.shift()?.();
+      const root = await pending;
+      expect(labels.slice(0, 3)).toEqual(['worldgen-key', 'worldgen-prepare', 'worldgen-request']);
+      expect(prepare).toHaveBeenCalledOnce();
+      if (root) renderers.humanFeatures.disposeTile?.(root);
+    } finally {
+      queue.dispose();
+      renderers.dispose();
     }
   });
 

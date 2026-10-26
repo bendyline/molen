@@ -13,7 +13,9 @@ export function roadVehicleModel(s) {
   root.name = s.id;
   const { length: L, width: W, height: H, wheelRadius: R, wheelbase: WB, form: f } = s;
   const pickup = s.bodyStyle === 'pickup',
-    rugged = s.bodyStyle === 'offroad';
+    rugged = s.bodyStyle === 'offroad',
+    tall = s.bodyStyle === 'suv' || s.bodyStyle === 'crossover';
+  const sedanLike = ['sedan', 'coupe', 'fastback', 'roadster'].includes(s.bodyStyle);
   const mat = (name, color, metalness = 0, roughness = 0.6) =>
     new T.MeshStandardMaterial({
       name,
@@ -133,8 +135,10 @@ export function roadVehicleModel(s) {
   const path = (d, points, radius, material) => {
     d.path(points, radius, material);
   };
+  // Sill height carries the body type as much as the roof does: a pickup's cab and bed stand on
+  // a frame at about axle height, SUVs ride a hand higher than cars. Override with form.clearance.
   const belt = H * f.belt,
-    clearance = Math.max(0.13, R * 0.48);
+    clearance = f.clearance ?? Math.max(0.13, R * (pickup ? 1 : rugged ? 0.68 : tall ? 0.6 : 0.48));
   const cowl = L * f.windshieldBase,
     rf = L * f.roofFront,
     rr = L * f.roofRear,
@@ -147,7 +151,15 @@ export function roadVehicleModel(s) {
   const roofEdge = (z) => H - roofCrown - roofDrop * ((2 * (z - rr)) / (rf - rr) - 1) ** 2;
   const axleFront = L / 2 - (f.frontOverhang ?? (L - WB) * 0.46),
     axleRear = axleFront - WB;
-  const arch = R + 0.045,
+  const arch = R + (f.archGap ?? (pickup || rugged ? 0.08 : tall ? 0.06 : 0.045)),
+    // Arch outline as a superellipse: 2 is a car's round opening, about 3.5 a truck's squared one.
+    archPower = f.archShape ?? (pickup || rugged ? 3.4 : 2),
+    archRise = (dz) =>
+      arch *
+      Math.pow(
+        Math.max(0, 1 - Math.pow(Math.min(1, Math.abs(dz) / arch), archPower)),
+        1 / archPower,
+      ),
     track = W * 0.86,
     tireW = f.tireWidth ?? (pickup || rugged ? 0.26 : 0.225);
   const widthAt = (z) => {
@@ -184,9 +196,7 @@ export function roadVehicleModel(s) {
     Math.max(
       clearance,
       ...[axleFront, axleRear].map((a) =>
-        Math.abs(z - a) < arch
-          ? R + Math.sqrt(Math.max(0, arch * arch - (z - a) * (z - a)))
-          : clearance,
+        Math.abs(z - a) < arch ? R + archRise(z - a) : clearance,
       ),
     );
   const stations = new Set([
@@ -208,6 +218,8 @@ export function roadVehicleModel(s) {
   for (const a of [axleFront, axleRear])
     for (let i = 0; i <= 20; i++) stations.add(a - arch + (2 * arch * i) / 20);
   const zs = [...stations].filter((z) => z >= -L / 2 && z <= L / 2).sort((a, b) => a - b);
+  // A pickup bed is about 0.55 m deep below its rails, not a well down to the sills.
+  const bedFloor = Math.max(clearance + 0.3, belt - 0.56);
   for (const side of [-1, 1]) {
     for (let i = 1; i < zs.length; i++) {
       const a = zs[i - 1],
@@ -246,8 +258,9 @@ export function roadVehicleModel(s) {
       const arc = [];
       for (let i = 0; i <= 24; i++) {
         const angle = (i * Math.PI) / 24,
-          z = a + Math.cos(angle) * arch;
-        const p = [side * (widthAt(z) * 0.98 + 0.006), R + Math.sin(angle) * arch, z];
+          c = Math.cos(angle),
+          z = a + Math.sign(c) * Math.pow(Math.abs(c), 2 / archPower) * arch;
+        const p = [side * (widthAt(z) * 0.98 + 0.006), R + archRise(z - a), z];
         arc.push(p);
         if (i)
           face(
@@ -278,7 +291,7 @@ export function roadVehicleModel(s) {
       for (let k = 1; k < fractions.length; k++) {
         const point = (z, x) => [
           x * widthAt(z) * 0.96,
-          (isBed ? clearance + 0.28 : beltAt(z)) +
+          (isBed ? bedFloor - 0.02 : beltAt(z)) +
             (isBed ? 0 : (1 - x * x) * ((f.hoodSculpt ?? 0.045) - fenderRise(z))),
           z,
         ];
@@ -307,8 +320,28 @@ export function roadVehicleModel(s) {
       f.cladding || pickup ? black : paint,
     );
   }
+  if (clearance > 0.18) {
+    // A raised body shows what it stands on: an undertray, and on body-on-frame trucks the rails,
+    // crossmembers and the live rear axle with its differential, instead of sky under the sills.
+    cabin.box([W * 0.58, 0.03, L * 0.86], [0, clearance + 0.005, 0], black);
+    if (pickup || rugged) {
+      for (const side of [-1, 1])
+        details.box(
+          [0.075, 0.17, L * 0.84],
+          [side * W * 0.26, clearance - 0.07, (axleFront + axleRear) / 2 - L * 0.02],
+          black,
+        );
+      for (const z of [axleFront - 0.45, axleRear + 0.55, -L / 2 + 0.35])
+        details.box([W * 0.52, 0.08, 0.08], [0, clearance - 0.08, z], black);
+      const hub = track / 2 - tireW * 0.55;
+      details.rod([-hub, R, axleRear], [hub, R, axleRear], 0.045, black);
+      const diff = details.add(new T.SphereGeometry(0.13, 10, 6), black, [0.04, R, axleRear]);
+      diff.scale.set(1, 0.85, 0.9);
+      details.rod([0.04, R, axleRear + 0.1], [0, clearance - 0.06, axleRear + 1.1], 0.035, black);
+    }
+  }
   if (pickup) {
-    const floorY = clearance + 0.3;
+    const floorY = bedFloor;
     for (let x = -W * 0.37; x <= W * 0.38; x += 0.12)
       details.box([0.018, 0.018, rb + L / 2 - 0.12], [x, floorY, (-L / 2 + rb) / 2], black);
     for (const side of [-1, 1]) {
@@ -345,6 +378,22 @@ export function roadVehicleModel(s) {
       [0, 0, -1],
     );
     rear.box([0.2, 0.035, 0.03], [0, belt * 0.84, -L / 2 - 0.025], black);
+    // Cab and bed are separate pressings: a dark shut line divides them from sill to rail.
+    const gapZ = rb - 0.05,
+      gapW = widthAt(gapZ),
+      low = bottomAt(gapZ),
+      top = beltAt(gapZ);
+    for (const side of [-1, 1])
+      path(
+        details,
+        [
+          [side * (gapW * 0.91 + 0.004), low + 0.02, gapZ],
+          [side * (gapW + 0.004), low + (top - low) * 0.62, gapZ],
+          [side * (gapW * 0.96 + 0.004), top - 0.02, gapZ],
+        ],
+        0.008,
+        black,
+      );
   }
   // Compound roof crown and bowed glazing keep modern silhouettes without texture shading.
   const roofSections = [0, 0.15, 0.35, 0.5, 0.65, 0.85, 1].map((t) => rr + (rf - rr) * t);
@@ -433,6 +482,16 @@ export function roadVehicleModel(s) {
       );
   }
   const bz = f.bPillar !== undefined ? L * f.bPillar : pickup ? -L * 0.02 : -L * 0.06;
+  // Rear doors end over the rear wheel, wherever the rear glass is: an SUV or hatchback carries a
+  // quarter window and a C pillar behind them. Two-door cars have one long door, not a door
+  // reaching back to the rear screen.
+  const rearShut =
+    f.rearDoor !== undefined
+      ? L * f.rearDoor
+      : pickup || sedanLike
+        ? rb + 0.18
+        : Math.max(rb + 0.18, axleRear - arch * 0.3);
+  const coupeShut = Math.max(rb + 0.2, cowl - (f.doorLength ?? 1.22));
   for (const side of [-1, 1]) {
     const points = [
       [side * W * 0.455, belt, cowl],
@@ -537,9 +596,16 @@ export function roadVehicleModel(s) {
         0.028,
         f.blackPillar ? black : paint,
       );
-    // Door shuts follow the side skin; handles and fuel flap stand only millimetres proud.
     const twoDoor = f.twoDoor || (f.asymmetricDoors && side > 0);
-    for (const z of twoDoor ? [rb + 0.2, cowl - 0.05] : [rb + 0.18, bz, cowl - 0.05]) {
+    if (!f.openTop && !f.cargoVan && !twoDoor && rearShut - rr > 0.3)
+      details.rod(
+        [side * W * 0.453, belt, rearShut],
+        [side * roofW, roofEdge(rearShut), rearShut],
+        0.034,
+        f.blackPillar ? black : paint,
+      );
+    // Door shuts follow the side skin; handles and fuel flap stand only millimetres proud.
+    for (const z of twoDoor ? [coupeShut, cowl - 0.05] : [rearShut, bz, cowl - 0.05]) {
       const x = side * (widthAt(z) * 0.984 + 0.008);
       details.rod(
         [x, Math.max(clearance + 0.13, bottomAt(z) + 0.035), z],
@@ -548,7 +614,11 @@ export function roadVehicleModel(s) {
         black,
       );
     }
-    for (const z of twoDoor ? [rb + 0.32] : f.cargoVan ? [bz + 0.13] : [bz + 0.13, rb + 0.33]) {
+    for (const z of twoDoor
+      ? [coupeShut + 0.12]
+      : f.cargoVan
+        ? [bz + 0.13]
+        : [bz + 0.13, rearShut + 0.15]) {
       const x = side * (widthAt(z) * 0.98 + 0.015);
       details.box([0.025, 0.028, 0.135], [x, belt - 0.105, z], f.flushHandles ? black : paint);
       if (!f.flushHandles)
@@ -589,8 +659,8 @@ export function roadVehicleModel(s) {
     }
     if (f.slidingDoors)
       details.rod(
-        [side * W * 0.486, belt - 0.1, rb],
-        [side * W * 0.486, belt - 0.1, bz - 0.2],
+        [side * W * 0.486, belt - 0.1, f.cargoVan ? rb : rearShut - 0.05],
+        [side * W * 0.486, belt - 0.1, f.cargoVan ? bz - 0.2 : rb + 0.1],
         0.009,
         black,
       );
@@ -1095,6 +1165,23 @@ export function roadVehicleModel(s) {
     front.ring(0.042, 0.006, [0, y, zf + 0.04], chrome);
     front.add(new T.CircleGeometry(0.024, 20), chrome, [0, y, zf + 0.042]);
     rear.ring(0.03, 0.005, [0, belt * 0.78, -L / 2 - 0.043], chrome);
+    // The house brand is the one wordmark geometry may carry (medium-fi "Bendy house brand").
+    if (s.make === 'Bendy')
+      rear.text('BENDY', [0, belt * 0.71, -L / 2 - 0.035], 0.04, Math.PI, chrome);
+  }
+  if (f.roofSign) {
+    // Lit taxi roof sign on a low base, lettered both ways.
+    const y = roofY + roofCrown + 0.02;
+    details.box([W * 0.36, 0.035, 0.36], [0, y, (rr + rf) / 2], black);
+    details.box([W * 0.32, 0.15, 0.26], [0, y + 0.09, (rr + rf) / 2], light);
+    for (const end of [-1, 1])
+      details.text(
+        f.roofSign,
+        [0, y + 0.09, (rr + rf) / 2 + end * 0.132],
+        0.07,
+        end < 0 ? Math.PI : 0,
+        black,
+      );
   }
   for (const end of [-1, 1]) {
     const d = end > 0 ? front : rear,
@@ -1103,7 +1190,7 @@ export function roadVehicleModel(s) {
     d.box([0.31, 0.15, 0.018], [0, y, z], black);
     d.box([0.285, 0.125, 0.02], [0, y, z + end * 0.01], light);
     d.text(
-      `MLN ${String(s.year).slice(2)}`,
+      s.plate ?? `MLN ${String(s.year).slice(2)}`,
       [0, y, z + end * 0.023],
       0.037,
       end < 0 ? Math.PI : 0,
@@ -1136,11 +1223,18 @@ export function roadVehicleModel(s) {
       32,
     ).rotateZ(Math.PI / 2);
     d.add(tire, rubber);
-    for (const side of [-1, 1]) {
+    // Rim, spokes, lugs and caliper face outboard. The inboard face is only seen from under the
+    // car, so it is a dark disc that closes the tire rather than a second detailed wheel.
+    const outboard = Math.sign(x) || 1;
+    d.add(new T.CircleGeometry(R * 0.71, 16).rotateY((-outboard * Math.PI) / 2), black, [
+      -outboard * tireW * 0.5,
+      0,
+      0,
+    ]);
+    for (const side of [outboard]) {
       const xx = side * (tireW * 0.51),
         rim = R * 0.7;
       d.ring(rim, 0.013, [xx, 0, 0], chrome, 'x');
-      d.ring(R * 0.88, 0.004, [xx * 0.98, 0, 0], black, 'x');
       d.add(
         new T.CylinderGeometry(rim * 0.75, rim * 0.75, 0.013, 24).rotateZ(Math.PI / 2),
         chrome,
@@ -1183,7 +1277,7 @@ export function roadVehicleModel(s) {
       );
     }
     // Small tread blocks, merged with the tire material rather than individual draw calls.
-    for (let i = 0; i < 32; i++)
+    for (let i = 0; i < (f.lite ? 0 : 32); i++)
       for (const sign of [-1, 1]) {
         const a = (i * Math.PI) / 16;
         const block = d.box(
@@ -1204,13 +1298,16 @@ export function roadVehicleModel(s) {
     ])
       wheel(`wheel-${axle}-${side > 0 ? 'left' : 'right'}`, (side * track) / 2, z);
   if (f.spare) {
+    // Carried on the tailgate by a short bracket, not hovering behind it.
     const d = detailKit(root, 'rear-spare');
-    d.add(new T.TorusGeometry(R * 0.79, R * 0.21, 8, 24), rubber, [0, belt * 0.85, -L / 2 - 0.12]);
+    const z = -L / 2 - R * 0.21 - 0.045;
+    d.add(new T.TorusGeometry(R * 0.79, R * 0.21, 8, 24), rubber, [0, belt * 0.85, z]);
     d.add(new T.CylinderGeometry(R * 0.53, R * 0.53, 0.13, 16).rotateX(Math.PI / 2), chrome, [
       0,
       belt * 0.85,
-      -L / 2 - 0.12,
+      z,
     ]);
+    d.box([0.16, 0.16, -z - L / 2 + 0.02], [0, belt * 0.85, (z - L / 2) / 2], black);
     d.finish();
   }
   // The eye and controls are authored together so the driver can actually see out.

@@ -23,6 +23,9 @@ experience with **zero human intervention** from shipped docs, schemas, and the 
    the Earth view (buildings, styles, palettes, landmarks, vehicles, props) follows the
    [medium-fi style guide](docs-src/guide/medium-fi.md); the corpus audit and its backlog are in
    [content/worldgen/source/MEDIUM-FI-REVIEW.md](content/worldgen/source/MEDIUM-FI-REVIEW.md).
+   Vehicles, people, animals and other moving models also follow
+   [content/entities/MODEL-QUALITY.md](content/entities/MODEL-QUALITY.md) (proportion archetypes,
+   family review, the `model-sheet.mjs` review tool).
 2. Build once, then drive everything through the CLI (or the MCP server, which mirrors it):
 
 ```sh

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Model sheet</title>
+    <style>
+      body { margin: 0; background: #e9ecef; font: 13px system-ui, sans-serif; color: #2b3238; }
+      #sheet { display: inline-block; padding: 8px; background: #e9ecef; }
+      .row { margin-bottom: 8px; }
+      .head { padding: 2px 4px 4px; white-space: nowrap; overflow: hidden; }
+      .head b { font-size: 14px; }
+      .head span { color: #5b646b; margin-left: 10px; }
+      .head .warn { color: #a3261d; }
+      .tiles { display: flex; flex-wrap: wrap; gap: 4px; }
+      canvas { display: block; }
+    </style>
+    <script type="importmap">
+      { "imports": { "three": "/three/build/three.module.js", "three/addons/": "/three/examples/jsm/" } }
+    </script>
+  </head>
+  <body>
+    <div id="sheet"></div>
+    <script type="module">
+      import * as T from 'three';
+      import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+      const renderer = new T.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+      renderer.toneMapping = T.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.05;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = T.PCFSoftShadowMap;
+      renderer.outputColorSpace = T.SRGBColorSpace;
+
+      // Sky dome for paint and glass reflections: saturated zenith, pale horizon, warm ground.
+      function environment() {
+        const sky = new T.Scene();
+        const g = new T.SphereGeometry(50, 32, 16);
+        const colors = [];
+        const zenith = new T.Color('#2a6cc4'), horizon = new T.Color('#b2cde4');
+        const ground = new T.Color('#8a8270');
+        for (let i = 0; i < g.attributes.position.count; i++) {
+          const y = g.attributes.position.getY(i) / 50;
+          const c = y > 0 ? horizon.clone().lerp(zenith, Math.pow(y, 0.6)) : ground.clone();
+          colors.push(c.r, c.g, c.b);
+        }
+        g.setAttribute('color', new T.Float32BufferAttribute(colors, 3));
+        sky.add(new T.Mesh(g, new T.MeshBasicMaterial({ vertexColors: true, side: T.BackSide })));
+        const sun = new T.Mesh(new T.SphereGeometry(3, 8, 8), new T.MeshBasicMaterial({ color: '#fff6e0' }));
+        sun.material.color.multiplyScalar(20);
+        sun.position.set(25, 35, 20);
+        sky.add(sun);
+        return new T.PMREMGenerator(renderer).fromScene(sky, 0.02).texture;
+      }
+      const envMap = environment();
+
+      const clayMaterial = new T.MeshStandardMaterial({ color: '#c4c2bc', roughness: 0.85, flatShading: true });
+      const silhouetteMaterial = new T.MeshBasicMaterial({ color: '#3a3f44' });
+
+      function statsOf(model) {
+        let triangles = 0, draws = 0, textures = new Set(), materials = new Set();
+        model.traverse((o) => {
+          if (!o.isMesh) return;
+          const g = o.geometry;
+          const count = g.index ? g.index.count : g.attributes.position.count;
+          const instances = o.isInstancedMesh ? o.count : 1;
+          triangles += (count / 3) * instances;
+          const mats = Array.isArray(o.material) ? o.material : [o.material];
+          draws += Array.isArray(o.material) ? g.groups.length : 1;
+          for (const m of mats) {
+            materials.add(m);
+            for (const k of ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'emissiveMap', 'aoMap'])
+              if (m[k]) textures.add(m[k].source ?? m[k]);
+          }
+        });
+        return { triangles: Math.round(triangles), draws, materials: materials.size, textures: textures.size };
+      }
+
+      function wheelCenters(model) {
+        const found = [];
+        model.updateMatrixWorld(true);
+        model.traverse((o) => {
+          if (/^wheel-(front|rear|middle)/.test(o.name) && !/-(spin|brakes)$/.test(o.name)) {
+            const p = new T.Vector3().setFromMatrixPosition(o.matrixWorld);
+            found.push({ name: o.name, p });
+          }
+        });
+        return found;
+      }
+
+      function scene(model, box, water) {
+        const s = new T.Scene();
+        s.background = new T.Color('#c5d7e0');
+        s.environment = envMap;
+        s.environmentIntensity = 0.55;
+        const size = box.getSize(new T.Vector3()), center = box.getCenter(new T.Vector3());
+        const reach = Math.max(size.x, size.y, size.z);
+        const groundY = water ? box.min.y - 0.05 : Math.min(0, box.min.y);
+        const ground = new T.Mesh(
+          new T.PlaneGeometry(reach * 12, reach * 12).rotateX(-Math.PI / 2),
+          new T.MeshStandardMaterial({ color: '#aaa59a', roughness: 0.95 }),
+        );
+        ground.position.y = groundY;
+        ground.receiveShadow = true;
+        s.add(ground);
+        if (water) {
+          const sea = new T.Mesh(
+            new T.PlaneGeometry(reach * 12, reach * 12).rotateX(-Math.PI / 2),
+            new T.MeshStandardMaterial({ color: '#356b78', roughness: 0.3, transparent: true, opacity: 0.6, depthWrite: false }),
+          );
+          sea.renderOrder = 2;
+          s.add(sea);
+        }
+        s.add(new T.HemisphereLight('#c9d6e2', '#9a8f70', 1.6));
+        const sun = new T.DirectionalLight('#fff1d8', 4.4);
+        sun.position.copy(center).add(new T.Vector3(0.45, 0.8, 0.4).normalize().multiplyScalar(reach * 2));
+        sun.target.position.copy(center);
+        sun.castShadow = true;
+        const sc = sun.shadow.camera;
+        sc.left = sc.bottom = -reach * 0.8;
+        sc.right = sc.top = reach * 0.8;
+        sc.near = 0.1;
+        sc.far = reach * 5;
+        sun.shadow.mapSize.set(2048, 2048);
+        sun.shadow.bias = -0.0004;
+        sun.shadow.normalBias = reach * 0.0008;
+        s.add(sun, sun.target);
+        s.add(model);
+        return s;
+      }
+
+      function setMaterials(model, override) {
+        model.traverse((o) => {
+          if (!o.isMesh) return;
+          if (!o.userData.original) o.userData.original = o.material;
+          o.material = override ?? o.userData.original;
+          o.castShadow = true;
+          o.receiveShadow = true;
+        });
+      }
+
+      // Cameras. +Z is forward and +X the driver (left) side; orthographic views share one scale.
+      function cameras(box, aspect) {
+        const size = box.getSize(new T.Vector3()), center = box.getCenter(new T.Vector3());
+        const reach = Math.max(size.x, size.y, size.z);
+        const ortho = (position, up, w, h) => {
+          const half = Math.max((w / 2) * 1.1, ((h / 2) * 1.1) * aspect);
+          const c = new T.OrthographicCamera(-half, half, half / aspect, -half / aspect, 0.01, reach * 10);
+          c.up.copy(up);
+          c.position.copy(center).add(position.multiplyScalar(reach * 3));
+          c.lookAt(center);
+          return c;
+        };
+        const span = Math.max(size.x, size.z), shared = { side: [size.z, size.y], front: [size.x, size.y], top: [size.z, size.x] };
+        const k = Math.max(...Object.values(shared).map(([w, h]) => Math.max(w, h * aspect)));
+        const fixed = (position, up) => ortho(position, up, k, k / aspect);
+        const eye = box.min.y + Math.min(Math.max(1.6, size.y * 0.75), size.y + reach * 0.3);
+        const perspective = (azimuth, height, distance = 0.82) => {
+          const c = new T.PerspectiveCamera(34, aspect, 0.05, reach * 20);
+          // Fit both the footprint (across the frame) and the height (up it).
+          const tan = Math.tan((34 * Math.PI) / 360);
+          // ...and never closer than the bounding sphere allows, so wingspans and rotors stay in.
+          const sphere = size.length() / 2 / Math.sin((34 * Math.PI) / 360);
+          const r = Math.max(
+            (span / 2 / tan / Math.min(aspect, 1.6)) * distance,
+            ((size.y * 0.75) / tan) * distance,
+            sphere * 0.62,
+          );
+          c.position.set(center.x + Math.sin(azimuth) * r, height, center.z + Math.cos(azimuth) * r);
+          c.lookAt(center.x, (center.y + box.min.y) / 2 + size.y * 0.15, center.z);
+          return c;
+        };
+        return {
+          q3f: perspective(Math.PI * 0.27, eye),
+          q3r: perspective(Math.PI * -0.78, eye),
+          side: fixed(new T.Vector3(1, 0, 0), new T.Vector3(0, 1, 0)),
+          front: fixed(new T.Vector3(0, 0, 1), new T.Vector3(0, 1, 0)),
+          rear: fixed(new T.Vector3(0, 0, -1), new T.Vector3(0, 1, 0)),
+          top: fixed(new T.Vector3(0, 1, 0), new T.Vector3(-1, 0, 0)),
+          clay: perspective(Math.PI * 0.3, center.y + reach * 0.55, 0.85),
+          claySide: fixed(new T.Vector3(1, 0, 0), new T.Vector3(0, 1, 0)),
+          far: perspective(Math.PI * 0.27, eye, 1.6),
+        };
+      }
+
+      function guide(ctx, camera, w, h, segments, color = '#d0261c') {
+        const px = (p) => {
+          const v = new T.Vector3(...p).project(camera);
+          return [((v.x + 1) / 2) * w, ((1 - v.y) / 2) * h];
+        };
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1.2;
+        ctx.setLineDash([5, 3]);
+        for (const [a, b] of segments) {
+          const [x0, y0] = px(a), [x1, y1] = px(b);
+          ctx.beginPath();
+          ctx.moveTo(x0, y0);
+          ctx.lineTo(x1, y1);
+          ctx.stroke();
+        }
+        ctx.restore();
+        return px;
+      }
+
+      globalThis.renderSheet = async ({ rows, views, tile, cols, grid }) => {
+        const [w, h] = tile;
+        renderer.setPixelRatio(1);
+        renderer.setSize(w, h, false);
+        const sheet = document.getElementById('sheet');
+        sheet.replaceChildren();
+        sheet.style.display = grid ? 'flex' : 'inline-block';
+        sheet.style.flexWrap = 'wrap';
+        sheet.style.gap = '0 10px';
+        sheet.style.width = grid ? `${grid * (Math.min(cols, views.length) * (w + 4) + 10)}px` : '';
+        const statsLines = [];
+        for (const row of rows) {
+          const gltf = await new GLTFLoader().loadAsync(row.url);
+          const model = gltf.scene;
+          model.updateMatrixWorld(true);
+          const box = new T.Box3().setFromObject(model);
+          const size = box.getSize(new T.Vector3());
+          const stats = statsOf(model);
+          const s = scene(model, box, row.water);
+          const cams = cameras(box, w / h);
+          const wheels = wheelCenters(model);
+          const head = document.createElement('div');
+          head.className = 'head';
+          const d = row.dims;
+          const off = (a, b, tolerance = 0.03) => (b && Math.abs(a - b) / b > tolerance ? ' warn' : '');
+          const front = wheels.filter((x) => /front/.test(x.name)), rear = wheels.filter((x) => /rear/.test(x.name));
+          const wb = front.length && rear.length ? front[0].p.z - rear[0].p.z : undefined;
+          head.innerHTML = grid
+            ? `<b>${row.label}</b><span>${stats.triangles.toLocaleString()} tris · ${stats.draws} draws</span>`
+            : `<b>${row.label}</b><span>${stats.triangles.toLocaleString()} tris · ${stats.draws} draws · ` +
+            `${stats.materials} materials · ${stats.textures} textures</span>` +
+            `<span>bounds L ${size.z.toFixed(2)} × W ${size.x.toFixed(2)} × H ${size.y.toFixed(2)} m</span>` +
+            (d
+              ? `<span>declared <span class="${off(size.z, d.length)}">L ${d.length}</span> × ` +
+                `<span class="${off(size.x, d.width, 0.16)}">W ${d.width}</span> × ` +
+                `<span class="${off(size.y, d.height)}">H ${d.height}</span>` +
+                (wb ? ` · wheelbase <span class="${off(wb, d.wheelbase)}">${wb.toFixed(2)} (${d.wheelbase})</span>` : '') +
+                `</span>`
+              : '') +
+            `<span>${row.file}</span>`;
+          statsLines.push(`${row.label}: ${stats.triangles} tris ${stats.draws} draws`);
+          const tiles = document.createElement('div');
+          tiles.className = 'tiles';
+          tiles.style.width = `${Math.min(cols, views.length) * (w + 4)}px`;
+          head.style.width = tiles.style.width;
+          for (const view of views) {
+            const camera = cams[view];
+            setMaterials(model, view === 'clay' || view === 'claySide' ? clayMaterial : undefined);
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            if (view === 'far') {
+              // Traffic/chase distance: the same view at about 1/7 resolution, scaled up unsmoothed.
+              const small = [Math.round(w / 7), Math.round(h / 7)];
+              renderer.setSize(small[0], small[1], false);
+              renderer.render(s, camera);
+              ctx.imageSmoothingEnabled = false;
+              ctx.drawImage(renderer.domElement, 0, 0, w, h);
+              renderer.setSize(w, h, false);
+            } else {
+              renderer.render(s, camera);
+              ctx.drawImage(renderer.domElement, 0, 0);
+            }
+            if (d && ['side', 'claySide', 'front', 'rear', 'top'].includes(view)) {
+              const L = d.length / 2, W = d.width / 2, H = d.height;
+              let seg = [];
+              if (view === 'side' || view === 'claySide')
+                seg = [[[0, 0, -L], [0, 0, L]], [[0, H, -L], [0, H, L]], [[0, 0, -L], [0, H, -L]], [[0, 0, L], [0, H, L]]];
+              else if (view === 'top')
+                seg = [[[-W, 0, -L], [-W, 0, L]], [[W, 0, -L], [W, 0, L]], [[-W, 0, -L], [W, 0, -L]], [[-W, 0, L], [W, 0, L]]];
+              else
+                seg = [[[-W, 0, 0], [W, 0, 0]], [[-W, H, 0], [W, H, 0]], [[-W, 0, 0], [-W, H, 0]], [[W, 0, 0], [W, H, 0]]];
+              const px = guide(ctx, camera, w, h, seg);
+              if ((view === 'side' || view === 'claySide') && wheels.length) {
+                ctx.strokeStyle = '#1b6fd0';
+                ctx.setLineDash([]);
+                for (const wheel of wheels) {
+                  const [x, y] = px([0, wheel.p.y, wheel.p.z]);
+                  ctx.beginPath();
+                  ctx.moveTo(x - 5, y); ctx.lineTo(x + 5, y); ctx.moveTo(x, y - 5); ctx.lineTo(x, y + 5);
+                  ctx.stroke();
+                  if (d.wheelRadius) {
+                    const [, top] = px([0, wheel.p.y + d.wheelRadius, wheel.p.z]);
+                    ctx.beginPath();
+                    ctx.arc(x, y, Math.abs(top - y), 0, Math.PI * 2);
+                    ctx.stroke();
+                  }
+                }
+              }
+            }
+            ctx.fillStyle = 'rgba(255,255,255,0.75)';
+            ctx.fillRect(0, 0, 70, 16);
+            ctx.fillStyle = '#2b3238';
+            ctx.font = '11px system-ui';
+            ctx.fillText(view, 4, 12);
+            tiles.append(canvas);
+          }
+          setMaterials(model, undefined);
+          const block = document.createElement('div');
+          block.className = 'row';
+          block.append(head, tiles);
+          sheet.append(block);
+          s.remove(model);
+          model.traverse((o) => o.geometry?.dispose());
+        }
+        const r = sheet.getBoundingClientRect();
+        return { width: Math.ceil(r.width) + 16, height: Math.ceil(r.height) + 16, stats: statsLines };
+      };
+    </script>
+  </body>
+</html>
