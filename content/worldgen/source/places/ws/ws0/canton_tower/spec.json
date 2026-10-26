@@ -1,0 +1,358 @@
+{
+  "planId": "canton_tower",
+  "id": "canton_tower",
+  "assetId": "molen.worldgen.structure.canton_tower",
+  "title": "Canton Tower",
+  "wikidataId": "Q168400",
+  "category": "tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 113.31915065,
+    "latitude": 23.10901625
+  },
+  "size": [
+    70.01973342895508,
+    600.5500000119209,
+    70.46097946166992
+  ],
+  "actualBounds": {
+    "min": [
+      -34.95935821533203,
+      -0.550000011920929,
+      -35.16705322265625
+    ],
+    "max": [
+      35.06037521362305,
+      600,
+      35.29392623901367
+    ]
+  },
+  "visualBrief": "Whole600m Canton Tower: exact native26control intrinsic base, open24-column inclined pale steel lattice with46 horizontal rings/diagonals, twisting narrow waist and flared upper basket, opaque blue-grey inner core/public-level banks, top observation roof/rail and complete150m segmented antenna with pale/red upper aerial. Original recessed base entrance and hidden member/base/roof-service details are bounded photographic estimates. No similarly named stations, plaza/property slab, neighboring buildings, temporary festival installations, people, signs or interiors.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Canton_Tower.JPG"
+  ],
+  "stories": [
+    {
+      "id": "canton-tower-wp",
+      "url": "https://qualla.com/canton-tower/"
+    }
+  ],
+  "referenceInputHash": "018c9f6e950e266ad89833634e3be388e9d553bcb42cff7250f92a5e944670b5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/ws0/canton_tower/models/canton-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/canton-tower-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "cantonSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62,
+        "metallic": 0.65
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0.16
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cantonDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.65
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.16
+          }
+        }
+      },
+      "street": {
+        "export": "cantonStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.65
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.16
+          }
+        }
+      },
+      "closeup": {
+        "export": "cantonCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.65
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.16
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1",
+    "groundY": -0.7
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original400m129x12916641sample field and two raw tiles frozen before these sections/all geometry; fixed SW provider datum-1.1728m/modelY0. Architectural floor0 is an original unsurveyed estimate, never fitted to subsequent ground renders. Municipal text gives600m=450m body+150m antenna,24 columns/46 rings and135degree relative ellipse rotation. Native26control base retained; top ellipse55x41m/core14x17m/member diameters, internal public-level banks, antenna staging/base entry and hidden finish/census are bounded original photographic proportions, not certified dimensions. Native base is a building envelope, not a plaza/property extrusion. No ground flattening/refitting/reacquisition or later model raising; foundation contact remains preview/unresolved.",
+    "anchor": [
+      113.31915065,
+      23.10901625
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        113.3187692675089,
+        23.108662985851723
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW5m beyond original tower base before floors/sections/geometry; provider-relative unsurveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/584204634"
+    ],
+    "source": "https://www.openstreetmap.org/way/584204634",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3cdbdab53f237498abc64074421958ecc050ff3ceae8cb47eb878b46e6082aeb",
+    "notes": "Whole standing Canton Tower/Q168400: native tower-base envelope, inclined open column/diagonal/ring lattice with narrow twisted waist and widened upper basket, internal opaque core/public-level bands, intrinsic observation roof and complete segmented antenna mast. No metro/tram stations bearing same name, park/property plate/plaza/roads/neighbor buildings/festival installations/people/interiors. Base details hidden in cleared photo are bounded original reconstruction, not imagined measured layout."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named tower way584204634/Q168400,26unique original base controls; similarly named Canton Tower stations/Q5097203 are different structures and excluded. Native bbox midpoint/+Xeast/+Zsouth/heading0. Original mapped base ring retained; architecturally twisted open steel tower must never become a solid extruded oval. Heights/sections/member census chosen only after independent field freeze.",
+    "Original400m129x12916641sample field and two raw tiles frozen before these sections/all geometry; fixed SW provider datum-1.1728m/modelY0. Architectural floor0 is an original unsurveyed estimate, never fitted to subsequent ground renders. Municipal text gives600m=450m body+150m antenna,24 columns/46 rings and135degree relative ellipse rotation. Native26control base retained; top ellipse55x41m/core14x17m/member diameters, internal public-level banks, antenna staging/base entry and hidden finish/census are bounded original photographic proportions, not certified dimensions. Native base is a building envelope, not a plaza/property extrusion. No ground flattening/refitting/reacquisition or later model raising; foundation contact remains preview/unresolved.",
+    "One exact already published2011 Brücke-Osteuropa CC0/own original, personally inspected and nativeSHA1 matched after Qualla-first47family scan. Early construction/model photograph unselected. No supplemental images, questionable sources, copied pixels, generated bitmaps or article/media/rightsmetadata repairs. Historic2011 exterior informs standing architecture; hidden base/current finish/public-level heights/census/member sections/service caps are original bounded estimates, not structural drawings or a current survey.",
+    "Independent400m129x12916641sample field/two original tiles frozen before floors/sections/geometry; unchanged SW provider datum-1.1728m. Field includes urban/river artifacts and an extreme negative elevation anomaly; no fit/flatten/reacquire/model raising. Floor0 is unsurveyed; exact foundations/grade unresolved and placement remains preview/replaceFootprint=false. Portable and neighborhood ground are synthetic fixtures, not geographic evidence."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-twisted-tower-and-complete-antenna",
+      "position": [
+        630,
+        350,
+        780
+      ],
+      "lookAt": [
+        0,
+        295,
+        0
+      ]
+    },
+    {
+      "name": "opposite-whole-open-lattice-and-core",
+      "position": [
+        -620,
+        390,
+        -720
+      ],
+      "lookAt": [
+        0,
+        300,
+        0
+      ]
+    },
+    {
+      "name": "native-base-open-inclined-columns-and-entry",
+      "position": [
+        85,
+        25,
+        95
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "waist-cross-braces-rings-and-opaque-core",
+      "position": [
+        72,
+        290,
+        80
+      ],
+      "lookAt": [
+        0,
+        270,
+        0
+      ]
+    },
+    {
+      "name": "upper-basket-observation-roof-and-mast-foot",
+      "position": [
+        95,
+        478,
+        105
+      ],
+      "lookAt": [
+        0,
+        430,
+        0
+      ]
+    },
+    {
+      "name": "segmented-antenna-and-red-white-aerial",
+      "position": [
+        75,
+        559,
+        88
+      ],
+      "lookAt": [
+        0,
+        545,
+        0
+      ]
+    },
+    {
+      "name": "native-plan-and-twisted-upper-ellipse",
+      "position": [
+        5,
+        790,
+        8
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62462,
+    "vertices": 187386,
+    "materials": 4,
+    "bytes": 7498240,
+    "sha256": "sha256:2c96aaf752fe2cb568579ce3776b3eccd912b5e1236d123bc58d3d08f741e5ed"
+  }
+}

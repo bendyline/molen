@@ -1,3 +1,8 @@
+/**
+ * Verifies fine building footprints survive tile composition and reach both buildings and
+ * vegetation. Classification must share detail reads with human features while hydrology,
+ * disabled detail, and missing coverage retain the coarse source behavior.
+ */
 import { describe, expect, it } from 'vitest';
 import { createTerrainPackageSemanticLayers } from '../src/package-semantic-client';
 import type { TerrainPackageDescriptor, TerrainTileArchive } from '../src/package-types';
@@ -305,6 +310,141 @@ describe('building detail in a terrain package', () => {
     expect(contexts.filter((c) => c.startsWith('detail'))).toEqual(
       Array(4).fill('detail@11:building'),
     );
+  });
+
+  it.each([
+    'shared',
+    'separate',
+  ] as const)('shares detailed homes and tree exclusions with classification (%s landcover)', async (sourceKind) => {
+    const pkg = descriptor();
+    const coarse = archive(0, 10, 'coarse');
+    if (!pkg.features) throw new Error('fixture needs features');
+    pkg.landcover = {
+      source:
+        sourceKind === 'shared' ? pkg.features.source : { kind: 'pmtiles', path: 'land.pmtiles' },
+      encoding: 'mvt',
+      layer: 'landcover',
+    };
+    pkg.features.layers = ['water', 'transportation', 'building', 'poi'];
+    const reads: string[] = [];
+    const detail = archive(11, 11, 'detail');
+    const detailRead = detail.getZxy.bind(detail);
+    detail.getZxy = async (level, x, y, signal) => {
+      reads.push(`${level}/${x}/${y}`);
+      return detailRead(level, x, y, signal);
+    };
+    const observed = new Map<string, TerrainSemanticTile>();
+    const renderer = (name: string) => ({
+      createTile(tile: TerrainSemanticTile) {
+        observed.set(name, tile);
+        return undefined;
+      },
+    });
+    const opened = await createTerrainPackageSemanticLayers(pkg, {
+      landcoverArchive: sourceKind === 'shared' ? coarse : archive(0, 10, 'land'),
+      featuresArchive: coarse,
+      buildingDetailArchive: detail,
+      decoder: {
+        decode(data, context) {
+          const tag = new TextDecoder().decode(data);
+          if (tag === 'detail') {
+            const id = `${context.address.x}-${context.address.z}`;
+            const tile = tileWith([
+              { id, class: 'house', polygons: [{ outer: rect(0.4, 0.4, 0.6, 0.6) }] },
+            ]);
+            tile.pois = [{ id, class: 'tree', point: [0.7, 0.7] }];
+            return tile;
+          }
+          const tile = tileWith([{ id: 'merged', polygons: [{ outer: rect(0, 0, 1, 1) }] }], true);
+          tile.landcover = [{ class: 'residential', polygons: [{ outer: rect(0, 0, 1, 1) }] }];
+          tile.transportation = [
+            {
+              class: 'minor_road',
+              lines: [
+                [
+                  [0, 0.1],
+                  [1, 0.1],
+                ],
+              ],
+            },
+          ];
+          tile.water = [{ class: 'water', polygons: [{ outer: rect(0, 0, 0.1, 0.1) }] }];
+          // Even an already-decoded empty POI list must not skip the detailed homes.
+          tile.pois = [];
+          return tile;
+        },
+      },
+      landcoverLayer: { renderer: renderer('trees') },
+      featuresLayer: { renderer: renderer('houses') },
+      waterLayer: { renderer: renderer('water') },
+    });
+    const context = {
+      address: { level: 10, x: 3, z: 3 },
+      signal: new AbortController().signal,
+    } as TerrainPyramidTileLayerContext;
+    await opened.layers.find((layer) => layer.category === 'hydrology')?.createTile(context);
+    expect(reads).toEqual([]);
+    await Promise.all(
+      opened.layers
+        .filter((layer) => layer.category !== 'hydrology')
+        .map((layer) => layer.createTile(context)),
+    );
+    const trees = observed.get('trees');
+    expect(trees?.buildings.map((b) => b.id).sort()).toEqual(['6-6', '6-7', '7-6', '7-7']);
+    expect(trees?.buildingsGeneralized).toBe(false);
+    expect(trees?.buildingSourceLevel).toBe(11);
+    expect(trees?.pois).toHaveLength(4);
+    expect(trees?.landcover[0]?.class).toBe('residential');
+    expect(trees?.transportation).toEqual(observed.get('water')?.transportation);
+    expect(trees?.water).toEqual(observed.get('water')?.water);
+    expect(trees?.buildings).toEqual(observed.get('houses')?.buildings);
+    expect(reads).toHaveLength(4);
+    expect(new Set(reads).size).toBe(4);
+  });
+
+  it.each([
+    'disabled',
+    'missing',
+    'depth-limited',
+  ] as const)('keeps classification footprints generalized when detail is %s', async (reason) => {
+    const pkg = descriptor();
+    if (!pkg.features) throw new Error('fixture needs features');
+    pkg.landcover = { source: pkg.features.source, encoding: 'mvt', layer: 'landcover' };
+    const coarse = archive(0, 10, 'coarse');
+    let detailReads = 0;
+    let rendered: TerrainSemanticTile | undefined;
+    const opened = await createTerrainPackageSemanticLayers(pkg, {
+      landcoverArchive: coarse,
+      featuresArchive: coarse,
+      buildingDetailArchive: {
+        ...archive(11, 11, 'detail'),
+        async getZxy() {
+          detailReads++;
+          return undefined;
+        },
+      },
+      ...(reason === 'disabled' ? { buildingDetail: false as const } : {}),
+      decoder: {
+        decode: () => tileWith([{ id: 'merged', polygons: [{ outer: rect(0, 0, 1, 1) }] }], true),
+      },
+      landcoverLayer: {
+        renderer: {
+          createTile(tile) {
+            rendered = tile;
+            return undefined;
+          },
+        },
+      },
+    });
+    await opened.layers
+      .find((layer) => layer.category === 'classification')
+      ?.createTile({
+        address: { level: reason === 'depth-limited' ? 8 : 10, x: 3, z: 3 },
+        signal: new AbortController().signal,
+      } as TerrainPyramidTileLayerContext);
+    expect(rendered?.buildings.map((b) => b.id)).toEqual(['merged']);
+    expect(rendered?.buildingsGeneralized).toBe(true);
+    expect(detailReads).toBe(reason === 'missing' ? 4 : 0);
   });
 
   it('carries on with the feature tiles when the detail archive is unusable', async () => {

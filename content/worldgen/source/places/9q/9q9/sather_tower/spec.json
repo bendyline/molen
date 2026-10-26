@@ -1,0 +1,315 @@
+{
+  "planId": "sather_tower",
+  "id": "sather_tower",
+  "assetId": "molen.worldgen.structure.sather_tower",
+  "title": "Sather Tower",
+  "wikidataId": "Q357019",
+  "category": "clock-bell-tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.25783179999999,
+    "latitude": 37.87206005
+  },
+  "size": [
+    12.919310569763184,
+    93.57359635829926,
+    12.721332550048828
+  ],
+  "actualBounds": {
+    "min": [
+      -6.459655284881592,
+      1.7038999795913696,
+      -6.360666275024414
+    ],
+    "max": [
+      6.459655284881592,
+      95.27749633789062,
+      6.360666275024414
+    ]
+  },
+  "visualBrief": "Whole Berkeley Campanile: native seven-control pale tapering stone tower, physical recessed shaft slits/closed doorway, four original Roman numeral clocks/hands, twelve genuine round-arched belfry openings/paired slender columns/physical iron grilles and low balustrades, bounded visible hanging bells, major cornices/upper parapet/four corner pinnacles/steep stone pyramid/open green metal lantern and finial. Published Qualla2025creatorCC0 upper original first, distinct2013creatorCC0 full-height view; original geometry only, no copied pixels. Native10.55x10.28m extent; official307ft overallheight/200ft observationfloor. Exact hidden sections/census/door/fine carving/finish/groundcontact remain original estimates.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Campanile_Hi-Res_-_reduced_file_size.jpg",
+    "https://commons.wikimedia.org/wiki/File:Sather_Tower_-_University_of_California%2C_Berkeley_-_DSC04889.JPG"
+  ],
+  "stories": [
+    {
+      "id": "sather-tower-wp",
+      "url": "https://qualla.com/sather-tower/"
+    }
+  ],
+  "referenceInputHash": "1f04e691d0c6c42fd8e5ceaa4932266d7ea167a9e0e61e2ea8e455a0ca0c190b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q9/sather_tower/models/sather-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/sather-tower-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "satherTowerSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.15
+      },
+      "bronze": {
+        "slot": "roof",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.65,
+        "metallic": 0.55
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "satherTowerDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.15
+          },
+          "bronze": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.65,
+            "metallic": 0.55
+          }
+        }
+      },
+      "street": {
+        "export": "satherTowerStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.15
+          },
+          "bronze": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.65,
+            "metallic": 0.55
+          }
+        }
+      },
+      "closeup": {
+        "export": "satherTowerCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.15
+          },
+          "bronze": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.65,
+            "metallic": 0.55
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "metal_painted",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": 1.6038999999999999
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent256m129x12916641sample/one rawtile/fixedSW96.7538m provider-relative field frozen before every floor/section/taper/geometry choice. Main tower-centre floor1.7039m fixed once from original grid BEFORE geometry; no late modelraising/field fitting. Native7controls are four corners/three intermediate points on nearly straight edge, not an entrance projection. Whole lower tower walls actually use all seven; upper shaft/clockzone/belfry/pyramid follow original photographic proportions and the native rotated axes, no invented mapped polygon. Native10.55x10.28m extent retained, original upper taper .9. UC overall307ft=93.5736m and observationfloor200ft=60.96m; original clockcenter54.7m, triple-arch floor62.05/spring68.85/cornice73.45, parapet76.05, pyramid76.2-89.7, green lantern90-92.66/finial93.5736, corner pinnacles74-80.15. Slit and bell census/hiddenback/door/roofprofiles/clock-face proportions/fine carved details/currentfinish are original estimates. Native nodes contain no entrance tag; closed base doorway is photo-bounded original estimate, not mapped. Whole structure retained; no SatherGate/esplanade/trees/sculpture/campusinteriors/copiedpixels. No terrainfit/flatten/reacquire/late modelraising; preview/replacementfalse/precisecontactunresolved.",
+    "anchor": [
+      -122.25783179999999,
+      37.87206005
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.25796835889064,
+        37.871952252659
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSWreference before any floor/taper/sections/geometry; independent provider-relative unsurveyed datum, not a model-derived threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/24024507"
+    ],
+    "source": "https://www.openstreetmap.org/way/24024507",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d9253453d8fc4a3d77617da8bf1ed2991da18c2b721e720824e69e8816e1ba36",
+    "notes": "Whole named Sather Tower (UC Berkeley Campanile), actual seven-control native tower footprint with four corners and three intermediate boundary controls, tall tapering pale masonry shaft/slit openings, four clock faces and original hands/numerals, triple open belfry arches/paired slender columns/iron grilles/low balustrade and bounded visible basic bell shapes, strong cornices/upper parapet/corner pinnacles/steep pyramidal crown/green-metal lantern and spike. Whole tower from base to finial, not upper-only crop. Separate Sather Gate/Campanile Esplanade/lawn/roads/sculpture/trees/campus buildings/interior rooms/fossil exhibits/sourcepixels excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole actual named native way24024507/Q357019, closed8point ring/seven unique controls. Exact fixed native bboxanchor/heading0/+Xeast/+Zsouth before independentground acquisition; original slightly rotated native outline retained, not a generic invented square. Main shaft/belfry/pyramid and finial sections/slit census/clock layout/hiddenbase are original photographic estimates after frozen ground. OfficialUC307ft overallheight (93.5736m), native93.6 tag agrees; precise survey/tower-axis location not asserted.",
+    "Independent256m129x12916641sample/one rawtile/fixedSW96.7538m provider-relative field frozen before every floor/section/taper/geometry choice. Main tower-centre floor1.7039m fixed once from original grid BEFORE geometry; no late modelraising/field fitting. Native7controls are four corners/three intermediate points on nearly straight edge, not an entrance projection. Whole lower tower walls actually use all seven; upper shaft/clockzone/belfry/pyramid follow original photographic proportions and the native rotated axes, no invented mapped polygon. Native10.55x10.28m extent retained, original upper taper .9. UC overall307ft=93.5736m and observationfloor200ft=60.96m; original clockcenter54.7m, triple-arch floor62.05/spring68.85/cornice73.45, parapet76.05, pyramid76.2-89.7, green lantern90-92.66/finial93.5736, corner pinnacles74-80.15. Slit and bell census/hiddenback/door/roofprofiles/clock-face proportions/fine carved details/currentfinish are original estimates. Native nodes contain no entrance tag; closed base doorway is photo-bounded original estimate, not mapped. Whole structure retained; no SatherGate/esplanade/trees/sculpture/campusinteriors/copiedpixels. No terrainfit/flatten/reacquire/late modelraising; preview/replacementfalse/precisecontactunresolved.",
+    "Exact cleared published2025RyanSchwark selfCC0 upper original first and distinct2013Daderot selfCC0 whole-height original individually inspected/nativeSHA1matched; rejected published and conflictedhero imagery excluded without repair or same-photo bypass. Clock numerals/hands original geometry with static10:24; all four faces original estimated repetition. Carillon shapes are six approximate visible bells, not a61bell interior reconstruction. Fine sculptural friezes reduced to original geometric articulation; no copiedart/inscriptions/photos/interiorrooms/fossils/adjacentgrounds/trees.",
+    "Original independent256m129x12916641sample/one rawtile/fixedSW96.7538m provider-relative field frozen before floor/section/taper/geometry. Floor1.7039m fixed once from original centre sample before geometry; no refit/flatten/reacquisition/late modelraising. Exact base/threshold/source-grade contact unresolved; geographic preview/replaceFootprint=false. Flatground/syntheticneighbors are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-opposite-seven-control-tower",
+      "position": [
+        -116,
+        75.7039,
+        -134
+      ],
+      "lookAt": [
+        0,
+        46.7039,
+        0
+      ]
+    },
+    {
+      "name": "four-clocks-and-open-triple-belfry",
+      "position": [
+        17,
+        66.7039,
+        26
+      ],
+      "lookAt": [
+        0,
+        64.7039,
+        0
+      ]
+    },
+    {
+      "name": "shaft-stone-coursing-and-physical-slit",
+      "position": [
+        9,
+        31.7039,
+        15
+      ],
+      "lookAt": [
+        0,
+        30.7039,
+        0
+      ]
+    },
+    {
+      "name": "native-base-and-closed-estimated-door",
+      "position": [
+        11,
+        6.7039,
+        17
+      ],
+      "lookAt": [
+        0,
+        4.2039,
+        0
+      ]
+    },
+    {
+      "name": "pinnacles-pyramid-open-lantern-and-spike",
+      "position": [
+        20,
+        95.7039,
+        27
+      ],
+      "lookAt": [
+        0,
+        84.7039,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 43076,
+    "vertices": 129228,
+    "materials": 3,
+    "bytes": 5397460,
+    "sha256": "sha256:ea756d9c22c1b2e4589875f9ae0c70064993ab19fcfd50809ae6dd0f6f29ecdf"
+  }
+}

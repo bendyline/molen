@@ -1,4 +1,4 @@
-import { Transform, World } from '@bendyline/molen-kernel/world';
+import { setBoostMode, Transform, World } from '@bendyline/molen-kernel/world';
 import { describe, expect, it } from 'vitest';
 import { AmbientAgent, installAmbient } from '../src/kernel';
 import { gridDocument, loopDocument } from './helpers';
@@ -8,8 +8,12 @@ function agents(world: World) {
 }
 
 describe('cars', () => {
-  it('follow each other around a loop without overlapping or reversing', () => {
+  it.each([
+    false,
+    true,
+  ])('follows a loop without overlapping or reversing (boost=%s)', (boosted) => {
     const world = new World({ tickRate: 60, seed: 'loop' });
+    setBoostMode(world, boosted);
     const ambient = installAmbient(world, {
       policy: {
         spawnBudget: 20,
@@ -47,8 +51,9 @@ describe('cars', () => {
     expect(moving).toBeGreaterThan(0);
   });
 
-  it('never let two cars occupy the same spot on a street grid', () => {
+  it.each([false, true])('keeps cars apart on a street grid (boost=%s)', (boosted) => {
     const world = new World({ tickRate: 30, seed: 'grid' });
+    setBoostMode(world, boosted);
     const ambient = installAmbient(world, {
       policy: { spawnBudget: 8, car: { near: 0, far: 400, keep: 800, perLaneKm: 30, max: 60 } },
     });

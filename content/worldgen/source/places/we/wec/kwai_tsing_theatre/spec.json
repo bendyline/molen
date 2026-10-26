@@ -1,0 +1,369 @@
+{
+  "planId": "kwai_tsing_theatre",
+  "id": "kwai_tsing_theatre",
+  "assetId": "molen.worldgen.structure.kwai_tsing_theatre",
+  "title": "Kwai Tsing Theatre",
+  "wikidataId": "Q606350",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.1261963,
+    "latitude": 22.35686585
+  },
+  "size": [
+    136.38743591308594,
+    29.33328628540039,
+    128.7597885131836
+  ],
+  "actualBounds": {
+    "min": [
+      -68.19352722167969,
+      0,
+      -64.37659454345703
+    ],
+    "max": [
+      68.19390869140625,
+      29.33328628540039,
+      64.38319396972656
+    ]
+  },
+  "visualBrief": "Whole native48control theatre exterior: buff tiled auditorium/service blocks and taller rectilinear flytower, curved glazed entrance foyer/closed doors/whitefascia/parapet, real suspended curved canopy/splayed masts/tension rods, adjoining curved restaurant/roofdrum and columned deeply recessed sidewing. Whole mapped outline and native bearing retained; heights/internal part boundaries/hidden faces original bounded reconstruction. No plaza/roads/neighbors/sculpture/ads/interiors.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HK_KwaiTsingTheatre.jpg",
+    "https://commons.wikimedia.org/wiki/File:HK_KwaiTsingTheatre_Entrance.jpg",
+    "https://commons.wikimedia.org/wiki/File:HK_KwaiTsingTheatre_ChinaLandRest2.jpg",
+    "https://commons.wikimedia.org/wiki/File:HK_KwaiTsingTheatre_ChinaLandRest.jpg",
+    "https://commons.wikimedia.org/wiki/File:HK_KwaiTsingTheatre_Qui.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kwai-tsing-theatre-wp",
+      "url": "https://qualla.com/kwai-tsing-theatre/"
+    }
+  ],
+  "referenceInputHash": "b5dfff69a86ab014336b0944ec4a721506e41e1d018599d4b5484b047bae266c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/we/wec/kwai_tsing_theatre/models/kwai-tsing-theatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/kwai-tsing-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "kwaiSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "tile_ceramic",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.36,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "kwaiDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "kwaiStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "kwaiCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1",
+    "groundY": -0.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All floor/section/geometry choices follow immutable400m129x129 field freeze. Floor0 at fixed-.6065m provider-relative SW datum, nofit/flatten/reacquire. Whole48nativecontrols remain exact in +Xeast/+Zsouth frame; internalconstructionaxis derives native long back wall45-to44, not a remapped perimeter. Native building plan has no surveyed heights/part outlines. Bounded photo-based18m auditorium/16m sidebar/9.8m curved foyer/1.1m parapets/28m eight-level flytower interpretation, curved restaurant/roofdrum/canopy/columns and hidden openings are explicit original estimates. Physical.28m window/.42m closeddoor recesses and2.5m open colonnade. No interior/seating/undercroft/spring system/plaza model. Grade/threshold/currentfinish/hiddenfaces unresolved.",
+    "anchor": [
+      114.1261963,
+      22.35686585
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.12548563688148,
+        22.356242887085404
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW5m beyond whole theatre before all floor/section/geometry decisions; provider-relative unsurveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/142662156"
+    ],
+    "source": "https://www.openstreetmap.org/way/142662156",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d70ab1b7e245808fe2daeb3ea5daee514d50ec8786741601ad32c8735e7227f9",
+    "notes": "Whole named mapped Kwai Tsing Theatre/Q606350: native48control multipart exterior, opaque auditorium/flytower and connecting volumes, curved glazed entrance foyer/rotunda with closed doors, intrinsic curved canopy/splayed tube supports/tension rods, columned/recessed-glazed attached side/restaurant wing and roof parapets/rails. Surrounding forecourt/roads/bus stops/bollards/trees/neighbors/detached sculpture/ads/banners and interiors excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact whole native theatre way142662156/Q606350 with all48 unique exterior controls retained, including curved foyer and attached wing. Fixed native bbox midpoint/+Xeast/+Zsouth/heading0. Nearby similarly named bus stop nodes/transport relations are not the structure and not used. Architectural sections/components must be reconciled to the complete native outline after independent field freeze, never rectangular whole-property extrusion.",
+    "All floor/section/geometry choices follow immutable400m129x129 field freeze. Floor0 at fixed-.6065m provider-relative SW datum, nofit/flatten/reacquire. Whole48nativecontrols remain exact in +Xeast/+Zsouth frame; internalconstructionaxis derives native long back wall45-to44, not a remapped perimeter. Native building plan has no surveyed heights/part outlines. Bounded photo-based18m auditorium/16m sidebar/9.8m curved foyer/1.1m parapets/28m eight-level flytower interpretation, curved restaurant/roofdrum/canopy/columns and hidden openings are explicit original estimates. Physical.28m window/.42m closeddoor recesses and2.5m open colonnade. No interior/seating/undercroft/spring system/plaza model. Grade/threshold/currentfinish/hiddenfaces unresolved.",
+    "Five exact already-published2006/2007 Chong Fat creatorPD exteriors only; protected hero/nightphotos, interiors, ads/sculptures and unrelated imagery unselected. No supplemental imagery/copied texture pixels/generated bitmap or article/media/rightsmetadata repair. Native48control whole outline retained; internal boundaries/heights/hidden elevations/opening census/finish and canopy support arrangement original bounded estimates. Glass/canopy use opaque medium-fi surfaces without an interior/sorting claim.",
+    "Independent400m129x129field16641values/two raw tiles frozen before all floors/sections/geometry. Fixed-.6065m provider-relative SW datum unchanged; urban source includes tall building artifacts and source ground/thresholds are unsurveyed. Geographic preview/replaceFootprint=false, no fit/flatten/reacquire or plaza plate."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-theatre-curves-and-tall-flytower",
+      "position": [
+        39.51008810703901,
+        58,
+        204.8510506142793
+      ],
+      "lookAt": [
+        -5.743525517891151,
+        12,
+        8.18608054109738
+      ]
+    },
+    {
+      "name": "whole-opaque-auditorium-backstage-and-roof-envelopes",
+      "position": [
+        -56.311456924973115,
+        66,
+        -198.31545532052436
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "curved-glazed-foyer-canopy-splayed-masts-and-rods",
+      "position": [
+        31.77352686751699,
+        14,
+        87.03702080378886
+      ],
+      "lookAt": [
+        15.441173202691184,
+        5,
+        38.93032455714301
+      ]
+    },
+    {
+      "name": "columned-wing-open-recess-and-curved-restaurant-roofdrum",
+      "position": [
+        51.92190030991493,
+        19,
+        91.40085485490415
+      ],
+      "lookAt": [
+        27.403466103991747,
+        7,
+        37.550633090367135
+      ]
+    },
+    {
+      "name": "whole-native48control-plan-and-multipart-roofs",
+      "position": [
+        5.3143177821518055,
+        235,
+        9.836565788439842
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13816,
+    "vertices": 41448,
+    "materials": 5,
+    "bytes": 1661176,
+    "sha256": "sha256:c00af42c6580b3e8aec30574f952a3354905c9420337c37e352e44534dc1ff02"
+  }
+}

@@ -44,7 +44,7 @@ import {
 } from '@bendyline/molen-client/navigation';
 import type { FigureData } from '@bendyline/molen-figures/client';
 import { Mountable, Mounted, vehicleLocalPoint } from '@bendyline/molen-kernel/vehicles';
-import { Transform, World } from '@bendyline/molen-kernel/world';
+import { setBoostMode as setWorldBoostMode, Transform, World } from '@bendyline/molen-kernel/world';
 import type { BakedMaterialStore } from '@bendyline/molen-materials';
 import {
   type BlockCache,
@@ -297,6 +297,8 @@ export interface EarthInteractionSettings {
 }
 
 export interface EarthViewOptions {
+  /** Start with 4× travel speed for people and vehicles (default false). T toggles it. */
+  boostMode?: boolean;
   /** Explicit archival landmark date (YYYY-MM-DD), independent of sky time. Remount to change it. */
   viewingDate?: string;
   /** Explicit month (1..12) for regional foliage; remount to change. Omitted means leaf-on. */
@@ -557,6 +559,7 @@ export interface EarthViewEvents {
   terrainchange: { key?: string; credits: EarthCredit[] };
   markerclick: { id: string };
   modechange: { mode: EarthViewMode };
+  boostchange: { enabled: boolean };
   /** A short explanation for the user, e.g. why a vehicle could not be entered. */
   message: { text: string };
   /** Sound loaded: `view.audio` is now set (volume, mute, bus gains). */
@@ -610,6 +613,9 @@ export interface EarthView {
   /** Required data credits; keep them visible whenever the view is. */
   readonly credits: EarthCredit[];
   readonly mode: EarthViewMode;
+  readonly boostMode: boolean;
+  /** 4× travel speed; steering, flight controls and the world clock keep normal timing. */
+  setBoostMode(enabled: boolean): void;
   /**
    * Switch navigation. Drive takes a parked car within reach, or adds one on the nearest road
    * with `{ vehicle: true }`; fly adds an aircraft (airborne by default) over the view. Returns
@@ -798,6 +804,7 @@ function surfaceBudgets(quality: TerrainQualityPreset, scale: number) {
 
 /** Mount an Earth view into a canvas. Dispose it (or abort `signal`) to release everything. */
 export async function mountEarthView(options: EarthViewOptions): Promise<EarthView> {
+  let boostMode = options.boostMode ?? false;
   if (options.viewingDate !== undefined && !isStructureViewingDate(options.viewingDate))
     throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
   if (
@@ -1019,7 +1026,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       (semanticWorker ??= options.workers?.semantic?.());
     disposers.push(() => semanticWorker?.terminate());
     const groundHeight = (x: number, z: number): number | undefined =>
-      stack?.stream.sampleHeight(x, z);
+      stack?.stream.sampleSurfaceHeight(x, z);
     const ambientSettings = options.ambient === false ? undefined : (options.ambient ?? {});
     let ambientOn = ambientSettings !== undefined;
     const ambientContent =
@@ -1333,7 +1340,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 loading.layers >= limits.maxConcurrentLayerLoads
               );
             },
-            groundHeight: (x, z) => stream.sampleHeight(x, z),
+            groundHeight: (x, z) => stream.sampleSurfaceHeight(x, z),
             viewShape: () => {
               const [w, h] = viewport();
               return {
@@ -1350,6 +1357,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         // One world for everything that moves: cars, aircraft and ambient life. The frame loop
         // steps it once (stepWorld); each piece applies its inputs before and poses models after.
         const world = new World({ tickRate: 60, seed: 'earth', devFreeze: false });
+        setWorldBoostMode(world, boostMode);
         let accumulator = 0;
         const stepWorld = (dt: number): void => {
           accumulator = Math.min(accumulator + Math.min(0.1, Math.max(0, dt)), world.dt * 3);
@@ -1366,7 +1374,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             ? new EarthVehicles({
                 world,
                 root: stream.object,
-                sampleHeight: (x, z) => stream.sampleHeight(x, z),
+                sampleHeight: (x, z) => stream.sampleSurfaceHeight(x, z),
                 loadModel,
                 types: content.types,
                 water: options.water ?? EARTH_WATER_CONDITIONS,
@@ -1383,8 +1391,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             root: stream.object,
             sampleHeight: (x, z, y) =>
               y === undefined
-                ? stream.sampleHeight(x, z)
-                : (sampleTerrainTunnel(stream.object, x, y, z)?.floor ?? stream.sampleHeight(x, z)),
+                ? stream.sampleSurfaceHeight(x, z)
+                : (sampleTerrainTunnel(stream.object, x, y, z)?.floor ??
+                  stream.sampleSurfaceHeight(x, z)),
             loadModel,
             types: content.types,
             vehicleEnvironment: vehicles.environment,
@@ -1403,7 +1412,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             ...(ambientContent !== undefined ? { content: ambientContent } : {}),
             prepare: (object) => renderer.prepareObject(object),
             admission: renderer.admission,
-            ground: (x, z) => stream.sampleHeight(x, z),
+            ground: (x, z) => stream.sampleSurfaceHeight(x, z),
           });
           ambient = created;
           created.setBudget(ambientBudget());
@@ -1526,6 +1535,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       terrainchange: new Set(),
       markerclick: new Set(),
       modechange: new Set(),
+      boostchange: new Set(),
       message: new Set(),
       audioready: new Set(),
     };
@@ -1542,6 +1552,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     // Navigation state.
     let mode: EarthViewMode = 'orbit';
     const walker = new WalkController();
+    walker.boostMode = boostMode;
+    const setBoostMode = (enabled: boolean): void => {
+      if (boostMode === enabled) return;
+      boostMode = enabled;
+      walker.boostMode = enabled;
+      if (stack) setWorldBoostMode(stack.world, enabled);
+      emit('boostchange', { enabled });
+    };
     // Scanning every visible mesh each frame is the walk mode's largest fixed cost; 5 Hz rescans
     // still catch streamed changes, and placement below forces a scan.
     const collision = new WalkCollision({ rescanIntervalMs: 200 });
@@ -2282,6 +2300,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     const actorStack = (current: EarthStack) => ({
       world: current.world,
       root: current.stream.object,
+      isAreaReady: (x: number, z: number, radius: number) =>
+        current.stream.isAreaReady(x, z, radius),
       ...(current.ambient !== undefined ? { ambient: current.ambient.handle } : {}),
       ...(current.vehicles !== undefined ? { vehicles: current.vehicles } : {}),
     });
@@ -2835,7 +2855,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       ) {
         collision.invalidate();
         collision.update(current.stream.object, walker.feet.x, walker.feet.z);
-        walker.place(collision, groundHeight);
+        const groundCollision = new WalkCollision({ ignoreVehicles: true });
+        groundCollision.update(current.stream.object, walker.feet.x, walker.feet.z);
+        walker.place(collision, groundHeight, groundCollision);
       }
       walker.update(
         dt,
@@ -3107,6 +3129,13 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           airfields.tick();
         }
       }
+      if ((frameInput.boost ?? 0) % 2 === 1) {
+        setBoostMode(!boostMode);
+        emit('message', {
+          text: boostMode ? 'Boost on · 4× travel speed' : 'Boost off · normal speed',
+        });
+      }
+      if (current) setWorldBoostMode(current.world, boostMode);
       if (frameInput.interact > 0 && current !== undefined && pending === undefined)
         handleInteract(current);
       if (mode === 'orbit' || current === undefined || pending !== undefined)
@@ -3332,6 +3361,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       get mode() {
         return mode;
       },
+      get boostMode() {
+        return boostMode;
+      },
+      setBoostMode,
       get audio() {
         return audio?.layer;
       },

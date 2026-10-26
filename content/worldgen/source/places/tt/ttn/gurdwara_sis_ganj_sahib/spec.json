@@ -1,0 +1,374 @@
+{
+  "planId": "gurdwara_sis_ganj_sahib",
+  "id": "gurdwara_sis_ganj_sahib",
+  "assetId": "molen.worldgen.structure.gurdwara_sis_ganj_sahib",
+  "title": "Gurdwara Sis Ganj Sahib",
+  "wikidataId": "Q5620491",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 77.2324212,
+    "latitude": 28.6559559
+  },
+  "size": [
+    77.48546600341797,
+    26.01199984550476,
+    37.78268241882324
+  ],
+  "actualBounds": {
+    "min": [
+      -39.287235260009766,
+      -3.9560000896453857,
+      -23.584157943725586
+    ],
+    "max": [
+      38.1982307434082,
+      22.055999755859375,
+      14.198524475097656
+    ]
+  },
+  "visualBrief": "Whole Gurdwara Sis Ganj Sahib: photo-reconstructed warm sandstone mainhall, tiered cornices, recessed jali windows, central gold onion dome and four open gold-domed corner chhatris; white marble street gateway with genuine open arches and three visible roof chhatris, intrinsic terrace/six steps; actual native four-control five-level flat-roof eastern wing. Worship-area rectangle is identity context only, never extruded as the hall. Qualla-published Jais006 2011 own CC0 exterior; hidden plans, heights, rear facades and current changes bounded. Separate neighboring mosque excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Gurudwara_Sis_Sang_Sahib_-_New_Delhi.JPG"
+  ],
+  "stories": [
+    {
+      "id": "gurdwara-sis-ganj-sahib-wp",
+      "url": "https://qualla.com/gurdwara-sis-ganj-sahib/"
+    }
+  ],
+  "referenceInputHash": "decef45b62e0e08c867e70a3b1b27dc8cbf4226eacfdf2c54fc5d0a7a888dc13",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttn/gurdwara_sis_ganj_sahib/models/gurdwara-sis-ganj-sahib-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/gurdwara-sis-ganj-sahib-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "gurdwaraSisGanjSahibSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.76,
+        "metallic": 0
+      },
+      "gold": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.44,
+        "metallic": 0.68
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.84,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "gurdwaraSisGanjSahibDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.68
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "gurdwaraSisGanjSahibStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.68
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "gurdwaraSisGanjSahibCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.68
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "stone_sandstone",
+    "stone_marble",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "cameraYaw": -2.5,
+    "groundY": -3.9059999999999997
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Once-only source-field street-side sample followed by fixed photographic building proportions; no native measured heights. Five native levels constrain the eastern wing. Original field, anchor, axes, floor and main sections are immutable after this choice; ground contact unverified, preview only.",
+    "anchor": [
+      77.2324212,
+      28.6559559
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        77.23129513124253,
+        28.65496775770751
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest provider-field datum before any floor, sections or model geometry. Exact threshold/street/roof datum and contact remain unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1376144457"
+    ],
+    "source": "https://www.openstreetmap.org/way/265824668",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:74a904835208240fc228ccc918bacdd369ae477c73241b638209fec816daee26",
+    "notes": "Whole Sikh temple assembly: warm sandstone mainhall with gold domed open rooftop pavilions, white marble arched street gateway and native five-level flat-roof eastern wing. Mainhall/gateway plan and hidden facades will be explicitly photo-derived estimates, never measured from the worship-area rectangle. Excludes neighboring mosque, property parcel/pad, detached street objects, traffic/wires/people, interiors and photo-pixel textures."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Native actual worship-area identity and separately tagged five-level eastern physical building. Worship-area context is not a measured mainhall footprint; all reconstructed hall/gateway parts will be explicitly distinguished.",
+    "Whole Sikh temple assembly: warm sandstone mainhall with gold domed open rooftop pavilions, white marble arched street gateway and native five-level flat-roof eastern wing. Mainhall/gateway plan and hidden facades will be explicitly photo-derived estimates, never measured from the worship-area rectangle. Excludes neighboring mosque, property parcel/pad, detached street objects, traffic/wires/people, interiors and photo-pixel textures.",
+    "Once-only source-field street-side sample followed by fixed photographic building proportions; no native measured heights. Five native levels constrain the eastern wing. Original field, anchor, axes, floor and main sections are immutable after this choice; ground contact unverified, preview only.",
+    "Exact published 2011 Jais006 own CC0 photograph supplies the visible exterior. Photo-hidden mainhall/rear layouts, dome/pavilion census, dimensions, jali motifs, roof partitions, finishes and current repairs are bounded estimates, not measured survey or current photogrammetry. Native eastern four-control physical building and five levels retained at every LOD.",
+    "Five gold-domed pavilions and three visible white gateway chhatris are explicit photographic reconstructions. All pavilions and gateway arches contain actual voids; skyline simplifies columns and dome profiles, district omits eastern window apertures, detailed levels add genuine facade recesses and lattice. No neighboring mosque, property pad, street fixtures, people, traffic, wires, inscriptions, interiors or photographic texture pixels.",
+    "Original native frame/256m129field/floor/main sections frozen before geometry. No fitting, flattening, field replacement, reframing, reacquisition or raising. Exact ground contact unverified; geographic preview/replacement false. Flat review ground and synthetic context neighbors are fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-street-mainhall-gold-domes-marble-gateway-and-eastern-wing",
+      "position": [
+        -67.04500105867879,
+        38.394,
+        -96.4259707394318
+      ],
+      "lookAt": [
+        -6.986030645775316,
+        5.394,
+        -0.44201336663963703
+      ]
+    },
+    {
+      "name": "whole-assembly-native-eastern-wing-and-derived-western-hall-plan",
+      "position": [
+        -0.006314476666280529,
+        111.394,
+        0.09980043779679024
+      ],
+      "lookAt": [
+        0,
+        4.394,
+        0
+      ]
+    },
+    {
+      "name": "central-open-pavilion-and-gold-onion-dome",
+      "position": [
+        -29.35951655043484,
+        19.394,
+        -26.907597215744524
+      ],
+      "lookAt": [
+        -20.95809193732595,
+        15.394,
+        -1.326040099918911
+      ]
+    },
+    {
+      "name": "marble-gateway-open-arch-three-chhatris-and-intrinsic-stairs",
+      "position": [
+        -11.19984750270569,
+        3.394,
+        -36.780611956792356
+      ],
+      "lookAt": [
+        -12.399598069298992,
+        2.394,
+        -17.818528775402214
+      ]
+    },
+    {
+      "name": "whole-rear-and-five-level-native-eastern-wing",
+      "position": [
+        78.03536110496269,
+        41.394,
+        81.08934835857342
+      ],
+      "lookAt": [
+        0,
+        5.394,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 35828,
+    "vertices": 107484,
+    "materials": 5,
+    "bytes": 4419296,
+    "sha256": "sha256:e0d3bc8ab0deaef2da6b852342835d4c911449d5e0ba3b381bcaad4c56b1d9c5"
+  }
+}

@@ -97,6 +97,7 @@ const GUIDE_ORDER = [
   'building-interiors',
   'figures',
   'vehicles',
+  'boost-mode',
   'aircraft',
   'vehicle-interiors',
   'liveries',

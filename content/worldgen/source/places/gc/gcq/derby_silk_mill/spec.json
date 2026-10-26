@@ -1,0 +1,379 @@
+{
+  "planId": "derby_silk_mill",
+  "id": "derby_silk_mill",
+  "assetId": "molen.worldgen.structure.derby_silk_mill",
+  "title": "Derby Silk Mill",
+  "wikidataId": "Q839047",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.4759865,
+    "latitude": 52.92593305
+  },
+  "size": [
+    54.72036361694336,
+    25.049999237060547,
+    67.73790740966797
+  ],
+  "actualBounds": {
+    "min": [
+      -27.36018180847168,
+      0,
+      -33.868953704833984
+    ],
+    "max": [
+      27.36018180847168,
+      25.049999237060547,
+      33.868953704833984
+    ]
+  },
+  "visualBrief": "Whole Derby Silk Mill/Museum of Making: native33control concave envelope and thirteen intrinsic building/roof plans, brick square tower/actually open octagonal arched lantern/deep slate eaves/cap, real segmental window recesses/shut glazing/mullions/sills, hipped river-side pavilion/shut upper balcony door/open metal rail, current mapped glazed atrium/recessed shut entry and glazed-ended gabled long mill hall, full rear brick wings/roofs/native narrow stack. Cleared published2009creatorPD-self front establishes historic details; current glass scope/materials/heights from native metadata, precise modern grid/hidden elevations/roof profiles/census bounded estimates. No supplemental photography, murals/artwork/text/logos/neighbors/park/river/bridge/interiors/people copied.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Derby_020.JPG"
+  ],
+  "stories": [
+    {
+      "id": "derby-silk-mill-wp",
+      "url": "https://qualla.com/derby-silk-mill/"
+    }
+  ],
+  "referenceInputHash": "dc86e055ab51a092548691c5499ea1c45d84a44407be072d26d097ab1b0ad384",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcq/derby_silk_mill/models/derby-silk-mill-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/derby-silk-mill-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "derbySilkMillSkyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.04
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "derbySilkMillDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "derbySilkMillStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "derbySilkMillCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "native-map-frame",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All floor/section/geometry choices follow original400m129x12916641sample independent field/one rawtile freeze. FixedSW[-55,55]48.1847m provider-relative model floor0, no survey threshold claim. Native component height and roof/min_height tags determine whole bodies/roofs: historic tower lower17m/open lantern17..20.5m/roof22m; river pavilion10m eaves/12.5m hip; long hall11.5m eaves/15m gabled roof; glazed atrium11.5m; rear wings7..18m eaves/10..21m gables and25m narrow native stack. Original window/census estimates from exact published2009whole front: physical segmental recesses .32m/shut opaque glazing/mullions/sills, four tower rows .6/4.1/7.6/11.1m, actual open octagonal lantern/deep eaves, hipped pavilion upper shut balcony access/metal open rail. Current glass entrance/gable plans/materials/heights from native metadata; precise glazing grid/entry/current hidden elevations/roof profiles are bounded original estimates, no supplemental photographs adopted. Whole33native outline controls plus all13intrinsic component plans retained. Never fit/flatten/reacquire terrain or raise model to hide grade; preview/replacementfalse/unresolved source contact.",
+    "anchor": [
+      -1.4759865,
+      52.92593305
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.4768060631843973,
+        52.925438978853755
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW local[-55,55] before all floors/sections/geometry; original provider-relative unsurveyed datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/30247044",
+      "way/801297657",
+      "way/801297659",
+      "way/801297660",
+      "way/801297661",
+      "way/801297662",
+      "way/801297663",
+      "way/801297664",
+      "way/801297665",
+      "way/801297666",
+      "way/801297667",
+      "way/801297668",
+      "way/942372140",
+      "way/942973666"
+    ],
+    "source": "https://www.openstreetmap.org/way/30247044",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:16ff76b0da99805db1bc0748b25269a37a49de5f8851b27262fc30068af5f5be",
+    "notes": "Whole current Derby Silk Mill/Museum of Making physical exterior: complete native33control concave building envelope, thirteen intrinsic overlapping mapped tower/lantern/roof/pavilion/glazed atrium/mill-hall/rear-wing components; historic brick tower with actually open octagonal arched lantern/deep slate cap, segmental recessed shut windows/sills/mullions, hipped river-side pavilion/shut upper access/open rail, current full-height glazed entry and new triangular glazed long-hall gable, full intrinsic rear wings/roof volumes with bounded hidden elevations. Separate Old Silk Mill pub/LeonardoHotel/residential buildings/river/park/bridge/interiors/people/scaffolds/temporary furniture and copied bird mural/artwork/text/logos/plaque details excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Native whole physical building30247044/Q839047/MuseumofMaking/DerbyIndustrialMuseum/Lombe’sMill closed34point ring(33uniquecontrols); thirteen intrinsic overlapping mapped building/roof components distinguish tower/lantern/pavilion/glazed atrium/gabled hall/rear wings. Common exact whole-ring bbox anchor/+Xeast/+Zsouth/heading0; do not extrude every part as a solid or fill western concavities. Native height/roof tags retained as metadata only; all source floors/sections/height choices await independent field freeze.",
+    "All floor/section/geometry choices follow original400m129x12916641sample independent field/one rawtile freeze. FixedSW[-55,55]48.1847m provider-relative model floor0, no survey threshold claim. Native component height and roof/min_height tags determine whole bodies/roofs: historic tower lower17m/open lantern17..20.5m/roof22m; river pavilion10m eaves/12.5m hip; long hall11.5m eaves/15m gabled roof; glazed atrium11.5m; rear wings7..18m eaves/10..21m gables and25m narrow native stack. Original window/census estimates from exact published2009whole front: physical segmental recesses .32m/shut opaque glazing/mullions/sills, four tower rows .6/4.1/7.6/11.1m, actual open octagonal lantern/deep eaves, hipped pavilion upper shut balcony access/metal open rail. Current glass entrance/gable plans/materials/heights from native metadata; precise glazing grid/entry/current hidden elevations/roof profiles are bounded original estimates, no supplemental photographs adopted. Whole33native outline controls plus all13intrinsic component plans retained. Never fit/flatten/reacquire terrain or raise model to hide grade; preview/replacementfalse/unresolved source contact.",
+    "One exact publishedQualla2009Charlesdrakew own/PD-self original individually inspected/nativeSHA1 matched/passed unchanged imagery policy. Supplemental modern standaloneCC0 photographs unselected after inventory guard; no source metadata repair or bypass. Precise modern glazing grid/hidden rear/currentfinish/roof profile/window census are bounded original estimates, with current physical component scope/materials/heights from native mapped metadata. No copied mural/artwork/logos/text/photo pixels/interiors/neighbors/river/park/bridge.",
+    "Original400m129x12916641sample field/one rawtile fixedSW48.1847m provider-relative datum frozen before all floors/sections/geometry. No terrainfit/flatten/reacquire/modelraising. Preview/replacementfalse/exact contact unresolved. Flat isolated ground and synthetic neighbors are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-rear-wings-and-native-parts",
+      "position": [
+        48,
+        36,
+        -74
+      ],
+      "lookAt": [
+        0,
+        10,
+        -10
+      ]
+    },
+    {
+      "name": "open-octagonal-lantern-and-slate-cap",
+      "position": [
+        23,
+        20,
+        42
+      ],
+      "lookAt": [
+        15,
+        19.2,
+        27.8
+      ]
+    },
+    {
+      "name": "historic-segmental-windows-and-closed-upper-balcony-door",
+      "position": [
+        30,
+        5.8,
+        44
+      ],
+      "lookAt": [
+        21,
+        5.2,
+        30
+      ]
+    },
+    {
+      "name": "current-mapped-glazed-entry-and-gable",
+      "position": [
+        -6,
+        7,
+        48
+      ],
+      "lookAt": [
+        8,
+        6,
+        24
+      ]
+    },
+    {
+      "name": "whole-native-envelope-and-component-roofs",
+      "position": [
+        0,
+        110,
+        10
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 34564,
+    "vertices": 103692,
+    "materials": 5,
+    "bytes": 4150896,
+    "sha256": "sha256:5401182d98446f7879e6cf302ec471f66d76800f1ae3ff25236e414285668580"
+  }
+}

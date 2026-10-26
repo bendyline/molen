@@ -10,7 +10,12 @@ it('applies pending choices, resets custom paint to the preset and keeps it thro
   const kind = 'molen.entities.vehicle.sedan';
   const vehicle = ENTITY_TYPES.component<VehicleData>(kind, 'vehicle');
   const catalog = ENTITY_TYPES.component<LiveryData>(kind, 'livery');
-  const alternative = catalog.variants.find((v) => v.paints.body) as LiveryData['variants'][number];
+  const preset = catalog.variants.find(
+    (v) => v.id === catalog.selected,
+  ) as LiveryData['variants'][number];
+  const alternative = catalog.variants.find(
+    (v) => v.id !== preset.id && v.paints.body,
+  ) as LiveryData['variants'][number];
   const original = JSON.stringify(catalog);
   let finish: (model: THREE.Object3D) => void = () => {};
   const vehicles = new EarthVehicles({
@@ -43,8 +48,8 @@ it('applies pending choices, resets custom paint to the preset and keeps it thro
   expect(color()).toBe('663399');
   vehicles.setLivery(id, alternative.id);
   expect(color()).toBe(alternative.paints.body?.color.slice(1));
-  vehicles.setLivery(id, 'authored');
-  expect(color()).toBe(vehicle.color?.slice(1));
+  vehicles.setLivery(id, preset.id);
+  expect(color()).toBe(preset.paints.body?.color.slice(1));
   vehicles.setColor(id, '#abcdef');
   vehicles.sync(performance.now() + 1000, [1000, 2, 1000]);
   expect(vehicles.object.children).toHaveLength(0);
@@ -82,17 +87,19 @@ it('uses the latest aircraft livery when its model finishes loading', async () =
   const id = aircraft.spawn('molen.entities.aircraft.f_16b', {
     position: [0, 0, 0],
     heading: 0,
-    livery: 'aggressor-blue',
+    livery: 'danish-et-612',
   });
-  aircraft.setLivery(id, 'service-gray');
+  aircraft.setLivery(id, 'usaf-mc-gray');
   const data = vehicles.world.get(id, Livery) as LiveryData;
+  const slot = 'body-F16-airframe-F16-light-gray';
   const material = new THREE.MeshStandardMaterial();
-  material.name = data.slots.body?.materials[0] as string;
+  material.name = data.slots[slot]?.materials[0] as string;
   const mesh = new THREE.Mesh(new THREE.BoxGeometry(2, 1, 4), material);
+  mesh.name = data.slots[slot]?.node as string;
   finish(new THREE.Group().add(mesh));
   await Promise.resolve();
   expect((mesh.material as THREE.MeshStandardMaterial).color.getHexString()).toBe(
-    data.variants.find((v) => v.id === 'service-gray')?.paints.body?.color.slice(1),
+    data.variants.find((v) => v.id === 'usaf-mc-gray')?.paints[slot]?.color.slice(1),
   );
   aircraft.dispose();
   vehicles.dispose();

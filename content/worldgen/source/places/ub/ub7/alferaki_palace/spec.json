@@ -1,0 +1,410 @@
+{
+  "planId": "alferaki_palace",
+  "id": "alferaki_palace",
+  "assetId": "molen.worldgen.structure.alferaki_palace",
+  "title": "Alferaki Palace",
+  "wikidataId": "Q4721899",
+  "category": "historic-palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 38.928243800000004,
+    "latitude": 47.2135003
+  },
+  "size": [
+    51.62697982788086,
+    14.699999809265137,
+    46.88136672973633
+  ],
+  "actualBounds": {
+    "min": [
+      -25.81348991394043,
+      0,
+      -23.440683364868164
+    ],
+    "max": [
+      25.81348991394043,
+      14.699999809265137,
+      23.440683364868164
+    ]
+  },
+  "visualBrief": "Whole actual ten-control Alferaki Palace: current pale mint/cream-white facades/green raised basement, four giant fluted Corinthian columns and real recessed front/closed window-door backs, layered entablature/triangular relief-abstracted pediment, wing triplewindow banks/two upper balconies/actual pierced metal rails, complete irregular side/rear/native roof outline/low hidden roof/open roofperimeter rail and vase finials. One different2024Fargohown/selfCC0 exactoriginal after Qualla-first search/published-source exclusions, no oldunboundsourceuse or repair. Fine relief/heraldry/leaf/curl patterns original geometric abstractions; hidden roof/elevations/window census/heights/entry inferred. No copied pixels/inscriptions/artwork/neighborannexe/roads/trees/poles/wires/people/interiors.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Alferaki_Palace_2024.jpg"
+  ],
+  "stories": [
+    {
+      "id": "alferaki-palace-wp",
+      "url": "https://qualla.com/alferaki-palace/"
+    }
+  ],
+  "referenceInputHash": "263995d65cb41cbcca305dbfcd9f06dfe368ebda9c0d73d17236f65695729991",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ub/ub7/alferaki_palace/models/alferaki-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/alferaki-palace-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "alferakiPalaceSkyline",
+    "errorMeters": 2.1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0.03
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.1
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "alferakiPalaceDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "alferakiPalaceStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "alferakiPalaceCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "native-map-frame",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All source floors/sections/geometry follow original400m129x12916641sample independent sourcefield/two rawtiles/fixedNWapproach44m datum freeze. Nativewhole tencontrol palace envelope remains exact, NWnative6to5 giantorderfront31.82m inferred from photo camera/street orientation; portico subplan/hiddenroof not separatelysurveyed. Original2024creatorCC0photo proportions select basement1.35m/lowerwall5.7m/upper10.7m/cornice12.3m/lowhiddenroof12.04m/triangularpediment14.35m/roofrail13.35m/vasesup to14.65m. Fourflutedcolumns1.8..10.02m/capital10.7m are independent originalsections, centralbackwall .9m inside nativefront/columnaxis .28m outside, real exterior gap retained. Primaryfront18tallwindow/doorfields atnear levels/wingtriplebanks/twoupperpiercedbalconies. Currentmintcream-whitefacade/greenbasement/woodframes/openironrails from only accepted2024Fargohown/selfCC0. Hidden elevation/roof/census/finefinish/ornament/entry positions conservative estimates; oldunboundpublishedphotos notused. No terrainfit/flatten/reacquire/modelraising; preview/replacementfalse/exactsourcegradecontact unresolved.",
+    "anchor": [
+      38.928243800000004,
+      47.2135003
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        38.92804422650201,
+        47.21366141446961
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed NWfront approach5m beyond native6to5 edge midpoint, before all source floors/sections/geometry; provider-relative unsurveyed datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/99407522"
+    ],
+    "source": "https://www.openstreetmap.org/way/99407522",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d7195273258a629d7cecd4463a236bc91e6ae5b13550b0510fd8c80c5add4e2e",
+    "notes": "Whole actual Alferaki Palace native99407522/Q4721899 ten-control envelope: raised basement/pale mint/cream and white two-storey facades/four giant fluted Corinthian columns and actually recessed front/triangular pediment/entablature/relief abstractions, actual tall window and door recesses/wooden frames, upper wing triple-window balconies with pierced metal rails, low hidden roof/perimeter open rail/vase finials and complete intrinsic side/rear/attached entry mass. Front inferred NW/native6to5 edge from camera/native streets; precise hidden profiles/ornament/window census/entry and currentfinish bounded original estimates. Separate neighbor buildings/whole cityblock/road/trees/people/wires/signs/interiors/copied artwork/text/photo pixels excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole actual named palace99407522/Q4721899 native11closedpoint ring/tencontrols. Exact bbox anchor/+Xeast/+Zsouth/heading0; no rectangle substitutes for actual irregular whole envelope. Main giant-order facade interpreted on native6to5 northwestern31.82m edge, with nearby corner streets/photo camera orientation. NativeNEedge stepped projections and complete side/rear retained. No separate mapped portico/roof parts: original geometric subplans/photo proportions to be selected only after independentfieldfreeze.",
+    "All source floors/sections/geometry follow original400m129x12916641sample independent sourcefield/two rawtiles/fixedNWapproach44m datum freeze. Nativewhole tencontrol palace envelope remains exact, NWnative6to5 giantorderfront31.82m inferred from photo camera/street orientation; portico subplan/hiddenroof not separatelysurveyed. Original2024creatorCC0photo proportions select basement1.35m/lowerwall5.7m/upper10.7m/cornice12.3m/lowhiddenroof12.04m/triangularpediment14.35m/roofrail13.35m/vasesup to14.65m. Fourflutedcolumns1.8..10.02m/capital10.7m are independent originalsections, centralbackwall .9m inside nativefront/columnaxis .28m outside, real exterior gap retained. Primaryfront18tallwindow/doorfields atnear levels/wingtriplebanks/twoupperpiercedbalconies. Currentmintcream-whitefacade/greenbasement/woodframes/openironrails from only accepted2024Fargohown/selfCC0. Hidden elevation/roof/census/finefinish/ornament/entry positions conservative estimates; oldunboundpublishedphotos notused. No terrainfit/flatten/reacquire/modelraising; preview/replacementfalse/exactsourcegradecontact unresolved.",
+    "Qualla-first22families/zero conflicts; older published creatorPD2008/derivative unused after unchanged inventory/native-primary guard did not bind missing local basis/legacyfirst-release syntax. Different2024Fargohown/selfCC0 original alone individually inspected/nativeSHA1 matched/passed unchanged supplementalinventory. No sameimage reclassification/Quallasource repairs. Current mint-white/greenfinish from accepted2024photo only. Fine sculptural relief/heraldry/capitalleaves/iron curls original abstractions, exact ornament/hidden roof/elevations/windowcensus/entry/sections estimated. Neighbor annexe/street/trees/people/poles/wires/signs/interiors/sourcepixels/text excluded.",
+    "Original400m129x12916641sample field/two rawtiles/fixedNWapproach44m datum frozen before all floor/section/geometry choices. No terrainfit/flatten/reacquire/modelraising. Preview/replacementfalse/exactgroundcontact unresolved. Flat isolated ground/synthetic neighbor fixtures only."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-rear-irregular-palace-and-roof-rail",
+      "position": [
+        -20.853968422762872,
+        27,
+        50.64994305946092
+      ],
+      "lookAt": [
+        -5.3794158079014,
+        7,
+        -3.982288267327906
+      ]
+    },
+    {
+      "name": "four-fluted-corinthian-columns-actual-portico-and-pediment",
+      "position": [
+        -26.69248648493725,
+        10,
+        -33.00955554552513
+      ],
+      "lookAt": [
+        -12.982041188224194,
+        8.4,
+        -13.311238618288968
+      ]
+    },
+    {
+      "name": "wing-triple-recesses-and-pierced-balcony",
+      "position": [
+        -10.309879275720554,
+        6.8,
+        -32.2284146948963
+      ],
+      "lookAt": [
+        -2.3121195193046056,
+        6.4,
+        -20.737729820675206
+      ]
+    },
+    {
+      "name": "roof-vases-open-iron-rail-and-cornice",
+      "position": [
+        0.1828269934133555,
+        19,
+        -34.65804741398738
+      ],
+      "lookAt": [
+        -0.34881920594367744,
+        13,
+        -19.667471964101903
+      ]
+    },
+    {
+      "name": "whole-native-ten-control-envelope-and-hidden-low-roof",
+      "position": [
+        0,
+        85,
+        4
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 29706,
+    "vertices": 89118,
+    "materials": 6,
+    "bytes": 3679892,
+    "sha256": "sha256:552c11fbb5da818400cb8bbc08833f8721604d407c8779c144447e4281f4761c"
+  }
+}

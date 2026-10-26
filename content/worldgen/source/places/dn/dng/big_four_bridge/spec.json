@@ -1,0 +1,323 @@
+{
+  "planId": "big_four_bridge",
+  "id": "big_four_bridge",
+  "assetId": "molen.worldgen.structure.big_four_bridge",
+  "title": "Big Four Bridge",
+  "wikidataId": "Q4905727",
+  "category": "pedestrian-railway-bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -85.73889425,
+    "latitude": 38.2652556
+  },
+  "size": [
+    599.1882629394531,
+    53.5,
+    1016.8150634765625
+  ],
+  "actualBounds": {
+    "min": [
+      -313.8619689941406,
+      -10,
+      -642.658447265625
+    ],
+    "max": [
+      285.3262939453125,
+      43.5,
+      374.1566162109375
+    ]
+  },
+  "visualBrief": "Whole six-span Big Four pedestrian bridge on exact778.1m native rivercentreline: one shortnorth/three longer Pennsylvania middles/two shortsouth Parker spans, dark polygonal upperchords/verticals/diagonal and secondarybracing/realstructuralvoids/upperlateralcrossbracing, pale6m walkway/physicalrails, five riverpiers/two endsupports, actual integral Louisville spiral and Jeffersonville descending curved ramp centrelines with deck/rails/columns. Two exactpublished2024creatorCC0 and2012creatorPD-self originals. Span boundaries/membersections/height/supportdetails/rivetcensus/currentfinefinish unsurveyed originalestimates. Parks/neighborbridges/river/temporary2012equipment/boats/people/arttext/photo pixels excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Big_Four_Bridge.jpg",
+    "https://commons.wikimedia.org/wiki/File:Big_Four_Bridge,_northern_end.jpg"
+  ],
+  "stories": [
+    {
+      "id": "big-four-bridge-wp",
+      "url": "https://qualla.com/big-four-bridge/"
+    }
+  ],
+  "referenceInputHash": "f59c3c46503e1dea1af67343d7ac632091986a69fd37d07c47618cff9ad47789",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dng/big_four_bridge/models/big-four-bridge-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/big-four-bridge-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "bigFourBridgeSkyline",
+    "errorMeters": 6,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.18
+      },
+      "deck": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "pier": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bigFourBridgeDistrict",
+        "errorMeters": 2.2,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "deck": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "bigFourBridgeStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "deck": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "bigFourBridgeCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "deck": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "concrete_plain",
+    "stone_limestone"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": -10.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "native-map-frame",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All sections authored after unchanged original1600m129x12916641sample/four rawtile/fixed northground-endpoint135.0347m providerrelative datum freeze. Exact native778.1074m bridge centreline and both native curved approaches retained. Six spans: shortnorth/three longer Pennsylvania middles/two shortsouth Parker spans. Source story547ft middle spans and sixspan2525ft total are informative, not asurvey; chosen relative spanweights normalized to nativewhole778.1074m endpoints. Original photographic deck+18m/walkway6m/truss8.4mwide/larger25m-rise/short17and15m-rise/5mramps/1.35mrails/taperedroundedstonepiers are unsurveyed estimates. Native south379.1414m/north393.5434m approach paths descend continuously by18m along respective arc lengths, consistent with roughly5percent nativeincline. Closedwalkdeck and physicalsteeltrusses/realstructuralvoids; hidden membersections, joints/lattice/rivets, individualpierstation/underwater foundations/currentcolor/census estimates. No groundfit/flatten/reacquire/raising; exact bank/ramp/piercontact and hydraulicclearance unresolved, preview/replacementfalse. Groundheight chosen once at fixednative endpoint, nevertofitmodel.",
+    "anchor": [
+      -85.73889425,
+      38.2652556
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -85.74145888826862,
+        38.271007773687934
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed native north approach ground endpoint before every floor/section/geometry choice. Provider-relative independent bank datum, unsurveyed; not fitted to bridge or support geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/16213335",
+      "way/655297094",
+      "way/272654900",
+      "way/81267445",
+      "way/754148707",
+      "way/288093618",
+      "way/357203779",
+      "way/1458826459",
+      "way/1453383804"
+    ],
+    "source": "https://www.openstreetmap.org/way/16213335",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ced5f435b88a8e93bcbde901c93b4768465c244ffc0df2db2bc910182d0efcae",
+    "notes": "Whole named six-span Big Four Bridge across Ohio River, with both integral modern pedestrian access ramps: Louisville spiral and Jeffersonville long descending curved ramp. Native main centreline16213335/Q4905727 and whole bridge boundary655297094; native ramp centreline controls retained. Original steel polygonal Pennsylvania/Parker throughtrusses, exposed structural voids/upperlateralbracing/pale pedestrian deck/railing, five riverpiers and two end supports. Nearby bridges/whole river/parks/city/roads/temporary2012construction/boats/people/arttext/photo pixels excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole physical bridge/native main centreline778.1074m north-south endpoint distance and native wholeboundary with both ramp centrelines. Heading0/+Xeast/+Zsouth, anchor midpoint of exact native main endpoints. Native6m paved walkway width does not establish trussouterwidth; steelwidth/verticalsections/spanboundaries/supportprofiles are original photographic estimates. Reference article describes three longer middle spans and three shorter endspans (one north/two south); normalized estimates preserve exact native endpoints, not a survey.",
+    "All sections authored after unchanged original1600m129x12916641sample/four rawtile/fixed northground-endpoint135.0347m providerrelative datum freeze. Exact native778.1074m bridge centreline and both native curved approaches retained. Six spans: shortnorth/three longer Pennsylvania middles/two shortsouth Parker spans. Source story547ft middle spans and sixspan2525ft total are informative, not asurvey; chosen relative spanweights normalized to nativewhole778.1074m endpoints. Original photographic deck+18m/walkway6m/truss8.4mwide/larger25m-rise/short17and15m-rise/5mramps/1.35mrails/taperedroundedstonepiers are unsurveyed estimates. Native south379.1414m/north393.5434m approach paths descend continuously by18m along respective arc lengths, consistent with roughly5percent nativeincline. Closedwalkdeck and physicalsteeltrusses/realstructuralvoids; hidden membersections, joints/lattice/rivets, individualpierstation/underwater foundations/currentcolor/census estimates. No groundfit/flatten/reacquire/raising; exact bank/ramp/piercontact and hydraulicclearance unresolved, preview/replacementfalse. Groundheight chosen once at fixednative endpoint, nevertofitmodel.",
+    "Two exactpublished2024Huskydaddyown-selfCC0 wholebridge/spiral and2012Nyttendown-PDself northpier/steel detail originals only. WesternsidePD photo inspected but unselected under unchanged publishedguard; no supplemental/reclassification/source repair. Current pedestrian conversion established by2024photo,2012temporaryconstruction/containers/crane/fences excluded. Six spans and both integral approaches retained, no detail-only substitute. Exacthiddenmember profiles/fasteners/census/spanstations/underwaterfoundations/height/currentfinefinish are original estimates. No operational/engineering/hydraulicclearance or traversal claim.",
+    "Original1600m129x12916641sample field/four rawtiles/fixednorthground135.0347m providerrelative datum frozen beforeallsections/geometry. No terrainfit/flatten/reacquire/modelraising. Exact bank/ramp/pier contact unresolved, preview/replaceFootprint=false. Flatground/syntheticneighbors are reviewfixtures only."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-downstream-six-spans-and-both-approaches",
+      "position": [
+        -1150,
+        380,
+        500
+      ],
+      "lookAt": [
+        -50,
+        22,
+        -100
+      ]
+    },
+    {
+      "name": "louisville-spiral-ramp-deck-rails-and-supports",
+      "position": [
+        450,
+        140,
+        515
+      ],
+      "lookAt": [
+        205,
+        12,
+        320
+      ]
+    },
+    {
+      "name": "jeffersonville-long-curved-ramp-and-north-end",
+      "position": [
+        -500,
+        165,
+        -680
+      ],
+      "lookAt": [
+        -235,
+        12,
+        -490
+      ]
+    },
+    {
+      "name": "pennsylvania-throughtruss-open-panels-and-upper-crossbracing",
+      "position": [
+        -82.10785197212556,
+        48,
+        6.554074493659314
+      ],
+      "lookAt": [
+        -16.501368065715667,
+        30,
+        -29.78859009547034
+      ]
+    },
+    {
+      "name": "north-pier-cap-steel-endpost-and-deck",
+      "position": [
+        -212.34306304421804,
+        18,
+        -321.4151158230647
+      ],
+      "lookAt": [
+        -187.06960720403086,
+        17,
+        -337.7016878962208
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28172,
+    "vertices": 84516,
+    "materials": 3,
+    "bytes": 3516436,
+    "sha256": "sha256:d539310ff10fc68ca7fa0e13bba5f9cea6a582934789f317e2404a875094fc66"
+  }
+}

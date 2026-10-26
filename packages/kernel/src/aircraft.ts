@@ -8,6 +8,8 @@ import type {
   AirplanePhysicsSpec,
   WeatherData,
 } from '@bendyline/molen-schema';
+import { boostSpeedMultiplier } from '@bendyline/molen-schema';
+import { isBoostMode } from './boost';
 import { type ComponentType, defineComponent, Transform, type TransformData } from './component';
 import { dmath as m } from './dmath';
 import {
@@ -100,6 +102,8 @@ export function aircraftMounts(spec: AircraftSpec): MountableData {
   };
 }
 export interface AircraftEnvironment {
+  /** Override the world's 4× travel assist. Aerodynamics retain normal handling speeds. */
+  boostMode?: boolean;
   groundHeight(x: number, z: number, y?: number): number | undefined;
   /** Uniform wind override in m/s; replaces the weather's wind field, turbulence included. */
   wind?: [number, number, number];
@@ -308,7 +312,16 @@ export function stepAircraft(
     waitingForTerrain: false,
   };
   if (!Number.isFinite(dt) || dt <= 0) return { transform: t, state: s };
-  const speed = m.hypot(...s.velocity);
+  const travelScale = boostSpeedMultiplier(env.boostMode);
+  const previousTravel = boostSpeedMultiplier(state.boosted);
+  // Keep forces and angular response in the aircraft's ordinary flight envelope. Only linear
+  // travel and public speed telemetry scale; the stored flag makes live toggles reversible.
+  s.velocity = s.velocity.map((v) => v / previousTravel) as Vec3;
+  s.airspeed /= previousTravel;
+  s.verticalSpeed /= previousTravel;
+  if (s.mach !== undefined) s.mach /= previousTravel;
+  if (s.equivalentAirspeed !== undefined) s.equivalentAirspeed /= previousTravel;
+  const speed = m.hypot(...s.velocity) * travelScale;
   const steps = m.max(1, m.ceil(dt * m.max(120, speed)));
   const h = dt / steps;
   const power = m.clamp(input.power, 0, 1);
@@ -373,12 +386,14 @@ export function stepAircraft(
     if (s.crashed) continue;
     const time = start + n * h;
     const slope = field?.terrain ? terrainSlope(surface, t.pos[0], t.pos[2]) : undefined;
-    const windAt = (point: Vec3): Vec3 =>
-      env.wind
+    const windAt = (point: Vec3): Vec3 => {
+      const wind = env.wind
         ? [env.wind[0], env.wind[1], env.wind[2]]
         : field
           ? field.at(point, time, ground, slope)
           : [0, 0, 0];
+      return wind.map((v) => v / travelScale) as Vec3;
+    };
     let rot: Quat;
     let pos: Vec3;
     // Share of the weight still on the wheels once the wing and thrust carry the rest.
@@ -741,14 +756,14 @@ export function stepAircraft(
       if (s.grounded) {
         // On the wheels the airframe pivots about its landing contact: raising the nose must
         // not lift the wheels off the runway.
-        pos = t.pos.map((v, i) => v + (s.velocity[i] ?? 0) * h) as Vec3;
+        pos = t.pos.map((v, i) => v + (s.velocity[i] ?? 0) * h * travelScale) as Vec3;
       } else {
         // In flight it turns about the center of mass; place the contact origin around it.
         const offset = quatRotateVec3(rot, spec.centerOfMass);
         pos = [
-          com[0] + s.velocity[0] * h - offset[0],
-          com[1] + s.velocity[1] * h - offset[1],
-          com[2] + s.velocity[2] * h - offset[2],
+          com[0] + s.velocity[0] * h * travelScale - offset[0],
+          com[1] + s.velocity[1] * h * travelScale - offset[1],
+          com[2] + s.velocity[2] * h * travelScale - offset[2],
         ];
       }
     } else if (helicopter) {
@@ -901,7 +916,7 @@ export function stepAircraft(
             rotorDragDensity;
       for (let i = 0; i < 3; i++)
         s.velocity[i] = (s.velocity[i] ?? 0) + ((force[i] ?? 0) / spec.mass) * h;
-      pos = t.pos.map((v, i) => v + (s.velocity[i] ?? 0) * h) as Vec3;
+      pos = t.pos.map((v, i) => v + (s.velocity[i] ?? 0) * h * travelScale) as Vec3;
     } else continue;
     const support = env.groundHeight(pos[0], pos[2], pos[1]);
     if (support === undefined || !Number.isFinite(support)) {
@@ -976,6 +991,13 @@ export function stepAircraft(
     s.altitudeAGL = m.max(0, t.pos[1] - support);
     s.verticalSpeed = s.velocity[1];
   }
+  s.velocity = s.velocity.map((v) => v * travelScale) as Vec3;
+  s.airspeed *= travelScale;
+  s.verticalSpeed *= travelScale;
+  if (s.mach !== undefined) s.mach *= travelScale;
+  if (s.equivalentAirspeed !== undefined) s.equivalentAirspeed *= travelScale;
+  if (env.boostMode) s.boosted = true;
+  else delete s.boosted;
   return { transform: t, state: s };
 }
 export function flyAircraft(world: World, actor: string, input: AircraftInputData): boolean {
@@ -1056,7 +1078,12 @@ export function installAircraft(world: World, environment?: AircraftEnvironment)
     (w, ctx) => {
       const weather = env.weather ?? weatherOf(w);
       const time = ctx.tick * ctx.dt;
-      const currentEnvironment = weather ? { ...env, weather, time } : { ...env, time };
+      const currentEnvironment = {
+        ...env,
+        boostMode: env.boostMode ?? isBoostMode(w),
+        time,
+        ...(weather ? { weather } : {}),
+      };
       for (const [id, t, aircraft, state] of w.query(Transform, Aircraft, AircraftState)) {
         const input = w.get(id, AircraftInput) ?? IDLE_AIRCRAFT_INPUT;
         // A parked airplane still steps until its flaps reach the selection; the gear cannot

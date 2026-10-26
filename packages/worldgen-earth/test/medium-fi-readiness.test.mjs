@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { expect, it } from 'vitest';
+import { EARTH_EXPOSURE, EARTH_TONE_MAPPING } from '../../earth/src/client/look.ts';
 import { hashEvidenceText } from '../../worldgen/scripts/evidence-text-hash.mjs';
 import { reviewedMediumFi } from '../scripts/medium-fi-readiness.mjs';
 
@@ -50,6 +51,20 @@ function fixture(edit = () => {}) {
 }
 it('accepts inspected, current medium-fi evidence', async () => {
   expect(await reviewedMediumFi(fixture())).toBe(true);
+});
+it('accepts the current Earth rig and rejects a mismatched exposure', async () => {
+  const current = (report) => {
+    report.rig = { toneMapping: EARTH_TONE_MAPPING, exposure: EARTH_EXPOSURE };
+  };
+  expect(await reviewedMediumFi(fixture(current))).toBe(true);
+  expect(
+    await reviewedMediumFi(
+      fixture((report) => {
+        current(report);
+        report.rig.exposure += 0.1;
+      }),
+    ),
+  ).toBe(false);
 });
 it('requires per-frame asset and byte identity for version 2 captures', async () => {
   const v2 = (r) => {

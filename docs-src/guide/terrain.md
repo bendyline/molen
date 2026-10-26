@@ -340,6 +340,13 @@ function frame(position: [number, number, number]) {
 }
 ```
 
+For movement and ground placement, use `earth.stream.sampleSurfaceHeight(x, z)`: it samples the
+displayed mesh's triangles at their current detail level, including refinement transitions.
+`sampleHeight(x, z)` retains the full-resolution source elevation, which can differ from the
+visible mesh between vertices. Both return `undefined` outside displayed terrain. Roads, land
+cover, bridges and model-owned openings still require collision against their visible geometry;
+the Earth view combines rendered terrain heights with those collision queries for walking and driving.
+
 For moving cameras, `stream.update(view, futureViews)` accepts optional predicted views, nearest
 in time first. It prepares a bounded set of future leaves, semantic layers and GPU resources in
 the hidden resident cache without changing the current selection. Omit the second argument to

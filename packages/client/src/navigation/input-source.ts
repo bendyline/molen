@@ -27,6 +27,7 @@ export const NAVIGATION_ACTIONS: {
   readonly jump: 'nav-jump';
   readonly interact: 'nav-interact';
   readonly view: 'nav-view';
+  readonly boost: 'nav-boost';
   readonly throttleUp: 'nav-throttle-up';
   readonly throttleDown: 'nav-throttle-down';
   readonly yawLeft: 'nav-yaw-left';
@@ -51,6 +52,7 @@ export const NAVIGATION_ACTIONS: {
   jump: 'nav-jump',
   interact: 'nav-interact',
   view: 'nav-view',
+  boost: 'nav-boost',
   throttleUp: 'nav-throttle-up',
   throttleDown: 'nav-throttle-down',
   yawLeft: 'nav-yaw-left',
@@ -96,7 +98,8 @@ const STICKS: NonNullable<InputProfile['axes']> = [
  * or pull the handbrake, and V to switch the vehicle view. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
  * bank, Q/Z work the rudder or pedals, Shift/Ctrl (or +/−, Page Up/Down) set throttle or
  * collective, I toggles the engine, G the gear, F the flaps, R recovers after an impact, Space
- * brakes, V switches the view and E leaves. Hosts may replace any profile through
+ * brakes, V switches the view and E leaves. T toggles travel boost in walk, drive and pilot.
+ * Hosts may replace any profile through
  * `InputMap.defineProfile`.
  */
 export function navigationInputProfiles(): Record<NavigationProfileName, InputProfile> {
@@ -110,7 +113,14 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
     ],
   };
   const ground: InputProfile = {
-    bindings: { ...MOVE_KEYS, Space: A.jump, KeyE: A.interact, KeyF: A.interact, KeyV: A.view },
+    bindings: {
+      ...MOVE_KEYS,
+      Space: A.jump,
+      KeyE: A.interact,
+      KeyF: A.interact,
+      KeyV: A.view,
+      KeyT: A.boost,
+    },
     axes: STICKS,
     buttons: [
       { button: 0, action: A.jump },
@@ -144,6 +154,7 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
       Space: A.jump,
       KeyE: A.interact,
       KeyV: A.view,
+      KeyT: A.boost,
       KeyI: A.engine,
       KeyG: A.gear,
       KeyF: A.flaps,
@@ -199,6 +210,8 @@ export interface NavigationInput {
   interact: number;
   /** Presses of the view toggle since the previous frame (edge-triggered). */
   view: number;
+  /** Presses of the 4× travel boost toggle (T), edge-triggered. */
+  boost?: number;
   /** Clicks/taps in element-relative CSS pixels. */
   taps: Array<{ x: number; y: number }>;
   /** Flight controls, present while the `pilot` profile is active. */
@@ -252,6 +265,7 @@ export class NavigationInputSource {
   readonly pointer: NavigationPointer;
   private interactPresses = 0;
   private viewPresses = 0;
+  private boostPresses = 0;
   private profile: NavigationProfileName;
   private readonly pilotPresses = { engine: 0, gear: 0, flaps: 0, vector: 0, recover: 0 };
   private readonly lookSpeed: number;
@@ -281,10 +295,14 @@ export class NavigationInputSource {
       this.map.onPress(A.view, () => {
         this.viewPresses++;
       }),
+      this.map.onPress(A.boost, () => {
+        this.boostPresses++;
+      }),
       this.map.onReset(() => {
         this.pointer.reset();
         this.interactPresses = 0;
         this.viewPresses = 0;
+        this.boostPresses = 0;
         this.pilotPresses.engine = 0;
         this.pilotPresses.gear = 0;
         this.pilotPresses.flaps = 0;
@@ -336,6 +354,7 @@ export class NavigationInputSource {
       jump: v(A.jump) !== 0,
       interact: this.interactPresses,
       view: this.viewPresses,
+      ...(this.boostPresses > 0 ? { boost: this.boostPresses } : {}),
       taps: gestures.taps,
       ...(this.profile === 'pilot'
         ? {
@@ -349,6 +368,7 @@ export class NavigationInputSource {
     };
     this.interactPresses = 0;
     this.viewPresses = 0;
+    this.boostPresses = 0;
     this.pilotPresses.engine = 0;
     this.pilotPresses.gear = 0;
     this.pilotPresses.flaps = 0;

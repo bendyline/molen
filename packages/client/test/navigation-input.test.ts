@@ -194,6 +194,23 @@ describe('navigation input source', () => {
     expect(source.read(0).pilot?.gear).toBe(0);
     source.dispose();
   });
+  it.each([
+    'walk',
+    'drive',
+    'pilot',
+  ] as const)('toggles travel boost once per T press in %s', (profile) => {
+    const surface = new FakeSurface();
+    const source = new NavigationInputSource({ element: surface, profile });
+    surface.emit('keydown', { code: 'KeyT' });
+    surface.emit('keydown', { code: 'KeyT', repeat: true });
+    expect(source.read(0).boost).toBe(1);
+    expect(source.read(0).boost ?? 0).toBe(0);
+    surface.emit('keyup', { code: 'KeyT' });
+    surface.emit('keydown', { code: 'KeyT' });
+    surface.emit('blur', {});
+    expect(source.read(0).boost ?? 0).toBe(0);
+    source.dispose();
+  });
   it('combines keys, gamepad sticks and gestures, and counts interact presses', () => {
     const surface = new FakeSurface();
     const pad = {

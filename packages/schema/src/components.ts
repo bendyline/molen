@@ -579,6 +579,20 @@ const environmentSchema = z.strictObject({
     .optional(),
 });
 
+registerComponent(
+  'boostMode',
+  z.strictObject({
+    enabled: z.boolean().describe('Enable 4× travel speed for people and vehicles.'),
+  }),
+  {
+    description:
+      'World-wide 4× travel assist for people and vehicles. Control response times stay normal.',
+    owner: 'kernel',
+    examples: [{ enabled: true }],
+    docsRef: 'guide/boost-mode.md',
+  },
+);
+
 registerComponent('weather', weatherSchema, {
   description:
     'Singleton physical atmosphere and visual weather: temperature, pressure, humidity, wind, independent cloud cover, precipitation and visibility. Readable by scripts and physics; see guide/weather.md.',
@@ -1699,6 +1713,7 @@ registerComponent(
 registerComponent(
   'vehicleState',
   z.strictObject({
+    boosted: z.boolean().optional().describe('Speeds include the 4× travel boost; kernel-owned.'),
     speed: num.describe('Signed forward speed in meters per second.'),
     steer: num.describe('Current front wheel steering angle in radians. Positive turns right.'),
     yaw: num.describe('Chassis rotation about Y in radians; zero faces +Z.'),
@@ -2534,6 +2549,7 @@ registerComponent(
 registerComponent(
   'aircraftState',
   z.strictObject({
+    boosted: z.boolean().optional().describe('Speeds include the 4× travel boost; kernel-owned.'),
     mach: num.nonnegative().optional().describe('True airspeed divided by local speed of sound.'),
     equivalentAirspeed: num
       .nonnegative()

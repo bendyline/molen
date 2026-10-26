@@ -12,6 +12,10 @@ composes:
 
 You speak latitude and longitude; the view keeps its metric world frame internally.
 
+[Boost mode](boost-mode.md) makes walking, driving and flying four times faster: press **T**, or
+call `view.setBoostMode(true)`. Pass `boostMode: true` at mount to start enabled; read
+`view.boostMode` and listen for `boostchange` to keep a host's toggle in sync.
+
 ```ts
 import {
   loadEarthContent,

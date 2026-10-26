@@ -380,9 +380,10 @@ source supplies matching semantic layers.
 ### Inferred trees around homes
 
 Atlas region bindings and the worldwide default accept `treeFillFactor` from 0 to 1. The
-shipped atlas uses 0.9 in the Pacific Northwest, 0.3 in Japan, and 0 in the Southwest and
-unclassified regions. These are configurable visual priors, not measured canopy percentages
-or a global climate dataset. Fill is resolved at each home's location, including region edges.
+shipped atlas uses 0.35 in North America, overridden by 0.9 in the Pacific Northwest and 0 in
+the Southwest; Japan uses 0.3 and unclassified regions use 0. These are configurable visual priors,
+not measured canopy percentages or a global climate dataset. Fill is resolved at each home's
+location, including region edges.
 
 For complete low-rise footprints of 45–700 m², the Earth adapter adds an irregular yard patch
 roughly 18–26 meters beyond the home. Explicit house classifications qualify; small untyped
@@ -401,7 +402,10 @@ Mapped woodland, parks, parking, playing fields, farmland, barren ground, and ot
 land cover are cut out before planting. Road, building, water, and mapped-tree exclusions still
 apply, as do slope/altitude limits and instance budgets. Neighboring buffered footprints
 participate even when their building mesh belongs to another tile; trees emit only inside the
-current tile. Coverage still depends on the footprints supplied in the source tile buffer.
+current tile. Coverage still depends on the footprints supplied in the source tile buffer. When
+a terrain package declares `features.buildingDetail`, classification and building rendering share its
+detailed footprints and mapped trees. The same depth limit and missing-coverage fallback apply
+to both; water rendering does not wait for building detail.
 
 The dedicated `home_canopy` scatter rule controls species, spacing, setbacks, and detail tiers;
 custom packs opt in by supplying this rule label. Species use the tile's regional scatter set,

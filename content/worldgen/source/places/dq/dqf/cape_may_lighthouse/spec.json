@@ -1,0 +1,333 @@
+{
+  "planId": "cape_may_lighthouse",
+  "id": "cape_may_lighthouse",
+  "assetId": "molen.worldgen.structure.cape_may_lighthouse",
+  "title": "Cape May Lighthouse",
+  "wikidataId": "Q5034933",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -74.96037290000001,
+    "latitude": 38.9330073
+  },
+  "size": [
+    10.087645053863525,
+    48.00600051879883,
+    13.14508056640625
+  ],
+  "actualBounds": {
+    "min": [
+      -4.635277271270752,
+      0,
+      -4.600198745727539
+    ],
+    "max": [
+      5.452367782592773,
+      48.00600051879883,
+      8.544881820678711
+    ]
+  },
+  "visualBrief": "Whole Cape May Lighthouse: native twenty-control pale conical masonry shaft-and-entrance footprint, actual recessed opaque sash windows/white frames, upper collar/small vents/physical radial support brackets, red watchroom and genuinely open gallery rails/mesh, glazed lantern with mullions/open upper rail, red roof and ventilator ball. Cleared published2013SmallbonesCC0 first plus explicit Highsmith public-domain official photo; no copied pixels. Operator48.006m overallground-to-ball height; all upper sections/window facing/hidden census/entryroof estimates. Separate keeperhouses/oilhouse/grounds/beach/bunker/interiors/art/signs/trees excluded. Native plan and original field retained; exact grade contact unverified.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cape_May_light_from_the_sea.JPG",
+    "https://www.loc.gov/item/2011632192/"
+  ],
+  "stories": [
+    {
+      "id": "cape-may-lighthouse-wp",
+      "url": "https://qualla.com/cape-may-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "72cebeefcfdd2f08915820d771f73e49821ce220f4184005dcd61bc634e6b473",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dq/dqf/cape_may_lighthouse/models/cape-may-lighthouse-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/cape-may-lighthouse-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "capeMayLighthouseSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.08
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "roughness": 0.25,
+        "metallic": 0.1,
+        "alphaMode": "OPAQUE"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "capeMayLighthouseDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "roughness": 0.25,
+            "metallic": 0.1,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "street": {
+        "export": "capeMayLighthouseStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "roughness": 0.25,
+            "metallic": 0.1,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "closeup": {
+        "export": "capeMayLighthouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "roughness": 0.25,
+            "metallic": 0.1,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All floors/sections/geometry authored only after immutable independent256m129x12916641sample/four rawtiles/fixedSW2.4847m provider-relative field freeze. Whole original20-control native tower-and-entry footprint drives physical shaft base and attached entrance; shaft radial interpolation passes each17 original circular controls, original entrance perimeter retains all5 native controls. Upper taper/sections/window positions/census/gallery-bracket profiles/red watchroom/openrails/lantern/roof/entryroof are original estimates from cleared2013publishedCC0 and explicitHighsmithPD photographs. Operator157ft6in ground-to-ventilator-ball supports48.006m overallheight, not focalheight. Approx shaft40.65m, watchroom43.2m, lantern46.4m, roof47.58m and ball48.006m. Hidden rear/door/roof/finefinish/windowcensus not surveyed; attached entry partly screened in acceptedphotos. Whole lighthouse retained; separate keeperhouses/oilhouse/propertygrounds excluded. No terrainfit/flatten/reacquire/modelraising, replacementfalse/exactgroundcontact unresolved.",
+    "anchor": [
+      -74.96037290000001,
+      38.9330073
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -74.96048838178659,
+        38.9329174688825
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exterior southwest reference before all floors/sections/geometry; provider-relative unsurveyed datum, not inferred from model threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/261320234"
+    ],
+    "source": "https://www.openstreetmap.org/way/261320234",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4c196e043981bdb987155d87e2fffefaffd39ebce9b517f40583dcaffde75c4a",
+    "notes": "Whole named current Cape May Lighthouse tapered masonry tower with native twenty-control base/attached entrance projection, physical white-framed tower windows, upper collar/vents, radial gallery supports, red watchroom and open gallery rails, opaque glazed lantern/mullions/red roof/ventilator ball. Whole structure including bounded hidden elevations retained; separate keeper houses/oilhouse/beach/bunker/grounds/fences/trees/signs/people/interiors/artwork/photo pixels excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named native way261320234/Q5034933 closed twenty-control tower-and-entry footprint, unchanged17 sampled tower circle controls plus original projecting entry controls. Fixed shaft-circle bbox anchor/heading0/+Xeast/+Zsouth before ground acquisition. Native plan is geographic evidence, not construction survey. Metric heights/taper/upper architecture and hidden entrance/window census are original photographic estimates after frozen field; overall48.006m height uses operator157ft6in ground-to-ventilator-ball fact.",
+    "All floors/sections/geometry authored only after immutable independent256m129x12916641sample/four rawtiles/fixedSW2.4847m provider-relative field freeze. Whole original20-control native tower-and-entry footprint drives physical shaft base and attached entrance; shaft radial interpolation passes each17 original circular controls, original entrance perimeter retains all5 native controls. Upper taper/sections/window positions/census/gallery-bracket profiles/red watchroom/openrails/lantern/roof/entryroof are original estimates from cleared2013publishedCC0 and explicitHighsmithPD photographs. Operator157ft6in ground-to-ventilator-ball supports48.006m overallheight, not focalheight. Approx shaft40.65m, watchroom43.2m, lantern46.4m, roof47.58m and ball48.006m. Hidden rear/door/roof/finefinish/windowcensus not surveyed; attached entry partly screened in acceptedphotos. Whole lighthouse retained; separate keeperhouses/oilhouse/propertygrounds excluded. No terrainfit/flatten/reacquire/modelraising, replacementfalse/exactgroundcontact unresolved.",
+    "Exact published SmallbonesCC0 original and official HighsmithPD rendition individually inspected; native original/localSHA1 matched for published photo; Highsmith uses exact catalog-listed JPEG and existing explicit primary photographer public-domain dedication, not no-known-restrictions alone. NonPD, wrong-lighthouse, unbound-author/NARA imagery excluded; no source repair or policy changes. Upper architectural sections/hidden elevations/window census/facing/watchroom panel layout/entryroof/current finish original estimates. No photographic texture/artwork/inscriptions/interiors/grounds/people.",
+    "Original independent256m129x12916641sample/four rawtiles/fixedSW2.4847m provider-relative datum frozen before all floors/sections/geometry. Native whole tower/entrance retained; no terrainfit/flatten/reacquire/modelraising. Exact construction ground/threshold contact unverified; geographic preview/replaceFootprint=false. Flat ground/synthetic neighbors are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-opposite-tower-and-native-entry",
+      "position": [
+        -68,
+        38,
+        -70
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ]
+    },
+    {
+      "name": "red-gallery-brackets-open-mesh-and-lantern",
+      "position": [
+        15,
+        46,
+        18
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ]
+    },
+    {
+      "name": "physical-recessed-sash-and-tapered-masonry",
+      "position": [
+        -12,
+        31,
+        -13
+      ],
+      "lookAt": [
+        0,
+        30.8,
+        0
+      ]
+    },
+    {
+      "name": "native-attached-entry-and-closed-door",
+      "position": [
+        13,
+        6,
+        16
+      ],
+      "lookAt": [
+        1.2,
+        2.2,
+        3.7
+      ]
+    },
+    {
+      "name": "red-polygonal-cap-and-ventilator-ball",
+      "position": [
+        7,
+        51,
+        8
+      ],
+      "lookAt": [
+        0,
+        46.4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14957,
+    "vertices": 44871,
+    "materials": 3,
+    "bytes": 1868328,
+    "sha256": "sha256:44571d4170ba0c1853d58cdc9461005f58d394f3112f2a92b967429a1276bcdd"
+  }
+}

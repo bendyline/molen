@@ -8,7 +8,13 @@
  */
 
 import { dmath, lookRotation, type Quat } from '@bendyline/molen-kernel/determinism';
-import { Transform, type TransformData, type World } from '@bendyline/molen-kernel/world';
+import {
+  isBoostMode,
+  Transform,
+  type TransformData,
+  type World,
+} from '@bendyline/molen-kernel/world';
+import { boostSpeedMultiplier } from '@bendyline/molen-schema';
 import { AmbientAgent, type AmbientAgentData } from '../components';
 import type { TransportNetwork } from '../graph/network';
 import {
@@ -38,6 +44,8 @@ export interface AmbientSolid {
 }
 
 export interface AgentEnv {
+  /** Internal scale resolved from the world's boost setting by stepAgents. */
+  speedScale?: number;
   net: TransportNetwork;
   policy: AmbientPolicy;
   tick: number;
@@ -51,6 +59,7 @@ type Mutable<T> = { -readonly [K in keyof T]: T[K] };
 
 interface Ref {
   id: string;
+  original: Readonly<AmbientAgentData>;
   a: Readonly<AmbientAgentData>;
   w: Mutable<AmbientAgentData>;
   lane: TransportLane | undefined;
@@ -150,13 +159,48 @@ export function agentRotation(sample: LaneSample, pitch: boolean): Quat {
 }
 
 /** Advance every ambient agent one tick. */
-export function stepAgents(world: World, env: AgentEnv): void {
+export function stepAgents(world: World, environment: AgentEnv): void {
+  const boosted = isBoostMode(world);
+  const scale = boostSpeedMultiplier(boosted);
+  const policy = environment.policy;
+  const env = {
+    ...environment,
+    speedScale: scale,
+    policy:
+      scale === 1
+        ? policy
+        : {
+            ...policy,
+            driver: {
+              ...policy.driver,
+              accel: policy.driver.accel * scale,
+              brake: policy.driver.brake * scale,
+            },
+            rail: {
+              ...policy.rail,
+              accel: policy.rail.accel * scale,
+              brake: policy.rail.brake * scale,
+            },
+            marine: {
+              ...policy.marine,
+              accel: policy.marine.accel * scale,
+              brake: policy.marine.brake * scale,
+            },
+          },
+  };
   const { net } = env;
   const refs: Ref[] = [];
-  for (const [id, a] of world.query(AmbientAgent)) {
+  for (const [id, original] of world.query(AmbientAgent)) {
+    const a = {
+      ...original,
+      speed: (original.speed * scale) / boostSpeedMultiplier(original.boosted),
+    };
+    if (boosted) a.boosted = true;
+    else delete a.boosted;
     const lane = a.air === undefined ? net.lane(a.lane) : undefined;
     refs.push({
       id,
+      original,
       a,
       w: { ...a },
       lane,
@@ -235,10 +279,11 @@ export function stepAgents(world: World, env: AgentEnv): void {
   // Write back what changed.
   const sample = laneSample();
   for (const ref of refs) {
-    const { a, w } = ref;
+    const { w } = ref;
     w.s = q4(w.s);
     w.speed = q4(w.speed);
-    if (!agentChanged(a, w) && !ref.teleport) continue;
+    if (!agentChanged(ref.original, w) && ref.original.boosted === w.boosted && !ref.teleport)
+      continue;
     world.set(ref.id, AmbientAgent, w);
     if (agentSample(net, w, sample) === undefined) continue;
     const current = world.get(ref.id, Transform);
@@ -340,7 +385,7 @@ function junctionGrants(
   for (const ref of refs) {
     const { a, lane } = ref;
     if (a.kind !== 'car' || lane === undefined) continue;
-    if (a.s < 0) {
+    if (a.s < 0 || ((env.speedScale ?? 1) > 1 && a.s < a.length / 2)) {
       const inMove = net.movement(a.prev, a.lane);
       if (inMove?.junction !== undefined) {
         const list = occupied.get(inMove.junction);
@@ -396,7 +441,10 @@ function junctionGrants(
       const key = entry.move.key;
       const inArm = dmath.floor(key / n);
       const outArm = key % n;
-      if (entry.committed) {
+      // Boost admits one movement at a time, holding it until the last car's rear clears.
+      // Near-touching turns that are safe at normal pace need that margin at 4× speed.
+      const boostConflict = (env.speedScale ?? 1) > 1 && taken.some((other) => other !== key);
+      if (entry.committed && !boostConflict) {
         granted.add(entry.ref.id);
         taken.push(key);
         continue;
@@ -409,13 +457,14 @@ function junctionGrants(
           signalColor(junction, arm.group, env.tick, env.tickRate, timing) === 'green';
       }
       const blocked = walkers !== undefined && (walkers.has(outArm) || walkers.has(inArm));
-      let ok = signalOk && !blocked && !conflictsWith(taken, key);
+      let ok = signalOk && !blocked && !boostConflict && !conflictsWith(taken, key);
       if (
         !ok &&
         signalOk &&
         !blocked &&
         entry.ref.a.state === 'wait' &&
         env.tick - entry.ref.a.since > deadlockTicks &&
+        !boostConflict &&
         !conflictsWith(inside, key)
       )
         ok = true;
@@ -515,7 +564,7 @@ function stepRoad(
         const rx = solid.x - here.x;
         const rz = solid.z - here.z;
         const forward = rx * here.dx + rz * here.dz;
-        if (forward <= 0 || forward > 40) continue;
+        if (forward <= 0 || forward > 40 * (env.speedScale ?? 1)) continue;
         const lateral = dmath.abs(rx * here.dz - rz * here.dx);
         if (lateral > a.width / 2 + solid.radius + 0.3) continue;
         const g = forward - a.length / 2 - solid.radius;
@@ -526,7 +575,7 @@ function stepRoad(
       }
   }
 
-  const accel = idmAcceleration(a.speed, v0, gap, a.speed - leaderSpeed, p);
+  const accel = idmAcceleration(a.speed, v0 * (env.speedScale ?? 1), gap, a.speed - leaderSpeed, p);
   let v = dmath.max(0, a.speed + accel * dt);
   let s = a.s + v * dt;
   if (s > hardLimit) {
@@ -608,7 +657,7 @@ function stepWalker(ref: Ref, occupancy: ReadonlyMap<string, Ref[]>, env: AgentE
   const { a, w } = ref;
   const lane = ref.lane as TransportLane;
   const edge = ref.edge as TransportEdge;
-  const pace = 1.15 + 0.5 * unit01(a.seed, 2);
+  const pace = (1.15 + 0.5 * unit01(a.seed, 2)) * (env.speedScale ?? 1);
   if (a.state === 'idle') {
     const idleTicks = (3 + 15 * unit01(a.seed, 3000 + a.hops)) * tickRate;
     if (tick - a.since < idleTicks) {
@@ -687,7 +736,7 @@ function stepTrainLead(
       return;
     }
   }
-  const v0 = edge.speed * (0.92 + 0.08 * unit01(a.seed, 1));
+  const v0 = edge.speed * (0.92 + 0.08 * unit01(a.seed, 1)) * (env.speedScale ?? 1);
   const remaining = lane.length - a.s;
   let gap = Number.POSITIVE_INFINITY;
   let leaderSpeed = 0;
@@ -918,7 +967,7 @@ function stepVessel(ref: Ref, occupancy: ReadonlyMap<string, Ref[]>, env: AgentE
     leaderSpeed = 0;
     limit = dmath.min(limit, dock.at);
   }
-  const accel = idmAcceleration(a.speed, v0, gap, a.speed - leaderSpeed, p);
+  const accel = idmAcceleration(a.speed, v0 * (env.speedScale ?? 1), gap, a.speed - leaderSpeed, p);
   w.speed = dmath.max(0, a.speed + accel * dt);
   w.s = dmath.min(a.s + w.speed * dt, dmath.max(a.s, limit));
   if (w.s >= limit) w.speed = dmath.min(w.speed, leaderSpeed);

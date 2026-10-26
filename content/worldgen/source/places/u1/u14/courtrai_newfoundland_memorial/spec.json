@@ -1,0 +1,299 @@
+{
+  "planId": "courtrai_newfoundland_memorial",
+  "id": "courtrai_newfoundland_memorial",
+  "assetId": "molen.worldgen.structure.courtrai_newfoundland_memorial",
+  "title": "Courtrai Newfoundland Memorial",
+  "wikidataId": "Q5178692",
+  "category": "war-memorial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 3.28518425,
+    "latitude": 50.838740099999995
+  },
+  "size": [
+    5.673116207122803,
+    7.247124718502164,
+    5.365599632263184
+  ],
+  "actualBounds": {
+    "min": [
+      -2.8365581035614014,
+      -0.01712469942867756,
+      -2.682799816131592
+    ],
+    "max": [
+      2.8365581035614014,
+      7.230000019073486,
+      2.682799816131592
+    ]
+  },
+  "visualBrief": "Whole specific Courtrai/Kortrijk Newfoundland Memorial: original continuous bronze caribou with raised head/tapered muzzle/open mouth/eyes/brows/pointed ears/dewlap/shaggy chest, full torso/haunches/four distinct straight or bent legs/cloven hooves/short tail, two branching palmate antlers with open forks/airspace, and complete irregular artificial pale laid-rock pedestal/plain plaque carrier within native19control memorial envelope. Seven exact published2017Karmakolleown/selfCC0 originals; no source pixels/inscriptions/park/planting/paths/trees/neighbors copied. Fine anatomy/fur/antler/rock census/hidden profiles and exact bearing bounded original estimates.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Wlovesmon_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:Wlovesmon_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Wlovesmon_05.jpg",
+    "https://commons.wikimedia.org/wiki/File:Wlovesmon_06.jpg",
+    "https://commons.wikimedia.org/wiki/File:Wlovesmon_07.jpg",
+    "https://commons.wikimedia.org/wiki/File:Wlovesmon_08.jpg",
+    "https://commons.wikimedia.org/wiki/File:Wlovesmon_09.jpg"
+  ],
+  "stories": [
+    {
+      "id": "courtrai-newfoundland-memorial-wp",
+      "url": "https://qualla.com/courtrai-newfoundland-memorial/"
+    }
+  ],
+  "referenceInputHash": "ba8fee82d1e2f3cec04980a45608f2bf61634d9bac95cc27aa0c46c82558b03a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u14/courtrai_newfoundland_memorial/models/courtrai-newfoundland-memorial-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/courtrai-newfoundland-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "courtraiSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.68,
+        "metallic": 0.64
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "courtraiDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.64
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "courtraiStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.64
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_bronze_cast",
+    "stone_granite"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "native-map-frame",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All floors/sections/sculptural orientation and geometry follow original200m129x12916641sample independent source field/two rawtile freeze. FixedSW[-12,12]14.3392m provider-relative floor0, not surveyed foundations. Native19control namedmemorial envelope conservatively bounds the artificial rock pedestal, separate park never extruded. Original photographic section estimates: pale rock ridge3.04m with .08m/m front rise; bronze hoof/legs tied to intrinsic stone top before sourcefield render, torso4.62m/raised nose5.98m/antler tips7.23m total. Native-plan longaxis/entry-side photograph inference places raised head NW; exact figure bearing and fine sections are approximate geographic preview, not surveyed sculpture pose. Whole torso/neck/chest/dewlap/muzzle/mouth/eyes/ears/palmate antlers/four hooved legs/bent and extended rear leg/short tail and complete irregular artificial laid-rock pedestal retained. Surface/fur/antler tine/stone census and hidden contours/currentfinish are original bounded estimates. No terrain fit/flatten/reacquisition or later model raising; preview/replacementfalse/sourcegrade unresolved.",
+    "anchor": [
+      3.28518425,
+      50.838740099999995
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        3.2850135509408687,
+        50.83863230265899
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW local[-12,12] before all floors/sections/geometry; provider-relative unsurveyed source datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/799193269"
+    ],
+    "source": "https://www.openstreetmap.org/way/799193269",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f72cd1dbd43119dd642b576b161068fc977c079d4ebe07be7d4d158e265576a5",
+    "notes": "Whole Courtrai Newfoundland Memorial: specific bronze standing caribou/stag with raised head/open mouth/ears/eyes/tapered muzzle, asymmetrically branching palmate antlers, muscular torso/neck/chest/dewlap/haunches, two straight front legs/split hooves/bent near and extended rear hind leg/short tail/open leg and antler airspaces; complete intrinsic pale irregular artificial laid-stone rock pedestal/plaque carrier. Native named memorial19control envelope conservatively bounds physical scope; detailed stone/bronze contours original estimates from seven cleared published originals. Whole park/planting/trees/paths/fences/nearby buildings/road/river/people and copied inscription/text/logo excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Native namedmemorial way799193269/Q5178692/area statue stone+bronze establishes actual physical monument location and conservative closed20point extent(19uniquecontrols), not separate ParksCanada park117865413/property area. All19original extent controls retained in map-frame; artificial rock contours/sculptural plans are photographic estimates, not surveyed fine geometry. Exact common bbox anchor/+Xeast/+Zsouth/heading0; source floors/sections/dimensions/figure orientation await independent field freeze and source-based authoring.",
+    "All floors/sections/sculptural orientation and geometry follow original200m129x12916641sample independent source field/two rawtile freeze. FixedSW[-12,12]14.3392m provider-relative floor0, not surveyed foundations. Native19control namedmemorial envelope conservatively bounds the artificial rock pedestal, separate park never extruded. Original photographic section estimates: pale rock ridge3.04m with .08m/m front rise; bronze hoof/legs tied to intrinsic stone top before sourcefield render, torso4.62m/raised nose5.98m/antler tips7.23m total. Native-plan longaxis/entry-side photograph inference places raised head NW; exact figure bearing and fine sections are approximate geographic preview, not surveyed sculpture pose. Whole torso/neck/chest/dewlap/muzzle/mouth/eyes/ears/palmate antlers/four hooved legs/bent and extended rear leg/short tail and complete irregular artificial laid-rock pedestal retained. Surface/fur/antler tine/stone census and hidden contours/currentfinish are original bounded estimates. No terrain fit/flatten/reacquisition or later model raising; preview/replacementfalse/sourcegrade unresolved.",
+    "Seven exact cleared published2017Karmakolleown/selfCC0 originals individually inspected/nativeSHA1 matched; no supplemental imagery, copied pixels/photo textures/source metadata repair/reclassification. Sculptural anatomy/antlers/fur/stone census/hidden rear/currentfinish and exact figure bearing are original medium-fi approximations, not photogrammetry. Whole native19control memorial extent is conservative physical scope, not individual rock survey; separate park/planting/paths/trees/neighbors excluded. Plain plaque carrier omits inscription/text.",
+    "Independent200m129x12916641sample originalfield/two rawtiles/fixedSW14.3392m provider-relative datum frozen before all floors/sections/figureorientation/geometry. No fitting/flattening/reacquisition or later modelraising. Intrinsic hoof-to-artificial-pedestal contacts set during original geometry authoring; external sourcegrade unresolved/preview/replaceFootprint=false. Flat isolated ground/synthetic neighbors are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-opposite-side-and-complete-rock-base",
+      "position": [
+        -11.101576464628797,
+        6.4,
+        11.525840533340725
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        0
+      ]
+    },
+    {
+      "name": "raised-head-open-mouth-eyes-and-ears",
+      "position": [
+        -0.7071067811865475,
+        6.7,
+        -7.0710678118654755
+      ],
+      "lookAt": [
+        -1.0323759005323594,
+        5.86,
+        -1.0323759005323594
+      ]
+    },
+    {
+      "name": "two-palmate-branched-antlers-and-open-airspaces",
+      "position": [
+        3.818376618407357,
+        8.3,
+        -4.666904755831214
+      ],
+      "lookAt": [
+        -0.4242640687119285,
+        6.55,
+        -0.4242640687119285
+      ]
+    },
+    {
+      "name": "four-legged-pose-split-hooves-and-pedestal-contacts",
+      "position": [
+        0.5656854249492378,
+        4.6,
+        -6.505382386916238
+      ],
+      "lookAt": [
+        0.10606601717798213,
+        3.7,
+        0.10606601717798213
+      ]
+    },
+    {
+      "name": "whole-artificial-laid-rock-pedestal-and-plain-plaque",
+      "position": [
+        1.414213562373095,
+        3.9,
+        -10.606601717798213
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ]
+    },
+    {
+      "name": "native-whole-memorial-plan",
+      "position": [
+        0.07071067811865477,
+        18,
+        -0.07071067811865477
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22840,
+    "vertices": 68520,
+    "materials": 3,
+    "bytes": 2934168,
+    "sha256": "sha256:049b874a398271820c9090946fa78d352647a739db40689a73b2ee0532b26d3a"
+  }
+}

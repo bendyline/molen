@@ -1,0 +1,397 @@
+{
+  "planId": "gran_hotel_palma",
+  "id": "gran_hotel_palma",
+  "assetId": "molen.worldgen.structure.gran_hotel_palma",
+  "title": "Gran Hotel, Palma",
+  "wikidataId": "Q3780261",
+  "category": "hotel-commercial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 2.6501456,
+    "latitude": 39.5718031
+  },
+  "size": [
+    48.30212593078613,
+    25.200000762939453,
+    35.2347526550293
+  ],
+  "actualBounds": {
+    "min": [
+      -24.37026023864746,
+      0,
+      -16.775846481323242
+    ],
+    "max": [
+      23.931865692138672,
+      25.200000762939453,
+      18.458906173706055
+    ]
+  },
+  "visualBrief": "Whole1903Modernista Gran Hotel/nowCaixaForum Palma: complete native36control concave envelope and hidden rear wings/lightwell gaps, cream masonry/roof terrace, actual deep segmental ground glazing and four-step closed entry/paired round columns/dark plinth, projected stacked curved glazed oriels/round balconies, shuttered upper recesses/curved stone and metal balcony rails, blue-white original upper ornamental panels/corner crown/parapet/roof railing and intrinsic globe lamps. Visible south/Weyler and west façades follow native street context; projections/ornament/hidden elevations estimated from cleared published photos. No neighboring buildings/streets/trees/people/cafe furnishings/interiors/gallery artwork/logos/poster/text copies.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Entrada_Gran_Hotel_Palma.jpg",
+    "https://commons.wikimedia.org/wiki/File:PALMA_de_MALLORCA,_AB-108.jpg",
+    "https://commons.wikimedia.org/wiki/File:PALMA_de_MALLORCA,_AB-142.jpg",
+    "https://commons.wikimedia.org/wiki/File:PALMA_de_MALLORCA,_AB-240.jpg"
+  ],
+  "stories": [
+    {
+      "id": "gran-hotel-palma-wp",
+      "url": "https://qualla.com/gran-hotel-palma/"
+    }
+  ],
+  "referenceInputHash": "c01097b3e041b813b636e14925570e617631496a442ab9a31cf434d7342d2469",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sp/sp1/gran_hotel_palma/models/gran-hotel-palma-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/gran-hotel-palma-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "granHotelSkyline",
+    "errorMeters": 2.6,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.37,
+        "metallic": 0.06
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "decor": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "granHotelDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.06
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "decor": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "granHotelStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.06
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "decor": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "granHotelCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.06
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "decor": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "native-map-frame",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All source floor/section/geometry decisions follow the original independent400m129x12916641sample field/two rawtile freeze. Floor0 uses fixed SW19.7745m provider-relative datum, not a surveyed street/threshold. Original photographic estimates: five exterior levels including ground/three main upper floors/short attic; ground5.65m/upper floors6.2,10.5,14.8m/attic19.1m/main terrace22.5m/corner crown25.2m. Ground glass/paired columns/actual closed entry recess and four .19m risers reach .76m threshold; upper window reveals .44m, ground bays1.8m/entry2.16m. Ground core set back2.4m, upper .85m before real façade openings, never filled across recesses. Southwest curved oriel and second south façade glazed projection/curved balconies are original photo-based plans/radii/offsets, not surveyed projections. All36native whole-building ring controls retained at plinth/cornice; native concavities/lightwell gaps preserved. Hidden rear/terrace details/party walls/exact ornament/window/balcony census/currentfinish are bounded estimates. No source terrain fit/flatten/reacquisition or later raising to hide ground contact; placement remains preview/replacementfalse/unresolved grade.",
+    "anchor": [
+      2.6501456,
+      39.5718031
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        2.6496211760884214,
+        39.571398859971254
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW local[-45,45] before any floors/sections/geometry; original provider-relative unsurveyed datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/73043459"
+    ],
+    "source": "https://www.openstreetmap.org/way/73043459",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fb59b5b8165c5b8e9f71b534e478c742850b291a4ff5d556d2dc6362b2816448",
+    "notes": "Whole1903Gran Hotel/nowCaixaForum Palma architectural exterior: native36control building envelope and its street-facing rounded/projecting glazed oriel/balcony bays, cream Modernista masonry, deep segmental ground arcade/stepped recessed entrance with paired columns/dark plinth/shut glazing, shuttered upper windows and curved balconies/stone or metal rails, original simplified floral/ceramic blue-white upper frieze/corner crown/parapet/terrace. Hidden roof/rear/party-wall elevations/currentfinish bounded estimates within whole native building scope. Modern gallery artworks/exhibition posters/brand logos/text, interiors, neighboring Palma buildings/streets/traffic/people/trees/cafe furnishings excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual mapped building73043459/Q3780261 namedGran Hotel CaixaForum/aliasCaixaFòrum; not genericPalma museum/neighboring terrace/property. Whole closed37point source ring(36uniquecontrols), all36native outline controls retained; oriel/balcony projection plans and depths are photographic estimates, not separate surveyed native outlines. Common exact native bbox-midpoint anchor/+Xeast/+Zsouth/heading0; article point not reused as placement. Floors/sections selected only after independent field freeze. Native named street geometry locates Plaça d’en Weyler south of building; south and west façades are the selected visible street elevations.",
+    "All source floor/section/geometry decisions follow the original independent400m129x12916641sample field/two rawtile freeze. Floor0 uses fixed SW19.7745m provider-relative datum, not a surveyed street/threshold. Original photographic estimates: five exterior levels including ground/three main upper floors/short attic; ground5.65m/upper floors6.2,10.5,14.8m/attic19.1m/main terrace22.5m/corner crown25.2m. Ground glass/paired columns/actual closed entry recess and four .19m risers reach .76m threshold; upper window reveals .44m, ground bays1.8m/entry2.16m. Ground core set back2.4m, upper .85m before real façade openings, never filled across recesses. Southwest curved oriel and second south façade glazed projection/curved balconies are original photo-based plans/radii/offsets, not surveyed projections. All36native whole-building ring controls retained at plinth/cornice; native concavities/lightwell gaps preserved. Hidden rear/terrace details/party walls/exact ornament/window/balcony census/currentfinish are bounded estimates. No source terrain fit/flatten/reacquisition or later raising to hide ground contact; placement remains preview/replacementfalse/unresolved grade.",
+    "Four exact published Qualla creatorPD/CC0 originals individually inspected/nativeSHA1 matched:2010Selcommons own/PD-self entry and2019Antekbojar own/CC0 whole corner/near/oblique frontage. Assumed-authorGranhotel.JPG/unrelatedPalma/Miro/artworks/maps/protected or doubtful sources unselected. No supplemental imagery, copied pixels/generated photo textures, article/media/rightsmetadata repair/reclassification. Original blue-white ornament/rails/crown simplify public architectural motifs; gallery posters/artworks/brand marks/interiors omitted. Exact hidden rear/terrace/party-wall profiles/bay and ornament census/currentfinish are bounded estimates. Distant levels simplify windows/rails/columns/census while retaining whole native envelope and both projected curved bays.",
+    "Independent400m129x12916641sample original field/two rawtiles/fixed SW19.7745m provider datum frozen before floors/sections/geometry. No fitting/flattening/reacquisition or subsequent raising to hide source contact. All geographic placement preview/replaceFootprint=false; exact grade/entry thresholds unresolved. Flat isolated ground and synthetic neighbors are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-rear-wings-and-native-lightwell-gaps",
+      "position": [
+        66,
+        42,
+        -66
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "real-stepped-closed-entry-paired-columns-and-ground-arches",
+      "position": [
+        -3,
+        4,
+        27
+      ],
+      "lookAt": [
+        -5,
+        2.9,
+        15
+      ]
+    },
+    {
+      "name": "projecting-corner-glazed-oriel-and-round-balconies",
+      "position": [
+        -28,
+        10,
+        31
+      ],
+      "lookAt": [
+        -17,
+        10,
+        16
+      ]
+    },
+    {
+      "name": "upper-shutters-and-curved-balcony-rails",
+      "position": [
+        -30,
+        15,
+        15
+      ],
+      "lookAt": [
+        -20,
+        12,
+        3
+      ]
+    },
+    {
+      "name": "blue-white-upper-frieze-and-corner-crown",
+      "position": [
+        -27,
+        26,
+        27
+      ],
+      "lookAt": [
+        -17,
+        22.2,
+        16
+      ]
+    },
+    {
+      "name": "native-whole-building-outline-and-roof-terrace",
+      "position": [
+        3,
+        95,
+        5
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 61108,
+    "vertices": 183324,
+    "materials": 6,
+    "bytes": 7336564,
+    "sha256": "sha256:de9b4cb097d3a03ff1af3b1ef9a910b365c89b64d733fad6a234fb6000c7178a"
+  }
+}

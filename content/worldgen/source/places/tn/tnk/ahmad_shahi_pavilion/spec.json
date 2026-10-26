@@ -1,0 +1,385 @@
+{
+  "planId": "ahmad_shahi_pavilion",
+  "id": "ahmad_shahi_pavilion",
+  "assetId": "molen.worldgen.structure.ahmad_shahi_pavilion",
+  "title": "Ahmad Shahi Pavilion",
+  "wikidataId": "Q5949128",
+  "category": "historic-pavilion",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 51.472327750000005,
+    "latitude": 35.81185
+  },
+  "size": [
+    24.576162338256836,
+    10.499999046325684,
+    23.8790225982666
+  ],
+  "actualBounds": {
+    "min": [
+      -12.438858032226562,
+      11.696900367736816,
+      -11.788734436035156
+    ],
+    "max": [
+      12.137304306030273,
+      22.1968994140625,
+      12.090288162231445
+    ]
+  },
+  "visualBrief": "Whole AhmadShahiPavilion on actual12-control nativebuilding plan: two storeys, lowerbrick/polygonalcornerbays and insetcentralentry, pale upperbody behind openloggias, two ground/nine upperclassicalcolumns, dark recesseddoors/sash, patterned metalrailing, lowcentralroof and raisedpolygonalbayroofs, lowstoneplatform and centeredentrancesteps. ExactclearedpublishedDatabot2005PDoriginal first/only, nativecaption explicitlypavilion despiteSaabgheraniehPalace filename. Hiddenrear/currentcondition/roofdivisions/census/ornament are originalboundedestimates, notsurvey.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:SaabgheraniehPalace.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ahmad-shahi-pavilion-wp",
+      "url": "https://qualla.com/ahmad-shahi-pavilion/"
+    }
+  ],
+  "referenceInputHash": "ef44cb421989f9d218725819a4c315a365bb1c903b2227c3bdaa74ad9723da5b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tn/tnk/ahmad_shahi_pavilion/models/ahmad-shahi-pavilion-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/ahmad-shahi-pavilion-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "ahmadShahiPavilionSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.65,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.3
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ahmadShahiPavilionDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          }
+        }
+      },
+      "street": {
+        "export": "ahmadShahiPavilionStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          }
+        }
+      },
+      "closeup": {
+        "export": "ahmadShahiPavilionCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "plaster_lime",
+    "stone_limestone_raw",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "cameraYaw": 0.25,
+    "groundY": 11.6969
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Originalindependent256m129field/16641samples/2rawtiles,actualnativebboxanchor/heading0/SWdatum1651.086m frozen before once-onlyfloor11.9969m and allmainsections. Originalphoto-bounded two-storey sections: platform.8m/groundwall4.55/upperfloor4.75/upperwall-ceiling9.15/centralroof9.65/raisedpolygonalbayroofs10.2, recessedwindows.22m andwalls.34m, classicalcolumns/railing1m and8intrinsicsteps. No metricverticalsurvey/currentroofpartpolygons orrearphotos; hiddenrear/roofdivisions/census/finecapitals/ornament/currentfinish are boundedestimates. All12nativeXZ controls preserved inwholefoundation/upperfloor domain; upperfrontbody insetbehind openloggias. No later floor/mainsection/originalfield tuning.",
+    "anchor": [
+      51.472327750000005,
+      35.81185
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        51.471109239559624,
+        35.81086185770751
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest providerfield datum before floors/sections/geometry; exact pavilion thresholds/foundation/stair contact unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/330356349"
+    ],
+    "source": "https://www.openstreetmap.org/way/330356349",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f84d6430e8c4c4dd46c9226e036b09b641d7ed09781711dad0d96a0158befbae",
+    "notes": "Whole surviving AhmadShahiPavilion/Q5949128/nativeway330356349 actual12-control building, not the neighboring SaabgheraniehPalace or entire Niavaran gardens. Two storeys, lower brick and two polygonal corner bays, pale upper openloggia/classicalcolumns and capitals/metalrailing, central openings and lowdark roof/fascia, intrinsic entrance stairs and lowfoundation. Whole native exterior retained; hiddenrear/roofdivisions/census/fineornament/currentfinish are bounded originalphoto estimates. Trees/hedges/landscape/sitepad/otherpalaces/interiors excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actualnamedclosed12-control AhmadShahiPavilion envelope, fixednativebboxanchor/heading0 before independentfield/floor/sections/geometry. Nativewholephysicalbuilding, not entiregarden orneighboringpalace.",
+    "Native12metricXZ controls plus soleclear2005fullprincipal-facade photograph. Two-storeysections/lowroof/cornerbay/columns/railing/stairs/openings/fineornament/hiddenfaces are original bounded estimates; set once after independentoriginalfieldfreeze. No protectedpixels embedded orneighboringpalace substituted.",
+    "Originalindependent256m129field/16641samples/2rawtiles,actualnativebboxanchor/heading0/SWdatum1651.086m frozen before once-onlyfloor11.9969m and allmainsections. Originalphoto-bounded two-storey sections: platform.8m/groundwall4.55/upperfloor4.75/upperwall-ceiling9.15/centralroof9.65/raisedpolygonalbayroofs10.2, recessedwindows.22m andwalls.34m, classicalcolumns/railing1m and8intrinsicsteps. No metricverticalsurvey/currentroofpartpolygons orrearphotos; hiddenrear/roofdivisions/census/finecapitals/ornament/currentfinish are boundedestimates. All12nativeXZ controls preserved inwholefoundation/upperfloor domain; upperfrontbody insetbehind openloggias. No later floor/mainsection/originalfield tuning.",
+    "Sole exactpublished2005Databotoriginal519x370/93243bytes, matching nativeSHA1/namedEnglishDatabotPD-user-w grant and publishedclearance. Nativecaption identifies AhmadShahiPavilion north ofSaabgheraniehPalace; the inheritedfilename is not subjectidentity. No neighboringpalace photo substituted, no external/questionablepixels, no source metadatarepair or policychange, no imagepixels embedded.",
+    "Whole actual12control building/foundation/upperfloor; lowerfrontbody insetbehind porch and upperfrontbody clippedbehindopenloggias. Cornerbay/roofsubdivisions, rearwindowcensus/currentfinish/heights/finecapitals/motifs/railpattern/stepdimensions are originalboundedestimates from a singleold lowresolutionfrontview. No measured currentrear/interior survey. Oneuppercornercolumn is engaged with upperbody.",
+    "Decorative pediments/floral motifs/capitals and oval/diagonal railing are original simplified geometry. Glass is closed opaque dark material. EntireNiavarangardens/trees/hedges/neighboringpalaces/interiors/landscape/sitepad excluded.",
+    "Originalindependent256m129field/2rawtiles/nativeframe/floor/mainsections fixed beforegeometry. Exactfoundation/street/staircontactunverified; geographicpreview/replacementfalse. Flatstage andsyntheticneighbors are reviewfixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-principal-facade-corner-bays-and-two-storeys",
+      "position": [
+        19.852818331069763,
+        28.9969,
+        48.22722886828083
+      ],
+      "lookAt": [
+        0,
+        16.7969,
+        0
+      ]
+    },
+    {
+      "name": "whole-twelve-control-pavilion-roof-and-loggia-plan",
+      "position": [
+        -0.017530823593558596,
+        86.9969,
+        0.09845135968655552
+      ],
+      "lookAt": [
+        0,
+        14.9969,
+        0
+      ]
+    },
+    {
+      "name": "upper-open-loggias-classical-columns-and-patterned-railing",
+      "position": [
+        9.926409165534881,
+        20.4969,
+        24.113614434140416
+      ],
+      "lookAt": [
+        0.6542154242142157,
+        18.4969,
+        7.734468448362835
+      ]
+    },
+    {
+      "name": "inset-central-ground-entry-brick-bays-and-entrance-stairs",
+      "position": [
+        -3.506164718711719,
+        16.2969,
+        19.690271937311103
+      ],
+      "lookAt": [
+        -1.4456548543597378,
+        14.5969,
+        5.8369582868190975
+      ]
+    },
+    {
+      "name": "whole-rear-and-bounded-hidden-roof-sections",
+      "position": [
+        -26.461132856005435,
+        31.9969,
+        -45.34102389643213
+      ],
+      "lookAt": [
+        0,
+        15.9969,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19167,
+    "vertices": 57501,
+    "materials": 5,
+    "bytes": 2515376,
+    "sha256": "sha256:e35425214da56df2d4c931adfd7fb8bc091eb8d53e9ba8f6f909287289c8f7e2"
+  }
+}

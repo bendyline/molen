@@ -309,6 +309,8 @@ export interface AircraftInputData extends JsonObject {
   thrustVector?: number;
 }
 export interface AircraftStateData extends JsonObject {
+  /** Kernel-owned: velocity and speed telemetry include the 4× travel boost. */
+  boosted?: boolean;
   /** Air-relative speed divided by local speed of sound. */
   mach?: number;
   /** Equivalent airspeed (density-corrected TAS), m/s; not compressible calibrated IAS. */

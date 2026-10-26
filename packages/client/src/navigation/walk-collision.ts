@@ -62,9 +62,11 @@ function requireFinite(value: number, name: string, allowZero: boolean): number 
  * neighborhood. Large geometries (terrain tiles, building cells) are walked through a per-geometry
  * spatial index, so a rebuild costs the triangles near the subject rather than the whole tile.
  * Meshes opt out with `userData.walkIgnore`, and water materials (`userData.terrainWaterMaterial`)
- * and `semantic:landcover` overlays are never solid. A group whose contents lie within an X/Z
- * rectangle of its own frame declares it as `userData.walkFootprint` (`[minX, minZ, maxX, maxZ]`,
- * like a terrain tile): a scan skips the whole group when that rectangle is out of reach.
+ * are never solid. Land cover is a solid walking surface: its visible elevation can differ from
+ * bare terrain, and full-tile land cover can replace the bare surface altogether.
+ * A group whose contents lie within an X/Z rectangle of its own frame declares it as
+ * `userData.walkFootprint` (`[minX, minZ, maxX, maxZ]`, like a terrain tile): a scan skips the
+ * whole group when that rectangle is out of reach.
  */
 export class WalkCollision {
   readonly origin: THREE.Vector3 = new THREE.Vector3();
@@ -172,8 +174,6 @@ export class WalkCollision {
       if (!(object instanceof THREE.Mesh) || object.userData.walkIgnore === true) return;
       if (this.ignoreVehicles && (object.userData.vehicleIds || object.userData.vehicleGeometry))
         return;
-      // Land-cover is a thin visual overlay of the existing terrain collision surface.
-      if (object.name === 'semantic:landcover') return;
       const materials = Array.isArray(object.material) ? object.material : [object.material];
       // Water is a visual surface, not a solid floor.
       if (materials.every((material) => material.userData.terrainWaterMaterial === true)) return;

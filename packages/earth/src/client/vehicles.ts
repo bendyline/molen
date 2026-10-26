@@ -134,6 +134,7 @@ export class EarthVehicles {
     rescanIntervalMs: 200,
   });
   private lastSync = -Infinity;
+  private lastSettle = -Infinity;
   private sequence = 0;
   private readonly spawned = new Set<string>();
   /** Spawned cars a host owns: they survive `release` and forced exits until removed. */
@@ -853,14 +854,45 @@ export class EarthVehicles {
    * vehicle step only follows the ground while moving.
    */
   private settleSpawned(): void {
+    const now = performance.now();
+    if (now - this.lastSettle < 200) return;
+    this.lastSettle = now;
     for (const id of this.spawned) {
       if (this.isBoat(id)) continue;
       const t = this.world.get(id, Transform);
-      const state = this.state(id);
-      if (!t || !state || Math.abs(state.speed) > 0.2) continue;
-      const support = this.support(t.pos[0], t.pos[2]);
-      if (support !== undefined && Math.abs(support - t.pos[1]) > 0.05)
-        this.world.patch(id, Transform, { pos: [t.pos[0], support, t.pos[2]] });
+      const state = this.world.get(id, VehicleState);
+      const spec = this.world.get(id, Vehicle)?.spec;
+      if (!t || !state || !spec || Math.abs(state.speed) > 0.2 || !state.grounded) continue;
+      // Walking around a parked car must refresh its collision neighborhood too. Otherwise a
+      // stale road mesh can keep it floating after terrain refinement until it is driven again.
+      this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
+      const sin = Math.sin(state.yaw);
+      const cos = Math.cos(state.yaw);
+      const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((z) =>
+        (spec.cycle ? [0, 0] : [-spec.wheelTrack / 2, spec.wheelTrack / 2]).map((x) =>
+          this.support(t.pos[0] + cos * x + sin * z, t.pos[2] - sin * x + cos * z),
+        ),
+      );
+      if (heights.some((height) => height === undefined)) continue;
+      const [fl, fr, rl, rr] = heights as [number, number, number, number];
+      const support = (fl + fr + rl + rr) / 4;
+      const pitch = Math.atan2((rl + rr - fl - fr) / 2, spec.wheelbase);
+      const roll = spec.cycle ? 0 : Math.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack);
+      if (
+        Math.abs(support - t.pos[1]) < 0.001 &&
+        Math.abs(pitch - state.pitch) < 0.001 &&
+        Math.abs(roll - state.roll) < 0.001
+      )
+        continue;
+      this.world.patch(id, Transform, {
+        pos: [t.pos[0], support, t.pos[2]],
+        rot: vehicleRotation(
+          state.yaw,
+          pitch + (state.bodyPitch ?? 0),
+          roll + (state.bodyRoll ?? 0),
+        ),
+      });
+      this.world.patch(id, VehicleState, { pitch, roll, vy: 0 });
     }
   }
   /** Move loaded models to their simulated poses and animate wheels and steering. */

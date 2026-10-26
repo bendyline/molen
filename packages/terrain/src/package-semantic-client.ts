@@ -1,4 +1,10 @@
-/** Convenience wiring from optional terrain-package sidecars to adaptive semantic layers. */
+/**
+ * Wires terrain-package sidecars into classification, hydrology, and human-feature layers.
+ * Classification and human features share the building-detail source so vegetation uses the
+ * same complete homes, mapped trees, and exclusions as building rendering. The detail source
+ * bounds descendant reads and retains coarse footprints where coverage is absent; hydrology
+ * stays independent of those reads. Related: package-client.ts and semantic-building-detail.ts.
+ */
 
 import type { SceneAdmission } from '@bendyline/molen-client';
 import { createAgricultureTileEnricher } from './agriculture-client';
@@ -56,7 +62,7 @@ export interface CreateTerrainPackageSemanticLayersOptions
    */
   overzoom?: boolean;
   /**
-   * Compose built-feature tiles' buildings and places from the package's `features.buildingDetail`
+   * Compose classification and built-feature tiles' buildings and places from `features.buildingDetail`
    * sidecar, when it declares one (default on). `maxDepth` bounds how many levels coarser than the
    * detail level a tile may be (default 2, i.e. 16 detail tiles per composed tile); `false` keeps
    * every tile's own, generalized footprints.
@@ -169,6 +175,18 @@ export async function createTerrainPackageSemanticLayers(
       semantics.features.maxLevel,
     );
   }
+  // Share the detail reader across vegetation and buildings. Classification needs complete
+  // homes for yard canopy and footprint exclusions, even if its coarse tile already has POIs.
+  // Keep the unenhanced feature source for hydrology and tunnel topology.
+  const detailedFeatures =
+    featuresSource !== undefined &&
+    semantics.buildingDetail !== undefined &&
+    buildingDetail !== false
+      ? createBuildingDetailTerrainSemanticSource(featuresSource, semantics.buildingDetail.source, {
+          level: semantics.buildingDetail.level,
+          ...(buildingDetail?.maxDepth !== undefined ? { maxDepth: buildingDetail.maxDepth } : {}),
+        })
+      : featuresSource;
   // Enrich the completed joins, so retrieved cells cannot hide a separate mapped land-use
   // archive. Share the cache between visual layers and leave hydrology reads independent.
   const enrich =
@@ -178,22 +196,28 @@ export async function createTerrainPackageSemanticLayers(
   if (semantics.landcover !== undefined) {
     const style = landcoverLayer ?? {};
     const landSource = landcoverSource as TerrainPackageSemanticSource;
-    const pointsSource = featuresSource;
+    const featureSource = detailedFeatures;
     const classificationSource: TerrainPackageSemanticSource = {
       async load(address, signal) {
         const tile = await landSource.load(address, signal);
         if (
           !tile ||
-          tile.pois !== undefined ||
-          !pointsSource ||
+          !featureSource ||
           !semantics.features ||
-          !pkg.features?.layers.includes('poi') ||
           address.level < semantics.features.minLevel ||
           address.level > reach(semantics.features.maxLevel)
         )
           return tile;
-        const features = await pointsSource.load(address, signal);
-        return features?.pois ? { ...tile, pois: features.pois } : tile;
+        const features = await featureSource.load(address, signal);
+        return features
+          ? {
+              ...features,
+              landcover: tile.landcover,
+              ...(features.pois === undefined && tile.pois !== undefined
+                ? { pois: tile.pois }
+                : {}),
+            }
+          : tile;
       },
     };
     layers.push(
@@ -247,21 +271,7 @@ export async function createTerrainPackageSemanticLayers(
     ) === true
   ) {
     const style = featuresLayer ?? {};
-    // Buildings and places from the finer detail sidecar, where the package carries one; roads,
-    // water and land use keep the feature tiles' own.
-    const featureSource =
-      semantics.buildingDetail !== undefined && buildingDetail !== false
-        ? createBuildingDetailTerrainSemanticSource(
-            featuresSource as TerrainPackageSemanticSource,
-            semantics.buildingDetail.source,
-            {
-              level: semantics.buildingDetail.level,
-              ...(buildingDetail?.maxDepth !== undefined
-                ? { maxDepth: buildingDetail.maxDepth }
-                : {}),
-            },
-          )
-        : (featuresSource as TerrainPackageSemanticSource);
+    const featureSource = detailedFeatures as TerrainPackageSemanticSource;
     const landSource = landcoverSource;
     // Surface areas often live in a separate land-use sidecar. Join them for Human mode,
     // retaining already-combined source tiles and leaving hydrology reads independent.

@@ -5,6 +5,8 @@ import type {
   BoatStateData,
   WaterSettings,
 } from '@bendyline/molen-schema';
+import { boostSpeedMultiplier } from '@bendyline/molen-schema';
+import { isBoostMode } from './boost';
 import { type ComponentType, defineComponent, Transform, type TransformData } from './component';
 import { dmath as m } from './dmath';
 import { approach } from './math3d';
@@ -24,6 +26,8 @@ export interface WaterSample {
   current?: [number, number];
 }
 export interface BoatEnvironment {
+  /** Override the world's boost mode. Buoyancy and helm response keep their normal timing. */
+  boostMode?: boolean;
   /** undefined = unloaded; null = dry land; never infer water merely from low terrain. */
   waterAt(x: number, z: number): WaterSample | null | undefined;
   conditions?: WaterSettings;
@@ -121,14 +125,20 @@ export function stepBoat(
   id = '',
 ): { transform: TransformData; state: BoatStateData } {
   if (!Number.isFinite(dt) || dt <= 0) return { transform: t, state };
+  const travel = boostSpeedMultiplier(env.boostMode);
+  const previousTravel = boostSpeedMultiplier(state.boosted);
+  // Horizontal travel is boosted; wave, buoyancy and rudder response keep real-time dynamics.
   const pos: [number, number, number] = [...t.pos];
   const next = {
     ...state,
-    velocity: [...state.velocity] as [number, number],
+    velocity: state.velocity.map((v) => v / previousTravel) as [number, number],
     grounded: false,
     waitingForWater: false,
   };
-  const steps = m.max(1, m.ceil(dt * 120)),
+  const steps = m.max(
+      1,
+      m.ceil(dt * m.max(120, travel > 1 ? m.hypot(...next.velocity) * travel : 0)),
+    ),
     h = dt / steps;
   const conditions = env.conditions ?? {};
   const throttle = m.clamp(input.throttle, -1, 1);
@@ -143,12 +153,14 @@ export function stepBoat(
       next.yawRate = 0;
       break;
     }
-    const current = support.sample.current ?? conditions.current ?? [0, 0];
+    const current = (support.sample.current ?? conditions.current ?? [0, 0]).map(
+      (v) => v / travel,
+    ) as [number, number];
     const s = m.sin(next.yaw),
       c = m.cos(next.yaw);
     const u = (next.velocity[0] - current[0]) * s + (next.velocity[1] - current[1]) * c;
     const v = (next.velocity[0] - current[0]) * c - (next.velocity[1] - current[1]) * s;
-    next.anchored = input.anchor && (next.anchored || m.hypot(...next.velocity) <= 0.7);
+    next.anchored = input.anchor && (next.anchored || m.hypot(...next.velocity) * travel <= 0.7);
     next.steer = approach(next.steer, m.clamp(input.steering, -1, 1), h * 1.5);
     if (next.anchored) {
       next.velocity = [0, 0];
@@ -167,9 +179,9 @@ export function stepBoat(
     }
     const yaw = next.yaw + next.yawRate * h;
     const candidate: [number, number, number] = [
-      pos[0] + next.velocity[0] * h,
+      pos[0] + next.velocity[0] * h * travel,
       pos[1],
-      pos[2] + next.velocity[1] * h,
+      pos[2] + next.velocity[1] * h * travel,
     ];
     const ahead = boatSupport(env, candidate[0], candidate[2], yaw, spec);
     if (!ahead.sample || env.canOccupy?.(candidate, yaw, spec, id) === false) {
@@ -213,6 +225,11 @@ export function stepBoat(
       next.lateralSpeed = 0;
     }
   }
+  next.velocity = next.velocity.map((v) => v * travel) as [number, number];
+  next.speed *= travel;
+  next.lateralSpeed *= travel;
+  if (env.boostMode) next.boosted = true;
+  else delete next.boosted;
   return {
     transform: { ...t, pos, rot: vehicleRotation(next.yaw, next.pitch, next.roll) },
     state: next,
@@ -243,7 +260,12 @@ export function installBoats(world: World, env: BoatEnvironment): void {
   world.addSystem(
     (w, ctx) => {
       const conditions = env.conditions ?? w.query(Water).first()?.[1];
-      const current = { ...env, time: ctx.tick * ctx.dt, ...(conditions ? { conditions } : {}) };
+      const current = {
+        ...env,
+        boostMode: env.boostMode ?? isBoostMode(w),
+        time: ctx.tick * ctx.dt,
+        ...(conditions ? { conditions } : {}),
+      };
       const driven = new Set<string>();
       for (const [, mounted] of w.query(Mounted))
         if (

@@ -1,0 +1,376 @@
+{
+  "planId": "chatham_manor",
+  "id": "chatham_manor",
+  "assetId": "molen.worldgen.structure.chatham_manor",
+  "title": "Chatham Manor",
+  "wikidataId": "Q5087675",
+  "category": "historic-manor",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.45569334999999,
+    "latitude": 38.308582
+  },
+  "size": [
+    44.95012664794922,
+    14.559999465942383,
+    47.912261962890625
+  ],
+  "actualBounds": {
+    "min": [
+      -22.4672908782959,
+      19.925199508666992,
+      -23.957183837890625
+    ],
+    "max": [
+      22.48283576965332,
+      34.485198974609375,
+      23.955078125
+    ]
+  },
+  "visualBrief": "Whole Chatham Manor: seven-bay two-storey Georgian redbrick centralhouse and both attached single-storey wings in the native four-control envelope, three slate gabledroofs/tall endchimneys/white cornice and dentils/blackshutters/recessed sash and entry doors, simplified segmental pediment doorcase/stone stairs and basementgrilles. Cleared published Qualla creator-public-domain wholehouse photograph first, distinct Highsmith garden-side publicdomain supplement. Original bounded exterior, no entireestate or separate outbuildings.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:US_VA_Falmouth_Chatham_Manor.jpg",
+    "https://www.loc.gov/item/2011630784/"
+  ],
+  "stories": [
+    {
+      "id": "chatham-manor-wp",
+      "url": "https://qualla.com/chatham-manor/"
+    }
+  ],
+  "referenceInputHash": "6ea99e048733bc493fdbb83da8d06ef247390ca26f2ec98d96d3008bb33c0201",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dq/dqb/chatham_manor/models/chatham-manor-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/chatham-manor-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "chathamManorSkyline",
+    "errorMeters": 2.6,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "chathamManorDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "chathamManorStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "chathamManorCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "wood_plain",
+    "stone_limestone_raw",
+    "slate"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.3",
+    "groundY": 19.9052,
+    "cameraYaw": 0.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent256m129x12916641samples/one rawTerrariumtile/SW8.5651m providerrelative datum/native4-control bboxanchor/heading0 frozen before once-only riverterraceexterior floor20.4852m and all verticalsections/geometry. Originalphoto-bounded maincore27.2mwidth/eave8.05/ridge11.45/chimneys14.0, flankingwingeaves4.7/ridges7.15/plinth1.2/entry1.3,7bays2floors/main and4baysperwing eachlongface. Heights/currentfinish/hiddenjoins/windowcensus/corniceprofile and contact notsurveyed. No later floor/sections/field/anchor fitting/flattening/reacquire/reframe/raising.",
+    "anchor": [
+      -77.45569334999999,
+      38.308582
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.45672367627546,
+        38.30777351994251
+      ],
+      "modelHeight": 0,
+      "basis": "Fixedsouthwestsourcefielddatum beforefloor/sections/geometry, notsurveyedentry/basementfoundation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/812997620"
+    ],
+    "source": "https://www.openstreetmap.org/way/812997620",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e7f15e7cf34a94a141b9e08d18389ea3d0b7bf8df8d31d0c05239c83125d7300",
+    "notes": "Whole Chatham Manor/Q5087675/nativeway812997620: enduringrestoredGeorgian seven-baytwo-storycentralbrickhouse and both attachedsingle-storyflankingwingswithinwhole4nativecontrolenvelope, fullgable/slateroofs/largechimneys, whitecornice/shutters/sashwindowanddoorrecesses, mainsegmentalpedimententrycase/frontstonesteps and intrinsicwingentries/steps/basementgrilles. Notwholeestate/gardenproperty; separatekitchen/laundry/stables/greenhouses/rotunda/summerhouse/statues/river/landscape excluded. Exactfinecondition/roofandcensus/hiddenjoins/contact originalboundedestimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actualwhole4-control currentChathamManor/attachedwing envelope, fixednativebboxanchor/heading0 before independentfield/floor/sections/geometry. Roof/centralcoreandwing subdivisions originalphoto-bounded, not surveyednativepartoutlines.",
+    "Whole actual4-control native mainhouse/attachedwings envelope physically retained in foundation everyLOD. Long axis native0-to1. Main two-story seven-bay core and single-story flankingwings are photo-bounded original subdivisions inside that whole outline, not native surveyed partpolygons. Separate kitchen/laundry/stable/gardenpavilions/gardens excluded. Window/shutter/cornice/chimney/hiddenrear census original estimates.",
+    "Original independent256m129x12916641samples/one rawTerrariumtile/SW8.5651m providerrelative datum/native4-control bboxanchor/heading0 frozen before once-only riverterraceexterior floor20.4852m and all verticalsections/geometry. Originalphoto-bounded maincore27.2mwidth/eave8.05/ridge11.45/chimneys14.0, flankingwingeaves4.7/ridges7.15/plinth1.2/entry1.3,7bays2floors/main and4baysperwing eachlongface. Heights/currentfinish/hiddenjoins/windowcensus/corniceprofile and contact notsurveyed. No later floor/sections/field/anchor fitting/flattening/reacquire/reframe/raising.",
+    "Exact published Rutke4212008 PD-user-en wholehouse original first and distinct explicit LOC Highsmith PD garden-side original. No photo pixels embedded. No estate gardens, pavilions, statue, outbuildings, people, vehicles or furnishings.",
+    "Roof/centralcore-wing subdivisions, heights, rear openings/shutter census, fine cornice/pediment profiles and current finishes are bounded original estimates. No copied relief; opaque glazing omits interiors.",
+    "Original terrain/floor/sections frozen before geometry, contact unverified, preview only and replacement false. Flatground/context neighboring houses are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-river-facing-house-and-both-attached-wings",
+      "position": [
+        -13.709429869358157,
+        42.4852,
+        69.46259088644155
+      ],
+      "lookAt": [
+        0,
+        25.4852,
+        0
+      ]
+    },
+    {
+      "name": "whole-four-control-manor-three-roofs-plan",
+      "position": [
+        -0.1475709682738464,
+        110.48519999999999,
+        0.1349918861366098
+      ],
+      "lookAt": [
+        0,
+        21.4852,
+        0
+      ]
+    },
+    {
+      "name": "seven-bay-sash-shutters-segmental-entry-and-stairs",
+      "position": [
+        -7.521229321929649,
+        28.4852,
+        25.854034684879377
+      ],
+      "lookAt": [
+        -2.7191728396154176,
+        24.4852,
+        3.8426682225112576
+      ]
+    },
+    {
+      "name": "whole-garden-face-main-house-and-attached-wings",
+      "position": [
+        15.860098982779675,
+        42.4852,
+        -70.07465490643841
+      ],
+      "lookAt": [
+        0,
+        25.4852,
+        0
+      ]
+    },
+    {
+      "name": "wing-door-stairs-cornice-and-main-gable-chimney",
+      "position": [
+        7.390773563783615,
+        32.4852,
+        40.6740269229502
+      ],
+      "lookAt": [
+        10.124391460245736,
+        25.4852,
+        11.067822620538479
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18650,
+    "vertices": 55950,
+    "materials": 5,
+    "bytes": 2434296,
+    "sha256": "sha256:6032ca111477f1c28170f677524dafc414321714d3e02bc8f77e41b4012fc3ae"
+  }
+}

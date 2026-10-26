@@ -35,6 +35,8 @@ export interface AmbientAirCorridor extends JsonObject {
 }
 
 export interface AmbientAgentData extends JsonObject {
+  /** Kernel-owned: the lane speed includes the world's 4× travel boost. */
+  boosted?: boolean;
   kind: AmbientKind;
   type: string;
   color?: string;

@@ -257,8 +257,17 @@ export interface TerrainPyramidStream {
    * re-counting the whole warm cache walked every resident tile's objects.
    */
   refreshMemoryUsage(tiles?: 'all' | 'displayed'): void;
-  /** Displayed ground height, falling back to resident coverage outside the camera's cut. */
+  /**
+   * Full-resolution source elevation before mesh simplification, preferring displayed tiles
+   * and falling back to resident coverage outside the camera's cut.
+   */
   sampleHeight(x: number, z: number): number | undefined;
+  /**
+   * Height on the displayed terrain triangles, including refinement morphs. Use for movement
+   * and ground placement, with resident coverage as a fallback outside the camera's cut.
+   * Roads, land cover and model-owned openings still need collision queries.
+   */
+  sampleSurfaceHeight(x: number, z: number): number | undefined;
   /**
    * True when the view's terrain and enabled layers within `radius` of (x, z) are on screen:
    * every selected tile there is displayed with its layers published (a layer that failed for
@@ -1519,6 +1528,42 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     // An aircraft's center/wheels can cross a tile edge behind its cockpit camera. The visual
     // cut need not include that ground, but its cached height must still support simulation;
     // waiting for a tile behind a stopped camera otherwise deadlocks flight indefinitely.
+    return fallback;
+  }
+
+  sampleSurfaceHeight(x: number, z: number): number | undefined {
+    this.settleVisibility();
+    let fallback: number | undefined;
+    for (let level = this.descriptor.maxLevel; level >= this.descriptor.minLevel; level--) {
+      const address = terrainPyramidAddressAt(this.descriptor, level, x, z);
+      if (address === undefined) continue;
+      const key = terrainPyramidTileKey(address);
+      const tile = this.resident.get(key);
+      if (tile === undefined) continue;
+      // Read the live grid so queries follow both reduced resolution and in-progress morphs.
+      // Cutouts replace its topology; the original grid remains the terrain anchoring surface.
+      const position = terrainGroundSourceGeometry(tile.surface).getAttribute('position');
+      const cells = tile.surfaceResolution - 1;
+      const size = terrainPyramidTileSize(this.descriptor, level);
+      const origin = terrainPyramidTileOrigin(this.descriptor, address);
+      const gx = Math.max(0, Math.min(cells, ((x - origin[0]) / size) * cells));
+      const gz = Math.max(0, Math.min(cells, ((z - origin[1]) / size) * cells));
+      const col = Math.min(cells - 1, Math.floor(gx));
+      const row = Math.min(cells - 1, Math.floor(gz));
+      const u = gx - col;
+      const v = gz - row;
+      const nw = row * tile.surfaceResolution + col;
+      const ne = position.getY(nw + 1);
+      const sw = position.getY(nw + tile.surfaceResolution);
+      const height =
+        u + v <= 1
+          ? position.getY(nw) * (1 - u - v) + ne * u + sw * v
+          : position.getY(nw + tile.surfaceResolution + 1) * (u + v - 1) +
+            ne * (1 - v) +
+            sw * (1 - u);
+      if (this.displayed.has(key)) return height;
+      fallback ??= height;
+    }
     return fallback;
   }
 

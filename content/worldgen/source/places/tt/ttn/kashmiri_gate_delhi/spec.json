@@ -1,0 +1,376 @@
+{
+  "planId": "kashmiri_gate_delhi",
+  "id": "kashmiri_gate_delhi",
+  "assetId": "molen.worldgen.structure.kashmiri_gate_delhi",
+  "title": "Kashmiri Gate, Delhi",
+  "wikidataId": "Q1196073",
+  "category": "historic-city-gate",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 77.22902855000001,
+    "latitude": 28.66655535
+  },
+  "size": [
+    17.802956581115723,
+    11.100000262260437,
+    22.222349166870117
+  ],
+  "actualBounds": {
+    "min": [
+      -8.89938735961914,
+      -12.302900314331055,
+      -11.106888771057129
+    ],
+    "max": [
+      8.903569221496582,
+      -1.2029000520706177,
+      11.115460395812988
+    ]
+  },
+  "visualBrief": "Whole surviving Kashmiri Gate physical five-control block: two pointed through-vaulted passages, framed recessed surrounds, masonry shell/cornice/coping and slotted scalloped parapets. Cleared published Bourne1860s/Beato1858 expired originals first, current native gate outline. Original bounded enduring shell/current hidden profiles, excluding archaeological gardens/cityfortifications/moat/old timberbridge/metro.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:1857_cashmeri_gate_delhi.jpg",
+    "https://commons.wikimedia.org/wiki/File:Felice_Beato_(British,_born_Italy_-_(Cashmere_Gate._Front_view)_-_Google_Art_Project.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kashmiri-gate-delhi-wp",
+      "url": "https://qualla.com/kashmiri-gate-delhi/"
+    }
+  ],
+  "referenceInputHash": "c230a4ed966aef7aec512e5a179c40bdf77e9ed70a0fad8d9ecc14f41f177b65",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttn/kashmiri_gate_delhi/models/kashmiri-gate-delhi-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/kashmiri-gate-delhi-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "kashmiriGateDelhiSkyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "kashmiriGateDelhiDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "kashmiriGateDelhiStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "kashmiriGateDelhiCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_limestone",
+    "stone_limestone_raw",
+    "stone_sandstone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.3",
+    "groundY": -12.3529,
+    "cameraYaw": 0.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent256m129x12916641samples/one rawTerrariumtile/SW220.8353m providerrelative datum/current native5-control bboxanchor/heading0 frozen before once-only exterior floor-11.7029m and all sections/geometry. Original bounded pointed passage halfwidth2.15m/centers±4.8/spring4.5/apex7.25m, outer surround3.05halfwidth/apex8.0, blocktop9.0/cornice9.18/parapet crown10.5m. These follow ratios of exact published named-photographer expired originals, not a measured survey. Current fine repairs/colors/hiddenvault/roof/merlon census/damage/contact notverified. No late floor/sections/field/anchor retuning/fitting/flattening/reframe/reacquire/raising.",
+    "anchor": [
+      77.22902855000001,
+      28.66655535
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        77.22810712784765,
+        28.665746869942506
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest original provider-field datum before floor/sections/geometry, no surveyed street/threshold/foundation contact."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/464312292"
+    ],
+    "source": "https://www.openstreetmap.org/way/464312292",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d5821d7240313b68287d8981cdec7bd20a7826bfcaeb21635db4d234c9d01ea7",
+    "notes": "Whole surviving Kashmiri/Kashmere Gate Delhi Q1196073/native city_gate way464312292 five-control physical envelope: two pointed passage arches, deep masonry gate block/vaults, recessed framed arch surrounds, weathered cornice/coping, crenellated slit parapet. Enduring gate core with bounded restored/current hidden profiles and census, not entire protectedarchaeological site265818322 or cityfortifications, moat, old timber approachbridge, metro/ISBT/neighbourhood. No historical rubble/blockedportal/people copied from1858photos."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named surviving city_gate way464312292/Q1196073 whole five-control physical gateway, fixed bboxanchor/heading0 before independentfield/floor/sections/geometry. Separate archaeological garden265818322 and metro/roads excluded.",
+    "Actual5-control surviving city_gate464312292/Q1196073 physical block, native longedge1-to2 fixes longitudinal axis. Whole native polygon retained in foundation everyLOD; two passage subdivisions/pointed vault/surround/parapet profiles original photo-bounded estimates. Archaeologicalsite265818322 is a property/garden polygon and cannot substitute for the building. Separate citywallfortifications, moat, old timberbridge, metro/ISBT/neighbourhood excluded.",
+    "Original independent256m129x12916641samples/one rawTerrariumtile/SW220.8353m providerrelative datum/current native5-control bboxanchor/heading0 frozen before once-only exterior floor-11.7029m and all sections/geometry. Original bounded pointed passage halfwidth2.15m/centers±4.8/spring4.5/apex7.25m, outer surround3.05halfwidth/apex8.0, blocktop9.0/cornice9.18/parapet crown10.5m. These follow ratios of exact published named-photographer expired originals, not a measured survey. Current fine repairs/colors/hiddenvault/roof/merlon census/damage/contact notverified. No late floor/sections/field/anchor retuning/fitting/flattening/reframe/reacquire/raising.",
+    "Two exact cleared published named-photographer expired originals, Bourne1860s and Beato1858, personally inspected. No source pixels embedded; modern CC photos unselected. Enduring gateway shape, not exact1858 wartime damage, infilled portal or old timberbridge reconstruction.",
+    "Original bounded height/passages/hidden roof-vault profiles/parapet and slit census/current repairs and neutral masonry colors. No exact restoration survey or present-condition claim. Simplified original architectural recesses omit copied inscriptions and sculptural relief.",
+    "Original field/floor/sections frozen before geometry, exact contact unverified, preview/replacementfalse; synthetic neighboring houses/flatground are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-gate-two-pointed-passages-and-parapet",
+      "position": [
+        -36.720057401768045,
+        2.2971000000000004,
+        -5.969705554787428
+      ],
+      "lookAt": [
+        0,
+        -6.7029,
+        0
+      ]
+    },
+    {
+      "name": "whole-five-native-control-gate-roof-plan",
+      "position": [
+        0.13362737473898462,
+        42.2971,
+        -0.06814488036798491
+      ],
+      "lookAt": [
+        0,
+        -10.7029,
+        0
+      ]
+    },
+    {
+      "name": "physical-through-passages-and-pointed-vault-soffits",
+      "position": [
+        -12.963799631976073,
+        -8.7029,
+        11.999162433352465
+      ],
+      "lookAt": [
+        2.180636171775517,
+        -8.7029,
+        4.276075991647508
+      ]
+    },
+    {
+      "name": "whole-opposite-double-portal-and-scalloped-parapet",
+      "position": [
+        41.646351668834,
+        3.2971000000000004,
+        6.82505623975419
+      ],
+      "lookAt": [
+        0,
+        -6.7029,
+        0
+      ]
+    },
+    {
+      "name": "original-bounded-cornice-merlons-and-deep-portal-surrounds",
+      "position": [
+        -22.395473803023414,
+        -0.7028999999999996,
+        -4.294502664813708
+      ],
+      "lookAt": [
+        -4.944043507045857,
+        -4.7029,
+        -3.0913482172731226
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7497,
+    "vertices": 22491,
+    "materials": 4,
+    "bytes": 1113452,
+    "sha256": "sha256:921ad836be9da7f455b9ff3bc0142571cd4820d495a0a675726070b0d9ad6969"
+  }
+}

@@ -53,6 +53,96 @@ const VIEW = {
 };
 
 describe('screen-space terrain pyramid', () => {
+  it.each([3, 5, 9])('samples displayed triangles at surface resolution %i', async (resolution) => {
+    const d = descriptor({ maxLevel: 0, tileResolution: 9, origin: [1000, 2000], rootSize: 100 });
+    const samples = Float32Array.from(
+      { length: 81 },
+      (_, i) =>
+        (((i % 9) - 4) ** 2 + (Math.floor(i / 9) - 4) ** 2) / 50 +
+        (((i % 9) + Math.floor(i / 9)) % 3) * 0.1,
+    );
+    const field = new Heightfield(samples, 9, 9, {
+      origin: d.origin,
+      worldSize: [100, 100],
+      height: d.height,
+    });
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async () => field },
+      {
+        initialView: { ...VIEW, position: [1050, 100, 2050] },
+        viewDistance: 200,
+        maxScreenSpaceError: 10000,
+        maxSelectedTiles: 4,
+        maxResidentTiles: 8,
+        maxConcurrentLoads: 4,
+        maxSurfaceTileResolution: resolution,
+      },
+    );
+    try {
+      await stream.whenIdle();
+      stream.object.updateMatrixWorld(true);
+      const ray = new THREE.Raycaster();
+      let largestDifference = 0;
+      for (const [x, z] of [
+        [1003, 2007],
+        [1021, 2064],
+        [1077, 2012],
+        [1096, 2091],
+      ]) {
+        ray.set(new THREE.Vector3(x, 1000, z), new THREE.Vector3(0, -1, 0));
+        const hit = ray.intersectObject(stream.object, true)[0];
+        expect(hit).toBeDefined();
+        expect(stream.sampleSurfaceHeight(x, z)).toBeCloseTo(hit?.point.y ?? NaN, 5);
+        expect(stream.sampleHeight(x, z)).toBe(field.sampleHeight(x, z));
+        largestDifference = Math.max(
+          largestDifference,
+          Math.abs(field.sampleHeight(x, z) - (hit?.point.y ?? NaN)),
+        );
+      }
+      expect(largestDifference).toBeGreaterThan(0.1);
+      expect(stream.sampleSurfaceHeight(999, 2000)).toBeUndefined();
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('samples the current refinement morph instead of jumping ahead to its target height', async () => {
+    const d = descriptor({ maxLevel: 1 });
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 10000,
+        viewDistance: 100,
+        morphMilliseconds: 1000,
+        maxSelectedTiles: 8,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+      },
+    );
+    try {
+      await stream.whenIdle();
+      expect(stream.sampleSurfaceHeight(2, 2)).toBe(0);
+      stream.setBudget({ maxScreenSpaceError: 1 });
+      await stream.whenIdle();
+      expect(stream.sampleHeight(2, 2)).toBe(25);
+      expect(stream.sampleSurfaceHeight(2, 2)).toBe(0);
+      stream.updateTransitions(performance.now() + 500);
+      const mid = stream.sampleSurfaceHeight(2, 2) ?? NaN;
+      expect(mid).toBeGreaterThan(0);
+      expect(mid).toBeLessThan(25);
+      stream.object.updateMatrixWorld(true);
+      const ray = new THREE.Raycaster(new THREE.Vector3(2, 100, 2), new THREE.Vector3(0, -1, 0));
+      expect(mid).toBeCloseTo(ray.intersectObject(stream.object, true)[0]?.point.y ?? NaN, 5);
+      stream.updateTransitions(performance.now() + 2000);
+      expect(stream.sampleSurfaceHeight(2, 2)).toBe(25);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('keeps all four approaching families at the minimum render selection budget', async () => {
     const d = descriptor({ rootSize: 512, minLevel: 4, maxLevel: 4 });
     const stream = createTerrainPyramidStream(
@@ -102,6 +192,7 @@ describe('screen-space terrain pyramid', () => {
         expect.objectContaining({ level: 2, x: 0, z: 0 }),
       );
       expect(stream.sampleHeight(2, 2)).toBe(50);
+      expect(stream.sampleSurfaceHeight(2, 2)).toBe(50);
       expect(stream.sampleHeight(-1, -1)).toBeUndefined();
     } finally {
       stream.dispose();

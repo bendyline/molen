@@ -47,6 +47,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `boat` | kernel/boats | Waterline-aligned powered hull with data-driven handling and shared seats. |
 | `boatInput` | kernel/boats | Helm intent: signed thrust, steering and low-speed anchor. Only the driver controls it. |
 | `boatState` | kernel/boats | Snapshot-safe hull motion, buoyancy and anchoring; owned by installBoats. |
+| `boostMode` | kernel | World-wide 4× travel assist for people and vehicles. Control response times stay normal. |
 | `character` | kernel/character | Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). |
 | `collider` | kernel/kinematics | 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. |
 | `collider3d` | physics-rapier | 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. |
@@ -153,6 +154,10 @@ Required: `kind`, `type`, `lane`, `s`, `speed`, `seed`, `length`, `width`, `stat
       "type": "number",
       "minimum": 0,
       "description": "Speed along the lane in m/s."
+    },
+    "boosted": {
+      "description": "Lane speed includes the 4× travel boost.",
+      "type": "boolean"
     },
     "cruise": {
       "type": "number",
@@ -3959,6 +3964,40 @@ Required: `mode`, `speed`, `strideRate`, `phaseAt`, `phaseAtTick`, `modeAtTick`
 
 ## Owner: kernel
 
+### `boostMode`
+
+World-wide 4× travel assist for people and vehicles. Control response times stay normal.
+
+Required: `enabled`
+
+```json
+{
+  "enabled": true
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Enable 4× travel speed for people and vehicles."
+    }
+  },
+  "required": [
+    "enabled"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
 ### `lifetime`
 
 Auto-despawn countdown in ticks.
@@ -6251,6 +6290,10 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "boosted": {
+      "description": "Speeds include the 4× travel boost; kernel-owned.",
+      "type": "boolean"
+    },
     "mach": {
       "description": "True airspeed divided by local speed of sound.",
       "type": "number",
@@ -7211,6 +7254,10 @@ Required: `speed`, `lateralSpeed`, `velocity`, `yaw`, `yawRate`, `steer`, `pitch
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "boosted": {
+      "description": "Horizontal speeds include the 4× travel boost.",
+      "type": "boolean"
+    },
     "speed": {
       "type": "number",
       "description": "Forward speed through water in m/s."
@@ -9259,6 +9306,10 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "boosted": {
+      "description": "Speeds include the 4× travel boost; kernel-owned.",
+      "type": "boolean"
+    },
     "speed": {
       "type": "number",
       "description": "Signed forward speed in meters per second."

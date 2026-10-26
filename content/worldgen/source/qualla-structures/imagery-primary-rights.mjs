@@ -46,6 +46,61 @@ export function nativeNamedUploaderRelease(page, username, binding) {
     !text(info?.extmetadata?.Restrictions?.value)
   );
 }
+/** Dated book photograph with the same named, long-deceased photographer in both records. */
+export function nativeExpiredNamedBookPhoto(page, publication, proof, artist) {
+  const wiki = page?.revisions?.[0]?.slots?.main?.['*'] ?? '',
+    info = page?.imageinfo?.[0],
+    field = (name) =>
+      wiki.match(new RegExp(`\\|\\s*${name}\\s*=([^\\r\\n]*)`, 'i'))?.[1]?.trim() ?? '',
+    metadata = publication?.catalog?.metadata,
+    year = proof.publicationYear,
+    born = proof.creatorBorn,
+    died = proof.creatorDied,
+    id = proof.archiveIdentifier,
+    creator = `${artist} (${born}-${died})`,
+    creators = [metadata?.creator].flat();
+  return (
+    /^[a-z0-9][a-z0-9-]+$/.test(id ?? '') &&
+    typeof artist === 'string' &&
+    artist.trim().length > 3 &&
+    !/unknown|anonymous|unidentified|unrecorded|assumed|probably/i.test(text(wiki)) &&
+    Number.isInteger(year) &&
+    year >= 1800 &&
+    year <= 1922 &&
+    Number.isInteger(born) &&
+    born >= 1500 &&
+    born < year &&
+    Number.isInteger(died) &&
+    died >= year &&
+    died <= 1915 &&
+    field('author') === creator &&
+    text(info?.extmetadata?.Artist?.value) === creator &&
+    field('date') === `${year}-12-31` &&
+    field('source') === `https://archive.org/details/${id}` &&
+    typeof proof.publicationTitle === 'string' &&
+    proof.publicationTitle.length > 3 &&
+    field('description').includes(`From ''${proof.publicationTitle}''`) &&
+    /\{\{\s*PD-old-70-1923\s*\}\}/i.test(wiki) &&
+    !/\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) &&
+    info?.extmetadata?.Copyrighted?.value === 'False' &&
+    info?.extmetadata?.AttributionRequired?.value === 'false' &&
+    !text(info?.extmetadata?.Restrictions?.value) &&
+    publication?.source === `https://archive.org/metadata/${id}` &&
+    metadata?.identifier === id &&
+    metadata?.date === String(year) &&
+    typeof metadata?.title === 'string' &&
+    metadata.title.toLowerCase().includes(proof.publicationTitle.toLowerCase()) &&
+    metadata?.licenseurl === 'http://creativecommons.org/publicdomain/mark/1.0/' &&
+    typeof metadata?.source === 'string' &&
+    /(?:Library|Libraries)\b/.test(metadata.source) &&
+    typeof proof.archiveCreatorCitation === 'string' &&
+    proof.archiveCreatorCitation ===
+      `${artist.split(' ').at(-1)}, ${artist.split(' ').slice(0, -1).join(' ')}, ${born}-${died}` &&
+    creators.includes(proof.archiveCreatorCitation) &&
+    typeof metadata?.description === 'string' &&
+    metadata.description.includes(`photographs specifically taken by ${artist}`)
+  );
+}
 export function inspectQuallaPrimaryRights(reference, original, root = modelRightsRoot) {
   const proof = reference.publicDomainEvidence;
   if (!proof) return null;
@@ -64,6 +119,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-expired-library-photo',
       'commons-native-expired-periodical-photo',
       'commons-native-expired-us-book-photo',
+      'commons-native-expired-named-book-photo',
       'commons-native-expired-historical-print',
       'commons-native-slq-archival-photo',
       'commons-native-qsa-government-plan',
@@ -277,6 +333,13 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     )
       return failed;
     basis = `Exact native photograph in ${proof.publicationTitle}, issue ${proof.issueNumber}, ${proof.publicationYear}; named photographic credit, BNE publication record and explicit PD-AR-Photo/PD-US-expired grants`;
+  } else if (proof.kind === 'commons-native-expired-named-book-photo') {
+    if (
+      !/\.jpe?g$/i.test(nativeUrl.pathname) ||
+      !nativeExpiredNamedBookPhoto(page, record.publicationEvidence, proof, reference.artist)
+    )
+      return failed;
+    basis = `Exact native photographic plate in ${proof.publicationTitle}, ${proof.publicationYear}; named photographer ${reference.artist} (${proof.creatorBorn}-${proof.creatorDied}), matching library book record and explicit PD-old-70-1923 grant`;
   } else if (proof.kind === 'commons-native-expired-us-book-photo') {
     const publication = record.publicationEvidence,
       metadata = publication?.catalog?.metadata,

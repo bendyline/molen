@@ -10,12 +10,15 @@ import { BoatState } from '@bendyline/molen-kernel/boats';
 // Steering is client-side, after the world step: the few actors near the viewer walk with the
 // walker's own capsule controller against the streamed scene (one small collision neighbourhood
 // each), the rest move kinematically over the terrain. There is no pathfinding: an actor walks
-// straight at its goal and reports `stuck` when that does not get it there.
+// straight at its goal and reports `stuck` when that does not get it there. New actors wait for
+// local terrain and collision support before becoming visible, with an open-ground search that
+// keeps them beside low obstacles (including parked cars) rather than on their roofs.
 
 import { AmbientFigures, type WalkerView } from '@bendyline/molen-ambient/client';
 import type { AmbientHandle } from '@bendyline/molen-ambient/kernel';
 import {
   RUN_SPEED,
+  WALK_PLACEMENT_RADIUS,
   WALK_SPEED,
   WalkCollision,
   WalkController,
@@ -39,7 +42,8 @@ import {
   VehicleState,
   vehicleLocalPoint,
 } from '@bendyline/molen-kernel/vehicles';
-import { componentHandle, Transform, type World } from '@bendyline/molen-kernel/world';
+import { componentHandle, isBoostMode, Transform, type World } from '@bendyline/molen-kernel/world';
+import { boostSpeedMultiplier } from '@bendyline/molen-schema';
 import type * as THREE from 'three';
 import type { EarthPlace } from './airfields';
 import type { EarthVehicles } from './vehicles';
@@ -177,6 +181,8 @@ export interface EarthActorStack {
   world: World;
   /** The streamed scene: collision for walking actors, and the parent of their figures. */
   root: THREE.Object3D;
+  /** Wait for local terrain and its enabled layers before placing an on-foot actor. */
+  isAreaReady?(x: number, z: number, radius: number): boolean;
   ambient?: AmbientHandle;
   vehicles?: EarthVehicles;
 }
@@ -666,7 +672,12 @@ export class EarthActorDirector {
     actor.retryAt = 0;
     actor.wander = { goal: undefined, until: 0 };
     // A forced boarding is immediate, so the host can drive off in the same breath.
-    if (behaviour.kind === 'board' && behaviour.force === true && actor.placed && !actor.seat) {
+    if (
+      behaviour.kind === 'board' &&
+      behaviour.force === true &&
+      this.stack !== undefined &&
+      !actor.seat
+    ) {
       const outer = this.raising;
       this.raising = new Set();
       this.board(actor, behaviour);
@@ -774,9 +785,20 @@ export class EarthActorDirector {
       } else if (this.host.ownsVehicle?.(vehicle) === true) return;
       actor.seat = undefined;
     }
-    const ground = this.host.groundHeight(x, z);
-    if (ground === undefined) return;
-    actor.pos = [x, ground, z];
+    const stack = this.stack;
+    if (stack === undefined || stack.isAreaReady?.(x, z, WALK_PLACEMENT_RADIUS) === false) return;
+    // An elevation sample may precede the collision surface or differ from its rendered mesh.
+    // Resolve a supported, unoccupied spot before drawing the figure; gravity is not placement.
+    const collision = new WalkCollision();
+    collision.update(stack.root, x, z);
+    const walker = new WalkController();
+    walker.reset(x, z);
+    const groundCollision = new WalkCollision({ ignoreVehicles: true });
+    groundCollision.update(stack.root, x, z);
+    if (!walker.place(collision, this.ground, groundCollision)) return;
+    actor.pos = [walker.feet.x, walker.feet.y, walker.feet.z];
+    actor.walker = walker;
+    actor.collision = collision;
     actor.heading = actor.geo.heading;
     this.spawnEntity(world, actor, actor.pos);
     actor.placed = true;
@@ -1119,6 +1141,11 @@ export class EarthActorDirector {
       return STAND;
     }
     if (behaviour.force === true) {
+      // A seat is already supported by its vehicle; boarding must not wait for on-foot terrain.
+      if (!actor.placed) {
+        this.spawnEntity(world, actor, [t.pos[0], t.pos[1], t.pos[2]]);
+        actor.placed = true;
+      }
       if (this.seatNow(world, actor, vehicle, seat)) this.boarded(world, actor, vehicle, seat.id);
       else this.raise('no-seat');
       return STAND;
@@ -1195,6 +1222,7 @@ export class EarthActorDirector {
 
   /** Walk (near the viewer, with collision) or glide over the terrain toward the steer goal. */
   private move(world: World, actor: Actor, steer: Steer, dt: number): void {
+    const boosted = isBoostMode(world);
     const before = actor.pos;
     let vx = 0;
     let vz = 0;
@@ -1202,6 +1230,7 @@ export class EarthActorDirector {
     const collision = actor.collision;
     const root = this.stack?.root;
     if (walker !== undefined && collision !== undefined && root !== undefined) {
+      walker.boostMode = boosted;
       collision.update(root, walker.feet.x, walker.feet.z);
       const input: WalkInput =
         steer.goal !== undefined && steer.speed > 0
@@ -1221,7 +1250,7 @@ export class EarthActorDirector {
       const dx = steer.goal[0] - actor.pos[0];
       const dz = steer.goal[1] - actor.pos[2];
       const distance = Math.hypot(dx, dz);
-      const step = Math.min(distance, steer.speed * dt);
+      const step = Math.min(distance, steer.speed * dt * boostSpeedMultiplier(boosted));
       const x = actor.pos[0] + (dx / distance) * step;
       const z = actor.pos[2] + (dz / distance) * step;
       const ground = this.host.groundHeight(x, z);

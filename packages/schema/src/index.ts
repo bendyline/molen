@@ -60,6 +60,7 @@ export type {
   WaterWave,
 } from './boats';
 export { waterSettingsSchema } from './boats';
+export { BOOST_SPEED_MULTIPLIER, boostSpeedMultiplier } from './boost';
 export type { PayloadCheck } from './commands';
 export { commandPayloadValidator, compileCommandPayload } from './commands';
 export type {

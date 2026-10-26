@@ -48,9 +48,14 @@ for (const entry of knownSourceEntries().filter((e) => e.hasModel)) {
   const spec = JSON.parse(await readFile(resolve(dir, 'spec.json'), 'utf8'));
   for (const definition of [spec.runtimeLodOverlay, spec.sourceGeometry].filter(Boolean)) {
     const module = definition.module;
+    const localPrefix = `${entry.sourcePath}/models/`;
     if (
       typeof module !== 'string' ||
-      !/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(module)
+      (!/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(module) &&
+        !(
+          module.startsWith(localPrefix) &&
+          /^[a-z0-9-]+\.mjs$/.test(module.slice(localPrefix.length))
+        ))
     )
       throw new Error(`${entry.assetId}: invalid runtime overlay source`);
     await dependencies(module);

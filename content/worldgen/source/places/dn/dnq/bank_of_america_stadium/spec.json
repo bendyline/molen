@@ -1,0 +1,638 @@
+{
+  "planId": "bank_of_america_stadium",
+  "id": "bank_of_america_stadium",
+  "assetId": "molen.worldgen.structure.bank_of_america_stadium",
+  "title": "Bank of America Stadium",
+  "wikidataId": "Q806673",
+  "category": "stadium",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -80.85280345,
+    "latitude": 35.22576925
+  },
+  "size": [
+    275.05194091796875,
+    65.01280117034912,
+    279.6234436035156
+  ],
+  "actualBounds": {
+    "min": [
+      -137.52597045898438,
+      -14.003600120544434,
+      -139.8117218017578
+    ],
+    "max": [
+      137.52597045898438,
+      51.00920104980469,
+      139.8117218017578
+    ]
+  },
+  "visualBrief": "Complete open-air Bank of America Stadium: native whole98/open-field40/control component rings, six domed towers, three actual open monumental arches, tiered blue seating/gray aisles and twin dark suitebands, end video structures and angled white floodlight banks. Exact cleared published USGS2002 public-domain aerial and Gardner2021 CC0 bowl photo first/only. Native heights plus operator architectural facts; fine sections/rows/census/hidden structure/contact bounded estimates. No future renovation, ads/sculptures/interiors/practice facilities/parking/landscape.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Bank_of_America_Stadium_satellite_view.png",
+    "https://commons.wikimedia.org/wiki/File:2021_Duke%27s_Mayo_Bowl_stadium_skyline.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bank-of-america-stadium-wp",
+      "url": "https://qualla.com/bank-of-america-stadium/"
+    }
+  ],
+  "referenceInputHash": "0f49f7a5dc9eec4faa88f1b503bf8bfe934fe1b73f87ee5a11ecbdb4e63f4fc2",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnq/bank_of_america_stadium/models/bank-of-america-stadium-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c",
+    "authored-wall-openings.mjs": "sha256:97a3e1b52a1263d4f243be08b26c478d6fd40bb13528cae3edc261b47c6c9ba0"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/bank-of-america-stadium-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "bankOfAmericaStadiumSkyline",
+    "errorMeters": 6,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.1
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.28,
+        "metallic": 0.18
+      },
+      "field": {
+        "slot": "roof",
+        "localRef": "palette:#feffff",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "video": {
+        "slot": "window",
+        "localRef": "palette:#fefefe",
+        "roughness": 0.67,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bankOfAmericaStadiumDistrict",
+        "errorMeters": 2.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.18
+          },
+          "field": {
+            "slot": "roof",
+            "localRef": "palette:#feffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "video": {
+            "slot": "window",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.67,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "bankOfAmericaStadiumStreet",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.18
+          },
+          "field": {
+            "slot": "roof",
+            "localRef": "palette:#feffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "video": {
+            "slot": "window",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.67,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "bankOfAmericaStadiumCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.18
+          },
+          "field": {
+            "slot": "roof",
+            "localRef": "palette:#feffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "video": {
+            "slot": "window",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.67,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.2",
+    "groundY": -7.1536,
+    "cameraYaw": 0.7853981633974483
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent512m129x12916641samples/two rawtiles/SW224.186m providerdatum fixed before once-only southwest entry exterior floor-7.0036m and all sections/geometry. Field−6.3128m inferred consistently from native58m upper fixtures and operator211ft field-to-scoreboard; not surveyed field excavation. Native tiers7/15/43m, upperstart20m, twin suitebands15–20m, towers33/36/38m, portal.8/13/27m, boards41.0968–58.0128m/60.452m wide selected once before geometry. Bowl row counts/aisles/support thickness/hiddenprofile/finish/light census/contact original bounded estimates. No fitting/flattening/reacquire/reframe/late raise. Intrinsic bowl terrain opening bounded by actual upper-bowl masonry contour; source DEM bytes untouched, preview/replacementfalse.",
+    "anchor": [
+      -80.85280345,
+      35.22576925
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -80.85489283842233,
+        35.22406245876751
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest source datum before original field/floor/sections/geometry; not surveyed field/entry/foundation."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          58.06672600060296,
+          -99.13557252607843
+        ],
+        [
+          67.20572210625502,
+          -88.02588734480037
+        ],
+        [
+          87.77528348991466,
+          -63.36862013385706
+        ],
+        [
+          94.74092629267527,
+          -55.08645001934088
+        ],
+        [
+          97.35986249094522,
+          -52.080823767601245
+        ],
+        [
+          104.24366353722722,
+          -44.29959136118102
+        ],
+        [
+          111.98225625869627,
+          -32.64444067496933
+        ],
+        [
+          117.03825808514011,
+          -22.837193536164506
+        ],
+        [
+          122.71261984525844,
+          -6.083610172154018
+        ],
+        [
+          124.01299441582401,
+          9.92413260431724
+        ],
+        [
+          120.8666335669892,
+          24.584909541477593
+        ],
+        [
+          114.98312065171267,
+          35.9840253990366
+        ],
+        [
+          108.00838432102879,
+          48.028794302832026
+        ],
+        [
+          100.48803628134894,
+          57.68019415428697
+        ],
+        [
+          97.80544538503145,
+          54.51872061598842
+        ],
+        [
+          39.50683440816982,
+          104.0113662228528
+        ],
+        [
+          42.18033177656402,
+          107.16170781194192
+        ],
+        [
+          34.76001255050163,
+          111.50316795299209
+        ],
+        [
+          21.383432180607375,
+          117.67026774303027
+        ],
+        [
+          6.651916070023324,
+          121.74456110621831
+        ],
+        [
+          -8.97985935794874,
+          122.93567965738836
+        ],
+        [
+          -24.602541257997522,
+          118.72780290526926
+        ],
+        [
+          -37.76997047144132,
+          111.6144874435043
+        ],
+        [
+          -51.41935669583355,
+          99.62537828496498
+        ],
+        [
+          -59.13066883224048,
+          91.88867367538242
+        ],
+        [
+          -64.64134708069385,
+          85.08705278752626
+        ],
+        [
+          -74.53510604791552,
+          73.56548549024562
+        ],
+        [
+          -95.15922860299165,
+          49.15312115953655
+        ],
+        [
+          -101.27917325848848,
+          42.03980569777159
+        ],
+        [
+          -104.20728942424181,
+          38.666825126867046
+        ],
+        [
+          -109.16326243577595,
+          32.29935025343229
+        ],
+        [
+          -118.82968319199286,
+          19.575532455772183
+        ],
+        [
+          -126.30456358947177,
+          5.315505685404985
+        ],
+        [
+          -130.64217666603912,
+          -8.554902867378475
+        ],
+        [
+          -131.92436417946587,
+          -18.106115177530615
+        ],
+        [
+          -129.9874426167947,
+          -28.737126548340587
+        ],
+        [
+          -127.0775135081802,
+          -41.59452773493174
+        ],
+        [
+          -126.75014648355798,
+          -43.0082852679172
+        ],
+        [
+          -120.47561184431946,
+          -54.15136629682352
+        ],
+        [
+          -112.01863037426621,
+          -64.06993292614057
+        ],
+        [
+          -105.7804698480131,
+          -69.6247755167796
+        ],
+        [
+          -47.97290940743864,
+          -118.37158053531377
+        ],
+        [
+          -42.11667707722424,
+          -123.31416592655366
+        ],
+        [
+          -28.621880837865962,
+          -131.997086207863
+        ],
+        [
+          -14.108609410363385,
+          -135.71515720109554
+        ],
+        [
+          2.914475872576144,
+          -136.9619354975217
+        ],
+        [
+          9.079888170273927,
+          -134.88026101988098
+        ],
+        [
+          16.400178582718866,
+          -132.40896832386557
+        ],
+        [
+          30.49514770119733,
+          -125.23999311684449
+        ],
+        [
+          40.17975551455309,
+          -117.71479553907696
+        ],
+        [
+          49.80980215649234,
+          -108.87602797041774
+        ]
+      ],
+      "basis": "Intrinsic open bowl below exterior plaza; opening bounded by actual native upper-bowl masonry contour, original independent DEM unchanged."
+    },
+    "featureIds": [
+      "way/180768146",
+      "way/1245929758",
+      "way/1245929760",
+      "way/1306253435",
+      "way/1306253436",
+      "way/1306253437",
+      "way/1306253438",
+      "way/1306253439",
+      "way/1306253440",
+      "way/1306253441",
+      "way/1306253442",
+      "way/1306253445",
+      "way/1306253446",
+      "way/1306253447",
+      "way/1306253449",
+      "way/1306253450",
+      "way/1306253451",
+      "way/1306253452",
+      "way/1306253455",
+      "way/1306253456",
+      "way/1306253457",
+      "way/1306253458",
+      "way/1306253461",
+      "way/1306253462",
+      "way/1306253463",
+      "way/1306253464",
+      "way/1306253465",
+      "way/1306253466",
+      "way/1306253467",
+      "way/1306254408",
+      "way/1306254409",
+      "way/1245929759",
+      "way/1306253433",
+      "way/1306253443",
+      "way/1306253444",
+      "way/1306253454",
+      "way/1306253460",
+      "way/1306253459",
+      "way/1306253453",
+      "way/1306253434"
+    ],
+    "source": "https://www.openstreetmap.org/relation/12346952",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:899c012a34bec7c20c24c6a8dd0257d3b4c5c0464b15d76daa93e0023418e0d2",
+    "notes": "Whole actual open-air Bank of America Stadium/Q806673/nativebuildingrelation12346952:98-control exterior,40-control open field/bowl boundary, actual mapped lower/club/upper bowl rings, six domed entrance towers/three massive arched portals, native surrounding facade/service/escalator components, two end video/light structures, tiered blue seating/gray aisles/dark suite glazing. Bowl stays open, field remains intrinsically inside stadium; no generic capped oval. Separate practice fields/dome, parking decks, surrounding towers/landscape/panther sculptures/artwork excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual native complete stadium building relation12346952/outerway180768146/inner1245929758 plus physically associated mapped bowl/tower/facade/light components, whole bbox anchor/heading0 frozen before independent field/floor/sections/geometry. OSM heights are source-tagged estimates, not a survey.",
+    "Native stadium whole98/openfield40 controls retained everyLOD. Native lower140/club180/upper51 contour points and physically associated facade/tower/service/light parts retained in detailedLODs; distant seating and domes simplify while retaining exact native whole footprint/open field and component locations. Source OSM heights7/15/43m tiers,24/27/31m facades,33m tower surrounds/38m domes/58m light structures are approximate tagged controls, not survey heights. No offsite high-rise polygons used.",
+    "Original independent512m129x12916641samples/two rawtiles/SW224.186m providerdatum fixed before once-only southwest entry exterior floor-7.0036m and all sections/geometry. Field−6.3128m inferred consistently from native58m upper fixtures and operator211ft field-to-scoreboard; not surveyed field excavation. Native tiers7/15/43m, upperstart20m, twin suitebands15–20m, towers33/36/38m, portal.8/13/27m, boards41.0968–58.0128m/60.452m wide selected once before geometry. Bowl row counts/aisles/support thickness/hiddenprofile/finish/light census/contact original bounded estimates. No fitting/flattening/reacquire/reframe/late raise. Intrinsic bowl terrain opening bounded by actual upper-bowl masonry contour; source DEM bytes untouched, preview/replacementfalse.",
+    "Two exact published public-domain/CC0 originals first/only; no questionable sources or metadata repair. Native plan and enduring shell represented, no speculative future renovation. Row counts/individual seats/aisles/hidden support and rear details are original simplified estimates. Blank screens/field omit protected branding/ads/art, no surrounding city/practice facilities/parking/sculptures copied.",
+    "Original independent512mfield/two raw tiles preserved. Below-grade field offset inferred from native fixture height/primary field-to-scoreboard dimension, not survey. Intrinsic native bowl ground opening for preview; portable low ground/context neighbors are fixtures; exact plaza/foundation/field contacts unverified, replacementfalse."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-stadium-open-bowl-six-towers",
+      "position": [
+        -330,
+        202.9964,
+        -330
+      ],
+      "lookAt": [
+        0,
+        9.996400000000001,
+        0
+      ]
+    },
+    {
+      "name": "whole-native-plan-open-field-and-complete-tiers",
+      "position": [
+        0.1,
+        582.9964,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        2.9964000000000004,
+        0
+      ]
+    },
+    {
+      "name": "southwest-twin-domed-towers-and-true-open-arch",
+      "position": [
+        -220,
+        34.9964,
+        190
+      ],
+      "lookAt": [
+        -80,
+        10.996400000000001,
+        65
+      ]
+    },
+    {
+      "name": "bowl-blue-tiered-seating-suitebands-and-end-board",
+      "position": [
+        -50.09917866239245,
+        24.9964,
+        -12.085895920169634
+      ],
+      "lookAt": [
+        67.8509030688135,
+        14.996400000000001,
+        24.48975471795078
+      ]
+    },
+    {
+      "name": "upper-open-arched-gallery-and-floodlight-trusses",
+      "position": [
+        180,
+        50.9964,
+        -60
+      ],
+      "lookAt": [
+        100,
+        25.9964,
+        -45
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 61416,
+    "vertices": 184248,
+    "materials": 6,
+    "bytes": 7599672,
+    "sha256": "sha256:1ce4f8bf8626e7f3450eab5cd1b724c4ce610d1335ae791e4bcf0415dd00aa79"
+  }
+}

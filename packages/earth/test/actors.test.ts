@@ -109,6 +109,54 @@ function drawnFigures(view: EarthView): number {
 }
 
 describe('Earth view actors', () => {
+  it('waits for streamed collision support and appears grounded beside parked cars', () => {
+    const world = new World({ tickRate: 60, seed: 'startup-grounding' });
+    const root = new THREE.Group();
+    let ready = false;
+    const director = new EarthActorDirector({
+      toWorld: (latitude, longitude) => [longitude, latitude],
+      toGeo: (x, z) => ({ latitude: z, longitude: x }),
+      groundHeight: () => 100,
+      emit: () => {},
+    });
+    director.attach({ world, root, isAreaReady: () => ready });
+    director.api.add({ id: 'newcomer', figure: PERSON, latitude: 0, longitude: 0 });
+    const frame = () =>
+      director.update(
+        1 / 60,
+        0,
+        [0, 102, 0],
+        {
+          position: [0, 100, 0],
+          heading: 0,
+          vehicle: undefined,
+          eye: [0, 101.7, 0],
+        },
+        { visible: false },
+      );
+    frame();
+    expect(director.api.pose('newcomer')?.placed).toBe(false);
+    ready = true;
+    frame();
+    expect(director.api.pose('newcomer')?.placed).toBe(false);
+    const ground = new THREE.Mesh(new THREE.BoxGeometry(100, 1, 100));
+    ground.position.y = 99.5;
+    const car = new THREE.Mesh(new THREE.BoxGeometry(2, 1.5, 4));
+    car.position.y = 100.75;
+    car.userData.vehicleGeometry = true;
+    root.add(ground, car);
+    frame();
+    const placed = director.api.pose('newcomer');
+    expect(placed?.placed).toBe(true);
+    expect(placed?.altitude).toBeCloseTo(100.02, 2);
+    expect(Math.abs(placed?.longitude ?? 0)).toBeGreaterThan(1.3);
+    for (let i = 0; i < 120; i++) frame();
+    expect(director.api.pose('newcomer')?.altitude).toBeCloseTo(100, 2);
+    director.dispose();
+    ground.geometry.dispose();
+    car.geometry.dispose();
+  });
+
   it('follows the walker at a distance and jogs to catch up', async () => {
     const { view, changes } = await mountView();
     const [x, z] = await startWalking(view);
@@ -264,7 +312,8 @@ describe('Earth view actors', () => {
     });
     await view.vehicles.whenPlaced(car);
     view.actors.add({ id: 'seated', figure: PERSON, latitude: 47.601, longitude: -122.3304 });
-    await pump(3);
+    await until(() => view.actors.pose('seated')?.placed === true, 120);
+    expect(view.actors.pose('seated')?.placed).toBe(true);
     view.actors.setBehaviour('seated', { kind: 'board', vehicle: car, force: true });
     expect(changes).toContain('seated:boarded');
     expect(view.actors.pose('seated')?.mounted).toEqual({ vehicle: car, seat: 'passenger' });

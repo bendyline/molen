@@ -405,6 +405,37 @@ describe('surface styles', () => {
     }
   });
 
+  it('parks cars on the visible paving triangles at reduced terrain resolution', () => {
+    const ctx = { ...context(), surfaceResolution: 2 };
+    const object = createTerrainSurfaceObject(fixture(), ctx, {
+      details: { maxFixturesPerTile: 30, parkedVehicles: PARKED_VEHICLES, roadSigns: false },
+    });
+    const paving = object.getObjectByName('surface:areas') as THREE.Mesh;
+    object.updateMatrixWorld(true);
+    const ray = new THREE.Raycaster();
+    const cars = object.userData.vehicles as import('@bendyline/molen-schema').VehiclePlacement[];
+    expect(cars.length).toBeGreaterThan(0);
+    for (const car of cars) {
+      const heights: number[] = [];
+      for (const z of [car.spec.wheelbase / 2, -car.spec.wheelbase / 2])
+        for (const x of [-car.spec.wheelTrack / 2, car.spec.wheelTrack / 2]) {
+          ray.set(
+            new THREE.Vector3(
+              car.position[0] - ctx.origin[0] + Math.cos(car.yaw) * x + Math.sin(car.yaw) * z,
+              100,
+              car.position[2] - ctx.origin[1] - Math.sin(car.yaw) * x + Math.cos(car.yaw) * z,
+            ),
+            new THREE.Vector3(0, -1, 0),
+          );
+          const hit = ray.intersectObject(paving)[0];
+          expect(hit).toBeDefined();
+          heights.push(hit?.point.y ?? NaN);
+        }
+      expect(car.position[1]).toBeCloseTo(heights.reduce((a, b) => a + b) / 4, 4);
+    }
+    disposeTerrainSurfaceObject(object);
+  });
+
   it('pins parked-car placements, which the vehicle type specs drive', () => {
     // Pins complete placements, including the catalog's body style and generic label metadata.
     const object = createTerrainSurfaceObject(fixture(), context(), {
@@ -412,7 +443,7 @@ describe('surface styles', () => {
     });
     const cars = object.userData.vehicles as unknown[];
     const digest = createHash('sha256').update(JSON.stringify(cars)).digest('hex').slice(0, 16);
-    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: '699ad9b1e94740e6' });
+    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: '9fcef89308df3984' });
   });
 
   it('draws parked cars from an injected vehicle list', () => {
@@ -425,7 +456,7 @@ describe('surface styles', () => {
     };
     const same = place(fromLibrary).cars;
     const digest = createHash('sha256').update(JSON.stringify(same)).digest('hex').slice(0, 16);
-    expect(digest).toBe('699ad9b1e94740e6');
+    expect(digest).toBe('9fcef89308df3984');
     const van = fromLibrary.find((vehicle) => vehicle.id === 'molen.entities.vehicle.van');
     expect(van).toBeDefined();
     const vans = place([van as TerrainParkedVehicle]).cars;

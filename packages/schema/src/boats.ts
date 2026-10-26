@@ -49,6 +49,8 @@ export interface BoatInputData extends JsonObject {
   anchor: boolean;
 }
 export interface BoatStateData extends JsonObject {
+  /** Kernel-owned: horizontal velocities include the 4× travel boost. */
+  boosted?: boolean;
   speed: number;
   lateralSpeed: number;
   /** World velocity [east, south], including current. */
@@ -101,6 +103,7 @@ export const boatInputSchema: z.ZodType<BoatInputData> = z.strictObject({
   anchor: z.boolean().describe('Request the low-speed anchor; release to apply thrust.'),
 });
 export const boatStateSchema: z.ZodType<BoatStateData> = z.strictObject({
+  boosted: z.boolean().optional().describe('Horizontal speeds include the 4× travel boost.'),
   speed: num.describe('Forward speed through water in m/s.'),
   lateralSpeed: num.describe('Lateral speed through water in m/s.'),
   velocity: z.tuple([num, num]).describe('World velocity [east, south] including current in m/s.'),

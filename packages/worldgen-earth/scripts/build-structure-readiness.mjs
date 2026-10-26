@@ -22,7 +22,7 @@ import { readStructurePlacements } from './placement-sources.mjs';
 import { readinessRefresh } from './readiness-refresh.mjs';
 import { readinessSourceIdentity } from './readiness-source-identity.mjs';
 import { reviewedCategoryRules } from './reviewed-category-rules.mjs';
-import { reviewedSourceMapFrame } from './reviewed-source-map-frame.mjs';
+import { nativePointSourcePath, reviewedSourceMapFrame } from './reviewed-source-map-frame.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
@@ -189,11 +189,16 @@ async function modelReadiness(candidate, geo) {
     qa.fidelityReview?.status === 'passed' &&
     typeof qa.fidelityReview?.notes === 'string' &&
     qa.fidelityReview.notes.trim().length > 0;
-  const localFrame = reviewedSourceMapFrame({
-    frameBytes:
+  const sourceFrameBytes =
       spec?.geographicProposal?.mapGeometrySource === 'map-frame.json'
         ? await bytes(`${sourceDirectory}/map-frame.json`)
         : undefined,
+    nativePointFile = nativePointSourcePath(sourceFrameBytes);
+  const localFrame = reviewedSourceMapFrame({
+    frameBytes: sourceFrameBytes,
+    nativeNodeBytes: nativePointFile
+      ? await bytes(`${sourceDirectory}/${nativePointFile}`)
+      : undefined,
     sourceManifest,
     spec,
     placement,

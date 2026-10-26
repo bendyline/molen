@@ -1,6 +1,9 @@
 import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { reviewedSourceMapFrame } from '../scripts/reviewed-source-map-frame.mjs';
+import {
+  nativePointSourcePath,
+  reviewedSourceMapFrame,
+} from '../scripts/reviewed-source-map-frame.mjs';
 
 const frame = {
   source: 'OpenStreetMap / ODbL; architect site plan',
@@ -35,6 +38,97 @@ const fixture = (evidence = frame) => {
   };
 };
 describe('reviewed source-local geographic frame', () => {
+  it('binds a named monitoring structure without a Wikidata item to its exact native record', () => {
+    const node = {
+        type: 'node',
+        id: 35925144,
+        lon: frame.anchor[0],
+        lat: frame.anchor[1],
+        tags: { name: 'Named summit weather station', man_made: 'tower' },
+      },
+      file = 'native-map/station-point.json',
+      make = (record = node, patch = {}) => {
+        const nativeNodeBytes = Buffer.from(
+            JSON.stringify({
+              sourceUrl: 'https://api.openstreetmap.org/api/0.6/map.json?bbox=113,23,114,24',
+              elements: [record],
+            }),
+          ),
+          evidence = {
+            ...frame,
+            sourceUrl: 'https://www.openstreetmap.org/node/35925144',
+            coordinateSpace: 'model-local-xz',
+            geometry: { point: [0, 0] },
+            mappedIdentity: {
+              name: node.tags.name,
+              featureIds: ['node/35925144'],
+              nativeSource: {
+                path: file,
+                hash: `sha256:${createHash('sha256').update(nativeNodeBytes).digest('hex')}`,
+              },
+              primaryReview: {
+                status: 'reviewed-named-structure',
+                reviewedOn: '2026-10-25',
+                basis:
+                  'Named native structure matched to operator text and current cleared exterior references.',
+                referencePages: ['https://example.org/operator'],
+              },
+            },
+            orientationControl: {
+              status: 'reviewed-approximation',
+              reviewedOn: '2026-10-25',
+              headingRadians: frame.heading,
+              uncertaintyDegrees: 180,
+              basis:
+                'Original unsurveyed facing from cleared views; native point establishes no bearing.',
+              referencePages: ['https://example.org/exterior'],
+            },
+            ...patch,
+          },
+          data = fixture(evidence);
+        data.sourceManifest.files.documents.push(file);
+        data.spec.geographicProposal.orientationPolicy = 'approximate-visualization';
+        return { ...data, nativeNodeBytes };
+      };
+    const data = make();
+    expect(reviewedSourceMapFrame(data)).toEqual(JSON.parse(data.frameBytes));
+    expect(reviewedSourceMapFrame({ ...data, nativeNodeBytes: undefined })).toBeUndefined();
+    expect(reviewedSourceMapFrame({ ...data, nativeNodeBytes: Buffer.from('{}') })).toBeUndefined();
+    expect(reviewedSourceMapFrame({ ...data, geographicReviewed: false })).toBeUndefined();
+    for (const record of [
+      { ...node, id: 35925145 },
+      { ...node, type: 'way' },
+      { ...node, lon: node.lon + 0.001 },
+      { ...node, tags: { ...node.tags, name: 'Different station' } },
+      { ...node, tags: { ...node.tags, man_made: 'survey_point' } },
+      { ...node, tags: { ...node.tags, wikidata: 'Q123' } },
+    ])
+      expect(reviewedSourceMapFrame(make(record))).toBeUndefined();
+    const noRecord = make();
+    noRecord.sourceManifest.files.documents = ['map-frame.json'];
+    expect(reviewedSourceMapFrame(noRecord)).toBeUndefined();
+    const wrongQ = make();
+    wrongQ.spec.wikidataId = 'Q123';
+    expect(reviewedSourceMapFrame(wrongQ)).toBeUndefined();
+    const unreviewed = make(node, {
+      mappedIdentity: {
+        ...JSON.parse(data.frameBytes).mappedIdentity,
+        primaryReview: { status: 'draft' },
+      },
+    });
+    expect(reviewedSourceMapFrame(unreviewed)).toBeUndefined();
+    for (const path of [
+      '../station.json',
+      '/private/station.json',
+      'native-map/../../station.json',
+      'C:\\station.json',
+    ])
+      expect(
+        nativePointSourcePath(
+          Buffer.from(JSON.stringify({ mappedIdentity: { nativeSource: { path } } })),
+        ),
+      ).toBeUndefined();
+  });
   it('accepts two separately reviewed wings without an invented courtyard polygon', () => {
     const evidence = {
       ...frame,

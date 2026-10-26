@@ -1,3 +1,7 @@
+/**
+ * Exercises deterministic yard-tree placement through the production semantic adapter and
+ * shipped atlas. Covers regional density, mapped exclusions, generalized data, and tile seams.
+ */
 import {
   createEmptyTerrainSemanticTile,
   pointInPolygon,
@@ -91,6 +95,24 @@ describe('residential tree infill', () => {
         expect(distance).toBeGreaterThan(3);
       }
     expect(batch(tile).buildings).toEqual([]);
+  });
+
+  it('plants modest residential canopy in Pleasanton without changing explicit regional overrides', () => {
+    const tile = neighborhood();
+    tile.landcover = [{ class: 'residential', polygons: [{ outer: rect(0, 0, 1, 1) }] }];
+    const pleasanton = geometry(-121.8816, 37.6699);
+    const result = trees(tile, pleasanton);
+    expect(result.length).toBeGreaterThan(20);
+    expect(result.length).toBeLessThan(trees(tile).length);
+    expect(trees(tile, pleasanton)).toEqual(result);
+    expect(batch(tile, pleasanton).scatter?.polygons.some((p) => p.label === 'home_canopy')).toBe(
+      true,
+    );
+    expect(
+      batch(tile, geometry(-112, 33.45)).scatter?.polygons.filter((p) => p.label === 'home_canopy'),
+    ).toEqual([]);
+    tile.buildingsGeneralized = true;
+    expect(trees(tile, pleasanton)).toEqual([]);
   });
 
   it('uses the house identity and keeps thinning nested without moving surviving trees', () => {

@@ -1,0 +1,380 @@
+{
+  "planId": "cathedral_of_cordoba_argentina",
+  "id": "cathedral_of_cordoba_argentina",
+  "assetId": "molen.worldgen.structure.cathedral_of_cordoba_argentina",
+  "title": "Cathedral of Córdoba, Argentina",
+  "wikidataId": "Q2942294",
+  "category": "baroque-colonial-cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -64.1847657,
+    "latitude": -31.41670705
+  },
+  "size": [
+    79.23850631713867,
+    39.950000628829,
+    65.5489387512207
+  ],
+  "actualBounds": {
+    "min": [
+      -39.576969146728516,
+      -0.21780000627040863,
+      -32.67783737182617
+    ],
+    "max": [
+      39.661537170410156,
+      39.732200622558594,
+      32.87110137939453
+    ]
+  },
+  "visualBrief": "Whole current Argentine Cathedral of Córdoba, exact26controlnativefootprint/15actualnativeparts/151partcontrols. Fullthreenavebody/rear/lowaisles/northernattachments/openzero-levelpart, actual3archclassicalportico/pediment/colonnades, twinopenbaroquebelfries/curvedcrowns/lanterns/southclock, mainbaroquedome/drum/lantern/cross/fourcornerturrets. Three exactpublishedHermannLuyken creatorCC0 front/belfry references first/only, no copiedphotopixels/sacredart. Wholemappedparts retained, levelcounts/hippedcrown tags notcertifiedsurvey; uppersections/profiles/heights/ornament/window-bellcensus/hiddenjoins/currentfinish/exactgroundcryptcontact originalestimates. Geographicpreview/replacementfalse.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2011.10.19.192609_Catedral_C%C3%B3rdoba_Argentina.jpg",
+    "https://commons.wikimedia.org/wiki/File:2011.10.19.191927_Plaza_San_Mart%C3%ADn_Catedral_C%C3%B3rdoba_Argentina.jpg",
+    "https://commons.wikimedia.org/wiki/File:2011.10.19.191943_Catedral_C%C3%B3rdoba_Argentina.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cathedral-of-cordoba-argentina-wp",
+      "url": "https://qualla.com/cathedral-of-cordoba-argentina/"
+    }
+  ],
+  "referenceInputHash": "942a3fe632d781dcf472a7431ef07d577e96760d11c34a046d56f62738f52df3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6d/6d6/cathedral_of_cordoba_argentina/models/cordoba-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/cordoba-cathedral-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "cordobaCathedralSkyline",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.12
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.5,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cordobaCathedralDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cordobaCathedralStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cordobaCathedralCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": 0.13219999999999998
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original256m129x12916641sample/one rawtile/nativewholebboxanchor/heading0/fixedSW402.2007m provider-relative datum frozen before every floor/section/geometrychoice. Once-only nativeeasternportico exteriorpoint originalgrid sample fixesfloor0.2322m before geometry; no laterfit/flatten/reacquire/reframe/floorretune/raising. Whole26nativeperimeter+151nativepartcontrols/15actualparts retained. Primarynationalmonuments/universitymuseum facts:threenaves/crossing, classical3archportico/pediment, paired3stagebaroquebelltowers/curvedcrowns/lanterns andmainbaroquecupola/fouroctagonalcornerreinforcingturrets. Nativelevelcounts/hippedrooftagsoncrown/roofheight10 are rawevidence, notsurveyedheights; photo governs actualcurvedbaroquecrowns rather than genericpyramids. Originalphotoboundedsections:nave14.5-18.8,portico9.4-13.1/defaultlowerroof6.8; towers10.4/18.4/crown24.1/lantern29.2/cap30.7/cross32.1; maindrum13.8-23.4/dome33.4/lantern37.2/cap38.3/cross39.5; cornerturrets12.5-15.1/domes18.1/balls18.5; northhouse4-6/annex4.25/connector3.9; nativezero-levelpart2628openlow.24. Everyheight/profile/crown/clocktime/ornament/window-bellcensus/hiddenroofjoins/currentfinish andpreciseground/cryptcontact is anoriginalboundedestimate. No copiedpixels/ceilingart/statueart/people/trees/plaza/neighboringchurch. Geographicpreview/replaceFootprintfalse; independentfieldunchanged.",
+    "anchor": [
+      -64.1847657,
+      -31.41670705
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -64.18571306484431,
+        -31.417515530057493
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest exterior reference before independentfield/floor/sections/geometry. Provider-relative datum, not surveyed entry/crypt/foundationlevel."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1149552632",
+      "way/1149552618",
+      "way/1149552619",
+      "way/1149552620",
+      "way/1149552621",
+      "way/1149552622",
+      "way/1149552623",
+      "way/1149552624",
+      "way/1149552625",
+      "way/1149552626",
+      "way/1149552627",
+      "way/1149552628",
+      "way/1149552629",
+      "way/1149552630",
+      "way/1149554036",
+      "way/1149554037"
+    ],
+    "source": "https://www.openstreetmap.org/way/1149552632",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a9cd61fbc2cfd8d0b828776b6b4d33f709a6118034c9aaa1acd1dac50a68072f",
+    "notes": "Whole current Cathedral of Córdoba, Argentina/Q2942294/nativewholeway1149552632/all26perimetercontrols and15actualmapped integral roof/body/dome/belfry/portico/attachment parts. Paired3stagebaroque belltowers/curvedcrowns/lanterns/clock, realarchedclassicalportico/pediment/colonnades, three-nave/cruciformbody/vaultedroofs/mainbaroquecupola/fourcornerdomedturrets and whole attached low/rear service sections. Keep all actual nativephysical parts/roofshapes; exact upperheights/lanternprofiles/ornament/clock/windowcensus/hiddenjoins/currentfinish originalbounded estimates. No narrowed facade-onlymodel, separateCabildo/SantaCatalina/otherchurches/plaza/grounds/vegetation/people/lamps/interiorfurnishings/sacredart/sourcepixels."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole native26control cathedral footprint and15actualintegral native body/roof/dome/tower/porch/annex parts, fixednativebboxanchor/heading0/+Xeast+Zsouth chosen before independentfield/floor/sections/geometry. Levelcounts/roofheight tags rawevidence, not a surveyed heightmodel.",
+    "Whole26controlnativebuilding and15actualnative roof/body/tower/dome/porch/lowpart outlines/151partcontroloccurrences retained in originalfixedbboxanchor/heading0. Internalaxis derived only from actualnavepart1149552627 west-to-eastedge, no geographicreframe. Mainnave2627, eastgableportico2626, twinquadrangularlowerbelfries2625/4037 withoctagonaluppercrowns2619/4036, maincupola2624/fourcornerdomedturrets2620-23, northgabledhouse2618/lowparts2628-30. Nativelevels0 part2628 treated as openlowpart, no8mopaque roof acrossit; defaultloweraisle/rearroof only outside all mappedpartpolygons. No adjacentCabildo/SantaCatalina/otherbuildings/plazagrounds.",
+    "Original256m129x12916641sample/one rawtile/nativewholebboxanchor/heading0/fixedSW402.2007m provider-relative datum frozen before every floor/section/geometrychoice. Once-only nativeeasternportico exteriorpoint originalgrid sample fixesfloor0.2322m before geometry; no laterfit/flatten/reacquire/reframe/floorretune/raising. Whole26nativeperimeter+151nativepartcontrols/15actualparts retained. Primarynationalmonuments/universitymuseum facts:threenaves/crossing, classical3archportico/pediment, paired3stagebaroquebelltowers/curvedcrowns/lanterns andmainbaroquecupola/fouroctagonalcornerreinforcingturrets. Nativelevelcounts/hippedrooftagsoncrown/roofheight10 are rawevidence, notsurveyedheights; photo governs actualcurvedbaroquecrowns rather than genericpyramids. Originalphotoboundedsections:nave14.5-18.8,portico9.4-13.1/defaultlowerroof6.8; towers10.4/18.4/crown24.1/lantern29.2/cap30.7/cross32.1; maindrum13.8-23.4/dome33.4/lantern37.2/cap38.3/cross39.5; cornerturrets12.5-15.1/domes18.1/balls18.5; northhouse4-6/annex4.25/connector3.9; nativezero-levelpart2628openlow.24. Everyheight/profile/crown/clocktime/ornament/window-bellcensus/hiddenroofjoins/currentfinish andpreciseground/cryptcontact is anoriginalboundedestimate. No copiedpixels/ceilingart/statueart/people/trees/plaza/neighboringchurch. Geographicpreview/replaceFootprintfalse; independentfieldunchanged.",
+    "Three exactpublished2011HermannLuyken own/self-CC0 structuralfront/belfry originals individually/contactsheet inspected/nativeSHA1matched, unchangedinventorypassed. Fourthsideview/ceilinghero/interior/tombs/unrelatedmuseum notadopted; no supplemental/questionablesource/source-rightsrepair/reclassification/guardchange/samephotobypass/protectedadditionalimagery or copiedsourcepixels. Primarydescriptivefacts only, no protectedplans. Uppersections/clocktime/crowns/fineornament/lantern/census/hiddenroofs/currentfinish originalboundedestimates.",
+    "Originalindependent256m129x12916641sample/one rawtile field/fixedbboxanchor/heading0/SW402.2007mproviderdatum frozen before every floor/part/section/geometrychoice. Once-only eastportico field sample fixesfloor.2322m. No fit/flatten/reacquire/reframe/floorretune/late raising. Preciseground/crypt/foundationcontact unverified; geographicpreview/replacementfalse. Portableflatground/contextneighbors are reviewfixtures only."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-rear-native-church-and-north-attachments",
+      "position": [
+        -100,
+        58.2322,
+        -110
+      ],
+      "lookAt": [
+        0,
+        12.2322,
+        0
+      ]
+    },
+    {
+      "name": "front-real-three-arch-portico-pediment-and-paired-baroque-towers",
+      "position": [
+        70.336804565059,
+        20.2322,
+        31.892576308236627
+      ],
+      "lookAt": [
+        27.103310530241036,
+        14.2322,
+        16.180638377435095
+      ]
+    },
+    {
+      "name": "whole-native-footprint-fifteen-parts-and-open-low-area-plan",
+      "position": [
+        0.1,
+        180.2322,
+        0.15
+      ],
+      "lookAt": [
+        0,
+        5.2322,
+        0
+      ]
+    },
+    {
+      "name": "main-baroque-dome-lantern-and-four-corner-turrets",
+      "position": [
+        -27.67336845861498,
+        33.2322,
+        41.014444750035736
+      ],
+      "lookAt": [
+        -6.9324060995213745,
+        25.2322,
+        3.704962303629935
+      ]
+    },
+    {
+      "name": "south-clock-curved-crown-open-belfry-and-lantern",
+      "position": [
+        40.59251127422099,
+        27.2322,
+        55.183765986495
+      ],
+      "lookAt": [
+        25.576207042685546,
+        21.2322,
+        27.7019427713957
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24620,
+    "vertices": 73860,
+    "materials": 5,
+    "bytes": 3105092,
+    "sha256": "sha256:f0525463d77ec12f74524c99b2ae0379e0190bd85cf86c12e5ec17e3d03d6fd4"
+  }
+}

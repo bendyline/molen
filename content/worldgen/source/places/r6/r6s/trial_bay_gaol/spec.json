@@ -1,0 +1,360 @@
+{
+  "planId": "trial_bay_gaol",
+  "id": "trial_bay_gaol",
+  "assetId": "molen.worldgen.structure.trial_bay_gaol",
+  "title": "Trial Bay Gaol",
+  "category": "roofless-granite-prison-compound",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.07018485,
+    "latitude": -30.877328300000002
+  },
+  "size": [
+    108.1827392578125,
+    9.12000036239624,
+    120.47252655029297
+  ],
+  "actualBounds": {
+    "min": [
+      -53.62385940551758,
+      3.2160000801086426,
+      -60.707157135009766
+    ],
+    "max": [
+      54.55887985229492,
+      12.336000442504883,
+      59.7653694152832
+    ]
+  },
+  "visualBrief": "Whole surviving Trial Bay Gaol compound in exact native regional frame: enclosing granite wall/four original inferred open watchtowers, stepped central arched east gatehouse/barred windows/terracotta wings and connected quarters; two angled double-row roofless cell wings with exposed divisions and open aisles; roofless mess hall/three real arches/standing gables; native western kitchen/bakehouse/covered walk/north shelter/southeast small support roof; full low southern support archaeology. No whole-yard slab or restored ruined roofs. Nine cleared published2025creatorCC0 Qualla originals first/only imagery, no copied pixels. Heights/towercount-finefootprints/roof sections/cell census/exposed rubble/hiddenparts and exact hostground-contact are original estimates; preview/replaceFootprintfalse.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Trail_Bay_Gaol,_July_2025_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trail_Bay_Gaol,_July_2025_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trail_Bay_Gaol,_July_2025_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trail_Bay_Gaol,_July_2025_05.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trail_Bay_Gaol,_July_2025_06.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trail_Bay_Gaol,_July_2025_09.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trail_Bay_Gaol,_July_2025_10.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trail_Bay_Gaol,_July_2025_12.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trail_Bay_Gaol,_July_2025_19.jpg"
+  ],
+  "stories": [
+    {
+      "id": "trial-bay-gaol-wp",
+      "url": "https://qualla.com/trial-bay-gaol/"
+    }
+  ],
+  "referenceInputHash": "dbaff2de0058d8a48cf19c9b28ec49f4817d0cf58fadca30984dbabb6ed1ea9f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r6/r6s/trial_bay_gaol/models/trial-bay-gaol-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/trial-bay-gaol-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "trialBayGaolSkyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "cell": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.1
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "trialBayGaolDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "cell": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "trialBayGaolStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "cell": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "trialBayGaolCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "cell": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": 3.536
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Whole original native prison wall/physical components/roofless voids, fixed nativebboxanchor/heading0/+Xeast+Zsouth preserved. Original400m129x12916641sample/one rawtile/SW12.0236m provider-relative datum frozen BEFORE every floor/section/geometry choice. Once-only eastgate originalfield sample givesfloor3.636m, fixed before geometry; no fit/flatten/reacquire/reframe/raise. Native MessHall7m height is explicitly estimated. Original creatorCC0 photo-based sections: wall4.65m/.72thick; roofless cells7.05m/.48walls/two storeys3.25floor/16simplifiedcellsperrow; messwall6.7/gable8.05/3realarchvoids; gateeave7.05/steppedpediment8.7/4.3mwide5mhigharch; connectedquarters4.5-5.45; kitchen3.15-4.35 and mapped coveredwalk/northshelter2.9-3.75; southeastsupport2.75-3.65; native southern supportoutline retained aslow.48m archaeology, not reconstructed hospital. Four original inferred2.7msquarewatchtowers at nativewallturns11/0/8/3 withopenparapets4.55-7m; precise footprint/count/height/alteration unsurveyed. Exterior window/cell/bar/gable/course/rubble census/currentfinish/hiddenroofsections and precise ground/archaeological contact are original bounded estimates. No whole-yard floor, restored roofs over ruined cells, vanished barracks, campground/breakwater/memorial/signart/sourcepixels. Original coastalfield negativeoutliers retained, not artificialgroundfit; geographicpreview/replaceFootprintfalse.",
+    "anchor": [
+      153.07018485,
+      -30.877328300000002
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.0693475254084,
+        -30.878046948939996
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest exterior reference chosen before independent field/floor/sections/geometry. Provider-relative host datum, not surveyed gate threshold/archaeological floor."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1069791216",
+      "way/1069791222",
+      "way/1069791223",
+      "way/1069791224",
+      "way/1069791225",
+      "way/1069791226",
+      "way/1069791227",
+      "way/1069791228",
+      "way/1069791229",
+      "way/1069791230",
+      "way/1069791231",
+      "way/1069791232",
+      "way/1069791233",
+      "way/1069791234",
+      "way/1069791235",
+      "way/1069791236"
+    ],
+    "source": "https://www.openstreetmap.org/way/718841939",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:297a66a4870ef60bc61d6c70ac9f40fa7a6e7c3fec0c2820b6fc9f2b419c387e",
+    "notes": "Whole surviving Trial Bay Gaol physical compound: exact native outer wall, east gatehouse and connected northern/southern quarters, roofless two-storey Cell Blocks A/B, roofless Mess Hall with native main void/three east arch voids, western kitchen/bakehouse/covered walk, northern shelter, southeast small support building and low southern archaeological support footprint. Original inferred square watchtowers, exposed cell divisions, openings/gables/coping and bathhouse/kitchen ruin fragments. Open yards remain voids; no opaque grounds slab. Separate campground/toilets/kiosk/roads/breakwater/powder magazine/memorial/landscape and vanished timber barracks excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole original native enclosing wall14controls and all integral native physical component/ruin/roof/void outlines. Fixed bboxanchor/heading0/+Xeast+Zsouth chosen before terrain/floor/sections/geometry. Museums grounds not filled or made building footprint; operator QID not adopted.",
+    "Whole original native prison wall/physical components/roofless voids, fixed nativebboxanchor/heading0/+Xeast+Zsouth preserved. Original400m129x12916641sample/one rawtile/SW12.0236m provider-relative datum frozen BEFORE every floor/section/geometry choice. Once-only eastgate originalfield sample givesfloor3.636m, fixed before geometry; no fit/flatten/reacquire/reframe/raise. Native MessHall7m height is explicitly estimated. Original creatorCC0 photo-based sections: wall4.65m/.72thick; roofless cells7.05m/.48walls/two storeys3.25floor/16simplifiedcellsperrow; messwall6.7/gable8.05/3realarchvoids; gateeave7.05/steppedpediment8.7/4.3mwide5mhigharch; connectedquarters4.5-5.45; kitchen3.15-4.35 and mapped coveredwalk/northshelter2.9-3.75; southeastsupport2.75-3.65; native southern supportoutline retained aslow.48m archaeology, not reconstructed hospital. Four original inferred2.7msquarewatchtowers at nativewallturns11/0/8/3 withopenparapets4.55-7m; precise footprint/count/height/alteration unsurveyed. Exterior window/cell/bar/gable/course/rubble census/currentfinish/hiddenroofsections and precise ground/archaeological contact are original bounded estimates. No whole-yard floor, restored roofs over ruined cells, vanished barracks, campground/breakwater/memorial/signart/sourcepixels. Original coastalfield negativeoutliers retained, not artificialgroundfit; geographicpreview/replaceFootprintfalse.",
+    "Nine exact published July2025 Aliceinthealice own/self-CC0 originals individually/contactsheet inspected and nativeSHA1 matched; unchanged published inventory policy passed. No supplementary images, questionable rights, source repairs/reclassification/guard changes or copied photographic textures. Complete native wall and physical component controls retained; operatorQID not adopted. Original inferred watchtowers/roof ridges/cell-wall/partitions and low archaeological form/census are bounded estimates; no survey or authoritative current reconstruction.",
+    "Original independent400m129x12916641sample/one rawtile field, fixed nativebboxanchor/heading0 and SW12.0236m provider-relative datum frozen before floor/sections/geometry. Once-only eastgatefloor3.636m remains fixed. Extreme coastalDEM negatives retained, not archaeology/bathymetry. No fit/flatten/reacquire/reframe/late raising; precise ground and ruin-level contact unverified. Geographic preview/replaceFootprintfalse; flat portableground and contextneighbors are review fixtures only."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-west-opposite-open-cell-aisles-and-ruined-hall",
+      "position": [
+        -145,
+        95.636,
+        -135
+      ],
+      "lookAt": [
+        0,
+        6.636,
+        -2
+      ]
+    },
+    {
+      "name": "east-gatehouse-full-depth-arch-barred-windows-and-stepped-pediment",
+      "position": [
+        83,
+        12.636,
+        -8
+      ],
+      "lookAt": [
+        50,
+        7.636,
+        -15
+      ]
+    },
+    {
+      "name": "roofless-cell-blocks-and-open-yard-whole-plan",
+      "position": [
+        -14,
+        178.636,
+        -1
+      ],
+      "lookAt": [
+        -3,
+        5.636,
+        -1
+      ]
+    },
+    {
+      "name": "mess-hall-three-archways-ruined-gables-and-two-wing-junction",
+      "position": [
+        45,
+        15.636,
+        -14
+      ],
+      "lookAt": [
+        9,
+        6.636,
+        -16
+      ]
+    },
+    {
+      "name": "low-south-support-archaeology-and-native-enclosing-wall",
+      "position": [
+        18,
+        13.636,
+        56
+      ],
+      "lookAt": [
+        7,
+        4.336,
+        46
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 57798,
+    "vertices": 173394,
+    "materials": 4,
+    "bytes": 7079360,
+    "sha256": "sha256:574cec6d2a9866d17bc7b28e43c3fb6756853bd55fee267296b246fb25538f33"
+  }
+}

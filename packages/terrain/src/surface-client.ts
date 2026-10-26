@@ -1222,11 +1222,11 @@ export function createTerrainSurfaceObject(
               const kind = vehicle.id;
               const spec = vehicle.spec;
               const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((wheelZ) =>
-                [-spec.width * 0.42, spec.width * 0.42].map(
+                [-spec.wheelTrack / 2, spec.wheelTrack / 2].map(
                   (wheelX) =>
-                    context.heightfield.sampleHeight(
-                      wx + Math.cos(yaw) * wheelX + Math.sin(yaw) * wheelZ,
-                      wz - Math.sin(yaw) * wheelX + Math.cos(yaw) * wheelZ,
+                    pavement.groundHeight(
+                      x + Math.cos(yaw) * wheelX + Math.sin(yaw) * wheelZ,
+                      z - Math.sin(yaw) * wheelX + Math.cos(yaw) * wheelZ,
                     ) + 0.3,
                 ),
               );
@@ -1239,7 +1239,7 @@ export function createTerrainSurfaceObject(
                 position: [wx, (fl + fr + rl + rr) / 4, wz],
                 yaw,
                 pitch: Math.atan2((rl + rr - fl - fr) / 2, spec.wheelbase),
-                roll: Math.atan2((fr + rr - fl - rl) / 2, spec.width * 0.84),
+                roll: Math.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack),
               });
             }
           }

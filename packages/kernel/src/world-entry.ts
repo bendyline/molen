@@ -22,6 +22,7 @@ export {
   audioEnvironmentOf,
   audioScriptApi,
 } from './audio';
+export { BoostMode, type BoostModeData, isBoostMode, setBoostMode } from './boost';
 export type { ComponentType, LifetimeData, TransformData } from './component';
 export {
   componentDefaults,

@@ -1,0 +1,388 @@
+{
+  "planId": "national_observatory_of_athens",
+  "id": "national_observatory_of_athens",
+  "assetId": "molen.worldgen.structure.national_observatory_of_athens",
+  "title": "National Observatory of Athens — Sinas Building",
+  "wikidataId": "Q1816405",
+  "category": "historic-observatory",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.71828975,
+    "latitude": 37.97339135
+  },
+  "size": [
+    19.801020622253418,
+    12.930000305175781,
+    27.750835418701172
+  ],
+  "actualBounds": {
+    "min": [
+      -10.550000190734863,
+      0,
+      -13.875417709350586
+    ],
+    "max": [
+      9.251020431518555,
+      12.930000305175781,
+      13.875417709350586
+    ]
+  },
+  "visualBrief": "Whole historic Sinas/Hansen cruciform observatory: actual native18x27m cross with all20corners/212subdivisioncontrol envelope, pale neoclassical wings/raised stone basement, actual deep tall red shuttered recesses/pilasters/sills/cornices/four triangular pediments/acroteria/low metal wing roofs, closed recessed west entry/independent steps, central square terrace/open rails/red-windowed circular drum/closed ribbed dark metal rotating dome/finial. One cleared published2015creatorCC0 whole exterior plus two expired namedHansen plan/section sheets. Hidden/current finish/precise ornament/windowcensus/entryside/heights conservative original estimates. Separate circular observatory/admin/whole institution grounds/trees/hills/interiors/telescope/inscriptions/photo/page pixels excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:National_observatory_Athens_Greece.jpg",
+    "https://commons.wikimedia.org/wiki/File:Asteroskopio-athinon-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Asteroskopio-athinon-2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "national-observatory-of-athens-wp",
+      "url": "https://qualla.com/national-observatory-of-athens/"
+    }
+  ],
+  "referenceInputHash": "63d7e5cc2640a8ea2129db0596ab7fb43b7e0429c4c90add63cafc0179f04575",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swb/national_observatory_of_athens/models/national-observatory-of-athens-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/athens-observatory-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "athensObservatorySkyline",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "red": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.08
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "athensObservatoryDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "athensObservatoryStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "athensObservatoryCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "native-map-frame",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All floors/sections/geometry follow original400m129x12916641sample independent sourcefield/two rawtile freeze. Fixed southapproach[0,17]92.0898m provider-relative floor0, no surveyed foundations. Actual native212subdivisioncontrol whole18x27m cruciform scope; collinear controls condensed to20corners within1cm for wall tessellation/distant levels without changing whole extent. Architectural vertical sections original photographic/Hansen-drawing proportion estimates: stonebasement1.65m, creamwalls6.05m/cornice6.35m, lowgabled wings7.12m, centralterrace7.22m, red-windowed circulardrum7.23..9.52m, closed ribbed dome12.58m/finial12.93m. Currentphoto governs exterior, historical cutaway interiors/telescope/terrain outline nevercopied. Eastend two red shuttered openings/triangularpediment; westend closed recessed entry, long-arm side window rhythm/cornerpilasters, four wing roofs/central terrace open rails/drum/dome. Main entry side/hidden elevation/currentfinefinish/ornament/section and precise census are original conservative estimates. No terrain fit/flatten/reacquisition/modelraising; sourcegrade exact thresholds unresolved, preview/replacementfalse.",
+    "anchor": [
+      23.71828975,
+      37.97339135
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.71828975,
+        37.97323863710025
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed south long-arm approach local[0,17] beyond nativecross edge, before all source floors/sections/geometry; provider-relative unsurveyed datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/759263422"
+    ],
+    "source": "https://www.openstreetmap.org/way/759263422",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f188eb84ec99eeb82e0c37a4601c4120d97798b242311a20bbe98ff242e51d88",
+    "notes": "Whole historic National Observatory of Athens Sinas building on HillofNymphs: actual native cruciform building759263422, cream neoclassical wings/raised stone basement, real tall window/shutter recesses/red shutters/pilasters/cornices/triangular pediment/acroteria/wing roofs, central terrace/rail and red-windowed circular drum/dark ribbed rotating dome/finial. Use whole cross and conservative hidden profiles. Separate circular observatory208073867, administration989754423, other observatory campuses/telescopes/weather equipment/interiors/whole grounds/park/trees/Athenscity/hills/copied lettering and historical cutaway instruments excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual native cruciform building759263422/closed213point ring212controls matches whole2015photo and namedHansenhistoricalcross-plan. Nearby circular208073867/Q1816405 institution-labelled feature is physically separate9.2mround structure, not this18x27mcruciform Sinas building; do not substitute it or extrude institutional grounds. Whole original212controls retained in map-frame; many straight-edge subdivisions can be condensed geometrically without changing cross corners/extent in distant LODs. Common exact actualcross bbox anchor/+Xeast/+Zsouth/heading0. All source floors/sections/roof heights await independent field freeze.",
+    "All floors/sections/geometry follow original400m129x12916641sample independent sourcefield/two rawtile freeze. Fixed southapproach[0,17]92.0898m provider-relative floor0, no surveyed foundations. Actual native212subdivisioncontrol whole18x27m cruciform scope; collinear controls condensed to20corners within1cm for wall tessellation/distant levels without changing whole extent. Architectural vertical sections original photographic/Hansen-drawing proportion estimates: stonebasement1.65m, creamwalls6.05m/cornice6.35m, lowgabled wings7.12m, centralterrace7.22m, red-windowed circulardrum7.23..9.52m, closed ribbed dome12.58m/finial12.93m. Currentphoto governs exterior, historical cutaway interiors/telescope/terrain outline nevercopied. Eastend two red shuttered openings/triangularpediment; westend closed recessed entry, long-arm side window rhythm/cornerpilasters, four wing roofs/central terrace open rails/drum/dome. Main entry side/hidden elevation/currentfinefinish/ornament/section and precise census are original conservative estimates. No terrain fit/flatten/reacquisition/modelraising; sourcegrade exact thresholds unresolved, preview/replacementfalse.",
+    "Three exact published Qualla originals only:2015Jebulonown/selfCC0 whole exterior plus two expired namedTheophilHansen1813–1891 architectural plan/section sheets, individually inspected/nativeSHA1 matched/passed unchanged policy. Conflicting hero/unrelated NASA/celestial imagery unused without repair or reclassification. Current finefinish/hidden elevations/precise ornaments/entryside/sections/window census bounded original estimates. No copied photographic/page pixels, historical cutaway interiors/telescope/instruments/text, separate circular observatory/admin/grounds/landscape/neighbor buildings.",
+    "Original400m129x12916641sample field/two rawtiles fixed southapproach92.0898m provider-relative datum frozen before all floors/sections/geometry. No terrainfit/flatten/reacquire/modelraising. Preview/replacementfalse/exact foundation/threshold contact unresolved. Flat isolated ground and synthetic neighbors are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-west-entry-and-rear-cross",
+      "position": [
+        -42,
+        25,
+        -34
+      ],
+      "lookAt": [
+        0,
+        5.2,
+        0
+      ]
+    },
+    {
+      "name": "closed-ribbed-dome-red-window-drum-and-open-terrace",
+      "position": [
+        16,
+        12,
+        16
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "east-pediment-red-shutter-recesses-and-pilasters",
+      "position": [
+        24,
+        6.5,
+        9
+      ],
+      "lookAt": [
+        7,
+        4.8,
+        0
+      ]
+    },
+    {
+      "name": "west-closed-entry-stone-basement-and-steps",
+      "position": [
+        -24,
+        4.8,
+        -9
+      ],
+      "lookAt": [
+        -8,
+        2.8,
+        0
+      ]
+    },
+    {
+      "name": "whole-native-cruciform-plan-and-four-wing-roofs",
+      "position": [
+        1,
+        58,
+        1
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 25818,
+    "vertices": 77454,
+    "materials": 6,
+    "bytes": 3213524,
+    "sha256": "sha256:de534a26886b533a8819692019faa22d4f6a2dd6a3cf1b4580b9fb546c9c87f5"
+  }
+}

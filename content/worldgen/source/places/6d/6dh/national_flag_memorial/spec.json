@@ -1,0 +1,391 @@
+{
+  "planId": "national_flag_memorial",
+  "id": "national_flag_memorial",
+  "assetId": "molen.worldgen.structure.national_flag_memorial",
+  "title": "National Flag Memorial",
+  "wikidataId": "Q798629",
+  "category": "memorial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -60.63052405,
+    "latitude": -32.9475866
+  },
+  "size": [
+    142.76378631591797,
+    70.39999866485596,
+    70.85614967346191
+  ],
+  "actualBounds": {
+    "min": [
+      -55.20982360839844,
+      -13.21049976348877,
+      -24.21198844909668
+    ],
+    "max": [
+      87.55396270751953,
+      57.18949890136719,
+      46.644161224365234
+    ]
+  },
+  "visualBrief": "Whole NationalFlagMemorial ensemble in native9component plans: pale travertine70mtower/cross-shapedshaft/steppedcrown, layeredproa and genuinely recessed archedniche, rising30step civiccourt/parapets/22farolas, full78controlraisedpropylaeumroof above24freecolumns/twoendpiers and intrinsic votivevessel. Qualla41families first,8distinctexactBelgrano2009ownPD exteriororiginals. Hiddenprofiles/currentcondition/proablockheight/columncensus and sculpturalmasses are originalboundedestimates; notsurvey orphotogrammetry.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Monumento%20a%20la%20bandera.JPG",
+    "https://commons.wikimedia.org/wiki/File:Monumento%20a%20la%20Bandera%2022.JPG",
+    "https://commons.wikimedia.org/wiki/File:Monumento%20a%20la%20Bandera%2023.JPG",
+    "https://commons.wikimedia.org/wiki/File:Monumento%20a%20la%20Bandera%2024.JPG",
+    "https://commons.wikimedia.org/wiki/File:Monumento%20a%20la%20Bandera%2025.JPG",
+    "https://commons.wikimedia.org/wiki/File:Monumento%20a%20la%20bandera%2027.JPG",
+    "https://commons.wikimedia.org/wiki/File:Llama_votiva.JPG",
+    "https://commons.wikimedia.org/wiki/File:Rosario_desde_el_Monumento_a_la_Bandera.JPG"
+  ],
+  "stories": [
+    {
+      "id": "national-flag-memorial-argentina-wp",
+      "url": "https://qualla.com/national-flag-memorial-argentina/"
+    }
+  ],
+  "referenceInputHash": "00c3a33b9053a0a83dddc04dfe199e79356368c8b6d54bc5d37338a955a0a0a1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6d/6dh/national_flag_memorial/models/national-flag-memorial-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/national-flag-memorial-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "nationalFlagMemorialSkyline",
+    "errorMeters": 9,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_travertine",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.7,
+        "metallic": 0.65
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.3
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "nationalFlagMemorialDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.65
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "nationalFlagMemorialStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.65
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "nationalFlagMemorialCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.65
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_travertine",
+    "concrete_plain",
+    "metal_bronze_cast",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "cameraYaw": 1.8,
+    "groundY": -13.6105,
+    "scale": 2.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original512m129field/16641samples/one rawtile fixed before once-onlyfloor-12.8105m (absolute20.686163749999995m/providerdatum33.4967m) and allsections. NativecomponentXZ andheighttags keptunchanged. Authoringinterpretation: native7m river-facingbase and70m totaltower/crossshape66/shoulder67/crown69to70; taller24m photo-estimated proablock uses actual6controlplan while its ambiguousnative12m tag remainsunmodified, notclaimedverifiedheight. Civiccourt7to12.4/30steps; propylaeumlocalfloor12.4 plus native16to20mroof gives28.4to32.4; endpiers local17.5/17.8 aboveuppercourt. Nativeheighttags are not absoluteproviderRL. These elevations/proablock/door/alcove/colonnadepiercensus/urn/hiddenprofiles are bounded originalphoto estimates. No later floor/mainsection/fieldtuning.",
+    "anchor": [
+      -60.63052405,
+      -32.9475866
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -60.632879101117496,
+        -32.94956288458498
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest providerfield datum beforefloor/sections/geometry; exactlocal foundation/threshold/stair contact unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/318264532",
+      "way/238911534",
+      "way/238911535",
+      "way/239013389",
+      "way/240021765",
+      "way/320708977",
+      "way/459011972",
+      "way/459011973",
+      "way/509102470"
+    ],
+    "source": "https://www.openstreetmap.org/relation/6804977",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:88676cd3120d8b5432b88b8f7c21af8ce23426cb7be603e05ff6ef4c1c4d8c6a",
+    "notes": "Whole intrinsic NationalFlagMemorial/Q798629 ensemble: actualnativeproa/towerbase and nestedtower/crown footprints, full westernpropylaeum roof/openlongcolonnade/endpiers, centralcivicstaircourt and intrinsic lowstairs/flamevessel. Separate surroundingcathedral/council/offices/roads/parks/river/pools/people excluded. Relation6804977 is sitecontext, not one tallsolid building; no extrusion of the siteboundary. Belowgroundinterior galleries/crypt displays not invented; artwork is omitted or bounded as simple original abstract masses."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_travertine",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual9nativephysicalcomponent outlines/currentheight/minheight tags preserved, plus nativecivicstep route/count. Sitebboxanchor fixed BEFORE independentfield/floor/sections/geometry; relationextents contextual only.",
+    "Nativeexplicitheighttags retained:base7/proa12/tower66/67/crown70/roof16to20/endpiers17.5/17.8. These are building-relative heights, notproviderabsoluteRL. Hiddensection/piercensus/cryptentrance/roofjoint/finish/stairriserpositions are originalphoto-bounded estimates. Define floor/verticalsections onlyAFTER originalindependentfieldfreeze. Full78controlpropylaeum roof retained as raised slab/opencolonnade, never solid20mblock. Operatorprimarytext https://www.monumentoalabandera.gob.ar/arquitectura/detalles-tecnicos confirms approximately140m ensemble/51mpropylaeumwidth/70mtower and22farola-masts; nativephysicalplans notrescaled. Othergovernmenttext quotes75m, operatorapproximately70m/native70 retainedexplicitly. Allprotectedoperatorphoto/drawingpixelsunused. Native12mproablocktag isretained butsourcephotos support original24m layeredbodyinterpretation; notsilentlytreatedassurvey.",
+    "Original512m129field/16641samples/one rawtile fixed before once-onlyfloor-12.8105m (absolute20.686163749999995m/providerdatum33.4967m) and allsections. NativecomponentXZ andheighttags keptunchanged. Authoringinterpretation: native7m river-facingbase and70m totaltower/crossshape66/shoulder67/crown69to70; taller24m photo-estimated proablock uses actual6controlplan while its ambiguousnative12m tag remainsunmodified, notclaimedverifiedheight. Civiccourt7to12.4/30steps; propylaeumlocalfloor12.4 plus native16to20mroof gives28.4to32.4; endpiers local17.5/17.8 aboveuppercourt. Nativeheighttags are not absoluteproviderRL. These elevations/proablock/door/alcove/colonnadepiercensus/urn/hiddenprofiles are bounded originalphoto estimates. No later floor/mainsection/fieldtuning.",
+    "Eight exact2009Belgrano photographer-ownPD originals after publishedQualla41familysearch. No publication-unbound/PD-art/Flickr/questionableimages or protectedoperatorphoto/drawingpixels used. No imagepixels embedded.",
+    "Actual9nativeparts/183XZcontrols retained, relationextentcontextonly. Civiccourt plan/levels/columncensus/hiddenproabodyheight and niches/doors/medallions/urn are originalboundedreconstruction. Ambiguousnative12mproablocktag notaltered; photo-estimated24m body explicitlydistinguished. No belowgroundcrypt/galleryinteriors orneighborcathedral/council/parks/roads.",
+    "Figurative artwork, inscriptions and finehistoricreliefs are simplified originalabstract masses/geometricmedallions, not exactsculpture reproductions. No fountainwater/animatedfire/flagpixels. Distantthinfarolas omitted.",
+    "Originalindependent512m129field/one rawtile/floor/sections fixedbeforegeometry; negativeproviderartifactsretained unchanged andgroundcontactunverified. Geographicpreview/replacementfalse; isolatedflatstage andsyntheticneighbors are reviewfixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-tower-proa-civic-stairs-and-open-propylaeum",
+      "position": [
+        96.23706073102741,
+        107.1895,
+        251.32335375339187
+      ],
+      "lookAt": [
+        16.932384950937,
+        14.1895,
+        14.604599955948206
+      ]
+    },
+    {
+      "name": "whole-nine-component-native-plan",
+      "position": [
+        19.81599351248441,
+        267.1895,
+        15.438147593321414
+      ],
+      "lookAt": [
+        19.84054714240633,
+        -7.810499999999999,
+        15.341208853605771
+      ]
+    },
+    {
+      "name": "full-propylaeum-columns-raised-roof-and-votive-vessel",
+      "position": [
+        -19.824651238152704,
+        22.189500000000002,
+        57.90494973044715
+      ],
+      "lookAt": [
+        -37.35330928982387,
+        11.1895,
+        0.8545671996736655
+      ]
+    },
+    {
+      "name": "western-tower-arched-niche-stepped-base-and-civiccourt",
+      "position": [
+        19.582253043466835,
+        12.1895,
+        20.43368213860718
+      ],
+      "lookAt": [
+        65.57363021821264,
+        4.189500000000001,
+        26.202843738898107
+      ]
+    },
+    {
+      "name": "river-facing-proa-cross-shaped-shaft-and-stepped-crown",
+      "position": [
+        138.72446019113397,
+        39.1895,
+        2.127003685584203
+      ],
+      "lookAt": [
+        69.52484069660416,
+        19.189500000000002,
+        26.894172716627928
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6539,
+    "vertices": 19617,
+    "materials": 4,
+    "bytes": 907948,
+    "sha256": "sha256:e5dd1c944ca29de9bb37acc48722837fb33d8619b568e488b80ca7af5562826b"
+  }
+}

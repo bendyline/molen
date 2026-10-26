@@ -11,6 +11,10 @@ export async function reviewedMediumFi({ qa, reportBytes, sidecar, readImage }) 
   )
     return false;
   const report = JSON.parse(reportBytes);
+  // Retain accepted neutral reviews; new captures use the current Earth source rig.
+  const reviewedRig =
+    (report.rig?.toneMapping === 'neutral' && report.rig?.exposure === 1) ||
+    (report.rig?.toneMapping === 'aces' && report.rig?.exposure === 1.05);
   if (report.captureVersion !== undefined) {
     if (
       report.captureVersion !== 2 ||
@@ -36,8 +40,7 @@ export async function reviewedMediumFi({ qa, reportBytes, sidecar, readImage }) 
     report.runtimeHash !== sidecar.hash ||
     report.assetId !== sidecar.id ||
     report.errors?.length ||
-    report.rig?.toneMapping !== 'neutral' ||
-    report.rig?.exposure !== 1
+    !reviewedRig
   )
     return false;
   const budgets = { skyline: 1000, district: 4000, street: 16000, closeup: 64000 };
