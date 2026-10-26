@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:6badc7ceabf192f900c0b425cca1c5ebd1df65dfc28ee2d8c4dbc099a4df534d",
-  "sourceHash": "sha256:a939a7d802f835163ebe987cd756339a7213081d7b6c7994992cf4f614445a3a",
+  "hash": "sha256:c2e19959fef0d9d36297b231c45fa98677c92dbfee0253be136da1eae59ed130",
+  "sourceHash": "sha256:8bbd9f926cebf72c3b9e930f8e357bcc0def6685ee9dbff9522b7c148e5f759e",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 59097,
-    "vertices": 119222,
-    "meshes": 101,
-    "primitives": 101,
-    "materials": 24,
-    "textures": 0,
+    "triangles": 59222,
+    "vertices": 88946,
+    "meshes": 115,
+    "primitives": 115,
+    "materials": 31,
+    "textures": 15,
     "animations": 0,
-    "sizeBytes": 2278060
+    "sizeBytes": 2579680
   },
   "nodes": [
     {
       "name": "Skyhawk-shell-Skyhawk-white",
-      "triangles": 1589
+      "triangles": 1476
     },
     {
       "name": "Skyhawk-shell-Skyhawk-glazing",
@@ -51,11 +51,11 @@
     },
     {
       "name": "Skyhawk-shell-Skyhawk-trim",
-      "triangles": 1680
+      "triangles": 1392
     },
     {
       "name": "Skyhawk-shell-Skyhawk-alloy",
-      "triangles": 9496
+      "triangles": 8392
     },
     {
       "name": "Skyhawk-shell-Skyhawk-navy",
@@ -155,7 +155,7 @@
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-trim",
-      "triangles": 984
+      "triangles": 890
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-instrument-black",
@@ -175,23 +175,23 @@
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-instrument-ink",
-      "triangles": 8748
+      "triangles": 8724
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-instrument-amber",
       "triangles": 24
     },
     {
-      "name": "Skyhawk-cabin-Skyhawk-instrument-red",
-      "triangles": 52
-    },
-    {
       "name": "Skyhawk-cabin-Skyhawk-alloy",
-      "triangles": 504
+      "triangles": 480
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-seats",
       "triangles": 360
+    },
+    {
+      "name": "Skyhawk-cabin-Skyhawk-upholstery-piping",
+      "triangles": 672
     },
     {
       "name": "Skyhawk-cabin-Skyhawk-belts",
@@ -630,9 +630,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Skyhawk-panel",
+      "name": "Skyhawk-panel-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skyhawk-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -646,9 +660,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -678,25 +695,45 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Skyhawk-instrument-red",
+      "name": "Skyhawk-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Skyhawk-seats",
+      "name": "Skyhawk-seats-vinyl",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Skyhawk-belts",
+      "name": "Skyhawk-upholstery-piping-vinyl",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skyhawk-belts-webbing",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -745,6 +782,55 @@
       "name": "Skyhawk-standby-speed-163-164",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skyhawk-instrument-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -815,28 +901,28 @@
         "points": [
           -2.865,
           0.3281,
-          -1.4845,
+          -1.4853,
           -2.865,
           0.3281,
-          2.3001,
+          2.3,
           -2.865,
           1.9706,
-          -1.4845,
+          -1.4853,
           -2.865,
           1.9706,
-          2.3001,
+          2.3,
           2.865,
           0.3281,
-          -1.4845,
+          -1.4853,
           2.865,
           0.3281,
-          2.3001,
+          2.3,
           2.865,
           1.9706,
-          -1.4845,
+          -1.4853,
           2.865,
           1.9706,
-          2.3001
+          2.3
         ]
       },
       {
@@ -1567,28 +1653,28 @@
       {
         "node": "Skyhawk-cabin-Skyhawk-trim",
         "points": [
-          -0.5101,
+          -0.513,
           0.5925,
           -1.03,
-          -0.5101,
-          0.5925,
-          1.3,
-          -0.5101,
-          1.554,
-          -1.03,
-          -0.5101,
-          1.554,
-          1.3,
-          0.5236,
-          0.5925,
-          -1.03,
-          0.5236,
+          -0.513,
           0.5925,
           1.3,
-          0.5236,
+          -0.513,
           1.554,
           -1.03,
-          0.5236,
+          -0.513,
+          1.554,
+          1.3,
+          0.5327,
+          0.5925,
+          -1.03,
+          0.5327,
+          0.5925,
+          1.3,
+          0.5327,
+          1.554,
+          -1.03,
+          0.5327,
           1.554,
           1.3
         ]
@@ -1768,61 +1854,32 @@
         ]
       },
       {
-        "node": "Skyhawk-cabin-Skyhawk-instrument-red",
-        "points": [
-          -0.0539,
-          1.0605,
-          0.9925,
-          -0.0539,
-          1.0605,
-          1.092,
-          -0.0539,
-          1.2943,
-          0.9925,
-          -0.0539,
-          1.2943,
-          1.092,
-          0.4713,
-          1.0605,
-          0.9925,
-          0.4713,
-          1.0605,
-          1.092,
-          0.4713,
-          1.2943,
-          0.9925,
-          0.4713,
-          1.2943,
-          1.092
-        ]
-      },
-      {
         "node": "Skyhawk-cabin-Skyhawk-alloy",
         "points": [
-          -0.4062,
+          -0.4063,
           0.64,
           -0.903,
-          -0.4062,
+          -0.4063,
           0.64,
-          1.09,
-          -0.4062,
-          1.0855,
+          0.577,
+          -0.4063,
+          0.897,
           -0.903,
-          -0.4062,
-          1.0855,
-          1.09,
-          0.4062,
+          -0.4063,
+          0.897,
+          0.577,
+          0.4063,
           0.64,
           -0.903,
-          0.4062,
+          0.4063,
           0.64,
-          1.09,
-          0.4062,
-          1.0855,
+          0.577,
+          0.4063,
+          0.897,
           -0.903,
-          0.4062,
-          1.0855,
-          1.09
+          0.4063,
+          0.897,
+          0.577
         ]
       },
       {
@@ -1852,6 +1909,35 @@
           0.5275,
           1.4249,
           0.625
+        ]
+      },
+      {
+        "node": "Skyhawk-cabin-Skyhawk-upholstery-piping",
+        "points": [
+          -0.4167,
+          0.863,
+          -0.9,
+          -0.4167,
+          0.863,
+          0.27,
+          -0.4167,
+          1.25,
+          -0.9,
+          -0.4167,
+          1.25,
+          0.27,
+          0.4167,
+          0.863,
+          -0.9,
+          0.4167,
+          0.863,
+          0.27,
+          0.4167,
+          1.25,
+          -0.9,
+          0.4167,
+          1.25,
+          0.27
         ]
       },
       {

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:7c6388cc759b2a15ba9ce542fb28a182da55865a7f300c53cad50c6ef418ea46",
-  "sourceHash": "sha256:625827a6d88d3449517bc62f558b62c1b896bc74f1092f8c43a5bf25c7bdca18",
+  "hash": "sha256:ecb5bd7e29960472d4fb2fadd62c4efa3cb66da8905be317a7b6e26acec44eeb",
+  "sourceHash": "sha256:359e613efd618ae8271b42fac4b36936b193d82b63e246c1a07134ebc5552eb7",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 34969,
-    "vertices": 72848,
-    "meshes": 68,
-    "primitives": 68,
-    "materials": 19,
-    "textures": 0,
+    "triangles": 35773,
+    "vertices": 58506,
+    "meshes": 81,
+    "primitives": 81,
+    "materials": 25,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 1446892
+    "sizeBytes": 1608328
   },
   "nodes": [
     {
@@ -47,11 +47,11 @@
     },
     {
       "name": "Gripen-airframe-Gripen-gray",
-      "triangles": 2642
+      "triangles": 1670
     },
     {
       "name": "Gripen-airframe-Gripen-seal",
-      "triangles": 2064
+      "triangles": 1320
     },
     {
       "name": "Gripen-airframe-Gripen-alloy",
@@ -175,7 +175,7 @@
     },
     {
       "name": "Gripen-cabin-Gripen-instrument-black",
-      "triangles": 302
+      "triangles": 158
     },
     {
       "name": "Gripen-cabin-Gripen-buttons",
@@ -630,9 +630,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Gripen-panel",
+      "name": "Gripen-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -694,6 +697,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "Gripen-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Gripen-cushion",
       "slots": [
         "baseColor"
@@ -703,6 +717,55 @@
     },
     {
       "name": "Gripen-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -774,28 +837,28 @@
         "node": "Gripen-airframe-Gripen-seal",
         "points": [
           -4.1821,
-          1.0766,
+          1.0763,
           -7.0004,
           -4.1821,
-          1.0766,
+          1.0763,
           5.364,
           -4.1821,
-          2.3339,
+          2.3336,
           -7.0004,
           -4.1821,
-          2.3339,
+          2.3336,
           5.364,
           4.1821,
-          1.0766,
+          1.0763,
           -7.0004,
           4.1821,
-          1.0766,
+          1.0763,
           5.364,
           4.1821,
-          2.3339,
+          2.3336,
           -7.0004,
           4.1821,
-          2.3339,
+          2.3336,
           5.364
         ]
       },
@@ -1672,28 +1735,28 @@
       {
         "node": "Gripen-cabin-Gripen-instrument-black",
         "points": [
-          -0.4069,
+          -0.4071,
           1.7731,
           3.818,
-          -0.4069,
-          1.7731,
-          3.875,
-          -0.4069,
-          2.2769,
-          3.818,
-          -0.4069,
-          2.2769,
-          3.875,
-          0.4069,
-          1.7731,
-          3.818,
-          0.4069,
+          -0.4071,
           1.7731,
           3.875,
-          0.4069,
+          -0.4071,
           2.2769,
           3.818,
-          0.4069,
+          -0.4071,
+          2.2769,
+          3.875,
+          0.4071,
+          1.7731,
+          3.818,
+          0.4071,
+          1.7731,
+          3.875,
+          0.4071,
+          2.2769,
+          3.818,
+          0.4071,
           2.2769,
           3.875
         ]

@@ -389,7 +389,7 @@ export function buildFA18C(s) {
         0.035,
         paint,
       );
-    fd.text('NAVY', [side * 0.042, 0.63, -1.75], 0.17, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
     fd.finish();
     // Retractable main gear: wide trailing arm and one wheel per side.
     const gg = group(root, `FA18-gear-${side}`, [side * 0.66, 1.35, 0.22]),

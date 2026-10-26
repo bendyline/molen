@@ -81,11 +81,30 @@ export interface WorldgenWorkerHandler {
   handle(message: WorldgenWorkerRequest): Promise<void>;
 }
 
-/** Steps run between yields to the event loop (so `cancel` messages get through). */
+/** Buildings per generation step. */
 const STEP_EVERY_BUILDINGS = 48;
+/** Work (ms) between yields to the event loop, so `cancel` messages get through. */
+const SLICE_MS = 8;
 
+// Yields through a message channel. A zero `setTimeout` nested in timer callbacks waits at least
+// 4 ms, and a worker yielding after every step that way idled most of a tile's time: a dense tile
+// took a second of wall time for a fifth of a second of work, while a jet waited for its buildings.
+const waiting: Array<() => void> = [];
+let channel: MessageChannel | undefined;
 function yieldToLoop(): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, 0));
+  if (typeof MessageChannel === 'undefined')
+    return new Promise((resolve) => setTimeout(resolve, 0));
+  if (channel === undefined) {
+    channel = new MessageChannel();
+    channel.port1.onmessage = () => waiting.shift()?.();
+    // Node (tests) keeps a listening port's process alive; browsers have no unref.
+    (channel.port1 as MessagePort & { unref?: () => void }).unref?.();
+  }
+  const port = channel.port2;
+  return new Promise((resolve) => {
+    waiting.push(resolve);
+    port.postMessage(0);
+  });
 }
 
 export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenWorkerHandler {
@@ -96,6 +115,10 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
   let places: PlacesContent | undefined;
   const cancelled = new Set<number>();
   const active = new Set<number>();
+  // One tile at a time, in the order requested (the stream asks for what the view needs most
+  // first). Interleaved, every tile in flight finished late, the nearest with the rest: a jet's
+  // buildings appeared seconds after their ground.
+  let queue: Promise<void> = Promise.resolve();
 
   async function generate(request: WorldgenWorkerGenerate): Promise<void> {
     if (pack === undefined) {
@@ -108,6 +131,14 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
     }
     active.add(request.id);
     try {
+      if (cancelled.has(request.id)) {
+        port.postMessage({
+          kind: 'result',
+          id: request.id,
+          cancelled: true,
+        } satisfies WorldgenWorkerResult);
+        return;
+      }
       const generationStart = performance.now();
       const steps = generateWorldgenTileSteps(
         {
@@ -120,6 +151,8 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
             : {}),
           geom: request.geom,
           ground: createHeightSampler(request.ground),
+          // Streaming never reads the output hash.
+          hashOutput: false,
           pack,
           ...(atlas !== undefined ? { atlas } : {}),
           ...(regions !== undefined ? { regions } : {}),
@@ -132,6 +165,7 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
         },
         STEP_EVERY_BUILDINGS,
       );
+      let sliceStart = performance.now();
       for (;;) {
         const next = steps.next();
         if (next.done === true) {
@@ -156,7 +190,9 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
           ]);
           return;
         }
+        if (performance.now() - sliceStart < SLICE_MS) continue;
         await yieldToLoop();
+        sliceStart = performance.now();
         if (cancelled.has(request.id)) {
           cancelled.delete(request.id);
           port.postMessage({
@@ -198,9 +234,19 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
         case 'cancel':
           if (active.has(message.id)) cancelled.add(message.id);
           return;
-        case 'generate':
-          await generate(message);
+        case 'generate': {
+          // Queued work can be cancelled before it starts.
+          active.add(message.id);
+          const run = queue.then(() => generate(message));
+          queue = run.catch(() => {});
+          try {
+            await run;
+          } finally {
+            active.delete(message.id);
+            cancelled.delete(message.id);
+          }
           return;
+        }
         default:
           return;
       }

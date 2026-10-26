@@ -23,6 +23,7 @@ import {
   signalTiming,
   type TransportJunction,
 } from '@bendyline/molen-ambient/kernel';
+import type { SceneAdmission } from '@bendyline/molen-client';
 import { World } from '@bendyline/molen-kernel/world';
 import type { AircraftSpec, VehicleData } from '@bendyline/molen-schema';
 import type {
@@ -102,6 +103,8 @@ export interface EarthAmbientOptions {
   /** Geographic road fleet; ships, rail and aircraft retain their independent pools. */
   carsAt?: (x: number, z: number) => readonly AmbientVehicleType[];
   prepare?: (object: THREE.Object3D) => Promise<void> | void;
+  /** Main-thread admission (e.g. `renderer.admission`) for building aircraft models. */
+  admission?: SceneAdmission;
   /** Ground height for aircraft altitudes (the stream's finest displayed heights). */
   ground?: (x: number, z: number) => number | undefined;
 }
@@ -149,6 +152,17 @@ function tileDistance(context: TerrainPyramidTileLayerContext, x: number, z: num
 /** A tile object detached this long (ms) without a dispose is forgotten. */
 const DETACHED_MS = 30_000;
 
+/**
+ * Road tiles join the traffic network only up to this size (m), and not while the observer moves
+ * faster than this (m/s) or did in the last few seconds. A coarse tile shown beneath a climbing
+ * aircraft carried a whole town's roads, and building its network held one frame for half a
+ * second; a jet passes a tile's traffic in seconds, too briefly to see, for a dropped frame per
+ * tile. One sample between syncs is noisy (a dip let tiles through at 300 m/s), hence the hold.
+ */
+const MAX_TILE_SIZE = 3000;
+const MAX_REGISTER_SPEED = 80;
+const FAST_HOLD_MS = 3000;
+
 export class EarthAmbient implements SemanticTileObserver {
   readonly world: World;
   readonly handle: AmbientHandle;
@@ -159,6 +173,8 @@ export class EarthAmbient implements SemanticTileObserver {
   private readonly entries = new Map<THREE.Object3D, Entry>();
   private accumulator = 0;
   private lastSync = Number.NEGATIVE_INFINITY;
+  private lastObserver: { x: number; z: number; time: number } | undefined;
+  private fastUntil = Number.NEGATIVE_INFINITY;
   private enabled = true;
   private budget: EarthAmbientBudget | undefined;
   private disposed = false;
@@ -262,6 +278,7 @@ export class EarthAmbient implements SemanticTileObserver {
       world: this.world,
       parent: options.parent,
       ...(options.prepare !== undefined ? { prepare: options.prepare } : {}),
+      ...(options.admission !== undefined ? { admission: options.admission } : {}),
       ...(content !== undefined
         ? {
             heights: content.heights,
@@ -315,6 +332,14 @@ export class EarthAmbient implements SemanticTileObserver {
     if (this.disposed || now - this.lastSync < 200) return;
     this.lastSync = now;
     const [x, , z] = observer.position;
+    const last = this.lastObserver;
+    const speed =
+      last === undefined || now <= last.time
+        ? 0
+        : (Math.hypot(x - last.x, z - last.z) * 1000) / (now - last.time);
+    this.lastObserver = { x, z, time: now };
+    if (speed > MAX_REGISTER_SPEED) this.fastUntil = now + FAST_HOLD_MS;
+    const registering = this.enabled && now >= this.fastUntil;
     // Roads only matter within reach of the spawn rings (the activity radius plus a margin).
     const reach = Math.max(600, this.budget?.activityRadius ?? 600) + 250;
     for (const [object, entry] of this.entries) {
@@ -342,7 +367,8 @@ export class EarthAmbient implements SemanticTileObserver {
     let nearest: Entry | undefined;
     let nearestDistance = Number.POSITIVE_INFINITY;
     for (const [object, entry] of this.entries) {
-      if (entry.registered || !this.enabled || !displayed(object, this.root)) continue;
+      if (entry.registered || !registering) continue;
+      if (entry.context.tileSize > MAX_TILE_SIZE || !displayed(object, this.root)) continue;
       const distance = tileDistance(entry.context, x, z);
       if (distance > reach || distance >= nearestDistance) continue;
       if (registered.some((other) => overlaps(other.context, entry.context))) continue;

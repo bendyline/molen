@@ -2486,9 +2486,11 @@ Required: `selected`, `slots`, `variants`
               "type": "string",
               "minLength": 1,
               "maxLength": 128
-            }
+            },
+            "description": "Exact glTF material names belonging to this paint region."
           },
           "node": {
+            "description": "Optional named glTF subtree restricting this region.",
             "type": "string",
             "minLength": 1,
             "maxLength": 128
@@ -2498,9 +2500,11 @@ Required: `selected`, `slots`, `variants`
           "materials"
         ],
         "additionalProperties": false
-      }
+      },
+      "description": "Stable paint regions bound to named model materials."
     },
     "anchors": {
+      "description": "Reusable marking projectors attached to model paint regions.",
       "type": "object",
       "propertyNames": {
         "type": "string",
@@ -2513,7 +2517,8 @@ Required: `selected`, `slots`, `variants`
           "slot": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 128
+            "maxLength": 128,
+            "description": "Paint region receiving the projected marking."
           },
           "position": {
             "type": "array",
@@ -2530,7 +2535,8 @@ Required: `selected`, `slots`, `variants`
             ],
             "items": false,
             "minItems": 3,
-            "maxItems": 3
+            "maxItems": 3,
+            "description": "Projector center as fractions of the region bounds, measured from their minimum corner."
           },
           "size": {
             "type": "array",
@@ -2553,7 +2559,8 @@ Required: `selected`, `slots`, `variants`
             ],
             "items": false,
             "minItems": 3,
-            "maxItems": 3
+            "maxItems": 3,
+            "description": "Projector width, height and depth as fractions of the longest region dimension."
           },
           "rotation": {
             "type": "array",
@@ -2570,7 +2577,8 @@ Required: `selected`, `slots`, `variants`
             ],
             "items": false,
             "minItems": 3,
-            "maxItems": 3
+            "maxItems": 3,
+            "description": "XYZ Euler rotation in radians; local positive Z points out of the surface."
           }
         },
         "required": [
@@ -2592,12 +2600,14 @@ Required: `selected`, `slots`, `variants`
           "id": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 128
+            "maxLength": 128,
+            "description": "Stable identifier used by selected."
           },
           "label": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 256
+            "maxLength": 256,
+            "description": "Display name for this livery."
           },
           "provenance": {
             "type": "object",
@@ -2608,11 +2618,13 @@ Required: `selected`, `slots`, `variants`
                   "photo",
                   "inspired",
                   "original"
-                ]
+                ],
+                "description": "Whether the appearance is photograph verified, reference inspired or an original design."
               },
               "note": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "description": "Attribution, verification scope and any deliberate approximations."
               },
               "references": {
                 "type": "array",
@@ -2621,11 +2633,13 @@ Required: `selected`, `slots`, `variants`
                   "properties": {
                     "title": {
                       "type": "string",
-                      "minLength": 1
+                      "minLength": 1,
+                      "description": "Human-readable reference title."
                     },
                     "url": {
                       "type": "string",
-                      "format": "uri"
+                      "pattern": "^https?:\\/\\/[^\\s]+$",
+                      "description": "HTTP or HTTPS source URL."
                     }
                   },
                   "required": [
@@ -2633,7 +2647,8 @@ Required: `selected`, `slots`, `variants`
                     "url"
                   ],
                   "additionalProperties": false
-                }
+                },
+                "description": "Public references supporting the appearance; required for photo and inspired designs."
               }
             },
             "required": [
@@ -2641,7 +2656,8 @@ Required: `selected`, `slots`, `variants`
               "note",
               "references"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "Evidence and authorship for the appearance."
           },
           "paints": {
             "type": "object",
@@ -2655,19 +2671,23 @@ Required: `selected`, `slots`, `variants`
               "properties": {
                 "color": {
                   "type": "string",
-                  "pattern": "^#[0-9a-fA-F]{6}$"
+                  "pattern": "^#[0-9a-fA-F]{6}$",
+                  "description": "Base paint color as an sRGB hex triplet."
                 },
                 "roughness": {
+                  "description": "Optional material roughness override.",
                   "type": "number",
                   "minimum": 0,
                   "maximum": 1
                 },
                 "metalness": {
+                  "description": "Optional material metalness override.",
                   "type": "number",
                   "minimum": 0,
                   "maximum": 1
                 },
                 "camouflage": {
+                  "description": "Optional camouflage projected in model space without changing authored UVs.",
                   "type": "object",
                   "properties": {
                     "colors": {
@@ -2677,17 +2697,20 @@ Required: `selected`, `slots`, `variants`
                       "items": {
                         "type": "string",
                         "pattern": "^#[0-9a-fA-F]{6}$"
-                      }
+                      },
+                      "description": "Two to four colors for deterministic camouflage patches."
                     },
                     "scale": {
                       "type": "number",
                       "exclusiveMinimum": 0,
-                      "maximum": 100
+                      "maximum": 100,
+                      "description": "Pattern repetitions across the longest paint-region dimension."
                     },
                     "seed": {
                       "type": "integer",
                       "minimum": 0,
-                      "maximum": 4294967295
+                      "maximum": 4294967295,
+                      "description": "Unsigned deterministic pattern seed."
                     }
                   },
                   "required": [
@@ -2702,9 +2725,11 @@ Required: `selected`, `slots`, `variants`
                 "color"
               ],
               "additionalProperties": false
-            }
+            },
+            "description": "Paint overrides keyed by stable paint-region name; omitted regions retain their authored appearance."
           },
           "markings": {
+            "description": "Surface markings to project for this variant.",
             "maxItems": 32,
             "type": "array",
             "items": {
@@ -2713,12 +2738,14 @@ Required: `selected`, `slots`, `variants`
                 "anchor": {
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 128
+                  "maxLength": 128,
+                  "description": "Reusable model marking anchor."
                 },
                 "graphic": {
                   "type": "object",
                   "properties": {
                     "label": {
+                      "description": "Optional descriptive label; rendered lettering belongs in the polygon artwork.",
                       "type": "string",
                       "maxLength": 256
                     },
@@ -2731,7 +2758,8 @@ Required: `selected`, `slots`, `variants`
                         "properties": {
                           "color": {
                             "type": "string",
-                            "pattern": "^#[0-9a-fA-F]{6}$"
+                            "pattern": "^#[0-9a-fA-F]{6}$",
+                            "description": "Flat polygon color as an sRGB hex triplet."
                           },
                           "points": {
                             "minItems": 3,
@@ -2754,7 +2782,8 @@ Required: `selected`, `slots`, `variants`
                               "items": false,
                               "minItems": 2,
                               "maxItems": 2
-                            }
+                            },
+                            "description": "Polygon vertices in normalized 0–1 coordinates with positive Y upward."
                           }
                         },
                         "required": [
@@ -2762,13 +2791,15 @@ Required: `selected`, `slots`, `variants`
                           "points"
                         ],
                         "additionalProperties": false
-                      }
+                      },
+                      "description": "Original flat artwork polygons, painted in order."
                     }
                   },
                   "required": [
                     "shapes"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "description": "Resolution-independent artwork rasterized for the surface projector."
                 }
               },
               "required": [
@@ -2786,7 +2817,8 @@ Required: `selected`, `slots`, `variants`
           "paints"
         ],
         "additionalProperties": false
-      }
+      },
+      "description": "Available livery recipes for this model."
     }
   },
   "required": [
@@ -4433,6 +4465,26 @@ Required: `kind`, `spec`
           "description": "Single engine, implicitly named main. Supply exactly one of engine or engines.",
           "type": "object",
           "properties": {
+            "mixtureControl": {
+              "description": "Manual piston mixture; omitted leaves fuel scheduling automatic.",
+              "type": "boolean"
+            },
+            "propellerControl": {
+              "description": "Constant-speed propeller; the lever selects RPM and the governor varies pitch.",
+              "type": "object",
+              "properties": {
+                "minRpm": {
+                  "type": "number",
+                  "minimum": 0.3,
+                  "maximum": 0.95,
+                  "description": "Minimum governed RPM as a fraction of rated propeller RPM."
+                }
+              },
+              "required": [
+                "minRpm"
+              ],
+              "additionalProperties": false
+            },
             "propulsion": {
               "description": "Installed propulsion type; omitted preserves the legacy constant-power model.",
               "type": "string",
@@ -4577,6 +4629,26 @@ Required: `kind`, `spec`
           "items": {
             "type": "object",
             "properties": {
+              "mixtureControl": {
+                "description": "Manual piston mixture; omitted leaves fuel scheduling automatic.",
+                "type": "boolean"
+              },
+              "propellerControl": {
+                "description": "Constant-speed propeller; the lever selects RPM and the governor varies pitch.",
+                "type": "object",
+                "properties": {
+                  "minRpm": {
+                    "type": "number",
+                    "minimum": 0.3,
+                    "maximum": 0.95,
+                    "description": "Minimum governed RPM as a fraction of rated propeller RPM."
+                  }
+                },
+                "required": [
+                  "minRpm"
+                ],
+                "additionalProperties": false
+              },
               "propulsion": {
                 "description": "Installed propulsion type; omitted preserves the legacy constant-power model.",
                 "type": "string",
@@ -6019,6 +6091,18 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "mixture": {
+      "description": "Common mixture: 0 idle cutoff, 1 full rich (default).",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "propeller": {
+      "description": "Common propeller lever: 0 minimum governed RPM, 1 maximum (default).",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "power": {
       "type": "number",
       "minimum": 0,
@@ -6064,6 +6148,18 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
         "properties": {
           "power": {
             "description": "Absolute throttle override; omitted inherits common power.",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "mixture": {
+            "description": "Individual mixture override; inherits common mixture.",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "propeller": {
+            "description": "Individual propeller RPM override; inherits common propeller.",
             "type": "number",
             "minimum": 0,
             "maximum": 1
@@ -6262,6 +6358,15 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
         "type": "object",
         "properties": {
           "rpm": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "shaftPower": {
+            "type": "number",
+            "minimum": 0
+          },
+          "combustion": {
             "type": "number",
             "minimum": 0,
             "maximum": 1

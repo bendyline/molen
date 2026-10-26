@@ -2,6 +2,7 @@
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { prepareSurface } from './surface-normals.mjs';
 import {
   addMarineDashboard,
   addRoadDashboard,
@@ -22,6 +23,7 @@ export function detailKit(parent, name = 'close-detail') {
   const red = mat('detail-red', '#ad3934', 0.05, 0.4);
   const green = mat('detail-green', '#397552', 0.05, 0.4);
   const add = (geometry, material = metal, at = [0, 0, 0], group = root) => {
+    ({ geometry, material } = prepareSurface(geometry, material));
     const mesh = new T.Mesh(geometry, material);
     mesh.position.fromArray(at);
     group.add(mesh);

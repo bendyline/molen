@@ -3,8 +3,12 @@ export interface AdmissionOptions {
   bytes?: number;
   signal?: AbortSignal;
   label?: string;
-  /** Background jobs run only in frame budget that no normal job is waiting for. */
-  priority?: 'normal' | 'background';
+  /**
+   * Background jobs run only in frame budget that no normal job is waiting for. Urgent jobs run
+   * before normal ones, in their own order: small work the view is visibly waiting on, such as
+   * terrain ground, which otherwise queued behind every building cell's upload.
+   */
+  priority?: 'urgent' | 'normal' | 'background';
 }
 export interface AdmissionSample {
   label: string;
@@ -44,9 +48,11 @@ export class FrameAdmissionQueue implements SceneAdmission {
   private disposed = false;
   private readonly clock: () => number;
   private readonly schedule: (callback: () => void) => void;
-  private readonly maxMs: number;
-  private readonly maxBytes: number;
-  private readonly maxJobs: number;
+  private maxMs: number;
+  private maxBytes: number;
+  private maxJobs: number;
+  /** Recent work time per label (ms, smoothed): what the next job of that kind will likely take. */
+  private readonly expected = new Map<string, number>();
   constructor(private readonly options: FrameAdmissionOptions = {}) {
     this.clock = options.now ?? (() => performance.now());
     this.schedule =
@@ -58,8 +64,21 @@ export class FrameAdmissionQueue implements SceneAdmission {
     this.maxMs = options.maxMilliseconds ?? 2;
     this.maxBytes = options.maxBytes ?? 2 * 1024 * 1024;
     this.maxJobs = options.maxJobs ?? 32;
-    if (![this.maxMs, this.maxBytes, this.maxJobs].every((v) => Number.isFinite(v) && v > 0))
+    this.setLimits({});
+  }
+  /**
+   * Change the per-frame budget from the next frame on; omitted limits keep their values. A host
+   * can admit more when frames have time to spare (an adaptive quality tier, say).
+   */
+  setLimits(limits: Pick<FrameAdmissionOptions, 'maxMilliseconds' | 'maxBytes' | 'maxJobs'>): void {
+    const next = [
+      limits.maxMilliseconds ?? this.maxMs,
+      limits.maxBytes ?? this.maxBytes,
+      limits.maxJobs ?? this.maxJobs,
+    ] as const;
+    if (!next.every((v) => Number.isFinite(v) && v > 0))
       throw new RangeError('Admission budgets must be finite and positive');
+    [this.maxMs, this.maxBytes, this.maxJobs] = next;
   }
   run<T>(task: () => T, options: AdmissionOptions = {}): Promise<T> {
     if (this.disposed || options.signal?.aborted)
@@ -85,7 +104,11 @@ export class FrameAdmissionQueue implements SceneAdmission {
         }
       };
       options.signal?.addEventListener('abort', job.abort, { once: true });
-      (options.priority === 'background' ? this.background : this.jobs).push(job);
+      if (options.priority === 'background') this.background.push(job);
+      else if (options.priority === 'urgent') {
+        const after = this.jobs.findIndex((queued) => queued.options.priority !== 'urgent');
+        this.jobs.splice(after < 0 ? this.jobs.length : after, 0, job);
+      } else this.jobs.push(job);
       this.request();
     });
     if (options.priority === 'background') {
@@ -141,10 +164,14 @@ export class FrameAdmissionQueue implements SceneAdmission {
       const next = lane[0];
       if (next === undefined) break;
       const cost = next.options.bytes ?? 0;
+      const label = next.options.label ?? 'admission';
+      // A frame's first job always runs, however long. After it, a job of a kind that has taken
+      // longer than the budget left waits to open the next frame: a town tile's 10-25 ms request
+      // or assembly behind a few small jobs held the frame past 50 ms.
       if (
         count > 0 &&
         (count >= this.maxJobs ||
-          this.clock() - start >= this.maxMs ||
+          this.clock() - start + (this.expected.get(label) ?? 0) > this.maxMs ||
           bytes + cost > this.maxBytes)
       )
         break;
@@ -162,10 +189,15 @@ export class FrameAdmissionQueue implements SceneAdmission {
         next.reject(error);
       }
       const workMs = this.clock() - began;
+      const previous = this.expected.get(label);
+      this.expected.set(
+        label,
+        previous === undefined ? workMs : previous + (workMs - previous) * 0.25,
+      );
       count++;
       bytes += cost;
       this.options.onSample?.({
-        label: next.options.label ?? 'admission',
+        label,
         queueMs: began - next.queued,
         workMs,
         bytes: cost,

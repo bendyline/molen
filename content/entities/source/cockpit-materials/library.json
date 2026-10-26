@@ -1,0 +1,1357 @@
+{
+  "version": 1,
+  "description": "Shared, tintable cockpit surface recipes. Explicit per-aircraft material selections preserve the authored variant palette. Finish choices are visual approximations from the existing reference reviews, not verified coating specifications.",
+  "finishes": {
+    "panel": {
+      "label": "Stippled enamel",
+      "size": 256,
+      "repeat": 0.12,
+      "roughness": 0.8,
+      "normal": 0.4,
+      "metalness": 0,
+      "role": "Traditional textured painted instrument panels and quadrant housings"
+    },
+    "satin": {
+      "label": "Satin coated panel",
+      "size": 128,
+      "repeat": 0.12,
+      "roughness": 0.62,
+      "normal": 0.18,
+      "metalness": 0,
+      "role": "Fine coated panels and modern console housings; soft broad highlights"
+    },
+    "rubber": {
+      "label": "Rubberized grain",
+      "size": 256,
+      "repeat": 0.1,
+      "roughness": 0.88,
+      "normal": 0.34,
+      "metalness": 0,
+      "role": "Padded glare shields, rubber grips and protective trim"
+    },
+    "brushed": {
+      "label": "Brushed alloy",
+      "size": 128,
+      "repeat": 0.08,
+      "roughness": 0.4,
+      "normal": 0.12,
+      "metalness": 0.72,
+      "role": "Unpainted levers, fasteners and metal quadrant hardware"
+    },
+    "paint": {
+      "label": "Fine paint (legacy upholstery detail)",
+      "size": 128,
+      "repeat": 0.12,
+      "roughness": 0.72,
+      "normal": 0.16,
+      "metalness": 0
+    },
+    "vinyl": {
+      "label": "Vinyl upholstery",
+      "size": 128,
+      "repeat": 0.1,
+      "roughness": 0.79,
+      "normal": 0.22,
+      "metalness": 0
+    },
+    "canvas": {
+      "label": "Woven canvas",
+      "size": 128,
+      "repeat": 0.08,
+      "roughness": 0.94,
+      "normal": 0.3,
+      "metalness": 0
+    },
+    "webbing": {
+      "label": "Harness webbing",
+      "size": 128,
+      "repeat": 0.06,
+      "roughness": 0.9,
+      "normal": 0.24,
+      "metalness": 0
+    }
+  },
+  "profiles": {
+    "a220-300": {
+      "label": "Airbus A220-300",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "instrument-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "coaming-padding"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "a400m": {
+      "label": "Airbus A400M Atlas",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://image.contactad.airbus.com/lib/fe2d1171756404747c1678/m/1/7f52cf78-0b6e-49b2-8028-4cc0b85158bd.pdf",
+          "title": "A400M \u00e2\u20ac\u201c The 21st Century Airlifter,2025 pp18\u00e2\u20ac\u201c19,24\u00e2\u20ac\u201c25 and cover"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Airbus_A400M_cockpit_ILA2014.jpg",
+          "title": "A400M flight deck,ILA2014"
+        }
+      ],
+      "panelMaterials": [
+        "A400-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "A400-trim"
+      ],
+      "hardwareMaterials": [
+        "A400-alloy",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "airbus-a320neo": {
+      "label": "Airbus A320neo",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "instrument-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "coaming-padding"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "airbus-h125": {
+      "label": "Airbus H125",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-07/TD-H125-20-01E.pdf",
+          "title": "H125 Technical Description 2020, printed page 8"
+        },
+        {
+          "url": "https://mediaassets.airbus.com/pm_38_379_379561-fmldw2vvut.pdf?fileName=airbus-h125-technical-description.pdf",
+          "title": "H125 Technical Description 2025"
+        }
+      ],
+      "panelMaterials": [
+        "H125-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "H125-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "H125-metal",
+        "flight-control-alloy"
+      ]
+    },
+    "airbus-h145": {
+      "label": "Airbus H145 D3",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.airbus.com/sites/g/files/jlcbta136/files/2021-10/3061-S-00-rev1%20%282%29.pdf",
+          "title": "Ground Rescue Booklet H145/H145M, 3061-S-00 revision 1, 2021-06-09"
+        },
+        {
+          "url": "https://mediaassets.airbus.com/pm_38_379_379528-yay86tech1.pdf?fileName=brochure-h145.pdf",
+          "title": "Airbus H145 brochure"
+        }
+      ],
+      "panelMaterials": [
+        "H145-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "H145-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "H145-metal",
+        "flight-control-alloy"
+      ]
+    },
+    "airliner": {
+      "label": "Bendy Small Airliner",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "detail-trim"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "an-124": {
+      "label": "Antonov An-124-100 Ruslan",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://volga-dnepr.com/files/cargoguide_en_aug24.pdf",
+          "title": "Volga-Dnepr2024 Cargo Guide, PDF pages4\u00e2\u20ac\u201c5"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Antonov_An-124_3-view.svg",
+          "title": "An-124 general arrangement"
+        }
+      ],
+      "panelMaterials": [
+        "AN124-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "AN124-trim"
+      ],
+      "hardwareMaterials": [
+        "AN124-alloy",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "atr-72-600": {
+      "label": "ATR 72-600",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.atr-aircraft.com/wp-content/uploads/2020/07/Factsheets_-_ATR_72-600.pdf",
+          "title": "ATR72-600 fact sheet,2020"
+        },
+        {
+          "url": "https://skybrary.aero/sites/default/files/bookshelf/3696.pdf",
+          "title": "ATR72-600 technical fact sheet,June2015"
+        }
+      ],
+      "panelMaterials": [
+        "ATR72-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "ATR72-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "ATR72-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "av-8b": {
+      "label": "McDonnell Douglas AV-8B Harrier II Plus",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://jyito.com/Natops.pdf",
+          "title": "NAVAIR A1-AV8BB-NFM-000,1September2011,Fig1-2sheet2 and FO-1"
+        },
+        {
+          "url": "https://www.navair.navy.mil/product/AV-8B-Harrier",
+          "title": "NAVAIR AV-8B facts"
+        }
+      ],
+      "panelMaterials": [
+        "AV8-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "AV8-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "aw139": {
+      "label": "Leonardo AW139",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.avincis.com/wp-content/uploads/2024/11/A4-AW139-Specifications-Flyer-Low-Res.pdf",
+          "title": "Avincis AW139 Specifications, page 4"
+        },
+        {
+          "url": "https://www.easa.europa.eu/sites/default/files/dfu/AB%20139%20JOEB%20FINAL%20REPORT%20Rev%204-%2015_10_2012%20AWTAx.pdf",
+          "title": "EASA AW139 OEB Final Report Revision 4, 2012-10-15, pages 14 and 17"
+        }
+      ],
+      "panelMaterials": [
+        "AW139-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "AW139-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "AW139-metal",
+        "flight-control-alloy"
+      ]
+    },
+    "baron-g58": {
+      "label": "Beechcraft Baron G58",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://africair.com/wp-content/uploads/2016/03/Baron-G58-Specification-Description-TH-2453-to-TBD-Revision-A.pdf",
+          "title": "Baron G58 Specification and Description, February 2016 Revision A"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Beechcraft_G58_Baron_(N67WM,_cn_TH-2485)_(1-12-2023).jpg",
+          "title": "File:Beechcraft G58 Baron (N67WM, cn TH-2485) (1-12-2023).jpg"
+        }
+      ],
+      "panelMaterials": [
+        "Baron-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "Baron-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "Baron-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "beech-18": {
+      "label": "Beechcraft Model 18",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://timetravelair.com/techlibrary/beechcraft/Beechcraft%20Detail%20Specification%20131%2013%20MAR%2051.pdf",
+          "title": "Beechcraft Detail Specification 131,13March1951, D18S Navigation Trainer"
+        },
+        {
+          "url": "https://www.gruppofalchi.com/files/1991-090-1991-B-PaulMatt_ScaleDrawings_Vol1_partB.pdf",
+          "title": "Historical Aviation Album drawing6-59-A,1969; Model18 c/n68,18S-433(1940), postwar modified"
+        }
+      ],
+      "panelMaterials": [
+        "Beech18-dark"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "Beech18-alloy",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "bell-206b": {
+      "label": "Bell 206B JetRanger",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://prairiehelicopters.com/wp-content/uploads/2014/08/206B3ProdSpec.pdf",
+          "title": "206B-3 Product Specifications, January 2005"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Bell_206B_Panel.jpg"
+        }
+      ],
+      "panelMaterials": [
+        "206-panel"
+      ],
+      "paddingMaterials": [
+        "206-gaskets"
+      ],
+      "hardwareMaterials": [
+        "206-alloy"
+      ]
+    },
+    "bell-407": {
+      "label": "Bell 407GX",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.indesaviation.com/wp-content/uploads/2014/11/407_ProductSpec_201302-Web.pdf",
+          "title": "Bell 407 Product Specifications, February 2013"
+        },
+        {
+          "url": "https://www.easa.europa.eu/sites/default/files/dfu/EASA-OEB%28F%29-Bell_407---407GX-01-19062012.pdf",
+          "title": "Bell 407 and 407GX, 19 June 2012"
+        }
+      ],
+      "panelMaterials": [
+        "407-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "407-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "407-machined",
+        "flight-control-alloy"
+      ]
+    },
+    "bell-412ep": {
+      "label": "Bell 412EP",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.pdf-archive.com/2012/05/16/412ep-productspecs02-2012/412ep-productspecs02-2012.pdf",
+          "title": "Bell 412EP Product Specifications, February 2012"
+        },
+        {
+          "url": "https://www.jetphotos.com/photo/5928332",
+          "title": "N7506M Bell 412EP cockpit, 29 December 2006"
+        }
+      ],
+      "panelMaterials": [
+        "412-panel-gray",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "412-metal",
+        "flight-control-alloy"
+      ]
+    },
+    "boeing-737-800": {
+      "label": "Boeing 737-800",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "instrument-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "coaming-padding"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "bonanza-g36": {
+      "label": "Beechcraft Bonanza G36",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://africair.com/wp-content/uploads/2016/03/Bonanza_G36_Specification_and_Description_E-4063_thru_E-4080.pdf",
+          "title": "Bonanza G36 Specification and Description (E-4063 through E-4080)"
+        },
+        {
+          "url": "https://tadistributors.com/wp-content/uploads/2016/03/Bonanza-G36-Brochure.pdf",
+          "title": "Bonanza G36 brochure, 2013"
+        }
+      ],
+      "panelMaterials": [
+        "Bonanza-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "Bonanza-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "Bonanza-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "c-130j": {
+      "label": "Lockheed Martin C-130J Super Hercules",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.0x4d.net/files/AF1/R11%20Segment%207.pdf",
+          "title": "USAF T.O. 00-105E-9, C-130J.2 dimensional/general-information drawing"
+        },
+        {
+          "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/C-130J/C130JPocketGuide.pdf",
+          "title": "C-130J Pocket Guide, pp6\u00e2\u20ac\u201c7,22\u00e2\u20ac\u201c25"
+        }
+      ],
+      "panelMaterials": [
+        "C130J-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "C130J-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "C130J-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "c-17a": {
+      "label": "Boeing C-17A Globemaster III",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:McDonnell_Douglas_C-17A_Globemaster_III_3-view_line_drawing.png",
+          "title": "Flight Manual USAF Series C-17A, Change14, T.O.1C-17A-1, 2001 p1-16"
+        },
+        {
+          "url": "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/1529726/c-17-globemaster-iii/",
+          "title": "USAF C-17 Globemaster III fact sheet"
+        }
+      ],
+      "panelMaterials": [
+        "C17-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "C17-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "C17-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "c-5m": {
+      "label": "Lockheed Martin C-5M Super Galaxy",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Lockheed_C-5_Galaxy_3-view_line_drawing.jpg",
+          "title": "C-5 Galaxy general-arrangement drawing,2020"
+        },
+        {
+          "url": "https://0x4d.net/files/AF1/R11%20Segment%204.pdf",
+          "title": "USAF T.O.00-105E-9 R11 C-5 pp2,11,14,19,20"
+        }
+      ],
+      "panelMaterials": [
+        "C5-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "C5-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "C5-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "cessna-172s": {
+      "label": "Cessna 172S Skyhawk",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://irp.cdn-website.com/295c38de/files/uploaded/C172S-G1000-POH.pdf",
+          "title": "Cessna 172S NAV III POH, 172SPHBUS-00, original issue December 20 2007"
+        },
+        {
+          "url": "https://data.ntsb.gov/Docket/Document/docBLOB?FileExtension=.PDF&FileName=Cessna+172S+Three+View+Drawing-Master.PDF&ID=40398219",
+          "title": "Cessna 172S three-view reproduced in NTSB docket"
+        }
+      ],
+      "panelMaterials": [
+        "Skyhawk-panel-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "Skyhawk-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "Skyhawk-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "cessna-182t": {
+      "label": "Cessna 182T Skylane",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.aeroelectric.com/Reference_Docs/Cessna/cessna-poh/Cessna_182_C182T_2007_NavIII-G1000%2BGFC700_POH-PIM_fromCessna.pdf",
+          "title": "Cessna 182T NAV III / GFC700 Information Manual, Revision 1, December 2007"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Cessna_182T_G-ZGZG_(6972142316).jpg",
+          "title": "File:Cessna 182T G-ZGZG (6972142316).jpg"
+        }
+      ],
+      "panelMaterials": [
+        "Skylane-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "Skylane-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "Skylane-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "cessna-208b": {
+      "label": "Cessna 208B Grand Caravan EX",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://cdn.sprinkle.com/library/pdfs/18191aef-558e-401d-ba9d-8169c7f70825.pdf",
+          "title": "Grand Caravan EX Specification and Description, August 2021 Revision B, serial 208B5656 onward"
+        },
+        {
+          "url": "https://africair.com/wp-content/uploads/2016/03/SD-Grand-Caravan-EX-Unit-5265-to-TBD-2016-Feb.pdf",
+          "title": "Grand Caravan EX Specification and Description, February 2016 Revision D"
+        }
+      ],
+      "panelMaterials": [
+        "Caravan-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "Caravan-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "Caravan-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "ch-47f": {
+      "label": "Boeing CH-47F Chinook",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.chinook-helicopter.com/history/Nick_Van_Valkenburgh/H-47_Chinook_Legacy_Nov_2012_Expanded.pdf",
+          "title": "The H-47 Chinook Legacy, expanded November 2012, page 60, OPF00001 CH-47F dimension drawing"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:CH-47_Cockpit.jpg"
+        }
+      ],
+      "panelMaterials": [
+        "CH47-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "CH47-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "CH47-metal",
+        "flight-control-alloy"
+      ]
+    },
+    "cirrus-sr22t": {
+      "label": "Cirrus SR22T G6",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://cfi.thomas-daniel.com/POH/pdf/SR22T_G6_Perspective%2B.2020-01-15.pdf",
+          "title": "SR22T Pilot Operating Handbook, 13772-007, Reissue A / Revision A1"
+        },
+        {
+          "url": "https://cirrusaircraft.com/wp-content/uploads/2014/11/SR-Brochure-2020-A6.pdf",
+          "title": "2020 SR Series brochure"
+        }
+      ],
+      "panelMaterials": [
+        "Cirrus-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "Cirrus-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "Cirrus-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "citation-cj4": {
+      "label": "Cessna Citation CJ4",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "instrument-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "coaming-padding"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "dash-8-q400": {
+      "label": "De Havilland Canada Dash 8-400",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "instrument-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "coaming-padding"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "dc-3": {
+      "label": "Douglas DC-3",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://digitalcollections.museumofflight.org/nodes/view/2904",
+          "title": "Instruction manual DC-3/DST, United Air Lines Flight Operations,1940\u00e2\u20ac\u201c1942; general dimensions revised1December1942"
+        },
+        {
+          "url": "https://www.boeing.com/content/dam/boeing/v2/airports/acaps/DC3to7_Brochure.pdf",
+          "title": "Turning Radius and Ground Handling Information DC-3 to DC-7,7December2004,2023rightsnotice"
+        }
+      ],
+      "panelMaterials": [
+        "DC3-cockpit-green",
+        "DC3-dark"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "DC3-aluminium",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "dhc-2": {
+      "label": "De Havilland Canada DHC-2 Beaver",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.alaskafloats.com/wp-content/uploads/2024/05/Beaver-POH.pdf",
+          "title": "DHC PSM1-2-1 Flight Manual,31 March1956 with revisions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:De_Havilland_Canada_DHC-2_Beaver_AL.1_\u00e2\u20ac\u02dcG-DHCZ\u00e2\u20ac\u2122_(42288028781).jpg",
+          "title": "DHC-2 AL.1 G-DHCZ,26 May2017,Duxford"
+        }
+      ],
+      "panelMaterials": [
+        "Beaver-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "Beaver-trim"
+      ],
+      "hardwareMaterials": [
+        "Beaver-alloy",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "dhc-6": {
+      "label": "De Havilland Canada DHC-6 Twin Otter 400",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.vikingair.com/sites/default/files/Viking-Twin-Otter-Series-400-Technical-Specifications-R-01-2018.pdf",
+          "title": "Twin Otter Series 400 Technical Specifications and Standard Equipment, revision 01-18"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Viking_DHC-6-400_Twin_Otter,_Viking_Air_JP7339403.jpg",
+          "title": "C-GOVN cockpit, Singapore Airshow, 14 February 2012"
+        }
+      ],
+      "panelMaterials": [
+        "TwinOtter-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "TwinOtter-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "TwinOtter-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "diamond-da42": {
+      "label": "Diamond DA42-VI",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://web.archive.org/web/20230130234036/http://support.diamond-air.at/fileadmin/uploads/files/after_sales_support/DA42_New_Generation/Airplane_Flight_Manual_with_MAM42-600_DA42-VI/Basic_Manual/70116e-r5-complete.pdf",
+          "title": "DA42 NG with MAM42-600 (DA42-VI), AFM 7.01.16-E rev5, 10 June 2021"
+        },
+        {
+          "url": "https://www.diamondaircraft.com/fileadmin/diamondaircraft/documents/da42/DA42-VI_Exterior_and_Interior_Design_2024_SCREEN.pdf",
+          "title": "DA42-VI Exterior and Interior Design, 2024"
+        }
+      ],
+      "panelMaterials": [
+        "DA42-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "DA42-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "DA42-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "embraer-e175": {
+      "label": "Embraer E175",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "instrument-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "coaming-padding"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "f-14d": {
+      "label": "Grumman F-14D Super Tomcat",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://web.archive.org/web/20230101005424/http://www.alternatewars.com/SAC/F-14D_Tomcat_SAC_-_July_1985_(Partially_Declas).pdf",
+          "title": "NAVAIR00-110AF14-2, Standard Aircraft Characteristics F-14D, July1985, declassified sheets"
+        },
+        {
+          "url": "https://server.3rd-wing.net/public/Bureau_VF31/Docs%20F-14%20r%C3%A9el/F-14D%20Flight%20Manual.pdf",
+          "title": "NAVAIR01-F14AAD-1, 15January2004, changes through15October2006"
+        }
+      ],
+      "panelMaterials": [
+        "F14-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "F14-alloy",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "f-15c": {
+      "label": "McDonnell Douglas F-15C Eagle",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://web.archive.org/web/20111014195242id_/http://alternatewars.com/SAC/F-15C_Eagle_SAC_-_February_1992.pdf",
+          "title": "Standard Aircraft Characteristics F-15C, February 1992"
+        },
+        {
+          "url": "https://www.usaf-sig.org/index.php/references/downloads/4-technical-orders/38-type-specific/102-f-15-eagle-strike-eagle?download=451:t-o-1f-15a-1-flight-manual-f-15a-b-c-d-block-7-up-01-07-1989-pdf",
+          "title": "T.O.1F-15A-1,1July1989,selected pages"
+        }
+      ],
+      "panelMaterials": [
+        "F15-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "F15-alloy",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "f-16b": {
+      "label": "General Dynamics F-16B Fighting Falcon",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.aahs-online.org/resources/e-library/fm/USAF-F16A_B-Flight-Manual.pdf",
+          "title": "T.O.1F-16A-1, 14 August 1995, change14 15 August2003, publicly hosted AAHS copy"
+        },
+        {
+          "url": "https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf",
+          "title": "NASA public report 19930022544, figure2"
+        }
+      ],
+      "panelMaterials": [
+        "F16-panel-gray",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "F16-seals"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "F16-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "f-22a": {
+      "label": "Lockheed Martin F-22A Raptor",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-22A_Raptor_3-view_line_drawing.jpg",
+          "title": "F-22A three-view, USAF 060411-F-ZZ000-159, 11April2006"
+        },
+        {
+          "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/f22/F-22-Product-Card.pdf",
+          "title": "F-22 Product Card FG15-1758_001,2015"
+        }
+      ],
+      "panelMaterials": [
+        "F22-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "F22-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "f-35a": {
+      "label": "Lockheed Martin F-35A Lightning II",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-35A_Lightning_II_3-view_drawing.png",
+          "title": "JPO F-35A front,side,top views combined2010"
+        },
+        {
+          "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/F-35/F35FastFacts5_2020.pdf",
+          "title": "F-35 Fast Facts,May2020"
+        }
+      ],
+      "panelMaterials": [
+        "F35-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "F35-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "fa-18c": {
+      "label": "McDonnell Douglas F/A-18C Hornet",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://server.3rd-wing.net/public/Bureau_4thMEG/VMFA-232/Documentation/Support/A1-F18AC-NFM-000_-_NATOPS_Flight_Manual_-_February_2000.pdf",
+          "title": "A1-F18AC-NFM-000 NATOPS Flight Manual, February 2000 with changes"
+        },
+        {
+          "url": "https://ntrs.nasa.gov/api/citations/19970010502/downloads/19970010502.pdf",
+          "title": "NASA TM4786, Extraction of Lateral-Directional Stability and Control Derivatives for the Basic F-18 Aircraft at High Angles of Attack, February1997"
+        }
+      ],
+      "panelMaterials": [
+        "FA18-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "FA18-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "gripen-c": {
+      "label": "Saab JAS 39C Gripen",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.saab.com/globalassets/products/aeronautics/gripen-c-series/gripen_c_factsheet.pdf",
+          "title": "Gripen C factsheet, March 2016"
+        },
+        {
+          "url": "https://www.saab.com/globalassets/products/aeronautics/gripen-c-series/gripen_c-foldout.pdf",
+          "title": "Gripen C-series foldout"
+        }
+      ],
+      "panelMaterials": [
+        "Gripen-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "Gripen-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "gulfstream-g650er": {
+      "label": "Gulfstream G650ER",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "instrument-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "coaming-padding"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "king-air-350i": {
+      "label": "Beechcraft King Air 350i",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://africair.com/wp-content/uploads/2016/03/SD-KA350i-Unit-1031-to-TBD-2015-Oct.pdf",
+          "title": "King Air 350i Specification and Description, October 2015, FL-1031 onward"
+        },
+        {
+          "url": "https://media.txtav.com/194521-beechcraft-brings-state-of-the-art-avionics-cabin-upgrades-to-new-production-king-air-turboprops/",
+          "title": "Beechcraft brings state-of-the-art avionics, cabin upgrades to new production King Air turboprops"
+        }
+      ],
+      "panelMaterials": [
+        "KingAir-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "KingAir-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "KingAir-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "mig-29a": {
+      "label": "Mikoyan MiG-29A",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://jasonblair.net/wp-content/uploads/2015/06/MIG29-Flight-Manual-Pt-1.pdf",
+          "title": "GAF T.O. 1F-MIG29-1, 30 September 1994 / Change 4, 20 September 2001"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Mikoyan_MiG-29_3-view.svg",
+          "title": "MiG-29 three-view, 2009 / revised 2013"
+        }
+      ],
+      "panelMaterials": [
+        "MiG29-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "MiG29-panel-trim"
+      ],
+      "hardwareMaterials": [
+        "MiG29-alloy",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "mv-22b": {
+      "label": "Bell Boeing MV-22B Osprey",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://0x4d.net/files/AF1/R11%20Segment%2013.pdf",
+          "title": "USAF T.O.00-105E-9, 1 February2006, V-22 pages1,11,12"
+        },
+        {
+          "url": "https://www.boeing.com/defense/military-rotorcraft/v-22-osprey",
+          "title": "Boeing V-22 facts"
+        }
+      ],
+      "panelMaterials": [
+        "MV22-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "MV22-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "MV22-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "oh-6": {
+      "label": "OH-6",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "cabin-gray-enamel-panel",
+        "cockpit-charcoal"
+      ],
+      "paddingMaterials": [
+        "rubber"
+      ],
+      "hardwareMaterials": [
+        "machined-aluminum",
+        "flight-control-alloy"
+      ]
+    },
+    "p-51": {
+      "label": "P-51D Mustang",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "cockpit-charcoal-panel",
+        "cockpit-charcoal"
+      ],
+      "paddingMaterials": [
+        "rubber"
+      ],
+      "hardwareMaterials": [
+        "natural-metal",
+        "flight-control-alloy"
+      ]
+    },
+    "pa-28-180": {
+      "label": "Piper PA-28-180 Cherokee",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.nehemiahaviation.com/files/pa28poh.pdf",
+          "title": "Piper Cherokee C Owners Handbook, publication 753 683, issued August 1964, revised February 2 1979; printed pages 1, 3, 4 and 12"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Piper_PA-28-150_Cherokee_C_3-view_line_drawing.png",
+          "title": "Piper Cherokee C three-view, April 1968 manual"
+        }
+      ],
+      "panelMaterials": [
+        "Cherokee-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "Cherokee-trim"
+      ],
+      "hardwareMaterials": [
+        "Cherokee-metal",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "pc-6": {
+      "label": "Pilatus PC-6/B2-H4 Turbo Porter",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.pilatus-aircraft.com/assets/files/Model-Building-Plans/PC-6-Model-Building-Plan.pdf",
+          "title": "Pilatus PC-6 Model Building Plan; tool drawing190.000.1711,9January2004"
+        },
+        {
+          "url": "https://www.pc-6.com/vPilatus-ProductBrochure.pdf",
+          "title": "Pilatus PC-6 product brochure,2010"
+        }
+      ],
+      "panelMaterials": [
+        "Porter-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "Porter-trim"
+      ],
+      "hardwareMaterials": [
+        "Porter-alloy",
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "pilatus-pc12": {
+      "label": "Pilatus PC-12 NGX",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://s3728f283e85acd32.jimcontent.com/download/version/1616612118/module/9061527520/name/Pilatus%20PC-12%20Aircraft%20Pilot%20Information%20Manual%20Part%201.pdf",
+          "title": "Pilatus Pilot Information Manual 02406 issue003 revision01, 18 December 2020"
+        },
+        {
+          "url": "https://www.pilatus-aircraft.com/assets/files/Model-Building-Plans/PC-12-NGX-Model-Building-Plan.pdf",
+          "title": "PC-12 NGX Model Building Plan"
+        }
+      ],
+      "panelMaterials": [
+        "PC12-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "PC12-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "PC12-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "rafale-c": {
+      "label": "Dassault Rafale C",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://www.dassault-aviation.com/en/defense/rafale/specifications-and-performance-data/",
+          "title": "Rafale specifications"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Dassault_Rafale_3-view_line_drawing.svg",
+          "title": "Rafale B three-view, 2012/2013"
+        }
+      ],
+      "panelMaterials": [
+        "Rafale-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "Rafale-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "robinson-r44": {
+      "label": "Robinson R44 Raven II",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://robinsonstrapistorprod.blob.core.windows.net/uploads/assets/r44ii_poh_1_b4fce9d9be.pdf",
+          "title": "Robinson R44 II Pilot Operating Handbook, Section 1, page 1-3"
+        },
+        {
+          "url": "https://robinsonstrapistorprod.blob.core.windows.net/uploads/assets/r44ii_poh_7_e5154ae439.pdf",
+          "title": "Robinson R44 II Pilot Operating Handbook, Section 7, page 7-21"
+        }
+      ],
+      "panelMaterials": [
+        "R44-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "R44-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "R44-metal",
+        "flight-control-alloy"
+      ]
+    },
+    "typhoon": {
+      "label": "Eurofighter Typhoon",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Eurofighter_Typhoon_line_drawing.svg",
+          "title": "Eurofighter Typhoon four-view illustration,2010"
+        },
+        {
+          "url": "https://www.eurofighter.com/",
+          "title": "Eurofighter aircraft dimensions"
+        }
+      ],
+      "panelMaterials": [
+        "Typhoon-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [],
+      "hardwareMaterials": [
+        "Typhoon-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "uh-1h": {
+      "label": "Bell UH-1H Huey",
+      "panel": "panel",
+      "rationale": "Traditional painted panel with visible stipple; retained variant-specific color.",
+      "references": [],
+      "panelMaterials": [
+        "huey-panel",
+        "flight-control-panel"
+      ],
+      "paddingMaterials": [
+        "huey-coaming"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "flight-control-alloy"
+      ]
+    },
+    "uh-60m": {
+      "label": "Sikorsky UH-60M Black Hawk",
+      "panel": "satin",
+      "rationale": "Fine satin panel and console coating; retained variant-specific color.",
+      "references": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Sikorsky_UH-60_Black_Hawk_dimensions.png",
+          "title": "H-60 dimensions from Army TM 1-1520-237-10"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Sikorsky_UH-60A_Black_Hawk_3-view_line_drawing.png"
+        }
+      ],
+      "panelMaterials": [
+        "UH60-instrument-face"
+      ],
+      "paddingMaterials": [
+        "UH60-trim"
+      ],
+      "hardwareMaterials": [
+        "detail-alloy",
+        "UH60-metal",
+        "flight-control-alloy"
+      ]
+    }
+  }
+}

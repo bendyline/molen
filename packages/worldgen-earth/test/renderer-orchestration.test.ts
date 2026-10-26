@@ -509,6 +509,9 @@ describe('worldgen human-feature tile orchestration', () => {
         ...context(controller.signal),
         admission: queue,
       });
+      // The worldgen request is admitted first, then the cells.
+      await vi.waitFor(() => expect(queue.pending).toBe(1));
+      frames.shift()?.();
       await vi.waitFor(() => expect(queue.pending).toBe(3));
       expect(frames).toHaveLength(1);
       frames.shift()?.();

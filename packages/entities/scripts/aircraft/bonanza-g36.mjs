@@ -576,18 +576,7 @@ function cockpit(root, m) {
     m.dark,
     [0, 0, 1],
   );
-  const brow = [
-    [160, 591],
-    [191, 490],
-    [230, 438],
-    [278, 420],
-    [366, 410],
-    [1010, 410],
-    [1090, 419],
-    [1137, 441],
-    [1170, 491],
-    [1215, 620],
-  ].map((p) => at(...p, -0.014));
+  const brow = edge.slice(1, 8).map((p) => at(...p));
   outline(d, brow, 0.016, headliner, false);
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],

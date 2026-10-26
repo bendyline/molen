@@ -374,7 +374,7 @@ export function buildF15C(s) {
       axis: 'y',
       scale: 0.4,
     });
-    fd.text('F-15C', [side * 0.061, 1.28, -1.35], 0.16, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
     fd.rod([0, 2.86, -1.68], [0, 2.86, -2.78], side === 1 ? 0.08 : 0.045, dark);
     fd.finish();
     // Lateral skin access lines follow the local fuselage section, not a floating cage.

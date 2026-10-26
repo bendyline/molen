@@ -1,7 +1,8 @@
+import { generationWorkers } from '@bendyline/molen-earth/client';
 import type { FontLibrary } from '@bendyline/molen-materials/text';
 import {
   createTerrainSurfaceRenderer,
-  createTerrainSurfaceWorkerBridge,
+  createTerrainSurfaceWorkerPool,
   resolveTerrainSurfaceStyle,
   TERRAIN_SURFACE_STYLES,
   type TerrainParkedVehicle,
@@ -74,8 +75,12 @@ export function createSurfaceControls(
     typeof Worker !== 'undefined' &&
     params.get('worker') !== '0' &&
     params.get('surfaceWorker') !== '0'
-      ? createTerrainSurfaceWorkerBridge(
-          new Worker(new URL('./surface-worker.ts', import.meta.url), { type: 'module' }),
+      ? // As many workers as world generation (see generationWorkers).
+        createTerrainSurfaceWorkerPool(
+          Array.from(
+            { length: generationWorkers() },
+            () => new Worker(new URL('./surface-worker.ts', import.meta.url), { type: 'module' }),
+          ),
         )
       : undefined;
   const renderer = createTerrainSurfaceRenderer(

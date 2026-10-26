@@ -965,7 +965,7 @@ function kingAirCockpit(root, m) {
     [2, -0.095, 'condition', red],
   ])
     for (let i = 0; i < 2; i++) {
-      const g = group(pedestal, `KingAir-${label}-${i + 1}`, [
+      const g = group(pedestal, `KingAir-${label === 'prop' ? 'prop-lever' : label}-${i + 1}`, [
           x + (i ? -0.019 : 0.019),
           0.16,
           0.3 - pair * 0.035,

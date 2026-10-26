@@ -665,17 +665,7 @@ function cockpit(root, m) {
     m.dark,
     [0, 0, 1],
   );
-  const brow = [
-    [211, 1116],
-    [224, 1002],
-    [250, 939],
-    [285, 923],
-    [340, 919],
-    [1030, 919],
-    [1090, 930],
-    [1120, 960],
-    [1149, 1116],
-  ].map((p) => at(...p, -0.025));
+  const brow = edge.map((p) => at(...p));
   outline(d, brow, 0.025, m.dark, false);
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
@@ -876,20 +866,21 @@ function cockpit(root, m) {
     dd = detailKit(pedestal, pedestal.name);
   beveledBox(dd, [0.27, 0.3, 0.37], [0, 0, 0], face, 0.025);
   dd.ring(0.074, 0.01, [0.137, -0.02, -0.1], black, 'x');
-  // Three pairs: black throttles, blue propeller levers, red mixtures. Governed prop/mixture are not simulated.
+  // Three pairs: black throttles, blue propeller governors, red mixtures.
   for (const [pair, x, label, col] of [
     [0, 0.086, 'throttle', black],
     [1, 0, 'propeller', blue],
     [2, -0.086, 'mixture', red],
   ])
     for (let i = 0; i < 2; i++) {
-      const g = group(pedestal, `Baron-${label}-${i + 1}`, [
+      const g = group(pedestal, `Baron-${label === 'propeller' ? 'prop-lever' : label}-${i + 1}`, [
           x + (i === 0 ? 0.018 : -0.018),
           0.13,
           0.035 - pair * 0.025,
         ]),
         ld = detailKit(g, g.name);
-      const leverHeight = label === 'mixture' ? 0.025 : 0.12;
+      // Keep each grip above the quadrant throughout its full aft travel.
+      const leverHeight = 0.12;
       ld.rod([0, 0, 0], [0, leverHeight, -0.045 - pair * 0.025], 0.005, m.metal);
       beveledBox(ld, [0.029, 0.027, 0.038], [0, leverHeight, -0.045 - pair * 0.025], col, 0.005);
       ld.finish();

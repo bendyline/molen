@@ -2080,6 +2080,19 @@ const helicopterPhysicsSchema = z.strictObject(
 );
 const aircraftEngineSchema = z.strictObject(
   describedFields({
+    mixtureControl: z
+      .boolean()
+      .optional()
+      .describe('Manual piston mixture; omitted leaves fuel scheduling automatic.'),
+    propellerControl: z
+      .strictObject({
+        minRpm: num
+          .min(0.3)
+          .max(0.95)
+          .describe('Minimum governed RPM as a fraction of rated propeller RPM.'),
+      })
+      .optional()
+      .describe('Constant-speed propeller; the lever selects RPM and the governor varies pitch.'),
     propulsion: z
       .enum(['propeller', 'jet'])
       .optional()
@@ -2277,6 +2290,21 @@ const aircraftSpecSchema = z
       });
     for (const [index, engine] of installations.entries()) {
       const path = value.engine ? ['engine'] : ['engines', index];
+      if (engine.propulsion === 'jet' && (engine.mixtureControl || engine.propellerControl))
+        ctx.addIssue({
+          code: 'custom',
+          path,
+          message: 'Jets cannot have manual piston mixture or propeller controls.',
+        });
+      if (
+        engine.propellerControl &&
+        (value.model !== 'airplane' || engine.propellerControl.minRpm <= engine.idleRpm)
+      )
+        ctx.addIssue({
+          code: 'custom',
+          path,
+          message: 'Propeller governing requires an airplane and minimum RPM above idle.',
+        });
       if (
         engine.propulsion === 'jet' &&
         (engine.dryThrust === undefined || value.model !== 'airplane')
@@ -2436,6 +2464,16 @@ registerComponent(
 registerComponent(
   'aircraftInput',
   z.strictObject({
+    mixture: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('Common mixture: 0 idle cutoff, 1 full rich (default).'),
+    propeller: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('Common propeller lever: 0 minimum governed RPM, 1 maximum (default).'),
     power: num
       .min(0)
       .max(1)
@@ -2454,6 +2492,16 @@ registerComponent(
             .max(1)
             .optional()
             .describe('Absolute throttle override; omitted inherits common power.'),
+          mixture: num
+            .min(0)
+            .max(1)
+            .optional()
+            .describe('Individual mixture override; inherits common mixture.'),
+          propeller: num
+            .min(0)
+            .max(1)
+            .optional()
+            .describe('Individual propeller RPM override; inherits common propeller.'),
           enabled: z
             .boolean()
             .optional()
@@ -2552,6 +2600,8 @@ registerComponent(
         aircraftEngineId,
         z.strictObject({
           rpm: num.min(0).max(1),
+          shaftPower: num.nonnegative().optional(),
+          combustion: num.min(0).max(1).optional(),
           rotorAngle: num,
           failed: z.boolean(),
           afterburner: num.min(0).max(1).optional(),

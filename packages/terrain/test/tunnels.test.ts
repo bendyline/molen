@@ -143,6 +143,22 @@ describe('mapped tunnels', () => {
     expect(sampleTerrainTunnel(root, 100, 13, 100)?.floor).toBeCloseTo(10.32);
     bore.visible = false;
     expect(sampleTerrainTunnel(root, 100, 13, 100)).toBeUndefined();
+    // Under a translated tile group, as in a stream; and under a turned one, via its matrices.
+    const placed = new THREE.Group(),
+      tileGroup = new THREE.Group(),
+      inner = createTerrainTunnelObject(tile(), context());
+    tileGroup.position.set(500, 2, 300);
+    tileGroup.add(inner);
+    placed.add(tileGroup);
+    expect(sampleTerrainTunnel(placed, 600, 15, 400)?.floor).toBeCloseTo(12.32);
+    expect(sampleTerrainTunnel(placed, 100, 13, 100)).toBeUndefined();
+    const turned = new THREE.Group(),
+      spun = new THREE.Group(),
+      other = createTerrainTunnelObject(tile(), context());
+    spun.rotation.y = Math.PI;
+    spun.add(other);
+    turned.add(spun);
+    expect(sampleTerrainTunnel(turned, -100, 13, -100)?.floor).toBeCloseTo(10.32);
   });
 
   it('joins buffered neighboring fragments before grading; the same seam has the same floor', async () => {

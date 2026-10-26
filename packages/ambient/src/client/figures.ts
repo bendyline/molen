@@ -82,6 +82,24 @@ export interface FigureBudget {
   posesPerFrame: number;
 }
 
+/**
+ * Leave a hidden body out of the scene's per-frame world-matrix walk. Pooled bodies wait hidden
+ * in the group with their skeletons, and three walks hidden objects too: a pool's bones were
+ * recomposed every frame. A move while hidden is applied when the body shows again.
+ */
+function skipWhenHidden(object: THREE.Object3D): void {
+  object.updateMatrixWorld = function (this: THREE.Object3D, force?: boolean): void {
+    if (!this.visible) {
+      if (force === true) this.matrixWorldNeedsUpdate = true;
+      return;
+    }
+    THREE.Object3D.prototype.updateMatrixWorld.call(this, force);
+  };
+}
+
+/** Bodies built or swapped per frame (see AmbientFigures.update). */
+const MAX_SWITCHES_PER_FRAME = 2;
+
 export class AmbientFigures {
   readonly group: THREE.Group = new THREE.Group();
   private readonly cache = new FigureGeometryCache();
@@ -97,7 +115,10 @@ export class AmbientFigures {
   private cursor = 0;
   private frame = 0;
 
-  constructor(private readonly prepare?: (object: THREE.Object3D) => void) {
+  /** New bodies whose shaders are still being built; they stay hidden until then. */
+  private readonly preparing = new WeakSet<FigureMesh>();
+
+  constructor(private readonly prepare?: (object: THREE.Object3D) => Promise<void> | void) {
     this.group.name = 'ambient:figures';
   }
 
@@ -129,17 +150,29 @@ export class AmbientFigures {
     if (pooled !== undefined) {
       this.pooled--;
       this.cache.release(cached.key);
-      pooled.root.visible = true;
+      pooled.root.visible = !this.preparing.has(pooled);
       return { key: cached.key, mesh: pooled };
     }
     const mesh = figureBodyToSkinnedMesh(cached.body, cached.geometry, this.material);
+    skipWhenHidden(mesh.root);
     mesh.mesh.castShadow = tier === 0;
     mesh.mesh.receiveShadow = true;
     mesh.root.traverse((object) => {
       object.userData.walkIgnore = true;
     });
     this.group.add(mesh.root);
-    this.prepare?.(mesh.root);
+    const prepared = this.prepare?.(mesh.root);
+    if (prepared !== undefined) {
+      // Hidden until its shaders are built, as detailed cars are: the first walker drawn with a
+      // new skinned variant built it mid-frame, 40-220 ms on WebGL.
+      mesh.root.visible = false;
+      this.preparing.add(mesh);
+      const show = (): void => {
+        this.preparing.delete(mesh);
+        if (!this.pool.get(cached.key)?.includes(mesh)) mesh.root.visible = true;
+      };
+      void prepared.then(show, show);
+    }
     return { key: cached.key, mesh };
   }
 
@@ -174,6 +207,7 @@ export class AmbientFigures {
       }))
       .sort((a, b) => a.distance - b.distance || (a.w.id < b.w.id ? -1 : 1));
     let skinned = 0;
+    let switches = 0;
     for (const { w, distance } of ranked) {
       const entry = this.active.get(w.id);
       let tier = this.tierFor(distance, entry?.tier);
@@ -191,7 +225,10 @@ export class AmbientFigures {
         continue;
       }
       let current = entry;
-      if (current === undefined || current.tier !== tier) {
+      // A few new bodies a frame, nearest first: a larger budget (a quality step) or a crowd
+      // coming into range built every body in one frame. The rest keep what they show, or wait.
+      if ((current === undefined || current.tier !== tier) && switches < MAX_SWITCHES_PER_FRAME) {
+        switches++;
         let descriptor = this.descriptors.get(w.figure);
         if (descriptor === undefined) {
           try {
@@ -218,6 +255,7 @@ export class AmbientFigures {
         };
         this.active.set(w.id, current);
       }
+      if (current === undefined) continue;
       current.distance = distance;
       current.seen = this.frame;
       if (current.last !== undefined)

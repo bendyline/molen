@@ -33,6 +33,8 @@ import {
   type TerrainSurfaceRenderer,
 } from './surface-client';
 import type { TerrainSurfaceOptions } from './surface-styles';
+import { tagTerrainObject } from './tagged-objects';
+import { WATER_RIPPLE_LAYERS, WATER_RIPPLES_GLSL, waterRippleTexture } from './water-ripples';
 
 export interface TerrainSemanticTileSource {
   load(
@@ -66,11 +68,13 @@ export interface TerrainWaterMaterialOptions {
   clearcoat?: number;
   clearcoatRoughness?: number;
   opacity?: number;
-  /** World-space wave frequency. The default produces broad, gently moving highlights. */
+  /** World-space ripple frequency. Smaller values make broader ripples. Default 0.035. */
   waveScale?: number;
   /** Analytic swell slopes matching kernel sampleWaves. Polygon shorelines remain at their datum. */
   swells?: WaterWave[];
+  /** Ripple slope and surface variation. Zero leaves only authored swells. Default 0.035. */
   waveStrength?: number;
+  /** Speed of the independently drifting ripple layers. Zero freezes ripples, not swells. */
   waveSpeed?: number;
 }
 
@@ -93,13 +97,13 @@ function terrainWaterParameters(
   const opacity = options.opacity ?? 1;
   return {
     color: options.color ?? '#286d83',
-    roughness: options.roughness ?? 0.42,
+    roughness: options.roughness ?? 0.34,
     metalness: 0,
     // Water reflects less head-on than the default glass IOR. Keep the extra clearcoat
     // lobe weak and broad so sun-facing ponds retain their color instead of turning white.
     ior: 1.333,
-    clearcoat: options.clearcoat ?? 0.12,
-    clearcoatRoughness: options.clearcoatRoughness ?? 0.4,
+    clearcoat: options.clearcoat ?? 0.08,
+    clearcoatRoughness: options.clearcoatRoughness ?? 0.34,
     transparent: opacity < 1,
     opacity,
     depthWrite: true,
@@ -109,7 +113,7 @@ function terrainWaterParameters(
 }
 
 /**
- * Create an opaque physical water material with subtle world-space animated highlights.
+ * Create opaque physical water with irregular, animated ripple normals and sky reflections.
  *
  * Opaque water is intentional: tiled/LOD water polygons can overlap while coverage refines, and
  * alpha blending would reveal those overlaps as dark crosses or tile seams.
@@ -127,9 +131,10 @@ export function createTerrainWaterMaterial(
   const swells = options.swells ?? [];
   const literal = (n: number): string => Number(n).toFixed(9);
   const slopes = swells
-    .map((w) => {
+    .map((w, index) => {
       const k = (2 * Math.PI) / w.wavelength;
-      return `slope += vec2(${literal(Math.sin(w.direction))}, ${literal(Math.cos(w.direction))}) * ${literal(w.amplitude * k)} * cos(${literal(k)} * (dot(vTerrainWaterWorldPosition, vec2(${literal(Math.sin(w.direction))}, ${literal(Math.cos(w.direction))})) - ${literal(w.speed)} * terrainWaterTime));`;
+      return `float swellPhase${index} = ${literal(k)} * (dot(vTerrainWaterWorldPosition, vec2(${literal(Math.sin(w.direction))}, ${literal(Math.cos(w.direction))})) - ${literal(w.speed)} * terrainWaterTime);
+        slope += vec2(${literal(Math.sin(w.direction))}, ${literal(Math.cos(w.direction))}) * ${literal(w.amplitude * k)} * cos(swellPhase${index}) * (1.0 - smoothstep(0.5, 2.5, fwidth(swellPhase${index})));`;
     })
     .join('\n');
   const material = new THREE.MeshPhysicalMaterial(terrainWaterParameters(options));
@@ -142,6 +147,7 @@ export function createTerrainWaterMaterial(
       terrainWaterWaveScale: state.waveScale,
       terrainWaterWaveStrength: state.waveStrength,
       terrainWaterWaveSpeed: state.waveSpeed,
+      terrainWaterRipples: { value: waterRippleTexture() },
     });
     shader.vertexShader = `
       varying vec2 vTerrainWaterWorldPosition;
@@ -158,45 +164,40 @@ export function createTerrainWaterMaterial(
       uniform float terrainWaterWaveStrength;
       uniform float terrainWaterWaveSpeed;
 
-      float terrainWaterWave() {
-        float phase = terrainWaterTime * terrainWaterWaveSpeed;
-        float first = sin(
-          (vTerrainWaterWorldPosition.x + vTerrainWaterWorldPosition.y * 0.65) *
-            terrainWaterWaveScale + phase
-        );
-        float second = sin(
-          (vTerrainWaterWorldPosition.x * 0.38 - vTerrainWaterWorldPosition.y) *
-            terrainWaterWaveScale * 1.73 - phase * 0.71
-        );
-        return (first + second) * 0.5;
-      }
+      ${WATER_RIPPLES_GLSL}
     ${shader.fragmentShader}`
       .replace(
         '#include <normal_fragment_maps>',
         `#include <normal_fragment_maps>
-        ${
-          swells.length
-            ? `vec2 slope = vec2(0.0); ${slopes}
-          normal = normalize(mat3(viewMatrix) * vec3(-slope.x, 1.0, -slope.y));`
-            : ''
-        }`,
+         vec2 slope = terrainWaterSurface.xy;
+         ${slopes}
+         normal = normalize(mat3(viewMatrix) * vec3(-slope.x, 1.0, -slope.y));`,
+      )
+      .replace(
+        '#include <clearcoat_normal_fragment_maps>',
+        `#include <clearcoat_normal_fragment_maps>
+         #ifdef USE_CLEARCOAT
+           clearcoatNormal = normal;
+         #endif`,
       )
       .replace(
         '#include <color_fragment>',
         `#include <color_fragment>
-         diffuseColor.rgb *= 1.0 + terrainWaterWave() * terrainWaterWaveStrength;`,
+         vec3 terrainWaterSurface = terrainWaterDetail(vTerrainWaterWorldPosition,
+           terrainWaterTime * terrainWaterWaveSpeed);
+         diffuseColor.rgb *= 1.0 + terrainWaterSurface.z * 0.35;`,
       )
       .replace(
         '#include <roughnessmap_fragment>',
         `#include <roughnessmap_fragment>
          roughnessFactor = clamp(
-           roughnessFactor - terrainWaterWave() * terrainWaterWaveStrength * 0.8,
+           roughnessFactor + terrainWaterSurface.z * 1.5,
            0.08,
            1.0
          );`,
       );
   };
-  material.customProgramCacheKey = (): string => `terrain-water@2:${JSON.stringify(swells)}`;
+  material.customProgramCacheKey = (): string => `terrain-water@3:${JSON.stringify(swells)}`;
   terrainWaterShaderStates.set(material, state);
   return material;
 }
@@ -218,9 +219,13 @@ export async function createTerrainWaterMaterialAsync(
       materialRoughness,
       positionWorld,
       uniform,
+      texture,
+      vec2,
       vec4,
       vec3,
       float,
+      fwidth,
+      smoothstep,
       cameraViewMatrix,
     },
   ] = await Promise.all([import('three/webgpu'), import('three/tsl')]);
@@ -229,17 +234,32 @@ export async function createTerrainWaterMaterialAsync(
   const waveScale = uniform(options.waveScale ?? 0.035).setName('terrainWaterWaveScale');
   const waveStrength = uniform(options.waveStrength ?? 0.035).setName('terrainWaterWaveStrength');
   const waveSpeed = uniform(options.waveSpeed ?? 0.55).setName('terrainWaterWaveSpeed');
-  const worldPosition = positionWorld.xz.add(worldOrigin);
-  const phase = time.mul(waveSpeed);
-  const first = worldPosition.x.add(worldPosition.y.mul(0.65)).mul(waveScale).add(phase).sin();
-  const second = worldPosition.x
-    .mul(0.38)
-    .sub(worldPosition.y)
-    .mul(waveScale)
-    .mul(1.73)
-    .sub(phase.mul(0.71))
-    .sin();
-  const highlight = first.add(second).mul(0.5).mul(waveStrength);
+  const worldPosition = positionWorld.xz.add(worldOrigin).toVar();
+  const phase = time.mul(waveSpeed).toVar();
+  const p = worldPosition.mul(waveScale).toVar();
+  const ripples = waterRippleTexture();
+  const patch = texture(ripples, p.mul(0.009).add(vec2(phase.mul(0.001), 0)))
+    .rgb.mul(2)
+    .sub(1)
+    .toVar();
+  const warp = patch.rg.mul(0.025).toVar();
+  let detail: Node<'vec2'> = vec2(0);
+  for (const {
+    scale,
+    direction: [x, y],
+    drift,
+    weight,
+  } of WATER_RIPPLE_LAYERS) {
+    const uv = vec2(p.dot(vec2(x, y)), p.dot(vec2(-y, x)))
+      .mul(vec2(1, 0.65))
+      .mul(scale)
+      .add(warp)
+      .add(vec2(...drift).mul(phase));
+    const n = texture(ripples, uv).rg.mul(2).sub(1).toVar();
+    detail = detail.add(vec2(x, y).mul(n.x).add(vec2(-y, x).mul(n.y).mul(0.65)).mul(weight));
+  }
+  const rippleSlope = detail.mul(patch.b.mul(0.7).add(1)).mul(waveStrength).mul(14).toVar();
+  const variation = patch.b.mul(waveStrength).toVar();
   const material = new MeshPhysicalNodeMaterial(terrainWaterParameters(options));
   material.name = 'terrain-water';
   material.userData.terrainWaterMaterial = true;
@@ -248,28 +268,30 @@ export async function createTerrainWaterMaterialAsync(
   const baseColor = materialColor as unknown as Node<'vec4'>;
   const baseRoughness = materialRoughness as unknown as Node<'float'>;
   // Affect only RGB, preserving authored opacity and any subsequently attached color map alpha.
-  material.colorNode = vec4(baseColor.rgb.mul(highlight.add(1)), baseColor.a);
-  if (options.swells?.length) {
-    let slopeX: Node<'float'> = float(0),
-      slopeZ: Node<'float'> = float(0);
-    for (const wave of options.swells) {
-      const k = (2 * Math.PI) / wave.wavelength;
-      const dx = Math.sin(wave.direction),
-        dz = Math.cos(wave.direction);
-      const phase = worldPosition.x
-        .mul(dx)
-        .add(worldPosition.y.mul(dz))
-        .sub(time.mul(wave.speed))
-        .mul(k);
-      const slope = phase.cos().mul(wave.amplitude * k);
-      slopeX = slopeX.add(slope.mul(dx));
-      slopeZ = slopeZ.add(slope.mul(dz));
-    }
-    material.normalNode = cameraViewMatrix
-      .mul(vec4(vec3(slopeX.negate(), 1, slopeZ.negate()).normalize(), 0))
-      .xyz.normalize();
+  material.colorNode = vec4(baseColor.rgb.mul(variation.mul(0.35).add(1)), baseColor.a);
+  let slopeX: Node<'float'> = float(rippleSlope.x),
+    slopeZ: Node<'float'> = float(rippleSlope.y);
+  for (const wave of options.swells ?? []) {
+    const k = (2 * Math.PI) / wave.wavelength;
+    const dx = Math.sin(wave.direction),
+      dz = Math.cos(wave.direction);
+    const phase = worldPosition.x
+      .mul(dx)
+      .add(worldPosition.y.mul(dz))
+      .sub(time.mul(wave.speed))
+      .mul(k);
+    const slope = phase
+      .cos()
+      .mul(wave.amplitude * k)
+      .mul(smoothstep(0.5, 2.5, fwidth(phase)).oneMinus());
+    slopeX = slopeX.add(slope.mul(dx));
+    slopeZ = slopeZ.add(slope.mul(dz));
   }
-  material.roughnessNode = baseRoughness.sub(highlight.mul(0.8)).clamp(0.08, 1);
+  material.normalNode = cameraViewMatrix
+    .mul(vec4(vec3(slopeX.negate(), 1, slopeZ.negate()).normalize(), 0))
+    .xyz.normalize();
+  material.clearcoatNormalNode = material.normalNode;
+  material.roughnessNode = baseRoughness.add(variation.mul(1.5)).clamp(0.08, 1);
   terrainWaterShaderStates.set(material, { time, worldOrigin, waveScale, waveStrength, waveSpeed });
   return material;
 }
@@ -841,6 +863,7 @@ function createWaterMesh(
   mesh.renderOrder = 2;
   mesh.userData.terrainOwnedGeometry = true;
   mesh.userData.terrainWaterSurface = true;
+  tagTerrainObject('water', mesh);
   return mesh;
 }
 

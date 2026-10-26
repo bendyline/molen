@@ -6,13 +6,13 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:5720ce8af4b5e087acc1263f04febbd536ceeaa7ba0dd566e9e9ee9e0f12b5dd",
-  "sourceHash": "sha256:e69b42da8208e1cbcfa8b43a82bd09ef8950c1a2f5a56a8a2d0e60b6355fa252",
+  "hash": "sha256:05f0eef06bee44561cccd23139a084b24979ea70baf8b0b8214e3a21d506e7ba",
+  "sourceHash": "sha256:946aceb92f6d1d3a230ba5ca46eff4ee28e84c72cf6f1c43b26ea96417bb2498",
   "bounds": {
     "aabb": {
       "min": [
         -3.8785,
-        0.0002,
+        0.0068,
         -7.2953
       ],
       "max": [
@@ -24,21 +24,21 @@
     "sphere": {
       "center": [
         0,
-        1.6781,
+        1.6813,
         -1.711
       ],
-      "radius": 6.7538
+      "radius": 6.7533
     }
   },
   "stats": {
-    "triangles": 15830,
-    "vertices": 33934,
-    "meshes": 47,
-    "primitives": 47,
-    "materials": 22,
-    "textures": 0,
+    "triangles": 14896,
+    "vertices": 21275,
+    "meshes": 54,
+    "primitives": 54,
+    "materials": 29,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 675976
+    "sizeBytes": 853948
   },
   "nodes": [
     {
@@ -51,15 +51,15 @@
     },
     {
       "name": "407-airframe-407-wine-red",
-      "triangles": 1062
+      "triangles": 740
     },
     {
       "name": "407-airframe-407-trim",
-      "triangles": 3056
+      "triangles": 1616
     },
     {
       "name": "407-airframe-407-machined",
-      "triangles": 1952
+      "triangles": 1832
     },
     {
       "name": "407-airframe-407-stripe",
@@ -131,7 +131,7 @@
     },
     {
       "name": "407-cockpit-407-trim",
-      "triangles": 971
+      "triangles": 927
     },
     {
       "name": "407-cockpit-407-panel",
@@ -251,7 +251,7 @@
     },
     {
       "name": "cyclic-407-trim",
-      "triangles": 84
+      "triangles": 60
     },
     {
       "name": "cyclic-detail-red",
@@ -303,7 +303,7 @@
     },
     {
       "name": "cyclic-407-trim",
-      "triangles": 84
+      "triangles": 60
     },
     {
       "name": "cyclic-detail-red",
@@ -364,6 +364,30 @@
     {
       "name": "407-seat-407-belts",
       "triangles": 52
+    },
+    {
+      "name": "flight-control-mounts-flight-control-panel",
+      "triangles": 60
+    },
+    {
+      "name": "flight-control-mounts-flight-control-alloy",
+      "triangles": 128
+    },
+    {
+      "name": "flight-control-mounts-flight-control-legend",
+      "triangles": 768
+    },
+    {
+      "name": "flight-control-mounts-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-master",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-legend",
+      "triangles": 12
     }
   ],
   "nodesTruncated": false,
@@ -434,9 +458,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "407-panel",
+      "name": "407-trim-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "407-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -506,9 +544,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -517,6 +558,17 @@
       "name": "instrument-display",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "407-machined-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -539,6 +591,55 @@
     },
     {
       "name": "407-belts",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -609,28 +710,28 @@
       {
         "node": "407-airframe-407-wine-red",
         "points": [
-          -1.1201,
+          -1.1219,
           0.5599,
           -7.11,
-          -1.1201,
-          0.5599,
-          2.667,
-          -1.1201,
-          3.1001,
-          -7.11,
-          -1.1201,
-          3.1001,
-          2.667,
-          1.1201,
-          0.5599,
-          -7.11,
-          1.1201,
+          -1.1219,
           0.5599,
           2.667,
-          1.1201,
+          -1.1219,
           3.1001,
           -7.11,
-          1.1201,
+          -1.1219,
+          3.1001,
+          2.667,
+          1.1219,
+          0.5599,
+          -7.11,
+          1.1219,
+          0.5599,
+          2.667,
+          1.1219,
+          3.1001,
+          -7.11,
+          1.1219,
           3.1001,
           2.667
         ]
@@ -639,58 +740,58 @@
         "node": "407-airframe-407-trim",
         "points": [
           -0.7628,
-          0.4188,
+          0.4167,
           -6.003,
           -0.7628,
-          0.4188,
+          0.4167,
           3.073,
           -0.7628,
-          2.4397,
+          2.4398,
           -6.003,
           -0.7628,
-          2.4397,
+          2.4398,
           3.073,
           0.7628,
-          0.4188,
+          0.4167,
           -6.003,
           0.7628,
-          0.4188,
+          0.4167,
           3.073,
           0.7628,
-          2.4397,
+          2.4398,
           -6.003,
           0.7628,
-          2.4397,
+          2.4398,
           3.073
         ]
       },
       {
         "node": "407-airframe-407-machined",
         "points": [
-          -1.2285,
-          0.0002,
+          -1.235,
+          0.0068,
           -7.2953,
-          -1.2285,
-          0.0002,
-          2.0524,
-          -1.2285,
-          2.4299,
+          -1.235,
+          0.0068,
+          2.0494,
+          -1.235,
+          2.43,
           -7.2953,
-          -1.2285,
-          2.4299,
-          2.0524,
-          1.2285,
-          0.0002,
+          -1.235,
+          2.43,
+          2.0494,
+          1.235,
+          0.0068,
           -7.2953,
-          1.2285,
-          0.0002,
-          2.0524,
-          1.2285,
-          2.4299,
+          1.235,
+          0.0068,
+          2.0494,
+          1.235,
+          2.43,
           -7.2953,
-          1.2285,
-          2.4299,
-          2.0524
+          1.235,
+          2.43,
+          2.0494
         ]
       },
       {
@@ -2895,6 +2996,180 @@
           0.6,
           1.43,
           -1.04
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-panel",
+        "points": [
+          -0.055,
+          0.92,
+          1.7075,
+          -0.055,
+          0.92,
+          1.814,
+          -0.055,
+          1.2,
+          1.7075,
+          -0.055,
+          1.2,
+          1.814,
+          0.055,
+          0.92,
+          1.7075,
+          0.055,
+          0.92,
+          1.814,
+          0.055,
+          1.2,
+          1.7075,
+          0.055,
+          1.2,
+          1.814
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-alloy",
+        "points": [
+          -0.0465,
+          0.9305,
+          1.7035,
+          -0.0465,
+          0.9305,
+          1.7065,
+          -0.0465,
+          1.0295,
+          1.7035,
+          -0.0465,
+          1.0295,
+          1.7065,
+          0.0465,
+          0.9305,
+          1.7035,
+          0.0465,
+          0.9305,
+          1.7065,
+          0.0465,
+          1.0295,
+          1.7035,
+          0.0465,
+          1.0295,
+          1.7065
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-legend",
+        "points": [
+          -0.0175,
+          1.0089,
+          1.7045,
+          -0.0175,
+          1.0089,
+          1.7055,
+          -0.0175,
+          1.0167,
+          1.7045,
+          -0.0175,
+          1.0167,
+          1.7055,
+          0.0191,
+          1.0089,
+          1.7045,
+          0.0191,
+          1.0089,
+          1.7055,
+          0.0191,
+          1.0167,
+          1.7045,
+          0.0191,
+          1.0167,
+          1.7055
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-grip",
+        "points": [
+          -0.0045,
+          0.9465,
+          1.705,
+          -0.0045,
+          0.9465,
+          1.707,
+          -0.0045,
+          0.9955,
+          1.705,
+          -0.0045,
+          0.9955,
+          1.707,
+          0.0045,
+          0.9465,
+          1.705,
+          0.0045,
+          0.9465,
+          1.707,
+          0.0045,
+          0.9955,
+          1.705,
+          0.0045,
+          0.9955,
+          1.707
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-master",
+        "points": [
+          -0.016,
+          0.9575,
+          1.6855,
+          -0.016,
+          0.9575,
+          1.7025,
+          -0.016,
+          0.9865,
+          1.6855,
+          -0.016,
+          0.9865,
+          1.7025,
+          0.016,
+          0.9575,
+          1.6855,
+          0.016,
+          0.9575,
+          1.7025,
+          0.016,
+          0.9865,
+          1.6855,
+          0.016,
+          0.9865,
+          1.7025
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-legend",
+        "points": [
+          -0.007,
+          0.9777,
+          1.6845,
+          -0.007,
+          0.9777,
+          1.6855,
+          -0.007,
+          0.9803,
+          1.6845,
+          -0.007,
+          0.9803,
+          1.6855,
+          0.007,
+          0.9777,
+          1.6845,
+          0.007,
+          0.9777,
+          1.6855,
+          0.007,
+          0.9803,
+          1.6845,
+          0.007,
+          0.9803,
+          1.6855
         ]
       }
     ]

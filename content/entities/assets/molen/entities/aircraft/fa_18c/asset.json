@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:506efab027163175ac1eb37aa1877e82d1044e589f42b2eacc0ff030e4c92bc1",
-  "sourceHash": "sha256:4dfab731a047614b25722117afc64ab427b6ee14a75be52f2213b1f828e1c7a9",
+  "hash": "sha256:5de11ba357731f4c550e20cca0674da1d107d24b05c59b948a19043eb114134d",
+  "sourceHash": "sha256:6a2ae94591eff82618c29da08a9dccb051ab5b4393c17d0b1e401f5f23a5d0fe",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 65807,
-    "vertices": 134753,
-    "meshes": 88,
-    "primitives": 88,
-    "materials": 20,
-    "textures": 0,
+    "triangles": 66749,
+    "vertices": 112128,
+    "meshes": 104,
+    "primitives": 104,
+    "materials": 26,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2617492
+    "sizeBytes": 2668396
   },
   "nodes": [
     {
       "name": "FA18-airframe-FA18-gray",
-      "triangles": 1996
+      "triangles": 1336
     },
     {
       "name": "FA18-airframe-FA18-radome",
@@ -51,7 +51,7 @@
     },
     {
       "name": "FA18-airframe-FA18-seals",
-      "triangles": 6192
+      "triangles": 4632
     },
     {
       "name": "FA18-airframe-FA18-glass",
@@ -67,7 +67,7 @@
     },
     {
       "name": "FA18-engine--1-FA18-gray",
-      "triangles": 768
+      "triangles": 480
     },
     {
       "name": "FA18-engine--1-FA18-duct",
@@ -103,11 +103,11 @@
     },
     {
       "name": "FA18-fin--1-FA18-gray",
-      "triangles": 96
+      "triangles": 100
     },
     {
       "name": "FA18-fin--1-FA18-seals",
-      "triangles": 492
+      "triangles": 24
     },
     {
       "name": "FA18-rudder--1-FA18-upper",
@@ -131,7 +131,7 @@
     },
     {
       "name": "FA18-engine-1-FA18-gray",
-      "triangles": 768
+      "triangles": 480
     },
     {
       "name": "FA18-engine-1-FA18-duct",
@@ -167,11 +167,11 @@
     },
     {
       "name": "FA18-fin-1-FA18-gray",
-      "triangles": 96
+      "triangles": 100
     },
     {
       "name": "FA18-fin-1-FA18-seals",
-      "triangles": 492
+      "triangles": 24
     },
     {
       "name": "FA18-rudder-1-FA18-upper",
@@ -211,7 +211,7 @@
     },
     {
       "name": "FA18-cabin-FA18-instrument-black",
-      "triangles": 956
+      "triangles": 706
     },
     {
       "name": "FA18-cabin-FA18-display",
@@ -622,9 +622,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "FA18-panel",
+      "name": "FA18-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -662,9 +665,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -681,6 +687,17 @@
       "name": "instrument-display",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "FA18-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -716,6 +733,55 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -724,28 +790,28 @@
         "node": "FA18-airframe-FA18-gray",
         "points": [
           -5.715,
-          1.3206,
+          1.3197,
           -5.7,
           -5.715,
-          1.3206,
+          1.3197,
           10.9,
           -5.715,
-          3.1666,
+          3.1678,
           -5.7,
           -5.715,
-          3.1666,
+          3.1678,
           10.9,
           5.715,
-          1.3206,
+          1.3197,
           -5.7,
           5.715,
-          1.3206,
+          1.3197,
           10.9,
           5.715,
-          3.1666,
+          3.1678,
           -5.7,
           5.715,
-          3.1666,
+          3.1678,
           10.9
         ]
       },
@@ -1192,25 +1258,25 @@
           -3.533,
           -1.8488,
           2.6258,
-          -2.3645,
+          -3.147,
           -1.8488,
           4.5414,
           -3.533,
           -1.8488,
           4.5414,
-          -2.3645,
+          -3.147,
           -1.1473,
           2.6258,
           -3.533,
           -1.1473,
           2.6258,
-          -2.3645,
+          -3.147,
           -1.1473,
           4.5414,
           -3.533,
           -1.1473,
           4.5414,
-          -2.3645
+          -3.147
         ]
       },
       {
@@ -1656,25 +1722,25 @@
           -3.533,
           1.1473,
           2.6258,
-          -2.3305,
+          -3.147,
           1.1473,
           4.5414,
           -3.533,
           1.1473,
           4.5414,
-          -2.3305,
+          -3.147,
           1.8488,
           2.6258,
           -3.533,
           1.8488,
           2.6258,
-          -2.3305,
+          -3.147,
           1.8488,
           4.5414,
           -3.533,
           1.8488,
           4.5414,
-          -2.3305
+          -3.147
         ]
       },
       {

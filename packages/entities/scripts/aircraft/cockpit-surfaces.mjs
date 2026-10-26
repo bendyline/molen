@@ -2,14 +2,12 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { PNG } from 'pngjs';
 import { Float32BufferAttribute, Vector3 } from 'three';
-
-const finishes = {
-  panel: { size: 256, repeat: 0.12, roughness: 0.8, normal: 0.4 },
-  paint: { repeat: 0.12, roughness: 0.72, normal: 0.16 },
-  vinyl: { repeat: 0.1, roughness: 0.79, normal: 0.22 },
-  canvas: { repeat: 0.08, roughness: 0.94, normal: 0.3 },
-  webbing: { repeat: 0.06, roughness: 0.9, normal: 0.24 },
+import library from '../../../../content/entities/source/cockpit-materials/library.json' with {
+  type: 'json',
 };
+
+export const cockpitFinishLibrary = library;
+const finishes = library.finishes;
 const tag = 'molenCockpitFinish';
 const noise = (x, y, size = 128) => {
   let n = Math.imul(((x + size) % size) + 17, 374761393);
@@ -17,7 +15,7 @@ const noise = (x, y, size = 128) => {
   return ((n ^ (n >>> 16)) >>> 0) / 4294967295;
 };
 const height = (kind, x, y) => {
-  if (kind === 'panel') {
+  if (['panel', 'rubber', 'satin'].includes(kind)) {
     // Periodic, smoothly interpolated enamel stipple: millimetre-scale bumps, not pixel noise.
     const smoothNoise = (step) => {
       const px = x / step,
@@ -28,11 +26,17 @@ const height = (kind, x, y) => {
         fy = py - iy,
         u = fx * fx * (3 - 2 * fx),
         v = fy * fy * (3 - 2 * fy);
-      const n = (dx, dy) => noise(ix + dx, iy + dy, 256 / step);
+      const n = (dx, dy) => noise(ix + dx, iy + dy, finishes[kind].size / step);
       return (n(0, 0) * (1 - u) + n(1, 0) * u) * (1 - v) + (n(0, 1) * (1 - u) + n(1, 1) * u) * v;
     };
+    if (kind === 'rubber')
+      return smoothNoise(8) * 0.65 + smoothNoise(4) * 0.25 + noise(x, y, 256) * 0.1;
+    if (kind === 'satin') return smoothNoise(2) * 0.75 + noise(x, y) * 0.25;
     return smoothNoise(4) * 0.65 + smoothNoise(8) * 0.25 + noise(x, y, 256) * 0.1;
   }
+  // Continuous horizontal machining lines, with only a little variation along each stroke.
+  if (kind === 'brushed')
+    return noise(0, y) * 0.76 + noise(Math.floor(x / 16), y) * 0.18 + noise(x, y) * 0.06;
   const grain = noise(x, y);
   if (kind === 'canvas') return 0.35 * grain + 0.65 * ((Math.floor(x / 4) + Math.floor(y / 4)) % 2);
   if (kind === 'webbing')
@@ -56,7 +60,14 @@ function image(kind, slot) {
         // Near-white multiplies the existing aircraft-specific colour; no fake edge wear or AO.
         const v = byte(
           (kind === 'panel' ? 238 : 244) +
-            (h - 0.5) * (kind === 'panel' ? 22 : kind === 'paint' ? 8 : 18),
+            (h - 0.5) *
+              (kind === 'panel'
+                ? 22
+                : ['paint', 'satin'].includes(kind)
+                  ? 8
+                  : kind === 'rubber'
+                    ? 12
+                    : 18),
         );
         rgb = [v, v, v];
       } else if (slot === 'roughness') {
@@ -70,7 +81,7 @@ function image(kind, slot) {
         const n = new Vector3(
           height(kind, (x + size - 1) % size, y) - height(kind, (x + 1) % size, y),
           height(kind, x, (y + size - 1) % size) - height(kind, x, (y + 1) % size),
-          kind === 'panel' ? 0.65 : 2,
+          ['panel', 'rubber'].includes(kind) ? 0.65 : 2,
         ).normalize();
         rgb = n.toArray().map((v) => byte((v * 0.5 + 0.5) * 255));
       }
@@ -86,10 +97,13 @@ export function finishCockpit(cabin, select) {
   const materials = new Map();
   cabin.traverse((mesh) => {
     if (!mesh.isMesh) return;
-    const kind = select(mesh);
+    const selection = select(mesh);
+    const kind = typeof selection === 'string' ? selection : selection?.finish;
     if (!kind) return;
     if (!finishes[kind] || Array.isArray(mesh.material))
       throw Error(`Invalid cockpit finish: ${kind}`);
+    if (selection.role) mesh.userData.molenCockpitSurfaceRole = selection.role;
+    if (mesh.material.userData[tag] === kind) return;
     let variants = materials.get(mesh.material);
     if (!variants) {
       variants = new Map();
@@ -97,10 +111,13 @@ export function finishCockpit(cabin, select) {
     }
     if (!variants.has(kind)) {
       const material = mesh.material.clone();
+      const previous = material.userData[tag];
+      if (previous && material.name.endsWith(`-${previous}`))
+        material.name = material.name.slice(0, -previous.length - 1);
       material.name += `-${kind}`;
       material.userData[tag] = kind;
       material.roughness = 1;
-      if (!['paint', 'panel'].includes(kind)) material.metalness = 0;
+      material.metalness = finishes[kind].metalness;
       variants.set(kind, material);
     }
     mesh.material = variants.get(kind);
@@ -112,10 +129,11 @@ export function finishCockpit(cabin, select) {
       a = new Vector3(),
       b = new Vector3(),
       c = new Vector3();
+    const scale = mesh.getWorldScale(new Vector3());
     for (let i = 0; i < p.count; i += 3) {
-      a.fromBufferAttribute(p, i).multiply(mesh.scale);
-      b.fromBufferAttribute(p, i + 1).multiply(mesh.scale);
-      c.fromBufferAttribute(p, i + 2).multiply(mesh.scale);
+      a.fromBufferAttribute(p, i).multiply(scale);
+      b.fromBufferAttribute(p, i + 1).multiply(scale);
+      c.fromBufferAttribute(p, i + 2).multiply(scale);
       const n = b.clone().sub(a).cross(c.clone().sub(a));
       // Rounded primitives can contain collapsed pole triangles. They have no UV tangent frame.
       if (n.lengthSq() > 1e-18) indices.push(i, i + 1, i + 2);
@@ -133,6 +151,53 @@ export function finishCockpit(cabin, select) {
     if (indices.length !== p.count) geometry.setIndex(indices);
     mesh.geometry = geometry;
   });
+}
+
+/** Apply an explicit aircraft profile only within its cabin and added physical control module. */
+export function finishAircraftCockpit(model, spec, slug) {
+  const profile = library.profiles[slug];
+  if (!profile) throw Error(`Missing cockpit finish profile: ${slug}`);
+  const panel = new Set(profile.panelMaterials);
+  const padding = new Set(profile.paddingMaterials);
+  const hardware = new Set(profile.hardwareMaterials);
+  for (const name of new Set([...(spec.visual.interior?.nodes ?? []), 'flight-controls'])) {
+    const cabin = model.getObjectByName(name);
+    if (!cabin) continue;
+    finishCockpit(cabin, (mesh) => {
+      const material = mesh.material;
+      if (Array.isArray(material) || material.transparent || material.emissive?.getHex()) return;
+      const path = [];
+      for (let part = mesh; part; part = part.parent) {
+        path.push(part.name);
+        if (part === cabin) break;
+      }
+      const quadrant = /quadrant|pedestal|console|power-lever|throttle/i.test(path.join('/'));
+      if (
+        material.name === 'detail-trim' &&
+        /power-lever|control-yoke|control-\d+|throttle/.test(path.join('/'))
+      )
+        return { finish: 'rubber', role: 'grip' };
+      if (panel.has(material.name) || material.name === 'flight-control-panel')
+        return { finish: profile.panel, role: quadrant ? 'quadrant' : 'panel' };
+      if (hardware.has(material.name) || material.name === 'flight-control-alloy')
+        return { finish: 'brushed', role: 'hardware' };
+      if (padding.has(material.name) || material.name === 'flight-control-grip')
+        return { finish: 'rubber', role: 'padding' };
+      // Printed markings, screen faces, colored annunciators and existing upholstery stay clear.
+    });
+  }
+  return model;
+}
+
+/** Canonical source swatches; aircraft bundles embed byte-identical copies for portable GLBs. */
+export async function writeCockpitFinishLibrary() {
+  const directory = new URL(
+    '../../../../content/entities/source/cockpit-materials/',
+    import.meta.url,
+  );
+  for (const kind of Object.keys(finishes))
+    for (const slot of ['basecolor', 'roughness', 'normal'])
+      await writeFile(new URL(`cockpit-${kind}-${slot}.png`, directory), image(kind, slot));
 }
 
 /** Embed PNGs in the GLTFExporter's single-buffer GLB. Keeps Node builds free of browser polyfills. */

@@ -171,8 +171,12 @@ The world explorer also accepts `gpuOptimizations=0` for an uncached WebGPU comp
 
 Open [World Explorer](https://molen.dev/play/world-explorer/), then compare the same location
 and settings using [`?backend=webgpu`](https://molen.dev/play/world-explorer/?backend=webgpu) and
-[`?backend=webgl`](https://molen.dev/play/world-explorer/?backend=webgl). Omitting the
-parameter, or using `?backend=auto`, enables automatic selection. The performance HUD displays
+[`?backend=webgl`](https://molen.dev/play/world-explorer/?backend=webgl). World Explorer defaults
+to WebGL, as the embedded Earth view does: WebGPU currently builds node state for every new
+instanced mesh, which can leave terrain preparation behind a fast aircraft despite low GPU draw
+times. Explicit `?backend=auto` still negotiates WebGPU with fallback; `?backend=webgpu` pins it
+and enables its screen-space ambient occlusion. The general client/viewer default remains `auto`.
+The performance HUD displays
 the backend that actually rendered and any automatic fallback reason; its
 `#performance-status` element also exposes `data-backend` and `data-fallback-reason` for tests.
 

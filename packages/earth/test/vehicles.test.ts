@@ -2,6 +2,7 @@ import { createParkedVehicleBatch, isParkedVehicleHidden } from '@bendyline/mole
 import { VehicleState } from '@bendyline/molen-kernel/vehicles';
 import { Transform } from '@bendyline/molen-kernel/world';
 import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
+import { tagTerrainObject } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { EarthVehicles } from '../src/client/vehicles';
@@ -22,6 +23,7 @@ function setup() {
     },
   ];
   tile.userData.vehicles = placements;
+  tagTerrainObject('parked-vehicles', tile);
   tile.position.set(1000, 0, 2000);
   tile.add(createParkedVehicleBatch(placements, [1000, 2000]));
   root.add(tile);
@@ -95,6 +97,17 @@ describe('earth vehicles', () => {
     expect(vehicles.object.children).toHaveLength(0);
     expect(root.children).toContain(tile);
   });
+  it('makes parked cars entities only near the observer, and reclaims them behind it', () => {
+    const { vehicles } = setup();
+    vehicles.world.destroy('car');
+    vehicles.sync(300, [5000, 150, 2000]);
+    expect(vehicles.world.exists('car')).toBe(false);
+    vehicles.sync(600, [1100, 150, 2000]);
+    expect(vehicles.world.exists('car')).toBe(true);
+    vehicles.sync(900, [1000 + 300 * 1.25, 150, 2000]);
+    expect(vehicles.world.exists('car')).toBe(false);
+    vehicles.dispose();
+  });
   it('promotes a real parked entity, drives, survives tile eviction/reload, and exits', () => {
     const { root, tile, placements, vehicles } = setup();
     expect(vehicles.world.exists('car')).toBe(true);
@@ -124,6 +137,7 @@ describe('earth vehicles', () => {
     const { root, tile, placements, vehicles } = setup();
     const copy = new THREE.Group();
     copy.userData.vehicles = placements;
+    tagTerrainObject('parked-vehicles', copy);
     copy.position.copy(tile.position);
     copy.add(createParkedVehicleBatch(placements, [1000, 2000]));
     root.add(copy);

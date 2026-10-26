@@ -18,6 +18,7 @@ import {
 } from '../src/surface-client';
 import {
   createTerrainSurfaceWorkerBridge,
+  createTerrainSurfaceWorkerPool,
   installTerrainSurfaceWorker,
   type TerrainSurfaceWorker,
 } from '../src/surface-worker';
@@ -217,6 +218,21 @@ describe('surface worker', () => {
     }
     bridge.dispose();
   }, 30_000); // Rebuilds and compares route geometry through both paths, including cache reloads.
+  it('spreads tiles over a pool of workers, each to the least busy', async () => {
+    const threads = [worker(), worker()];
+    const pool = createTerrainSurfaceWorkerPool(threads.map((thread) => thread.bridge));
+    const ctx = context();
+    const first = pool.generate(fixture(), ctx, { fonts });
+    const second = pool.generate(fixture(), ctx, { fonts });
+    // One tile each, in flight together.
+    expect(threads.map((thread) => thread.requests.length)).toEqual([1, 1]);
+    for (const thread of threads) thread.run();
+    const [a, b] = await Promise.all([first, second]);
+    expect(a?.children.length).toBeGreaterThan(0);
+    expect(b?.children.length).toBe(a?.children.length);
+    for (const group of [a, b]) if (group) disposeTerrainSurfaceObject(group);
+    pool.dispose();
+  });
   it('transfers regional geometry and metadata and honors an explicit profile over the tile resolver', async () => {
     const tile = fixture();
     const main = tile.transportation[0];

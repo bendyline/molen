@@ -312,6 +312,26 @@ describe('collision neighborhood options', () => {
     expect(far ? far.distance : undefined).toBe(10_000);
   });
 
+  it('rejects meshes by their rendered bounding sphere before computing a box', () => {
+    const root = new THREE.Group();
+    const near = box(4, 4, 4, 0, 2, 0);
+    const far = box(4, 4, 4, 500, 2, 0);
+    // As after a rendered frame: three's frustum culling computed the spheres, no boxes.
+    for (const mesh of [near, far]) {
+      mesh.geometry.computeBoundingSphere();
+      root.add(mesh);
+    }
+    new WalkCollision().update(root, 0, 0);
+    expect(near.geometry.boundingBox).toEqual(
+      new THREE.Box3(new THREE.Vector3(-2, -2, -2), new THREE.Vector3(2, 2, 2)),
+    );
+    expect(far.geometry.boundingBox).toBeNull();
+    // Far below an airborne subject's band, too.
+    near.geometry.boundingBox = null;
+    new WalkCollision({ verticalRadius: 20 }).update(root, 0, 0, 200);
+    expect(near.geometry.boundingBox).toBeNull();
+  });
+
   it('honors a wider radius and rebuild distance', () => {
     const root = new THREE.Group();
     // Finely tessellated ground: triangles are kept whole, so coarse ones would reach past the radius.

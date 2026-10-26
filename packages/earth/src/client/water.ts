@@ -1,6 +1,16 @@
 import type { WaterSample } from '@bendyline/molen-kernel/boats';
 import type { WaterSettings } from '@bendyline/molen-schema';
+import { taggedTerrainObjects } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
+
+/** Whether `object` is attached under `root` with it and every object between them visible. */
+export function shownUnder(object: THREE.Object3D, root: THREE.Object3D): boolean {
+  for (let cursor: THREE.Object3D | null = object; cursor !== null; cursor = cursor.parent) {
+    if (!cursor.visible) return false;
+    if (cursor === root) return true;
+  }
+  return false;
+}
 
 /** Mild coastal chop; hosts can supply calm water, different swells, and currents. */
 export const EARTH_WATER_CONDITIONS: WaterSettings = {
@@ -26,17 +36,23 @@ export class EarthWater {
   ) {}
   sync(): void {
     this.meshes = [];
-    this.root.updateWorldMatrix(true, true);
+    // Each water mesh's own chain only: refreshing the whole tree recomposed every resident
+    // tile's matrices, hidden ones too, five times a second.
+    this.root.updateWorldMatrix(true, false);
     const inverse = new THREE.Matrix4().copy(this.root.matrixWorld).invert();
-    this.root.traverseVisible((object) => {
-      if (!(object as THREE.Mesh).isMesh || object.userData.terrainWaterSurface !== true) return;
+    // The water surfaces the terrain tagged, shown under this root: walking the whole visible
+    // scene for them, five times a second, was milliseconds a pass over a town.
+    for (const object of taggedTerrainObjects('water')) {
+      if (!(object as THREE.Mesh).isMesh || !shownUnder(object, this.root)) continue;
       const mesh = object as THREE.Mesh;
-      mesh.geometry.computeBoundingBox();
+      mesh.updateWorldMatrix(true, false);
+      // Water geometry does not change once built; a replaced geometry brings its own box.
+      if (mesh.geometry.boundingBox === null) mesh.geometry.computeBoundingBox();
       const bounds = mesh.geometry.boundingBox
         ?.clone()
         .applyMatrix4(new THREE.Matrix4().multiplyMatrices(inverse, mesh.matrixWorld));
       if (bounds) this.meshes.push({ mesh, bounds });
-    });
+    }
   }
   sample(x: number, z: number): WaterSample | null | undefined {
     this.root.updateWorldMatrix(true, false);

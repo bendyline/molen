@@ -161,6 +161,13 @@ export function addInterior(parent, layout, api) {
         0.012,
         dark,
       );
+      const pedal = group(cabin, `rudder-control-${side}-${dx}`);
+      pedal.attach(cabin.getObjectByName(`pedal-arm-${side}-${dx}`));
+      pedal.attach(cabin.getObjectByName(`rudder-pedal-${side}-${dx}`));
+      pedal.userData.aircraftControl = {
+        action: 'yaw',
+        motion: { property: 'position', axis: 'z', scale: Math.sign(dx) * 0.035 },
+      };
     }
   }
   box(cabin, 'aft-seat-bench', [1.1, 0.1, 0.43], [0, 0.91, -0.51], fabric);

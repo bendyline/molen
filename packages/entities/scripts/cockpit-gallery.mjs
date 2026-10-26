@@ -8,6 +8,7 @@ import { createServer } from 'node:http';
 import { dirname, extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { screenshotScene } from '../../tooling/dist/index.mjs';
+import { cockpitFinishLibrary } from './aircraft/cockpit-surfaces.mjs';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const root = resolve(repo, 'content/entities');
@@ -52,7 +53,7 @@ const featured = {
       [0, 1.57, 0.78],
       [0, 0.98, -0.05],
     ],
-    note: 'Textured instrument backboard, vinyl seat grain and stitching. NAV III screens stay flat.',
+    note: 'Textured instrument backboard with a joined panel rim, vinyl seat grain and stitching. NAV III screens stay flat.',
   },
 };
 const labels = {
@@ -60,6 +61,27 @@ const labels = {
   panel: 'Backboard',
   horizon: 'Artificial horizon',
   seat: 'Seats & trim',
+  canopy: 'Canopy joins',
+  intake: 'Intake joins',
+  nozzle: 'Exhaust joins',
+  quadrant: 'Throttle quadrant',
+};
+const joinViews = {
+  'cessna-182t': {
+    panel: { position: [0, 1.7, 0.68], lookAt: [0, 1.42, 1.5], fov: 70 },
+  },
+  'mig-29a': {
+    panel: { position: [0, 2.85, 3.65], lookAt: [0, 2.6, 4.2], fov: 65 },
+    canopy: { position: [2.5, 3.8, 7.5], lookAt: [0, 2.6, 3.8], fov: 46 },
+    intake: { position: [3.6, 2.7, 6], lookAt: [1.1, 1.6, 0.6], fov: 44 },
+    nozzle: { position: [3.2, 2.5, -9.7], lookAt: [1.1, 1.6, -5.2], fov: 44 },
+  },
+  'baron-g58': {
+    quadrant: { position: [0.3, 1.65, 0.78], lookAt: [-0.02, 1.25, 0.95], fov: 65 },
+  },
+  'p-51': {
+    quadrant: { position: [0.1, 1.98, -0.02], lookAt: [0.36, 1.75, 0.22], fov: 65 },
+  },
 };
 // Review cameras move ahead of seat backs that obscure the shared cabin-ledger views.
 const cabinOverrides = {
@@ -95,6 +117,7 @@ for (const slug of names) {
   const reference = await optionalJson(`${dir}/reference-review.json`);
   const aircraft = roster.find((a) => a.slug === slug);
   const eye = spec.pilotEye;
+  const finish = cockpitFinishLibrary.finishes[cockpitFinishLibrary.profiles[slug].panel];
   const entry = {
     slug,
     title: source.title,
@@ -103,11 +126,16 @@ for (const slug of names) {
       aircraft?.category ??
       (slug === 'oh-6' ? 'helicopter' : slug === 'airliner' ? 'airliner' : 'warbird'),
     featured: !!featured[slug],
-    note: featured[slug]?.note ?? aircraft?.signature ?? 'Current fleet cockpit.',
+    panelFinish: cockpitFinishLibrary.profiles[slug].panel,
+    note:
+      slug === 'mig-29a'
+        ? 'Joined canopy shoulders, intake-to-engine transitions and exhaust rims, with continuous curved trim.'
+        : (featured[slug]?.note ?? aircraft?.signature ?? 'Current fleet cockpit.'),
     hash: sidecar.hash,
     sourceHash: sidecar.sourceHash,
     views: [],
   };
+  entry.note = `${finish.label} backboard, rubberized control trim and brushed alloy hardware. ${entry.note}`;
   const cameras = {
     cabin: cabinOverrides[slug] ??
       reference?.cabinCamera ?? {
@@ -127,6 +155,7 @@ for (const slug of names) {
       cameras.horizon = { position: [x + 0.055, y + 0.025, z - 0.245], lookAt: [x, y, z], fov: 46 };
     }
   }
+  Object.assign(cameras, joinViews[slug]);
   const scene = {
     format: 'molen/scene@3',
     name: `${source.title} cockpit gallery`,

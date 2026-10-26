@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:d301f5fce57e957bbf62def06d55b5a6a35e1f1cee971bfa040cb35cc01946b5",
-  "sourceHash": "sha256:d5d919b54db64d7ad1627211131661d67b87c9361a62086ac14f0f80134cbe93",
+  "hash": "sha256:ef5d2b9634485ab8e85a69866833fbc4b3423231a2df18bdcf2ccb27f8e6a8c9",
+  "sourceHash": "sha256:339f6b456071730c221bccee9f36a8f5d39f5f47a371bab2a4b0af65ff0235fb",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 78508,
-    "vertices": 160929,
-    "meshes": 110,
-    "primitives": 110,
-    "materials": 22,
-    "textures": 0,
+    "triangles": 78589,
+    "vertices": 132219,
+    "meshes": 123,
+    "primitives": 123,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3094976
+    "sizeBytes": 3063052
   },
   "nodes": [
     {
       "name": "AV8-airframe-AV8-gray",
-      "triangles": 3812
+      "triangles": 3080
     },
     {
       "name": "AV8-airframe-AV8-radome",
@@ -51,7 +51,7 @@
     },
     {
       "name": "AV8-airframe-AV8-seals",
-      "triangles": 5952
+      "triangles": 4800
     },
     {
       "name": "AV8-airframe-AV8-glass",
@@ -67,7 +67,7 @@
     },
     {
       "name": "AV8-airframe-AV8-tires",
-      "triangles": 35
+      "triangles": 34
     },
     {
       "name": "AV8-airframe-AV8-heat-shield",
@@ -347,7 +347,7 @@
     },
     {
       "name": "AV8-cabin-AV8-instrument-black",
-      "triangles": 1738
+      "triangles": 1272
     },
     {
       "name": "AV8-cabin-AV8-display",
@@ -638,9 +638,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "AV8-panel",
+      "name": "AV8-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -670,9 +673,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -697,6 +703,17 @@
       "name": "AV8-instrument-amber",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "AV8-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -732,6 +749,55 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -740,28 +806,28 @@
         "node": "AV8-airframe-AV8-gray",
         "points": [
           -2.7212,
-          0.5383,
+          0.5399,
           -7.2771,
           -2.7212,
-          0.5383,
+          0.5399,
           7.2771,
           -2.7212,
-          3.5497,
+          3.5496,
           -7.2771,
           -2.7212,
-          3.5497,
+          3.5496,
           7.2771,
           2.7212,
-          0.5383,
+          0.5399,
           -7.2771,
           2.7212,
-          0.5383,
+          0.5399,
           7.2771,
           2.7212,
-          3.5497,
+          3.5496,
           -7.2771,
           2.7212,
-          3.5497,
+          3.5496,
           7.2771
         ]
       },
@@ -798,28 +864,28 @@
         "node": "AV8-airframe-AV8-seals",
         "points": [
           -4.6216,
-          0.6887,
+          0.6886,
           -5.7399,
           -4.6216,
-          0.6887,
+          0.6886,
           6.36,
           -4.6216,
-          2.8157,
+          2.8156,
           -5.7399,
           -4.6216,
-          2.8157,
+          2.8156,
           6.36,
           4.6216,
-          0.6887,
+          0.6886,
           -5.7399,
           4.6216,
-          0.6887,
+          0.6886,
           6.36,
           4.6216,
-          2.8157,
+          2.8156,
           -5.7399,
           4.6216,
-          2.8157,
+          2.8156,
           6.36
         ]
       },
@@ -2943,28 +3009,28 @@
       {
         "node": "AV8-cabin-AV8-instrument-black",
         "points": [
-          -0.5244,
+          -0.5243,
           1.9042,
           2.55,
-          -0.5244,
-          1.9042,
-          4.98,
-          -0.5244,
-          2.9232,
-          2.55,
-          -0.5244,
-          2.9232,
-          4.98,
-          0.4632,
-          1.9042,
-          2.55,
-          0.4632,
+          -0.5243,
           1.9042,
           4.98,
-          0.4632,
+          -0.5243,
           2.9232,
           2.55,
-          0.4632,
+          -0.5243,
+          2.9232,
+          4.98,
+          0.4636,
+          1.9042,
+          2.55,
+          0.4636,
+          1.9042,
+          4.98,
+          0.4636,
+          2.9232,
+          2.55,
+          0.4636,
           2.9232,
           4.98
         ]

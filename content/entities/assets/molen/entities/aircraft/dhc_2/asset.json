@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:231d3fcc7cc3580672c6d3ec690a06b33e7615c242133f35deed4befa5c5ec17",
-  "sourceHash": "sha256:349bd4be1b7b8365084f0fe4784ff6423894bec74e83d65b39313542d196621c",
+  "hash": "sha256:b6b342f9176b1d2998eeb9fc8dbe321a55e5f27e0a0638bb22252262b832b333",
+  "sourceHash": "sha256:14ff83146a4849baae256fbbd8ccc9ac90df392cbe7bd97b13dfef0ad82aa8fd",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 60382,
-    "vertices": 124899,
-    "meshes": 104,
-    "primitives": 104,
-    "materials": 20,
-    "textures": 0,
+    "triangles": 59965,
+    "vertices": 87485,
+    "meshes": 116,
+    "primitives": 116,
+    "materials": 27,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2409928
+    "sizeBytes": 2415820
   },
   "nodes": [
     {
       "name": "Beaver-shell-Beaver-ivory",
-      "triangles": 722
+      "triangles": 651
     },
     {
       "name": "Beaver-shell-Beaver-glazing",
@@ -51,7 +51,7 @@
     },
     {
       "name": "Beaver-shell-Beaver-trim",
-      "triangles": 1944
+      "triangles": 1032
     },
     {
       "name": "Beaver-shell-Beaver-alloy",
@@ -83,11 +83,11 @@
     },
     {
       "name": "Beaver-engine-Beaver-alloy",
-      "triangles": 3072
+      "triangles": 1920
     },
     {
       "name": "Beaver-engine-Beaver-trim",
-      "triangles": 48
+      "triangles": 112
     },
     {
       "name": "Beaver-engine-Beaver-burgundy",
@@ -243,7 +243,7 @@
     },
     {
       "name": "Beaver-rudder-moving-Beaver-burgundy",
-      "triangles": 26
+      "triangles": 28
     },
     {
       "name": "Beaver-rudder-moving-Beaver-alloy",
@@ -299,11 +299,11 @@
     },
     {
       "name": "Beaver-cockpit-Beaver-trim",
-      "triangles": 300
+      "triangles": 216
     },
     {
       "name": "Beaver-cockpit-Beaver-alloy",
-      "triangles": 1128
+      "triangles": 984
     },
     {
       "name": "Beaver-cockpit-Beaver-instrument-ink",
@@ -535,7 +535,7 @@
     },
     {
       "name": "Beaver-wheel-Beaver-instrument-black",
-      "triangles": 120
+      "triangles": 72
     },
     {
       "name": "Beaver-wheel-Beaver-alloy",
@@ -622,9 +622,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Beaver-panel",
+      "name": "Beaver-panel-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -638,6 +641,28 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "Beaver-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Beaver-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Beaver-instrument-ink",
       "slots": [
         "baseColor"
@@ -646,9 +671,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -711,6 +739,55 @@
     },
     {
       "name": "Beaver-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -782,29 +859,29 @@
         "node": "Beaver-shell-Beaver-trim",
         "points": [
           -0.753,
-          0.7995,
+          0.7994,
           -4.1004,
           -0.753,
-          0.7995,
-          2.807,
+          0.7994,
+          2.8074,
           -0.753,
-          2.9648,
+          2.9647,
           -4.1004,
           -0.753,
-          2.9648,
-          2.807,
+          2.9647,
+          2.8074,
           0.753,
-          0.7995,
+          0.7994,
           -4.1004,
           0.753,
-          0.7995,
-          2.807,
+          0.7994,
+          2.8074,
           0.753,
-          2.9648,
+          2.9647,
           -4.1004,
           0.753,
-          2.9648,
-          2.807
+          2.9647,
+          2.8074
         ]
       },
       {
@@ -1047,25 +1124,25 @@
           2.7703,
           -0.56,
           0.9066,
-          3.5503,
+          3.9707,
           -0.56,
           2.3218,
           2.7703,
           -0.56,
           2.3218,
-          3.5503,
+          3.9707,
           0.56,
           0.9066,
           2.7703,
           0.56,
           0.9066,
-          3.5503,
+          3.9707,
           0.56,
           2.3218,
           2.7703,
           0.56,
           2.3218,
-          3.5503
+          3.9707
         ]
       },
       {
@@ -4290,28 +4367,28 @@
       {
         "node": "Beaver-wheel-Beaver-instrument-black",
         "points": [
-          0.1746,
+          0.1738,
           1.6595,
           2.1518,
-          0.1746,
-          1.6595,
-          2.2144,
-          0.1746,
-          1.8475,
-          2.1518,
-          0.1746,
-          1.8475,
-          2.2144,
-          0.5854,
-          1.6595,
-          2.1518,
-          0.5854,
+          0.1738,
           1.6595,
           2.2144,
-          0.5854,
+          0.1738,
           1.8475,
           2.1518,
-          0.5854,
+          0.1738,
+          1.8475,
+          2.2144,
+          0.5862,
+          1.6595,
+          2.1518,
+          0.5862,
+          1.6595,
+          2.2144,
+          0.5862,
+          1.8475,
+          2.1518,
+          0.5862,
           1.8475,
           2.2144
         ]

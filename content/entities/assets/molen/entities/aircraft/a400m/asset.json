@@ -6,17 +6,17 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:4cd8915ff22bcd40a1569d2b537fa2f6c0fcc3afa6f23b5743473052fdd05dc0",
-  "sourceHash": "sha256:1b3c59db102a20ec3274aa73fa6b83f01570af960bdaabf43581c0d9593d8a3d",
+  "hash": "sha256:246ca8899d63db27d60d62d4edb04f574a3fd6c4aa6a937149212b092682266d",
+  "sourceHash": "sha256:3caaf054f0af56c7ce4df6dc57eaaf11e1e19413553754023ff130923e7dfa6a",
   "bounds": {
     "aabb": {
       "min": [
-        -21.2028,
+        -21.2027,
         0,
         -22.55
       ],
       "max": [
-        21.2028,
+        21.2027,
         14.6995,
         22.55
       ]
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 86169,
-    "vertices": 171855,
-    "meshes": 119,
-    "primitives": 119,
-    "materials": 24,
-    "textures": 0,
+    "triangles": 83025,
+    "vertices": 104862,
+    "meshes": 134,
+    "primitives": 134,
+    "materials": 31,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3379276
+    "sizeBytes": 2665976
   },
   "nodes": [
     {
@@ -51,11 +51,11 @@
     },
     {
       "name": "A400-exterior-A400-trim",
-      "triangles": 4043
+      "triangles": 2435
     },
     {
       "name": "A400-exterior-A400-seams",
-      "triangles": 7056
+      "triangles": 3696
     },
     {
       "name": "A400-exterior-A400-alloy",
@@ -447,7 +447,7 @@
     },
     {
       "name": "A400-cabin-A400-trim",
-      "triangles": 1960
+      "triangles": 1744
     },
     {
       "name": "A400-cabin-A400-alloy",
@@ -638,11 +638,36 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "A400-panel",
+      "name": "A400-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "A400-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "A400-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
@@ -670,9 +695,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -743,6 +771,55 @@
     },
     {
       "name": "A400-instrument-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -842,30 +919,30 @@
       {
         "node": "A400-exterior-A400-seams",
         "points": [
-          -21.2028,
-          1.2162,
-          -15.1486,
-          -21.2028,
-          1.2162,
-          21.0192,
-          -21.2028,
-          6.8432,
-          -15.1486,
-          -21.2028,
-          6.8432,
-          21.0192,
-          21.2028,
-          1.2162,
-          -15.1486,
-          21.2028,
-          1.2162,
-          21.0192,
-          21.2028,
-          6.8432,
-          -15.1486,
-          21.2028,
-          6.8432,
-          21.0192
+          -21.2027,
+          1.2159,
+          -15.1488,
+          -21.2027,
+          1.2159,
+          21.0188,
+          -21.2027,
+          6.8429,
+          -15.1488,
+          -21.2027,
+          6.8429,
+          21.0188,
+          21.2027,
+          1.2159,
+          -15.1488,
+          21.2027,
+          1.2159,
+          21.0188,
+          21.2027,
+          6.8429,
+          -15.1488,
+          21.2027,
+          6.8429,
+          21.0188
         ]
       },
       {

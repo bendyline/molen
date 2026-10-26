@@ -672,6 +672,10 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
   const env = environment ?? {
     groundHeight: (x: number, z: number) => groundFieldOf(world)?.sampleHeight(x, z) ?? 0,
   };
+  // States found dormant, with the vehicle they were judged for. Every write clones a component,
+  // so a car stays skipped only until something moves or changes it; keyed by object, the map
+  // holds no entity alive.
+  const dormant = new WeakMap<VehicleStateData, VehicleData>();
   world.addSystem(
     (w, ctx) => {
       const driven = new Set<string>();
@@ -685,7 +689,15 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
       }
       const weather = env.weather ?? weatherOf(w);
       const current = { ...env, time: ctx.tick * ctx.dt, ...(weather ? { weather } : {}) };
-      for (const [id, t, vehicle, state] of w.query(Transform, Vehicle, VehicleState)) {
+      // Ids, then components by lookup: a town's parked cars are thousands of dormant vehicles,
+      // and building a query row for each one every tick only to skip it cost milliseconds a frame.
+      for (const id of w.query(Transform, Vehicle, VehicleState).ids()) {
+        const state = w.get(id, VehicleState);
+        const vehicle = w.get(id, Vehicle);
+        if (state === undefined || vehicle === undefined) continue;
+        if (dormant.get(state) === vehicle && !driven.has(id)) continue;
+        const t = w.get(id, Transform);
+        if (t === undefined) continue;
         // Dormant parked vehicles cost no physics work. Their placement already includes support.
         if (
           !driven.has(id) &&
@@ -698,8 +710,10 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
               m.abs(state.bodyPitch ?? 0) +
               m.abs(state.bodyPitchRate ?? 0) <
               1e-5)
-        )
+        ) {
+          dormant.set(state, vehicle);
           continue;
+        }
         const input = driven.has(id)
           ? (w.get(id, VehicleInput) ?? IDLE_VEHICLE_INPUT)
           : IDLE_VEHICLE_INPUT;

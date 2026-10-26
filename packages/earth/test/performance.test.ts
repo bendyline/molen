@@ -1,15 +1,52 @@
 import { describe, expect, it } from 'vitest';
 import {
+  createEarthAdmissionGovernor,
+  earthAdmission,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  earthTerrainCacheBudget,
 } from '../src/client/performance';
 
 const MIB = 1024 * 1024;
 
 describe('earth device detail policy', () => {
+  it('admits more streaming work only while frames have time to spare', () => {
+    expect(earthAdmission('webgl', true)).toEqual({ maxBytes: 8 * MIB, maxMilliseconds: 4 });
+    expect(earthAdmission('webgl', false)).toEqual({ maxBytes: 2 * MIB, maxMilliseconds: 2 });
+    // WebGPU keeps its own (larger) time default.
+    expect(earthAdmission('webgpu', true)).toEqual({ maxBytes: 8 * MIB });
+    const governor = createEarthAdmissionGovernor('webgl');
+    expect(governor.spare).toBe(false);
+    // Light frames for a while: spare, once.
+    const changes = Array.from({ length: 200 }, () => governor.sample(6, 8.3)).filter(Boolean);
+    expect(changes).toEqual([{ maxBytes: 8 * MIB, maxMilliseconds: 4 }]);
+    // Between the thresholds the choice stands; sustained heavy work takes it back.
+    expect(Array.from({ length: 200 }, () => governor.sample(11.5, 16.7)).filter(Boolean)).toEqual(
+      [],
+    );
+    const back = Array.from({ length: 200 }, () => governor.sample(20, 25)).filter(Boolean);
+    expect(back).toEqual([{ maxBytes: 2 * MIB, maxMilliseconds: 2 }]);
+    expect(governor.sample(Number.NaN, 16)).toBeUndefined();
+  });
+  it('preserves flight preparation capacity and cache when render quality drops', () => {
+    const minimum = earthPerformanceTier(0).terrain;
+    expect(minimum.maxConcurrentLoads).toBeGreaterThanOrEqual(4);
+    expect(minimum.maxConcurrentLayerLoads).toBeGreaterThanOrEqual(8);
+    const memory = earthMemoryBudget({ deviceMemory: 8 });
+    const high = earthTerrainCacheBudget(earthPerformanceTier(5).terrain, memory);
+    const low = earthTerrainCacheBudget(minimum, memory);
+    expect(low.maxResidentBytes).toBe(high.maxResidentBytes);
+    expect(low.maxResidentTiles).toBe(high.maxResidentTiles);
+    expect(low.maxSelectedTiles).toBe(minimum.maxSelectedTiles);
+    expect(low.maxSurfaceTileResolution).toBe(minimum.maxSurfaceTileResolution);
+    expect(minimum.maxResidentBytes).toBe(96 * MIB);
+    expect(earthTerrainCacheBudget(minimum, 192 * MIB).maxResidentTiles).toBe(96);
+    for (const bytes of [0, -1, Number.NaN, Number.POSITIVE_INFINITY])
+      expect(() => earthTerrainCacheBudget(minimum, bytes)).toThrow(RangeError);
+  });
   it('sizes a fixed memory budget and a starting level from what the device reports', () => {
     expect(earthMemoryBudget({ deviceMemory: 8 })).toBe(768 * MIB);
     expect(earthMemoryBudget({ deviceMemory: 4 })).toBe(384 * MIB);
@@ -35,7 +72,9 @@ describe('earth device detail policy', () => {
         tier.terrain.maxSelectedTiles as number,
       );
       expect(tier.terrain.maxConcurrentLayerLoads).toBeLessThanOrEqual(
-        tier.terrain.maxConcurrentLoads as number,
+        // Each height tile needs several independent semantic layers; allow a bounded
+        // family to prepare while another family provides the current view's coverage.
+        2 * (tier.terrain.maxConcurrentLoads as number),
       );
       expect(tier.cacheBytes).toBeLessThanOrEqual(tier.terrain.maxResidentBytes as number);
       const cells = (tier.terrain.maxSurfaceTileResolution as number) - 1;

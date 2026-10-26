@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:a12d8e3c0955206e2ba723a41d254a44fd94137ce82b1843370f99e37f78e2a4",
-  "sourceHash": "sha256:e98f20904634a26589d44a59c10674015c42ea13fb9cdbd1a5bd1e9b81c0617b",
+  "hash": "sha256:ebf89b9cfc32cdf1d62610e11c44c35ba9dbef803a9b0e9c7a052f9b04ed178c",
+  "sourceHash": "sha256:97b462b7d927ad95c7c254e93655b859ee33d858eace046a6ef2a05de17a9cdf",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 47750,
-    "vertices": 46687,
-    "meshes": 296,
-    "primitives": 296,
-    "materials": 24,
-    "textures": 0,
+    "triangles": 55894,
+    "vertices": 53883,
+    "meshes": 334,
+    "primitives": 334,
+    "materials": 37,
+    "textures": 21,
     "animations": 0,
-    "sizeBytes": 1028228
+    "sizeBytes": 2147004
   },
   "nodes": [
     {
@@ -479,7 +479,7 @@
     },
     {
       "name": "attitude-bezel",
-      "triangles": 240
+      "triangles": 1536
     },
     {
       "name": "attitude-dial",
@@ -491,31 +491,31 @@
     },
     {
       "name": "horizon-sky",
-      "triangles": 36
+      "triangles": 480
     },
     {
       "name": "horizon-earth",
-      "triangles": 36
+      "triangles": 480
     },
     {
       "name": "horizon-line",
-      "triangles": 12
+      "triangles": 192
     },
     {
       "name": "pitch-mark--2",
-      "triangles": 12
+      "triangles": 192
     },
     {
       "name": "pitch-mark--1",
-      "triangles": 12
+      "triangles": 192
     },
     {
       "name": "pitch-mark-1",
-      "triangles": 12
+      "triangles": 192
     },
     {
       "name": "pitch-mark-2",
-      "triangles": 12
+      "triangles": 192
     },
     {
       "name": "horizon-wing--1",
@@ -531,7 +531,7 @@
     },
     {
       "name": "attitude-cover",
-      "triangles": 48
+      "triangles": 960
     },
     {
       "name": "altimeter-bezel",
@@ -702,6 +702,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "cockpit-charcoal-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "instrument-painted-bezel",
       "slots": [
         "baseColor"
@@ -734,6 +745,28 @@
       "alphaMode": "BLEND"
     },
     {
+      "name": "natural-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cockpit-charcoal-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "instrument-sky",
       "slots": [
         "baseColor"
@@ -743,6 +776,110 @@
     },
     {
       "name": "instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "rubber-vinyl",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "interior-green-paint",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "rubber-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "instrument-earth-canvas",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "ivory-markings-webbing",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -3918,28 +4055,28 @@
         "points": [
           -0.0421,
           1.9579,
-          0.7781,
+          0.7779,
           -0.0421,
           1.9579,
-          0.7859,
+          0.7861,
           -0.0421,
           2.0921,
-          0.7781,
+          0.7779,
           -0.0421,
           2.0921,
-          0.7859,
+          0.7861,
           0.0921,
           1.9579,
-          0.7781,
+          0.7779,
           0.0921,
           1.9579,
-          0.7859,
+          0.7861,
           0.0921,
           2.0921,
-          0.7781,
+          0.7779,
           0.0921,
           2.0921,
-          0.7859
+          0.7861
         ]
       },
       {
@@ -4005,25 +4142,25 @@
         "points": [
           -0.0204,
           2.025,
-          0.771,
+          0.7597,
           -0.0204,
           2.025,
           0.771,
           -0.0204,
           2.0704,
-          0.771,
+          0.7597,
           -0.0204,
           2.0704,
           0.771,
           0.0704,
           2.025,
-          0.771,
+          0.7597,
           0.0704,
           2.025,
           0.771,
           0.0704,
           2.0704,
-          0.771,
+          0.7597,
           0.0704,
           2.0704,
           0.771
@@ -4034,25 +4171,25 @@
         "points": [
           -0.0204,
           1.9796,
-          0.771,
+          0.7597,
           -0.0204,
           1.9796,
           0.771,
           -0.0204,
           2.025,
-          0.771,
+          0.7597,
           -0.0204,
           2.025,
           0.771,
           0.0704,
           1.9796,
-          0.771,
+          0.7597,
           0.0704,
           1.9796,
           0.771,
           0.0704,
           2.025,
-          0.771,
+          0.7597,
           0.0704,
           2.025,
           0.771
@@ -4061,30 +4198,30 @@
       {
         "node": "horizon-line",
         "points": [
-          -0.0191,
+          -0.0193,
           2.0244,
-          0.7685,
-          -0.0191,
+          0.7586,
+          -0.0193,
           2.0244,
-          0.7695,
-          -0.0191,
+          0.7702,
+          -0.0193,
           2.0256,
-          0.7685,
-          -0.0191,
+          0.7586,
+          -0.0193,
           2.0256,
-          0.7695,
-          0.0691,
+          0.7702,
+          0.0693,
           2.0244,
-          0.7685,
-          0.0691,
+          0.7586,
+          0.0693,
           2.0244,
-          0.7695,
-          0.0691,
+          0.7702,
+          0.0693,
           2.0256,
-          0.7685,
-          0.0691,
+          0.7586,
+          0.0693,
           2.0256,
-          0.7695
+          0.7702
         ]
       },
       {
@@ -4092,86 +4229,86 @@
         "points": [
           0.013,
           2.0031,
-          0.7665,
+          0.7612,
           0.013,
           2.0031,
-          0.7675,
+          0.7628,
           0.013,
           2.0041,
-          0.7665,
+          0.7612,
           0.013,
           2.0041,
-          0.7675,
+          0.7628,
           0.037,
           2.0031,
-          0.7665,
+          0.7612,
           0.037,
           2.0031,
-          0.7675,
+          0.7628,
           0.037,
           2.0041,
-          0.7665,
+          0.7612,
           0.037,
           2.0041,
-          0.7675
+          0.7628
         ]
       },
       {
         "node": "pitch-mark--1",
         "points": [
-          0.0077,
+          0.0076,
           2.0138,
-          0.7665,
-          0.0077,
+          0.7594,
+          0.0076,
           2.0138,
-          0.7675,
-          0.0077,
+          0.7618,
+          0.0076,
           2.0148,
-          0.7665,
-          0.0077,
+          0.7594,
+          0.0076,
           2.0148,
-          0.7675,
-          0.0423,
+          0.7618,
+          0.0424,
           2.0138,
-          0.7665,
-          0.0423,
+          0.7594,
+          0.0424,
           2.0138,
-          0.7675,
-          0.0423,
+          0.7618,
+          0.0424,
           2.0148,
-          0.7665,
-          0.0423,
+          0.7594,
+          0.0424,
           2.0148,
-          0.7675
+          0.7618
         ]
       },
       {
         "node": "pitch-mark-1",
         "points": [
-          0.0077,
+          0.0076,
           2.0352,
-          0.7665,
-          0.0077,
+          0.7594,
+          0.0076,
           2.0352,
-          0.7675,
-          0.0077,
+          0.7618,
+          0.0076,
           2.0362,
-          0.7665,
-          0.0077,
+          0.7594,
+          0.0076,
           2.0362,
-          0.7675,
-          0.0423,
+          0.7618,
+          0.0424,
           2.0352,
-          0.7665,
-          0.0423,
+          0.7594,
+          0.0424,
           2.0352,
-          0.7675,
-          0.0423,
+          0.7618,
+          0.0424,
           2.0362,
-          0.7665,
-          0.0423,
+          0.7594,
+          0.0424,
           2.0362,
-          0.7675
+          0.7618
         ]
       },
       {
@@ -4179,28 +4316,28 @@
         "points": [
           0.013,
           2.0459,
-          0.7665,
+          0.7612,
           0.013,
           2.0459,
-          0.7675,
+          0.7628,
           0.013,
           2.0469,
-          0.7665,
+          0.7612,
           0.013,
           2.0469,
-          0.7675,
+          0.7628,
           0.037,
           2.0459,
-          0.7665,
+          0.7612,
           0.037,
           2.0459,
-          0.7675,
+          0.7628,
           0.037,
           2.0469,
-          0.7665,
+          0.7612,
           0.037,
           2.0469,
-          0.7675
+          0.7628
         ]
       },
       {
@@ -4208,28 +4345,28 @@
         "points": [
           -0.0074,
           2.0239,
-          0.763,
+          0.7537,
           -0.0074,
           2.0239,
-          0.765,
+          0.7557,
           -0.0074,
           2.0261,
-          0.763,
+          0.7537,
           -0.0074,
           2.0261,
-          0.765,
+          0.7557,
           0.0209,
           2.0239,
-          0.763,
+          0.7537,
           0.0209,
           2.0239,
-          0.765,
+          0.7557,
           0.0209,
           2.0261,
-          0.763,
+          0.7537,
           0.0209,
           2.0261,
-          0.765
+          0.7557
         ]
       },
       {
@@ -4237,28 +4374,28 @@
         "points": [
           0.0291,
           2.0239,
-          0.763,
+          0.7537,
           0.0291,
           2.0239,
-          0.765,
+          0.7557,
           0.0291,
           2.0261,
-          0.763,
+          0.7537,
           0.0291,
           2.0261,
-          0.765,
+          0.7557,
           0.0574,
           2.0239,
-          0.763,
+          0.7537,
           0.0574,
           2.0239,
-          0.765,
+          0.7557,
           0.0574,
           2.0261,
-          0.763,
+          0.7537,
           0.0574,
           2.0261,
-          0.765
+          0.7557
         ]
       },
       {
@@ -4266,28 +4403,28 @@
         "points": [
           0.0231,
           2.0187,
-          0.762,
+          0.7527,
           0.0231,
           2.0187,
-          0.764,
+          0.7547,
           0.0231,
           2.0263,
-          0.762,
+          0.7527,
           0.0231,
           2.0263,
-          0.764,
+          0.7547,
           0.0269,
           2.0187,
-          0.762,
+          0.7527,
           0.0269,
           2.0187,
-          0.764,
+          0.7547,
           0.0269,
           2.0263,
-          0.762,
+          0.7527,
           0.0269,
           2.0263,
-          0.764
+          0.7547
         ]
       },
       {
@@ -4295,28 +4432,28 @@
         "points": [
           -0.0342,
           1.9658,
-          0.759,
+          0.7471,
           -0.0342,
           1.9658,
-          0.759,
+          0.7487,
           -0.0342,
           2.0842,
-          0.759,
+          0.7471,
           -0.0342,
           2.0842,
-          0.759,
+          0.7487,
           0.0842,
           1.9658,
-          0.759,
+          0.7471,
           0.0842,
           1.9658,
-          0.759,
+          0.7487,
           0.0842,
           2.0842,
-          0.759,
+          0.7471,
           0.0842,
           2.0842,
-          0.759
+          0.7487
         ]
       },
       {

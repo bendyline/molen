@@ -240,7 +240,125 @@
                     "scale": -1.35,
                     "offset": 1.35
                   }
-                ]
+                ],
+                "derived": {
+                  "rightSpoiler": {
+                    "op": "max",
+                    "args": [
+                      "rollInput",
+                      0
+                    ]
+                  },
+                  "sweepAngle": {
+                    "op": "multiply",
+                    "args": [
+                      "sweepFraction",
+                      0.8377580409572781
+                    ]
+                  },
+                  "sweepFraction": {
+                    "op": "clamp",
+                    "args": [
+                      "sweepFractionRaw",
+                      0,
+                      1
+                    ]
+                  },
+                  "sweepFractionRaw": {
+                    "op": "divide",
+                    "args": [
+                      "sweepSpeed",
+                      160
+                    ]
+                  },
+                  "sweepSpeed": {
+                    "op": "subtract",
+                    "args": [
+                      "trueAirspeed",
+                      140
+                    ]
+                  },
+                  "tailRight": {
+                    "op": "add",
+                    "args": [
+                      "pitchDeflection",
+                      "rollDeflection"
+                    ]
+                  },
+                  "pitchDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "pitchInput",
+                      0.3
+                    ]
+                  },
+                  "rollDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      0.12
+                    ]
+                  },
+                  "leftSpoiler": {
+                    "op": "max",
+                    "args": [
+                      "negativeRoll",
+                      0
+                    ]
+                  },
+                  "negativeRoll": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      -1
+                    ]
+                  },
+                  "tailLeft": {
+                    "op": "subtract",
+                    "args": [
+                      "pitchDeflection",
+                      "rollDeflection"
+                    ]
+                  }
+                },
+                "sources": {
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "trueAirspeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "airspeed"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  }
+                }
               },
               "interior": {
                 "nodes": [
@@ -7740,11 +7858,11 @@
                 "propulsion": "jet",
                 "densityExponent": 0.38726441434106107,
                 "dryThrust": 74000,
+                "highAltitudeDensityRatio": 0.2470758786900125,
+                "highAltitudeExponent": 1.2,
                 "ramRise": 0.2,
                 "afterburnerThrust": 123660.56090533998,
-                "afterburnerDetent": 0.85,
-                "highAltitudeDensityRatio": 0.2470758786900125,
-                "highAltitudeExponent": 1.2
+                "afterburnerDetent": 0.85
               },
               {
                 "id": "engine-2",
@@ -7768,11 +7886,11 @@
                 "propulsion": "jet",
                 "densityExponent": 0.38726441434106107,
                 "dryThrust": 74000,
+                "highAltitudeDensityRatio": 0.2470758786900125,
+                "highAltitudeExponent": 1.2,
                 "ramRise": 0.2,
                 "afterburnerThrust": 123660.56090533998,
-                "afterburnerDetent": 0.85,
-                "highAltitudeDensityRatio": 0.2470758786900125,
-                "highAltitudeExponent": 1.2
+                "afterburnerDetent": 0.85
               }
             ]
           }
@@ -7807,7 +7925,9 @@
           "stalled": false,
           "grounded": true,
           "crashed": false,
-          "waitingForTerrain": false
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
         },
         "mountable": {
           "seats": [

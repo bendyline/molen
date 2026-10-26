@@ -39,6 +39,7 @@ import {
   type TerrainParkedVehicle,
   type TerrainSurfaceOptions,
 } from './surface-styles';
+import { tagTerrainObject } from './tagged-objects';
 import { inferLaneCount } from './transport-features';
 
 export interface TerrainSurfaceStats {
@@ -238,6 +239,7 @@ export function createTerrainSurfaceObject(
   const signalHeads: TerrainSignalHead[] = [];
   const vehicles: VehiclePlacement[] = [];
   group.userData.vehicles = vehicles;
+  tagTerrainObject('parked-vehicles', group);
   let fixtureCount = 0;
   let remaining = details.maxDetailElements ?? 16_000;
   const parkingReserve = Math.floor(remaining * 0.35);
@@ -1264,6 +1266,7 @@ export function createTerrainSurfaceObject(
   if (renderVehicles && vehicles.length)
     group.add(createParkedVehicleBatch(vehicles, context.origin));
   appendTerrainSignalLenses(group, signalHeads);
+  markTerrainSurfaceDetail(group);
   stats.detailLimited = remaining <= 0 || fixtureCount >= maxFixtures || signs.length >= 48;
   return group;
 }
@@ -1296,6 +1299,13 @@ export interface TerrainSurfaceRenderer {
   setMaterial(material: THREE.Material | undefined): void;
   /** Absolute simulation time in seconds; optionally resolve colours from a traffic graph. */
   updateSignals(elapsedSeconds: number, resolve?: TerrainTrafficSignalResolver): void;
+  /**
+   * Hide each tile's small street detail (signs, fixtures, signal lenses, lane markings, parked
+   * cars) when the tile lies farther from `position` (the scene camera's world position) than
+   * the detail's `userData.detailDistance`, and show it again as the camera nears. Call every
+   * frame; it works only after the camera has moved or tiles have changed.
+   */
+  updateDetail(position: THREE.Vector3): void;
   stats(): TerrainSurfaceStats & {
     tiles: number;
     loading: number;
@@ -1304,6 +1314,30 @@ export interface TerrainSurfaceRenderer {
     geometryRevision: number;
   };
   dispose(): void;
+}
+
+/**
+ * Draw distances (meters from the camera to the detail's bounds) for a surface tile's small
+ * detail; see `TerrainSurfaceRenderer.updateDetail`. From a jet, a view held hundreds of these
+ * draws for tiles kilometers away, where a sign, a signal lens or a lane line is under a pixel.
+ */
+const FIXTURE_DISTANCE = 900;
+const MARKING_DISTANCE = 1500;
+const PARKED_CAR_DISTANCE = 1500;
+
+/** Give a surface tile's small detail its draw distance (`userData.detailDistance`). */
+export function markTerrainSurfaceDetail(group: THREE.Object3D): void {
+  for (const child of group.children) {
+    const distance =
+      child.name === 'surface:markings'
+        ? MARKING_DISTANCE
+        : child.name === 'surface:parked-cars'
+          ? PARKED_CAR_DISTANCE
+          : /^surface:(road-signs|street-fixtures|signal-)/.test(child.name)
+            ? FIXTURE_DISTANCE
+            : undefined;
+    if (distance !== undefined) child.userData.detailDistance = distance;
+  }
 }
 
 /** One controller can be shared by all semantic renderers in a viewer. */
@@ -1342,6 +1376,10 @@ export function createTerrainSurfaceRenderer(
   let disposed = false;
   let signalTime = 0;
   let signalResolver: TerrainTrafficSignalResolver | undefined;
+  let detailRevision = -1;
+  const detailAt = new THREE.Vector3(Number.POSITIVE_INFINITY, 0, 0);
+  const detailMin = new THREE.Vector3();
+  const detailMax = new THREE.Vector3();
   let pavement: THREE.Material | undefined;
   const plain = new WeakMap<THREE.Mesh, THREE.Material | THREE.Material[]>();
   const dress = (object: THREE.Object3D): void => {
@@ -1459,6 +1497,35 @@ export function createTerrainSurfaceRenderer(
     setMaterial(material) {
       pavement = material;
       for (const root of tiles.keys()) dress(root);
+    },
+    updateDetail(position) {
+      if (detailRevision === geometryRevision && detailAt.distanceToSquared(position) < 625) return;
+      detailRevision = geometryRevision;
+      detailAt.copy(position);
+      // Measured to the tile's footprint, not each mesh's bounds: computing those for every
+      // newly arrived tile's meshes was a 10 ms frame under a jet.
+      for (const [root, entry] of tiles) {
+        const object = root.children[0];
+        if (object === undefined) continue;
+        const size = entry.context.tileSize;
+        detailMin.set(0, 0, 0).applyMatrix4(root.matrixWorld);
+        detailMax.set(size, 0, size).applyMatrix4(root.matrixWorld);
+        const dx = Math.max(
+          Math.min(detailMin.x, detailMax.x) - position.x,
+          0,
+          position.x - Math.max(detailMin.x, detailMax.x),
+        );
+        const dz = Math.max(
+          Math.min(detailMin.z, detailMax.z) - position.z,
+          0,
+          position.z - Math.max(detailMin.z, detailMax.z),
+        );
+        const distance = Math.hypot(dx, dz);
+        for (const child of object.children) {
+          const limit = child.userData.detailDistance as number | undefined;
+          if (limit !== undefined) child.visible = distance <= limit;
+        }
+      }
     },
     updateSignals(elapsedSeconds, resolve) {
       if (!Number.isFinite(elapsedSeconds)) throw new Error('Signal time must be finite');

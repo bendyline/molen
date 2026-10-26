@@ -462,7 +462,7 @@ export function buildTyphoon(s) {
     seal,
   );
   for (const side of [-1, 1]) {
-    d.text('TYPHOON', [side * 0.058, 3.15, -4.25], 0.15, (side * Math.PI) / 2, seal);
+    // Exterior operator identifiers are supplied by the selected livery.
     d.text('RESCUE', [side * 0.55, 2.32, 5.82], 0.06, (side * Math.PI) / 2, seal);
     for (const z of [1.5, 0.6, -0.3, -1.2, -2.1])
       outline(

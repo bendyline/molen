@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:eeeaf028c7855cb388ddd40ca280f316454efc0a939a86b12f54d936a0637fdb",
-  "sourceHash": "sha256:f88fe61dfc9e8d1a488d01822b5e54fc0fb48cd711bd7c745617f27ab7fa6600",
+  "hash": "sha256:6f7719de2a2eda895d8717e10dbc0915d467d75dc868624f00f355996a47d09d",
+  "sourceHash": "sha256:97609084801b05052e004595f3dc2f4f9f5c4627d682dd2e0fa5f4f33f9e6ef0",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 72268,
-    "vertices": 132965,
-    "meshes": 67,
-    "primitives": 67,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 71442,
+    "vertices": 93912,
+    "meshes": 83,
+    "primitives": 83,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2568652
+    "sizeBytes": 2538508
   },
   "nodes": [
     {
       "name": "Cherokee-shell-Cherokee-ivory",
-      "triangles": 776
+      "triangles": 662
     },
     {
       "name": "Cherokee-shell-Cherokee-glazing",
@@ -51,11 +51,11 @@
     },
     {
       "name": "Cherokee-shell-Cherokee-metal",
-      "triangles": 23956
+      "triangles": 21844
     },
     {
       "name": "Cherokee-shell-Cherokee-blue",
-      "triangles": 146
+      "triangles": 148
     },
     {
       "name": "Cherokee-shell-Cherokee-gold",
@@ -63,7 +63,7 @@
     },
     {
       "name": "Cherokee-shell-Cherokee-trim",
-      "triangles": 888
+      "triangles": 840
     },
     {
       "name": "Cherokee-shell-detail-green",
@@ -119,11 +119,11 @@
     },
     {
       "name": "Cherokee-cockpit-Cherokee-trim",
-      "triangles": 968
+      "triangles": 658
     },
     {
       "name": "Cherokee-cockpit-Cherokee-metal",
-      "triangles": 744
+      "triangles": 624
     },
     {
       "name": "Cherokee-cockpit-detail-alloy",
@@ -150,16 +150,12 @@
       "triangles": 1824
     },
     {
-      "name": "Cherokee-cockpit-detail-red",
-      "triangles": 168
-    },
-    {
       "name": "Cherokee-cockpit-Cherokee-seats",
       "triangles": 248
     },
     {
       "name": "Cherokee-cockpit-Cherokee-belts",
-      "triangles": 12
+      "triangles": 8
     },
     {
       "name": "Cherokee-airspeed-face-Cherokee-instrument-black",
@@ -327,7 +323,7 @@
     },
     {
       "name": "yoke-Cherokee-trim",
-      "triangles": 132
+      "triangles": 84
     },
     {
       "name": "yoke-detail-lettering",
@@ -339,11 +335,87 @@
     },
     {
       "name": "yoke-Cherokee-trim",
-      "triangles": 132
+      "triangles": 84
     },
     {
       "name": "yoke-detail-lettering",
       "triangles": 540
+    },
+    {
+      "name": "Cherokee-throttle-Cherokee-metal",
+      "triangles": 24
+    },
+    {
+      "name": "Cherokee-throttle-Cherokee-trim",
+      "triangles": 168
+    },
+    {
+      "name": "Cherokee-mixture-Cherokee-metal",
+      "triangles": 24
+    },
+    {
+      "name": "Cherokee-mixture-detail-red",
+      "triangles": 168
+    },
+    {
+      "name": "Cherokee-flap-lever-Cherokee-metal",
+      "triangles": 24
+    },
+    {
+      "name": "Cherokee-flap-lever-Cherokee-trim",
+      "triangles": 12
+    },
+    {
+      "name": "Cherokee-pedal--1--1-Cherokee-metal",
+      "triangles": 12
+    },
+    {
+      "name": "Cherokee-pedal--1-1-Cherokee-metal",
+      "triangles": 12
+    },
+    {
+      "name": "Cherokee-pedal-1--1-Cherokee-metal",
+      "triangles": 12
+    },
+    {
+      "name": "Cherokee-pedal-1-1-Cherokee-metal",
+      "triangles": 12
+    },
+    {
+      "name": "flight-control-mounts-flight-control-panel",
+      "triangles": 60
+    },
+    {
+      "name": "flight-control-mounts-flight-control-alloy",
+      "triangles": 128
+    },
+    {
+      "name": "flight-control-mounts-flight-control-legend",
+      "triangles": 1368
+    },
+    {
+      "name": "flight-control-mounts-flight-control-grip",
+      "triangles": 24
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-master",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-legend",
+      "triangles": 12
+    },
+    {
+      "name": "flight-brake-common-moving-flight-control-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "flight-brake-common-moving-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-brake-common-moving-flight-control-legend",
+      "triangles": 12
     }
   ],
   "nodesTruncated": false,
@@ -422,17 +494,45 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Cherokee-panel",
+      "name": "Cherokee-panel-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "Cherokee-trim-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Cherokee-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -511,6 +611,55 @@
     },
     {
       "name": "Cherokee-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -669,28 +818,28 @@
         "node": "Cherokee-shell-Cherokee-trim",
         "points": [
           -2.5517,
-          0.6669,
+          0.667,
           -0.8599,
           -2.5517,
-          0.6669,
+          0.667,
           2.3869,
           -2.5517,
-          1.7528,
+          1.7535,
           -0.8599,
           -2.5517,
-          1.7528,
+          1.7535,
           2.3869,
           2.5517,
-          0.6669,
+          0.667,
           -0.8599,
           2.5517,
-          0.6669,
+          0.667,
           2.3869,
           2.5517,
-          1.7528,
+          1.7535,
           -0.8599,
           2.5517,
-          1.7528,
+          1.7535,
           2.3869
         ]
       },
@@ -1104,29 +1253,29 @@
         "node": "Cherokee-cockpit-Cherokee-metal",
         "points": [
           -0.4546,
-          0.6683,
+          0.67,
           -0.724,
           -0.4546,
-          0.6683,
-          1.225,
+          0.67,
+          1.0339,
           -0.4546,
           1.76,
           -0.724,
           -0.4546,
           1.76,
-          1.225,
+          1.0339,
           0.4322,
-          0.6683,
+          0.67,
           -0.724,
           0.4322,
-          0.6683,
-          1.225,
+          0.67,
+          1.0339,
           0.4322,
           1.76,
           -0.724,
           0.4322,
           1.76,
-          1.225
+          1.0339
         ]
       },
       {
@@ -1304,35 +1453,6 @@
         ]
       },
       {
-        "node": "Cherokee-cockpit-detail-red",
-        "points": [
-          -0.064,
-          1.006,
-          0.826,
-          -0.064,
-          1.006,
-          0.874,
-          -0.064,
-          1.054,
-          0.826,
-          -0.064,
-          1.054,
-          0.874,
-          -0.016,
-          1.006,
-          0.826,
-          -0.016,
-          1.006,
-          0.874,
-          -0.016,
-          1.054,
-          0.826,
-          -0.016,
-          1.054,
-          0.874
-        ]
-      },
-      {
         "node": "Cherokee-cockpit-Cherokee-seats",
         "points": [
           -0.526,
@@ -1376,16 +1496,16 @@
           -0.42,
           0.9,
           0.41,
-          0.42,
+          0.28,
           0.9,
           -0.74,
-          0.42,
+          0.28,
           0.9,
           0.41,
-          0.42,
+          0.28,
           0.9,
           -0.74,
-          0.42,
+          0.28,
           0.9,
           0.41
         ]
@@ -2722,6 +2842,557 @@
           -0.2271,
           1.0913,
           0.6705
+        ]
+      },
+      {
+        "node": "Cherokee-throttle-Cherokee-metal",
+        "points": [
+          0.0722,
+          1.021,
+          0.86,
+          0.0722,
+          1.021,
+          1.04,
+          0.0722,
+          1.039,
+          0.86,
+          0.0722,
+          1.039,
+          1.04,
+          0.0878,
+          1.021,
+          0.86,
+          0.0878,
+          1.021,
+          1.04,
+          0.0878,
+          1.039,
+          0.86,
+          0.0878,
+          1.039,
+          1.04
+        ]
+      },
+      {
+        "node": "Cherokee-throttle-Cherokee-trim",
+        "points": [
+          0.056,
+          1.006,
+          0.826,
+          0.056,
+          1.006,
+          0.874,
+          0.056,
+          1.054,
+          0.826,
+          0.056,
+          1.054,
+          0.874,
+          0.104,
+          1.006,
+          0.826,
+          0.104,
+          1.006,
+          0.874,
+          0.104,
+          1.054,
+          0.826,
+          0.104,
+          1.054,
+          0.874
+        ]
+      },
+      {
+        "node": "Cherokee-mixture-Cherokee-metal",
+        "points": [
+          -0.0478,
+          1.021,
+          0.86,
+          -0.0478,
+          1.021,
+          1.04,
+          -0.0478,
+          1.039,
+          0.86,
+          -0.0478,
+          1.039,
+          1.04,
+          -0.0322,
+          1.021,
+          0.86,
+          -0.0322,
+          1.021,
+          1.04,
+          -0.0322,
+          1.039,
+          0.86,
+          -0.0322,
+          1.039,
+          1.04
+        ]
+      },
+      {
+        "node": "Cherokee-mixture-detail-red",
+        "points": [
+          -0.064,
+          1.006,
+          0.826,
+          -0.064,
+          1.006,
+          0.874,
+          -0.064,
+          1.054,
+          0.826,
+          -0.064,
+          1.054,
+          0.874,
+          -0.016,
+          1.006,
+          0.826,
+          -0.016,
+          1.006,
+          0.874,
+          -0.016,
+          1.054,
+          0.826,
+          -0.016,
+          1.054,
+          0.874
+        ]
+      },
+      {
+        "node": "Cherokee-flap-lever-Cherokee-metal",
+        "points": [
+          -0.0112,
+          0.6684,
+          0.0942,
+          -0.0112,
+          0.6684,
+          0.3858,
+          -0.0112,
+          0.8316,
+          0.0942,
+          -0.0112,
+          0.8316,
+          0.3858,
+          0.0112,
+          0.6684,
+          0.0942,
+          0.0112,
+          0.6684,
+          0.3858,
+          0.0112,
+          0.8316,
+          0.0942,
+          0.0112,
+          0.8316,
+          0.3858
+        ]
+      },
+      {
+        "node": "Cherokee-flap-lever-Cherokee-trim",
+        "points": [
+          -0.0275,
+          0.8075,
+          0.3475,
+          -0.0275,
+          0.8075,
+          0.4125,
+          -0.0275,
+          0.8325,
+          0.3475,
+          -0.0275,
+          0.8325,
+          0.4125,
+          0.0275,
+          0.8075,
+          0.3475,
+          0.0275,
+          0.8075,
+          0.4125,
+          0.0275,
+          0.8325,
+          0.3475,
+          0.0275,
+          0.8325,
+          0.4125
+        ]
+      },
+      {
+        "node": "Cherokee-pedal--1--1-Cherokee-metal",
+        "points": [
+          -0.39,
+          0.71,
+          1.175,
+          -0.39,
+          0.71,
+          1.225,
+          -0.39,
+          0.77,
+          1.175,
+          -0.39,
+          0.77,
+          1.225,
+          -0.27,
+          0.71,
+          1.175,
+          -0.27,
+          0.71,
+          1.225,
+          -0.27,
+          0.77,
+          1.175,
+          -0.27,
+          0.77,
+          1.225
+        ]
+      },
+      {
+        "node": "Cherokee-pedal--1-1-Cherokee-metal",
+        "points": [
+          -0.23,
+          0.71,
+          1.175,
+          -0.23,
+          0.71,
+          1.225,
+          -0.23,
+          0.77,
+          1.175,
+          -0.23,
+          0.77,
+          1.225,
+          -0.11,
+          0.71,
+          1.175,
+          -0.11,
+          0.71,
+          1.225,
+          -0.11,
+          0.77,
+          1.175,
+          -0.11,
+          0.77,
+          1.225
+        ]
+      },
+      {
+        "node": "Cherokee-pedal-1--1-Cherokee-metal",
+        "points": [
+          0.11,
+          0.71,
+          1.175,
+          0.11,
+          0.71,
+          1.225,
+          0.11,
+          0.77,
+          1.175,
+          0.11,
+          0.77,
+          1.225,
+          0.23,
+          0.71,
+          1.175,
+          0.23,
+          0.71,
+          1.225,
+          0.23,
+          0.77,
+          1.175,
+          0.23,
+          0.77,
+          1.225
+        ]
+      },
+      {
+        "node": "Cherokee-pedal-1-1-Cherokee-metal",
+        "points": [
+          0.27,
+          0.71,
+          1.175,
+          0.27,
+          0.71,
+          1.225,
+          0.27,
+          0.77,
+          1.175,
+          0.27,
+          0.77,
+          1.225,
+          0.39,
+          0.71,
+          1.175,
+          0.39,
+          0.71,
+          1.225,
+          0.39,
+          0.77,
+          1.175,
+          0.39,
+          0.77,
+          1.225
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-panel",
+        "points": [
+          -0.101,
+          0.8,
+          0.9675,
+          -0.101,
+          0.8,
+          1.074,
+          -0.101,
+          1.08,
+          0.9675,
+          -0.101,
+          1.08,
+          1.074,
+          0.101,
+          0.8,
+          0.9675,
+          0.101,
+          0.8,
+          1.074,
+          0.101,
+          1.08,
+          0.9675,
+          0.101,
+          1.08,
+          1.074
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-alloy",
+        "points": [
+          -0.0925,
+          0.8105,
+          0.9635,
+          -0.0925,
+          0.8105,
+          0.9665,
+          -0.0925,
+          0.9095,
+          0.9635,
+          -0.0925,
+          0.9095,
+          0.9665,
+          0.0925,
+          0.8105,
+          0.9635,
+          0.0925,
+          0.8105,
+          0.9665,
+          0.0925,
+          0.9095,
+          0.9635,
+          0.0925,
+          0.9095,
+          0.9665
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-legend",
+        "points": [
+          -0.0603,
+          0.8889,
+          0.9645,
+          -0.0603,
+          0.8889,
+          0.9655,
+          -0.0603,
+          0.8967,
+          0.9645,
+          -0.0603,
+          0.8967,
+          0.9655,
+          0.0651,
+          0.8889,
+          0.9645,
+          0.0651,
+          0.8889,
+          0.9655,
+          0.0651,
+          0.8967,
+          0.9645,
+          0.0651,
+          0.8967,
+          0.9655
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-grip",
+        "points": [
+          -0.0505,
+          0.8265,
+          0.965,
+          -0.0505,
+          0.8265,
+          0.967,
+          -0.0505,
+          0.8755,
+          0.965,
+          -0.0505,
+          0.8755,
+          0.967,
+          0.0505,
+          0.8265,
+          0.965,
+          0.0505,
+          0.8265,
+          0.967,
+          0.0505,
+          0.8755,
+          0.965,
+          0.0505,
+          0.8755,
+          0.967
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-master",
+        "points": [
+          0.03,
+          0.8375,
+          0.9455,
+          0.03,
+          0.8375,
+          0.9625,
+          0.03,
+          0.8665,
+          0.9455,
+          0.03,
+          0.8665,
+          0.9625,
+          0.062,
+          0.8375,
+          0.9455,
+          0.062,
+          0.8375,
+          0.9625,
+          0.062,
+          0.8665,
+          0.9455,
+          0.062,
+          0.8665,
+          0.9625
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-legend",
+        "points": [
+          0.039,
+          0.8577,
+          0.9445,
+          0.039,
+          0.8577,
+          0.9455,
+          0.039,
+          0.8603,
+          0.9445,
+          0.039,
+          0.8603,
+          0.9455,
+          0.053,
+          0.8577,
+          0.9445,
+          0.053,
+          0.8577,
+          0.9455,
+          0.053,
+          0.8603,
+          0.9445,
+          0.053,
+          0.8603,
+          0.9455
+        ]
+      },
+      {
+        "node": "flight-brake-common-moving-flight-control-alloy",
+        "points": [
+          -0.0503,
+          0.847,
+          0.934,
+          -0.0503,
+          0.847,
+          0.962,
+          -0.0503,
+          0.857,
+          0.934,
+          -0.0503,
+          0.857,
+          0.962,
+          -0.0417,
+          0.847,
+          0.934,
+          -0.0417,
+          0.847,
+          0.962,
+          -0.0417,
+          0.857,
+          0.934,
+          -0.0417,
+          0.857,
+          0.962
+        ]
+      },
+      {
+        "node": "flight-brake-common-moving-flight-control-grip",
+        "points": [
+          -0.0665,
+          0.843,
+          0.9175,
+          -0.0665,
+          0.843,
+          0.9445,
+          -0.0665,
+          0.861,
+          0.9175,
+          -0.0665,
+          0.861,
+          0.9445,
+          -0.0255,
+          0.843,
+          0.9175,
+          -0.0255,
+          0.843,
+          0.9445,
+          -0.0255,
+          0.861,
+          0.9175,
+          -0.0255,
+          0.861,
+          0.9445
+        ]
+      },
+      {
+        "node": "flight-brake-common-moving-flight-control-legend",
+        "points": [
+          -0.055,
+          0.851,
+          0.9165,
+          -0.055,
+          0.851,
+          0.9175,
+          -0.055,
+          0.853,
+          0.9165,
+          -0.055,
+          0.853,
+          0.9175,
+          -0.037,
+          0.851,
+          0.9165,
+          -0.037,
+          0.851,
+          0.9175,
+          -0.037,
+          0.853,
+          0.9165,
+          -0.037,
+          0.853,
+          0.9175
         ]
       }
     ]

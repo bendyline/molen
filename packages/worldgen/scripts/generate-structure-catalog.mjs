@@ -9,6 +9,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
+import { smoothMeshNormals } from './authored-structure-mesh.mjs';
 import { biomeJson } from './format-json.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
 import { buildBridge } from './structure-bridges.mjs';
@@ -19,6 +20,10 @@ import { structureSourceDirectory } from './structure-source-paths.mjs';
 const packageRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
 const planPath = resolve(packageRoot, 'examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md');
 const check = process.argv.includes('--check');
+const selection = process.argv
+  .find((arg) => arg.startsWith('--ids='))
+  ?.slice(6)
+  .split(',');
 const referenceIds = new Set(['A01', 'C01', 'C02']);
 const materials = {
   wall: { name: 'structure-cladding', roughness: 0.67, metallic: 0.16 },
@@ -167,6 +172,13 @@ async function emit(path, bytes) {
         bytes.toString('utf8').replaceAll('\r\n', '\n');
     if (!same) throw new Error(`${path}: generated structure source is stale`);
   } else {
+    // Keep current files untouched during targeted/batch rebuilds (and avoid needless
+    // Windows writes while editors or the asset viewer have those files open).
+    try {
+      if ((await readFile(path)).equals(bytes)) return;
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
     await mkdir(resolve(path, '..'), { recursive: true });
     await writeFile(path, bytes);
   }
@@ -180,8 +192,7 @@ async function emitJson(path, value) {
     if (JSON.stringify(unpinned(old)) !== JSON.stringify(unpinned(value)))
       throw new Error(`${path}: generated structure source is stale`);
   } else {
-    await mkdir(resolve(path, '..'), { recursive: true });
-    await writeFile(path, biomeJson(value, path));
+    await emit(path, Buffer.from(biomeJson(value, path)));
   }
 }
 
@@ -197,6 +208,7 @@ if (pending.length !== 97)
 
 for (const entry of pending) {
   const key = `${entry.planId.toLowerCase()}_${slug(entry.title)}`;
+  if (selection && !selection.includes(entry.planId) && !selection.includes(key)) continue;
   const id = `molen.worldgen.structure.${key}`;
   const spec = {
     planId: entry.planId,
@@ -228,6 +240,27 @@ for (const entry of pending) {
       throw new Error(`No builder for ${entry.planId}`);
   }
   const buffers = out.finalize();
+  // These recipes describe round shells, tanks, domes and shafts. Keep their rim/cap and
+  // architectural corners hard; smoothing changes normals only, not the mesh budget.
+  const roundSlots = {
+    A05: ['wall', 'roof'],
+    A07: ['roof'],
+    A13: ['roof'],
+    A14: ['wall', 'roof', 'window'],
+    A17: ['window', 'roof'],
+    A18: ['wall', 'roof'],
+    A19: ['foundation', 'roof'],
+    B05: ['wall', 'roof'],
+    B07: ['wall', 'roof', 'window'],
+    B16: ['wall', 'roof', 'window'],
+    E01: ['wall', 'roof', 'foundation'],
+    E02: ['wall', 'roof'],
+    E03: ['foundation', 'roof'],
+    E08: ['wall'],
+    E11: ['wall', 'roof'],
+    E14: ['wall', 'roof'],
+  };
+  if (roundSlots[entry.planId]) smoothMeshNormals(buffers, roundSlots[entry.planId], 32);
   if (buffers.triangleCount < 50) throw new Error(`${entry.planId}: suspiciously empty mesh`);
   const glb = Buffer.from(
     encodeGlb(

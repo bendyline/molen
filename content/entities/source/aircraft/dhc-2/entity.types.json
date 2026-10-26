@@ -906,7 +906,7 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.04869754154331233,
+              "profileDrag": 0.047509566282383134,
               "inducedDrag": 0.04212821756676095,
               "gearDrag": 0.004,
               "flapDrag": 0.075,
@@ -920,13 +920,13 @@
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
               "groundTrackRate": 12,
-              "fixedGear": true,
               "groundEffect": true,
               "criticalMach": 0.62,
               "waveDrag": 0.22,
               "maxMach": 0.72,
               "maxEquivalentAirspeed": 76.54933333333334,
-              "flapLimitSpeed": 45
+              "flapLimitSpeed": 45,
+              "fixedGear": true
             },
             "engines": [
               {
@@ -948,6 +948,10 @@
                 "maxThrust": 7131.5,
                 "minPropellerSpeed": 25,
                 "propellerEfficiency": 0.85,
+                "mixtureControl": true,
+                "propellerControl": {
+                  "minRpm": 0.6
+                },
                 "propulsion": "propeller",
                 "densityExponent": 1,
                 "ratedDensityRatio": 1

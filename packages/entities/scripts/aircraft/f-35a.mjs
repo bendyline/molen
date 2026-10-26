@@ -448,7 +448,7 @@ export function buildF35A(s) {
       axis: 'y',
       scale: 0.35,
     });
-    fd.text('F35', [side * 0.034, 0.58, -1.4], 0.16, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
     fd.finish();
     d.box(
       [0.045, 0.025, 0.17],

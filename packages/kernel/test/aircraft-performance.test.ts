@@ -130,7 +130,8 @@ describe('aircraft performance and recovery envelope', () => {
         .state.velocity[2];
     };
     const idle = advance(0, mustangEngine.idleRpm);
-    const half = advance(0.5, mustangEngine.idleRpm + 0.5 * (1 - mustangEngine.idleRpm));
+    // The governed propeller can already be at full RPM when the throttle is reduced.
+    const half = advance(0.5, 1);
     const full = advance(1, 1);
     expect((half - idle) / (full - idle)).toBeCloseTo(0.5, 6);
     expect(advance(1, 0) - idle).toBeLessThan((full - idle) * 0.01);

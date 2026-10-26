@@ -135,7 +135,8 @@ describe('model-owned ground openings', () => {
       expect(c.getY(i)).toBeCloseTo(p.getZ(i) / 10, 5);
       expect(uv.getX(i)).toBeCloseTo(p.getX(i) / 10, 5);
     }
-    expect(cut.groups).toEqual([{ start: 0, count: p.count, materialIndex: 2 }]);
+    // Indexed: untouched triangles keep their source vertices, clipped pieces add their own.
+    expect(cut.groups).toEqual([{ start: 0, count: cut.index?.count, materialIndex: 2 }]);
   });
   it('subtracts concave polygons and overlapping openings as a union', () => {
     const cut = subtractTerrainGroundGeometry(plane(), [
@@ -196,6 +197,61 @@ describe('model-owned ground openings', () => {
     controller.update(root);
     ground.geometry.dispose();
     expect(onSourceDispose).toHaveBeenCalledTimes(1);
+    controller.dispose();
+  });
+  it('spends at most its budget on cuts after the first, finishing in later updates', () => {
+    const root = new THREE.Group(),
+      first = new THREE.Mesh(plane()),
+      second = new THREE.Mesh(plane()),
+      owner = new THREE.Group();
+    second.position.x = 20;
+    for (const mesh of [first, second]) markTerrainGroundSurface(mesh);
+    root.add(first, second, owner);
+    setTerrainGroundCutouts(owner, [
+      square,
+      square.map(([x, z]) => [x + 20, z] as [number, number]),
+    ]);
+    const sources = [first.geometry, second.geometry];
+    const controller = new TerrainGroundCutoutController();
+    expect(controller.update(root, 0)).toBe(true);
+    expect(controller.pending).toBe(true);
+    expect([first.geometry !== sources[0], second.geometry !== sources[1]]).toEqual([true, false]);
+    expect(controller.update(root, 0)).toBe(true);
+    expect(controller.pending).toBe(false);
+    expect(second.geometry).not.toBe(sources[1]);
+    expect(controller.update(root, 0)).toBe(false);
+    controller.dispose();
+  });
+  it('keeps a cut through floating-origin rebases', () => {
+    const world = new THREE.Group(),
+      ground = new THREE.Mesh(plane()),
+      owner = new THREE.Group();
+    markTerrainGroundSurface(ground);
+    world.add(ground, owner);
+    ground.position.set(0.1, 0, 0.3);
+    ground.rotation.y = 0.3;
+    owner.position.set(5.123, 0, 4.987);
+    owner.rotation.y = 0.7;
+    setTerrainGroundCutout(
+      owner,
+      square.map(([x, z]) => [(x - 5) / 3, (z - 5) / 3]),
+    );
+    const scene = new THREE.Group();
+    scene.add(world);
+    const controller = new TerrainGroundCutoutController();
+    expect(controller.update(scene)).toBe(true);
+    const cut = ground.geometry;
+    // Moves both through world space; the round trip into the ground's frame differs in its last
+    // digits, which must not make the same cut again.
+    for (const [x, z] of [
+      [1234.567, -891.011],
+      [-31415.9265, 27182.818],
+      [0.1, 0.2],
+    ] as const) {
+      world.position.set(x, 0, z);
+      expect(controller.update(scene)).toBe(false);
+      expect(ground.geometry).toBe(cut);
+    }
     controller.dispose();
   });
   it('keeps the ground between separate openings and replaces all openings atomically', () => {

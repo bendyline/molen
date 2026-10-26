@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:93e06979dd3a085fb0a81ac2886a6af128c3aea65b6e3585e30a5e2867e4272d",
-  "sourceHash": "sha256:3afcbaa142c673a182fc63542160f3523162edfeb9017d1b3eebc9544683f50d",
+  "hash": "sha256:6bf9849ae6a11f66e5ced3b340d69cd8eb8bfe3f95bc2b4207f8d3e8e4990561",
+  "sourceHash": "sha256:a8085f4d15000c62484ec10f250a900aaa3640ce17a2fc87ecb6d59e7568c193",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 82850,
-    "vertices": 168454,
-    "meshes": 117,
-    "primitives": 117,
-    "materials": 20,
-    "textures": 0,
+    "triangles": 85742,
+    "vertices": 138012,
+    "meshes": 140,
+    "primitives": 140,
+    "materials": 27,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3225768
+    "sizeBytes": 3199040
   },
   "nodes": [
     {
@@ -51,11 +51,11 @@
     },
     {
       "name": "MV22-exterior-MV22-trim",
-      "triangles": 2282
+      "triangles": 1994
     },
     {
       "name": "MV22-exterior-MV22-seams",
-      "triangles": 2784
+      "triangles": 1536
     },
     {
       "name": "MV22-exterior-detail-red",
@@ -119,11 +119,11 @@
     },
     {
       "name": "MV22-nacelle-1-MV22-alloy",
-      "triangles": 336
+      "triangles": 288
     },
     {
       "name": "MV22-nacelle-1-MV22-seams",
-      "triangles": 1632
+      "triangles": 816
     },
     {
       "name": "MV22-proprotor-1-MV22-trim",
@@ -167,11 +167,11 @@
     },
     {
       "name": "MV22-nacelle-2-MV22-alloy",
-      "triangles": 336
+      "triangles": 288
     },
     {
       "name": "MV22-nacelle-2-MV22-seams",
-      "triangles": 1632
+      "triangles": 816
     },
     {
       "name": "MV22-proprotor-2-MV22-trim",
@@ -255,11 +255,11 @@
     },
     {
       "name": "MV22-cabin-MV22-panel",
-      "triangles": 1310
+      "triangles": 1118
     },
     {
       "name": "MV22-cabin-MV22-trim",
-      "triangles": 364
+      "triangles": 244
     },
     {
       "name": "MV22-cabin-MV22-instrument-black",
@@ -622,9 +622,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "MV22-panel",
+      "name": "MV22-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "MV22-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -646,9 +660,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -665,6 +682,17 @@
       "name": "detail-lettering",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "MV22-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -711,6 +739,55 @@
     },
     {
       "name": "MV22-belts",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -812,28 +889,28 @@
         "points": [
           -6.7052,
           0.4992,
-          -6.6051,
+          -6.6044,
           -6.7052,
           0.4992,
-          5.2092,
+          5.2082,
           -6.7052,
           4.093,
-          -6.6051,
+          -6.6044,
           -6.7052,
           4.093,
-          5.2092,
+          5.2082,
           6.7052,
           0.4992,
-          -6.6051,
+          -6.6044,
           6.7052,
           0.4992,
-          5.2092,
+          5.2082,
           6.7052,
           4.093,
-          -6.6051,
+          -6.6044,
           6.7052,
           4.093,
-          5.2092
+          5.2082
         ]
       },
       {
@@ -1303,30 +1380,30 @@
       {
         "node": "MV22-nacelle-1-MV22-seams",
         "points": [
-          6.444,
+          6.4439,
           2.613,
-          1.404,
-          6.444,
+          1.4039,
+          6.4439,
           2.613,
-          2.796,
-          6.444,
+          2.7961,
+          6.4439,
           5.477,
-          1.404,
-          6.444,
+          1.4039,
+          6.4439,
           5.477,
-          2.796,
-          7.736,
+          2.7961,
+          7.7361,
           2.613,
-          1.404,
-          7.736,
+          1.4039,
+          7.7361,
           2.613,
-          2.796,
-          7.736,
+          2.7961,
+          7.7361,
           5.477,
-          1.404,
-          7.736,
+          1.4039,
+          7.7361,
           5.477,
-          2.796
+          2.7961
         ]
       },
       {
@@ -1651,30 +1728,30 @@
       {
         "node": "MV22-nacelle-2-MV22-seams",
         "points": [
-          -7.736,
+          -7.7361,
           2.613,
-          1.404,
-          -7.736,
+          1.4039,
+          -7.7361,
           2.613,
-          2.796,
-          -7.736,
+          2.7961,
+          -7.7361,
           5.477,
-          1.404,
-          -7.736,
+          1.4039,
+          -7.7361,
           5.477,
-          2.796,
-          -6.444,
+          2.7961,
+          -6.4439,
           2.613,
-          1.404,
-          -6.444,
+          1.4039,
+          -6.4439,
           2.613,
-          2.796,
-          -6.444,
+          2.7961,
+          -6.4439,
           5.477,
-          1.404,
-          -6.444,
+          1.4039,
+          -6.4439,
           5.477,
-          2.796
+          2.7961
         ]
       },
       {

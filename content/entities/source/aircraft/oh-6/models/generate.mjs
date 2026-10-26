@@ -1,4 +1,5 @@
 /** Deterministic OH-6A master. Four main blades, two tail blades and the original braced tail. */
+
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
@@ -6,8 +7,10 @@ import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { completeCockpitControls } from '../../../../../../packages/entities/scripts/aircraft/cockpit-controls.mjs';
 import {
   embedCockpitTextures,
+  finishAircraftCockpit,
   writeCockpitTextures,
 } from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
 import { addRivetRows } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
@@ -637,9 +640,16 @@ const pinned = JSON.parse(sourceText).files.models.find(
   (model) => model.path === 'models/source.glb',
 )?.sha256;
 if (!pinned) throw new Error(`${sourcePath}: models/source.glb has no sha256 pin`);
+const controlSpec = Object.values(
+  JSON.parse(await readFile(resolve(root, '../entity.types.json'), 'utf8')).types,
+)[0].components.aircraft.spec;
+const controlledModel = completeCockpitControls(helicopter(), controlSpec, {
+  panelZ: interiorLayout.panelZ,
+});
+finishAircraftCockpit(controlledModel, controlSpec, 'oh-6');
 const bytes = embedCockpitTextures(
   Buffer.from(
-    await new GLTFExporter().parseAsync(settleZeros(helicopter()), {
+    await new GLTFExporter().parseAsync(settleZeros(controlledModel), {
       binary: true,
       onlyVisible: false,
     }),

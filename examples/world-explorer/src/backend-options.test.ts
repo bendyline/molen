@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { selectedAntialias, selectedRendererBackend } from './backend-options';
 
 describe('explorer rendering backend selection', () => {
-  it('uses capability negotiation by default', () => {
-    expect(selectedRendererBackend(new URLSearchParams())).toBe('auto');
+  it('uses the cheaper streaming preparation path by default', () => {
+    expect(selectedRendererBackend(new URLSearchParams())).toBe('webgl');
   });
 
   it.each(['auto', 'webgpu', 'webgl'] as const)('accepts an explicit %s selection', (backend) => {

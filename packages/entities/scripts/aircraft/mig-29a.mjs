@@ -138,7 +138,7 @@ export function buildMiG29A(s) {
     );
   // Continuous inner sills close the gap between the sloping canopy rails and tub.
   for (const side of [-1, 1])
-    for (let i = 1; i < cr.length - 1; i++) {
+    for (let i = 0; i < cr.length - 1; i++) {
       const a = cr[i],
         b = cr[i + 1],
         j = side === 1 ? 0 : 16;
@@ -153,27 +153,49 @@ export function buildMiG29A(s) {
       );
     }
   // Side shoulders join the hollow forebody to the canopy rails.
+  const shoulderAt = (zz, j) => {
+    const i = rings.findIndex(
+      (r, index) => index < rings.length - 1 && r.z >= zz && rings[index + 1].z <= zz,
+    );
+    const a = rings[i],
+      b = rings[i + 1],
+      t = (zz - a.z) / (b.z - a.z);
+    return [
+      a.points[j][0] + (b.points[j][0] - a.points[j][0]) * t,
+      a.points[j][1] + (b.points[j][1] - a.points[j][1]) * t,
+      zz,
+    ];
+  };
   for (const side of [-1, 1])
-    for (let i = 0; i < 3; i++) {
-      const a = rings[4 + i],
-        b = rings[5 + i],
+    for (let i = 0; i < cr.length - 1; i++) {
+      const a = cr[i],
+        b = cr[i + 1],
         j = side === 1 ? 4 : 20;
-      const rail = [
-        [0.025, y(139), z(262)],
-        [0.35, y(132), z(310)],
-        [0.39, y(124), z(408)],
-        [0.025, y(127), z(445)],
-      ];
+      const rail = side === 1 ? 0 : 16;
       quad(
         d,
-        [...a.points[j], a.z],
-        [...b.points[j], b.z],
-        [side * rail[i + 1][0], rail[i + 1][1], rail[i + 1][2]],
-        [side * rail[i][0], rail[i][1], rail[i][2]],
+        shoulderAt(a.z, j),
+        shoulderAt(b.z, j),
+        [...b.points[rail], b.z],
+        [...a.points[rail], a.z],
         paint,
         [side, 1, 0],
       );
     }
+  // Seal the curved forebody section against the canopy at both ends.
+  for (const [body, canopyRing, normal] of [
+    [rings[4], cr[0], 1],
+    [rings[7], cr.at(-1), -1],
+  ])
+    sheet(
+      d,
+      [
+        ...[4, 3, 2, 1, 0, 23, 22, 21, 20].map((j) => [...body.points[j], body.z]),
+        ...canopyRing.points.toReversed().map((p) => [...p, canopyRing.z]),
+      ],
+      paint,
+      [0, 0, normal],
+    );
   for (let j = 0; j < 17; j++)
     d.add(new T.SphereGeometry(0.0038, 5, 3), metal, [
       cr[1].points[j][0],
@@ -213,6 +235,42 @@ export function buildMiG29A(s) {
   }));
   // Do not lay a center roof across the cockpit aperture: front sections are separate shoulders.
   loft(d, br, paint, { caps: false, skip: (i, j) => i < 3 && (j === 0 || j === 9) });
+  // Join the widening wing-root shoulders to the tub at both profiles' stations.
+  const joins = [
+    ...new Set([
+      ...br.slice(0, 4).map((r) => r.z),
+      ...rings.filter((r) => r.z < br[0].z && r.z > br[3].z).map((r) => r.z),
+    ]),
+  ].sort((a, b) => b - a);
+  const broadAt = (zz, j) => {
+    const i = br.findIndex(
+      (r, index) => index < br.length - 1 && r.z >= zz && br[index + 1].z <= zz,
+    );
+    const a = br[i],
+      b = br[i + 1],
+      t = (zz - a.z) / (b.z - a.z);
+    return [
+      a.points[j][0] + (b.points[j][0] - a.points[j][0]) * t,
+      a.points[j][1] + (b.points[j][1] - a.points[j][1]) * t,
+      zz,
+    ];
+  };
+  for (const side of [-1, 1])
+    for (let i = 0; i < joins.length - 1; i++) {
+      const a = joins[i],
+        b = joins[i + 1],
+        body = side === 1 ? 6 : 18,
+        outer = side === 1 ? 1 : 9;
+      quad(
+        d,
+        shoulderAt(a, body),
+        shoulderAt(b, body),
+        broadAt(b, outer),
+        broadAt(a, outer),
+        paint,
+        [side, 1, 0],
+      );
+    }
   for (const side of [-1, 1]) {
     const x = side * 1.15;
     // Rectangular intake lips, aft-sloping lower leading edge, real empty ducts.
@@ -228,6 +286,13 @@ export function buildMiG29A(s) {
       [1.66, 1.03, -0.15],
       [0.66, 0.97, -0.15],
     ].map(([xx, yy, zz]) => [xx * side, yy, zz]);
+    const lipCenter = mouth.reduce(
+      (sum, p) => sum.map((v, i) => v + p[i] / mouth.length),
+      [0, 0, 0],
+    );
+    const innerMouth = mouth.map((p) =>
+      p.map((v, i) => lipCenter[i] + (v - lipCenter[i]) * 0.97 - (i === 2 ? 0.015 : 0)),
+    );
     for (let j = 0; j < 4; j++) {
       const k = (j + 1) % 4,
         n = new T.Vector3(...mouth[k])
@@ -235,31 +300,48 @@ export function buildMiG29A(s) {
           .cross(new T.Vector3(...back[j]).sub(new T.Vector3(...mouth[j])))
           .toArray();
       quad(d, mouth[j], mouth[k], back[k], back[j], paint, n);
-      quad(
-        d,
-        mouth[j].map((v, i) => (i === 0 ? v - side * 0.015 : i === 1 ? v + 0.015 : v - 0.015)),
-        mouth[k].map((v, i) => (i === 0 ? v - side * 0.015 : i === 1 ? v + 0.015 : v - 0.015)),
-        back[k],
-        back[j],
-        dark,
-        n,
-      );
+      quad(d, innerMouth[j], innerMouth[k], back[k], back[j], dark, n);
+      quad(d, mouth[j], mouth[k], innerMouth[k], innerMouth[j], paint, [0, 0, 1]);
     }
     outline(d, mouth, 0.015, paint);
+    // Both the outer transition and inner duct start on the exact intake edges.
+    const throat = {
+      z: -0.15,
+      points: Array.from({ length: 28 }, (_, j) => {
+        const a = back[Math.floor(j / 7)],
+          b = back[(Math.floor(j / 7) + 1) % 4],
+          t = (j % 7) / 7;
+        return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+      }),
+    };
+    const angle = (j) => -Math.PI / 4 + (j * Math.PI) / 14;
+    const compressor = {
+      z: -0.65,
+      points: Array.from({ length: 28 }, (_, j) => [
+        x + side * Math.sin(angle(j)) * 0.37,
+        1.74 + Math.cos(angle(j)) * 0.37,
+      ]),
+    };
+    loft(d, [throat, compressor], dark, { caps: false });
     // Recessed compressor, inaccessible until the open duct is viewed from ahead.
-    d.add(new T.CircleGeometry(0.37, 28), dark, [x, 1.74, -0.25]);
+    sheet(
+      d,
+      compressor.points.map((p) => [...p, compressor.z]),
+      dark,
+      [0, 0, 1],
+    );
     for (let j = 0; j < 20; j++) {
       const a = (j * Math.PI) / 10;
       d.rod(
-        [x + Math.sin(a) * 0.12, 1.74 + Math.cos(a) * 0.12, -0.235],
-        [x + Math.sin(a + 0.14) * 0.34, 1.74 + Math.cos(a + 0.14) * 0.34, -0.235],
+        [x + Math.sin(a) * 0.12, 1.74 + Math.cos(a) * 0.12, -0.635],
+        [x + Math.sin(a + 0.14) * 0.34, 1.74 + Math.cos(a + 0.14) * 0.34, -0.635],
         0.014,
         hot,
       );
     }
-    d.add(new T.ConeGeometry(0.09, 0.18, 16).rotateX(Math.PI / 2), metal, [x, 1.74, -0.15]);
+    d.add(new T.ConeGeometry(0.09, 0.18, 16).rotateX(Math.PI / 2), metal, [x, 1.74, -0.55]);
     const pods = [
-      [0, 0.56, 1.57, 0.61],
+      [-0.65, 0.568125, 1.57, 0.618125],
       [-1.6, 0.58, 1.57, 0.63],
       [-3.1, 0.57, 1.59, 0.61],
       [-4.55, 0.55, 1.62, 0.55],
@@ -270,26 +352,43 @@ export function buildMiG29A(s) {
     const pr = pods.map(([zz, r, cy, ry]) => ({
       z: zz,
       points: Array.from({ length: 28 }, (_, j) => [
-        x + Math.sin((j * Math.PI) / 14) * r,
-        cy + Math.cos((j * Math.PI) / 14) * ry,
+        x + side * Math.sin(angle(j)) * r,
+        cy + Math.cos(angle(j)) * ry,
       ]),
     }));
-    loft(d, pr.slice(0, 5), paint, { caps: false });
+    loft(d, [throat, ...pr.slice(0, 5)], paint, { caps: false });
     loft(d, pr.slice(4), hot, { caps: false });
     const inner = pr.slice(4).map((r) => ({
       ...r,
       points: r.points.map(([xx, yy]) => [x + (xx - x) * 0.91, 1.61 + (yy - 1.61) * 0.91]),
     }));
     loft(d, inner, dark, { caps: false });
-    for (let j = 0; j < 14; j++) {
-      const a = (j * Math.PI) / 7;
-      d.rod(
-        [x + Math.sin(a) * 0.522, 1.63 + Math.cos(a) * 0.452, -5.1],
-        [x + Math.sin(a) * 0.433, 1.59 + Math.cos(a) * 0.313, -6.61],
-        0.004,
-        seam,
+    for (let j = 0; j < 28; j++) {
+      const k = (j + 1) % 28,
+        outer = pr.at(-1),
+        inside = inner.at(-1);
+      quad(
+        d,
+        [...outer.points[j], outer.z],
+        [...outer.points[k], outer.z],
+        [...inside.points[k], inside.z],
+        [...inside.points[j], inside.z],
+        hot,
+        [0, 0, -1],
       );
     }
+    // Petal seams follow every nozzle station rather than floating across bends.
+    for (let j = 0; j < 14; j++)
+      outline(
+        d,
+        pr.slice(4).map((r) => {
+          const [xx, yy] = r.points[j * 2];
+          return [x + (xx - x) * 1.004, 1.61 + (yy - 1.61) * 1.004, r.z];
+        }),
+        0.004,
+        seam,
+        false,
+      );
     outline(
       d,
       pr.at(-1).points.map((q) => [...q, -6.61]),

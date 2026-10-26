@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:c42b7d8b774204affba77c3c4dc28dfaabd0823860f1e7d4007bd1f856ca9a14",
-  "sourceHash": "sha256:b7d8607e015184eeddebf856fe11c157eccb0960eb9bf5103411ea4bc6c11091",
+  "hash": "sha256:99198ecb5922be16a776527239582a21d47f88d6cddea1d1d796a8df09e85785",
+  "sourceHash": "sha256:6b6a585fe0eed444e52e82ed7de8855a8a8acc0b7073309d7b20e92b052df30d",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 50106,
-    "vertices": 100366,
-    "meshes": 116,
-    "primitives": 116,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 50138,
+    "vertices": 84712,
+    "meshes": 127,
+    "primitives": 127,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 1922488
+    "sizeBytes": 2064312
   },
   "nodes": [
     {
       "name": "Cirrus-shell-Cirrus-pearl",
-      "triangles": 1484
+      "triangles": 1292
     },
     {
       "name": "Cirrus-shell-Cirrus-glazing",
@@ -51,11 +51,11 @@
     },
     {
       "name": "Cirrus-shell-Cirrus-trim",
-      "triangles": 1676
+      "triangles": 1292
     },
     {
       "name": "Cirrus-shell-Cirrus-alloy",
-      "triangles": 3224
+      "triangles": 2228
     },
     {
       "name": "Cirrus-shell-Cirrus-graphite",
@@ -155,7 +155,7 @@
     },
     {
       "name": "Cirrus-cabin-Cirrus-trim",
-      "triangles": 315
+      "triangles": 231
     },
     {
       "name": "Cirrus-cabin-CirrusStandby-instrument-black",
@@ -630,9 +630,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Cirrus-panel",
+      "name": "Cirrus-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Cirrus-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -646,9 +660,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -665,6 +682,17 @@
       "name": "CirrusStandby-instrument-ink",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Cirrus-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -719,6 +747,55 @@
     },
     {
       "name": "Cirrus-seat-inserts",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -790,28 +867,28 @@
         "node": "Cirrus-shell-Cirrus-trim",
         "points": [
           -5.755,
-          0.8156,
+          0.8159,
           -1.2198,
           -5.755,
-          0.8156,
+          0.8159,
           2.8778,
           -5.755,
-          1.927,
+          1.9259,
           -1.2198,
           -5.755,
-          1.927,
+          1.9259,
           2.8778,
           5.755,
-          0.8156,
+          0.8159,
           -1.2198,
           5.755,
-          0.8156,
+          0.8159,
           2.8778,
           5.755,
-          1.927,
+          1.9259,
           -1.2198,
           5.755,
-          1.927,
+          1.9259,
           2.8778
         ]
       },
@@ -820,28 +897,28 @@
         "points": [
           -3.3187,
           0.0798,
-          -1.7227,
+          -1.7222,
           -3.3187,
           0.0798,
-          2.7228,
+          2.7224,
           -3.3187,
           2.0326,
-          -1.7227,
+          -1.7222,
           -3.3187,
           2.0326,
-          2.7228,
+          2.7224,
           3.3187,
           0.0798,
-          -1.7227,
+          -1.7222,
           3.3187,
           0.0798,
-          2.7228,
+          2.7224,
           3.3187,
           2.0326,
-          -1.7227,
+          -1.7222,
           3.3187,
           2.0326,
-          2.7228
+          2.7224
         ]
       },
       {

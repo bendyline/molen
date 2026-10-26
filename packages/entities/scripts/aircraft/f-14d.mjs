@@ -425,7 +425,7 @@ export function buildF14D(s) {
       axis: 'y',
       scale: 0.4,
     });
-    f.text('F-14D', [side * 0.052, 1.05, -0.5], 0.13, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
     f.finish();
     sheet(
       d,

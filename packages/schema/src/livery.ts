@@ -62,75 +62,145 @@ const positive = z.number().positive().max(4);
 export const liverySchema: z.ZodType<LiveryData> = z
   .strictObject({
     selected: name.describe('Selected variant id; patch only this field to change the livery.'),
-    slots: z.record(
-      name,
-      z.strictObject({ materials: z.array(name).min(1), node: name.optional() }),
-    ),
+    slots: z
+      .record(
+        name,
+        z.strictObject({
+          materials: z
+            .array(name)
+            .min(1)
+            .describe('Exact glTF material names belonging to this paint region.'),
+          node: name.optional().describe('Optional named glTF subtree restricting this region.'),
+        }),
+      )
+      .describe('Stable paint regions bound to named model materials.'),
     anchors: z
       .record(
         name,
         z.strictObject({
-          slot: name,
-          position: vec3,
-          size: z.tuple([positive, positive, positive]),
-          rotation: vec3,
+          slot: name.describe('Paint region receiving the projected marking.'),
+          position: vec3.describe(
+            'Projector center as fractions of the region bounds, measured from their minimum corner.',
+          ),
+          size: z
+            .tuple([positive, positive, positive])
+            .describe(
+              'Projector width, height and depth as fractions of the longest region dimension.',
+            ),
+          rotation: vec3.describe(
+            'XYZ Euler rotation in radians; local positive Z points out of the surface.',
+          ),
         }),
       )
-      .optional(),
+      .optional()
+      .describe('Reusable marking projectors attached to model paint regions.'),
     variants: z
       .array(
         z.strictObject({
-          id: name,
-          label: z.string().min(1).max(256),
-          provenance: z.strictObject({
-            kind: z.enum(['photo', 'inspired', 'original']),
-            note: z.string().min(1),
-            references: z.array(
-              z.strictObject({ title: z.string().min(1), url: z.url({ protocol: /^https?$/ }) }),
+          id: name.describe('Stable identifier used by selected.'),
+          label: z.string().min(1).max(256).describe('Display name for this livery.'),
+          provenance: z
+            .strictObject({
+              kind: z
+                .enum(['photo', 'inspired', 'original'])
+                .describe(
+                  'Whether the appearance is photograph verified, reference inspired or an original design.',
+                ),
+              note: z
+                .string()
+                .min(1)
+                .describe('Attribution, verification scope and any deliberate approximations.'),
+              references: z
+                .array(
+                  z.strictObject({
+                    title: z.string().min(1).describe('Human-readable reference title.'),
+                    url: z
+                      .string()
+                      .regex(/^https?:\/\/[^\s]+$/)
+                      .describe('HTTP or HTTPS source URL.'),
+                  }),
+                )
+                .describe(
+                  'Public references supporting the appearance; required for photo and inspired designs.',
+                ),
+            })
+            .describe('Evidence and authorship for the appearance.'),
+          paints: z
+            .record(
+              name,
+              z.strictObject({
+                color: color.describe('Base paint color as an sRGB hex triplet.'),
+                roughness: fraction.optional().describe('Optional material roughness override.'),
+                metalness: fraction.optional().describe('Optional material metalness override.'),
+                camouflage: z
+                  .strictObject({
+                    colors: z
+                      .array(color)
+                      .min(2)
+                      .max(4)
+                      .describe('Two to four colors for deterministic camouflage patches.'),
+                    scale: z
+                      .number()
+                      .positive()
+                      .max(100)
+                      .describe('Pattern repetitions across the longest paint-region dimension.'),
+                    seed: z
+                      .number()
+                      .int()
+                      .min(0)
+                      .max(4294967295)
+                      .describe('Unsigned deterministic pattern seed.'),
+                  })
+                  .optional()
+                  .describe(
+                    'Optional camouflage projected in model space without changing authored UVs.',
+                  ),
+              }),
+            )
+            .describe(
+              'Paint overrides keyed by stable paint-region name; omitted regions retain their authored appearance.',
             ),
-          }),
-          paints: z.record(
-            name,
-            z.strictObject({
-              color,
-              roughness: fraction.optional(),
-              metalness: fraction.optional(),
-              camouflage: z
-                .strictObject({
-                  colors: z.array(color).min(2).max(4),
-                  scale: z.number().positive().max(100),
-                  seed: z.number().int().min(0).max(4294967295),
-                })
-                .optional(),
-            }),
-          ),
           markings: z
             .array(
               z.strictObject({
-                anchor: name,
-                graphic: z.strictObject({
-                  label: z.string().max(256).optional(),
-                  shapes: z
-                    .array(
-                      z.strictObject({
-                        color,
-                        points: z
-                          .array(z.tuple([fraction, fraction]))
-                          .min(3)
-                          .max(512),
-                      }),
-                    )
-                    .min(1)
-                    .max(4096),
-                }),
+                anchor: name.describe('Reusable model marking anchor.'),
+                graphic: z
+                  .strictObject({
+                    label: z
+                      .string()
+                      .max(256)
+                      .optional()
+                      .describe(
+                        'Optional descriptive label; rendered lettering belongs in the polygon artwork.',
+                      ),
+                    shapes: z
+                      .array(
+                        z.strictObject({
+                          color: color.describe('Flat polygon color as an sRGB hex triplet.'),
+                          points: z
+                            .array(z.tuple([fraction, fraction]))
+                            .min(3)
+                            .max(512)
+                            .describe(
+                              'Polygon vertices in normalized 0–1 coordinates with positive Y upward.',
+                            ),
+                        }),
+                      )
+                      .min(1)
+                      .max(4096)
+                      .describe('Original flat artwork polygons, painted in order.'),
+                  })
+                  .describe('Resolution-independent artwork rasterized for the surface projector.'),
               }),
             )
             .max(32)
-            .optional(),
+            .optional()
+            .describe('Surface markings to project for this variant.'),
         }),
       )
       .min(1)
-      .max(64),
+      .max(64)
+      .describe('Available livery recipes for this model.'),
   })
   .superRefine((data, ctx) => {
     const issue = (path: (string | number)[], message: string): void =>

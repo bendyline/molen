@@ -23,6 +23,10 @@ export function addInterior(parent, layout, api) {
     toggle(cabin, `panel-switch-${i}`, [0.32 - i * 0.105, 1.49, 0.781], label);
   placard(cabin, 'landing-check', 'GEAR DOWN', [0.185, 1.735, 0.774], 0.13, 0.0011);
   const brake = group(cabin, 'parking-brake', [0.03, 1.56, 0.743]);
+  brake.userData.aircraftControl = {
+    action: 'brake',
+    motion: { property: 'position', axis: 'z', scale: -0.025 },
+  };
   rod(brake, 'brake-shaft', [0, 0, 0], [0, 0, -0.055], 0.007, silver);
   box(brake, 'brake-handle', [0.076, 0.018, 0.02], [0, 0, -0.06], yellow);
   for (const [i, color] of [green, red, yellow].entries())
@@ -94,21 +98,13 @@ export function addInterior(parent, layout, api) {
   const throttle = group(cabin, 'throttle-quadrant', [0.37, 1.72, 0.21]);
   box(throttle, 'quadrant-case', [0.085, 0.115, 0.29], [0, 0, 0], dark);
   for (const [i, color] of [rubber, yellow, red].entries()) {
-    rod(
-      throttle,
-      `engine-lever-${i}`,
-      [-0.008, 0.03, 0.09 - i * 0.083],
-      [-0.025, 0.13, 0.13 - i * 0.083],
-      0.006,
-      silver,
-    );
-    sphere(
-      throttle,
-      `engine-lever-knob-${i}`,
-      [0.018, 0.024, 0.018],
-      [-0.025, 0.145, 0.13 - i * 0.083],
-      color,
-    );
+    const lever = group(throttle, `engine-control-${i}`, [-0.008, 0.03, 0.09 - i * 0.083]);
+    lever.userData.aircraftControl = {
+      action: ['power', 'propeller', 'mixture'][i],
+      motion: { property: 'rotation', axis: 'x', scale: 0.65, offset: i === 0 ? 0 : -0.65 },
+    };
+    rod(lever, `engine-lever-${i}`, [0, 0, 0], [-0.017, 0.1, 0.04], 0.006, silver);
+    sphere(lever, `engine-lever-knob-${i}`, [0.018, 0.024, 0.018], [-0.017, 0.115, 0.04], color);
   }
   placard(cabin, 'throttle-placard', 'THROTTLE PROP MIX', [0.32, 1.66, 0.37], 0.2, 0.0013);
   // Close-view quadrant gates and mounting hardware; the levers keep their existing pivots.
@@ -240,6 +236,19 @@ export function addInterior(parent, layout, api) {
         [side * 0.145, 1.38 + i * 0.021, 0.692],
         dark,
       );
+  }
+  for (const side of [-1, 1]) {
+    const pedal = group(cabin, `rudder-control-${side}`);
+    for (const name of [
+      `pedal-link-${side}`,
+      `rudder-pedal-${side}`,
+      ...Array.from({ length: 5 }, (_, i) => `pedal-tread-${side}-${i}`),
+    ])
+      pedal.attach(cabin.getObjectByName(name));
+    pedal.userData.aircraftControl = {
+      action: 'yaw',
+      motion: { property: 'position', axis: 'z', scale: side * 0.035 },
+    };
   }
   for (const name of ['instrument-panel', 'lower-switch-panel']) {
     const panel = cabin.getObjectByName(name);

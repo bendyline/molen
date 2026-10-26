@@ -8,6 +8,7 @@ export default defineConfig({
     'src/workers/surface.ts',
     'src/workers/worldgen.ts',
     'src/workers/material.ts',
+    'src/workers/semantic.ts',
   ],
   format: 'esm',
   dts: true,

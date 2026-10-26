@@ -1,5 +1,6 @@
 /** Convenience wiring from optional terrain-package sidecars to adaptive semantic layers. */
 
+import type { SceneAdmission } from '@bendyline/molen-client';
 import { createAgricultureTileEnricher } from './agriculture-client';
 import { createProtomapsTerrainMvtDecoder } from './mvt-semantic-decoder';
 import {
@@ -19,6 +20,10 @@ import {
   type TerrainSemanticMeshOptions,
   type TerrainSemanticTileRenderer,
 } from './semantic-client';
+import {
+  createTerrainSemanticDecoderWorker,
+  type TerrainSemanticDecoderWorker,
+} from './semantic-decoder-worker';
 import { createOverzoomTerrainSemanticSource } from './semantic-overzoom';
 import { withTerrainTunnels } from './tunnels';
 
@@ -33,6 +38,12 @@ export interface TerrainPackageSemanticLayerStyle {
 
 export interface CreateTerrainPackageSemanticLayersOptions
   extends OpenTerrainPackageSemanticsOptions {
+  /**
+   * Decode tiles as admission jobs (usually the renderer's queue, as the stream's `admission`).
+   * A tile's decode runs on the main thread as its bytes arrive, and several arriving together
+   * stacked into one late frame.
+   */
+  admission?: SceneAdmission;
   landcoverLayer?: TerrainPackageSemanticLayerStyle;
   waterLayer?: TerrainPackageSemanticLayerStyle;
   featuresLayer?: TerrainPackageSemanticLayerStyle;
@@ -62,7 +73,13 @@ export interface TerrainPackageSemanticLayers {
 export type CreateProfiledTerrainPackageSemanticLayersOptions = Omit<
   CreateTerrainPackageSemanticLayersOptions,
   'decoder'
->;
+> & {
+  /**
+   * A worker running `installTerrainSemanticDecoderWorker`: tiles decode there rather than on
+   * the main thread, where a town tile took 10-18 ms of a frame. The host owns and ends it.
+   */
+  decoderWorker?: TerrainSemanticDecoderWorker;
+};
 
 function defaultMinimumLevel(minLevel: number, maxLevel: number, detailLevels: number): number {
   return Math.max(minLevel, maxLevel - detailLevels + 1);
@@ -89,8 +106,22 @@ export async function createTerrainPackageSemanticLayers(
     tunnels,
     overzoom = true,
     buildingDetail,
-    ...openOptions
+    admission,
+    ...unadmitted
   } = options;
+  const openOptions: OpenTerrainPackageSemanticsOptions =
+    admission === undefined
+      ? unadmitted
+      : {
+          ...unadmitted,
+          decoder: {
+            decode: async (data, context) =>
+              admission.run(() => unadmitted.decoder.decode(data, context), {
+                label: 'semantic-decode',
+                bytes: data.byteLength,
+              }),
+          },
+        };
   const semantics = await openTerrainPackageSemantics(pkg, openOptions);
   const layers: TerrainPyramidTileLayer[] = [];
   let landcoverSource = semantics.landcover?.source;
@@ -296,8 +327,12 @@ export async function createProfiledTerrainPackageSemanticLayers(
       'terrain package semantic sidecars need a supported profile or an explicit decoder',
     );
   }
+  const { decoderWorker, ...rest } = options;
   return createTerrainPackageSemanticLayers(pkg, {
-    ...options,
-    decoder: createProtomapsTerrainMvtDecoder(),
+    ...rest,
+    decoder:
+      decoderWorker !== undefined
+        ? createTerrainSemanticDecoderWorker(decoderWorker)
+        : createProtomapsTerrainMvtDecoder(),
   });
 }

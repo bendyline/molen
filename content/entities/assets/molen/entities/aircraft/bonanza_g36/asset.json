@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:31116a8435b04e39dfd7da1623ea30d355722155aba936b00540dbd06fd3a698",
-  "sourceHash": "sha256:e6d07fbb7f4e9a8d076f9968f94392efa3dbf32354ba4b5f6a8b0ba7d6748faa",
+  "hash": "sha256:3a5cfaec4785d02a980dc45cfa823911d4815f92ed2ee4a26bcbbb7b312c40a5",
+  "sourceHash": "sha256:3115a7c850d8aad61c898e41c0670515407559d644f701a48c8d5ffdafb8e6bd",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 69636,
-    "vertices": 143444,
-    "meshes": 131,
-    "primitives": 131,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 67972,
+    "vertices": 100748,
+    "meshes": 142,
+    "primitives": 142,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2712652
+    "sizeBytes": 2449720
   },
   "nodes": [
     {
       "name": "Bonanza-shell-Bonanza-ivory",
-      "triangles": 982
+      "triangles": 864
     },
     {
       "name": "Bonanza-shell-Bonanza-glazing",
@@ -51,7 +51,7 @@
     },
     {
       "name": "Bonanza-shell-Bonanza-trim",
-      "triangles": 2832
+      "triangles": 2064
     },
     {
       "name": "Bonanza-shell-Bonanza-navy",
@@ -59,7 +59,7 @@
     },
     {
       "name": "Bonanza-shell-Bonanza-alloy",
-      "triangles": 12276
+      "triangles": 9828
     },
     {
       "name": "Bonanza-shell-detail-green",
@@ -211,11 +211,11 @@
     },
     {
       "name": "Bonanza-cabin-Bonanza-trim",
-      "triangles": 769
+      "triangles": 763
     },
     {
       "name": "Bonanza-cabin-Bonanza-headliner",
-      "triangles": 268
+      "triangles": 136
     },
     {
       "name": "Bonanza-cabin-Bonanza-instrument-black",
@@ -630,9 +630,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Bonanza-panel",
+      "name": "Bonanza-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Bonanza-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -654,9 +668,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -681,6 +698,17 @@
       "name": "Bonanza-instrument-amber",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Bonanza-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -719,6 +747,55 @@
     },
     {
       "name": "Bonanza-prop-control",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -790,28 +867,28 @@
         "node": "Bonanza-shell-Bonanza-trim",
         "points": [
           -4.02,
-          0.2974,
-          -1.9905,
+          0.2975,
+          -1.9904,
           -4.02,
-          0.2974,
+          0.2975,
           2.623,
           -4.02,
-          2.0061,
-          -1.9905,
+          2.0053,
+          -1.9904,
           -4.02,
-          2.0061,
+          2.0053,
           2.623,
           4.02,
-          0.2974,
-          -1.9905,
+          0.2975,
+          -1.9904,
           4.02,
-          0.2974,
+          0.2975,
           2.623,
           4.02,
-          2.0061,
-          -1.9905,
+          2.0053,
+          -1.9904,
           4.02,
-          2.0061,
+          2.0053,
           2.623
         ]
       },
@@ -1956,10 +2033,10 @@
           0.7326,
           1.43,
           -0.5299,
-          1.7997,
+          1.7993,
           -1.905,
           -0.5299,
-          1.7997,
+          1.7993,
           1.43,
           0.5299,
           0.7326,
@@ -1968,40 +2045,40 @@
           0.7326,
           1.43,
           0.5299,
-          1.7997,
+          1.7993,
           -1.905,
           0.5299,
-          1.7997,
+          1.7993,
           1.43
         ]
       },
       {
         "node": "Bonanza-cabin-Bonanza-headliner",
         "points": [
-          -0.5161,
+          -0.5304,
           0.8799,
           -1.21,
-          -0.5161,
+          -0.5304,
           0.8799,
-          1.122,
-          -0.5161,
+          1.136,
+          -0.5304,
           2.0726,
           -1.21,
-          -0.5161,
+          -0.5304,
           2.0726,
-          1.122,
-          0.5128,
+          1.136,
+          0.5267,
           0.8799,
           -1.21,
-          0.5128,
+          0.5267,
           0.8799,
-          1.122,
-          0.5128,
+          1.136,
+          0.5267,
           2.0726,
           -1.21,
-          0.5128,
+          0.5267,
           2.0726,
-          1.122
+          1.136
         ]
       },
       {

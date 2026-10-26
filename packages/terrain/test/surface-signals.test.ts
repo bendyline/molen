@@ -131,4 +131,23 @@ describe('intersection traffic signals', () => {
     expect(() => renderer.updateSignals(Number.NaN)).toThrow(/finite/);
     renderer.dispose();
   });
+
+  it('hides small street detail far from the camera and shows it again nearby', () => {
+    const { tile, context } = fixture();
+    const renderer = createTerrainSurfaceRenderer();
+    const root = renderer.createTile(tile, context);
+    root.updateMatrixWorld(true);
+    const lit = root.getObjectByName('surface:signal-lit') as THREE.Object3D;
+    const roads = root.getObjectByName('semantic:transportation') as THREE.Object3D;
+    expect(lit.userData.detailDistance).toBe(900);
+    renderer.updateDetail(new THREE.Vector3(100, 50, 100));
+    expect(lit.visible).toBe(true);
+    renderer.updateDetail(new THREE.Vector3(100, 50, 5_000));
+    expect(lit.visible).toBe(false);
+    // Roads themselves have no draw distance.
+    expect(roads.visible).toBe(true);
+    renderer.updateDetail(new THREE.Vector3(100, 50, 600));
+    expect(lit.visible).toBe(true);
+    renderer.dispose();
+  });
 });

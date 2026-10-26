@@ -559,7 +559,7 @@ export function buildA400M(s) {
       seam,
       false,
     );
-    d.text('A400M', [side * 2.83, 4.7, 12.5], 0.31, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
   }
   for (const index of [6, 8, 11, 13]) {
     const r = rings[index];

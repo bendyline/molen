@@ -62,7 +62,9 @@ function requireFinite(value: number, name: string, allowZero: boolean): number 
  * neighborhood. Large geometries (terrain tiles, building cells) are walked through a per-geometry
  * spatial index, so a rebuild costs the triangles near the subject rather than the whole tile.
  * Meshes opt out with `userData.walkIgnore`, and water materials (`userData.terrainWaterMaterial`)
- * and `semantic:landcover` overlays are never solid.
+ * and `semantic:landcover` overlays are never solid. A group whose contents lie within an X/Z
+ * rectangle of its own frame declares it as `userData.walkFootprint` (`[minX, minZ, maxX, maxZ]`,
+ * like a terrain tile): a scan skips the whole group when that rectangle is out of reach.
  */
 export class WalkCollision {
   readonly origin: THREE.Vector3 = new THREE.Vector3();
@@ -117,8 +119,13 @@ export class WalkCollision {
         Math.abs(band - this.centerY) >= this.rebuildDistance);
     const now = this.now();
     if (!moved && !this.stale && now - this.scannedAt < this.rescanIntervalMs) return;
-    root.updateWorldMatrix(true, true);
+    // World matrices for the root's chain here, and for each object below as the scan reaches
+    // it: only the neighborhood. Forcing every descendant recomposed each resident tile, hidden
+    // ones too, and even the renderer's pass over the whole graph cost a jet, scanning many
+    // times a second, more than its frame's own.
+    root.updateWorldMatrix(true, false);
     const inverse = root.matrixWorld.clone().invert();
+    const candidate = new THREE.Matrix4();
     const meshes: CollisionMesh[] = [];
     // Compare only the neighborhood represented by the current tree. Distant streaming and
     // LOD changes must not trigger a rebuild of every nearby triangle.
@@ -129,7 +136,39 @@ export class WalkCollision {
     const reach = this.radius + this.rebuildDistance;
     const verticalReach = (this.verticalRadius ?? 0) + this.rebuildDistance;
     const bounds = new THREE.Box3();
-    root.traverseVisible((object) => {
+    const sphere = new THREE.Sphere();
+    const footprint = new THREE.Box3();
+    const outOfReach = (min: THREE.Vector3, max: THREE.Vector3): boolean =>
+      min.x > centerX + reach ||
+      max.x < centerX - reach ||
+      min.z > centerZ + reach ||
+      max.z < centerZ - reach ||
+      (centerY !== undefined &&
+        (min.y > centerY + verticalReach || max.y < centerY - verticalReach));
+    // A scan visited every visible object under the root; a fast aircraft scans many times a
+    // second. Groups that declare their footprint are skipped whole when it is out of reach.
+    const visit = (object: THREE.Object3D, inspect: (object: THREE.Object3D) => void): void => {
+      if (!object.visible) return;
+      if (object !== root) object.updateWorldMatrix(false, false);
+      const area = object.userData.walkFootprint as
+        | readonly [number, number, number, number]
+        | undefined;
+      if (area !== undefined) {
+        footprint.min.set(area[0], 0, area[1]);
+        footprint.max.set(area[2], 0, area[3]);
+        footprint.applyMatrix4(candidate.multiplyMatrices(inverse, object.matrixWorld));
+        if (
+          footprint.min.x > centerX + reach ||
+          footprint.max.x < centerX - reach ||
+          footprint.min.z > centerZ + reach ||
+          footprint.max.z < centerZ - reach
+        )
+          return;
+      }
+      inspect(object);
+      for (const child of object.children) visit(child, inspect);
+    };
+    visit(root, (object) => {
       if (!(object instanceof THREE.Mesh) || object.userData.walkIgnore === true) return;
       if (this.ignoreVehicles && (object.userData.vehicleIds || object.userData.vehicleGeometry))
         return;
@@ -138,30 +177,32 @@ export class WalkCollision {
       const materials = Array.isArray(object.material) ? object.material : [object.material];
       // Water is a visual surface, not a solid floor.
       if (materials.every((material) => material.userData.terrainWaterMaterial === true)) return;
-      const matrix = new THREE.Matrix4().multiplyMatrices(inverse, object.matrixWorld);
+      const matrix = candidate.multiplyMatrices(inverse, object.matrixWorld);
+      // Rendered meshes already carry the bounding sphere three's frustum culling computed. An
+      // exact box is a pass over every vertex, a freshly streamed building cell's tens of
+      // thousands, so a mesh its sphere already puts out of reach never computes one.
+      const known =
+        object instanceof THREE.InstancedMesh
+          ? object.boundingSphere
+          : object.geometry.boundingSphere;
+      if (known !== null) {
+        sphere.copy(known).applyMatrix4(matrix);
+        bounds.min.setScalar(-sphere.radius).add(sphere.center);
+        bounds.max.setScalar(sphere.radius).add(sphere.center);
+        if (outOfReach(bounds.min, bounds.max)) return;
+      }
       if (object instanceof THREE.InstancedMesh) {
+        geometryBounds(object.geometry);
         if (object.boundingBox === null) object.computeBoundingBox();
         bounds.copy(object.boundingBox as THREE.Box3);
       } else {
-        if (object.geometry.boundingBox === null) object.geometry.computeBoundingBox();
-        bounds.copy(object.geometry.boundingBox as THREE.Box3);
+        bounds.copy(geometryBounds(object.geometry));
       }
       bounds.applyMatrix4(matrix);
-      if (
-        bounds.min.x > centerX + reach ||
-        bounds.max.x < centerX - reach ||
-        bounds.min.z > centerZ + reach ||
-        bounds.max.z < centerZ - reach
-      )
-        return;
-      if (
-        centerY !== undefined &&
-        (bounds.min.y > centerY + verticalReach || bounds.max.y < centerY - verticalReach)
-      )
-        return;
+      if (outOfReach(bounds.min, bounds.max)) return;
       meshes.push({
         mesh: object,
-        matrix,
+        matrix: matrix.clone(),
         count: object instanceof THREE.InstancedMesh ? object.count : 1,
         geometry: object.geometry,
         // Both versions only increase, so their sum changes whenever either does (a merged
@@ -245,7 +286,7 @@ export class WalkCollision {
       const geometry = mesh.geometry;
       const position = geometry.getAttribute('position');
       if (position === undefined) continue;
-      if (geometry.boundingBox === null) geometry.computeBoundingBox();
+      geometryBounds(geometry);
       local.multiplyMatrices(offset, matrix);
       // Reject whole distant batches before walking their (potentially thousands of) instances.
       if (mesh instanceof THREE.InstancedMesh && mesh.boundingBox === null)
@@ -315,6 +356,49 @@ export class WalkCollision {
     }
     this.octree.build();
   }
+}
+
+/**
+ * The geometry's bounding box, computed once straight from a plain float position array: three's
+ * per-vertex accessors made a freshly streamed building cell's box most of an aircraft's scan.
+ */
+function geometryBounds(geometry: THREE.BufferGeometry): THREE.Box3 {
+  const known = geometry.boundingBox;
+  if (known !== null) return known;
+  const position = geometry.getAttribute('position');
+  if (
+    !(position instanceof THREE.BufferAttribute) ||
+    !(position.array instanceof Float32Array) ||
+    position.normalized ||
+    position.itemSize !== 3 ||
+    geometry.morphAttributes.position !== undefined
+  ) {
+    geometry.computeBoundingBox();
+    return geometry.boundingBox as THREE.Box3;
+  }
+  const array = position.array;
+  let minX = Number.POSITIVE_INFINITY,
+    minY = Number.POSITIVE_INFINITY,
+    minZ = Number.POSITIVE_INFINITY,
+    maxX = Number.NEGATIVE_INFINITY,
+    maxY = Number.NEGATIVE_INFINITY,
+    maxZ = Number.NEGATIVE_INFINITY;
+  for (let i = 0, end = position.count * 3; i < end; i += 3) {
+    const x = array[i] as number,
+      y = array[i + 1] as number,
+      z = array[i + 2] as number;
+    if (x < minX) minX = x;
+    if (x > maxX) maxX = x;
+    if (y < minY) minY = y;
+    if (y > maxY) maxY = y;
+    if (z < minZ) minZ = z;
+    if (z > maxZ) maxZ = z;
+  }
+  geometry.boundingBox = new THREE.Box3(
+    new THREE.Vector3(minX, minY, minZ),
+    new THREE.Vector3(maxX, maxY, maxZ),
+  );
+  return geometry.boundingBox;
 }
 
 const BOX_FACES = [

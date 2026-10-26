@@ -724,11 +724,26 @@ function cockpit(root, m) {
     [0.08, m.trim],
     [-0.04, d.red],
   ]) {
-    d.rod([x, 1.03, 1.04], [x, 1.03, 0.86], 0.009, m.metal);
-    d.add(new T.SphereGeometry(0.024, 12, 8), col, [x, 1.03, 0.85]);
+    const control = group(cabin, x > 0 ? 'Cherokee-throttle' : 'Cherokee-mixture', [x, 1.03, 1.04]);
+    const cd = detailKit(control, control.name);
+    cd.rod([0, 0, 0], [0, 0, -0.18], 0.009, m.metal);
+    cd.add(new T.SphereGeometry(0.024, 12, 8), col, [0, 0, -0.19]);
+    if (x > 0)
+      control.userData.aircraftControl = {
+        action: 'power',
+        motion: { property: 'position', axis: 'z', scale: 0.07 },
+      };
+    cd.finish();
   }
-  d.rod([0, 0.68, 0.1], [0, 0.82, 0.38], 0.013, m.metal);
-  d.box([0.055, 0.025, 0.065], [0, 0.82, 0.38], m.trim);
+  const flapLever = group(cabin, 'Cherokee-flap-lever', [0, 0.68, 0.1]);
+  const fd = detailKit(flapLever, flapLever.name);
+  fd.rod([0, 0, 0], [0, 0.14, 0.28], 0.013, m.metal);
+  fd.box([0.055, 0.025, 0.065], [0, 0.14, 0.28], m.trim);
+  flapLever.userData.aircraftControl = {
+    action: 'flaps',
+    motion: { property: 'rotation', axis: 'x', scale: -0.45 },
+  };
+  fd.finish();
   d.rod([0, 1.76, 0.2], [0, 1.7, 0.2], 0.009, m.metal);
   d.rod([0, 1.7, 0.2], [0.1, 1.7, 0.2], 0.008, m.metal);
   d.rod([0.1, 1.7, 0.2], [0.1, 1.66, 0.2], 0.01, m.trim);
@@ -757,7 +772,18 @@ function cockpit(root, m) {
     d.box([0.022, 0.25, 1.4], [side * 0.515, 0.82, -0.05], seat);
     d.rod([side * 0.49, 1.03, 0.33], [side * 0.49, 1.03, -0.02], 0.018, m.trim);
     for (const j of [-1, 1]) {
-      d.box([0.12, 0.06, 0.05], [side * 0.25 + j * 0.08, 0.74, 1.2], m.metal);
+      const pedal = group(cabin, `Cherokee-pedal-${side}-${j}`, [
+        side * 0.25 + j * 0.08,
+        0.74,
+        1.2,
+      ]);
+      const pd = detailKit(pedal, pedal.name);
+      pd.box([0.12, 0.06, 0.05], [0, 0, 0], m.metal);
+      pedal.userData.aircraftControl = {
+        action: 'yaw',
+        motion: { property: 'position', axis: 'z', scale: j * 0.035 },
+      };
+      pd.finish();
     }
   }
   d.finish();

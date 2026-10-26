@@ -1,0 +1,271 @@
+{
+  "date": "2026-10-25",
+  "scope": "Functional modeled mixture and propeller controls on 17 appropriate aircraft; 53-aircraft control coverage verified.",
+  "authoring": "Existing deterministic generators and materials retained. Mixture/propeller interaction metadata, rest-relative lever motion and missing supported control geometry exported in glTF extras. No new bitmap textures or external model inputs.",
+  "changes": [
+    "Per-engine and common retained mixture and propeller selections. Common throttle changes preserve mixture, propeller and engine cutoff overrides.",
+    "Density-aware piston mixture affects combustion, power, thrust, torque and propwash. Cutoff removes powered thrust immediately; fuel restoration permits assisted restart without clearing failures.",
+    "Constant-speed governor selection affects RPM, propeller rotation, shaft power and static/cruise thrust. Low power can fall below selected RPM at the fine-pitch stop.",
+    "Existing colored cockpit levers are draggable. Add the R44 mixture and Dash 8 propeller controls. Correct Baron and King Air lever-name collisions and keep Baron grips above the pedestal throughout travel.",
+    "Only capability-enabled aircraft expose these controls. Fixed-pitch and automatically managed engines retain their appropriate control layouts."
+  ],
+  "references": [
+    "https://www.faasafety.gov/gslac/ALC/libview_printerfriendly.aspx?id=6849"
+  ],
+  "validation": {
+    "schema": "193 tests passed; TypeScript check passed.",
+    "kernel": "359 tests passed after final propwash change; TypeScript check passed. Covers altitude leaning, cutoff/restart/failure, per-engine RPM/power, helicopter shaft cutoff, ignored unsupported controls, deterministic replay and finite input validation.",
+    "client": "444 tests passed; TypeScript check passed.",
+    "earth": "All 10 aircraft integration tests passed, including physical mixture cutoff and propeller settings retained across keyboard throttle changes.",
+    "entities": "825 other entity tests passed; both 53-aircraft source/runtime interaction tests passed after final Baron fix, including mixture/propeller minimum and maximum settings.",
+    "integrity": "All 53 source/runtime aircraft assets verified. Gallery hashes match imported assets: 53 aircraft, 65 views.",
+    "reproducibility": "All 17 affected aircraft rebuilt byte-identically.",
+    "catalog": "198 logical entity source bundles verified; generated schema docs current (43 files).",
+    "sources": "1487 logical source bundles and 1064 structure recipe indexes verified; no bulk review captures tracked.",
+    "headless": "CLI scene validation and 240-tick simulation passed all four independent cutoff/governor assertions.",
+    "headlessHash": "sha256:296744cf4736c6bfd1d4edd9d0161be1fba8673248aafb4492331d788b842e13",
+    "smokePacked": "Passed: 17 release tarballs installed; seven templates scaffolded, checked, tested and built. The final propwash normalization was subsequently covered by the full kernel suite and Earth aircraft integration tests.",
+    "formatting": "Biome checks passed for changed schema, kernel, client, generator and test modules.",
+    "repositoryGate": "pnpm verify blocked because no shared asset bundle is installed. pnpm docs:site:check and pnpm test:golden blocked during prerequisite build by four missing Putra Mosque LOD GLBs. Full CI is not claimed green.",
+    "localPack": {
+      "contentHash": "sha256:7086d01ff5f24c221c5e821d62b3c2b5c08918116a69f6abc4337b5c908feb16",
+      "bytes": 218237102
+    }
+  },
+  "visual": {
+    "gallery": ".artifacts/cockpit-gallery/index.html",
+    "reviewed": [
+      "Baron live cockpit and turntable",
+      "King Air cockpit and turntable",
+      "Cessna 172S cockpit",
+      "R44 cockpit",
+      "Dash 8 cockpit"
+    ],
+    "captureReport": ".artifacts/mixture-turntables.json",
+    "liveChecks": [
+      "At equal 80% throttle, dragging Baron engine 1 propeller to minimum settled at 60% RPM and 107 kW while engine 2 remained at 94% RPM and 179 kW.",
+      "Dragging Baron engine 1 mixture to cutoff reduced that engine to zero RPM and shaft power while engine 2 stayed powered.",
+      "Dragging the same mixture lever back to full rich restarted engine 1; the lever remained reachable at cutoff."
+    ],
+    "screenshots": ".artifacts/engine-controls/"
+  },
+  "limitations": [
+    "Reduced deterministic simulation curves and estimated 60%-100% governor ranges, not certified performance tables or operating procedures.",
+    "No fuel consumption, EGT/CHT, detonation, starter/ignition sequence, feathering, reverse thrust or blade-element aerodynamics.",
+    "GLTFExporter normalized a source normal attribute during the reproducibility rebuild; all 17 resulting files remained byte-identical.",
+    "Supplemental cockpit control placement remains a medium-fi approximation. Bulk render evidence stays local."
+  ],
+  "assets": [
+    {
+      "id": "molen.entities.aircraft.atr_72_600",
+      "sourceHash": "sha256:5664aa12eaceb65b3f1694db362bb81f722940fd204b569470f320dbbbd372eb",
+      "runtimeHash": "sha256:ccc1d4d43a2310379be7ee7d5838eeed4415b5850691f763c21367d72cad3e47",
+      "triangles": 91266,
+      "bytes": 3719820,
+      "mixtureEngines": [],
+      "propellerEngines": [
+        "engine-1",
+        "engine-2"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.baron_g58",
+      "sourceHash": "sha256:c066639d4e64915fd7a27438187a75ca111063b65c096e8b90da0707e3150e51",
+      "runtimeHash": "sha256:e6d1efd94959472c7ce184c8a404d76c6489a528696ec48043f3d9706932b1cc",
+      "triangles": 73212,
+      "bytes": 2931436,
+      "mixtureEngines": [
+        "engine-1",
+        "engine-2"
+      ],
+      "propellerEngines": [
+        "engine-1",
+        "engine-2"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.beech_18",
+      "sourceHash": "sha256:6ceff09a4ffafe339c09837918c6bde200e6886600782abfddb8ec74d9bd3ad9",
+      "runtimeHash": "sha256:dd53e0b8945c0365e3aaa8802d9f7082561fcb46c3bafcb41c9698c10471a9a6",
+      "triangles": 91238,
+      "bytes": 3517712,
+      "mixtureEngines": [
+        "engine-1",
+        "engine-2"
+      ],
+      "propellerEngines": [
+        "engine-1",
+        "engine-2"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.bonanza_g36",
+      "sourceHash": "sha256:aea14fd118d7d1560934185d533c5ffbe1920db602ac138e46bfeca6d9f5dddb",
+      "runtimeHash": "sha256:99079406d04bb8ed3e2e46022fee94f45ef1f8329e09ee41d7bcf5f780f9dbde",
+      "triangles": 67720,
+      "bytes": 2667004,
+      "mixtureEngines": [
+        "engine-1"
+      ],
+      "propellerEngines": [
+        "engine-1"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_172s",
+      "sourceHash": "sha256:17a1344523f782a804b8ee40ea9a90a85690215e9a90ffc77022a2e3ac4597cc",
+      "runtimeHash": "sha256:67c867b72fd909427d1173606ebc7bf507e76cb9268b79ce8ce29fc8431ff5ba",
+      "triangles": 58970,
+      "bytes": 2758536,
+      "mixtureEngines": [
+        "engine-1"
+      ],
+      "propellerEngines": []
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_182t",
+      "sourceHash": "sha256:6dcc75ad9d556d1e8cc4c737c0cf16ef270cd8f6d275edf1bbb15c9ff242d258",
+      "runtimeHash": "sha256:3bb8de4dcbbc143f3d693e3a77c42914c296278b9df78834218d80fc9bb0d694",
+      "triangles": 59170,
+      "bytes": 2287068,
+      "mixtureEngines": [
+        "engine-1"
+      ],
+      "propellerEngines": [
+        "engine-1"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_208b",
+      "sourceHash": "sha256:76968a0cd4b375a5f20463fc0830063c30230ae1163c55234346f70b3ee028e0",
+      "runtimeHash": "sha256:e415e2d503104bfaf5ccebc8c818938c80174669ac01ff70c70a0cbe698c8bc5",
+      "triangles": 67740,
+      "bytes": 2627872,
+      "mixtureEngines": [],
+      "propellerEngines": [
+        "engine-1"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.cirrus_sr22t",
+      "sourceHash": "sha256:273287e113c3c95b98d290b87144f10ae36d72af974fa3640738af6a47e1ad62",
+      "runtimeHash": "sha256:c055023f339cb9b93a57e7952b0a7d878266116870d663b65f322cd0db13752a",
+      "triangles": 50102,
+      "bytes": 1939784,
+      "mixtureEngines": [
+        "engine-1"
+      ],
+      "propellerEngines": []
+    },
+    {
+      "id": "molen.entities.aircraft.dash_8_q400",
+      "sourceHash": "sha256:49440aa5691f982b2a044ee205ee7f99bb690e42d4f0a2c450b1650cbf495e65",
+      "runtimeHash": "sha256:0125a543650f5729c56ba62e882f88507b2767035095d814e40bd55a92ece41d",
+      "triangles": 50970,
+      "bytes": 2226188,
+      "mixtureEngines": [],
+      "propellerEngines": [
+        "engine-1",
+        "engine-2"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.dc_3",
+      "sourceHash": "sha256:69b5ba95c22428538fc0158a3d0087fd3c230ebca66f2b15de51b6b7f016287e",
+      "runtimeHash": "sha256:4f2c02af918e26220145ed90953ae9c9edbb84539ff55435371be5bd0f095d77",
+      "triangles": 96613,
+      "bytes": 3844576,
+      "mixtureEngines": [
+        "engine-1",
+        "engine-2"
+      ],
+      "propellerEngines": [
+        "engine-1",
+        "engine-2"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.dhc_2",
+      "sourceHash": "sha256:42a9589441897a36128c85ae200df02954be2f010032ff32167d5ce76389e3be",
+      "runtimeHash": "sha256:3126237393db07e5ffaeb1df545f4128121065c128582b146945e8a51bbd7795",
+      "triangles": 59689,
+      "bytes": 2399480,
+      "mixtureEngines": [
+        "engine-1"
+      ],
+      "propellerEngines": [
+        "engine-1"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.dhc_6",
+      "sourceHash": "sha256:8d153b156588167e634132e3798c34c6a7b50b16f6a1d99f30e3b97ea2039944",
+      "runtimeHash": "sha256:58cfa7176143e432e65db37842eecf5813eaff22581f9938ad16e8801c0dcef5",
+      "triangles": 73142,
+      "bytes": 3106844,
+      "mixtureEngines": [],
+      "propellerEngines": [
+        "engine-1",
+        "engine-2"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.king_air_350i",
+      "sourceHash": "sha256:059d05f77631b8a4c5878e7943453cfe219f3bb731c77e7ddee8f8eb65df942b",
+      "runtimeHash": "sha256:2291e5bbe3b574f8a49a8f0bcc5188d5b77a7405d87474384d2e7ea40eb0c89a",
+      "triangles": 91685,
+      "bytes": 3746104,
+      "mixtureEngines": [],
+      "propellerEngines": [
+        "engine-1",
+        "engine-2"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.p51d",
+      "sourceHash": "sha256:b875577a10dec33ed7be3edb86c76088c768dd67ab24f4d3bea7741c3f83a3b9",
+      "runtimeHash": "sha256:f89acfaf1543f4e56a84e941be1f48c0932b0f95ea05a75b080e372c3814ba97",
+      "triangles": 55146,
+      "bytes": 1830660,
+      "mixtureEngines": [
+        "main"
+      ],
+      "propellerEngines": [
+        "main"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.pa_28_180",
+      "sourceHash": "sha256:064fe781f29ef45cd12e8ae181364bf71a6f4c1e6cb6306ba4c03b23314b3674",
+      "runtimeHash": "sha256:9809b2518bf9989bdb15450693fbf4d960d611ec09d49295a6d78b6b11a67326",
+      "triangles": 71406,
+      "bytes": 2564732,
+      "mixtureEngines": [
+        "engine-1"
+      ],
+      "propellerEngines": []
+    },
+    {
+      "id": "molen.entities.aircraft.pc_6",
+      "sourceHash": "sha256:f807ccd61380719a0612e996168fc0a865a5693b25ad69267ab9077983ee3341",
+      "runtimeHash": "sha256:43bb9e71fc76d062927205651800b2f990e0d463669d3f1de5f299e2c8ba1bbf",
+      "triangles": 76408,
+      "bytes": 2928436,
+      "mixtureEngines": [],
+      "propellerEngines": [
+        "engine-1"
+      ]
+    },
+    {
+      "id": "molen.entities.aircraft.robinson_r44",
+      "sourceHash": "sha256:ae687e6e6dd10a77671367190da7006de48aed19695edf6e423150d4628975e2",
+      "runtimeHash": "sha256:a95820c062c8d22fc85da4be0c1c3d0fa501fb53141a37b4c7b99ce0d488c041",
+      "triangles": 23182,
+      "bytes": 923624,
+      "mixtureEngines": [
+        "main"
+      ],
+      "propellerEngines": []
+    }
+  ]
+}

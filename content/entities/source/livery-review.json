@@ -1,0 +1,137 @@
+{
+  "format": "molen/livery-review@1",
+  "reviewedOn": "2026-10-25",
+  "status": "reviewed-photo-adaptations",
+  "catalogHash": "sha256:16db5f9fa0c40744d48684882eb445216fbdaffc1bcf9c4d2b7d9606ce7e5627",
+  "previewManifestHash": "sha256:748a31940817f768891c28d6948a0aa360defa22d06910bf268dc6864724175d",
+  "coverage": {
+    "vehicles": 192,
+    "liveries": 385,
+    "perVehicle": "2–3",
+    "distinctPhotoSources": 382,
+    "provenance": {
+      "inspired": 385,
+      "original": 0
+    }
+  },
+  "referenceReview": {
+    "scope": "Selected real-world photographs were inspected for colors and visible layout, then compared with the rendered choices. Each recipe links its photograph and records adaptation scope. Source images are not redistributed.",
+    "limitations": [
+      "Color values are visual estimates under varying photographic light, not measured paint codes.",
+      "Generic Bendy models and some model years, trims or airframe variants adapt the pictured vehicle; they are not exact replicas.",
+      "Camouflage masks, RV curves and some panel boundaries are simplified. Small stencils, registrations and complex logos are omitted unless explicitly listed in a recipe.",
+      "Single comparison views do not certify hidden surfaces or every historical marking. Detailed bilateral review was performed for Danish ET-612."
+    ]
+  },
+  "rendering": {
+    "backend": "webgl",
+    "size": [
+      1000,
+      650
+    ],
+    "ticks": 0,
+    "lighting": "Neutral sun/ambient, ACES exposure 1, reflections and antialiasing",
+    "renderedVariants": 385,
+    "inspected": "All 385 comparison renders inspected for paint distribution, misplaced markings and retained glass, trim and interiors. Corrections include Danish roundel/serial/flag placement, aircraft operator labels, civil-aircraft tail and fuselage regions, RV side graphics, Countryman roof and cruiser tank inset.",
+    "shippedEvidence": "../livery-previews/manifest.json",
+    "localEvidence": ".artifacts/photo-livery-renders/",
+    "danishAdditionalViews": [
+      ".artifacts/danish-current-side.png",
+      ".artifacts/danish-current-right.png",
+      ".artifacts/danish-current-quarter.png"
+    ]
+  },
+  "validation": {
+    "variantSchema": "pass",
+    "coverageAndDistinctChoices": "pass",
+    "runtimePaintAndDecalWarnings": 0,
+    "danishPositionRegression": "pass",
+    "generatedTypeCatalog": "pass",
+    "commands": [
+      "node packages/entities/scripts/generate-liveries.mjs --check",
+      "pnpm --filter @bendyline/molen-entities exec vitest run test/liveries.test.mjs",
+      "node packages/entities/scripts/preview-liveries.mjs",
+      "node docs-site/scripts/generate-livery-gallery.mjs --check"
+    ],
+    "documentationGenerationAndStyle": "pass",
+    "productionDocumentationPages": "pass: 192 image elements, all lazy-loaded, no escaped image markup",
+    "browserReview": {
+      "status": "pass",
+      "page": "http://127.0.0.1:5177/guide/livery-gallery#general-dynamics-f-16b-fighting-falcon",
+      "localScreenshot": ".artifacts/livery-gallery-browser.png"
+    },
+    "fullSiteContentStaging": "blocked by unrelated missing asset member assets/places/6g/6gy/edificio_copan/model.skyline.glb"
+  },
+  "changedBaseModels": [
+    {
+      "id": "molen.entities.aircraft.f_16b",
+      "sourceHash": "sha256:337a7a64382a671f623be2a2811663de23cf9ad3555df4f40890f24b52b363b2",
+      "runtimeHash": "sha256:3069ea3ac852ccbee874c9ddc10ec511e1f31e62feb426d75618c269648464fa",
+      "reproducible": true,
+      "verified": true
+    },
+    {
+      "id": "molen.entities.aircraft.f_14d",
+      "sourceHash": "sha256:0d31bd616f13d4a5729c9ac2577ddd078b12c9282987fdb3aba2e770c3a55881",
+      "runtimeHash": "sha256:21850e67ac2ec7877f87fe6befb06bf2cad1de8a657f670616b9998142c16555",
+      "reproducible": true,
+      "verified": true
+    },
+    {
+      "id": "molen.entities.aircraft.f_15c",
+      "sourceHash": "sha256:754d15c3a50172edafb86f814f7b268751c3628773409ff7c5aa4d0bb42149d4",
+      "runtimeHash": "sha256:3f2bea14a4eb1b5b7a8d425dffb0c353d284a4ee4490f3deb4258f23e6b65a76",
+      "reproducible": true,
+      "verified": true
+    },
+    {
+      "id": "molen.entities.aircraft.f_22a",
+      "sourceHash": "sha256:056ece89354e3ff4aa99b0fffb2d2306c7042177aafc9df0c748b7e063a11075",
+      "runtimeHash": "sha256:a88437c75b1fbbdaaebd57c710492ad0d6ed59137904a2180e5f23949be25249",
+      "reproducible": true,
+      "verified": true
+    },
+    {
+      "id": "molen.entities.aircraft.f_35a",
+      "sourceHash": "sha256:419b107e999c05a29826a0b9cb528bc6f0380333359d8eda4fa5b4558740e087",
+      "runtimeHash": "sha256:3fda1a1a1cb637cd7031e442b68e8f03b84eff9d8988a11038c0a4cd0132a6f9",
+      "reproducible": true,
+      "verified": true
+    },
+    {
+      "id": "molen.entities.aircraft.fa_18c",
+      "sourceHash": "sha256:a18cb3f13a8b9dd0716922882a923cfdac88b8c7cd2ebed297c40630c0b72893",
+      "runtimeHash": "sha256:f4ea1a110d193f620e8051c60c27199f1a9302878e84fc790f1d198bda03a181",
+      "reproducible": true,
+      "verified": true
+    },
+    {
+      "id": "molen.entities.aircraft.typhoon",
+      "sourceHash": "sha256:1c4e6b686b15304550bb75e6d33aea6d1156c76ddaf755e2dce5580e93ae4da2",
+      "runtimeHash": "sha256:5420dc74cc344c1ee157e33a688c8410128bd01a268ceec611a8b2add4aa02c7",
+      "reproducible": true,
+      "verified": true
+    },
+    {
+      "id": "molen.entities.aircraft.a400m",
+      "sourceHash": "sha256:9bc1d4253e425f68942eaa190c91d34cb4400072cc3ed34ee809a2940c869fae",
+      "runtimeHash": "sha256:5aff4682028e25b699105538710690443151e5fef09014f3f8b3697d1bb19e80",
+      "reproducible": true,
+      "verified": true
+    },
+    {
+      "id": "molen.entities.aircraft.c_17a",
+      "sourceHash": "sha256:237664373041859af2baa2e1d05f9b141eae8e538f3912ba663928bf19893d73",
+      "runtimeHash": "sha256:5175948ca3461343a5e0212660ac68366ae39a7dd4cb4638bb811be67f1460c2",
+      "reproducible": true,
+      "verified": true
+    },
+    {
+      "id": "molen.entities.aircraft.c_5m",
+      "sourceHash": "sha256:36984923c5c3c603b454c6d028cce65965b5348c8f0a873f8d805e8db18f4cfd",
+      "runtimeHash": "sha256:d927a5d3af2bc268e73dae8f972ff829a7c3f53ac73eabb185c2de08892fa7d4",
+      "reproducible": true,
+      "verified": true
+    }
+  ]
+}

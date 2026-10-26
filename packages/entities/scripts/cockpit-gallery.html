@@ -8,9 +8,9 @@
 </style>
 </head>
 <body><main>
-<header><div class="eyebrow">Molen / Aircraft study</div><h1>Inside the cockpit.</h1><p>Explore the fleet’s instrument panels, controls and cabin materials. Start with the three refined cockpits, then compare them with the rest of the collection.</p></header>
-<div class="toolbar"><input id="search" type="search" aria-label="Search aircraft" placeholder="Search aircraft…"><select id="category" aria-label="Aircraft category"><option value="">All aircraft</option></select><label><input id="refined" type="checkbox"> Refined cockpits</label><span class="count" id="count" aria-live="polite"></span></div>
-<div class="grid" id="grid"></div><p class="fineprint">Rendered from the current Molen models under the same lighting. The P-51D, OH-6A and Cessna 172S have the new cockpit finishes; other aircraft show their existing interiors.</p>
+<header><div class="eyebrow">Molen / Aircraft study</div><h1>Inside the cockpit.</h1><p>Explore textured instrument panels, rubberized trim and brushed metal controls across the fleet. Compare cockpit finishes and open the detail views for a closer look.</p></header>
+<div class="toolbar"><input id="search" type="search" aria-label="Search aircraft" placeholder="Search aircraft…"><select id="category" aria-label="Aircraft category"><option value="">All aircraft</option></select><select id="finish" aria-label="Panel finish"><option value="">All panel finishes</option><option value="panel">Stippled enamel</option><option value="satin">Satin coating</option></select><label><input id="refined" type="checkbox"> Detail views</label><span class="count" id="count" aria-live="polite"></span></div>
+<div class="grid" id="grid"></div><p class="fineprint">Current models under the same lighting. Four shared panel and hardware finishes preserve each aircraft’s colors; surface choices approximate the represented cockpit variant. Existing upholstery finishes are retained. Cessna 182T and MiG-29 detail views also show the repaired curved joins.</p>
 </main>
 <div class="comparebar" id="comparebar" hidden><span id="selection"></span><button type="button" class="primary" id="compare" disabled>Compare two</button><button type="button" id="clear">Clear</button></div>
 <dialog id="dialog" aria-labelledby="dialog-title"><div class="modal-head"><h2 id="dialog-title">Cockpit details</h2><button type="button" class="close" id="close" aria-label="Close detail view">×</button></div><div class="viewer" id="viewer"></div></dialog>
@@ -30,13 +30,13 @@ function selectionChanged(){
 }
 function render(){
   const query=$('search').value.trim().toLowerCase();
-  const visible=entries.filter(e=>(!query||`${e.title} ${e.note}`.toLowerCase().includes(query))&&(!$('category').value||e.category===$('category').value)&&(!$('refined').checked||e.featured));
+  const visible=entries.filter(e=>(!query||`${e.title} ${e.note}`.toLowerCase().includes(query))&&(!$('category').value||e.category===$('category').value)&&(!$('finish').value||e.panelFinish===$('finish').value)&&(!$('refined').checked||e.views.length>1));
   $('count').textContent=`${visible.length} / ${entries.length} aircraft`;
   $('grid').replaceChildren();
   for(const e of visible){
     const card=node('article','card');const photo=node('button','photo');photo.setAttribute('aria-label',`Explore ${e.title}`);
     const img=node('img');img.src=e.views[0].file;img.alt=`${e.title} cockpit`;img.loading='lazy';photo.append(img);
-    if(e.featured)photo.append(node('span','badge','REFINED COCKPIT'));photo.onclick=()=>show(e);card.append(photo);
+    if(e.views.length>1)photo.append(node('span','badge','DETAIL VIEWS'));photo.onclick=()=>show(e);card.append(photo);
     const body=node('div','card-body');body.append(node('div','category',categoryName(e.category)),node('h2','',e.title),node('p','note',e.note));
     const actions=node('div','card-actions'),detail=node('button','',e.views.length>1?'Explore details ↗':'Enlarge ↗');detail.onclick=()=>show(e);
     const label=node('label'),check=node('input');check.type='checkbox';check.dataset.compare=e.slug;check.onchange=()=>{check.checked?selected.add(e.slug):selected.delete(e.slug);selectionChanged();};label.append(check,document.createTextNode('Compare'));actions.append(detail,label);body.append(actions);card.append(body);$('grid').append(card);
@@ -49,7 +49,8 @@ function show(e){
   const tabs=node('div','view-tabs'),img=node('img','full-image'),caption=node('p');
   const activate=(v)=>{img.src=v.file;img.alt=`${e.title}: ${v.label}`;caption.textContent=`${v.label} · ${e.note}`;for(const b of tabs.children)b.setAttribute('aria-pressed',String(b.dataset.kind===v.kind));};
   for(const v of e.views){const b=node('button','',v.label);b.dataset.kind=v.kind;b.onclick=()=>activate(v);tabs.append(b);}
-  $('viewer').append(tabs,img,caption);activate(e.views[0]);$('dialog').showModal();
+  const live=node('a','','Try the clickable cockpit ↗');live.href=`http://127.0.0.1:4322/packages/entities/scripts/cockpit-controls.html?aircraft=${encodeURIComponent(e.slug)}`;live.target='_blank';live.rel='noopener';
+  $('viewer').append(tabs,img,caption,live);activate(e.views[0]);$('dialog').showModal();
 }
 $('compare').onclick=()=>{
   $('dialog-title').textContent='Cockpit comparison';const wrap=node('div','comparison');
@@ -60,6 +61,6 @@ $('compare').onclick=()=>{
 $('close').onclick=()=>$('dialog').close();
 $('dialog').addEventListener('click',e=>{if(e.target===$('dialog')){const r=$('dialog').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('dialog').close();}});
 $('clear').onclick=()=>{selected.clear();selectionChanged();};
-for(const id of ['search','category','refined'])$(id).addEventListener(id==='search'?'input':'change',render);
+for(const id of ['search','category','finish','refined'])$(id).addEventListener(id==='search'?'input':'change',render);
 render();
 </script></body></html>

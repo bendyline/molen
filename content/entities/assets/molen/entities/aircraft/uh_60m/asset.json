@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:7d907fed64fccd685bc342afeef3b7bc39446b1c25535512ccf6818b70d25824",
-  "sourceHash": "sha256:10b3b5d21cb3ec6db149c213d976eaef0393b9f7848e58d3428945cccd1fb54e",
+  "hash": "sha256:6361014339a408e19e54b9448aab6a18c64e675b6179c97e33262b81388b2163",
+  "sourceHash": "sha256:417328dec726ea2758fa40520fc89fd1e7dec5a4d53c15ca2d726e589d87c1ce",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 56137,
-    "vertices": 113241,
-    "meshes": 108,
-    "primitives": 108,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 54805,
+    "vertices": 85459,
+    "meshes": 116,
+    "primitives": 116,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2211720
+    "sizeBytes": 2203656
   },
   "nodes": [
     {
       "name": "UH60-airframe-UH60-olive",
-      "triangles": 1792
+      "triangles": 1676
     },
     {
       "name": "UH60-airframe-UH60-glass",
@@ -51,7 +51,7 @@
     },
     {
       "name": "UH60-airframe-UH60-trim",
-      "triangles": 8208
+      "triangles": 6048
     },
     {
       "name": "UH60-airframe-UH60-metal",
@@ -227,7 +227,7 @@
     },
     {
       "name": "UH60-cockpit-UH60-trim",
-      "triangles": 472
+      "triangles": 376
     },
     {
       "name": "UH60-cockpit-detail-trim",
@@ -391,7 +391,7 @@
     },
     {
       "name": "cyclic-UH60-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -439,7 +439,7 @@
     },
     {
       "name": "cyclic-UH60-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -614,9 +614,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "UH60-instrument-face",
+      "name": "UH60-instrument-face-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "UH60-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -670,9 +684,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -702,6 +719,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "UH60-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "detail-amber",
       "slots": [
         "baseColor"
@@ -719,6 +747,55 @@
     },
     {
       "name": "UH60-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -796,10 +873,10 @@
           0.1725,
           3.594,
           -1.454,
-          2.1964,
+          2.1965,
           -10.28,
           -1.454,
-          2.1964,
+          2.1965,
           3.594,
           1.454,
           0.1725,
@@ -808,10 +885,10 @@
           0.1725,
           3.594,
           1.454,
-          2.1964,
+          2.1965,
           -10.28,
           1.454,
-          2.1964,
+          2.1965,
           3.594
         ]
       },

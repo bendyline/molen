@@ -1,0 +1,2730 @@
+{
+  "date": "2026-10-25",
+  "scope": "Shared cockpit backboard, quadrant, padding and exposed-metal finishes across all 53 aircraft.",
+  "library": "cockpit-materials/library.json",
+  "method": "Original deterministic procedural PNGs; periodic noise, directional alloy grain and retained upholstery recipes. Metric UVs, near-white tintable basecolor, tangent normal and glTF G-roughness/B-metalness data. Images shared within each model and embedded for portability.",
+  "finishSelection": "Explicit per-aircraft material names and panel recipe; authored variant colors retained. Appearance approximation, not verified coating specifications.",
+  "changes": [
+    "Four primary surface recipes: stippled enamel, satin coating, rubberized grain and brushed alloy. Existing paint, vinyl, canvas and webbing retained.",
+    "Finish after cabin batching and physical control completion; no textures on displays or printed legends.",
+    "Legacy airliner cabin batch separated from exterior details; Cessna 172 material matching survives material cloning.",
+    "Gallery supports panel-finish filtering and extra P-51/Baron quadrant and MiG-29 backboard views."
+  ],
+  "validation": {
+    "aircraft": 53,
+    "reproducedIdentically": 53,
+    "hashesVerified": true,
+    "tests": {
+      "files": 5,
+      "passed": 112,
+      "command": "pnpm --filter @bendyline/molen-entities exec vitest run test/cockpit-surfaces.test.mjs test/aircraft-interactions.test.mjs test/aircraft-joins.test.mjs test/aircraft-controls.test.mjs test/aircraft-instruments.test.mjs"
+    },
+    "checks": [
+      "Asset import and inspect --verify for all 53 models",
+      "Source/runtime embedded PNG equality, finish confinement, UV tangent area and image bounds",
+      "Source-bundle inventory and entity catalog --check",
+      "Biome checks on changed authoring modules"
+    ],
+    "reproduction": "Run each source/aircraft/<slug>/models/generate.mjs --out <candidate.glb>; compare SHA-256 to current master.",
+    "renderReview": {
+      "aircraft": 53,
+      "images": 68,
+      "gallery": ".artifacts/cockpit-gallery/index.html",
+      "detailModels": [
+        "cessna-172s",
+        "cessna-182t",
+        "baron-g58",
+        "mig-29a",
+        "airbus-a320neo",
+        "p-51",
+        "oh-6",
+        "airliner"
+      ],
+      "turntables": [
+        "airliner",
+        "baron-g58"
+      ],
+      "findings": "Subtle grain reads on panels and quadrant housings; gauges remain clear. Metal hardware has a restrained directional sheen. Exterior material confinement is verified structurally and reviewed in representative turntables.",
+      "contactSheets": "All 53 cockpit overview renders inspected across four contact sheets, plus listed close-up and exterior views."
+    },
+    "sourceInventory": {
+      "verifiedBundles": 1487,
+      "entityCatalogBundles": 198,
+      "overallCommand": "blocked after inventory passed: unrelated worldgen authoring index is stale"
+    },
+    "browser": "Verified 53 / 53 aircraft, enamel filter 14 / 53, search and Baron/Cessna detail comparison in the in-app browser.",
+    "headless": {
+      "scene": ".artifacts/mixture.scene.json",
+      "schema": "valid",
+      "ticks": 240,
+      "assertions": "4/4 passed",
+      "hash": "sha256:296744cf4736c6bfd1d4edd9d0161be1fba8673248aafb4492331d788b842e13"
+    },
+    "localPack": {
+      "hash": "sha256:a037f82cf9d2b4fb3f20f657bb0e0c9c2486b3ff8b19e34fd8503ec1693e5efd",
+      "size": 216715890
+    }
+  },
+  "warnings": [
+    "Exporter normalizes pre-existing non-unit normals on the P-51. Importer preserves repeating UVs outside [0,1] rather than quantizing them.",
+    "Small GLB-local image copies are intentional; GPU deduplication across separately loaded aircraft is not implemented.",
+    "Full engine CI is outside this model-only batch.",
+    "node scripts/check-source-bundles.mjs validates all 1487 source bundles but its final worldgen authoring-index check fails because that unrelated index is stale; left unchanged."
+  ],
+  "maps": [
+    {
+      "path": "cockpit-panel-basecolor.png",
+      "bytes": 73910,
+      "sha256": "sha256:ab26f8bde5b8e03819ce62a8b9059e1a46b1f12f5426d5ba3d4e2f991ef4004b"
+    },
+    {
+      "path": "cockpit-panel-normal.png",
+      "bytes": 155908,
+      "sha256": "sha256:249b1dd7fccbe5cba9229c91b687f22f6cb7ece2e43158555d0c0f9d73ee21ca"
+    },
+    {
+      "path": "cockpit-panel-roughness.png",
+      "bytes": 59387,
+      "sha256": "sha256:97f66a4fb5e960ad8fc1fe5a9f946d2ef05c366259630654321aa49ee371683a"
+    },
+    {
+      "path": "cockpit-satin-basecolor.png",
+      "bytes": 18175,
+      "sha256": "sha256:7e037f9f9c9d38363547823b51d5c4f2b3a3a1967d3e538cfa03b2460f01e089"
+    },
+    {
+      "path": "cockpit-satin-normal.png",
+      "bytes": 38759,
+      "sha256": "sha256:195d5b03041e83263439fedc4786f1317a69c65f98ddccf7c559b00b2498989f"
+    },
+    {
+      "path": "cockpit-satin-roughness.png",
+      "bytes": 15222,
+      "sha256": "sha256:f3a507bae743d817ce004149790bd168b3395f657123533f2c7bb7c9c46251ea"
+    },
+    {
+      "path": "cockpit-rubber-basecolor.png",
+      "bytes": 46087,
+      "sha256": "sha256:9006d2c55c72ce67d81c408453a005a1592fad32fd2dc4ef2602abb6bb9fc261"
+    },
+    {
+      "path": "cockpit-rubber-normal.png",
+      "bytes": 149169,
+      "sha256": "sha256:cf58ce2602d93bbee1a1ccaea58911ba16fab2e36daa6ba2b98cba9b5f3d0668"
+    },
+    {
+      "path": "cockpit-rubber-roughness.png",
+      "bytes": 42051,
+      "sha256": "sha256:74f05be9eca91d4a18e404b64db18ab577ad045a4dacc5c588e70d2995ec52be"
+    },
+    {
+      "path": "cockpit-brushed-basecolor.png",
+      "bytes": 10662,
+      "sha256": "sha256:4e18e7c89698f34f01583a8dc71e9ab53d3fd66cb6ec0c3905a10cb46f8aa2aa"
+    },
+    {
+      "path": "cockpit-brushed-normal.png",
+      "bytes": 22731,
+      "sha256": "sha256:277e977ebfdad2288c455b1469c4fcd81a50642c183fcd5f8a90fbad73fc31fa"
+    },
+    {
+      "path": "cockpit-brushed-roughness.png",
+      "bytes": 8066,
+      "sha256": "sha256:e7309dde294c888e84c193e9078627caf52e1353711cca79c14ffdec1832b7c7"
+    },
+    {
+      "path": "cockpit-paint-basecolor.png",
+      "bytes": 28201,
+      "sha256": "sha256:f319ef650b8190752c24f6124a30bb966983d92973e939c55364d18e7fefa211"
+    },
+    {
+      "path": "cockpit-paint-normal.png",
+      "bytes": 47861,
+      "sha256": "sha256:0b6641a99cd797e3c1fe0d28a3bde32035c7ba73416cfb6a85be87adf6123c95"
+    },
+    {
+      "path": "cockpit-paint-roughness.png",
+      "bytes": 18617,
+      "sha256": "sha256:ad196f04af0dc518bd87f7a8b0118cd3f55686e93a1198eadc162045f45ae7bd"
+    },
+    {
+      "path": "cockpit-vinyl-basecolor.png",
+      "bytes": 29178,
+      "sha256": "sha256:70cdf2912361d5590c042ff847a63f5dcc34e0fef39c7fa403c599fd361fbd43"
+    },
+    {
+      "path": "cockpit-vinyl-normal.png",
+      "bytes": 41274,
+      "sha256": "sha256:d4af35c424f2c01310b3412dc9615c7971733b0cc2e97e7de22460118876c769"
+    },
+    {
+      "path": "cockpit-vinyl-roughness.png",
+      "bytes": 16202,
+      "sha256": "sha256:b81c42ffddc7283f8fa8153c02620bccd60d3277cd372328366de7ed15d00ec3"
+    },
+    {
+      "path": "cockpit-canvas-basecolor.png",
+      "bytes": 28633,
+      "sha256": "sha256:e6f2edbd075638a31a0f4fadd092c80e3c8681672f2e4b06002c7efefd624e0a"
+    },
+    {
+      "path": "cockpit-canvas-normal.png",
+      "bytes": 42260,
+      "sha256": "sha256:7a673fd5cc3d362d990148e8c00651df9c2fff1c04c59c1df40ebc4a75e4d782"
+    },
+    {
+      "path": "cockpit-canvas-roughness.png",
+      "bytes": 15939,
+      "sha256": "sha256:4875a231b86ff61fd4599e5b7f84810e59a62f6ccef35dd3dc7497fbf49a7028"
+    },
+    {
+      "path": "cockpit-webbing-basecolor.png",
+      "bytes": 22926,
+      "sha256": "sha256:e18b37fb72a4b4d14f52a44aabd462fa2e30ddb188b548a4e39c2c92a3bb97ff"
+    },
+    {
+      "path": "cockpit-webbing-normal.png",
+      "bytes": 33552,
+      "sha256": "sha256:59f0c0408710271e1c3adee7985783f2267bd48ffa2e2f76112ef425ac3e8fc3"
+    },
+    {
+      "path": "cockpit-webbing-roughness.png",
+      "bytes": 13802,
+      "sha256": "sha256:29b4e333dd2af761a29df0934f64693eb248a4af708f3e3abea65d064e7be116"
+    }
+  ],
+  "models": [
+    {
+      "slug": "a220-300",
+      "id": "molen.entities.aircraft.a220_300",
+      "panel": "satin",
+      "sourceHash": "sha256:bc37ecf73e466cd4028a404e7839a35050c84ee21e7e2c5b67b8ba13baeb2606",
+      "runtimeHash": "sha256:da55f7d451af671ae1c72175aa70cf8210e3ec87fb6556974ea4295c4064b602",
+      "stats": {
+        "triangles": 47230,
+        "vertices": 68199,
+        "meshes": 68,
+        "primitives": 68,
+        "materials": 24,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1790124
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0.57,
+              4.306,
+              13.245
+            ],
+            "lookAt": [
+              0.57,
+              3.886,
+              14.195
+            ],
+            "fov": 78
+          },
+          "key": "0b5076fb7ae49cc387027767d3b0bc470e6c5f391f0eb2b5028fc7a8cce97584"
+        }
+      ]
+    },
+    {
+      "slug": "a400m",
+      "id": "molen.entities.aircraft.a400m",
+      "panel": "satin",
+      "sourceHash": "sha256:a5307decd8aba2dd5a1a8d68008dca84ee749e0c19c08c049352ca9872d4e576",
+      "runtimeHash": "sha256:327e6a9fdf56d9b6d7bb952f9e9e055baff4574847640104aec31b01f9f39c14",
+      "stats": {
+        "triangles": 83025,
+        "vertices": 104862,
+        "meshes": 134,
+        "primitives": 134,
+        "materials": 31,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2669852
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              5.38,
+              17.5
+            ],
+            "lookAt": [
+              0,
+              4.54,
+              19.45
+            ],
+            "fov": 84
+          },
+          "key": "e071304a8564889196df5a526c90d6e29cb0064babe0a29b1a74cf7c2c5cbe97"
+        }
+      ]
+    },
+    {
+      "slug": "airbus-a320neo",
+      "id": "molen.entities.aircraft.airbus_a320neo",
+      "panel": "satin",
+      "sourceHash": "sha256:e5253aaf811927d5fe96ade87c804c2f6b6dd4617db8c6a6586d1010214e15d2",
+      "runtimeHash": "sha256:b2197f614805ae9dbf54aad3bff237bfb806ed8e2c9855102cf1fe5a214a1fe0",
+      "stats": {
+        "triangles": 49666,
+        "vertices": 73027,
+        "meshes": 68,
+        "primitives": 68,
+        "materials": 24,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1884000
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0.57,
+              4.7134,
+              12.849499999999999
+            ],
+            "lookAt": [
+              0.57,
+              4.2934,
+              13.7995
+            ],
+            "fov": 78
+          },
+          "key": "cec13dd435a505b2c8ae2909269bc979da689a2d3b27892d795f91515c386399"
+        }
+      ]
+    },
+    {
+      "slug": "airbus-h125",
+      "id": "molen.entities.aircraft.airbus_h125",
+      "panel": "satin",
+      "sourceHash": "sha256:4c5d86e9f6c436937529f15d60c131fcfede2996397e01782c5399912055141f",
+      "runtimeHash": "sha256:ee8561e518f2d0cf5a8c24ed7a75985d25198f9a91d05dcc04ee9470446141a7",
+      "stats": {
+        "triangles": 22618,
+        "vertices": 35750,
+        "meshes": 62,
+        "primitives": 62,
+        "materials": 30,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1132968
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.98,
+              0.65
+            ],
+            "lookAt": [
+              0,
+              1.55,
+              2
+            ],
+            "fov": 78
+          },
+          "key": "123f0a7f10870f170c99c83a2aa69a2a03cf29d6a271f86dbf5e2be0bc1db5dc"
+        }
+      ]
+    },
+    {
+      "slug": "airbus-h145",
+      "id": "molen.entities.aircraft.airbus_h145",
+      "panel": "satin",
+      "sourceHash": "sha256:2557f6413d13cf548db8e98a994f294e9c9683e14798f8baee12fa50acddfad2",
+      "runtimeHash": "sha256:515dd35ce24d122f950eae61f6490ce52691beb08dc4cc2c104aba92d9736197",
+      "stats": {
+        "triangles": 32992,
+        "vertices": 52786,
+        "meshes": 66,
+        "primitives": 66,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1498612
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.04,
+              0.68
+            ],
+            "lookAt": [
+              0,
+              1.55,
+              2.12
+            ],
+            "fov": 82
+          },
+          "key": "a3bdb0b90926f10c52a1389997f72480b387b5b878eb0a22609f9b34ee9dbec0"
+        }
+      ]
+    },
+    {
+      "slug": "airliner",
+      "id": "molen.entities.aircraft.airliner",
+      "panel": "satin",
+      "sourceHash": "sha256:f9c0ab24215c70091861c5a62366d6e61796e01dff3361d2fcef12c89eb1d8b4",
+      "runtimeHash": "sha256:2baed3324bdd5fc264c73d0e296019be069743b169a6e3e10920500896f24bf6",
+      "stats": {
+        "triangles": 38266,
+        "vertices": 51429,
+        "meshes": 56,
+        "primitives": 56,
+        "materials": 22,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1508908
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0.55,
+              4.65,
+              15.1
+            ],
+            "lookAt": [
+              0.55,
+              4.23,
+              16.05
+            ],
+            "fov": 78
+          },
+          "key": "cc355676c9fb6420a0e4206218910535e8455bca7413723eb6ae9d789104497a"
+        }
+      ]
+    },
+    {
+      "slug": "an-124",
+      "id": "molen.entities.aircraft.an_124",
+      "panel": "satin",
+      "sourceHash": "sha256:e8f1c3e36ff7aba241d9ed4ee3c79a138cb9e06cf70e7af872369f6855ad3983",
+      "runtimeHash": "sha256:a22a22a6f907e8b66c43da70da617d726b74b73426ff120862ee90cb943e302b",
+      "stats": {
+        "triangles": 93175,
+        "vertices": 133494,
+        "meshes": 141,
+        "primitives": 141,
+        "materials": 30,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3329588
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              9.42,
+              26
+            ],
+            "lookAt": [
+              0,
+              8.7,
+              28.4
+            ],
+            "fov": 85
+          },
+          "key": "b5283c8a4a61707ae8f800beb51f4171d189d631fcc8ecf2ce6a81edc5d607a9"
+        }
+      ]
+    },
+    {
+      "slug": "atr-72-600",
+      "id": "molen.entities.aircraft.atr_72_600",
+      "panel": "satin",
+      "sourceHash": "sha256:d11bb0bf82351e2bfe15ec079c3b936fb2830906e1c53a2d8a9f2fe46be70092",
+      "runtimeHash": "sha256:bc695033c9bf298b1421e9c6260658d47c74a36fae68349370ab68c8661e8ed9",
+      "stats": {
+        "triangles": 91554,
+        "vertices": 148672,
+        "meshes": 128,
+        "primitives": 128,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3534360
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              3.18,
+              10.2
+            ],
+            "lookAt": [
+              0,
+              2.5,
+              11.4
+            ],
+            "fov": 91
+          },
+          "key": "5e15098d878dfc960fbb057e13045e82b598fd3a399cb4997844160390fef3b1"
+        }
+      ]
+    },
+    {
+      "slug": "av-8b",
+      "id": "molen.entities.aircraft.av_8b",
+      "panel": "satin",
+      "sourceHash": "sha256:a015aa06695a688e2641f469f80eca74a953d519961532ef4d77adf08722f07b",
+      "runtimeHash": "sha256:56d047cdc36757c469a438a16089109c55ede45da89048d893413a81c6b091d2",
+      "stats": {
+        "triangles": 78589,
+        "vertices": 132219,
+        "meshes": 123,
+        "primitives": 123,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3066656
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              3.12,
+              3.92
+            ],
+            "lookAt": [
+              0,
+              2.44,
+              4.75
+            ],
+            "fov": 78
+          },
+          "key": "da3e4e0012297ef1bd60eaf5d789205c9ef7de3c5c3e88cb5361175a64835084"
+        }
+      ]
+    },
+    {
+      "slug": "aw139",
+      "id": "molen.entities.aircraft.aw139",
+      "panel": "satin",
+      "sourceHash": "sha256:4f0259073d38acdbcd15006ca614b7fb7dfc5e75c06ac73b2832492e86984da7",
+      "runtimeHash": "sha256:5e7545c9ce8a7dd3fa711c2eafd364b091094e38f45afa53a4e24a2c989a6612",
+      "stats": {
+        "triangles": 48826,
+        "vertices": 74222,
+        "meshes": 122,
+        "primitives": 122,
+        "materials": 29,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1960224
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.88,
+              1.47
+            ],
+            "lookAt": [
+              0,
+              1.35,
+              2.88
+            ],
+            "fov": 86
+          },
+          "key": "78eb573178aaa278c598bb7af987f27d599fac844ff2fb336619f92fb2651aaa"
+        }
+      ]
+    },
+    {
+      "slug": "baron-g58",
+      "id": "molen.entities.aircraft.baron_g58",
+      "panel": "satin",
+      "sourceHash": "sha256:ba213c53502f844ebbc27e2ced3338a3f85e204bb2b6477fa46018687c2c9b7e",
+      "runtimeHash": "sha256:4e0bfb432ee93b9c4dd13d1697f4d49a5cbe84c8d7c3a1194c2e43cfaf85e886",
+      "stats": {
+        "triangles": 73236,
+        "vertices": 109070,
+        "meshes": 152,
+        "primitives": 152,
+        "materials": 29,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2656212
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.78,
+              -0.25
+            ],
+            "lookAt": [
+              0,
+              1.45,
+              1.12
+            ],
+            "fov": 74
+          },
+          "key": "679b65d1d4eacceaf6b50bb453ef02e2551f94fb81b49b2cc108672842c85819"
+        },
+        {
+          "kind": "quadrant",
+          "camera": {
+            "position": [
+              0.3,
+              1.65,
+              0.78
+            ],
+            "lookAt": [
+              -0.02,
+              1.25,
+              0.95
+            ],
+            "fov": 65
+          },
+          "key": "5d2f7324505601641f57ab3027bbe9346e9ec7dc26ca3bdd3a228ea758c2a5d1"
+        }
+      ]
+    },
+    {
+      "slug": "beech-18",
+      "id": "molen.entities.aircraft.beech_18",
+      "panel": "panel",
+      "sourceHash": "sha256:129fadc29399de355a15421a67cf404ae920b07fef3e3d0d759af1c8eb9a7470",
+      "runtimeHash": "sha256:182222bcec31b081e355cf6fb8e9b70a2dcdbe6bdffcef8ccdc395d3c5497aa9",
+      "stats": {
+        "triangles": 91502,
+        "vertices": 136595,
+        "meshes": 151,
+        "primitives": 151,
+        "materials": 29,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3195464
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.4851834404198954,
+              1.6793330132847202
+            ],
+            "lookAt": [
+              0,
+              2.1453016244099703,
+              3.0326180354237353
+            ],
+            "fov": 85
+          },
+          "key": "fc0365a77c2b373ee90b8794167b235822fb96917a738b2858247c5e414ac627"
+        }
+      ]
+    },
+    {
+      "slug": "bell-206b",
+      "id": "molen.entities.aircraft.bell_206b",
+      "panel": "panel",
+      "sourceHash": "sha256:904542601cdb8b159085eef589c55f27f2c452dbbb6d5e7c6b43785c92eee520",
+      "runtimeHash": "sha256:c5f33dde8ddcdc712a4ba03eb5689f46a36f80148bc55c5136966b1ffa36f6fc",
+      "stats": {
+        "triangles": 43712,
+        "vertices": 69344,
+        "meshes": 47,
+        "primitives": 47,
+        "materials": 17,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2038892
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0,
+              1.53,
+              0.35
+            ],
+            "lookAt": [
+              0,
+              1.12,
+              1.63
+            ],
+            "fov": 75
+          },
+          "key": "9b964a5ca977a75b7d29125ef80c64d1562733423f47709c7986c089ce38a394"
+        }
+      ]
+    },
+    {
+      "slug": "bell-407",
+      "id": "molen.entities.aircraft.bell_407",
+      "panel": "satin",
+      "sourceHash": "sha256:7e7d8c3db22b648c49f741e669edf938c5a828d15328ba7e1e4006f29fbfd1a1",
+      "runtimeHash": "sha256:16f156440192c4a5a0b7e9df32b6a7f207bcc6444cb02db80dbd98a5cffec9c7",
+      "stats": {
+        "triangles": 14896,
+        "vertices": 21275,
+        "meshes": 54,
+        "primitives": 54,
+        "materials": 29,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 855340
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0,
+              1.54,
+              0.35
+            ],
+            "lookAt": [
+              0,
+              1.14,
+              1.5
+            ],
+            "fov": 76
+          },
+          "key": "0d0f447ccdbcd1182fb9224dc614d0c38e8606ac4af21b44e9888105de8f74ed"
+        }
+      ]
+    },
+    {
+      "slug": "bell-412ep",
+      "id": "molen.entities.aircraft.bell_412ep",
+      "panel": "satin",
+      "sourceHash": "sha256:0a976b7325ae49fa447f4fa1290440cdaa9b0f2624a4338b1bfdc8d3c675caf5",
+      "runtimeHash": "sha256:fb70ab64f5e0050dec33248bb72de70aa249e13fa7b61e9abf0a7edf1761f6ce",
+      "stats": {
+        "triangles": 62792,
+        "vertices": 94982,
+        "meshes": 76,
+        "primitives": 76,
+        "materials": 26,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2376656
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.8,
+              0.32
+            ],
+            "lookAt": [
+              0,
+              1.35,
+              2.9
+            ],
+            "fov": 80
+          },
+          "key": "679d92d4ff89b80e3716455e97cda82079661f35c69f6b87f66fc77047a5df74"
+        }
+      ]
+    },
+    {
+      "slug": "boeing-737-800",
+      "id": "molen.entities.aircraft.boeing_737_800",
+      "panel": "satin",
+      "sourceHash": "sha256:9b2f93f0a548bafb68ea652fe599460774805a48d30a5f19257a89469c896b7c",
+      "runtimeHash": "sha256:f5eb115bc3d494c84698e01d79dc3166e19c366c249d76307efcdc4d9b1fd793",
+      "stats": {
+        "triangles": 49510,
+        "vertices": 72719,
+        "meshes": 67,
+        "primitives": 67,
+        "materials": 24,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1879972
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0.57,
+              4.64936,
+              13.514499999999998
+            ],
+            "lookAt": [
+              0.57,
+              4.22936,
+              14.4645
+            ],
+            "fov": 78
+          },
+          "key": "dab124a75799f069036bbc56b9e19a9d65bb71d27e7c3b90d0a705c401c0c9cc"
+        }
+      ]
+    },
+    {
+      "slug": "bonanza-g36",
+      "id": "molen.entities.aircraft.bonanza_g36",
+      "panel": "satin",
+      "sourceHash": "sha256:28b45449efd2961bd5f08312ca1f67dce027e597bb005982a7e90591ffd4024d",
+      "runtimeHash": "sha256:609d6152c22df92e3626339b508c9356c7c1249584b80d0f858947fdd6fbad16",
+      "stats": {
+        "triangles": 67972,
+        "vertices": 100748,
+        "meshes": 142,
+        "primitives": 142,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2454004
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.78,
+              -0.25
+            ],
+            "lookAt": [
+              0,
+              1.45,
+              1.12
+            ],
+            "fov": 74
+          },
+          "key": "804fc3dd1234bd90d6c34d6077d3134f2c1c82ac635ab34b87fc1e35b9745504"
+        }
+      ]
+    },
+    {
+      "slug": "c-130j",
+      "id": "molen.entities.aircraft.c_130j",
+      "panel": "satin",
+      "sourceHash": "sha256:a9e1c7796ffeb62ba674fc898b51eb5223bf7b785116b6918a9bd30e4ffa81f3",
+      "runtimeHash": "sha256:34335fcacce07dfa71d6a768e8b7724a2875f832640cf4f3228be33ebe1d881e",
+      "stats": {
+        "triangles": 93689,
+        "vertices": 128756,
+        "meshes": 132,
+        "primitives": 132,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3210576
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              4.38,
+              10
+            ],
+            "lookAt": [
+              0,
+              3.58,
+              11.42
+            ],
+            "fov": 84
+          },
+          "key": "132318da7f58c99fea094e15e130ee947935b20232e66d59bfd449cbcf6220e0"
+        }
+      ]
+    },
+    {
+      "slug": "c-17a",
+      "id": "molen.entities.aircraft.c_17a",
+      "panel": "satin",
+      "sourceHash": "sha256:5820b3d181bc119bd02f52e6fcb8764e1e60e89c8cb4ea06284aaeeeaad78e45",
+      "runtimeHash": "sha256:d3b30f305c9f1a795efdd6b2d44f617ed665414b325366189940411aefeda564",
+      "stats": {
+        "triangles": 86059,
+        "vertices": 115497,
+        "meshes": 143,
+        "primitives": 143,
+        "materials": 30,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2953920
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              5.55,
+              21.5
+            ],
+            "lookAt": [
+              0,
+              4.7,
+              23.38
+            ],
+            "fov": 82
+          },
+          "key": "e4fd39f2f0a19e4d347dd119abd1b2fabb460fa8f59a819f8fb1607c41f04698"
+        }
+      ]
+    },
+    {
+      "slug": "c-5m",
+      "id": "molen.entities.aircraft.c_5m",
+      "panel": "satin",
+      "sourceHash": "sha256:1b69cfa4ddbf6ba3119f69804875f3790ba4ff7d7fdc2738df400f87e5ace8d1",
+      "runtimeHash": "sha256:d88d0142dd72d99e9b68e66fa34fc8d4ffe49d03a78845424475399fe52374fc",
+      "stats": {
+        "triangles": 86509,
+        "vertices": 123890,
+        "meshes": 144,
+        "primitives": 144,
+        "materials": 30,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3039876
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              8.94,
+              29.8
+            ],
+            "lookAt": [
+              0,
+              8.06,
+              32
+            ],
+            "fov": 85
+          },
+          "key": "f264d0f20a1788b1666ea1f946edd842510dc7d82e7b95504400b4dfbd72738c"
+        }
+      ]
+    },
+    {
+      "slug": "cessna-172s",
+      "id": "molen.entities.aircraft.cessna_172s",
+      "panel": "panel",
+      "sourceHash": "sha256:30cbe3f2ee5cf47c392bccfaf0353c46c540d69bcbc4f4b5a21c1daa22052516",
+      "runtimeHash": "sha256:622f595a2dbf4335dcbb27884eba5541b2857535f588fc0066fa29ae712905aa",
+      "stats": {
+        "triangles": 59222,
+        "vertices": 88946,
+        "meshes": 115,
+        "primitives": 115,
+        "materials": 31,
+        "textures": 15,
+        "animations": 0,
+        "sizeBytes": 2583184
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber",
+        "vinyl",
+        "webbing"
+      ],
+      "embeddedTextureBytes": 724905,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.69,
+              -0.22
+            ],
+            "lookAt": [
+              0,
+              1.2,
+              1.1
+            ],
+            "fov": 77
+          },
+          "key": "46ae402f4ab44b4748a009968c27c93e45b323c0842761414a34ef5f9909d19f"
+        },
+        {
+          "kind": "panel",
+          "camera": {
+            "position": [
+              0,
+              1.47,
+              0.44
+            ],
+            "lookAt": [
+              0,
+              1.32,
+              1.1
+            ],
+            "fov": 70
+          },
+          "key": "7a9c84a260514526fbb731d75879903515e15a8ea62e3800965e425d9ed1329f"
+        },
+        {
+          "kind": "seat",
+          "camera": {
+            "position": [
+              0,
+              1.57,
+              0.78
+            ],
+            "lookAt": [
+              0,
+              0.98,
+              -0.05
+            ],
+            "fov": 65
+          },
+          "key": "60a9f25cc12c5c6c9a3d0f63b53a43bd38fc0ba8605025efbfc3a41be4420e88"
+        }
+      ]
+    },
+    {
+      "slug": "cessna-182t",
+      "id": "molen.entities.aircraft.cessna_182t",
+      "panel": "panel",
+      "sourceHash": "sha256:3fdbc9bff50f9452e40e0e316c447cdc830ea5a4dd93e46ba8dbc3045872d2fd",
+      "runtimeHash": "sha256:156ca1341c072f80f6dbc1f85af40c881539a3ad6c5667ed7132995a4d2b87a9",
+      "stats": {
+        "triangles": 59446,
+        "vertices": 90146,
+        "meshes": 117,
+        "primitives": 117,
+        "materials": 27,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2445108
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.7,
+              -0.25
+            ],
+            "lookAt": [
+              0,
+              1.22,
+              1.5
+            ],
+            "fov": 74
+          },
+          "key": "e4a0e6e6e81b207ec4a6092f781f9359698611f1b8608dbea8f81afc686acb1e"
+        },
+        {
+          "kind": "panel",
+          "camera": {
+            "position": [
+              0,
+              1.7,
+              0.68
+            ],
+            "lookAt": [
+              0,
+              1.42,
+              1.5
+            ],
+            "fov": 70
+          },
+          "key": "4ea8805ac9a688194f481d984a0df138d3106332e8fabdd1a2ab3abcfe07de5c"
+        }
+      ]
+    },
+    {
+      "slug": "cessna-208b",
+      "id": "molen.entities.aircraft.cessna_208b",
+      "panel": "panel",
+      "sourceHash": "sha256:1beb66f5fd19206f5b34f393f0286c43ed0ba3b531d67b7a27613d43520e121c",
+      "runtimeHash": "sha256:af453aad1dbbea93d32443204416003552dd3b7101d31896254a7554f62c4ac0",
+      "stats": {
+        "triangles": 67824,
+        "vertices": 105018,
+        "meshes": 128,
+        "primitives": 128,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2830272
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.61,
+              0.76
+            ],
+            "lookAt": [
+              0,
+              2.05,
+              2.45
+            ],
+            "fov": 77
+          },
+          "key": "537d812e2998e1c17cec123d4ac4b8774ce1f9925a853665397a423314f98a0b"
+        }
+      ]
+    },
+    {
+      "slug": "ch-47f",
+      "id": "molen.entities.aircraft.ch_47f",
+      "panel": "satin",
+      "sourceHash": "sha256:d127096dc2befe6e666d33da6c770ff12fdc4a4d3218cc7c8d05bed009de6996",
+      "runtimeHash": "sha256:be9b1111338a3db334d26f731e3cd01a6f1f0b8896d91dd50922e6ce0cafbd8b",
+      "stats": {
+        "triangles": 72519,
+        "vertices": 105146,
+        "meshes": 90,
+        "primitives": 90,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2603812
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.58,
+              5.45
+            ],
+            "lookAt": [
+              0,
+              2.03,
+              6.72
+            ],
+            "fov": 91
+          },
+          "key": "4ad81d8379830981d3e470a7a4de2427dfd24b0ff9f29f6f9df1b0447ebca04f"
+        }
+      ]
+    },
+    {
+      "slug": "cirrus-sr22t",
+      "id": "molen.entities.aircraft.cirrus_sr22t",
+      "panel": "satin",
+      "sourceHash": "sha256:767c78ea0ff5981e4941a1a27662818a5c1cbcfffde07076e13a99de55c16cbf",
+      "runtimeHash": "sha256:20985f2f4dabca95669732b3300da8895fa9c2535a482f594ffcd7e58ca71493",
+      "stats": {
+        "triangles": 50138,
+        "vertices": 84712,
+        "meshes": 127,
+        "primitives": 127,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2067952
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0.03,
+              1.92,
+              0.12
+            ],
+            "lookAt": [
+              0.05,
+              1.4,
+              1.16
+            ],
+            "fov": 77
+          },
+          "key": "dbb491ecc4650e4215dff3b25e0eea187c77f991892ac0bfd72d4ea8a8ecf2be"
+        }
+      ]
+    },
+    {
+      "slug": "citation-cj4",
+      "id": "molen.entities.aircraft.citation_cj4",
+      "panel": "satin",
+      "sourceHash": "sha256:ac007efc3f7fb55d2cbb98f4d64ab8daaeec8d6b07b73d3f97178b34bd8d348c",
+      "runtimeHash": "sha256:827a0eab436bb870ed3cfaa5ebdc5f5b1189729bd0e607ddaf2294b2e5058100",
+      "stats": {
+        "triangles": 46306,
+        "vertices": 67940,
+        "meshes": 65,
+        "primitives": 65,
+        "materials": 24,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1786444
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0.30561299999999997,
+              1.87892,
+              5.391
+            ],
+            "lookAt": [
+              0.30561299999999997,
+              1.45892,
+              6.341
+            ],
+            "fov": 78
+          },
+          "key": "83c9e1161e74ebad9479baa5c28be4e7267e0867e9ea8d02679855ead291fc96"
+        }
+      ]
+    },
+    {
+      "slug": "dash-8-q400",
+      "id": "molen.entities.aircraft.dash_8_q400",
+      "panel": "satin",
+      "sourceHash": "sha256:40cedead9b00dc0c86843eb98a0e802c92d61f7766962685242917e60b7d2464",
+      "runtimeHash": "sha256:3082b6d9ca7bbeff00bad61f002e3d5e976e03a1b54d85082d98c481fc9e2da8",
+      "stats": {
+        "triangles": 51042,
+        "vertices": 73439,
+        "meshes": 69,
+        "primitives": 69,
+        "materials": 25,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1909524
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0.559251,
+              3.2520399999999996,
+              11.193999999999999
+            ],
+            "lookAt": [
+              0.559251,
+              2.8320399999999997,
+              12.144
+            ],
+            "fov": 78
+          },
+          "key": "7482e5dfb8ce0ace333de5c2567bff1a0383196d7fd0fccee035304c1f089afa"
+        }
+      ]
+    },
+    {
+      "slug": "dc-3",
+      "id": "molen.entities.aircraft.dc_3",
+      "panel": "panel",
+      "sourceHash": "sha256:934213bb13a4b9cad51f1d904b3e480ccec74e5b7d2b30a2aa9cd7cd511e535b",
+      "runtimeHash": "sha256:da8ff0f4ef5f4c37596928dca2601df263c500da20653b6a44913ccfea58b9c3",
+      "stats": {
+        "triangles": 97357,
+        "vertices": 148456,
+        "meshes": 146,
+        "primitives": 146,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3527780
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              3.8829997496964506,
+              5.063831193360985
+            ],
+            "lookAt": [
+              0,
+              4.221925238205685,
+              6.729703191216395
+            ],
+            "fov": 82
+          },
+          "key": "b36b7320b6fd17e45fbd580f9a4a7c499e837ac455c93b37461737b0ee0c42a0"
+        }
+      ]
+    },
+    {
+      "slug": "dhc-2",
+      "id": "molen.entities.aircraft.dhc_2",
+      "panel": "panel",
+      "sourceHash": "sha256:b5d6aa90fedbb085a2becaeeeeeea8f4e2d0b77e62666b238c389c5591ade416",
+      "runtimeHash": "sha256:a9735fb8fd56fb8ca2b7ebb969208e38f24396a92a8fea6a7d7ad965cb1dc0f6",
+      "stats": {
+        "triangles": 59965,
+        "vertices": 87485,
+        "meshes": 116,
+        "primitives": 116,
+        "materials": 27,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2419120
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.012182811955787,
+              1.2588949328072176
+            ],
+            "lookAt": [
+              0,
+              1.81248974955823,
+              2.802501968561553
+            ],
+            "fov": 86
+          },
+          "key": "c43c62922836e58d80889e5cb90d8f76eee70aa5a23cfb1fd27a6bac2f26826a"
+        }
+      ]
+    },
+    {
+      "slug": "dhc-6",
+      "id": "molen.entities.aircraft.dhc_6",
+      "panel": "panel",
+      "sourceHash": "sha256:5c2d5af87ffe6b0c1418f52d6d3044bb6a19ed4d9be45a2cfc306e95f14a8bd2",
+      "runtimeHash": "sha256:b494c17254090a78f5e0ab3504ed323f053618973ef0dd1f42b2ea784e7e3cbb",
+      "stats": {
+        "triangles": 73406,
+        "vertices": 104498,
+        "meshes": 107,
+        "primitives": 107,
+        "materials": 26,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2821016
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.55,
+              3.55
+            ],
+            "lookAt": [
+              0,
+              1.98,
+              5.28
+            ],
+            "fov": 74
+          },
+          "key": "a1cf632be2cd241d0a9a6b456d620b34227ec15283f097c3482a7363887d10ab"
+        }
+      ]
+    },
+    {
+      "slug": "diamond-da42",
+      "id": "molen.entities.aircraft.diamond_da42",
+      "panel": "satin",
+      "sourceHash": "sha256:2bab0d3d24048cfd2bc9ea8608d4f1fb4f85ea45c274cbde5b4b8fa5e678486f",
+      "runtimeHash": "sha256:b49e63c61d5f2d25f1ed71ef32342aaf1060d91db1ff0427f5a9d712ca0f32af",
+      "stats": {
+        "triangles": 60444,
+        "vertices": 102916,
+        "meshes": 138,
+        "primitives": 138,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2504276
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.82,
+              -0.15
+            ],
+            "lookAt": [
+              0,
+              1.22,
+              1.1
+            ],
+            "fov": 78
+          },
+          "key": "36d448623a8082128798f3135a567f9dcba3b01586861e6cd1737bf3a23bbd01"
+        }
+      ]
+    },
+    {
+      "slug": "embraer-e175",
+      "id": "molen.entities.aircraft.embraer_e175",
+      "panel": "satin",
+      "sourceHash": "sha256:ae700d368ffe7abc3bbe2dc7c8d65ae6be462f0f4b0c2f47fc0a71d2440a0142",
+      "runtimeHash": "sha256:b6388bf51fe011f9bbbf169ec7eae366d55688deca4890ed42faae88ea6da778",
+      "stats": {
+        "triangles": 48838,
+        "vertices": 71437,
+        "meshes": 67,
+        "primitives": 67,
+        "materials": 24,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1853684
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0.57,
+              3.6995599999999995,
+              10.787999999999998
+            ],
+            "lookAt": [
+              0.57,
+              3.2795599999999996,
+              11.738
+            ],
+            "fov": 78
+          },
+          "key": "4205b899cb3154caa984b5147f91a378e00c6422ab57649a5bab0d7ce04b7c6b"
+        }
+      ]
+    },
+    {
+      "slug": "f-14d",
+      "id": "molen.entities.aircraft.f_14d",
+      "panel": "satin",
+      "sourceHash": "sha256:cf9ae61aaff0acd4d332f8ea39b1eea030c9fb9c5019474dc8ec8c90c7d4296b",
+      "runtimeHash": "sha256:c5cb028cbb19cb3954daa5fe8e52ef3f638ca695cf764681b0bf14672055e5a8",
+      "stats": {
+        "triangles": 93123,
+        "vertices": 155123,
+        "meshes": 163,
+        "primitives": 163,
+        "materials": 27,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3298900
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              3.33,
+              7.58
+            ],
+            "lookAt": [
+              0,
+              2.82,
+              8.28
+            ],
+            "fov": 78
+          },
+          "key": "d1abc9dfa9d01d60319bd43fcc7c875aa153a9d8a5937e1e7ec797cfd1061e2b"
+        }
+      ]
+    },
+    {
+      "slug": "f-15c",
+      "id": "molen.entities.aircraft.f_15c",
+      "panel": "satin",
+      "sourceHash": "sha256:2db8aa1dbfafa00e162b279ea036fd6fe02ad089628d99b52a182d47bafba693",
+      "runtimeHash": "sha256:98056f920742473688f1819129f02e5e61fb8a81a7929e29cb8955cc9f36169b",
+      "stats": {
+        "triangles": 70875,
+        "vertices": 112522,
+        "meshes": 119,
+        "primitives": 119,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2697548
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              3.34,
+              6.55
+            ],
+            "lookAt": [
+              0,
+              2.87,
+              7.42
+            ],
+            "fov": 77
+          },
+          "key": "2706a91984fef600a832e466eb51ff3ff826649a9d61c7cec41a766db5b77d98"
+        }
+      ]
+    },
+    {
+      "slug": "f-16b",
+      "id": "molen.entities.aircraft.f_16b",
+      "panel": "satin",
+      "sourceHash": "sha256:58fade6587cb05ee522a5256f770914aa7878ae942d33eebca7a12b583b02567",
+      "runtimeHash": "sha256:2470ba42a2cbc65ed24cb1791604ec0b855dd7b3c6bb09045637d71c8de67e26",
+      "stats": {
+        "triangles": 75776,
+        "vertices": 112840,
+        "meshes": 118,
+        "primitives": 118,
+        "materials": 29,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2515704
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.91,
+              4.65
+            ],
+            "lookAt": [
+              0,
+              2.28,
+              5.54
+            ],
+            "fov": 77
+          },
+          "key": "e9713942f30bfa935079a53570889c36d206b4dcdf6d1bff09ab49a74e20f494"
+        }
+      ]
+    },
+    {
+      "slug": "f-22a",
+      "id": "molen.entities.aircraft.f_22a",
+      "panel": "satin",
+      "sourceHash": "sha256:72d285810abbe4fdda052c29f4534b6d217cc0d891aaba6fa866862bebae6f99",
+      "runtimeHash": "sha256:0286db96caacf38364ce339932425233da98b36e1485828df796f117a0b2dc80",
+      "stats": {
+        "triangles": 36981,
+        "vertices": 63045,
+        "meshes": 85,
+        "primitives": 85,
+        "materials": 23,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1677416
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              3.04,
+              7.3
+            ],
+            "lookAt": [
+              0,
+              2.5,
+              8.12
+            ],
+            "fov": 82
+          },
+          "key": "2ffeddbbceae5a7f7325c851809e89283321a6df700d84953538cfbdc04199b2"
+        }
+      ]
+    },
+    {
+      "slug": "f-35a",
+      "id": "molen.entities.aircraft.f_35a",
+      "panel": "satin",
+      "sourceHash": "sha256:c7144e1280b4db320739ba7033d73a767c4a937863b44d9a369179b79f28ef64",
+      "runtimeHash": "sha256:a197b82dd78067f18cc4497bcfa7fe96dcbd2250d7ff1e53455b870006a80def",
+      "stats": {
+        "triangles": 31619,
+        "vertices": 52981,
+        "meshes": 80,
+        "primitives": 80,
+        "materials": 26,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1450128
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.94,
+              5.7
+            ],
+            "lookAt": [
+              0,
+              2.42,
+              6.55
+            ],
+            "fov": 78
+          },
+          "key": "9ad40b862d776765d95141c0fe885e6474b3a0b5660e0ef9a22f74423e3c33ab"
+        }
+      ]
+    },
+    {
+      "slug": "fa-18c",
+      "id": "molen.entities.aircraft.fa_18c",
+      "panel": "satin",
+      "sourceHash": "sha256:820a2cd3a9e94aa700d4c743908cb73d4da257d6132caa34dbe240301d5aac1c",
+      "runtimeHash": "sha256:ab728a547ace7fd3d9a2bc7e179f836e75f06e92e05eb66f4022f42c47f78ad8",
+      "stats": {
+        "triangles": 66749,
+        "vertices": 112128,
+        "meshes": 104,
+        "primitives": 104,
+        "materials": 26,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2671524
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.98,
+              5.7
+            ],
+            "lookAt": [
+              0,
+              2.45,
+              6.65
+            ],
+            "fov": 82
+          },
+          "key": "7244094dc070be95e570415a88b6b036c40d706485178112eb44ffcb60931596"
+        }
+      ]
+    },
+    {
+      "slug": "gripen-c",
+      "id": "molen.entities.aircraft.gripen_c",
+      "panel": "satin",
+      "sourceHash": "sha256:2bdf561a727fd9007721d80807bacb60ce250a0a3bdec09df188e65b10a36265",
+      "runtimeHash": "sha256:cc1e7dabc3aa82fdcea176ef8c7c5faccc9c38c29f4c07172b9fd89d1a374570",
+      "stats": {
+        "triangles": 35773,
+        "vertices": 58506,
+        "meshes": 81,
+        "primitives": 81,
+        "materials": 25,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1610808
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.48,
+              2.9
+            ],
+            "lookAt": [
+              0,
+              2.03,
+              3.85
+            ],
+            "fov": 74
+          },
+          "key": "d55aa23e02b6a4526654ecb465315cd8c92adb54f9e26e69bfc015973739e1f8"
+        }
+      ]
+    },
+    {
+      "slug": "gulfstream-g650er",
+      "id": "molen.entities.aircraft.gulfstream_g650er",
+      "panel": "satin",
+      "sourceHash": "sha256:31ac47d5caecdc59f77459c989d885e5d6ec22cc7f392fe5be04e0e747debfd0",
+      "runtimeHash": "sha256:708436a4b188dab2bf93263ee4142c7539beab14c1bdd2d9680d57570c20a982",
+      "stats": {
+        "triangles": 49258,
+        "vertices": 72353,
+        "meshes": 67,
+        "primitives": 67,
+        "materials": 24,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1870596
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0.5384610000000001,
+              3.10364,
+              10.343499999999999
+            ],
+            "lookAt": [
+              0.5384610000000001,
+              2.68364,
+              11.2935
+            ],
+            "fov": 78
+          },
+          "key": "0ecb4f1bcae3856b60084c0adf2edb48e1e2c06641eb639e43c56da40fc0b4c0"
+        }
+      ]
+    },
+    {
+      "slug": "king-air-350i",
+      "id": "molen.entities.aircraft.king_air_350i",
+      "panel": "satin",
+      "sourceHash": "sha256:6a65390e4176ebceb9df07a7a39f21137927c6d1694c599bcf6a3864ab6cd07d",
+      "runtimeHash": "sha256:7a5b32bacf47bdef57cf0705ad09aa921da9f313f8dd06109a1c2743be011fe5",
+      "stats": {
+        "triangles": 91709,
+        "vertices": 134680,
+        "meshes": 144,
+        "primitives": 144,
+        "materials": 30,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3271480
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.42,
+              1.38
+            ],
+            "lookAt": [
+              0,
+              1.97,
+              2.55
+            ],
+            "fov": 76
+          },
+          "key": "393e0934849b870a02621770be34467e15fa6362c7d43f2f2a84f98df7c758b3"
+        }
+      ]
+    },
+    {
+      "slug": "mig-29a",
+      "id": "molen.entities.aircraft.mig_29a",
+      "panel": "satin",
+      "sourceHash": "sha256:163c490275ac62be653d31313e996aad28e85f2772f021e7681cc6915239dc91",
+      "runtimeHash": "sha256:ed03c66736d9d00d879f587095eff7ea4cd46c0b0e9b1baf9387d600f907c77d",
+      "stats": {
+        "triangles": 68138,
+        "vertices": 93186,
+        "meshes": 101,
+        "primitives": 101,
+        "materials": 26,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2398556
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              3.05,
+              3.4
+            ],
+            "lookAt": [
+              0,
+              2.43,
+              4.2
+            ],
+            "fov": 76
+          },
+          "key": "4a310b1e0b98baa259536cb9173af93b69ae3cc333990426fb48516511f0e9dd"
+        },
+        {
+          "kind": "panel",
+          "camera": {
+            "position": [
+              0,
+              2.85,
+              3.65
+            ],
+            "lookAt": [
+              0,
+              2.6,
+              4.2
+            ],
+            "fov": 65
+          },
+          "key": "d9416d17ce846b8d4634d439c6c51653061b70fb27f35399d7c57e6511dfc4ef"
+        },
+        {
+          "kind": "canopy",
+          "camera": {
+            "position": [
+              2.5,
+              3.8,
+              7.5
+            ],
+            "lookAt": [
+              0,
+              2.6,
+              3.8
+            ],
+            "fov": 46
+          },
+          "key": "e9799979f1eec5610f7913a4eb1523a948a9fb5756dffe841d4f4c79e1e1c0c9"
+        },
+        {
+          "kind": "intake",
+          "camera": {
+            "position": [
+              3.6,
+              2.7,
+              6
+            ],
+            "lookAt": [
+              1.1,
+              1.6,
+              0.6
+            ],
+            "fov": 44
+          },
+          "key": "5556eb14e96d15546d4f0007d2e2206146ed3611ef7d299cdcb719b95798bba8"
+        },
+        {
+          "kind": "nozzle",
+          "camera": {
+            "position": [
+              3.2,
+              2.5,
+              -9.7
+            ],
+            "lookAt": [
+              1.1,
+              1.6,
+              -5.2
+            ],
+            "fov": 44
+          },
+          "key": "56bac3520e8580a908716a41232b4e9def5fe7d3103c6318fdfa9187b2c1490e"
+        }
+      ]
+    },
+    {
+      "slug": "mv-22b",
+      "id": "molen.entities.aircraft.mv_22b",
+      "panel": "satin",
+      "sourceHash": "sha256:c485c0a826297f5bc168067a687189db8ea446a40f04bb1db43c79e9e93789d6",
+      "runtimeHash": "sha256:fcc94fae09e0fd0b72993104c2d7d5d4af735adc3c9f29d8d5eeb0162ffd3bbe",
+      "stats": {
+        "triangles": 85742,
+        "vertices": 138012,
+        "meshes": 140,
+        "primitives": 140,
+        "materials": 27,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 3202712
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.62,
+              4.95
+            ],
+            "lookAt": [
+              0,
+              1.95,
+              6.65
+            ],
+            "fov": 80
+          },
+          "key": "47052856d0b07bc6febaa64c25ca3b4fdb8038b8acb341f8a4fa042a3f181520"
+        }
+      ]
+    },
+    {
+      "slug": "oh-6",
+      "id": "molen.entities.aircraft.oh6",
+      "panel": "panel",
+      "sourceHash": "sha256:28ecb952f99769231950dd32a9bb1e5aadc108c638f44b62594b11890ee36720",
+      "runtimeHash": "sha256:5c0c38c0445fd3110280dd55082adf6693bcb96b4e4bb96fce82c7de3fe9eefd",
+      "stats": {
+        "triangles": 43042,
+        "vertices": 35087,
+        "meshes": 276,
+        "primitives": 276,
+        "materials": 32,
+        "textures": 21,
+        "animations": 0,
+        "sizeBytes": 1741864
+      },
+      "finishes": [
+        "brushed",
+        "canvas",
+        "paint",
+        "panel",
+        "rubber",
+        "vinyl",
+        "webbing"
+      ],
+      "embeddedTextureBytes": 906416,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              -0.38,
+              1.7,
+              0.3
+            ],
+            "lookAt": [
+              -0.38,
+              1.28,
+              1.25
+            ],
+            "fov": 78
+          },
+          "key": "0b91b428f2d0c94c539287f914866f41110685472c42cc3979d46dc0fa38c0c1"
+        },
+        {
+          "kind": "panel",
+          "camera": {
+            "position": [
+              0,
+              1.48,
+              0.65
+            ],
+            "lookAt": [
+              0,
+              1.32,
+              1.32
+            ],
+            "fov": 70
+          },
+          "key": "7bc026ef103756ae676d22bfa2309db6f3eed8998492c90dd070f9ba7b9e18ea"
+        },
+        {
+          "kind": "seat",
+          "camera": {
+            "position": [
+              0,
+              1.7,
+              1.08
+            ],
+            "lookAt": [
+              0,
+              1.08,
+              0.2
+            ],
+            "fov": 65
+          },
+          "key": "1365122d1360003cfe9cf470eb96cc9461db1a496c412df59a29c6e1d0ae9620"
+        },
+        {
+          "kind": "horizon",
+          "camera": {
+            "position": [
+              0.325,
+              1.5,
+              1.0670000000000002
+            ],
+            "lookAt": [
+              0.27,
+              1.475,
+              1.312
+            ],
+            "fov": 46
+          },
+          "key": "093cd338868db46a5babbf292114a54bcb2cd99ba8e7028efbffb6ff08c7f3ae"
+        }
+      ]
+    },
+    {
+      "slug": "p-51",
+      "id": "molen.entities.aircraft.p51d",
+      "panel": "panel",
+      "sourceHash": "sha256:ae48d2724ec8b832ad94390832c942eb2ab8883cf22a1e37515512a623b526cf",
+      "runtimeHash": "sha256:65236ac65e60b916121b03bfd40ceb7a97e2c69e2f858ed130662e08538940e1",
+      "stats": {
+        "triangles": 55894,
+        "vertices": 53883,
+        "meshes": 334,
+        "primitives": 334,
+        "materials": 37,
+        "textures": 21,
+        "animations": 0,
+        "sizeBytes": 2147376
+      },
+      "finishes": [
+        "brushed",
+        "canvas",
+        "paint",
+        "panel",
+        "rubber",
+        "vinyl",
+        "webbing"
+      ],
+      "embeddedTextureBytes": 906416,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0,
+              2.28,
+              -0.25
+            ],
+            "lookAt": [
+              0,
+              1.8599999999999999,
+              0.7000000000000001
+            ],
+            "fov": 78
+          },
+          "key": "31cad79f6cd7d7b59ded05bd18838685bf890abe9b369e9de3e3a8694296f1eb"
+        },
+        {
+          "kind": "panel",
+          "camera": {
+            "position": [
+              0,
+              2.05,
+              0.2
+            ],
+            "lookAt": [
+              0,
+              1.9,
+              0.8
+            ],
+            "fov": 70
+          },
+          "key": "5e60074a2a47c61f2c02977d91e84ff501416d036ed36b7da1b3f78afe722bd4"
+        },
+        {
+          "kind": "seat",
+          "camera": {
+            "position": [
+              0,
+              2.12,
+              0.57
+            ],
+            "lookAt": [
+              0,
+              1.77,
+              -0.25
+            ],
+            "fov": 65
+          },
+          "key": "2faad3e60f84dc226685b4970c2bae47eec9d675e4f9029e070b5eddfd766345"
+        },
+        {
+          "kind": "horizon",
+          "camera": {
+            "position": [
+              0.08,
+              2.05,
+              0.537
+            ],
+            "lookAt": [
+              0.025,
+              2.025,
+              0.782
+            ],
+            "fov": 46
+          },
+          "key": "b62c8b44bb29cdda8cd18d744faf9da1eadeaf7e66cb406d196671a65a66b4d6"
+        },
+        {
+          "kind": "quadrant",
+          "camera": {
+            "position": [
+              0.1,
+              1.98,
+              -0.02
+            ],
+            "lookAt": [
+              0.36,
+              1.75,
+              0.22
+            ],
+            "fov": 65
+          },
+          "key": "84b98984903a7a55a73721a1ce69a60e0b3c65fd677bf96bfdf9294711a51c33"
+        }
+      ]
+    },
+    {
+      "slug": "pa-28-180",
+      "id": "molen.entities.aircraft.pa_28_180",
+      "panel": "panel",
+      "sourceHash": "sha256:4ac4b86c9c025c0dc3d8db671b2271cf1185a3811aca2870b372cc8c83a11d39",
+      "runtimeHash": "sha256:25320861268594e530940017992945dfd161feeadfbe99918b7c9dc86396ca78",
+      "stats": {
+        "triangles": 71442,
+        "vertices": 93912,
+        "meshes": 83,
+        "primitives": 83,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2540752
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.55,
+              -0.13
+            ],
+            "lookAt": [
+              0,
+              1.2,
+              1.04
+            ],
+            "fov": 82
+          },
+          "key": "37d4fed7b58df645739be452d59a1c81b82d6e4b9d58cfe852d791404f28f1ef"
+        }
+      ]
+    },
+    {
+      "slug": "pc-6",
+      "id": "molen.entities.aircraft.pc_6",
+      "panel": "panel",
+      "sourceHash": "sha256:263e999dfd339e707253e138f022526f478d7ef1cd536bc6d3c009e0ae35a6fd",
+      "runtimeHash": "sha256:625bd92a1e3861cf8efa09602ad27fde5541a96bdc6d5f556cf873890b237a96",
+      "stats": {
+        "triangles": 76420,
+        "vertices": 117831,
+        "meshes": 121,
+        "primitives": 121,
+        "materials": 27,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2910604
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.8858820108842174,
+              0.8099068100857658
+            ],
+            "lookAt": [
+              0,
+              1.6276786555134353,
+              2.386558650941974
+            ],
+            "fov": 82
+          },
+          "key": "77bba15231d9d3ba5b6b189cc053bcd2d931fea10807441d3c1926b369c53169"
+        }
+      ]
+    },
+    {
+      "slug": "pilatus-pc12",
+      "id": "molen.entities.aircraft.pilatus_pc12",
+      "panel": "satin",
+      "sourceHash": "sha256:b8a6c76aecfb0a5ab8c7c8eb1b6de4d0478890d27629347802ed3758e559f21a",
+      "runtimeHash": "sha256:d4d8eb0541b0de8eb1e3fba843d30acdfe810a96ca2966805c1b94e44fb537d1",
+      "stats": {
+        "triangles": 65094,
+        "vertices": 96163,
+        "meshes": 102,
+        "primitives": 102,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2523708
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              2.65,
+              1.55
+            ],
+            "lookAt": [
+              0,
+              2.12,
+              2.84
+            ],
+            "fov": 78
+          },
+          "key": "ccc3780121d5f19bab73ff097e56616f368d206c8f4d31f47e9844ca2baf06c6"
+        }
+      ]
+    },
+    {
+      "slug": "rafale-c",
+      "id": "molen.entities.aircraft.rafale_c",
+      "panel": "satin",
+      "sourceHash": "sha256:09a69851cd35503f5fc71840436fb6bebd37e70b50499cd10ebde3266a2718b4",
+      "runtimeHash": "sha256:dd27ded1dc574c7c0a7abb5609e585791b8d1144d0e84599ebdc9c9f4cebae60",
+      "stats": {
+        "triangles": 38392,
+        "vertices": 60702,
+        "meshes": 95,
+        "primitives": 95,
+        "materials": 26,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1634868
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              3,
+              4.07
+            ],
+            "lookAt": [
+              0,
+              2.58,
+              4.92
+            ],
+            "fov": 82
+          },
+          "key": "5ddecb246bb864e302b617deea5ec212410878eb8ae6c5098b72450323c31aa6"
+        }
+      ]
+    },
+    {
+      "slug": "robinson-r44",
+      "id": "molen.entities.aircraft.robinson_r44",
+      "panel": "panel",
+      "sourceHash": "sha256:e9923119b3c13d774a402a7d09b5f17977367d802dec42a00af6c5b9c1668bdc",
+      "runtimeHash": "sha256:d1206ff9d47a2d1f4d6d3accbb8a960de7fa41c4dfcb9d66639870ed4df8d6a7",
+      "stats": {
+        "triangles": 23206,
+        "vertices": 36992,
+        "meshes": 53,
+        "primitives": 53,
+        "materials": 24,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1369988
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.38,
+              0.48
+            ],
+            "lookAt": [
+              0,
+              1,
+              1.67
+            ],
+            "fov": 78
+          },
+          "key": "d23c7e935558fa67ff14b45ea66b9c6c818d7a6e075ab01f827c731162289fc7"
+        }
+      ]
+    },
+    {
+      "slug": "typhoon",
+      "id": "molen.entities.aircraft.typhoon",
+      "panel": "satin",
+      "sourceHash": "sha256:393055741f9c6b9dda134f16a3e677ca39960e183f766854aae829f7a80a2470",
+      "runtimeHash": "sha256:1cbffc0211e2b69a7e7bca17fc052ce01834604aa712811625c77ae479ba8297",
+      "stats": {
+        "triangles": 46902,
+        "vertices": 79001,
+        "meshes": 100,
+        "primitives": 100,
+        "materials": 25,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 1974764
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              3.12,
+              4.2
+            ],
+            "lookAt": [
+              0,
+              2.42,
+              5.35
+            ],
+            "fov": 82
+          },
+          "key": "8a8700a23471206d9472b6ecdad875b961b2e08ac7312780ad8163eff861eea7"
+        }
+      ]
+    },
+    {
+      "slug": "uh-1h",
+      "id": "molen.entities.aircraft.uh_1h",
+      "panel": "panel",
+      "sourceHash": "sha256:0a8925949257610918d32b4b192f792781157f0939dc87d3e30c375022f73f5a",
+      "runtimeHash": "sha256:75b0a1e85564692329fead87b9b35085929d5be63f8e8de85feac8169228aee2",
+      "stats": {
+        "triangles": 56210,
+        "vertices": 79420,
+        "meshes": 62,
+        "primitives": 62,
+        "materials": 24,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2254788
+      },
+      "finishes": [
+        "brushed",
+        "panel",
+        "rubber"
+      ],
+      "embeddedTextureBytes": 567971,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              -0.47,
+              1.9,
+              1.3499999999999999
+            ],
+            "lookAt": [
+              -0.47,
+              1.48,
+              2.3
+            ],
+            "fov": 78
+          },
+          "key": "8a855919aa2b0b3b967cdace80f746adff56eae4dbc72de16a995729613ce2b9"
+        }
+      ]
+    },
+    {
+      "slug": "uh-60m",
+      "id": "molen.entities.aircraft.uh_60m",
+      "panel": "satin",
+      "sourceHash": "sha256:749fc3006d6b7b62e2fa33198dff3eb9a4b12e7043f52838f29b04a03039ec8e",
+      "runtimeHash": "sha256:b341433bd5a78aa8fcbd6ac9d1d414d88c20444de1cf92f4fa6a62d879b3481b",
+      "stats": {
+        "triangles": 54805,
+        "vertices": 85459,
+        "meshes": 116,
+        "primitives": 116,
+        "materials": 28,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2206616
+      },
+      "finishes": [
+        "brushed",
+        "rubber",
+        "satin"
+      ],
+      "embeddedTextureBytes": 350922,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.86,
+              1.87
+            ],
+            "lookAt": [
+              0,
+              1.38,
+              3.18
+            ],
+            "fov": 80
+          },
+          "key": "b26a0c77f116a4074a3e36d48c6c3aa1516089056d5497fe884cdda9721df01a"
+        }
+      ]
+    }
+  ],
+  "preview": "content/entities/cockpit-materials-preview.png"
+}

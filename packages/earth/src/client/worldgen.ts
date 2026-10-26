@@ -65,6 +65,8 @@ export interface EarthViewWorkers {
   worldgen?: () => Worker;
   /** A worker importing `@bendyline/molen-earth/workers/material` (two are started). */
   material?: () => Worker;
+  /** A worker importing `@bendyline/molen-earth/workers/semantic`: map tiles decode there. */
+  semantic?: () => Worker;
 }
 
 export interface EarthWorldgen extends WorldgenSemanticRenderers {
@@ -100,6 +102,11 @@ export interface CreateEarthWorldgenOptions {
     signal: AbortSignal,
     parent?: THREE.Object3D,
   ) => Promise<void>;
+  /**
+   * Build a baked building material's shaders before it upgrades its flat stand-in in place,
+   * usually the renderer's `prepareMaterialChange`.
+   */
+  prepareMaterialChange?: (current: THREE.Material, next: THREE.Material) => Promise<void>;
   /** Called with material failures after baking (ref → reason). */
   onMaterialFailures?: (failures: ReadonlyMap<string, string>) => void;
   /** Generate building interiors near the walker (default true). */
@@ -210,6 +217,9 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     prepareOnUse: true,
     concurrency: 2,
     ...(options.buildingDecorator !== undefined ? { decorate: options.buildingDecorator } : {}),
+    ...(options.prepareMaterialChange !== undefined
+      ? { prepareChange: options.prepareMaterialChange }
+      : {}),
     maxTextureBytes:
       streamingOptions.budget?.maxTextureBytes ?? structureStreamingBudget(mobile).maxTextureBytes,
   });
@@ -377,13 +387,16 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
 }
 
 /**
- * Generation workers per kind: half the logical cores, at most four. Tile generation is the
- * slowest part of revealing a new view, and one worker per kind left most cores idle while it
- * worked through a city's tiles one at a time.
+ * Generation workers per kind (world generation, land cover, road surfaces): a quarter of the
+ * logical cores, at most two. One worker per kind worked through a city's tiles one at a time;
+ * four per kind, three kinds at once, took the cores the frame needs: on a 12-core laptop a jet's
+ * frames drew the same scene up to twice as slowly while a town streamed in, and a frame over
+ * 33 ms came every few seconds. Two per kind halved those for a tile generated ~170 ms later
+ * (most of it hidden by the predicted views loading ahead).
  */
-function generationWorkers(): number {
+export function generationWorkers(): number {
   const cores = typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency ?? 4) : 4;
-  return Math.max(1, Math.min(4, Math.floor(cores / 2)));
+  return Math.max(1, Math.min(2, Math.floor(cores / 4)));
 }
 
 /** Landcover tiles go to whichever worker has the fewest in flight. */

@@ -6,17 +6,17 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:44267284b0c43c56d007302821b0fe58047a87552851b18d4de4b1cf69e2e908",
-  "sourceHash": "sha256:62529c58233f8d74205a425d5839f9419dc855d023e55ba262ac986770d0d70a",
+  "hash": "sha256:133419ccd97a9c76ad30a8a60fdb82f0db7ecc12aac75741e7a5984e7528f301",
+  "sourceHash": "sha256:214f03056163ddf77c48fd9099fe4424ae484f93a2dc349472bc2644188f089e",
   "bounds": {
     "aabb": {
       "min": [
-        -36.6564,
+        -36.6567,
         0,
         -34.5517
       ],
       "max": [
-        36.6564,
+        36.6567,
         21.0824,
         34.5517
       ]
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 90951,
-    "vertices": 200011,
-    "meshes": 121,
-    "primitives": 121,
-    "materials": 23,
-    "textures": 0,
+    "triangles": 93175,
+    "vertices": 133494,
+    "meshes": 141,
+    "primitives": 141,
+    "materials": 30,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3775536
+    "sizeBytes": 3326156
   },
   "nodes": [
     {
@@ -51,11 +51,11 @@
     },
     {
       "name": "AN124-exterior-AN124-trim",
-      "triangles": 2307
+      "triangles": 2019
     },
     {
       "name": "AN124-exterior-AN124-seam",
-      "triangles": 6384
+      "triangles": 4896
     },
     {
       "name": "AN124-exterior-AN124-alloy",
@@ -347,7 +347,7 @@
     },
     {
       "name": "AN124-cabin-AN124-trim",
-      "triangles": 1284
+      "triangles": 1116
     },
     {
       "name": "AN124-cabin-AN124-instrument-black",
@@ -630,9 +630,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "AN124-panel",
+      "name": "AN124-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "AN124-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -654,6 +668,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "AN124-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "AN124-instrument-ink",
       "slots": [
         "baseColor"
@@ -670,9 +695,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -735,6 +763,55 @@
     },
     {
       "name": "AN124-belt",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -807,57 +884,57 @@
         "points": [
           -18.938,
           3.4,
-          -2.5006,
+          -2.4992,
           -18.938,
           3.4,
-          28.9809,
+          28.9822,
           -18.938,
           10.65,
-          -2.5006,
+          -2.4992,
           -18.938,
           10.65,
-          28.9809,
+          28.9822,
           18.938,
           3.4,
-          -2.5006,
+          -2.4992,
           18.938,
           3.4,
-          28.9809,
+          28.9822,
           18.938,
           10.65,
-          -2.5006,
+          -2.4992,
           18.938,
           10.65,
-          28.9809
+          28.9822
         ]
       },
       {
         "node": "AN124-exterior-AN124-seam",
         "points": [
-          -36.6564,
+          -36.6567,
           1.5446,
-          -28.4465,
-          -36.6564,
+          -28.4466,
+          -36.6567,
           1.5446,
-          26.7167,
-          -36.6564,
+          26.7168,
+          -36.6567,
           9.9841,
-          -28.4465,
-          -36.6564,
+          -28.4466,
+          -36.6567,
           9.9841,
-          26.7167,
-          36.6564,
+          26.7168,
+          36.6567,
           1.5446,
-          -28.4465,
-          36.6564,
+          -28.4466,
+          36.6567,
           1.5446,
-          26.7167,
-          36.6564,
+          26.7168,
+          36.6567,
           9.9841,
-          -28.4465,
-          36.6564,
+          -28.4466,
+          36.6567,
           9.9841,
-          26.7167
+          26.7168
         ]
       },
       {

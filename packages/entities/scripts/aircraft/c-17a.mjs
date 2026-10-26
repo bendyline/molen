@@ -562,7 +562,7 @@ export function buildC17A(s) {
     );
   ellipsoid(d, [0, 7.32, 10.5], [0.13, 0.09, 0.18], d.red, 12);
   for (const side of [-1, 1]) {
-    d.text('C-17A', [side * 3.44, 4.7, 16.3], 0.27, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
     d.text('NO STEP', [side * 4.6, 2.65, 7], 0.08, (side * Math.PI) / 2, dark);
   }
   d.finish();

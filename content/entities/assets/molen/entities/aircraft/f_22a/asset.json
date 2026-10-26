@@ -6,17 +6,17 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:495dec336cfb270af1c9880785c089169b8f9bbe5e9b84db2f30cd8ce583117f",
-  "sourceHash": "sha256:725365ab82ab50b1f80a5a096b209211ce356f15e8c0d9abc470ab58a327a813",
+  "hash": "sha256:5de0a38bb99c4ff850b016534af4d3683856a57609f9dd929f2ebecfeed4a009",
+  "sourceHash": "sha256:84a1aa757a04d2972de6babaed9dcdf592ece369cf0b4af5753ced2239f4bbc1",
   "bounds": {
     "aabb": {
       "min": [
-        -6.784,
+        -6.785,
         0,
         -7.073
       ],
       "max": [
-        6.784,
+        6.785,
         5.0959,
         11.85
       ]
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 35223,
-    "vertices": 74206,
-    "meshes": 71,
-    "primitives": 71,
-    "materials": 17,
-    "textures": 0,
+    "triangles": 36981,
+    "vertices": 63045,
+    "meshes": 85,
+    "primitives": 85,
+    "materials": 23,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 1468864
+    "sizeBytes": 1674728
   },
   "nodes": [
     {
       "name": "F22-airframe-F22-light-gray",
-      "triangles": 3707
+      "triangles": 2149
     },
     {
       "name": "F22-airframe-F22-canopy",
@@ -63,7 +63,7 @@
     },
     {
       "name": "F22-airframe-F22-seals",
-      "triangles": 2108
+      "triangles": 1988
     },
     {
       "name": "F22-leading--1-F22-light-gray",
@@ -90,10 +90,6 @@
       "triangles": 4
     },
     {
-      "name": "F22-fin--1-F22-seals",
-      "triangles": 480
-    },
-    {
       "name": "F22-rudder--1-F22-gray",
       "triangles": 2
     },
@@ -111,7 +107,7 @@
     },
     {
       "name": "F22-exhaust--1-F22-seals",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "F22-leading-1-F22-light-gray",
@@ -138,10 +134,6 @@
       "triangles": 4
     },
     {
-      "name": "F22-fin-1-F22-seals",
-      "triangles": 480
-    },
-    {
       "name": "F22-rudder-1-F22-gray",
       "triangles": 2
     },
@@ -159,7 +151,7 @@
     },
     {
       "name": "F22-exhaust-1-F22-seals",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "F22-gear-left-F22-alloy",
@@ -203,7 +195,7 @@
     },
     {
       "name": "F22-cabin-F22-instrument-black",
-      "triangles": 316
+      "triangles": 200
     },
     {
       "name": "F22-cabin-F22-key",
@@ -552,6 +544,14 @@
     {
       "name": "F22-vertical-speed-2-5-F22-display",
       "triangles": 12
+    },
+    {
+      "name": "F22-vertical-speed-2-6-F22-display",
+      "triangles": 12
+    },
+    {
+      "name": "F22-vertical-speed-3-0-F22-display",
+      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -614,9 +614,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "F22-panel",
+      "name": "F22-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -678,6 +681,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "F22-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "F22-seat",
       "slots": [
         "baseColor"
@@ -692,6 +706,55 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -699,28 +762,28 @@
       {
         "node": "F22-airframe-F22-light-gray",
         "points": [
-          -6.784,
+          -6.785,
           1.0303,
           -4.45,
-          -6.784,
-          1.0303,
-          11.85,
-          -6.784,
-          2.837,
-          -4.45,
-          -6.784,
-          2.837,
-          11.85,
-          6.784,
-          1.0303,
-          -4.45,
-          6.784,
+          -6.785,
           1.0303,
           11.85,
-          6.784,
+          -6.785,
           2.837,
           -4.45,
-          6.784,
+          -6.785,
+          2.837,
+          11.85,
+          6.785,
+          1.0303,
+          -4.45,
+          6.785,
+          1.0303,
+          11.85,
+          6.785,
+          2.837,
+          -4.45,
+          6.785,
           2.837,
           11.85
         ]
@@ -1045,35 +1108,6 @@
         ]
       },
       {
-        "node": "F22-fin--1-F22-seals",
-        "points": [
-          -1.9685,
-          2.6964,
-          -3.5384,
-          -1.9685,
-          2.6964,
-          -3.2096,
-          -1.9685,
-          3.1304,
-          -3.5384,
-          -1.9685,
-          3.1304,
-          -3.2096,
-          -1.7467,
-          2.6964,
-          -3.5384,
-          -1.7467,
-          2.6964,
-          -3.2096,
-          -1.7467,
-          3.1304,
-          -3.5384,
-          -1.7467,
-          3.1304,
-          -3.2096
-        ]
-      },
-      {
         "node": "F22-rudder--1-F22-gray",
         "points": [
           -2.9156,
@@ -1192,29 +1226,29 @@
       {
         "node": "F22-exhaust--1-F22-seals",
         "points": [
-          -1.6678,
-          1.641,
-          -6.019,
-          -1.6678,
-          1.641,
+          -1.669,
+          1.6423,
+          -6.0178,
+          -1.669,
+          1.6423,
           -5.1494,
-          -1.6678,
-          2.359,
-          -6.019,
-          -1.6678,
-          2.359,
+          -1.669,
+          2.3577,
+          -6.0178,
+          -1.669,
+          2.3577,
           -5.1494,
-          -0.3322,
-          1.641,
-          -6.019,
-          -0.3322,
-          1.641,
+          -0.331,
+          1.6423,
+          -6.0178,
+          -0.331,
+          1.6423,
           -5.1494,
-          -0.3322,
-          2.359,
-          -6.019,
-          -0.3322,
-          2.359,
+          -0.331,
+          2.3577,
+          -6.0178,
+          -0.331,
+          2.3577,
           -5.1494
         ]
       },
@@ -1393,35 +1427,6 @@
         ]
       },
       {
-        "node": "F22-fin-1-F22-seals",
-        "points": [
-          1.7467,
-          2.6964,
-          -3.4904,
-          1.7467,
-          2.6964,
-          -3.1616,
-          1.7467,
-          3.1304,
-          -3.4904,
-          1.7467,
-          3.1304,
-          -3.1616,
-          1.9685,
-          2.6964,
-          -3.4904,
-          1.9685,
-          2.6964,
-          -3.1616,
-          1.9685,
-          3.1304,
-          -3.4904,
-          1.9685,
-          3.1304,
-          -3.1616
-        ]
-      },
-      {
         "node": "F22-rudder-1-F22-gray",
         "points": [
           1.6135,
@@ -1540,29 +1545,29 @@
       {
         "node": "F22-exhaust-1-F22-seals",
         "points": [
-          0.3322,
-          1.641,
-          -6.019,
-          0.3322,
-          1.641,
+          0.331,
+          1.6423,
+          -6.0178,
+          0.331,
+          1.6423,
           -5.1494,
-          0.3322,
-          2.359,
-          -6.019,
-          0.3322,
-          2.359,
+          0.331,
+          2.3577,
+          -6.0178,
+          0.331,
+          2.3577,
           -5.1494,
-          1.6678,
-          1.641,
-          -6.019,
-          1.6678,
-          1.641,
+          1.669,
+          1.6423,
+          -6.0178,
+          1.669,
+          1.6423,
           -5.1494,
-          1.6678,
-          2.359,
-          -6.019,
-          1.6678,
-          2.359,
+          1.669,
+          2.3577,
+          -6.0178,
+          1.669,
+          2.3577,
           -5.1494
         ]
       },
@@ -4405,6 +4410,64 @@
           8.0896,
           0.2274,
           2.6669,
+          8.0904
+        ]
+      },
+      {
+        "node": "F22-vertical-speed-2-6-F22-display",
+        "points": [
+          0.2233,
+          2.6627,
+          8.0896,
+          0.2233,
+          2.6627,
+          8.0904,
+          0.2233,
+          2.6633,
+          8.0896,
+          0.2233,
+          2.6633,
+          8.0904,
+          0.2267,
+          2.6627,
+          8.0896,
+          0.2267,
+          2.6627,
+          8.0904,
+          0.2267,
+          2.6633,
+          8.0896,
+          0.2267,
+          2.6633,
+          8.0904
+        ]
+      },
+      {
+        "node": "F22-vertical-speed-3-0-F22-display",
+        "points": [
+          0.2174,
+          2.6672,
+          8.0896,
+          0.2174,
+          2.6672,
+          8.0904,
+          0.2174,
+          2.6678,
+          8.0896,
+          0.2174,
+          2.6678,
+          8.0904,
+          0.2207,
+          2.6672,
+          8.0896,
+          0.2207,
+          2.6672,
+          8.0904,
+          0.2207,
+          2.6678,
+          8.0896,
+          0.2207,
+          2.6678,
           8.0904
         ]
       }

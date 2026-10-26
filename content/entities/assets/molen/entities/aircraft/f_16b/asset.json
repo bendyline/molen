@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:8fcfe7d57ce701c9f7d2e076ea4d270013fd9461c5282115f2b1656a5dc1770d",
-  "sourceHash": "sha256:047f239a79d0d17415ac255657e6fcd1a40501b88b3c4027a74bcbe4cbac34c5",
+  "hash": "sha256:a969d347c2a4b54e46c76429ebabfd4ffd1ef731bab6267e21eccac866b82694",
+  "sourceHash": "sha256:e314882249f32c8d5a0001bcbf6aab0c0d9de5f4e14f26574510fe44e47f09db",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 77720,
-    "vertices": 156889,
-    "meshes": 104,
-    "primitives": 104,
-    "materials": 22,
-    "textures": 0,
+    "triangles": 75776,
+    "vertices": 112840,
+    "meshes": 118,
+    "primitives": 118,
+    "materials": 29,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3021508
+    "sizeBytes": 2512304
   },
   "nodes": [
     {
       "name": "F16-airframe-F16-light-gray",
-      "triangles": 1240
+      "triangles": 1072
     },
     {
       "name": "F16-airframe-F16-radome",
@@ -55,7 +55,7 @@
     },
     {
       "name": "F16-airframe-F16-seals",
-      "triangles": 6970
+      "triangles": 4222
     },
     {
       "name": "F16-airframe-F16-canopy",
@@ -71,7 +71,7 @@
     },
     {
       "name": "F16-airframe-detail-lettering",
-      "triangles": 5376
+      "triangles": 4344
     },
     {
       "name": "F16-airframe-detail-green",
@@ -159,7 +159,7 @@
     },
     {
       "name": "F16-cabin-F16-seals",
-      "triangles": 2474
+      "triangles": 1514
     },
     {
       "name": "F16-cabin-F16-instrument-black",
@@ -646,11 +646,25 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "F16-panel-gray",
+      "name": "F16-panel-gray-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "F16-seals-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
@@ -662,9 +676,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -689,6 +706,17 @@
       "name": "F16-instrument-ink",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "F16-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -727,6 +755,55 @@
     },
     {
       "name": "F16-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -827,28 +904,28 @@
         "node": "F16-airframe-F16-seals",
         "points": [
           -4.6249,
-          0.8471,
+          0.8472,
           -5.6111,
           -4.6249,
-          0.8471,
+          0.8472,
           7.0335,
           -4.6249,
-          3.1162,
+          3.1163,
           -5.6111,
           -4.6249,
-          3.1162,
+          3.1163,
           7.0335,
           4.6249,
-          0.8471,
+          0.8472,
           -5.6111,
           4.6249,
-          0.8471,
+          0.8472,
           7.0335,
           4.6249,
-          3.1162,
+          3.1163,
           -5.6111,
           4.6249,
-          3.1162,
+          3.1163,
           7.0335
         ]
       },
@@ -942,29 +1019,29 @@
       {
         "node": "F16-airframe-detail-lettering",
         "points": [
-          -0.6603,
-          1.2669,
-          -4.0581,
-          -0.6603,
-          1.2669,
+          -0.6605,
+          1.2665,
+          4.2985,
+          -0.6605,
+          1.2665,
           5.3,
-          -0.6603,
-          3.4957,
-          -4.0581,
-          -0.6603,
-          3.4957,
+          -0.6605,
+          2.1522,
+          4.2985,
+          -0.6605,
+          2.1522,
           5.3,
-          0.6603,
-          1.2669,
-          -4.0581,
-          0.6603,
-          1.2669,
+          0.6605,
+          1.2665,
+          4.2985,
+          0.6605,
+          1.2665,
           5.3,
-          0.6603,
-          3.4957,
-          -4.0581,
-          0.6603,
-          3.4957,
+          0.6605,
+          2.1522,
+          4.2985,
+          0.6605,
+          2.1522,
           5.3
         ]
       },

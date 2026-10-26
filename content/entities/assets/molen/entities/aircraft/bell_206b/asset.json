@@ -6,13 +6,13 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:6683fccaf3329fadb59c845e2c8290f30da484352ccb0b59a78a30229ba212b9",
-  "sourceHash": "sha256:883de98654c2a4606d86a8e52ab39fb517c17be0c7ba187fe9752fc813da1aa5",
+  "hash": "sha256:43946f24c30ad414849f8c8424c4311c50d64d7c01f6ef756ca9aa3b8321f043",
+  "sourceHash": "sha256:615a13177196d98d045be5ee841abb83cfe5be0744190e555b670417a8ed9953",
   "bounds": {
     "aabb": {
       "min": [
         -5.08,
-        0.0049,
+        0.0103,
         -6.9895
       ],
       "max": [
@@ -24,26 +24,26 @@
     "sphere": {
       "center": [
         0,
-        1.469,
+        1.4717,
         -2.0398
       ],
-      "radius": 5.7106
+      "radius": 5.7099
     }
   },
   "stats": {
-    "triangles": 44306,
-    "vertices": 92008,
-    "meshes": 45,
-    "primitives": 45,
-    "materials": 15,
-    "textures": 0,
+    "triangles": 43712,
+    "vertices": 69344,
+    "meshes": 47,
+    "primitives": 47,
+    "materials": 17,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 1765732
+    "sizeBytes": 2037700
   },
   "nodes": [
     {
       "name": "206-shell-206-ivory",
-      "triangles": 678
+      "triangles": 572
     },
     {
       "name": "206-shell-206-glass",
@@ -51,11 +51,11 @@
     },
     {
       "name": "206-shell-206-gaskets",
-      "triangles": 2408
+      "triangles": 1340
     },
     {
       "name": "206-shell-206-alloy",
-      "triangles": 1624
+      "triangles": 1504
     },
     {
       "name": "206-shell-206-blue",
@@ -103,7 +103,7 @@
     },
     {
       "name": "206-panel-206-gaskets",
-      "triangles": 4932
+      "triangles": 4876
     },
     {
       "name": "206-panel-206-dials",
@@ -130,12 +130,12 @@
       "triangles": 24
     },
     {
-      "name": "206-panel-detail-red",
-      "triangles": 768
+      "name": "206-panel-detail-lettering",
+      "triangles": 780
     },
     {
-      "name": "206-panel-detail-lettering",
-      "triangles": 12
+      "name": "206-panel-detail-red",
+      "triangles": 756
     },
     {
       "name": "pointer-206-ink",
@@ -202,6 +202,10 @@
       "triangles": 24
     },
     {
+      "name": "206-engine-master-detail-red",
+      "triangles": 12
+    },
+    {
       "name": "206-floor-206-gaskets",
       "triangles": 24
     },
@@ -235,7 +239,7 @@
     },
     {
       "name": "cyclic-206-gaskets",
-      "triangles": 84
+      "triangles": 60
     },
     {
       "name": "cyclic-detail-red",
@@ -255,7 +259,7 @@
     },
     {
       "name": "cyclic-206-gaskets",
-      "triangles": 84
+      "triangles": 60
     },
     {
       "name": "cyclic-detail-red",
@@ -342,9 +346,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "206-panel",
+      "name": "206-panel-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "206-gaskets-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -361,6 +379,17 @@
       "name": "206-ink",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "206-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -461,58 +490,58 @@
       {
         "node": "206-shell-206-gaskets",
         "points": [
-          -0.712,
-          0.3798,
+          -0.7139,
+          0.3772,
           -5.0035,
-          -0.712,
-          0.3798,
+          -0.7139,
+          0.3772,
           2.712,
-          -0.712,
-          2.1448,
+          -0.7139,
+          2.145,
           -5.0035,
-          -0.712,
-          2.1448,
+          -0.7139,
+          2.145,
           2.712,
-          0.712,
-          0.3798,
+          0.7139,
+          0.3772,
           -5.0035,
-          0.712,
-          0.3798,
+          0.7139,
+          0.3772,
           2.712,
-          0.712,
-          2.1448,
+          0.7139,
+          2.145,
           -5.0035,
-          0.712,
-          2.1448,
+          0.7139,
+          2.145,
           2.712
         ]
       },
       {
         "node": "206-shell-206-alloy",
         "points": [
-          -0.9544,
-          0.0049,
+          -0.9598,
+          0.0103,
           -6.9895,
-          -0.9544,
-          0.0049,
+          -0.9598,
+          0.0103,
           1.87,
-          -0.9544,
-          2.128,
+          -0.9598,
+          2.1279,
           -6.9895,
-          -0.9544,
-          2.128,
+          -0.9598,
+          2.1279,
           1.87,
-          0.9544,
-          0.0049,
+          0.9598,
+          0.0103,
           -6.9895,
-          0.9544,
-          0.0049,
+          0.9598,
+          0.0103,
           1.87,
-          0.9544,
-          2.128,
+          0.9598,
+          2.1279,
           -6.9895,
-          0.9544,
-          2.128,
+          0.9598,
+          2.1279,
           1.87
         ]
       },
@@ -1039,6 +1068,35 @@
         ]
       },
       {
+        "node": "206-panel-detail-lettering",
+        "points": [
+          0.26,
+          0.96,
+          1.5845,
+          0.26,
+          0.96,
+          1.611,
+          0.26,
+          1.342,
+          1.5845,
+          0.26,
+          1.342,
+          1.611,
+          0.48,
+          0.96,
+          1.5845,
+          0.48,
+          0.96,
+          1.611,
+          0.48,
+          1.342,
+          1.5845,
+          0.48,
+          1.342,
+          1.611
+        ]
+      },
+      {
         "node": "206-panel-detail-red",
         "points": [
           -0.565,
@@ -1048,10 +1106,10 @@
           0.7725,
           1.605,
           -0.565,
-          1.32,
+          1.0841,
           1.575,
           -0.565,
-          1.32,
+          1.0841,
           1.605,
           0.4272,
           0.7725,
@@ -1060,40 +1118,11 @@
           0.7725,
           1.605,
           0.4272,
-          1.32,
+          1.0841,
           1.575,
           0.4272,
-          1.32,
+          1.0841,
           1.605
-        ]
-      },
-      {
-        "node": "206-panel-detail-lettering",
-        "points": [
-          0.26,
-          0.96,
-          1.607,
-          0.26,
-          0.96,
-          1.611,
-          0.26,
-          1.12,
-          1.607,
-          0.26,
-          1.12,
-          1.611,
-          0.48,
-          0.96,
-          1.607,
-          0.48,
-          0.96,
-          1.611,
-          0.48,
-          1.12,
-          1.607,
-          0.48,
-          1.12,
-          1.611
         ]
       },
       {
@@ -1558,6 +1587,35 @@
           0.1507,
           0.9208,
           1.592
+        ]
+      },
+      {
+        "node": "206-engine-master-detail-red",
+        "points": [
+          0.35,
+          1.26,
+          1.5775,
+          0.35,
+          1.26,
+          1.6025,
+          0.35,
+          1.32,
+          1.5775,
+          0.35,
+          1.32,
+          1.6025,
+          0.39,
+          1.26,
+          1.5775,
+          0.39,
+          1.26,
+          1.6025,
+          0.39,
+          1.32,
+          1.5775,
+          0.39,
+          1.32,
+          1.6025
         ]
       },
       {

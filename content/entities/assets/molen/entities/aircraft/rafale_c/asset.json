@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:417ec7ea5267afd2291051940637316227c746f99d927093474e69c8a315b381",
-  "sourceHash": "sha256:dbe48a0e1d328e57af6120615a9726dc9c3b1dd4d9d7b38b48d38ea71418f798",
+  "hash": "sha256:057e39b8e60c2d8ab6912b40cd41af8664680073f3c86c4a274271de7740eae9",
+  "sourceHash": "sha256:b87eef8ec6e0908c6110bd3ca120ec07fc2dc33b6c804e170e2ca79422cc4028",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 36226,
-    "vertices": 75999,
-    "meshes": 77,
-    "primitives": 77,
-    "materials": 20,
-    "textures": 0,
+    "triangles": 38392,
+    "vertices": 60702,
+    "meshes": 95,
+    "primitives": 95,
+    "materials": 26,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 1500196
+    "sizeBytes": 1632012
   },
   "nodes": [
     {
@@ -47,11 +47,11 @@
     },
     {
       "name": "Rafale-airframe-Rafale-gray",
-      "triangles": 3488
+      "triangles": 2228
     },
     {
       "name": "Rafale-airframe-Rafale-seal",
-      "triangles": 2736
+      "triangles": 1824
     },
     {
       "name": "Rafale-airframe-Rafale-glass",
@@ -63,7 +63,7 @@
     },
     {
       "name": "Rafale-airframe-Rafale-duct",
-      "triangles": 282
+      "triangles": 284
     },
     {
       "name": "Rafale-airframe-Rafale-exhaust",
@@ -159,7 +159,7 @@
     },
     {
       "name": "Rafale-cabin-Rafale-instrument-black",
-      "triangles": 570
+      "triangles": 426
     },
     {
       "name": "Rafale-cabin-Rafale-key",
@@ -183,7 +183,7 @@
     },
     {
       "name": "Rafale-HLD-Rafale-panel",
-      "triangles": 96
+      "triangles": 48
     },
     {
       "name": "Rafale-HLD-Rafale-display",
@@ -638,9 +638,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Rafale-panel",
+      "name": "Rafale-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -702,6 +705,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "Rafale-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Rafale-cushion",
       "slots": [
         "baseColor"
@@ -711,6 +725,55 @@
     },
     {
       "name": "Rafale-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -1564,28 +1627,28 @@
       {
         "node": "Rafale-cabin-Rafale-instrument-black",
         "points": [
-          -0.4878,
+          -0.488,
           1.9925,
           3.615,
-          -0.4878,
-          1.9925,
-          4.925,
-          -0.4878,
-          2.7278,
-          3.615,
-          -0.4878,
-          2.7278,
-          4.925,
-          0.4878,
-          1.9925,
-          3.615,
-          0.4878,
+          -0.488,
           1.9925,
           4.925,
-          0.4878,
+          -0.488,
           2.7278,
           3.615,
-          0.4878,
+          -0.488,
+          2.7278,
+          4.925,
+          0.488,
+          1.9925,
+          3.615,
+          0.488,
+          1.9925,
+          4.925,
+          0.488,
+          2.7278,
+          3.615,
+          0.488,
           2.7278,
           4.925
         ]

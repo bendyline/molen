@@ -447,7 +447,7 @@ export function buildF16B(s) {
     ];
     outline(d, arrow, 0.006, d.ivory, false);
     d.text('DANGER INTAKE', [side * 0.66, 1.28, 4.48], 0.035, yaw, d.ivory);
-    d.text('F-16B', [side * 0.075, 3.42, -3.8], 0.13, yaw, d.ivory);
+    // Operator identifiers belong to the selected livery, not the shared airframe.
     d.box([0.12, 0.035, 0.22], [side * 0.68, 1.8, 4.5], side === 1 ? d.red : d.green);
   }
   const muzzle = group(root, 'F16-integral-port-opening', [0.68, 2.04, 3.2]),

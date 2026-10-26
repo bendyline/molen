@@ -202,7 +202,104 @@
                     "property": "visible",
                     "scale": 1
                   }
-                ]
+                ],
+                "derived": {
+                  "flaperonRight": {
+                    "op": "add",
+                    "args": [
+                      "flapDeflection",
+                      "aileronDeflection"
+                    ]
+                  },
+                  "flapDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "flapPosition",
+                      -0.38
+                    ]
+                  },
+                  "aileronDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      0.28
+                    ]
+                  },
+                  "tailRight": {
+                    "op": "add",
+                    "args": [
+                      "pitchDeflection",
+                      "rollDeflection"
+                    ]
+                  },
+                  "pitchDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "pitchInput",
+                      0.32
+                    ]
+                  },
+                  "rollDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      0.13
+                    ]
+                  },
+                  "flaperonLeft": {
+                    "op": "subtract",
+                    "args": [
+                      "flapDeflection",
+                      "aileronDeflection"
+                    ]
+                  },
+                  "tailLeft": {
+                    "op": "subtract",
+                    "args": [
+                      "pitchDeflection",
+                      "rollDeflection"
+                    ]
+                  },
+                  "gearExposed": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.02
+                    ]
+                  }
+                },
+                "sources": {
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  }
+                }
               },
               "interior": {
                 "nodes": [
@@ -5906,11 +6003,11 @@
                 "propulsion": "jet",
                 "densityExponent": 0.35564248930704423,
                 "dryThrust": 128000,
+                "highAltitudeDensityRatio": 0.29779561455293435,
+                "highAltitudeExponent": 1.2,
                 "ramRise": 0.2,
                 "afterburnerThrust": 191000,
-                "afterburnerDetent": 0.85,
-                "highAltitudeDensityRatio": 0.29779561455293435,
-                "highAltitudeExponent": 1.2
+                "afterburnerDetent": 0.85
               }
             ]
           }
@@ -5945,7 +6042,9 @@
           "stalled": false,
           "grounded": true,
           "crashed": false,
-          "waitingForTerrain": false
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
         },
         "mountable": {
           "seats": [

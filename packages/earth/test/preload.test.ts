@@ -17,9 +17,9 @@ describe('flight tile preparation track', () => {
     const planner = createEarthTilePreloader();
     expect(planner.views(0, view(0), true)).toEqual([]);
     const future = planner.views(100, view(speed / 10), true);
-    expect(future).toHaveLength(3);
-    expect(future[0]?.position[0]).toBeGreaterThan(speed * 3);
-    expect((future[2]?.position[0] ?? Infinity) - speed / 10).toBeLessThanOrEqual(4000);
+    expect(future.length).toBeGreaterThanOrEqual(2);
+    expect((future[0]?.position[0] ?? 0) - speed / 10).toBeCloseTo(Math.min(speed * 2, 4000));
+    expect((future.at(-1)?.position[0] ?? Infinity) - speed / 10).toBeLessThanOrEqual(4000);
     expect(future[0]?.viewportHeight).toBe(900);
   });
 
@@ -27,7 +27,7 @@ describe('flight tile preparation track', () => {
     const planner = createEarthTilePreloader();
     planner.views(0, view(0), true);
     const descent = planner.views(100, view(7.5, 250), true);
-    expect(descent[0]?.position).toEqual([307.5, 150, 0]);
+    expect(descent[0]?.position).toEqual([157.5, 150, 0]);
     for (let i = 2; i <= 40; i++) planner.views(i * 100, view(15 - i * 7.5), true);
     const turn = planner.views(4100, view(15 - 41 * 7.5), true);
     expect(turn[0]?.position[0]).toBeLessThan(15 - 41 * 7.5);
@@ -43,5 +43,28 @@ describe('flight tile preparation track', () => {
     const planner = createEarthTilePreloader();
     planner.views(0, view(0), true);
     expect(planner.views(100, view(0.4), true)).toEqual([]);
+  });
+
+  it.each([-0.1, 0.1])('follows a sustained bank at %s radians/second', (rate) => {
+    const planner = createEarthTilePreloader();
+    const track = (t: number): TerrainPyramidView => ({
+      ...view(0),
+      position: [(300 * Math.sin(rate * t)) / rate, 300, (300 * (1 - Math.cos(rate * t))) / rate],
+      direction: [Math.cos(rate * t), -0.1, Math.sin(rate * t)],
+    });
+    for (let i = 0; i < 100; i++) planner.views(i * 100, track(i / 10), true);
+    const future = planner.views(10000, track(10), true);
+    for (const [i, t] of [2, 4, 8, 12].entries()) {
+      const predicted = future[i] as TerrainPyramidView;
+      const actual = track(10 + t);
+      expect(
+        Math.hypot(
+          predicted.position[0] - actual.position[0],
+          predicted.position[2] - actual.position[2],
+        ),
+      ).toBeLessThan(200);
+      expect(predicted.direction?.[0]).toBeCloseTo(actual.direction?.[0] ?? 0, 1);
+      expect(predicted.direction?.[2]).toBeCloseTo(actual.direction?.[2] ?? 0, 1);
+    }
   });
 });

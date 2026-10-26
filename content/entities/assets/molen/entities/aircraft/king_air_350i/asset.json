@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:03a2180b858d4161550f87f5e6f956899618beb45cb11ba7e27a22809324ce50",
-  "sourceHash": "sha256:55c2449bf5503f2c80f6a5251c5af94ddff10361d3742d27548f727504563d7f",
+  "hash": "sha256:4fe023b7f7bdd74d0ccfffa17fca9e6360b2333b8ac8e1ec3cd153d856328d0c",
+  "sourceHash": "sha256:34b323fdcd549519b7fbe466142e22a34d88b638dae0f093fbd7ab9ad72383be",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 98628,
-    "vertices": 200558,
-    "meshes": 131,
-    "primitives": 131,
-    "materials": 23,
-    "textures": 0,
+    "triangles": 91709,
+    "vertices": 134680,
+    "meshes": 144,
+    "primitives": 144,
+    "materials": 30,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3909028
+    "sizeBytes": 3267228
   },
   "nodes": [
     {
       "name": "KingAir-shell-KingAir-ivory",
-      "triangles": 1513
+      "triangles": 1342
     },
     {
       "name": "KingAir-shell-KingAir-glass",
@@ -51,11 +51,11 @@
     },
     {
       "name": "KingAir-shell-KingAir-trim",
-      "triangles": 10320
+      "triangles": 5400
     },
     {
       "name": "KingAir-shell-KingAir-alloy",
-      "triangles": 14120
+      "triangles": 9944
     },
     {
       "name": "KingAir-shell-KingAir-navy",
@@ -187,7 +187,7 @@
     },
     {
       "name": "KingAir-nacelle-1-KingAir-alloy",
-      "triangles": 1728
+      "triangles": 1128
     },
     {
       "name": "KingAir-nacelle-1-KingAir-trim",
@@ -239,7 +239,7 @@
     },
     {
       "name": "KingAir-nacelle-2-KingAir-alloy",
-      "triangles": 1728
+      "triangles": 1128
     },
     {
       "name": "KingAir-nacelle-2-KingAir-trim",
@@ -303,7 +303,7 @@
     },
     {
       "name": "KingAir-cabin-KingAir-instrument-black",
-      "triangles": 2630
+      "triangles": 2534
     },
     {
       "name": "KingAir-cabin-detail-alloy",
@@ -319,7 +319,7 @@
     },
     {
       "name": "KingAir-cabin-KingAir-instrument-ink",
-      "triangles": 15396
+      "triangles": 15156
     },
     {
       "name": "KingAir-cabin-KingAir-instrument-amber",
@@ -630,11 +630,25 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "KingAir-panel",
+      "name": "KingAir-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "KingAir-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
@@ -646,9 +660,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -673,6 +690,17 @@
       "name": "KingAir-instrument-amber",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "KingAir-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -735,6 +763,55 @@
     },
     {
       "name": "KingAir-prop-control",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -805,30 +882,30 @@
       {
         "node": "KingAir-shell-KingAir-trim",
         "points": [
-          -8.5043,
-          1.0167,
-          -8.0695,
-          -8.5043,
-          1.0167,
-          3.9056,
-          -8.5043,
-          4.318,
-          -8.0695,
-          -8.5043,
-          4.318,
-          3.9056,
-          8.5043,
-          1.0167,
-          -8.0695,
-          8.5043,
-          1.0167,
-          3.9056,
-          8.5043,
-          4.318,
-          -8.0695,
-          8.5043,
-          4.318,
-          3.9056
+          -8.5042,
+          1.0184,
+          -8.071,
+          -8.5042,
+          1.0184,
+          3.9061,
+          -8.5042,
+          4.3155,
+          -8.071,
+          -8.5042,
+          4.3155,
+          3.9061,
+          8.5042,
+          1.0184,
+          -8.071,
+          8.5042,
+          1.0184,
+          3.9061,
+          8.5042,
+          4.3155,
+          -8.071,
+          8.5042,
+          4.3155,
+          3.9061
         ]
       },
       {

@@ -81,7 +81,7 @@ import {
   structureFootprint,
   withoutStructureRoads,
 } from './structure-geometry';
-import type { WorldgenGenerator } from './worker-bridge';
+import type { WorldgenGenerateRequest, WorldgenGenerator } from './worker-bridge';
 
 /**
  * A generalized footprint under a landmark's anchor is the landmark's own when neither side
@@ -194,6 +194,29 @@ function now(): number {
   return typeof performance !== 'undefined' ? performance.now() : Date.now();
 }
 
+/**
+ * A 64-bit content hash (two multiply-xor lanes over the JSON text, plus its length) for keys of
+ * the in-memory tile cache. That cache never leaves the session and the values come from one
+ * source, so it needs neither a canonical encoding nor SHA-256, which spent up to 20 ms of main
+ * thread on each dense town tile streamed in under a jet.
+ */
+function cacheHash(value: unknown): string {
+  const text = JSON.stringify(value) ?? '';
+  let a = 0xdeadbeef ^ text.length;
+  let b = 0x41c6ce57 ^ text.length;
+  for (let i = 0; i < text.length; i++) {
+    const code = text.charCodeAt(i);
+    a = Math.imul(a ^ code, 2654435761);
+    b = Math.imul(b ^ code, 1597334677);
+  }
+  a = Math.imul(a ^ (a >>> 16), 2246822507) ^ Math.imul(b ^ (b >>> 13), 3266489909);
+  b = Math.imul(b ^ (b >>> 16), 2246822507) ^ Math.imul(a ^ (a >>> 13), 3266489909);
+  return `${(b >>> 0).toString(16).padStart(8, '0')}${(a >>> 0).toString(16).padStart(8, '0')}:${text.length}`;
+}
+
+/** Pixels below which a tile's street props and signs stop drawing (`vanishPixels`). */
+const PROP_VANISH_PIXELS = 1.5;
+
 function geometryFor(context: TerrainPyramidTileLayerContext, metersPerUnit: number): TileGeometry {
   return {
     level: context.address.level,
@@ -233,6 +256,7 @@ export function createWorldgenSemanticRenderers(
       ? new InteriorStreamer({
           ...(typeof options.interiors === 'object' ? options.interiors : {}),
           catalog: pack.interiors,
+          ...(options.prepareObject !== undefined ? { prepare: options.prepareObject } : {}),
         })
       : undefined;
   let quality = options.quality ?? 'balanced';
@@ -292,6 +316,17 @@ export function createWorldgenSemanticRenderers(
     options.environment !== undefined
       ? hashJson(options.environment.docs as unknown as JsonValue)
       : null;
+  // Hash a semantic tile's content once: its building and scatter passes and every quality or
+  // footprint replacement ask again for the same (immutable) tile.
+  const tileHashes = new WeakMap<TerrainSemanticTile, string>();
+  const tileHash = (tile: TerrainSemanticTile): string => {
+    let hash = tileHashes.get(tile);
+    if (hash === undefined) {
+      hash = cacheHash(tile);
+      tileHashes.set(tile, hash);
+    }
+    return hash;
+  };
   const generator =
     cache !== undefined
       ? withWorldgenTileCache(base, cache, (request) =>
@@ -299,7 +334,7 @@ export function createWorldgenSemanticRenderers(
             packHash: pack.hash,
             ...(atlasHash !== undefined ? { atlasHash } : {}),
             quality,
-            variant: hashJson({
+            variant: cacheHash({
               budgets: request.budgets ?? {},
               tierOffset: request.tierOffset ?? 0,
               keep: request.keep ?? 1,
@@ -310,9 +345,9 @@ export function createWorldgenSemanticRenderers(
               identities: places?.businesses.hash ?? null,
               models: places?.landmarks.hash ?? null,
               environment: environmentHash,
-              semantics: request.tile,
+              semantics: tileHash(request.tile),
               geometry: request.geom,
-            } as unknown as JsonValue),
+            }),
             level: request.geom.level,
             x: request.geom.x,
             z: request.geom.z,
@@ -333,27 +368,40 @@ export function createWorldgenSemanticRenderers(
   ): Promise<{ output: WorldgenTileOutput; generateMs: number } | undefined> {
     const geom = geometryFor(context, metersPerUnit);
     const started = now();
-    const output = await generator.generate(
-      {
-        tile,
-        geom,
-        ...(options.buildingInfill !== undefined ? { buildingInfill: options.buildingInfill } : {}),
-        ...(buildingInfillExclusions !== undefined ? { buildingInfillExclusions } : {}),
-        ground: context.heightfield,
-        resolution: context.pyramid.tileResolution,
-        renderCellsOnly: options.lodPolicy !== undefined,
-        budgets: {
-          ...worldgenTileBudgetForQuality(preset, geom.levelBelowMax, {
-            compactBuildings: options.compact === true,
-          }),
-          ...options.budgets,
-        },
-        features: { ...features, interiors: interiors !== undefined && features.buildings },
-        tierOffset: preset === 'economy' ? 1 : 0,
-        ...(options.compact === true ? { keep: COMPACT_SCATTER_KEEP } : {}),
+    const input: WorldgenGenerateRequest = {
+      tile,
+      geom,
+      ...(options.buildingInfill !== undefined ? { buildingInfill: options.buildingInfill } : {}),
+      ...(buildingInfillExclusions !== undefined ? { buildingInfillExclusions } : {}),
+      ground: context.heightfield,
+      resolution: context.pyramid.tileResolution,
+      renderCellsOnly: options.lodPolicy !== undefined,
+      budgets: {
+        ...worldgenTileBudgetForQuality(preset, geom.levelBelowMax, {
+          compactBuildings: options.compact === true,
+        }),
+        ...options.budgets,
       },
-      context.signal,
-    );
+      features: { ...features, interiors: interiors !== undefined && features.buildings },
+      tierOffset: preset === 'economy' ? 1 : 0,
+      ...(options.compact === true ? { keep: COMPACT_SCATTER_KEEP } : {}),
+    };
+    // The request's own main-thread work (its cache key, ground grid and the message to a worker)
+    // is admitted like the rest: run as tiles' sources resolved, several stacked into one frame.
+    // For a dense town tile it was 8-16 ms in one piece, past any frame's budget, so the tile's
+    // content hash and the generator's preparation (its ground grid) go first, each its own job.
+    const admitted = async <T>(label: string, work: () => T): Promise<T> =>
+      context.admission ? context.admission.run(work, { signal: context.signal, label }) : work();
+    let output: WorldgenTileOutput | undefined;
+    try {
+      if (cache !== undefined) await admitted('worldgen-key', () => tileHash(tile));
+      if (generator.prepare !== undefined)
+        await admitted('worldgen-prepare', () => generator.prepare?.(input));
+      output = await admitted('worldgen-request', () => generator.generate(input, context.signal));
+    } catch (error) {
+      if (context.signal.aborted) return undefined;
+      throw error;
+    }
     if (output === undefined || context.signal.aborted) return undefined;
     const generateMs = now() - started;
     totalMs += generateMs;
@@ -371,6 +419,7 @@ export function createWorldgenSemanticRenderers(
     sets: readonly PlacementSet[],
     context: TerrainPyramidTileLayerContext,
     name: string,
+    vanishPixels?: number,
   ): Promise<THREE.Object3D[]> {
     if (models === undefined) return [];
     const objects: THREE.Object3D[] = [];
@@ -385,7 +434,8 @@ export function createWorldgenSemanticRenderers(
         const distant =
           options.propLod !== false ? await models.prepare(set.modelRef, 'distant') : prepared;
         if (context.signal.aborted) return objects;
-        objects.push(
+        // Instance matrices for every placement: admitted, as a tile's sources resolve together.
+        const build = (): THREE.Object3D =>
           options.propLod !== false
             ? createInstancedPlacementLod(
                 set,
@@ -406,6 +456,7 @@ export function createWorldgenSemanticRenderers(
                         cellGrid: { cellsPerAxis: 2 },
                       }),
                   ...(options.lodPolicy ? { screenSpace: options.lodPolicy } : {}),
+                  ...(vanishPixels !== undefined ? { vanishPixels } : {}),
                 },
                 `${name}:${set.setId}`,
               )
@@ -414,11 +465,20 @@ export function createWorldgenSemanticRenderers(
                 prepared.geometry,
                 prepared.material,
                 `${name}:${set.setId}`,
-              ),
+              );
+        objects.push(
+          context.admission
+            ? await context.admission.run(build, {
+                signal: context.signal,
+                label: 'prop-assembly',
+                bytes: set.data.byteLength,
+              })
+            : build(),
         );
         stats.props += set.count;
         stats.geometryBytes += set.data.byteLength;
       } catch (error) {
+        if (context.signal.aborted) return objects;
         if (!warnedModels.has(set.modelRef)) {
           warnedModels.add(set.modelRef);
           console.warn(`[molen] worldgen model "${set.modelRef}": ${(error as Error).message}`);
@@ -507,7 +567,9 @@ export function createWorldgenSemanticRenderers(
         ),
       );
     }
-    for (const object of await instancedProps(output.placements, context, name)) group.add(object);
+    // Street props and signs vanish below 1.5 px; plants do not, as a distant forest is their sum.
+    for (const object of await instancedProps(output.placements, context, name, PROP_VANISH_PIXELS))
+      group.add(object);
     return group;
   }
 

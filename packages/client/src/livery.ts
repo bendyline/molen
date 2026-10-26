@@ -53,7 +53,10 @@ export function liveryGraphicTexture(graphic: LiveryGraphic, size = 256): THREE.
   return textureFrom(bytes, size);
 }
 
-function camouflageTexture(pattern: NonNullable<LiveryPaint['camouflage']>): THREE.DataTexture {
+function camouflageTexture(
+  pattern: NonNullable<LiveryPaint['camouflage']>,
+  channel: number,
+): THREE.DataTexture {
   const size = 128,
     bytes = new Uint8Array(size * size * 4);
   const hash = (x: number, y: number): number => {
@@ -88,7 +91,7 @@ function camouflageTexture(pattern: NonNullable<LiveryPaint['camouflage']>): THR
     }
   const texture = textureFrom(bytes, size);
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  texture.channel = 3;
+  texture.channel = channel;
   texture.repeat.setScalar(pattern.scale);
   return texture;
 }
@@ -129,11 +132,13 @@ function projectPaint(
   bounds: THREE.Box3,
   transform: THREE.Matrix4,
   names: readonly string[],
+  channel: number,
 ): THREE.BufferGeometry {
   const geometry = mesh.geometry.index ? mesh.geometry.toNonIndexed() : mesh.geometry.clone();
+  const attribute = channel === 0 ? 'uv' : `uv${channel}`;
   const p = geometry.getAttribute('position'),
-    uv = geometry.getAttribute('uv3')
-      ? Float32Array.from(geometry.getAttribute('uv3').array)
+    uv = geometry.getAttribute(attribute)
+      ? Float32Array.from(geometry.getAttribute(attribute).array)
       : new Float32Array(p.count * 2);
   const selected = new Uint8Array(p.count);
   if (!Array.isArray(mesh.material)) selected.fill(1);
@@ -166,7 +171,7 @@ function projectPaint(
         ((axis === 'y' ? point.z : point.y) - (axis === 'y' ? bounds.min.z : bounds.min.y)) / scale;
     }
   }
-  geometry.setAttribute('uv3', new THREE.BufferAttribute(uv, 2));
+  geometry.setAttribute(attribute, new THREE.BufferAttribute(uv, 2));
   return geometry;
 }
 
@@ -229,6 +234,14 @@ export function applyLivery(model: THREE.Object3D, data: LiveryData): LiveryVisu
     slots.set(name, { meshes, bounds, binding });
   }
   const painted = new Map<THREE.Mesh, Set<number>>();
+  const occupiedChannels = new Set<number>();
+  model.traverse((object) => {
+    if (!(object instanceof THREE.Mesh)) return;
+    for (const material of materialsOf(object))
+      for (const value of Object.values(material))
+        if (value instanceof THREE.Texture) occupiedChannels.add(value.channel);
+  });
+  const channel = [3, 2, 1, 0].find((candidate) => !occupiedChannels.has(candidate));
   for (const [name, paint] of Object.entries(variant.paints)) {
     const slot = slots.get(name);
     if (!slot || slot.bounds.isEmpty()) {
@@ -236,7 +249,12 @@ export function applyLivery(model: THREE.Object3D, data: LiveryData): LiveryVisu
       continue;
     }
     const clones = new Map<THREE.Material, THREE.Material>();
-    const texture = paint.camouflage ? camouflageTexture(paint.camouflage) : undefined;
+    if (paint.camouflage && channel === undefined)
+      warnings.push(`Paint ${name}: no unused UV channel for camouflage; using the base color`);
+    const texture =
+      paint.camouflage && channel !== undefined
+        ? camouflageTexture(paint.camouflage, channel)
+        : undefined;
     if (texture) textures.add(texture);
     for (const mesh of slot.meshes) {
       remember(mesh);
@@ -260,7 +278,8 @@ export function applyLivery(model: THREE.Object3D, data: LiveryData): LiveryVisu
           if ('metalness' in clone && paint.metalness !== undefined)
             (clone as THREE.MeshStandardMaterial).metalness = paint.metalness;
           if ('map' in clone) (clone as THREE.MeshStandardMaterial).map = texture ?? null;
-          if ('vertexColors' in clone) (clone as THREE.MeshStandardMaterial).vertexColors = false;
+          // Some fleet models encode dark tires/trim in vertex colors on the paint material.
+          // Preserve that mask while replacing the material's base tint.
           if (texture && 'color' in clone)
             (clone as THREE.MeshStandardMaterial).color.set('#ffffff');
           clone.needsUpdate = true;
@@ -269,7 +288,13 @@ export function applyLivery(model: THREE.Object3D, data: LiveryData): LiveryVisu
       });
       mesh.material = Array.isArray(mesh.material) ? next : (next[0] as THREE.Material);
       if (texture) {
-        mesh.geometry = projectPaint(mesh, slot.bounds, matrix(mesh), slot.binding.materials);
+        mesh.geometry = projectPaint(
+          mesh,
+          slot.bounds,
+          matrix(mesh),
+          slot.binding.materials,
+          texture.channel,
+        );
         geometries.add(mesh.geometry);
       }
     }

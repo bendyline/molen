@@ -51,7 +51,9 @@ cells are visible in generation diagnostics and do not receive invented wild veg
 
 Bare and distant terrain receives the same ecological ground palette before detailed map
 surfaces arrive. `createRegionalGroundColor` supplies the terrain stream's optional
-`surfaceColor` callback; it runs before upload for both worker-prepared and local meshes and
+`surfaceColor` callback (with an optional `colorTile` method that colors a whole tile's arrays in
+one call, which Earth's regional palette provides: per-vertex calls boxed a quarter of a million
+arguments per tile on the main thread); it runs before upload for both worker-prepared and local meshes and
 returns linear RGB. An explicit host `style.ground` palette takes precedence in `mountEarthView`.
 Nature-reserve, national-park and protected-area designations retain their protection metadata,
 but do not paint over the physical habitat beneath them. With no mapped physical cover, sparse

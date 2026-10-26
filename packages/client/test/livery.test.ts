@@ -132,6 +132,32 @@ it('reports stale material/anchor bindings rather than silently accepting a mode
   visual.dispose();
 });
 
+it('preserves vertex trim masks when the body and tires share a paint material', () => {
+  const { root, mesh, material } = fixture();
+  const colors = new Float32Array(mesh.geometry.getAttribute('position').count * 3).fill(0.04);
+  mesh.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  material.vertexColors = true;
+  const visual = applyLivery(root, data);
+  expect((mesh.material as THREE.MeshStandardMaterial).vertexColors).toBe(true);
+  expect(mesh.geometry.getAttribute('color').array).toBe(colors);
+  visual.dispose();
+});
+
+it('chooses a free camouflage UV channel without disturbing a model normal map', () => {
+  const { root, mesh, material } = fixture();
+  material.normalMap = new THREE.Texture();
+  material.normalMap.channel = 3;
+  mesh.geometry.setAttribute('uv3', mesh.geometry.getAttribute('uv').clone());
+  const original = mesh.geometry.toNonIndexed();
+  const visual = applyLivery(root, { ...data, selected: 'camo' });
+  expect((mesh.material as THREE.MeshStandardMaterial).map?.channel).toBe(2);
+  expect((mesh.material as THREE.MeshStandardMaterial).normalMap).toBe(material.normalMap);
+  expect(mesh.geometry.getAttribute('uv3').array).toEqual(original.getAttribute('uv3').array);
+  visual.dispose();
+  original.dispose();
+  material.normalMap.dispose();
+});
+
 it('projects onto inward-wound two-sided shells without painting the opposite wall', () => {
   const { root, mesh, material } = fixture();
   const geometry = mesh.geometry.toNonIndexed();

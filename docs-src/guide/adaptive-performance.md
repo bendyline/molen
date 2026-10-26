@@ -17,10 +17,28 @@ While content streams, slow frames lower detail only when the measured CPU/GPU f
 heavy: streaming work runs outside the frame, and a lower tier would restart it. After a memory
 step, the controller lets that step's lower-detail replacements load (up to the recovery delay)
 before stepping again, since retained content keeps displayed bytes high until they arrive.
+The explorer starts sampling once its first view has finished loading, or after 20 seconds: the
+first frames carry one-time work (ground refining under the camera, collision trees rebuilt for
+each refinement, models and materials arriving), and measured as overload it stepped a fast
+desktop to the lowest tier before the visitor had moved. While calibrating it recovers quickly
+but lowers detail only after 2.5 s of overload (`EARTH_CALIBRATION_QUALITY`): lifting off reveals
+a whole view at once, and the second of streaming that follows took every takeoff down a level,
+then back up in flight, a rebuild each way. Auto climbs no higher than Balanced, like Earth view's
+default `maxQualityLevel`; above it buildings switch to the high preset, which rebuilds them across
+the view. Once a level has held for
+`EARTH_QUALITY_CALIBRATION_MS` (12 s), the explorer, like Earth view, adapts with
+`EARTH_STICKY_QUALITY` timings: down after 2.5 s of sustained overload, up after 20 s of headroom,
+changes at least 6 s apart. Every change swaps resolution, shadows and building detail across the
+view (Low and Medium differ in worldgen quality, so a step regenerates every resident town tile),
+and the quick defaults flipped a jet between them every 10 to 15 seconds.
 
 The explorer applies each tier to drawing-buffer resolution, terrain screen-space error and
 range, selected/resident tile limits, terrain and semantic request concurrency, worldgen cache
-bytes, object LOD error, and surface decoration budgets. Pixel limits include high-DPI and
+bytes, object LOD error, and surface decoration budgets. Every tier keeps at least 12 terrain and 24
+layer requests in flight: they bound loading (archive reads, worker decoding and generation), not
+main-thread work, which admission meters (see [graphics performance](graphics-performance.md)). At
+4 and 8 a jet's newly selected tiles waited in line rather than loading while the workers sat
+idle, and the coarse parent stayed on screen for a second or more. Pixel limits include high-DPI and
 ultrawide displays. CPU caches and resident geometry have separate limits:
 
 | Tier | Maximum rendered pixels | Terrain error | Selected tiles | Resident buffer budget | Worldgen cache |
@@ -46,7 +64,14 @@ the frame. Between frames, warm-up compiles run the sun's shadow pass over the s
 the groups draw normally, so a tile that an admission job swapped and disposed is never replayed
 from a stale bundle. Once a WebGPU shadow map
 exists it keeps its size, and "off" stops redrawing it and fades it out rather than releasing it,
-because three.js's WebGPU shadow node cannot be torn down and rebuilt in place. Tiers change cost, never the
+because three.js's WebGPU shadow node cannot be torn down and rebuilt in place. WebGL parks the
+map the same way once a light has cast shadows: each lit program is built for the shadows it
+receives, and clearing them rebuilt every program in view, synchronously, in the next frame
+(seconds of frozen flight when a tier crossed into Low). Earth hosts turn shadows on once before
+anything is built, so tier changes only stop or resume drawing the map. A parked map still draws
+once when a caster of a new kind (instanced, skinned, alpha-tested, another side) is prepared, so
+its depth program is built as it streams in rather than with every other one in the frame
+shadows return. Tiers change cost, never the
 look: the palette, light rig and styles are the same in every tier (see the
 [medium-fi style guide](medium-fi.md#rendering-modes)).
 
@@ -59,7 +84,9 @@ reclaimable warm cache does not prevent recovery. It does not measure them again
 resident cap: each step down shrinks that cap, so a dense city's buildings would cascade every
 step to the lowest tier while the view stayed the same. Total resident bytes
 still control eviction. After asynchronous surface replacements settle, `refreshMemoryUsage()`
-updates the cached estimates. Existing surface grids keep their resolution
+updates the cached estimates; the explorer passes `'displayed'`, re-counting only tiles on
+screen, where surface detail changes in place. Its HUD shows displayed bytes ("shown") beside the
+resident total. Existing surface grids keep their resolution
 to preserve drape alignment; newly admitted terrain uses the current cap.
 
 ## Object detail and visibility

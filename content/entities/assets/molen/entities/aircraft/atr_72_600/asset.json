@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:abfde78eee361e1b90945fe0276c8f6d06af07df409cd6710a6735a4b5be14ed",
-  "sourceHash": "sha256:e3b6f49cd618336faa20cfdfff140bd66de97ca6573f3977ecab650f49202a60",
+  "hash": "sha256:78fa781f63f4400e54f45d4691a013d797aad83d475e8bdaad4523c477a4fd5b",
+  "sourceHash": "sha256:8400801e0d78b0a563163e8868c090c71d84eaefdc42f6960625eab43e0b5c5e",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 97685,
-    "vertices": 198875,
-    "meshes": 113,
-    "primitives": 113,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 91554,
+    "vertices": 148672,
+    "meshes": 128,
+    "primitives": 128,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3870412
+    "sizeBytes": 3530756
   },
   "nodes": [
     {
       "name": "ATR72-shell-ATR72-ivory",
-      "triangles": 1132
+      "triangles": 1100
     },
     {
       "name": "ATR72-shell-ATR72-glazing",
@@ -51,11 +51,11 @@
     },
     {
       "name": "ATR72-shell-ATR72-trim",
-      "triangles": 11384
+      "triangles": 5912
     },
     {
       "name": "ATR72-shell-ATR72-alloy",
-      "triangles": 9632
+      "triangles": 7232
     },
     {
       "name": "ATR72-shell-ATR72-teal",
@@ -119,7 +119,7 @@
     },
     {
       "name": "ATR72-rudder-ATR72-teal",
-      "triangles": 10
+      "triangles": 12
     },
     {
       "name": "ATR72-nacelle-0-ATR72-ivory",
@@ -131,7 +131,7 @@
     },
     {
       "name": "ATR72-nacelle-0-ATR72-alloy",
-      "triangles": 1536
+      "triangles": 768
     },
     {
       "name": "ATR72-exhaust-0-ATR72-alloy",
@@ -203,7 +203,7 @@
     },
     {
       "name": "ATR72-nacelle-1-ATR72-alloy",
-      "triangles": 1536
+      "triangles": 768
     },
     {
       "name": "ATR72-exhaust-1-ATR72-alloy",
@@ -323,7 +323,7 @@
     },
     {
       "name": "ATR72-cabin-ATR72-panel",
-      "triangles": 122
+      "triangles": 121
     },
     {
       "name": "ATR72-cabin-ATR72-instrument-black",
@@ -331,7 +331,7 @@
     },
     {
       "name": "ATR72-cabin-ATR72-trim",
-      "triangles": 3736
+      "triangles": 3520
     },
     {
       "name": "ATR72-cabin-detail-alloy",
@@ -622,9 +622,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "ATR72-panel",
+      "name": "ATR72-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -638,9 +641,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "ATR72-trim-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -686,6 +703,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "ATR72-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "ATR72-instrument-amber",
       "slots": [
         "baseColor"
@@ -719,6 +747,55 @@
     },
     {
       "name": "ATR72-instrument-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -791,25 +868,25 @@
         "points": [
           -13.25,
           1.3646,
-          -6.6426,
+          -6.6425,
           -13.25,
           1.3646,
           12.2804,
           -13.25,
           3.8264,
-          -6.6426,
+          -6.6425,
           -13.25,
           3.8264,
           12.2804,
           13.25,
           1.3646,
-          -6.6426,
+          -6.6425,
           13.25,
           1.3646,
           12.2804,
           13.25,
           3.8264,
-          -6.6426,
+          -6.6425,
           13.25,
           3.8264,
           12.2804
@@ -1369,28 +1446,28 @@
       {
         "node": "ATR72-nacelle-0-ATR72-alloy",
         "points": [
-          3.5084,
+          3.5082,
           2.5982,
           1.778,
-          3.5084,
-          2.5982,
-          4.182,
-          3.5084,
-          3.8518,
-          1.778,
-          3.5084,
-          3.8518,
-          4.182,
-          4.5916,
-          2.5982,
-          1.778,
-          4.5916,
+          3.5082,
           2.5982,
           4.182,
-          4.5916,
+          3.5082,
           3.8518,
           1.778,
-          4.5916,
+          3.5082,
+          3.8518,
+          4.182,
+          4.5918,
+          2.5982,
+          1.778,
+          4.5918,
+          2.5982,
+          4.182,
+          4.5918,
+          3.8518,
+          1.778,
+          4.5918,
           3.8518,
           4.182
         ]
@@ -1891,28 +1968,28 @@
       {
         "node": "ATR72-nacelle-1-ATR72-alloy",
         "points": [
-          -4.5916,
+          -4.5918,
           2.5982,
           1.778,
-          -4.5916,
-          2.5982,
-          4.182,
-          -4.5916,
-          3.8518,
-          1.778,
-          -4.5916,
-          3.8518,
-          4.182,
-          -3.5084,
-          2.5982,
-          1.778,
-          -3.5084,
+          -4.5918,
           2.5982,
           4.182,
-          -3.5084,
+          -4.5918,
           3.8518,
           1.778,
-          -3.5084,
+          -4.5918,
+          3.8518,
+          4.182,
+          -3.5082,
+          2.5982,
+          1.778,
+          -3.5082,
+          2.5982,
+          4.182,
+          -3.5082,
+          3.8518,
+          1.778,
+          -3.5082,
           3.8518,
           4.182
         ]

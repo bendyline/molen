@@ -6,17 +6,17 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:c776da8154c12dcaa5f200f20abdaf696d07f7b92a09fcec750c7457aeecfe90",
-  "sourceHash": "sha256:2e890d39d0f84bc400c7b5aa39a949cbc70255c392807859caf8378ff2d74d21",
+  "hash": "sha256:274ff6a2df2de06f6ada68c11b70b5cc15854510e085cc6efdea7535dd69a0b9",
+  "sourceHash": "sha256:5f5391ad7ac5cd46b2f8f8724c89e9bbe077c87a8fa86aac808e3f6b0b2345a9",
   "bounds": {
     "aabb": {
       "min": [
-        -33.9519,
+        -33.9522,
         0,
         -37.655
       ],
       "max": [
-        33.9519,
+        33.9522,
         19.8398,
         37.655
       ]
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 83903,
-    "vertices": 180184,
-    "meshes": 126,
-    "primitives": 126,
-    "materials": 23,
-    "textures": 0,
+    "triangles": 86509,
+    "vertices": 123890,
+    "meshes": 144,
+    "primitives": 144,
+    "materials": 30,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3506676
+    "sizeBytes": 3035864
   },
   "nodes": [
     {
       "name": "C5-exterior-C5-airframe",
-      "triangles": 5722
+      "triangles": 5724
     },
     {
       "name": "C5-exterior-C5-glass",
@@ -51,11 +51,11 @@
     },
     {
       "name": "C5-exterior-C5-trim",
-      "triangles": 3451
+      "triangles": 2707
     },
     {
       "name": "C5-exterior-C5-seam",
-      "triangles": 6096
+      "triangles": 4752
     },
     {
       "name": "C5-exterior-C5-alloy",
@@ -231,7 +231,7 @@
     },
     {
       "name": "C5-cabin-C5-trim",
-      "triangles": 1232
+      "triangles": 1064
     },
     {
       "name": "C5-cabin-detail-alloy",
@@ -622,17 +622,34 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "C5-panel",
+      "name": "C5-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "C5-trim-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -673,6 +690,17 @@
       "name": "C5-instrument-ink",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "C5-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -735,6 +763,55 @@
     },
     {
       "name": "C5-pilot-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -834,29 +911,29 @@
       {
         "node": "C5-exterior-C5-seam",
         "points": [
-          -33.9519,
-          1.3486,
-          -30.3398,
-          -33.9519,
-          1.3486,
+          -33.9522,
+          1.3485,
+          -30.3404,
+          -33.9522,
+          1.3485,
           32.1676,
-          -33.9519,
-          10.102,
-          -30.3398,
-          -33.9519,
-          10.102,
+          -33.9522,
+          10.1021,
+          -30.3404,
+          -33.9522,
+          10.1021,
           32.1676,
-          33.9519,
-          1.3486,
-          -30.3398,
-          33.9519,
-          1.3486,
+          33.9522,
+          1.3485,
+          -30.3404,
+          33.9522,
+          1.3485,
           32.1676,
-          33.9519,
-          10.102,
-          -30.3398,
-          33.9519,
-          10.102,
+          33.9522,
+          10.1021,
+          -30.3404,
+          33.9522,
+          10.1021,
           32.1676
         ]
       },

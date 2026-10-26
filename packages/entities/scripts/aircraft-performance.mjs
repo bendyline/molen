@@ -5,6 +5,7 @@ import {
   sampleAtmosphere,
   waveDragCoefficient,
 } from '@bendyline/molen-kernel/aircraft';
+import { configureEngineControls } from './aircraft-engine-controls.mjs';
 import { trimPoint } from './flight-bench.mjs';
 
 export const performanceLedger = JSON.parse(
@@ -22,6 +23,7 @@ export function referenceSpeed(profile) {
 
 /** Coefficients fit one declared anchor; independent conditions must be tested separately. */
 export function tuneAircraftPerformance(id, spec) {
+  configureEngineControls(id, spec);
   const p = performanceProfiles.get(id);
   if (!p) throw Error(`Missing performance profile: ${id}`);
   const speed = referenceSpeed(p),
@@ -35,7 +37,7 @@ export function tuneAircraftPerformance(id, spec) {
     h.rotorEfficiency = 0.75;
     h.profilePowerFraction = 0.12;
     spec.engine.power = p.shaftPowerW;
-    spec.engine.ratedDensityRatio = 0.7;
+    spec.engine.ratedDensityRatio = spec.engine.mixtureControl ? 1 : 0.7;
     spec.engine.densityExponent = 1;
     // At cruise, the rotor's vertical force equals weight and horizontal force balances drag.
     // Preserve the assisted collective model; fit parasitic drag at a modest 12 degree tilt.

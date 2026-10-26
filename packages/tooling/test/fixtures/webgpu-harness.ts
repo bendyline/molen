@@ -461,7 +461,11 @@ window.__backendCapture = {
     const sky = await createEarthSky('webgpu');
     scene.add(sky);
     const water = await createTerrainWaterMaterialAsync(
-      { waveScale: 0.4, waveStrength: 0.2 },
+      {
+        waveScale: 0.4,
+        waveStrength: 0.2,
+        swells: [{ amplitude: 0.18, wavelength: 24, direction: 0.7, speed: 4.5 }],
+      },
       'webgpu',
     );
     const geometry = new THREE.PlaneGeometry(100, 100);

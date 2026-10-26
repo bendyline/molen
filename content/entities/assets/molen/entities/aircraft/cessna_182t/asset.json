@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:fb2e644f04f97911c66631cf7675034e50c2e68174b3b0a39d4656fd8d32117c",
-  "sourceHash": "sha256:b809f525e6fcd0fe422015feb2b5ce8b75a50c981bfbfa3eae9cdf6fadb54f96",
+  "hash": "sha256:09b0065c17cbcc2b3326b513bf331a7e4c35d40ad242e3c9b63c3fd14c248649",
+  "sourceHash": "sha256:6ae0d36c12283b472e2de39adec4c6a8a3242b91492630063b4aad488d69d670",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 59401,
-    "vertices": 118294,
-    "meshes": 105,
-    "primitives": 105,
-    "materials": 20,
-    "textures": 0,
+    "triangles": 59446,
+    "vertices": 90146,
+    "meshes": 117,
+    "primitives": 117,
+    "materials": 27,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2266644
+    "sizeBytes": 2441672
   },
   "nodes": [
     {
       "name": "Skylane-shell-Skylane-white",
-      "triangles": 1611
+      "triangles": 1500
     },
     {
       "name": "Skylane-shell-Skylane-glazing",
@@ -51,11 +51,11 @@
     },
     {
       "name": "Skylane-shell-Skylane-trim",
-      "triangles": 1716
+      "triangles": 1404
     },
     {
       "name": "Skylane-shell-Skylane-alloy",
-      "triangles": 9928
+      "triangles": 8584
     },
     {
       "name": "Skylane-shell-Skylane-green",
@@ -167,7 +167,7 @@
     },
     {
       "name": "Skylane-cabin-Skylane-trim",
-      "triangles": 1054
+      "triangles": 986
     },
     {
       "name": "Skylane-cabin-Skylane-instrument-black",
@@ -630,9 +630,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Skylane-panel",
+      "name": "Skylane-panel-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skylane-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -646,9 +660,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -673,6 +690,17 @@
       "name": "Skylane-instrument-amber",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Skylane-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -711,6 +739,55 @@
     },
     {
       "name": "Skylane-prop-blue",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -783,25 +860,25 @@
         "points": [
           -0.95,
           0.3374,
-          -1.0829,
+          -1.0892,
           -0.95,
           0.3374,
           2.7461,
           -0.95,
           2.0317,
-          -1.0829,
+          -1.0892,
           -0.95,
           2.0317,
           2.7461,
           3.715,
           0.3374,
-          -1.0829,
+          -1.0892,
           3.715,
           0.3374,
           2.7461,
           3.715,
           2.0317,
-          -1.0829,
+          -1.0892,
           3.715,
           2.0317,
           2.7461
@@ -1634,16 +1711,16 @@
           -0.5547,
           1.573,
           1.565,
-          0.5831,
+          0.5742,
           0.6025,
           -1.05,
-          0.5831,
+          0.5742,
           0.6025,
           1.565,
-          0.5831,
+          0.5742,
           1.573,
           -1.05,
-          0.5831,
+          0.5742,
           1.573,
           1.565
         ]

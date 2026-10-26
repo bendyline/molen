@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:ae706db45dd7198e6c2a9835c398af67f6e86a6be61edb510819191f12f4e1f8",
-  "sourceHash": "sha256:c2951d523b9b376b0bd68de865b0c776ce7dbce7bef5b9a83fba2f27d7a723b1",
+  "hash": "sha256:2d97844771eabd6db12302c9f99943f90db1208def533fc1e4df3f4f404239c0",
+  "sourceHash": "sha256:e92baaedf9453eb86894ad8b917be8a464b013727ec467aff0509fb338639187",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 84163,
-    "vertices": 183205,
-    "meshes": 125,
-    "primitives": 125,
-    "materials": 23,
-    "textures": 0,
+    "triangles": 86059,
+    "vertices": 115497,
+    "meshes": 143,
+    "primitives": 143,
+    "materials": 30,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3544884
+    "sizeBytes": 2950008
   },
   "nodes": [
     {
       "name": "C17-exterior-C17-airframe",
-      "triangles": 5060
+      "triangles": 4964
     },
     {
       "name": "C17-exterior-C17-glass",
@@ -51,7 +51,7 @@
     },
     {
       "name": "C17-exterior-C17-trim",
-      "triangles": 4823
+      "triangles": 3695
     },
     {
       "name": "C17-exterior-C17-alloy",
@@ -59,7 +59,7 @@
     },
     {
       "name": "C17-exterior-C17-seam",
-      "triangles": 7632
+      "triangles": 5448
     },
     {
       "name": "C17-exterior-detail-green",
@@ -191,7 +191,7 @@
     },
     {
       "name": "C17-cabin-C17-trim",
-      "triangles": 1796
+      "triangles": 1556
     },
     {
       "name": "C17-cabin-detail-alloy",
@@ -622,17 +622,34 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "C17-panel",
+      "name": "C17-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "C17-trim-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -681,6 +698,17 @@
       "name": "C17-instrument-red",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "C17-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -735,6 +763,55 @@
     },
     {
       "name": "C17-pilot-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -807,28 +884,28 @@
         "points": [
           -15.36,
           2.0549,
-          -5.3508,
+          -5.3493,
           -15.36,
           2.0549,
-          25.2567,
+          25.2732,
           -15.36,
           7.8001,
-          -5.3508,
+          -5.3493,
           -15.36,
           7.8001,
-          25.2567,
+          25.2732,
           15.36,
           2.0549,
-          -5.3508,
+          -5.3493,
           15.36,
           2.0549,
-          25.2567,
+          25.2732,
           15.36,
           7.8001,
-          -5.3508,
+          -5.3493,
           15.36,
           7.8001,
-          25.2567
+          25.2732
         ]
       },
       {
@@ -863,30 +940,30 @@
       {
         "node": "C17-exterior-C17-seam",
         "points": [
-          -25.1832,
+          -25.1831,
           0.5999,
-          -19.4048,
-          -25.1832,
+          -19.4082,
+          -25.1831,
           0.5999,
-          25.4525,
-          -25.1832,
+          25.4553,
+          -25.1831,
           7.5414,
-          -19.4048,
-          -25.1832,
+          -19.4082,
+          -25.1831,
           7.5414,
-          25.4525,
-          25.1832,
+          25.4553,
+          25.1831,
           0.5999,
-          -19.4048,
-          25.1832,
+          -19.4082,
+          25.1831,
           0.5999,
-          25.4525,
-          25.1832,
+          25.4553,
+          25.1831,
           7.5414,
-          -19.4048,
-          25.1832,
+          -19.4082,
+          25.1831,
           7.5414,
-          25.4525
+          25.4553
         ]
       },
       {

@@ -210,6 +210,61 @@ describe('camera-distance instance LOD', () => {
     library.dispose();
   });
 
+  it('hides a batch of small props once they span too few pixels, with hysteresis', async () => {
+    const library = new ModelLibrary();
+    const ref = 'builtin:tree.deciduous.oak';
+    const models = [
+      await library.prepare(ref),
+      await library.prepare(ref, true),
+      await library.prepare(ref, 'distant'),
+    ] as const;
+    const set: PlacementSet = {
+      setId: 'props',
+      modelRef: ref,
+      count: 1,
+      data: new Float32Array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1]),
+    };
+    const make = (vanishPixels?: number) =>
+      createInstancedPlacementLod(set, models, {
+        cellSize: Number.POSITIVE_INFINITY,
+        screenSpace: { viewportHeight: 900, maxPixelError: 2 },
+        ...(vanishPixels !== undefined ? { vanishPixels } : {}),
+      });
+    const root = make(1.5);
+    const plain = make();
+    const lod = root.children[0] as THREE.LOD;
+    const mesh = lod.children[0] as THREE.InstancedMesh;
+    const plainLod = plain.children[0] as THREE.LOD;
+    root.updateMatrixWorld(true);
+    plain.updateMatrixWorld(true);
+    const camera = new THREE.PerspectiveCamera(60, 16 / 9, 0.1, 1_000_000);
+    const at = (distance: number) => {
+      camera.position.set(distance, 2, 0);
+      camera.updateMatrixWorld();
+      lod.update(camera);
+      plainLod.update(camera);
+    };
+    models[0].geometry.computeBoundingSphere();
+    const size = 2 * (models[0].geometry.boundingSphere?.radius ?? 0);
+    const focal = 900 / (2 * Math.tan(Math.PI / 6));
+    const vanishAt = (size * focal) / 1.5;
+    at(vanishAt * 0.9);
+    expect(mesh.visible).toBe(true);
+    at(vanishAt * 1.1);
+    expect(mesh.visible).toBe(false);
+    // Within the 15% hysteresis it stays hidden; nearer, it returns.
+    at(vanishAt * 0.9);
+    expect(mesh.visible).toBe(false);
+    at(vanishAt * 0.8);
+    expect(mesh.visible).toBe(true);
+    // Without the option a batch draws at any distance.
+    at(vanishAt * 10);
+    expect((plainLod.children[0] as THREE.InstancedMesh).visible).toBe(true);
+    disposeWorldgenObject(root);
+    disposeWorldgenObject(plain);
+    library.dispose();
+  });
+
   it('bounds a spread set to a grid of batches', () => {
     const material = new THREE.MeshStandardMaterial();
     const model: PreparedModel = {

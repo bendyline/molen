@@ -166,7 +166,15 @@ describe('terrain package semantic layer wiring', () => {
     if (pkg.features) pkg.features.layers = [...pkg.features.layers, 'poi'];
     let parking = 0;
     let trees = 0;
+    const admitted: Array<string | undefined> = [];
     const opened = await createTerrainPackageSemanticLayers(pkg, {
+      // Decoding runs as admission jobs.
+      admission: {
+        run: async (task, options) => {
+          admitted.push(options?.label);
+          return task();
+        },
+      },
       landcoverArchive: localArchive,
       featuresArchive: { ...localArchive },
       decoder: {
@@ -221,6 +229,8 @@ describe('terrain package semantic layer wiring', () => {
         signal: new AbortController().signal,
       } as TerrainPyramidTileLayerContext);
     expect(trees).toBe(1);
+    expect(admitted.length).toBeGreaterThan(0);
+    expect(new Set(admitted)).toEqual(new Set(['semantic-decode']));
   });
   it('keeps hydrology at every available level while bounding optional decoration', async () => {
     const opened = await createTerrainPackageSemanticLayers(descriptor(), {

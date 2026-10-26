@@ -126,13 +126,19 @@ export {
   withModelArchives,
 } from './client/model-archives';
 export {
+  createEarthAdmissionGovernor,
+  EARTH_CALIBRATION_QUALITY,
+  EARTH_QUALITY_CALIBRATION_MS,
+  EARTH_STICKY_QUALITY,
   type EarthDeviceMemory,
   type EarthPerformanceTier,
+  earthAdmission,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  earthTerrainCacheBudget,
 } from './client/performance';
 export {
   createEarthPrefetcher,
@@ -169,4 +175,5 @@ export {
   createEarthWorldgen,
   type EarthViewWorkers,
   type EarthWorldgen,
+  generationWorkers,
 } from './client/worldgen';

@@ -13,7 +13,10 @@ import { dmath as m } from './dmath';
 import {
   aircraftDeparture,
   aircraftDragCoefficient,
+  aircraftEngineRpm,
+  aircraftEngineShaftPower,
   aircraftEngineThrust,
+  aircraftMixtureEfficiency,
   engineThrottle,
   freeRotationRates,
 } from './flight-aerodynamics';
@@ -21,7 +24,10 @@ import {
 export {
   aircraftDeparture,
   aircraftDragCoefficient,
+  aircraftEngineRpm,
+  aircraftEngineShaftPower,
   aircraftEngineThrust,
+  aircraftMixtureEfficiency,
   engineThrottle,
   waveDragCoefficient,
 } from './flight-aerodynamics';
@@ -313,6 +319,8 @@ export function stepAircraft(
         : undefined;
     return {
       power: m.clamp(override?.power ?? power, 0, 1),
+      mixture: m.clamp(override?.mixture ?? input.mixture ?? 1, 0, 1),
+      propeller: m.clamp(override?.propeller ?? input.propeller ?? 1, 0, 1),
       enabled: input.engine && (override?.enabled ?? true),
     };
   });
@@ -329,25 +337,33 @@ export function stepAircraft(
     const previous = { ...s, velocity: [...s.velocity] as [number, number, number] };
     // Replace the bank on every substep: rollback at a terrain gap must include every engine.
     const bank = engineStates(s, engines);
+    const atmosphere = sampleAtmosphere(env.weather ?? {}, t.pos[1]);
+    const density = atmosphere.densityKgM3;
     let propwash = 0;
     let ratedPower = 0;
     for (const [index, engine] of engines.entries()) {
       const e = bank[engine.id];
       const control = controls[index];
       if (!e || !control) continue;
-      const running = control.enabled && !e.failed && !s.crashed;
-      e.rpm = approach(
-        e.rpm,
-        running
-          ? helicopter?.powerLimitedRotor
-            ? 1
-            : engine.idleRpm + control.power * (1 - engine.idleRpm)
-          : 0,
-        h * engine.spoolRate,
-      );
+      const combustion = aircraftMixtureEfficiency(engine, atmosphere, control.mixture);
+      const running = control.enabled && !e.failed && !s.crashed && combustion > 0;
+      const targetRpm = helicopter?.powerLimitedRotor
+        ? 1
+        : aircraftEngineRpm(engine, control.power, combustion, control.propeller);
+      e.combustion = running ? combustion : 0;
+      e.rpm = approach(e.rpm, running ? targetRpm : 0, h * engine.spoolRate);
       e.rotorAngle = (e.rotorAngle + e.rpm * engine.rotorAngularSpeed * h) % m.TAU;
       e.thrust = 0;
-      propwash += running && engine.propulsion !== 'jet' ? engine.power * control.power * e.rpm : 0;
+      e.shaftPower = running
+        ? aircraftEngineShaftPower(
+            engine,
+            atmosphere,
+            helicopter?.powerLimitedRotor ? 1 : control.power,
+            control.mixture,
+            control.propeller,
+          ) * m.clamp(e.rpm / m.max(0.01, targetRpm), 0, 1)
+        : 0;
+      propwash += e.shaftPower;
       ratedPower += engine.power;
     }
     s.engines = bank;
@@ -356,8 +372,6 @@ export function stepAircraft(
     propwash /= m.max(1, ratedPower);
     if (s.crashed) continue;
     const time = start + n * h;
-    const atmosphere = sampleAtmosphere(env.weather ?? {}, t.pos[1]);
-    const density = atmosphere.densityKgM3;
     const slope = field?.terrain ? terrainSlope(surface, t.pos[0], t.pos[2]) : undefined;
     const windAt = (point: Vec3): Vec3 =>
       env.wind
@@ -459,7 +473,12 @@ export function stepAircraft(
         const e = bank[engine.id];
         const control = controls[index];
         if (!e || !control) continue;
-        const commandedRpm = engine.idleRpm + control.power * (1 - engine.idleRpm);
+        const commandedRpm = aircraftEngineRpm(
+          engine,
+          control.power,
+          e.combustion,
+          control.propeller,
+        );
         const vectorAngle = engine.vectored ? ((s.thrustVectorPosition ?? 0) * m.PI) / 2 : 0;
         const localAxis: Vec3 = engine.vectored
           ? [0, m.sin(vectorAngle), m.cos(vectorAngle)]
@@ -467,8 +486,17 @@ export function stepAircraft(
         const axisLength = m.max(0.0001, m.hypot(...localAxis));
         const thrustAxis = vehicleLocalPoint({ pos: [0, 0, 0], rot }, localAxis);
         const propellerSpeed = dot(air, thrustAxis) / axisLength;
-        const running = control.enabled && !e.failed;
+        const running = control.enabled && !e.failed && (e.combustion ?? 1) > 0;
         const spooled = m.clamp(e.rpm / m.max(0.01, commandedRpm), 0, 1);
+        e.shaftPower = running
+          ? aircraftEngineShaftPower(
+              engine,
+              atmosphere,
+              control.power,
+              control.mixture,
+              control.propeller,
+            ) * spooled
+          : 0;
         // Engine failures remove powered thrust immediately; the rotor continues to spool down.
         if (engine.afterburnerThrust !== undefined) {
           const reheat =
@@ -483,6 +511,8 @@ export function stepAircraft(
               propellerSpeed,
               control.power,
               e.afterburner ?? 0,
+              control.mixture,
+              control.propeller,
             ) * spooled
           : 0;
         for (let i = 0; i < 3; i++)
@@ -506,7 +536,8 @@ export function stepAircraft(
           const spin = engine.propellerRotation === 'counterclockwise' ? -1 : 1;
           const axis = engine.thrustAxis.map((v) => v / axisLength);
           const torque = running
-            ? (engine.power * control.power * spooled) / engine.rotorAngularSpeed
+            ? (e.shaftPower ?? 0) /
+              (engine.rotorAngularSpeed * m.max(engine.idleRpm, m.max(e.rpm, 0.01)))
             : 0;
           const momentum = spin * (engine.propellerInertia ?? 0) * engine.rotorAngularSpeed * e.rpm;
           const precession = cross(omega, axis);
@@ -821,7 +852,12 @@ export function stepAircraft(
             m.min(1, density / 1.225 / (e.ratedDensityRatio ?? 1)),
             e.densityExponent ?? 1,
           );
-          return sum + (running ? e.power * (bank[e.id]?.rpm ?? 0) ** 3 * lapse : 0);
+          const shaftPower = running
+            ? e.power * (bank[e.id]?.rpm ?? 0) ** 3 * lapse * (bank[e.id]?.combustion ?? 1)
+            : 0;
+          const reading = bank[e.id];
+          if (reading) reading.shaftPower = shaftPower;
+          return sum + shaftPower;
         }, 0);
         const discArea = m.PI * helicopter.rotorRadius ** 2 * (helicopter.rotorDiscs ?? 1);
         const profilePower =
@@ -950,9 +986,15 @@ export function flyAircraft(world: World, actor: string, input: AircraftInputDat
     !world
       .get(mounted.vehicle, Mountable)
       ?.seats.some((s) => s.id === mounted.seat && s.role === 'driver') ||
-    ![input.power, input.pitch, input.roll, input.yaw, input.thrustVector ?? 0].every(
-      Number.isFinite,
-    )
+    ![
+      input.power,
+      input.pitch,
+      input.roll,
+      input.yaw,
+      input.thrustVector ?? 0,
+      input.mixture ?? 1,
+      input.propeller ?? 1,
+    ].every(Number.isFinite)
   )
     return false;
   const aircraft = world.get(mounted.vehicle, Aircraft);
@@ -964,6 +1006,8 @@ export function flyAircraft(world: World, actor: string, input: AircraftInputDat
       ([id, control]) =>
         !ids.has(id) ||
         (control.power !== undefined && !Number.isFinite(control.power)) ||
+        (control.mixture !== undefined && !Number.isFinite(control.mixture)) ||
+        (control.propeller !== undefined && !Number.isFinite(control.propeller)) ||
         (control.enabled !== undefined && typeof control.enabled !== 'boolean'),
     )
   )
@@ -974,6 +1018,8 @@ export function flyAircraft(world: World, actor: string, input: AircraftInputDat
     pitch: m.clamp(input.pitch, -1, 1),
     roll: m.clamp(input.roll, -1, 1),
     yaw: m.clamp(input.yaw, -1, 1),
+    ...(input.mixture === undefined ? {} : { mixture: m.clamp(input.mixture, 0, 1) }),
+    ...(input.propeller === undefined ? {} : { propeller: m.clamp(input.propeller, 0, 1) }),
     ...(input.thrustVector === undefined
       ? {}
       : { thrustVector: m.clamp(input.thrustVector, 0, 1) }),
@@ -984,6 +1030,12 @@ export function flyAircraft(world: World, actor: string, input: AircraftInputDat
               id,
               {
                 ...(control.power === undefined ? {} : { power: m.clamp(control.power, 0, 1) }),
+                ...(control.mixture === undefined
+                  ? {}
+                  : { mixture: m.clamp(control.mixture, 0, 1) }),
+                ...(control.propeller === undefined
+                  ? {}
+                  : { propeller: m.clamp(control.propeller, 0, 1) }),
                 ...(control.enabled === undefined ? {} : { enabled: control.enabled }),
               },
             ]),
@@ -1013,7 +1065,7 @@ export function installAircraft(world: World, environment?: AircraftEnvironment)
           aircraft.spec.model !== 'airplane' ||
           state.crashed ||
           (state.gearPosition !== undefined &&
-            state.flapPosition === (input.flaps ? 1 : 0) &&
+            state.flapPosition === Number(input.flaps) &&
             (!aircraft.spec.poweredLift ||
               state.thrustVectorPosition === (input.thrustVector ?? 0)));
         if (

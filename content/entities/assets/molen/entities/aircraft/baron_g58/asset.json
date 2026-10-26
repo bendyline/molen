@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:618d20ae7e10a24e460de00b7306822b12e07de0da14e0d858bb95095ce2bd5e",
-  "sourceHash": "sha256:89dec984d69b06c01eb1953a2988ec10b0045203a08dc664e131bccd03eb06bc",
+  "hash": "sha256:13c094136cc34f1f6f3752f69d3836c4bcfdf267ec8a955623d4825e6fd2b296",
+  "sourceHash": "sha256:7cbe33be4c40ac81c67cfcb7193ec25532f60539cae6fe3c2b049d0414097c31",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 73969,
-    "vertices": 153237,
-    "meshes": 139,
-    "primitives": 139,
-    "materials": 22,
-    "textures": 0,
+    "triangles": 73236,
+    "vertices": 109070,
+    "meshes": 152,
+    "primitives": 152,
+    "materials": 29,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2926424
+    "sizeBytes": 2651588
   },
   "nodes": [
     {
       "name": "Baron-shell-Baron-ivory",
-      "triangles": 1102
+      "triangles": 986
     },
     {
       "name": "Baron-shell-Baron-glazing",
@@ -51,7 +51,7 @@
     },
     {
       "name": "Baron-shell-Baron-trim",
-      "triangles": 1596
+      "triangles": 828
     },
     {
       "name": "Baron-shell-Baron-navy",
@@ -59,7 +59,7 @@
     },
     {
       "name": "Baron-shell-Baron-alloy",
-      "triangles": 12388
+      "triangles": 9748
     },
     {
       "name": "Baron-shell-detail-green",
@@ -147,11 +147,11 @@
     },
     {
       "name": "Baron-nacelle-1-Baron-ivory",
-      "triangles": 136
+      "triangles": 138
     },
     {
       "name": "Baron-nacelle-1-Baron-alloy",
-      "triangles": 1088
+      "triangles": 728
     },
     {
       "name": "Baron-nacelle-1-Baron-trim",
@@ -191,11 +191,11 @@
     },
     {
       "name": "Baron-nacelle-2-Baron-ivory",
-      "triangles": 136
+      "triangles": 138
     },
     {
       "name": "Baron-nacelle-2-Baron-alloy",
-      "triangles": 1088
+      "triangles": 728
     },
     {
       "name": "Baron-nacelle-2-Baron-trim",
@@ -283,11 +283,11 @@
     },
     {
       "name": "Baron-cabin-Baron-panel",
-      "triangles": 71
+      "triangles": 70
     },
     {
       "name": "Baron-cabin-Baron-trim",
-      "triangles": 922
+      "triangles": 824
     },
     {
       "name": "Baron-cabin-Baron-instrument-black",
@@ -630,9 +630,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Baron-panel",
+      "name": "Baron-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Baron-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -646,9 +660,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -673,6 +690,17 @@
       "name": "Baron-instrument-amber",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Baron-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -727,6 +755,55 @@
     },
     {
       "name": "Baron-prop-control",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -798,29 +875,29 @@
         "node": "Baron-shell-Baron-trim",
         "points": [
           -4.02,
-          0.2974,
+          0.2975,
           -1.9904,
           -4.02,
-          0.2974,
-          2.3599,
+          0.2975,
+          2.36,
           -4.02,
-          2.0061,
+          2.0053,
           -1.9904,
           -4.02,
-          2.0061,
-          2.3599,
+          2.0053,
+          2.36,
           4.02,
-          0.2974,
+          0.2975,
           -1.9904,
           4.02,
-          0.2974,
-          2.3599,
+          0.2975,
+          2.36,
           4.02,
-          2.0061,
+          2.0053,
           -1.9904,
           4.02,
-          2.0061,
-          2.3599
+          2.0053,
+          2.36
         ]
       },
       {
@@ -2509,28 +2586,28 @@
         "node": "Baron-cabin-Baron-trim",
         "points": [
           -0.5299,
-          0.7324,
+          0.7325,
           -1.905,
           -0.5299,
-          0.7324,
+          0.7325,
           1.43,
           -0.5299,
-          1.8134,
+          1.807,
           -1.905,
           -0.5299,
-          1.8134,
+          1.807,
           1.43,
           0.5299,
-          0.7324,
+          0.7325,
           -1.905,
           0.5299,
-          0.7324,
+          0.7325,
           1.43,
           0.5299,
-          1.8134,
+          1.807,
           -1.905,
           0.5299,
-          1.8134,
+          1.807,
           1.43
         ]
       },

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:e5af7f9bf42bcdf0df21fc3be6976b50489f97e1346dc519c5fbc2461b3422de",
-  "sourceHash": "sha256:c76f084c985691af99ef08fd438eddd8b01dabd09cb131d5149f7602d217fa04",
+  "hash": "sha256:8052d586baca6ee78b95745450ac32fe531c314cc9b1bbf02f02e96dad3c46cd",
+  "sourceHash": "sha256:a944bc988c5e46d65aa2c286f6ee409aae7a4add1cf402f5e2d2534ed56c8909",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 69806,
-    "vertices": 136626,
-    "meshes": 114,
-    "primitives": 114,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 67824,
+    "vertices": 105018,
+    "meshes": 128,
+    "primitives": 128,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2658488
+    "sizeBytes": 2826568
   },
   "nodes": [
     {
       "name": "Caravan-shell-Caravan-white",
-      "triangles": 1202
+      "triangles": 1084
     },
     {
       "name": "Caravan-shell-Caravan-glazing",
@@ -51,7 +51,7 @@
     },
     {
       "name": "Caravan-shell-Caravan-trim",
-      "triangles": 3324
+      "triangles": 1668
     },
     {
       "name": "Caravan-shell-Caravan-blue",
@@ -59,7 +59,7 @@
     },
     {
       "name": "Caravan-shell-Caravan-alloy",
-      "triangles": 11524
+      "triangles": 9604
     },
     {
       "name": "Caravan-shell-detail-green",
@@ -167,7 +167,7 @@
     },
     {
       "name": "Caravan-cabin-Caravan-trim",
-      "triangles": 3424
+      "triangles": 3328
     },
     {
       "name": "Caravan-cabin-Caravan-instrument-black",
@@ -622,9 +622,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Caravan-panel",
+      "name": "Caravan-panel-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Caravan-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -638,9 +652,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -665,6 +682,17 @@
       "name": "Caravan-instrument-ink",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Caravan-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -719,6 +747,55 @@
     },
     {
       "name": "Caravan-prop-blue",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -790,28 +867,28 @@
         "node": "Caravan-shell-Caravan-trim",
         "points": [
           -0.8817,
-          1.246,
-          -3.954,
+          1.2457,
+          -3.9539,
           -0.8817,
-          1.246,
+          1.2457,
           4.675,
           -0.8817,
-          2.7334,
-          -3.954,
+          2.7341,
+          -3.9539,
           -0.8817,
-          2.7334,
+          2.7341,
           4.675,
           0.8817,
-          1.246,
-          -3.954,
+          1.2457,
+          -3.9539,
           0.8817,
-          1.246,
+          1.2457,
           4.675,
           0.8817,
-          2.7334,
-          -3.954,
+          2.7341,
+          -3.9539,
           0.8817,
-          2.7334,
+          2.7341,
           4.675
         ]
       },

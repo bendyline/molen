@@ -167,6 +167,7 @@ export type { QueuedBuilding, WorldgenBatchInput, WorldgenBatchOutput } from './
 export {
   generateWorldgenBatch,
   generateWorldgenBatchSteps,
+  hashWorldgenOutput,
   queueBuildings,
   worldgenTransferables,
 } from './kernel/batch';

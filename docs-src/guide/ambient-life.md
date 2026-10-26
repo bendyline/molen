@@ -280,6 +280,10 @@ function frame(dt: number) {
 `installAmbient` takes `traffic`, `classes`, `policy`, `types`, `templates`, `ground` and `seed`.
 For streamed maps, `registerTile` and `unregisterTile` add and drop one tile's transportation
 features. Changes queue until the next tick, so a tile never changes the network mid-step.
+`EarthAmbient` registers displayed tiles up to 3 km across, one per sync, and none while the
+observer moves faster than 80 m/s or did in the last 3 seconds: a coarse tile beneath a climbing
+aircraft carried a whole town's roads, and a jet passes a tile's traffic too quickly to see it, for
+a dropped frame per tile. One speed sample between syncs is noisy; a dip let tiles through at 300 m/s.
 `blocks(box)` answers whether an ambient car overlaps a box, for a vehicle solver's obstacle test.
 
 `createAmbientRenderer` draws pedestrians with `AmbientFigures`, which a host can also use for its

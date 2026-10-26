@@ -12,6 +12,7 @@ import type { RegionalEnvironment } from '../kernel/regional-environment';
 import { generateWorldgenTileSteps, type WorldgenTileOutput } from '../kernel/tile-generate';
 import type { WorldgenTileCache } from './cache';
 import {
+  prepareTileHeightGrid,
   tileHeightGrid,
   type WorldgenGenerateRequest,
   type WorldgenGenerator,
@@ -37,6 +38,9 @@ export function createInThreadWorldgenGenerator(
   options: InThreadGeneratorOptions = {},
 ): WorldgenGenerator {
   return {
+    prepare(request: WorldgenGenerateRequest): void {
+      prepareTileHeightGrid(request.ground, request.geom, request.resolution);
+    },
     async generate(
       request: WorldgenGenerateRequest,
       signal: AbortSignal,
@@ -54,6 +58,8 @@ export function createInThreadWorldgenGenerator(
             : {}),
           geom: request.geom,
           ground: createHeightSampler(grid),
+          // Streaming never reads the output hash.
+          hashOutput: false,
           pack,
           ...(options.atlas !== undefined ? { atlas: options.atlas } : {}),
           ...(options.regions !== undefined ? { regions: options.regions } : {}),
@@ -83,9 +89,23 @@ export function withWorldgenTileCache(
   cache: WorldgenTileCache,
   keyOf: (request: WorldgenGenerateRequest) => string,
 ): WorldgenGenerator {
+  // A request's key is asked for twice when it is prepared first; computing it can mean
+  // serializing a tile's building exclusions.
+  const keys = new WeakMap<WorldgenGenerateRequest, string>();
+  const keyFor = (request: WorldgenGenerateRequest): string => {
+    let key = keys.get(request);
+    if (key === undefined) {
+      key = keyOf(request);
+      keys.set(request, key);
+    }
+    return key;
+  };
   return {
+    prepare(request): void {
+      if (cache.get(keyFor(request)) === undefined) generator.prepare?.(request);
+    },
     async generate(request, signal): Promise<WorldgenTileOutput | undefined> {
-      const key = keyOf(request);
+      const key = keyFor(request);
       const cached = cache.get(key);
       if (cached !== undefined) return cached;
       const output = await generator.generate(request, signal);

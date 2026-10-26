@@ -7,8 +7,11 @@
 import { readModelSignals } from '@bendyline/molen-client';
 import {
   type AircraftCameraPose,
+  type AircraftCockpitSession,
+  AircraftPointerAxes,
   type AircraftVisual,
   aircraftCameraPose,
+  applyAircraftControl,
   createAircraftVisual,
 } from '@bendyline/molen-client/aircraft';
 import { WalkCollision } from '@bendyline/molen-client/navigation';
@@ -55,6 +58,9 @@ const PLAYER = 'world-player';
 /** Throttle/collective travel per second at full lever input. */
 const POWER_RATE = 0.22;
 
+/** Height (m) above the ground beyond which no car can touch an airframe's collision probes. */
+const CAR_CLEARANCE = 8;
+
 export interface EarthAircraftOptions {
   /** The vehicles' ECS world, so cars and aircraft share one pilot, seat follower and tick. */
   world: World;
@@ -68,6 +74,11 @@ export interface EarthAircraftOptions {
   types: TypeLibrary;
   /** Unmounting and exits: the vehicles' environment (support height and exit checks). */
   vehicleEnvironment: VehicleEnvironment;
+  /**
+   * Shader warm-up for a loaded model (e.g. `renderer.prepareObject`). A model joins the scene
+   * once it resolves: drawn first, an aircraft built its few dozen shaders in that frame.
+   */
+  prepare?: (object: THREE.Object3D) => Promise<void>;
 }
 
 /** Where and how a new aircraft appears. */
@@ -174,6 +185,41 @@ export class EarthAircraft {
   /** Spawned aircraft a host owns: they survive `release` until removed. */
   private readonly owned = new Set<string>();
   private controls: AircraftInputData = { ...IDLE_AIRCRAFT_INPUT };
+  private readonly pointerAxes = new AircraftPointerAxes();
+  private cockpitBrake = false;
+
+  /** Active pilot station for the shared mesh picker and accessible control panel. */
+  cockpitSession(): AircraftCockpitSession | undefined {
+    const id = this.mountedId;
+    if (!id || this.view !== 'cockpit') return undefined;
+    const visual = this.visuals.get(id);
+    const spec = this.world.get(id, Aircraft)?.spec;
+    if (!visual || !spec) return undefined;
+    return {
+      id,
+      cockpit: visual.cockpit,
+      spec,
+      input: this.controls,
+      state: this.world.get(id, AircraftState),
+      change: (change) => {
+        if (this.mountedId !== id || this.view !== 'cockpit') return;
+        const next = applyAircraftControl(
+          this.controls,
+          change,
+          spec,
+          this.world.get(id, AircraftState),
+        );
+        if (next === this.controls) return;
+        this.pointerAxes.set(change);
+        if (change.control.action === 'brake') this.cockpitBrake = next.brake;
+        this.controls = next;
+        flyAircraft(this.world, PLAYER, next);
+      },
+      release: () => {
+        this.pointerAxes.clear();
+      },
+    };
+  }
   private sequence = 0;
   private disposed = false;
   // An airframe moves tens of meters a second: a wide neighborhood rebuilt every 24 m, bounded
@@ -193,6 +239,8 @@ export class EarthAircraft {
     return types.idsWith('aircraft').filter((id) => types.components(id).mountable !== undefined);
   }
 
+  private readonly prepare: ((object: THREE.Object3D) => Promise<void>) | undefined;
+
   constructor(options: EarthAircraftOptions) {
     this.world = options.world;
     this.root = options.root;
@@ -200,6 +248,7 @@ export class EarthAircraft {
     this.loadModel = options.loadModel;
     this.types = options.types;
     this.vehicleEnvironment = options.vehicleEnvironment;
+    this.prepare = options.prepare;
     this.object.name = 'earth:aircraft';
     this.root.add(this.object);
     installAircraft(this.world, {
@@ -278,9 +327,14 @@ export class EarthAircraft {
     this.spawned.add(id);
     if (placement.airborne !== undefined) this.launch(id, data.spec, yaw, placement.airborne);
     void this.loadModel(typeId)
-      .then((model) => {
+      .then(async (model) => {
         if (this.disposed || !this.world.exists(id)) return;
         const visual = createAircraftVisual(model, data.spec, this.world.get(id, Livery));
+        await this.prepare?.(visual.object);
+        if (this.disposed || !this.world.exists(id)) {
+          visual.dispose();
+          return;
+        }
         this.visuals.set(id, visual);
         this.object.add(visual.object);
         this.render();
@@ -292,7 +346,7 @@ export class EarthAircraft {
     return id;
   }
 
-  /** Put the pilot in `id`'s seat, wherever the pilot is. False when it is occupied. */
+  /** Select a named appearance, including while its model is still loading. */
   setLivery(id: string, selected: string): void {
     const data = selectLivery(this.world.get(id, Livery), selected);
     this.world.set(id, Livery, data);
@@ -316,6 +370,8 @@ export class EarthAircraft {
       return false;
     }
     if (input !== undefined) this.world.set(id, AircraftInput, input);
+    this.pointerAxes.clear();
+    this.cockpitBrake = false;
     this.controls = { ...(input ?? IDLE_AIRCRAFT_INPUT) };
     this.lookYaw = 0;
     this.lookPitch = 0;
@@ -498,25 +554,37 @@ export class EarthAircraft {
     if (this.world.get(id, Aircraft)?.spec.poweredLift && (controls.vector ?? 0) > 0)
       next.thrustVector =
         ((Math.round((next.thrustVector ?? 0) * 4) + (controls.vector ?? 0)) % 5) / 4;
-    next.power = Math.max(
-      0,
-      Math.min(1, next.power + Math.min(dt, 0.1) * POWER_RATE * controls.throttle),
-    );
-    next.pitch = controls.pitch;
-    next.roll = controls.roll;
-    next.yaw = controls.yaw;
-    next.brake = controls.brake;
+    if (controls.throttle !== 0)
+      this.setPower(
+        Math.max(0, Math.min(1, next.power + Math.min(dt, 0.1) * POWER_RATE * controls.throttle)),
+      );
+    next.power = this.controls.power;
+    next.engines = this.controls.engines;
+    next.pitch = controls.pitch || this.pointerAxes.pitch;
+    next.roll = controls.roll || this.pointerAxes.roll;
+    next.yaw = controls.yaw || this.pointerAxes.yaw;
+    next.brake = controls.brake || this.cockpitBrake;
     this.controls = next;
     flyAircraft(this.world, PLAYER, next);
   }
 
   /** Set the throttle/collective directly, 0..1 (e.g. from an on-screen lever). */
   setPower(power: number): void {
-    this.controls = { ...this.controls, power: Math.max(0, Math.min(1, power)) };
+    const id = this.mountedId;
+    const spec = id ? this.world.get(id, Aircraft)?.spec : undefined;
+    if (spec)
+      this.controls = applyAircraftControl(
+        this.controls,
+        { control: { id: 'common', label: 'Power', action: 'power', nodes: [] }, value: power },
+        spec,
+      );
   }
 
-  /** Move models to their simulated poses and animate controls, gear and propellers. */
-  render(): void {
+  /**
+   * Move models to their simulated poses and animate controls, gear and propellers. `camera`
+   * (in the same frame) keeps distant cockpits out of the frame.
+   */
+  render(camera?: readonly [number, number, number]): void {
     for (const [id, visual] of this.visuals) {
       const t = this.world.get(id, Transform);
       const state = this.world.get(id, AircraftState);
@@ -524,6 +592,7 @@ export class EarthAircraft {
       if (!t || !state || !input) continue;
       visual.object.position.fromArray(t.pos);
       visual.object.quaternion.fromArray(t.rot);
+      if (camera !== undefined) visual.updateView(camera);
       const channels = this.world.get(id, Aircraft)?.spec.visual;
       const weather = weatherOf(this.world);
       const atmosphere = weather ? sampleAtmosphere(weather, t.pos[1]) : undefined;
@@ -650,11 +719,15 @@ export class EarthAircraft {
     for (const offset of spec.collisionProbes)
       probeReach = Math.max(probeReach, Math.hypot(offset[0], offset[1], offset[2]));
     // Cars near enough to touch this airframe this step, gathered once instead of per probe.
+    // None reaches an airframe well above the ground: in flight, scanning every parked car in a
+    // city for each aircraft every tick was most of the flight model's time.
     const nearbyCars: Array<{ transform: TransformData; spec: VehicleSpec }> = [];
-    for (const [, carT, car] of this.world.query(Transform, Vehicle)) {
-      if (Math.hypot(carT.pos[0] - t.pos[0], carT.pos[2] - t.pos[2]) > probeReach + 5) continue;
-      nearbyCars.push({ transform: carT, spec: car.spec });
-    }
+    const ground = this.sampleHeight(t.pos[0], t.pos[2], t.pos[1]);
+    if (ground === undefined || t.pos[1] - probeReach - ground < CAR_CLEARANCE)
+      for (const [, carT, car] of this.world.query(Transform, Vehicle)) {
+        if (Math.hypot(carT.pos[0] - t.pos[0], carT.pos[2] - t.pos[2]) > probeReach + 5) continue;
+        nearbyCars.push({ transform: carT, spec: car.spec });
+      }
     const others: Array<[number, number, number]> = [];
     for (const [other, otherT] of this.world.query(Transform, Aircraft))
       if (other !== id) others.push([otherT.pos[0], otherT.pos[1] + 1.2, otherT.pos[2]]);

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:51d6ecdb3d66c12750f1e6462fb87b8a5ea25c5590f1f2f26e937189e7d2677d",
-  "sourceHash": "sha256:907c541269f31bbbeffcc6de0f6df9ad040ace258532ad4433de66f4955b5f83",
+  "hash": "sha256:847d2c7990d943f4382a9a818a7a7d28e3ea08e5738fffa56af68362ee681d04",
+  "sourceHash": "sha256:7ee4f8c552e713693fc7b39b56ebbfc27d2a979ee2834353b47b7f17a1d985fd",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 51152,
-    "vertices": 101350,
-    "meshes": 115,
-    "primitives": 115,
-    "materials": 22,
-    "textures": 0,
+    "triangles": 48826,
+    "vertices": 74222,
+    "meshes": 122,
+    "primitives": 122,
+    "materials": 29,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 1996536
+    "sizeBytes": 1957064
   },
   "nodes": [
     {
       "name": "AW139-shell-AW139-white",
-      "triangles": 1236
+      "triangles": 1122
     },
     {
       "name": "AW139-shell-AW139-glass",
@@ -51,11 +51,11 @@
     },
     {
       "name": "AW139-shell-AW139-trim",
-      "triangles": 2712
+      "triangles": 1416
     },
     {
       "name": "AW139-shell-AW139-metal",
-      "triangles": 5880
+      "triangles": 4200
     },
     {
       "name": "AW139-shell-AW139-teal",
@@ -279,7 +279,7 @@
     },
     {
       "name": "AW139-cockpit-AW139-trim",
-      "triangles": 540
+      "triangles": 324
     },
     {
       "name": "AW139-cockpit-detail-trim",
@@ -435,7 +435,7 @@
     },
     {
       "name": "cyclic-AW139-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -475,7 +475,7 @@
     },
     {
       "name": "cyclic-AW139-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -630,9 +630,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "AW139-panel",
+      "name": "AW139-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "AW139-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -710,9 +724,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "AW139-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -727,6 +755,55 @@
     },
     {
       "name": "AW139-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -797,28 +874,28 @@
       {
         "node": "AW139-shell-AW139-trim",
         "points": [
-          -1.1446,
-          0.526,
+          -1.147,
+          0.5266,
           -1.44,
-          -1.1446,
-          0.526,
+          -1.147,
+          0.5266,
           3.567,
-          -1.1446,
+          -1.147,
           2.85,
           -1.44,
-          -1.1446,
+          -1.147,
           2.85,
           3.567,
-          1.1446,
-          0.526,
+          1.147,
+          0.5266,
           -1.44,
-          1.1446,
-          0.526,
+          1.147,
+          0.5266,
           3.567,
-          1.1446,
+          1.147,
           2.85,
           -1.44,
-          1.1446,
+          1.147,
           2.85,
           3.567
         ]

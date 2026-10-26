@@ -525,7 +525,15 @@ function bell206Cockpit(root, m) {
   d.box([0.13, 0.09, 0.006], [-0.019, 0.898, 1.96], face);
   d.text('12.00', [-0.019, 0.91, 1.951], 0.022, Math.PI, ink);
   d.box([0.17, 0.12, 0.004], [0.37, 1.29, 1.96], m.trim);
-  d.box([0.04, 0.06, 0.025], [0.37, 1.29, 1.94], d.red);
+  const master = group(panelGroup, '206-engine-master', [0.37, 1.29, 1.94]);
+  master.userData.aircraftControl = {
+    action: 'engine',
+    motion: { property: 'rotation', axis: 'x', scale: -0.5 },
+  };
+  const md = detailKit(master, master.name);
+  md.box([0.04, 0.06, 0.025], [0, 0, 0], d.red);
+  md.finish();
+  d.text('ENGINE', [0.37, 1.335, 1.935], 0.012, Math.PI, d.ivory);
   d.box([0.22, 0.16, 0.004], [0.37, 1.04, 1.959], d.ivory);
   d.text('DANGER', [0.37, 1.07, 1.949], 0.024, Math.PI, d.red);
   d.text('TAIL ROTOR', [0.37, 1.025, 1.949], 0.016, Math.PI, m.trim);

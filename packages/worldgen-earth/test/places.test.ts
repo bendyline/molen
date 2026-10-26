@@ -2,7 +2,7 @@ import {
   createEmptyTerrainSemanticTile,
   type TerrainSemanticTile,
 } from '@bendyline/molen-terrain/kernel';
-import type { Vec3 } from '@bendyline/molen-worldgen/kernel';
+import { hashWorldgenOutput, type Vec3 } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
 import { createInThreadWorldgenGenerator } from '../src/client/generators';
 import { createWorldgenWorkerBridge, type WorkerLike } from '../src/client/worker-bridge';
@@ -114,18 +114,21 @@ describe('places content', () => {
       features: { buildings: true, scatter: false },
     };
     const signal = new AbortController().signal;
+    // Streaming leaves the output hash empty; compare the bytes themselves.
+    const hash = (output: Awaited<ReturnType<typeof same.generate>>): string | undefined =>
+      output && hashWorldgenOutput(output.buildings, output.placements);
     const inThread = await createInThreadWorldgenGenerator(pack, {
       places: createPlacesContent(docs),
     }).generate(request, signal);
     const same = createWorldgenWorkerBridge(fakeWorker(), { pack, metersPerUnit: 1, places: docs });
-    expect((await same.generate(request, signal))?.hash).toBe(inThread?.hash);
+    expect(hash(await same.generate(request, signal))).toBe(hash(inThread));
     same.dispose();
     const custom = createWorldgenWorkerBridge(fakeWorker(), {
       pack,
       metersPerUnit: 1,
       places: withoutSafeway(docs),
     });
-    expect((await custom.generate(request, signal))?.hash).not.toBe(inThread?.hash);
+    expect(hash(await custom.generate(request, signal))).not.toBe(hash(inThread));
     custom.dispose();
   });
 });

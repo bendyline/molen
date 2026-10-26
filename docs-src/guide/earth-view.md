@@ -44,8 +44,10 @@ creditsElement.textContent = view.credits.map((credit) => credit.label).join(' Â
 ```
 
 Each worker file is one line, for example `import '@bendyline/molen-earth/workers/elevation';`.
-There are entries for `elevation`, `landcover`, `surface`, `worldgen` and `material`. Any worker
-you omit does its work on the main thread instead.
+There are entries for `elevation`, `landcover`, `surface`, `worldgen`, `material` and `semantic`
+(map tiles decoded off the main thread, where a town tile took 10-18 ms of a frame; hosts using
+`createProfiledTerrainPackageSemanticLayers` directly pass such a worker as `decoderWorker`). Any
+worker you omit does its work on the main thread instead.
 
 Buildings appear with vertex colors while shared material textures bake in the background.
 Completed textures update the existing materials without regenerating buildings. Terrain detail
@@ -408,13 +410,15 @@ after about five kilometers. A second jump while a region is loading follows the
 ## Tile preparation, byte cache and prefetch
 
 During flight and fast driving, nearby terrain is prepared ahead of travel automatically, even
-without a byte cache. The view predicts camera positions 4, 8 and 12 seconds ahead (up to 4 km),
+without a byte cache. The view predicts camera positions 2, 4, 8 and 12 seconds ahead (up to 4 km),
+following the measured turn rate through a bank as well as straight travel,
 selects their tiles at the current detail budget, and builds terrain, enabled layers and GPU
 resources into the hidden resident cache. Arrival reuses that work. Predictions reset after
 teleports, re-anchoring and camera-entry animations, and follow turns with a short velocity filter.
 
-Preparation is bounded to a quarter of the selected-tile budget and shares the existing tile,
-layer and memory limits. With three or more load slots, one slot can advance the predicted route
+Preparation is bounded to the larger of 16 tiles or a quarter of the selected-tile budget,
+limited by spare residency, and shares the existing tile,
+layer and memory limits. With three or more load slots, up to half can advance the predicted route
 while visible work remains queued; smaller budgets use spare slots. Displayed coverage takes
 priority under memory pressure. `view.stats()` reports `preloadingTiles` and `preloadedTiles` counts.
 This reduces late detail but cannot guarantee readiness when downloads or generation take longer
@@ -953,7 +957,8 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   switch to the high preset, which rebuilds them across the view). Where the browser can time the GPU (`renderer.createGpuTimer()`), the view
   reports GPU and CPU work per frame, so slow frames while tiles stream in lower the level only
   when rendering itself is the cost; without GPU timing it goes by frame times alone. The view
-  first calibrates quickly, so a slow device settles within seconds. Once a level has held for
+  first calibrates quickly, so a slow device settles within seconds (it lowers detail after 2.5 s
+  of overload, not one burst of streaming as a takeoff reveals the view). Once a level has held for
   12 s it turns sticky, because a level change swaps resolution and detail across the view: down
   after 2.5 s of sustained overload, up after 20 s of headroom, at least 6 s apart. Any change
   waits until the camera has been still for 0.6 s (at most 4 s); memory pressure above 1.25

@@ -6,7 +6,12 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validate } from '@bendyline/molen-schema';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
-import { embedCockpitTextures, writeCockpitTextures } from './aircraft/cockpit-surfaces.mjs';
+import { completeCockpitControls } from './aircraft/cockpit-controls.mjs';
+import {
+  embedCockpitTextures,
+  finishAircraftCockpit,
+  writeCockpitTextures,
+} from './aircraft/cockpit-surfaces.mjs';
 import { buildAircraft } from './aircraft-geometry.mjs';
 import { tuneAircraftPerformance } from './aircraft-performance.mjs';
 
@@ -83,28 +88,6 @@ for (const s of aircraft) {
     if ([...visited].every((name) => Object.hasOwn(derived, name) || Object.hasOwn(sources, name)))
       visual.animation.sources = sources;
   }
-  const bytes = embedCockpitTextures(
-    Buffer.from(await new GLTFExporter().parseAsync(model, { binary: true, onlyVisible: false })),
-  );
-  if (candidate) {
-    await mkdir(dirname(resolve(out)), { recursive: true });
-    await writeFile(resolve(out), bytes);
-    console.log(s.slug, hash(bytes));
-    continue;
-  }
-  const directory = `${root}/source/aircraft/${s.slug}`;
-  await mkdir(`${directory}/models`, { recursive: true });
-  const previous = await json(`${directory}/source.json`).catch((e) => {
-    if (e.code !== 'ENOENT') throw e;
-    return undefined;
-  });
-  const current = await readFile(`${directory}/models/source.glb`).catch((e) => {
-    if (e.code !== 'ENOENT') throw e;
-  });
-  if (current && hash(current) !== previous?.files.models[0]?.sha256 && !current.equals(bytes))
-    throw Error(`Preserving hand edits: ${s.slug}`);
-  if (!current?.equals(bytes)) await writeFile(`${directory}/models/source.glb`, bytes);
-  const textures = await writeCockpitTextures(directory, bytes);
   const components = structuredClone(f.heli ? baseHeli : basePlane);
   delete components.audioSource; // No propeller recording masquerading as a turbofan.
   components.transform = { pos: [0, 0, 0], rot: [0, 0, 0, 1] };
@@ -219,6 +202,30 @@ for (const s of aircraft) {
       };
   }
   tuneAircraftPerformance(s.id, spec);
+  completeCockpitControls(model, spec, f);
+  finishAircraftCockpit(model, spec, s.slug);
+  const bytes = embedCockpitTextures(
+    Buffer.from(await new GLTFExporter().parseAsync(model, { binary: true, onlyVisible: false })),
+  );
+  if (candidate) {
+    await mkdir(dirname(resolve(out)), { recursive: true });
+    await writeFile(resolve(out), bytes);
+    console.log(s.slug, hash(bytes));
+    continue;
+  }
+  const directory = `${root}/source/aircraft/${s.slug}`;
+  await mkdir(`${directory}/models`, { recursive: true });
+  const previous = await json(`${directory}/source.json`).catch((e) => {
+    if (e.code !== 'ENOENT') throw e;
+    return undefined;
+  });
+  const current = await readFile(`${directory}/models/source.glb`).catch((e) => {
+    if (e.code !== 'ENOENT') throw e;
+  });
+  if (current && hash(current) !== previous?.files.models[0]?.sha256 && !current.equals(bytes))
+    throw Error(`Preserving hand edits: ${s.slug}`);
+  if (!current?.equals(bytes)) await writeFile(`${directory}/models/source.glb`, bytes);
+  const textures = await writeCockpitTextures(directory, bytes);
   components.aircraft = { kind: s.id, spec };
   if (modelSignals) components['model.signals'] = modelSignals;
   components.aircraftInput = {
@@ -304,7 +311,7 @@ process.exitCode = result.status ?? 1;
       : 'Prototype; individual exterior and cockpit rework/review required.';
   await emit(
     `${directory}/README.md`,
-    `# ${s.label}\n\n**Visual status: ${visualStatus}** See the hash-bound [review record](../../aircraft-expansion-review.json) and [batch review](../../AIRCRAFT-EXPANSION.md).\n\nOriginal unarmed polygonal aircraft, ${s.length} m long, ${s.span} m span/rotor diameter and ${s.height} m nominal overall height. +Y up, +Z forward; ground-contact origin.\n\n${s.signature}. Main cockpit, seats, controls and instruments live in the exterior GLB. Live pointers, horizon cues, controls, rotors and gear use declared node bindings; screen maps and labels are diagrammatic.\n\nRegenerate: \`node packages/entities/scripts/generate-aircraft.mjs --ids=${s.slug}\`. Use \`--out .artifacts/${s.slug}.glb\` for a separate candidate. Edit \`source/aircraft-expansion.json\` in the entities pack (\`models/airframe.json\` is a generated snapshot), plus its builder in \`packages/entities/scripts/aircraft/\` when present, or shared \`aircraft-geometry.mjs\` / \`aircraft-interiors.mjs\`. Reference provenance and variant limitations: [aircraft ledger](../../AIRCRAFT-EXPANSION.md).\n\nGeometry is original MIT-licensed modeling; no reference image pixels or manufacturer logos are embedded. Dimensions and cockpit arrangement approximate the named variant; this is an assisted simulation, not a systems trainer. No external weapons, missiles, bombs, weapon pylons or gun pods. Target 15–100k triangles, under 4 MB optimized GLB.${textures.length ? ' Small original procedural cockpit finishes are embedded; source maps live in textures/. Current [cockpit surface review](../../COCKPIT-SURFACES.json).' : ' No textures.'}\n${previous?.files.documents.includes('preview.png') ? '\n[Exterior and cockpit preview](preview.png)\n' : ''}`,
+    `# ${s.label}\n\n**Visual status: ${visualStatus}** See the hash-bound [review record](../../aircraft-expansion-review.json) and [batch review](../../AIRCRAFT-EXPANSION.md).\n\nOriginal unarmed polygonal aircraft, ${s.length} m long, ${s.span} m span/rotor diameter and ${s.height} m nominal overall height. +Y up, +Z forward; ground-contact origin.\n\n${s.signature}. Main cockpit, seats, controls and instruments live in the exterior GLB. Live pointers, horizon cues, controls, rotors and gear use declared node bindings; screen maps and labels are diagrammatic.\n\nRegenerate: \`node packages/entities/scripts/generate-aircraft.mjs --ids=${s.slug}\`. Use \`--out .artifacts/${s.slug}.glb\` for a separate candidate. Edit \`source/aircraft-expansion.json\` in the entities pack (\`models/airframe.json\` is a generated snapshot), plus its builder in \`packages/entities/scripts/aircraft/\` when present, or shared \`aircraft-geometry.mjs\` / \`aircraft-interiors.mjs\`. Reference provenance and variant limitations: [aircraft ledger](../../AIRCRAFT-EXPANSION.md).\n\nGeometry is original MIT-licensed modeling; no reference image pixels or manufacturer logos are embedded. Dimensions and cockpit arrangement approximate the named variant; this is an assisted simulation, not a systems trainer. No external weapons, missiles, bombs, weapon pylons or gun pods. Target 15–100k triangles, under 4 MB optimized GLB.${textures.length ? ' Small original procedural cockpit finishes are embedded; source maps live in textures/. Shared [finish library](../../cockpit-materials/README.md) and [material review](../../COCKPIT-MATERIALS.json).' : ' No textures.'}\n${previous?.files.documents.includes('preview.png') ? '\n[Exterior and cockpit preview](preview.png)\n' : ''}`,
   );
   const source = {
     format: 'molen/source-bundle@1',

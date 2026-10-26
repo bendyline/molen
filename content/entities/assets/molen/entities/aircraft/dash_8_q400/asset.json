@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:30f5a18c6af6813257263142dd492dcf700a8e9c56f285b5d8342f100b416f24",
-  "sourceHash": "sha256:8e2b151ea357957bfef8cd87b8509bc93e46ff15f5207190da3dbeeef880f116",
+  "hash": "sha256:34c5a26c76d672db8364c9de004950197f2792a917997328558b277085af572b",
+  "sourceHash": "sha256:eeb026b19d877799e486188a5326c65c6116f2eee01a1310650f35f065bd09aa",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 45270,
-    "vertices": 106821,
-    "meshes": 49,
-    "primitives": 49,
-    "materials": 18,
-    "textures": 0,
+    "triangles": 51042,
+    "vertices": 73439,
+    "meshes": 69,
+    "primitives": 69,
+    "materials": 25,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2005044
+    "sizeBytes": 1907652
   },
   "nodes": [
     {
@@ -135,7 +135,7 @@
     },
     {
       "name": "engine-1-skin-hot-section-metal",
-      "triangles": 480
+      "triangles": 528
     },
     {
       "name": "engine-1-skin-intake-shadow",
@@ -159,7 +159,7 @@
     },
     {
       "name": "engine-2-skin-hot-section-metal",
-      "triangles": 480
+      "triangles": 528
     },
     {
       "name": "engine-2-skin-intake-shadow",
@@ -340,6 +340,114 @@
     {
       "name": "lever-detail-trim",
       "triangles": 12
+    },
+    {
+      "name": "flight-control-mounts-flight-control-panel",
+      "triangles": 60
+    },
+    {
+      "name": "flight-control-mounts-flight-control-alloy",
+      "triangles": 128
+    },
+    {
+      "name": "flight-control-mounts-flight-control-legend",
+      "triangles": 4932
+    },
+    {
+      "name": "flight-control-mounts-flight-control-grip",
+      "triangles": 108
+    },
+    {
+      "name": "flight-power-common-moving-flight-control-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "flight-power-common-moving-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-power-common-moving-flight-control-legend",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-master",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-legend",
+      "triangles": 12
+    },
+    {
+      "name": "flight-propeller-engine-1-moving-flight-control-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "flight-propeller-engine-1-moving-flight-control-propeller",
+      "triangles": 12
+    },
+    {
+      "name": "flight-propeller-engine-1-moving-flight-control-legend",
+      "triangles": 12
+    },
+    {
+      "name": "flight-propeller-engine-2-moving-flight-control-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "flight-propeller-engine-2-moving-flight-control-propeller",
+      "triangles": 12
+    },
+    {
+      "name": "flight-propeller-engine-2-moving-flight-control-legend",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-engine-1-moving-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-engine-1-moving-flight-control-legend",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-engine-2-moving-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-engine-2-moving-flight-control-legend",
+      "triangles": 12
+    },
+    {
+      "name": "flight-gear-common-moving-flight-control-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "flight-gear-common-moving-flight-control-grip",
+      "triangles": 64
+    },
+    {
+      "name": "flight-gear-common-moving-flight-control-legend",
+      "triangles": 240
+    },
+    {
+      "name": "flight-flaps-common-moving-flight-control-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "flight-flaps-common-moving-flight-control-legend",
+      "triangles": 12
+    },
+    {
+      "name": "flight-brake-common-moving-flight-control-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "flight-brake-common-moving-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-brake-common-moving-flight-control-legend",
+      "triangles": 12
     }
   ],
   "nodesTruncated": false,
@@ -426,17 +534,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "instrument-panel",
+      "name": "instrument-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "coaming-padding",
+      "name": "coaming-padding-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -466,9 +580,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -483,6 +600,74 @@
     },
     {
       "name": "seat-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-propeller",
       "slots": [
         "baseColor"
       ],
@@ -2665,6 +2850,789 @@
           0.041,
           2.7495,
           11.899
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-panel",
+        "points": [
+          -0.377,
+          2.6395,
+          12.0915,
+          -0.377,
+          2.6395,
+          12.198,
+          -0.377,
+          2.972,
+          12.0915,
+          -0.377,
+          2.972,
+          12.198,
+          0.377,
+          2.6395,
+          12.0915,
+          0.377,
+          2.6395,
+          12.198,
+          0.377,
+          2.972,
+          12.0915,
+          0.377,
+          2.972,
+          12.198
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-alloy",
+        "points": [
+          -0.3685,
+          2.65,
+          12.0875,
+          -0.3685,
+          2.65,
+          12.0905,
+          -0.3685,
+          2.854,
+          12.0875,
+          -0.3685,
+          2.854,
+          12.0905,
+          0.3685,
+          2.65,
+          12.0875,
+          0.3685,
+          2.65,
+          12.0905,
+          0.3685,
+          2.854,
+          12.0875,
+          0.3685,
+          2.854,
+          12.0905
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-legend",
+        "points": [
+          -0.3363,
+          2.7285,
+          12.0885,
+          -0.3363,
+          2.7285,
+          12.0895,
+          -0.3363,
+          2.8412,
+          12.0885,
+          -0.3363,
+          2.8412,
+          12.0895,
+          0.3443,
+          2.7285,
+          12.0885,
+          0.3443,
+          2.7285,
+          12.0895,
+          0.3443,
+          2.8412,
+          12.0885,
+          0.3443,
+          2.8412,
+          12.0895
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-grip",
+        "points": [
+          -0.3265,
+          2.666,
+          12.089,
+          -0.3265,
+          2.666,
+          12.091,
+          -0.3265,
+          2.82,
+          12.089,
+          -0.3265,
+          2.82,
+          12.091,
+          0.3265,
+          2.666,
+          12.089,
+          0.3265,
+          2.666,
+          12.091,
+          0.3265,
+          2.82,
+          12.089,
+          0.3265,
+          2.82,
+          12.091
+        ]
+      },
+      {
+        "node": "flight-power-common-moving-flight-control-alloy",
+        "points": [
+          0.3177,
+          2.7915,
+          12.058,
+          0.3177,
+          2.7915,
+          12.086,
+          0.3177,
+          2.8015,
+          12.058,
+          0.3177,
+          2.8015,
+          12.086,
+          0.3263,
+          2.7915,
+          12.058,
+          0.3263,
+          2.7915,
+          12.086,
+          0.3263,
+          2.8015,
+          12.058,
+          0.3263,
+          2.8015,
+          12.086
+        ]
+      },
+      {
+        "node": "flight-power-common-moving-flight-control-grip",
+        "points": [
+          0.3045,
+          2.7875,
+          12.0415,
+          0.3045,
+          2.7875,
+          12.0685,
+          0.3045,
+          2.8055,
+          12.0415,
+          0.3045,
+          2.8055,
+          12.0685,
+          0.3395,
+          2.7875,
+          12.0415,
+          0.3395,
+          2.7875,
+          12.0685,
+          0.3395,
+          2.8055,
+          12.0415,
+          0.3395,
+          2.8055,
+          12.0685
+        ]
+      },
+      {
+        "node": "flight-power-common-moving-flight-control-legend",
+        "points": [
+          0.313,
+          2.7955,
+          12.0405,
+          0.313,
+          2.7955,
+          12.0415,
+          0.313,
+          2.7975,
+          12.0405,
+          0.313,
+          2.7975,
+          12.0415,
+          0.331,
+          2.7955,
+          12.0405,
+          0.331,
+          2.7955,
+          12.0415,
+          0.331,
+          2.7975,
+          12.0405,
+          0.331,
+          2.7975,
+          12.0415
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-master",
+        "points": [
+          0.214,
+          2.782,
+          12.0695,
+          0.214,
+          2.782,
+          12.0865,
+          0.214,
+          2.811,
+          12.0695,
+          0.214,
+          2.811,
+          12.0865,
+          0.246,
+          2.782,
+          12.0695,
+          0.246,
+          2.782,
+          12.0865,
+          0.246,
+          2.811,
+          12.0695,
+          0.246,
+          2.811,
+          12.0865
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-legend",
+        "points": [
+          0.223,
+          2.8023,
+          12.0685,
+          0.223,
+          2.8023,
+          12.0695,
+          0.223,
+          2.8048,
+          12.0685,
+          0.223,
+          2.8048,
+          12.0695,
+          0.237,
+          2.8023,
+          12.0685,
+          0.237,
+          2.8023,
+          12.0695,
+          0.237,
+          2.8048,
+          12.0685,
+          0.237,
+          2.8048,
+          12.0695
+        ]
+      },
+      {
+        "node": "flight-propeller-engine-1-moving-flight-control-alloy",
+        "points": [
+          0.1337,
+          2.7915,
+          12.058,
+          0.1337,
+          2.7915,
+          12.086,
+          0.1337,
+          2.8015,
+          12.058,
+          0.1337,
+          2.8015,
+          12.086,
+          0.1423,
+          2.7915,
+          12.058,
+          0.1423,
+          2.7915,
+          12.086,
+          0.1423,
+          2.8015,
+          12.058,
+          0.1423,
+          2.8015,
+          12.086
+        ]
+      },
+      {
+        "node": "flight-propeller-engine-1-moving-flight-control-propeller",
+        "points": [
+          0.1205,
+          2.7875,
+          12.0415,
+          0.1205,
+          2.7875,
+          12.0685,
+          0.1205,
+          2.8055,
+          12.0415,
+          0.1205,
+          2.8055,
+          12.0685,
+          0.1555,
+          2.7875,
+          12.0415,
+          0.1555,
+          2.7875,
+          12.0685,
+          0.1555,
+          2.8055,
+          12.0415,
+          0.1555,
+          2.8055,
+          12.0685
+        ]
+      },
+      {
+        "node": "flight-propeller-engine-1-moving-flight-control-legend",
+        "points": [
+          0.129,
+          2.7955,
+          12.0405,
+          0.129,
+          2.7955,
+          12.0415,
+          0.129,
+          2.7975,
+          12.0405,
+          0.129,
+          2.7975,
+          12.0415,
+          0.147,
+          2.7955,
+          12.0405,
+          0.147,
+          2.7955,
+          12.0415,
+          0.147,
+          2.7975,
+          12.0405,
+          0.147,
+          2.7975,
+          12.0415
+        ]
+      },
+      {
+        "node": "flight-propeller-engine-2-moving-flight-control-alloy",
+        "points": [
+          0.0417,
+          2.7915,
+          12.058,
+          0.0417,
+          2.7915,
+          12.086,
+          0.0417,
+          2.8015,
+          12.058,
+          0.0417,
+          2.8015,
+          12.086,
+          0.0503,
+          2.7915,
+          12.058,
+          0.0503,
+          2.7915,
+          12.086,
+          0.0503,
+          2.8015,
+          12.058,
+          0.0503,
+          2.8015,
+          12.086
+        ]
+      },
+      {
+        "node": "flight-propeller-engine-2-moving-flight-control-propeller",
+        "points": [
+          0.0285,
+          2.7875,
+          12.0415,
+          0.0285,
+          2.7875,
+          12.0685,
+          0.0285,
+          2.8055,
+          12.0415,
+          0.0285,
+          2.8055,
+          12.0685,
+          0.0635,
+          2.7875,
+          12.0415,
+          0.0635,
+          2.7875,
+          12.0685,
+          0.0635,
+          2.8055,
+          12.0415,
+          0.0635,
+          2.8055,
+          12.0685
+        ]
+      },
+      {
+        "node": "flight-propeller-engine-2-moving-flight-control-legend",
+        "points": [
+          0.037,
+          2.7955,
+          12.0405,
+          0.037,
+          2.7955,
+          12.0415,
+          0.037,
+          2.7975,
+          12.0405,
+          0.037,
+          2.7975,
+          12.0415,
+          0.055,
+          2.7955,
+          12.0405,
+          0.055,
+          2.7955,
+          12.0415,
+          0.055,
+          2.7975,
+          12.0405,
+          0.055,
+          2.7975,
+          12.0415
+        ]
+      },
+      {
+        "node": "flight-engine-engine-1-moving-flight-control-grip",
+        "points": [
+          -0.062,
+          2.782,
+          12.0695,
+          -0.062,
+          2.782,
+          12.0865,
+          -0.062,
+          2.811,
+          12.0695,
+          -0.062,
+          2.811,
+          12.0865,
+          -0.03,
+          2.782,
+          12.0695,
+          -0.03,
+          2.782,
+          12.0865,
+          -0.03,
+          2.811,
+          12.0695,
+          -0.03,
+          2.811,
+          12.0865
+        ]
+      },
+      {
+        "node": "flight-engine-engine-1-moving-flight-control-legend",
+        "points": [
+          -0.053,
+          2.8023,
+          12.0685,
+          -0.053,
+          2.8023,
+          12.0695,
+          -0.053,
+          2.8048,
+          12.0685,
+          -0.053,
+          2.8048,
+          12.0695,
+          -0.039,
+          2.8023,
+          12.0685,
+          -0.039,
+          2.8023,
+          12.0695,
+          -0.039,
+          2.8048,
+          12.0685,
+          -0.039,
+          2.8048,
+          12.0695
+        ]
+      },
+      {
+        "node": "flight-engine-engine-2-moving-flight-control-grip",
+        "points": [
+          -0.154,
+          2.782,
+          12.0695,
+          -0.154,
+          2.782,
+          12.0865,
+          -0.154,
+          2.811,
+          12.0695,
+          -0.154,
+          2.811,
+          12.0865,
+          -0.122,
+          2.782,
+          12.0695,
+          -0.122,
+          2.782,
+          12.0865,
+          -0.122,
+          2.811,
+          12.0695,
+          -0.122,
+          2.811,
+          12.0865
+        ]
+      },
+      {
+        "node": "flight-engine-engine-2-moving-flight-control-legend",
+        "points": [
+          -0.145,
+          2.8023,
+          12.0685,
+          -0.145,
+          2.8023,
+          12.0695,
+          -0.145,
+          2.8048,
+          12.0685,
+          -0.145,
+          2.8048,
+          12.0695,
+          -0.131,
+          2.8023,
+          12.0685,
+          -0.131,
+          2.8023,
+          12.0695,
+          -0.131,
+          2.8048,
+          12.0685,
+          -0.131,
+          2.8048,
+          12.0695
+        ]
+      },
+      {
+        "node": "flight-gear-common-moving-flight-control-alloy",
+        "points": [
+          -0.2343,
+          2.7915,
+          12.058,
+          -0.2343,
+          2.7915,
+          12.086,
+          -0.2343,
+          2.8015,
+          12.058,
+          -0.2343,
+          2.8015,
+          12.086,
+          -0.2257,
+          2.7915,
+          12.058,
+          -0.2257,
+          2.7915,
+          12.086,
+          -0.2257,
+          2.8015,
+          12.058,
+          -0.2257,
+          2.8015,
+          12.086
+        ]
+      },
+      {
+        "node": "flight-gear-common-moving-flight-control-grip",
+        "points": [
+          -0.246,
+          2.7805,
+          12.045,
+          -0.246,
+          2.7805,
+          12.059,
+          -0.246,
+          2.8125,
+          12.045,
+          -0.246,
+          2.8125,
+          12.059,
+          -0.214,
+          2.7805,
+          12.045,
+          -0.214,
+          2.7805,
+          12.059,
+          -0.214,
+          2.8125,
+          12.045,
+          -0.214,
+          2.8125,
+          12.059
+        ]
+      },
+      {
+        "node": "flight-gear-common-moving-flight-control-legend",
+        "points": [
+          -0.241,
+          2.7855,
+          12.0421,
+          -0.241,
+          2.7855,
+          12.0459,
+          -0.241,
+          2.8075,
+          12.0421,
+          -0.241,
+          2.8075,
+          12.0459,
+          -0.219,
+          2.7855,
+          12.0421,
+          -0.219,
+          2.7855,
+          12.0459,
+          -0.219,
+          2.8075,
+          12.0421,
+          -0.219,
+          2.8075,
+          12.0459
+        ]
+      },
+      {
+        "node": "flight-flaps-common-moving-flight-control-alloy",
+        "points": [
+          -0.3263,
+          2.7915,
+          12.058,
+          -0.3263,
+          2.7915,
+          12.086,
+          -0.3263,
+          2.8015,
+          12.058,
+          -0.3263,
+          2.8015,
+          12.086,
+          -0.3177,
+          2.7915,
+          12.058,
+          -0.3177,
+          2.7915,
+          12.086,
+          -0.3177,
+          2.8015,
+          12.058,
+          -0.3177,
+          2.8015,
+          12.086
+        ]
+      },
+      {
+        "node": "flight-flaps-common-moving-flight-control-legend",
+        "points": [
+          -0.342,
+          2.7905,
+          12.0415,
+          -0.342,
+          2.7905,
+          12.0665,
+          -0.342,
+          2.8025,
+          12.0415,
+          -0.342,
+          2.8025,
+          12.0665,
+          -0.302,
+          2.7905,
+          12.0415,
+          -0.302,
+          2.7905,
+          12.0665,
+          -0.302,
+          2.8025,
+          12.0415,
+          -0.302,
+          2.8025,
+          12.0665
+        ]
+      },
+      {
+        "node": "flight-brake-common-moving-flight-control-alloy",
+        "points": [
+          0.3177,
+          2.6865,
+          12.058,
+          0.3177,
+          2.6865,
+          12.086,
+          0.3177,
+          2.6965,
+          12.058,
+          0.3177,
+          2.6965,
+          12.086,
+          0.3263,
+          2.6865,
+          12.058,
+          0.3263,
+          2.6865,
+          12.086,
+          0.3263,
+          2.6965,
+          12.058,
+          0.3263,
+          2.6965,
+          12.086
+        ]
+      },
+      {
+        "node": "flight-brake-common-moving-flight-control-grip",
+        "points": [
+          0.3015,
+          2.6825,
+          12.0415,
+          0.3015,
+          2.6825,
+          12.0685,
+          0.3015,
+          2.7005,
+          12.0415,
+          0.3015,
+          2.7005,
+          12.0685,
+          0.3425,
+          2.6825,
+          12.0415,
+          0.3425,
+          2.6825,
+          12.0685,
+          0.3425,
+          2.7005,
+          12.0415,
+          0.3425,
+          2.7005,
+          12.0685
+        ]
+      },
+      {
+        "node": "flight-brake-common-moving-flight-control-legend",
+        "points": [
+          0.313,
+          2.6905,
+          12.0405,
+          0.313,
+          2.6905,
+          12.0415,
+          0.313,
+          2.6925,
+          12.0405,
+          0.313,
+          2.6925,
+          12.0415,
+          0.331,
+          2.6905,
+          12.0405,
+          0.331,
+          2.6905,
+          12.0415,
+          0.331,
+          2.6925,
+          12.0405,
+          0.331,
+          2.6925,
+          12.0415
         ]
       }
     ]

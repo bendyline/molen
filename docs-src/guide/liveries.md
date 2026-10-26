@@ -2,7 +2,10 @@
 
 Liveries combine reusable paint regions and surface markings on one model. Cars, aircraft,
 RVs, boats, cycles and transit use the same `livery` component. The `molen.entities` content
-pack includes three or four choices for each of its 192 vehicle types.
+pack includes two or three photo-based choices for each of its 192 vehicle types.
+
+Browse the [visual livery gallery](livery-gallery.md) for comparisons and evidence coverage,
+or the [complete livery catalog](livery-catalog.md) for every vehicle, choice and source link.
 
 ## Choose a livery
 
@@ -16,18 +19,19 @@ type's `livery.variants` for its ids, labels, paint recipes and provenance. Over
   "type": "molen.entities.aircraft.f_16b",
   "components": {
     "transform": { "pos": [0, 0, 0] },
-    "livery": { "selected": "aggressor-blue" }
+    "livery": { "selected": "danish-et-612" }
   }
 }
 ```
 
-The F-16B choices are `authored`, `service-gray`, `aggressor-desert` and `aggressor-blue`.
-The aggressor schemes adapt reference photographs of F-16s to the library's
-two-seat model; they are explicitly marked as inspired, not serial-specific replicas.
-There is currently no F-4 model in this pack.
+The F-16B choices are `danish-et-612`, `usaf-mc-gray` and `nsawc-07-blue-camouflage`.
+The Danish scheme places roundels behind the canopy, the ET-612 serial aft of them, and small
+flags high on the fin, using photographs of both sides. The other choices adapt photographed
+USAF and NSAWC F-16 finishes to the two-seat model. Each recipe records its approximations
+and omitted details. There is no F-4 model in this pack.
 
 Change a scene entity from a script with `molen.patch('aircraft', 'livery',
-{ selected: 'service-gray' })`. The client retains the model and replaces its appearance;
+{ selected: 'danish-et-612' })`. The client retains the model and replaces its appearance;
 instances sharing a GLB keep independent liveries. Removing the component restores the
 original materials. Selection is serializable and replays with the rest of the entity data;
 it does not change vehicle physics.
@@ -38,10 +42,10 @@ Earth hosts can use the same choices:
 const id = view.vehicles.spawn({
   type: 'molen.entities.vehicle.winnebago_view_2022',
   latitude: 47.61, longitude: -122.33, heading: 0,
-  livery: 'mineral-ii',
+  livery: 'bay-mist-ii-study',
 });
 const choices = view.vehicles.liveries(id);
-view.vehicles.setLivery(id, 'bay-mist-ii');
+view.vehicles.setLivery(id, 'silver-and-charcoal-study');
 ```
 
 Earth preserves the selection across model unloading and terrain frame changes. Its lower-level
@@ -108,8 +112,9 @@ the original bind pose even if a door or control surface has moved since loading
 
 ## Paint and artwork
 
-Paint replaces base color and vertex tint; original normal, metalness, roughness and AO maps
-survive. An empty `paints` object preserves the original finish. Camouflage adds a seeded,
+Paint replaces the base color map and material tint; vertex colors and original normal,
+metalness, roughness and AO maps survive. This retains trim masks on older vehicles that share
+a paint material with their tires. An empty `paints` object preserves the original finish. Camouflage adds a seeded,
 low-frequency pattern using a private model-space UV channel:
 
 ```json
@@ -122,6 +127,8 @@ low-frequency pattern using a private model-space UV channel:
 This is box projection with seams at changes in dominant face direction, not a reproduction
 of an aircraft's official paint masking diagram. The pattern ignores authored UVs and stays
 fixed on animated parts. Preserve separate upper/lower paint slots for precise two-tone work.
+The renderer chooses a UV channel unused by the model's textures. If all four channels are
+occupied, it reports a warning and uses the base paint color to preserve those texture bindings.
 
 Graphics are ordered colored polygons in a 0–1 square, Y up. They are rasterized to a small
 sRGB texture, with no font or network dependency at runtime. Roundels, stars, bars, stripes,
@@ -135,6 +142,9 @@ Read its `warnings`, then call the returned `dispose()` before selecting another
 disposing the model. It restores original materials and geometry and frees only its own
 resources. `createVehicleVisual` and `createAircraftVisual` accept the component as a third
 argument and expose `setLivery(data)` to manage this lifetime for you.
+An explicit livery takes precedence over the legacy `vehicle.color`; put custom colors in its
+paint recipe. Earth handles that conversion for its `color` and `setColor` APIs and restores
+the type's original recipe when a named livery is selected again.
 
 ## Reference evidence and the fleet
 
@@ -143,16 +153,15 @@ note and source URLs. `photo` and `inspired` require references. Do not label a 
 palette as a real unit or factory option without supporting evidence. Source photographs
 are references for original artwork; they are not shipped as textures.
 
-The initial fleet includes original palette alternatives, the existing authored finishes,
-and explicitly approximate studies of the [USAF aggressor photographs](https://www.af.mil/News/Photos/igphoto/2000580051/),
-[Winnebago's 2022 View exterior schemes](https://www.winnebago.com/Files/Images/Winnebago/brochures/2022/2022_View_Digital.X.pdf),
-and [Ford's Mustang color photographs](https://www.ford.com.ph/showroom/performance/all-new-mustang/).
-Most alternate fleet palettes are original studies, not individually photo-verified replicas.
+All 385 fleet choices link real-world photographs. The [gallery](livery-gallery.md) compares
+every choice and records its scope, while the [catalog](livery-catalog.md#source-index) lists
+source attribution. They use `inspired` provenance because paint values, model variants,
+camouflage masks and simplified artwork are adaptations rather than exact replicas.
 
 In the engine repository, `content/entities/source/liveries.json` is the editable catalog.
 `generate-models.mjs` validates and merges it into the runtime type libraries; the individual
 base-model definitions stay independent. Copy the `livery` component along with a source
-bundle when extracting a standalone vehicle. `generate-liveries.mjs` regenerates the initial
-catalog from the authored recipe code and current named-material bindings; running it overwrites
-catalog edits. Ordinary model builds only consume the catalog, so geometry work cannot erase
-livery edits. The shared `scenes/liveries.scene.json` provides a small scene for inspection.
+bundle when extracting a standalone vehicle. `generate-liveries.mjs` validates photo references,
+coverage and model bindings, then propagates the authored catalog. It does not invent fallback
+palettes or overwrite recipes. Ordinary model builds only consume the catalog, so geometry work
+cannot erase livery edits. The shared `scenes/liveries.scene.json` provides a small scene for inspection.

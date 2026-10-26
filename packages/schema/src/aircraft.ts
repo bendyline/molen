@@ -7,6 +7,10 @@ export type AircraftKind = string;
 export type FlightModel = 'airplane' | 'helicopter';
 
 export interface AircraftEngineSpec extends JsonObject {
+  /** Manually metered piston fuel mixture; omitted/false leaves fuel scheduling automatic. */
+  mixtureControl?: boolean;
+  /** Constant-speed propeller governor. Lever selects normalized RPM, not blade angle directly. */
+  propellerControl?: { minRpm: number };
   /** Omitted retains legacy constant-power propulsion. Jets produce thrust, not shaft power. */
   propulsion?: 'propeller' | 'jet';
   /** Sea-level static dry jet thrust, N. */
@@ -49,6 +53,10 @@ export interface AircraftNamedEngineSpec extends AircraftEngineSpec {
 }
 
 export interface AircraftEngineInputData extends JsonObject {
+  /** Fuel mixture: 0 idle cutoff, 1 full rich; omitted inherits common mixture. */
+  mixture?: number;
+  /** Propeller RPM lever: 0 minimum governed RPM, 1 maximum; inherits common propeller. */
+  propeller?: number;
   /** Absolute throttle override, 0–1. Omitted inherits the common throttle. */
   power?: number;
   /** Individual engine switch. The common engine switch remains a master cutoff. */
@@ -56,6 +64,10 @@ export interface AircraftEngineInputData extends JsonObject {
 }
 
 export interface AircraftEngineStateData extends JsonObject {
+  /** Available delivered shaft power in watts; zero for jet engines. */
+  shaftPower?: number;
+  /** Mixture-dependent combustion effectiveness, 0..1; zero when switched off or failed. */
+  combustion?: number;
   rpm: number;
   rotorAngle: number;
   /** Latched failure; pilot throttle/switch changes cannot clear it. */
@@ -278,6 +290,10 @@ export interface AircraftData extends JsonObject {
   spec: AircraftSpec;
 }
 export interface AircraftInputData extends JsonObject {
+  /** Common fuel mixture: 0 idle cutoff, 1 full rich (default). Only manually metered pistons. */
+  mixture?: number;
+  /** Common propeller governor lever: 0 minimum RPM, 1 maximum (default). */
+  propeller?: number;
   /** Absolute engine throttle (airplane) or collective (helicopter), retained when keys release. */
   power: number;
   pitch: number;

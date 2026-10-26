@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:7f5fe609326ac9f0e9d0493a44324b69d6ba5195cdab3f5fa2dcb015804c4c09",
-  "sourceHash": "sha256:7e91cd81ce77025945616f69e29847bc50bdc53afdb14cc0a46bddf4944d4118",
+  "hash": "sha256:948c64e389fd2eb5336414c71d78d0ee524bab79b135c90e0e35d9c1021062f9",
+  "sourceHash": "sha256:a3207baab38e6b044278c3c801a7321099b77040d089769d5452f9e00a164a19",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 94385,
-    "vertices": 197690,
-    "meshes": 116,
-    "primitives": 116,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 93689,
+    "vertices": 128756,
+    "meshes": 132,
+    "primitives": 132,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3874456
+    "sizeBytes": 3206904
   },
   "nodes": [
     {
@@ -51,11 +51,11 @@
     },
     {
       "name": "C130J-exterior-C130J-trim",
-      "triangles": 1787
+      "triangles": 1211
     },
     {
       "name": "C130J-exterior-C130J-seam",
-      "triangles": 10800
+      "triangles": 5688
     },
     {
       "name": "C130J-exterior-C130J-alloy",
@@ -295,7 +295,7 @@
     },
     {
       "name": "C130J-cabin-C130J-trim",
-      "triangles": 1138
+      "triangles": 1042
     },
     {
       "name": "C130J-cabin-detail-alloy",
@@ -622,17 +622,34 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "C130J-panel",
+      "name": "C130J-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "C130J-trim-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -686,6 +703,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "C130J-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "C130J-seat",
       "slots": [
         "baseColor"
@@ -719,6 +747,55 @@
     },
     {
       "name": "C130J-pilot-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -819,28 +896,28 @@
         "node": "C130J-exterior-C130J-seam",
         "points": [
           -20.0006,
-          0.7169,
+          0.717,
           -12.3057,
           -20.0006,
-          0.7169,
+          0.717,
           14.0557,
           -20.0006,
-          5.1703,
+          5.1704,
           -12.3057,
           -20.0006,
-          5.1703,
+          5.1704,
           14.0557,
           20.0006,
-          0.7169,
+          0.717,
           -12.3057,
           20.0006,
-          0.7169,
+          0.717,
           14.0557,
           20.0006,
-          5.1703,
+          5.1704,
           -12.3057,
           20.0006,
-          5.1703,
+          5.1704,
           14.0557
         ]
       },

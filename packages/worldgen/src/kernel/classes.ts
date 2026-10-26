@@ -3,12 +3,47 @@
  * by whole word so `house` matches `semidetached_house` but never `warehouse`.
  */
 
+// Labels and rule candidates are a small, repeating vocabulary, and every building tests every
+// rule's lists: normalizing and splitting them each time was a tenth of a worker's generation.
+const normalizedLabels = new Map<string, string>();
+const verdicts = new WeakMap<readonly string[], Map<string, boolean>>();
+const CACHE_LIMIT = 8192;
+
 export function normalizeClass(value: string): string {
-  return value.trim().toLowerCase().replaceAll('_', ' ').replaceAll('-', ' ').replaceAll(':', ' ');
+  let normalized = normalizedLabels.get(value);
+  if (normalized === undefined) {
+    normalized = value
+      .trim()
+      .toLowerCase()
+      .replaceAll('_', ' ')
+      .replaceAll('-', ' ')
+      .replaceAll(':', ' ');
+    if (normalizedLabels.size >= CACHE_LIMIT) normalizedLabels.clear();
+    normalizedLabels.set(value, normalized);
+  }
+  return normalized;
 }
 
-/** Does one label match any candidate (exact, whole-word, or multi-word substring)? */
+/**
+ * Does one label match any candidate (exact, whole-word, or multi-word substring)? Remembered per
+ * candidate list (rule data, not changed once loaded).
+ */
 export function classMatches(value: string, candidates: readonly string[]): boolean {
+  let known = verdicts.get(candidates);
+  if (known === undefined) {
+    known = new Map();
+    verdicts.set(candidates, known);
+  }
+  let verdict = known.get(value);
+  if (verdict === undefined) {
+    verdict = matchClass(value, candidates);
+    if (known.size >= CACHE_LIMIT) known.clear();
+    known.set(value, verdict);
+  }
+  return verdict;
+}
+
+function matchClass(value: string, candidates: readonly string[]): boolean {
   const normalized = normalizeClass(value);
   if (normalized.length === 0) return false;
   const tokens = normalized.split(' ').filter((token) => token.length > 0);

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:aba3fb837d6d467fcbd106c081299da0b35ff378c9c69bb69c70429e78022c5e",
-  "sourceHash": "sha256:2a24de6b02dbc5abc44b39b4ea1f44e39ad0a659f20652ba45c5f4e2a03f1fe4",
+  "hash": "sha256:f44af6b6b02a7c4e2b28aed9e2fe2a1fb5285593403f7c96ab47b679e3855b59",
+  "sourceHash": "sha256:fdccdd4a124322efb063ee6520b972b736c0324ec115490f6a7f76d8b21812b5",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 78193,
-    "vertices": 167878,
-    "meshes": 82,
-    "primitives": 82,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 72519,
+    "vertices": 105146,
+    "meshes": 90,
+    "primitives": 90,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3205072
+    "sizeBytes": 2601364
   },
   "nodes": [
     {
       "name": "CH47-shell-CH47-olive",
-      "triangles": 2392
+      "triangles": 2278
     },
     {
       "name": "CH47-shell-CH47-glass",
@@ -51,7 +51,7 @@
     },
     {
       "name": "CH47-shell-CH47-trim",
-      "triangles": 8136
+      "triangles": 4464
     },
     {
       "name": "CH47-shell-CH47-metal",
@@ -75,7 +75,7 @@
     },
     {
       "name": "sponson-CH47-trim",
-      "triangles": 4164
+      "triangles": 2964
     },
     {
       "name": "sponson-CH47-metal",
@@ -87,7 +87,7 @@
     },
     {
       "name": "sponson-CH47-trim",
-      "triangles": 4164
+      "triangles": 2964
     },
     {
       "name": "sponson-CH47-metal",
@@ -215,11 +215,11 @@
     },
     {
       "name": "CH47-cockpit-CH47-panel",
-      "triangles": 2768
+      "triangles": 2348
     },
     {
       "name": "CH47-cockpit-CH47-trim",
-      "triangles": 351
+      "triangles": 243
     },
     {
       "name": "CH47-cockpit-detail-trim",
@@ -391,7 +391,7 @@
     },
     {
       "name": "cyclic-CH47-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -439,7 +439,7 @@
     },
     {
       "name": "cyclic-CH47-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -614,9 +614,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "CH47-panel",
+      "name": "CH47-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "CH47-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -670,9 +684,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -718,7 +735,67 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "CH47-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "CH47-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -790,28 +867,28 @@
         "node": "CH47-shell-CH47-trim",
         "points": [
           -1.622,
-          0.674,
-          -7.836,
+          0.6741,
+          -7.8354,
           -1.622,
-          0.674,
+          0.6741,
           7.6593,
           -1.622,
-          4.2775,
-          -7.836,
+          4.2774,
+          -7.8354,
           -1.622,
-          4.2775,
+          4.2774,
           7.6593,
           1.622,
-          0.674,
-          -7.836,
+          0.6741,
+          -7.8354,
           1.622,
-          0.674,
+          0.6741,
           7.6593,
           1.622,
-          4.2775,
-          -7.836,
+          4.2774,
+          -7.8354,
           1.622,
-          4.2775,
+          4.2774,
           7.6593
         ]
       },
@@ -1979,28 +2056,28 @@
         "node": "CH47-cockpit-CH47-panel",
         "points": [
           -1.1415,
-          1.2004,
+          1.1999,
           -4.725,
           -1.1415,
-          1.2004,
+          1.1999,
           6.72,
           -1.1415,
-          3.1411,
+          3.1419,
           -4.725,
           -1.1415,
-          3.1411,
+          3.1419,
           6.72,
           1.1415,
-          1.2004,
+          1.1999,
           -4.725,
           1.1415,
-          1.2004,
+          1.1999,
           6.72,
           1.1415,
-          3.1411,
+          3.1419,
           -4.725,
           1.1415,
-          3.1411,
+          3.1419,
           6.72
         ]
       },
@@ -2008,10 +2085,10 @@
         "node": "CH47-cockpit-CH47-trim",
         "points": [
           -1.1098,
-          1.1053,
+          1.1054,
           -4.8,
           -1.1098,
-          1.1053,
+          1.1054,
           7.1,
           -1.1098,
           2.1774,
@@ -2020,10 +2097,10 @@
           2.1774,
           7.1,
           1.1098,
-          1.1053,
+          1.1054,
           -4.8,
           1.1098,
-          1.1053,
+          1.1054,
           7.1,
           1.1098,
           2.1774,

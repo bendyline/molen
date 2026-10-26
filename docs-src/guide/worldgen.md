@@ -518,7 +518,11 @@ scatter material: a shader that can discard switches off hidden-surface removal 
 GPUs, so a distant forest drawn with the card material shaded every layer of crowns behind the
 first. For the same reason a level drawn with cards hands over to the next at a quarter of the
 projected error its geometry alone would allow (a crown's cards overlap several deep), and the
-distant level neither casts nor receives sun shadows. Buildings retain their structural faces while distant materials and facade details
+distant level neither casts nor receives sun shadows. With `vanishPixels` a batch stops drawing
+once its largest instance spans fewer pixels than that from the batch's nearest point (15%
+hysteresis): the semantic renderers pass 1.5 for street props and signs, which from a few
+kilometers were a draw each for a pixel or less, but not for plants, as a distant forest is the
+sum of its trees. Buildings retain their structural faces while distant materials and facade details
 simplify; geometry attributes are shared across spatial cells and levels. `setQuality(preset)`
 changes future generation and queues resident architecture for replacement, one building batch
 at a time. The previous buildings stay visible until their replacements are ready; roads remain

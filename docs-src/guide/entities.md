@@ -4,6 +4,9 @@ The `molen.entities` content pack is Molen's curated entity collection. It build
 `renderable.kind: "gltf"`, `molen/asset@1`, `molen/types@1`, and `molen/project@1` contracts;
 there is no second entity or asset runtime.
 
+The [livery gallery](livery-gallery.md) compares vehicle paint and marking choices. The
+[complete livery catalog](livery-catalog.md) lists their ids and reference evidence.
+
 The initial nature collection contains pine, fir, oak, birch, shrub, and boulder models under the
 stable `molen.entities.*` namespace. Every model is a deterministic texture-free GLB with a
 hash-verified sidecar, meter-scale bounds, a conservative collision hull, and a type definition.

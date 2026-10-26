@@ -534,17 +534,8 @@ function cockpit(root, m) {
     m.dark,
     [0, 0, 1],
   );
-  const brow = [
-    [181, 700],
-    [165, 552],
-    [185, 493],
-    [242, 443],
-    [607, 436],
-    [945, 440],
-    [1002, 498],
-    [1025, 552],
-    [1006, 692],
-  ].map((p) => at(...p, -0.012));
+  // Panel, coaming and padded rail use the same contour at every bend.
+  const brow = edge.map((p) => at(...p));
   outline(d, brow, 0.014, m.dark, false);
   const deckY = (x) =>
     1.573 - (Math.abs(x) < 0.44 ? Math.abs(x) * 0.057 : 0.025 + (Math.abs(x) - 0.44) * 0.92);

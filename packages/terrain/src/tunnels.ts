@@ -37,6 +37,40 @@ const material = new THREE.MeshStandardMaterial({
   side: THREE.DoubleSide,
 });
 
+const offsets = new WeakMap<
+  THREE.Object3D,
+  { root: THREE.Object3D; offset: THREE.Vector3 | null }
+>();
+const scratchLocal = new THREE.Vector3();
+const scratchMatrix = new THREE.Matrix4();
+const IDENTITY_LINEAR = [0, 1, 2, 4, 5, 6, 8, 9, 10] as const;
+
+/**
+ * `object`'s origin in `root`'s frame when only translations lie between them (tile layers under a
+ * terrain stream), or null. Their local transforms do not change once placed, so it is kept.
+ */
+function rootOffset(object: THREE.Object3D, root: THREE.Object3D): THREE.Vector3 | null {
+  const known = offsets.get(object);
+  if (known !== undefined && known.root === root) return known.offset;
+  let offset: THREE.Vector3 | null = new THREE.Vector3();
+  for (let cursor: THREE.Object3D | null = object; cursor !== root; cursor = cursor.parent) {
+    if (cursor === null) return null;
+    if (cursor.matrixAutoUpdate) cursor.updateMatrix();
+    const e = scratchMatrix.copy(cursor.matrix).elements;
+    if (
+      IDENTITY_LINEAR.some((i, k) => Math.abs((e[i] as number) - (k % 4 === 0 ? 1 : 0)) > 1e-12)
+    ) {
+      offset = null;
+      break;
+    }
+    offset.x += e[12] as number;
+    offset.y += e[13] as number;
+    offset.z += e[14] as number;
+  }
+  offsets.set(object, { root, offset });
+  return offset;
+}
+
 /** Query a visible bore in `root`'s coordinate frame. Above-ground observers retain DEM support. */
 export function sampleTerrainTunnel(
   root: THREE.Object3D,
@@ -62,8 +96,16 @@ export function sampleTerrainTunnel(
       }
     }
     if (!visible) continue;
-    object.updateWorldMatrix(true, false);
-    const local = object.worldToLocal(worldPoint.clone());
+    // Tile layers sit at a fixed translation in the root's frame: subtracting it replaces
+    // refreshing the object's matrix chain and inverting it, for every bore in view on each of
+    // an aircraft's ground probes, several times a frame.
+    const offset = rootOffset(object, root);
+    let local: THREE.Vector3;
+    if (offset !== null) local = scratchLocal.set(x - offset.x, y - offset.y, z - offset.z);
+    else {
+      object.updateWorldMatrix(true, false);
+      local = object.worldToLocal(worldPoint.clone());
+    }
     const tileSize = tileSizes.get(object) ?? Infinity;
     if (
       local.x < -1e-8 ||
@@ -81,13 +123,19 @@ export function sampleTerrainTunnel(
       const floor = s.floor + (s.endFloor - s.floor) * t;
       const ceiling = floor + s.ceiling - s.floor;
       if (distance > s.width / 2 || local.y < floor - 1 || local.y > ceiling) continue;
-      // Tile objects only translate; report heights in the root frame, including rebasing.
-      const toRoot = new THREE.Matrix4()
-        .copy(root.matrixWorld)
-        .invert()
-        .multiply(object.matrixWorld);
-      const floorY = new THREE.Vector3(local.x, floor, local.z).applyMatrix4(toRoot).y;
-      const ceilingY = new THREE.Vector3(local.x, ceiling, local.z).applyMatrix4(toRoot).y;
+      let floorY: number, ceilingY: number;
+      if (offset !== null) {
+        floorY = floor + offset.y;
+        ceilingY = ceiling + offset.y;
+      } else {
+        // Report heights in the root frame, including rebasing.
+        const toRoot = new THREE.Matrix4()
+          .copy(root.matrixWorld)
+          .invert()
+          .multiply(object.matrixWorld);
+        floorY = new THREE.Vector3(local.x, floor, local.z).applyMatrix4(toRoot).y;
+        ceilingY = new THREE.Vector3(local.x, ceiling, local.z).applyMatrix4(toRoot).y;
+      }
       if (!result || floorY < result.floor) result = { floor: floorY, ceiling: ceilingY };
     }
   }

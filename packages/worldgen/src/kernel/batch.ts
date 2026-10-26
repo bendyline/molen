@@ -34,6 +34,12 @@ import {
 
 export interface WorldgenBatchInput {
   buildings: BuildingRequest[];
+  /**
+   * Hash the output (`WorldgenBatchOutput.hash`, default true). Streaming skips it, leaving the
+   * hash empty: SHA-256 over every array was a fifth of a batch's generation, and nothing reads it
+   * there. Compare outputs with `hashWorldgenOutput` instead.
+   */
+  hashOutput?: boolean;
   scatter?: ScatterRequest;
   /** Authored point placements, admitted before procedural scatter. */
   props?: ModelPlacementRequest[];
@@ -57,7 +63,8 @@ export interface WorldgenBatchOutput {
   placements: PlacementSet[];
   records: BuildingRecord[];
   stats: WorldgenStats;
-  /** sha256 over every output array; equal hashes mean byte-identical output. */
+  /** sha256 over every output array; equal hashes mean byte-identical output. Empty when the
+   * input set `hashOutput: false`. */
   hash: string;
 }
 
@@ -569,7 +576,7 @@ export function* generateWorldgenBatchSteps(
     placements,
     records,
     stats,
-    hash: hashWorldgenOutput(buildings, placements),
+    hash: input.hashOutput === false ? '' : hashWorldgenOutput(buildings, placements),
   };
 }
 

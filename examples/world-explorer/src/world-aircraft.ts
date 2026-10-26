@@ -1,8 +1,11 @@
 import { readModelSignals } from '@bendyline/molen-client';
 import {
   type AircraftCameraPose,
+  type AircraftCockpitSession,
+  AircraftPointerAxes,
   type AircraftVisual,
   aircraftCameraPose,
+  applyAircraftControl,
   createAircraftVisual,
 } from '@bendyline/molen-client/aircraft';
 import { WalkCollision } from '@bendyline/molen-client/navigation';
@@ -22,12 +25,19 @@ import type {
   AircraftData,
   AircraftInputData,
   AircraftSpec,
+  ComponentMap,
   VehicleSpec,
 } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { OBB } from 'three/addons/math/OBB.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 const PLAYER = 'world-player';
+/** Speed (m/s) of the pilot's own aircraft above which parked aircraft keep their cockpits hidden. */
+const CABIN_PASS_SPEED = 15;
+const FAR_AWAY = [Infinity, Infinity, Infinity] as const;
+/** Height (m) above the ground beyond which no car can touch an airframe's collision probes. */
+const CAR_CLEARANCE = 8;
 type AircraftChoice = string;
 const KINDS: AircraftChoice[] = ['p51d', 'oh6', 'airliner'];
 const entityId = (kind: AircraftChoice): string => `molen.entities.aircraft.${kind}`;
@@ -35,6 +45,37 @@ const choiceForId = (id: string): AircraftChoice | undefined =>
   id.startsWith('molen.entities.aircraft.')
     ? id.slice('molen.entities.aircraft.'.length)
     : undefined;
+/**
+ * Smallest part (bounding radius, meters) that still casts a shadow. Cockpit digits, louvers and
+ * fittings cast a few shadow texels at most, yet each was a draw in every shadow pass: at the
+ * airfield the aircraft's shadow draws outnumbered everything else in view, about 400 a frame.
+ */
+const MIN_SHADOW_CASTER_RADIUS = 0.15;
+function dropTinyShadowCasters(root: THREE.Object3D): void {
+  root.updateWorldMatrix(true, true);
+  root.traverse((object) => {
+    const mesh = object as THREE.Mesh;
+    if (!mesh.isMesh || !mesh.castShadow) return;
+    if (mesh.geometry.boundingSphere === null) mesh.geometry.computeBoundingSphere();
+    const radius =
+      (mesh.geometry.boundingSphere?.radius ?? 0) * mesh.matrixWorld.getMaxScaleOnAxis();
+    if (radius < MIN_SHADOW_CASTER_RADIUS) mesh.castShadow = false;
+  });
+}
+/**
+ * Leave a hidden part out of the scene's per-frame world-matrix walk: three walks hidden objects
+ * too, and a parked aircraft's hidden cockpit was hundreds of parts recomposed every frame. A
+ * move while hidden is applied when the part shows again.
+ */
+function skipWhenHidden(object: THREE.Object3D): void {
+  object.updateMatrixWorld = function (this: THREE.Object3D, force?: boolean): void {
+    if (!this.visible) {
+      if (force === true) this.matrixWorldNeedsUpdate = true;
+      return;
+    }
+    THREE.Object3D.prototype.updateMatrixWorld.call(this, force);
+  };
+}
 export const AIRCRAFT_HELP: string =
   'I engine · Shift/Ctrl power · W/S pitch · A/D bank · Q/Z pedals · Space brakes · G gear · F flaps · J nozzle/nacelles · V view · E exit · R recover after impact';
 
@@ -82,6 +123,37 @@ export class WorldAircraft {
     instanceBounds: true,
   });
   private inputs: AircraftInputData = { ...IDLE_AIRCRAFT_INPUT };
+  private readonly aircraftTypes = new Map<string, AircraftData>();
+  private readonly componentTypes = new Map<string, ComponentMap>();
+  private carsTick = -1;
+  private carCache: Array<{ transform: TransformData; spec: VehicleSpec }> = [];
+  private readonly pointerAxes = new AircraftPointerAxes();
+  private cockpitBrake = false;
+  cockpitSession(): AircraftCockpitSession | undefined {
+    const kind = this.mountedKind;
+    const visual = kind ? this.visuals.get(kind) : undefined;
+    if (!kind || !visual) return undefined;
+    const spec = this.aircraftData(entityId(kind)).spec;
+    return {
+      id: kind,
+      cockpit: visual.cockpit,
+      spec,
+      input: this.inputs,
+      state: this.state,
+      change: (change) => {
+        if (this.mountedKind !== kind) return;
+        const next = applyAircraftControl(this.inputs, change, spec, this.state);
+        if (next === this.inputs) return;
+        this.pointerAxes.set(change);
+        if (change.control.action === 'brake') this.cockpitBrake = next.brake;
+        this.inputs = next;
+        flyAircraft(this.world, PLAYER, next);
+      },
+      release: () => {
+        this.pointerAxes.clear();
+      },
+    };
+  }
   constructor(
     readonly world: World,
     private readonly root: THREE.Object3D,
@@ -91,6 +163,8 @@ export class WorldAircraft {
     private readonly loadModel: (id: string) => Promise<THREE.Object3D>,
     /** Entity types: aircraft specs, cockpit and spawn components. */
     private readonly types: TypeLibrary,
+    /** Shader warm-up (`renderer.prepareObject`): a model joins the scene once it resolves. */
+    private readonly prepare?: (object: THREE.Object3D) => Promise<void>,
   ) {
     this.center = [initial[0] + 500, initial[2]];
     this.object.name = 'world:airfield';
@@ -100,8 +174,22 @@ export class WorldAircraft {
       canOccupy: (t, spec, id) => this.canOccupy(t, spec, id),
     });
   }
+  /** Read-only: callers that change a component map take a fresh one from the library. */
+  private typeComponents(id: string): ComponentMap {
+    const cached = this.componentTypes.get(id);
+    if (cached !== undefined) return cached;
+    const components = this.types.components(id);
+    this.componentTypes.set(id, components);
+    return components;
+  }
   private aircraftData(id: string): AircraftData {
-    return this.types.component<AircraftData>(id, 'aircraft');
+    // The library clones a component on every read; specs are asked for several times a frame.
+    let data = this.aircraftTypes.get(id);
+    if (data === undefined) {
+      data = this.types.component<AircraftData>(id, 'aircraft');
+      this.aircraftTypes.set(id, data);
+    }
+    return data;
   }
   get choices(): { kind: string; label: string }[] {
     return this.types
@@ -133,6 +221,10 @@ export class WorldAircraft {
     const request = (async () => {
       const model = await this.loadModel(entityId(kind));
       const visual = createAircraftVisual(model, this.aircraftData(entityId(kind)).spec);
+      dropTinyShadowCasters(visual.object);
+      visual.object.traverse(skipWhenHidden);
+      // Drawn before its shaders were built, each aircraft at the airfield built them in a frame.
+      await this.prepare?.(visual.object);
       if (this.disposed || (!KINDS.includes(kind) && this.requested !== kind)) {
         visual.dispose();
         return;
@@ -191,7 +283,7 @@ export class WorldAircraft {
   visitPosition(kind: AircraftChoice): [number, number, number] {
     const p = this.world.get(`aircraft-${kind}`, Transform)?.pos ?? this.spawnPosition(kind);
     if (!KINDS.includes(kind)) {
-      const mounts = this.types.components(entityId(kind)).mountable as {
+      const mounts = this.typeComponents(entityId(kind)).mountable as {
         entries: [number, number, number][];
       };
       const entry = mounts.entries[0] ?? [0, 0, 0];
@@ -236,17 +328,17 @@ export class WorldAircraft {
     const y = this.elevation ?? 0;
     const pavement = new THREE.MeshStandardMaterial({ color: '#485054', roughness: 0.95 });
     const paint = new THREE.MeshStandardMaterial({ color: '#e1e1cc', roughness: 0.85 });
+    // The runway paint alone is 140 boxes: one mesh per material, so one draw each, not one per
+    // dash, and nothing recomposed every frame.
+    const parts = new Map<THREE.Material, THREE.BufferGeometry[]>();
     const add = (
-      name: string,
+      _name: string,
       size: [number, number, number],
       pos: [number, number, number],
       material: THREE.Material,
     ): void => {
-      const mesh = new THREE.Mesh(new THREE.BoxGeometry(...size), material);
-      mesh.name = name;
-      mesh.position.set(this.center[0] + pos[0], pos[1], this.center[1] + pos[2]);
-      mesh.receiveShadow = true;
-      this.object.add(mesh);
+      const box = new THREE.BoxGeometry(...size).translate(pos[0], pos[1], pos[2]);
+      parts.set(material, [...(parts.get(material) ?? []), box]);
     };
     add('practice-airfield', [96, y - low + 1, 4500], [0, (y + low - 1) / 2, 1350], pavement);
     for (const x of [-20, 20]) add('runway-edge', [0.18, 0.012, 4480], [x, y + 0.008, 1350], paint);
@@ -266,12 +358,28 @@ export class WorldAircraft {
       add('practice-rail', [0.065, 0.06, 760], [x, y + 0.015, 0], steel);
     for (const z of [-382, 382])
       add('rail-buffer-stop', [2.4, 0.8, 0.25], [-38, y + 0.4, z], paint);
+    for (const [material, boxes] of parts) {
+      const geometry = mergeGeometries(boxes);
+      for (const box of boxes) box.dispose();
+      const mesh = new THREE.Mesh(geometry ?? new THREE.BufferGeometry(), material);
+      mesh.name =
+        material === pavement
+          ? 'practice-airfield'
+          : material === paint
+            ? 'practice-airfield-markings'
+            : 'practice-rail';
+      mesh.position.set(this.center[0], 0, this.center[1]);
+      mesh.receiveShadow = true;
+      mesh.updateMatrix();
+      mesh.matrixAutoUpdate = false;
+      this.object.add(mesh);
+    }
   }
   nearest(position: [number, number, number]): AircraftChoice | undefined {
     for (const kind of this.visuals.keys()) {
       const t = this.world.get(`aircraft-${kind}`, Transform);
       if (!t) continue;
-      const components = this.types.components(entityId(kind));
+      const components = this.typeComponents(entityId(kind));
       const aircraft = this.aircraftData(entityId(kind));
       const mountable = components.mountable as {
         reach: number;
@@ -290,7 +398,7 @@ export class WorldAircraft {
     if (!t) return false;
     this.collision.update(this.root, position[0], position[2], position[1]);
     const a = new THREE.Vector3().fromArray(position).sub(this.collision.origin);
-    const mountable = this.types.components(entityId(kind)).mountable as {
+    const mountable = this.typeComponents(entityId(kind)).mountable as {
       entries?: [number, number, number][];
     };
     const b = new THREE.Vector3()
@@ -309,6 +417,8 @@ export class WorldAircraft {
       return false;
     }
     this.inputs = { ...(this.world.get(id, AircraftInput) ?? IDLE_AIRCRAFT_INPUT) };
+    this.pointerAxes.clear();
+    this.cockpitBrake = false;
     this.message = '';
     return true;
   }
@@ -341,26 +451,35 @@ export class WorldAircraft {
     const t = this.world.get(`aircraft-${kind}`, Transform);
     if (t) this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
     const held = (key: string): number => Number(focused && keys.has(key));
+    const throttle =
+      held('ShiftLeft') + held('ShiftRight') - held('ControlLeft') - held('ControlRight');
+    if (throttle)
+      this.inputs = applyAircraftControl(
+        this.inputs,
+        {
+          control: { id: 'common', label: 'Power', action: 'power', nodes: [] },
+          value: this.inputs.power + Math.min(dt, 0.1) * 0.22 * throttle,
+        },
+        this.aircraftData(entityId(kind)).spec,
+      );
     this.inputs = {
       ...this.inputs,
-      power: Math.max(
-        0,
-        Math.min(
-          1,
-          this.inputs.power +
-            Math.min(dt, 0.1) *
-              0.22 *
-              (held('ShiftLeft') + held('ShiftRight') - held('ControlLeft') - held('ControlRight')),
-        ),
-      ),
-      pitch: held('KeyS') - held('KeyW'),
-      roll: held('KeyD') - held('KeyA'),
-      yaw: held('KeyZ') - held('KeyQ'),
-      brake: held('Space') > 0,
+      pitch: held('KeyS') - held('KeyW') || this.pointerAxes.pitch,
+      roll: held('KeyD') - held('KeyA') || this.pointerAxes.roll,
+      yaw: held('KeyZ') - held('KeyQ') || this.pointerAxes.yaw,
+      brake: held('Space') > 0 || this.cockpitBrake,
     };
     flyAircraft(this.world, PLAYER, this.inputs);
   }
-  render(): void {
+  /** `camera` (absolute, like the aircraft) keeps distant cockpits out of the frame. */
+  render(camera?: readonly [number, number, number]): void {
+    // A cockpit shows within tens of meters of the camera. A pilot rolling or flying past the
+    // parked aircraft never looks into theirs, and each is a hundred more draws switched on for
+    // the seconds it takes to pass: on a takeoff roll, enough to push adaptive quality down.
+    const pilot = this.mountedKind;
+    const own =
+      pilot === undefined ? undefined : this.world.get(`aircraft-${pilot}`, AircraftState);
+    const passing = own !== undefined && Math.hypot(...own.velocity) > CABIN_PASS_SPEED;
     for (const [kind, visual] of this.visuals) {
       const t = this.world.get(`aircraft-${kind}`, Transform),
         s = this.world.get(`aircraft-${kind}`, AircraftState),
@@ -368,6 +487,7 @@ export class WorldAircraft {
       if (!t || !s || !input) continue;
       visual.object.position.fromArray(t.pos);
       visual.object.quaternion.fromArray(t.rot);
+      if (camera !== undefined) visual.updateView(passing && kind !== pilot ? FAR_AWAY : camera);
       const channels = this.world.get(`aircraft-${kind}`, Aircraft)?.spec.visual;
       visual.update(
         s,
@@ -464,10 +584,16 @@ export class WorldAircraft {
     for (const offset of spec.collisionProbes)
       probeReach = Math.max(probeReach, Math.hypot(offset[0], offset[1], offset[2]));
     const nearbyCars: Array<{ transform: TransformData; spec: VehicleSpec }> = [];
-    for (const [, carT, car] of this.world.query(Transform, Vehicle)) {
-      if (Math.hypot(carT.pos[0] - t.pos[0], carT.pos[2] - t.pos[2]) > probeReach + 5) continue;
-      nearbyCars.push({ transform: carT, spec: car.spec });
-    }
+    // No car reaches an airframe well above the ground: in flight the scan over every parked
+    // car in a city, for each aircraft every tick, was most of the flight model's time.
+    const ground = this.groundHeight(t.pos[0], t.pos[2], t.pos[1]);
+    if (ground === undefined || t.pos[1] - probeReach - ground < CAR_CLEARANCE)
+      for (const car of this.cars())
+        if (
+          Math.hypot(car.transform.pos[0] - t.pos[0], car.transform.pos[2] - t.pos[2]) <=
+          probeReach + 5
+        )
+          nearbyCars.push(car);
     const others: Array<[number, number, number]> = [];
     for (const [other, otherT] of this.world.query(Transform, Aircraft))
       if (other !== id) others.push([otherT.pos[0], otherT.pos[1] + 1.2, otherT.pos[2]]);
@@ -497,6 +623,16 @@ export class WorldAircraft {
           return false;
     }
     return true;
+  }
+  /** Every vehicle's pose, gathered once per world tick for all aircraft. */
+  private cars(): ReadonlyArray<{ transform: TransformData; spec: VehicleSpec }> {
+    if (this.carsTick !== this.world.tick) {
+      this.carsTick = this.world.tick;
+      this.carCache = [];
+      for (const [, transform, car] of this.world.query(Transform, Vehicle))
+        this.carCache.push({ transform, spec: car.spec });
+    }
+    return this.carCache;
   }
   dispose(): void {
     this.disposed = true;

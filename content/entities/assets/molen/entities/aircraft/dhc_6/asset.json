@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:43fa2de2eef193fa59ff7633facc82d09e3816c334625007cf9fb0cb637e005c",
-  "sourceHash": "sha256:7caaee0a2735fe6d2ddf56e9ad6d58951bfe0347c421c68e99d999769756ea90",
+  "hash": "sha256:b2498b5d8e43c6427b72236130298148d4fb19951c00a5660e0005614e3dc4e0",
+  "sourceHash": "sha256:43b6d9bdb1688be4009045b1c547086dca55c7e610a8573549a0ab8f194171ff",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 72207,
-    "vertices": 157832,
-    "meshes": 92,
-    "primitives": 92,
-    "materials": 19,
-    "textures": 0,
+    "triangles": 73406,
+    "vertices": 104498,
+    "meshes": 107,
+    "primitives": 107,
+    "materials": 26,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3044700
+    "sizeBytes": 2818024
   },
   "nodes": [
     {
       "name": "TwinOtter-shell-TwinOtter-ivory",
-      "triangles": 945
+      "triangles": 826
     },
     {
       "name": "TwinOtter-shell-TwinOtter-glazing",
@@ -51,7 +51,7 @@
     },
     {
       "name": "TwinOtter-shell-TwinOtter-trim",
-      "triangles": 3904
+      "triangles": 2056
     },
     {
       "name": "TwinOtter-shell-TwinOtter-alloy",
@@ -119,7 +119,7 @@
     },
     {
       "name": "TwinOtter-rudder-moving-TwinOtter-red",
-      "triangles": 10
+      "triangles": 12
     },
     {
       "name": "TwinOtter-nacelle-0-TwinOtter-ivory",
@@ -131,7 +131,7 @@
     },
     {
       "name": "TwinOtter-nacelle-0-TwinOtter-alloy",
-      "triangles": 1584
+      "triangles": 816
     },
     {
       "name": "TwinOtter-propeller-0-TwinOtter-alloy",
@@ -171,7 +171,7 @@
     },
     {
       "name": "TwinOtter-nacelle-1-TwinOtter-alloy",
-      "triangles": 1584
+      "triangles": 816
     },
     {
       "name": "TwinOtter-propeller-1-TwinOtter-alloy",
@@ -247,7 +247,7 @@
     },
     {
       "name": "TwinOtter-cabin-TwinOtter-trim",
-      "triangles": 312
+      "triangles": 216
     },
     {
       "name": "TwinOtter-cabin-detail-alloy",
@@ -622,9 +622,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "TwinOtter-panel",
+      "name": "TwinOtter-panel-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -638,9 +641,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "TwinOtter-trim-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -665,6 +682,17 @@
       "name": "TwinOtter-instrument-ink",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "TwinOtter-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -703,6 +731,55 @@
     },
     {
       "name": "TwinOtter-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -1354,28 +1431,28 @@
         "node": "TwinOtter-nacelle-0-TwinOtter-alloy",
         "points": [
           2.3164,
-          2.2634,
+          2.2632,
           1.548,
           2.3164,
-          2.2634,
+          2.2632,
           3.722,
           2.3164,
-          3.1167,
+          3.1168,
           1.548,
           2.3164,
-          3.1167,
+          3.1168,
           3.722,
           3.3136,
-          2.2634,
+          2.2632,
           1.548,
           3.3136,
-          2.2634,
+          2.2632,
           3.722,
           3.3136,
-          3.1167,
+          3.1168,
           1.548,
           3.3136,
-          3.1167,
+          3.1168,
           3.722
         ]
       },
@@ -1644,28 +1721,28 @@
         "node": "TwinOtter-nacelle-1-TwinOtter-alloy",
         "points": [
           -3.3136,
-          2.2634,
+          2.2632,
           1.548,
           -3.3136,
-          2.2634,
+          2.2632,
           3.722,
           -3.3136,
-          3.1167,
+          3.1168,
           1.548,
           -3.3136,
-          3.1167,
+          3.1168,
           3.722,
           -2.3164,
-          2.2634,
+          2.2632,
           1.548,
           -2.3164,
-          2.2634,
+          2.2632,
           3.722,
           -2.3164,
-          3.1167,
+          3.1168,
           1.548,
           -2.3164,
-          3.1167,
+          3.1168,
           3.722
         ]
       },

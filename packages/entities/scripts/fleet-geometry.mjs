@@ -2,6 +2,7 @@
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { prepareSurface } from './surface-normals.mjs';
 import { addBoatDetail, addCarDetail, addCycleDetail } from './vehicle-detail.mjs';
 
 export function fleetModel(s) {
@@ -27,6 +28,7 @@ export function fleetModel(s) {
   const light = material('headlamps', '#f2d999');
   const red = material('tail-lamps', '#b83f38');
   function mesh(g, geometry, m, name = m.name) {
+    ({ geometry, material: m } = prepareSurface(geometry, m));
     const o = new T.Mesh(geometry, m);
     o.name = name;
     g.add(o);

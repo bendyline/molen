@@ -126,6 +126,7 @@ export {
   type TerrainPyramidHeightSource,
   type TerrainPyramidSelection,
   type TerrainPyramidSelectionOptions,
+  type TerrainPyramidStatsOptions,
   type TerrainPyramidStream,
   type TerrainPyramidStreamErrorContext,
   type TerrainPyramidStreamOptions,
@@ -213,6 +214,7 @@ export {
 } from './surface-styles';
 export {
   createTerrainSurfaceWorkerBridge,
+  createTerrainSurfaceWorkerPool,
   installTerrainSurfaceWorker,
   type TerrainSurfaceWorker,
 } from './surface-worker';
@@ -315,4 +317,10 @@ export {
   type TerrainRouteShieldLibrary,
   terrainRouteShieldLibrarySchema,
 } from './route-shields';
+export {
+  createTerrainSemanticDecoderWorker,
+  installTerrainSemanticDecoderWorker,
+  type TerrainSemanticDecoderWorker,
+} from './semantic-decoder-worker';
 export type { SurfaceSign } from './surface-sign-mesh';
+export { taggedTerrainObjects, tagTerrainObject } from './tagged-objects';

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:2cb3bda9be14d2f2f1946908d8bb777dd4110ba9ca69f3a58f5d34ab5edb5779",
-  "sourceHash": "sha256:6b9ba085bc9466fc66176375d42e05ed3cb0cbd4c87ab446f75c7c59f91a21ec",
+  "hash": "sha256:300894bc304e0873ca2cea90c09aa3523253288623e0e830db3098f119695a03",
+  "sourceHash": "sha256:30de7c15f3f93c203d1c4a550c9b039a35afe8467266a22851b887c788a5ef66",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 58048,
-    "vertices": 117008,
-    "meshes": 123,
-    "primitives": 123,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 60444,
+    "vertices": 102916,
+    "meshes": 138,
+    "primitives": 138,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2281136
+    "sizeBytes": 2500196
   },
   "nodes": [
     {
       "name": "DA42-shell-DA42-white",
-      "triangles": 1148
+      "triangles": 980
     },
     {
       "name": "DA42-shell-DA42-canopy",
@@ -51,11 +51,11 @@
     },
     {
       "name": "DA42-shell-DA42-trim",
-      "triangles": 444
+      "triangles": 252
     },
     {
       "name": "DA42-shell-DA42-alloy",
-      "triangles": 560
+      "triangles": 380
     },
     {
       "name": "DA42-shell-DA42-blue",
@@ -139,11 +139,11 @@
     },
     {
       "name": "DA42-nacelle-1-DA42-white",
-      "triangles": 424
+      "triangles": 328
     },
     {
       "name": "DA42-nacelle-1-DA42-alloy",
-      "triangles": 1464
+      "triangles": 1080
     },
     {
       "name": "DA42-nacelle-1-DA42-trim",
@@ -179,11 +179,11 @@
     },
     {
       "name": "DA42-nacelle-2-DA42-white",
-      "triangles": 424
+      "triangles": 328
     },
     {
       "name": "DA42-nacelle-2-DA42-alloy",
-      "triangles": 1464
+      "triangles": 1080
     },
     {
       "name": "DA42-nacelle-2-DA42-trim",
@@ -630,9 +630,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "DA42-panel",
+      "name": "DA42-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "DA42-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -646,9 +660,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -702,6 +719,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "DA42-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "DA42-leather",
       "slots": [
         "baseColor"
@@ -719,6 +747,55 @@
     },
     {
       "name": "DA42-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -790,28 +867,28 @@
         "node": "DA42-shell-DA42-trim",
         "points": [
           -0.86,
-          1.0401,
-          -1.2855,
+          1.04,
+          -1.2911,
           -0.86,
-          1.0401,
+          1.04,
           2.0625,
           -0.86,
-          1.6969,
-          -1.2855,
+          1.6971,
+          -1.2911,
           -0.86,
-          1.6969,
+          1.6971,
           2.0625,
           0.86,
-          1.0401,
-          -1.2855,
+          1.04,
+          -1.2911,
           0.86,
-          1.0401,
+          1.04,
           2.0625,
           0.86,
-          1.6969,
-          -1.2855,
+          1.6971,
+          -1.2911,
           0.86,
-          1.6969,
+          1.6971,
           2.0625
         ]
       },
@@ -819,29 +896,29 @@
         "node": "DA42-shell-DA42-alloy",
         "points": [
           -2.4861,
-          0.8529,
-          -1.5216,
+          0.853,
+          -1.5231,
           -2.4861,
-          0.8529,
-          2.9018,
+          0.853,
+          2.9028,
           -2.4861,
-          1.9121,
-          -1.5216,
+          1.9122,
+          -1.5231,
           -2.4861,
-          1.9121,
-          2.9018,
+          1.9122,
+          2.9028,
           2.4861,
-          0.8529,
-          -1.5216,
+          0.853,
+          -1.5231,
           2.4861,
-          0.8529,
-          2.9018,
+          0.853,
+          2.9028,
           2.4861,
-          1.9121,
-          -1.5216,
+          1.9122,
+          -1.5231,
           2.4861,
-          1.9121,
-          2.9018
+          1.9122,
+          2.9028
         ]
       },
       {
@@ -1456,29 +1533,29 @@
       {
         "node": "DA42-nacelle-1-DA42-alloy",
         "points": [
-          1.3183,
+          1.3182,
           0.7672,
           0.0405,
-          1.3183,
-          0.7672,
-          1.382,
-          1.3183,
-          1.5017,
-          0.0405,
-          1.3183,
-          1.5017,
-          1.382,
-          2.0417,
-          0.7672,
-          0.0405,
-          2.0417,
+          1.3182,
           0.7672,
           1.382,
-          2.0417,
-          1.5017,
+          1.3182,
+          1.5018,
           0.0405,
-          2.0417,
-          1.5017,
+          1.3182,
+          1.5018,
+          1.382,
+          2.0418,
+          0.7672,
+          0.0405,
+          2.0418,
+          0.7672,
+          1.382,
+          2.0418,
+          1.5018,
+          0.0405,
+          2.0418,
+          1.5018,
           1.382
         ]
       },
@@ -1746,29 +1823,29 @@
       {
         "node": "DA42-nacelle-2-DA42-alloy",
         "points": [
-          -2.0417,
+          -2.0418,
           0.7672,
           0.0405,
-          -2.0417,
-          0.7672,
-          1.382,
-          -2.0417,
-          1.5017,
-          0.0405,
-          -2.0417,
-          1.5017,
-          1.382,
-          -1.3183,
-          0.7672,
-          0.0405,
-          -1.3183,
+          -2.0418,
           0.7672,
           1.382,
-          -1.3183,
-          1.5017,
+          -2.0418,
+          1.5018,
           0.0405,
-          -1.3183,
-          1.5017,
+          -2.0418,
+          1.5018,
+          1.382,
+          -1.3182,
+          0.7672,
+          0.0405,
+          -1.3182,
+          0.7672,
+          1.382,
+          -1.3182,
+          1.5018,
+          0.0405,
+          -1.3182,
+          1.5018,
           1.382
         ]
       },

@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:b95ccaadc1ab5710cca115fb9f8d1f6ba58fb0580aea75e8e9c9bd3c17c60430",
-  "sourceHash": "sha256:d95f2f42ed6036dd9f221c8a3996e40d2bfbb0e1058de9f6e6daa64a6a51e50f",
+  "hash": "sha256:64e43c21daf57e5651a1004cb5199f4c1b76261d5b87e2c6c6efac1563e2accd",
+  "sourceHash": "sha256:948fef8a5d20110415fdb960eb8d45894cde1acf4a7c243cf2943c47bc94856a",
   "bounds": {
     "aabb": {
       "min": [
@@ -27,23 +27,23 @@
         1.5754,
         0.0425
       ],
-      "radius": 8.0831
+      "radius": 8.083
     }
   },
   "stats": {
-    "triangles": 75700,
-    "vertices": 153473,
-    "meshes": 110,
-    "primitives": 110,
-    "materials": 20,
-    "textures": 0,
+    "triangles": 76420,
+    "vertices": 117831,
+    "meshes": 121,
+    "primitives": 121,
+    "materials": 27,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2899212
+    "sizeBytes": 2907104
   },
   "nodes": [
     {
       "name": "Porter-shell-Porter-ivory",
-      "triangles": 900
+      "triangles": 780
     },
     {
       "name": "Porter-shell-Porter-glazing",
@@ -51,7 +51,7 @@
     },
     {
       "name": "Porter-shell-Porter-trim",
-      "triangles": 2576
+      "triangles": 1376
     },
     {
       "name": "Porter-shell-Porter-alloy",
@@ -79,7 +79,7 @@
     },
     {
       "name": "Porter-nose-Porter-alloy",
-      "triangles": 672
+      "triangles": 600
     },
     {
       "name": "Porter-nose-Porter-trim",
@@ -191,7 +191,7 @@
     },
     {
       "name": "Porter-rudder-Porter-red",
-      "triangles": 8
+      "triangles": 12
     },
     {
       "name": "Porter-rudder-Porter-alloy",
@@ -239,7 +239,7 @@
     },
     {
       "name": "Porter-cockpit-Porter-trim",
-      "triangles": 266
+      "triangles": 206
     },
     {
       "name": "Porter-cockpit-Porter-alloy",
@@ -622,9 +622,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Porter-panel",
+      "name": "Porter-panel-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -638,9 +641,34 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "Porter-trim-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Porter-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -716,6 +744,55 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -782,10 +859,10 @@
         "node": "Porter-shell-Porter-trim",
         "points": [
           -6.85,
-          0.8329,
+          0.8332,
           -4.9494,
           -6.85,
-          0.8329,
+          0.8332,
           2.2796,
           -6.85,
           2.9844,
@@ -794,10 +871,10 @@
           2.9844,
           2.2796,
           6.85,
-          0.8329,
+          0.8332,
           -4.9494,
           6.85,
-          0.8329,
+          0.8332,
           2.2796,
           6.85,
           2.9844,
@@ -985,10 +1062,10 @@
         "node": "Porter-nose-Porter-alloy",
         "points": [
           -0.205,
-          1.4949,
+          1.495,
           4.9361,
           -0.205,
-          1.4949,
+          1.495,
           5.604,
           -0.205,
           2.2446,
@@ -997,10 +1074,10 @@
           2.2446,
           5.604,
           0.205,
-          1.4949,
+          1.495,
           4.9361,
           0.205,
-          1.4949,
+          1.495,
           5.604,
           0.205,
           2.2446,

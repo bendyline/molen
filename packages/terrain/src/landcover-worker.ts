@@ -68,7 +68,10 @@ export function installTerrainLandcoverWorker(
     const request = event.data as Request;
     try {
       const ground = request.ground;
-      const heightfield = new Heightfield(ground.samples, ground.cols, ground.rows, ground);
+      const heightfield = new Heightfield(ground.samples, ground.cols, ground.rows, {
+        ...ground,
+        validated: true,
+      });
       const mesh = createLandcoverMesh(
         request.tile,
         { ...request.context, heightfield, signal: new AbortController().signal },

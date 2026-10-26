@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:61cde21c6570a8fb6d4257db2cfe24bc494dd6b482251e39a31916357c1926a2",
-  "sourceHash": "sha256:019288b30021b9148f1132e862fb14a959223987ae784adc8aae5a9d9da60e38",
+  "hash": "sha256:0b3734603e132dbee9901caa3c88ec5a7965b0b033f89dfc43539b2768afbe3b",
+  "sourceHash": "sha256:c124e1e612e7ece0a45446f24c103094100f0751b3b0b4837cb9cc983cdec66e",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 69795,
-    "vertices": 139812,
-    "meshes": 101,
-    "primitives": 101,
-    "materials": 22,
-    "textures": 0,
+    "triangles": 70875,
+    "vertices": 112522,
+    "meshes": 119,
+    "primitives": 119,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2708012
+    "sizeBytes": 2693944
   },
   "nodes": [
     {
       "name": "F15-airframe-F15-gray",
-      "triangles": 2012
+      "triangles": 1328
     },
     {
       "name": "F15-airframe-F15-radome",
@@ -51,7 +51,7 @@
     },
     {
       "name": "F15-airframe-F15-seals",
-      "triangles": 3456
+      "triangles": 1944
     },
     {
       "name": "F15-airframe-F15-glazing",
@@ -67,11 +67,11 @@
     },
     {
       "name": "F15-engine--1-F15-gray",
-      "triangles": 234
+      "triangles": 162
     },
     {
       "name": "F15-engine--1-F15-seals",
-      "triangles": 912
+      "triangles": 480
     },
     {
       "name": "F15-engine--1-F15-upper",
@@ -119,7 +119,7 @@
     },
     {
       "name": "F15-fin--1-F15-seals",
-      "triangles": 444
+      "triangles": 24
     },
     {
       "name": "F15-rudder--1-F15-gray",
@@ -135,11 +135,11 @@
     },
     {
       "name": "F15-engine-1-F15-gray",
-      "triangles": 234
+      "triangles": 162
     },
     {
       "name": "F15-engine-1-F15-seals",
-      "triangles": 912
+      "triangles": 480
     },
     {
       "name": "F15-engine-1-F15-upper",
@@ -187,7 +187,7 @@
     },
     {
       "name": "F15-fin-1-F15-seals",
-      "triangles": 444
+      "triangles": 24
     },
     {
       "name": "F15-rudder-1-F15-gray",
@@ -243,7 +243,7 @@
     },
     {
       "name": "F15-cabin-F15-instrument-black",
-      "triangles": 1788
+      "triangles": 1512
     },
     {
       "name": "F15-cabin-F15-alloy",
@@ -638,9 +638,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "F15-panel",
+      "name": "F15-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -654,9 +657,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "F15-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -732,6 +749,55 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -740,28 +806,28 @@
         "node": "F15-airframe-F15-gray",
         "points": [
           -0.8894,
-          1.6196,
+          1.6198,
           -7.25,
           -0.8894,
-          1.6196,
+          1.6198,
           11.6,
           -0.8894,
-          3.5318,
+          3.532,
           -7.25,
           -0.8894,
-          3.5318,
+          3.532,
           11.6,
           0.8894,
-          1.6196,
+          1.6198,
           -7.25,
           0.8894,
-          1.6196,
+          1.6198,
           11.6,
           0.8894,
-          3.5318,
+          3.532,
           -7.25,
           0.8894,
-          3.5318,
+          3.532,
           11.6
         ]
       },
@@ -798,28 +864,28 @@
         "node": "F15-airframe-F15-seals",
         "points": [
           -6.4023,
-          1.6376,
+          1.6372,
           -4.803,
           -6.4023,
-          1.6376,
+          1.6372,
           9.353,
           -6.4023,
-          3.4141,
+          3.4137,
           -4.803,
           -6.4023,
-          3.4141,
+          3.4137,
           9.353,
           6.4023,
-          1.6376,
+          1.6372,
           -4.803,
           6.4023,
-          1.6376,
+          1.6372,
           9.353,
           6.4023,
-          3.4141,
+          3.4137,
           -4.803,
           6.4023,
-          3.4141,
+          3.4137,
           9.353
         ]
       },
@@ -913,30 +979,30 @@
       {
         "node": "F15-engine--1-F15-gray",
         "points": [
-          -1.7098,
-          1.3798,
+          -1.7097,
+          1.3799,
           -5.65,
-          -1.7098,
-          1.3798,
-          5.975,
-          -1.7098,
-          3.0118,
+          -1.7097,
+          1.3799,
+          5.9737,
+          -1.7097,
+          3.0146,
           -5.65,
-          -1.7098,
-          3.0118,
-          5.975,
-          -0.3502,
-          1.3798,
+          -1.7097,
+          3.0146,
+          5.9737,
+          -0.3503,
+          1.3799,
           -5.65,
-          -0.3502,
-          1.3798,
-          5.975,
-          -0.3502,
-          3.0118,
+          -0.3503,
+          1.3799,
+          5.9737,
+          -0.3503,
+          3.0146,
           -5.65,
-          -0.3502,
-          3.0118,
-          5.975
+          -0.3503,
+          3.0146,
+          5.9737
         ]
       },
       {
@@ -1290,30 +1356,30 @@
       {
         "node": "F15-fin--1-F15-seals",
         "points": [
-          -1.7115,
-          3.9884,
+          -1.6889,
+          5.585,
           -7.08,
-          -1.7115,
-          3.9884,
-          -5.3644,
-          -1.7115,
+          -1.6889,
+          5.585,
+          -5.98,
+          -1.6889,
           5.675,
           -7.08,
-          -1.7115,
+          -1.6889,
           5.675,
-          -5.3644,
-          -1.611,
-          3.9884,
+          -5.98,
+          -1.6111,
+          5.585,
           -7.08,
-          -1.611,
-          3.9884,
-          -5.3644,
-          -1.611,
+          -1.6111,
+          5.585,
+          -5.98,
+          -1.6111,
           5.675,
           -7.08,
-          -1.611,
+          -1.6111,
           5.675,
-          -5.3644
+          -5.98
         ]
       },
       {
@@ -1406,30 +1472,30 @@
       {
         "node": "F15-engine-1-F15-gray",
         "points": [
-          0.3502,
-          1.3798,
+          0.3503,
+          1.3799,
           -5.65,
-          0.3502,
-          1.3798,
-          5.975,
-          0.3502,
-          3.0118,
+          0.3503,
+          1.3799,
+          5.9737,
+          0.3503,
+          3.0146,
           -5.65,
-          0.3502,
-          3.0118,
-          5.975,
-          1.7098,
-          1.3798,
+          0.3503,
+          3.0146,
+          5.9737,
+          1.7097,
+          1.3799,
           -5.65,
-          1.7098,
-          1.3798,
-          5.975,
-          1.7098,
-          3.0118,
+          1.7097,
+          1.3799,
+          5.9737,
+          1.7097,
+          3.0146,
           -5.65,
-          1.7098,
-          3.0118,
-          5.975
+          1.7097,
+          3.0146,
+          5.9737
         ]
       },
       {
@@ -1783,30 +1849,30 @@
       {
         "node": "F15-fin-1-F15-seals",
         "points": [
-          1.5808,
-          3.9884,
+          1.5807,
+          5.55,
           -7.08,
-          1.5808,
-          3.9884,
-          -5.3324,
-          1.5808,
+          1.5807,
+          5.55,
+          -5.98,
+          1.5807,
           5.71,
           -7.08,
-          1.5808,
+          1.5807,
           5.71,
-          -5.3324,
-          1.7192,
-          3.9884,
+          -5.98,
+          1.7193,
+          5.55,
           -7.08,
-          1.7192,
-          3.9884,
-          -5.3324,
-          1.7192,
+          1.7193,
+          5.55,
+          -5.98,
+          1.7193,
           5.71,
           -7.08,
-          1.7192,
+          1.7193,
           5.71,
-          -5.3324
+          -5.98
         ]
       },
       {

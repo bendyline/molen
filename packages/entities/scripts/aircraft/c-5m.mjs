@@ -552,7 +552,7 @@ export function buildC5M(s) {
       seam,
       false,
     );
-    d.text('C-5M', [side * 3.56, 6.3, 18], 0.44, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
   }
   for (const index of [6, 8, 10, 12]) {
     const r = rings[index];

@@ -89,6 +89,21 @@ describe('AdaptiveQualityController', () => {
     expect(changes).toEqual([{ previousLevel: 3, level: 2, reason: 'frame-time' }]);
   });
 
+  it('recovers during continuous flight streaming only with sustained CPU and GPU headroom', () => {
+    const controller = new AdaptiveQualityController({ initialLevel: 0, maxLevel: 2 });
+    // Streaming never becomes idle while flying. CPU submission alone cannot prove GPU margin.
+    expect(run(controller, 20000, 1000 / 60, { loading: true, cpuFrameMs: 5 })).toEqual([]);
+    expect(run(controller, 20000, 1000 / 60, { loading: true, gpuFrameMs: 5 })).toEqual([]);
+    expect(
+      run(controller, 20000, 1000 / 60, { loading: true, cpuFrameMs: 5, gpuFrameMs: 16 }),
+    ).toEqual([]);
+    const samples = { loading: true, cpuFrameMs: 5, gpuFrameMs: 6 };
+    expect(run(controller, 7000, 1000 / 60, samples)).toEqual([]);
+    expect(run(controller, 16000, 1000 / 60, samples).map((change) => change.level)).toEqual([
+      1, 2,
+    ]);
+  });
+
   it('requires spare measured CPU/GPU time before increasing detail', () => {
     const controller = new AdaptiveQualityController({ initialLevel: 1, maxLevel: 2 });
     expect(run(controller, 15000, 1000 / 60, { cpuFrameMs: 16 })).toEqual([]);

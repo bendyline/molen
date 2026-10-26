@@ -1,0 +1,398 @@
+{
+  "date": "2026-10-24",
+  "scope": "Curved aircraft surface joins and cockpit trim",
+  "changes": [
+    "Triangulate warped loft panels in 3D; project planar sheets in their geometric plane rather than an approximate winding hint.",
+    "Preserve tapered pole triangles; join six-sided trim through shared miter rings instead of separate cylinder caps.",
+    "Use a single panel/coaming/rail profile on Cessna 172S, Cessna 182T, Bonanza G36 and Baron G58.",
+    "Join every MiG-29 canopy station to its body shoulders, close canopy-end crescents and wing-root gaps, bridge rectangular intake sections to rounded engine pods, close intake/nozzle lips and follow nozzle bends with petal seams.",
+    "Join shared jet nacelle rims to recessed fan faces and exhaust disks.",
+    "Restore P-51 and OH-6 texture/source manifests to match their unchanged prior cockpit models."
+  ],
+  "validation": {
+    "aircraftTests": "134 tests across 17 files passed after restoring the two stale texture manifests; 132 passed initially, followed by all five cockpit-surface tests on rerun.",
+    "regressionTests": "11 tests cover side-wall coverage, real sheet apertures, tapered nose closure, continuous trim, Cessna coaming joins and MiG-29 exhaust rims in source and imported GLBs.",
+    "reproducibility": "All 50 regenerated aircraft source GLBs reproduced byte-for-byte in a second complete aircraft-only generation.",
+    "integrity": "Verified all 50 source pins, imported source/runtime hashes and gallery cache hashes. CLI asset inspect --verify passed for both Cessnas and the MiG-29.",
+    "catalog": "generate-models.mjs --check verified 198 entity source bundles.",
+    "formatting": "Biome check passed for all changed generator and test modules.",
+    "localPack": "Rebuilt only the entities pack for the local world explorer, using existing package builds."
+  },
+  "visual": {
+    "gallery": ".artifacts/cockpit-gallery/index.html",
+    "aircraft": 53,
+    "images": 65,
+    "review": "Inspected all 53 cockpit frames in contact sheets; inspected Cessna panel close-ups and MiG-29 canopy, intake and exhaust joins.",
+    "turntables": [
+      "molen.entities.aircraft.aw139",
+      "molen.entities.aircraft.baron_g58",
+      "molen.entities.aircraft.boeing_737_800",
+      "molen.entities.aircraft.bonanza_g36",
+      "molen.entities.aircraft.c_17a",
+      "molen.entities.aircraft.cessna_172s",
+      "molen.entities.aircraft.cessna_182t",
+      "molen.entities.aircraft.mig_29a"
+    ],
+    "captureReport": ".artifacts/curved-joins/fleet-report.json",
+    "closeups": ".artifacts/curved-joins/after/report.json",
+    "preview": "content/entities/aircraft-joins-preview.png",
+    "previewLayout": "Cessna 172S / Cessna 182T above MiG-29 canopy / exhaust."
+  },
+  "limitations": [
+    "Keeps the existing medium-fi faceted style, approximate aircraft proportions, intentional openings and moving-control clearances.",
+    "Targeted visual review covers the reported joins and representative airframes; this is not a claim that every aircraft is a single watertight mesh.",
+    "No runtime or dependency changes. Full engine CI, unrelated generators, screenshot publication and review-lock updates were not run."
+  ],
+  "models": [
+    {
+      "slug": "uh-1h",
+      "sourceHash": "sha256:6c75b6bb8efff48465beacb3d16e7500c9b5b43b877a21bbaa5065834e6d4e77",
+      "runtimeHash": "sha256:da24bc22094eff1f68f0e246c165e8bcab04658040c73cf20811d8516c99575b",
+      "triangles": 55158,
+      "bytes": 2473480
+    },
+    {
+      "slug": "bell-206b",
+      "sourceHash": "sha256:51a8224da5dc6646fa3846ed5a35e5accf748efd6649fac5bfb4ad82692a2731",
+      "runtimeHash": "sha256:b8810752e218b6e8e48ab8d8345623e90502f45667ebcbeeea19c4a14ebcb7b9",
+      "triangles": 42932,
+      "bytes": 1720664
+    },
+    {
+      "slug": "bell-407",
+      "sourceHash": "sha256:f4b1bd9e5edbf53bd057eeaf2380e38633d08ab7cd8be0be4246f606f7efcc0f",
+      "runtimeHash": "sha256:e67398975b726820605fb7ac6958f50fb141a8da088a50ea0b0583aceb97ed80",
+      "triangles": 13880,
+      "bytes": 607132
+    },
+    {
+      "slug": "bell-412ep",
+      "sourceHash": "sha256:44f2c9939979b94ae66121c5fdff5d419839f315b1a676ed75f6c34c644f0b7f",
+      "runtimeHash": "sha256:b342d27706810136760332a73262f2ebc720e3e8bb67f284fa448beeeeb4b62f",
+      "triangles": 61692,
+      "bytes": 2459228
+    },
+    {
+      "slug": "robinson-r44",
+      "sourceHash": "sha256:71d50ae9ba65898d412953b7f026a9f7d5edfaa3a9add9893f1405eefcd189e1",
+      "runtimeHash": "sha256:a21c3c417a92204091fd49d486ae68a8fe78add4ff6c8fe90332d742bf54ea50",
+      "triangles": 21770,
+      "bytes": 866620
+    },
+    {
+      "slug": "airbus-h125",
+      "sourceHash": "sha256:4230dcea8081c57f565d30be0cb6b59e38a3a26346dbb7d8a7257a32af1c32b7",
+      "runtimeHash": "sha256:4978d2a4dcc1bf232a76cff7e988326c610f57be6f4bfb3e1d9f76ef2cbd8e92",
+      "triangles": 21626,
+      "bytes": 901552
+    },
+    {
+      "slug": "airbus-h145",
+      "sourceHash": "sha256:e6dbd7e12e42baaf5c559352707c7c15d8b783851125a40fbf0546c9048dc0f5",
+      "runtimeHash": "sha256:da35ad9e0083bc55ed50f57c9c00363a8363f33133ea45a4c15e46a5b7fda934",
+      "triangles": 31976,
+      "bytes": 1311120
+    },
+    {
+      "slug": "uh-60m",
+      "sourceHash": "sha256:9c2550070e380539261c56059a2d0da43e8ce17ea814617a99bec1bc0e2000c8",
+      "runtimeHash": "sha256:7cc16e91c022b603654e31538a1574fdff2b9206bd791c1b126bb489e22669ce",
+      "triangles": 53741,
+      "bytes": 2154240
+    },
+    {
+      "slug": "ch-47f",
+      "sourceHash": "sha256:71b74ba4dca31d3dd64b9d39cebe23f481f0a185f0e438bdf526f01441ccb784",
+      "runtimeHash": "sha256:12591b27b4e16d589e5eeccba0340798f65f08291f7848cfc3ddeaf144face3d",
+      "triangles": 71455,
+      "bytes": 2939940
+    },
+    {
+      "slug": "aw139",
+      "sourceHash": "sha256:4c6e131f2ee011f0b1d0c40f897e729d835608b95bc9aaec0a4a7430500e24b9",
+      "runtimeHash": "sha256:c6b76abb82c93b20e3d72b2b8776afca2e64f26be99a9343c50e8b286608f0b9",
+      "triangles": 47822,
+      "bytes": 1914652
+    },
+    {
+      "slug": "pa-28-180",
+      "sourceHash": "sha256:91a787008a17aa3115cf089a1f7283ece9371dc87414697fe98af1578a3ef4f6",
+      "runtimeHash": "sha256:a948e7867e98e073aae87991bdddd40a40b26b19cd7a3683aed99b337a04a508",
+      "triangles": 69814,
+      "bytes": 2505800
+    },
+    {
+      "slug": "cessna-172s",
+      "sourceHash": "sha256:0b213fd70838a5a90f0e752894f7fded09cec7e4006d1564dfce41a791a37c63",
+      "runtimeHash": "sha256:897186ba6b64406241b96595c1103ab81ee3e960e599326286346ebf5cf8fe65",
+      "triangles": 58122,
+      "bytes": 2722332
+    },
+    {
+      "slug": "cessna-208b",
+      "sourceHash": "sha256:348ec7458a9f7ece27163f732e9c7d0a9c8e242fb25c13a82fa8f113e4fc1efd",
+      "runtimeHash": "sha256:3336c6331f12c544dc5bd894cd20deb2a93e7518092843200ea3a78fd7690b8a",
+      "triangles": 65968,
+      "bytes": 2556748
+    },
+    {
+      "slug": "cessna-182t",
+      "sourceHash": "sha256:cd990ff8dbde63e3e7076e9d273e31f4744bf4a4bf387d6720913e2b1d702715",
+      "runtimeHash": "sha256:35972bd21d157044aa8f19c90337c496b0cc6520e0de7f3f89b7a2ac41e01546",
+      "triangles": 57518,
+      "bytes": 2220700
+    },
+    {
+      "slug": "bonanza-g36",
+      "sourceHash": "sha256:ef70cf984a5e4000830c35eb9ea4a17d0b25a2849916316320947717bfd5e9b4",
+      "runtimeHash": "sha256:6e7a50880bbcb5329992c055aba695fcdf486e26ac7eb49d691ae151c09d0f29",
+      "triangles": 66068,
+      "bytes": 2600608
+    },
+    {
+      "slug": "baron-g58",
+      "sourceHash": "sha256:f5decd712307e3550da9d3d0afdecdd2f8439c3f0d10475762f487951ea218ba",
+      "runtimeHash": "sha256:f1389fa8fcacc028104634dc6cc5ec38d58f515ab433afe1b151bcbbd112015d",
+      "triangles": 69892,
+      "bytes": 2800312
+    },
+    {
+      "slug": "king-air-350i",
+      "sourceHash": "sha256:00c21cdbcbf39185c4cb5b9c335cef728f4454bbfa857f0cb265127cb037c040",
+      "runtimeHash": "sha256:3698d181c38846fb33cd254893dac9156f93cfb546a16e42993c2c70687748ae",
+      "triangles": 88365,
+      "bytes": 3615084
+    },
+    {
+      "slug": "cirrus-sr22t",
+      "sourceHash": "sha256:bfd62ce51e05ca5e4bad33533b7f58e8ba66dc2725e1453a5e8de76d83cc4519",
+      "runtimeHash": "sha256:581f6357db571e01432e4ad7963c8c5c709aeb918ea0784466ed576cad2a6121",
+      "triangles": 48450,
+      "bytes": 1872856
+    },
+    {
+      "slug": "diamond-da42",
+      "sourceHash": "sha256:17e43eb878e47ba7f193e501ac96581fcf746297553de2368fda94733844c26d",
+      "runtimeHash": "sha256:18367b51d6e5c2c66cb9344ddc9d662f0d9087805c289d2afee0a9b7bc656798",
+      "triangles": 57028,
+      "bytes": 2244108
+    },
+    {
+      "slug": "pilatus-pc12",
+      "sourceHash": "sha256:a8a9e75762bb7161154652d56eb0c051b4d3fceecbeac147e96bc24c20a3bc08",
+      "runtimeHash": "sha256:cf2d221dd19adbe77e4717f019ded3157148e80e4de80ff2dae5c25d9c4da748",
+      "triangles": 63430,
+      "bytes": 2757788
+    },
+    {
+      "slug": "f-16b",
+      "sourceHash": "sha256:e3a18179159bf6b6fa2fd04ce4efd2ccec32cf5d6dcf9092dec0b3ce264e9368",
+      "runtimeHash": "sha256:ba59449319759a4ba1c0833088eee2b85ea8d2ec29b7bae6bae72947eb3b3d52",
+      "triangles": 73772,
+      "bytes": 2922900
+    },
+    {
+      "slug": "f-14d",
+      "sourceHash": "sha256:289a76ab5f915ba7b7c4e0b291dd744e8022a58c55946a9c4d0d4d5e69a6de3c",
+      "runtimeHash": "sha256:b776d0307d4dbcc0932d2f58e58bf42c88c85c8f1638f2f6247ce75fcb2130c2",
+      "triangles": 89403,
+      "bytes": 3480396
+    },
+    {
+      "slug": "f-15c",
+      "sourceHash": "sha256:0c768fd60618252ca2eadf5f4eeccc25e5361e873b853ee7a98ee09f2811d7ed",
+      "runtimeHash": "sha256:847c5e9114568c1410d8ba7143c29a9ab01eebf964398ae10b8206e55c84d90c",
+      "triangles": 66819,
+      "bytes": 2617912
+    },
+    {
+      "slug": "fa-18c",
+      "sourceHash": "sha256:756d31c79e56a813f15ff742aa83ee17d2427d4cdd4c19e8274fef25ab4f8229",
+      "runtimeHash": "sha256:5d6ef15ca19e0a9868b88b1950c803181935faf654c057fee3b77bdecbb58ce9",
+      "triangles": 63053,
+      "bytes": 2529416
+    },
+    {
+      "slug": "f-22a",
+      "sourceHash": "sha256:c41279ea7d07109ef95cb74559b64c6cc5a7eca92b9b24b6906f650110fc6bdd",
+      "runtimeHash": "sha256:706d6202706ed0f1acea0a546dd5598c53be0fe63a738915a722b44c533e87fc",
+      "triangles": 33309,
+      "bytes": 1398328
+    },
+    {
+      "slug": "f-35a",
+      "sourceHash": "sha256:769de79d7eab32ea5301c40c4f74fdf47d838950c3bd39c6929708cb53c5bac4",
+      "runtimeHash": "sha256:e22ecfe3f5f7ef14201a860ee18705f66f1361c5b95b8b73416af5e12df4d44c",
+      "triangles": 29243,
+      "bytes": 1224600
+    },
+    {
+      "slug": "typhoon",
+      "sourceHash": "sha256:3fb9c1829079d31a011ebaeffd24bf1fb389e017e29a72f809cd7d1b30b6499b",
+      "runtimeHash": "sha256:6e84a66d285dcf041d8641cbe86fb3c65890f4f5232a8e29568dd39a269e56e9",
+      "triangles": 43758,
+      "bytes": 1791516
+    },
+    {
+      "slug": "rafale-c",
+      "sourceHash": "sha256:a0264d44663e194fcde9cf8a626baee6f2404491951b3aa802b32a73b02328ba",
+      "runtimeHash": "sha256:0d3cffd84d8ba7912dbf17269174b1b9436f5e2b0e2815f79a19e006cb3f65c5",
+      "triangles": 33604,
+      "bytes": 1416608
+    },
+    {
+      "slug": "gripen-c",
+      "sourceHash": "sha256:9520330b830a01301f8c7d5fc88be30dda29c7b72acb9ae2a209d0bcc3eca7d3",
+      "runtimeHash": "sha256:c78cd90119118fac50e17c7c698c332e4939ce95ce0e79b727500214fb38e4f4",
+      "triangles": 32821,
+      "bytes": 1382200
+    },
+    {
+      "slug": "mig-29a",
+      "sourceHash": "sha256:0c399c685e2fba87bb8696283ff65c0f6916d06d6fb5fa15bce695cc596fb619",
+      "runtimeHash": "sha256:0eecaa4d5b2b3b5818bc7e9cc610b2e9b03cb38ca23c3541f8de0ae131438170",
+      "triangles": 63266,
+      "bytes": 2606328
+    },
+    {
+      "slug": "c-130j",
+      "sourceHash": "sha256:34da5971237b561ea16d3c5eae481258bfbe3a093363c197e980985d44c42ad4",
+      "runtimeHash": "sha256:b7a9f2cfb7b3ff0e3623b1788ac95be59b7a611b1060922f31cf4bc4e966bf7b",
+      "triangles": 88553,
+      "bytes": 3719428
+    },
+    {
+      "slug": "c-17a",
+      "sourceHash": "sha256:59d7e50ccadd351f8a0c89fd8bdd082cf2020b498d7bd2ee4734a0b2c418d0c5",
+      "runtimeHash": "sha256:1466579c1d0d22f4ad0ce8170d888991b4c4967de8f0516938c38419b9931b28",
+      "triangles": 81067,
+      "bytes": 3451668
+    },
+    {
+      "slug": "a400m",
+      "sourceHash": "sha256:92816b2cc4f08b33a9f2df1c0ca9dc1ca0905c7798deb71f01c27eefeaa0823f",
+      "runtimeHash": "sha256:d72f5d649b4ce03819450643d04e8ce3a2c060c2ef5c4a925842bb75ac05c3dd",
+      "triangles": 79233,
+      "bytes": 3196148
+    },
+    {
+      "slug": "c-5m",
+      "sourceHash": "sha256:87afbfc14e1f2902789c6762a639d53fd184971f1a1778fbe6bcf7301ef739d8",
+      "runtimeHash": "sha256:14b7c93a80915f1405b7bba3cab2895e726ad2c13724c5526e26c3be051095ae",
+      "triangles": 81865,
+      "bytes": 3445672
+    },
+    {
+      "slug": "an-124",
+      "sourceHash": "sha256:ac6ad56b4786bd6637190cf595fc503954f461b8960909199d0d0eebeccff96f",
+      "runtimeHash": "sha256:15dd4928d2906bb5f9dce319e1bf76135b76ec2a5d5e12dbbdfff7d46c4499a8",
+      "triangles": 87519,
+      "bytes": 3680016
+    },
+    {
+      "slug": "mv-22b",
+      "sourceHash": "sha256:313a3584c784fe7c4b77e6a22033d0c85bf5122541c15bef7360b63e9ecc3ab2",
+      "runtimeHash": "sha256:d085b2d73c613498767174607a8e7fba420484fad2cb9f3bed71bb9b00d093de",
+      "triangles": 79754,
+      "bytes": 3138580
+    },
+    {
+      "slug": "av-8b",
+      "sourceHash": "sha256:58db47be7c343c5607aa34408435fca89612dfc0d52b9a56e86d3b6e01b68300",
+      "runtimeHash": "sha256:3d4a6fbae306bc402bea49d19aeb008b2f495eab07605fe29c9471d4c01e5ec4",
+      "triangles": 76157,
+      "bytes": 3027364
+    },
+    {
+      "slug": "dhc-6",
+      "sourceHash": "sha256:5993fa6b0f602fb1482cced26f1068b83c95e95a7d8c30e3b55fecec6e122b40",
+      "runtimeHash": "sha256:f9746b703c05afd95a4fb1d6b7c1ad2fbd633706629e27f49b2b9a3c14e3a27b",
+      "triangles": 69318,
+      "bytes": 2954528
+    },
+    {
+      "slug": "dhc-2",
+      "sourceHash": "sha256:c45883cf5b25af22335ad4831554b5dcbaa03f36850a42223a6be06f796a0493",
+      "runtimeHash": "sha256:65806ef7f2c406f8e0353f359a1becac8ff55aa5512c239ec35b0617107496e7",
+      "triangles": 58037,
+      "bytes": 2333832
+    },
+    {
+      "slug": "pc-6",
+      "sourceHash": "sha256:a5812d4f40bbce9dcd00dc79f10ebc15862a8f246de07d289f98dc22e2e6ebf6",
+      "runtimeHash": "sha256:cbaacbed0999fc27a13ce46d7f4b5b02b239c23d45b3ed8622ac96b2197d93c8",
+      "triangles": 74252,
+      "bytes": 2842584
+    },
+    {
+      "slug": "beech-18",
+      "sourceHash": "sha256:4d34d3a85eab297a48d58c5c870c3841141324c3d18d9126daec326278559708",
+      "runtimeHash": "sha256:2ae50c0d6c4c8c586e89b08cca5ac51237ac80e15071a51987c2b7afad7ee067",
+      "triangles": 87414,
+      "bytes": 3365080
+    },
+    {
+      "slug": "dc-3",
+      "sourceHash": "sha256:bb10597c2c2f926810a55ab744eca1edf514d6c1c897e9cabcbdad1f2e371b19",
+      "runtimeHash": "sha256:f3247e9769640a65659136329fb7f7114b1d10cc91d57fb9a5aabebbe3bb721c",
+      "triangles": 92789,
+      "bytes": 3693792
+    },
+    {
+      "slug": "atr-72-600",
+      "sourceHash": "sha256:7cfcd066101ef985c1dad384042335926f26482de8d9e955588d6e88b23b8ec5",
+      "runtimeHash": "sha256:4fbf38326d47dbb2c9b7eb9995ea01d34f861a2ef7aab19df1c735f5bea68200",
+      "triangles": 87946,
+      "bytes": 3590444
+    },
+    {
+      "slug": "dash-8-q400",
+      "sourceHash": "sha256:3d7bec82ed8bda5ac2e31a4a78dd71f3ee04f52d45b02d44cb92b60db56c01db",
+      "runtimeHash": "sha256:4dac080184d26c93ceece99573ae1628cbcd334d1cce785f5eb80ae5c0c6559d",
+      "triangles": 45318,
+      "bytes": 2007636
+    },
+    {
+      "slug": "embraer-e175",
+      "sourceHash": "sha256:132af7fd67e9d0f6d15000dddb1e0a7e528993dc06d89292d8b879d13e3e0466",
+      "runtimeHash": "sha256:6f87d06df763c15002a755ba1ad868c26b48c1c986b38c4f02e41af9ed792070",
+      "triangles": 44158,
+      "bytes": 1943104
+    },
+    {
+      "slug": "a220-300",
+      "sourceHash": "sha256:7b9eb0a66ed496334e6bac30a6c1afca62962115b10ae9cbf1929633066c6d12",
+      "runtimeHash": "sha256:a14d62fc243ce268c489e2c4df672a279d5caa306bb8b4bec90445101067f429",
+      "triangles": 42526,
+      "bytes": 1877048
+    },
+    {
+      "slug": "boeing-737-800",
+      "sourceHash": "sha256:1b28100eb1be3983932e82360ff44234e7f830ef647e7e641da52b08f96424ba",
+      "runtimeHash": "sha256:aa26f2f99baf3bc96f6d87f8349f38d1e51edb952eb0fc92284f0343d02b1b0e",
+      "triangles": 44830,
+      "bytes": 1965696
+    },
+    {
+      "slug": "airbus-a320neo",
+      "sourceHash": "sha256:d9fcc9343eecd976a05a88d6f1258ca5ceaaabb4c4aafdf915024bed247be013",
+      "runtimeHash": "sha256:34386b658b5c54422e5033cfa0a67920a64f8aa395ac1cbf5cf5393e86864fa3",
+      "triangles": 44962,
+      "bytes": 1969456
+    },
+    {
+      "slug": "gulfstream-g650er",
+      "sourceHash": "sha256:eb3b047bb0937dbbd56ee42874e7473f8b3306eec8c976fcb590ef25742bd6ea",
+      "runtimeHash": "sha256:a900c5b8a47fd2cd78e0f8f33746ab50fef8048eb15b680183d1b216aaf98422",
+      "triangles": 44578,
+      "bytes": 1955360
+    },
+    {
+      "slug": "citation-cj4",
+      "sourceHash": "sha256:6903729dbbf5dc5716c38ce17b1289d843452f5bcb1f81445c8ae44d777dc4e6",
+      "runtimeHash": "sha256:ae09f5370f53b9987abd10fa68a910accb21f36e1bedcc40bb96bb000c36a3ac",
+      "triangles": 41626,
+      "bytes": 1814324
+    }
+  ]
+}

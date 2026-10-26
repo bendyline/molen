@@ -394,8 +394,8 @@ export function buildF22A(s) {
       axis: 'y',
       scale: 0.35,
     });
-    fd.text('FF', [side * 0.041, 0.7, -2.1], 0.24, (side * Math.PI) / 2, dark);
-    fd.text('F22', [side * 0.041, 0.4, -2.1], 0.12, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
+    // Exterior operator identifiers are supplied by the selected livery.
     fd.finish();
     // Rectangular, open exhausts with upper/lower 2D petals. Static neutral nozzle angle:
     // the kernel has no F119 pitch-vector control law, so do not invent pitch-input coupling.

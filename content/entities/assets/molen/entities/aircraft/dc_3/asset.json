@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:7c8c460e4bd087dd14672ff4b6d2bbaee4c9438cdf69fe1edf7df313e88c1981",
-  "sourceHash": "sha256:9294fe6dc118d589bfa5a95d96e81930bf20deaf4de58d15cc17697e4a0fa5ed",
+  "hash": "sha256:c8dc768f3a0c55e61003c8a8c265c7002175baa3a24f78c07f80e85394197600",
+  "sourceHash": "sha256:4d7756ae0477e6ba5ac2b1c2271707ac9c061df132f2b4114bd4d968e0426603",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 95971,
-    "vertices": 199088,
-    "meshes": 129,
-    "primitives": 129,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 97357,
+    "vertices": 148456,
+    "meshes": 146,
+    "primitives": 146,
+    "materials": 28,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 3788628
+    "sizeBytes": 3523736
   },
   "nodes": [
     {
       "name": "DC3-shell-DC3-aluminium",
-      "triangles": 6646
+      "triangles": 6578
     },
     {
       "name": "DC3-shell-DC3-glass",
@@ -51,7 +51,7 @@
     },
     {
       "name": "DC3-shell-DC3-blue",
-      "triangles": 1728
+      "triangles": 864
     },
     {
       "name": "DC3-shell-DC3-orange",
@@ -59,11 +59,11 @@
     },
     {
       "name": "DC3-shell-DC3-dark",
-      "triangles": 1304
+      "triangles": 1088
     },
     {
       "name": "DC3-shell-DC3-engine-case",
-      "triangles": 1488
+      "triangles": 1056
     },
     {
       "name": "DC3-label--1-DC3-blue",
@@ -163,7 +163,7 @@
     },
     {
       "name": "DC3-rudder-DC3-fabric-controls",
-      "triangles": 26
+      "triangles": 28
     },
     {
       "name": "DC3-rudder-DC3-engine-case",
@@ -187,7 +187,7 @@
     },
     {
       "name": "DC3-engine-1-DC3-dark",
-      "triangles": 2340
+      "triangles": 1252
     },
     {
       "name": "DC3-engine-1-DC3-engine-case",
@@ -319,7 +319,7 @@
     },
     {
       "name": "DC3-engine--1-DC3-dark",
-      "triangles": 2340
+      "triangles": 1252
     },
     {
       "name": "DC3-engine--1-DC3-engine-case",
@@ -451,7 +451,7 @@
     },
     {
       "name": "DC3-cockpit-DC3-dark",
-      "triangles": 1286
+      "triangles": 1166
     },
     {
       "name": "DC3-cockpit-DC3-aluminium",
@@ -622,9 +622,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "DC3-cockpit-green",
+      "name": "DC3-cockpit-green-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -638,6 +641,28 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "DC3-dark-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "DC3-aluminium-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "DC3-prop-controls",
       "slots": [
         "baseColor"
@@ -646,9 +671,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -724,6 +752,55 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -790,29 +867,29 @@
         "node": "DC3-shell-DC3-blue",
         "points": [
           -1.2479,
-          1.9765,
-          -2.2723,
+          1.9746,
+          -2.274,
           -1.2479,
-          1.9765,
-          7.3873,
+          1.9746,
+          7.3891,
           -1.2479,
-          4.7678,
-          -2.2723,
+          4.7716,
+          -2.274,
           -1.2479,
-          4.7678,
-          7.3873,
+          4.7716,
+          7.3891,
           1.2479,
-          1.9765,
-          -2.2723,
+          1.9746,
+          -2.274,
           1.2479,
-          1.9765,
-          7.3873,
+          1.9746,
+          7.3891,
           1.2479,
-          4.7678,
-          -2.2723,
+          4.7716,
+          -2.274,
           1.2479,
-          4.7678,
-          7.3873
+          4.7716,
+          7.3891
         ]
       },
       {
@@ -848,10 +925,10 @@
         "node": "DC3-shell-DC3-dark",
         "points": [
           -5.6199,
-          1.1334,
+          1.1328,
           -8.6061,
           -5.6199,
-          1.1334,
+          1.1328,
           7.5987,
           -5.6199,
           5.3942,
@@ -860,10 +937,10 @@
           5.3942,
           7.5987,
           5.6199,
-          1.1334,
+          1.1328,
           -8.6061,
           5.6199,
-          1.1334,
+          1.1328,
           7.5987,
           5.6199,
           5.3942,
@@ -1780,25 +1857,25 @@
           3.5848,
           2.0042,
           1.5555,
-          5.5507,
+          6.403,
           2.0042,
           3.4016,
           3.5848,
           2.0042,
           3.4016,
-          5.5507,
+          6.403,
           3.6346,
           1.5555,
           3.5848,
           3.6346,
           1.5555,
-          5.5507,
+          6.403,
           3.6346,
           3.4016,
           3.5848,
           3.6346,
           3.4016,
-          5.5507
+          6.403
         ]
       },
       {
@@ -2737,25 +2814,25 @@
           3.5848,
           -3.6346,
           1.5555,
-          5.5507,
+          6.403,
           -3.6346,
           3.4016,
           3.5848,
           -3.6346,
           3.4016,
-          5.5507,
+          6.403,
           -2.0042,
           1.5555,
           3.5848,
           -2.0042,
           1.5555,
-          5.5507,
+          6.403,
           -2.0042,
           3.4016,
           3.5848,
           -2.0042,
           3.4016,
-          5.5507
+          6.403
         ]
       },
       {

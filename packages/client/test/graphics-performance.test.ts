@@ -71,6 +71,52 @@ describe('sparse graphics work', () => {
     queue.dispose();
   });
 
+  it('admits urgent work ahead of normal work, in its own order, within limits set later', () => {
+    const queue = new FrameAdmissionQueue({ maxJobs: 1, schedule: () => {} });
+    const order: string[] = [];
+    for (const name of ['n1', 'n2']) void queue.run(() => order.push(name));
+    for (const name of ['u1', 'u2']) void queue.run(() => order.push(name), { priority: 'urgent' });
+    void queue.run(() => order.push('b'), { priority: 'background' });
+    queue.flush();
+    expect(order).toEqual(['u1']);
+    queue.setLimits({ maxJobs: 8 });
+    queue.flush();
+    expect(order).toEqual(['u1', 'u2', 'n1', 'n2', 'b']);
+    expect(() => queue.setLimits({ maxBytes: 0 })).toThrow(RangeError);
+    queue.dispose();
+  });
+
+  it('opens a frame with a kind of job that has run past the budget left', () => {
+    let clock = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 4,
+      schedule: () => {},
+      now: () => clock,
+    });
+    const order: string[] = [];
+    const job = (name: string, ms: number, label: string) =>
+      void queue.run(
+        () => {
+          order.push(name);
+          clock += ms;
+        },
+        { label },
+      );
+    job('big1', 12, 'assembly');
+    queue.flush();
+    // Small work first; the next assembly is expected to take 12 ms, more than the 3 ms left.
+    job('small', 1, 'upload');
+    job('big2', 12, 'assembly');
+    job('after', 1, 'upload');
+    queue.flush();
+    expect(order).toEqual(['big1', 'small']);
+    queue.flush();
+    expect(order).toEqual(['big1', 'small', 'big2']);
+    queue.flush();
+    expect(order).toEqual(['big1', 'small', 'big2', 'after']);
+    queue.dispose();
+  });
+
   it('promotes a background job ahead of queued normal work on request', async () => {
     const queue = new FrameAdmissionQueue({ maxJobs: 1, schedule: () => {} });
     const order: string[] = [];

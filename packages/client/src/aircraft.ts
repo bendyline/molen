@@ -5,6 +5,11 @@ import type {
   LiveryData,
 } from '@bendyline/molen-schema';
 import * as THREE from 'three';
+import { type AircraftCockpit, createAircraftCockpit } from './aircraft-controls';
+
+export * from './aircraft-cockpit-pointer';
+export * from './aircraft-controls';
+
 import { applyLivery } from './livery';
 import {
   createModelSignalVisual,
@@ -17,6 +22,7 @@ import { createVehicleInteriorVisual, type VehicleInteriorVisual } from './vehic
 export interface AircraftVisual {
   setLivery(data: LiveryData | undefined): void;
   object: THREE.Object3D;
+  cockpit: AircraftCockpit;
   interior?: VehicleInteriorVisual;
   /** The spec's exterior `animation` bindings (gear legs and doors, control surfaces). */
   animation?: ModelSignalVisual;
@@ -27,6 +33,13 @@ export interface AircraftVisual {
     signals?: ModelSignals,
     timeSeconds?: number,
   ): void;
+  /**
+   * The camera, in the coordinates of `object.position`. Cabin nodes (the spec's interior) are
+   * drawn only near it: from farther away a cockpit is a few pixels behind the canopy, yet it held
+   * most of an aircraft's draw calls, and as many again in the shadow pass. Boarded and chase
+   * views are always near enough.
+   */
+  updateView(camera: readonly [number, number, number]): void;
   dispose(): void;
 }
 /**
@@ -40,10 +53,11 @@ export function createAircraftVisual(
   spec: AircraftSpec,
   livery?: LiveryData,
 ): AircraftVisual {
+  const cockpit = createAircraftCockpit(model, spec);
   const interior =
-    spec.visual.interior === undefined
+    cockpit.interior === undefined
       ? undefined
-      : createVehicleInteriorVisual(model, spec.visual.interior);
+      : createVehicleInteriorVisual(model, cockpit.interior);
   const animation =
     spec.visual.animation === undefined
       ? undefined
@@ -63,12 +77,22 @@ export function createAircraftVisual(
     for (const node of moving.get(name) ?? []) node.rotation[axis] = angle;
   };
   let appearance = livery === undefined ? undefined : applyLivery(model, livery);
+  const cabin = (spec.visual.interior?.nodes ?? []).flatMap((name) => moving.get(name) ?? []);
+  // Nobody walks into a cockpit (boarding mounts the seat), and its hundreds of small parts made
+  // the walker's collision tree beside a parked aircraft take a third of a second to build.
+  for (const node of cabin)
+    node.traverse((object) => {
+      if ((object as THREE.Mesh).isMesh) object.userData.walkIgnore = true;
+    });
+  const cabinRange = Math.max(60, 3 * Math.max(spec.length, spec.span));
+  let cabinShown = true;
   return {
     setLivery(data) {
       appearance?.dispose();
       appearance = data === undefined ? undefined : applyLivery(model, data);
     },
     object: model,
+    cockpit,
     interior,
     animation,
     update(state, input, altitude, signals, timeSeconds) {
@@ -91,11 +115,11 @@ export function createAircraftVisual(
       for (const binding of spec.visual.ailerons) {
         turn(binding.node, binding.axis, input.roll * binding.multiplier);
       }
-      if (interior === undefined && spec.visual.controlStick !== undefined) {
+      if (spec.visual.interior === undefined && spec.visual.controlStick !== undefined) {
         turn(spec.visual.controlStick.node, spec.visual.controlStick.pitchAxis, input.pitch * 0.22);
         turn(spec.visual.controlStick.node, spec.visual.controlStick.rollAxis, input.roll * 0.22);
       }
-      if (interior === undefined && spec.visual.collective !== undefined) {
+      if (spec.visual.interior === undefined && spec.visual.collective !== undefined) {
         turn(
           spec.visual.collective.node,
           spec.visual.collective.axis,
@@ -103,7 +127,8 @@ export function createAircraftVisual(
         );
       }
       const engineSignals: Record<string, number | undefined> = Object.create(null);
-      for (const engine of spec.engines ?? []) {
+      const bank = spec.engines ?? (spec.engine ? [{ ...spec.engine, id: 'main' }] : []);
+      for (const engine of bank) {
         const reading = state.engines?.[engine.id];
         const prefix = `engines.${engine.id}.`;
         engineSignals[`${prefix}rpmNormalized`] = reading?.rpm;
@@ -115,6 +140,8 @@ export function createAircraftVisual(
           reading === undefined ? undefined : Number(reading.failed);
         engineSignals[`${prefix}thrustN`] = reading?.thrust;
         engineSignals[`${prefix}afterburner`] = reading?.afterburner ?? 0;
+        engineSignals[`${prefix}shaftPowerW`] = reading?.shaftPower;
+        engineSignals[`${prefix}combustion`] = reading?.combustion;
       }
       const telemetry: ModelSignals = {
         airspeed: state.airspeed,
@@ -167,8 +194,38 @@ export function createAircraftVisual(
         ...engineSignals,
         ...signals,
       };
+      for (const engine of bank) {
+        // Commanded lever position, independent of shaft spool-up and external sensors.
+        (telemetry as Record<string, number | undefined>)[`engines.${engine.id}.power`] =
+          input.engines?.[engine.id]?.power ?? input.power;
+        (telemetry as Record<string, number | undefined>)[`engines.${engine.id}.enabled`] = Number(
+          input.engines?.[engine.id]?.enabled ?? true,
+        );
+        for (const action of ['mixture', 'propeller'] as const)
+          (telemetry as Record<string, number | undefined>)[`engines.${engine.id}.${action}`] =
+            input.engines?.[engine.id]?.[action] ?? input[action] ?? 1;
+      }
+      Object.assign(telemetry, {
+        gearCommand: Number(input.gear),
+        flapCommand: Number(input.flaps),
+        vectorCommand: input.thrustVector ?? 0,
+        engine: Number(input.engine),
+        brake: Number(input.brake),
+        mixture: input.mixture ?? 1,
+        propeller: input.propeller ?? 1,
+      });
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
+    },
+    updateView(camera) {
+      if (cabin.length === 0) return;
+      const p = model.position;
+      const distance = Math.hypot(p.x - camera[0], p.y - camera[1], p.z - camera[2]);
+      // A little hysteresis, so a camera at the edge does not flicker the cabin.
+      const shown = distance < cabinRange * (cabinShown ? 1.1 : 1);
+      if (shown === cabinShown) return;
+      cabinShown = shown;
+      for (const node of cabin) node.visible = shown;
     },
     dispose() {
       appearance?.dispose();

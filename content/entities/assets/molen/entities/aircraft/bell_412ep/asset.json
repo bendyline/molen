@@ -6,13 +6,13 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:3fd7d248a015cf7c713f198571b8043f4a21488478bcb935c03175d89fdd20f1",
-  "sourceHash": "sha256:55a925f7d408e6bedcce9d70615b480826d99bfbfce818fac34625f152a04715",
+  "hash": "sha256:e559fac8b3dd08d2d0ccdfea0e088e65a37d10fb75b69859f5937a01d5fd6baf",
+  "sourceHash": "sha256:ff85fa2bc196637482da9b7526a515d4edb6e837dada9f9b9d6f14e5a8b17314",
   "bounds": {
     "aabb": {
       "min": [
         -5.1194,
-        0.0004,
+        0.0072,
         -9.04
       ],
       "max": [
@@ -24,26 +24,26 @@
     "sphere": {
       "center": [
         0,
-        2.2702,
+        2.2736,
         -1.9603
       ],
-      "radius": 8.6593
+      "radius": 8.6588
     }
   },
   "stats": {
-    "triangles": 64508,
-    "vertices": 131801,
-    "meshes": 69,
-    "primitives": 69,
-    "materials": 20,
-    "textures": 0,
+    "triangles": 62792,
+    "vertices": 94982,
+    "meshes": 76,
+    "primitives": 76,
+    "materials": 26,
+    "textures": 9,
     "animations": 0,
-    "sizeBytes": 2549512
+    "sizeBytes": 2374380
   },
   "nodes": [
     {
       "name": "412-exterior-412-ivory",
-      "triangles": 1846
+      "triangles": 1150
     },
     {
       "name": "412-exterior-412-glass",
@@ -51,15 +51,15 @@
     },
     {
       "name": "412-exterior-412-joints",
-      "triangles": 4872
+      "triangles": 3000
     },
     {
       "name": "412-exterior-412-metal",
-      "triangles": 9024
+      "triangles": 8880
     },
     {
       "name": "412-exterior-412-black",
-      "triangles": 280
+      "triangles": 256
     },
     {
       "name": "412-exterior-412-red",
@@ -143,7 +143,7 @@
     },
     {
       "name": "412-cockpit-412-black",
-      "triangles": 273
+      "triangles": 217
     },
     {
       "name": "412-cockpit-detail-alloy",
@@ -391,7 +391,7 @@
     },
     {
       "name": "cyclic-412-black",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -435,7 +435,7 @@
     },
     {
       "name": "cyclic-412-black",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -638,17 +638,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "412-panel-gray",
+      "name": "412-panel-gray-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -710,7 +716,67 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "412-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "412-gray-fabric",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -781,58 +847,58 @@
       {
         "node": "412-exterior-412-joints",
         "points": [
-          -1.2174,
-          0.5741,
+          -1.2186,
+          0.5748,
           -7.604,
-          -1.2174,
-          0.5741,
-          2.806,
-          -1.2174,
-          2.6149,
+          -1.2186,
+          0.5748,
+          2.8053,
+          -1.2186,
+          2.6143,
           -7.604,
-          -1.2174,
-          2.6149,
-          2.806,
-          1.2174,
-          0.5741,
+          -1.2186,
+          2.6143,
+          2.8053,
+          1.2186,
+          0.5748,
           -7.604,
-          1.2174,
-          0.5741,
-          2.806,
-          1.2174,
-          2.6149,
+          1.2186,
+          0.5748,
+          2.8053,
+          1.2186,
+          2.6143,
           -7.604,
-          1.2174,
-          2.6149,
-          2.806
+          1.2186,
+          2.6143,
+          2.8053
         ]
       },
       {
         "node": "412-exterior-412-metal",
         "points": [
-          -1.4377,
-          0.0004,
+          -1.4446,
+          0.0072,
           -8.8892,
-          -1.4377,
-          0.0004,
+          -1.4446,
+          0.0072,
           3.7202,
-          -1.4377,
-          2.6695,
+          -1.4446,
+          2.6701,
           -8.8892,
-          -1.4377,
-          2.6695,
+          -1.4446,
+          2.6701,
           3.7202,
-          1.4377,
-          0.0004,
+          1.4446,
+          0.0072,
           -8.8892,
-          1.4377,
-          0.0004,
+          1.4446,
+          0.0072,
           3.7202,
-          1.4377,
-          2.6695,
+          1.4446,
+          2.6701,
           -8.8892,
-          1.4377,
-          2.6695,
+          1.4446,
+          2.6701,
           3.7202
         ]
       },
@@ -844,25 +910,25 @@
           -2.82,
           -1.515,
           0.2026,
-          3.1402,
+          3.1403,
           -1.515,
           2.6482,
           -2.82,
           -1.515,
           2.6482,
-          3.1402,
+          3.1403,
           1.515,
           0.2026,
           -2.82,
           1.515,
           0.2026,
-          3.1402,
+          3.1403,
           1.515,
           2.6482,
           -2.82,
           1.515,
           2.6482,
-          3.1402
+          3.1403
         ]
       },
       {

@@ -82,6 +82,12 @@ export interface ResolvedMaterialSetOptions {
   concurrency?: number;
   /** Adds detail to each building material, e.g. `createBuildingWeatheringAsync`. */
   decorate?: BuildingMaterialDecorator;
+  /**
+   * Build an upgraded material's shaders before it replaces a progressive placeholder in place,
+   * e.g. a renderer's `prepareMaterialChange`. Without it, every mesh drawing the placeholder
+   * built the new shaders in the frame after its bake landed.
+   */
+  prepareChange?: (current: THREE.Material, next: THREE.Material) => Promise<void>;
 }
 
 const TEXTURE_KEYS = [
@@ -114,6 +120,8 @@ export function createResolvedMaterialSet(
   // Textured glass draws its texture untinted: the vertex color of a window carries the glass
   // tone for flat levels instead (see the recipe), so the window slot gets its own variant.
   const glass = new Map<string, THREE.MeshStandardMaterial>();
+  // Upgrades built ahead of their placeholders: they hold the shared programs (see prepareChange).
+  const upgrades = new Set<THREE.Material>();
   const rejected = new Set<string>();
   const textures = new Set<THREE.Texture>();
   let textureBytes = 0;
@@ -172,36 +180,61 @@ export function createResolvedMaterialSet(
       }
       textureBytes += bytes;
       for (const texture of added) textures.add(texture);
-      const material = placeholders.get(ref) ?? new THREE.MeshStandardMaterial();
-      material.copy(source as THREE.MeshStandardMaterial);
-      material.vertexColors = true;
-      material.name = `worldgen:${ref}`;
-      // A placeholder was decorated when created; copy() keeps its hooks. Glass is a variant.
-      options.decorate?.(material, 'wall');
-      for (const key of TEXTURE_KEYS) {
-        const texture = material[key];
-        if (texture === null || texture === undefined) continue;
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-        if (texture.magFilter !== THREE.NearestFilter) {
-          // Hard cutouts retain their authored threshold. Fractional coverage materials
-          // use mipmapped blending so subpixel openings retain their average open area.
-          texture.generateMipmaps = !(material.alphaTest > 0);
-          texture.minFilter =
-            material.alphaTest > 0 ? THREE.LinearFilter : THREE.LinearMipmapLinearFilter;
-          // Roofs and lots are mostly seen at grazing angles from above; 16x keeps shingles and
-          // seams sharp there instead of falling to a blurred mip, at little cost on current GPUs.
-          texture.anisotropy = 16;
+      const textured = (material: THREE.MeshStandardMaterial): void => {
+        material.copy(source as THREE.MeshStandardMaterial);
+        material.vertexColors = true;
+        material.name = `worldgen:${ref}`;
+        // A placeholder was decorated when created; copy() keeps its hooks. Glass is a variant.
+        options.decorate?.(material, 'wall');
+        for (const key of TEXTURE_KEYS) {
+          const texture = material[key];
+          if (texture === null || texture === undefined) continue;
+          texture.wrapS = THREE.RepeatWrapping;
+          texture.wrapT = THREE.RepeatWrapping;
+          if (texture.magFilter !== THREE.NearestFilter) {
+            // Hard cutouts retain their authored threshold. Fractional coverage materials
+            // use mipmapped blending so subpixel openings retain their average open area.
+            texture.generateMipmaps = !(material.alphaTest > 0);
+            texture.minFilter =
+              material.alphaTest > 0 ? THREE.LinearFilter : THREE.LinearMipmapLinearFilter;
+            // Roofs and lots are mostly seen at grazing angles from above; 16x keeps shingles and
+            // seams sharp there instead of falling to a blurred mip, at little cost on current GPUs.
+            texture.anisotropy = 16;
+          }
+          texture.needsUpdate = true;
         }
-        texture.needsUpdate = true;
+        material.needsUpdate = true;
+      };
+      const placeholder = placeholders.get(ref);
+      const window = glass.get(ref);
+      if (options.prepareChange !== undefined && (placeholder !== undefined || window)) {
+        // Placeholders already on screen change in place: build the upgrade's shaders first.
+        const upgrade = new THREE.MeshStandardMaterial();
+        textured(upgrade);
+        upgrades.add(upgrade);
+        const builds: Promise<void>[] = [];
+        if (placeholder !== undefined) builds.push(options.prepareChange(placeholder, upgrade));
+        if (window !== undefined) {
+          const glassUpgrade = new THREE.MeshStandardMaterial();
+          untinted(glassUpgrade, upgrade);
+          upgrades.add(glassUpgrade);
+          builds.push(options.prepareChange(window, glassUpgrade));
+        }
+        await Promise.all(builds);
+        if (disposed) {
+          resolver.release(source);
+          return;
+        }
       }
-      material.needsUpdate = true;
+      const material = placeholder ?? new THREE.MeshStandardMaterial();
+      textured(material);
       sources.set(ref, source);
       prepared.set(ref, material);
-      const window = glass.get(ref);
-      if (window !== undefined) {
-        untinted(window, material);
-        window.name = `worldgen:${ref}:glass`;
+      // Read again: a window may have asked for its glass while the upgrade was being built.
+      const windowGlass = glass.get(ref);
+      if (windowGlass !== undefined) {
+        untinted(windowGlass, material);
+        windowGlass.name = `worldgen:${ref}:glass`;
       }
     } catch (error) {
       if (!disposed) failures.set(ref, (error as Error).message);
@@ -273,8 +306,10 @@ export function createResolvedMaterialSet(
         ...prepared.values(),
         ...placeholders.values(),
         ...glass.values(),
+        ...upgrades,
       ]))
         material.dispose();
+      upgrades.clear();
       prepared.clear();
       placeholders.clear();
       glass.clear();

@@ -165,7 +165,7 @@
           ]
         },
         "livery": {
-          "selected": "authored",
+          "selected": "honda-hornet-red",
           "slots": {
             "body": {
               "materials": ["vehicle-paint-and-trim"]
@@ -173,44 +173,40 @@
           },
           "variants": [
             {
-              "id": "authored",
-              "label": "Authored finish",
+              "id": "honda-hornet-red",
+              "label": "Honda Hornet red",
               "provenance": {
-                "kind": "original",
-                "note": "Preserves the model author’s existing materials and markings; see the model source bundle for its references.",
-                "references": []
-              },
-              "paints": {}
-            },
-            {
-              "id": "crimson",
-              "label": "Crimson",
-              "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Honda CB500 Hornet 2026.jpg — MotorideSA (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Honda_CB500_Hornet_2026.jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#a94b43",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#b7464b"
                 }
               }
             },
             {
-              "id": "ocean-blue",
-              "label": "Ocean blue",
+              "id": "honda-cb500-green",
+              "label": "Honda CB500 green",
               "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Honda CB500 twin.jpg — Das051 at English Wikipedia (Public domain)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Honda_CB500_twin.jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#557990",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#436e64"
                 }
               }
             }
@@ -387,56 +383,110 @@
           ]
         },
         "livery": {
-          "selected": "authored",
+          "selected": "softail-black",
           "slots": {
             "body": {
               "materials": ["vehicle-paint-and-trim"]
+            },
+            "surface": {
+              "materials": ["vehicle-paint-and-trim"],
+              "node": "body-vehicle-paint-and-trim"
             }
           },
           "variants": [
             {
-              "id": "authored",
-              "label": "Authored finish",
+              "id": "softail-black",
+              "label": "Softail black",
               "provenance": {
-                "kind": "original",
-                "note": "Preserves the model author’s existing materials and markings; see the model source bundle for its references.",
-                "references": []
-              },
-              "paints": {}
-            },
-            {
-              "id": "crimson",
-              "label": "Crimson",
-              "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Harley-Davidson Softail Springer Screamin' Eagle 2008.jpg — Pierre André Leclercq (CC BY 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Harley-Davidson_Softail_Springer_Screamin%27_Eagle_2008.jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#a94b43",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#333e3f"
                 }
               }
             },
             {
-              "id": "ocean-blue",
-              "label": "Ocean blue",
+              "id": "heritage-red-and-cream",
+              "label": "Heritage red and cream",
               "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Red body and cream tank inset adapted from the pictured Heritage Softail to the Bendy cruiser. The tank panel, body geometry and equipment are simplified; logos and pinstripes are omitted. Paint tones are visual approximations.",
+                "references": [
+                  {
+                    "title": "Harley-Davidson Softail Heritage (1).jpg — Cjp24 (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Harley-Davidson_Softail_Heritage_(1).jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#557990",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#ac483e"
                 }
-              }
+              },
+              "markings": [
+                {
+                  "anchor": "tank-right",
+                  "graphic": {
+                    "label": "Cream tank inset",
+                    "shapes": [
+                      {
+                        "color": "#e1d6bd",
+                        "points": [
+                          [0, 0.5],
+                          [0.1, 0.08],
+                          [0.85, 0.12],
+                          [1, 0.5],
+                          [0.85, 0.9],
+                          [0.12, 0.92]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "anchor": "tank-left",
+                  "graphic": {
+                    "label": "Cream tank inset",
+                    "shapes": [
+                      {
+                        "color": "#e1d6bd",
+                        "points": [
+                          [0, 0.5],
+                          [0.1, 0.08],
+                          [0.85, 0.12],
+                          [1, 0.5],
+                          [0.85, 0.9],
+                          [0.12, 0.92]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
             }
-          ]
+          ],
+          "anchors": {
+            "tank-right": {
+              "slot": "surface",
+              "position": [-0.000018207621826444526, 0.8203352327869019, 0.6385560265378173],
+              "size": [0.17974835875176298, 0.05617136210992593, 0.037447574739950626],
+              "rotation": [0, -1.5707963267948966, 0]
+            },
+            "tank-left": {
+              "slot": "surface",
+              "position": [1.0000182076218265, 0.8203352327869019, 0.6385560265378173],
+              "size": [0.17974835875176298, 0.05617136210992593, 0.037447574739950626],
+              "rotation": [0, 1.5707963267948966, 0]
+            }
+          }
         }
       },
       "assets": ["molen.entities.cycle.cruiser_motorcycle"]
@@ -602,7 +652,7 @@
           ]
         },
         "livery": {
-          "selected": "authored",
+          "selected": "vespa-red",
           "slots": {
             "body": {
               "materials": ["vehicle-paint-and-trim"]
@@ -610,44 +660,40 @@
           },
           "variants": [
             {
-              "id": "authored",
-              "label": "Authored finish",
+              "id": "vespa-red",
+              "label": "Vespa red",
               "provenance": {
-                "kind": "original",
-                "note": "Preserves the model author’s existing materials and markings; see the model source bundle for its references.",
-                "references": []
-              },
-              "paints": {}
-            },
-            {
-              "id": "crimson",
-              "label": "Crimson",
-              "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Vespa Prima 125b.jpg — Adrian Michael (Public domain)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Vespa_Prima_125b.jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#a94b43",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#bc4747"
                 }
               }
             },
             {
-              "id": "ocean-blue",
-              "label": "Ocean blue",
+              "id": "primavera-white",
+              "label": "Primavera white",
               "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "08-2024 Vespa Primavera Alter-Markt Potsdam.jpg — Wikisympathisant (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:08-2024_Vespa_Primavera_Alter-Markt_Potsdam.jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#557990",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#e0e1d5"
                 }
               }
             }
@@ -873,7 +919,7 @@
           ]
         },
         "livery": {
-          "selected": "authored",
+          "selected": "van-stael-brown",
           "slots": {
             "body": {
               "materials": ["vehicle-paint-and-trim"]
@@ -881,44 +927,40 @@
           },
           "variants": [
             {
-              "id": "authored",
-              "label": "Authored finish",
+              "id": "van-stael-brown",
+              "label": "Van Stael brown",
               "provenance": {
-                "kind": "original",
-                "note": "Preserves the model author’s existing materials and markings; see the model source bundle for its references.",
-                "references": []
-              },
-              "paints": {}
-            },
-            {
-              "id": "crimson",
-              "label": "Crimson",
-              "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Gazelle Van Stael Velo (2017).jpg — JoachimKohler-HB (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Gazelle_Van_Stael_Velo_(2017).jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#a94b43",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#5b4940"
                 }
               }
             },
             {
-              "id": "ocean-blue",
-              "label": "Ocean blue",
+              "id": "gazelle-pale-blue",
+              "label": "Gazelle pale blue",
               "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Gazelle bicycle, Bratislava, 2023-01-30 11.19.37.jpg — Andrej Shadura (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Gazelle_bicycle,_Bratislava,_2023-01-30_11.19.37.jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#557990",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#8cb6be"
                 }
               }
             }
@@ -1141,7 +1183,7 @@
           ]
         },
         "livery": {
-          "selected": "authored",
+          "selected": "trek-red",
           "slots": {
             "body": {
               "materials": ["vehicle-paint-and-trim"]
@@ -1149,44 +1191,40 @@
           },
           "variants": [
             {
-              "id": "authored",
-              "label": "Authored finish",
+              "id": "trek-red",
+              "label": "Trek red",
               "provenance": {
-                "kind": "original",
-                "note": "Preserves the model author’s existing materials and markings; see the model source bundle for its references.",
-                "references": []
-              },
-              "paints": {}
-            },
-            {
-              "id": "crimson",
-              "label": "Crimson",
-              "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Trek Madone detail, Giro d'Italia 2023 (53309340988).jpg — Martino Photos (CC BY-SA 2.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Trek_Madone_detail,_Giro_d%27Italia_2023_(53309340988).jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#a94b43",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#b74649"
                 }
               }
             },
             {
-              "id": "ocean-blue",
-              "label": "Ocean blue",
+              "id": "trek-navy",
+              "label": "Trek navy",
               "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "2005 Trek Madone.jpg — Adam Leadbetter from UK (CC BY 2.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:2005_Trek_Madone.jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#557990",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#364765"
                 }
               }
             }
@@ -1405,7 +1443,7 @@
           ]
         },
         "livery": {
-          "selected": "authored",
+          "selected": "urban-arrow-white-frame",
           "slots": {
             "body": {
               "materials": ["vehicle-paint-and-trim"]
@@ -1413,44 +1451,40 @@
           },
           "variants": [
             {
-              "id": "authored",
-              "label": "Authored finish",
+              "id": "urban-arrow-white-frame",
+              "label": "Urban Arrow white frame",
               "provenance": {
-                "kind": "original",
-                "note": "Preserves the model author’s existing materials and markings; see the model source bundle for its references.",
-                "references": []
-              },
-              "paints": {}
-            },
-            {
-              "id": "crimson",
-              "label": "Crimson",
-              "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Urban Arrow Bioflair.jpg — Reise Reise (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Urban_Arrow_Bioflair.jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#a94b43",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#dfe2d9"
                 }
               }
             },
             {
-              "id": "ocean-blue",
-              "label": "Ocean blue",
+              "id": "urban-arrow-black-frame",
+              "label": "Urban Arrow black frame",
               "provenance": {
-                "kind": "original",
-                "note": "Original alternate palette; no claim of factory color or a particular operator, serial number or service era.",
-                "references": []
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Urban Arrow, Cyclingworld Europe 2025, Meerbusch (P1045016).jpg — Matti Blume (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Urban_Arrow,_Cyclingworld_Europe_2025,_Meerbusch_(P1045016).jpg"
+                  }
+                ]
               },
               "paints": {
                 "body": {
-                  "color": "#557990",
-                  "roughness": 0.36,
-                  "metalness": 0.3
+                  "color": "#343b3a"
                 }
               }
             }

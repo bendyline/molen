@@ -3,22 +3,30 @@ import { PNG } from 'pngjs';
 import { Vector3 } from 'three';
 import { expect, it } from 'vitest';
 import { createAircraftVisual } from '../../client/dist/aircraft.mjs';
+import { cockpitFinishLibrary } from '../scripts/aircraft/cockpit-surfaces.mjs';
 import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
 const root = new URL('../../../content/entities/', import.meta.url);
-it.each([
-  'p-51',
-  'oh-6',
-  'cessna-172s',
-])('%s keeps cockpit finishes portable, bounded and out of the airframe', async (slug) => {
+it.each(
+  Object.keys(cockpitFinishLibrary.profiles),
+)('%s keeps cockpit finishes portable, bounded and out of the airframe', async (slug) => {
+  const profile = cockpitFinishLibrary.profiles[slug];
   const source = JSON.parse(await readFile(new URL(`source/aircraft/${slug}/source.json`, root)));
+  const definition = JSON.parse(
+    await readFile(new URL(`source/aircraft/${slug}/entity.types.json`, root)),
+  );
+  const interior = definition.types[source.id].components.aircraft.spec.visual.interior;
   expect(source.files.textures.length).toBeGreaterThanOrEqual(9);
-  expect(source.files.textures.length).toBeLessThanOrEqual(15);
+  expect(source.files.textures.length).toBeLessThanOrEqual(24);
+  const canonical = new Map();
   for (const texture of source.files.textures) {
-    const png = PNG.sync.read(
-      await readFile(new URL(`source/aircraft/${slug}/${texture.path}`, root)),
-    );
-    const size = texture.id.startsWith('cockpit-panel-') ? 256 : 128;
+    const bytes = await readFile(new URL(`source/aircraft/${slug}/${texture.path}`, root));
+    const shared = await readFile(new URL(`source/cockpit-materials/${texture.id}.png`, root));
+    expect(bytes.equals(shared), `${texture.id} matches the shared library`).toBe(true);
+    canonical.set(texture.id, shared);
+    const png = PNG.sync.read(bytes);
+    const finish = cockpitFinishLibrary.finishes[texture.id.split('-')[1]];
+    const size = finish.size;
     expect([png.width, png.height]).toEqual([size, size]);
     let opaque = true,
       channels = true,
@@ -34,25 +42,53 @@ it.each([
     }
     expect(opaque).toBe(true);
     expect(channels).toBe(true);
-    expect(minimumRoughness).toBeGreaterThan(170);
+    expect(minimumRoughness).toBeGreaterThanOrEqual(Math.floor((finish.roughness - 0.1) * 255));
     expect(minimumNormalZ).toBeGreaterThan(225);
   }
   const bytes = await readFile(
     new URL(source.files.models[0].output.replace('asset.json', 'model.glb'), root),
   );
+  for (const glb of [
+    bytes,
+    await readFile(new URL(`source/aircraft/${slug}/models/source.glb`, root)),
+  ]) {
+    const jsonSize = glb.readUInt32LE(12);
+    const doc = JSON.parse(glb.subarray(20, 20 + jsonSize));
+    const embedded = doc.images.filter((image) => image.name?.startsWith('cockpit-'));
+    expect(new Set(embedded.map((image) => image.name)).size).toBe(embedded.length);
+    expect(embedded.length).toBe(canonical.size);
+    let textureBytes = 0;
+    for (const image of embedded) {
+      expect(image.uri).toBeUndefined();
+      const view = doc.bufferViews[image.bufferView];
+      const offset = 28 + jsonSize + (view.byteOffset ?? 0);
+      textureBytes += view.byteLength;
+      expect(glb.subarray(offset, offset + view.byteLength).equals(canonical.get(image.name))).toBe(
+        true,
+      );
+    }
+    expect(textureBytes).toBeLessThan(1500000);
+  }
   const { scene } = await new GLTFLoader().parseAsync(
     bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
     '',
   );
-  const cabin = scene.getObjectByName('cockpit');
-  let finished = 0;
+  const cabins = new Set([...interior.nodes, 'flight-controls']);
+  let finished = 0,
+    backboards = 0;
+  const kinds = new Set();
   scene.traverse((mesh) => {
     if (!mesh.isMesh || !mesh.material.userData.molenCockpitFinish) return;
     finished++;
     let owner = mesh;
-    while (owner && owner !== cabin) owner = owner.parent;
-    expect(owner).toBe(cabin);
-    const size = mesh.material.userData.molenCockpitFinish === 'panel' ? 256 : 128;
+    while (owner && !cabins.has(owner.name)) owner = owner.parent;
+    expect(owner, `${slug}: ${mesh.name} belongs to an interior root`).toBeTruthy();
+    const kind = mesh.material.userData.molenCockpitFinish;
+    kinds.add(kind);
+    if (owner.name !== 'flight-controls' && mesh.userData.molenCockpitSurfaceRole === 'panel')
+      backboards++;
+    expect(mesh.material.name).not.toMatch(/lettering|legend|display|horizon-sky|horizon-earth/);
+    const size = cockpitFinishLibrary.finishes[kind].size;
     expect(mesh.material.map.image.width).toBe(size);
     expect(mesh.material.normalMap.image.width).toBe(size);
     expect(mesh.material.roughnessMap.image.width).toBe(size);
@@ -74,6 +110,8 @@ it.each([
     }
   });
   expect(finished).toBeGreaterThanOrEqual(3);
+  expect(backboards, `${slug}: original instrument backboard is finished`).toBeGreaterThan(0);
+  for (const kind of [profile.panel, 'brushed', 'rubber']) expect(kinds.has(kind)).toBe(true);
 });
 
 it.each([
