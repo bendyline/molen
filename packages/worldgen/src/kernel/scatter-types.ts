@@ -14,7 +14,7 @@ export interface ScatterLod {
   maxInstancesPerBatch: number;
   /**
    * Largest crown widening (at least 1) that holds canopy and understory cover while a coarser
-   * tier or a tile budget thins the instances: kept ones widen by 1/sqrt(the kept share) up to
+   * tier or an instance budget thins the instances: kept ones widen by 1/sqrt(the kept share) up to
    * this factor, and grow by its square root in height. Omitted means 1, no growth.
    */
   coverGrowth?: number;

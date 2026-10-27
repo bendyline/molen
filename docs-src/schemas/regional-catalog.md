@@ -413,6 +413,31 @@ Composable ecological and architectural channels with explicit dependency versio
                   "pattern": "^#[0-9a-fA-F]{6}$"
                 },
                 "description": "Label pattern to '#rrggbb' surface color (exact, then word match)."
+              },
+              "detail": {
+                "description": "Exact label to [brush, bare] ground detail, each 0..1: the share of dark shrub speckle the ground shows where single shrubs are too small or too many to place (from the air, scrubland is its sum), and how often lighter bare-soil patches (vacant lots, worn ground) break it up.",
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                }
               }
             },
             "required": [
@@ -475,6 +500,12 @@ Composable ecological and architectural channels with explicit dependency versio
                     "exclusiveMinimum": 0,
                     "maximum": 9007199254740991,
                     "description": "Hard cap per batch for this rule."
+                  },
+                  "coverGrowth": {
+                    "description": "Largest crown widening that holds canopy and understory cover while a coarser tier or an instance budget thins them: kept instances widen by 1/sqrt(kept share) up to this factor and grow by its square root in height. Default 1 (none).",
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 4
                   }
                 },
                 "required": [
@@ -866,6 +897,11 @@ Composable ecological and architectural channels with explicit dependency versio
                       "type": "integer",
                       "exclusiveMinimum": 0,
                       "maximum": 9007199254740991
+                    },
+                    "coverGrowth": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 4
                     }
                   },
                   "additionalProperties": false,

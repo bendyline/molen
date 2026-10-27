@@ -1,3 +1,5 @@
+import type { TerrainSurfaceStyle } from '@bendyline/molen-terrain/client';
+
 export interface WorldRegion {
   id: string;
   label: string;
@@ -11,6 +13,8 @@ export interface WorldRegion {
    * darker than the sky it reflects at a glance. Defaults to the shared Earth water color.
    */
   water?: string;
+  /** Surface colors over the selected street style, where local paving reads differently. */
+  surfaces?: Partial<Pick<TerrainSurfaceStyle, 'road' | 'parking' | 'sidewalk' | 'curb'>>;
 }
 
 export const DEFAULT_WORLD_REGION: WorldRegion = {
@@ -35,7 +39,7 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     detailBounds: [151.04, -33.99, 151.31, -33.77],
     coverageBounds: [150.3, -34.5, 151.8, -33.2],
     // Port Jackson's harbour water is a dark green-teal in NSW imagery.
-    water: '#2a5a4a',
+    water: '#22493f',
   },
   {
     id: 'kyoto',
@@ -62,6 +66,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     latitude: 28.6139,
     detailBounds: [77.08, 28.49, 77.34, 28.75],
     coverageBounds: [76.4, 27.9, 78, 29.4],
+    // Dust settles on Delhi's roads and footpaths: Sentinel-2 reads them warm grey-brown.
+    surfaces: { road: '#625a4e', parking: '#685f52', sidewalk: '#94876f', curb: '#ab9d85' },
   },
 ];
 

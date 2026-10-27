@@ -113,3 +113,81 @@ as measured 60 FPS. No hardware-performance sign-off is made. Adaptive streaming
 oblique poses, historic photo dates, lighting and unknown map cover also prevent pixel-level
 accuracy claims. Remaining visible priorities are canopy continuity, unknown urban cover,
 Nijo's historic roof masses, source-map waterfront geometry and cheaper distant coverage.
+
+## Aerial color calibration, 26 October 2026
+
+A measured follow-up: for each region, an open orthophoto and the explorer's matching top-down
+view of the same 2,400 × 1,600 m, compared by the share of the frame each color class covers.
+The tool is [scripts/aerial-color](scripts/aerial-color/README.md) (sources, licences, capture
+mode and metric); images and reports stay in ignored `.artifacts/aerial-color/`.
+
+The score is the total variation distance between nine soft CIELAB classes (shadow, three greys,
+red-orange, tan-brown, dark and light green, blue) at 4 m per pixel (10 m for the Sentinel-2
+Delhi frame); the target was 0.15 or less in every frame. Each capture's sun matches the azimuth
+and elevation read from the photograph's own shadows. Both columns use the same metric; the
+baseline captures had a noon sun.
+
+| Frame | Source | Baseline | Final |
+| --- | --- | --- | --- |
+| Downtown Seattle | NAIP | 0.516 | 0.146 |
+| Downtown Bellevue | NAIP | 0.442 | 0.145 |
+| Sammamish plateau | NAIP | 0.592 | 0.148 |
+| Downtown Yuma | NAIP | 0.339 | 0.141 |
+| Nijo, Kyoto | GSI | 0.531 | 0.140 |
+| Sydney CBD and Domain | NSW Imagery | 0.410 | 0.149 |
+| Central Vista, New Delhi | Sentinel-2 | 0.443 | 0.134 |
+| Mean | | 0.468 | 0.143 |
+
+A second infill seed scores within 0.003 of these in every frame (mean 0.143), so the result
+does not depend on one draw of synthetic buildings. Margins are small in Seattle, Sammamish and
+Sydney; read the per-class report, not only the total.
+
+### What changed
+
+- **Light.** `EARTH_LIGHTING` gains `referenceElevation` (26°, the rig's design sun): above it,
+  sun and sky light scale together so level ground in sun keeps its authored brightness, as a
+  camera adapts. Midday renders had been about 1.5× too bright. The sun is near-neutral
+  (`#fff8f0`, daylight-balanced as photographs are; the warm `#fff1d8` turned every concrete roof
+  beige), intensity 6.1 over `dayAmbient` 1.25 and sky saturation 0.3, so shade sits nearer a
+  third of sunlit than half. New schema field `lighting.referenceElevation`.
+- **Water.** `EARTH_WATER_COLOR` is a deeper teal; World Explorer regions tint it from their
+  photographs (Puget Sound near-black navy, the Colorado dark olive, Sydney Harbour green-teal).
+- **Ground.** Desert and dry soil re-measured as warm mid brown; Pacific Northwest lawns and
+  woodland floor darker and bluer; Delhi has its own dusty palette. Built-up ground: unmapped and
+  broad-use land blends toward a new `urban_ground` color as nearby building coverage rises
+  (`urbanGround` landcover option, coverage from the tile's own footprints). New ground detail
+  (`surface.detail`, `landcoverDetail` vertex attribute, both shader paths): 4 m shrub clumps that
+  settle to their average from the air, and 32 m bare-soil patches for vacant lots and worn
+  yards, used in desert, dry and Delhi habitats.
+- **Vegetation.** Scatter `lod.coverGrowth` widens crowns kept by coarser tiers and tile budgets
+  (catalog default 2.2), so canopy survives from the air without more instances. Yard canopy for
+  the U.S. Southwest (0.3) and South Asia (0.6); Sonoran yards plant mesquite, palms, citrus and
+  pine. A `residentialTrees` rule and road clearance per habitat; Pacific coastal yards are
+  conifer-heavy; a dark avenue evergreen for Delhi; lighter eucalyptus for Sydney.
+- **Buildings.** Brighter, mostly white flat-roof mix; dusty roofs for South Asian buildings;
+  lighter Japanese kawara tile. Distant shells take per-building roof and wall colors instead of
+  one beige. Gabled stand-ins take their roof color. Unmeasured commercial blocks in dense cores
+  get a bounded level prior (`withDistrictLevels`); homes, shops and mapped heights keep theirs.
+- **Shadows.** Two bugs had removed building shadows from airplane views: stand-in boxes were
+  judged by their one-meter unit shape and never cast, and rebuilt structural building cells
+  kept a non-casting flag. Both now cast; a downtown seen from 1.4 km is shaded like the photo.
+- **Explorer.** `?aerialOrtho=<meters>` capture mode (with a frame-fitted shadow box), and
+  per-region `water` and `surfaces` (Delhi's dusty roads) in `regions.ts`. Asphalt is a step
+  lighter (`#646766`), as streets read from the air.
+
+### Tried and not kept
+
+- A `buildingDetail` sidecar (each package's own zoom-15 tiles under coarser ones) changed no
+  score by more than 0.004 but multiplied worldgen time 2–4.5× (Kyoto 2.0 → 9.4 s per tile).
+- A white-balance step in the comparison: estimated from low-chroma pixels, it mistook warm
+  soil for a camera cast. The metric stays as described.
+- A bluer sky fill (saturation 0.55) and a 1,024-building cap for distant shells: no gain.
+
+### Limits
+
+The class boundaries are hard thresholds softened by a few units, so a large uniform surface
+near one (light urban paving) can move several points for a small brightness change. NAIP's
+Washington imagery has a cyan cast that puts shade and conifers in the blue class; Sentinel-2 is
+10 m reflectance, darker and more saturated than a photograph; Sydney's photograph is not a true
+orthophoto, so leaning towers cover their own shadows with sunlit facades. These limits sit in
+the remaining few points, not the large changes above.

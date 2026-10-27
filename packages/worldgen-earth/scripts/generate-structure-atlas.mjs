@@ -132,9 +132,13 @@ const regions = [
 ];
 atlas.regions = atlas.regions.filter((region) => !region.id.startsWith('library.'));
 const supplements = {
-  'us.pnw': ['craftsman', 'prairie', 'ranch'],
+  // No prairie here: its clay flat tile reads tan, where Seattle's foursquares wear asphalt
+  // shingle (matched NAIP roofs in Wallingford and Sammamish are 5% tan, 80% grey).
+  'us.pnw': ['craftsman', 'ranch'],
   'us.southwest': ['ranch'],
-  jp: ['kyoto_machiya', 'gassho_farmhouse'],
+  // Thatched gassho farmhouses belong to mountain villages; in a city they read as tan roofs
+  // (matched GSI roofs in Kyoto are 0.5% tan).
+  jp: ['kyoto_machiya'],
 };
 // Mid- and high-rise housing is concrete and panel construction, not the region's wood-sided
 // house: four or more storeys, or a mapped height above a three-storey walk-up with its roof.
@@ -256,7 +260,7 @@ for (const region of atlas.regions) {
   const fill = {
     'library.north_america': 0.35,
     'us.pnw': 0.9,
-    'us.southwest': 0.35,
+    'us.southwest': 0.3,
     'library.south_asia': 0.6,
     jp: 0.3,
   }[region.id];

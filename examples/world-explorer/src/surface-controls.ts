@@ -13,6 +13,7 @@ import {
   type TerrainSurfaceRenderer,
   type TerrainSurfaceStyleId,
 } from '@bendyline/molen-terrain/client';
+import { selectedRegion } from './regions';
 
 export interface SurfaceControls extends TerrainSurfaceRenderer {
   /** Device adaptation changes budgets without overwriting the user's style or detail choices. */
@@ -60,10 +61,11 @@ export function createSurfaceControls(
   });
   let budgets = budgetsForQuality(quality);
   let performanceScale = 1;
+  const regional = selectedRegion(params)?.surfaces;
   const options = () => ({
     fonts,
     routeShields,
-    style,
+    style: regional ? { ...TERRAIN_SURFACE_STYLES[style], ...regional } : style,
     details: {
       ...details,
       maxFixturesPerTile: Math.round(budgets.maxFixturesPerTile * performanceScale),

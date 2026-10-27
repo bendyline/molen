@@ -81,8 +81,10 @@ export function createBuildingCellLod(
     mesh.updateMatrix();
     mesh.matrixAutoUpdate = false;
     mesh.receiveShadow = true;
-    // The middle level is the same geometry; its shadows keep a street from flattening out.
-    mesh.castShadow = detail <= 1;
+    // Every level casts: the structural level is what an airplane sees, and its walls and roofs
+    // shade the streets around them. Hosts that judge casters by height marked most such cells
+    // anyway, but rebuilt cells kept this flag, leaving shadowless holes in a downtown.
+    mesh.castShadow = true;
     mesh.userData.worldgenOwnedGeometry = true;
     lod.addDetail(mesh, [0, 0.35, 0.9][detail] as number);
   }

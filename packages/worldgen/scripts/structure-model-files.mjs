@@ -17,14 +17,29 @@ export const content = resolve(root, 'content/worldgen');
 export const projectPath = resolve(content, 'project.json');
 export const hashBytes = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
+const WINDOWS_FILE_LOCKS = new Set(['EBUSY', 'EPERM', 'EACCES', 'EUNKNOWN', 'UNKNOWN']);
+
+/** Retry short-lived Windows scanner/editor locks (mirrors tooling's retryFileOperation). */
+async function retryFileOperation(operation) {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      if (process.platform !== 'win32' || attempt >= 20 || !WINDOWS_FILE_LOCKS.has(error.code))
+        throw error;
+      await new Promise((done) => setTimeout(done, Math.min(25 * Math.pow(2, attempt), 250)));
+    }
+  }
+}
+
 /** Replace shared authoring indexes without truncating a file mapped by a Windows watcher. */
 export async function writeIndex(path, contents) {
   const temporary = `${path}.${process.pid}.tmp`;
   try {
     await writeFile(temporary, contents, { flag: 'wx' });
-    await rename(temporary, path);
+    await retryFileOperation(() => rename(temporary, path));
   } finally {
-    await rm(temporary, { force: true });
+    await retryFileOperation(() => rm(temporary, { force: true }));
   }
 }
 

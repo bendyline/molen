@@ -48,7 +48,7 @@ const lod = z.strictObject({
     .max(4)
     .optional()
     .describe(
-      'Largest crown widening that holds canopy and understory cover while a coarser tier or tile budget thins instances: kept instances widen by 1/sqrt(kept share) up to this factor and grow by its square root in height. Default 1 (none).',
+      'Largest crown widening that holds canopy and understory cover while a coarser tier or an instance budget thins them: kept instances widen by 1/sqrt(kept share) up to this factor and grow by its square root in height. Default 1 (none).',
     ),
 });
 

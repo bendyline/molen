@@ -23,21 +23,21 @@ export const towerWalls = [
 // Seattle, Bellevue and Sydney show white and pale grey membranes first, then grey decks,
 // gravel ballast and a few dark ones; two warm greys read as one beige city from the air.
 export const flatRoofs = [
-  ['#e6e6e2', 5],
-  ['#d3d4d0', 4],
-  ['#b9bab6', 3],
+  ['#ecece8', 7],
+  ['#dadbd7', 4],
+  ['#c0c1bd', 3],
   ['#9b9d9d', 2],
   ['#74777b', 1],
-  ['#b0a693', 1],
+  ['#b5ab98', 1],
 ];
 // Dust settles on Delhi's flat concrete roofs and water tanks: Sentinel-2 frames read them a
 // warm mid grey-brown rather than the pale membranes of a North American downtown.
 const dustyRoofs = [
-  ['#a59b88', 3],
-  ['#968d7e', 3],
-  ['#b6ad9b', 2],
-  ['#7f786d', 1],
-  ['#c4bba9', 1],
+  ['#a8987c', 3],
+  ['#988a73', 3],
+  ['#b8a88d', 2],
+  ['#82786a', 1],
+  ['#c6b79c', 1],
 ];
 export function aerialFlatRoofPalette(family) {
   return family === 'south_asian' ? dustyRoofs : flatRoofs;
@@ -52,15 +52,16 @@ export function aerialRoofPalette(family, home) {
       ['#d2cbbd', 3],
       ['#a57860', 2],
     ];
-  // Glazed and metal roofs catch the sky: Kyoto's GSI mosaic reads as a silver-grey field.
+  // Glazed and metal roofs catch the sky: Kyoto's GSI mosaic reads as a silver-grey field, and
+  // half-meter crops put residential roofs at a median grey of 155 (sRGB).
   if (family === 'east_asian' && home)
     return [
-      ['#7c8185', 4],
-      ['#8f9395', 4],
-      ['#a3a6a6', 3],
-      ['#686f75', 2],
-      ['#b6b8b5', 2],
-      ['#857a6e', 1],
+      ['#999ea3', 4],
+      ['#adb1b3', 4],
+      ['#bfc2c2', 3],
+      ['#80868c', 2],
+      ['#cfd1ce', 2],
+      ['#978d82', 1],
     ];
   return undefined;
 }

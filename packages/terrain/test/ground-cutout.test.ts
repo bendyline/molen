@@ -12,7 +12,7 @@ import {
   terrainGroundSourceGeometry,
 } from '../src/ground-cutout';
 import { Heightfield } from '../src/heightfield';
-import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
+import type { TerrainPyramidTileLayerContext, TerrainPyramidView } from '../src/pyramid-stream';
 import { createTerrainPyramidStream } from '../src/pyramid-stream';
 import {
   type TerrainPyramidDescriptor,
@@ -565,6 +565,7 @@ describe('model-owned ground openings', () => {
       layers: [],
       skirts: false,
     };
+    const view: TerrainPyramidView = { position: [8, 20, 8], verticalFov: 1, viewportHeight: 500 };
     const stream = createTerrainPyramidStream(
       d,
       {
@@ -581,7 +582,7 @@ describe('model-owned ground openings', () => {
         maxSelectedTiles: 8,
         maxResidentTiles: 16,
         maxConcurrentLoads: 4,
-        initialView: { position: [8, 20, 8], verticalFov: 1, viewportHeight: 500 },
+        initialView: view,
         layers: [
           {
             id: 'cover',
@@ -638,16 +639,23 @@ describe('model-owned ground openings', () => {
       });
       return sum;
     };
-    try {
+    // Cuts after the first in a pass share a time budget, and each stream update (a host's
+    // frame) makes another pass. Eight cover every tile's surface and land cover on a slow CPU.
+    const settle = async () => {
       await stream.whenIdle();
+      for (let frame = 0; frame < 8; frame++) stream.update(view);
+    };
+    try {
+      await settle();
       expect(stream.displayedTiles()).toHaveLength(4);
       expect(total()).toBeCloseTo(240, 5);
       expect(total('semantic:landcover')).toBeCloseTo(240, 5);
       stream.setLayerVisible('stadium', false);
+      await settle();
       expect(total()).toBeCloseTo(256, 5);
       expect(total('semantic:landcover')).toBeCloseTo(256, 5);
       stream.setLayerVisible('stadium', true);
-      await stream.whenIdle();
+      await settle();
       expect(total()).toBeCloseTo(240, 5);
       expect(total('semantic:landcover')).toBeCloseTo(240, 5);
     } finally {

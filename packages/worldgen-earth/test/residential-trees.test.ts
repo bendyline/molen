@@ -108,9 +108,12 @@ describe('residential tree infill', () => {
     expect(batch(tile, pleasanton).scatter?.polygons.some((p) => p.label === 'home_canopy')).toBe(
       true,
     );
-    expect(
-      batch(tile, geometry(-112, 33.45)).scatter?.polygons.filter((p) => p.label === 'home_canopy'),
-    ).toEqual([]);
+    // The Southwest's own, sparser factor still wins over the North American default.
+    const phoenix = batch(tile, geometry(-112, 33.45)).scatter?.polygons.filter(
+      (p) => p.label === 'home_canopy',
+    );
+    expect(phoenix?.length).toBeGreaterThan(0);
+    for (const patch of phoenix ?? []) expect(patch.density).toBeLessThanOrEqual(0.3);
     tile.buildingsGeneralized = true;
     expect(trees(tile, pleasanton)).toEqual([]);
   });
@@ -130,9 +133,11 @@ describe('residential tree infill', () => {
     expect(trees(tile)).not.toEqual(full);
   });
 
-  it('does not infer canopy in deserts, unconfigured regions, or generalized building data', () => {
+  it('plants sparse irrigated canopy in Southwest yards and none in unconfigured regions or generalized building data', () => {
     const tile = neighborhood();
-    expect(trees(tile, geometry(-112, 33.45))).toEqual([]);
+    const desert = trees(tile, geometry(-112, 33.45));
+    expect(desert.length).toBeGreaterThan(0);
+    expect(desert.length).toBeLessThan(trees(tile).length);
     expect(trees(tile, geometry(20, 20))).toEqual([]);
     tile.buildingsGeneralized = true;
     expect(trees(tile)).toEqual([]);

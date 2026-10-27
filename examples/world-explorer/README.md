@@ -59,6 +59,11 @@ view ahead and disappear behind you as you move. Press L to hide or show them; `
 them off, and frozen captures (`?freeze=1`) leave them off unless `?ambient=1`. See
 [ambient life](https://molen.dev/guide/ambient-life).
 
+`?aerialOrtho=1600` draws a north-up orthographic frame 1,600 m tall centered under the camera,
+for side-by-side comparison with orthophotos; pair it with `?pitch=-1.5` and an altitude near the
+frame height. [scripts/aerial-color](scripts/aerial-color/README.md) uses it to compare each
+region's color proportions with open aerial imagery.
+
 The first camera frame does not wait for building textures. They bake in background workers;
 buildings appear in flat colours and gain their textures in place as each material finishes, and a
 loading message indicates the baking. Baked materials are kept in IndexedDB, so later visits read

@@ -6,9 +6,9 @@ Usage (from the repository root):
 
 Both images of a frame are area-averaged to the same ground resolution (4 m per pixel, or the
 reference's native 10 m for Sentinel-2), converted to CIELAB and softly assigned to nine perceptual
-color classes. Photographs first lose their atmospheric haze offset (dark-object subtraction). The score is the total variation distance between the two class distributions:
-half the summed absolute differences, so 0.15 means at most 15% of the frame would have to change
-class to match. Seeded buildings and plants are not expected to match one by one; proportions are.
+color classes. Photographs first lose their atmospheric haze offset (dark-object subtraction). The
+score is the total variation distance between the two class distributions: half the summed
+absolute differences, so 0.15 means at most 15% of the frame would have to change class to match. Seeded buildings and plants are not expected to match one by one; proportions are.
 """
 
 import argparse

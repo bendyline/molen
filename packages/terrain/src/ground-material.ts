@@ -109,19 +109,29 @@ const SOIL: [number, number, number] = [0.2, 0.15, 0.09];
 /** Relief amplitude in meters per noise layer (clumps, tufts, close grain). */
 const RELIEF: [number, number, number] = [0.08, 0.04, 0.016];
 /**
- * Ground detail (the `landcoverDetail` attribute): shrub clumps in 4 m cells covering up to
- * this share of the ground at full brush, and lighter bare-soil patches in 32 m cells. From an
- * airplane, matched orthophotos of scrub and dry lots read as dark specks on soil and worn
- * patches; single shrubs that small cannot be placed by the thousand, so the ground carries
- * their sum. Specks fade in past the near range, where placed shrubs stand instead.
+ * Ground detail (the `landcoverDetail` attribute): shrub crowns covering this share of the
+ * ground at full brush, and lighter bare-soil patches in 32 m cells. Half-meter orthophotos of
+ * Yuma's open desert show separate round creosote and mesquite crowns, 2 to 5 m across, over
+ * about 4% of vacant ground; single shrubs that small cannot be placed by the thousand, so the
+ * ground carries them. Crowns fade in past the near range, where placed shrubs stand instead.
  */
-const BRUSH_CELL = 4;
-/** Clumps stay distinct down to about half their cell per pixel, then settle to their share. */
-const BRUSH_RESOLVE: [number, number] = [0.4, 0.9];
-const BRUSH_SHARE = 0.32;
+const BRUSH_SHARE = 0.1;
+/** One candidate crown per cell, its radius drawn from this range and kept inside the cell. */
+const BRUSH_CELL = 8;
+const BRUSH_RADIUS: [number, number] = [1, 2.6];
+/** Ground covered when every cell holds a crown: the mean crown area over the cell area. */
+const BRUSH_FULL =
+  (Math.PI * (BRUSH_RADIUS[1] ** 3 - BRUSH_RADIUS[0] ** 3)) /
+  (3 * (BRUSH_RADIUS[1] - BRUSH_RADIUS[0]) * BRUSH_CELL ** 2);
+/** Meters per pixel over which crowns resolve; coarser, the ground takes their mean color. */
+const BRUSH_RESOLVE: [number, number] = [0.5, 1.5];
 const BRUSH_NEAR: [number, number] = [25, 60];
-/** Linear color of a shrub crown seen from above, a dark olive. */
-const BRUSH: [number, number, number] = [0.03, 0.045, 0.015];
+/** Linear crown colors, sunlit center and shaded rim: the olive brown of desert shrubs. */
+const BRUSH_LIT: [number, number, number] = [0.088, 0.07, 0.026];
+const BRUSH_RIM: [number, number, number] = [0.029, 0.024, 0.009];
+/** A crown's area-weighted color: the rim blend, smoothstep(0.2, 1, r), averages 0.608. */
+const rimMean = (i: 0 | 1 | 2): number => BRUSH_LIT[i] + (BRUSH_RIM[i] - BRUSH_LIT[i]) * 0.608;
+const BRUSH_MEAN: [number, number, number] = [rimMean(0), rimMean(1), rimMean(2)];
 const BARE_CELL = 32;
 /** Linear lift of a worn, bare-soil patch over its ground. */
 const BARE: [number, number, number] = [1.3, 1.24, 1.14];
@@ -199,8 +209,13 @@ const GLSL = /* glsl */ `
     return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
   }
 
-  // Bare patches and shrub speckle (see BRUSH_SHARE). Where the 4 m cells fall below a pixel
-  // the speckle settles to its expected share, so scrubland keeps its tone from the air.
+  // The lattice value of one integer cell: a texel center, so bilinear lookup returns it unblended.
+  float terrainGroundCell(vec2 cell) {
+    return textureLod(terrainGroundNoiseMap, (cell + 0.5) / ${NOISE_SIZE.toFixed(1)}, 0.0).r;
+  }
+
+  // Bare patches and shrub crowns (see BRUSH_SHARE). Where crowns fall below a pixel the ground
+  // settles to their mean color at their share, so scrubland keeps its tone from the air.
   vec3 terrainGroundDetail(vec3 base, vec2 detail, float distance) {
     vec2 p = vTerrainGround;
     // Derivatives stay outside the branches: they are undefined in divergent control flow.
@@ -215,17 +230,24 @@ const GLSL = /* glsl */ `
     float share = detail.x * ${BRUSH_SHARE.toFixed(2)} *
       smoothstep(${BRUSH_NEAR[0].toFixed(1)}, ${BRUSH_NEAR[1].toFixed(1)}, distance);
     if (share > 0.0) {
-      float resolved = 1.0 - smoothstep(${BRUSH_RESOLVE[0].toFixed(2)}, ${BRUSH_RESOLVE[1].toFixed(2)},
-        footprint / ${BRUSH_CELL.toFixed(1)});
-      float shrub = share;
+      vec3 far = mix(color, ${glslVec3(BRUSH_MEAN)}, share);
+      float resolved = 1.0 - smoothstep(${BRUSH_RESOLVE[0].toFixed(2)}, ${BRUSH_RESOLVE[1].toFixed(2)}, footprint);
       if (resolved > 0.0) {
-        float edge = 0.78 - 0.6 * share;
-        // A half-size octave breaks the clumps out of the noise lattice's rows.
-        float n = terrainGroundNoise(p + vec2(43.0, 7.0), ${BRUSH_CELL.toFixed(1)}) * 0.7 +
-          terrainGroundNoise(p + vec2(11.0, 59.0), ${(BRUSH_CELL / 2).toFixed(1)}) * 0.3;
-        shrub = mix(share, smoothstep(edge - 0.04, edge + 0.04, n), resolved);
+        // One candidate crown per cell, present with probability share / BRUSH_FULL; its
+        // radius and offset keep it inside the cell, so no neighbor is read.
+        vec2 cell = floor(p / ${BRUSH_CELL.toFixed(1)});
+        float radius = mix(${BRUSH_RADIUS[0].toFixed(2)}, ${BRUSH_RADIUS[1].toFixed(2)},
+          terrainGroundCell(cell + vec2(57.0, 331.0)));
+        vec2 jitter = vec2(terrainGroundCell(cell), terrainGroundCell(cell + vec2(211.0, 97.0))) - 0.5;
+        vec2 center = (cell + 0.5) * ${BRUSH_CELL.toFixed(1)} + jitter * (${BRUSH_CELL.toFixed(1)} - 2.0 * radius);
+        float d = length(p - center);
+        float soft = max(footprint, 0.15);
+        float crown = step(terrainGroundCell(cell + vec2(389.0, 23.0)), min(share / ${BRUSH_FULL.toFixed(4)}, 1.0)) *
+          (1.0 - smoothstep(radius - soft, radius + soft, d));
+        vec3 shaded = mix(${glslVec3(BRUSH_LIT)}, ${glslVec3(BRUSH_RIM)}, smoothstep(0.2, 1.0, d / radius));
+        far = mix(far, mix(color, shaded, crown), resolved);
       }
-      color = mix(color, ${glslVec3(BRUSH)}, shrub);
+      color = far;
     }
     return color;
   }
@@ -373,6 +395,7 @@ type Tsl = typeof import('three/tsl');
 function tslNoise(tsl: Tsl): {
   hash: (cell: Node<'vec2'>, period: number) => Node<'float'>;
   noise: (p: Node<'vec2'>, size: number) => Node<'float'>;
+  cell: (cell: Node<'vec2'>) => Node<'float'>;
 } {
   const { dot, float, floor, fract, mix, texture, vec2, vec3 } = tsl;
   type F = Node<'float'>;
@@ -404,7 +427,14 @@ function tslNoise(tsl: Tsl): {
     const d = hash(i.add(vec2(1, 1)), period);
     return mix(mix(a, b, u.x), mix(c, d, u.x), u.y) as unknown as F;
   };
-  return { hash, noise };
+  // terrainGroundCell: one integer cell's lattice value, read at its texel center.
+  const cell = (c: V2): F =>
+    (
+      texture(lattice, c.add(0.5).div(NOISE_SIZE) as unknown as V2).level(
+        float(0) as unknown as Node,
+      ) as unknown as Node<'vec4'>
+    ).r as unknown as F;
+  return { hash, noise, cell };
 }
 
 function parameters(options: TerrainGroundMaterialOptions): THREE.MeshStandardMaterialParameters {
@@ -477,7 +507,7 @@ export function createTerrainGroundMaterial(
       );
   };
   material.customProgramCacheKey = (): string =>
-    `terrain-ground@33:${options.agriculture === true}`;
+    `terrain-ground@34:${options.agriculture === true}`;
   states.set(material, state);
   return material;
 }
@@ -498,12 +528,14 @@ export async function createTerrainGroundMaterialAsync(
   const {
     clamp,
     dot,
+    floor,
     Fn,
     fract,
     If,
     and,
     materialColor,
     max,
+    min,
     mix,
     positionView,
     positionWorld,
@@ -529,7 +561,7 @@ export async function createTerrainGroundMaterialAsync(
   type F = Node<'float'>;
   type V2 = Node<'vec2'>;
   type V3 = Node<'vec3'>;
-  const { noise } = tslNoise(tsl);
+  const { noise, cell } = tslNoise(tsl);
   const origin = uniform(new THREE.Vector2()).setName('terrainGroundOrigin');
   const amount = uniform(strength(options)).setName('terrainGroundStrength');
   const p = positionWorld.xz.add(origin).toVar() as unknown as V2;
@@ -664,13 +696,9 @@ export async function createTerrainGroundMaterialAsync(
     const planted = mix(base, field, rows.z).toVar() as unknown as V3;
     factor = factor.mul(planted.div(max(base, vec3(0.001)))) as unknown as V3;
     base = planted;
-    // Bare patches and shrub speckle, as terrainGroundDetail in the GLSL path.
+    // Bare patches and shrub crowns, as terrainGroundDetail in the GLSL path.
     const detail = varying(attribute('landcoverDetail', 'vec2')) as unknown as Node<'vec2'>;
-    const resolved = smoothstep(
-      BRUSH_RESOLVE[0],
-      BRUSH_RESOLVE[1],
-      footprint.div(BRUSH_CELL),
-    ).oneMinus();
+    const resolved = smoothstep(BRUSH_RESOLVE[0], BRUSH_RESOLVE[1], footprint).oneMinus();
     const groundBase = base;
     const detailed = Fn(() => {
       const color = groundBase.toVar();
@@ -688,24 +716,33 @@ export async function createTerrainGroundMaterialAsync(
         .mul(smoothstep(BRUSH_NEAR[0], BRUSH_NEAR[1], distance))
         .toVar();
       If(share.greaterThan(0), () => {
-        const shrub = share.toVar();
+        const far = mix(color, vec3(...BRUSH_MEAN), share).toVar();
         If(resolved.greaterThan(0), () => {
-          const edge = share.mul(-0.6).add(0.78);
-          shrub.assign(
-            mix(
-              share,
-              smoothstep(
-                edge.sub(0.04),
-                edge.add(0.04),
-                noise(p.add(vec2(43, 7)) as unknown as V2, BRUSH_CELL)
-                  .mul(0.7)
-                  .add(noise(p.add(vec2(11, 59)) as unknown as V2, BRUSH_CELL / 2).mul(0.3)),
-              ),
-              resolved,
-            ),
+          const at = floor(p.div(BRUSH_CELL)).toVar() as unknown as V2;
+          const radius = mix(
+            BRUSH_RADIUS[0],
+            BRUSH_RADIUS[1],
+            cell(at.add(vec2(57, 331)) as unknown as V2),
+          ).toVar();
+          const jitter = vec2(cell(at), cell(at.add(vec2(211, 97)) as unknown as V2)).sub(0.5);
+          const center = at
+            .add(0.5)
+            .mul(BRUSH_CELL)
+            .add(jitter.mul(radius.mul(-2).add(BRUSH_CELL)));
+          const d = p.sub(center).length().toVar();
+          const soft = max(footprint, 0.15);
+          const crown = step(
+            cell(at.add(vec2(389, 23)) as unknown as V2),
+            min(share.div(BRUSH_FULL), 1),
+          ).mul(smoothstep(radius.sub(soft), radius.add(soft), d).oneMinus());
+          const shaded = mix(
+            vec3(...BRUSH_LIT),
+            vec3(...BRUSH_RIM),
+            smoothstep(0.2, 1, d.div(radius)),
           );
+          far.assign(mix(far, mix(color, shaded, crown), resolved));
         });
-        color.assign(mix(color, vec3(...BRUSH), shrub));
+        color.assign(far);
       });
       return color;
     })().toVar() as unknown as V3;

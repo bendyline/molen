@@ -21,8 +21,8 @@ const plants = Object.values(
 
 describe('regional procedural plants', () => {
   it('varies branching and fronds in every family without changing bounds, density or topology', () => {
-    expect(catalog.plants).toHaveLength(264);
-    expect(plants).toHaveLength(354);
+    expect(catalog.plants).toHaveLength(267);
+    expect(plants).toHaveLength(357);
     const families = new Map(catalog.plants.map((p) => [p.family, p]));
     expect(families.size).toBe(19);
     for (const p of families.values()) {

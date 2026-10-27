@@ -1,4 +1,5 @@
 /** One small comparison sheet per vehicle. Bulk captures stay in .artifacts. */
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
@@ -145,6 +146,15 @@ for (const [type, data] of Object.entries(catalog)) {
   manifest.examples.push({ ...entry, imageHash: hash(png) });
   console.log(`Captured ${type}`);
 }
-if (capture)
-  await writeFile(resolve(output, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+if (capture) {
+  // Format like `biome check` so a capture leaves the tracked manifest lint-clean.
+  const path = resolve(output, 'manifest.json');
+  const biome = fileURLToPath(new URL('../node_modules/@biomejs/biome/bin/biome', import.meta.url));
+  const formatted = execFileSync(process.execPath, [biome, 'format', '--stdin-file-path', path], {
+    input: `${JSON.stringify(manifest, null, 2)}\n`,
+    encoding: 'utf8',
+  });
+  if (!formatted.trim()) throw new Error(`Formatter produced no JSON for ${path}`);
+  await writeFile(path, formatted);
+}
 console.log(`Checked ${manifest.examples.length} livery comparison sheets.`);

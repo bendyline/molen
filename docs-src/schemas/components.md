@@ -1844,6 +1844,12 @@ Required: none
                   "minimum": 0,
                   "maximum": 1
                 },
+                "referenceElevation": {
+                  "description": "Sun elevation in degrees whose sunlit-ground brightness is kept as the sun climbs higher: above it, sun and sky light scale down together so a level surface in sun receives the same light, as a camera adapts its exposure. Omit for constant light, which renders midday ground brighter than its authored color.",
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 90
+                },
                 "castShadow": {
                   "description": "Sun shadows; also requires environment.shadows. Default true.",
                   "type": "boolean"
@@ -2077,6 +2083,12 @@ Required: none
                   "type": "number",
                   "minimum": 0,
                   "maximum": 1
+                },
+                "referenceElevation": {
+                  "description": "Sun elevation in degrees whose sunlit-ground brightness is kept as the sun climbs higher: above it, sun and sky light scale down together so a level surface in sun receives the same light, as a camera adapts its exposure. Omit for constant light, which renders midday ground brighter than its authored color.",
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 90
                 },
                 "castShadow": {
                   "description": "Sun shadows; also requires environment.shadows. Default true.",

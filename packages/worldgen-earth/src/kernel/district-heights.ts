@@ -8,8 +8,11 @@ import {
 import { hashString, ringCentroid, unit01 } from '@bendyline/molen-worldgen/kernel';
 import { buildingLabels, contextLabelForPolygon } from './labels';
 
-/** Uses a commercial core leaves unmeasured. Homes, flats and civic buildings keep their styles. */
-const CORE_CLASSES = new Set(['building', 'commercial', 'office', 'retail', 'hotel', 'mixed_use']);
+/**
+ * Uses a commercial core leaves unmeasured. Homes, flats, civic buildings and shops keep their
+ * styles: a store or restaurant is low even downtown, and big-box retail stands alone.
+ */
+const CORE_CLASSES = new Set(['building', 'commercial', 'office', 'hotel', 'mixed_use']);
 /** Land a generic building must stand in (or none mapped) to count as part of a core. */
 const CORE_CONTEXTS = new Set(['commercial', 'retail']);
 /** Footprint coverage of nearby ground: an inner suburb, and a built-out downtown block. */
@@ -48,7 +51,8 @@ export function districtLevels(
 /**
  * The tile with district priors filled in as `levels` (the same tile when none apply). The
  * per-building draw keys on the source id, else the footprint's world position, so a building
- * keeps its height as tiles change level.
+ * keeps its height as tiles change level. Coverage leaves out the building's own footprint, so a
+ * large building alone in its parking lot does not count as a dense block.
  */
 export function withDistrictLevels(
   tile: TerrainSemanticTile,
@@ -71,12 +75,14 @@ export function withDistrictLevels(
     if (polygon === undefined || polygon.outer.length < 3) return feature;
     coverage ??= terrainBuildingCoverage(tile);
     const centroid = ringCentroid(polygon.outer);
-    const area = feature.polygons.reduce((sum, p) => sum + polygonArea(p), 0) * size * size;
+    const share = feature.polygons.reduce((sum, p) => sum + polygonArea(p), 0);
+    // The coverage grid blurs each cell over its 3 x 3 neighbors (see terrainBuildingCoverage).
+    const own = (share * coverage.size * coverage.size) / 9;
     const levels = districtLevels(
       buildingLabels(feature),
       contextLabelForPolygon(polygon, centroid, tile.landcover),
-      area,
-      sampleTerrainBuildingCoverage(coverage, centroid[0], centroid[1]),
+      share * size * size,
+      sampleTerrainBuildingCoverage(coverage, centroid[0], centroid[1]) - own,
       feature.id !== undefined
         ? String(feature.id)
         : `${Math.round(origin[0] + centroid[0] * size)},${Math.round(origin[1] + centroid[1] * size)}`,

@@ -104,12 +104,12 @@ const DISTANT_BUILDING_COLORS: {
   walls: ReadonlyArray<readonly [string, number]>;
 } = {
   roofs: [
-    ['#e3e3df', 5],
-    ['#cccdc9', 4],
-    ['#b1b2ae', 3],
+    ['#eaeae6', 7],
+    ['#d4d5d1', 4],
+    ['#b8b9b5', 3],
     ['#929496', 2],
     ['#6c6f73', 1.5],
-    ['#a69a86', 1],
+    ['#aca08c', 1],
     ['#8b6c5b', 0.5],
   ],
   walls: [
@@ -589,14 +589,17 @@ export function createWorldgenSemanticRenderers(
     for (const set of output.placements) {
       const geometry = buildingBoxGeometry(set.modelRef);
       if (geometry === undefined) continue;
-      group.add(
-        createInstancedPlacements(
-          set,
-          geometry,
-          (flatMaterials ?? materials).materialFor('wall', 'palette:#ffffff'),
-          `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : 'gable-boxes'}`,
-        ),
+      const boxes = createInstancedPlacements(
+        set,
+        geometry,
+        (flatMaterials ?? materials).materialFor('wall', 'palette:#ffffff'),
+        `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : 'gable-boxes'}`,
       );
+      // Stand-ins scale a one-meter box to each building, so a host judging casters by the
+      // shared shape's height (the terrain stream's shadowCasterHeight) dropped every one: an
+      // airplane view of a downtown standing in as boxes lost all its building shadows.
+      boxes.userData.shadowCaster = true;
+      group.add(boxes);
     }
     // Street props and signs vanish below 1.5 px; plants do not, as a distant forest is their sum.
     for (const object of await instancedProps(output.placements, context, name, PROP_VANISH_PIXELS))
