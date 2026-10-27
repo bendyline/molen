@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.buffavento_castle",
+  "kind": "static-structure",
+  "title": "Buffavento Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.buffavento_castle",
+        "output": "assets/places/sw/swr/buffavento_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fae980afc02c37463b70a1e0435bfbb67b13aed0a3caeaf3cdc491e31038cc60"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-buffavento",
+        "path": "models/generate-buffavento.mjs"
+      },
+      {
+        "id": "buffavento-model",
+        "path": "models/buffavento-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-controls.json",
+      "technical-facts.json",
+      "imagery-evidence.json",
+      "reference-rights/f-higer-native.json",
+      "reference-rights/alehladutska-native.json",
+      "reference-images/f-higer-published-plan-original.jpg",
+      "reference-images/alehladutska-2024-original.jpg",
+      "native-map/castle-extent-and-intrinsic-paths.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19424-12947.png",
+      "terrain-sources/terrarium-15-19425-12947.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,478 @@
+{
+  "planId": "paleontological_museum_villa_de_leyva",
+  "id": "paleontological_museum_villa_de_leyva",
+  "assetId": "molen.worldgen.structure.paleontological_museum_villa_de_leyva",
+  "title": "Paleontological Museum, Villa de Leyva (2009)",
+  "wikidataId": "Q6033652",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.5164254,
+    "latitude": 5.6436304
+  },
+  "size": [
+    24.969999313354492,
+    7.645000219345093,
+    11.284999668598175
+  ],
+  "actualBounds": {
+    "min": [
+      -12.484999656677246,
+      -1.2000000476837158,
+      -0.800000011920929
+    ],
+    "max": [
+      12.484999656677246,
+      6.445000171661377,
+      10.484999656677246
+    ]
+  },
+  "visualBrief": "Whole old Molino de Osada/Losada house occupied by the Paleontological Museum in its photographed2009 phase: full low colonial house volume, all sides and complete clay-tile roof, stone plinth/white plaster, brick arched timber entry, iron window grilles and tile hoods. Front image is cropped; whole width/depth, hidden rear/window census and roof ends are bounded architectural estimates, not a surveyed campus plan. Keep original mapped museum point, approximate facing and whole house; no neighboring hostel, whole-town/plaza model, museum fossil exhibits, artworks, signage, plants or later proposed2013 campus expansion.",
+  "nativeAxes": {
+    "x": "northeast along nearby road",
+    "y": "up",
+    "z": "southeast behind approximate streetfront"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009-01-03",
+    "validFrom": "2009-01-03",
+    "validUntil": "2009-01-04",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Museo_Paleontol%C3%B3gico_de_Villa_de_LeYva.JPG"
+  ],
+  "stories": [
+    {
+      "id": "villa-de-leyva-wp",
+      "url": "https://qualla.com/villa-de-leyva/"
+    }
+  ],
+  "referenceInputHash": "58d5d62498f93cc9a83f6541b815d9b91d7e253f919f4de87e6101cf694e2dbf",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d3/d35/paleontological_museum_villa_de_leyva/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d3/d35/paleontological_museum_villa_de_leyva/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.22
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.22
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.22
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.22
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "clay_fired",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.4,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original256m129²field/16641heights/one raw tile/datum2176.0185m and signed named-point frame frozen before these parameters. Two estimated.18m steps choose floor+.36m, wall eave4.15/ridge6.35m; full24x10m single-storey old-house envelope and roof ends are image-led estimates because both front ends/rear are outside image. Location uncertainty240m vs Wikidata coordinate and bearing45degrees are explicit; no current or historic ground-contact/survey certification. Original field near proposed body approx−.84..+.47m; preserve all field/frame/floor/main parameters without fitting.",
+    "anchor": [
+      -73.5164254,
+      5.6436304
+    ],
+    "heading": 1.0253736799677335,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.51644083428313,
+        5.643639720507744
+      ],
+      "modelHeight": 0,
+      "basis": "Estimated streetfront approach2m outside model front, fixed before original independent field/floors/sections/geometry. Named point and orientation approximate; no historic grade/survey claim."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/1241294700"
+    ],
+    "source": "https://www.openstreetmap.org/node/1241294700",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b8683c2b80d8196d7db264d2e26a6f22faa2c3a355adabbfbbb943540605340f",
+    "notes": "Actual native named museum node1241294700 fixes the retained location, not footprint or surveyed bearing. Exact Q6033652 names same museum and binds the same Petruss reference filename. Wikidata coordinate is about220m south of the native named POI; retain native location and disclose up to240m intersource registration uncertainty. Street40416233 supplies approximate northeast long axis only; no road ownership. No matching building outline in standard available map context. Whole house dimensions/rear topology are explicit image-led estimates, never neighboring hostel walls. Whole old Molino de Osada/Losada house occupied by the Paleontological Museum in its photographed2009 phase: full low colonial house volume, all sides and complete clay-tile roof, stone plinth/white plaster, brick arched timber entry, iron window grilles and tile hoods. Front image is cropped; whole width/depth, hidden rear/window census and roof ends are bounded architectural estimates, not a surveyed campus plan. Keep original mapped museum point, approximate facing and whole house; no neighboring hostel, whole-town/plaza model, museum fossil exhibits, artworks, signage, plants or later proposed2013 campus expansion."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual native named museum node1241294700 fixes the retained location, not footprint or surveyed bearing. Exact Q6033652 names same museum and binds the same Petruss reference filename. Wikidata coordinate is about220m south of the native named POI; retain native location and disclose up to240m intersource registration uncertainty. Street40416233 supplies approximate northeast long axis only; no road ownership. No matching building outline in standard available map context. Whole house dimensions/rear topology are explicit image-led estimates, never neighboring hostel walls.",
+    "Exact width/depth, hidden rear topology and all vertical sections are bounded image-led estimates; the source photo crops both outer ends. The full house will have complete exterior volume/closed roof, not an isolated facade.",
+    "2009 photographed old-house phase, not a current-campus or2013 proposed new-center certification. Intrinsic exterior only; no copied exhibits/signage/vegetation.",
+    "Original independent field/frame must be frozen before choosing all main dimensions/floors/sections; never flatten/reacquire/reframe or fit them to renders.",
+    "Whole24x10m one-storey closed country-house body is an original bounded estimate, not a native footprint or measured claim about hidden rear rooms/courts. Full original exterior including all sides and roof retained. Width/depth uncertainty approximately±6m; no exact roof-end/court/topology certification.",
+    "Four front barred windows include estimated continuation at cropped/hedge-concealed portions. Rear/side window census and roof ends are bounded estimates. No copied fossils, lettering, coat of arms or artworks.",
+    "Photo shows brick arch around dark timber door/transom, irregular stone base and grouped barrel clay tiles. Exact masonry joint census/tile colors and door panels simplified at medium-fi distance.",
+    "Only intrinsic house/entry steps included; independent forecourt estate boundary/gate, garden, street and proposed later campus expansion excluded. Original-field current DEM may conceal small parts of base, no terrain cutout or artificial site pad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. One already-cleared published Qualla Petruss2009 Own/PD-self photograph, exact native SHA1/revision/local SHA256 bound and unchanged published inventory passes. OSM ODbL named point/road only; Wikidata CC0 exact specific museum identity. Primary owning university text confirms old mill-house subject and separate later proposed campus; no protected website pictures adopted, copied photographic textures, questionable images, generated bitmaps or policy/metadata repairs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-old-house-skyline",
+      "position": [
+        32,
+        17,
+        -35
+      ],
+      "lookAt": [
+        0,
+        2,
+        4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-old-house-district",
+      "position": [
+        32,
+        17,
+        -35
+      ],
+      "lookAt": [
+        0,
+        2,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-old-house-street",
+      "position": [
+        32,
+        17,
+        -35
+      ],
+      "lookAt": [
+        0,
+        2,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-old-house-closeup",
+      "position": [
+        32,
+        17,
+        -35
+      ],
+      "lookAt": [
+        0,
+        2,
+        4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-old-mill-house-and-complete-hip-roof",
+      "position": [
+        32,
+        17,
+        -35
+      ],
+      "lookAt": [
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "whole-estimated-rear-and-both-ends",
+      "position": [
+        -33,
+        17,
+        40
+      ],
+      "lookAt": [
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "brick-arch-timber-entry-and-two-steps",
+      "position": [
+        3,
+        3.8,
+        -8
+      ],
+      "lookAt": [
+        0,
+        1.9,
+        0
+      ]
+    },
+    {
+      "name": "iron-window-grille-and-barrel-tile-hood",
+      "position": [
+        -7,
+        3.3,
+        -4
+      ],
+      "lookAt": [
+        -5,
+        2.2,
+        0
+      ]
+    },
+    {
+      "name": "complete-hip-roof-grouped-clay-tiles",
+      "position": [
+        11,
+        10,
+        -9
+      ],
+      "lookAt": [
+        1,
+        5,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26675,
+    "vertices": 80025,
+    "materials": 6,
+    "bytes": 3426584,
+    "sha256": "sha256:5655ab3ced707492a1424497f5f4da8ae19f56bc1d89951b19e3ac3de37a3053"
+  }
+}

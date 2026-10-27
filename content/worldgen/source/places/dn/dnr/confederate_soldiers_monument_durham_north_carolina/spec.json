@@ -1,0 +1,338 @@
+{
+  "planId": "confederate_soldiers_monument_durham_north_carolina",
+  "id": "confederate_soldiers_monument_durham_north_carolina",
+  "assetId": "molen.worldgen.structure.confederate_soldiers_monument_durham_north_carolina",
+  "title": "Confederate Soldiers Monument, Durham — September 2019",
+  "wikidataId": "Q39073820",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -78.899012,
+    "latitude": 35.993953
+  },
+  "size": [
+    3.8594307899475098,
+    3.2299999594688416,
+    3.962089776992798
+  ],
+  "actualBounds": {
+    "min": [
+      -1.9297153949737549,
+      -0.18000000715255737,
+      -1.981044888496399
+    ],
+    "max": [
+      1.9297153949737549,
+      3.049999952316284,
+      1.981044888496399
+    ]
+  },
+  "visualBrief": "Entire photographed September2019remnant of Durham memorial: low granite slab/cruciform rock-faced blocks/cap/plinth/battered neck/tapered framed shaft/round seal/two side crossed-flag reliefs/four cannonballs/two broken lamp plinths. Three exact published WarrenLeMayCC0obliques. Soldier already absent in represented condition, whole remaining base removed2020. Historical2019-09-01date only, excluded current world. Original photo-proportioned exterior with approximate former point registration.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2019-09-01",
+    "validFrom": "2019-09-01",
+    "validUntil": "2019-09-02"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Vandalized_Memorial,_Old_Durham_County_Courthouse,_Durham,_NC_(49161363261).jpg",
+    "https://commons.wikimedia.org/wiki/File:Vandalized_Memorial,_Old_Durham_County_Courthouse,_Durham,_NC_(49161363001).jpg",
+    "https://commons.wikimedia.org/wiki/File:Vandalized_Memorial,_Old_Durham_County_Courthouse,_Durham,_NC_(49160881373).jpg"
+  ],
+  "stories": [
+    {
+      "id": "confederate-soldiers-monument-durham-north-carolina-wp",
+      "url": "https://qualla.com/confederate-soldiers-monument-durham-north-carolina/"
+    }
+  ],
+  "referenceInputHash": "fa4eb5b3e111135f2cd5907778ddef23a687467c2039dc2ae163113106f3cb42",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnr/confederate_soldiers_monument_durham_north_carolina/models/durham-confederate-monument-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/durham-confederate-monument-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "durhamConfederateMonumentSkyline",
+    "errorMeters": 0.1,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.3
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "durhamConfederateMonumentDistrict",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3
+          }
+        }
+      },
+      "street": {
+        "export": "durhamConfederateMonumentStreet",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3
+          }
+        }
+      },
+      "closeup": {
+        "export": "durhamConfederateMonumentCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.16,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Once-only floor0 at previously fixed front approach datum; all photo-proportioned sections fixed now before model geometry. Original source field is current unclassified context, not2019survey. No subsequent floor/mainsection/source mutation; historic exactcontact unverified.",
+    "anchor": [
+      -78.899012,
+      35.993953
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -78.89905958677802,
+        35.99392986848724
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed former front approach5m beyond monument center before source terrain/floor/mainsections/geometry. Current unclassified urban relief is context only, never2019survey."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "Q39073820",
+      "original-photo-proportioned-foundation"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q39073820",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:12ba6b83631a8a9b6b06af4afe323d939527db8185162189481bc2badb321c47",
+    "notes": "Complete surviving monument remnant exactly as represented by three published2019-09-01WarrenLeMayCC0photos: whole intrinsic low stone slab/cruciform granite lower blocks/capping slab/tall square slightly tapered memorial shaft/frame strips/top cap/round front seal/paired side crossed-flag low relief/four-cannonball stack and opposite damaged lamp plinths. Bronze soldier was already removed in2017; no invented intact1924statue or current surviving monument is claimed. Entire base removed2020; date opt-in only2019-09-01. Courthouse, sidewalk, landscaped planting curb, flagpole, benches, trees/flowers/temporary debris and interiors remain separate context."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Q39073820 native geographic point agrees exact published Qualla story, precision0.00001degree. Original estimated3.0x2.7m intrinsic foundation outline and southwest-facing front are bounded original photo-derived proportions, not a surviving native footprint/survey. Whole named removed memorial distinguished from courthouse/planted curb and other monuments. Historical date registration remains approximate.",
+    "Complete surviving monument remnant exactly as represented by three published2019-09-01WarrenLeMayCC0photos: whole intrinsic low stone slab/cruciform granite lower blocks/capping slab/tall square slightly tapered memorial shaft/frame strips/top cap/round front seal/paired side crossed-flag low relief/four-cannonball stack and opposite damaged lamp plinths. Bronze soldier was already removed in2017; no invented intact1924statue or current surviving monument is claimed. Entire base removed2020; date opt-in only2019-09-01. Courthouse, sidewalk, landscaped planting curb, flagpole, benches, trees/flowers/temporary debris and interiors remain separate context.",
+    "Once-only floor0 at previously fixed front approach datum; all photo-proportioned sections fixed now before model geometry. Original source field is current unclassified context, not2019survey. No subsequent floor/mainsection/source mutation; historic exactcontact unverified.",
+    "All dimensions, intrinsic cross/slab proportions, shaft taper/section heights, rough faces, medallion/flag details, cannonball stack and damaged lamp fragments are bounded original photo-derived estimates. No measured native perimeter exists; geographic point/orientation/2019grade/contact remain approximate. Fine inscription typography/seal heraldry and temporary flowers/debris not reproduced. All intrinsic physical remnant parts retained.",
+    "Historical appearance is only exact documented2019-09-01day; bronze figure had already gone in2017. No full intact1924reconstruction is asserted, no modern surviving structure/default-world activation. Existing courthouse/planting curb/sidewalk/trees/flagpole/benches are separate context. Current original terrain is not a historic ground survey and may meet/intersect lower base; source field/frame/floor/mainsections fixed."
+  ],
+  "sourceLicense": "Original photo-proportioned geometry under repository license; Wikidata native point identity CC0. Creator-dedicated CC0 reference originals retained as local provenance inputs, never embedded as textures.",
+  "qaLodCameras": [
+    {
+      "name": "whole-remnant-skyline",
+      "position": [
+        -3.0479368361642956,
+        3.8,
+        8.130861605189294
+      ],
+      "lookAt": [
+        0,
+        1.48,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-remnant-district",
+      "position": [
+        -3.0479368361642956,
+        3.8,
+        8.130861605189294
+      ],
+      "lookAt": [
+        0,
+        1.48,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-remnant-street",
+      "position": [
+        -3.0479368361642956,
+        3.8,
+        8.130861605189294
+      ],
+      "lookAt": [
+        0,
+        1.48,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-remnant-closeup",
+      "position": [
+        -3.0479368361642956,
+        3.8,
+        8.130861605189294
+      ],
+      "lookAt": [
+        0,
+        1.48,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-front-and-left-remnant",
+      "position": [
+        -7.7181795613214375,
+        3.4,
+        -1.1959829677678648
+      ],
+      "lookAt": [
+        0,
+        1.48,
+        0
+      ]
+    },
+    {
+      "name": "whole-front-and-right-remnant",
+      "position": [
+        -2.568179561321437,
+        3.4,
+        7.3759829677678646
+      ],
+      "lookAt": [
+        0,
+        1.48,
+        0
+      ]
+    },
+    {
+      "name": "whole-rear-native-point-registered-remnant",
+      "position": [
+        7.203179561321438,
+        3.2,
+        0.3387863742142918
+      ],
+      "lookAt": [
+        0,
+        1.48,
+        0
+      ]
+    },
+    {
+      "name": "low-cruciform-base-four-cannonballs-and-lamp-fragments",
+      "position": [
+        -1.7807863742142915,
+        2,
+        4.803029099371434
+      ],
+      "lookAt": [
+        -0.25715897806607185,
+        0.8,
+        0.1545
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3408,
+    "vertices": 10224,
+    "materials": 2,
+    "bytes": 606804,
+    "sha256": "sha256:3234ae84018aa0ffe4ace8792d92ec1078dffe1e50e6a58062d5aef0a8a4119e"
+  }
+}

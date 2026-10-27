@@ -115,6 +115,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-usace-photo',
       'commons-native-doe-photo',
       'commons-native-nps-photo',
+      'commons-native-usaf-reference-series-photo',
       'commons-native-expired-publication',
       'commons-native-expired-library-photo',
       'commons-native-expired-periodical-photo',
@@ -382,21 +383,43 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
         wiki.match(new RegExp(`\\|\\s*${name}\\s*=([^\\n]+)`, 'i'))?.[1]?.trim() ?? '',
       sourceField = field('source'),
       dateField = field('date'),
-      authorField = field('author');
+      authorField = field('author'),
+      originalDrawing = proof.recordClass === 'pedrero-1892-original-drawing',
+      year = originalDrawing ? proof.creationYear : proof.publicationYear;
     if (
-      !Number.isInteger(proof.publicationYear) ||
-      proof.publicationYear < 1800 ||
-      proof.publicationYear > 1875 ||
+      !Number.isInteger(year) ||
+      year < 1800 ||
+      year > (originalDrawing ? 1892 : 1875) ||
       !proof.sourceCitation?.trim() ||
       sourceField !== proof.sourceCitation ||
       /unknown|anonymous|unidentified|unrecorded|assumed|probably/i.test(
         reference.artist + authorField + clean,
       ) ||
-      (!dateField.includes(String(proof.publicationYear)) &&
-        !sourceField.includes(String(proof.publicationYear)))
+      (!dateField.includes(String(year)) && !sourceField.includes(String(year)))
     )
       return failed;
-    if (proof.recordClass === 'brazilian-periodical') {
+    if (originalDrawing) {
+      // This is a dated original drawing, not an asserted 1892 publication.
+      // Bind the named artist, exact original, native scan release and lifespan.
+      if (
+        title !==
+          'File:Original, Santo Domingo de Silos, 24.9.1892, colección Maruja Pedrero, dibujo por Mariano Pedrero.jpg' ||
+        page.revisions[0].revid !== 892318834 ||
+        info.sha1 !== '6310452578a63856f6a7cb36b9886700e73e8671' ||
+        year !== 1892 ||
+        proof.creatorDied !== 1927 ||
+        reference.artist !== 'Mariano Pedrero (1865-1927)' ||
+        authorField !== reference.artist ||
+        dateField !== '1892-09-24' ||
+        sourceField !== 'collection of Marceliano Pedrero' ||
+        !/\{\{PD-Scan\|1=PD-old-auto-expired\|deathyear=1927\}\}/i.test(wiki) ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+    } else if (proof.recordClass === 'brazilian-periodical') {
       if (
         proof.publicationTitle !== 'A Vida Fluminense' ||
         !Number.isInteger(proof.issueNumber) ||
@@ -424,6 +447,24 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
         !sourceField.includes(proof.archiveOriginal.replace('https:', 'http:'))
       )
         return failed;
+    } else if (proof.recordClass === 'bnf-arnaud-1843-map') {
+      // The drawing is explicitly attributed to Arnaud in the native object title.
+      // Its catalogue's text contributor is not used as a map-creator identity.
+      if (
+        proof.archiveItem !== 'btv1b84924810' ||
+        proof.publicationYear !== 1873 ||
+        proof.creatorDied !== 1884 ||
+        reference.artist !== 'Arnaud, Thomas-Joseph (1812-1884). Auteur du texte' ||
+        authorField !== reference.artist ||
+        !title.includes('Fait par Mr. Th. Joseph Arnaud en 1843') ||
+        !/\{\{\s*PD-France\s*\}\}/i.test(wiki) ||
+        !/\{\{\s*PD-US-expired\s*\}\}/i.test(wiki) ||
+        !wiki.includes('{{ARK-BNF|ark:/12148/btv1b84924810}}') ||
+        !sourceField.includes('Bibliothèque nationale de France') ||
+        !sourceField.includes('GE D-14364') ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki)
+      )
+        return failed;
     } else if (proof.recordClass === 'named-old-map') {
       if (
         !/\bmap|\bplan/i.test(clean) ||
@@ -436,7 +477,60 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       )
         return failed;
     } else return failed;
-    basis = `Exact native historical print, ${proof.publicationYear}; named original creator, matched source citation and explicit ${proof.recordClass.startsWith('brazilian-') ? 'PD-Brazil-media historical print' : 'PD-old-70-1923 map'} grant`;
+    basis = originalDrawing
+      ? 'Exact native original drawing dated 1892-09-24; Mariano Pedrero (1865-1927), collection of Marceliano Pedrero, explicit PD-Scan/PD-old-auto-expired release and original bytes bound'
+      : `Exact native historical print, ${year}; named original creator, matched source citation and explicit ${proof.recordClass.startsWith('brazilian-') ? 'PD-Brazil-media historical print' : proof.recordClass === 'bnf-arnaud-1843-map' ? 'PD-France and PD-US-expired original Arnaud map' : 'PD-old-70-1923 map'} grant`;
+  } else if (proof.kind === 'commons-native-usaf-reference-series-photo') {
+    // This exact published aerial is independently visible in the official government volume.
+    // Do not extend this witness to contractor reports, other aircraft photos or whole books.
+    const publication = record.publication,
+      book = path.resolve(path.dirname(file), '../reference-plans/usaf-reference-series-1989.pdf'),
+      model = path.resolve(path.dirname(file), '..'),
+      field = (name) => wiki.match(new RegExp(`\\|\\s*${name}\\s*=([^\\r\\n]*)`, 'i'))?.[1]?.trim(),
+      citation =
+        'Active Air Force Bases Within the United States of America on 17 September 1982 USAF Reference Series, OFFICE OF AIR FORCE HISTORY UNITED STATES AIR FORCE WASHINGTON, D.C., 1989';
+    if (
+      title !== 'File:Castleafb-1982.jpg' ||
+      reference.artist !== 'USAF' ||
+      text(info.extmetadata?.Artist?.value) !== 'USAF' ||
+      field('Author') !== 'USAF' ||
+      field('Date') !== '1982' ||
+      field('Source') !== citation ||
+      !/\{\{\s*PD-USGov-Military-Air Force\s*\}\}/i.test(wiki) ||
+      /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+      info.size !== original.length ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value) ||
+      publication?.source !==
+        'https://media.defense.gov/2010/Sep/21/2001330255/-1/-1/0/AFD-100921-026.pdf' ||
+      publication?.title !== 'Air Force Bases, Volume I' ||
+      publication?.publisher !== 'Office of Air Force History, United States Air Force' ||
+      publication?.author !==
+        'Robert Mueller, United States Air Force Historical Research Center' ||
+      publication?.publicationYear !== 1989 ||
+      publication?.titlePdfPage !== 1 ||
+      publication?.authorPdfPage !== 7 ||
+      publication?.photoPdfPage !== 90 ||
+      publication?.photoPrintedPage !== 72 ||
+      publication?.photoCaption !== 'Castle AFB, 1982' ||
+      publication?.scope !== 'lower-1982-parade-ground-aerial-only' ||
+      publication?.originalImageMatched !== true ||
+      publication?.personallyInspected !== true ||
+      !fs.existsSync(book) ||
+      !fs.statSync(book).isFile() ||
+      path.relative(fs.realpathSync(model), fs.realpathSync(book)).startsWith('..')
+    )
+      return failed;
+    const bookBytes = fs.readFileSync(book);
+    if (
+      bookBytes.subarray(0, 5).toString() !== '%PDF-' ||
+      publication.bytes !== bookBytes.length ||
+      publication.sha256 !== createHash('sha256').update(bookBytes).digest('hex')
+    )
+      return failed;
+    basis =
+      'Exact native USAF employee aerial, explicit PD-USGov-Military-Air Force grant; independently matched to the inspected Castle AFB1982 photograph in the original1989 official Reference Series volume, with publication bytes bound. This grants no contractor or unrelated image approval.';
   } else if (proof.kind === 'commons-native-whitehouse-photo') {
     if (
       !/^The White House(?: from Washington, DC)?$/.test(reference.artist) ||

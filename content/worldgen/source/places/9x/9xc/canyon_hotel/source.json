@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.canyon_hotel",
+  "kind": "static-structure",
+  "title": "Canyon Hotel, Yellowstone (1911)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.canyon_hotel",
+        "output": "assets/places/9x/9xc/canyon_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6330cb16e00680abb1b271a8e34ff726cef61bb13b3baf4ef24a1b24f636cd0a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-canyon-hotel",
+        "path": "models/generate-canyon-hotel.mjs"
+      },
+      {
+        "id": "canyon-hotel-model",
+        "path": "models/canyon-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "import-report.json",
+      "plan-controls.json",
+      "research-preparation.json",
+      "imagery-evidence.json",
+      "reference-rights/original-1911-book-native.json",
+      "reference-rights/original-1911-library-catalog.json",
+      "native-map/historic-hotel-identity.json",
+      "references/original-1911-brochure.pdf",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-6325-11822.png",
+      "terrain-sources/terrarium-15-6325-11823.png",
+      "terrain-sources/terrarium-15-6326-11822.png",
+      "terrain-sources/terrarium-15-6326-11823.png",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

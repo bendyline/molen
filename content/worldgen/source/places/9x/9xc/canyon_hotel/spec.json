@@ -1,0 +1,550 @@
+{
+  "planId": "canyon_hotel",
+  "id": "canyon_hotel",
+  "assetId": "molen.worldgen.structure.canyon_hotel",
+  "title": "Canyon Hotel, Yellowstone (1911)",
+  "wikidataId": "Q2018142",
+  "category": "hotel-commercial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -110.499,
+    "latitude": 44.7233
+  },
+  "size": [
+    182.75599670410156,
+    26.09999978542328,
+    182.15999603271484
+  ],
+  "actualBounds": {
+    "min": [
+      -91.37799835205078,
+      -1.8739999532699585,
+      -115.69999694824219
+    ],
+    "max": [
+      91.37799835205078,
+      24.22599983215332,
+      66.45999908447266
+    ]
+  },
+  "visualBrief": "Complete1911Reamer Canyon Hotel:595ft horizontal guest-room range incorporating the earlier1891hotel wing, central lobby,200x100ft south lounge with two side porches, north dining room175x60ft/south bow50x20ft,190x50ft north kitchen and further laundry, sloping entrance arcade and porte-cochere. Hidden wing integration/rear layout/heights/facing/grade are explicit estimates from original front image and primary topology, not an archival measured floorplan. Later1930addition and detached buildings/modern CanyonLodge excluded by1911date.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1911-08-02",
+    "validFrom": "1911-06-15",
+    "validUntil": "1929-12-31",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:A_miracle_in_hotel_building_-_being_the_story_of_the_building_of_the_new_Canyon_Hotel_in_Yellowstone_Park_(IA_miracleinhotelbu00raftrich).pdf"
+  ],
+  "stories": [
+    {
+      "id": "canyon-hotel-wp",
+      "url": "https://qualla.com/canyon-hotel/"
+    }
+  ],
+  "referenceInputHash": "b1ad38d61e49162718efe823dadd77e132c6dda2931c720883a291f42b732ee0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9x/9xc/canyon_hotel/models/canyon-hotel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9x/9xc/canyon_hotel/models/canyon-hotel-model.mjs",
+    "level": "skyline",
+    "export": "canyonSkyline",
+    "errorMeters": 3.5,
+    "surfaces": {
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_weatherboard",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "canyonDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "canyonStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "canyonCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_weatherboard",
+    "concrete_plain",
+    "slate"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.12,
+    "groundY": -2.1740000000000004,
+    "far": 1800,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent512m129x129 original field/16641heights/four raw Terrarium tiles/frame/datum frozen before floor and main dimensions. Main floor original-field sample at[0,-8]+1.2m; lounge floor0.9m below lobby, port-road landing retains original datum. Long ranges have fixed horizontal floor and floor-count estimates, stepped/exposed basements on the historical downslope. Current composite terrain and approximate historical registration do not establish1911grade. Do not flatten/reacquire/reframe/move floors/main sections to improve views.",
+    "anchor": [
+      -110.499,
+      44.7233
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -110.49838048671079,
+        44.723057455982755
+      ],
+      "modelHeight": 0,
+      "basis": "Front porte-cochere roadway endpoint chosen in the independent whole-hotel frame before terrain/floor/main sections."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "minHeight": -1.0739999999999998,
+      "outline": [
+        [
+          -90.678,
+          -20
+        ],
+        [
+          90.678,
+          -20
+        ],
+        [
+          90.678,
+          4
+        ],
+        [
+          15.24,
+          4
+        ],
+        [
+          15.24,
+          64.96
+        ],
+        [
+          -15.24,
+          64.96
+        ],
+        [
+          -15.24,
+          4
+        ],
+        [
+          -90.678,
+          4
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            8.329999999999998,
+            -40
+          ],
+          [
+            61.67,
+            -40
+          ],
+          [
+            61.67,
+            -20
+          ],
+          [
+            8.329999999999998,
+            -20
+          ]
+        ],
+        [
+          [
+            27.38,
+            -97.056
+          ],
+          [
+            42.62,
+            -97.056
+          ],
+          [
+            42.62,
+            -39.14399999999999
+          ],
+          [
+            27.38,
+            -39.14399999999999
+          ]
+        ],
+        [
+          [
+            26,
+            -115
+          ],
+          [
+            44,
+            -115
+          ],
+          [
+            44,
+            -97
+          ],
+          [
+            26,
+            -97
+          ]
+        ],
+        [
+          [
+            42,
+            13
+          ],
+          [
+            56,
+            13
+          ],
+          [
+            56,
+            27
+          ],
+          [
+            42,
+            27
+          ]
+        ],
+        [
+          [
+            6,
+            9
+          ],
+          [
+            48,
+            9
+          ],
+          [
+            48,
+            15
+          ],
+          [
+            6,
+            15
+          ]
+        ]
+      ],
+      "basis": "Only estimated whole-hotel physical outlines. Retains originalunmaskedfield; not a surveyed historic footprint or1911hostcontact certificate."
+    },
+    "featureIds": [
+      "wikidata/Q2018142"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q2018142",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c2e786f70ff8f11451567903d6b8985710b93fedb258d9a6c55902b3ba18856a",
+    "notes": "Complete1911Reamer Canyon Hotel:595ft horizontal guest-room range incorporating the earlier1891hotel wing, central lobby,200x100ft south lounge with two side porches, north dining room175x60ft/south bow50x20ft,190x50ft north kitchen and further laundry, sloping entrance arcade and porte-cochere. Hidden wing integration/rear layout/heights/facing/grade are explicit estimates from original front image and primary topology, not an archival measured floorplan. Later1930addition and detached buildings/modern CanyonLodge excluded by1911date. Historic site point approximate±100m and bearing±25degrees; current composite terrain cannot certify1911grade. Original field will be acquired once before floors/sections, retained without fitting."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete1911Reamer Canyon Hotel:595ft horizontal guest-room range incorporating the earlier1891hotel wing, central lobby,200x100ft south lounge with two side porches, north dining room175x60ft/south bow50x20ft,190x50ft north kitchen and further laundry, sloping entrance arcade and porte-cochere. Hidden wing integration/rear layout/heights/facing/grade are explicit estimates from original front image and primary topology, not an archival measured floorplan. Later1930addition and detached buildings/modern CanyonLodge excluded by1911date.",
+    "Independent512m129x129 original field/16641heights/four raw Terrarium tiles/frame/datum frozen before floor and main dimensions. Main floor original-field sample at[0,-8]+1.2m; lounge floor0.9m below lobby, port-road landing retains original datum. Long ranges have fixed horizontal floor and floor-count estimates, stepped/exposed basements on the historical downslope. Current composite terrain and approximate historical registration do not establish1911grade. Do not flatten/reacquire/reframe/move floors/main sections to improve views.",
+    "Original1911whole hotel at opening; excludes1930addition and modern CanyonLodge/corrals. Exact photographed finish/date uncertain within original1911publication; roof/window rhythms are simplified.",
+    "595ft overall range/200x100ftlounge/175x60ftdining/50x20ftbay/190x50ftkitchen are primary scalar dimensions; wall thickness/height/hidden rear layout/laundry/porches/arcade/basements/dormer count/old-wing integration are estimates. No surveyed floorplan claim.",
+    "Original monochrome publication supplies visible front roof/dormer/window morphology. Dark brown/red-stained wood, gray roof, pale foundations and clear dark glazing are bounded color interpretation, no photo textures.",
+    "Historic point/bearing approximate±100m/25degrees; native terrain is current composite and not1911ground. Historical footprint openings reveal physical basement extents only; source heights unchanged; no host contact certificate.",
+    "Whole intrinsic named hotel modeled; no detached stables/roads/natural hills/trees/people/interior furnishings or modern replacement included."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Exact native expired original1911USbrochure/CommonsPD-US-expired/library record; no questionable Qualla/Flickrimage, bakedphotograph or modernreconstruction artwork. Primary architectural scalar dimensions and CC0Wikidata historic point; hidden layout/materialcolors/sections/registration estimated.",
+  "qaLodCameras": [
+    {
+      "name": "whole-hotel-skyline",
+      "position": [
+        155,
+        125,
+        235
+      ],
+      "lookAt": [
+        0,
+        12.526,
+        -20
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hotel-district",
+      "position": [
+        155,
+        125,
+        235
+      ],
+      "lookAt": [
+        0,
+        12.526,
+        -20
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hotel-street",
+      "position": [
+        155,
+        125,
+        235
+      ],
+      "lookAt": [
+        0,
+        12.526,
+        -20
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hotel-closeup",
+      "position": [
+        155,
+        125,
+        235
+      ],
+      "lookAt": [
+        0,
+        12.526,
+        -20
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole1911-south-front-and-long-dormered-wings",
+      "position": [
+        140,
+        90,
+        240
+      ],
+      "lookAt": [
+        0,
+        12.526,
+        -20
+      ]
+    },
+    {
+      "name": "whole-north-service-range-and-roof-junctions",
+      "position": [
+        -160,
+        150,
+        -250
+      ],
+      "lookAt": [
+        0,
+        12.526,
+        -20
+      ]
+    },
+    {
+      "name": "south-lounge-glazing-gable-and-east-porch",
+      "position": [
+        70,
+        29.526,
+        100
+      ],
+      "lookAt": [
+        0,
+        10.526,
+        40
+      ]
+    },
+    {
+      "name": "real-open-porte-cochere-and-sloping-arcade",
+      "position": [
+        85,
+        23,
+        55
+      ],
+      "lookAt": [
+        42,
+        5,
+        16
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24915,
+    "vertices": 74745,
+    "materials": 5,
+    "bytes": 3105100,
+    "sha256": "sha256:6330cb16e00680abb1b271a8e34ff726cef61bb13b3baf4ef24a1b24f636cd0a"
+  }
+}

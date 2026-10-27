@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tomb_of_kha_and_merit",
+  "kind": "static-structure",
+  "title": "Tomb and Chapel of Kha and Merit (TT8)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tomb_of_kha_and_merit",
+        "output": "assets/places/ss/ssx/tomb_of_kha_and_merit/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d78acc274503c21601ce6d526106b88e8bb1b409ff779a25e3d96909654e6d25"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kha",
+        "path": "models/generate-kha.mjs"
+      },
+      {
+        "id": "kha-model",
+        "path": "models/kha-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "architectural-facts.json",
+      "imagery-evidence.json",
+      "reference-rights/native.json",
+      "reference-rights/policy.html",
+      "reference-rights/catalog.html",
+      "native-map/tt8-site-identity.json",
+      "reference-images/chapel-exterior-1906.jpg",
+      "reference-images/tomb-plan-section-1906.jpg",
+      "reference-images/chapel-interior-1906.jpg",
+      "reference-images/burial-chamber-1906.jpg",
+      "reference-images/excavated-access-1906.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19351-13959.png",
+      "import-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.yellow_house_venezuela",
+  "kind": "static-structure",
+  "title": "Casa Amarilla, Caracas (1870)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.yellow_house_venezuela",
+        "output": "assets/places/d9/d9b/yellow_house_venezuela/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2c6c7dce67b4bdf7037bc551969d17debd6cf9c8d518e0bd13a870e34dd5f748"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "reference-rights/published-bolet-original-native.json",
+      "native-map/whole-current-house-context.json",
+      "native-map/exact-house-identity.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10293-15422.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json"
+    ]
+  }
+}

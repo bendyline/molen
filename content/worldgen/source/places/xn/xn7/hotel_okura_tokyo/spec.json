@@ -1,0 +1,481 @@
+{
+  "planId": "hotel_okura_tokyo",
+  "id": "hotel_okura_tokyo",
+  "assetId": "molen.worldgen.structure.hotel_okura_tokyo",
+  "title": "Hotel Okura Tokyo (Main and South Wings,2006)",
+  "wikidataId": "Q11337851",
+  "category": "hotel-commercial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.74366344999999,
+    "latitude": 35.6665189
+  },
+  "size": [
+    243.77709197998047,
+    70.20000076293945,
+    293.5884552001953
+  ],
+  "actualBounds": {
+    "min": [
+      -121.90896606445312,
+      -22.799999237060547,
+      -146.71994018554688
+    ],
+    "max": [
+      121.86812591552734,
+      47.400001525878906,
+      146.86851501464844
+    ]
+  },
+  "visualBrief": "Complete old HotelOkuraTokyo in explicit5May2006 historical appearance: whole1962MainWing and1973SouthWing/side and rear accommodation-service bodies/closed roof sections/intrinsic stepped podiums/recessed entrances/room bays/brick lattice-spandrel character/projecting palegreen eave bands and multi-tier rooftop cores/pavilions. Actual13controloldMainWing109502705 and22controloldSouthWing148781270 at2014historicalOSM snapshot give approximate old whole-body context; hidden plan/sections and exact2006registration estimated. Exclude separate museum/USembassy/neighbors/ground estate/current2019Prestige-Heritage replacements, people/cars/trees/copiedsigns/interiors.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2006-05-05",
+    "validFrom": "2006-05-05",
+    "validUntil": "2006-05-06",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hotel_Okura_1_(2006.05).jpg",
+    "https://commons.wikimedia.org/wiki/File:Hotel_Okura_Annex_(2006.05).jpg"
+  ],
+  "stories": [
+    {
+      "id": "hotel-okura-tokyo-wp",
+      "url": "https://qualla.com/hotel-okura-tokyo/"
+    }
+  ],
+  "referenceInputHash": "36fc30b42fe0e6818380d40c7dcbfa59054a756ae0d253fa2ac248c21eef7839",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn7/hotel_okura_tokyo/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn7/hotel_okura_tokyo/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 2.4,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "eave": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.82,
+        "metallic": 0.2
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "eave": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "eave": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "eave": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone_raw",
+    "plaster_lime",
+    "metal_copper",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -23.3,
+    "far": 4000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original512m129²field/16641heights/4rawtiles/datum36.3687m/sourceframe frozen before all main parameters. Independent Mainfloor+.6/foundation−6/podium7.4/eave23.8/core35.6 and Southfloor−9.6/foundation−22.8/podium−.1/eave32.7/core47.4 fixed now. South primary57m above chosen intrinsic floor preserved exactly, numeric section allocation estimated. Do not flatten/reacquire/reframe/refit floors/main sections after rendering; no terrain cutout or broad site pad. Modern DEM may include roof/canopy artifacts and cannot certify2006grade.",
+    "anchor": [
+      139.74366344999999,
+      35.6665189
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.74392469158784,
+        35.66647883387759
+      ],
+      "modelHeight": 0,
+      "basis": "MainWing south approach outside oldbody fixed before original independent field/all floors/main sections. CurrentDEM does not certify2006historicgrade or thresholds."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/109502705",
+      "way/148781270"
+    ],
+    "source": "https://www.openstreetmap.org/way/109502705/history",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:579e7fa9edd044c33bf180bdb91471f9692009fb6b6c2f642ba261073c5cedcb",
+    "notes": "Q11337851 exactinstitution from nativeWikipedia, historical2014-05-05OSMbuildingways109502705/13controls MainWing and148781270/22controls SouthWing. Both old hotel bodies nowdemolished; source map8yearsafterrepresentedphoto, approximate2006context notsurvey. Unknown narrowseparatehistoricalway148781171 notadopted; museum/USembassy/neighbors/current2019replacement excluded. Main/south wholeenvelopes retained; hiddenplan/sections and exactregistration±10m/bearing±10degrees bounded estimates. All1077every-statusreservations clear. Complete old HotelOkuraTokyo in explicit5May2006 historical appearance: whole1962MainWing and1973SouthWing/side and rear accommodation-service bodies/closed roof sections/intrinsic stepped podiums/recessed entrances/room bays/brick lattice-spandrel character/projecting palegreen eave bands and multi-tier rooftop cores/pavilions. Actual13controloldMainWing109502705 and22controloldSouthWing148781270 at2014historicalOSM snapshot give approximate old whole-body context; hidden plan/sections and exact2006registration estimated. Exclude separate museum/USembassy/neighbors/ground estate/current2019Prestige-Heritage replacements, people/cars/trees/copiedsigns/interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Q11337851 exactinstitution from nativeWikipedia, historical2014-05-05OSMbuildingways109502705/13controls MainWing and148781270/22controls SouthWing. Both old hotel bodies nowdemolished; source map8yearsafterrepresentedphoto, approximate2006context notsurvey. Unknown narrowseparatehistoricalway148781171 notadopted; museum/USembassy/neighbors/current2019replacement excluded. Main/south wholeenvelopes retained; hiddenplan/sections and exactregistration±10m/bearing±10degrees bounded estimates. All1077every-statusreservations clear.",
+    "Complete oldMainWing andSouthWing bodies/rear/side/service ranges/closedroofs required, not only photographedfrontcrop or one wing. Historicalmap building outlines support entire physical scope; exact2006roofplan/section/windowlatticecensus hiddenestimates.",
+    "2014map snapshot provides approximate2006oldbuildingcontext. Neveradopt2019Prestige/Heritage replacements or separate museum/USembassy/unknownnarrowadjacentway148781171.",
+    "Original independent512mfield/frame must precede all floors/mainsections/geometry; neverflatten/reacquire/reframe orfitmainsections afterrenders.",
+    "Two actualsame-date2006originals explicit namedLombrosoOwnwork/PD-self bound; preserveoriginalpublishedQuallabytes/metadata/rights andcreatorcredit. No photographictextures/generatedbitmaps/copiedsigns/people/trees/cars/interiorfurnishings.",
+    "Both whole old physical MainWing andSouthWing retain all13+22historical2014controls as approximate2006context. MainY-like rear arms and entire Southstepped returns/service bodies have closed roofs, not cropped facades. Separate museum/neighbors/unknown smallway148781171 not included.",
+    "Primary SouthWing original57mheight/13above4below from official25March2015companyrelease, not later2019replacement. Applying57m from chosen historic streetfloor to top is an explicit datum interpretation; exact2006grade, storyheight allocation, main heights, rooftopcorepositions/roof topology/window census are bounded estimates.",
+    "Mainentrypavement+.6 and Southlowentry−9.6 fixed beforegeometry; modernsourcefield spans−20.073..18.5673mrelative and may include urban rooftops. Foundations may be concealed and historic contact approximate.",
+    "Repetitive brick square spandrel motif, palegreen oversailing eave lips/undersides, cream rooftop boxes and inset windows/portico are photograph-led. Roofbox backs/miterdetails/railpattern/finish and windowcounts estimated. No signs/people/trees/cars/interior murals or copied figurative art."
+  ],
+  "sourceLicense": "Original authored geometry/repository license. Two exact already-cleared published5May2006Lombroso2272x1704originalOwnwork/PD-self photographs/nativeSHA1andnamedrelease independentlybound, normal unchanged Qualla public-domain policy. Historical2014OSMODbL whole13controloldMainWing109502705/22controloldSouthWing148781270 approximate2006context; nativeQ11337851/all1077reservationsclear. Primary officialcompanytext gives original South57m/13above4below, no company photographs adopted. No modern2019replacement, museum/USembassy/neighbor substitute, questionable imagery, copied signs/interiorart/people/cars/trees, photographic textures/generated bitmap or Qualla media/rights edits.",
+  "qaLodCameras": [
+    {
+      "name": "whole-two-wings-skyline",
+      "position": [
+        -315,
+        195,
+        320
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-two-wings-district",
+      "position": [
+        -315,
+        195,
+        320
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-two-wings-street",
+      "position": [
+        -315,
+        195,
+        320
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-two-wings-closeup",
+      "position": [
+        -315,
+        195,
+        320
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-old-main-and-south-wings",
+      "position": [
+        -315,
+        195,
+        320
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "whole-rear-arms-service-returns-and-closed-roofs",
+      "position": [
+        300,
+        185,
+        -310
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "main-wing-recessed-entry-lattice-spandrels-and-tiered-core",
+      "position": [
+        -12,
+        29,
+        68
+      ],
+      "lookAt": [
+        28,
+        17,
+        -22
+      ]
+    },
+    {
+      "name": "whole-south-wing-nine-room-bands-and-upper-pavilion",
+      "position": [
+        -207,
+        43,
+        111
+      ],
+      "lookAt": [
+        -63,
+        16,
+        55
+      ]
+    },
+    {
+      "name": "inside-main-portico-and-projected-roof-undersides",
+      "position": [
+        21.8,
+        2.4,
+        4.7
+      ],
+      "lookAt": [
+        26,
+        5.4,
+        -7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 55572,
+    "vertices": 166716,
+    "materials": 6,
+    "bytes": 6905128,
+    "sha256": "sha256:bf94c83c6793cea19077c948efd7782466e6840a1d4e857b2736d450ed7becb7"
+  }
+}

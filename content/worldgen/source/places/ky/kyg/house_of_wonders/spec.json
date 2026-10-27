@@ -1,0 +1,488 @@
+{
+  "planId": "house_of_wonders",
+  "id": "house_of_wonders",
+  "assetId": "molen.worldgen.structure.house_of_wonders",
+  "title": "House of Wonders, Zanzibar (2010)",
+  "wikidataId": "Q2568900",
+  "category": "palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 39.1896278,
+    "latitude": -6.160910449999999
+  },
+  "size": [
+    58.64218521118164,
+    42.40000009536743,
+    52.67541313171387
+  ],
+  "actualBounds": {
+    "min": [
+      -30.7045841217041,
+      -3.4000000953674316,
+      -27.624187469482422
+    ],
+    "max": [
+      27.93760108947754,
+      39,
+      25.051225662231445
+    ]
+  },
+  "visualBrief": "Complete House of Wonders in its intact October2010 museum phase: whole roughly50m quadrilateral palace, all four deep external verandas on three high storeys, iron columns/brackets/open gallery railings, original high timber entry and approach steps, complete main metal roof, central raised rooflight and projecting clocktower including roof. Intrinsic covered atrium and galleries retain their architectural void; no neighboring palace/fort/gardens/cannons/trees/vehicles/exhibits. Full mapped whole outline and all three intrinsic roof/tower parts retained. Precise rear bay census, clocktower vertical bands, roof junctions and historic grade are bounded architectural estimates from complete native parts, clear partial front/interior/detail originals and primary dimensional text; not a measured restoration survey. No claim of current post2020 survival.",
+  "nativeAxes": {
+    "x": "along mapped northwestern facade, northeast",
+    "y": "up",
+    "z": "inward from seaward facade, southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2010-10-15",
+    "validFrom": "2010-10-01",
+    "validUntil": "2010-11-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sansibar-HoseOfWonders.jpg",
+    "https://commons.wikimedia.org/wiki/File:2010-011-1024e-T.jpg",
+    "https://commons.wikimedia.org/wiki/File:House_of_wonders%27_door.jpg"
+  ],
+  "stories": [
+    {
+      "id": "house-of-wonders-wp",
+      "url": "https://qualla.com/house-of-wonders/"
+    }
+  ],
+  "referenceInputHash": "aae581ae68b2e68e3113c3360bc084928b1b0aae7bb7ff11b76c561ea413f7da",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ky/kyg/house_of_wonders/models/palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ky/kyg/house_of_wonders/models/palace-model.mjs",
+    "level": "skyline",
+    "export": "palaceSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.25
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.68,
+        "metallic": 0.35
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "palaceDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "palaceStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "palaceCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "metal_painted",
+    "metal_standing_seam",
+    "wood_plain",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -4,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent256m129x129 originalfield/16641heights/fourrawzoom15tiles/datum8.0356m andwholemapframe fixedbeforefloor/mainsection choices. Mainfloor+.8m fromfourestimated.2mapproachrisers; primaryconservationtextstoreys7/6.8/6.5m. Entireoriginalfield retained. CurrenturbanDEM/sourcepixel4.7497m not bareground or2010survey; hiddenhistoricgrade/contact notcertified. No terrainflatten/reacquire/reframe orfloor/mainparameterfittingtorenders.",
+    "anchor": [
+      39.1896278,
+      -6.160910449999999
+    ],
+    "heading": 0.507117802588642,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        39.189514224319396,
+        -6.160695695773892
+      ],
+      "modelHeight": 0,
+      "basis": "Nativewholefront approach midpoint2m outside seaward envelope, fixedbefore independentfield/floor/mainsections."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/122950850",
+      "way/384151182",
+      "way/384309136",
+      "way/384309137"
+    ],
+    "source": "https://www.openstreetmap.org/way/122950850",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dbf1074d60a542b00746c68d2885a74c96f4584585ec9e178904af031f3f15d0",
+    "notes": "Complete House of Wonders in its intact October2010 museum phase: whole roughly50m quadrilateral palace, all four deep external verandas on three high storeys, iron columns/brackets/open gallery railings, original high timber entry and approach steps, complete main metal roof, central raised rooflight and projecting clocktower including roof. Intrinsic covered atrium and galleries retain their architectural void; no neighboring palace/fort/gardens/cannons/trees/vehicles/exhibits. Full mapped whole outline and all three intrinsic roof/tower parts retained. Precise rear bay census, clocktower vertical bands, roof junctions and historic grade are bounded architectural estimates from complete native parts, clear partial front/interior/detail originals and primary dimensional text; not a measured restoration survey. No claim of current post2020 survival. Native clocktowerhistory request returned429 and no history was adopted; currentmappedparts are approximatehistorical controls, leveltags do not directly measure floorheights. Originalindependent256mfield willbe acquiredonce before floor/mainsections and retainedwithout flattening/reframing/fitting."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Front2004originaltreeoccluded/croppedaboveclocktower; precisehiddenupper/rearbands/roofjunctions are boundednative-part/text/photo estimates, not claimed directphotographicmeasurements.",
+    "No currentpost2020restoration/scaffold state adopted. Completeintrinsicpalace scope retained; historicdatevalidity is explicit.",
+    "Independentfield/frame/datum mustbe frozenbeforefloor/mainsection choices andgeometry. Hiddenarchitecture/grade neednoexactsurveygate; preserve originalfield onceacquired.",
+    "Fullnativeouterquad and threeintrinsicparts retained. Verandacoreinset5.5mradial/columnbaycounts/rearfenestration/roofjunctions/clocktowerverticalbands/overall39mheight andatrium11.2x9.6m are architectural estimates; no precisephotographicorrestorationsurveyclaim.",
+    "Primaryconservationtext measuredstoreyheights7/6.8/6.5m retained; laterpreprintunreviewed. Currentnativelevelnumbersdescribe approximatecomponentclass only, not exact2010metricfloorheight.",
+    "Exactmonth2010-10 represented15th convention. No currentpost2020intactplacement; narrowhistoricalmonthvalidity.",
+    "Originalcurrentfieldcancontainurbanheightbias anddoesnotmeasure2010ground. Preserveoriginalfield/floor/frames; record grade/contactlimits instead of liftingbuildingorcarvingbroadpad.",
+    "Clock dial hand positions are illustrative, not a recovered historical time. Individual carved fanlight figures, inscriptions and exact door filigree are simplified architectural ornament; no source photographs or artwork textures copied.",
+    "Portable isolated stage lies below the palace foundations; terrain-contact certification is not implied. Original current urban elevation can conceal portions of the 2010 ground storey."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Qualla-first24-family search, then three exact named creator Own/PD-self originals: Matthias Krämer2004front, Nannarella2008entry, Moongateclimber2010intrinsicatrium. NativewholeQ2568900building/threeparts ODbL; primary conservation scalar facts only. No questionable archives or attribution-only imagery adopted, no photographic textures.",
+  "qaLodCameras": [
+    {
+      "name": "whole-palace-skyline",
+      "position": [
+        -63,
+        40,
+        -90
+      ],
+      "lookAt": [
+        -3,
+        17,
+        -2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-palace-district",
+      "position": [
+        -63,
+        40,
+        -90
+      ],
+      "lookAt": [
+        -3,
+        17,
+        -2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-palace-street",
+      "position": [
+        -63,
+        40,
+        -90
+      ],
+      "lookAt": [
+        -3,
+        17,
+        -2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-palace-closeup",
+      "position": [
+        -63,
+        40,
+        -90
+      ],
+      "lookAt": [
+        -3,
+        17,
+        -2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-seaward-verandas-and-clocktower",
+      "position": [
+        -63,
+        40,
+        -90
+      ],
+      "lookAt": [
+        -3,
+        17,
+        -2
+      ]
+    },
+    {
+      "name": "whole-rear-and-raised-rooflight",
+      "position": [
+        65,
+        48,
+        78
+      ],
+      "lookAt": [
+        -1,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "original-arched-timber-entry",
+      "position": [
+        -14.8749470187723,
+        5,
+        -38
+      ],
+      "lookAt": [
+        -8.8749470187723,
+        4,
+        -25
+      ]
+    },
+    {
+      "name": "open-upper-veranda-and-column-brackets",
+      "position": [
+        20,
+        15,
+        -35
+      ],
+      "lookAt": [
+        -4,
+        15,
+        -22
+      ]
+    },
+    {
+      "name": "intrinsic-covered-atrium-and-galleries",
+      "position": [
+        -2.147773516163901,
+        11,
+        -0.4190350300617012
+      ],
+      "lookAt": [
+        -8.147773516163902,
+        19,
+        -6.419035030061702
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 29273,
+    "vertices": 87819,
+    "materials": 6,
+    "bytes": 3704008,
+    "sha256": "sha256:9312d8e045d9f96f5896c92bd9ff96ad54a2650c200a5502c4bd8f12630081d8"
+  }
+}

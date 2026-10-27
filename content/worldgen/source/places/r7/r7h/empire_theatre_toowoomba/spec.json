@@ -1,0 +1,477 @@
+{
+  "planId": "empire_theatre_toowoomba",
+  "id": "empire_theatre_toowoomba",
+  "assetId": "molen.worldgen.structure.empire_theatre_toowoomba",
+  "title": "Empire Theatre, Toowoomba (pre-fire1911–1933)",
+  "wikidataId": "Q7731948",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 151.95576835,
+    "latitude": -27.5630916
+  },
+  "size": [
+    74.76338577270508,
+    21.5,
+    45.07894706726074
+  ],
+  "actualBounds": {
+    "min": [
+      -40.8567008972168,
+      -1.5,
+      -20.17879295349121
+    ],
+    "max": [
+      33.90668487548828,
+      20,
+      24.90015411376953
+    ]
+  },
+  "visualBrief": "Complete original pre-fire1911–1933 Empire Theatre, with whole masonry auditorium/stage mass and closed main roof/side/rear walls, its original tall brick streetfront with white arched-window dressings/pilasters/curved parapet caps/onion finials, and intrinsic low hipped entry porch/ticket box. Exact Kemp photograph is dated only1911–1933;1922-01-01 is a representative midperiod convention. Do not substitute old front for the1933ArtDeco/current building. Current native footprint supplies site context only; primary heritage record says substantial1911side/front/rear walls survive in the1933rebuild. Historic envelope/roof/back sections are explicit bounded estimates. Exclude later1933flytower/foyer geometry unless proven pre-fire,1973shops/modernannexes/separate churchtheatre/estate/poles/trees/copied signs/crown/posters/people.",
+  "nativeAxes": {
+    "x": "east behind NeilStreet front",
+    "y": "up",
+    "z": "south along NeilStreet"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1922-01-01",
+    "validFrom": "1911-06-29",
+    "validUntil": "1933-02-22",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Empire_Theatre_in_Toowoomba_(1911-1933).jpg"
+  ],
+  "stories": [
+    {
+      "id": "empire-theatre-toowoomba-wp",
+      "url": "https://qualla.com/empire-theatre-toowoomba/"
+    }
+  ],
+  "referenceInputHash": "5e5f68d6e5a4c042164ea6fcdbb7f6202708f7fe01aff801fd803309ad01d1c4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r7/r7h/empire_theatre_toowoomba/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r7/r7h/empire_theatre_toowoomba/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.83,
+        "metallic": 0.45
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.3
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.45
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.45
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.45
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone_raw",
+    "metal_corrugated",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.7,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent256m129²field/16641heights/one rawtile/datum601.9832m and source frame frozen before these main parameters. Floor+.45m from3estimated.15m entry risers; main eave13.2/ridge16.5/frontparapet15.6/central18.5/finialcap20m and full36mwide×64mdepth old-theatre body are bounded picture-led architectural estimates. Primary text establishes original proscenium and retained masonry sides/front/rear, not exact old roof/back sections. Original current DEM about+1..3m across body can cover lower walls/entry and does not certify1922grade. Preserve original field/frame/floors/main sections without fitting.",
+    "anchor": [
+      151.95576835,
+      -27.5630916
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        151.95527823572368,
+        -27.5630916
+      ],
+      "modelHeight": 0,
+      "basis": "NeilStreet west approach2m beyond whole current theatre context fixed before independent source field/floors/main sections; no historic ground or building-threshold survey claim."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/42341736"
+    ],
+    "source": "https://www.openstreetmap.org/way/42341736",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e0301fe58ae83ee2a55d9ef5cf8da6186c4e86d3b66caa197e33b9065bbd15e7",
+    "notes": "Exact current native EmpireTheatreway42341736/Q7731948/19controls supplies whole site context only, not surveyed1911footprint. Primary QHR600978 identifies same site/1911original and surviving side/front/rear walls, while current modern-annex/foyer/flytower extent differs. Historic registered full body/roof and rear geometry will be bounded estimates with±10m placement/bearing±10degrees; no exact historical survey required. Complete original pre-fire1911–1933 Empire Theatre, with whole masonry auditorium/stage mass and closed main roof/side/rear walls, its original tall brick streetfront with white arched-window dressings/pilasters/curved parapet caps/onion finials, and intrinsic low hipped entry porch/ticket box. Exact Kemp photograph is dated only1911–1933;1922-01-01 is a representative midperiod convention. Do not substitute old front for the1933ArtDeco/current building. Current native footprint supplies site context only; primary heritage record says substantial1911side/front/rear walls survive in the1933rebuild. Historic envelope/roof/back sections are explicit bounded estimates. Exclude later1933flytower/foyer geometry unless proven pre-fire,1973shops/modernannexes/separate churchtheatre/estate/poles/trees/copied signs/crown/posters/people."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact current native EmpireTheatreway42341736/Q7731948/19controls supplies whole site context only, not surveyed1911footprint. Primary QHR600978 identifies same site/1911original and surviving side/front/rear walls, while current modern-annex/foyer/flytower extent differs. Historic registered full body/roof and rear geometry will be bounded estimates with±10m placement/bearing±10degrees; no exact historical survey required.",
+    "Exact historical envelope/hidden roof/stage/rear sections are bounded architectural estimates, not a current-state or measured1911plan claim. Retain complete original physical theatre, not facade-only.",
+    "Use only the exact already-cleared Kemp photograph; no current1933facade claim, copied lettering/crown/figures/posters/vegetation or questionable images.",
+    "Preserve original independent field/frame before all main dimensions/floors/sections/geometry; never flatten/reacquire/reframe or fit model main parameters to renders.",
+    "Complete original estimated36m-wide auditorium/stage body, with original streetfront registered behind later1933foyer. Exact old extent/roof/stage/back sections not surveyed; no90ft1933flytower/modernannex/1973shop transfer.",
+    "Four ornate finials/curved parapets/pilasters/white arched dressings/low entry canopy and ticketbox are photo-led; hidden corresponding rear details and precise ornament are simplified estimates. Exclude sign lettering/crown art/posters/telephone poles/people/trees.",
+    "Current DEM can obscure lower walls/entry at this historic registration. No claim of exact historic contact and no terrain cutout/site pad/flattening/reacquisition/main-parameter fitting."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Exactly one already-cleared published Qualla named SirJohnRobertKemp native PD-Australia original4000x2340, exact native SHA1/revision/local SHA256 and unchanged published inventory pass. OSM ODbL whole current theatre site context/Q7731948 and primary QHR600978 historical scalar facts only. Full historical geometry/rear/roof estimated, not current1933replacement. No questionable/supplemental protected imagery, policy/media/rights metadata repairs, copied photographic textures or generated bitmaps.",
+  "qaLodCameras": [
+    {
+      "name": "whole-prefire-theatre-skyline",
+      "position": [
+        -126.78309752454402,
+        50,
+        60.17848843171389
+      ],
+      "lookAt": [
+        -10.222653830099205,
+        6,
+        1.1220496146453436
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-prefire-theatre-district",
+      "position": [
+        -126.78309752454402,
+        50,
+        60.17848843171389
+      ],
+      "lookAt": [
+        -10.222653830099205,
+        6,
+        1.1220496146453436
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-prefire-theatre-street",
+      "position": [
+        -126.78309752454402,
+        50,
+        60.17848843171389
+      ],
+      "lookAt": [
+        -10.222653830099205,
+        6,
+        1.1220496146453436
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-prefire-theatre-closeup",
+      "position": [
+        -126.78309752454402,
+        50,
+        60.17848843171389
+      ],
+      "lookAt": [
+        -10.222653830099205,
+        6,
+        1.1220496146453436
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-prefire-theatre-brick-front-and-original-body",
+      "position": [
+        -126.78309752454402,
+        50,
+        60.17848843171389
+      ],
+      "lookAt": [
+        -10.222653830099205,
+        6,
+        1.1220496146453436
+      ]
+    },
+    {
+      "name": "whole-estimated-original-stage-and-rear",
+      "position": [
+        102.3782723789091,
+        50,
+        -58.50203458690417
+      ],
+      "lookAt": [
+        -6.263136344662698,
+        6,
+        1.6896949991263153
+      ]
+    },
+    {
+      "name": "curved-parapets-and-four-onion-finials",
+      "position": [
+        -61.281147256860805,
+        23,
+        11.98622233921773
+      ],
+      "lookAt": [
+        -32,
+        15,
+        -2
+      ]
+    },
+    {
+      "name": "low-entry-porch-ticketbox-and-brick-piers",
+      "position": [
+        -51.804587530147685,
+        3.4,
+        9.303906968863409
+      ],
+      "lookAt": [
+        -35.11154946019763,
+        2.5,
+        -1.4358546670016015
+      ]
+    },
+    {
+      "name": "arched-white-window-dressings-and-pilasters",
+      "position": [
+        -40.053946214028116,
+        11,
+        -16.28754528887108
+      ],
+      "lookAt": [
+        -30.297063846557087,
+        11.3,
+        -13.878552456309524
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16921,
+    "vertices": 50763,
+    "materials": 6,
+    "bytes": 2243376,
+    "sha256": "sha256:8d190fd51e6421242d593ca7337788587e8b6b1606e412daeb1350d3c5263c4b"
+  }
+}

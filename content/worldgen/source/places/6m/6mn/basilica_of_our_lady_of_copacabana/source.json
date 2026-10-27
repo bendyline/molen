@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.basilica_of_our_lady_of_copacabana",
+  "kind": "static-structure",
+  "title": "Basilica of Our Lady of Copacabana (depicted1877)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.basilica_of_our_lady_of_copacabana",
+        "output": "assets/places/6m/6mn/basilica_of_our_lady_of_copacabana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3c92dbfe5b85677797dd4366c07d763b8133ebe6bac2b8dae0fc26b3e7f07726"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/squier-1877-original.pdf",
+      "reference-rights/squier-1877-original-volume-native.json",
+      "native-map/whole-current-church-and-open-court-context.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10095-17875.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json"
+    ]
+  }
+}

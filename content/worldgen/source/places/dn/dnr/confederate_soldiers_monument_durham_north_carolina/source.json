@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.confederate_soldiers_monument_durham_north_carolina",
+  "kind": "static-structure",
+  "title": "Confederate Soldiers Monument, Durham — September 2019",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.confederate_soldiers_monument_durham_north_carolina",
+        "output": "assets/places/dn/dnr/confederate_soldiers_monument_durham_north_carolina/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3234ae84018aa0ffe4ace8792d92ec1078dffe1e50e6a58062d5aef0a8a4119e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-durham-confederate-monument",
+        "path": "models/generate-durham-confederate-monument.mjs"
+      },
+      {
+        "id": "durham-confederate-monument-model",
+        "path": "models/durham-confederate-monument-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "technical-facts.json",
+      "imagery-evidence.json",
+      "reference-rights/published-warren-lemay-native.json",
+      "historical-source/native-identity.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9202-12868.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,480 @@
+{
+  "planId": "government_house_hong_kong",
+  "id": "government_house_hong_kong",
+  "assetId": "molen.worldgen.structure.government_house_hong_kong",
+  "title": "Government House, Hong Kong (original house,1870s)",
+  "wikidataId": "Q838415",
+  "category": "residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.15733235,
+    "latitude": 22.278624649999998
+  },
+  "size": [
+    53.110108375549316,
+    19.199999809265137,
+    58.05750662088394
+  ],
+  "actualBounds": {
+    "min": [
+      -63.32783508300781,
+      -5,
+      -57.38848876953125
+    ],
+    "max": [
+      -10.217726707458496,
+      14.199999809265137,
+      0.6690178513526917
+    ]
+  },
+  "visualBrief": "Complete original1855GovernmentHouse as photographed in1870s: whole two-storey colonial residence/upper opencolonnaded veranda/solidendwindowpavilions/projectedcornices/sideveranda/full hiddenlowerfloor/rear/servicebody/closedlowhippedroofs/roofvents/chimneys. Exact clearedpublishedLaiAfongoriginal only. Current27controlphysicalhouse42258038 and23controlopenestate392192459/Q838415 establish approximate originalsite context, not measured1870sfootprint; whole oldhiddenplan/roof/sections/registration bounded estimates. Exclude later1889easternannex and1941–45central tower/Japanese roof remodel/currentArtDecofinish, separateestate/gardenfountain/statue/palms/ships/neighborhood/copiedfigurativeart/interiors.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1875-07-01",
+    "validFrom": "1870-01-01",
+    "validUntil": "1880-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Public_Garden_%26_Government_house,_Hong_Kong.jpg"
+  ],
+  "stories": [
+    {
+      "id": "government-house-hong-kong-wp",
+      "url": "https://qualla.com/government-house-hong-kong/"
+    }
+  ],
+  "referenceInputHash": "4eead1c092c52df43cdb2ef1ae15c865d607049e47bcd05ff6d1bcc69c18a7ad",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/we/wec/government_house_hong_kong/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/we/wec/government_house_hong_kong/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "tile_flat",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -5.4,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent original256m129²field/16641heights/2rawtiles/datum53.4271m and north-up sourceframe acquired/frozen before all mainparameters. Lower floor+.6, foundation−5, upperfloor5.5, columnceiling10.2, eave11.2, ridge13.3, rooflight14.15 fixed now beforegeometry. Photo suggests two-storey original residence with tall upper colonnade/endbays/closed shallowhip. Whole44x25m main plus complete lowerfloor/leftsideveranda/rear service returns reconstructed as bounded estimates; no historic metric survey claimed. Modern DEM contains roof/canopy/slope artifacts: original field unmasked, historical lowerfloor/grade approximate; never flatten/reacquire/reframe/refit main sections afterrender.",
+    "anchor": [
+      114.15733235,
+      22.278624649999998
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.15688682595126,
+        22.27875316033338
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate originalwest-house publicapproach2moutside presentSWwesthousefront fixed before originalfield/floors/mainsections. No historicgrade/thresholdsurvey claim."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/42258038",
+      "way/392192459"
+    ],
+    "source": "https://www.openstreetmap.org/way/42258038",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:080e7a0dfb2ed3e549dd30ddec6d72cdfbbc98d25329e67b422054e193bc9d09",
+    "notes": "ExactQ838415 nativeWikipedia/current27controlnamedbuilding42258038 distinct23controlresidentialestate392192459. Original1870sMainHouse pre1889eastannex and preJapanese central tower is the represented whole physical building. Currentbuildingoutline is approximate originalsite context only, not historicplan to extrude unchanged; whole oldbody/hiddenrear/service roofs estimated. Openestate never solid building. Original registration±12m/bearing±12degrees, sourceheading0/+Xeast/+Zsouth fixed beforefield/mainparameters. All1077every-statusreservations clear. Complete original1855GovernmentHouse as photographed in1870s: whole two-storey colonial residence/upper opencolonnaded veranda/solidendwindowpavilions/projectedcornices/sideveranda/full hiddenlowerfloor/rear/servicebody/closedlowhippedroofs/roofvents/chimneys. Exact clearedpublishedLaiAfongoriginal only. Current27controlphysicalhouse42258038 and23controlopenestate392192459/Q838415 establish approximate originalsite context, not measured1870sfootprint; whole oldhiddenplan/roof/sections/registration bounded estimates. Exclude later1889easternannex and1941–45central tower/Japanese roof remodel/currentArtDecofinish, separateestate/gardenfountain/statue/palms/ships/neighborhood/copiedfigurativeart/interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "ExactQ838415 nativeWikipedia/current27controlnamedbuilding42258038 distinct23controlresidentialestate392192459. Original1870sMainHouse pre1889eastannex and preJapanese central tower is the represented whole physical building. Currentbuildingoutline is approximate originalsite context only, not historicplan to extrude unchanged; whole oldbody/hiddenrear/service roofs estimated. Openestate never solid building. Original registration±12m/bearing±12degrees, sourceheading0/+Xeast/+Zsouth fixed beforefield/mainparameters. All1077every-statusreservations clear.",
+    "Whole original1855house as photographed1870s required, including hiddenlower/rear/servicebody/closedroofs. Do not narrow to a frontage or extrude later1889easternannex/1940scentral tower from currentoutline.",
+    "PrimaryAMO identifies1855completion/1889easternannex/JapaneseOccupationcentral tower. Laterfinish/tower/roof are not1870sfacts. Gardenfountains/statue/palms/boats/neighboringstructures excluded.",
+    "ActualLaiAfong1839–1890/nativeexplicitPD-old-70/2081x1483original/primaryGettyalbumleaf1870s bound, ordinarypublishedpolicy unchanged. Quallamedia/rights/artist andarticlebody untouched.",
+    "Original independent256mfield/frame before all floors/mainsections/geometry; neverflatten/reacquire/reframe orfitmainsections afterrenders.",
+    "Hidden1870swholeplan/roof/rear/sections/window-and-columncensus/registration andgrade bounded estimates, exactmetric survey not required.",
+    "Exact front44m/depth25m,9uppercolumns/8bays/6sidecolumns, floor and eave heights, windows/rooflights/chimney census, whole hidden lower/rear-service plan/roof are photographic bounded estimates. Rearreturn/connector close the residence; no façade-only stand-in. Low hippedroof, square cornice and plain cylindrical-column/base/simple capital character follow exact LaiAfong plate. No laterannex/tower/Japanese roofwork, copied gardenstatue/fountain/people/plants/ships/interiorart.",
+    "Historic house orientation follows current westhouse6→7 only as approximate context, reconstructed old footprint is independent of27moderncontrols and open23controlestate. Mainregistration±12m/bearing±12degrees. Sourceframe/field unchanged; no groundcutout or broadsitepad.",
+    "Uniform pale lime finish/gray roof are restrained medium-fi interpretations of monochrome1870s photograph, not measured paint colors. Hidden window/door arrangement, simple classical capitals and rooflight slats estimated."
+  ],
+  "sourceLicense": "Original authored geometry/repository license. Exact already-cleared published2081x1483LaiAfong1870soriginal/nativePD-old-70/creator1839–1890/hash/revision and specificGettyalbumleaf bound under unchanged publishedpublicdomainpolicy. CurrentOSMODbL27controlphysicalhouse42258038/separate23controlopenestate392192459 only approximate historicalsitecontext, never extruded modernplan. AMOtext separates1855original/1889annex/1941–45tower. Whole hiddenlower/rear/roof/sections/registration/grade are bounded estimates. No questionableimagery, officialcopyright photos, photographictextures/generatedbitmaps, copiedstatue/fountain/garden/interiorart, signs/people/boats/neighbors or Quallamedia/rights edits.",
+  "qaLodCameras": [
+    {
+      "name": "whole-original-house-skyline",
+      "position": [
+        -62.31421473080914,
+        38,
+        71.50424851221354
+      ],
+      "lookAt": [
+        -36.18174432437556,
+        6,
+        -27.177532939363797
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-original-house-district",
+      "position": [
+        -62.31421473080914,
+        38,
+        71.50424851221354
+      ],
+      "lookAt": [
+        -36.18174432437556,
+        6,
+        -27.177532939363797
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-original-house-street",
+      "position": [
+        -62.31421473080914,
+        38,
+        71.50424851221354
+      ],
+      "lookAt": [
+        -36.18174432437556,
+        6,
+        -27.177532939363797
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-original-house-closeup",
+      "position": [
+        -62.31421473080914,
+        38,
+        71.50424851221354
+      ],
+      "lookAt": [
+        -36.18174432437556,
+        6,
+        -27.177532939363797
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-original-house-colonnade-end-bays-and-rear",
+      "position": [
+        -62.31421473080914,
+        38,
+        71.50424851221354
+      ],
+      "lookAt": [
+        -36.18174432437556,
+        6,
+        -27.177532939363797
+      ]
+    },
+    {
+      "name": "whole-hidden-rear-service-returns-and-closed-roofs",
+      "position": [
+        -43.33157777211787,
+        43,
+        -128.90697745603038
+      ],
+      "lookAt": [
+        -36.18174432437556,
+        6,
+        -27.177532939363797
+      ]
+    },
+    {
+      "name": "upper-eight-bay-open-colonnade-and-simple-capitals",
+      "position": [
+        -68.18654990947607,
+        9.8,
+        8.651120670001978
+      ],
+      "lookAt": [
+        -43.106841455867745,
+        8,
+        -17.175381684788672
+      ]
+    },
+    {
+      "name": "west-side-veranda-whole-lower-floor-and-rear-range",
+      "position": [
+        -102.87081768292438,
+        18,
+        -41.757227537608784
+      ],
+      "lookAt": [
+        -48.439825483680785,
+        6,
+        -43.26291283204542
+      ]
+    },
+    {
+      "name": "inside-open-colonnade-floor-ceiling-recessed-windows",
+      "position": [
+        -52.71174184458224,
+        7.4,
+        -25.94498193353845
+      ],
+      "lookAt": [
+        -38.7045812331705,
+        8,
+        -15.967033667180509
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17266,
+    "vertices": 51798,
+    "materials": 6,
+    "bytes": 2294892,
+    "sha256": "sha256:929d095ccfbc6337a4fd8572e3d602f26e56b28c807bbc56016671fc2a6d62fd"
+  }
+}

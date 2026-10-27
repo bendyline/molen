@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hibiya_open_air_concert_hall",
+  "kind": "static-structure",
+  "title": "Hibiya Open-Air Concert Hall (first large hall,1937)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hibiya_open_air_concert_hall",
+        "output": "assets/places/xn/xn7/hibiya_open_air_concert_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2c6bf0b17106f3892f9d35ab6c92ee1cf4ce9e1bd6dffc676274f62b8fb62d8b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-building-history.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/seikaido-1937-original.jpg",
+      "reference-rights/seikaido-native.json",
+      "reference-rights/ndl-primary-book.json",
+      "native-map/current-venue-stage-and-bleachers-context.json",
+      "native-map/large-hall-wikidata-binding.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-29104-12904.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json"
+    ]
+  }
+}

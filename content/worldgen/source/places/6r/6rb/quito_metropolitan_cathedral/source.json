@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.quito_metropolitan_cathedral",
+  "kind": "static-structure",
+  "title": "Quito Metropolitan Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.quito_metropolitan_cathedral",
+        "output": "assets/places/6r/6rb/quito_metropolitan_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fd7ad65e45563396315cd29ff2177752c9f6608aec132731ff5fd871293d316c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-quito-cathedral",
+        "path": "models/generate-quito-cathedral.mjs"
+      },
+      {
+        "id": "quito-cathedral-model",
+        "path": "models/quito-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-controls.json",
+      "technical-facts.json",
+      "imagery-evidence.json",
+      "reference-rights/original-photographer-upload.json",
+      "reference-images/ricardo-ortega-2004-original.jpg",
+      "native-map/whole-cathedral.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9237-16403.png",
+      "terrain-sources/terrarium-15-9237-16404.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

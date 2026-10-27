@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.copeton_dam",
+  "kind": "static-structure",
+  "title": "Copeton Dam, New South Wales (2006)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.copeton_dam",
+        "output": "assets/places/r6/r6e/copeton_dam/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1436308af9039d35b4e31f968ba616cd450636a8e4f2a00ffa63024b1f1df58b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-copeton-dam",
+        "path": "models/generate-copeton-dam.mjs"
+      },
+      {
+        "id": "copeton-dam-model",
+        "path": "models/copeton-dam-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "imagery-evidence.json",
+      "native-map/main-dam-and-spillway.json",
+      "reference-rights/published-spillway-native.json",
+      "native-map/frame-before-identity-caption.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-30120-19238.png",
+      "terrain-sources/terrarium-15-30120-19239.png",
+      "terrain-sources/terrarium-15-30120-19240.png",
+      "terrain-sources/terrarium-15-30121-19238.png",
+      "terrain-sources/terrarium-15-30121-19239.png",
+      "terrain-sources/terrarium-15-30121-19240.png",
+      "terrain-sources/terrarium-15-30122-19238.png",
+      "terrain-sources/terrarium-15-30122-19239.png",
+      "terrain-sources/terrarium-15-30122-19240.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

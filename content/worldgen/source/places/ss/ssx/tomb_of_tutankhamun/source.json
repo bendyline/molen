@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tomb_of_tutankhamun",
+  "kind": "static-structure",
+  "title": "Tomb of Tutankhamun (KV62), Egypt (1922)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tomb_of_tutankhamun",
+        "output": "assets/places/ss/ssx/tomb_of_tutankhamun/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:20da6f721ea315c5ac8529202a8d1aa1876ea294b93699f3c4398e92269ae40c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tomb",
+        "path": "models/generate-tomb.mjs"
+      },
+      {
+        "id": "tomb-model",
+        "path": "models/tomb-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "imagery-evidence.json",
+      "native-map/original-tomb-site-context.json",
+      "reference-rights/carter-1923-mit-library-native.json",
+      "reference-rights/published-burton-originals-native.json",
+      "references/carter-mace-1923-original-volume.pdf",
+      "construction-preparation.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19351-13957.png",
+      "terrain-sources/terrarium-15-19351-13958.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json"
+    ]
+  }
+}

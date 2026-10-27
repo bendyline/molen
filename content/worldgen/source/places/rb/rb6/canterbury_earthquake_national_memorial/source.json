@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.canterbury_earthquake_national_memorial",
+  "kind": "static-structure",
+  "title": "Canterbury Earthquake National Memorial",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.canterbury_earthquake_national_memorial",
+        "output": "assets/places/rb/rb6/canterbury_earthquake_national_memorial/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:908df4c53e13da5be65ea5cdfd9da5e462f1a3db5ee213f80a2abdb12f743e79"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-canterbury-earthquake-memorial",
+        "path": "models/generate-canterbury-earthquake-memorial.mjs"
+      },
+      {
+        "id": "canterbury-earthquake-memorial-model",
+        "path": "models/canterbury-earthquake-memorial-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-controls.json",
+      "technical-facts.json",
+      "imagery-evidence.json",
+      "reference-rights/embassy-native-public-domain.json",
+      "reference-rights/flickr-50967988731.html",
+      "reference-rights/flickr-50967965236.html",
+      "reference-images/embassy-50967988731.jpg",
+      "reference-images/embassy-50967965236.jpg",
+      "native-map/memorial-physical-controls-and-distinct-site.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-32097-20794.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

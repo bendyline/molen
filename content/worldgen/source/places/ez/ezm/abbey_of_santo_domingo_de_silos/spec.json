@@ -1,0 +1,483 @@
+{
+  "planId": "abbey_of_santo_domingo_de_silos",
+  "id": "abbey_of_santo_domingo_de_silos",
+  "assetId": "molen.worldgen.structure.abbey_of_santo_domingo_de_silos",
+  "title": "Abbey of Santo Domingo de Silos (1892)",
+  "wikidataId": "Q1340405",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -3.4193047500000002,
+    "latitude": 41.96190555
+  },
+  "size": [
+    125.56999969482422,
+    38.29999852180481,
+    94.5239372253418
+  ],
+  "actualBounds": {
+    "min": [
+      -62.783424377441406,
+      -2.200000047683716,
+      -47.26068878173828
+    ],
+    "max": [
+      62.78657531738281,
+      36.099998474121094,
+      47.263248443603516
+    ]
+  },
+  "visualBrief": "Complete physical Abbey of Santo Domingo de Silos in an explicit1892drawing-led historical phase: whole two-court monastery residential/service wings, intrinsic monastic church SanSebastian and closed roofs/rear/sides, defining baroque bell tower and Romanesque lower/upper cloister galleries. Actual modern physical footprints supply approximate historical registration/layout, not surveyed1892walls; hidden roofs/sections/census bounded estimates. The square tower/rosewindow on right of drawing belongs separate SanPedro east of abbey and is excluded, together with broader religious grounds, detached southern annex, village houses, vegetation/people/copying sculpture. Later2007PD-self lower-cloister photo informs retained medieval architectural character only, not1892condition or modern garden.",
+  "nativeAxes": {
+    "x": "east toward separateSanPedro",
+    "y": "up",
+    "z": "south into abbeycourts"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1892-09-24",
+    "validFrom": "1892-09-24",
+    "validUntil": "1892-09-25",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Original,_Santo_Domingo_de_Silos,_24.9.1892,_colecci%C3%B3n_Maruja_Pedrero,_dibujo_por_Mariano_Pedrero.jpg",
+    "https://commons.wikimedia.org/wiki/File:Sto_Domingo_de_silos,columna_curiosa.JPG"
+  ],
+  "stories": [
+    {
+      "id": "abbey-of-santo-domingo-de-silos-wp",
+      "url": "https://qualla.com/abbey-of-santo-domingo-de-silos/"
+    }
+  ],
+  "referenceInputHash": "4b808280c2ce8dbc5d138558b2602b48beca52179476fdd189d54f5401fded40",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ez/ezm/abbey_of_santo_domingo_de_silos/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ez/ezm/abbey_of_santo_domingo_de_silos/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.3
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_raw",
+    "tile_flat",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -2.4,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent256m129²originalfield/16641heights/one rawtile/datum1008.0261m and whole sourceframe frozen before all these floors/sections. Floormain+.45/upper5.5/monasteryeave10.8/ridge14.1/churcheave19.6/ridge24.2/belltop28.5/tip36.1 chosen once as bounded image-led estimates. Current DEM varies over wholecomplex and may conceal some lower historicwalls; no sourcefield/floor/section fitting. Native current physicalenvelopes approximate historicalplan; exact1892survey not required.",
+    "anchor": [
+      -3.4193047500000002,
+      41.96190555
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -3.418940801664802,
+        41.962293564530796
+      ],
+      "modelHeight": 0,
+      "basis": "North monasticchurch streetapproach2moutside current footprint fixed before original independentfield/floors/geometry; not historic thresholdsurvey."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/2641315",
+      "relation/14168825",
+      "northwest-service-block",
+      "way/164871304",
+      "way/164871305"
+    ],
+    "source": "https://www.openstreetmap.org/relation/2641315",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cd13d5f9b819801730c70bc8a7683ec56b46d918ba2aadb8df077bf2c6d4b100",
+    "notes": "Physical monasteryrelation2641315/22controls/two8controlcourts plus intrinsic monasticchurchrelation14168825/Q108040783/9controls and connectednorthwestserviceblock provide approximate historical context. Main religiousgroundsrelation14168823/Q1340405 not extruded. SeparateSanPedro way49039876 and detachedsouthernannex14168824 excluded. Original1892drawing shows abbeybaroquebelfry onleft and separateSanPedro onright; onlyabbeyincluded. Historical registration±10m/bearing±10degrees and hidden topology/section estimates explicit. Complete physical Abbey of Santo Domingo de Silos in an explicit1892drawing-led historical phase: whole two-court monastery residential/service wings, intrinsic monastic church SanSebastian and closed roofs/rear/sides, defining baroque bell tower and Romanesque lower/upper cloister galleries. Actual modern physical footprints supply approximate historical registration/layout, not surveyed1892walls; hidden roofs/sections/census bounded estimates. The square tower/rosewindow on right of drawing belongs separate SanPedro east of abbey and is excluded, together with broader religious grounds, detached southern annex, village houses, vegetation/people/copying sculpture. Later2007PD-self lower-cloister photo informs retained medieval architectural character only, not1892condition or modern garden."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Physical monasteryrelation2641315/22controls/two8controlcourts plus intrinsic monasticchurchrelation14168825/Q108040783/9controls and connectednorthwestserviceblock provide approximate historical context. Main religiousgroundsrelation14168823/Q1340405 not extruded. SeparateSanPedro way49039876 and detachedsouthernannex14168824 excluded. Original1892drawing shows abbeybaroquebelfry onleft and separateSanPedro onright; onlyabbeyincluded. Historical registration±10m/bearing±10degrees and hidden topology/section estimates explicit.",
+    "Full monastery plus intrinsic monasticchurch, not façade-only or narrow standalonecloister; neither separateSanPedro tower onrightofoldimage nor broadreligiousgrounds adopted.",
+    "All hidden historicalbody/roof/section/baycensus and originalcloistercondition bounded estimates; not1892survey or current-state claim.",
+    "Original independentfield/frame before allmainparameters. Neverflatten/reacquire/reframe or fitfloors/mainsections to renders.",
+    "Baroque abbey tower is left in1892image. SeparateSanPedro squaretower/rosewindow onright excluded; no SanPedro geometry borrowed. Towerlocation/bearing within monasticchurch estimated±10m/±10degrees, heightsections±25percent.",
+    "Whole current monasticchurchrelation14168825 and connectednorthwestservicewing included with monasteryrelation2641315/two8controlcourtvoids, as approximate historicalcontext. Detachedsouthernannex/broadergrounds excluded; hiddenhistoric extents/roof topology remain explicitestimates.",
+    "Full two-level Romanesquegallery exterior retained with realopenarches/pairedshafts/coveredfloors and ceilings. Groundcensus14/12/14/12anduppercensus same are estimated;2007oldform photo not a1892condition survey. Figurativecapitalcarving simplified plainflaredcapitals/twistedshafts, no sculpturecopied.",
+    "Roofmaterialtile/color and hiddenroofsections are estimates from uncolored1892drawing. Sourcefield/frame/allfloors/mainparameters preserved, no broadsitepad/cutout."
+  ],
+  "sourceLicense": "Original authored geometry/repository license. Qualla-first14families/0conflicts; exact already-published signed1892MarianoPedrero1865–1927original, nativePD-Scan/PD-old-auto-expired/exactbytes bound without modifying Qualla images/media/rights. NamedRayet ownPD-self exact2007original for retainedmedieval lower-cloisterform only. OSM ODbL actualphysicalmonastery/intrinsicmonasticchurch/connectedservicewing/twocourts as bounded1892context. No questionable/attributiononly photos, inventedcopyright waivers, copiedsculpture/phototextures/generatedbitmaps, separateSanPedro or detachedannex.",
+  "qaLodCameras": [
+    {
+      "name": "whole-abbey-skyline",
+      "position": [
+        145,
+        95,
+        -145
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-abbey-district",
+      "position": [
+        145,
+        95,
+        -145
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-abbey-street",
+      "position": [
+        145,
+        95,
+        -145
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-abbey-closeup",
+      "position": [
+        145,
+        95,
+        -145
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-abbey-monastic-church-baroque-tower-and-two-courts",
+      "position": [
+        145,
+        95,
+        -145
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-rear-all-wings-two-open-courts",
+      "position": [
+        -145,
+        110,
+        145
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "baroque-abbey-bell-tower-openings-and-curved-cap",
+      "position": [
+        35,
+        33,
+        -75
+      ],
+      "lookAt": [
+        8,
+        25,
+        -31
+      ]
+    },
+    {
+      "name": "two-level-open-romanesque-cloister",
+      "position": [
+        19.675857551495195,
+        11.5,
+        5.568757526557574
+      ],
+      "lookAt": [
+        33.50359000407162,
+        5.3,
+        -2.0983724018503285
+      ]
+    },
+    {
+      "name": "inside-covered-lower-cloister-paired-and-twisted-shafts",
+      "position": [
+        30.675857551495195,
+        2.3,
+        9.568757526557574
+      ],
+      "lookAt": [
+        19.675857551495195,
+        2.8,
+        15.568757526557574
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 55137,
+    "vertices": 165411,
+    "materials": 6,
+    "bytes": 6859660,
+    "sha256": "sha256:b7f40f0c7dd685d1e0d5cf568ee78e0e499299a7715495860467f7a494af8027"
+  }
+}

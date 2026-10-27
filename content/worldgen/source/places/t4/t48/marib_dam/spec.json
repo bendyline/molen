@@ -1,0 +1,1235 @@
+{
+  "planId": "marib_dam",
+  "id": "marib_dam",
+  "assetId": "molen.worldgen.structure.marib_dam",
+  "title": "Ancient Marib Dam, Yemen (1843 remains)",
+  "wikidataId": "Q119047189",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 45.269264,
+    "latitude": 15.401032
+  },
+  "size": [
+    360.88404846191406,
+    16.614200115203857,
+    1126.6055908203125
+  ],
+  "actualBounds": {
+    "min": [
+      -176.5603485107422,
+      -8.67490005493164,
+      -684.415771484375
+    ],
+    "max": [
+      184.32369995117188,
+      7.939300060272217,
+      442.1898193359375
+    ]
+  },
+  "visualBrief": "Complete ancient MaribDam remains in the1843Arnaudsurvey phase: both northern and southern sluice assemblies and their stone retaining moles, three north/two south rounded gate abutments, exposed sluice channels, remnant masonry/earthfill bank arms with the great central breach left open, intrinsic northern curved revetment and separate ancient distribution basin. Primary pace/unit dimensions and drawing topology are approximate; hidden heights/sections and individual ruin profiles estimated. Exclude modern1986dam/upstreamreservoir, natural Balaqmountains/wadi/rockcliffs, distant city/temples/inscriptions as lettering and archaeological elements outside this dam system. This is a ruined historical structure, not a hypothetical restored intact ancient dam.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1843-07-31",
+    "validFrom": "1843-01-01",
+    "validUntil": "1844-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:083_stari_jez.jpg",
+    "https://commons.wikimedia.org/wiki/File:Plan_de_la_digue_de_Mareb_et_des_ruines_de_la_ville_de_Saba,_dans_le_midi_de_l%27Arabie_-_Fait_par_Mr._Th._Joseph_Arnaud_en_1843_-_btv1b84924810_(2_of_4).jpg"
+  ],
+  "stories": [
+    {
+      "id": "marib-dam-wp",
+      "url": "https://qualla.com/marib-dam/"
+    }
+  ],
+  "referenceInputHash": "c096ef301e497c564768496942f4aaa19a3c55d58093d236b4828b5cd8d16c54",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/t4/t48/marib_dam/models/marib-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/t4/t48/marib_dam/models/marib-model.mjs",
+    "level": "skyline",
+    "export": "maribSkyline",
+    "errorMeters": 7,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "maribDistrict",
+        "errorMeters": 3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "maribStreet",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "maribCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "earth_rammed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 8,
+    "groundY": -40,
+    "far": 12000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent2048m129x129originalfield/16641heights/two rawTerrariumzoom14tiles/frame/datum1125.8859m acquired before north/south/basin floors and main masonry/earthbank sections. Original16mgrid and9.2115moutputpixels are not native survey accuracy or1843grade. Component floors fixed from original point samples+.5m; earthbank controls follow original independent field once, before geometry. Never flatten/reacquire/reframe/move floors or main sections for rendering.",
+    "anchor": [
+      45.269264,
+      15.401032
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        45.26977499766256,
+        15.404496984150185
+      ],
+      "modelHeight": 0,
+      "basis": "Northern sluice identity point chosen as independent vertical datum contact before terrain/floor/main sections."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "minHeight": -40,
+      "outline": [
+        [
+          29.143337932271066,
+          -396.31742967302915
+        ],
+        [
+          95.18082543513435,
+          -556.4858402548576
+        ],
+        [
+          108.39531099047943,
+          -551.0375035850494
+        ],
+        [
+          42.357823487616145,
+          -390.869093003221
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            50.40396376615194,
+            -387.5516667631783
+          ],
+          [
+            73.51708439215409,
+            -443.61061046681823
+          ],
+          [
+            81.19046479382786,
+            -440.44687324460637
+          ],
+          [
+            58.07734416782571,
+            -384.3879295409664
+          ]
+        ],
+        [
+          [
+            68.43178519177101,
+            -380.11879015677687
+          ],
+          [
+            75.03553394205734,
+            -396.13563121495974
+          ],
+          [
+            83.63341800658337,
+            -392.59072083344523
+          ],
+          [
+            77.02966925629704,
+            -376.57387977526236
+          ]
+        ],
+        [
+          [
+            -53.83212245913402,
+            377.9908595567485
+          ],
+          [
+            -19.47416055373515,
+            382.476975233719
+          ],
+          [
+            -21.32476613187589,
+            396.65026913295617
+          ],
+          [
+            -55.68272803727476,
+            392.1641534559857
+          ]
+        ],
+        [
+          [
+            -56.80953937015622,
+            400.79410052767093
+          ],
+          [
+            -11.19671129570954,
+            406.7497629636195
+          ],
+          [
+            -12.27131995263069,
+            414.9799036814001
+          ],
+          [
+            -57.88414802707737,
+            409.02424124545155
+          ]
+        ],
+        [
+          [
+            39.210306785567354,
+            -400.27927625597033
+          ],
+          [
+            40.90748924633622,
+            -399.3031019696165
+          ],
+          [
+            42.29418912046998,
+            -397.9209268716071
+          ],
+          [
+            43.27590510317631,
+            -396.22694391071917
+          ],
+          [
+            43.78573487259612,
+            -394.3365952262979
+          ],
+          [
+            43.78893437247702,
+            -392.37870495723774
+          ],
+          [
+            43.28528556218953,
+            -390.4867000898086
+          ],
+          [
+            42.309111275835726,
+            -388.7895176290397
+          ],
+          [
+            40.92693617782635,
+            -387.4028177549059
+          ],
+          [
+            39.232953216938384,
+            -386.4211017721996
+          ],
+          [
+            37.34260453251713,
+            -385.9112720027798
+          ],
+          [
+            35.384714263457006,
+            -385.9080725028989
+          ],
+          [
+            33.49270939602779,
+            -386.4117213131864
+          ],
+          [
+            31.795526935258934,
+            -387.38789559954023
+          ],
+          [
+            30.40882706112517,
+            -388.7700706975496
+          ],
+          [
+            29.427111078418843,
+            -390.46405365843754
+          ],
+          [
+            28.917281308999023,
+            -392.3544023428588
+          ],
+          [
+            28.914081809118123,
+            -394.31229261191896
+          ],
+          [
+            29.417730619405617,
+            -396.20429747934816
+          ],
+          [
+            30.39390490575942,
+            -397.901479940117
+          ],
+          [
+            31.776080003768797,
+            -399.2881798142508
+          ],
+          [
+            33.47006296465676,
+            -400.2698957969571
+          ],
+          [
+            35.36041164907802,
+            -400.7797255663769
+          ],
+          [
+            37.31830191813815,
+            -400.7829250662578
+          ]
+        ],
+        [
+          [
+            57.70038004261257,
+            -392.6558130699176
+          ],
+          [
+            59.39756250338144,
+            -391.67963878356375
+          ],
+          [
+            60.78426237751519,
+            -390.29746368555436
+          ],
+          [
+            61.76597836022152,
+            -388.60348072466644
+          ],
+          [
+            62.27580812964134,
+            -386.71313204024517
+          ],
+          [
+            62.27900762952224,
+            -384.755241771185
+          ],
+          [
+            61.77535881923475,
+            -382.8632369037558
+          ],
+          [
+            60.79918453288094,
+            -381.166054442987
+          ],
+          [
+            59.41700943487157,
+            -379.7793545688532
+          ],
+          [
+            57.723026473983595,
+            -378.7976385861469
+          ],
+          [
+            55.83267778956234,
+            -378.2878088167271
+          ],
+          [
+            53.874787520502224,
+            -378.2846093168462
+          ],
+          [
+            51.98278265307301,
+            -378.78825812713364
+          ],
+          [
+            50.28560019230415,
+            -379.7644324134875
+          ],
+          [
+            48.898900318170384,
+            -381.1466075114969
+          ],
+          [
+            47.917184335464064,
+            -382.8405904723848
+          ],
+          [
+            47.40735456604424,
+            -384.7309391568061
+          ],
+          [
+            47.40415506616334,
+            -386.68882942586623
+          ],
+          [
+            47.907803876450835,
+            -388.5808342932954
+          ],
+          [
+            48.88397816280464,
+            -390.27801675406425
+          ],
+          [
+            50.266153260814015,
+            -391.66471662819805
+          ],
+          [
+            51.96013622170198,
+            -392.64643261090436
+          ],
+          [
+            53.850484906123235,
+            -393.15626238032416
+          ],
+          [
+            55.80837517518336,
+            -393.1594618802051
+          ]
+        ],
+        [
+          [
+            76.19045329965779,
+            -385.03234988386487
+          ],
+          [
+            77.88763576042665,
+            -384.056175597511
+          ],
+          [
+            79.27433563456042,
+            -382.67400049950163
+          ],
+          [
+            80.25605161726673,
+            -380.9800175386137
+          ],
+          [
+            80.76588138668656,
+            -379.08966885419244
+          ],
+          [
+            80.76908088656745,
+            -377.1317785851323
+          ],
+          [
+            80.26543207627996,
+            -375.2397737177031
+          ],
+          [
+            79.28925778992615,
+            -373.54259125693426
+          ],
+          [
+            77.90708269191678,
+            -372.15589138280046
+          ],
+          [
+            76.21309973102882,
+            -371.17417540009416
+          ],
+          [
+            74.32275104660756,
+            -370.66434563067435
+          ],
+          [
+            72.36486077754743,
+            -370.66114613079344
+          ],
+          [
+            70.47285591011823,
+            -371.1647949410809
+          ],
+          [
+            68.77567344934937,
+            -372.1409692274347
+          ],
+          [
+            67.3889735752156,
+            -373.52314432544415
+          ],
+          [
+            66.40725759250928,
+            -375.2171272863321
+          ],
+          [
+            65.89742782308946,
+            -377.1074759707533
+          ],
+          [
+            65.89422832320855,
+            -379.0653662398135
+          ],
+          [
+            66.39787713349605,
+            -380.95737110724264
+          ],
+          [
+            67.37405141984985,
+            -382.6545535680115
+          ],
+          [
+            68.75622651785923,
+            -384.0412534421453
+          ],
+          [
+            70.4502094787472,
+            -385.0229694248516
+          ],
+          [
+            72.34055816316845,
+            -385.53279919427143
+          ],
+          [
+            74.29844843222858,
+            -385.53599869415234
+          ]
+        ],
+        [
+          [
+            -47.404707205269965,
+            386.69306751762804
+          ],
+          [
+            -47.909434100685296,
+            388.5847850714727
+          ],
+          [
+            -48.88657537507943,
+            390.28141097966676
+          ],
+          [
+            -50.269540465404724,
+            391.6673229903736
+          ],
+          [
+            -51.96408258621336,
+            392.64807349039137
+          ],
+          [
+            -53.85472149233551,
+            393.1568259539108
+          ],
+          [
+            -55.81261326674745,
+            393.1589097412962
+          ],
+          [
+            -57.70433082059216,
+            392.6541828458809
+          ],
+          [
+            -59.400956728786184,
+            391.67704157148677
+          ],
+          [
+            -60.786868739492995,
+            390.2940764811615
+          ],
+          [
+            -61.76761923951081,
+            388.59953436035283
+          ],
+          [
+            -62.27637170303023,
+            386.7088954542307
+          ],
+          [
+            -62.27845549041562,
+            384.7510036798187
+          ],
+          [
+            -61.773728595000286,
+            382.85928612597405
+          ],
+          [
+            -60.79658732060614,
+            381.16266021778
+          ],
+          [
+            -59.41362223028086,
+            379.7767482070732
+          ],
+          [
+            -57.71908010947222,
+            378.7959977070554
+          ],
+          [
+            -55.828441203350074,
+            378.28724524353595
+          ],
+          [
+            -53.87054942893813,
+            378.28516145615055
+          ],
+          [
+            -51.97883187509343,
+            378.7898883515659
+          ],
+          [
+            -50.28220596689939,
+            379.76702962596
+          ],
+          [
+            -48.89629395619259,
+            381.1499947162853
+          ],
+          [
+            -47.91554345617478,
+            382.8445368370939
+          ],
+          [
+            -47.40679099265535,
+            384.7351757432161
+          ]
+        ],
+        [
+          [
+            -49.994125655682375,
+            406.5247318978222
+          ],
+          [
+            -50.498852551097706,
+            408.41644945166695
+          ],
+          [
+            -51.47599382549184,
+            410.11307535986094
+          ],
+          [
+            -52.858958915817134,
+            411.49898737056776
+          ],
+          [
+            -54.55350103662577,
+            412.47973787058555
+          ],
+          [
+            -56.44413994274792,
+            412.988490334105
+          ],
+          [
+            -58.40203171715986,
+            412.9905741214904
+          ],
+          [
+            -60.29374927100457,
+            412.48584722607507
+          ],
+          [
+            -61.990375179198594,
+            411.50870595168095
+          ],
+          [
+            -63.376287189905405,
+            410.12574086135567
+          ],
+          [
+            -64.35703768992322,
+            408.431198740547
+          ],
+          [
+            -64.86579015344265,
+            406.5405598344249
+          ],
+          [
+            -64.86787394082803,
+            404.5826680600129
+          ],
+          [
+            -64.3631470454127,
+            402.69095050616824
+          ],
+          [
+            -63.38600577101855,
+            400.99432459797424
+          ],
+          [
+            -62.00304068069327,
+            399.6084125872674
+          ],
+          [
+            -60.30849855988464,
+            398.62766208724963
+          ],
+          [
+            -58.41785965376249,
+            398.11890962373013
+          ],
+          [
+            -56.45996787935055,
+            398.1168258363448
+          ],
+          [
+            -54.56825032550584,
+            398.62155273176006
+          ],
+          [
+            -52.87162441731181,
+            399.59869400615423
+          ],
+          [
+            -51.485712406604996,
+            400.9816590964795
+          ],
+          [
+            -50.50496190658719,
+            402.6762012172881
+          ],
+          [
+            -49.99620944306776,
+            404.56684012341026
+          ]
+        ],
+        [
+          [
+            40.54505431262623,
+            -382.9632064825197
+          ],
+          [
+            51.21790277310007,
+            -408.84930904238297
+          ],
+          [
+            55.222113037645784,
+            -407.1983718548114
+          ],
+          [
+            44.54926457717194,
+            -381.3122692949481
+          ]
+        ],
+        [
+          [
+            59.035127569671445,
+            -375.33974329646696
+          ],
+          [
+            69.70797603014529,
+            -401.22584585633024
+          ],
+          [
+            73.712186294691,
+            -399.57490866875867
+          ],
+          [
+            63.03933783421716,
+            -373.6888061088954
+          ]
+        ],
+        [
+          [
+            -63.78857409531602,
+            392.4547277895681
+          ],
+          [
+            -36.02424396304413,
+            396.0799136201455
+          ],
+          [
+            -36.58500842266544,
+            400.37465885832034
+          ],
+          [
+            -64.34933855493733,
+            396.74947302774297
+          ]
+        ],
+        [
+          [
+            16.008150816684406,
+            -395.3118569306306
+          ],
+          [
+            -25.264196376535438,
+            -228.18185814535116
+          ],
+          [
+            52.40266468578133,
+            -209.0022154811412
+          ],
+          [
+            93.67501187900118,
+            -376.13221426642065
+          ]
+        ],
+        [
+          [
+            -26.42674212652583,
+            -218.02469095948115
+          ],
+          [
+            -23.840587939847943,
+            -35.709510856656465
+          ],
+          [
+            56.15136462244961,
+            -36.84420256418653
+          ],
+          [
+            53.565210435771725,
+            -219.15938266701122
+          ]
+        ],
+        [
+          [
+            11.398616515140418,
+            -75.9930136467849
+          ],
+          [
+            -151.21056737403617,
+            -56.51744389721591
+          ],
+          [
+            -141.69702372171534,
+            22.914869975510896
+          ],
+          [
+            20.912160167461252,
+            3.4393002259419063
+          ]
+        ],
+        [
+          [
+            -64.98609405066064,
+            369.65689127872525
+          ],
+          [
+            -121.33272433295082,
+            405.23759290666686
+          ],
+          [
+            -101.04369892731512,
+            437.3678815466631
+          ],
+          [
+            -44.69706864502494,
+            401.7871799187215
+          ]
+        ],
+        [
+          [
+            -111.74351899491126,
+            402.3108538621689
+          ],
+          [
+            -176.56034487374149,
+            404.2060456175771
+          ],
+          [
+            -175.4497301441849,
+            442.1898123465692
+          ],
+          [
+            -110.63290426535468,
+            440.29462059116105
+          ]
+        ],
+        [
+          [
+            155.70726603753593,
+            -653.5811239417801
+          ],
+          [
+            168.74338808568615,
+            -685.1991492113275
+          ],
+          [
+            185.10710291817117,
+            -678.4523842916708
+          ],
+          [
+            172.07098087002095,
+            -646.8343590221234
+          ]
+        ],
+        [
+          [
+            94.84973210175878,
+            -402.4602121458592
+          ],
+          [
+            97.51794421687724,
+            -408.931737785825
+          ],
+          [
+            103.98946985684307,
+            -406.2635256707066
+          ],
+          [
+            101.32125774172461,
+            -399.7920000307408
+          ]
+        ],
+        [
+          [
+            99.53230160366633,
+            -409.49302476956217
+          ],
+          [
+            102.20051371878479,
+            -415.964550409528
+          ],
+          [
+            108.67203935875062,
+            -413.2963382944095
+          ],
+          [
+            106.00382724363216,
+            -406.8248126544437
+          ]
+        ],
+        [
+          [
+            105.49693052503964,
+            -415.47717987873403
+          ],
+          [
+            108.1651426401581,
+            -421.94870551869985
+          ],
+          [
+            114.63666828012393,
+            -419.2804934035814
+          ],
+          [
+            111.96845616500548,
+            -412.80896776361556
+          ]
+        ],
+        [
+          [
+            112.51440152143275,
+            -420.1827097484821
+          ],
+          [
+            115.18261363655122,
+            -426.65423538844794
+          ],
+          [
+            121.65413927651704,
+            -423.98602327332947
+          ],
+          [
+            118.98592716139858,
+            -417.51449763336365
+          ]
+        ],
+        [
+          [
+            120.31503711789739,
+            -423.4287835048036
+          ],
+          [
+            122.98324923301584,
+            -429.90030914476944
+          ],
+          [
+            129.45477487298166,
+            -427.23209702965096
+          ],
+          [
+            126.78656275786321,
+            -420.76057138968514
+          ]
+        ],
+        [
+          [
+            128.59906326310823,
+            -425.09065635366215
+          ],
+          [
+            131.26727537822669,
+            -431.562181993628
+          ],
+          [
+            137.7388010181925,
+            -428.8939698785095
+          ],
+          [
+            135.07058890307405,
+            -422.4224442385437
+          ]
+        ],
+        [
+          [
+            137.04812947804024,
+            -425.1044634534652
+          ],
+          [
+            139.7163415931587,
+            -431.5759890934311
+          ],
+          [
+            146.1878672331245,
+            -428.9077769783126
+          ],
+          [
+            143.51965511800606,
+            -422.4362513383467
+          ]
+        ],
+        [
+          [
+            145.33754288634444,
+            -423.46967420511044
+          ],
+          [
+            148.0057550014629,
+            -429.94119984507626
+          ],
+          [
+            154.47728064142873,
+            -427.2729877299578
+          ],
+          [
+            151.80906852631028,
+            -420.80146208999196
+          ]
+        ]
+      ],
+      "basis": "Only intrinsic masonry/sluice-channel/basin/constructed earthfill physical footprints; central breached wadi and natural mountains unchanged. Source grid/heights/datum retained; historic registration/grade approximate."
+    },
+    "featureIds": [
+      "wikidata/Q119052690",
+      "wikidata/Q119053317"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q119047189",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c6dd0f0eadcd9f5559c33cecf281eaaf3b17fd294ad856d4832261ea8ab494b1",
+    "notes": "Complete ancient MaribDam remains in the1843Arnaudsurvey phase: both northern and southern sluice assemblies and their stone retaining moles, three north/two south rounded gate abutments, exposed sluice channels, remnant masonry/earthfill bank arms with the great central breach left open, intrinsic northern curved revetment and separate ancient distribution basin. Primary pace/unit dimensions and drawing topology are approximate; hidden heights/sections and individual ruin profiles estimated. Exclude modern1986dam/upstreamreservoir, natural Balaqmountains/wadi/rockcliffs, distant city/temples/inscriptions as lettering and archaeological elements outside this dam system. This is a ruined historical structure, not a hypothetical restored intact ancient dam. Current independent composite source field cannot certify1843grade. Original field and component floors/main sections must remain unchanged after selection."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete ancient MaribDam remains in the1843Arnaudsurvey phase: both northern and southern sluice assemblies and their stone retaining moles, three north/two south rounded gate abutments, exposed sluice channels, remnant masonry/earthfill bank arms with the great central breach left open, intrinsic northern curved revetment and separate ancient distribution basin. Primary pace/unit dimensions and drawing topology are approximate; hidden heights/sections and individual ruin profiles estimated. Exclude modern1986dam/upstreamreservoir, natural Balaqmountains/wadi/rockcliffs, distant city/temples/inscriptions as lettering and archaeological elements outside this dam system. This is a ruined historical structure, not a hypothetical restored intact ancient dam.",
+    "Independent2048m129x129originalfield/16641heights/two rawTerrariumzoom14tiles/frame/datum1125.8859m acquired before north/south/basin floors and main masonry/earthbank sections. Original16mgrid and9.2115moutputpixels are not native survey accuracy or1843grade. Component floors fixed from original point samples+.5m; earthbank controls follow original independent field once, before geometry. Never flatten/reacquire/reframe/move floors or main sections for rendering.",
+    "Arnaud warns topographic distances and dimensions on paper are not proportionate. Whole site identities bound overall registration; individual extents/heights/ruin profiles explicitly estimated.",
+    "Exact archaeological survey not required, but both sluices/retainingmoles/remnantbankarms/openbreach retained as whole physical scope.",
+    "2012publishedphoto does not establish identical1843individualblocks or currentpost2015state.",
+    "Original independent modern relief is not1843grade; never flatten/reframe/move floors or main sections to improve render.",
+    "Original unit note resolves travellerpace≈.86624m andempan≈.21656m; source topographic distances explicitly not proportional. ±150m geographic control/±35degree individual component bearings/±35percent hidden extents and masses. Native north/south identities retain their779.2mspacing; original600paceannotation is not forced to agree.",
+    "Whole1843ruined dam phase, no restored continuous wall, water/gates/buildingroof/modernupstreamdam. Exact individual block-loss pattern and hidden foundation extents estimated.",
+    "Masonry bank/sluice returns remain open; stone course treatment authored from primary block character, no copied letter inscriptions.",
+    "Pregeometry source-map coarse outlines remain unchanged; actual narrow physical openings will come from final mesh footprints, not a broad terrain pad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Cleared published Qualla Ljubabrank PD-user-sl ruin photo first, exact native original1843Arnaud/BnF map published1873 with explicitPD-France/PD-US-expired grant and known1812–1884mapmaker. Primary factual scalar text and CC0 Wikidata historic identities. No modern protected diagrams/photographs, no modern upstream dam or hypothetical intact ancient wall, no copied inscriptions/baked photography.",
+  "qaLodCameras": [
+    {
+      "name": "northern-sluice-skyline",
+      "position": [
+        146.9655649381305,
+        75.5678,
+        -228.75652458589454
+      ],
+      "lookAt": [
+        61.70269821529026,
+        3.5678,
+        -402.3631015298663
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "northern-sluice-district",
+      "position": [
+        146.9655649381305,
+        75.5678,
+        -228.75652458589454
+      ],
+      "lookAt": [
+        61.70269821529026,
+        3.5678,
+        -402.3631015298663
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "northern-sluice-street",
+      "position": [
+        146.9655649381305,
+        75.5678,
+        -228.75652458589454
+      ],
+      "lookAt": [
+        61.70269821529026,
+        3.5678,
+        -402.3631015298663
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "northern-sluice-closeup",
+      "position": [
+        146.9655649381305,
+        75.5678,
+        -228.75652458589454
+      ],
+      "lookAt": [
+        61.70269821529026,
+        3.5678,
+        -402.3631015298663
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-ancient-dam-and-open-central-breach",
+      "position": [
+        1000,
+        1400,
+        1800
+      ],
+      "lookAt": [
+        0,
+        5,
+        -100
+      ]
+    },
+    {
+      "name": "northern-three-massifs-open-sluices-and-long-mole",
+      "position": [
+        146.9655649381305,
+        75.5678,
+        -228.75652458589454
+      ],
+      "lookAt": [
+        61.70269821529026,
+        3.5678,
+        -402.3631015298663
+      ]
+    },
+    {
+      "name": "southern-two-massifs-open-channel-and-retaining-mole",
+      "position": [
+        -129.65216438512363,
+        39.6655,
+        456.6330831556599
+      ],
+      "lookAt": [
+        -46.22045838295189,
+        -2.3345000000000002,
+        396.93257701402666
+      ]
+    },
+    {
+      "name": "northern-distribution-basin-and-curved-revetment",
+      "position": [
+        240.40718447785355,
+        70.1619,
+        -576.0167541167255
+      ],
+      "lookAt": [
+        170.40718447785355,
+        0.16189999999999993,
+        -666.0167541167255
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19347,
+    "vertices": 58041,
+    "materials": 2,
+    "bytes": 2402576,
+    "sha256": "sha256:a3947b36cc5da526a22c5e2dc8647490a4a277d44184c3678a6c366fa6b984a6"
+  }
+}

@@ -1,0 +1,662 @@
+{
+  "planId": "sher_garhi_palace",
+  "id": "sher_garhi_palace",
+  "assetId": "molen.worldgen.structure.sher_garhi_palace",
+  "title": "Sher Garhi Palace — historic riverfront",
+  "wikidataId": "Q7494618",
+  "category": "historic-palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 74.80612,
+    "latitude": 34.0732
+  },
+  "size": [
+    110.5999984741211,
+    29.399999141693115,
+    42.14999961853027
+  ],
+  "actualBounds": {
+    "min": [
+      -55.79999923706055,
+      -2.5999999046325684,
+      -13.399999618530273
+    ],
+    "max": [
+      54.79999923706055,
+      26.799999237060547,
+      28.75
+    ]
+  },
+  "visualBrief": "Historic Sher Garhi riverfront palace: projecting multistorey arched north bay and balconies, open domed pavilion/finial, long arched gallery/stone river revetment/timber supports, square south pavilion, terminal open veranda and stepped high rear hall with layered hip roofs. PrimaryGettyCC0Burke/Baker photograph1860s–1870s. Rear massing,107m riverfront/35mdepth and sections original visual estimates; no measured wholecompound or present-day palace claim.",
+  "nativeAxes": {
+    "x": "south",
+    "y": "up",
+    "z": "west"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1870-01-01",
+    "validFrom": "1860-01-01",
+    "validUntil": "1880-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://www.getty.edu/art/collection/object/109A7W"
+  ],
+  "stories": [
+    {
+      "id": "sher-garhi-palace-wp",
+      "url": "https://qualla.com/sher-garhi-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:b1c9f4c5c5124150f0c228375809943c0b900ac9861fb2914860eddce4e0c0c0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tw/twj/sher_garhi_palace/models/sher-garhi-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/sher-garhi-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "sherGarhiSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "lime": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "sherGarhiDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "sherGarhiStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "sherGarhiCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "wood_plain",
+    "slate",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6,
+    "groundY": -3,
+    "far": 2200,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent129x129/256mproviderfield acquired before floor/sections/geometry. Fixed visualization datum0 at landside[0,12]. Riverrevetmentbase-2.6m;galleryfloor6.2m/eaves11.7m;palacebayeaves20.7m;domecap24.3m/finial26.8m;raisedrearhallridge24.9m. Approximatephotographicproportions, not surveyedhistoricriverlevel/floors/contact; do notfitfield/floorsaftergeometry.",
+    "anchor": [
+      74.80612,
+      34.0732
+    ],
+    "heading": -1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        74.80598986066013,
+        34.0732
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed landside palace contact before independent terrain sampling and all geometry; contemporary DEM not historical waterfront survey."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -55,
+          -12
+        ],
+        [
+          -37,
+          -12
+        ],
+        [
+          -37,
+          12
+        ],
+        [
+          -55,
+          12
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -55,
+            -12
+          ],
+          [
+            -37,
+            -12
+          ],
+          [
+            -37,
+            12
+          ],
+          [
+            -55,
+            12
+          ]
+        ],
+        [
+          [
+            -35,
+            -12
+          ],
+          [
+            -19,
+            -12
+          ],
+          [
+            -19,
+            6
+          ],
+          [
+            -35,
+            6
+          ]
+        ],
+        [
+          [
+            -20,
+            -10
+          ],
+          [
+            16,
+            -10
+          ],
+          [
+            16,
+            10
+          ],
+          [
+            -20,
+            10
+          ]
+        ],
+        [
+          [
+            16,
+            -11
+          ],
+          [
+            40,
+            -11
+          ],
+          [
+            40,
+            11
+          ],
+          [
+            16,
+            11
+          ]
+        ],
+        [
+          [
+            40,
+            -9
+          ],
+          [
+            54,
+            -9
+          ],
+          [
+            54,
+            11
+          ],
+          [
+            40,
+            11
+          ]
+        ],
+        [
+          [
+            -27.5,
+            6
+          ],
+          [
+            31.5,
+            6
+          ],
+          [
+            31.5,
+            28
+          ],
+          [
+            -27.5,
+            28
+          ]
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            -35,
+            -12
+          ],
+          [
+            -19,
+            -12
+          ],
+          [
+            -19,
+            6
+          ],
+          [
+            -35,
+            6
+          ]
+        ],
+        [
+          [
+            -20,
+            -10
+          ],
+          [
+            16,
+            -10
+          ],
+          [
+            16,
+            10
+          ],
+          [
+            -20,
+            10
+          ]
+        ],
+        [
+          [
+            16,
+            -11
+          ],
+          [
+            40,
+            -11
+          ],
+          [
+            40,
+            11
+          ],
+          [
+            16,
+            11
+          ]
+        ],
+        [
+          [
+            40,
+            -9
+          ],
+          [
+            54,
+            -9
+          ],
+          [
+            54,
+            11
+          ],
+          [
+            40,
+            11
+          ]
+        ],
+        [
+          [
+            -27.5,
+            6
+          ],
+          [
+            31.5,
+            6
+          ],
+          [
+            31.5,
+            28
+          ],
+          [
+            -27.5,
+            28
+          ]
+        ]
+      ],
+      "basis": "Individual physical palace volumes only. No whole247mproperty cutout; original provider field unchanged; historic riverlevel and contact unverified."
+    },
+    "featureIds": [
+      "way/715909684",
+      "way/715909685"
+    ],
+    "source": "https://www.openstreetmap.org/way/715909684",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d559bd586421eeb5290649b1878429b6c3179a52c985ce7ed37fb1065e463f2d",
+    "notes": "Published Qualla12families checked first/zero metadata conflicts. Their old photograph credits were not sufficiently bound; directGettyobject109A7W/accession84.XA.889.4.27 provides object-specificCC0image grant and bothJohnBurke/WilliamH.Baker. Clear nativeoriginal selected; no questionable republisher pixels. Nativepalace siteextent715909684/Q7494618is247m-longproperty, notwalls. Surviving6cornerbuilding715909685 provides contemporary location/orientation context, not historical footprint. Photographic scale/107mriverfrontlength/35mdepth/heights are explicit original visual estimates. Reconstruction is historical-only, no claim to current roofs or survey precision."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Photograph-based original medium-fi reconstruction of the complete visible historic riverfront palace assembly, with explicitly estimated depth/rear closures. PrimaryGetty6633x5088CC0original1860s–1870s. Nativecurrentpropertyisnotwalls andmodernbuildingcontrolsnotclaimedhistoric. Approximate107mriverfront by35mdepth; one scale and signed axes, no independent measured building plan.",
+    "Original independent129x129/256mproviderfield acquired before floor/sections/geometry. Fixed visualization datum0 at landside[0,12]. Riverrevetmentbase-2.6m;galleryfloor6.2m/eaves11.7m;palacebayeaves20.7m;domecap24.3m/finial26.8m;raisedrearhallridge24.9m. Approximatephotographicproportions, not surveyedhistoricriverlevel/floors/contact; do notfitfield/floorsaftergeometry.",
+    "The nominal1870reviewdate lies inside the museum1860s–1870srange, not an exact acquisitiondate. Historicalplacementavailability restricted1860-01-01..1880-01-01 solely as an explicitlyapproximate interpretiveperiod.",
+    "Unseenreardepth/materialcolors/windowcensus/stonecoursing/finialshape/structuralframing estimated; no currentpalace or completegovernmentcompound claim.",
+    "OriginalcontemporaryDEMmaycontainbuilding/canopyorbankartifacts; historicalriverlevel/contactunverified. Naturalriver/trees/boat/people andmount/stampnotgeometry."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Photographer-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaLodCameras": [
+    {
+      "name": "riverfront-skyline",
+      "position": [
+        90,
+        45,
+        -135
+      ],
+      "lookAt": [
+        0,
+        10,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "riverfront-district",
+      "position": [
+        90,
+        45,
+        -135
+      ],
+      "lookAt": [
+        0,
+        10,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "riverfront-street",
+      "position": [
+        90,
+        45,
+        -135
+      ],
+      "lookAt": [
+        0,
+        10,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "riverfront-closeup",
+      "position": [
+        90,
+        45,
+        -135
+      ],
+      "lookAt": [
+        0,
+        10,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "riverfront-palace",
+      "position": [
+        90,
+        38,
+        -135
+      ],
+      "lookAt": [
+        0,
+        10,
+        5
+      ]
+    },
+    {
+      "name": "north-bay-dome-gallery",
+      "position": [
+        -75,
+        28,
+        -75
+      ],
+      "lookAt": [
+        -30,
+        13,
+        -3
+      ]
+    },
+    {
+      "name": "rear-tiered-halls",
+      "position": [
+        70,
+        65,
+        100
+      ],
+      "lookAt": [
+        0,
+        10,
+        5
+      ]
+    },
+    {
+      "name": "dome-pavilion-and-arched-gallery",
+      "position": [
+        -14,
+        15,
+        -47
+      ],
+      "lookAt": [
+        -27,
+        14,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5518,
+    "vertices": 16554,
+    "materials": 5,
+    "bytes": 874972,
+    "sha256": "sha256:a67522974266e9219596533b0bbe95c905401fc870a3ed23e86cc976ebc4e9c3"
+  }
+}

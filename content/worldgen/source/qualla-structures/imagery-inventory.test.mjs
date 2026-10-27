@@ -2579,3 +2579,101 @@ test('an original expired named book binds its dated library catalog and native 
   save();
   assert.equal(inspectExpiredNamedBookReference(dir, ref).eligible, false);
 });
+
+// Authorship comes from the signed first upload, never the generated assumed-author label.
+test('a signed personal photograph binds real name, original uploader, release and file history', (t) => {
+  const f = fixture(t);
+  const reference = {
+    ...f.reference,
+    origin: 'commons-self-public-domain',
+    artist: 'NamedPhotographer',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Personal.jpg',
+    downloadUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Personal.jpg',
+    creatorDedication: {
+      kind: 'contemporaneous-signed-personal-photograph',
+      username: 'NamedPhotographer',
+      realName: 'Named Photographer',
+      revision: 1,
+      photographedYear: 2004,
+    },
+  };
+  const page = {
+    title: 'File:Personal.jpg',
+    revisions: [
+      {
+        revid: 1,
+        parentid: 0,
+        user: 'NamedPhotographer',
+        timestamp: '2005-01-01T00:00:00Z',
+        slots: {
+          main: { '*': 'Named Photographer, personal file, 2004. My photograph.\n{{PD-self}}' },
+        },
+      },
+    ],
+    imageinfo: [
+      {
+        user: 'NamedPhotographer',
+        timestamp: '2005-01-01T00:00:00Z',
+        url: reference.downloadUrl,
+        sha1: createHash('sha1').update('original pixels').digest('hex'),
+        extmetadata: {
+          LicenseShortName: { value: 'Public domain' },
+          AttributionRequired: { value: 'false' },
+          Artist: {
+            value:
+              'No machine-readable author provided. NamedPhotographer assumed (based on copyright claims).',
+          },
+          Credit: {
+            value:
+              'No machine-readable source provided. Own work assumed (based on copyright claims).',
+          },
+        },
+      },
+    ],
+  };
+  const check = () => {
+    const bytes = JSON.stringify({ query: { pages: { 1: page } } });
+    fs.writeFileSync(path.join(f.dir, 'personal.json'), bytes);
+    reference.rightsEvidence = { path: 'personal.json', sha256: hash(bytes) };
+    return inspectCommonsSelfReference(f.dir, reference).eligible;
+  };
+  assert.equal(check(), true);
+  const pristine = structuredClone(page);
+  for (const mutate of [
+    (p) => {
+      p.revisions[0].user = 'Other';
+    },
+    (p) => {
+      p.revisions[0].parentid = 9;
+    },
+    (p) => {
+      p.revisions[0].slots.main['*'] = '{{PD-self}}';
+    },
+    (p) => {
+      p.revisions[0].slots.main['*'] = 'Other Photographer, personal file, 2004.\n{{PD-self}}';
+    },
+    (p) => {
+      p.imageinfo[0].timestamp = '2005-01-02T00:00:00Z';
+    },
+    (p) => {
+      p.imageinfo[0].user = 'Other';
+    },
+    (p) => {
+      p.imageinfo.push({ ...p.imageinfo[0] });
+    },
+    (p) => {
+      p.imageinfo[0].sha1 = 'wrong';
+    },
+    (p) => {
+      p.imageinfo[0].extmetadata.Artist.value = 'Another photographer';
+    },
+    (p) => {
+      p.revisions[0].slots.main['*'] =
+        'Named Photographer, personal file, 2004.\n{{PD-user|Someone else}}';
+    },
+  ]) {
+    Object.assign(page, structuredClone(pristine));
+    mutate(page);
+    assert.equal(check(), false);
+  }
+});

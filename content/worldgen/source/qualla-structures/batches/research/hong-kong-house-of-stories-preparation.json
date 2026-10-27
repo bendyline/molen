@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-25",
+  "date": "2026-10-27",
   "model": "hong_kong_house_of_stories",
   "structureId": "QS-c26dc5d6a537",
-  "state": "reuse-existing-model-pending-story-link",
+  "state": "completed-existing-accepted-model-reused-and-story-linked",
   "geometryAuthored": false,
   "terrainAcquired": false,
   "retainFixedTarget": true,
@@ -18,9 +18,25 @@
       "https://www.heritage.gov.hk/en/about-us/revitalisation-scheme/viva-blue-house/index.html"
     ],
     "sourceAndRuntimeMatchSavedReview": true,
-    "status": "existing-model-new-story-link-pending",
-    "notes": "House of Stories is ground-floor72A within the existing Blue House model. No duplicate model/geometry/source QA edits/rerenders. Existing source and runtime GLB hashes still match saved QA; current model-input approval is stale. New alias story link cannot be claimed strict-ready under bounded-sync guard. Preserve accepted Blue House/core100/history; leave this fixed batch member incomplete pending a valid bounded reuse/link workflow."
+    "status": "accepted-existing-model-story-linked",
+    "notes": "Hong Kong House of Stories reuses the already accepted Blue House (Hong Kong) exterior. Existing accepted geometry/source/runtime/fourLOD bytes preserved. Story association added without reopening or renewing QA; annotation explicitly needs-review under current readiness. No duplicate model, new render or new strict-ready credit."
   },
-  "notes": "House of Stories is ground-floor72A within the existing Blue House model. No duplicate model/geometry/source QA edits/rerenders. Existing source and runtime GLB hashes still match saved QA; current model-input approval is stale. New alias story link cannot be claimed strict-ready under bounded-sync guard. Preserve accepted Blue House/core100/history; leave this fixed batch member incomplete pending a valid bounded reuse/link workflow.",
-  "next": "Reuse existing Blue House; do not build duplicate or reopen unchanged accepted geometry. Story annotation remains pending."
+  "notes": "Hong Kong House of Stories reuses the already accepted Blue House (Hong Kong) exterior. Existing accepted geometry/source/runtime/fourLOD bytes preserved. Story association added without reopening or renewing QA; annotation explicitly needs-review under current readiness. No duplicate model, new render or new strict-ready credit.",
+  "next": "Resolved by reusing the accepted Blue House exterior; no separate building/geometry/review phase. Do not reopen accepted source or renew QA merely to link this story.",
+  "newModelBuilt": false,
+  "currentReadinessRenewed": false,
+  "storyAnnotation": "linked-and-zero-change-repeat-verified; needs-review catalog state accurately preserves older acceptance",
+  "proof": "research/hong-kong-house-of-stories-reuse-acceptance.json",
+  "retainedReviewLimitations": {
+    "sourceAndMasterMatchSavedAcceptance": true,
+    "runtimeLodsMatchSavedAcceptance": false,
+    "runtimeLodReviewDifferences": [
+      {
+        "name": "skyline",
+        "currentHash": "sha256:ec2acfe0a35c581838de08fd1aad77a120d6ba98c20bf3a4e21887288caddef3",
+        "savedReviewHash": "sha256:565a0266dfa98989e26cf219909b028c233bd81a2c34bfc69dc676d0e4af7366"
+      }
+    ],
+    "action": "No newapproval claimed. Existingphysicalsource/master accepted; currentderivatives retainedunchanged and associationneeds-review. No modelrebuild/rerender/QArenewal."
+  }
 }

@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_of_santa_catalina_lima",
+  "kind": "static-structure",
+  "title": "Fort of Santa Catalina, Lima (whole fort,1898–1900)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_of_santa_catalina_lima",
+        "output": "assets/places/6m/6mc/fort_of_santa_catalina_lima/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:991aa3d79b680756ad3a9dcc973269e8ad31d702e489fb05d008ad61f44e19a3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-building-history.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/garreaud-1898-1900-original.png",
+      "reference-rights/garreaud-native.json",
+      "reference-rights/bnp-archive-caption.json",
+      "native-map/fort-wikidata-binding.json",
+      "native-map/current-surviving-turret-and-site-context.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9372-17489.png",
+      "terrain-sources/terrarium-15-9373-17489.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json"
+    ]
+  }
+}
